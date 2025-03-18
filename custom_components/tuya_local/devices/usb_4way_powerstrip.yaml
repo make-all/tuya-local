@@ -1,32 +1,40 @@
 name: USB 4way powerstrip
 products:
   - id: D7Hl3AxFbHDS98iO
-    name: AOFO ZLD-44EU-W
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: AOFO
+    model: ZLD-44EU-W
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
@@ -39,9 +47,11 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 101
         type: integer
@@ -54,9 +64,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 102
         type: integer
@@ -69,9 +81,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 3
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 103
         type: integer
@@ -84,9 +98,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 4
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 104
         type: integer
@@ -101,6 +117,7 @@ secondary_entities:
   - entity: number
     name: USB Timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 105

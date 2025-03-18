@@ -1,25 +1,26 @@
 name: Pet feeder
 products:
   - id: 8vwr6rfoaaxncjwj
-    name: Petoneer Nutri Mini
+    manufacturer: Petoneer
+    model: Nutri Mini
   - id: pxwlmmdodfppms3a
-    name: GiotoHun Pet feeder
+    manufacturer: GiotoHun
   - id: ojqmjnoxqygqldsp
-    name: PUPPY KITTY Automatic Cat & Dog Feeder
-primary_entity:
-  entity: button
-  name: Quick Feed
-  icon: "mdi:food-drumstick"
-  dps:
-    - id: 2
-      type: boolean
-      name: button
-      optional: true
-    - id: 1
-      name: meal_plan
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Puppy Kitty
+    name: Automatic pet feeder
+entities:
+  - entity: button
+    name: Quick Feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        optional: true
+      - id: 1
+        name: meal_plan
+        type: string
+        optional: true
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
@@ -29,8 +30,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: button
-    class: restart
-    name: Factory reset
+    translation_key: factory_reset
     category: config
     dps:
       - id: 9

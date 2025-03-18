@@ -1,91 +1,92 @@
 name: RGBCW light strip
 products:
   - id: aok3caeleulg1neh
-    name: LSC LED Strip RGBIC+CCT 2x5M
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-      mapping:
-        - dps_val: null
-          value: 0
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 27
-      name: music_data
-      type: hex
-      optional: true
-    - id: 46
-      name: length_cm
-      type: integer
-    - id: 47
-      name: pixels
-      type: integer
-    - id: 51
-      name: dreamlight_scene
-      type: string
-      optional: true
-    - id: 52
-      name: dreamlight_music_data
-      type: string
-      optional: true
-    - id: 61
-      name: paint_colour_data
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: LSC
+    model: RGBIC+CCT 2x5M
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+      - id: 46
+        name: length_cm
+        type: integer
+      - id: 47
+        name: pixels
+        type: integer
+      - id: 51
+        name: dreamlight_scene
+        type: string
+        optional: true
+      - id: 52
+        name: dreamlight_music_data
+        type: string
+        optional: true
+      - id: 61
+        name: paint_colour_data
+        type: string
+        optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

@@ -1,0 +1,36 @@
+name: Mirror
+products:
+  - id: aI7d0iudqVMbCkHL
+    manufacturer: Hauschen
+    model: 48x36 Mirror
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 1
+          max: 100
+      - id: 4
+        type: integer
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: switch
+    name: Defogger
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch

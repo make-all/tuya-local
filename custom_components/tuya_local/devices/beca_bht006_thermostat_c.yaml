@@ -1,97 +1,91 @@
 name: Thermostat
 products:
   - id: 7jzdtn4pwujmtskd
-    name: Beca BAC-006 fancoil
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "cold"
-              value: cool
-            - dps_val: "hot"
-              value: heat
-            - dps_val: "wind"
-              value: fan_only
-    - id: 2
-      type: string
-      name: mode
-      optional: true
-      hidden: true
-    - id: 4
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: "eco"
-        - dps_val: false
-          value: "none"
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      type: integer
-      name: max_temperature
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      name: min_temperature
-      mapping:
-        - scale: 10
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 36
-      type: string
-      name: hvac_action
-      readonly: true
-      mapping:
-        - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-        - dps_val: open
-          constraint: mode
-          conditions:
-            - dps_val: hot
-              value: heating
-            - dps_val: cold
-              value: cooling
-            - dps_val: wind
-              value: fan
-    - id: 28
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: high
-          value: high
-secondary_entities:
+    manufacturer: Beca
+    model: BAC-006 fancoil
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "cold"
+                value: cool
+              - dps_val: "hot"
+                value: heat
+              - dps_val: "wind"
+                value: fan_only
+      - id: 2
+        type: string
+        name: mode
+        optional: true
+        hidden: true
+      - id: 4
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: "eco"
+          - dps_val: false
+            value: "none"
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: close
+            value: idle
+          - dps_val: open
+            constraint: mode
+            conditions:
+              - dps_val: hot
+                value: heating
+              - dps_val: cold
+                value: cooling
+              - dps_val: wind
+                value: fan
+      - id: 28
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
   - entity: lock
     translation_key: child_lock
     category: config

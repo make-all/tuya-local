@@ -1,6 +1,6 @@
 """Tests for the energy monitoring powerstrip."""
 
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
@@ -69,14 +69,14 @@ class TestEnergyMonitoringPowerstrip(
                     "dps": CURRENT_DP,
                     "device_class": SensorDeviceClass.CURRENT,
                     "unit": UnitOfElectricCurrent.MILLIAMPERE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
                 {
                     "name": "sensor_power",
                     "dps": POWER_DP,
                     "device_class": SensorDeviceClass.POWER,
                     "unit": UnitOfPower.WATT,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "testdata": (1234, 123.4),
                 },
                 {
@@ -84,7 +84,7 @@ class TestEnergyMonitoringPowerstrip(
                     "dps": VOLTAGE_DP,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "unit": UnitOfElectricPotential.VOLT,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "testdata": (2345, 234.5),
                 },
             ]

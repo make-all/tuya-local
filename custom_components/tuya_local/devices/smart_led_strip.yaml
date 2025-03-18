@@ -1,70 +1,70 @@
-name: Smart LED Strip
+name: LED Strip
 products:
   - id: oblx20mxzsclpahi
-    name: Nedis Smart LED Strip
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-      mapping:
-        - dps_val: null
-          value: 0
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-          invert: true
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+    manufacturer: Nedis
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+            invert: true
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26
@@ -79,9 +79,17 @@ secondary_entities:
           - scale: 60
             step: 60
           - dps_val: null
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -92,11 +100,11 @@ secondary_entities:
           - dps_val: "000e0d0000000000000000c80000"
             value: "Good Night"
           - dps_val: "010e0d0000000000000003e801f4"
-            value: "Reading"
+            value: reading
           - dps_val: "020e0d0000000000000003e803e8"
-            value: "Working"
+            value: working
           - dps_val: "030e0d0000000000000001f401f4"
-            value: "Leisure"
+            value: leisure
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             value: "Grassland"
           - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
@@ -115,7 +123,7 @@ secondary_entities:
           - dps_val: "2a23230100000000000003e800d223230100000000000000c800d2"
             value: "Dynamic"
           - dps_val: "08000000001e0320012c00000000"
-            value: "Night Light"
+            value: night
           - dps_val: "1446460200ae03e803e80000000046460200b4012c03e800000000\
               46460200b4003203e800000000"
             value: "Blue Sky"

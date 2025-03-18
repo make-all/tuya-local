@@ -1,23 +1,23 @@
 name: Level sensor
 products:
   - id: npfinze0zsvta7aj
-    name: EPT 3m ultrasonic
-primary_entity:
-  entity: sensor
-  name: Status
-  class: enum
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: lower_alarm
-          value: low
-        - dps_val: upper_alarm
-          value: high
-secondary_entities:
+    manufacturer: EPT
+    model: 3m ultrasonic
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: lower_alarm
+            value: low
+          - dps_val: upper_alarm
+            value: high
   - entity: sensor
     name: Depth
     class: distance

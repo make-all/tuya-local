@@ -1,20 +1,19 @@
 name: AGL Ultracontato R2
-primary_entity:
-  entity: cover
-  class: door
-  dps:
-    - id: 1
-      name: control
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "open"
-        - dps_val: false
-          value: "close"
-    - id: 101
-      name: open
-      type: boolean
-secondary_entities:
+entities:
+  - entity: cover
+    class: door
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "open"
+          - dps_val: false
+            value: "close"
+      - id: 101
+        name: open
+        type: boolean
   - entity: select
     name: Switch type
     category: config

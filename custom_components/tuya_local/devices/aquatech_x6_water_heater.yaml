@@ -1,48 +1,44 @@
 name: Aquatech RAPID/X6
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: ECO
-              value: eco
-            - dps_val: Stand
-              value: heat_pump
-            - dps_val: HYB
-              value: high_demand
-            - dps_val: HYB1
-              value: performance
-            - dps_val: ELE
-              value: electric
-    - id: 2
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 4
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 15
-        max: 75
-      readonly: true
-    - id: 7
-      type: boolean
-      name: defrosting
-    - id: 15
-      type: bitfield
-      name: fault_code
-    - id: 16
-      type: integer
-      name: current_temperature
-secondary_entities:
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: ECO
+                value: eco
+              - dps_val: Stand
+                value: heat_pump
+              - dps_val: HYB
+                value: high_demand
+              - dps_val: HYB1
+                value: performance
+              - dps_val: ELE
+                value: electric
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 75
+        readonly: true
+      - id: 7
+        type: boolean
+        name: defrosting
+      - id: 16
+        type: integer
+        name: current_temperature
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -54,3 +50,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code

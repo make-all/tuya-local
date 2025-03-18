@@ -20,6 +20,7 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
             BLITZWOLF_BWSH2_PAYLOAD,
         )
         self.subject = self.entities.get("fan")
+        self.light = self.entities.get("light")
         self.setUpMultiSelect(
             [
                 {
@@ -41,13 +42,13 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
                     "name": "select_timer",
                     "dps": TIMER_DP,
                     "options": {
-                        "cancel": "Off",
-                        "2h": "2 hours",
-                        "4h": "4 hours",
-                        "6h": "6 hours",
-                        "8h": "8 hours",
-                        "10h": "10 hours",
-                        "12h": "12 hours",
+                        "cancel": "cancel",
+                        "2h": "2h",
+                        "4h": "4h",
+                        "6h": "6h",
+                        "8h": "8h",
+                        "10h": "10h",
+                        "12h": "12h",
                     },
                 },
             ]
@@ -57,7 +58,9 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            FanEntityFeature.SET_SPEED,
+            FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
         )
 
     def test_speed(self):
@@ -82,3 +85,31 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
             {SPEED_DP: "grade3"},
         ):
             await self.subject.async_set_percentage(50)
+
+    def test_light_named_color(self):
+        self.dps[LIGHT_DP] = "colour"
+        self.assertEqual(self.light.hs_color, (0, 0))
+        self.dps[LIGHT_DP] = "red"
+        self.assertEqual(self.light.hs_color, (0, 100))
+
+    async def test_async_set_light_color(self):
+        self.dps[LIGHT_DP] = "red"
+        async with assert_device_properties_set(
+            self.light._device,
+            {LIGHT_DP: "green"},
+        ):
+            await self.light.async_turn_on(hs_color=(120, 100))
+
+    async def test_async_light_turn_off(self):
+        async with assert_device_properties_set(
+            self.light._device,
+            {LIGHT_DP: "close"},
+        ):
+            await self.light.async_turn_off()
+
+    async def test_async_light_turn_on(self):
+        async with assert_device_properties_set(
+            self.light._device,
+            {LIGHT_DP: "colour"},
+        ):
+            await self.light.async_turn_on()

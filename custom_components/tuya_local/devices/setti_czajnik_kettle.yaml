@@ -1,77 +1,75 @@
-name: Setti kettle
+name: Kettle
 products:
   - id: rsygyyeiyarl4urt
-    name: Czajnik Setti+ KT950W
-primary_entity:
-  entity: water_heater
-  icon: "mdi:kettle"
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "Off"
-        - dps_val: true
-          constraint: work_type
-          conditions:
-            - dps_val: setting_quick
-              value: Quick Set
-            - dps_val: boiling_quick
-              value: Quick Boil
-            - dps_val: temp_setting
-              value: Set
-            - dps_val: temp_boiling
-              value: Boil
-    - id: 2
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 3
-      type: integer
-      name: current_temp_f
-      hidden: true
-    - id: 8
-      type: integer
-      name: temperature
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 32
-                max: 212
-    - id: 9
-      type: integer
-      name: temp_set_f
-      range:
-        min: 32
-        max: 212
-      hidden: true
-    - id: 12
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 16
-      type: string
-      name: work_type
-      hidden: true
-    - id: 19
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Setti+
+    model: KT950W
+    name: Czajnik
+entities:
+  - entity: water_heater
+    icon: "mdi:kettle"
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: work_type
+            conditions:
+              - dps_val: setting_quick
+                value: Quick Set
+              - dps_val: boiling_quick
+                value: Quick Boil
+              - dps_val: temp_setting
+                value: Set
+              - dps_val: temp_boiling
+                value: Boil
+      - id: 2
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 3
+        type: integer
+        name: current_temp_f
+        hidden: true
+      - id: 8
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 212
+      - id: 9
+        type: integer
+        name: temp_set_f
+        range:
+          min: 32
+          max: 212
+        hidden: true
+      - id: 12
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 16
+        type: string
+        name: work_type
+        hidden: true
   - entity: select
     name: Quick set temperature C
     icon: "mdi:water-thermometer-outline"
@@ -221,6 +219,7 @@ secondary_entities:
   - entity: number
     name: Keep warm time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 14
@@ -231,7 +230,7 @@ secondary_entities:
           min: 0
           max: 360
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -240,32 +239,23 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
-            icon: "mdi:kettle-off-outline"
+            value: standby
           - dps_val: heating
-            icon: "mdi:kettle"
-            value: Heating
+            value: heating
           - dps_val: cooling
-            icon: "mdi:kettle-outline"
-            value: Cooling
+            value: cooling
           - dps_val: warm
-            icon: "mdi:kettle"
-            value: Warm
+            value: keeping_warm
           - dps_val: heating_temp
-            icon: "mdi:kettle-alert"
-            value: "No water"
+            value: no_water
           - dps_val: boiling_temp
-            icon: "mdi:kettle-steam"
-            value: Boiling
+            value: boiling
           - dps_val: reserve_1
-            icon: "mdi:kettle-alert"
-            value: Reserved1
+            value: reserved_1
           - dps_val: reserve_2
-            icon: "mdi:kettle-alert"
-            value: Reserved2
+            value: reserved_2
           - dps_val: reserve_3
-            icon: "mdi:kettle-alert"
-            value: Reserved3
+            value: reserved_3
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -277,3 +267,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

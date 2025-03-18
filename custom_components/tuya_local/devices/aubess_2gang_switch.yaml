@@ -1,33 +1,44 @@
-name: Aubess 2-gang
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 42
-      type: string
-      name: unknown_42
-    - id: 43
-      type: string
-      name: unknown_43
-    - id: 44
-      type: string
-      name: unknown_44
-    - id: 47
-      type: string
-      name: unknown_47
-secondary_entities:
+name: Double switch
+products:
+  - id: zexdotwigwiobadr
+    manufacturer: SciMagic
+    model: RX
+    name: Double garage door receiver
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 42
+        type: string
+        name: random_schedule
+      - id: 43
+        type: string
+        name: repeating_schedule
+      - id: 44
+        type: string
+        name: inching
+      - id: 48
+        type: string
+        optional: true
+        name: interlock
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     category: config
     dps:
       - id: 9
@@ -40,9 +51,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 10
         type: integer
@@ -54,17 +67,31 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Restore power state
+    translation_key: initial_state
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: memory
-            value: Remember last state
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 47
+        type: string
+        name: option
+        mapping:
+          - dps_val: flip
+            value: Flip
+          - dps_val: sync
+            value: Synchronized
+          - dps_val: button
+            value: Button

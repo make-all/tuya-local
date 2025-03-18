@@ -1,0 +1,207 @@
+name: Human presence
+# products:
+#   - id: UNKNOWN
+#     model: WL-RTCZ-05Z
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - value: true
+      - id: 1
+        type: string
+        name: status
+      - id: 120
+        type: string
+        optional: true
+        name: debug
+  - entity: binary_sensor
+    class: movement
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: small_move
+            value: true
+          - dps_val: large_move
+            value: true
+          - value: false
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: cm
+        class: measurement
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Gone delay
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 28800
+      - id: 105
+        type: integer
+        name: minutes
+      - id: 106
+        type: integer
+        name: seconds
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Maximum motion distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    name: Minimum motion distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    name: Maximum breathing distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Minimum breathing distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 113
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: reset
+            value: true
+  - entity: number
+    name: Maximum small movement distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Minimum small movement distance
+    category: config
+    icon: "mdi:signal-distance-variant"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Small movement sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Breathing sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: event
+    name: Detection
+    dps:
+      - id: 119
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "none"
+            value: null
+          - value: detected
+      - id: 119
+        type: string
+        name: motion_type
+        optional: true

@@ -1,29 +1,28 @@
 name: ARLEC fan with light
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 6
-    - id: 4
-      name: direction
-      type: string
-    - id: 102
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 4
+        name: direction
+        type: string
+      - id: 102
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
   - entity: light
     dps:
       - id: 9
@@ -58,10 +57,10 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: cancel
           - dps_val: 2hour
-            value: "2 hours"
+            value: "2h"
           - dps_val: 4hour
-            value: "4 hours"
+            value: "4h"
           - dps_val: 8hour
-            value: "8 hours"
+            value: "8h"

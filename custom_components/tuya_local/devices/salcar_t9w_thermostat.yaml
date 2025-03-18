@@ -1,86 +1,64 @@
 name: Salcar T9W thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-    - id: 2
-      name: mode
-      type: string
-      hidden: true
-    - id: 16
-      name: temperature
-      type: integer
-      range:
-        min: 50
-        max: 10000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      name: max_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 23
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 26
-      name: min_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 36
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: idle
-    - id: 45
-      name: fault_code
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: E1
-        - dps_val: 2
-          value: E2
-        - dps_val: 4
-          value: E3
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 16
+        name: temperature
+        type: integer
+        range:
+          min: 50
+          max: 10000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        name: max_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 23
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 26
+        name: min_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 36
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -176,3 +154,18 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+      - id: 45
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: E1
+          - dps_val: 2
+            value: E2
+          - dps_val: 4
+            value: E3

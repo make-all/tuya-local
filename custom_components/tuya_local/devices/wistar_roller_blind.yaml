@@ -1,83 +1,83 @@
-name: Wistar roller blinds
+name: Roller blinds
 products:
   - id: c4hBLohzUgxULw5a
-primary_entity:
-  entity: cover
-  class: blind
-  dps:
-    - id: 101
-      type: string
-      name: control
-      mapping:
-        - dps_val: "0"
-          value: open
-        - dps_val: "1"
-          value: close
-        - dps_val: "2"
-          value: stop
-    - id: 102
-      type: integer
-      name: position
-      range:
-        min: 0
-        max: 100
-    - id: 105
-      type: boolean
-      name: curtain_hand
-    - id: 106
-      type: string
-      name: curtain_state
-      mapping:
-        - dps_val: "0"
-          value: status_0
-        - dps_val: "1"
-          value: status_1
-        - dps_val: "2"
-          value: status_2
-        - dps_val: "3"
-          value: status_3
-    - id: 107
-      type: string
-      name: ac_control
-      mapping:
-        - dps_val: "1"
-          value: control_1
-        - dps_val: "2"
-          value: control_2
-        - dps_val: "3"
-          value: control_3
-        - dps_val: "4"
-          value: control_4
-    - id: 108
-      type: string
-      name: dc_control
-      mapping:
-        - dps_val: "1"
-          value: control_1
-        - dps_val: "2"
-          value: control_2
-        - dps_val: "3"
-          value: control_3
-        - dps_val: "4"
-          value: control_4
-    - id: 109
-      type: string
-      name: curtain_type
-      optional: true
-    - id: 110
-      type: string
-      name: report
-      optional: true
-    - id: 111
-      type: boolean
-      name: border_state
-    - id: 112
-      type: integer
-      name: current_position
-      range:
-        min: 0
-        max: 100
-secondary_entities:
+    manufacturer: Wistar
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 101
+        type: string
+        name: control
+        mapping:
+          - dps_val: "0"
+            value: open
+          - dps_val: "1"
+            value: close
+          - dps_val: "2"
+            value: stop
+      - id: 102
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+      - id: 105
+        type: boolean
+        name: curtain_hand
+      - id: 106
+        type: string
+        name: curtain_state
+        mapping:
+          - dps_val: "0"
+            value: status_0
+          - dps_val: "1"
+            value: status_1
+          - dps_val: "2"
+            value: status_2
+          - dps_val: "3"
+            value: status_3
+      - id: 107
+        type: string
+        name: ac_control
+        mapping:
+          - dps_val: "1"
+            value: control_1
+          - dps_val: "2"
+            value: control_2
+          - dps_val: "3"
+            value: control_3
+          - dps_val: "4"
+            value: control_4
+      - id: 108
+        type: string
+        name: dc_control
+        mapping:
+          - dps_val: "1"
+            value: control_1
+          - dps_val: "2"
+            value: control_2
+          - dps_val: "3"
+            value: control_3
+          - dps_val: "4"
+            value: control_4
+      - id: 109
+        type: string
+        name: curtain_type
+        optional: true
+      - id: 110
+        type: string
+        name: report
+        optional: true
+      - id: 111
+        type: boolean
+        name: border_state
+      - id: 112
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
   - entity: select
     name: Border setting
     category: config

@@ -1,45 +1,45 @@
-name: Anko kettle
+name: Kettle
 products:
   - id: dft4ebatvon3ha5s
-    name: Anko LD-K3068
-primary_entity:
-  entity: water_heater
-  icon: "mdi:kettle"
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "Off"
-        - dps_val: true
-          constraint: work_type
-          conditions:
-            - dps_val: boiling_quick
-              value: Quick boil
-            - dps_val: setting_quick
-              value: Quick heat
-            - dps_val: temp_boiling
-              value: Boil
-            - dps_val: temp_setting
-              value: Heat
-    - id: 2
-      type: integer
-      name: current_temperature
-      unit: C
-    - id: 4
-      type: integer
-      name: temperature
-      range:
-        min: 85
-        max: 90
-      mapping:
-        - step: 5
-    - id: 16
-      type: string
-      name: work_type
-      hidden: true
-secondary_entities:
+    manufacturer: Anko
+    model: LD-K3068
+entities:
+  - entity: water_heater
+    icon: "mdi:kettle"
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: work_type
+            conditions:
+              - dps_val: boiling_quick
+                value: Quick boil
+              - dps_val: setting_quick
+                value: Quick heat
+              - dps_val: temp_boiling
+                value: Boil
+              - dps_val: temp_setting
+                value: Heat
+      - id: 2
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 85
+          max: 90
+        mapping:
+          - step: 5
+      - id: 16
+        type: string
+        name: work_type
+        hidden: true
   - entity: switch
     name: Keep warm
     icon: "mdi:kettle-outline"
@@ -48,8 +48,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
+    icon: "mdi:kettle"
     category: diagnostic
     dps:
       - id: 15
@@ -57,17 +58,12 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
-            icon: "mdi:kettle-off-outline"
+            value: standby
           - dps_val: heating
-            value: Heating
-            icon: "mdi:kettle"
+            value: heating
           - dps_val: cooling
-            value: Cooling
-            icon: "mdi:kettle-outline"
+            value: cooling
           - dps_val: warm
-            value: Warm
-            icon: "mdi:kettle"
+            value: keeping_warm
           - dps_val: heating_temp
-            value: "No water"
-            icon: "mdi:kettle-alert"
+            value: no_water

@@ -1,102 +1,99 @@
-name: Arlec thermostat smartplug
+name: Thermostat smartplug
 products:
   - id: 1z2w76xtiawhxleg
-    name: Arlec PCTH01HA
-primary_entity:
-  entity: climate
-  dps:
-    - id: 9
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: "hot"
-              value: "heat"
-            - dps_val: "dehumidify"
-              value: "dry"
-            - dps_val: "colding"
-              value: "cool"
-            - dps_val: "wet"
-              # There is no humidify/wet mode in HA climate platform
-              value: "fan_only"
-    - id: 7
-      type: string
-      name: cycle_time
-      optional: true
-    - id: 8
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 19
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 20
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 21
-      name: temp_set_f
-      type: integer
-      hidden: true
-      mapping:
-        - scale: 10
-          step: 5
-      range:
-        min: -40
-        max: 2210
-    - id: 22
-      name: temperature
-      type: integer
-      range:
-        min: -200
-        max: 1050
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: -40
-                max: 2210
-          scale: 10
-          step: 5
-    - id: 27
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: cur_temp_f
-    - id: 28
-      type: integer
-      name: cur_temp_f
-      hidden: true
-      mapping:
-        - scale: 10
-    - id: 41
-      type: integer
-      name: humidity
-      range:
-        min: 1
-        max: 99
-    - id: 46
-      type: integer
-      name: current_humidity
-    - id: 50
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Arlec
+    model: PCTH01HA
+entities:
+  - entity: climate
+    dps:
+      - id: 9
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: "hot"
+                value: "heat"
+              - dps_val: "dehumidify"
+                value: "dry"
+              - dps_val: "colding"
+                value: "cool"
+              - dps_val: "wet"
+                # There is no humidify/wet mode in HA climate platform
+                value: "fan_only"
+      - id: 7
+        type: string
+        name: cycle_time
+        optional: true
+      - id: 8
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 19
+        type: bitfield
+        name: factory_test
+        optional: true
+      - id: 20
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 21
+        name: temp_set_f
+        type: integer
+        hidden: true
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: -40
+          max: 2210
+      - id: 22
+        name: temperature
+        type: integer
+        range:
+          min: -200
+          max: 1050
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: -40
+                  max: 2210
+            scale: 10
+            step: 5
+      - id: 27
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: cur_temp_f
+      - id: 28
+        type: integer
+        name: cur_temp_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 41
+        type: integer
+        name: humidity
+        range:
+          min: 1
+          max: 99
+      - id: 46
+        type: integer
+        name: current_humidity
   - entity: switch
     class: switch
     name: Manual Switch
@@ -106,6 +103,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 4
@@ -257,6 +255,7 @@ secondary_entities:
           max: 9
   - entity: number
     name: Cold delay
+    class: duration
     category: config
     icon: "mdi:camera-timer"
     dps:
@@ -290,3 +289,7 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 50
+        type: bitfield
+        optional: true
+        name: fault_code

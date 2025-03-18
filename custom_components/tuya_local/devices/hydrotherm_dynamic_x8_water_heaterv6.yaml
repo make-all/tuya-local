@@ -1,66 +1,66 @@
 name: Hot water
 products:
   - id: p2gjmmancu4t4ceg
-    name: Hydrotherm Dynamic X8 gen 6
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: Stand
-              value: heat_pump
-            - dps_val: ECO
-              value: eco
-            - dps_val: HYB
-              value: high_demand
-            - dps_val: HYB1
-              value: performance
-            - dps_val: ELE
-              value: electric
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 4
-      type: integer
-      name: temperature
-      range:
-        min: 15
-        max: 75
-      unit: C
-    - id: 16
-      type: integer
-      optional: true
-      name: current_temperature
-      mapping:
-        - dps_val: null
-          value_redirect: inlet_temp
-    - id: 21
-      type: integer
-      name: inlet_temp
-    - id: 7
-      type: boolean
-      name: away_mode
-    - id: 14
-      type: integer
-      name: eev
-    - id: 40
-      type: integer
-      name: model_number
-    - id: 108
-      type: boolean
-      name: dip_switch_1
-    - id: 109
-      type: boolean
-      name: dip_switch_2
-secondary_entities:
+    manufacturer: Hydrotherm
+    model: Dynamic X8 gen 6
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Stand
+                value: heat_pump
+              - dps_val: ECO
+                value: eco
+              - dps_val: HYB
+                value: high_demand
+              - dps_val: HYB1
+                value: performance
+              - dps_val: ELE
+                value: electric
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 15
+          max: 75
+        unit: C
+      - id: 16
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - dps_val: null
+            value_redirect: inlet_temp
+      - id: 21
+        type: integer
+        name: inlet_temp
+      - id: 7
+        type: boolean
+        name: away_mode
+      - id: 14
+        type: integer
+        name: eev
+      - id: 40
+        type: integer
+        name: model_number
+      - id: 108
+        type: boolean
+        name: dip_switch_1
+      - id: 109
+        type: boolean
+        name: dip_switch_2
   - entity: binary_sensor
     class: problem
     category: diagnostic

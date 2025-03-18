@@ -1,45 +1,45 @@
 name: HDMI sync backlight
 products:
   - id: js0t2z9y1tnphvds
-    name: Lytmi Fantasy/Neo 3
+    manufacturer: Lytmi
+    model: Fantasy/Neo 3
   - id: bfedc6cf9dcae291b04ecj
-    name: Lytmi Fantasy 3
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      name: switch
-      type: boolean
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 107
-      type: boolean
-      name: unknown_107
-
-secondary_entities:
+    manufacturer: Lytmi
+    model: Fantasy 3
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 107
+        type: boolean
+        name: unknown_107
   - entity: switch
     name: TV synchronization switch
     category: config
@@ -92,9 +92,16 @@ secondary_entities:
         mapping:
           - scale: 10
             step: 10
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -102,11 +109,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "80000000000000000000000000000000"
-            value: Sync - Video
+            value: movie
           - dps_val: "81000000000000000000000000000000"
-            value: Sync - Recreation
+            value: leisure
           - dps_val: "82000000000000000000000000000000"
-            value: Sync - Game
+            value: gaming
           - dps_val: "98000000000000000000000000000000"
             value: Music - Classic
           - dps_val: "99000000000000000000000000000000"
@@ -124,7 +131,7 @@ secondary_entities:
           - dps_val: "87000000000000000000000000000000"
             value: Scene - Fire
           - dps_val: "88000000000000000000000000000000"
-            value: Scene - Read
+            value: reading
           - dps_val: "89000000000000000000000000000000"
             value: Scene - Firework
           - dps_val: "90000000000000000000000000000000"

@@ -1,36 +1,36 @@
-name: Compteur electric meter
+name: Energy meter
 products:
   - id: 1whdy4a8ypamjloi
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 17
-      type: integer
-      name: sensor
-      mapping:
-        - scale: 1000
-      unit: kWh
-      class: total_increasing
-    - id: 21
-      name: unknown_21
-      type: integer
-    - id: 22
-      name: unknown_22
-      type: integer
-    - id: 23
-      name: unknown_23
-      type: integer
-    - id: 24
-      name: unknown_24
-      type: integer
-    - id: 25
-      name: unknown_25
-      type: integer
-    - id: 26
-      name: unknown_26
-      type: integer
-secondary_entities:
+    manufacturer: Compteur
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 1000
+        unit: kWh
+        class: total_increasing
+      - id: 21
+        name: unknown_21
+        type: integer
+      - id: 22
+        name: unknown_22
+        type: integer
+      - id: 23
+        name: unknown_23
+        type: integer
+      - id: 24
+        name: unknown_24
+        type: integer
+      - id: 25
+        name: unknown_25
+        type: integer
+      - id: 26
+        name: unknown_26
+        type: integer
   - entity: sensor
     category: diagnostic
     class: voltage

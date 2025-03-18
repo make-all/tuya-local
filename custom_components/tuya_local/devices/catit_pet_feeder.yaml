@@ -1,22 +1,21 @@
 name: Catit Pet Feeder
-primary_entity:
-  entity: number
-  icon: "mdi:paw"
-  name: Manual feed
-  dps:
-    - id: 14
-      name: value
-      type: integer
-      range:
-        min: 1
-        max: 12
-    - id: 104
-      name: meal_plan
-      type: string
-    - id: 102
-      name: unknown_102
-      type: boolean
-secondary_entities:
+entities:
+  - entity: number
+    icon: "mdi:paw"
+    name: Manual feed
+    dps:
+      - id: 14
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 12
+      - id: 104
+        name: meal_plan
+        type: string
+      - id: 102
+        name: unknown_102
+        type: boolean
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
@@ -26,8 +25,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: button
-    class: restart
-    name: Factory reset
+    translation_key: factory_reset
     category: config
     dps:
       - id: 103

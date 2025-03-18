@@ -1,6 +1,11 @@
 """Tests for the MoesHouse RGB smart socket."""
 
-from homeassistant.components.light import ColorMode, LightEntityFeature
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -58,6 +63,7 @@ class TestMoesRGBSocket(
             self.entities.get("number_timer"),
             max=1440.0,
             unit=UnitOfTime.MINUTES,
+            device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
         self.setUpMultiSensors(
@@ -143,6 +149,7 @@ class TestMoesRGBSocket(
                 "Scene 2",
                 "Scene 3",
                 "Scene 4",
+                EFFECT_OFF,
             ],
         )
 

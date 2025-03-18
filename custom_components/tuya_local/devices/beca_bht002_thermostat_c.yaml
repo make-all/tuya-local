@@ -1,62 +1,65 @@
 name: Thermostat
+legacy_type: beca_bht6000_thermostat_c
 products:
   - id: IAYz2WK1th0cMLmL
-    name: Beca BHT-002
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "0"
-              value: auto
-            - dps_val: "1"
-              value: heat
-            - dps_val: null
-              value: heat
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 70
-      mapping:
-        - scale: 2
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 2
-    - id: 4
-      type: string
-      name: mode
-      optional: true
-      hidden: true
-    - id: 5
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 102
-      type: integer
-      name: floor_temperature
-      mapping:
-        - scale: 2
-    - id: 104
-      type: boolean
-      name: unknown_104
-secondary_entities:
+    manufacturer: Beca / MJZM
+    model: BHT-002 / 16A-3000BH
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: auto
+              - dps_val: "1"
+                value: heat
+              - dps_val: null
+                value: heat
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 70
+        mapping:
+          - scale: 2
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 2
+      - id: 4
+        type: string
+        name: mode
+        optional: true
+        hidden: true
+      - id: 5
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 103
+        type: string
+        # There are many variants of BHT-002 on the market, not all support this
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
   - entity: lock
     translation_key: child_lock
     category: config
@@ -67,11 +70,17 @@ secondary_entities:
   - entity: sensor
     name: External temperature
     class: temperature
+    hidden: unavailable
     dps:
       - id: 102
         type: integer
+        # If dp 104 is false, this may not be present
+        optional: true
         name: sensor
         unit: C
         class: measurement
         mapping:
           - scale: 2
+      - id: 104
+        type: boolean
+        name: available

@@ -1,6 +1,10 @@
 """Tests for the switch entity."""
 
-from homeassistant.components.light import ColorMode, LightEntityFeature
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
 from homeassistant.components.switch import SwitchDeviceClass
 
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
@@ -79,6 +83,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
                 "Scene 2",
                 "Scene 3",
                 "Scene 4",
+                EFFECT_OFF,
             ],
         )
 
@@ -96,9 +101,9 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         self.dps[COLORMODE_DPS] = "scene_4"
         self.assertEqual(self.light.effect, "Scene 4")
         self.dps[COLORMODE_DPS] = "white"
-        self.assertIsNone(self.light.effect)
+        self.assertEqual(self.light.effect, EFFECT_OFF)
         self.dps[COLORMODE_DPS] = "colour"
-        self.assertIsNone(self.light.effect)
+        self.assertEqual(self.light.effect, EFFECT_OFF)
 
     def test_light_supported_color_modes(self):
         self.assertCountEqual(

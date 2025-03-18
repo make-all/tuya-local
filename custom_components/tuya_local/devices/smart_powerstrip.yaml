@@ -1,32 +1,38 @@
-name: 4 outlet + USB powerstrip
+name: "4 outlet + USB powerstrip"
 products:
   - id: y7CxWXKi0EVL3cgB
-    name: smart Power Strip
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
@@ -41,8 +47,10 @@ secondary_entities:
         name: switch
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
         name: value
@@ -56,8 +64,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         name: value
@@ -71,8 +81,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 3
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 11
         name: value
@@ -86,8 +98,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 4
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 12
         name: value
@@ -101,6 +115,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     name: USB timer
     translation_key: timer
     dps:

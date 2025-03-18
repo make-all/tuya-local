@@ -1,26 +1,24 @@
 name: Climate alarm
 products:
   - id: qaaysllp
-    name: Zigbee temperature humidity alarm sensor
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 10
-    - id: 9
-      type: string
-      name: unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-secondary_entities:
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     class: humidity
     dps:

@@ -1,15 +1,15 @@
 name: Circuit breaker
 products:
   - id: l1t5oophgyzpdrag
-    name: Tongou QCB2-WB single-phase
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Tongou
+    model: QCB2-WB single-phase
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
   - entity: sensor
     class: energy
     dps:
@@ -21,7 +21,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
     class: voltage
     category: diagnostic
     dps:
@@ -31,11 +30,10 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
-    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -45,11 +43,10 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
-    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -59,9 +56,9 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: select
     name: Overvoltage action
     category: config
@@ -220,8 +217,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 113

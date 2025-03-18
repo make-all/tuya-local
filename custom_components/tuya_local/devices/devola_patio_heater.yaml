@@ -1,74 +1,73 @@
 name: Devola patio heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 45
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_f
-              range:
-                min: 44
-                max: 99
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 6
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 14
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: heating
-          value: heating
-        - dps_val: warming
-          value: idle
-    - id: 19
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 20
-      type: integer
-      name: temp_f
-      range:
-        min: 44
-        max: 99
-      hidden: true
-    - id: 21
-      type: integer
-      name: current_temp_f
-      hidden: true
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: 44
+                  max: 99
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 6
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: warming
+            value: idle
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 20
+        type: integer
+        name: temp_f
+        range:
+          min: 44
+          max: 99
+        hidden: true
+      - id: 21
+        type: integer
+        name: current_temp_f
+        hidden: true
   - entity: lock
     translation_key: child_lock
     category: config
@@ -103,6 +102,7 @@ secondary_entities:
         name: sensor
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 12

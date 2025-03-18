@@ -1,19 +1,18 @@
 name: Temperature and humidity sensor
 products:
   - id: dnoq3j5m9nhxw9a1
-    name: SNT957W-DE CBU
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    model: SNT957W-DE CBU
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     class: humidity
     dps:

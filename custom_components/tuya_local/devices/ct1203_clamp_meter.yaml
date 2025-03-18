@@ -1,0 +1,215 @@
+name: Energy meter
+products:
+  - id: tf6qp8t3hl9h7m94
+    model: CT-1203
+entities:
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: "A"
+    class: energy
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+        force: true
+  - entity: switch
+    name: Power Alarm A
+    icon: "mdi:flash-alert"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Power Alarm B
+    icon: "mdi:flash-alert"
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: "B"
+    class: energy
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+        force: true
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "A"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+        force: true
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "A"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+        force: true
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "A"
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+        force: true
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "B"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+        force: true
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "B"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+        force: true
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: "B"
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+        force: true
+  - entity: binary_sensor
+    name: Fault A
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: binary_sensor
+    name: Fault B
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 105
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: number
+    name: Maximum Power A
+    category: config
+    class: power
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        optional: true
+        unit: W
+        range:
+          min: 0
+          max: 500000
+        mapping:
+          - dps_val: null
+            invalid: true
+          - scale: 1
+            step: 100
+  - entity: number
+    name: Maximum Power B
+    category: config
+    class: power
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        optional: true
+        unit: W
+        range:
+          min: 0
+          max: 500000
+        mapping:
+          - dps_val: null
+            invalid: true
+          - scale: 1
+            step: 100

@@ -1,34 +1,34 @@
 name: Clamp meter
 products:
   - id: gk3jvsduy5ixzff3
-    name: Meterk QS-WIFI-CT01
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 108
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 109
-      type: integer
-      name: today
-      mapping:
-        - scale: 1000
-    - id: 104
-      type: integer
-      name: add_ele
-      mapping:
-        - scale: 100
-    - id: 112
-      type: integer
-      name: add_today
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Meterk
+    model: QS-WIFI-CT01
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 109
+        type: integer
+        name: today
+        mapping:
+          - scale: 1000
+      - id: 104
+        type: integer
+        name: add_ele
+        mapping:
+          - scale: 100
+      - id: 112
+        type: integer
+        name: add_today
+        mapping:
+          - scale: 100
   - entity: event
     name: Real time
     dps:
@@ -56,7 +56,7 @@ secondary_entities:
           - dps_val: idle
             value: Idle
   - entity: sensor
-    name: Status
+    name: status
     class: enum
     category: diagnostic
     dps:

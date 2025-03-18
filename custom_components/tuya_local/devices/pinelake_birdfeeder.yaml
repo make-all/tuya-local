@@ -1,21 +1,21 @@
-name: Smart Bird Feeder Camera
+name: Smart bird feeder camera
 products:
   - id: bk9uhkngejjo8wup
-    name: Pinelake BF002
-primary_entity:
-  entity: camera
-  dps:
-    - id: 150
-      name: record
-      type: boolean
-      optional: true
-      force: true
-    - id: 134
-      type: boolean
-      name: motion_enable
-      optional: true
-      force: true
-secondary_entities:
+    manufacturer: Pinelake
+    model: BF002
+entities:
+  - entity: camera
+    dps:
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+        force: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+        force: true
   - entity: switch
     name: Siren
     icon: "mdi:bullhorn"

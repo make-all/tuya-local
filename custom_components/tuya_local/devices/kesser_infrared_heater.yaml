@@ -1,16 +1,16 @@
 name: Infrared heater
 products:
   - id: trsas9jlfgcbxhq9
-    name: Kesser 3000W
-primary_entity:
-  entity: switch
-  name: Power
-  icon: "mdi:radiator"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Kesser
+    model: "3000W"
+entities:
+  - entity: switch
+    name: Power
+    icon: "mdi:radiator"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Mode
     icon: "mdi:radiator"

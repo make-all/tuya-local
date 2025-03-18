@@ -1,35 +1,35 @@
 name: Ceiling fan
 products:
   - id: lonfamz9k72cpjgq
-    name: Keyun MKCFE002
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 62
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 100
-    - id: 63
-      type: string
-      name: direction
-    - id: 106
-      type: boolean
-      name: oscillate
-secondary_entities:
+    manufacturer: Keyun
+    model: MKCFE002
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        name: direction
+      - id: 106
+        type: boolean
+        name: oscillate
   - entity: light
     dps:
       - id: 20
@@ -145,6 +145,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 112

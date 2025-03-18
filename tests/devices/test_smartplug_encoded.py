@@ -1,5 +1,6 @@
 """Tests for the switch entity."""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
@@ -27,6 +28,7 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440.0,
             unit=UnitOfTime.MINUTES,
+            device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
         self.mark_secondary(["number_timer"])

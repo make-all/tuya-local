@@ -26,6 +26,7 @@ from custom_components.tuya_local.select import TuyaLocalSelect
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 from custom_components.tuya_local.siren import TuyaLocalSiren
 from custom_components.tuya_local.switch import TuyaLocalSwitch
+from custom_components.tuya_local.text import TuyaLocalText
 from custom_components.tuya_local.vacuum import TuyaLocalVacuum
 from custom_components.tuya_local.valve import TuyaLocalValve
 from custom_components.tuya_local.water_heater import TuyaLocalWaterHeater
@@ -49,6 +50,7 @@ DEVICE_TYPES = {
     "select": TuyaLocalSelect,
     "sensor": TuyaLocalSensor,
     "siren": TuyaLocalSiren,
+    "text": TuyaLocalText,
     "vacuum": TuyaLocalVacuum,
     "valve": TuyaLocalValve,
     "water_heater": TuyaLocalWaterHeater,
@@ -73,12 +75,8 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
 
         self.entities = {}
         self.secondary_category = []
-        self.primary_entity = cfg.primary_entity.config_id
-        self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
-
         self.names = {}
-        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name
-        for e in cfg.secondary_entities():
+        for e in cfg.all_entities():
             self.entities[e.config_id] = self.create_entity(e)
             self.names[e.config_id] = e.name
 
@@ -98,10 +96,11 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
     def test_config_matched(self):
         for cfg in possible_matches(self.dps):
             if cfg.legacy_type == self.conf_type:
+                quality = cfg.match_quality(self.dps)
                 self.assertEqual(
-                    cfg.match_quality(self.dps),
+                    quality,
                     100.0,
-                    msg=f"{self.conf_type} is an imperfect match",
+                    msg=f"{self.conf_type} is an imperfect match at {quality}%",
                 )
                 return
         self.fail()

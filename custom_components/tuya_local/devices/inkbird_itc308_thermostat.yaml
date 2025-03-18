@@ -1,93 +1,87 @@
 name: Thermostat switch
 products:
   - id: B0eP8qYAdpUo4yR9
-    name: Inkbird ITC-308
-primary_entity:
-  entity: climate
-  dps:
-    - id: 12
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
-    - id: 101
-      type: string
-      name: temperature_unit
-    - id: 104
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              value_redirect: current_temperature_f
-    - id: 106
-      type: integer
-      name: temperature
-      range:
-        min: -500
-        max: 999
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              range:
-                min: -580
-                max: 2100
-    - id: 111
-      type: boolean
-      name: high_temp_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:thermometer-alert"
-          icon_priority: 1
-    - id: 112
-      type: boolean
-      name: low_temp_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:snowflake-alert"
-          icon_priority: 2
-    - id: 113
-      type: boolean
-      name: sensor_fault_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:thermometer-alert"
-          icon_priority: 3
-    - id: 115
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: "0"
-          icon: "mdi:thermometer-off"
-          icon_priority: 5
-          value: idle
-        - dps_val: "1"
-          icon: "mdi:snowflake"
-          icon_priority: 5
-          value: cooling
-        - dps_val: "2"
-          icon: "mdi:thermometer-off"
-          icon_priority: 5
-          value: idle
-        - dps_val: "3"
-          icon: "mdi:fire"
-          icon_priority: 6
-          value: heating
-    - id: 116
-      type: integer
-      name: current_temperature_f
-      mapping:
-        - scale: 10
-      hidden: true
-secondary_entities:
+    manufacturer: Inkbird
+    model: ITC-308
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        type: string
+        name: temperature_unit
+      - id: 104
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: current_temperature_f
+      - id: 106
+        type: integer
+        name: temperature
+        range:
+          min: -500
+          max: 999
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: -580
+                  max: 2100
+      - id: 111
+        type: boolean
+        name: high_temp_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermometer-alert"
+            icon_priority: 1
+      - id: 112
+        type: boolean
+        name: low_temp_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:snowflake-alert"
+            icon_priority: 2
+      - id: 113
+        type: boolean
+        name: sensor_fault_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermometer-alert"
+            icon_priority: 3
+      - id: 115
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            icon: "mdi:thermometer-off"
+            icon_priority: 5
+            value: idle
+          - dps_val: "1"
+            icon: "mdi:snowflake"
+            icon_priority: 5
+            value: cooling
+          - dps_val: "2"
+            icon: "mdi:thermometer-off"
+            icon_priority: 5
+            value: idle
+          - dps_val: "3"
+            icon: "mdi:fire"
+            icon_priority: 6
+            value: heating
+      - id: 116
+        type: integer
+        name: current_temperature_f
+        mapping:
+          - scale: 10
+        hidden: true
   - entity: number
     category: config
     name: Calibration offset
@@ -206,6 +200,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     class: problem
     category: diagnostic

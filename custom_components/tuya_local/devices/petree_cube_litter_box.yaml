@@ -1,0 +1,145 @@
+name: Litter Box
+products:
+  - id: 1kufldu6g6l53rsy
+    manufacturer: Petree
+    model: Petree 2.0
+  - id: witgtqod4iu8tizi
+    manufacturer: Petree
+    model: Petree 2.0
+entities:
+  - entity: number
+    name: Delay clean time
+    category: config
+    class: duration
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: switch
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: button
+    name: Deodorize
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Do not disturb start time
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 1439
+  - entity: number
+    name: Do not disturb end time
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 1439
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code
+      - id: 111
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: No pop-up box
+          - dps_val: 1
+            value: Trash can is full
+          - dps_val: 2
+            value: Trash can is not installed
+          - dps_val: 4
+            value: Cover is not installed
+          - dps_val: 8
+            value: Cat is approaching
+          - dps_val: 16
+            value: Cabin temperature is too high
+          - dps_val: 32
+            value: Self-check in progress
+  - entity: binary_sensor
+    name: Trash status
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        name: button
+  - entity: button
+    name: Clean
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: button

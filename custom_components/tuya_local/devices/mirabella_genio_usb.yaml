@@ -2,17 +2,21 @@ name: Smartplug with timer
 products:
   # Original product id unknown: Mirabella Genio USB smartplug
   - id: PGEkBctAbtzKOZng
-    name: Maxcio W-DE004
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Maxcio
+    model: W-DE004
+  - id: O0YnvNLlDWbJd4KC
+    manufacturer: Hyleton
+    model: "315"
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 2

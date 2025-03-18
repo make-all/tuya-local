@@ -1,39 +1,38 @@
 name: Ceiling fan
 products:
   - id: eb208a14315d7cb2bd6txt
-    name: Amico 52 inch ceiling fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 62
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 63
-      type: string
-      name: direction
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: reverse
-          value: reverse
-secondary_entities:
+    manufacturer: Amico
+    name: "52 inch ceiling fan"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
   - entity: light
-    name: Light
     dps:
       - id: 20
         type: boolean
@@ -68,13 +67,13 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "off"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1h"
-            value: "1 hour"
+            value: "1h"
           - dps_val: "2h"
-            value: "2 hours"
+            value: "2h"
           - dps_val: "4h"
-            value: "4 hours"
+            value: "4h"
           - dps_val: "8h"
-            value: "8 hours"
+            value: "8h"

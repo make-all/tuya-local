@@ -1,5 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -59,6 +60,7 @@ class TestGoldairHeater(
             self.entities.get("number_timer"),
             max=1440,
             step=60,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
         self.setUpBasicSensor(
@@ -98,17 +100,6 @@ class TestGoldairHeater(
 
     def test_translation_key(self):
         self.assertEqual(self.subject.translation_key, "swing_as_powerlevel")
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
-
-        self.dps[HVACMODE_DPS] = True
-        self.dps[POWERLEVEL_DPS] = "stop"
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(
@@ -325,7 +316,6 @@ class TestGoldairHeater(
             await self.subject.async_set_swing_mode("3")
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 5
         self.dps[TIMERACT_DPS] = True
         self.dps[POWERLEVEL_DPS] = 4
@@ -333,9 +323,15 @@ class TestGoldairHeater(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "error": "something",
                 "timer": 5,
                 "timer_mode": True,
                 "power_level": "4",
             },
+        )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 1
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 1},
         )

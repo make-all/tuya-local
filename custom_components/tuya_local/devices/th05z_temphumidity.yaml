@@ -1,0 +1,178 @@
+name: Temperature and humidity Sensor
+products:
+  - id: vvmbj46n
+    model: TH05Z
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: fahrenheit
+          - dps_val: "c"
+            value: celsius
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: High temperature limit
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -200
+          max: 600
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low temperature limit
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -200
+          max: 600
+        mapping:
+          - scale: 10
+  - entity: number
+    name: High humidity limit
+    category: config
+    icon: "mdi:chevron-up"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Low humidity limit
+    category: config
+    icon: "mdi:chevron-down"
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: event
+    name: Temperature alarm
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 14
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: loweralarm
+            value: low
+          - dps_val: upperalarm
+            value: high
+          - dps_val: cancel
+            value: normal
+  - entity: event
+    name: Humidity alarm
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 15
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: loweralarm
+            value: low
+          - dps_val: upperalarm
+            value: high
+          - dps_val: cancel
+            value: normal
+  - entity: number
+    name: Temperature report interval
+    icon: "mdi:timer-sync"
+    category: config
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 120
+  - entity: number
+    name: Humidity report interval
+    category: config
+    icon: "mdi:water-sync"
+    class: duration
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 120
+  - entity: number
+    name: Temperature sensitivity
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 3
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity sensitivity
+    category: config
+    icon: "mdi:water-plus"
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 3
+          max: 10

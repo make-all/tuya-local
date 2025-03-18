@@ -1,20 +1,20 @@
 name: Dimmer switch
 products:
   - id: zdbapiyvwyi4wtrr
-    name: Deta 6910HA series2
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Deta
+    model: 6910HA series2
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: number
     name: Minimum brightness
     category: config
@@ -31,6 +31,7 @@ secondary_entities:
           - scale: 10
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6

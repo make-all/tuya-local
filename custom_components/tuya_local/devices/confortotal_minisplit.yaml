@@ -1,132 +1,130 @@
 name: Air conditioner
 products:
   - id: mzhwsoeaumuxleaf
-    name: Confortotal Mini Split CICON242
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-            - dps_val: hot
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 16
-        max: 90
-      mapping:
-        - dps_val: 61
-          value: 16.1
-        - dps_val: 62
-          value: 16.7
-        - dps_val: 63
-          value: 17.2
-        - dps_val: 64
-          value: 17.8
-        - dps_val: 65
-          value: 18.3
-        - dps_val: 66
-          value: 18.9
-        - dps_val: 67
-          value: 19.4
-        - dps_val: 68
-          value: 20
-        - dps_val: 69
-          value: 20.6
-        - dps_val: 70
-          value: 21.1
-        - dps_val: 71
-          value: 21.7
-        - dps_val: 72
-          value: 22.2
-        - dps_val: 73
-          value: 22.8
-        - dps_val: 74
-          value: 23.3
-        - dps_val: 75
-          value: 23.9
-        - dps_val: 76
-          value: 24.4
-        - dps_val: 77
-          value: 25
-        - dps_val: 78
-          value: 25.6
-        - dps_val: 79
-          value: 26.1
-        - dps_val: 80
-          value: 26.7
-        - dps_val: 81
-          value: 27.2
-        - dps_val: 82
-          value: 27.8
-        - dps_val: 83
-          value: 28.3
-        - dps_val: 84
-          value: 28.9
-        - dps_val: 85
-          value: 29.4
-        - dps_val: 86
-          value: 30
-        - dps_val: 87
-          value: 30.6
-        - dps_val: 88
-          value: 31.1
-        - dps_val: 89
-          value: 31.7
-        - dps_val: 90
-          value: 32.2
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: strong
-          value: strong
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: high
-          value: high
-        - dps_val: mute
-          value: quiet
-    - id: 22
-      type: bitfield
-      name: fault_code
-    - id: 25
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: sleep
-        - dps_val: false
-          value: comfort
-secondary_entities:
+    manufacturer: Confortotal
+    model: Mini Split
+    model_id: CICON242
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 90
+        mapping:
+          - dps_val: 61
+            value: 16.1
+          - dps_val: 62
+            value: 16.7
+          - dps_val: 63
+            value: 17.2
+          - dps_val: 64
+            value: 17.8
+          - dps_val: 65
+            value: 18.3
+          - dps_val: 66
+            value: 18.9
+          - dps_val: 67
+            value: 19.4
+          - dps_val: 68
+            value: 20
+          - dps_val: 69
+            value: 20.6
+          - dps_val: 70
+            value: 21.1
+          - dps_val: 71
+            value: 21.7
+          - dps_val: 72
+            value: 22.2
+          - dps_val: 73
+            value: 22.8
+          - dps_val: 74
+            value: 23.3
+          - dps_val: 75
+            value: 23.9
+          - dps_val: 76
+            value: 24.4
+          - dps_val: 77
+            value: 25
+          - dps_val: 78
+            value: 25.6
+          - dps_val: 79
+            value: 26.1
+          - dps_val: 80
+            value: 26.7
+          - dps_val: 81
+            value: 27.2
+          - dps_val: 82
+            value: 27.8
+          - dps_val: 83
+            value: 28.3
+          - dps_val: 84
+            value: 28.9
+          - dps_val: 85
+            value: 29.4
+          - dps_val: 86
+            value: 30
+          - dps_val: 87
+            value: 30.6
+          - dps_val: 88
+            value: 31.1
+          - dps_val: 89
+            value: 31.7
+          - dps_val: 90
+            value: 32.2
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: strong
+            value: strong
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: mute
+            value: quiet
+      - id: 25
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
   - entity: switch
     translation_key: ionizer
     category: config
@@ -153,6 +151,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
   - entity: select
     name: Vertical swing
     icon: "mdi:angle-acute"

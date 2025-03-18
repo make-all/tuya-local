@@ -1,41 +1,41 @@
 name: Curtain
 products:
   - id: oxzxmhkdvqexpwqo
-    name: Eruiklink curtain motor
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      type: string
-      name: control
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      type: integer
-      name: position
-      range:
-        min: 0
-        max: 100
-    - id: 3
-      type: integer
-      name: current_position
-      range:
-        min: 0
-        max: 100
-    - id: 7
-      type: string
-      name: unreliable_action
-    - id: 11
-      type: string
-      name: situation_set
-      optional: true
-secondary_entities:
+    manufacturer: Eruiklink
+    name: Curtain motor
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+      - id: 3
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+      - id: 7
+        type: string
+        name: unreliable_action
+      - id: 11
+        type: string
+        name: situation_set
+        optional: true
   - entity: select
     name: Direction
     icon: "mdi:arrow-u-left-bottom"

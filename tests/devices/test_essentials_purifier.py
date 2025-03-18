@@ -1,6 +1,5 @@
 """Tests for the essentials air purifier."""
 
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -44,7 +43,6 @@ class TestEssentialsPurifier(
         self.setUpBasicButton(
             RESET_DP,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLock(LOCK_DP, self.entities.get("lock_child_lock"))
         self.setUpMultiSelect(
@@ -62,10 +60,10 @@ class TestEssentialsPurifier(
                     "dps": TIMER_DP,
                     "name": "select_timer",
                     "options": {
-                        "cancel": "Off",
-                        "2h": "2 hours",
-                        "4h": "4 hours",
-                        "8h": "8 hours",
+                        "cancel": "cancel",
+                        "2h": "2h",
+                        "4h": "4h",
+                        "8h": "8h",
                     },
                 },
                 {

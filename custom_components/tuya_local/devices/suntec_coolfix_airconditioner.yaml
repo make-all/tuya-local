@@ -1,110 +1,107 @@
 name: Air conditioner
 products:
   - id: 0ithwpdwkgyqfx54
-    name: Suntec Wellness Coolfixx
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: Cool
-              value: cool
-            - dps_val: Dyr
-              value: dry
-            - dps_val: Fan
-              value: fan_only
-            - dps_val: Heat
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 32
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 61
-                max: 90
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: Low
-          value: low
-        - dps_val: Mid
-          value: medium
-        - dps_val: High
-          value: high
-    - id: 15
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: "OFF"
-          value: "off"
-        - dps_val: "ON"
-          value: "on"
-    - id: 19
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 22
-      type: bitfield
-      name: fault_code
-    - id: 23
-      type: integer
-      name: temp_set_f
-      optional: true
-      range:
-        min: 61
-        max: 90
-    - id: 24
-      type: integer
-      name: temp_current_f
-      optional: true
-    - id: 101
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: sleep
-        - dps_val: false
-          value: comfort
-    - id: 103
-      type: string
-      name: model_id
-      mapping:
-        - dps_val: C
-          value: Cooling
-        - dps_val: C_H
-          value: Cool+Heat
-secondary_entities:
+    manufacturer: Suntec Wellness
+    model: Coolfixx
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cool
+              - dps_val: Dyr
+                value: dry
+              - dps_val: Fan
+                value: fan_only
+              - dps_val: Heat
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 61
+                  max: 90
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: Mid
+            value: medium
+          - dps_val: High
+            value: high
+      - id: 15
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "ON"
+            value: "on"
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 23
+        type: integer
+        name: temp_set_f
+        optional: true
+        range:
+          min: 61
+          max: 90
+      - id: 24
+        type: integer
+        name: temp_current_f
+        optional: true
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
+      - id: 103
+        type: string
+        name: model_id
+        mapping:
+          - dps_val: C
+            value: Cooling
+          - dps_val: C_H
+            value: Cool+Heat
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -118,6 +115,9 @@ secondary_entities:
           - dps_val: 4
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic

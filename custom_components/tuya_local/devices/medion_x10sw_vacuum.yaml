@@ -1,0 +1,496 @@
+name: Robot vacuum
+products:
+  - id: hyzraigatjc4zr5n
+    manufacturer: Medion
+    model: X10 SW
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        name: activate
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        name: command
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pause
+          - dps_val: false
+            constraint: clean_mode
+            conditions:
+              - dps_val: smart
+                value: smart
+              - dps_val: zone
+                value: zone
+              - dps_val: pose
+                value: clean_spot
+              - dps_val: part
+                value: partial_clean
+              - dps_val: chargego
+                value: return_to_base
+              - dps_val: wallfollow
+                value: wall_follow
+              - dps_val: selectroom
+                value: select_room
+      - id: 4
+        type: string
+        name: clean_mode
+        hidden: true
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: zone_clean
+            value: zone_clean
+          - dps_val: part_clean
+            value: part_clean
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: going_to_position
+          - dps_val: pos_arrived
+            value: in_position
+          - dps_val: pos_unarrive
+            value: leaving_position
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: edge_cleaning
+          - dps_val: direction_control
+            value: manual_positioning
+          - dps_val: select_room
+            value: selecting_room
+          - dps_val: repositing
+            value: repositioning
+          - dps_val: amicro_collect_dust
+            value: emptying
+      - id: 9
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: gentle
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+          - dps_val: max
+            value: max
+      - id: 11
+        type: boolean
+        optional: true
+        name: locate
+      - id: 12
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 14
+        type: string
+        optional: true
+        name: path_data
+      - id: 15
+        type: string
+        optional: true
+        name: command_trans
+      - id: 32
+        type: string
+        optional: true
+        name: schedule
+      - id: 34
+        type: string
+        optional: true
+        name: device_info
+      - id: 184
+        type: string
+        name: dormant_keep_unseen
+  - entity: button
+    name: Dock
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Cleaning time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Cleaned area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+        class: measurement
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Mopping
+    icon: "mdi:water"
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: button
+    name: Map reset
+    class: restart
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Request
+    icon: "mdi:message-cog"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Get map
+          - dps_val: get_path
+            value: Get path
+          - dps_val: get_both
+            value: Get both
+  - entity: sensor
+    name: Edge brush life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Edge brush reset
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Roll brush life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Roll brush reset
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Filter life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Mop life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Mop reset
+    class: restart
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+      - id: 33
+        type: string
+        optional: true
+        name: schedule
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+      - id: 35
+        type: string
+        optional: true
+        name: voice_data
+      - id: 36
+        type: string
+        optional: true
+        name: language
+  - entity: button
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Total cleaned area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+        class: total_increasing
+  - entity: sensor
+    name: Total cleans
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+        class: total_increasing
+  - entity: switch
+    name: Auto carpet boost
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Customize
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: button
+    name: Exit remote control mode
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: button
+  - entity: light
+    category: config
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Multi-floor map
+    category: config
+    dps:
+      - id: 185
+        type: boolean
+        name: switch
+  - entity: select
+    name: Edge brush speed
+    category: config
+    dps:
+      - id: 196
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: standard
+          - dps_val: "1"
+            value: fast
+  - entity: select
+    name: Room learning
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cur_rooms
+            value: Current rooms
+          - dps_val: edit_rooms
+            value: Edit rooms
+          - dps_val: segment
+            value: Segment
+          - dps_val: clear_rooms
+            value: Clear rooms
+          - dps_val: save_rooms
+            value: Save rooms
+  - entity: sensor
+    name: Room learning
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        optional: true
+        name: status_code
+      - id: 102
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: ""
+          - dps_val: null
+            value: ""
+          - dps_val: 1
+            value: splitting
+          - dps_val: 2
+            value: merging
+          - dps_val: 4
+            value: mapping
+          - dps_val: 8
+            value: robot_cleaning
+          - dps_val: 16
+            value: active_split
+          - dps_val: 32
+            value: not_found
+          - dps_val: 64
+            value: failed_to_save
+          - dps_val: 128
+            value: split_success
+          - dps_val: 256
+            value: merge_success
+          - dps_val: 512
+            value: choice_not_found
+          - dps_val: 1024
+            value: count_error
+          - dps_val: 2048
+            value: choice_set_ok
+      - id: 197
+        type: string
+        optional: true
+        name: mcs_command
+      - id: 198
+        type: string
+        optional: true
+        name: mcs_room_info
+  - entity: event
+    name: Push message
+    dps:
+      - id: 199
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 199
+        type: string
+        name: message_id
+        optional: true

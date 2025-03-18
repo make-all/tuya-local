@@ -1,0 +1,66 @@
+name: IR remote with sensors
+products:
+  - id: deaf0nqhy4chqpdn
+    manufacturer: Woox
+    model: R7246
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        mapping:
+          - scale: 10
+        class: measurement
+      - id: 11
+        name: unit
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: "C"
+          - dps_val: "f"
+            value: "F"
+        optional: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: celsius
+          - dps_val: "f"
+            value: fahrenheit
+        optional: true
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: switch
+    name: Display on
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false

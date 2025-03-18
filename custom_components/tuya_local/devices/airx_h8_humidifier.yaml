@@ -1,0 +1,119 @@
+name: Humidifier
+products:
+  - id: orypuo7ksduqze3x
+    manufacturer: airx
+    model: H8Pro
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 24
+        type: string
+        name: mode
+        mapping:
+          - dps_val: AUTO
+            value: auto
+          - dps_val: LOW
+            value: eco
+          - dps_val: MIDDLE
+            value: normal
+          - dps_val: HIGH
+            value: boost
+          - dps_val: SLEEP
+            value: sleep
+  - entity: binary_sensor
+    category: diagnostic
+    class: opening
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: switch
+    translation_key: electrolytic_sterilization
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: evaporator_cleaning
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: water_level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: No_water
+            value: empty
+          - dps_val: Low_water
+            value: low
+          - dps_val: Middle_water
+            value: medium
+          - dps_val: High_water
+            value: high
+          - dps_val: Full_water
+            value: full
+  - entity: switch
+    translation_key: ionizer
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock

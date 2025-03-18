@@ -1,139 +1,122 @@
-name: Mellerware vacuum
+name: Robot vacuum
 products:
   - id: sayafukjeqp9kupy
-    name: Mellerware City Move
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 17
-      type: bitfield
-      name: error
-      optional: true
-      mapping:
-        - dps_val: 1
-          value: cliff
-        - dps_val: 2
-          value: imp
-        - dps_val: 4
-          value: whl
-        - dps_val: 8
-          value: brush
-        - dps_val: 16
-          value: fan
-        - dps_val: 32
-          value: roller_brush
-        - dps_val: 64
-          value: low_power
-        - dps_val: 128
-          value: give_up
-        - dps_val: 256
-          value: no_dust
-        - dps_val: 512
-          value: "none"
-    - id: 101
-      type: string
-      name: status
-      optional: true
-      mapping:
-        - dps_val: SLEEP
-          value: standby
-        - dps_val: CHARG_COMP
-          value: charged
-        - dps_val: null
-          value: standby
-        - dps_val: HALTING
-          value: paused
-        - dps_val: CLEANING
-          value: cleaning
-        - dps_val: CLEAN_COMP
-          value: cleaning_complete
-        - dps_val: FIND_STA
-          value: returning
-        - dps_val: CHARGING_STA
-          value: charging
-        - dps_val: CHARGING_DC
-          value: charging
-    - id: 102
-      type: string
-      name: command
-      optional: true
-      mapping:
-        - dps_val: clean_auto
-          value: auto
-        - dps_val: clean_random
-          value: random
-        - dps_val: clean_wall
-          value: wall_follow
-        - dps_val: clean_spot
-          value: clean_spot
-        - dps_val: clean_sroom
-          value: clean_room
-        - dps_val: find_sta
-          value: return_to_base
-    - id: 104
-      type: string
-      name: fan_speed
-      optional: true
-      force: true
-      mapping:
-        - dps_val: FANHALTING
-          value: Low
-        - dps_val: FANNORAM
-          value: Medium
-        - dps_val: FANMAX
-          value: High
-    - id: 105
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: MoveForward
-          value: forward
-        - dps_val: MoveBackward
-          value: reverse
-        - dps_val: MoveLeft
-          value: left
-        - dps_val: MoveRight
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 112
-      type: string
-      name: activate
-      optional: true
-      mapping:
-        - dps_val: "0"
-          value: false
-        - dps_val: "1"
-          value: true
-    - id: 116
-      type: boolean
-      name: locate
-      optional: true
-    - id: 117
-      type: string
-      name: program
-      optional: true
-    - id: 118
-      type: integer
-      name: model
-      optional: true
-    - id: 119
-      type: integer
-      name: data_sample
-      optional: true
-    - id: 117
-      type: string
-      name: time
-      optional: true
-secondary_entities:
+    manufacturer: Mellerware
+    model: City Move
+  - id: eg0tdmbmozbtlzyg
+    manufacturer: Coredy
+    model: R750
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 17
+        type: bitfield
+        optional: true
+        name: error
+        hidden: true
+      - id: 101
+        type: string
+        name: status
+        optional: true
+        mapping:
+          - dps_val: SLEEP
+            value: standby
+          - dps_val: CHARG_COMP
+            value: charged
+          - dps_val: null
+            value: standby
+          - dps_val: HALTING
+            value: paused
+          - dps_val: CLEANING
+            value: cleaning
+          - dps_val: CLEAN_COMP
+            value: cleaning_complete
+          - dps_val: FIND_STA
+            value: returning
+          - dps_val: CHARGING_STA
+            value: charging
+          - dps_val: CHARGING_DC
+            value: charging
+      - id: 102
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: clean_auto
+            value: auto
+          - dps_val: clean_random
+            value: random
+          - dps_val: clean_wall
+            value: wall_follow
+          - dps_val: clean_spot
+            value: clean_spot
+          - dps_val: clean_sroom
+            value: clean_room
+          - dps_val: find_sta
+            value: return_to_base
+      - id: 104
+        type: string
+        name: fan_speed
+        optional: true
+        force: true
+        mapping:
+          - dps_val: FANHALTING
+            value: Low
+          - dps_val: FANNORAM
+            value: Medium
+          - dps_val: FANMAX
+            value: High
+      - id: 105
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: MoveForward
+            value: forward
+          - dps_val: MoveBackward
+            value: reverse
+          - dps_val: MoveLeft
+            value: left
+          - dps_val: MoveRight
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 112
+        type: string
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+      - id: 116
+        type: boolean
+        name: locate
+        optional: true
+      - id: 117
+        type: string
+        name: program
+        optional: true
+      - id: 118
+        type: integer
+        name: model
+        optional: true
+      - id: 119
+        type: integer
+        name: data_sample
+        optional: true
+      - id: 117
+        type: string
+        name: time
+        optional: true
   - entity: sensor
     name: Clean area
+    class: area
     category: diagnostic
-    icon: "mdi:floor-plan"
     dps:
       - id: 14
         type: integer
@@ -142,6 +125,51 @@ secondary_entities:
         optional: true
         mapping:
           - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 17
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 17
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: cliff
+          - dps_val: 2
+            value: imp
+          - dps_val: 4
+            value: whl
+          - dps_val: 8
+            value: brush
+          - dps_val: 16
+            value: fan
+          - dps_val: 32
+            value: roller_brush
+          - dps_val: 64
+            value: low_power
+          - dps_val: 128
+            value: give_up
+          - dps_val: 256
+            value: no_dust
+          - dps_val: 512
+            value: "none"
   - entity: sensor
     name: Clean time
     class: duration

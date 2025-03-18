@@ -1,40 +1,49 @@
 # Example DPS Status
 # {'dps': {'1': True, '2': True, '3': True, '4': True, '7': 0, '8': 0, '9': 0,
 #  '10': 0, '14': '0', '16': True}}
-name: Novadigital Quad Switch
+name: Quad switch
 products:
   - id: 6u3rzfddlfajqvn5
-    name: Novadigital quad switch
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Novadigital
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         name: switch
         type: boolean
   - entity: switch
-    name: Switch 4
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 4
         name: switch
         type: boolean
   - entity: number
     category: config
-    name: Timer Switch 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 7
         name: value
@@ -48,8 +57,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer Switch 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 8
         name: value
@@ -63,8 +74,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer Switch 3
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 9
         name: value
@@ -78,8 +91,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer Switch 4
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 10
         name: value
@@ -93,19 +108,18 @@ secondary_entities:
             step: 60
   - entity: select
     category: config
-    name: Restore power state
-    icon: "mdi:power-settings"
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: "off"
           - dps_val: 1
-            value: "On"
+            value: "on"
           - dps_val: 2
-            value: Remember Last Status
+            value: memory
         optional: true
         force: true
   - entity: light

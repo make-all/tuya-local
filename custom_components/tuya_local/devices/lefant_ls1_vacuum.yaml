@@ -1,95 +1,96 @@
-name: Lefant vacuum
+name: Robot vacuum
 products:
   - id: 4tt4wulynvwcqicp
-    name: Lefant LS1 Pro
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: boolean
-      name: charge
-    - id: 4
-      type: string
-      name: command
-      mapping:
-        - dps_val: smart
-          value: smart
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: zone
-          value: clean_spot
-        - dps_val: pose
-          value: pause
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: zone_clean
-          value: zone
-        - dps_val: part_clean
-          value: partial
-        - dps_val: cleaning
-          value: cleaning
-        - dps_val: paused
-          value: paused
-        - dps_val: goto_pos
-          value: seeking_spot
-        - dps_val: pos_arrived
-          value: located_spot
-        - dps_val: pos_unarrive
-          value: left_spot
-        - dps_val: goto_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: charged
-        - dps_val: sleep
-          value: sleep
-    - id: 9
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: gentle
-          value: Low
-        - dps_val: normal
-          value: Medium
-        - dps_val: strong
-          value: High
-    - id: 11
-      type: boolean
-      name: locate
-      optional: true
-    - id: 12
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 27
-      type: boolean
-      name: break_clean
-    - id: 28
-      type: bitfield
-      name: error
-secondary_entities:
+    manufacturer: Lefant
+    model: LS1 Pro
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: boolean
+        name: charge
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: zone
+            value: clean_spot
+          - dps_val: pose
+            value: pause
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located_spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Medium
+          - dps_val: strong
+            value: High
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 27
+        type: boolean
+        name: break_clean
+      - id: 28
+        type: bitfield
+        name: error
+        hidden: true
   - entity: sensor
     name: Clean time
     class: duration
@@ -101,8 +102,8 @@ secondary_entities:
         unit: min
   - entity: sensor
     name: Clean area
+    class: area
     category: diagnostic
-    icon: "mdi:floor-plan"
     dps:
       - id: 7
         type: integer
@@ -134,3 +135,17 @@ secondary_entities:
             value: Medium
           - dps_val: high
             value: High
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code

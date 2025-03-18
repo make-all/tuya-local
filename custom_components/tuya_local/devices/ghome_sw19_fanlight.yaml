@@ -1,0 +1,113 @@
+name: Fan and light switch
+products:
+  - id: j11gop7l2l3sblc2
+    manufacturer: GHome
+    model: SW19
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 25
+          - dps_val: level_2
+            value: 50
+          - dps_val: level_3
+            value: 75
+          - dps_val: level_4
+            value: 100
+  - entity: number
+    name: Fan timer
+    class: duration
+    category: config
+    translation_key: timer
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: light
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+      - id: 6
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Light timer
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Backlight
+    icon: "mdi:circle-double"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: position
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 101
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 101
+        type: bitfield
+        optional: true
+        name: fault_code

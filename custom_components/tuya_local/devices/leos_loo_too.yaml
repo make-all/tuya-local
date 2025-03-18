@@ -1,16 +1,16 @@
 name: Pet toilet
 products:
   - id: 1badzyvwh1e1hrog
-    name: "Leo's Loo Too"
-primary_entity:
-  entity: sensor
-  name: Times used today
-  icon: "mdi:counter"
-  dps:
-    - id: 7
-      type: integer
-      name: sensor
-secondary_entities:
+    manufacturer: "Leo's Loo"
+    model: Too
+entities:
+  - entity: sensor
+    name: Times used today
+    icon: "mdi:counter"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
   - entity: switch
     name: Power
     category: config
@@ -51,6 +51,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Cleaning delay
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 5

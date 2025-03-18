@@ -1,0 +1,47 @@
+name: Fan and light controller
+products:
+  - id: hqq73kftvzh8c92u
+    manufacturer: 3A Nue
+    model: LGT-SWCH10006
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "2"
+            value: 66
+          - dps_val: "3"
+            value: 100
+  - entity: light
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 6
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 6
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: min

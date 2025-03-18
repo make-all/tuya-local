@@ -1,79 +1,73 @@
 name: Pool heatpump
 products:
   - id: kwrvh8zwvbbyp086
-    name: Madimack Eco 16kW
-primary_entity:
-  entity: climate
-  dps:
-    - id: 101
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: heating
-              value: heat
-            - dps_val: cold
-              value: cool
-    - id: 102
-      type: string
-      name: mode
-    - id: 104
-      type: integer
-      name: temperature
-      range:
-        min: -22
-        max: 104
-    - id: 105
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: power
-          value: Power
-        - dps_val: boost
-          value: boost
-        - dps_val: silence
-          value: sleep
-        - dps_val: perfect
-          value: comfort
-    - id: 106
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 107
-      type: bitfield
-      name: fault_code
-    - id: 108
-      type: integer
-      name: current_temperature
-    - id: 110
-      type: integer
-      name: max_temperature
-    - id: 111
-      type: integer
-      name: min_temperature
-    - id: 116
-      type: bitfield
-      name: fault_2
-    - id: 122
-      type: boolean
-      name: power_display
-    - id: 123
-      type: boolean
-      name: cool_enable
-    - id: 124
-      type: string
-      name: overclock_mode
-secondary_entities:
+    manufacturer: Madimack
+    model: Eco 16kW
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: heating
+                value: heat
+              - dps_val: cold
+                value: cool
+      - id: 102
+        type: string
+        name: mode
+      - id: 104
+        type: integer
+        name: temperature
+        range:
+          min: -22
+          max: 104
+      - id: 105
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: power
+            value: Power
+          - dps_val: boost
+            value: boost
+          - dps_val: silence
+            value: sleep
+          - dps_val: perfect
+            value: comfort
+      - id: 106
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 108
+        type: integer
+        name: current_temperature
+      - id: 110
+        type: integer
+        name: max_temperature
+      - id: 111
+        type: integer
+        name: min_temperature
+      - id: 122
+        type: boolean
+        name: power_display
+      - id: 123
+        type: boolean
+        name: cool_enable
+      - id: 124
+        type: string
+        name: overclock_mode
   - entity: lock
     translation_key: child_lock
     category: config
@@ -108,11 +102,17 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: true
-            constraint: fault_2
+            constraint: fault_code_2
             conditions:
               - dps_val: 0
                 value: false
           - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
+      - id: 116
+        type: bitfield
+        name: fault_code_2
   - entity: sensor
     name: Compressor strength
     category: diagnostic

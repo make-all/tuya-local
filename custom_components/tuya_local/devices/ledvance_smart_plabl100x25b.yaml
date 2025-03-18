@@ -1,0 +1,171 @@
+name: Panel light
+products:
+  - id: key9cdjdeqjph5sh
+    manufacturer: Ledvance
+    model: Smart+ Planon plus backlight
+    model_id: BL100x25B
+entities:
+  - entity: switch
+    icon: "mdi:lightbulb-multiple"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: true
+            constraint: switch
+            conditions:
+              - dps_val: null
+                value: false
+      - id: 51
+        type: base64
+        mask: "000100000000000000000000"
+        optional: true
+        force: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: available
+      - id: 21
+        type: string
+        optional: true
+        name: work_mode
+      - id: 22
+        name: std_brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 51
+        type: base64
+        mask: "0000000000000000FFFF0000"
+        optional: true
+        force: true
+        name: brightness
+        mapping:
+          - dps_val: null
+            value_mirror: std_brightness
+        range:
+          min: 0
+          max: 1000
+      - id: 23
+        name: std_color_temp
+        type: integer
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6500
+      - id: 51
+        type: base64
+        mask: "00000000000000000000FFFF"
+        optional: true
+        force: true
+        name: color_temp
+        mapping:
+          - dps_val: null
+            value_mirror: std_color_temp
+          - target_range:
+              min: 3000
+              max: 6500
+        range:
+          min: 0
+          max: 1000
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: true
+            constraint: switch
+            conditions:
+              - dps_val: null
+                value: false
+      - id: 51
+        type: base64
+        mask: "000200000000000000000000"
+        optional: true
+        force: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: available
+      - id: 21
+        type: string
+        optional: true
+        name: work_mode
+      - id: 24
+        type: hex
+        name: std_rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        force: true
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: wc
+            bytes: 2
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

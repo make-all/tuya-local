@@ -1,0 +1,181 @@
+name: Pet fountain
+products:
+  - id: avhcsv4u4nj05otr
+    manufacturer: Petoneer
+    model: Fresco Hydrate Ultra
+entities:
+  - entity: valve
+    icon: "mdi:water-pump"
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+
+  - entity: sensor
+    name: Water level
+    icon: "mdi:water"
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        unit: "%"
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: 25
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 75
+          - dps_val: "4"
+            value: 100
+
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 12
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 10
+
+  - entity: sensor
+    name: Water quality
+    icon: "mdi:water"
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: ppm
+
+  - entity: button
+    name: UV sterilization
+    icon: "mdi:lightbulb-fluorescent-tube"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: button
+        optional: true
+
+  - entity: sensor
+    name: UV runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Water change due
+    icon: "mdi:water-circle"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 7200
+        mapping:
+          - invert: true
+        unit: min
+
+  - entity: button
+    name: Water changed
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: sensor
+    name: Filter change due
+    icon: "mdi:air-filter"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - invert: true
+        unit: "min"
+
+  - entity: button
+    name: Filter changed
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: sensor
+    name: Pump maintenance due
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - invert: true
+        unit: min
+
+  - entity: button
+    name: Pump maintenance done
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: sensor
+    name: Runtime
+    icon: mdi:briefcase-clock
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 124002400
+
+  - entity: sensor
+    name: LED runtime
+    icon: mdi:sun-clock
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 124002400

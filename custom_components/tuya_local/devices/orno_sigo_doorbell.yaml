@@ -1,0 +1,167 @@
+name: Doorbell
+products:
+  - id: anic3m16jmjo80ao
+    manufacturer: Orno
+    model: Sigo
+    model_id: OR-DB-MK-174
+entities:
+  - entity: siren
+    icon: "mdi:bell"
+    dps:
+      - id: 2
+        type: integer
+        name: tone
+        mapping:
+          - dps_val: 1
+            value: Ding Dong 1
+          - dps_val: 2
+            value: Ding Dong 2
+          - dps_val: 3
+            value: Westminster Chimes
+          - dps_val: 4
+            value: Für Elise
+          - dps_val: 5
+            value: The Cockoo Waltze
+          - dps_val: 6
+            value: Turkey March
+          - dps_val: 7
+            value: DO-RE-MI
+          - dps_val: 8
+            value: Waltz Of The Flowers
+          - dps_val: 9
+            value: Canon
+          - dps_val: 10
+            value: Ode To Joe
+          - dps_val: 11
+            value: Radetzky Marsch
+          - dps_val: 12
+            value: Waltz
+          - dps_val: 13
+            value: Nocturne In Eb
+          - dps_val: 14
+            value: Beethoven Symphony
+          - dps_val: 15
+            value: Dream God
+          - dps_val: 16
+            value: Minuet
+          - dps_val: 17
+            value: Bird
+          - dps_val: 18
+            value: Dream Wedding
+          - dps_val: 19
+            value: Chinese Folk Song
+          - dps_val: 20
+            value: Jasmine Flower
+          - dps_val: 21
+            value: Happy Birthday
+          - dps_val: 22
+            value: Peer Gynt, Suite No.1
+          - dps_val: 23
+            value: Hungarian Dance
+          - dps_val: 24
+            value: Mozart Piano Concertos
+          - dps_val: 25
+            value: 1812 Overture
+          - dps_val: 26
+            value: Twinkle Twinkle Little Star
+          - dps_val: 27
+            value: Love Story
+          - dps_val: 28
+            value: My Grandfather's Clock
+          - dps_val: 29
+            value: The William Tell Overture
+          - dps_val: 30
+            value: Eva's Polka
+          - dps_val: 31
+            value: Fantaisie Impromptu
+          - dps_val: 32
+            value: Toreador Song
+          - dps_val: 33
+            value: Spanish Bullfighter
+          - dps_val: 34
+            value: Oh Susanna
+          - dps_val: 35
+            value: Clarinet Polka
+          - dps_val: 36
+            value: Russe Dance
+          - dps_val: 37
+            value: Go Home
+          - dps_val: 38
+            value: Habanera
+          - dps_val: 39
+            value: The Harmonious
+          - dps_val: 40
+            value: Symphony No. 40
+          - dps_val: 41
+            value: Ballade Pour Adeline
+          - dps_val: 42
+            value: Butterfly Love
+          - dps_val: 43
+            value: Auld Lang Syne
+          - dps_val: 44
+            value: Chinese Dance
+          - dps_val: 45
+            value: Four Seasons Spring
+          - dps_val: 46
+            value: Dance Of The Little Swans
+          - dps_val: 47
+            value: Jingle Bells
+          - dps_val: 48
+            value: The Swan Lake
+          - dps_val: 49
+            value: Dog Waltz
+          - dps_val: 50
+            value: A Beating Melody
+          - dps_val: 51
+            value: Alarm
+          - dps_val: 52
+            value: Cuckoo
+      - id: 3
+        type: integer
+        name: volume_level
+        mapping:
+          - dps_val: 0
+            value: 0.20
+          - dps_val: 1
+            value: 0.40
+          - dps_val: 2
+            value: 0.60
+          - dps_val: 3
+            value: 0.80
+          - dps_val: 4
+            value: 1.0
+      - id: 1
+        type: string
+        name: button_config
+        optional: true
+      - id: 7
+        type: string
+        name: undisturb_schedule
+        optional: true
+      - id: 10
+        type: integer
+        name: doorbell_call
+        optional: true
+  - entity: switch
+    name: Mobile notifications
+    category: config
+    icon: "mdi:message-alert"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 5
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 5
+        type: utf16b64
+        optional: true
+        name: message

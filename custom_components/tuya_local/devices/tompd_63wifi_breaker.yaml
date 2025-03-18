@@ -1,0 +1,169 @@
+name: Breaker energy meter
+products:
+  - id: wcihaluccfsoayqa
+    model: TOMPD-63WIFI
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 17
+        name: alarm_set_1
+        optional: true
+        type: string
+      - id: 18
+        name: alarm_set_2
+        optional: true
+        type: string
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 19
+        name: breaker_number
+        type: string
+  - entity: switch
+    name: Prepayment
+    icon: "mdi:cash-multiple"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Energy reset
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Balance energy
+    category: diagnostic
+    class: energy_storage
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: number
+    name: Voltage protection time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Voltage recovery time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 500
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000

@@ -1,0 +1,23 @@
+name: Remote controller
+products:
+  - id: mjffeakbzlnfxpzt
+    manufacturer: UanTii
+    model: S06/S18 IR
+  - id: ejv37o6yz9vtxcuo
+    manufacturer: RightSitu
+    model: S18 IR
+  - id: ajdab4oqavd9dkal
+    manufacturer: Avatto
+    model: S16
+entities:
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false

@@ -1,25 +1,24 @@
 name: Smart Inverter
 products:
   - id: xcgsq9ggffz7lqhh
-    name: SG700MD
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 15
-      name: model
-      type: string
-    - id: 16
-      name: inverter_id
-      type: string
-secondary_entities:
+    model: SG700MD
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 15
+        name: model
+        type: string
+      - id: 16
+        name: inverter_id
+        type: string
   - entity: sensor
     class: power
     category: diagnostic

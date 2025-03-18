@@ -1,22 +1,20 @@
 name: Presence sensor
 products:
   - id: 4ops1avp7zdwhyqu
-    name: Xiumii Smart Human Presence Sensor
+    manufacturer: Xiumii
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: peaceful
+            value: true
+          - dps_val: none
+            value: false
 
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: peaceful
-          value: true
-        - dps_val: none
-          value: false
-
-secondary_entities:
   - entity: number
     name: Range
     class: distance

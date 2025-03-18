@@ -1,76 +1,76 @@
 name: Door lock
 products:
   - id: a6nttc41
-    name: Intelbras IFR 7000
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 2
-      type: integer
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 3
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 4
-      type: integer
-      name: unlock_dynamic_pwd
-      optional: true
-      persist: false
-    - id: 5
-      type: integer
-      name: unlock_card
-      optional: true
-      persist: false
-    - id: 7
-      type: integer
-      name: unlock_key
-      optional: true
-      persist: false
-    - id: 8
-      type: boolean
-      name: lock
-      readonly: true
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-    - id: 9
-      type: string
-      name: alarm
-      optional: true
-    - id: 22
-      type: boolean
-      optional: true
-      name: remote_result
-    - id: 41
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_app
-    - id: 47
-      type: string
-      name: lock_raw
-      optional: true
-    - id: 57
-      type: boolean
-      name: lock_motor_status
-      optional: true
-    - id: 62
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_voice
-secondary_entities:
+    manufacturer: Intelbras
+    model: IFR 7000
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 4
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+      - id: 7
+        type: integer
+        name: unlock_key
+        optional: true
+        persist: false
+      - id: 8
+        type: boolean
+        name: lock
+        readonly: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 9
+        type: string
+        name: alarm
+        optional: true
+      - id: 22
+        type: boolean
+        optional: true
+        name: remote_result
+      - id: 41
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 47
+        type: string
+        name: lock_raw
+        optional: true
+      - id: 57
+        type: boolean
+        name: lock_motor_status
+        optional: true
+      - id: 62
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_voice
   - entity: sensor
     class: battery
     category: diagnostic
@@ -161,4 +161,4 @@ secondary_entities:
 #  24 = password_create, 25 = password_delete, 26 = password_update,
 #  27 = password_disable, 28 = password_enable, 39 = password_reset (rw),
 #  48 = remote_no_pd_setkey (rw), 49 = remote_no_dp_key (rw),
-#  54 = unlock__method_create (rw), 54 = unlock_method_delete (rw),
+#  54 = unlock__method_create (rw), 55 = unlock_method_delete (rw),

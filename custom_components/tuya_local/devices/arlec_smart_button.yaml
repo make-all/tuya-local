@@ -1,22 +1,22 @@
-name: Smart Button
+name: Smart button
 products:
   - id: kpzc6pm8
-    name: Arlec SG022HA
-primary_entity:
-  entity: event
-  class: button
-  dps:
-    - id: 1
-      type: string
-      name: event
-      mapping:
-        - dps_val: single_click
-          value: single_click
-        - dps_val: long_press
-          value: long_press
-        - dps_val: double_click
-          value: double_click
-secondary_entities:
+    manufacturer: Arlec
+    model: SG022HA
+entities:
+  - entity: event
+    class: button
+    dps:
+      - id: 1
+        type: string
+        name: event
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
   - entity: sensor
     class: battery
     category: diagnostic

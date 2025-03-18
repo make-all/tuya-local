@@ -1,15 +1,15 @@
 name: Coffee maker
 products:
   - id: iegq4tjqeuiew5cl
-    name: Silvercrest SKMS 900 A1
-primary_entity:
-  entity: switch
-  icon: "mdi:coffee-maker"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Silvercrest
+    model: SKMS 900 A1
+entities:
+  - entity: switch
+    icon: "mdi:coffee-maker"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Aroma
     icon: "mdi:coffee"

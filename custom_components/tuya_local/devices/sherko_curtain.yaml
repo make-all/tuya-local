@@ -1,56 +1,55 @@
 name: Curtain motor
 products:
   - id: h2wipnagcunsar5r
-    name: SHerko curtain motor
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      type: string
-      name: control
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-          # - dps_val: continue
-          #   value: continue
-    - id: 2
-      type: integer
-      name: position
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-    - id: 3
-      type: integer
-      name: current_position
-      unit: "%"
-      optional: true
-    - id: 7
-      type: string
-      name: action
-      mapping:
-        - dps_val: opening
-          value: opening
-          constraint: current_position
-          conditions:
-            - dps_val: 100
-              value: opened
-            - dps_val: null
-              value: opened
-        - dps_val: closing
-          value: closing
-          constraint: current_position
-          conditions:
-            - dps_val: 0
-              value: closed
-            - dps_val: null
-              value: closed
-secondary_entities:
+    manufacturer: Sherko
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+            # - dps_val: continue
+            #   value: continue
+      - id: 2
+        type: integer
+        name: position
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+      - id: 3
+        type: integer
+        name: current_position
+        unit: "%"
+        optional: true
+      - id: 7
+        type: string
+        name: action
+        mapping:
+          - dps_val: opening
+            value: opening
+            constraint: current_position
+            conditions:
+              - dps_val: 100
+                value: opened
+              - dps_val: null
+                value: opened
+          - dps_val: closing
+            value: closing
+            constraint: current_position
+            conditions:
+              - dps_val: 0
+                value: closed
+              - dps_val: null
+                value: closed
   - entity: switch
     category: config
     name: Reverse Motor Direction

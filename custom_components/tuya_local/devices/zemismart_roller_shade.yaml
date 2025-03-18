@@ -1,55 +1,52 @@
 name: Roller shade
 products:
   - id: jzmy5ut0vishwscm
-    name: Zemismart ZM25TQ
-primary_entity:
-  entity: cover
-  class: shade
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-        - dps_val: continue
-          value: continue
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-    - id: 3
-      name: current_position
-      type: integer
-      range:
-        min: 0
-        max: 100
-    - id: 7
-      name: unreliable_action
-      type: string
-      mapping:
-        - dps_val: opening
-          value: opening
-          constraint: current_position
-          conditions:
-            - dps_val: 0
-              value: opened
-        - dps_val: closing
-          value: closing
-          constraint: current_position
-          conditions:
-            - dps_val: 100
-              value: closed
-    - id: 12
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    manufacturer: Zemismart
+    model: ZM25TQ
+entities:
+  - entity: cover
+    class: shade
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+          - dps_val: continue
+            value: continue
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 3
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 7
+        name: unreliable_action
+        type: string
+        mapping:
+          - dps_val: opening
+            value: opening
+            constraint: current_position
+            conditions:
+              - dps_val: 0
+                value: opened
+          - dps_val: closing
+            value: closing
+            constraint: current_position
+            conditions:
+              - dps_val: 100
+                value: closed
   - entity: select
     name: Direction
     icon: "mdi:swap-horizontal"
@@ -87,6 +84,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
   - entity: select
     name: Motor mode
     icon: "mdi:cog-transfer"

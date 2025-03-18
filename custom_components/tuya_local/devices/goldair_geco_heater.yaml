@@ -1,37 +1,30 @@
 name: Goldair GECO heater
 legacy_type: geco_heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-      name: hvac_mode
-    - id: 3
-      type: integer
-      range:
-        min: 15
-        max: 35
-      name: temperature
-      unit: C
-    - id: 4
-      type: integer
-      name: current_temperature
-    - id: 5
-      type: integer
-      name: timer
-    - id: 6
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
-      name: error
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+        name: hvac_mode
+      - id: 3
+        type: integer
+        range:
+          min: 15
+          max: 35
+        name: temperature
+        unit: C
+      - id: 4
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: integer
+        name: timer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -41,6 +34,7 @@ secondary_entities:
         name: lock
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 5
@@ -61,3 +55,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 6
+        type: bitfield
+        name: fault_code

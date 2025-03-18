@@ -1,24 +1,30 @@
 name: Dual switch
 products:
   - id: XdGCESvXTI5Mvfx2
-    name: MakeGood 2 Gang Switch (MG-MD04W)
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: MakeGood
+    model: MG-MD04W
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 7
@@ -32,8 +38,10 @@ secondary_entities:
             step: 60
         unit: min
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 8

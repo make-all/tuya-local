@@ -1,41 +1,42 @@
 name: Lights
 products:
   - id: ge0bfvco
-    name: Tampa CD-TY-WY05
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: work_mode
-      type: string
-    - id: 3
-      name: brightness
-      type: integer
-      range:
-        min: 0
-        max: 1000
-    - id: 4
-      name: color_temp
-      type: integer
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 3000
-            max: 6000
-    - id: 6
-      name: scene
-      type: hex
-    - id: 33
-      type: string
-      name: power_off_memory
-secondary_entities:
+    manufacturer: Tampa
+    model: CD-TY-WY05
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: work_mode
+        type: string
+      - id: 3
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 4
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6000
+      - id: 6
+        name: scene
+        type: hex
+      - id: 33
+        type: string
+        name: power_off_memory
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7

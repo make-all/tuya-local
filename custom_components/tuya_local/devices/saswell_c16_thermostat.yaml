@@ -1,98 +1,104 @@
-name: C16 WiFi thermostat
+name: Thermostat
+legacy_type: thermoval_tvt40_thermostat
 products:
   - id: jIRwsT5yLPJO41Po
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 400
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Smart
-          value: program
-          icon: "mdi:home-thermometer"
-        - dps_val: Anti_frozen
-          value: away
-          icon: "mdi:snowflake-melt"
-        - dps_val: Manual
-          value: manual
-          icon: "mdi:cursor-pointer"
-    - id: 4
-      name: unknown_4
-      type: integer
-    - id: 5
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 6
-      name: floor_temp_limit
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 7
-      name: installation
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: Office
-        - dps_val: false
-          value: Home
-    - id: 8
-      name: floor_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 9
-      name: hvac_mode
-      type: boolean
-      readonly: true
-      mapping:
-        - dps_val: false
-          value: "heat"
-        - dps_val: true
-          value: "cool"
-    - id: 10
-      name: adaptive
-      type: boolean
-    - id: 12
-      name: schedule
-      type: string
-    - id: 21
-      name: unknown_21
-      type: boolean
-    - id: 22
-      name: power_rating
-      type: integer
-    - id: 23
-      name: unknown_23
-      type: integer
-    - id: 24
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: Standby
-          value: idle
-        - dps_val: Heating
-          value: heating
-        - dps_val: Cooling
-          value: cooling
-    - id: 26
-      name: unknown_26
-      optional: true
-      type: integer
-secondary_entities:
+    manufacturer: Thermoval / Saswell
+    model: TVT 40 / C16
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Smart
+            value: program
+          - dps_val: Anti_frozen
+            value: away
+          - dps_val: Manual
+            value: manual
+      - id: 5
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            constraint: sensor_select
+            conditions:
+              - dps_val: "0"
+                value_redirect: floor_temperature
+      - id: 6
+        name: floor_temp_limit
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 7
+        name: installation
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: Office
+          - dps_val: false
+            value: Home
+      - id: 8
+        name: floor_temperature
+        type: integer
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 9
+        name: hvac_mode
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: false
+            value: "heat"
+          - dps_val: true
+            value: "cool"
+      - id: 10
+        name: adaptive
+        type: boolean
+      - id: 12
+        name: schedule
+        type: string
+      - id: 24
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: Standby
+            value: idle
+          - dps_val: Heating
+            value: heating
+          - dps_val: Cooling
+            value: cooling
+      - id: 26
+        name: antifreeze_settings
+        optional: true
+        type: integer
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 4
+        name: fault_code
+        type: bitfield
   - entity: lock
     translation_key: child_lock
     category: config
@@ -225,3 +231,21 @@ secondary_entities:
         range:
           min: 0
           max: 3500
+  - entity: sensor
+    name: Power Consumption Duration
+    category: diagnostic
+    icon: "mdi:clock"
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        class: measurement
+        unit: h
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        optional: true
+        name: button

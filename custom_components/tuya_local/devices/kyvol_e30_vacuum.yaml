@@ -1,121 +1,106 @@
 name: Kyvol E30 vacuum
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: random
-          value: random
-        - dps_val: smart
-          value: smart
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: mop
-          value: mop
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: left_spiral
-          value: left_spiral
-        - dps_val: right_spiral
-          value: right_spiral
-        - dps_val: bow
-          value: bow
-        - dps_val: left_bow
-          value: left_bow
-        - dps_val: right_bow
-          value: right_bow
-        - dps_val: partial_bow
-          value: partial_bow
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: single
-          value: single
-        - dps_val: zone
-          value: zone
-        - dps_val: pose
-          value: pose
-        - dps_val: point
-          value: point
-        - dps_val: part
-          value: part
-        - dps_val: pick_zone
-          value: pick_zone
-    - id: 4
-      type: string
-      name: direction_control
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 13
-      type: boolean
-      name: locate
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: "0"
-          value: strong
-        - dps_val: "1"
-          value: normal
-        - dps_val: "2"
-          value: quiet
-        - dps_val: "3"
-          value: gentle
-        - dps_val: "4"
-          value: closed
-    - id: 15
-      type: string
-      name: clean_record
-      optional: true
-    - id: 18
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 1
-          value: edge_sweep
-        - dps_val: 2
-          value: middle_sweep
-        - dps_val: 4
-          value: left_wheel
-        - dps_val: 8
-          value: right_wheel
-        - dps_val: 16
-          value: garbage_box
-        - dps_val: 32
-          value: land_check
-        - dps_val: 64
-          value: collision
-    - id: 101
-      type: string
-      name: water_status
-    - id: 102
-      type: string
-      name: model
-    - id: 104
-      type: string
-      name: mode
-    - id: 107
-      type: integer
-      name: carpet_adaptive
-secondary_entities:
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: random
+            value: random
+          - dps_val: smart
+            value: smart
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: mop
+            value: mop
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: left_spiral
+            value: left_spiral
+          - dps_val: right_spiral
+            value: right_spiral
+          - dps_val: bow
+            value: bow
+          - dps_val: left_bow
+            value: left_bow
+          - dps_val: right_bow
+            value: right_bow
+          - dps_val: partial_bow
+            value: partial_bow
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: single
+            value: single
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: pose
+          - dps_val: point
+            value: point
+          - dps_val: part
+            value: part
+          - dps_val: pick_zone
+            value: pick_zone
+      - id: 4
+        type: string
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 13
+        type: boolean
+        name: locate
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: "0"
+            value: strong
+          - dps_val: "1"
+            value: normal
+          - dps_val: "2"
+            value: quiet
+          - dps_val: "3"
+            value: gentle
+          - dps_val: "4"
+            value: closed
+      - id: 15
+        type: string
+        name: clean_record
+        optional: true
+      - id: 18
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 101
+        type: string
+        name: water_status
+      - id: 102
+        type: string
+        name: model
+      - id: 104
+        type: string
+        name: mode
+      - id: 107
+        type: integer
+        name: carpet_adaptive
   - entity: sensor
     class: battery
     dps:
@@ -136,8 +121,8 @@ secondary_entities:
         unit: min
   - entity: sensor
     name: Clean area
+    class: area
     category: diagnostic
-    icon: "mdi:floor-plan"
     dps:
       - id: 16
         type: integer
@@ -163,9 +148,8 @@ secondary_entities:
         type: boolean
         name: button
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 12
         type: boolean
@@ -198,10 +182,44 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Status
+    translation_key: status
     category: diagnostic
     icon: "mdi:robot-vacuum"
     dps:
       - id: 5
         type: string
         name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_sweep
+          - dps_val: 2
+            value: middle_sweep
+          - dps_val: 4
+            value: left_wheel
+          - dps_val: 8
+            value: right_wheel
+          - dps_val: 16
+            value: garbage_box
+          - dps_val: 32
+            value: land_check
+          - dps_val: 64
+            value: collision

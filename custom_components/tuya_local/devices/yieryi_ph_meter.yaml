@@ -1,22 +1,22 @@
 name: pH meter
 products:
   - id: 5ok0wq7drlqyo2hb
-    name: Yieryi YY-9909
-primary_entity:
-  entity: sensor
-  name: pH
-  icon: "mdi:ph"
-  dps:
-    - id: 102
-      type: integer
-      name: sensor
-      unit: pH
-      class: measurement
-      mapping:
-        - scale: 100
-        - dps_val: 1500
-          value: null
-secondary_entities:
+    manufacturer: Yieryi
+    model: YY-9909
+entities:
+  - entity: sensor
+    name: pH
+    icon: "mdi:ph"
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: pH
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: 1500
+            value: null
   - entity: sensor
     class: temperature
     dps:

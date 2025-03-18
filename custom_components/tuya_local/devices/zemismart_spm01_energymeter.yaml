@@ -1,0 +1,178 @@
+name: Energy meter
+products:
+  - id: qhlxve78
+    manufacturer: Zemismart
+    model: SPM01 Zigbee
+entities:
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      # there are separate sensors for everything phase_a normally encodes,
+      # and it does not appear by default, so is not decoded here.
+      - id: 6
+        type: base64
+        optional: true
+        name: phase_a
+      - id: 17
+        type: string
+        optional: true
+        name: alarm_set_1
+      - id: 18
+        type: string
+        optional: true
+        name: alarm_set_2
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: short_circuit
+          - dps_val: 2
+            value: surge
+          - dps_val: 4
+            value: overload
+          - dps_val: 8
+            value: earth_leak
+          - dps_val: 16
+            value: temperature_difference
+          - dps_val: 32
+            value: fire
+          - dps_val: 64
+            value: high_power
+          - dps_val: 128
+            value: self_test
+          - dps_val: 256
+            value: over_current
+          - dps_val: 512
+            value: unbalanced
+          - dps_val: 1024
+            value: over_voltage
+          - dps_val: 2048
+            value: under_voltage
+          - dps_val: 4096
+            value: miss_phase
+          - dps_val: 8192
+            value: outage
+          - dps_val: 16384
+            value: magnetism
+          - dps_val: 32768
+            value: credit_low
+          - dps_val: 65536
+            value: credit_expired
+  - entity: sensor
+    name: Earth leakage
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Breaker
+    icon: "mdi:fuse"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: select
+    name: Refresh mode
+    icon: "mdi:refresh"
+    category: config
+    dps:
+      - id: 35
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: online
+            value: Real time
+          - dps_val: offline
+            value: Power saving
+          - dps_val: null
+            value: Power saving
+            hidden: true
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000

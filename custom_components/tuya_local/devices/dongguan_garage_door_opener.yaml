@@ -2,45 +2,40 @@
 # Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
 # 110V 240V Voice Control with Alexa Google Home
 # https://www.aliexpress.com/item/1005003913566298.html
-name: Garage opener
+name: Gate opener
 products:
   - id: 1wwbzczt9hrtwqjr
-    name: Dongguan PJ-WGDOOR01
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      type: boolean
-      name: control
-      optional: true  # Sometimes this DP doesn't report state
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 3
-      type: boolean
-      name: action
-      mapping:
-        - dps_val: true
-          value: opened
-        - dps_val: false
-          value: closed
-secondary_entities:
+    manufacturer: Dongguan Pinjia
+    model: PJ-WGDOOR01
+  - id: deyeioifmyvdalnc
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true  # Sometimes this DP doesn't report state
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        type: boolean
+        name: open
   - entity: number
-    name: Countdown
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 2
-        <<: &timer
-          type: integer
-          name: value
-          unit: s
-          range:
-            min: 0
-            max: 86400
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Run times
     icon: mdi:timer
@@ -56,10 +51,29 @@ secondary_entities:
   - entity: number
     name: Timeout alarm
     icon: mdi:timer-alert
+    class: duration
     category: config
     dps:
       - id: 5
-        <<: *timer
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    name: Voice control
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: sensor
     name: Fault
     icon: mdi:alert

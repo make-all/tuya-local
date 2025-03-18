@@ -1,33 +1,26 @@
 name: Eurom Mon Soleil heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-      name: hvac_mode
-    - id: 2
-      type: integer
-      range:
-        min: 0
-        max: 37
-      name: temperature
-      unit: C
-    - id: 5
-      type: integer
-      name: current_temperature
-    - id: 7
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
-      name: error
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+        name: hvac_mode
+      - id: 2
+        type: integer
+        range:
+          min: 0
+          max: 37
+        name: temperature
+        unit: C
+      - id: 5
+        type: integer
+        name: current_temperature
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -39,3 +32,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code

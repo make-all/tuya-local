@@ -1,20 +1,20 @@
 name: Circuit breaker
 products:
   - id: qndxewijhpsz3ixr
-    name: Aulifants SMES200
-primary_entity:
-  entity: sensor
-  name: Total energy
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Aulifants
+    model: SMES200
+entities:
+  - entity: sensor
+    name: Total energy
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     class: voltage
     dps:
@@ -23,9 +23,9 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     class: current
     dps:
@@ -33,9 +33,9 @@ secondary_entities:
         type: base64
         name: sensor
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: power
     dps:
@@ -43,9 +43,9 @@ secondary_entities:
         type: base64
         name: sensor
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: button
     name: Clear energy
     category: config

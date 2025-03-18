@@ -1,16 +1,15 @@
 name: Air quality
 products:
   - id: ezovdhzaxsovyzf0
+    manufacturer: KKMoon
     name: 7in1 air quality meter
-primary_entity:
-  entity: sensor
-  name: Air quality
-  icon: "mdi:factory"
-  dps:
-    - id: 21
-      type: string
-      name: sensor
-secondary_entities:
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    dps:
+      - id: 21
+        type: string
+        name: sensor
   - entity: sensor
     class: pm25
     dps:

@@ -1,27 +1,19 @@
 name: Smart watering device
 products:
   - id: abzzvtulukkwzynv
-    name: Becasmart BAF-908
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      name: valve
-      type: boolean
-    - id: 48
-      type: string
-      optional: true
-      name: schedule
-secondary_entities:
-  - entity: switch
-    category: config
-    deprecated: valve
-    icon: "mdi:water-pump"
+    manufacturer: Beca Smart
+    model: BAF-908
+entities:
+  - entity: valve
+    class: water
     dps:
       - id: 1
-        name: switch
+        name: valve
         type: boolean
+      - id: 48
+        type: string
+        optional: true
+        name: schedule
   - entity: select
     name: Mode
     icon: "mdi:auto-mode"
@@ -35,6 +27,7 @@ secondary_entities:
           - dps_val: manual
             value: Manual
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

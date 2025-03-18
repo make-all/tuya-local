@@ -1,53 +1,54 @@
-name: Eurom Sani-Wall-Heat 2000 Wifi heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: "off"
-              value: fan_only
-              icon: "mdi:fan"
-            - dps_val: auto
-              value: heat
-            - dps_val: "50_per"
-              value: heat
-            - dps_val: "100_per"
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 35
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "off"
-          value: none
-        - dps_val: "50_per"
-          value: eco
-        - dps_val: "100_per"
-          value: boost
-        - dps_val: auto
-          value: comfort
-    - id: 7
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: true
-          value: vertical
-        - dps_val: false
-          value: "off"
+name: Heater
+# products: id unknown, name: Eurom Sani-Wall-Heat 2000
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "off"
+                value: fan_only
+                icon: "mdi:fan"
+              - dps_val: auto
+                value: heat
+              - dps_val: "50_per"
+                value: heat
+              - dps_val: "100_per"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 35
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "off"
+            value: none
+          - dps_val: "50_per"
+            value: eco
+          - dps_val: "100_per"
+            value: boost
+          - dps_val: auto
+            value: comfort
+      - id: 7
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: vertical
+          - dps_val: false
+            value: "off"

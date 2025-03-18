@@ -1,44 +1,44 @@
 name: EV charger
 products:
   - id: jui3mys5c9rfdju2
-    name: Ecopoint 32A EV charger
-primary_entity:
-  entity: sensor
-  name: Charger State
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3  # work_state
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_free
-          value: Available
-        - dps_val: charger_insert
-          value: Plugged in
-        - dps_val: charger_free_fault
-          value: Fault
-        - dps_val: charger_wait
-          value: Delaying
-        - dps_val: charger_pause
-          value: Paused
-        - dps_val: charger_end
-          value: Charged
-        - dps_val: charger_fault
-          value: Fault (plugged in)
-    - id: 21
-      type: string
-      optional: true
-      name: card_binding
-    - id: 22  # meter_id
-      type: string
-      name: meter_id
-    - id: 23  # system_version
-      type: string
-      name: system_version
-secondary_entities:
+    manufacturer: Ecopoint
+    model: 32A
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 21
+        type: string
+        optional: true
+        name: card_binding
+      - id: 22  # meter_id
+        type: string
+        name: meter_id
+      - id: 23  # system_version
+        type: string
+        name: system_version
   - entity: sensor
     class: energy
     dps:
@@ -140,7 +140,9 @@ secondary_entities:
           - dps_val: charge_schedule
             value: Scheduled charge
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     dps:
       - id: 6  # phase_1
@@ -148,11 +150,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     dps:
       - id: 6  # phase_1
@@ -160,11 +164,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 6  # phase_1
@@ -172,11 +178,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     dps:
       - id: 7  # phase_1
@@ -184,11 +192,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     dps:
       - id: 7  # phase_1
@@ -196,11 +206,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 7  # phase_1
@@ -208,11 +220,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     dps:
       - id: 8  # phase_1
@@ -220,11 +234,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     dps:
       - id: 8  # phase_1
@@ -232,11 +248,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     dps:
       - id: 8  # phase_1
@@ -244,9 +262,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -274,6 +292,7 @@ secondary_entities:
   - entity: number
     name: Charge time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 19
@@ -308,8 +327,7 @@ secondary_entities:
         name: sensor
         optional: true
         unit: s
-        mapping:
-          - mask: "0000FFFF"
+        mask: "0000FFFF"
   - entity: select
     name: Mode
     icon: "mdi:cogs"
@@ -338,9 +356,9 @@ secondary_entities:
         optional: true
         name: sensor
         unit: A
+        mask: "FFFF0000"
         mapping:
-          - mask: "FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Maximum current
     class: current
@@ -351,6 +369,6 @@ secondary_entities:
         optional: true
         name: sensor
         unit: A
+        mask: "0000FFFF"
         mapping:
-          - mask: "0000FFFF"
-            scale: 10
+          - scale: 10

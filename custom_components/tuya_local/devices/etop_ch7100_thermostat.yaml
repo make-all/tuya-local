@@ -1,156 +1,135 @@
-name: ETOP CH7100 thermostat
+name: Thermostat
 products:
   - id: evklbfoqwp4dygts
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: aux
-              value: heat
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: cold
-          value: Cool
-        - dps_val: hot
-          value: Heat
-        - dps_val: aux
-          value: Auxiliary Heat
-        - dps_val: auto
-          value: Auto
-    - id: 3
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: cooling
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: cooling
-        - dps_val: heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: idle
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-    - id: 16
-      name: thermostat_set_temp
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: thermostat_set_temp_f
-    - id: 17
-      name: thermostat_set_temp_f
-      type: integer
-      hidden: true
-    - id: 23
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      name: current_temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 27
-      name: temperature_calibration
-      type: integer
-      optional: true
-    - id: 28
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: "on"
-          value: "on"
-    - id: 29
-      name: current_temp_f
-      type: integer
-      hidden: true
-    - id: 45
-      name: unknown_45
-      type: integer
-    - id: 101
-      name: unknown_101
-      type: boolean
-    - id: 104
-      name: target_temp_high
-      type: integer
-      range:
-        min: 6
-        max: 40
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_high_f
-              range:
-                min: 33
-                max: 104
-    - id: 106
-      name: temp_high_f
-      type: integer
-      range:
-        min: 33
-        max: 104
-      hidden: true
-    - id: 105
-      name: target_temp_low
-      type: integer
-      range:
-        min: 5
-        max: 39
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_low_f
-              range:
-                min: 32
-                max: 103
-    - id: 107
-      name: temp_low_f
-      type: integer
-      range:
-        min: 32
-        max: 103
-      hidden: true
-secondary_entities:
+    manufacturer: ETOP
+    model: CH7100
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: aux
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: cold
+            value: Cool
+          - dps_val: hot
+            value: Heat
+          - dps_val: aux
+            value: Auxiliary Heat
+          - dps_val: auto
+            value: Auto
+      - id: 3
+        name: hvac_action
+        type: string
+      - id: 16
+        name: thermostat_set_temp
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: thermostat_set_temp_f
+      - id: 17
+        name: thermostat_set_temp_f
+        type: integer
+        hidden: true
+      - id: 23
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 27
+        name: temperature_calibration
+        type: integer
+        optional: true
+      - id: 28
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "on"
+            value: "on"
+      - id: 29
+        name: current_temp_f
+        type: integer
+        hidden: true
+      - id: 45
+        name: unknown_45
+        type: integer
+      - id: 101
+        name: unknown_101
+        type: boolean
+      - id: 104
+        name: target_temp_high
+        type: integer
+        range:
+          min: 6
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_high_f
+                range:
+                  min: 33
+                  max: 104
+      - id: 106
+        name: temp_high_f
+        type: integer
+        range:
+          min: 33
+          max: 104
+        hidden: true
+      - id: 105
+        name: target_temp_low
+        type: integer
+        range:
+          min: 5
+          max: 39
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_low_f
+                range:
+                  min: 32
+                  max: 103
+      - id: 107
+        name: temp_low_f
+        type: integer
+        range:
+          min: 32
+          max: 103
+        hidden: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -189,6 +168,7 @@ secondary_entities:
   - entity: number
     name: Temporary hold time
     icon: "mdi:timer"
+    class: duration
     category: config
     dps:
       - id: 103

@@ -1,0 +1,68 @@
+name: Air purifier
+products:
+  - id: 6bspwvsqhl4vuanj
+    manufacturer: Cleverio
+    model: AP100
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 4
+  - entity: sensor
+    name: Filter
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: light
+    translation_key: indicator
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "4h"
+          - dps_val: "4"
+            value: "8h"
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: excellent
+          - dps_val: "2"
+            value: good
+          - dps_val: "3"
+            value: moderate
+          - dps_val: "4"
+            value: poor

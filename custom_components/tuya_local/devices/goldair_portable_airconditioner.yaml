@@ -1,0 +1,219 @@
+name: Air conditioner
+legacy_type: nedis_mobile_airconditioner
+products:
+  - id: gylvqvz3p94i3zdn
+    manufacturer: Goldair
+    name: "4-in-1 portable air conditioner"
+  - id: vrredpnf22yayvhi
+    manufacturer: Nedis
+    model: ACMB1WT12
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+                available: support_heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: 32
+                value_redirect: temp_set_f
+                range:
+                  min: 60
+                  max: 88
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: 32
+                value_redirect: temp_cur_f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: med
+            value: medium
+            available: support_3speed_fan
+          - dps_val: high
+            value: high
+      - id: 15
+        type: string
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: "on"
+            value: "on"
+            available: support_hswing
+          - dps_val: "off"
+            value: "off"
+            available: support_hswing
+      - id: 107
+        type: integer
+        optional: true
+        name: temp_set_f
+        hidden: true
+        range:
+          min: 60
+          max: 88
+      - id: 108
+        type: integer
+        optional: true
+        name: temp_cur_f
+        hidden: true
+      - id: 109
+        type: bitfield
+        name: feature_flags
+      - id: 109
+        type: bitfield
+        name: support_vswing
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+      - id: 109
+        type: bitfield
+        name: support_hswing
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+      - id: 109
+        type: bitfield
+        name: support_heat
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 109
+        type: bitfield
+        name: support_3speed_fan
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+      - id: 109
+        type: bitfield
+        name: temperature_unit
+        mapping:
+          - dps_val: 32
+            value: F
+          - value: C
+      - id: 110
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+            available: support_vswing
+          - dps_val: false
+            value: "off"
+            available: support_vswing
+  - entity: switch
+    translation_key: ionizer
+    hidden: unavailable
+    # no mention of ionizer/anion in manual but unit still beeps
+    # when the value is toggled
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+      - id: 109
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: "On timer"
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: "Off timer"
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

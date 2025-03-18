@@ -1,67 +1,66 @@
 name: Beok TR9B thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 16
-      type: integer
-      name: temperature
-      range:
-        min: 50
-        max: 10000
-      mapping:
-        - scale: 10
-          step: 5
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              step: 10
-    - id: 19
-      type: integer
-      name: max_temperature
-      mapping:
-        - scale: 10
-    - id: 23
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      name: min_temperature
-      mapping:
-        - scale: 10
-    - id: 101
-      type: integer
-      name: unknown_101
-    - id: 102
-      type: integer
-      name: unknown_102
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 10000
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                step: 10
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 101
+        type: integer
+        name: unknown_101
+      - id: 102
+        type: integer
+        name: unknown_102
   - entity: switch
     translation_key: anti_frost
     category: config

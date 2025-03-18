@@ -1,43 +1,42 @@
 name: Doorbell
 products:
   - id: oqn2dj8otuhqhulr
-    name: ZX-DB11
-primary_entity:
-  entity: binary_sensor
-  name: Alarm
-  class: sound
-  category: diagnostic
-  dps:
-    - id: 32
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: normal
-          value: false
-        - dps_val: alarm
-          value: true
-    - id: 24
-      type: string
-      name: mode_state
-    - id: 31
-      type: string
-      name: tone_set
-    - id: 35
-      type: boolean
-      name: button
-    - id: 36
-      type: string
-      name: test4
-    - id: 37
-      type: string
-      name: test5
-    - id: 39
-      type: string
-      name: test6
-    - id: 40
-      type: string
-      name: test7
-secondary_entities:
+    model: ZX-DB11
+entities:
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+      - id: 24
+        type: string
+        name: mode_state
+      - id: 31
+        type: string
+        name: tone_set
+      - id: 35
+        type: boolean
+        name: button
+      - id: 36
+        type: string
+        name: test4
+      - id: 37
+        type: string
+        name: test5
+      - id: 39
+        type: string
+        name: test6
+      - id: 40
+        type: string
+        name: test7
   - entity: alarm_control_panel
     name: Alarm
     dps:
@@ -56,6 +55,7 @@ secondary_entities:
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: "mdi:timer-lock"
     dps:
       - id: 2
@@ -293,6 +293,7 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer-lock-open"
     dps:
       - id: 28
@@ -335,8 +336,7 @@ secondary_entities:
             value: 0
             icon: "mdi:volume-mute"
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 34

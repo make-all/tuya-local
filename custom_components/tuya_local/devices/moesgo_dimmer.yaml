@@ -1,20 +1,19 @@
 name: Dimmer switch
 products:
   - id: bf450789b46e8ff48f9n6r
-    name: MoesGo dimmer switch
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: MoesGo
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: number
     name: Minimum brightness
     category: config
@@ -46,6 +45,7 @@ secondary_entities:
             value: Halogen
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6
@@ -59,8 +59,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Power on state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 14
@@ -69,11 +68,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
-          - dps_val: "memory"
-            value: "Last state"
+            value: "on"
+          - dps_val: memory
+            value: memory
   - entity: light
     translation_key: backlight
     category: config

@@ -45,7 +45,8 @@ class TestThermexIF50V(
             self.subject.supported_features,
             WaterHeaterEntityFeature.OPERATION_MODE
             | WaterHeaterEntityFeature.TARGET_TEMPERATURE
-            | WaterHeaterEntityFeature.AWAY_MODE,
+            | WaterHeaterEntityFeature.AWAY_MODE
+            | WaterHeaterEntityFeature.ON_OFF,
         )
 
     def test_temperature_unit_returns_celsius(self):
@@ -175,3 +176,10 @@ class TestThermexIF50V(
             {POWER_DP: True, MODE_DP: "2"},
         ):
             await self.subject.async_turn_away_mode_off()
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DP] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

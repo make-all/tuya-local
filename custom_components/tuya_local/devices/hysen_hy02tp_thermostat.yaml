@@ -1,78 +1,72 @@
 name: Thermostat
 products:
   - id: 4oeq3v7rua8c4ton
-    name: Hysen HY02TP
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_type
-          conditions:
-            - dps_val: "0cool"
-              value: cool
-            - dps_val: "1heat"
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 700
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: Manual
-          value: manual
-        - dps_val: Program
-          value: program
-        - dps_val: Holiday
-          value: away
-        - dps_val: TempProg
-          value: temp_override
-    - id: 114
-      type: integer
-      name: max_temperature
-    - id: 115
-      type: integer
-      name: min_temperature
-    - id: 123
-      type: string
-      name: work_type
-      hidden: true
-    - id: 127
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: "0allclose"
-                  value: idle
-                - dps_val: "1heaton"
-                  value: heating
-                - dps_val: "2coolon"
-                  value: cooling
-secondary_entities:
+    manufacturer: Hysen
+    model: HY02TP
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_type
+            conditions:
+              - dps_val: "0cool"
+                value: cool
+              - dps_val: "1heat"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 700
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Manual
+            value: manual
+          - dps_val: Program
+            value: program
+          - dps_val: Holiday
+            value: away
+          - dps_val: TempProg
+            value: temp_override
+      - id: 114
+        type: integer
+        name: max_temperature
+      - id: 115
+        type: integer
+        name: min_temperature
+      - id: 123
+        type: string
+        name: work_type
+        hidden: true
+      - id: 127
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0allclose"
+            value: idle
+          - dps_val: "1heaton"
+            value: heating
+          - dps_val: "2coolon"
+            value: cooling
   - entity: lock
     translation_key: child_lock
     category: config
@@ -214,8 +208,7 @@ secondary_entities:
           min: 1
           max: 10
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 117
@@ -223,11 +216,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: keep
-            value: Last state
+            value: memory
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: select
     name: Schedule
     icon: "mdi:calendar-weekend"

@@ -1,386 +1,387 @@
-name: Beca BHP-6000 thermostat mapped
+name: Thermostat
 products:
   - id: drwezxukumr9ohuh
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 5
-        max: 35
-        # These mappings are not quite F to C, but appear to be what is used
-        # by the thermostat when set to C (issue #215)
-      mapping:
-        - dps_val: 42
-          value: 5
-          step: 0.5
-        - dps_val: 43
-          value: 5.5
-          step: 0.5
-        - dps_val: 44
-          value: 6
-          step: 0.5
-        - dps_val: 45
-          value: 6.5
-          step: 0.5
-        - dps_val: 46
-          value: 7
-          step: 0.5
-        - dps_val: 47
-          value: 7.5
-          step: 0.5
-        - dps_val: 48
-          value: 8
-          step: 0.5
-        - dps_val: 49
-          value: 8.5
-          step: 0.5
-        - dps_val: 50
-          value: 9
-          step: 0.5
-        - dps_val: 51
-          value: 9.5
-          step: 0.5
-        - dps_val: 52
-          value: 10
-          step: 0.5
-        - dps_val: 53
-          value: 10.5
-          step: 0.5
-        - dps_val: 54
-          value: 11
-          step: 0.5
-        - dps_val: 55
-          value: 11.5
-          step: 0.5
-        - dps_val: 56
-          value: 12
-          step: 0.5
-        - dps_val: 57
-          value: 12.5
-          step: 0.5
-        - dps_val: 58
-          value: 13
-          step: 0.5
-        - dps_val: 59
-          value: 13.5
-          step: 0.5
-        - dps_val: 60
-          value: 14
-          step: 0.5
-        - dps_val: 61
-          value: 14.5
-          step: 0.5
-        - dps_val: 62
-          value: 15
-          step: 0.5
-        - dps_val: 63
-          value: 15.5
-          step: 0.5
-        - dps_val: 64
-          value: 16
-          step: 0.5
-        - dps_val: 65
-          value: 16.5
-          step: 0.5
-        - dps_val: 66
-          value: 17
-          step: 0.5
-        - dps_val: 67
-          value: 17.5
-          step: 0.5
-        - dps_val: 68
-          value: 18
-          step: 0.5
-        - dps_val: 69
-          value: 18.5
-          step: 0.5
-        - dps_val: 70
-          value: 19
-          step: 0.5
-        - dps_val: 71
-          value: 19.5
-          step: 0.5
-        - dps_val: 72
-          value: 20
-          step: 0.5
-        - dps_val: 73
-          value: 20.5
-          step: 0.5
-        - dps_val: 74
-          value: 21
-          step: 0.5
-        - dps_val: 75
-          value: 21.5
-          step: 0.5
-        - dps_val: 76
-          value: 22
-          step: 0.5
-        - dps_val: 77
-          value: 22.50
-          step: 0.5
-        - dps_val: 78
-          value: 23
-          step: 0.5
-        - dps_val: 79
-          value: 23.50
-          step: 0.5
-        - dps_val: 80
-          value: 24
-          step: 0.5
-        - dps_val: 81
-          value: 24.5
-          step: 0.5
-        - dps_val: 82
-          value: 25
-          step: 0.5
-        - dps_val: 83
-          value: 25.5
-          step: 0.5
-        - dps_val: 84
-          value: 26
-          step: 0.5
-        - dps_val: 85
-          value: 26.5
-          step: 0.5
-        - dps_val: 86
-          value: 27
-          step: 0.5
-        - dps_val: 87
-          value: 27.5
-          step: 0.5
-        - dps_val: 88
-          value: 28
-          step: 0.5
-        - dps_val: 89
-          value: 28.5
-          step: 0.5
-        - dps_val: 90
-          value: 29
-          step: 0.5
-        - dps_val: 91
-          value: 29.5
-          step: 0.5
-        - dps_val: 92
-          value: 30
-          step: 0.5
-        - dps_val: 93
-          value: 30.5
-          step: 0.5
-        - dps_val: 94
-          value: 31
-          step: 0.5
-        - dps_val: 95
-          value: 31.5
-          step: 0.5
-        - dps_val: 96
-          value: 32
-          step: 0.5
-        - dps_val: 97
-          value: 32.5
-          step: 0.5
-        - dps_val: 98
-          value: 33
-          step: 0.5
-        - dps_val: 99
-          value: 33.5
-          step: 0.5
-        - dps_val: 100
-          value: 34
-          step: 0.5
-        - dps_val: 101
-          value: 34.5
-          step: 0.5
-        - dps_val: 102
-          value: 35
-          step: 0.5
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - dps_val: 41
-          value: 5
-        - dps_val: 42
-          value: 5.5
-        - dps_val: 43
-          value: 6
-        - dps_val: 44
-          value: 6.5
-        - dps_val: 45
-          value: 7
-        - dps_val: 46
-          value: 7.5
-        - dps_val: 47
-          value: 8
-        - dps_val: 48
-          value: 8.5
-        - dps_val: 49
-          value: 9
-        - dps_val: 50
-          value: 9.5
-        - dps_val: 51
-          value: 10
-        - dps_val: 52
-          value: 10.5
-        - dps_val: 53
-          value: 11
-        - dps_val: 54
-          value: 11.5
-        - dps_val: 55
-          value: 12
-        - dps_val: 56
-          value: 12.5
-        - dps_val: 57
-          value: 13
-        - dps_val: 58
-          value: 13.5
-        - dps_val: 59
-          value: 14
-        - dps_val: 60
-          value: 14.5
-        - dps_val: 61
-          value: 15
-        - dps_val: 62
-          value: 15.5
-        - dps_val: 63
-          value: 16
-        - dps_val: 64
-          value: 16.5
-        - dps_val: 65
-          value: 17
-        - dps_val: 66
-          value: 17.5
-        - dps_val: 67
-          value: 18
-        - dps_val: 68
-          value: 18.5
-        - dps_val: 69
-          value: 19
-        - dps_val: 70
-          value: 19.5
-        - dps_val: 71
-          value: 20
-        - dps_val: 72
-          value: 20.5
-        - dps_val: 73
-          value: 21
-        - dps_val: 74
-          value: 21.5
-        - dps_val: 75
-          value: 22
-        - dps_val: 76
-          value: 22.5
-        - dps_val: 77
-          value: 23
-        - dps_val: 78
-          value: 23.5
-        - dps_val: 79
-          value: 24
-        - dps_val: 80
-          value: 24.5
-        - dps_val: 81
-          value: 25
-        - dps_val: 82
-          value: 25.5
-        - dps_val: 83
-          value: 26
-        - dps_val: 84
-          value: 26.5
-        - dps_val: 85
-          value: 27
-        - dps_val: 86
-          value: 27.5
-        - dps_val: 87
-          value: 28
-        - dps_val: 88
-          value: 28.5
-        - dps_val: 89
-          value: 29
-        - dps_val: 90
-          value: 29.5
-        - dps_val: 91
-          value: 30
-        - dps_val: 92
-          value: 30.5
-        - dps_val: 93
-          value: 31
-        - dps_val: 94
-          value: 31.5
-        - dps_val: 95
-          value: 32
-        - dps_val: 96
-          value: 32.5
-        - dps_val: 97
-          value: 33
-        - dps_val: 98
-          value: 33.5
-        - dps_val: 99
-          value: 34
-        - dps_val: 100
-          value: 34.5
-        - dps_val: 101
-          value: 35
-        - dps_val: 102
-          value: 35.5
-        - dps_val: 103
-          value: 36
-        - dps_val: 104
-          value: 36.5
-        - dps_val: 105
-          value: 37
-        - dps_val: 106
-          value: 37.5
-        - dps_val: 107
-          value: 38
-        - dps_val: 108
-          value: 38.5
-        - dps_val: 109
-          value: 39
-        - dps_val: 110
-          value: 39.5
-        - dps_val: 111
-          value: 40
-        - dps_val: 112
-          value: 40.5
-    - id: 4
-      name: preset_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: program
-        - dps_val: 2
-          value: temp_override
-        - dps_val: 3
-          value: perm_override
-        - dps_val: 4
-          value: away
-    - id: 5
-      name: hvac_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: cool
-        - dps_val: 2
-          value: heat
-        - dps_val: 3
-          value: "off"
-        - dps_val: 4
-          value: heat_cool
-        - dps_val: 5
-          value: auto
-    - id: 6
-      name: fan_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: auto
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Beca
+    model: BHP-6000 (mapped °C)
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 35
+          # These mappings are not quite F to C, but appear to be what is used
+          # by the thermostat when set to C (issue #215)
+        mapping:
+          - dps_val: 42
+            value: 5
+            step: 0.5
+          - dps_val: 43
+            value: 5.5
+            step: 0.5
+          - dps_val: 44
+            value: 6
+            step: 0.5
+          - dps_val: 45
+            value: 6.5
+            step: 0.5
+          - dps_val: 46
+            value: 7
+            step: 0.5
+          - dps_val: 47
+            value: 7.5
+            step: 0.5
+          - dps_val: 48
+            value: 8
+            step: 0.5
+          - dps_val: 49
+            value: 8.5
+            step: 0.5
+          - dps_val: 50
+            value: 9
+            step: 0.5
+          - dps_val: 51
+            value: 9.5
+            step: 0.5
+          - dps_val: 52
+            value: 10
+            step: 0.5
+          - dps_val: 53
+            value: 10.5
+            step: 0.5
+          - dps_val: 54
+            value: 11
+            step: 0.5
+          - dps_val: 55
+            value: 11.5
+            step: 0.5
+          - dps_val: 56
+            value: 12
+            step: 0.5
+          - dps_val: 57
+            value: 12.5
+            step: 0.5
+          - dps_val: 58
+            value: 13
+            step: 0.5
+          - dps_val: 59
+            value: 13.5
+            step: 0.5
+          - dps_val: 60
+            value: 14
+            step: 0.5
+          - dps_val: 61
+            value: 14.5
+            step: 0.5
+          - dps_val: 62
+            value: 15
+            step: 0.5
+          - dps_val: 63
+            value: 15.5
+            step: 0.5
+          - dps_val: 64
+            value: 16
+            step: 0.5
+          - dps_val: 65
+            value: 16.5
+            step: 0.5
+          - dps_val: 66
+            value: 17
+            step: 0.5
+          - dps_val: 67
+            value: 17.5
+            step: 0.5
+          - dps_val: 68
+            value: 18
+            step: 0.5
+          - dps_val: 69
+            value: 18.5
+            step: 0.5
+          - dps_val: 70
+            value: 19
+            step: 0.5
+          - dps_val: 71
+            value: 19.5
+            step: 0.5
+          - dps_val: 72
+            value: 20
+            step: 0.5
+          - dps_val: 73
+            value: 20.5
+            step: 0.5
+          - dps_val: 74
+            value: 21
+            step: 0.5
+          - dps_val: 75
+            value: 21.5
+            step: 0.5
+          - dps_val: 76
+            value: 22
+            step: 0.5
+          - dps_val: 77
+            value: 22.50
+            step: 0.5
+          - dps_val: 78
+            value: 23
+            step: 0.5
+          - dps_val: 79
+            value: 23.50
+            step: 0.5
+          - dps_val: 80
+            value: 24
+            step: 0.5
+          - dps_val: 81
+            value: 24.5
+            step: 0.5
+          - dps_val: 82
+            value: 25
+            step: 0.5
+          - dps_val: 83
+            value: 25.5
+            step: 0.5
+          - dps_val: 84
+            value: 26
+            step: 0.5
+          - dps_val: 85
+            value: 26.5
+            step: 0.5
+          - dps_val: 86
+            value: 27
+            step: 0.5
+          - dps_val: 87
+            value: 27.5
+            step: 0.5
+          - dps_val: 88
+            value: 28
+            step: 0.5
+          - dps_val: 89
+            value: 28.5
+            step: 0.5
+          - dps_val: 90
+            value: 29
+            step: 0.5
+          - dps_val: 91
+            value: 29.5
+            step: 0.5
+          - dps_val: 92
+            value: 30
+            step: 0.5
+          - dps_val: 93
+            value: 30.5
+            step: 0.5
+          - dps_val: 94
+            value: 31
+            step: 0.5
+          - dps_val: 95
+            value: 31.5
+            step: 0.5
+          - dps_val: 96
+            value: 32
+            step: 0.5
+          - dps_val: 97
+            value: 32.5
+            step: 0.5
+          - dps_val: 98
+            value: 33
+            step: 0.5
+          - dps_val: 99
+            value: 33.5
+            step: 0.5
+          - dps_val: 100
+            value: 34
+            step: 0.5
+          - dps_val: 101
+            value: 34.5
+            step: 0.5
+          - dps_val: 102
+            value: 35
+            step: 0.5
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - dps_val: 41
+            value: 5
+          - dps_val: 42
+            value: 5.5
+          - dps_val: 43
+            value: 6
+          - dps_val: 44
+            value: 6.5
+          - dps_val: 45
+            value: 7
+          - dps_val: 46
+            value: 7.5
+          - dps_val: 47
+            value: 8
+          - dps_val: 48
+            value: 8.5
+          - dps_val: 49
+            value: 9
+          - dps_val: 50
+            value: 9.5
+          - dps_val: 51
+            value: 10
+          - dps_val: 52
+            value: 10.5
+          - dps_val: 53
+            value: 11
+          - dps_val: 54
+            value: 11.5
+          - dps_val: 55
+            value: 12
+          - dps_val: 56
+            value: 12.5
+          - dps_val: 57
+            value: 13
+          - dps_val: 58
+            value: 13.5
+          - dps_val: 59
+            value: 14
+          - dps_val: 60
+            value: 14.5
+          - dps_val: 61
+            value: 15
+          - dps_val: 62
+            value: 15.5
+          - dps_val: 63
+            value: 16
+          - dps_val: 64
+            value: 16.5
+          - dps_val: 65
+            value: 17
+          - dps_val: 66
+            value: 17.5
+          - dps_val: 67
+            value: 18
+          - dps_val: 68
+            value: 18.5
+          - dps_val: 69
+            value: 19
+          - dps_val: 70
+            value: 19.5
+          - dps_val: 71
+            value: 20
+          - dps_val: 72
+            value: 20.5
+          - dps_val: 73
+            value: 21
+          - dps_val: 74
+            value: 21.5
+          - dps_val: 75
+            value: 22
+          - dps_val: 76
+            value: 22.5
+          - dps_val: 77
+            value: 23
+          - dps_val: 78
+            value: 23.5
+          - dps_val: 79
+            value: 24
+          - dps_val: 80
+            value: 24.5
+          - dps_val: 81
+            value: 25
+          - dps_val: 82
+            value: 25.5
+          - dps_val: 83
+            value: 26
+          - dps_val: 84
+            value: 26.5
+          - dps_val: 85
+            value: 27
+          - dps_val: 86
+            value: 27.5
+          - dps_val: 87
+            value: 28
+          - dps_val: 88
+            value: 28.5
+          - dps_val: 89
+            value: 29
+          - dps_val: 90
+            value: 29.5
+          - dps_val: 91
+            value: 30
+          - dps_val: 92
+            value: 30.5
+          - dps_val: 93
+            value: 31
+          - dps_val: 94
+            value: 31.5
+          - dps_val: 95
+            value: 32
+          - dps_val: 96
+            value: 32.5
+          - dps_val: 97
+            value: 33
+          - dps_val: 98
+            value: 33.5
+          - dps_val: 99
+            value: 34
+          - dps_val: 100
+            value: 34.5
+          - dps_val: 101
+            value: 35
+          - dps_val: 102
+            value: 35.5
+          - dps_val: 103
+            value: 36
+          - dps_val: 104
+            value: 36.5
+          - dps_val: 105
+            value: 37
+          - dps_val: 106
+            value: 37.5
+          - dps_val: 107
+            value: 38
+          - dps_val: 108
+            value: 38.5
+          - dps_val: 109
+            value: 39
+          - dps_val: 110
+            value: 39.5
+          - dps_val: 111
+            value: 40
+          - dps_val: 112
+            value: 40.5
+      - id: 4
+        name: preset_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: program
+          - dps_val: 2
+            value: temp_override
+          - dps_val: 3
+            value: perm_override
+          - dps_val: 4
+            value: away
+      - id: 5
+        name: hvac_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: cool
+          - dps_val: 2
+            value: heat
+          - dps_val: 3
+            value: "off"
+          - dps_val: 4
+            value: heat_cool
+          - dps_val: 5
+            value: auto
+      - id: 6
+        name: fan_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: auto
+          - dps_val: true
+            value: "on"
   - entity: lock
     translation_key: child_lock
     category: config

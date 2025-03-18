@@ -1,0 +1,186 @@
+name: Air conditioner
+products:
+  - id: jvnwkkvvshk3go8f
+    manufacturer: Friedrich
+    model: UCT08B10A
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: auto
+              - dps_val: hot
+                value: heat
+                hidden: true
+      - id: 3
+        type: integer
+        name: current_temperature_in_c
+        optional: true
+      - id: 23
+        name: current_temperature
+        type: integer
+        optional: true
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                value_redirect: current_temperature_in_c
+      - id: 24
+        type: integer
+        name: temperature
+        optional: true
+        unit: F
+        range:
+          min: 690
+          max: 890
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                value_redirect: temperature_in_c
+                step: 5
+      - id: 2
+        name: temperature_in_c
+        type: integer
+        optional: true
+        range:
+          min: 205
+          max: 317
+        mapping:
+          - scale: 10
+            step: 5
+        unit: C
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          # the unit only truly supports 4 speeds: low, med, high, auto
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+          # the below are all duplicates of some of the above
+          - dps_val: mute
+            value: low
+            hidden: true
+          - dps_val: mid_low
+            value: low
+            hidden: true
+          - dps_val: mid_high
+            value: medium
+            hidden: true
+          - dps_val: strong
+            value: high
+            hidden: true
+      - id: 123
+        name: preset_mode
+        type: hex
+        mask: "0001"
+        mapping:
+          - dps_val: 0
+            value: comfort
+          - dps_val: 1
+            value: eco
+          - dps_val: null
+            value: comfort
+            hidden: true
+      - id: 128
+        name: style
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: wall
+          - dps_val: "1"
+            value: floor
+          - dps_val: "3"
+            value: through-the-wall
+
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+          # IOT Tuya says these are the 4 values of the enum but only
+          #  OFF and CHILD are supported by the firmware
+          # "off",
+          # "normal",
+          # "old",
+          # "child"
+          - dps_val: "child"
+            value: true
+          - dps_val: "off"
+            value: false
+          - value: true
+            hidden: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+      - id: 122
+        name: fault2
+        type: bitfield
+        optional: true
+  - entity: number
+    name: Eco temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 130
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 26
+          max: 31
+        optional: true

@@ -43,11 +43,11 @@ class TestImmaxNeoLightVento(
             TIMER_DPS,
             self.stop_timer,
             {
-                "off": "Off",
-                "1hour": "1 hour",
-                "2hour": "2 hours",
-                "4hour": "4 hours",
-                "8hour": "8 hours",
+                "off": "cancel",
+                "1hour": "1h",
+                "2hour": "2h",
+                "4hour": "4h",
+                "8hour": "8h",
             },
         )
         self.mark_secondary(["select_timer"])
@@ -57,7 +57,9 @@ class TestImmaxNeoLightVento(
             self.fan.supported_features,
             FanEntityFeature.DIRECTION
             | FanEntityFeature.PRESET_MODE
-            | FanEntityFeature.SET_SPEED,
+            | FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
         )
 
     def test_preset_modes(self):
@@ -107,7 +109,7 @@ class TestImmaxNeoLightVento(
 
     def test_set_stop_timer(self):
         self.dps[TIMER_DPS] = "2hour"
-        self.assertEqual(self.stop_timer.current_option, "2 hours")
+        self.assertEqual(self.stop_timer.current_option, "2h")
 
     async def test_set_speed(self):
         async with assert_device_properties_set(self.fan._device, {SPEED_DPS: 2}):

@@ -1,27 +1,15 @@
 name: Water valve
 products:
   - id: arge1ptm
-    name: QOTO 05 water valve
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 2
-      type: integer
-      name: valve
-secondary_entities:
-  - entity: number
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
+    manufacturer: QOTO
+    model: "05"
+entities:
+  - entity: valve
+    class: water
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: "%"
-        range:
-          min: 0
-          max: 100
+        name: valve
   - entity: sensor
     category: diagnostic
     icon: "mdi:valve"
@@ -69,8 +57,11 @@ secondary_entities:
     dps:
       - id: 104
         name: sensor
-        type: integer
+        type: bitfield
         mapping:
           - dps_val: 0
             value: false
           - value: true
+      - id: 104
+        type: bitfield
+        name: fault_code

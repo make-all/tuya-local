@@ -1,118 +1,119 @@
-name: ElectriQ Airflex 15W heatpump
+name: Heat pump
 products:
   - id: 4RUISW6Lmtz2u1l8
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: "0"  # auto
-              value: heat_cool
-            - dps_val: "1"  # cold
-              value: cool
-            - dps_val: "2"  # hot
-              value: heat
-            - dps_val: "3"  # wet
-              value: dry
-            - dps_val: "5"  # fan
-              value: fan_only
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 31
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_set_f
-              range:
-                min: 62
-                max: 90
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_current_f
-    - id: 17
-      type: integer
-      name: humidity
-      range:
-        min: 0
-        max: 100
-    - id: 20
-      type: integer
-      name: unknown_20
-    - id: 101
-      type: string
-      # at least some firmware versions of this model do not like combining
-      # dps in hvac_mode, so duplicate in presets to allow single dp commands
-      name: preset_mode
-      mapping:
-        - dps_val: "0"
-          value: Auto
-        - dps_val: "1"
-          value: Cool
-        - dps_val: "2"
-          value: Heat
-        - dps_val: "3"
-          value: Dry
-        - dps_val: "5"
-          value: Fan
-    - id: 103
-      type: boolean
-      name: unknown_103
-    - id: 104
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: "3"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "1"
-          value: high
-    - id: 105
-      type: integer
-      name: unknown_105
-    - id: 106
-      type: boolean
-      name: unknown_106
-    - id: 109
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: true
-          value: F
-        - value: C
-    - id: 110
-      type: integer
-      name: temp_set_f
-      range:
-        min: 62
-        max: 90
-      hidden: true
-      optional: true
-    - id: 111
-      type: integer
-      name: temp_current_f
-      hidden: true
-      optional: true
-    - id: 112
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: ElectriQ
+    model: Airflex 15W
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "0"  # auto
+                value: heat_cool
+              - dps_val: "1"  # cold
+                value: cool
+              - dps_val: "2"  # hot
+                value: heat
+              - dps_val: "3"  # wet
+                value: dry
+              - dps_val: "5"  # fan
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 62
+                  max: 90
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_current_f
+      - id: 17
+        type: integer
+        name: humidity
+        range:
+          min: 0
+          max: 100
+      - id: 20
+        type: integer
+        name: unknown_20
+      - id: 101
+        type: string
+        # at least some firmware versions of this model do not like combining
+        # dps in hvac_mode, so duplicate in presets to allow single dp commands
+        name: preset_mode
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: Cool
+          - dps_val: "2"
+            value: Heat
+          - dps_val: "3"
+            value: Dry
+          - dps_val: "5"
+            value: Fan
+      - id: 103
+        type: boolean
+        name: unknown_103
+      - id: 104
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "3"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "1"
+            value: high
+      - id: 105
+        type: integer
+        name: unknown_105
+      - id: 106
+        type: boolean
+        name: unknown_106
+      - id: 109
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+      - id: 110
+        type: integer
+        name: temp_set_f
+        range:
+          min: 62
+          max: 90
+        hidden: true
+        optional: true
+      - id: 111
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
+      - id: 112
+        type: integer
+        name: current_humidity
   # At least some firmware versions do not like combining dps into hvac_mode
   # above, so provide a simple single dp on/off switch as an alternative
   - entity: switch

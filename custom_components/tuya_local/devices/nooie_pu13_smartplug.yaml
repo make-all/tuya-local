@@ -1,17 +1,18 @@
 name: SmartPlug
 products:
   - id: eimdzrehi6a6vixn
-    name: Nooie PU13
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Nooie
+    model: PU13
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -32,8 +33,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: select
-    name: "Power on state"
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 39
@@ -41,8 +41,8 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 1
-            value: "On"
+            value: "on"
           - dps_val: 0
-            value: "Off"
+            value: "off"
           - dps_val: 2
-            value: "Last state"
+            value: memory

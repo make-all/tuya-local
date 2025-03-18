@@ -1,12 +1,32 @@
-name: Essentials air purifier
-primary_entity:
-  entity: switch
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+name: Air purifier
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: M
+            value: normal
+          - dps_val: H
+            value: strong
+          - dps_val: sleep
+            value: sleep
+  - entity: switch
+    # 2024-08-08
+    deprecated: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     name: Active filter life
     icon: "mdi:air-filter"
@@ -48,8 +68,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
@@ -64,13 +83,13 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: cancel
-            value: "Off"
+            value: cancel
           - dps_val: 2h
-            value: "2 hours"
+            value: "2h"
           - dps_val: 4h
-            value: "4 hours"
+            value: "4h"
           - dps_val: 8h
-            value: "8 hours"
+            value: "8h"
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -79,7 +98,7 @@ secondary_entities:
       - id: 19
         type: integer
         name: sensor
-        unit: "min"
+        unit: min
   - entity: sensor
     class: pm25
     dps:
@@ -89,23 +108,25 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     dps:
       - id: 21
         type: string
         name: sensor
   - entity: select
     name: Mode
+    # 2024-08-08
+    deprecated: fan
     dps:
       - id: 3
         name: option
         type: string
         mapping:
           - dps_val: auto
-            value: "Auto"
-          - dps_val: "M"
-            value: "Medium"
-          - dps_val: "H"
-            value: "High"
-          - dps_val: "sleep"
-            value: "Sleep"
+            value: Auto
+          - dps_val: M
+            value: Medium
+          - dps_val: H
+            value: High
+          - dps_val: sleep
+            value: Sleep

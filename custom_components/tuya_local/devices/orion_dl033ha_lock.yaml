@@ -1,0 +1,438 @@
+name: Door lock
+products:
+  - id: qhoybrozfhcenkyh
+    manufacturer: Orion
+    model: DL033HA
+    name: Fingerprint entrance lock
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: create_unlock_method
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: delete_unlock_method
+        optional: true
+      - id: 3
+        type: string
+        name: modify_unlock_method
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 14
+        name: unlock_dynamic_pwd
+        type: integer
+        optional: true
+        persist: false
+      - id: 15
+        name: unlock_card
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 21
+        name: jammed
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - dps_val: null
+            value: false
+          - value: false
+      - id: 47  # Lock motor state
+        name: lock
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+      - id: 51
+        type: string
+        optional: true
+        sensitive: true
+        name: temp_pwd_create
+      - id: 52
+        type: string
+        optional: true
+        name: temp_pwd_delete
+      - id: 53
+        type: string
+        optional: true
+        sensitive: true
+        name: temp_pwd_modify
+      - id: 54
+        type: string
+        optional: true
+        sensitive: true
+        name: sync_method
+      - id: 55
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 61
+        type: string
+        optional: true
+        sensitive: true
+        name: remote_no_dp_key
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        name: unlock_voice
+        type: integer
+        optional: true
+        persist: false
+      - id: 64
+        type: string
+        optional: true
+        name: pwd_offline_time
+      - id: 65
+        type: string
+        optional: true
+        name: offline_pwd_cleared
+      - id: 66
+        type: string
+        optional: true
+        name: offline_pwd_clear_all
+      - id: 67
+        type: string
+        optional: true
+        persist: false
+        name: unlock_offline_pwd
+        mapping:
+          - dps_val: null
+            value: null
+          - value: 1
+      - id: 67
+        type: string
+        optional: true
+        sensitive: true
+        name: offline_pwd_details
+      - id: 69
+        type: string
+        optional: true
+        name: log
+      - id: 70
+        type: string
+        optional: true
+        sensitive: true
+        name: check_code_set
+      - id: 71
+        type: string
+        optional: true
+        sensitive: true
+        name: ble_unlock_check
+      - id: 72
+        type: string
+        optional: true
+        sensitive: true
+        name: unlock_record_check
+      - id: 73
+        type: string
+        optional: true
+        name: remote_pd_setkey_check
+      - id: 74
+        type: string
+        optional: true
+        name: unlock_double_kit
+      - id: 86
+        type: integer
+        optional: true
+        name: unlock_ibeacon
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: event
+    name: Lock record
+    dps:
+      - id: 20
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: record
+      - id: 20
+        type: string
+        optional: true
+        name: details
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: unlock_failure
+          - dps_val: wrong_password
+            value: unlock_failure
+          - dps_val: wrong_card
+            value: unlock_failure
+          - dps_val: wrong_face
+            value: unlock_failure
+          - dps_val: tongue_bad
+            value: jammed
+          - dps_val: too_hot
+            value: tamper
+          - dps_val: unclosed_time
+            value: left_open
+          - dps_val: tongue_not_out
+            value: jammed
+          - dps_val: pry
+            value: tamper
+          - dps_val: key_in
+            value: key_left_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: low_battery
+          - dps_val: shock
+            value: tamper
+          - dps_val: defense
+            value: tamper
+      - id: 21
+        type: string
+        optional: true
+        name: details
+  - entity: event
+    name: Hijack
+    dps:
+      - id: 22
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: hijack
+          - dps_val: false
+            value: null
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 24
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: english
+            value: english
+          - dps_val: chinese_simplified
+            value: chinese
+  - entity: number
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            step: 33
+            value: 0
+            icon: "mdi:volume-mute"
+          - dps_val: low
+            step: 33
+            value: 33
+            icon: "mdi:volume-low"
+          - dps_val: normal
+            step: 33
+            value: 66
+            icon: "mdi:volume-medium"
+          - dps_val: high
+            step: 33
+            value: 100
+            icon: "mdi:volume-high"
+  - entity: lock
+    name: Snib
+    icon: "mdi:lock-remove"
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    name: Multifactor
+    icon: "mdi:lock-check"
+    category: config
+    dps:
+      - id: 34
+        type: string
+        name: option
+        mapping:
+          - dps_val: single_unlock
+            value: Single factor
+          - dps_val: finger_password
+            value: Finger and PIN
+          - dps_val: finger_card
+            value: Finger and card
+          - dps_val: password_card
+            value: Card and PIN
+  - entity: number
+    name: Auto lock delay
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 1800
+        unit: s
+  - entity: switch
+    name: Local clock
+    icon: "mdi:clock-outline"
+    category: config
+    dps:
+      - id: 44
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: lock
+    name: Lockdown
+    icon: "mdi:key-alert"
+    category: config
+    dps:
+      - id: 46
+        type: boolean
+        name: lock
+  - entity: select
+    name: iBeacon scan duration
+    translation_key: timer
+    category: config
+    dps:
+      - id: 87
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: always
+            value: continuous
+          - dps_val: "5min"
+            value: "5m"
+          - dps_val: "10min"
+            value: "10m"
+          - dps_val: "20min"
+            value: "20m"
+          - dps_val: "30min"
+            value: "30m"
+          - dps_val: "40min"
+            value: "40m"
+          - dps_val: "60min"
+            value: "1h"
+          - dps_val: "90min"
+            value: "1h30m"
+          - dps_val: "120min"
+            value: "2h"
+  - entity: select
+    name: iBeacon sensitivity
+    icon: "mdi:signal-distance-variant"
+    category: config
+    dps:
+      - id: 88
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: inactive
+            value: Any
+          - dps_val: null
+            value: Any
+            hidden: true
+          - dps_val: "90db"
+            value: "90dB"
+          - dps_val: "80db"
+            value: "80dB"
+          - dps_val: "70db"
+            value: "70dB"
+          - dps_val: "60db"
+            value: "60dB"
+          - dps_val: "50db"
+            value: "50dB"
+          - dps_val: "40db"
+            value: "40dB"
+          - dps_val: "30db"
+            value: "30dB"
+          - dps_val: "20db"
+            value: "20dB"
+  - entity: switch
+    name: iBeacon enable
+    category: config
+    dps:
+      - id: 90
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:broadcast"
+          - dps_val: false
+            icon: "mdi:broadcast-off"

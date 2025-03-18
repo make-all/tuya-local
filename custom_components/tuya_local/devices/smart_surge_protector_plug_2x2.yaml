@@ -1,19 +1,22 @@
 name: Two outlet two USB smartplug
 products:
   - id: cianx1tz1ifyvyqm
-    name: Surge protector plug 2x2
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Outlet 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    model: Surge protector plug 2x2
+entities:
   - entity: switch
     class: outlet
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
@@ -31,8 +34,10 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
@@ -46,8 +51,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 10
@@ -61,8 +68,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer USB 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "USB 1"
     category: config
     dps:
       - id: 15
@@ -76,8 +85,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer USB 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "USB 2"
     category: config
     dps:
       - id: 16

@@ -1,0 +1,90 @@
+name: Milk maker
+products:
+  - id: angbuf5wfbu1fnz0
+    manufacturer: Wandai
+    model: GS-801
+entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:baby-bottle"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: Water
+          - dps_val: false
+            value: Formula
+  - entity: switch
+    name: Disinfection
+    icon: "mdi:kettle-steam"
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 17
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 17
+        type: bitfield
+        name: fault_code
+  - entity: number
+    name: Water amount
+    category: config
+    class: volume_storage
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: mL
+        range:
+          min: 30
+          max: 240
+        mapping:
+          - step: 10
+  - entity: climate
+    icon: "mdi:baby-bottle"
+    dps:
+      - id: 104
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 40
+          max: 70
+      - id: 106
+        type: integer
+        name: current_temperature
+  - entity: number
+    name: Formula ratio
+    category: config
+    icon: "mdi:shaker"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: g/30mL
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - scale: 10

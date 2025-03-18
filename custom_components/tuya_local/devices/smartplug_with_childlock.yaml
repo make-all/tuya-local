@@ -1,26 +1,27 @@
 name: Smartplug
 products:
   - id: r9xep1xwyoubglpn
-    name: SX1 reelay switch
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 42
-      type: string
-      name: cyclic_schedule
-    - id: 43
-      type: string
-      name: random_schedule
-    - id: 44
-      type: string
-      name: inching
-secondary_entities:
+    model: SX1
+    name: Relay switch
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cyclic_schedule
+      - id: 43
+        type: string
+        name: random_schedule
+      - id: 44
+        type: string
+        name: inching
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -34,8 +35,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -43,11 +43,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: memory
-            value: Last state
+            value: memory
   - entity: select
     name: Light mode
     icon: "mdi:television-ambient-light"

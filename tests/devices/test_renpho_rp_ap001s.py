@@ -50,7 +50,7 @@ class TestRenphoPurifier(
                     "name": "sensor_air_quality",
                     "dps": QUALITY_DPS,
                     "device_class": SensorDeviceClass.ENUM,
-                    "options": ["Bad", "Fair", "Good"],
+                    "options": ["poor", "moderate", "good"],
                 },
                 {
                     "name": "sensor_prefilter_life",
@@ -83,7 +83,12 @@ class TestRenphoPurifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, FanEntityFeature.PRESET_MODE)
+        self.assertEqual(
+            self.subject.supported_features,
+            FanEntityFeature.PRESET_MODE
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
+        )
 
     def test_preset_modes(self):
         self.assertCountEqual(
@@ -131,23 +136,10 @@ class TestRenphoPurifier(
 
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "19"
-        self.dps[QUALITY_DPS] = "22"
-        self.dps[PREFILTER_DPS] = 102
-        self.dps[CHARCOAL_DPS] = 103
-        self.dps[ACTIVATED_DPS] = 104
-        self.dps[HEPA_DPS] = 105
 
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
                 "timer": "19",
-                "air_quality": "22",
-                "prefilter_life": 102,
-                "charcoal_filter_life": 103,
-                "activated_charcoal_filter_life": 104,
-                "hepa_filter_life": 105,
             },
         )
-
-    def test_icons(self):
-        self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")

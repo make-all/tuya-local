@@ -1,48 +1,48 @@
-name: Klarta humidifier
+name: Humidifier
 products:
   - id: i8cej9chgwebzrmp
-    name: Klarta Humea
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 10
-      type: boolean
-      name: switch
-    - id: 104
-      type: boolean
-      name: mode
-      mapping:
-        - dps_val: true
-          value: auto
-        - dps_val: false
-          value: normal
-    - id: 105
-      type: string
-      name: humidity
-      mapping:
-        - dps_val: "0"
-          value: 35
-        - dps_val: "1"
-          value: 40
-        - dps_val: "2"
-          value: 45
-        - dps_val: "3"
-          value: 50
-        - dps_val: "4"
-          value: 55
-        - dps_val: "5"
-          value: 60
-        - dps_val: "6"
-          value: 65
-        - dps_val: "7"
-          value: 70
-        - dps_val: "8"
-          value: 75
-    - id: 109
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: Klarta
+    model: Humea
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+      - id: 104
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: normal
+      - id: 105
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "0"
+            value: 35
+          - dps_val: "1"
+            value: 40
+          - dps_val: "2"
+            value: 45
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 55
+          - dps_val: "5"
+            value: 60
+          - dps_val: "6"
+            value: 65
+          - dps_val: "7"
+            value: 70
+          - dps_val: "8"
+            value: 75
+      - id: 109
+        type: integer
+        name: current_humidity
   - entity: light
     translation_key: nightlight
     category: config
@@ -60,8 +60,7 @@ secondary_entities:
           - dps_val: "3"
             value: 255
   - entity: switch
-    name: Sleep
-    icon: "mdi:power-sleep"
+    translation_key: sleep
     dps:
       - id: 103
         type: boolean
@@ -110,28 +109,28 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: cancel
           - dps_val: "1"
-            value: "1 hour"
+            value: "1h"
           - dps_val: "2"
-            value: "2 hours"
+            value: "2h"
           - dps_val: "3"
-            value: "3 hours"
+            value: "3h"
           - dps_val: "4"
-            value: "4 hours"
+            value: "4h"
           - dps_val: "5"
-            value: "5 hours"
+            value: "5h"
           - dps_val: "6"
-            value: "6 hours"
+            value: "6h"
           - dps_val: "7"
-            value: "7 hours"
+            value: "7h"
           - dps_val: "8"
-            value: "8 hours"
+            value: "8h"
           - dps_val: "9"
-            value: "9 hours"
+            value: "9h"
           - dps_val: "10"
-            value: "10 hours"
+            value: "10h"
           - dps_val: "11"
-            value: "11 hours"
+            value: "11h"
           - dps_val: "12"
-            value: "12 hours"
+            value: "12h"

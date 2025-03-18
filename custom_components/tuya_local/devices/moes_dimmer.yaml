@@ -1,20 +1,19 @@
 name: Moes dimmer
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 13
-      name: work_mode
-      type: string
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 13
+        name: work_mode
+        type: string
   - entity: number
     name: Minimum brightness
     category: config

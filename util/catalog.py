@@ -18,8 +18,7 @@ def main() -> int:
     print("Catalog================")
     for config in available_configs():
         device = TuyaDeviceConfig(config)
-        print(f"{config}: {device.primary_entity.config_id}")
-        for entity in device.secondary_entities():
+        for entity in device.all_entities():
             print(f"{config}: {entity.config_id}")
 
 

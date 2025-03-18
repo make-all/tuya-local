@@ -1,32 +1,32 @@
 name: Monitor light bar
 products:
   - id: oqtk22eg6jxorl78
-    name: Ustellar UT99911-RGB
-primary_entity:
-  entity: light
-  name: Front White LED
-  icon: "mdi:wall-sconce-flat-outline"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      type: integer
-      name: color_temp
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-      range:
-        min: 0
-        max: 1000
-secondary_entities:
+    manufacturer: Ustellar
+    model: UT99911-RGB
+entities:
+  - entity: light
+    name: Front White LED
+    icon: "mdi:wall-sconce-flat-outline"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+        range:
+          min: 0
+          max: 1000
   - entity: light
     name: Rear RGB LED
     icon: "mdi:wall-sconce-flat-variant-outline"
@@ -36,16 +36,7 @@ secondary_entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
-        mapping:
-          - dps_val: dynamic_mod
-            value: Dynamic
-          - dps_val: color
-            value: hs
-          - dps_val: scene_mod
-            value: Scene
-          - dps_val: music
-            value: Music
+        name: app_mode
       - id: 24
         name: rgbhsv
         type: hex
@@ -66,8 +57,21 @@ secondary_entities:
               min: 0
               max: 1000
       - id: 103
-        name: line_sequence_adjustment
-        type: integer
+        type: string
+        name: rgb_order
+        mapping:
+          - dps_val: "1"
+            value: "RGB"
+          - dps_val: "2"
+            value: "RBG"
+          - dps_val: "3"
+            value: "GRB"
+          - dps_val: "4"
+            value: "GBR"
+          - dps_val: "5"
+            value: "BRG"
+          - dps_val: "6"
+            value: "BGR"
   - entity: select
     name: Music
     icon: "mdi:playlist-music"
@@ -140,8 +144,7 @@ secondary_entities:
           - dps_val: "0932640000000003e8"
             value: "Adjoint"
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 108
@@ -150,17 +153,17 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "CJ_YD"
-            value: "Read"
+            value: reading
           - dps_val: "CJ_QC"
-            value: "Get Up"
+            value: morning
           - dps_val: "CJ_WA"
-            value: "Night"
+            value: night
           - dps_val: "CJ_XK"
-            value: "Starry"
+            value: twinkle
           - dps_val: "CJ_JH"
-            value: "Party"
+            value: party
           - dps_val: "CJ_YS"
-            value: "Film"
+            value: movie
   - entity: number
     name: Strip Points
     category: config

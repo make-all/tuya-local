@@ -1,12 +1,11 @@
 name: Scenario light socket
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: light
     translation_key: nightlight
     dps:
@@ -45,6 +44,7 @@ secondary_entities:
               max: 1000
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 33
@@ -91,9 +91,17 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 10
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -102,16 +110,16 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "000c0d0000000000000000c80000"
-            value: Night
+            value: night
           - dps_val: "010e0d0000840000000003e801f4"
             # color: white, static
-            value: Read
+            value: reading
           - dps_val: "020e0d0000e80383000003e803e8"
             # color: lt cyan, static
-            value: Working
+            value: working
           - dps_val: "030e0d00001403e8000001f401f4"
             # color: grey, static
-            value: Leisure
+            value: leisure
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             # color: G+DkG, Breath, Mid speed
             value: Soft

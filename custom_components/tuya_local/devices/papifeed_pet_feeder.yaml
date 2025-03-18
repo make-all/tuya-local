@@ -1,0 +1,71 @@
+name: Pet feeder
+products:
+  - id: fqya2gnl3bcjgwzl
+    manufacturer: Papifeed
+    model: PB-26-SW
+entities:
+  - entity: switch
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: sensor
+    icon: "mdi:paw"
+    name: Feed report
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+  - entity: number
+    icon: "mdi:paw"
+    name: Manual feed
+    category: config
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 12
+  - entity: binary_sensor
+    name: Food shortage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Food blockage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Feeding
+    class: running
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: feeding
+            value: true
+          - dps_val: null
+            value: null
+          - value: false

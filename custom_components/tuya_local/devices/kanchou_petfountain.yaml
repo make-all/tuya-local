@@ -1,0 +1,153 @@
+name: Pet fountain
+products:
+  - id: akln8rb04cav403q
+    manufacturer: Kanchou
+entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:paw"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: night
+            value: Night
+  - entity: sensor
+    name: Filter remaining
+    icon: "mdi:air-filter"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: d
+        class: measurement
+  - entity: sensor
+    name: Pump cleaning due
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: d
+        class: measurement
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Pump clean reset
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Filter change interval
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        optional: true
+        unit: d
+        range:
+          min: 0
+          max: 30
+  - entity: number
+    name: Pump clean interval
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 15
+  - entity: sensor
+    class: volume_storage
+    translation_key: water_level
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mL
+        class: measurement
+      - id: 9
+        type: string
+        optional: true
+        name: status
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 10
+        type: integer
+        optional: true
+        name: percent
+  - entity: sensor
+    class: volume
+    name: Water consumption
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: mL
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 23
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 23
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: tank_empty
+          - dps_val: 2
+            value: filter_used
+          - dps_val: 4
+            value: pump_dirty
+          - dps_val: 8
+            value: battery_low
+          - dps_val: 16
+            value: pump_blocked

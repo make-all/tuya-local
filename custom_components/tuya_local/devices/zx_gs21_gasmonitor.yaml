@@ -1,24 +1,24 @@
 name: Gas leak detector
 products:
   - id: ozcdjaqrxauonq1f
-    name: ZX-GS21
-primary_entity:
-  entity: sensor
-  name: Gas leak
-  category: diagnostic
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: "%LEL"
-      class: measurement
-    - id: 1
-      type: string
-      name: gas_state
-secondary_entities:
+    model: ZX-GS21
+entities:
+  - entity: sensor
+    name: Gas leak
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "% LEL"
+        class: measurement
+      - id: 1
+        type: string
+        name: gas_state
   - entity: number
     name: Alarm duration
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 7

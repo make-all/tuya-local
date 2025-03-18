@@ -1,62 +1,66 @@
-name: Silvercrest kettle
+name: Kettle
 products:
   - id: il4ofqon04yai1xe
-    name: WK0828RT
-primary_entity:
-  entity: water_heater
-  icon: "mdi:kettle"
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "Off"
-        - dps_val: true
-          constraint: warm
-          conditions:
-            - dps_val: false
-              value: Keep warm
-            - dps_val: true
-              value: Boil
-    - id: 2
-      type: integer
-      name: current_temperature
-    - id: 8
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 40
-        max: 100
-      mapping:
-        - step: 5
-    - id: 13
-      type: boolean
-      name: warm
-      optional: true
-      hidden: true
-      # One of these unknowns should be the "16 preset programs".
-      # Both are numeric strings (so probably enums)
-    - id: 15
-      type: string
-      name: unknown_15
-    - id: 16
-      type: string
-      name: unknown_16
-    - id: 103
-      type: boolean
-      name: unknown_103
-    - id: 104
-      type: integer
-      name: unknown_104
-secondary_entities:
+    manufacturer: Silvercrest
+    model: WK0828RT
+entities:
+  - entity: water_heater
+    icon: "mdi:kettle"
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: warm
+            conditions:
+              - dps_val: false
+                value: Keep warm
+              - dps_val: true
+                value: Boil
+              - dps_val: null
+                value: Boil
+                hidden: true
+      - id: 2
+        type: integer
+        name: current_temperature
+      - id: 8
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 40
+          max: 100
+        mapping:
+          - step: 5
+      - id: 13
+        type: boolean
+        name: warm
+        optional: true
+        hidden: true
+        # One of these unknowns should be the "16 preset programs".
+        # Both are numeric strings (so probably enums)
+      - id: 15
+        type: string
+        name: unknown_15
+      - id: 16
+        type: string
+        name: unknown_16
+      - id: 103
+        type: boolean
+        name: unknown_103
+      - id: 104
+        type: integer
+        name: unknown_104
   # Portal docs say there is a number to set, and also a countdown remaining.
   # This might be the remaining (log was 5, which is not a 30 minute step)
   # with the other unknown string above a 0/30/60/90/120 selection
   - entity: number
     name: Warm time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 14

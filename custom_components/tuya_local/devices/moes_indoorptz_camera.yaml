@@ -1,0 +1,555 @@
+name: Camera
+products:
+  - id: sy8xnbefqdxbgwti
+    manufacturer: Moes
+    model: P52
+    name: PTZ indoor security camera
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 150
+        type: boolean
+        name: record
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: switch
+    name: Wide dynamic range
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+  - entity: sensor
+    name: SD card
+    icon: "mdi:micro-sd"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: ok
+          - dps_val: 2
+            value: error
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: 6
+            value: unformatted
+      - id: 109
+        type: string
+        name: storage
+  - entity: button
+    name: Format SD
+    icon: "mdi:micro-sd"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        name: status
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: string
+        optional: true
+        name: snapshot
+      - id: 212
+        type: string
+        optional: true
+        name: message
+  - entity: button
+    name: Pan stop
+    icon: "mdi:stop"
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: button
+      - id: 119
+        type: string
+        optional: true
+        name: pan_command
+        mapping:
+          - dps_val: "0"
+            value: up
+          - dps_val: "1"
+            value: right-up
+          - dps_val: "2"
+            value: right
+          - dps_val: "3"
+            value: right-down
+          - dps_val: "4"
+            value: down
+          - dps_val: "5"
+            value: left-down
+          - dps_val: "6"
+            value: left
+          - dps_val: "7"
+            value: left-up
+          - dps_val: "8"
+            value: idle
+          - dps_val: "9"
+            value: self-test
+  - entity: button
+    name: Pan up
+    icon: "mdi:arrow-up-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: button
+    name: Pan right-up
+    icon: "mdi:arrow-top-right-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Pan right
+    icon: "mdi:arrow-right-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "2"
+            value: true
+  - entity: button
+    name: Pan right-down
+    icon: "mdi:arrow-bottom-right-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "3"
+            value: true
+  - entity: button
+    name: Pan  down
+    icon: "mdi:arrow-down-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "4"
+            value: true
+  - entity: button
+    name: Pan left-down
+    icon: "mdi:arrow-bottom-left-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "5"
+            value: true
+  - entity: button
+    name: Pan left
+    icon: "mdi:arrow-left-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "6"
+            value: true
+  - entity: button
+    name: Pan left-up
+    icon: "mdi:arrow-top-left-thick"
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "7"
+            value: true
+  - entity: switch
+    name: Alarm enable
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: siren
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+      - id: 125
+        type: string
+        name: tone
+        mapping:
+          - dps_val: item_1
+            value: Siren 1
+          - dps_val: item_2
+            value: Siren 2
+          - dps_val: item_3
+            value: Siren 3
+      - id: 194
+        type: integer
+        name: duration
+        unit: s
+        range:
+          min: 10
+          max: 60
+        mapping:
+          - step: 10
+      - id: 195
+        type: integer
+        name: volume_level
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: button
+    name: PTZ calibration
+    icon: "mdi:arrow-decision"
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        optional: true
+        name: button
+      - id: 178
+        type: string
+        optional: true
+        name: memory_point_set
+  - entity: switch
+    name: Sound detection
+    icon: "mdi:ear-hearing"
+    category: config
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+  - entity: select
+    name: Sound sensitivity
+    icon: "mdi:microphone"
+    category: config
+    dps:
+      - id: 140
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: high
+  - entity: event
+    name: Sound
+    dps:
+      - id: 141
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 141
+        type: string
+        optional: true
+        name: sound
+  - entity: select
+    name: Record mode
+    icon: "mdi:video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Motion tracking
+    icon: "mdi:motion"
+    category: config
+    dps:
+      - id: 161
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Zoom out
+    icon: "mdi:magnify-minus"
+    dps:
+      - id: 163
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: button
+    name: Zoom in
+    icon: "mdi:magnify-plus"
+    dps:
+      - id: 163
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Stop zooming
+    icon: "mdi:stop-circle-outline"
+    category: config
+    dps:
+      - id: 164
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Cry detection
+    icon: "mdi:emotion-cry"
+    category: config
+    dps:
+      - id: 167
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Motion masking
+    icon: "mdi:vector-rectangle"
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+      - id: 169
+        type: string
+        name: area
+  - entity: switch
+    name: Human filter
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: event
+    name: Alarm
+    icon: "mdi:alarm-bell"
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 185
+        type: string
+        name: message
+        optional: true
+  - entity: switch
+    name: AI face recognition
+    category: config
+    dps:
+      - id: 186
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Anti-flicker
+    icon: "mdi:television-classic"
+    category: config
+    dps:
+      - id: 188
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "50Hz"
+          - dps_val: "2"
+            value: "60Hz"
+          - dps_val: null
+            value: "off"
+            hidden: true
+  - entity: switch
+    name: Mute recording
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 197
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Mark objects
+    icon: "mdi:image-filter-center-focus"
+    category: config
+    dps:
+      - id: 198
+        type: boolean
+        name: switch
+  - entity: switch
+    name: ONVIF
+    category: config
+    dps:
+      - id: 235
+        type: boolean
+        name: switch
+      - id: 236
+        type: boolean
+        name: passwd_changed
+      - id: 237
+        type: string
+        name: ip_address
+      - id: 238
+        type: string
+        optional: true
+        name: change_passwd
+      - id: 239
+        type: string
+        name: ip_type
+  - entity: sensor
+    name: Zoom
+    category: diagnostic
+    dps:
+      - id: 252
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10

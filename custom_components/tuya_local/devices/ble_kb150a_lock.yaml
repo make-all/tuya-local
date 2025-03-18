@@ -1,0 +1,167 @@
+name: Keypad lock
+products:
+  - id: 0binhnjg
+    manufacturer: TenixLox
+    model: KB150A
+    name: Key safe
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 14
+        name: unlock_dynamic_pwd
+        type: integer
+        optional: true
+        persist: false
+      - id: 16
+        name: unlock_key
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 47  # Lock motor state
+        name: lock
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+      - id: 55
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 61
+        type: string
+        name: remote_no_dp_key
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+  - entity: event
+    name: Alert
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+  - entity: select
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: mute
+            value: Mute
+          - dps_val: low
+            value: Low
+          - dps_val: normal
+            value: Normal
+          - dps_val: high
+            value: High
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto lock delay
+    class: duration
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 1800
+  - entity: switch
+    name: Do not disturb
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 76
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english

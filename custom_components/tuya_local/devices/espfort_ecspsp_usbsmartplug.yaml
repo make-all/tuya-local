@@ -1,0 +1,96 @@
+name: USB smartplug
+products:
+  - id: ynz9qmnmnsciccyc
+    manufacturer: ESP Fort
+    model: EC-SPSP
+entities:
+  - entity: switch
+    class: outlet
+    name: USB
+    icon: "mdi:usb"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cyclic_schedule
+      - id: 43
+        type: string
+        name: random_schedule
+      - id: 44
+        type: string
+        name: inching
+  - entity: number
+    category: config
+    name: USB timer
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Light mode
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock

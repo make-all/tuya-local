@@ -1,0 +1,81 @@
+name: Water meter
+products:
+  - id: zlwr0raf
+    manufacturer: ZPMeter
+    model: "214C"
+entities:
+  - entity: sensor
+    class: water
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 16
+        type: string
+        optional: true
+        name: meter_id
+  - entity: select
+    name: Reporting period
+    icon: "mdi:update"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 8h
+            value: 8h
+          - dps_val: 12h
+            value: 12h
+          - dps_val: 24h
+            value: 24h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 5
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 5
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100

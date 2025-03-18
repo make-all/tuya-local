@@ -1,33 +1,33 @@
 name: Pet feeder
 products:
   - id: 8zrzjldq07tlxnlv
-    name: Ceres Plus Momoschoice
-primary_entity:
-  entity: sensor
-  name: Status
-  icon: "mdi:paw"
-  dps:
-    - id: 234
-      type: string
-      name: sensor
-      optional: true
-    - id: 237
-      type: string
-      name: feed_plan
-      optional: true
-    - id: 242
-      name: feeding_record
-      type: string
-      optional: true
-    - id: 244
-      type: string
-      name: planned_feed_report
-      optional: true
-    - id: 246
-      type: string
-      name: feed_report
-      optional: true
-secondary_entities:
+    manufacturer: "Momo's Choice"
+    model: Ceres Plus
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:paw"
+    dps:
+      - id: 234
+        type: string
+        name: sensor
+        optional: true
+      - id: 237
+        type: string
+        name: feed_plan
+        optional: true
+      - id: 242
+        name: feeding_record
+        type: string
+        optional: true
+      - id: 244
+        type: string
+        name: planned_feed_report
+        optional: true
+      - id: 246
+        type: string
+        name: feed_report
+        optional: true
   - entity: light
     translation_key: indicator
     category: config

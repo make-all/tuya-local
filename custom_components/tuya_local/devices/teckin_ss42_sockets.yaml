@@ -1,24 +1,29 @@
 name: Outdoor double plug
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Outlet 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
   - entity: switch
     class: outlet
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 101
         type: integer
@@ -32,8 +37,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 102
         type: integer

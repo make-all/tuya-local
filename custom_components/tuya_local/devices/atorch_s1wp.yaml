@@ -1,19 +1,19 @@
 name: Energy monitoring plug with display
 products:
   - id: sqrf2g1amfutn4co
-    name: Atorch S1WP
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-      optional: true
-secondary_entities:
+    manufacturer: Atorch
+    model: S1WP
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
   - entity: number
     category: config
-    name: Countdown
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -28,18 +28,16 @@ secondary_entities:
             step: 60
   - entity: sensor
     class: current
-    name: Current
     dps:
       - id: 18
         name: sensor
         type: integer
         class: measurement
-        unit: mA
+        unit: A
         mapping:
           - scale: 1000
   - entity: sensor
     class: power
-    name: Power
     dps:
       - id: 19
         name: sensor
@@ -50,7 +48,6 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     class: voltage
-    name: Voltage
     dps:
       - id: 20
         name: sensor
@@ -122,17 +119,16 @@ secondary_entities:
           max: 4500
   - entity: select
     category: config
-    icon: "mdi:web-box"
-    name: Language
+    translation_key: language
     dps:
       - id: 107
         type: string
         name: option
         mapping:
           - dps_val: chinese
-            value: Chinese
+            value: chinese
           - dps_val: english
-            value: English
+            value: english
   - entity: number
     category: config
     name: Screen brightness
@@ -205,9 +201,8 @@ secondary_entities:
         name: button
         optional: true
   - entity: button
-    name: Factory reset
+    translation_key: factory_reset
     category: diagnostic
-    class: restart
     dps:
       - id: 115
         type: boolean
@@ -302,7 +297,7 @@ secondary_entities:
       - id: 122
         type: integer
         name: value
-        unit: hours
+        unit: h
         range:
           min: 1
           max: 99
@@ -318,7 +313,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Countdown timer
+    translation_key: time_remaining
     category: diagnostic
     class: duration
     dps:
@@ -329,6 +324,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing off time
+    class: duration
     translation_key: timer
     mode: slider
     dps:
@@ -344,6 +340,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing on time
+    class: duration
     translation_key: timer
     mode: slider
     dps:
@@ -360,6 +357,7 @@ secondary_entities:
     category: config
     name: Timing loop on time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 127
@@ -375,6 +373,7 @@ secondary_entities:
     category: config
     name: Timing loop off time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 128
@@ -390,6 +389,7 @@ secondary_entities:
     category: config
     name: Timing countdown on time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 129
@@ -405,6 +405,7 @@ secondary_entities:
     category: config
     name: Timing countdown off time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 130
@@ -462,7 +463,6 @@ secondary_entities:
             value: Countdown
   - entity: sensor
     class: frequency
-    name: Frequency
     dps:
       - id: 133
         name: sensor
@@ -472,7 +472,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power factor
     class: power_factor
     dps:
       - id: 134
@@ -509,6 +508,7 @@ secondary_entities:
     category: config
     name: Overvoltage recovery delay
     icon: "mdi:timer"
+    class: duration
     dps:
       - id: 137
         type: integer
@@ -519,15 +519,28 @@ secondary_entities:
           max: 99
   - entity: select
     category: config
-    name: Poweron status
+    translation_key: initial_state
     dps:
       - id: 138
         type: string
         name: option
         mapping:
           - dps_val: open
-            value: "On"
+            value: "on"
           - dps_val: colse
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: Memory
+            value: memory
+  - entity: number
+    category: config
+    name: Update interval
+    icon: "mdi:update"
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 1
+          max: 90

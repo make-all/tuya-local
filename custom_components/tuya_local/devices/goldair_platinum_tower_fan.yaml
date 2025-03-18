@@ -1,46 +1,47 @@
 name: Tower fan
 products:
   - id: hgsp7xfajllkqujw
-    name: Goldair Platinum Tower Fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: 1
-          value: normal
-        - dps_val: 2
-          value: nature
-        - dps_val: 3
-          value: sleep
-        - dps_val: 4
-          value: baby
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 3
-    - id: 4
-      type: string
-      name: oscillate
-      mapping:
-        - dps_val: "on"
-          value: true
-        - dps_val: "off"
-          value: false
-    - id: 6
-      type: integer
-      name: timer
-secondary_entities:
+    manufacturer: Goldair
+    model: Platinum Tower Fan
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: nature
+          - dps_val: 3
+            value: sleep
+          - dps_val: 4
+            value: baby
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+      - id: 4
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+      - id: 6
+        type: integer
+        name: timer
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6

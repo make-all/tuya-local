@@ -37,11 +37,11 @@
                 "description": "[Siga estas instrucciones para encontrar la identificación de su dispositivo y la clave local.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Dirección IP o nombre de host",
-                    "device_id": "Identificación del dispositivo (device_id)",
+                    "device_id": "Identificación del dispositivo (device_id, o device_id de la puerta de enlace para dispositivos conectados a través de una puerta de enlace)",
                     "local_key": "Clave local (Local key)",
                     "protocol_version": "Versión del protocolo (pruebe automático si no lo sabe)",
-                    "poll_only": "[es] Poll only (try this if your device does not work fully)",
-                    "device_cid": "[es] Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Solo encuesta (pruebe esto si su dispositivo no funciona completamente)",
+                    "device_cid": "Sub device node_id o uuid (para dispositivos conectados a través de una puerta de enlace)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "Dirección IP o nombre de host",
                     "local_key": "Clave local (Local key)",
                     "protocol_version": "Versión del protocolo (pruebe automático si no lo sabe)",
-                    "poll_only": "[es] Poll only (try this if your device does not work fully)",
-                    "device_cid": "[es] Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Solo encuesta (pruebe esto si su dispositivo no funciona completamente)"
                 }
             }
         },
@@ -101,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Dirección",
+                "state": {
+                    "off": "Entrante",
+                    "on": "Saliente"
+                }
+            },
             "defrost": {
                 "name": "Descongelar",
                 "state": {
@@ -121,6 +127,37 @@
                     "off": "OK",
                     "on": "Lleno"
                 }
+            },
+            "wake": {
+                "name": "Despertar",
+                "state": {
+                    "off": "Dormido",
+                    "on": "Despierto"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Protección contra sobrecalentamiento de la cámara (supera los 290°C)",
+                            "e2": "E2: Protección contra sobrecalentamiento de la bandeja de evaporación (supera los 200°C)",
+                            "e3": "E3: Protección contra baja temperatura de la cámara (inferior a 35°C)",
+                            "e4": "E4: Protección contra baja temperatura de la bandeja de evaporación (inferior a 35°C)",
+                            "e5": "E5: Error de conexión del sensor (circuito abierto)",
+                            "e6": "E6: Mal funcionamiento del sensor (Circuito corto)",
+                            "e7": "E7: Error de comunicación de la placa de visualización",
+                            "e8": "E8: Tanque de agua abierto (CN7) o Bandeja de evaporación seca (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Restablecimiento de fábrica"
+            },
+            "filter_reset": {
+                "name": "Restablecimiento del filtro"
             }
         },
         "climate": {
@@ -149,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Termostato",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -199,7 +237,10 @@
                             "smart_cool": "Fresco inteligente",
                             "quick_cool": "Fresco rapido",
                             "quiet_cool": "Fresco tranquilo",
-                            "auto": "Auto"
+                            "auto": "Auto",
+                            "smart": "Inteligente",
+                            "quick": "Rápido",
+                            "quiet": "Tranquilo"
                         }
                     }
                 }
@@ -212,6 +253,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pausa"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapor saludable",
+                            "fresh_steam": "Vapor fresco",
+                            "high_temp_steam": "Vapor a alta temperatura",
+                            "stew": "Estofado",
+                            "bake_up_and_down": "Hornear arriba y abajo",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Aire caliente inferior",
+                            "on_strong_roast": "Asado fuerte",
+                            "3d_hot_air": "Aire caliente 3D",
+                            "air_fry": "Freír al aire",
+                            "steam_frying": "Freír al vapor",
+                            "one_click_bread": "Pan de un clic",
+                            "quick_heat": "Calor rápido",
+                            "keep_warm": "Mantener caliente",
+                            "unfreeze": "Descongelar",
+                            "fermentation": "Fermentación",
+                            "descale": "Descalcificar",
+                            "local_recipes": "Recetas locales",
+                            "drying": "Secado",
+                            "custom": "Personalizado",
+                            "low_steaming": "Vapor bajo",
+                            "medium_steaming": "Vapor medio",
+                            "high_steaming": "Vapor alto"
                         }
                     }
                 }
@@ -230,6 +302,21 @@
             }
         },
         "fan": {
+            "aroma_diffuser": {
+                "name": "Difusor de aroma",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Bajo",
+                            "medium": "Medio",
+                            "high": "Alto",
+                            "continuous": "Continuo",
+                            "intermittent": "Intermitente",
+                            "timer": "Temporizador"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
                 "state_attributes": {
                     "preset_mode": {
@@ -241,6 +328,9 @@
                             "fresh": "Fresco",
                             "smart": "Inteligente",
                             "strong": "Fuerte",
+                            "high": "Alto",
+                            "medium": "Medio",
+                            "low": "Bajo",
                             "displayoff": "Pantalla apagada",
                             "off": "Apagado"
                         }
@@ -248,6 +338,7 @@
                 }
             },
             "ventilation": {
+                "name": "Ventilación",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -256,7 +347,9 @@
                             "sleep": "Dormir",
                             "auto": "Auto",
                             "eco": "Ecológico",
-                            "anti-condensation": "Anticondensación"
+                            "anti-condensation": "Anticondensación",
+                            "extractor": "Extractor",
+                            "heat_recovery": "Recuperación de calor"
                         }
                     }
                 }
@@ -296,11 +389,151 @@
         "number": {
             "timer": {
                 "name": "Temporizador"
+            },
+            "timer_x": {
+                "name": "Temporizador {x}"
             }
         },
         "select": {
+            "currency": {
+                "name": "Moneda",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "initial_state": {
+                "name": "Estado inicial",
+                "state": {
+                    "off": "Apagado",
+                    "on": "Encendido",
+                    "memory": "Memoria"
+                }
+            },
+            "language": {
+                "name": "Idioma",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Fregado",
+                "state": {
+                    "off": "Apagado",
+                    "auto": "Automático",
+                    "low": "Bajo",
+                    "medium": "Medio",
+                    "high": "Alto"
+                }
+            },
+            "recipe": {
+                "name": "Receta",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Papas fritas",
+                    "chicken": "Pollo",
+                    "shrimp": "Camarones",
+                    "fish": "Pescado",
+                    "chicken_drumsticks": "Muslos de pollo",
+                    "vegetables": "Verduras",
+                    "desserts": "Postres",
+                    "none": "Ninguno",
+                    "chicken_wings": "Alitas de pollo",
+                    "steak": "Filete",
+                    "onion_rings": "Aros de cebolla",
+                    "bacon": "Tocino",
+                    "cake": "Pastel",
+                    "bread": "Pan",
+                    "toast": "Tostada",
+                    "sausage": "Salchicha",
+                    "dry_fruit": "Fruta seca",
+                    "custom": "Personalizado",
+                    "cloud_recipe": "Receta de la nube",
+                    "default": "Predeterminado",
+                    "keep_warm": "Mantener caliente",
+                    "preheat": "Precalentar"
+                }
+            },
+            "scene": {
+                "name": "Escena",
+                "state": {
+                    "relax": "Relajarse",
+                    "movie": "Película",
+                    "party": "Fiesta",
+                    "romantic": "Romántico",
+                    "night": "Noche",
+                    "morning": "Mañana",
+                    "working": "Trabajando",
+                    "leisure": "Ocio",
+                    "vacation": "Vacaciones",
+                    "reading": "Leyendo",
+                    "twinkle": "Destello",
+                    "gaming": "Juegos",
+                    "none": "Ninguno"
+                }
+            },
             "timer": {
-                "name": "Temporizador"
+                "name": "Temporizador",
+                "state": {
+                    "cancel": "Cancelar",
+                    "continuous": "Continuo",
+                    "5m": "5 minutos",
+                    "10m": "10 minutos",
+                    "20m": "20 minutos",
+                    "30m": "30 minutos",
+                    "40m": "40 minutos",
+                    "1h": "1 hora",
+                    "1h30m": "1 hora 30 minutos",
+                    "2h": "2 horas",
+                    "2h30m": "2 horas 30 minutos",
+                    "3h": "3 horas",
+                    "3h30m": "3 horas 30 minutos",
+                    "4h": "4 horas",
+                    "4h30m": "4 horas 30 minutos",
+                    "5h": "5 horas",
+                    "5h30m": "5 horas 30 minutos",
+                    "6h": "6 horas",
+                    "6h30m": "6 horas 30 minutos",
+                    "7h": "7 horas",
+                    "7h30m": "7 horas 30 minutos",
+                    "8h": "8 horas",
+                    "8h30m": "8 horas 30 minutos",
+                    "9h": "9 horas",
+                    "9h30m": "9 horas 30 minutos",
+                    "10h": "10 horas",
+                    "11h": "11 horas",
+                    "12h": "12 horas",
+                    "13h": "13 horas",
+                    "14h": "14 horas",
+                    "15h": "15 horas",
+                    "16h": "16 horas",
+                    "17h": "17 horas",
+                    "18h": "18 horas",
+                    "19h": "19 horas",
+                    "20h": "20 horas",
+                    "21h": "21 horas",
+                    "22h": "22 horas",
+                    "23h": "23 horas",
+                    "24h": "24 horas",
+                    "36h": "36 horas",
+                    "48h": "48 horas",
+                    "72h": "72 horas"
+                }
             },
             "temperature_unit": {
                 "name": "Unidad de temperatura",
@@ -308,11 +541,172 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Receta incorporada",
+                "state": {
+                    "none": "Ninguno",
+                    "steamed_egg_with_okra": "Huevo al vapor con okra",
+                    "steamed_sea_bass": "Lubina al vapor",
+                    "steamed_prawns": "Camarones al vapor",
+                    "handmade_steamed_bread": "Pan al vapor casero",
+                    "fan_steamed_baby_vegetables": "Verduras para bebés al vapor con ventilador",
+                    "braised_pork": "Cerdo estofado",
+                    "snow_fungus_and_bird_s_nest": "Nido de pájaro y hongo de nieve",
+                    "crab_pot": "Olla de cangrejo",
+                    "potato_ribs": "Costillas de patata",
+                    "coconut_chicken_soup": "Sopa de pollo de coco",
+                    "snack_platter": "Plato de aperitivos",
+                    "chicken_skewers": "Brochetas de pollo",
+                    "roasted_pork_knuckle": "Codillo de cerdo asado",
+                    "dried_lemon": "Limón seco",
+                    "pork_jerky": "Carne de cerdo seca",
+                    "crispy_hairtail": "Cola de caballo crujiente",
+                    "spicy_grilled_fish": "Pescado a la parrilla picante",
+                    "roasted_sweet_potatoes": "Batatas asadas",
+                    "roasted_chicken_wings": "Alitas de pollo asadas",
+                    "cumin_lamb_chops": "Chuletas de cordero al comino",
+                    "honey_grilled_chicken": "Pollo a la parrilla con miel",
+                    "garlic_eggplant": "Berenjena de ajo",
+                    "portuguese_egg_tart": "Pastel de huevo portugués",
+                    "creme_brulee": "Crema quemada",
+                    "cocoa_chips": "Chips de cacao",
+                    "butter_cookies": "Galletas de mantequilla",
+                    "chiffon_cake": "Pastel de gasa",
+                    "puff_pastry": "Hoja de masa",
+                    "red_bean_bread": "Pan de frijoles rojos",
+                    "milk_toast": "Tostada de leche"
+                }
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "Calidad del aire",
+                "state": {
+                    "excellent": "Excelente",
+                    "good": "Bueno",
+                    "moderate": "Moderado",
+                    "poor": "Malo",
+                    "severe": "Severo"
+                }
+            },
+            "status": {
+                "name": "Estado",
+                "state": {
+                    "available": "Disponible",
+                    "plugged_in": "Conectado",
+                    "fault_unplugged": "Error (desconectado)",
+                    "charging": "Cargando",
+                    "waiting": "Esperando",
+                    "charged": "Cargado",
+                    "fault": "Error",
+                    "paused": "Pausado",
+                    "waiting_for_authorization": "Esperando autorización",
+                    "standby": "En espera",
+                    "heating": "Calentando",
+                    "cooling": "Enfriando",
+                    "keeping_warm": "Manteniendo caliente",
+                    "no_water": "Sin agua",
+                    "boiling": "Hirviendo",
+                    "reserve_only": "Reserva solament",
+                    "unknown": "Desconocido",
+                    "idle": "Inactivo",
+                    "auto": "Automático",
+                    "manual": "Manual",
+                    "rain_delay": "Retraso por lluvia",
+                    "off": "Apagado",
+                    "cooking": "Cocinando",
+                    "done": "Hecho",
+                    "door_open": "Puerta abierta",
+                    "setting": "Ajustando",
+                    "pre_heating": "Precalentando",
+                    "scheduled": "Programado",
+                    "at_temperature": "A la temperatura",
+                    "done_stage_1": "Hecho etapa 1",
+                    "done_stage_2": "Hecho etapa 2",
+                    "done_stage_3": "Hecho etapa 3",
+                    "done_stage_4": "Hecho etapa 4",
+                    "done_stage_5": "Hecho etapa 5",
+                    "done_stage_6": "Hecho etapa 6",
+                    "done_stage_7": "Hecho etapa 7",
+                    "done_stage_8": "Hecho etapa 8",
+                    "done_stage_9": "Hecho etapa 9",
+                    "done_stage_10": "Hecho etapa 10",
+                    "no_food": "Sin comida",
+                    "jammed": "Atascado",
+                    "blocked": "Bloqueado",
+                    "feeding": "Alimentando",
+                    "feeding_complete": "Alimentación completa",
+                    "caking": "Formando una capa",
+                    "cleaning": "Limpiando",
+                    "sleep": "Durmiendo",
+                    "sterilizing": "Esterilizando",
+                    "deodorizing": "Desodorizando",
+                    "occupied": "Ocupado",
+                    "normal": "Normal",
+                    "low": "Bajo",
+                    "high": "Alto",
+                    "unwashed": "Sin lavar",
+                    "pre_washing": "Pre-lavado",
+                    "washing": "Lavando",
+                    "rinsing": "Enjuagando",
+                    "drying": "Secando",
+                    "air_purging": "Purificación de aire",
+                    "anti_freeze": "Anticongelante",
+                    "close": "Cerrado",
+                    "monitor": "Monitor",
+                    "working": "Trabajando",
+                    "warning": "Advertencia",
+                    "starting": "Iniciando",
+                    "emptying": "Vaciando",
+                    "resetting": "Restableciendo",
+                    "reverse": "Reversa"
+                }
+            },
             "time_remaining": {
                 "name": "Tiempo restante"
+            },
+            "cooking_status": {
+                "name": "Estado de cocción",
+                "state": {
+                    "wait": "Esperando para cocinar",
+                    "reservation": "En reserva",
+                    "cooking": "En progreso",
+                    "cancel": "Cocción cancelada",
+                    "done": "Cocción completada",
+                    "pause": "Pausa en la cocción"
+                }
+            },
+            "water_level": {
+                "name": "Nivel de agua",
+                "state": {
+                    "full": "Lleno",
+                    "high": "Alto",
+                    "medium": "Medio",
+                    "low": "Bajo",
+                    "empty": "Vacío"
+                }
+            },
+            "energy_produced": {
+                "name": "Energía producida"
+            },
+            "energy_consumed": {
+                "name": "Energía consumida"
+            },
+            "energy_produced_x": {
+                "name": "Energía producida {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energía consumida {x}"
+            },
+            "current_x": {
+                "name": "Corriente {x}"
+            },
+            "voltage_x": {
+                "name": "Voltaje {x}"
+            },
+            "power_x": {
+                "name": "Potencia {x}"
             }
         },
         "switch": {
@@ -328,8 +722,25 @@
             "keytone": {
                 "name": "Tono del teclado"
             },
+            "outlet_x": {
+                "name": "Salida {x}"
+            },
+            "sleep": {
+                "name": "Modo de suspensión"
+            },
+            "switch_x": {
+                "name": "Interruptor {x}"
+            },
+            "electrolytic_sterilization": {
+                "name": "Esterilización electrolítica"
+            },
             "uv_sterilization": {
                 "name": "Esterilización UV"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Escena"
             }
         }
     }

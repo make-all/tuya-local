@@ -1,29 +1,31 @@
 name: Motion Sensor Light
 products:
   - id: oapo5mmfbcr2y7ox
-    name: Deta 360 Motion Sensor
+    manufacturer: Deta
+    name: "360 Motion Sensor"
   - id: 8mrw54ape8opgl69
-    name: Deta Light Motion Sensor
+    manufacturer: Deta
+    name: Light Motion Sensor
   - id: pxyhz90upglpoedu
-    name: Arlec MAL315HA
-primary_entity:
-  entity: light
-  dps:
-    - id: 101
-      type: string
-      name: effect
-      mapping:
-        - dps_val: mode_off
-          value: "off"
-        - dps_val: mode_auto
-          value: auto
-        - dps_val: mode_on
-          value: "on"
-    - id: 102
-      type: boolean
-      name: switch
-      readonly: true
-secondary_entities:
+    manufacturer: Arlec
+    model: MAL315HA
+entities:
+  - entity: light
+    dps:
+      - id: 101
+        type: string
+        name: effect
+        mapping:
+          - dps_val: mode_off
+            value: "off"
+          - dps_val: mode_auto
+            value: auto
+          - dps_val: mode_on
+            value: "on"
+      - id: 102
+        type: boolean
+        name: switch
+        readonly: true
   - entity: switch
     name: Auto mode
     icon: "mdi:motion-sensor"
@@ -63,8 +65,8 @@ secondary_entities:
         mapping:
           - invert: true
   - entity: number
-    name: Duration
     icon: "mdi:camera-timer"
+    class: duration
     category: config
     dps:
       - id: 104

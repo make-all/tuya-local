@@ -1,0 +1,95 @@
+name: Ceiling fan
+products:
+  - id: zjqqpvhra3ep0fpk
+    manufacturer: Hoenofly
+    model: Smart Amari
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 5000
+            step: 500
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        precision: 0
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: text
+    name: Light control
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Natural
+            value: nature
+          - dps_val: Normal
+            value: normal
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: WakeUp
+            value: fresh
+      - id: 62
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        optional: true
+        name: direction
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    category: config
+    icon: "mdi:fan-clock"
+    dps:
+      - id: 64
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540

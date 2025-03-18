@@ -2,17 +2,17 @@ name: Energy monitoring smartplug
 legacy_type: kogan_switch
 products:
   - id: 370053454855194e5607
-    name: Gosund EP2
+    manufacturer: Gosund
+    model: EP2
   - id: 37mnhia3pojleqfh
-    name: SP111-A
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    model: SP111-A
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -48,7 +48,16 @@ secondary_entities:
     name: Overcurrent alarm
     class: problem
     category: diagnostic
+    hidden: unavailable
     dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 7
         type: boolean
         name: sensor
@@ -58,6 +67,7 @@ secondary_entities:
             value: false
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 2

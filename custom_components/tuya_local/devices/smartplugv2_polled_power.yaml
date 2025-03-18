@@ -1,20 +1,15 @@
 name: Energy monitoring smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -63,6 +58,7 @@ secondary_entities:
         optional: true
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -75,3 +71,21 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

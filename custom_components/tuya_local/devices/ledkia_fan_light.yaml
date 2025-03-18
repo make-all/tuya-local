@@ -1,24 +1,24 @@
 name: Light and fan
 products:
   - id: u5ovvhurbvynvspv
-    name: Ledkia fan and light controller
-primary_entity:
-  entity: fan
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 62
-      type: integer
-      name: speed
-      optional: true
-      range:
-        min: 1
-        max: 6
-    - id: 63
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: Ledkia
+    name: Fan and light controller
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
   - entity: light
     dps:
       - id: 20
@@ -69,6 +69,7 @@ secondary_entities:
           - scale: 10
   - entity: number
     name: Fan timer
+    class: duration
     translation_key: timer
     category: config
     dps:

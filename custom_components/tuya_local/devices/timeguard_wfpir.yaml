@@ -1,19 +1,19 @@
 name: PIR relay
 products:
   - id: i0lqhz9ejwtuykz5
-    name: Timeguard WFPIR
-primary_entity:
-  entity: switch
-  name: Relay
-  class: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 107
-      type: integer
-      name: rd_test
-secondary_entities:
+    manufacturer: Timeguard
+    model: WFPIR
+entities:
+  - entity: switch
+    name: Relay
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 107
+        type: integer
+        name: rd_test
   - entity: binary_sensor
     class: motion
     dps:
@@ -21,8 +21,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 102
@@ -44,8 +43,8 @@ secondary_entities:
           - dps_val: Test
             value: Test
   - entity: number
-    name: Duration
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 104

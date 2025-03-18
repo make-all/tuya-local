@@ -1,0 +1,105 @@
+name: Radiator
+products:
+  - id: ow09xlxm
+    manufacturer: Avatto / Thaleos
+    model: TRV06
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 2
+        type: string
+        name: hvac_mode
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: manual
+            value: heat
+          - dps_val: auto
+            value: auto
+          - dps_val: null
+            value: "off"
+            hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        optional: true
+        mapping:
+          - dps_val: opened
+            value: heating
+          - dps_val: closed
+            value: idle
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: 50
+          max: 350
+      - id: 5
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: lock
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 35
+        type: bitfield
+        name: sensor
+        class: measurement
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Antiscale
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9

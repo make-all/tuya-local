@@ -1,0 +1,267 @@
+name: Thermostat switch
+products:
+  - id: mebqypa73rdhby90
+    manufacturer: Atorch
+    model: AT4PTW
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 101
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: socket
+            value: "off"
+          - dps_val: hot
+            value: heat
+          - dps_val: colding
+            value: cool
+      - id: 102
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 103
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            constraint: hvac_mode
+            conditions:
+              - dps_val: hot
+                value: heating
+              - dps_val: colding
+                value: cooling
+              - dps_val: socket
+                value: "off"
+      - id: 104
+        type: integer
+        name: target_temp_low
+        unit: C
+        range:
+          min: -200
+          max: 1200
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cryogenic_temp_stop
+      - id: 105
+        type: integer
+        name: cryogenic_temp_start
+        hidden: true
+        mapping:
+          - scale: 10
+        range:
+          min: -200
+          max: 1200
+      - id: 106
+        type: integer
+        name: target_temp_high
+        unit: C
+        range:
+          min: -200
+          max: 1200
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cryogenic_temp_start
+      - id: 107
+        type: integer
+        name: cryogenic_temp_stop
+        hidden: true
+        mapping:
+          - scale: 10
+        range:
+          min: -200
+          max: 1200
+  - entity: switch
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: available
+        mapping:
+          - dps_val: socket
+            value: true
+          - value: false
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 127
+        type: integer
+        optional: true
+        name: add_ele
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Electricity price
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Maximum voltage
+    category: config
+    class: voltage
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 2700
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum current
+    category: config
+    class: current
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum power
+    category: config
+    class: power
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 27000
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: lock
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+      - id: 119
+        type: integer
+        name: temp_calibration_f
+      - id: 120
+        type: integer
+        name: heating_temp_start_f
+      - id: 121
+        type: integer
+        name: cryogenic_temp_start_f
+      - id: 122
+        type: integer
+        name: heating_temp_stop_f
+      - id: 123
+        type: integer
+        name: cryogenic_temp_stop_f
+      - id: 124
+        type: integer
+        name: temp_current_f
+  - entity: sensor
+    name: Cost
+    icon: "mdi:cash"
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    name: Sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 126
+        type: boolean
+        name: sensor

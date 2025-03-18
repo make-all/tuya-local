@@ -1,0 +1,161 @@
+name: Energy meter
+products:
+  - id: w5nhjnc3linrto2x
+    manufacturer: Geonav
+    model: HISB 3P 80A
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Total energy
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+  - entity: sensor
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "1"
+    class: voltage
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: "1"
+    class: current
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: "1"
+    class: power
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "2"
+    class: voltage
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: "2"
+    class: current
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: "2"
+    class: power
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "3"
+    class: voltage
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: "3"
+    class: current
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: "3"
+    class: power
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement

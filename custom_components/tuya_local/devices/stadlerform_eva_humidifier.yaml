@@ -1,35 +1,33 @@
-name: Stadler Form Eva
+name: Humidifier
 products:
   - id: xe3mxn6danpswfh3
-primary_entity:
-  entity: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 22
-      name: fault_code
-      type: integer
-    - id: 102
-      type: boolean
-      name: mode
-      mapping:
-        - dps_val: true
-          value: auto
-        - dps_val: false
-          value: boost
-secondary_entities:
+    manufacturer: Stadler Form
+    model: Eva
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 102
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: boost
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -41,6 +39,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield
   - entity: fan
     dps:
       - id: 1

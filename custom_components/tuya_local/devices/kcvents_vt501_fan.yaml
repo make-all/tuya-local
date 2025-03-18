@@ -1,0 +1,139 @@
+name: Heat Recovery Ventilator
+products:
+  - id: 5p0togo3y3yzgp2p
+    manufacturer: KCvents
+    model: VT-501
+entities:
+  - entity: fan
+    translation_only_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: boolean
+        name: speed
+        mapping:
+          - dps_val: true
+            value: 33
+          - dps_val: dummy_speed1
+            value: 66
+            value_redirect: speed2
+          - dps_val: dummy_speed2
+            value: 100
+            value_redirect: speed3
+          - dps_val: false
+            value_redirect: speed2
+      - id: 102
+        type: boolean
+        name: speed2
+        mapping:
+          - dps_val: true
+            value: 66
+          - dps_val: false
+            value_redirect: speed3
+        hidden: true
+      - id: 103
+        type: boolean
+        name: speed3
+        mapping:
+          - dps_val: true
+            value: 100
+          - dps_val: false
+            value: 0
+        hidden: true
+      - id: 105
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: "Low Humidity"
+          - dps_val: dummy_mode1
+            value: "Medium Humidity"
+            value_redirect: preset_mode1
+          - dps_val: dummy_mode2
+            value: "High Humidity"
+            value_redirect: preset_mode2
+          - dps_val: dummy_mode3
+            value: fresh
+            value_redirect: preset_mode3
+          - dps_val: dummy_mode4
+            value: anti-condensation
+            value_redirect: preset_mode4
+          - dps_val: dummy_mode5
+            value: circulate
+            value_redirect: preset_mode5
+          - dps_val: false
+            value_redirect: preset_mode1
+      - id: 106
+        type: boolean
+        name: preset_mode1
+        mapping:
+          - dps_val: true
+            value: "Medium Humidity"
+          - dps_val: false
+            value_redirect: preset_mode2
+        hidden: true
+      - id: 107
+        type: boolean
+        name: preset_mode2
+        mapping:
+          - dps_val: true
+            value: "High Humidity"
+          - dps_val: false
+            value_redirect: preset_mode3
+        hidden: true
+      - id: 111
+        type: boolean
+        name: preset_mode3
+        mapping:
+          - dps_val: true
+            value: fresh
+          - dps_val: false
+            value_redirect: preset_mode4
+        hidden: true
+      - id: 112
+        type: boolean
+        name: preset_mode4
+        mapping:
+          - dps_val: true
+            value: anti-condensation
+          - dps_val: false
+            value_redirect: preset_mode5
+        hidden: true
+      - id: 113
+        type: boolean
+        name: preset_mode5
+        mapping:
+          - dps_val: true
+            value: circulate
+          - dps_val: false
+            value: NONE
+        hidden: true
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch

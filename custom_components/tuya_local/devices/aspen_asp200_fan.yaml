@@ -1,40 +1,39 @@
 name: Aspen fan
 legacy_type: aspen_fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: direction
-      mapping:
-        - dps_val: in
-          value: forward
-        - dps_val: out
-          value: reverse
-        - dps_val: exch
-          value: exchange
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 3
-    - id: 101
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: false
-          value: "normal"
-        - dps_val: true
-          value: "smart"
-    - id: 8
-      type: integer
-      name: unknown_8
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: direction
+        mapping:
+          - dps_val: in
+            value: forward
+          - dps_val: out
+            value: reverse
+          - dps_val: exch
+            value: exchange
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: "normal"
+          - dps_val: true
+            value: "smart"
+      - id: 8
+        type: integer
+        name: unknown_8
   - entity: climate
     dps:
       - id: 1

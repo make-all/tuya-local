@@ -1,26 +1,27 @@
-name: ZigBee Curtain Switch
+name: Curtain switch
 products:
   - id: qa8s8vca
-    name: LoraTap QCSC400ZB-V2
-primary_entity:
-  entity: cover
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 8
-      name: control_back_mode
-      type: string
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: backward
+    manufacturer: LoraTap
+    model: QCSC400ZB-V2
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 8
+        name: control_back_mode
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward

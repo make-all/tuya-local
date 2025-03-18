@@ -14,9 +14,9 @@ from homeassistant.components.water_heater import (
 from homeassistant.const import ATTR_TEMPERATURE, UnitOfTemperature
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity, unit_from_ascii
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -68,12 +68,13 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
 
         if self._operation_mode_dps:
             self._support_flags |= WaterHeaterEntityFeature.OPERATION_MODE
+            if self._operation_mode_dps.type is bool:
+                self._support_flags |= WaterHeaterEntityFeature.ON_OFF
+            if "away" in self._operation_mode_dps.values(device):
+                self._support_flags |= WaterHeaterEntityFeature.AWAY_MODE
         if self._temperature_dps and not self._temperature_dps.readonly:
             self._support_flags |= WaterHeaterEntityFeature.TARGET_TEMPERATURE
-        if self._away_mode_dps or (
-            self._operation_mode_dps
-            and "away" in self._operation_mode_dps.values(device)
-        ):
+        if self._away_mode_dps:
             self._support_flags |= WaterHeaterEntityFeature.AWAY_MODE
 
     @property
@@ -107,6 +108,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         """Return the precision of the temperature setting."""
         # unlike sensor, this is a decimal of the smallest unit that can be
         # represented, not a number of decimal places.
+        if self._temperature_dps is None:
+            return None
+
         return 1.0 / max(
             self._temperature_dps.scale(self._device),
             (
@@ -148,7 +152,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     def target_temperature(self):
         """Return the temperature we try to reach."""
         if self._temperature_dps is None:
-            raise NotImplementedError()
+            return None
         return self._temperature_dps.get_value(self._device)
 
     @property

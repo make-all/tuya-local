@@ -1,15 +1,14 @@
 name: Irrigation timer
 products:
   - id: 8t5hebn0
-    name: MoistenLand BLE
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      name: valve
-      type: boolean
-secondary_entities:
+    manufacturer: MoistenLand
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        name: valve
+        type: boolean
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -50,6 +49,7 @@ secondary_entities:
             value: "Fully Charged"
   - entity: select
     name: Weather delay
+    translation_key: timer
     icon: "mdi:weather-cloudy-clock"
     category: config
     dps:
@@ -57,16 +57,17 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "Off"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "24h"
-            value: "1 day"
+            value: "24h"
           - dps_val: "48h"
-            value: "2 days"
+            value: "48h"
           - dps_val: "72h"
-            value: "3 days"
+            value: "72h"
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 11

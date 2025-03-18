@@ -1,0 +1,36 @@
+name: Roller blind
+products:
+  - id: slrxhmozdm3qq9cl
+    manufacturer: GW Motor
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: open
+          - dps_val: "1"
+            value: close
+          - dps_val: "2"
+            value: stop
+      - id: 101
+        # this is percent_control in API Explorer but we'll use it to get the
+        # last position set, as the device cannot report its current_position.
+        # will be incorrect when manually opening / closing.
+        name: current_position
+        type: integer
+        unit: "%"
+        optional: true
+        range:
+          min: 0
+          max: 100
+      - id: 101
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100

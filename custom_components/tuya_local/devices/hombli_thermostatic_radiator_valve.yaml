@@ -1,43 +1,43 @@
-name: Radiator Thermostat
+name: Radiator thermostat
 products:
   - id: ngxyxyc8
-    name: Hombli HBRT-0109
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 101
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 102
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 103
-      type: integer
-      name: temperature
-      unit: C
-      mapping:
-        - scale: 10
-          step: 5
-      range:
-        max: 300
-        min: 50
-    - id: 106
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: "away"
-        - dps_val: false
-          value: "home"
-secondary_entities:
+    manufacturer: Hombli
+    model: HBRT-0109
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 102
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          max: 300
+          min: 50
+      - id: 106
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: "away"
+          - dps_val: false
+            value: "home"
   - entity: switch
     name: Window check
     icon: "mdi:window-open-variant"

@@ -1,177 +1,79 @@
 name: Spa Heat Pump
 products:
   - id: pzp8owd7lhtpssgj
-    name: Poolex Arctic Action
-primary_entity:
-  entity: climate
-  icon: "mdi:hot-tub"
-  translation_only_key: pool_heatpump
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "auto"
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 40
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 41
-                max: 104
-              value_redirect: temp_set_f
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: heat
-          icon: "mdi:hot-tub"
-          value: smart_heat
-        - dps_val: h_powerful
-          icon: "mdi:hot-tub"
-          value: quick_heat
-        - dps_val: h_silent
-          icon: "mdi:hot-tub"
-          value: quiet_heat
-        - dps_val: cool
-          icon: "mdi:snowflake"
-          value: smart_cool
-        - dps_val: c_powerful
-          icon: "mdi:snowflake"
-          value: quick_cool
-        - dps_val: c_silent
-          icon: "mdi:snowflake"
-          value: quiet_cool
-    - id: 13
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 14
-      type: integer
-      name: temp_set_f
-      range:
-        min: 41
-        max: 104
-      hidden: true
-      optional: true
-    - id: 15
-      type: integer
-      name: temp_current_f
-      hidden: true
-      optional: true
-    - id: 21
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: "OK"
-        - dps_val: 4
-          value: "Water Flow Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 3
-          value: "Water Flow Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 4
-          value: "Frost Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 5
-          value: "High Pressure Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 6
-          value: "Low Pressure Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 9
-          value: "Main Board - Line Control Communication Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 10
-          value: "Frequency Module and Main Board Communication Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 12
-          value: "Exhaust Over High Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 13
-          value: "DC Fan Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 15
-          value: "Inlet Water Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 16
-          value: "External Coil Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 18
-          value: "Exhaust Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 20
-          value: "Frequency Module Abnormal Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 21
-          value: "Ambient Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 23
-          value: "Cooling Water Temperature Too Low Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 27
-          value: "Outlet Water Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 29
-          value: "Return Gas Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 32
-          value: "Heating Water Temperature Too High Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 33
-          value: "Outdoor Coil High Temperature Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 35
-          value: "Compressor Current Protection"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-        - dps_val: 42
-          value: "Internal Coil Temperature Fault"
-          icon: "mdi:water-boiler-alert"
-          icon_priority: 2
-
-secondary_entities:
+    manufacturer: Poolex
+    model: Arctic Action
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "auto"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 41
+                  max: 104
+                value_redirect: temp_set_f
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: smart_heat
+          - dps_val: h_powerful
+            value: quick_heat
+          - dps_val: h_silent
+            value: quiet_heat
+          - dps_val: cool
+            value: smart_cool
+          - dps_val: c_powerful
+            value: quick_cool
+          - dps_val: c_silent
+            value: quiet_cool
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        type: integer
+        name: temp_set_f
+        range:
+          min: 41
+          max: 104
+        hidden: true
+        optional: true
+      - id: 15
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -195,3 +97,54 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 4
+            value: "Water Flow Protection"
+          - dps_val: 8
+            value: "Water Flow Fault"
+          - dps_val: 16
+            value: "Frost Protection"
+          - dps_val: 32
+            value: "High Pressure Fault"
+          - dps_val: 64
+            value: "Low Pressure Fault"
+          - dps_val: 512
+            value: "Main Board - Line Control Communication Fault"
+          - dps_val: 1024
+            value: "Frequency Module and Main Board Communication Fault"
+          - dps_val: 4096
+            value: "Exhaust Over High Protection"
+          - dps_val: 8192
+            value: "DC Fan Fault"
+          - dps_val: 32768
+            value: "Inlet Water Temperature Fault"
+          - dps_val: 65536
+            value: "External Coil Temperature Fault"
+          - dps_val: 262144
+            value: "Exhaust Temperature Fault"
+          - dps_val: 1048576
+            value: "Frequency Module Abnormal Protection"
+          - dps_val: 2097152
+            value: "Ambient Temperature Fault"
+          - dps_val: 8388608
+            value: "Cooling Water Temperature Too Low Protection"
+          - dps_val: 134217728
+            value: "Outlet Water Temperature Fault"
+          - dps_val: 536870912
+            value: "Return Gas Temperature Fault"
+          - dps_val: 4294967296
+            value: "Heating Water Temperature Too High Protection"
+          - dps_val: 8589934592
+            value: "Outdoor Coil High Temperature Protection"
+          - dps_val: 34359738368
+            value: "Compressor Current Protection"
+          - dps_val: 4398046511104
+            value: "Internal Coil Temperature Fault"

@@ -1,22 +1,22 @@
-name: Nedis air quality monitor
+name: Air quality monitor
 products:
   - id: ipbqjatfsxghe3dc
-    name: Nedis WIFISA10CWT
+    manufacturer: Nedis
+    model: WIFISA10CWT
   - id: hryy1di7ozhgpj6p
-    name: RSH-AirBox01
-primary_entity:
-  entity: sensor
-  name: Formaldehyde
-  class: volatile_organic_compounds
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: ugm3
-      class: measurement
-      mapping:
-        - scale: 0.1
-secondary_entities:
+    model: RSH-AirBox01
+entities:
+  - entity: sensor
+    name: Formaldehyde
+    class: volatile_organic_compounds
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
   - entity: sensor
     class: temperature
     dps:

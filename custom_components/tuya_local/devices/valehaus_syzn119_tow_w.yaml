@@ -1,47 +1,40 @@
 name: Towel warmer
 products:
   - id: 1dxb14emvqzxzc5q
-    name: Valehaus SYZN119
-
-primary_entity:
-  entity: climate
-  icon: "mdi:heating-coil"
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 35
-        max: 60
-      unit: C
-      mapping:
-        - step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 14
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              mapping:
-                - dps_val: heating
-                  value: heating
-                - dps_val: standby
-                  value: idle
-            - dps_val: false
-              value: "off"
-secondary_entities:
+    manufacturer: Valehaus
+    model: SYZN119
+entities:
+  - entity: climate
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 35
+          max: 60
+        unit: C
+        mapping:
+          - step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: standby
+            value: idle
   - entity: select
     translation_key: timer
     category: config

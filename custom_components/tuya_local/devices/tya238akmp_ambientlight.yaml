@@ -1,0 +1,189 @@
+name: TV sync backlight
+products:
+  - id: apajjkjcr4wvhqmq
+    model: TV-TYA238-AK-2MP
+entities:
+  - entity: light
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: white
+            value: none
+            hidden: true
+          - dps_val: colour
+            value: none
+          - dps_val: scene
+            value: scene
+          - dps_val: music
+            value: music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        type: string
+        optional: true
+        name: music_data
+      - id: 51
+        type: string
+        optional: true
+        name: dreamlight_scene_mode
+      - id: 52
+        type: string
+        optional: true
+        name: dreamlightmic_music_data
+      - id: 61
+        type: string
+        optional: true
+        name: paint_color_data
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        precision: 0
+  - entity: select
+    name: Video scene
+    icon: "mdi:multimedia"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: movie
+            value: Movie
+          - dps_val: game
+            value: Game
+  - entity: select
+    name: TV size
+    icon: "mdi:image-size-select-large"
+    category: config
+    dps:
+      - id: 60
+        type: string
+        name: option
+        mapping:
+          - dps_val: "55_to_64_inch"
+            value: "55-64 inch"
+          - dps_val: "65_to_74_inch"
+            value: "65-74 inch"
+          - dps_val: "above_75_inch"
+            value: "75+ inch"
+  - entity: select
+    name: Video sync mode
+    icon: "mdi:video-image"
+    category: config
+    dps:
+      - id: 62
+        type: string
+        name: option
+        mapping:
+          - dps_val: nor_closed
+            value: None
+          - dps_val: multiple_colour
+            value: Color
+          - dps_val: single_colour
+            value: Monochrome
+  - entity: select
+    name: Video intensity
+    icon: "mdi:movie-filter"
+    category: config
+    dps:
+      - id: 63
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+          - dps_val: extreme
+            value: Extreme
+  - entity: select
+    name: Strip input position
+    icon: "mdi:artboard"
+    category: config
+    dps:
+      - id: 65
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: up_right
+            value: Top right
+          - dps_val: up_left
+            value: Top left
+          - dps_val: low_right
+            value: Bottom right
+          - dps_val: low_left
+            value: Bottom left
+  - entity: select
+    name: Strip direction
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 66
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: clockwise
+            value: Clockwise
+          - dps_val: anti_clockwise
+            value: Anti-clockwise
+  - entity: number
+    name: Saturation
+    category: config
+    icon: "mdi:format-color-fill"
+    dps:
+      - id: 71
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: White balance
+    category: config
+    icon: "mdi:contrast-box"
+    dps:
+      - id: 72
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100

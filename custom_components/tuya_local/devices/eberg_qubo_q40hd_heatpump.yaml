@@ -1,118 +1,113 @@
 name: Eberg Qubo Q40HD portable heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: dehumidify
-              value: dry
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 17
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 63
-                max: 86
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 19
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 22
-      type: integer
-      name: timer
-    - id: 25
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: sleep
-        - dps_val: false
-          value: comfort
-    - id: 30
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: true
-          value: vertical
-        - dps_val: false
-          value: "off"
-    - id: 101
-      name: hvac_action
-      type: string
-      # mappings based on dev portal info and observed values
-      mapping:
-        - dps_val: heat_s
-          value: heating
-        - dps_val: cool_s
-          value: cooling
-        - dps_val: ventilation
-          value: fan
-        - dps_val: auto
-          value: idle
-        - dps_val: anti-clockwise
-          value: fan
-        - dps_val: hot
-          value: heating
-        - dps_val: appointment
-          value: idle
-        - dps_val: wet
-          value: drying
-        - dps_val: auto_clean
-          value: idle
-        - dps_val: wind
-          value: fan
-        - dps_val: eco
-          value: idle
-        - dps_val: "off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: dehumidify
+                value: dry
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 17
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 63
+                  max: 86
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 19
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 22
+        type: integer
+        name: timer
+      - id: 25
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
+      - id: 30
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: vertical
+          - dps_val: false
+            value: "off"
+      - id: 101
+        name: hvac_action
+        type: string
+        # mappings based on dev portal info and observed values
+        mapping:
+          - dps_val: heat_s
+            value: heating
+          - dps_val: cool_s
+            value: cooling
+          - dps_val: ventilation
+            value: fan
+          - dps_val: auto
+            value: idle
+          - dps_val: anti-clockwise
+            value: fan
+          - dps_val: hot
+            value: heating
+          - dps_val: appointment
+            value: idle
+          - dps_val: wet
+            value: drying
+          - dps_val: auto_clean
+            value: idle
+          - dps_val: wind
+            value: fan
+          - dps_val: eco
+            value: idle
+          - dps_val: "off"
+            value: idle
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 22

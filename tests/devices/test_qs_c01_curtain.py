@@ -1,6 +1,7 @@
 """Tests for the QS C01 curtain module."""
 
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import QS_C01_CURTAIN_PAYLOAD
@@ -26,6 +27,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
             self.entities.get("number_travel_time"),
             min=1,
             max=60,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.SECONDS,
         )
         self.setUpBasicSelect(
@@ -61,22 +63,22 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
         self.dps[POSITION_DPS] = 100
         self.assertFalse(self.subject.is_opening)
         self.dps[POSITION_DPS] = 50
-        self.assertTrue(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
         self.dps[COMMAND_DPS] = "close"
-        self.assertFalse(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
         self.dps[COMMAND_DPS] = "stop"
-        self.assertFalse(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
 
     def test_is_closing(self):
         self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 0
         self.assertFalse(self.subject.is_closing)
         self.dps[POSITION_DPS] = 50
-        self.assertTrue(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
         self.dps[COMMAND_DPS] = "open"
-        self.assertFalse(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
         self.dps[COMMAND_DPS] = "stop"
-        self.assertFalse(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
 
     def test_is_closed(self):
         self.dps[COMMAND_DPS] = "close"

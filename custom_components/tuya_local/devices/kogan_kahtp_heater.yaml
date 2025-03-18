@@ -1,39 +1,38 @@
 name: Kogan panel heater
 legacy_type: kogan_heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 2
-      type: integer
-      range:
-        min: 15
-        max: 35
-      name: temperature
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      mapping:
-        - dps_val: "Low"
-          value: eco
-        - dps_val: "High"
-          value: boost
-      name: preset_mode
-    - id: 7
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-      name: hvac_mode
-    - id: 8
-      type: integer
-      name: timer
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 2
+        type: integer
+        range:
+          min: 15
+          max: 35
+        name: temperature
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        mapping:
+          - dps_val: "Low"
+            value: eco
+          - dps_val: "High"
+            value: boost
+        name: preset_mode
+      - id: 7
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+        name: hvac_mode
+      - id: 8
+        type: integer
+        name: timer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -43,6 +42,7 @@ secondary_entities:
         name: lock
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 8

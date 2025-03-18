@@ -1,8 +1,9 @@
 """Tests for the Quto 03 Sprinkler."""
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
-from homeassistant.const import PERCENTAGE, UnitOfTime
+from homeassistant.const import UnitOfTime
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,16 +39,10 @@ class TestQotoSprinkler(
         self.setUpMultiNumber(
             [
                 {
-                    "name": "number",
-                    "dps": TARGET_DPS,
-                    "max": 100,
-                    "step": 5,
-                    "unit": PERCENTAGE,
-                },
-                {
                     "name": "number_timer",
                     "dps": TIMER_DPS,
                     "max": 86399,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
             ]
@@ -124,3 +119,10 @@ class TestQotoSprinkler(
             {TARGET_DPS: 50},
         ):
             await self.subject.async_set_valve_position(50)
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

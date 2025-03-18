@@ -1,143 +1,115 @@
 name: Pool heat pump
 products:
   - id: k5vqutj2llzox1gg
-    name: Evotherm ETI series / AquaForte
-primary_entity:
-  entity: climate
-  translation_only_key: pool_heatpump
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: Cooling_Smart
-              value: cool
-            - dps_val: Heating_Smart
-              value: heat
-            - dps_val: Auto
-              value: heat_cool
-            - dps_val: ["Heating_Powerful", "Heating_Silent"]
-              value: heat
-              hidden: true
-            - dps_val: ["Cooling_Powerful", "Cooling_Silent"]
-              value: cool
-              hidden: true
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Auto
-          value: auto
-        - dps_val: Heating_Powerful
-          value: quick_heat
-        - dps_val: Heating_Smart
-          value: smart_heat
-        - dps_val: Heating_Silent
-          value: quiet_heat
-        - dps_val: Cooling_Powerful
-          value: quick_cool
-        - dps_val: Cooling_Smart
-          value: smart_cool
-        - dps_val: Cooling_Silent
-          value: quiet_cool
-    - id: 5
-      name: work_mode
-      type: string
-      optional: true
-    - id: 15
-      name: fault_code
-      type: bitfield
-    - id: 16
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 17
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: Running
-          value: heating
-          constraint: preset_mode
-          conditions:
-            - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
-              value: cooling
-        - dps_val: Defrosting
-          value: preheating
-        - value: idle
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-    - id: 101
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 550
-      mapping:
-        - scale: 10
-          constraint: preset_mode
-          conditions:
-            - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
-              value_redirect: cold_temp
-            - dps_val: Auto
-              value_redirect: auto_temp
-    - id: 102
-      name: cold_temp
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-      hidden: true
-    - id: 103
-      name: new_fault_1
-      type: bitfield
-    - id: 104
-      name: auto_temp
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 400
-      mapping:
-        - scale: 10
-      hidden: true
-    - id: 107
-      name: new_fault_2
-      type: bitfield
-    - id: 109
-      name: unit_type
-      type: bitfield
-    - id: 110
-      name: new_driver_fault_1
-      type: bitfield
-    - id: 111
-      name: new_driver_fault_2
-      type: bitfield
-    - id: 117
-      name: frequency
-      type: string
-      optional: true
-    - id: 118
-      name: fault_2
-      type: bitfield
-    - id: 119
-      name: fault_3
-      type: bitfield
-    - id: 120
-      name: driver_fault_1
-      type: bitfield
-secondary_entities:
+    manufacturer: Evotherm / AquaForte
+    model: ETI series
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: Cooling_Smart
+                value: cool
+              - dps_val: Heating_Smart
+                value: heat
+              - dps_val: Auto
+                value: heat_cool
+              - dps_val: ["Heating_Powerful", "Heating_Silent"]
+                value: heat
+                hidden: true
+              - dps_val: ["Cooling_Powerful", "Cooling_Silent"]
+                value: cool
+                hidden: true
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Auto
+            value: auto
+          - dps_val: Heating_Powerful
+            value: quick_heat
+          - dps_val: Heating_Smart
+            value: smart_heat
+          - dps_val: Heating_Silent
+            value: quiet_heat
+          - dps_val: Cooling_Powerful
+            value: quick_cool
+          - dps_val: Cooling_Smart
+            value: smart_cool
+          - dps_val: Cooling_Silent
+            value: quiet_cool
+      - id: 5
+        name: work_mode
+        type: string
+        optional: true
+      - id: 16
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 17
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: Running
+            value: heating
+            constraint: preset_mode
+            conditions:
+              - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
+                value: cooling
+          - dps_val: Defrosting
+            value: preheating
+          - value: idle
+      - id: 101
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 550
+        mapping:
+          - scale: 10
+            constraint: preset_mode
+            conditions:
+              - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
+                value_redirect: cold_temp
+              - dps_val: Auto
+                value_redirect: auto_temp
+      - id: 102
+        name: cold_temp
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 104
+        name: auto_temp
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 109
+        name: unit_type
+        type: bitfield
+      - id: 117
+        name: frequency
+        type: string
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -161,6 +133,30 @@ secondary_entities:
           - dps_val: Fault
             value: true
           - value: false
+      - id: 15
+        name: fault_code
+        type: bitfield
+      - id: 103
+        name: new_fault_1
+        type: bitfield
+      - id: 107
+        name: new_fault_2
+        type: bitfield
+      - id: 110
+        name: new_driver_fault_1
+        type: bitfield
+      - id: 111
+        name: new_driver_fault_2
+        type: bitfield
+      - id: 118
+        name: fault_2
+        type: bitfield
+      - id: 119
+        name: fault_3
+        type: bitfield
+      - id: 120
+        name: driver_fault_1
+        type: bitfield
   - entity: sensor
     name: Heating coil temperature
     class: temperature

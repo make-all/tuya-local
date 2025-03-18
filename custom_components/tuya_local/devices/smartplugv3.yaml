@@ -1,26 +1,23 @@
 name: Advanced energy monitoring smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 41
-      type: string
-      name: cycle_timer
-    - id: 42
-      type: string
-      name: random_timer
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+      - id: 41
+        type: string
+        name: cycle_timer
+      - id: 42
+        type: string
+        name: random_timer
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -90,21 +87,23 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     category: config
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: "Last State"
+            value: memory
   - entity: switch
     name: Overcharge cutoff
     category: config

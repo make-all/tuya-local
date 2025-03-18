@@ -1,15 +1,15 @@
 name: Door/window sensor
 products:
   - id: bzxlofth
-    name: Nedis Zigbee ZBSD10WT
-primary_entity:
-  entity: binary_sensor
-  class: door
-  dps:
-    - id: 1
-      type: boolean
-      name: sensor
-secondary_entities:
+    manufacturer: Nedis
+    model: Zigbee ZBSD10WT
+entities:
+  - entity: binary_sensor
+    class: door
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
   - entity: sensor
     class: battery
     category: diagnostic

@@ -1,0 +1,167 @@
+name: EV charger
+products:
+  - id: bktb3jskdic1ar2t
+    manufacturer: Wada Power
+    model: Q8 32A
+    name: Wall charger
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23
+        type: string
+        name: system_version
+  - entity: number
+    name: Charge current
+    category: config
+    class: current
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_pct
+            value: Charge to percent
+          - dps_val: charge_energy
+            value: Fixed charge
+          - dps_val: charge_schedule
+            value: Scheduled charge
+          - dps_val: charge_delay
+            value: Delayed charge
+  - entity: switch
+    icon: "mdi:power"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Last charge
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Scheduled start hour
+    icon: "mdi:battery-clock"
+    dps:
+      - id: 19
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FF00"
+  - entity: sensor
+    name: Scheduled stop hour
+    icon: "mdi:battery-clock-outline"
+    dps:
+      - id: 19
+        type: base64
+        name: sensor
+        optional: true
+        mask: "00FF"
+  - entity: sensor
+    name: Fault reason
+    icon: 'mdi:alert-outline'
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Ov2 Cr Fault"
+          - dps_val: 2
+            value: "OV Vol"
+          - dps_val: 4
+            value: "Undervoltage alarm"
+          - dps_val: 8
+            value: "Contactor adhesion"
+          - dps_val: 16
+            value: "Contactor fault"
+          - dps_val: 32
+            value: "Earth fault"
+          - dps_val: 64
+            value: "Meter Hardware alarm"
+          - dps_val: 128
+            value: "Scram fault"
+          - dps_val: 256
+            value: "CP fault"
+          - dps_val: 512
+            value: "Meter Commu fault"
+          - dps_val: 1024
+            value: "Card reader fault"
+          - dps_val: 2048
+            value: "Cir short fault"
+          - dps_val: 4096
+            value: "Adhesion fault"
+          - dps_val: 8192
+            value: "Self test alarm"
+          - dps_val: 16384
+            value: "Leakage current fault"

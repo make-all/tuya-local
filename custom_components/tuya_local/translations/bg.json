@@ -37,11 +37,11 @@
                 "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ] (https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP адрес или име на хост",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (или Device ID шлюза, за устройства свързани чрез шлюз)",
                     "local_key": "Локален ключ",
                     "protocol_version": "Версия на протокола (опитайте автоматична, ако не е известна)",
                     "poll_only": "Само анкетиране (опитайте това, ако устройството ви не работи напълно)",
-                    "device_cid": "[bg] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device node_id или uuid (за устройства свързани чрез шлюз)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "IP адрес или име на хост",
                     "local_key": "Локален ключ",
                     "protocol_version": "Версия на протокола (опитайте автоматична, ако не е известна)",
-                    "poll_only": "Само анкетиране (опитайте това, ако устройството ви не работи напълно)",
-                    "device_cid": "[bg] Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Само анкетиране (опитайте това, ако устройството ви не работи напълно)"
                 }
             }
         },
@@ -101,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Посока",
+                "state": {
+                    "off": "Входящ",
+                    "on": "Изходящ"
+                }
+            },
             "defrost": {
                 "name": "Размразяване",
                 "state": {
@@ -121,6 +127,37 @@
                     "off": "OK",
                     "on": "Пълна"
                 }
+            },
+            "wake": {
+                "name": "Събуждане",
+                "state": {
+                    "off": "Сън",
+                    "on": "Будене"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Камера за прегряване (над 290°C)",
+                            "e2": "E2: Защита от прегряване на изпарителния поднос (над 200°C)",
+                            "e3": "E3: Защита от ниска температура на камерата (под 35°C)",
+                            "e4": "E4: Защита от ниска температура на изпарителния поднос (под 35°C)",
+                            "e5": "E5: Грешка в свързването на сензора (Отворен кръг)",
+                            "e6": "E6: Грешка в сензора (Късо съединение)",
+                            "e7": "E7: Грешка в комуникацията на дисплея",
+                            "e8": "E8: Отворен резервоар за вода (CN7) или суха тава за изпарение (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Фабричен ресет"
+            },
+            "filter_reset": {
+                "name": "Филтър за ресетиране"
             }
         },
         "climate": {
@@ -149,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Термостат",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -199,7 +237,10 @@
                             "smart_cool": "Умен охлаждане",
                             "quick_cool": "Бързо охлаждане",
                             "quiet_cool": "Тихо охлаждане",
-                            "auto": "Автоматичен"
+                            "auto": "Автоматичен",
+                            "smart": "Умен",
+                            "quick": "Бързо",
+                            "quiet": "Тихо"
                         }
                     }
                 }
@@ -212,6 +253,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Пауза"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Здравословна пара",
+                            "fresh_steam": "Свежа пара",
+                            "high_temp_steam": "Висока температура на пара",
+                            "stew": "Парен тиган",
+                            "bake_up_and_down": "Печка горе и долу",
+                            "bbq": "Барбекю",
+                            "bottom_hot_air": "Долен горещ въздух",
+                            "on_strong_roast": "На силен печене",
+                            "3d_hot_air": "3D горещ въздух",
+                            "air_fry": "Пържене на въздух",
+                            "steam_frying": "Парено пържене",
+                            "one_click_bread": "Едно кликване хляб",
+                            "quick_heat": "Бързо загряване",
+                            "keep_warm": "Поддържайте топло",
+                            "unfreeze": "Размразяване",
+                            "fermentation": "Ферментация",
+                            "descale": "Разклешаване",
+                            "local_recipes": "Локални рецепти",
+                            "drying": "Сушене",
+                            "custom": "Потребителски",
+                            "low_steaming": "Ниско парене",
+                            "medium_steaming": "Средно парене",
+                            "high_steaming": "Високо парене"
                         }
                     }
                 }
@@ -230,6 +302,21 @@
             }
         },
         "fan": {
+            "aroma_diffuser": {
+                "name": "Ароматизатор",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Ниско",
+                            "medium": "Средно",
+                            "high": "Високо",
+                            "continuous": "Непрекъснато",
+                            "intermittent": "Интервално",
+                            "timer": "Таймер"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
                 "state_attributes": {
                     "preset_mode": {
@@ -241,6 +328,9 @@
                             "fresh": "Свежо",
                             "smart": "Умен",
                             "strong": "Силен",
+                            "high": "Високо",
+                            "medium": "Средно",
+                            "low": "Ниско",
                             "displayoff": "Дисплеят е изключен",
                             "off": "Изключете дисплея"
                         }
@@ -248,6 +338,7 @@
                 }
             },
             "ventilation": {
+                "name": "Вентилация",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -256,7 +347,9 @@
                             "sleep": "Сън",
                             "auto": "Автоматичен",
                             "eco": "Еко",
-                            "anti-condensation": "Антиконденз"
+                            "anti-condensation": "Антиконденз",
+                            "extractor": "Екстрактор",
+                            "heat_recovery": "Възстановяване на топлината"
                         }
                     }
                 }
@@ -296,11 +389,152 @@
         "number": {
             "timer": {
                 "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
             }
         },
         "select": {
+            "currency": {
+                "name": "Валута",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "initial_state": {
+                "name": "Начално състояние",
+                "state": {
+                    "off": "Изключено",
+                    "on": "Включено",
+                    "memory": "Памет"
+                }
+            },
+            "language": {
+                "name": "Език",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Подметка",
+                "state": {
+                    "off": "Изключено",
+                    "auto": "Автоматично",
+                    "low": "Ниско",
+                    "medium": "Средно",
+                    "high": "Високо"
+                }
+            },
+            "recipe": {
+                "name": "Рецепта",
+                "state": {
+                    "pizza": "Пица",
+                    "fries": "Картофи",
+                    "chicken": "Пиле",
+                    "shrimp": "Козици",
+                    "fish": "Риба",
+                    "chicken_drumsticks": "Пилешки крака",
+                    "vegetables": "Зеленчуци",
+                    "desserts": "Десерти",
+                    "none": "Няма",
+                    "chicken_wings": "Пилешки крилца",
+                    "steak": "Стек",
+                    "onion_rings": "Лукови пръстени",
+                    "bacon": "Сладко",
+                    "cake": "Торта",
+                    "bread": "Хляб",
+                    "toast": "Тост",
+                    "sausage": "Наденица",
+                    "dry_fruit": "Сухи плодове",
+                    "custom": "Потребителски",
+                    "cloud_recipe": "Облак рецепта",
+                    "default": "По подразбиране",
+                    "keep_warm": "Поддържайте топло",
+                    "preheat": "Предварително загряване"
+                }
+            },
+            "scene": {
+                "name": "Сцена",
+                "state": {
+                    "relax": "Релаксирайте",
+                    "movie": "Филм",
+                    "party": "Парти",
+                    "romantic": "Романтично",
+                    "night": "Нощ",
+                    "morning": "Сутрин",
+                    "working": "Работа",
+                    "leisure": "Свободно време",
+                    "vacation": "Ваканция",
+                    "reading": "Четене",
+                    "twinkle": "Мигащо",
+                    "gaming": "Игри",
+                    "none": "Няма"
+                }
+            },
             "timer": {
-                "name": "Таймер"
+                "name": "Таймер",
+                "state": {
+                    "cancel": "Отказ",
+                    "continuous": "Непрекъснато",
+                    "5m": "5 минути",
+                    "10m": "10 минути",
+                    "20m": "20 минути",
+                    "30m": "30 минути",
+                    "40m": "40 минути",
+                    "1h": "1 час",
+                    "1h30m": "1 час 30 минути",
+                    "2h": "2 часа",
+                    "2h30m": "2 часа 30 минути",
+                    "3h": "3 часа",
+                    "3h30m": "3 часа 30 минути",
+                    "4h": "4 часа",
+                    "4h30m": "4 часа 30 минути",
+                    "5h": "5 часа",
+                    "5h30m": "5 часа 30 минути",
+                    "6h": "6 часа",
+                    "6h30m": "6 часа 30 минути",
+                    "7h": "7 часа",
+                    "7h30m": "7 часа 30 минути",
+                    "8h": "8 часа",
+                    "8h30m": "8 часа 30 минути",
+                    "9h": "9 часа",
+                    "9h30m": "9 часа 30 минути",
+                    "10h": "10 часа",
+                    "11h": "11 часа",
+                    "12h": "12 часа",
+                    "13h": "13 часа",
+                    "14h": "14 часа",
+                    "15h": "15 часа",
+                    "16h": "16 часа",
+                    "17h": "17 часа",
+                    "18h": "18 часа",
+                    "19h": "19 часа",
+                    "20h": "20 часа",
+                    "21h": "21 часа",
+                    "22h": "22 часа",
+                    "23h": "23 часа",
+                    "24h": "24 часа",
+                    "36h": "36 часа",
+                    "48h": "48 часа",
+                    "72h": "72 часа"
+                }
+
             },
             "temperature_unit": {
                 "name": "Температурна единица",
@@ -308,11 +542,172 @@
                     "celsius": "Целзий",
                     "fahrenheit": "Фаренхайт"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Вградена рецепта",
+                "state": {
+                    "none": "Няма",
+                    "steamed_egg_with_okra": "Парена яйца с окра",
+                    "steamed_sea_bass": "Парена морска бас",
+                    "steamed_prawns": "Парени козици",
+                    "handmade_steamed_bread": "Ръчно парен хляб",
+                    "fan_steamed_baby_vegetables": "Фен парени бебешки зеленчуци",
+                    "braised_pork": "Печено свинско",
+                    "snow_fungus_and_bird_s_nest": "Снежна гъба и птиче гнездо",
+                    "crab_pot": "Крабов гърнец",
+                    "potato_ribs": "Картофени ребра",
+                    "coconut_chicken_soup": "Кокосова пилешка супа",
+                    "snack_platter": "Плато с хапки",
+                    "chicken_skewers": "Пилешки шишчета",
+                    "roasted_pork_knuckle": "Печено свинско копито",
+                    "dried_lemon": "Сушен лимон",
+                    "pork_jerky": "Свинско джърки",
+                    "crispy_hairtail": "Хрупкава опашка",
+                    "spicy_grilled_fish": "Пикантна печена риба",
+                    "roasted_sweet_potatoes": "Печени сладки картофи",
+                    "roasted_chicken_wings": "Печени пилешки крилца",
+                    "cumin_lamb_chops": "Агнешки котлети с кимион",
+                    "honey_grilled_chicken": "Пилешко на скара с мед",
+                    "garlic_eggplant": "Чеснова патладжан",
+                    "portuguese_egg_tart": "Португалски яйчен тарт",
+                    "creme_brulee": "Крем Брюле",
+                    "cocoa_chips": "Какаови чипсове",
+                    "butter_cookies": "Бутер курабийки",
+                    "chiffon_cake": "Шифонова торта",
+                    "puff_pastry": "Слойково тесто",
+                    "red_bean_bread": "Хляб с червено боб",
+                    "milk_toast": "Млечен тост"
+                }
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "Качество на въздуха",
+                "state": {
+                    "excellent": "Отлично",
+                    "good": "Добро",
+                    "moderate": "Умерен",
+                    "poor": "Лошо",
+                    "severe": "Тежко"
+                }
+            },
+            "status": {
+                "name": "Статус",
+                "state": {
+                    "available": "Достъпно",
+                    "plugged_in": "Включен",
+                    "fault_unplugged": "Неизправен (изключен)",
+                    "charging": "Зарежда се",
+                    "waiting": "Изчакване",
+                    "charged": "Зареден",
+                    "fault": "Неизправен",
+                    "paused": "Пауза",
+                    "waiting_for_authorization": "Изчакване за разрешение",
+                    "standby": "Режим на готовност",
+                    "heating": "Загряване",
+                    "cooling": "Охлаждане",
+                    "keeping_warm": "Поддържайте топло",
+                    "no_water": "Няма вода",
+                    "boiling": "Кипене",
+                    "reserve_only": "Само резервен",
+                    "unknown": "Неизвестен",
+                    "idle": "Свободен",
+                    "auto": "Автоматичен",
+                    "manual": "Ръчен",
+                    "rain_delay": "Забавяне на дъжда",
+                    "off": "Изключено",
+                    "cooking": "Готвене",
+                    "done": "Готово",
+                    "door_open": "Вратата е отворена",
+                    "setting": "Настройка",
+                    "pre_heating": "Предварително загряване",
+                    "scheduled": "Планирано",
+                    "at_temperature": "На температура",
+                    "done_stage_1": "Готово за стадиум 1",
+                    "done_stage_2": "Готово за стадиум 2",
+                    "done_stage_3": "Готово за стадиум 3",
+                    "done_stage_4": "Готово за стадиум 4",
+                    "done_stage_5": "Готово за стадиум 5",
+                    "done_stage_6": "Готово за стадиум 6",
+                    "done_stage_7": "Готово за стадиум 7",
+                    "done_stage_8": "Готово за стадиум 8",
+                    "done_stage_9": "Готово за стадиум 9",
+                    "done_stage_10": "Готово за стадиум 10",
+                    "no_food": "Няма храна",
+                    "jammed": "Заглушен",
+                    "blocked": "Блокиран",
+                    "feeding": "Хранене",
+                    "feeding_complete": "Храненето е завършено",
+                    "caking": "Торта",
+                    "cleaning": "Почистване",
+                    "sleep": "Сън",
+                    "sterilizing": "Стерилизация",
+                    "deodorizing": "Дезодориране",
+                    "occupied": "Зает",
+                    "normal": "Нормално",
+                    "low": "Ниско",
+                    "high": "Високо",
+                    "unwashed": "Непочистен",
+                    "pre_washing": "Предварително измиване",
+                    "washing": "Пране",
+                    "rinsing": "Изплакване",
+                    "drying": "Сушене",
+                    "air_purging": "Пречистване на въздуха",
+                    "anti_freeze": "Антифриз",
+                    "close": "Затвори",
+                    "monitor": "Монитор",
+                    "working": "Работи",
+                    "warning": "Предупреждение",
+                    "starting": "Стартиране",
+                    "emptying": "Изтощаване",
+                    "resetting": "Нулиране",
+                    "reverse": "Обратно"
+                }
+            },
             "time_remaining": {
                 "name": "Оставащо време"
+            },
+            "cooking_status": {
+                "name": "Състояние",
+                "state": {
+                    "wait": "Изчакване за готвене",
+                    "reservation": "В резервация",
+                    "cooking": "Готвене",
+                    "cancel": "Готвенето е отменено",
+                    "done": "Готвенето завърши",
+                    "pause": "Пауза за готвене"
+                }
+            },
+            "water_level": {
+                "name": "Ниво на водата",
+                "state": {
+                    "full": "Пълна",
+                    "high": "Висока",
+                    "medium": "Средна",
+                    "low": "Ниска",
+                    "empty": "Празна"
+                }
+            },
+            "energy_produced": {
+                "name": "Произведена енергия"
+            },
+            "energy_consumed": {
+                "name": "Консумирана енергия"
+            },
+            "energy_produced_x": {
+                "name": "Произведена енергия {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Консумирана енергия {x}"
+            },
+            "current_x": {
+                "name": "Текущ {x}"
+            },
+            "voltage_x": {
+                "name": "Напрежение {x}"
+            },
+            "power_x": {
+                "name": "Мощност {x}"
             }
         },
         "switch": {
@@ -328,8 +723,25 @@
             "keytone": {
                 "name": "Клавишен тон"
             },
+            "outlet_x": {
+                "name": "Изход {x}"
+            },
+            "sleep": {
+                "name": "Сън"
+            },
+            "switch_x": {
+                "name": "Превключване {x}"
+            },
+            "electrolytic_sterilization": {
+                "name": "Електролизна стерилизация"
+            },
             "uv_sterilization": {
                 "name": "UV стерилизация"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Сцена"
             }
         }
     }

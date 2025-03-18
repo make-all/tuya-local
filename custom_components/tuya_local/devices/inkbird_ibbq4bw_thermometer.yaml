@@ -1,23 +1,20 @@
-name: Inkbird BBQ thermometer
+name: BBQ thermometer
 products:
   - id: coa4tu1646wdybzy
-    name: IBBQ-4BW
-primary_entity:
-  entity: sensor
-  name: Temperature probe 1
-  class: temperature
-  dps:
-    - id: 107
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 100
-      unit: F
-    - id: 13
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Inkbird
+    model: IBBQ-4BW
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+        unit: F
   - entity: sensor
     name: Temperature probe 2
     class: temperature
@@ -67,6 +64,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -90,6 +90,7 @@ secondary_entities:
   - entity: number
     name: Screen timeout
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 102

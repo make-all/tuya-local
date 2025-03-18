@@ -1,0 +1,143 @@
+name: Multi-tariff energy meter
+products:
+  - id: opdhepy0p7eyeurz
+    manufacturer: Xoca
+    model: DAC-2121C BI
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 17
+        name: alarm_set_2
+        type: string
+        optional: true
+      - id: 18
+        type: string
+        name: meter_id
+        optional: true
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        force: true
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        unit: kWh
+        class: total_increasing
+        force: true
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    # Night zone
+    name: Tariff 1
+    class: energy
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    # Day zone
+    name: Tariff 2
+    class: energy
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Tariff 3
+    class: energy
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Tariff 4
+    class: energy
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        optional: true
+        force: true
+        mapping:
+          - scale: 100

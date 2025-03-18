@@ -1,69 +1,48 @@
 name: Inventor Eva Ion Pro dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 85
-      mapping:
-        - step: 5
-    - id: 5
-      type: string
-      name: mode
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: continuous
-          value: boost
-        - dps_val: smart
-          value: auto
-        - dps_val: drying
-          value: laundry
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: bitfield
-      name: fault_code
-      # Mappings are a guess, as protocol doc uses numeric codes, while
-      # manual uses alphanumeric codes.  Probably only defrosting will show
-      # up with any regularity, so should be easiest to check
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: Humidity sensor error
-        - dps_val: 2
-          value: Temperature sensor error
-        - dps_val: 4
-          value: Tank full or removed
-        - dps_val: 8
-          value: Unit malfunction
-        - dps_val: 16
-          value: Refrigerant leak
-        - dps_val: 32
-          value: Defrosting
-    # The following two are documented in the protocol as read/write, and appear
-    # in the app to be so.  But there is no mention in the manual of a pump
-    # and likely this is an indicator that the compressor is operating.
-    # Water level also seems more likely to be an indicator.
-    # If known for sure, they can be moved to sensors (or switch/number if
-    # they are really configurable)
-    - id: 103
-      type: boolean
-      name: pump
-    - id: 104
-      type: integer
-      optional: true
-      name: water_level
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 85
+        mapping:
+          - step: 5
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: continuous
+            value: boost
+          - dps_val: smart
+            value: auto
+          - dps_val: drying
+            value: laundry
+      - id: 6
+        type: integer
+        name: current_humidity
+      # The following two are documented in the protocol as
+      # read/write, and appear in the app to be so.  But there is no
+      # mention in the manual of a pump and likely this is an
+      # indicator that the compressor is operating.  Water level also
+      # seems more likely to be an indicator.  If known for sure, they
+      # can be moved to sensors (or switch/number if they are really
+      # configurable)
+      - id: 103
+        type: boolean
+        name: pump
+      - id: 104
+        type: integer
+        optional: true
+        name: water_level
   - entity: fan
     dps:
       - id: 1
@@ -108,6 +87,9 @@ secondary_entities:
           - dps_val: 4
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic

@@ -1,103 +1,104 @@
-name: RYRA TYTE-D1 thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 2
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: hot
-              value: heat
-            - dps_val: colding
-              value: cool
-            - dps_val: dehumidify
-              value: dry
-            - dps_val: wet
-              value: dry
-    - id: 7
-      type: string
-      name: cycle_time
-    - id: 8
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 9
-      type: boolean
-      name: customize_mode_switch
-    - id: 19
-      type: integer
-      name: test_bit
-    - id: 20
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 21
-      type: integer
-      name: temp_set_f
-      hidden: true
-      range:
-        min: -40
-        max: 2210
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 22
-      type: integer
-      name: temperature
-      range:
-        min: -200
-        max: 1050
-      mapping:
-        - scale: 10
-          step: 5
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: -40
-                max: 2210
-    - id: 27
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 28
-      type: integer
-      name: current_temp_f
-      hidden: true
-    - id: 50
-      type: bitfield
-      name: fault_code
-      mapping:
-        - dps_val: 1
-          value: Overcurrent
-        - dps_val: 2
-          value: Overvoltage
-        - dps_val: 4
-          value: Overpower
-        - dps_val: 8
-          value: LS Current
-        - dps_val: 16
-          value: LS Voltage
-        - dps_val: 32
-          value: LS Power
-secondary_entities:
+name: Thermostat switch
+products:
+  - id: key7rucurh5teh9w
+    model: TYTE-D1
+entities:
+  - entity: switch
+    name: Manual override
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: climate
+    dps:
+      - id: 2
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: hot
+                value: heating
+              - dps_val: colding
+                value: cooling
+      - id: 9
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: hot
+                value: heat
+              - dps_val: colding
+                value: cool
+      - id: 7
+        type: string
+        name: cycle_time
+      - id: 8
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 19
+        type: integer
+        name: test_bit
+      - id: 20
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 21
+        type: integer
+        name: temp_set_f
+        hidden: true
+        range:
+          min: -40
+          max: 2210
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 22
+        type: integer
+        name: temperature
+        range:
+          min: -200
+          max: 1050
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: -40
+                  max: 2210
+      - id: 27
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 28
+        type: integer
+        name: current_temp_f
+        hidden: true
+        mapping:
+          - scale: 10
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 4
@@ -178,9 +179,9 @@ secondary_entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Vibration
+    name: Temperature hysteresis
     category: config
-    icon: "mdi:volume-vibrate"
+    icon: "mdi:thermometer-plus"
     dps:
       - id: 29
         type: integer
@@ -194,7 +195,7 @@ secondary_entities:
   - entity: number
     name: Temperature correction
     category: config
-    icon: "mdi:format-vertical-align-center"
+    icon: "mdi:thermometer-check"
     dps:
       - id: 30
         type: integer
@@ -213,9 +214,31 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 50
+        type: bitfield
+        name: fault_code
+      - id: 50
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Overcurrent
+          - dps_val: 2
+            value: Overvoltage
+          - dps_val: 4
+            value: Overpower
+          - dps_val: 8
+            value: LS Current
+          - dps_val: 16
+            value: LS Voltage
+          - dps_val: 32
+            value: LS Power
   - entity: number
-    name: Cold delay
+    name: Turn on delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 55
@@ -226,7 +249,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: switch
-    name: Cold delay switch
+    name: Turn on delay
     category: config
     icon: "mdi:camera-timer"
     dps:

@@ -1,22 +1,22 @@
 name: Curtain switch
 products:
   - id: 81dyy7vqe426s0yc
-    name: Etersky WF-CS01
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-secondary_entities:
+    manufacturer: Etersky
+    model: WF-CS01
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
   - entity: light
     translation_key: backlight
     category: config
@@ -27,6 +27,7 @@ secondary_entities:
   - entity: number
     name: Time control
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 10

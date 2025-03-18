@@ -1,131 +1,118 @@
 name: Daizuki Heatpump (F)
-primary_entity:
-  entity: climate
-  translation_only_key: aircon_extra
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 610
-        max: 880
-      mapping:
-        - scale: 10
-          step: 10
-      unit: F
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: mute
-          value: quiet
-        - dps_val: low
-          value: low
-        - dps_val: mid_low
-          value: medlow
-        - dps_val: mid
-          value: medium
-        - dps_val: mid_high
-          value: medhigh
-        - dps_val: high
-          value: high
-        - dps_val: strong
-          value: strong
-    - id: 20
-      type: bitfield
-      name: fault_code
-    - id: 105
-      type: string
-      name: sleep_mode
-    - id: 110
-      type: bitfield
-      name: flags
-    - id: 113
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: "0"
-          value: horizontal
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
-              value: horizontal
-        - dps_val: "1"
-          value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - dps_val: "1"
-              value: both
-        - value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-    - id: 114
-      type: string
-      name: horizontal_swing
-      hidden: true
-    - id: 119
-      type: string
-      name: electricity_management
-    - id: 120
-      type: string
-      name: gen_mode
-    - id: 123
-      type: hex
-      name: flags_2
-    - id: 125
-      type: string
-      name: air_quality
-      optional: true
-    - id: 128
-      type: string
-      name: model_code
-    - id: 129
-      type: string
-      name: energy
-    - id: 130
-      type: integer
-      name: eco_temp
-    - id: 132
-      type: boolean
-      name: hot_cool
-    - id: 133
-      type: string
-      name: swing_action
-    - id: 134
-      type: json
-      name: statistics
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 610
+          max: 880
+        mapping:
+          - scale: 10
+            step: 10
+        unit: F
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: mute
+            value: quiet
+          - dps_val: low
+            value: low
+          - dps_val: mid_low
+            value: medlow
+          - dps_val: mid
+            value: medium
+          - dps_val: mid_high
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: strong
+            value: strong
+      - id: 105
+        type: string
+        name: sleep_mode
+      - id: 110
+        type: bitfield
+        name: flags
+      - id: 113
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - value: "on"
+            hidden: true
+      - id: 114
+        type: string
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - value: "on"
+            hidden: true
+      - id: 119
+        type: string
+        name: electricity_management
+      - id: 120
+        type: string
+        name: gen_mode
+      - id: 123
+        type: hex
+        name: flags_2
+      - id: 125
+        type: string
+        name: air_quality
+        optional: true
+      - id: 128
+        type: string
+        name: model_code
+      - id: 129
+        type: string
+        name: energy
+      - id: 130
+        type: integer
+        name: eco_temp
+      - id: 132
+        type: boolean
+        name: hot_cool
+      - id: 133
+        type: string
+        name: swing_action
+      - id: 134
+        type: json
+        name: statistics
   - entity: sensor
     class: temperature
     dps:
@@ -228,8 +215,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0008"
+        mask: "0008"
   - entity: switch
     name: Beep
     category: config
@@ -237,8 +223,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0010"
+        mask: "0010"
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -250,6 +235,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: pm25
     category: diagnostic

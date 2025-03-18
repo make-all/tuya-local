@@ -212,12 +212,9 @@ class TestInkbirdITC308Thermostat(
         self.dps[STATUS_DPS] = "3"
         self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
-    def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 12
-
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "error": 12,
-            },
+            self.multiBSensor.get("binary_sensor_problem").extra_state_attributes,
+            {"fault_code": 2},
         )

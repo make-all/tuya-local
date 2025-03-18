@@ -1,21 +1,20 @@
 name: 8 in 1 air quality
 products:
   - id: yrr3eiyiacm31ski
-    name: PV28-CW
-primary_entity:
-  entity: sensor
-  class: carbon_dioxide
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: ppm
-      class: measurement
-    - id: 103
-      name: current_humidity
-      type: integer
-      hidden: true
-secondary_entities:
+    model: PV28-CW
+entities:
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+      - id: 103
+        name: current_humidity
+        type: integer
+        hidden: true
   - entity: binary_sensor
     name: CO2 levels
     class: safety
@@ -215,7 +214,7 @@ secondary_entities:
         unit: µg/m³
         class: measurement
   # - entity: sensor
-  #   name: Air Quality
+  #   translation_key: air_quality
   #   class: enum
   #   dps:
   #     - id: 104
@@ -223,16 +222,16 @@ secondary_entities:
   #       name: sensor
   #       optional: true
   #       mapping:
-  #         - dps_val: "great"
-  #           value: "Great"
-  #         - dps_val: "mild"
-  #           value: "Mild"
-  #         - dps_val: "good"
-  #           value: "Good"
-  #         - dps_val: "medium"
-  #           value: "Medium"
-  #         - dps_val: "severe"
-  #           value: "Severe"
+  #         - dps_val: great
+  #           value: excellent
+  #         - dps_val: mild
+  #           value: moderate
+  #         - dps_val: good
+  #           value: good
+  #         - dps_val: medium
+  #           value: poor
+  #         - dps_val: severe
+  #           value: severe
   - entity: number
     name: PM2.5 alarm threshold
     category: config

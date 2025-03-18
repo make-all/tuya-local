@@ -1,0 +1,220 @@
+name: Cat litter box
+products:
+  - id: bdfimkssp9ews36b
+    manufacturer: PetSnowy
+    model: Snow+
+entities:
+  - entity: switch
+    name: Auto clean
+    category: config
+    icon: "mdi:flower"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Clean wait time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 2
+          max: 60
+        mapping:
+          - step: 2
+  - entity: sensor
+    name: Cat weight
+    category: diagnostic
+    class: weight
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: g
+        class: measurement
+  - entity: button
+    name: Manual clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        optional: true
+        name: sleep_time
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: button
+    name: Deodorization
+    icon: "mdi:tailwind"
+    dps:
+      - id: 17
+        type: boolean
+        name: button
+  - entity: event
+    name: Notification
+    category: diagnostic
+    icon: "mdi:eye-circle-outline"
+    dps:
+      - id: 21
+        type: bitfield
+        name: event
+        mapping:
+          - dps_val: 0
+            value: null
+          - value: notify
+      - id: 21
+        name: message
+        type: bitfield
+        mapping:
+          - dps_val: 1
+            value: Manual cleaning completed
+          - dps_val: 2
+            value: Automatic cleaning completed
+          - dps_val: 4
+            value: Timed cleaning completed
+          - dps_val: 8
+            value: Manual cleaning canceled
+          - dps_val: 16
+            value: Manual deodorization completed
+          - dps_val: 32
+            value: Automatic deodorization completed
+          - dps_val: 64
+            value: Timed deodorization completed
+          - dps_val: 128
+            value: Emptying cat litter completed
+          - dps_val: 256
+            value: Cat litter weight reset
+          - dps_val: 512
+            value: Self-check normal
+          - dps_val: 1024
+            value: Button locked
+          - dps_val: 2048
+            value: Button unlocked
+          - dps_val: 4096
+            value: Indicator light on
+          - dps_val: 8192
+            value: Indicator light off
+          - dps_val: 16384
+            value: Pause cleaning
+          - dps_val: 32768
+            value: Sleep mode on
+          - dps_val: 65536
+            value: Sleep mode off
+          - dps_val: 131072
+            value: Cancel emptying cat litter
+          - dps_val: 262144
+            value: Change cat litter
+          - value: Unknown
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Top cover fault
+          - dps_val: 2
+            value: Drawer fault
+          - dps_val: 4
+            value: Drawer full
+          - dps_val: 8
+            value: Stuck cat
+          - dps_val: 16
+            value: Checking fault
+          - dps_val: 32
+            value: Stay long
+          - dps_val: 64
+            value: Trouble removal
+          - value: Unknown
+  - entity: sensor
+    name: Status
+    category: diagnostic
+    dps:
+      - id: 24
+        name: sensor
+        type: string
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: day
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: switch
+    name: Auto deodorize
+    icon: "mdi:scent"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 108
+        type: string
+        optional: true
+        name: schedule
+  - entity: button
+    name: Change cat litter
+    icon: "mdi:delete-empty"
+    dps:
+      - id: 109
+        type: boolean
+        name: button
+  - entity: button
+    name: Calibrate ball
+    icon: "mdi:scale-balance"
+    dps:
+      - id: 112
+        type: boolean
+        name: button

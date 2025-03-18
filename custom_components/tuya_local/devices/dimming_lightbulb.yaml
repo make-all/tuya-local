@@ -1,26 +1,33 @@
 name: Dimming lightbulb
 products:
   - id: uoqzzanrvopvxddl
-    name: Deta Grid Connect Smart 18W 1900lm Daylight T8 Tube DET018HA
+    manufacturer: Deta
+    model: Grid Connect Smart 18W 1900lm
+    name: Daylight T8 tube
+    model_id: DET018HA
   - id: vjapigi170njdq09
-    name: Arlec Smart 4W 380lm Candle Dimmable Bulb GLD060HA
+    manufacturer: Arlec
+    model: Smart 4W 380lm
+    name: Candle dimmable bulb
+    model_id: GLD060HA
   - id: aok3caeleulg1neh
-    name: S10 wireless dimmer
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    model: S10
+    name: Wireless dimmer
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

@@ -1,0 +1,312 @@
+name: Multifunction heat pump
+# products:
+#   - id: UNKNOWN
+#     model: HY V1.2
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: water_off
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Hot
+                value: "off"
+                available: water_on
+              - dps_val: Heating
+                value: heat
+                available: water_off
+              - dps_val: Hot_Heating
+                value: heat
+                available: water_on
+              - dps_val: Cooling
+                value: cool
+                available: water_off
+              - dps_val: Hot_Cooling
+                value: cool
+                available: water_on
+      - id: 2
+        type: string
+        name: mode
+      - id: 2
+        type: string
+        name: water_on
+        hidden: true
+        mapping:
+          - dps_val: Cooling
+            value: false
+          - dps_val: Heating
+            value: false
+          - value: true
+      - id: 2
+        type: string
+        name: water_off
+        hidden: true
+        mapping:
+          - dps_val: Cooling
+            value: true
+          - dps_val: Heating
+            value: true
+          - value: false
+      - id: 21
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 117
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 75
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: ["Cooling", "Hot_Cooling"]
+                value_redirect: cool_temperature
+                range:
+                  min: 7
+                  max: 25
+      - id: 118
+        type: integer
+        name: cool_temperature
+        range:
+          min: 7
+          max: 25
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Hot
+                value: hot_water
+              - dps_val: Heating
+                value: air_heating
+              - dps_val: Cooling
+                value: air_cooling
+              - dps_val: Hot_Heating
+                value: hot_water_and_heating
+              - dps_val: Hot_Cooling
+                value: hot_water_and_cooling
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 119
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 70
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Night mode
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_2
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 35
+        type: integer
+        name: fault_7
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 35
+        type: integer
+        name: fault_code_7
+      - id: 109
+        type: bitfield
+        name: fault_2
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_3
+          - value: true
+      - id: 109
+        type: bitfield
+        name: fault_code_2
+      - id: 120
+        type: bitfield
+        name: fault_3
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_4
+          - value: true
+      - id: 120
+        type: bitfield
+        name: fault_code_3
+      - id: 121
+        type: bitfield
+        name: fault_4
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_5
+          - value: true
+      - id: 121
+        type: bitfield
+        name: fault_code_4
+      - id: 122
+        type: bitfield
+        name: fault_5
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_6
+          - value: true
+      - id: 122
+        type: bitfield
+        name: fault_code_5
+      - id: 123
+        type: bitfield
+        name: fault_6
+        hidden: true
+        mapping:
+          - dps_val: 0
+            value_redirect: fault_7
+          - value: true
+      - id: 123
+        type: bitfield
+        name: fault_code_6
+  - entity: number
+    name: Night start
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Night end
+    category: config
+    icon: "mdi:weather-sunset-up"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: sensor
+    name: Compressor operating frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Boiler temperature
+    category: config
+    icon: "mdi:coolant-temperature"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 7
+          max: 75

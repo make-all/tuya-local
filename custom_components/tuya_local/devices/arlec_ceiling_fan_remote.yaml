@@ -1,20 +1,26 @@
 name: Ceiling fan remote
+legacy_type: sulion_ceiling_fan_remote
 products:
+  - id: 0000008sff
+    manufacturer: Sulion
+    model: Cadillac
+    name: Fan controller
   - id: b8bofb3ruee9zwxc
-    name: Arlec AC Fan Controller CFR225HA
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 3
-secondary_entities:
+    manufacturer: Arlec
+    model: CFR225HA
+    name: AC fan controller
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
   - entity: light
     dps:
       - id: 15

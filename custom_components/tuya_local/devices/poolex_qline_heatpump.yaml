@@ -1,61 +1,46 @@
 name: Poolex Q-Line heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: "mdi:hvac-off"
-          icon_priority: 1
-        - dps_val: true
-          constraint: heating_mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: heating
-              value: heat
-            - dps_val: mute
-              value: heat_cool
-    - id: 2
-      name: heating_mode
-      hidden: true
-      type: string
-      icon_priority: 3
-      mapping:
-        - dps_val: heating
-          icon: "mdi:hot-tub"
-        - dps_val: cold
-          icon: "mdi:snowflake"
-        - dps_val: mute
-          icon: "mdi:hot-tub"
-    - id: 4
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 8
-        max: 40
-    - id: 15
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: "OK"
-        - dps_val: 1
-          value: "Water flow protection"
-          icon: "mdi:water-pump-off"
-          icon_priority: 2
-        - dps_val: 2
-          value: "Anti-freeze protection"
-          icon: "mdi:snowflake-alert"
-          icon_priority: 2
-    - id: 16
-      name: current_temperature
-      type: integer
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: "mdi:hvac-off"
+            icon_priority: 1
+          - dps_val: true
+            constraint: heating_mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: heating
+                value: heat
+              - dps_val: mute
+                value: heat_cool
+      - id: 2
+        name: heating_mode
+        hidden: true
+        type: string
+        icon_priority: 3
+        mapping:
+          - dps_val: heating
+            icon: "mdi:hot-tub"
+          - dps_val: cold
+            icon: "mdi:snowflake"
+          - dps_val: mute
+            icon: "mdi:hot-tub"
+      - id: 4
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 8
+          max: 40
+      - id: 16
+        name: current_temperature
+        type: integer
   - entity: binary_sensor
     name: Water flow
     class: problem
@@ -79,3 +64,21 @@ secondary_entities:
           - dps_val: 2
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 2
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code

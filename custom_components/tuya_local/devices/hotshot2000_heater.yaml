@@ -1,64 +1,64 @@
-name: HOT SHOT 2000 WIFI
+name: Heater
 products:
   - id: lgn0xaegjbodrjax
-    name: EUROM Hot-Shot 2000 WiFi
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: level1
-              value: fan_only
-            - dps_val: level2
-              value: heat
-            - dps_val: level3
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 5
-        max: 37
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 5
-      name: work_mode
-      type: string
-      hidden: true
-    - id: 6
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          constraint: work_mode
-          conditions:
-            - dps_val: "level1"
-              value: none
-              hidden: true
-            - dps_val: "level2"
-              value: comfort
-            - dps_val: "level3"
-              value: boost
-        - dps_val: true
-          value: eco
-    - id: 8
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: EUROM
+    model: Hot-Shot 2000 WiFi
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: level1
+                value: fan_only
+              - dps_val: level2
+                value: heat
+              - dps_val: level3
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 37
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        name: work_mode
+        type: string
+        hidden: true
+      - id: 6
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            constraint: work_mode
+            conditions:
+              - dps_val: "level1"
+                value: none
+                hidden: true
+              - dps_val: "level2"
+                value: comfort
+              - dps_val: "level3"
+                value: boost
+          - dps_val: true
+            value: eco
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: switch
     name: Mode indicator
     category: config

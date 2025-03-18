@@ -1,0 +1,109 @@
+name: Pet feeder
+products:
+  - id: rljmhle02id4m40q
+    manufacturer: Petoneer
+    model: Nutri
+    model_id: PF004
+entities:
+  # omitted:
+  # 1 - feeding schedule, extremely bespoke format
+  # 104 - something to do with camera connection, not exposed on my unit
+  # 106 - something to do with Alexa integration, same
+  - entity: button
+    name: Quick feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    category: config
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 12
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+      - id: 14
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 1
+            value: OK
+          - dps_val: 2
+            value: "Running out of food"
+          - dps_val: 4
+            value: "Feeder blocked"
+          - dps_val: 8
+            value: "Out of food"
+  - entity: sensor
+    name: Last amount
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        unit: portions
+  - entity: number
+    name: Number of portions to dispense
+    category: config
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 12
+  - entity: switch
+    name: Manual feed button
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Beep
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

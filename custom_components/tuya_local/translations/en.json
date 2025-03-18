@@ -37,11 +37,11 @@
                 "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP address or hostname",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (or the hub's Device ID for devices connected via gateway)",
                     "local_key": "Local key",
                     "protocol_version": "Protocol version (try auto if not known)",
                     "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device node_id or uuid (for devices connected via gateway)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "IP address or hostname",
                     "local_key": "Local key",
                     "protocol_version": "Protocol version (try auto if not known)",
-                    "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Poll only (try this if your device does not work fully)"
                 }
             }
         },
@@ -101,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direction",
+                "state": {
+                    "off": "In",
+                    "on": "Out"
+                }
+            },
             "defrost": {
                 "name": "Defrost",
                 "state": {
@@ -121,6 +127,37 @@
                     "off": "OK",
                     "on": "Full"
                 }
+            },
+            "wake": {
+                "name": "Wake",
+                "state": {
+                    "off": "Sleeping",
+                    "on": "Awake"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
+                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
+                            "e3": "E3: Chamber low temperature protection (below 35°C)",
+                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
+                            "e5": "E5: Sensor connection error (Open circuit)",
+                            "e6": "E6: Sensor malfunction (Short circuit)",
+                            "e7": "E7: Display board communication error",
+                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Factory reset"
+            },
+            "filter_reset": {
+                "name": "Filter reset"
             }
         },
         "climate": {
@@ -149,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Thermostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -199,7 +237,10 @@
                             "smart_cool": "Smart cool",
                             "quick_cool": "Quick cool",
                             "quiet_cool": "Quiet cool",
-                            "auto": "Auto"
+                            "auto": "Auto",
+                            "smart": "Smart",
+                            "quick": "Quick",
+                            "quiet": "Quiet"
                         }
                     }
                 }
@@ -212,6 +253,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Healthy Steam",
+                            "fresh_steam": "Fresh Steam",
+                            "high_temp_steam": "High Temp Steam",
+                            "stew": "Stew",
+                            "bake_up_and_down": "Bake up and down",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Bottom Hot Air",
+                            "on_strong_roast": "On Strong Roast",
+                            "3d_hot_air": "3D Hot Air",
+                            "air_fry": "Air Fry",
+                            "steam_frying": "Steam Frying",
+                            "one_click_bread": "One-click Bread",
+                            "quick_heat": "Quick Heat",
+                            "keep_warm": "Keep Warm",
+                            "unfreeze": "Unfreeze",
+                            "fermentation": "Fermentation",
+                            "descale": "Descale",
+                            "local_recipes": "Local Recipes",
+                            "drying": "Drying",
+                            "custom": "Custom",
+                            "low_steaming": "Low Steaming",
+                            "medium_steaming": "Medium Steaming",
+                            "high_steaming": "High Steaming"
                         }
                     }
                 }
@@ -230,6 +302,21 @@
             }
         },
         "fan": {
+            "aroma_diffuser": {
+                "name": "Aroma diffuser",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Low",
+                            "medium": "Medium",
+                            "high": "High",
+                            "continuous": "Continuous",
+                            "intermittent": "Intermittent",
+                            "timer": "Timer"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
                 "state_attributes": {
                     "preset_mode": {
@@ -241,6 +328,9 @@
                             "sleep": "Sleep",
                             "smart": "Smart",
                             "strong": "Strong",
+                            "high": "High",
+                            "medium": "Medium",
+                            "low": "Low",
                             "displayoff": "Display off",
                             "off": "Off"
                         }
@@ -248,6 +338,7 @@
                 }
             },
             "ventilation": {
+                "name": "Ventilation",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -256,7 +347,9 @@
                             "sleep": "Sleep",
                             "auto": "Auto",
                             "eco": "Eco",
-                            "anti-condensation": "Anti-condensation"
+                            "anti-condensation": "Anti-condensation",
+                            "extractor": "Extractor",
+                            "heat_recovery": "Heat recovery"
                         }
                     }
                 }
@@ -296,11 +389,151 @@
         "number": {
             "timer": {
                 "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
             }
         },
         "select": {
+            "currency": {
+                "name": "Currency",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "initial_state": {
+                "name": "Initial state",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "memory": "Memory"
+                }
+            },
+            "language": {
+                "name": "Language",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Mopping",
+                "state": {
+                    "off": "Off",
+                    "auto": "Auto",
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High"
+                }
+            },
+            "recipe": {
+                "name": "Recipe",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Fries",
+                    "chicken": "Chicken",
+                    "shrimp": "Shrimp",
+                    "fish": "Fish",
+                    "chicken_drumsticks": "Chicken Drumsticks",
+                    "vegetables": "Vegetables",
+                    "desserts": "Desserts",
+                    "none": "None",
+                    "chicken_wings": "Chicken Wings",
+                    "steak": "Steak",
+                    "onion_rings": "Onion Rings",
+                    "bacon": "Bacon",
+                    "cake": "Cake",
+                    "bread": "Bread",
+                    "toast": "Toast",
+                    "sausage": "Sausage",
+                    "dry_fruit": "Dry Fruit",
+                    "custom": "Custom",
+                    "cloud_recipe": "Cloud Recipe",
+                    "default": "Default",
+                    "keep_warm": "Keep Warm",
+                    "preheat": "Preheat"
+                }
+            },
+            "scene": {
+                "name": "Scene",
+                "state": {
+                    "relax": "Relax",
+                    "movie": "Movie",
+                    "party": "Party",
+                    "romantic": "Romantic",
+                    "night": "Night",
+                    "morning": "Morning",
+                    "working": "Working",
+                    "leisure": "Leisure",
+                    "vacation": "Vacation",
+                    "reading": "Reading",
+                    "twinkle": "Twinkle",
+                    "gaming": "Gaming",
+                    "none": "None"
+                }
+            },
             "timer": {
-                "name": "Timer"
+                "name": "Timer",
+                "state": {
+                    "cancel": "Cancel",
+                    "continuous": "Continuous",
+                    "5m": "5 minutes",
+                    "10m": "10 minutes",
+                    "20m": "20 minutes",
+                    "30m": "30 minutes",
+                    "40m": "40 minutes",
+                    "1h": "1 hour",
+                    "1h30m": "1 hour 30 minutes",
+                    "2h": "2 hours",
+                    "2h30m": "2 hours 30 minutes",
+                    "3h": "3 hours",
+                    "3h30m": "3 hours 30 minutes",
+                    "4h": "4 hours",
+                    "4h30m": "4 hours 30 minutes",
+                    "5h": "5 hours",
+                    "5h30m": "5 hours 30 minutes",
+                    "6h": "6 hours",
+                    "6h30m": "6 hours 30 minutes",
+                    "7h": "7 hours",
+                    "7h30m": "7 hours 30 minutes",
+                    "8h": "8 hours",
+                    "8h30m": "8 hours 30 minutes",
+                    "9h": "9 hours",
+                    "9h30m": "9 hours 30 minutes",
+                    "10h": "10 hours",
+                    "11h": "11 hours",
+                    "12h": "12 hours",
+                    "13h": "13 hours",
+                    "14h": "14 hours",
+                    "15h": "15 hours",
+                    "16h": "16 hours",
+                    "17h": "17 hours",
+                    "18h": "18 hours",
+                    "19h": "19 hours",
+                    "20h": "20 hours",
+                    "21h": "21 hours",
+                    "22h": "22 hours",
+                    "23h": "23 hours",
+                    "24h": "24 hours",
+                    "36h": "36 hours",
+                    "48h": "48 hours",
+                    "72h": "72 hours"
+                }
             },
             "temperature_unit": {
                 "name": "Temperature unit",
@@ -308,11 +541,172 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Built-in recipe",
+                "state": {
+                    "none": "None",
+                    "steamed_egg_with_okra": "Steamed Egg with Okra",
+                    "steamed_sea_bass": "Steamed Sea Bass",
+                    "steamed_prawns": "Steamed prawns",
+                    "handmade_steamed_bread": "Handmade Steamed Bread",
+                    "fan_steamed_baby_vegetables": "Fan Steamed Baby Vegetables",
+                    "braised_pork": "Braised Pork",
+                    "snow_fungus_and_bird_s_nest": "Snow fungus and bird's nest",
+                    "crab_pot": "Crab Pot",
+                    "potato_ribs": "Potato Ribs",
+                    "coconut_chicken_soup": "Coconut Chicken Soup",
+                    "snack_platter": "Snack Platter",
+                    "chicken_skewers": "Chicken Skewers",
+                    "roasted_pork_knuckle": "Roasted Pork Knuckle",
+                    "dried_lemon": "Dried Lemon",
+                    "pork_jerky": "Pork Jerky",
+                    "crispy_hairtail": "Crispy Hairtail",
+                    "spicy_grilled_fish": "Spicy Grilled Fish",
+                    "roasted_sweet_potatoes": "Roasted Sweet Potatoes",
+                    "roasted_chicken_wings": "Roasted Chicken Wings",
+                    "cumin_lamb_chops": "Cumin Lamb Chops",
+                    "honey_grilled_chicken": "Honey Grilled Chicken",
+                    "garlic_eggplant": "Garlic Eggplant",
+                    "portuguese_egg_tart": "Portuguese Egg Tart",
+                    "creme_brulee": "Creme Brulee",
+                    "cocoa_chips": "Cocoa Chips",
+                    "butter_cookies": "Butter Cookies",
+                    "chiffon_cake": "Chiffon Cake",
+                    "puff_pastry": "Puff pastry",
+                    "red_bean_bread": "Red Bean Bread",
+                    "milk_toast": "Milk Toast"
+                }
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "Air quality",
+                "state": {
+                    "excellent": "Excellent",
+                    "good": "Good",
+                    "moderate": "Moderate",
+                    "poor": "Poor",
+                    "severe": "Severe"
+                }
+            },
+            "status": {
+                "name": "Status",
+                "state": {
+                    "available": "Available",
+                    "plugged_in": "Plugged in",
+                    "fault_unplugged": "Fault (unplugged)",
+                    "charging": "Charging",
+                    "waiting": "Waiting",
+                    "charged": "Charged",
+                    "fault": "Fault",
+                    "paused": "Paused",
+                    "waiting_for_authorization": "Waiting for authorization",
+                    "standby": "Standby",
+                    "heating": "Heating",
+                    "cooling": "Cooling",
+                    "keeping_warm": "Keeping warm",
+                    "no_water": "No water",
+                    "boiling": "Boiling",
+                    "reserve_only": "Reserve only",
+                    "unknown": "Unknown",
+                    "idle": "Idle",
+                    "auto": "Auto",
+                    "manual": "Manual",
+                    "rain_delay": "Rain delay",
+                    "off": "Off",
+                    "cooking": "Cooking",
+                    "done": "Done",
+                    "door_open": "Door open",
+                    "setting": "Setting",
+                    "pre_heating": "Pre-heating",
+                    "scheduled": "Scheduled",
+                    "at_temperature": "At temperature",
+                    "done_stage_1": "Done stage 1",
+                    "done_stage_2": "Done stage 2",
+                    "done_stage_3": "Done stage 3",
+                    "done_stage_4": "Done stage 4",
+                    "done_stage_5": "Done stage 5",
+                    "done_stage_6": "Done stage 6",
+                    "done_stage_7": "Done stage 7",
+                    "done_stage_8": "Done stage 8",
+                    "done_stage_9": "Done stage 9",
+                    "done_stage_10": "Done stage 10",
+                    "no_food": "No food",
+                    "jammed": "Jammed",
+                    "blocked": "Blocked",
+                    "feeding": "Feeding",
+                    "feeding_complete": "Feeding complete",
+                    "caking": "Caking",
+                    "cleaning": "Cleaning",
+                    "sleep": "Sleep",
+                    "sterilizing": "Sterilizing",
+                    "deodorizing": "Deodorizing",
+                    "occupied": "Occupied",
+                    "normal": "Normal",
+                    "low": "Low",
+                    "high": "High",
+                    "unwashed": "Unwashed",
+                    "pre_washing": "Pre-washing",
+                    "washing": "Washing",
+                    "rinsing": "Rinsing",
+                    "drying": "Drying",
+                    "air_purging": "Air purging",
+                    "anti_freeze": "Anti-freeze",
+                    "close": "Close",
+                    "monitor": "Monitor",
+                    "working": "Working",
+                    "warning": "Warning",
+                    "starting": "Starting",
+                    "emptying": "Emptying",
+                    "resetting": "Resetting",
+                    "reverse": "Reverse"
+                }
+            },
             "time_remaining": {
                 "name": "Time remaining"
+            },
+            "cooking_status": {
+                "name": "Status",
+                "state": {
+                    "wait": "Waiting for Cooking",
+                    "reservation": "In Reservation",
+                    "cooking": "In Progress",
+                    "cancel": "Cooking Canceled",
+                    "done": "Cooking Completed",
+                    "pause": "Cooking Paused"
+                }
+            },
+            "water_level": {
+                "name": "Water Level",
+                "state": {
+                    "empty": "Empty",
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High",
+                    "full": "Full"
+                }
+            },
+            "energy_produced": {
+                "name": "Energy produced"
+            },
+            "energy_consumed": {
+                "name": "Energy consumed"
+            },
+            "energy_produced_x": {
+                "name": "Energy produced {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energy consumed {x}"
+            },
+            "current_x": {
+                "name": "Current {x}"
+            },
+            "voltage_x": {
+                "name": "Voltage {x}"
+            },
+            "power_x": {
+                "name": "Power {x}"
             }
         },
         "switch": {
@@ -328,8 +722,25 @@
             "keytone": {
                 "name": "Keytone"
             },
+            "outlet_x": {
+                "name": "Outlet {x}"
+            },
+            "sleep": {
+                "name": "Sleep"
+            },
+            "switch_x": {
+                "name": "Switch {x}"
+            },
             "uv_sterilization": {
                 "name": "UV sterilization"
+            },
+            "electrolytic_sterilization": {
+                "name": "Electrolytic sterilization"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Scene"
             }
         }
     }

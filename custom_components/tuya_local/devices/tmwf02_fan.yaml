@@ -1,22 +1,22 @@
 name: TMWF02 fan controller
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: fan_level
-    - id: 4
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 100
-secondary_entities:
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: fan_level
+      - id: 4
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 2

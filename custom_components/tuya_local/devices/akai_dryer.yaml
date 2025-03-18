@@ -1,34 +1,45 @@
 name: Dryer
 products:
   - id: do3cbzmmdqfdpqxw
-    name: Akai heat pump dryer
-primary_entity:
-  entity: sensor
-  class: enum
-  icon: "mdi:tumble-dryer"
-  dps:
-    - id: 107
-      name: sensor
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: "off"
-        - dps_val: "set"
-          value: "set"
-        - dps_val: "run"
-          value: "run"
-        - dps_val: "pause"
-          value: "pause"
-        - dps_val: "delay"
-          value: "delay"
-        - dps_val: "end"
-          value: "end"
-        - dps_val: "err"
-          value: "error"
-    - id: 7
-      name: fault_code
-      type: integer
-secondary_entities:
+    manufacturer: Akai
+    name: Heat pump dryer
+entities:
+  - entity: sensor
+    class: enum
+    icon: "mdi:tumble-dryer"
+    dps:
+      - id: 107
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "set"
+            value: "set"
+          - dps_val: "run"
+            value: "run"
+          - dps_val: "pause"
+            value: "pause"
+          - dps_val: "delay"
+            value: "delay"
+          - dps_val: "end"
+            value: "end"
+          - dps_val: "err"
+            value: "error"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code
   - entity: button
     name: Start
     icon: "mdi:play"
@@ -102,6 +113,53 @@ secondary_entities:
             value: "Medium"
           - dps_val: 3
             value: "High"
+  - entity: select
+    name: Drying time
+    dps:
+      - id: 3
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "0:20"
+          - dps_val: 1
+            value: "0:30"
+          - dps_val: 2
+            value: "0:40"
+          - dps_val: 3
+            value: "0:50"
+          - dps_val: 4
+            value: "1:00"
+          - dps_val: 5
+            value: "1:10"
+          - dps_val: 6
+            value: "1:20"
+          - dps_val: 7
+            value: "1:30"
+          - dps_val: 8
+            value: "1:40"
+          - dps_val: 9
+            value: "1:50"
+          - dps_val: 10
+            value: "2:00"
+          - dps_val: 11
+            value: "2:10"
+          - dps_val: 12
+            value: "2:20"
+          - dps_val: 13
+            value: "2:30"
+          - dps_val: 14
+            value: "2:40"
+          - dps_val: 15
+            value: "2:50"
+          - dps_val: 16
+            value: "3:00"
+          - dps_val: 17
+            value: "3:10"
+          - dps_val: 18
+            value: "3:20"
+          - dps_val: 19
+            value: "3:30"
   - entity: switch
     name: Anti crease
     icon: "mdi:iron"
@@ -115,14 +173,6 @@ secondary_entities:
       - id: 106
         name: lock
         type: boolean
-  - entity: sensor
-    name: Drying time
-    class: duration
-    dps:
-      - id: 3
-        name: sensor
-        type: integer
-        unit: min
   - entity: sensor
     name: Drying time remaining
     class: duration

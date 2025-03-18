@@ -1,87 +1,100 @@
 name: Thermostat
 products:
   - id: qgmh0aak7xcmrlf3
-    name: Plikc Neve X RFW
+    manufacturer: Plikc
+    model: Neve X RFW
   - id: 5kwgvcaqzzkzrftu
-    name: Plikc Neve X W
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat_cool
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: program
-        - dps_val: manual
-          value: manual
-        - dps_val: temporary
-          value: temp_override
-          hidden: true
-        - dps_val: holiday
-          value: away
-          constraint: holiday_duration
-          conditions:
-            - dps_val: 0
-              value: "Set holiday length!"
-              hidden: true
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: heat
-          value: heating
-        - dps_val: cold
-          value: cooling
-        - dps_val: "off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-          constraint: preset_mode
-          conditions:
-            - dps_val: holiday
-              value_redirect: holiday_temp_set
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 32
-      type: integer
-      name: holiday_temp_set
-      optional: true
-      hidden: true
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-    - id: 33
-      type: integer
-      name: holiday_duration
-      hidden: true
-secondary_entities:
+    manufacturer: Plikc
+    model: Neve X W
+  - id: 9myqvomgygt9zgcs
+    manufacturer: Plikc
+    model: Neve Pro W
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+          - dps_val: temporary
+            value: temp_override
+            hidden: true
+          - dps_val: holiday
+            value: away
+            constraint: holiday_duration
+            conditions:
+              - dps_val: 0
+                value: "Set holiday length!"
+                hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heat
+            value: heating
+          - dps_val: cold
+            value: cooling
+          - dps_val: cool
+            value: cooling
+          - dps_val: "off"
+            value: idle
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            constraint: preset_mode
+            conditions:
+              - dps_val: holiday
+                value_redirect: holiday_temp_set
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 32
+        type: integer
+        name: holiday_temp_set
+        optional: true
+        hidden: true
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 33
+        type: integer
+        name: holiday_duration
+        hidden: true
   - entity: number
     name: Temperature calibration
     category: config
@@ -109,16 +122,15 @@ secondary_entities:
         range:
           min: 0
           max: 99
+          # Pro model goes to 3000
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 39
         type: boolean
         name: button
         optional: true
-        persist: false
   - entity: lock
     translation_key: child_lock
     category: config
@@ -137,6 +149,7 @@ secondary_entities:
     dps:
       - id: 42
         type: integer
+        optional: true
         name: sensor
         unit: min
   - entity: binary_sensor
@@ -150,6 +163,282 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: number
+    name: Temporary time
+    category: config
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 2880
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: number
+    name: Anti-frost temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 150
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:arrow-collapse-vertical"
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: 2
+          max: 20
+        mapping:
+          - scale: 10
+  # Pro only entities
+  - entity: number
+    name: Maximum temperature
+    category: config
+    hidden: unavailable
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: Minimum temperature
+    category: config
+    hidden: unavailable
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Time period
+    hidden: unavailable
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 37
+        type: string
+        optional: true
+        name: week_program
+      - id: 107
+        type: string
+        optional: true
+        name: current_program
+  - entity: sensor
+    class: power  # marked as electricity, but range of 0-6000 suggests W
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: sensor
+        unit: W
+        class: measurement
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: System mode
+    icon: "mdi:help-box-multiple"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: hc_heat
+            value: HC heat
+          - dps_val: hc_cool
+            value: HC cool
+          - dps_val: heat
+            value: Heat
+          - dps_val: cool
+            value: Cool
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: switch
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: PIN protect
+    hidden: unavailable
+    icon: "mdi:dialpad"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        optional: true
+        name: switch
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: "Off mode"
+    icon: "mdi:power-standby"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: true
+            value: "Power off"
+          - dps_val: false
+            value: "Standby"
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: PIN code
+    category: config
+    hidden: unavailable
+    icon: "mdi:dialpad"
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 9999
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: lock
+    name: Partial key lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: lock
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
           - dps_val: null
             value: false
           - value: true

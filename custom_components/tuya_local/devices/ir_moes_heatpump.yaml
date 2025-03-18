@@ -1,75 +1,76 @@
 name: IR heatpump
 products:
   - id: hwktwkq
-    name: Moes SD16Pro
+    manufacturer: Moes
+    model: SD16Pro
   - id: aqlyorlybbtn6ox7
-    name: Moes IR thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: warm
-              value: heat
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: air
-              value: fan_only
-            - dps_val: dehumidify
-              value: dry
-    - id: 2
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 3
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 16
-        max: 30
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 9
-      type: integer
-      name: max_temperature
-    - id: 10
-      type: integer
-      name: min_temperature
-    - id: 12
-      type: integer
-      name: current_humidity
-    - id: 15
-      type: string
-      name: scene
-    - id: 16
-      type: string
-      name: status
-secondary_entities:
+    manufacturer: Moes
+    name: IR thermostat
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: warm
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: air
+                value: fan_only
+              - dps_val: dehumidify
+                value: dry
+      - id: 2
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 3
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 30
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 9
+        type: integer
+        name: max_temperature
+      - id: 10
+        type: integer
+        name: min_temperature
+      - id: 12
+        type: integer
+        name: current_humidity
+      - id: 15
+        type: string
+        name: scene
+      - id: 16
+        type: string
+        name: status
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -84,9 +85,12 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 6
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 7

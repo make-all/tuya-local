@@ -1,0 +1,297 @@
+name: Presence sensor
+products:
+  - id: 19m3dfjwe46njety
+    manufacturer: Wenzhi
+    model: WZ35 24GHz
+    model_id: MTG236-WF-RL
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+      - id: 103
+        type: string
+        optional: true
+        name: cline
+  - entity: number
+    name: Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    name: Nearest range
+    category: config
+    class: distance
+    icon: "mdi:face-recognition"
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Furthest range
+    class: distance
+    category: config
+    icon: "mdi:walk"
+    dps:
+      - id: 4
+        type: integer
+        optional: true
+        name: value
+        unit: m
+        range:
+          min: 150
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: check_failure
+            value: true
+          - dps_val: comm_fault
+            value: true
+          - dps_val: radar_fault
+            value: true
+          - dps_val: others
+            value: true
+          - value: false
+      - id: 6
+        type: string
+        optional: true
+        # checking, check_success, check_failure, others, comm_fault,
+        # radar_fault
+        name: description
+      - id: 113
+        type: string
+        optional: true
+        # none, trigdis_err, dis_near, dis_far, relay_no,
+        # inhibit_err, polarity_err
+        name: param_result
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Detection delay
+    category: config
+    icon: "mdi:run"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 200
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Departure delay
+    category: config
+    icon: "mdi:exit-run"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 1500
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: lx
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Trigger sensitivity
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    name: Trigger distance
+    class: distance
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+  - entity: select
+    name: Relay mode
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 107
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: standard
+            value: Manual control
+          - dps_val: local
+            value: Presence control
+          - dps_val: force
+            value: Force
+          - dps_val: none
+            value: Sensor only
+          - dps_val: null
+            value: Sensor only
+            hidden: true
+  - entity: switch
+    name: Relay
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: number
+    name: Light threshold
+    class: illumination
+    category: config
+    icon: "mdi:weather-sunset"
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: lx
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+            step: 25
+  - entity: select
+    name: Relay polarity
+    icon: "mdi:swap-horizontal"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: close
+            value: Normally closed
+          - dps_val: open
+            value: Normally open
+  - entity: number
+    name: Re-entry delay
+    category: config
+    class: duration
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 600
+        mapping:
+          - scale: 10
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 114
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: reset_setting
+            value: true
+  - entity: select
+    name: Sensor mode
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 115
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "no"
+            value: Turn on
+          - dps_val: "off"
+            value: Turn off
+          - dps_val: occupy
+            value: Occupied
+          - dps_val: unoccupy
+            value: Unoccupied

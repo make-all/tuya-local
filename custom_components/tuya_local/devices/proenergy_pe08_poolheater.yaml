@@ -1,46 +1,46 @@
 name: Pool heater
 products:
   - id: kirzfzcxypdjo2ay
-    name: Pro-Energy PE08
-primary_entity:
-  entity: climate
-  translation_key: pool_heatpump
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-          icon: "mdi:hot-tub"
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: eco_heat
-          value: eco
-        - dps_val: heating
-          value: boost
-        - dps_val: cold
-          value: Cool
-        - dps_val: auto
-          value: auto
-    - id: 4
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 40
-      unit: C
-    - id: 26
-      type: integer
-      name: current_temperature
-    - id: 104
-      type: string
-      name: unknown_104
-secondary_entities:
+    manufacturer: Pro-Energy
+    model: PE08
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+            icon: "mdi:hot-tub"
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: eco_heat
+            value: eco
+          - dps_val: heating
+            value: boost
+          - dps_val: cold
+            value: Cool
+          - dps_val: auto
+            value: auto
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+        unit: C
+      - id: 26
+        type: integer
+        name: current_temperature
+      - id: 104
+        type: string
+        name: unknown_104
   - entity: lock
     translation_key: child_lock
     category: config

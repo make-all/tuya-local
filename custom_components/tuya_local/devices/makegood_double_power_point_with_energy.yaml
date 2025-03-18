@@ -1,15 +1,18 @@
 name: Double power point
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Outlet 1
-  dps:
-    - id: 12
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
   - entity: switch
-    name: Outlet 2
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 13
@@ -51,8 +54,10 @@ secondary_entities:
           - scale: 10
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 2
         name: value
@@ -66,8 +71,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 14
         name: value

@@ -1,61 +1,64 @@
-name: Kogan SmarterHome portable air conditioner
+name: Air conditioner
 products:
   - id: mhod7aykax0wbivn
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: COOL
-              value: cool
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: DRY
-              value: dry
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              range:
-                min: 60
-                max: 86
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: high
-    - id: 19
-      type: string
-      name: temperature_unit
-    - id: 105
-      type: integer
-      name: countdown
-    - id: 106
-      type: integer
-      name: unknown_106
-    - id: 107
-      type: boolean
-      name: unknown_107
+    manufacturer: Kogan
+    model: SmarterHome portable air conditioner
+    model_id: KAWFPAC09YA
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: DRY
+                value: dry
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: 60
+                  max: 86
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: high
+      - id: 19
+        type: string
+        name: temperature_unit
+      - id: 105
+        type: integer
+        name: countdown
+      - id: 106
+        type: integer
+        name: unknown_106
+      - id: 107
+        type: boolean
+        name: unknown_107

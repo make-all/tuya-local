@@ -1,0 +1,102 @@
+name: Ventilation fan
+products:
+  - id: v5yzxit33hd1btwx
+    manufacturer: Scheeair
+    model: Nova 100
+entities:
+  - entity: switch
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 2
+      - id: 103
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: stop
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+  - entity: humidifier
+    name: Humidity control
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+      - id: 101
+        type: integer
+        name: current_humidity
+      - id: 104
+        type: integer
+        name: humidity
+        range:
+          min: 40
+          max: 100
+        mapping:
+          - step: 10
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Fan speed
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: stop
+            value: stopped
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: pir
+            value: true
+          - value: false
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: number
+    name: "Stop delay"
+    class: duration
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60

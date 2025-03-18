@@ -7,6 +7,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
@@ -48,6 +49,7 @@ class TestEbergQuboQ40HDHeatpump(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])

@@ -1,42 +1,47 @@
-name: Galaxy Light
+name: Star projector
 products:
   - id: okyhahmixunjmbca
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 52
-      type: boolean
-      name: color_mode
-      mapping:
-        - dps_val: false
-          value: white
-        - dps_val: true
-          value: hs
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 10
-            max: 1000
-secondary_entities:
+    model: Galaxy
+  - id: jteg9ktrhbxtiicz
+    manufacturer: BlissLights
+    model: Sky Lite Evolve
+    model_id: SKY-EVOLVE-B-RCW8
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 52
+        type: boolean
+        name: color_mode
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 10
+              max: 1000
   - entity: number
     translation_key: timer
+    class: duration
     dps:
       - id: 26
         type: integer
@@ -48,6 +53,16 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+      - id: 51
+        name: effect
+        type: string
+        mapping:
+          - dps_val: scene
+            value: Scene
+          - dps_val: laser
+            value: Laser
+          - dps_val: colour
+            value: Color
   - entity: light
     translation_key: laser
     dps:
@@ -64,18 +79,15 @@ secondary_entities:
         name: effect
         type: string
         mapping:
-          - dps_val: manual
-            value: Manual
           - dps_val: scene
             value: Scene
+          - dps_val: manual
+            value: Manual
           - dps_val: music
             value: Music
-      - id: 58
-        name: star_scene
-        type: string
-        optional: true
   - entity: fan
     name: Laser movement
+    icon: "mdi:rotate-3d-variant"
     dps:
       - id: 60
         type: boolean
@@ -86,3 +98,20 @@ secondary_entities:
         range:
           min: 0
           max: 100
+  - entity: select
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        name: option
+        mapping:
+          - dps_val: "AAA="
+            value: Cosmos
+          - dps_val: "AAE="
+            value: Sky
+          - dps_val: "AAI="
+            value: Space
+          - dps_val: "AAM="
+            value: Ocean

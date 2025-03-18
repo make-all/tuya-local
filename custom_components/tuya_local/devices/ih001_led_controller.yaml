@@ -1,60 +1,66 @@
 name: LED controller
 products:
   - id: ajqxccmgfnhvtew4
-    name: iH001
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 27
-      type: hex
-      name: music_data
-      optional: true
-    - id: 28
-      type: hex
-      name: control_data
-      optional: true
-    - id: 34
-      type: boolean
-      name: unknown_34
-    - id: 42
-      type: hex
-      name: unknown_42
-secondary_entities:
+    model: iH001
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        type: hex
+        name: music_data
+        optional: true
+      - id: 28
+        type: hex
+        name: control_data
+        optional: true
+      - id: 34
+        type: boolean
+        name: unknown_34
+      - id: 42
+        type: hex
+        name: unknown_42
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
   - entity: select
-    name: Scene
-    icon: "mdi:pallete"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -63,16 +69,16 @@ secondary_entities:
         mapping:
           - dps_val: "000c0d0000000000000000c80000"
             # color: brown, static
-            value: Night
+            value: night
           - dps_val: "010e0d0000840000000003e801f4"
             # color: white, static
-            value: Read
+            value: reading
           - dps_val: "020e0d0000e80383000003e803e8"
             # color: lt cyan, static
-            value: Working
+            value: working
           - dps_val: "030e0d00001403e8000001f401f4"
             # color: grey, static
-            value: Leisure
+            value: leisure
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             # color: G+DkG, Breath, Mid speed
             value: Soft
@@ -92,6 +98,7 @@ secondary_entities:
             value: Gorgeous
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26
