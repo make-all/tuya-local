@@ -1,0 +1,102 @@
+name: Weather Forecast
+products:
+  - id: bf9fc4b6e5c2c91014elwe
+    manufacturer: MANTA
+    model: Windy Smart MT0200B
+entities:
+  - entity: sensor
+    name: Builtin temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Builtin humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 1 Temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 1 humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 2 temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 2 humidity
+    class: humidity
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 3 temperature
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 3 humidity
+    class: humidity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Weather Forecast
+    class: text
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        unit: ""
