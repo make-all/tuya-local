@@ -95,6 +95,18 @@ entities:
         type: string
         optional: true
         name: lock_record
+      # [Lock Operation] is used to trigger the device to perform the lock
+      # operation, which can be used for automatic lock and manual lock
+      # operation. To report the lock (close) record, you need to use dp=20
+      # lock record. You need to use 2 dp in combination to fully implement the
+      # lock operation and lock record reporting. In addition to these two dp,
+      # you also need to use dp47=lock status to report the lock status, so
+      # that the unlock/lock status displayed on the app is consistent with
+      # the local hardware.
+      - id: 46
+        type: boolean
+        name: lock
+        optional: true
       # [Device Status] is used to report the status of the device clutch
       # switch, that is, the switch status of the lock. This dp is enabled only
       # when the product hardware supports the detection of the lock status.
@@ -437,22 +449,6 @@ entities:
   #           value: Open
   #         - dps_val: closed
   #           value: Closed
-  # [Lock Operation] is used to trigger the device to perform the lock
-  # operation, which can be used for automatic lock and manual lock operation.
-  # To report the lock (close) record, you need to use dp=20 lock record. You
-  # need to use 2 dp in combination to fully implement the lock operation and
-  # lock record reporting. In addition to these two dp, you also need to use
-  # dp47=lock status to report the lock status, so that the unlock/lock status
-  # displayed on the app is consistent with the local hardware.
-  - entity: lock
-    name: Lock/Unlock
-    icon: "mdi:door-closed-lock"
-    category: config
-    dps:
-      - id: 46
-        type: boolean
-        name: lock
-        optional: true
   # [Approach Unlock] is used to set the delay time of automatic locking in the
   # approach unlock scenario. If it is not enabled, the original automatic
   # locking delay time will be retained.
