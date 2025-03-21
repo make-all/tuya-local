@@ -860,3 +860,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
 - [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat.
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
+- [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
