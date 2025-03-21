@@ -25,18 +25,17 @@ entities:
         name: temperature
         type: integer
         mapping:
-          - scale: 1
+          - scale: 10
             step: 10
         range:
           min: 160
           max: 900
-          # for F, 600 to 900
         unit: C
       - id: 3
         name: current_temperature
         type: integer
         mapping:
-          - scale: 1
+          - scale: 10
             step: 10
         range:
           min: -300
@@ -60,10 +59,6 @@ entities:
             value: high
           - dps_val: auto
             value: auto
-          - dps_val: mid_low
-            value: midlow
-          - dps_val: mid_high
-            value: midhigh
       - id: 8
         name: preset_mode
         type: boolean
@@ -72,30 +67,19 @@ entities:
             value: eco
           - dps_val: false
             value: comfort
-      - id: 19
-        type: string
-        name: temperature_unit
-      - id: 33
-        type: boolean
-        name: swing_horizontal_mode
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
       - id: 105
         type: boolean
-        name: swing_vertical_mode
+        name: swing_mode
         mapping:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: "on"
+            value: "vertical"
       - id: 108
         type: bitfield
         name: model
   - entity: switch
-    name: Emergency Heat
+    name: Emergency heat
     icon: "mdi:fire"
     dps:
       - id: 12
@@ -128,7 +112,7 @@ entities:
           - dps_val: F
             value: fahrenheit
   - entity: sensor
-    name: power_consumption
+    name: Power consumption
     category: diagnostic
     dps:
       - id: 28
@@ -143,7 +127,7 @@ entities:
         name: switch
         type: boolean
   - entity: switch
-    name: clean
+    name: Clean
     icon: "mdi:shimmer"
     category: config
     dps:
@@ -151,7 +135,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: anti-mould
+    name: Antimould
     icon: "mdi:water-off"
     category: config
     dps:
@@ -159,6 +143,7 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
+    name: Status
     class: problem
     category: diagnostic
     dps:
@@ -173,14 +158,14 @@ entities:
         type: bitfield
         name: fault_up
   - entity: switch
-    translation_key: health
+    name: Health
     category: config
     dps:
       - id: 106
         name: switch
         type: boolean
   - entity: number
-    name: Power Limit
+    name: Power limit
     icon: "mdi:meter-electric-outline"
     category: diagnostic
     dps:
@@ -197,9 +182,9 @@ entities:
             value: 100
             hidden: true
   - entity: switch
-    name: Limit Power
+    name: Limit power
     icon: "mdi:meter-electric-outline"
-    category: config
+    category: diagnostic
     dps:
       - id: 114
         type: boolean
