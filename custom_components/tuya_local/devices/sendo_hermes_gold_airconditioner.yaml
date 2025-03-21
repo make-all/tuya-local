@@ -1,0 +1,206 @@
+name: Sendo Hermes Gold
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        name: temperature
+        type: integer
+        mapping:
+          - scale: 1
+            step: 10
+        range:
+          min: 160
+          max: 900
+          # for F, 600 to 900
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 1
+            step: 10
+        range:
+          min: -300
+          max: 1760
+        unit: C
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: mute
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
+          - dps_val: mid_low
+            value: midlow
+          - dps_val: mid_high
+            value: midhigh
+      - id: 8
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 19
+        type: string
+        name: temperature_unit
+      - id: 33
+        type: boolean
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 105
+        type: boolean
+        name: swing_vertical_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 108
+        type: bitfield
+        name: model
+  - entity: switch
+    name: Emergency Heat
+    icon: "mdi:fire"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        name: lock
+        type: boolean
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: sensor
+    name: power_consumption
+    category: diagnostic
+    dps:
+      - id: 28
+        name: sensor
+        type: integer
+        unit: kWh
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+  - entity: switch
+    name: clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: anti-mould
+    icon: "mdi:water-off"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 107
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 107
+        type: bitfield
+        name: fault_up
+  - entity: switch
+    translation_key: health
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+  - entity: number
+    name: Power Limit
+    icon: "mdi:meter-electric-outline"
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 30
+          max: 100
+        mapping:
+          - dps_val: null
+            value: 100
+            hidden: true
+  - entity: switch
+    name: Limit Power
+    icon: "mdi:meter-electric-outline"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
