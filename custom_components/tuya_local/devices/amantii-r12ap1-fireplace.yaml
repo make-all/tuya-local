@@ -6,7 +6,6 @@ products:
     model_id: R1-2-AP1
 entities:
   - entity: switch
-    name: On/Off
     icon: "mdi:power"
     category: config
     dps:
@@ -24,8 +23,10 @@ entities:
             value: "off"
           - dps_val: H1
             value: heat
+            hidden: true
           - dps_val: H2
             value: heat
+            hidden: true
           - dps_val: Auto
             value: heat
       - id: 108
