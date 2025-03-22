@@ -406,67 +406,22 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
 
     @property
     def swing_mode(self):
-        """Return the combined swing mode based on both vertical and horizontal DPS."""
-        # If both DPS exist, combine their states:
-        if self._swing_mode_dps is not None and self._swing_horizontal_mode_dps is not None:
-            vertical = self._swing_mode_dps.get_value(self._device)
-            horizontal = self._swing_horizontal_mode_dps.get_value(self._device)
-            if vertical not in [False, "off"] and horizontal not in [False, "off"]:
-                return "both"
-            elif vertical not in [False, "off"]:
-                return "vertical"
-            elif horizontal not in [False, "off"]:
-                return "horizontal"
-            else:
-                return "off"
-        # Fallback if only one DPS is defined:
-        elif self._swing_mode_dps is not None:
-            return self._swing_mode_dps.get_value(self._device)
-        elif self._swing_horizontal_mode_dps is not None:
-            return self._swing_horizontal_mode_dps.get_value(self._device)
-        else:
+        """Return the current swing mode."""
+        if self._swing_mode_dps is None:
             raise NotImplementedError()
+        return self._swing_mode_dps.get_value(self._device)
 
     @property
     def swing_modes(self):
         """Return the list of swing modes that this device supports."""
-        # If both DPS exist, return a combined set.
-        if self._swing_mode_dps is not None and self._swing_horizontal_mode_dps is not None:
-            return ["off", "vertical", "horizontal", "both"]
-        elif self._swing_mode_dps is not None:
+        if self._swing_mode_dps:
             return self._swing_mode_dps.values(self._device)
-        elif self._swing_horizontal_mode_dps is not None:
-            return self._swing_horizontal_mode_dps.values(self._device)
-        else:
-            return []
 
     async def async_set_swing_mode(self, swing_mode):
-        """Set the combined swing mode."""
-        # If both DPS exist, set both accordingly:
-        if self._swing_mode_dps is not None and self._swing_horizontal_mode_dps is not None:
-            dps_map = {}
-            if swing_mode == "off":
-                dps_map[self._swing_mode_dps.id] = False
-                dps_map[self._swing_horizontal_mode_dps.id] = False
-            elif swing_mode == "vertical":
-                dps_map[self._swing_mode_dps.id] = True
-                dps_map[self._swing_horizontal_mode_dps.id] = False
-            elif swing_mode == "horizontal":
-                dps_map[self._swing_mode_dps.id] = False
-                dps_map[self._swing_horizontal_mode_dps.id] = True
-            elif swing_mode == "both":
-                dps_map[self._swing_mode_dps.id] = True
-                dps_map[self._swing_horizontal_mode_dps.id] = True
-            else:
-                raise ValueError(f"Unsupported swing mode: {swing_mode}")
-            await self._device.async_set_properties(dps_map)
-        # Otherwise, fall back to whichever DPS is available:
-        elif self._swing_mode_dps is not None:
-            await self._swing_mode_dps.async_set_value(self._device, swing_mode)
-        elif self._swing_horizontal_mode_dps is not None:
-            await self._swing_horizontal_mode_dps.async_set_value(self._device, swing_mode)
-        else:
+        """Set the preset mode."""
+        if self._swing_mode_dps is None:
             raise NotImplementedError()
+        await self._swing_mode_dps.async_set_value(self._device, swing_mode)
 
     @property
     def swing_horizontal_mode(self):
