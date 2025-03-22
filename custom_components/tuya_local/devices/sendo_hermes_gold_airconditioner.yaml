@@ -74,7 +74,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: "horizontal"
+            value: "on"
       - id: 105
         type: boolean
         name: swing_mode
@@ -82,7 +82,7 @@ entities:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: "vertical"
+          value: "on"
       - id: 108
         type: bitfield
         name: model
@@ -121,12 +121,14 @@ entities:
             value: fahrenheit
   - entity: sensor
     name: Power consumption
+    class: energy
     category: diagnostic
     dps:
       - id: 28
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
   - entity: switch
     translation_key: sleep
     category: config
