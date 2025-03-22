@@ -126,6 +126,7 @@
 - Windmill window air conditioner
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
+- Sendo Hermes Gold
 
 ### Pool heaters / heat pumps
 
@@ -396,6 +397,7 @@
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Woods WDD90 dehumidifier
+- Morris MDB-12160HIW
 
 ### Humidifiers
 
