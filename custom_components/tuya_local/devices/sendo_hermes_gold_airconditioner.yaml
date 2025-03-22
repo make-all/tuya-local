@@ -69,8 +69,7 @@ entities:
             value: comfort
       - id: 33
         type: boolean
-        name: swing_horizontal
-        hidden: true
+        name: swing_horizontal_mode
         mapping:
           - dps_val: false
             value: "off"
@@ -80,20 +79,10 @@ entities:
         type: boolean
         name: swing_mode
         mapping:
-          - dps_val: false
-            constraint: swing_horizontal
-            conditions:
-              - dps_val: false
-                value: "off"
-              - dps_val: true
-                value: "horizontal"
-          - dps_val: true
-            constraint: swing_horizontal
-            conditions:
-              - dps_val: false
-                value: "vertical"
-              - dps_val: true
-                value: "both"
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "vertical"
       - id: 108
         type: bitfield
         name: model
