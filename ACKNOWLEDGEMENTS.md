@@ -861,3 +861,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
+- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.

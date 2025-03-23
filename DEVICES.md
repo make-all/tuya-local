@@ -203,6 +203,7 @@
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- ETOP-HT-CH thermostat (branded as Ferco GN1)
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Hysen HY02TP thermostat
