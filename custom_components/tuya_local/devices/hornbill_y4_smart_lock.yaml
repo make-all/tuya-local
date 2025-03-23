@@ -414,21 +414,6 @@ entities:
         type: boolean
         name: switch
         optional: true
-  # [Automatic Lock] is used to set the delay time from unlocking the device to
-  # automatically locking the device. The setting range is 1s to 30min.
-  - entity: number
-    name: Automatic Lock Delay
-    icon: "mdi:lock-clock"
-    category: config
-    dps:
-      - id: 36
-        type: integer
-        name: value
-        optional: true
-        unit: s
-        range:
-          min: 1
-          max: 1800
   # [Device Status] If the device has door opening and closing status
   # detection, it is used to report the door opening and closing status. Only
   # enable this dp if this function is supported.
@@ -474,3 +459,18 @@ entities:
   #           value: 10s
   #         - dps_val: 12s
   #           value: 12s
+  # [Automatic Lock] is used to set the delay time from unlocking the device to
+  # automatically locking the device. The setting range is 1s to 30min.
+  - entity: number
+    name: Automatic Lock Delay
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 1
+          max: 1800
