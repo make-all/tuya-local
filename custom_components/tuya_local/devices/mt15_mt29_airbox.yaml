@@ -1,7 +1,7 @@
 name: AirBox
-products:
-  - id: bf2cd2e61dc121e657jsbj
-    model: MT15/MT29
+# products:
+#   - id: bf2cd2e61dc121e657jsbj
+#     model: MT15/MT29
 entities:
   - entity: sensor
     translation_key: air_quality
@@ -42,7 +42,7 @@ entities:
         unit: ppm
         class: measurement
   - entity: sensor
-    name: HCHO
+    name: Formaldehyde
     class: volatile_organic_compounds
     dps:
       - id: 5
@@ -94,7 +94,7 @@ entities:
         name: sensor
   - entity: switch
     icon: "mdi:sprout"
-    name: Enable Alarm
+    name: Enable alarm
     dps:
       - id: 106
         type: boolean
