@@ -862,3 +862,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
 - [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.
+- [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.

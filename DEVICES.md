@@ -963,6 +963,7 @@ port and password.
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
+- MT15/MT29 air quality box
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
