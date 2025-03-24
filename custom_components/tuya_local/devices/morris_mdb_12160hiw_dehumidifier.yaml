@@ -65,19 +65,20 @@ entities:
       - id: 19
         type: bitfield
         name: fault_code
-  - entity: sensor
-    name: Water Status
-    icon: "mdi:water"
+  - entity: binary_sensor
+    name: Water tank
+    class: problem
     category: diagnostic
+    icon: "mdi:water"
     dps:
       - id: 19
         type: bitfield
-        name: Water Status
+        name: sensor
         mapping:
           - dps_val: 0
-            value: "normal"
+            value: "OK"
           - dps_val: 1
-            value: "full"
+            value: "Full"
   - entity: switch
     name: Oscillation
     icon: mdi:arrow-oscillating
