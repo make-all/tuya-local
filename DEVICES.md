@@ -3,6 +3,7 @@
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
+- Amantii Bespoke R1-2-AP1 fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632/AT1635 ceramic heaters
@@ -203,6 +204,7 @@
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- ETOP-HT-CH thermostat (branded as Ferco GN1)
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Hysen HY02TP thermostat
@@ -963,6 +965,7 @@ port and password.
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
+- MT15/MT29 air quality box
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor

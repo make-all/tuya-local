@@ -858,6 +858,8 @@ Further device support has been made with the assistance of users. Please consid
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
 - [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
-- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat.
+- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
+- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.
+- [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
