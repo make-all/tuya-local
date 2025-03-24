@@ -1,0 +1,68 @@
+name: Dehumidifier
+products:
+  - id: e8c9gukirorvyhk8
+    manufacturer: Sefaul
+    model: Q9 Dehumidifier
+
+entities:
+  - entity: light
+    class: light
+    name: Light
+    dps:
+      - id: 11
+        name: switch
+        type: boolean
+  - entity: fan
+    class: fan
+    name: Purifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "high"
+            value: "High"
+  - entity: switch
+    name: Dehumidifier
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: select
+    name: Timer Set
+    dps:
+      - id: 17
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "Cancel"
+          - dps_val: "2h"
+            value: "2H"
+          - dps_val: "4H"
+            value: "4H"
+          - dps_val: "8H"
+            value: "8H"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: "Tank Full"
