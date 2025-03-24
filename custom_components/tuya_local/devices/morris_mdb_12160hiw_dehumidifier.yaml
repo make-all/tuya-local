@@ -67,6 +67,7 @@ entities:
         name: fault_code
   - entity: binary_sensor
     name: Water tank
+    class: problem
     category: diagnostic
     icon: "mdi:water"
     dps:
@@ -75,9 +76,9 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: "OK"
+            value: "ok"
           - dps_val: 1
-            value: "Full"
+            value: "full"
   - entity: switch
     name: Oscillation
     icon: mdi:arrow-oscillating
