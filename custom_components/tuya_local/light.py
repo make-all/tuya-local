@@ -412,7 +412,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 }
             elif not self._effect_dps:
                 effect = params.get(ATTR_EFFECT)
-                if effect:
+                if effect and effect != self.effect:
                     if effect == EFFECT_OFF:
                         # Turn off the effect. Ideally this should keep the
                         # previous mode, but since the mode is shared with
