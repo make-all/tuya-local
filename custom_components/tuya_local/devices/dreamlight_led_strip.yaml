@@ -116,6 +116,22 @@ entities:
           min: 1
           max: 1000
   - entity: select
+    name: Color mode
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "color"
+            value: "Color"
+          - dps_val: "scene"
+            value: "Scene"
+          - dps_val: "music"
+            value: "Music"
+  - entity: select
     name: Scene
     icon: "mdi:palette"
     category: config
