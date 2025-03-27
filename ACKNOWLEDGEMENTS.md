@@ -864,3 +864,5 @@ Further device support has been made with the assistance of users. Please consid
 - [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.
 - [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
+- [jmontane](https://github.com/jmontane) for contributing Catalan translations.
+- [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips.
