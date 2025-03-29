@@ -1,0 +1,432 @@
+name: Cat litter box MAX
+description: "Smart cat litter box made by Tuya"
+products:
+  - id: fgdeheqmt4mdhzr8
+    manufacturer: Tonepie
+    model: T1Pro
+entities:
+  # Controls (Primary Actions)
+  - entity: button
+    name: Clean now
+    icon: "mdi:shimmer"
+    translation_key: clean_now
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+  
+  - entity: button
+    name: Change sand
+    icon: "mdi:delete-empty"
+    translation_key: change_sand
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+  
+  - entity: button
+    name: Replace bag
+    icon: "mdi:sack"
+    translation_key: replace_bag
+    dps:
+      - id: 117
+        type: boolean
+        name: button
+  
+  - entity: button
+    name: Smooth sand
+    icon: "mdi:waves"
+    translation_key: smooth_sand
+    dps:
+      - id: 118
+        type: boolean
+        name: button
+  
+  - entity: switch
+    name: Deodorize
+    icon: "mdi:scent"
+    translation_key: deodorize
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  
+  # Configuration
+  - entity: switch
+    name: Auto clean
+    icon: "mdi:shimmer"
+    translation_key: auto_clean
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  
+  - entity: number
+    name: Clean wait time
+    icon: "mdi:timer"
+    translation_key: clean_wait_time
+    category: config
+    class: duration
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  
+  - entity: number
+    name: Clean interval
+    icon: "mdi:update"
+    translation_key: clean_interval
+    category: config
+    class: duration
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  
+  - entity: switch
+    name: Infrared detection
+    icon: "mdi:motion-sensor"
+    translation_key: infrared_detection
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:power-sleep"
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  
+  - entity: switch
+    name: Ambient light
+    icon: "mdi:lightbulb"
+    translation_key: ambient_light
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "led_on"
+            value: true
+          - dps_val: "led_off"
+            value: false
+  
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: lock
+  
+  - entity: number
+    name: Litter calibration
+    icon: "mdi:grain"
+    translation_key: litter_calibration
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 6
+  
+  - entity: number
+    name: Bin capacity calibration
+    icon: "mdi:trash-can"
+    translation_key: bin_capacity_calibration
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+  
+  - entity: number
+    name: Clean angle calibration
+    icon: "mdi:angle-acute"
+    translation_key: clean_angle_calibration
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5
+  
+  # Diagnostics
+  - entity: button
+    name: Weight reset
+    icon: "mdi:scale-off"
+    translation_key: weight_reset
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: button
+  
+  - entity: button
+    name: Self-check reset
+    icon: "mdi:refresh"
+    translation_key: self_check_reset
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+  
+  - entity: binary_sensor
+    name: Bin full
+    icon: "mdi:trash-can-outline"
+    class: problem
+    translation_key: bin_full
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+        mask: 1
+  
+  - entity: binary_sensor
+    name: Fault detected
+    class: problem
+    translation_key: fault_detected
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+        mapping:
+          - dps_val: 1
+            value: "Motor malfunction"
+          - dps_val: 2
+            value: "Program error"
+          - dps_val: 4
+            value: "Weight sensor malfunction"
+          - dps_val: 8
+            value: "Fan malfunction"
+          - dps_val: 16
+            value: "Ozone generator malfunction"
+          - dps_val: 32
+            value: "Ball bunker not installed"
+  
+  # Status Sensors
+  - entity: sensor
+    name: Status
+    icon: "mdi:state-machine"
+    translation_key: device_status
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "standby"
+            value: "Standby"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "waiting_cluster"
+            value: "Waiting for cluster"
+          - dps_val: "cleaning"
+            value: "Cleaning"
+          - dps_val: "uv"
+            value: "UV sterilization"
+          - dps_val: "deodorization"
+            value: "Deodorizing"
+          - dps_val: "sleep"
+            value: "Sleep"
+  
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    translation_key: cat_weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 1000
+  
+  - entity: sensor
+    name: Daily visits
+    icon: "mdi:emoticon-poop-outline"
+    class: measurement
+    translation_key: daily_visits
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+  
+  - entity: sensor
+    name: Time spent today
+    icon: "mdi:emoticon-poop"
+    class: duration
+    translation_key: time_spent_today
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  
+  - entity: sensor
+    name: Real-time weight
+    icon: "mdi:scale"
+    class: weight
+    translation_key: real_time_weight
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 1000
+  
+  - entity: sensor
+    name: Temperature
+    icon: "mdi:thermometer"
+    class: temperature
+    translation_key: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: °C
+  
+  - entity: sensor
+    name: Humidity
+    icon: "mdi:water-percent"
+    class: humidity
+    translation_key: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+  
+  - entity: binary_sensor
+    name: Cat present
+    icon: "mdi:cat"
+    class: occupancy
+    translation_key: cat_present
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  
+  - entity: sensor
+    name: Cat status
+    icon: "mdi:cat"
+    class: enum
+    translation_key: cat_status
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: "Left"
+          - dps_val: 32
+            value: "Approaching"
+          - value: "Unknown"
+        mask: 48
+  
+  # Events
+  - entity: event
+    name: Notification
+    icon: "mdi:bell"
+    translation_key: notification
+    dps:
+      - id: 21
+        type: bitfield
+        name: event
+        persist: false
+        mapping:
+          - dps_val: 1
+            value: "Garbage Box Full"
+          - dps_val: 2
+            value: "Excessive Clean Times"
+          - dps_val: 4
+            value: "Cleaning In Progress"
+          - dps_val: 8
+            value: "No Weight Detected"
+          - dps_val: 16
+            value: "Cat Left Box"
+          - dps_val: 32
+            value: "Cat Approaching Box"
+          - dps_val: 64
+            value: "Smart Clean Started"
+          - dps_val: 128
+            value: "Smart Clean Completed"
+          - dps_val: 256
+            value: "Cleaning Started"
+          - dps_val: 512
+            value: "Cleaning Completed"
+          - dps_val: 1024
+            value: "Sand Change Started"
+          - dps_val: 2048
+            value: "Sand Change Completed"
+          - dps_val: 4096
+            value: "Deodorizing Started"
+          - dps_val: 8192
+            value: "Deodorizing Completed"
+          - dps_val: 16384
+            value: "IR Sensor Triggered - Paused"
+          - dps_val: 32768
+            value: "IR Sensor Normal - Running"
+          - dps_val: 65536
+            value: "Weight Increased - Stopped"
+          - dps_val: 131072
+            value: "Weight Normal - Running"
+          - dps_val: 262144
+            value: "Bag Replacement Started"
+          - dps_val: 524288
+            value: "Bag Replacement Completed"
+          - dps_val: 1048576
+            value: "Sand Smoothing Started"
+          - dps_val: 2097152
+            value: "Sand Smoothing Completed"
