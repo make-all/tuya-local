@@ -1472,6 +1472,14 @@ INKBIRD_SOUSVIDE_PAYLOAD = {
     "110": 0,
 }
 
+TG_ELECTRO_SENSOR_PAYLOAD = {
+    "51": "auto",
+    "20": False,
+    "53": "10lux",
+    "54": "middle",
+    "55": 60,
+}
+
 HYDROTHERM_DYNAMICX8_PAYLOAD = {
     "1": True,
     "2": 65,
