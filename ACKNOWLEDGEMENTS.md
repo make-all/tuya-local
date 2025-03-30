@@ -172,7 +172,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
-- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, assistance supporting Elivco smartplugs and helping support others.
+- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, support for THB2 temp and humidity sensor and assistance supporting Elivco smartplugs and helping support others.
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
 - [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
@@ -858,4 +858,11 @@ Further device support has been made with the assistance of users. Please consid
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
 - [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
-- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat.
+- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
+- [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
+- [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
+- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.
+- [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
+- [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
+- [jmontane](https://github.com/jmontane) for contributing Catalan translations.
+- [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips.

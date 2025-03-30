@@ -3,6 +3,7 @@
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
+- Amantii Bespoke R1-2-AP1 fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632/AT1635 ceramic heaters
@@ -202,6 +203,7 @@
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- ETOP-HT-CH thermostat (branded as Ferco GN1)
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Hysen HY02TP thermostat
@@ -478,6 +480,7 @@
 - ERZ04C smart meter
 - Gaqqee KWS-302-WF energy meter
 - Geonav HISB80A energy meter
+- GTS8-40 2P simple circuit breaker
 - Ketotek KTEM06pro energy meter
 - MatSee Plus bidirectional two channel clamp meter (multiple variants)
 - Meterk single phase clamp meter
@@ -793,13 +796,14 @@ Note: Locks that are battery powered and do not use a hub are unlikely to
 work reliably, even if listed below.
 
 - BSTUOKEY access control keypad
+- Hornbill Y4 Smart lock
 - Lucking HF06 smart lock
+- NovaDigital SL-06 smart lock
 - Orion Grid Connect smart fingerprint entrance lock
 - Orion Grid Connect smart lock
 - Sboard III mini Weigand access control interface
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
-- NovaDigital SL-06 smart lock
 
 ### Sirens
 
@@ -959,6 +963,7 @@ port and password.
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
+- MT15/MT29 air quality box
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
@@ -1025,6 +1030,7 @@ port and password.
 - SOP10 water sprinkler
 - TCS024B plant moisture sensor
 - TH05 temperature and humidity sensor
+- THB2 temperature and humidity sensor
 - XCase NX-4964 lock box
 - YL01 water quality tester
 - YSG BS01 lock

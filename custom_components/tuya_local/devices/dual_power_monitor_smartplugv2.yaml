@@ -10,6 +10,12 @@ products:
     manufacturer: Kogan
     model: IP44 outdoor dual
     model_id: KASMPLGOD2A
+  - id: gijt75s5nj2lmlup
+    manufacturer: FreshLink
+    model: Smart socket with USB
+  - id: r03i57pimbyua3ev
+    manufacturer: ARLEC
+    model: PC287HA
 entities:
   - entity: switch
     translation_key: outlet_x
@@ -36,6 +42,14 @@ entities:
         type: string
         name: schedule
         optional: true
+      - id: 43
+        type: string
+        optional: true
+        name: random_schedule
+      - id: 44
+        type: string
+        optional: true
+        name: inching
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:
@@ -158,6 +172,33 @@ entities:
             value: memory
           - dps_val: null
             invalid: true
+  - entity: select
+    name: Light mode
+    icon: "mdi:circle-double"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 40
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
   - entity: lock
     translation_key: child_lock
     category: config

@@ -513,6 +513,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             "description": None,
             "description_placeholders": None,
             "result": ANY,
+            "subentries": (),
             "options": {},
             "data": {
                 CONF_DEVICE_ID: "deviceid",
