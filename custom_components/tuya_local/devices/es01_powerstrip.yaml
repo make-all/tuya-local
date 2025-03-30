@@ -1,24 +1,30 @@
-name: Smart plug with USB ES-01
+name: Smart plug with USB
 products:
   - id: hsoiigeykxh9m4hx
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Switch 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    model: ES-01
+entities:
   - entity: switch
-    name: Switch 2
+    class: outlet
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
@@ -32,8 +38,10 @@ secondary_entities:
         name: switch
   - entity: number
     category: config
-    name: Timer socket 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     dps:
       - id: 5
         name: value
@@ -47,8 +55,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer socket 2
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 6
         name: value
@@ -62,8 +72,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer socket 3
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    class: duration
     dps:
       - id: 7
         name: value
@@ -79,6 +91,7 @@ secondary_entities:
     category: config
     name: USB timer
     translation_key: timer
+    class: duration
     dps:
       - id: 8
         name: value

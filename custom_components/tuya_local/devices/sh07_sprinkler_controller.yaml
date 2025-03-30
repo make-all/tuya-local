@@ -1,20 +1,21 @@
 name: Sprinkler controller
 products:
   - id: e8fwsklivj87msao
-    name: SH07-8
+    model: SH07-8
   - id: mxh2sjigimo463mg
-    name: Aquarobo SH07S-TY
+    manufacturer: Aquarobo
+    model: SH07S-TY
   - id: figmzixtki7bourh
-    name: Leictory LK06
-primary_entity:
-  entity: valve
-  name: Valve 1
-  class: water
-  dps:
-    - id: 101
-      name: valve
-      type: boolean
-secondary_entities:
+    manufacturer: Leictory
+    model: LK06
+entities:
+  - entity: valve
+    name: Valve 1
+    class: water
+    dps:
+      - id: 101
+        name: valve
+        type: boolean
   - entity: valve
     name: Valve 2
     class: water
@@ -99,81 +100,5 @@ secondary_entities:
     dps:
       - id: 109
         name: valve
-        type: boolean
-        optional: true
-  - entity: switch
-    name: Valve 1
-    category: config
-    deprecated: valve
-    icon: "mdi:pipe-valve"
-    dps:
-      - id: 101
-        name: switch
-        type: boolean
-  - entity: switch
-    name: Valve 2
-    category: config
-    deprecated: valve
-    icon: "mdi:pipe-valve"
-    dps:
-      - id: 102
-        name: switch
-        type: boolean
-  - entity: switch
-    name: Valve 3
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
-    dps:
-      - id: 103
-        name: switch
-        type: boolean
-  - entity: switch
-    name: Valve 4
-    category: config
-    deprecated: valve
-    icon: "mdi:pipe-valve"
-    dps:
-      - id: 104
-        name: switch
-        type: boolean
-  - entity: switch
-    name: Valve 5
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
-    dps:
-      - id: 105
-        name: switch
-        type: boolean
-        optional: true
-  - entity: switch
-    name: Valve 6
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
-    dps:
-      - id: 106
-        name: switch
-        type: boolean
-        optional: true
-  - entity: switch
-    name: Valve 7
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
-    dps:
-      - id: 110
-        name: switch
-        type: boolean
-        optional: true
-  - entity: switch
-    name: Valve 8
-    icon: "mdi:pipe-valve"
-    category: config
-    deprecated: valve
-    dps:
-      - id: 111
-        name: switch
         type: boolean
         optional: true

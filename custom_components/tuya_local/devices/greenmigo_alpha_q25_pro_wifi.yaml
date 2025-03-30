@@ -1,71 +1,46 @@
 name: Dehumidifier
+legacy_type: AlecoAir_D25_Traditio
 products:
   - id: b9oyi2yofflroq1g
-    name: Alpha Q25 Pro dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 25
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Manual
-          value: normal
-        - dps_val: Auto
-          value: auto
-        - dps_val: Laundrydrying
-          value: laundry
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 3
-        - dps_val: Sleeping
-          value: sleep
-        - dps_val: Purifying
-          value: purify
-          icon: "mdi:air-purifier"
-          icon_priority: 3
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: bitfield
-      name: error
-      optional: true
-      mapping:
-        - dps_val: 1
-          icon: "mdi:alert-circle-outline"
-          icon_priority: 2
-        - dps_val: 2
-          icon: "mdi:alert-circle-outline"
-          icon_priority: 2
-        - dps_val: 4
-          icon: "mdi:cup-water"
-          icon_priority: 2
-        - dps_val: 8
-          icon: "mdi:snowflake-melt"
-          icon_priority: 2
-secondary_entities:
+    manufacturer: Greenmigo
+    model: Alpha Q25 Pro
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Manual
+            value: normal
+          - dps_val: Auto
+            value: auto
+          - dps_val: Laundrydrying
+            value: laundry
+          - dps_val: Sleeping
+            value: sleep
+          - dps_val: Purifying
+            value: purify
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
+    # 2024-11-02
+    deprecated: binary_sensor problem/defrost/tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -92,6 +67,46 @@ secondary_entities:
             value: Defrosting
             icon: "mdi:snowflake-melt"
             icon_priority: 2
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
   - entity: switch
     translation_key: ionizer
     category: config

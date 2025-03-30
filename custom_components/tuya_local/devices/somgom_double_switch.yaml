@@ -1,21 +1,26 @@
 name: Somgoms double switch
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 7
@@ -28,8 +33,10 @@ secondary_entities:
           - scale: 60
         unit: min
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 8

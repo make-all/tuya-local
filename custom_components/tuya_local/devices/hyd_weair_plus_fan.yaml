@@ -1,84 +1,81 @@
 name: Fan
 products:
   - id: 6p7jm8rrqimnlusw
-    name: HYD WeAir Plus D-68
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: true
-              value: "heat"
-            - dps_val: false
-              value: "fan_only"
-    - id: 2
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: "1"
-        - dps_val: "2"
-          value: "2"
-        - dps_val: "3"
-          value: "3"
-        - dps_val: "4"
-          value: "4"
-        - dps_val: "5"
-          value: "5"
-        - dps_val: "6"
-          value: "6"
-        - dps_val: "7"
-          value: "7"
-        - dps_val: "8"
-          value: "8"
-        - dps_val: "9"
-          value: "9"
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "sleep"
-          value: "sleep"
-        - dps_val: "heavy"
-          value: "boost"
-        - dps_val: "fresh"
-          value: "comfort"
-        - dps_val: "close"
-          value: "none"
-    - id: 8
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "horizontal"
-        - dps_val: false
-          value: "off"
-    - id: 9
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 1
-        max: 30
-    - id: 10
-      type: integer
-      name: current_temperature
-    - id: 13
-      type: integer
-      name: fault
-      optional: true
-    - id: 103
-      type: boolean
-      name: mode
-      hidden: true
-secondary_entities:
+    manufacturer: HYD
+    model: WeAir Plus
+    model_id: D-68
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: true
+                value: "heat"
+              - dps_val: false
+                value: "fan_only"
+      - id: 2
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "sleep"
+            value: "sleep"
+          - dps_val: "heavy"
+            value: "boost"
+          - dps_val: "fresh"
+            value: "comfort"
+          - dps_val: "close"
+            value: "none"
+      - id: 8
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "horizontal"
+          - dps_val: false
+            value: "off"
+      - id: 9
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 1
+          max: 30
+      - id: 10
+        type: integer
+        name: current_temperature
+      - id: 103
+        type: boolean
+        name: mode
+        hidden: true
   - entity: select
     translation_key: timer
     category: config
@@ -113,6 +110,24 @@ secondary_entities:
         name: sensor
         type: integer
         unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: switch
     name: Beep
     dps:

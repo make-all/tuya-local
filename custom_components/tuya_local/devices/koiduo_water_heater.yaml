@@ -1,39 +1,39 @@
 name: Water heater
 products:
   - id: 7lkpskrohoygvb8y
-    name: Koi Duo HTW-TD-080
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: away
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-    - id: 2
-      type: string
-      name: operation_mode
-      mapping:
-        - dps_val: jiheat
-          value: performance
-        - dps_val: maneco
-          value: eco
-    - id: 9
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 40
-        max: 80
-      mapping:
-        - step: 10
-    - id: 10
-      type: integer
-      name: current_temperature
-secondary_entities:
+    manufacturer: Koi Duo
+    model: HTW-TD-080
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: away
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 2
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: jiheat
+            value: performance
+          - dps_val: maneco
+            value: eco
+      - id: 9
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 40
+          max: 80
+        mapping:
+          - step: 10
+      - id: 10
+        type: integer
+        name: current_temperature
   - entity: sensor
     class: energy
     dps:
@@ -43,7 +43,7 @@ secondary_entities:
         unit: kWh
         class: total_increasing
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     dps:
       - id: 13

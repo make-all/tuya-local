@@ -1,0 +1,138 @@
+name: Alarm clock
+products:
+  - id: pnauiuyatd821djd
+    manufacturer: Mayborn
+    model: GroClock Connect
+entities:
+  - entity: siren
+    name: Music
+    icon: "mdi:music"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 104
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "0"
+            value: Track 1
+          - dps_val: "1"
+            value: Track 2
+          - dps_val: "2"
+            value: Track 3
+          - dps_val: "3"
+            value: Track 4
+          - dps_val: "4"
+            value: Track 5
+          - dps_val: "5"
+            value: Track 6
+          - dps_val: "6"
+            value: Track 7
+          - dps_val: "7"
+            value: Track 8
+          - dps_val: "8"
+            value: Track 9
+          - dps_val: "9"
+            value: Track 10
+      - id: 105
+        type: integer
+        name: volume_level
+        range:
+          min: 0
+          max: 16
+        mapping:
+          - scale: 16
+      - id: 107
+        type: integer
+        name: duration
+        range:
+          min: 1
+          max: 120
+      - id: 108
+        type: string
+        optional: true
+        name: wake_alarm
+      - id: 109
+        type: string
+        optional: true
+        name: nap_alarm
+      - id: 110
+        type: string
+        optional: true
+        name: sleep_alarm
+      - id: 111
+        type: string
+        optional: true
+        name: time_set
+      - id: 114
+        type: string
+        optional: true
+        name: snooze
+  - entity: select
+    name: Alarm mode
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: awake
+            value: Wake up
+          - dps_val: nap
+            value: Nap
+          - dps_val: asleep
+            value: Sleep
+  - entity: select
+    name: Music playback
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Repeat
+            icon: "mdi:repeat"
+          - dps_val: "1"
+            value: Normal
+          - dps_val: "2"
+            value: Random
+            icon: "mdi:shuffle"
+  - entity: switch
+    name: Auto time sync
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: select
+    name: Time format
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "12"
+            value: "12 hour"
+            icon: "mdi:hours-12"
+          - dps_val: "24"
+            value: "24 hour"
+            icon: "mdi:hours-24"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: lock
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 116
+        type: boolean
+        name: switch

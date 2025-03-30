@@ -1,27 +1,27 @@
 name: Pool pump
 products:
   - id: ircs2n82vgrozoew
-    name: Madimack Inverflow Pro P300i
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 105
-      type: boolean
-      name: valve
-    - id: 116
-      name: unknown_116
-      type: string
-      hidden: true
-    - id: 117
-      name: unknown_117
-      type: string
-      hidden: true
-    - id: 115
-      name: unknown_115
-      type: boolean
-      hidden: true
-secondary_entities:
+    manufacturer: Madimack
+    model: Inverflow Pro P300i
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
+      - id: 116
+        name: unknown_116
+        type: string
+        hidden: true
+      - id: 117
+        name: unknown_117
+        type: string
+        hidden: true
+      - id: 115
+        name: unknown_115
+        type: boolean
+        hidden: true
   - entity: select
     name: Pump mode
     icon: "mdi:pump"
@@ -56,6 +56,7 @@ secondary_entities:
   - entity: number
     name: Boost timer
     translation_key: timer
+    class: duration
     category: config
     mode: box
     dps:
@@ -176,13 +177,16 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - default: true
+          - value: true
       - id: 2
         type: bitfield
-        name: fault
+        name: fault_code
+      - id: 2
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
-            value: "None"
+            value: ok
           - dps_val: "E001"
             value: "E001 - Abnormal input voltage"
           - dps_val: "E002"

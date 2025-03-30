@@ -50,6 +50,8 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
                 FanEntityFeature.DIRECTION
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_ON
+                | FanEntityFeature.TURN_OFF
             ),
         )
 

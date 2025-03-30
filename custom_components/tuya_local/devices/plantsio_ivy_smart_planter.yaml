@@ -1,28 +1,28 @@
 # Datapoints documented at:
 # https://gist.github.com/thewade/ef9f6014f13932bd2e77d43331e2027d
 
-name: Smart Planter
+name: Smart planter
 products:
   - id: 8n3q0y4cwov8ifxt
-    name: PlantsIO Ivy Smart Planter
-primary_entity:
-  entity: sensor
-  name: Water level
-  class: volume_storage
-  dps:
-    - id: 108
-      type: integer
-      name: sensor
-      unit: mL
-      class: measurement
-      mapping:
-        - dps_val: 0
-          icon: "mdi:cup-outline"
-        - icon: "mdi:cup"
-    - id: 107
-      type: string
-      name: version
-secondary_entities:
+    manufacturer: PlantsIO
+    model: Ivy
+entities:
+  - entity: sensor
+    name: Water level
+    class: volume_storage
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: mL
+        class: measurement
+        mapping:
+          - dps_val: 0
+            icon: "mdi:cup-outline"
+          - icon: "mdi:cup"
+      - id: 107
+        type: string
+        name: version
   # Sensor entities raw
   - entity: sensor
     class: illuminance
@@ -70,10 +70,16 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: "Initializing"
+          - dps_val: 1
+            value: "Analyzing"
           - dps_val: 2
             value: "Drinking"
           - dps_val: 3
             value: "Absorbing from soil"
+          - dps_val: 4
+            value: "Thirsty"
+          - dps_val: 5
+            value: "Dehydrated"
           - value: "Unknown state"
   - entity: sensor
     name: Light status
@@ -96,6 +102,8 @@ secondary_entities:
             value: "Too Much"
           - dps_val: 5
             value: "Insufficient"
+          - dps_val: 6
+            value: "Manual mode"
           - value: "Unknown state"
   - entity: sensor
     name: Temperature status
@@ -130,6 +138,8 @@ secondary_entities:
             value: "Initializing"
           - dps_val: 1
             value: "Good"
+          - dps_val: 2
+            value: "Too Dry"
           - value: "Unknown state"
   # Diagnostic entities
   - entity: sensor
@@ -317,6 +327,14 @@ secondary_entities:
         range:
           min: 0
           max: 100
+      - id: 135
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: switch
     name: Sound perception
     category: config
@@ -399,7 +417,7 @@ secondary_entities:
           - dps_val: true
             value: "24 Hour Clock"
   - entity: select
-    name: Language
+    translation_key: language
     icon: "mdi:translate"
     category: config
     dps:
@@ -408,13 +426,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 0
-            value: "中文"
+            value: chinese
           - dps_val: 1
-            value: "English"
+            value: english
           - dps_val: 2
-            value: "日本語"
+            value: japanese
           - dps_val: 3
-            value: "Français"
+            value: french
   - entity: switch
     name: Location weather
     icon: "mdi:weather-pouring"
@@ -430,6 +448,7 @@ secondary_entities:
     dps:
       - id: 143
         type: integer
+        sensitive: true
         name: value
         range:
           min: -900000
@@ -443,6 +462,7 @@ secondary_entities:
     dps:
       - id: 142
         type: integer
+        sensitive: true
         name: value
         range:
           min: -1800000

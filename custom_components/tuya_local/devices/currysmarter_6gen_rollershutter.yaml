@@ -1,0 +1,61 @@
+name: Roller shutter
+products:
+  - id: csgb8eqhczvjaetl
+    manufacturer: Curry Smarter
+    model: "6Gen"
+entities:
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Calibration
+    icon: "mdi:arrow-collapse-vertical"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: End
+          - dps_val: null
+            value: Normal operation
+            hidden: true
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Motor reverse mode
+    icon: "mdi:sign-direction"
+    category: config
+    dps:
+      - id: 8
+        type: string
+        name: option
+        mapping:
+          - dps_val: forward
+            value: Forward
+          - dps_val: back
+            value: Back

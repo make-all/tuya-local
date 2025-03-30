@@ -1,38 +1,37 @@
 name: Dehumidifier
 products:
   - id: yttlroi7nr18vqbo
-    name: Vacplus Dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 6
-      name: current_humidity
-      type: integer
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: dehumidify
-          value: Dehumidify
-        - dps_val: rainy
-          value: Rainy
-        - dps_val: dry
-          value: Dry
-        - dps_val: sleep
-          value: Sleep
-secondary_entities:
+    manufacturer: Vacplus
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 6
+        name: current_humidity
+        type: integer
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: dehumidify
+            value: Dehumidify
+          - dps_val: rainy
+            value: Rainy
+          - dps_val: dry
+            value: Dry
+          - dps_val: sleep
+            value: Sleep
   - entity: switch
     translation_key: ionizer
     dps:

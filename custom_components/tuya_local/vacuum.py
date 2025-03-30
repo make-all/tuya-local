@@ -6,20 +6,15 @@ from homeassistant.components.vacuum import (
     SERVICE_CLEAN_SPOT,
     SERVICE_RETURN_TO_BASE,
     SERVICE_STOP,
-    STATE_CLEANING,
-    STATE_DOCKED,
-    STATE_ERROR,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
     StateVacuumEntity,
+    VacuumActivity,
     VacuumEntityFeature,
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -98,25 +93,25 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         return self._status_dps.get_value(self._device)
 
     @property
-    def state(self):
+    def activity(self):
         """Return the state of the vacuum cleaner."""
         status = self.status
         if self._error_dps and self._error_dps.get_value(self._device):
-            return STATE_ERROR
+            return VacuumActivity.ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
-            return STATE_RETURNING
+            return VacuumActivity.RETURNING
         elif status in ["standby", "sleep"]:
-            return STATE_IDLE
+            return VacuumActivity.IDLE
         elif status == "paused":
-            return STATE_PAUSED
+            return VacuumActivity.PAUSED
         elif status in ["charging", "charged"]:
-            return STATE_DOCKED
+            return VacuumActivity.DOCKED
         elif self._power_dps and self._power_dps.get_value(self._device) is False:
-            return STATE_IDLE
+            return VacuumActivity.IDLE
         elif self._activate_dps and self._activate_dps.get_value(self._device) is False:
-            return STATE_PAUSED
+            return VacuumActivity.PAUSED
         else:
-            return STATE_CLEANING
+            return VacuumActivity.CLEANING
 
     async def async_turn_on(self, **kwargs):
         """Turn on the vacuum cleaner."""
@@ -176,6 +171,15 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     async def async_send_command(self, command, params=None, **kwargs):
         """Send a command to the vacuum cleaner."""
         dps = self._command_dps or self._status_dps
+        # stop command is often present in both command and direction dps
+        # in that case, prefer the direction dp as async_stop will cover
+        # the commad dp seperately.
+        if (
+            command == SERVICE_STOP
+            and self._direction_dps
+            and SERVICE_STOP in self._direction_dps.values(self._device)
+        ):
+            dps = self._direction_dps
         if command in dps.values(self._device):
             await dps.async_set_value(self._device, command)
         elif self._direction_dps and command in self._direction_dps.values(

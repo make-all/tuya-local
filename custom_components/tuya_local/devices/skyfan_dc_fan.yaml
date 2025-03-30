@@ -1,35 +1,36 @@
-name: Skyfan DC fan
+name: Fan
 products:
   - id: vzj97d3m05yjhchn
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      optional: true
-      mapping:
-        - dps_val: smart
-          value: smart
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      type: integer
-      name: speed
-      optional: true
-      range:
-        min: 1
-        max: 5
-    - id: 8
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: Skyfan
+    model: DC
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 5
+      - id: 8
+        type: string
+        name: direction
   - entity: select
     translation_key: timer
     category: config

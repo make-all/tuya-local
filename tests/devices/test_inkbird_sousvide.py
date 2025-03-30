@@ -4,6 +4,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
@@ -54,6 +55,7 @@ class TestInkbirdSousVideCooker(
                     "dps": TIMER_DPS,
                     "name": "number_cooking_time",
                     "max": 5999,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -141,6 +143,7 @@ class TestInkbirdSousVideCooker(
         self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     def test_hvac_action(self):
+        self.dps[HVACMODE_DPS] = True
         self.dps[HVACACTION_DPS] = "stop"
         self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
@@ -149,6 +152,9 @@ class TestInkbirdSousVideCooker(
 
         self.dps[HVACACTION_DPS] = "complete"
         self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -162,16 +168,9 @@ class TestInkbirdSousVideCooker(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
-    def test_extra_state_attributes(self):
-        # There are currently no known error states; update this as
-        # they are discovered
+    def test_basic_bsensor_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 2},
-        )
-        self.dps[ERROR_DPS] = "0"
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 0},
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
         )

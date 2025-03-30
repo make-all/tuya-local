@@ -1,0 +1,113 @@
+name: Gas leak detector
+products:
+  - id: 4iqe2hsfyd86kwwc
+    model: C30W
+entities:
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+      - id: 1
+        type: string
+        name: checking_result
+  - entity: number
+    name: Alarm duration
+    class: duration
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 3600
+  - entity: sensor
+    name: Gas level
+    class: volatile_organic_compounds_parts
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: button
+    name: Self test
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Alarm
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: number
+    name: Gas alarm threshold
+    category: config
+    class: volatile_organic_compounds_parts
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 10
+          max: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Temperature alarm threshold
+    category: config
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -40
+          max: 300
+  - entity: switch
+    name: Temperature alarm
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: switch
+        mapping:
+          - dps_val: upperalarm
+            value: true
+          - dps_val: cancel
+            value: false
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch

@@ -1,47 +1,47 @@
 name: Ventilation system
 products:
   - id: qcgxajmb0sdg608j
-    name: Royal Clima RCB 150
-primary_entity:
-  entity: fan
-  translation_only_key: ventilation
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Air_Supply
-          value: fresh
-        - dps_val: Recirculation
-          value: circulate
-        - dps_val: Sleep
-          value: sleep
-        - dps_val: Auto
-          value: auto
-        - dps_val: Eco
-          value: eco
-        - dps_val: Anti_Condensation
-          value: anti-condensation
-    - id: 12
-      name: speed
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: 17
-        - dps_val: "2"
-          value: 33
-        - dps_val: "3"
-          value: 50
-        - dps_val: "4"
-          value: 67
-        - dps_val: "5"
-          value: 83
-        - dps_val: "6"
-          value: 100
-secondary_entities:
+    manufacturer: Royal Clima
+    model: RCB 150
+entities:
+  - entity: fan
+    translation_only_key: ventilation
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Air_Supply
+            value: fresh
+          - dps_val: Recirculation
+            value: circulate
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: Auto
+            value: auto
+          - dps_val: Eco
+            value: eco
+          - dps_val: Anti_Condensation
+            value: anti-condensation
+      - id: 12
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: 17
+          - dps_val: "2"
+            value: 33
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 67
+          - dps_val: "5"
+            value: 83
+          - dps_val: "6"
+            value: 100
   - entity: sensor
     class: pm25
     dps:
@@ -67,7 +67,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
     dps:
       - id: 13

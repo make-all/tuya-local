@@ -1,48 +1,77 @@
-name: "Electriq CD20PRO-LE-V2 dehumidifier"
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
-        - dps_val: fan
-          value: purify
-          icon: "mdi:air-purifier"
-          icon_priority: 2
-    - id: 3
-      type: integer
-      name: current_humidity
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-secondary_entities:
+name: Dehumidifier
+legacy_type: klarstein_dryfy_pro_connect_dehumidifier
+products:
+  - id: b07ueqf4ymelhbi9
+    manufacturer: Klarstein
+    model: DryFy Pro Connect
+  - id: 6cguug02fnygou5c
+    manufacturer: Klarstein
+    model: Dryfy Pro Connect
+  - id: m0wtqltrepknlpdj
+    manufacturer: Morris
+    model: Premier Plus
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+            icon_priority: 1
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+            icon_priority: 3
+      - id: 2
+        name: mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 2
+          - dps_val: fan
+            value: purify
+            icon: "mdi:air-purifier"
+            icon_priority: 2
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+  - entity: select
+    name: Direction
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 102
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0_90"
+            value: "45°-90°"
+          - dps_val: "45"
+            value: "45°"
+          - dps_val: "90"
+            value: "90°"
   - entity: fan
     translation_only_key: fan_with_presets
+    # 2024-12-22
+    deprecated: select_direction
     dps:
       - id: 1
         type: boolean
@@ -50,6 +79,7 @@ secondary_entities:
       - id: 102
         name: preset_mode
         type: string
+        optional: true
         mapping:
           - dps_val: "45"
             value: sleep
@@ -60,6 +90,7 @@ secondary_entities:
       - id: 102
         name: oscillate
         type: string
+        optional: true
         mapping:
           - dps_val: "0_90"
             value: true
@@ -84,6 +115,7 @@ secondary_entities:
     dps:
       - id: 5
         name: switch
+        optional: true
         type: boolean
   - entity: sensor
     class: temperature

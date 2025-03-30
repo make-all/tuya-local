@@ -1,87 +1,87 @@
 name: Double clamp meter
 products:
   - id: dhto3y4uachr1wll
-    name: erz04c
-    # protocol: 3.5
-primary_entity:
-  entity: sensor
-  name: Total energy
-  class: energy
-  dps:
-    - id: 123
-      name: sensor
-      type: integer
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 103
-      name: Device state A
-      type: string
-      mapping:
-        - dps_val: close
-          value: Close
-          default: true
-        - dps_val: monitor
-          value: Monitor
-        - dps_val: working
-          value: Working
-        - dps_val: warning
-          value: Warning
-    - id: 113
-      name: Device state B
-      type: string
-      mapping:
-        - dps_val: close
-          value: Close
-          default: true
-        - dps_val: monitor
-          value: Monitor
-        - dps_val: working
-          value: Working
-        - dps_val: warning
-          value: Warning
-    - id: 110
-      name: Power Type A
-      type: string
-      mapping:
-        - dps_val: normal
-          value: Normal
-          default: true
-        - dps_val: warn
-          value: Warn
-    - id: 120
-      name: Power Type B
-      type: string
-      mapping:
-        - dps_val: normal
-          value: Normal
-          default: true
-        - dps_val: warn
-          value: Warn
-    - id: 101
-      name: Sync request
-      type: string
-      mapping:
-        - dps_val: idle
-          value: Idle
-          default: true
-        - dps_val: request
-          value: Request
-    - id: 124
-      name: Net state
-      type: string
-      mapping:
-        - dps_val: cloud_net
-          value: Cloud
-          default: true
-        - dps_val: local_net
-          value: Local
-        - dps_val: no_net
-          value: Offline
-secondary_entities:
+    model: ERZ04C
+entities:
   - entity: sensor
-    name: Power A
+    name: Total energy
+    class: energy
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 103
+        name: Device state A
+        type: string
+        mapping:
+          - dps_val: close
+            value: Close
+            default: true
+          - dps_val: monitor
+            value: Monitor
+          - dps_val: working
+            value: Working
+          - dps_val: warning
+            value: Warning
+      - id: 113
+        name: Device state B
+        type: string
+        mapping:
+          - dps_val: close
+            value: Close
+            default: true
+          - dps_val: monitor
+            value: Monitor
+          - dps_val: working
+            value: Working
+          - dps_val: warning
+            value: Warning
+      - id: 110
+        name: Power Type A
+        type: string
+        mapping:
+          - dps_val: normal
+            value: Normal
+            default: true
+          - dps_val: warn
+            value: Warn
+      - id: 120
+        name: Power Type B
+        type: string
+        mapping:
+          - dps_val: normal
+            value: Normal
+            default: true
+          - dps_val: warn
+            value: Warn
+      - id: 101
+        name: Sync request
+        type: string
+        mapping:
+          - dps_val: idle
+            value: Idle
+            default: true
+          - dps_val: request
+            value: Request
+      - id: 124
+        name: Net state
+        type: string
+        mapping:
+          - dps_val: cloud_net
+            value: Cloud
+            default: true
+          - dps_val: local_net
+            value: Local
+          - dps_val: no_net
+            value: Offline
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: power
     dps:
@@ -94,7 +94,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: current
     dps:
@@ -107,7 +109,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: voltage
     dps:
@@ -158,7 +162,9 @@ secondary_entities:
 
 
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: power
     dps:
@@ -171,7 +177,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: current
     dps:
@@ -184,7 +192,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: voltage
     dps:

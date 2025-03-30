@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.13']
 
     steps:
       - uses: actions/checkout@v4
@@ -29,4 +29,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Full test with pytest
-        run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
+        run: pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
+      - name: Surface results
+        if: always()
+        uses: pmeier/pytest-results-action@main
+        with:
+          path: test-results.xml
+          summary: true
+          display-options: fEX
+          fail-on-empty: true
+          title: Test results

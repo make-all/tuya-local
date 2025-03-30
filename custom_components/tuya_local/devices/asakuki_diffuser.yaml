@@ -1,23 +1,23 @@
 name: Aroma diffuser
 products:
   - id: 6ASdNwe9IdaewQEl
-    name: Asakuki cube light
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 11
-      type: boolean
-      name: switch
-    - id: 13
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "0"
-          value: 50
-        - dps_val: "1"
-          value: 100
-secondary_entities:
+    manufacturer: Asakuki
+    name: Cube light aroma diffuser
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+      - id: 13
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 50
+          - dps_val: "1"
+            value: 100
   - entity: light
     dps:
       - id: 1
@@ -30,7 +30,7 @@ secondary_entities:
           - dps_val: white
             value: white
           - dps_val: colour
-            value: Color
+            value: hs
           - dps_val: colourfull
             value: Mood
       - id: 111
@@ -40,39 +40,60 @@ secondary_entities:
           min: 0
           max: 255
       - id: 108
-        name: color_data
-        type: hex
-        format:
-          - name: r
-            bytes: 1
-            range:
-              min: 0
-              max: 255
-          - name: g
-            bytes: 1
-            range:
-              min: 0
-              max: 255
-          - name: b
-            bytes: 1
-            range:
-              min: 0
-              max: 255
-          - name: h
-            bytes: 2
-            range:
-              min: 0
-              max: 360
-          - name: s
-            bytes: 1
-            range:
-              min: 0
-              max: 100
-          - name: v
-            bytes: 1
-            range:
-              min: 0
-              max: 255
+        name: named_color
+        type: string
+        mapping:
+          - dps_val: "ff00000064ff"
+            value: red
+          - dps_val: "ffa5002764ff"
+            value: orange
+          - dps_val: "ffff003c64ff"
+            value: yellow
+          - dps_val: "008000786480"
+            value: green
+          - dps_val: "0000fff064ff"
+            value: blue
+          - dps_val: "4b008201136482"
+            value: indigo
+          - dps_val: "ee82ee012c2dee"
+            value: violet
+          - dps_val: "00ff007864ff"
+            value: lime
+          - dps_val: "ffc0cb015e19ff"
+            value: pink
+          - dps_val: "00ffff8464ff"
+            value: cyan
+            # type: hex
+            #   - name: r
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: g
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: b
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: h
+            #     bytes: 2  # format inconsistent, 1 byte when < 256
+            #     range:
+            #       min: 0
+            #       max: 360
+            #   - name: s
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 100
+            #   - name: v
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
   - entity: select
     name: Mood
     icon: "mdi:palette"
@@ -90,6 +111,8 @@ secondary_entities:
             value: Mood 3
   - entity: select
     name: Color
+    # 2025-01-18
+    deprecated: light
     icon: "mdi:palette"
     category: config
     dps:

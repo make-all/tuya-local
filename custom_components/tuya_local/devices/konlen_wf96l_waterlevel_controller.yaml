@@ -1,11 +1,10 @@
 name: Water level controller
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     name: Level Off
     category: config
@@ -71,7 +70,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:cup-water"
     category: diagnostic
     dps:
@@ -88,6 +87,7 @@ secondary_entities:
   - entity: number
     name: CH1 time delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 109

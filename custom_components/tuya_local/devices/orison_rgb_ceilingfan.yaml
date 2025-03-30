@@ -1,35 +1,35 @@
 name: Light and fan
 products:
   - id: 8k3ss1tcresem1bh
-    name: Orison RGB ambient light bladeless ceiling fan
-primary_entity:
-  entity: fan
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 62
-      type: integer
-      name: speed
-      optional: true
-      range:
-        min: 1
-        max: 100
-    - id: 63
-      type: string
-      name: direction
-    - id: 103
-      type: boolean
-      name: unknown_103
-secondary_entities:
+    manufacturer: Orison
+    model: RGB ambient light bladeless ceiling fan
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        name: direction
+      - id: 103
+        type: boolean
+        name: unknown_103
   - entity: light
     dps:
       - id: 20
@@ -90,6 +90,7 @@ secondary_entities:
   - entity: number
     name: Light timer
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26
@@ -105,6 +106,7 @@ secondary_entities:
   - entity: number
     name: Fan timer
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 64

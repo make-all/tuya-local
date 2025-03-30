@@ -1,0 +1,186 @@
+name: EV charger
+products:
+  - id: dsmsam7xpb3ht7rl
+    manufacturer: Afyeev
+    name: "16A EV Charger"
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23
+        type: string
+        name: system_version
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Charging current
+    category: config
+    class: current
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 16
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "000000FFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mask: "000000000000FFFF"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: total_power
+      - id: 9
+        type: integer
+        name: total_power
+        optional: true
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Charge now
+          - dps_val: charge_pct
+            value: Charge PCT
+          - dps_val: charge_energy
+            value: Charge energy
+          - dps_val: charge_schedule
+            value: Charge schedule
+          - dps_val: charge_delay
+            value: Charge delay
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Last charge
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        optional: true
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: h
+        optional: true
+        range:
+          min: 0
+          max: 15

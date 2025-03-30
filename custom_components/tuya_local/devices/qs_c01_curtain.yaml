@@ -1,33 +1,32 @@
 name: Curtain module
 products:
   - id: ujrix5o9vgovrctb
-    name: QS-WIFI-C01
+    model: QS-WIFI-C01
   - id: ol1uhvza
-    name: QS-ZIGBEE-C01
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-secondary_entities:
+    model: QS-ZIGBEE-C01
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
   - entity: select
     name: Motor reverse mode
     category: config
@@ -44,6 +43,7 @@ secondary_entities:
   - entity: number
     name: Travel time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 10

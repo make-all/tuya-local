@@ -1,0 +1,282 @@
+name: Water monitor
+products:
+  - id: h2hwrtfdg3uwcsil
+    manufacturer: Wasserstein
+    model: AquaPal
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 10
+        type: string
+        optional: true
+        name: unused_weather_delay
+  - entity: sensor
+    class: volume_flow_rate
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: gal/min
+        class: measurement
+        mapping:
+          - scale: 600
+  - entity: sensor
+    class: water
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: gal
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 125
+        type: integer
+        name: last_hour
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: pressure
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: psi
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: 0
+          max: 176
+  - entity: number
+    name: Maximum temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: 0
+          max: 176
+  - entity: number
+    name: Minimum pressure
+    class: pressure
+    category: config
+    icon: "mdi:chevron-down-cirle-outline"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: psi
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Maximum pressure
+    class: pressure
+    category: config
+    icon: "mdi:chevron-up-cirle-outline"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: psi
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Minimum flow
+    class: volume_flow_rate
+    category: config
+    icon: "mdi:waves-arrow-left"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: gal/min
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 60
+  - entity: number
+    name: Maximum flow
+    class: volume_flow_rate
+    category: config
+    icon: "mdi:waves-arrow-right"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: gal/min
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 60
+  - entity: switch
+    name: Temperature alarm
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Pressure alarm
+    icon: "mdi:car-brake-low-pressure"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: button
+    name: Leakage self test
+    category: config
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: fahrenheit
+          - dps_val: "2"
+            value: celsius
+  - entity: select
+    name: Pressure unit
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: psi
+          - dps_val: "2"
+            value: kPa
+  - entity: select
+    name: Flow rate unit
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: gal/h
+          - dps_val: "2"
+            value: m³/h
+  - entity: event
+    name: Leak
+    dps:
+      - id: 118
+        type: string
+        optional: true
+        name: event
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: alert
+  - entity: event
+    name: Temperature alert
+    dps:
+      - id: 119
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: low_temperature
+          - dps_val: "2"
+            value: high_temperature
+          - dps_val: "3"
+            value: sensor_fault
+  - entity: event
+    name: Pressure alert
+    dps:
+      - id: 120
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: low_pressure
+          - dps_val: "2"
+            value: high_pressure
+          - dps_val: "3"
+            value: sensor_fault
+  - entity: event
+    name: Flow alert
+    dps:
+      - id: 121
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: high_flow_rate
+          - dps_val: "2"
+            value: low_flow_rate
+          - dps_val: "3"
+            value: sensor_fault
+  - entity: switch
+    name: Flow alarm
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: button
+    name: Meter reset
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        optional: true
+        name: button

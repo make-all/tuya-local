@@ -1,58 +1,54 @@
 name: Kyvol EA200 humidifier
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 22
-      name: fault_code
-      type: bitfield
-    - id: 23
-      name: speed
-      type: string
-      mapping:
-        - dps_val: level_1
-          value: 5
-        - dps_val: level_2
-          value: 10
-        - dps_val: level_3
-          value: 15
-        - dps_val: level_4
-          value: 20
-        - dps_val: level_5
-          value: 25
-        - dps_val: level_6
-          value: 30
-        - dps_val: level_7
-          value: 35
-        - dps_val: level_8
-          value: 40
-        - dps_val: level_9
-          value: 45
-        - dps_val: level_10
-          value: 50
-        - dps_val: level_11
-          value: 55
-        - dps_val: level_12
-          value: 60
-        - dps_val: level_13
-          value: 65
-        - dps_val: level_14
-          value: 70
-        - dps_val: level_15
-          value: 75
-        - dps_val: level_16
-          value: 80
-        - dps_val: level_17
-          value: 85
-        - dps_val: level_18
-          value: 90
-        - dps_val: level_19
-          value: 95
-        - dps_val: level_20
-          value: 100
-secondary_entities:
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 23
+        name: speed
+        type: string
+        mapping:
+          - dps_val: level_1
+            value: 5
+          - dps_val: level_2
+            value: 10
+          - dps_val: level_3
+            value: 15
+          - dps_val: level_4
+            value: 20
+          - dps_val: level_5
+            value: 25
+          - dps_val: level_6
+            value: 30
+          - dps_val: level_7
+            value: 35
+          - dps_val: level_8
+            value: 40
+          - dps_val: level_9
+            value: 45
+          - dps_val: level_10
+            value: 50
+          - dps_val: level_11
+            value: 55
+          - dps_val: level_12
+            value: 60
+          - dps_val: level_13
+            value: 65
+          - dps_val: level_14
+            value: 70
+          - dps_val: level_15
+            value: 75
+          - dps_val: level_16
+            value: 80
+          - dps_val: level_17
+            value: 85
+          - dps_val: level_18
+            value: 90
+          - dps_val: level_19
+            value: 95
+          - dps_val: level_20
+            value: 100
   - entity: binary_sensor
     translation_key: tank_empty
     category: diagnostic
@@ -61,6 +57,10 @@ secondary_entities:
         type: bitfield
         name: sensor
         mapping:
+          # not sure which bit is actually for the tank
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield

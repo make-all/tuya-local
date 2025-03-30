@@ -1,19 +1,18 @@
 name: EV charger
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      optional: true
-      type: integer
-      name: sensor
-      unit: kWh
-      mapping:
-        - scale: 100
-      class: total_increasing
-secondary_entities:
+entities:
   - entity: sensor
-    name: Status
+    class: energy
+    dps:
+      - id: 1
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
+  - entity: sensor
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     dps:
@@ -22,21 +21,21 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: charger_free
-            value: Available
+            value: available
           - dps_val: charger_insert
-            value: Plugged in
+            value: plugged_in
           - dps_val: charger_free_fault
-            value: Fault (unplugged)
+            value: fault_unplugged
           - dps_val: charger_wait
-            value: Waiting
+            value: waiting
           - dps_val: charger_charging
-            value: Charging
+            value: charging
           - dps_val: charger_pause
-            value: Paused
+            value: paused
           - dps_val: charger_end
-            value: Finished
+            value: charged
           - dps_val: charger_fault
-            value: Error
+            value: fault
       - id: 11
         optional: true
         type: string
@@ -91,9 +90,9 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Phase A current
     class: current
@@ -105,9 +104,9 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Phase A power
     class: power
@@ -119,9 +118,9 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Total power
     class: power
@@ -266,6 +265,7 @@ secondary_entities:
   - entity: number
     name: Delayed charge timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 28

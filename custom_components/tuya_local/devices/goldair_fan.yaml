@@ -1,42 +1,41 @@
 name: Goldair fan
 legacy_type: fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 12
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: nature
-              step: 4
-            - dps_val: sleep
-              step: 4
-    - id: 3
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-      name: preset_mode
-    - id: 8
-      type: boolean
-      name: oscillate
-    - id: 11
-      type: string
-      name: timer
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: nature
+                step: 4
+              - dps_val: sleep
+                step: 4
+      - id: 3
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+        name: preset_mode
+      - id: 8
+        type: boolean
+        name: oscillate
+      - id: 11
+        type: string
+        name: timer
   - entity: light
     translation_key: display
     category: config

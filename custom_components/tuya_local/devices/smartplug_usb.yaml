@@ -1,23 +1,19 @@
 name: Smartplug with USB
 products:
   - id: zmql6aexy8ua5rox
-    name: Gosund SP112
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
-secondary_entities:
+    manufacturer: Gosund
+    model: SP112
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
   - entity: switch
     name: USB
     icon: "mdi:usb"
@@ -76,7 +72,8 @@ secondary_entities:
         optional: true
   - entity: number
     category: config
-    name: Outlet Timer
+    name: Outlet timer
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -90,8 +87,9 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: USB Timer
+    name: USB timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 15
@@ -105,8 +103,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -115,11 +112,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: power_on
-            value: "On"
+            value: "on"
           - dps_val: power_off
-            value: "Off"
+            value: "off"
           - dps_val: last
-            value: Last state
+            value: memory
   - entity: select
     name: Indicator
     icon: "mdi:led-on"
@@ -136,3 +133,19 @@ secondary_entities:
             value: Position
           - dps_val: none
             value: "Off"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

@@ -1,39 +1,37 @@
-name: Arlec industrial fan
+name: Fan
 products:
   - id: 0waab4clioc3qaks
-    name: Arlec 19-speed industrial wall fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: sleep
-          value: sleep
-        - dps_val: natural
-          value: nature
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 19
-    - id: 5
-      name: oscillate
-      type: boolean
-    - id: 24
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    manufacturer: Arlec
+    name: "19-speed industrial wall fan"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: natural
+            value: nature
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 19
+      - id: 5
+        name: oscillate
+        type: boolean
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 22
@@ -54,3 +52,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 24
+        name: fault_code
+        type: bitfield

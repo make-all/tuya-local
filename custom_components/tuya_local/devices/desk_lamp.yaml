@@ -1,31 +1,32 @@
 name: Desk Lamp
 products:
   - id: b0j0lto1o0ijwb39
-    name: Desk Lamp Setti+ SL601
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: work_mode
-    - id: 3
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 25
-        max: 255
-    - id: 4
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 255
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
+    manufacturer: Setti+
+    model: SL601
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: work_mode
+      - id: 3
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 25
+          max: 255
+      - id: 4
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500

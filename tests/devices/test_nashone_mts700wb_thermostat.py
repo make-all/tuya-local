@@ -1,4 +1,3 @@
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
@@ -51,7 +50,6 @@ class TestNashoneMTS700WBThermostat(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_factory_reset"),
-            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,

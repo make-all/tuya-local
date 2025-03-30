@@ -1,30 +1,32 @@
-name: DS02-F fan switch
+name: Fan switch
 products:
   - id: qmijt70hk4op6snl
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: speed
-      mapping:
-        - dps_val: level_1
-          value: 25
-          step: 25
-        - dps_val: level_2
-          value: 50
-          step: 25
-        - dps_val: level_3
-          value: 75
-          step: 25
-        - dps_val: level_4
-          value: 100
-          step: 25
-secondary_entities:
+    manufacturer: Treatlife
+    model: DS02-F
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 25
+            step: 25
+          - dps_val: level_2
+            value: 50
+            step: 25
+          - dps_val: level_3
+            value: 75
+            step: 25
+          - dps_val: level_4
+            value: 100
+            step: 25
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

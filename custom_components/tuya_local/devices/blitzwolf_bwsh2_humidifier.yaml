@@ -1,35 +1,73 @@
 # sample DPS {'1': False, '3': 'grade1', '6': 'close', 19: 'cancel'}
-name: BlitzWolf BWSH2 humidifier
+name: Humidifier
 products:
   - id: 20268362d8bfc0080ec9
-primary_entity:
-  entity: fan
-  icon: "mdi:humidifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: speed
-      type: string
-      mapping:
-        - dps_val: sleep
-          value: 10
-        - dps_val: grade1
-          value: 25
-        - dps_val: grade2
-          value: 40
-        - dps_val: grade3
-          value: 55
-        - dps_val: grade4
-          value: 70
-        - dps_val: grade5
-          value: 85
-        - dps_val: grade6
-          value: 100
-secondary_entities:
+    manufacturer: BlitzWolf
+    model: BWSH2
+entities:
+  - entity: fan
+    icon: "mdi:humidifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: 10
+          - dps_val: grade1
+            value: 25
+          - dps_val: grade2
+            value: 40
+          - dps_val: grade3
+            value: 55
+          - dps_val: grade4
+            value: 70
+          - dps_val: grade5
+            value: 85
+          - dps_val: grade6
+            value: 100
+  - entity: light
+    dps:
+      - id: 6
+        type: string
+        name: switch
+        mapping:
+          - dps_val: close
+            value: false
+            # We need a value to set to turn on the light with no parameters.
+          - dps_val: colour
+            value: true
+          - value: true
+            hidden: true
+      - id: 6
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: purple
+            value: purple
+          - dps_val: blue
+            value: blue
+          - dps_val: cyan
+            value: cyan
+          - dps_val: green
+            value: green
+          - dps_val: yellow
+            value: yellow
+          - dps_val: orange
+            value: orange
+          - dps_val: red
+            value: red
+          - dps_val: colour
+            value: white
+          - dps_val: close
+            value: black
   - entity: select
     name: Light
+    # 2024-11-21
+    deprecated: light
     icon: "mdi:lightbulb"
     category: config
     dps:

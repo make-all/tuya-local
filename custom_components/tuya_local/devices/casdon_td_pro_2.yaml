@@ -1,104 +1,98 @@
 name: Oven
 products:
   - id: wab6oustdukujpkn
-    name: Casdon TD Pro 2
-primary_entity:
-  entity: climate
-  translation_only_key: oven
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 7
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 0
-        max: 500
-      mapping:
-        - step: 5
-    - id: 8
-      name: current_temperature
-      type: integer
-    - id: 105
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: healthy_steam
-        - dps_val: "2"
-          value: fresh_steam
-        - dps_val: "3"
-          value: high_temp_steam
-        - dps_val: "4"
-          value: stew
-        - dps_val: "5"
-          value: bake_up_and_down
-        - dps_val: "6"
-          value: bbq
-        - dps_val: "7"
-          value: bottom_hot_air
-        - dps_val: "8"
-          value: on_strong_roast
-        - dps_val: "9"
-          value: 3d_hot_air
-        - dps_val: "10"
-          value: air_fry
-        - dps_val: "11"
-          value: steam_frying
-        - dps_val: "12"
-          value: one_click_bread
-        - dps_val: "13"
-          value: quick_heat
-        - dps_val: "14"
-          value: keep_warm
-        - dps_val: "15"
-          value: unfreeze
-        - dps_val: "16"
-          value: fermentation
-        - dps_val: "17"
-          value: descale
-        - dps_val: "18"
-          value: local_recipes
-        - dps_val: "19"
-          value: drying
-        - dps_val: "20"
-          value: custom
-        - dps_val: "21"
-          value: low_steaming
-        - dps_val: "22"
-          value: medium_steaming
-        - dps_val: "23"
-          value: high_steaming
-    - id: 102
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: cooking
-          value: heating
-        - dps_val: reservation
-          value: idle
-        - dps_val: cancel
-          value: idle
-        - dps_val: done
-          value: idle
-        - dps_val: pause
-          value: idle
-        - dps_val: "wait"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-
-secondary_entities:
+    manufacturer: Casdon
+    model: TD Pro 2
+entities:
+  - entity: climate
+    translation_only_key: oven
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 7
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - step: 5
+      - id: 8
+        name: current_temperature
+        type: integer
+      - id: 105
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: healthy_steam
+          - dps_val: "2"
+            value: fresh_steam
+          - dps_val: "3"
+            value: high_temp_steam
+          - dps_val: "4"
+            value: stew
+          - dps_val: "5"
+            value: bake_up_and_down
+          - dps_val: "6"
+            value: bbq
+          - dps_val: "7"
+            value: bottom_hot_air
+          - dps_val: "8"
+            value: on_strong_roast
+          - dps_val: "9"
+            value: 3d_hot_air
+          - dps_val: "10"
+            value: air_fry
+          - dps_val: "11"
+            value: steam_frying
+          - dps_val: "12"
+            value: one_click_bread
+          - dps_val: "13"
+            value: quick_heat
+          - dps_val: "14"
+            value: keep_warm
+          - dps_val: "15"
+            value: unfreeze
+          - dps_val: "16"
+            value: fermentation
+          - dps_val: "17"
+            value: descale
+          - dps_val: "18"
+            value: local_recipes
+          - dps_val: "19"
+            value: drying
+          - dps_val: "20"
+            value: custom
+          - dps_val: "21"
+            value: low_steaming
+          - dps_val: "22"
+            value: medium_steaming
+          - dps_val: "23"
+            value: high_steaming
+      - id: 102
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: cooking
+            value: heating
+          - dps_val: reservation
+            value: idle
+          - dps_val: cancel
+            value: idle
+          - dps_val: done
+            value: idle
+          - dps_val: pause
+            value: idle
+          - dps_val: "wait"
+            value: idle
   - entity: switch
     name: Start
     icon: "mdi:play-pause"
@@ -109,6 +103,7 @@ secondary_entities:
   - entity: number
     name: Start time
     translation_key: timer
+    class: duration
     dps:
       - id: 9
         name: value
@@ -121,6 +116,7 @@ secondary_entities:
         class: measurement
   - entity: number
     icon: "mdi:timer-edit"
+    class: duration
     name: Cooking time
     dps:
       - id: 10
@@ -138,7 +134,6 @@ secondary_entities:
       - id: 11
         name: sensor
         type: integer
-        readonly: true
         range:
           min: 0
           max: 1440
@@ -158,27 +153,30 @@ secondary_entities:
           - value: true
       - id: 13
         type: bitfield
-        name: fault_message
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
         mapping:
-          - value: "OK"
+          - value: unknown
           - dps_val: 0
-            value: "OK"
+            value: OK
           - dps_val: 1
-            value: "e1"
+            value: e1
           - dps_val: 2
-            value: "e2"
+            value: e2
           - dps_val: 4
-            value: "e3"
+            value: e3
           - dps_val: 8
-            value: "e4"
+            value: e4
           - dps_val: 16
-            value: "e5"
+            value: e5
           - dps_val: 32
-            value: "e6"
+            value: e6
           - dps_val: 64
-            value: "e7"
+            value: e7
           - dps_val: 128
-            value: "e8"
+            value: e8
 
   - entity: sensor
     class: enum
@@ -187,7 +185,6 @@ secondary_entities:
       - id: 102
         name: sensor
         type: string
-        readonly: true
         mapping:
           - dps_val: wait
             value: wait

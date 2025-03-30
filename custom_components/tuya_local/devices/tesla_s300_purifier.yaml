@@ -1,32 +1,32 @@
 name: Air purifier
 products:
   - id: 7v1gn9wmbqvtcqkc
-    name: Tesla Air S300
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "1"
-          value: 14
-        - dps_val: "2"
-          value: 28
-        - dps_val: "3"
-          value: 42
-        - dps_val: "4"
-          value: 57
-        - dps_val: "5"
-          value: 71
-        - dps_val: "6"
-          value: 85
-        - dps_val: "7"
-          value: 100
-secondary_entities:
+    manufacturer: Tesla Smart
+    model: S300
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 14
+          - dps_val: "2"
+            value: 28
+          - dps_val: "3"
+            value: 42
+          - dps_val: "4"
+            value: 57
+          - dps_val: "5"
+            value: 71
+          - dps_val: "6"
+            value: 85
+          - dps_val: "7"
+            value: 100
   - entity: sensor
     class: pm25
     category: diagnostic
@@ -71,8 +71,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
@@ -114,7 +113,7 @@ secondary_entities:
           - dps_val: "12h"
             value: "12h"
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     class: enum
     category: diagnostic
     dps:
@@ -123,13 +122,13 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: great
-            value: Great
+            value: excellent
           - dps_val: mild
-            value: Mild
+            value: moderate
           - dps_val: good
-            value: Good
+            value: good
           - dps_val: medium
-            value: Medium
+            value: poor
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -152,8 +151,34 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
+  - entity: light
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: yellow
+            value: true
+      - id: 105
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "off"
+            value: black
+          - dps_val: orange
+            value: orange
+          - dps_val: green
+            value: green
+          - dps_val: blue
+            value: blue
+          - dps_val: yellow
+            value: yellow
   - entity: select
+    # 2024-11-21
     name: Light
+    deprecated: light
     icon: "mdi:lightbulb"
     dps:
       - id: 105

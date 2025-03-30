@@ -1,58 +1,56 @@
-name: Arlec tower fan
+name: Fan
 products:
   - id: rklgm99ldz4unh5s
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      name: speed
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: 8
-        - dps_val: "2"
-          value: 17
-        - dps_val: "3"
-          value: 25
-        - dps_val: "4"
-          value: 33
-        - dps_val: "5"
-          value: 42
-        - dps_val: "6"
-          value: 50
-        - dps_val: "7"
-          value: 58
-        - dps_val: "8"
-          value: 67
-        - dps_val: "9"
-          value: 75
-        - dps_val: "10"
-          value: 83
-        - dps_val: "11"
-          value: 92
-        - dps_val: "12"
-          value: 100
-    - id: 102
-      name: oscillate
-      type: boolean
-    - id: 8
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Arlec
+    name: Tower fan
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: 8
+          - dps_val: "2"
+            value: 17
+          - dps_val: "3"
+            value: 25
+          - dps_val: "4"
+            value: 33
+          - dps_val: "5"
+            value: 42
+          - dps_val: "6"
+            value: 50
+          - dps_val: "7"
+            value: 58
+          - dps_val: "8"
+            value: 67
+          - dps_val: "9"
+            value: 75
+          - dps_val: "10"
+            value: 83
+          - dps_val: "11"
+            value: 92
+          - dps_val: "12"
+            value: 100
+      - id: 102
+        name: oscillate
+        type: boolean
   - entity: select
     translation_key: timer
     category: config
@@ -131,6 +129,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 8
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: temperature
     category: diagnostic

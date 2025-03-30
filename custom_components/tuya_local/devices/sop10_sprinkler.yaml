@@ -1,18 +1,17 @@
 name: Water sprinkler
 products:
   - id: nxquc5lb
-    name: SOP10
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-    - id: 12
-      type: string
-      name: work_state
-secondary_entities:
+    model: SOP10
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 12
+        type: string
+        name: work_state
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -69,6 +68,7 @@ secondary_entities:
             value: "72h"
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 11

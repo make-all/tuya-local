@@ -1,0 +1,332 @@
+name: Water leak detector
+products:
+  - id: vptg13wa7y8xmoio
+    manufacturer: Neptun Smart
+entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 123
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 123
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 123
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: alarm_zone_1
+          - dps_val: 2
+            value: alarm_zone_2
+          - dps_val: 4
+            value: sens_discharge
+          - dps_val: 8
+            value: sensor_lost
+          - dps_val: 16
+            value: closed_zone_1
+          - dps_val: 32
+            value: closed_zone_2
+          - dps_val: 64
+            value: cleaning_floor
+          - dps_val: 128
+            value: slot1_error
+          - dps_val: 256
+            value: slot2_error
+          - dps_val: 512
+            value: slot3_error
+          - dps_val: 1024
+            value: slot4_error
+          - dps_val: 2048
+            value: counter1_error
+          - dps_val: 4096
+            value: counter2_error
+          - dps_val: 8192
+            value: counter3_error
+          - dps_val: 16384
+            value: counter4_error
+          - dps_val: 32768
+            value: counter5_error
+          - dps_val: 65536
+            value: counter6_error
+          - dps_val: 131072
+            value: counter7_error
+          - dps_val: 262144
+            value: counter8_error
+      - id: 114
+        type: string
+        optional: true
+        name: line_settings
+      - id: 115
+        type: integer
+        optional: true
+        name: status_wire_line
+      - id: 116
+        type: integer
+        name: relay_settings
+        optional: true
+      - id: 134
+        type: string
+        optional: true
+        name: name_lines
+      - id: 145
+        type: string
+        optional: true
+        name: slots_map
+  - entity: switch
+    name: Floor cleaning
+    icon: "mdi:pail"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: button
+    name: Add sensor
+    icon: "mdi:attachment-plus"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+        optional: true
+  - entity: valve
+    name: Zone 1
+    class: water
+    dps:
+      - id: 109
+        type: boolean
+        name: valve
+        optional: true
+  - entity: valve
+    name: Zone 2
+    class: water
+    dps:
+      - id: 110
+        type: boolean
+        name: valve
+        optional: true
+      - id: 111
+        type: boolean
+        name: available
+        optional: true
+  - entity: switch
+    name: Multi zone
+    icon: "mdi:select-group"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+        optional: true
+      - id: 135
+        type: string
+        optional: true
+        name: name_zones
+  - entity: switch
+    name: Fail safe
+    icon: "mdi:pipe-disconnected"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+        optional: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: lock
+  - entity: number
+    name: Modbus address
+    category: config
+    icon: "mdi:serial-port"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 247
+  - entity: select
+    name: Modbus speed
+    icon: "mdi:serial-port"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1200"
+            value: "1200 baud"
+          - dps_val: "2400"
+            value: "2400 baud"
+          - dps_val: "4800"
+            value: "4800 baud"
+          - dps_val: "9600"
+            value: "9600 baud"
+          - dps_val: "19200"
+            value: "19k2 baud"
+          - dps_val: "38400"
+            value: "38k4 baud"
+          - dps_val: "57600"
+            value: "57k6 baud"
+          - dps_val: "115200"
+            value: "115k2 baud"
+          - dps_val: "230400"
+            value: "230k4 baud"
+          - dps_val: "460800"
+            value: "460k8 baud"
+          - dps_val: "921600"
+            value: "921k6 baud"
+  - entity: sensor
+    name: RF sensors
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: sensor
+      - id: 120
+        type: string
+        optional: true
+        name: settings
+      - id: 121
+        type: string
+        optional: true
+        name: status
+      - id: 124
+        type: string
+        optional: true
+        name: name_rf_1_5
+      - id: 125
+        type: string
+        optional: true
+        name: name_rf_6_10
+      - id: 126
+        type: string
+        optional: true
+        name: name_rf_11_15
+      - id: 127
+        type: string
+        optional: true
+        name: name_rf_16_20
+      - id: 128
+        type: string
+        optional: true
+        name: name_rf_21_25
+      - id: 129
+        type: string
+        optional: true
+        name: name_rf_26_30
+      - id: 130
+        type: string
+        optional: true
+        name: name_rf_31_35
+      - id: 131
+        type: string
+        optional: true
+        name: name_rf_36_40
+      - id: 132
+        type: string
+        optional: true
+        name: name_rf_41_45
+      - id: 133
+        type: string
+        optional: true
+        name: name_rf_46_50
+  - entity: sensor
+    name: Counter 1
+    category: diagnostic
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        optional: true
+      - id: 122
+        type: string
+        optional: true
+        name: counters_data
+      - id: 136
+        type: string
+        optional: true
+        name: name_counters
+  - entity: sensor
+    name: Counter 2
+    category: diagnostic
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 3
+    category: diagnostic
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 4
+    category: diagnostic
+    dps:
+      - id: 140
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 5
+    category: diagnostic
+    dps:
+      - id: 141
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 6
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 7
+    category: diagnostic
+    dps:
+      - id: 143
+        type: integer
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Counter 8
+    category: diagnostic
+    dps:
+      - id: 144
+        type: integer
+        name: sensor
+        optional: true

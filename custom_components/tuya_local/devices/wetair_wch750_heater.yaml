@@ -1,60 +1,49 @@
 name: Wetair WCH-750 AL heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-      name: hvac_mode
-    - id: 2
-      type: integer
-      range:
-        min: 10
-        max: 35
-      unit: C
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: mod_antiforst
-              invalid: true
-      name: temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: mod_free
-          value: comfort
-        - dps_val: mod_max12h
-          value: boost
-        - dps_val: mod_antiforst
-          value: away
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-    - id: 21
-      type: integer
-      name: unknown_21
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+        name: hvac_mode
+      - id: 2
+        type: integer
+        range:
+          min: 10
+          max: 35
+        unit: C
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: mod_antiforst
+                invalid: true
+        name: temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: mod_free
+            value: comfort
+          - dps_val: mod_max12h
+            value: boost
+          - dps_val: mod_antiforst
+            value: away
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: idle
+      - id: 21
+        type: integer
+        name: unknown_21
   - entity: light
     category: config
     translation_key: display
@@ -73,6 +62,7 @@ secondary_entities:
             value: 255
   - entity: select
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 19

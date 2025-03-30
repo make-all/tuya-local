@@ -1,0 +1,91 @@
+name: Security light
+products:
+  - id: WdI9bsgv2MKAhzxe
+    manufacturer: Brilliant Smart
+    model: Frontier 22W twin flood light with sensor
+entities:
+  - entity: light
+    icon: "mdi:light-flood-down"
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 101
+        name: brightness
+        type: integer
+        range:
+          min: 25
+          max: 255
+      - id: 105
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6000
+  - entity: number
+    name: Daylight threshold
+    class: illuminance
+    category: config
+    icon: "mdi:theme-light-dark"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: lx
+        range:
+          min: 0
+          max: 2000
+  - entity: number
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 600
+  - entity: select
+    name: Operation mode
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+            icon: "mdi:motion-sensor"
+          - dps_val: "1"
+            value: "on"
+            icon: "mdi:motion-sensor-off"
+          - dps_val: "2"
+            value: flash
+            icon: "mdi:flash"
+  - entity: select
+    name: Sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor

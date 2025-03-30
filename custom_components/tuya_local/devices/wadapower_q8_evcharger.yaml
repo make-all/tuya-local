@@ -1,37 +1,38 @@
 name: EV charger
 products:
   - id: bktb3jskdic1ar2t
-    name: Wada Power Q8 32A Wall Charger
-primary_entity:
-  entity: sensor
-  name: Status
-  class: enum
-  icon: "mdi:ev-station"
-  dps:
-    - id: 3
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_free
-          value: Available
-        - dps_val: charger_insert
-          value: Plugged in
-        - dps_val: charger_free_fault
-          value: Fault (unplugged)
-        - dps_val: charger_wait
-          value: Waiting
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_pause
-          value: Paused
-        - dps_val: charger_end
-          value: Finished
-        - dps_val: charger_fault
-          value: Fault
-    - id: 23
-      type: string
-      name: system_version
-secondary_entities:
+    manufacturer: Wada Power
+    model: Q8 32A
+    name: Wall charger
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23
+        type: string
+        name: system_version
   - entity: number
     name: Charge current
     category: config
@@ -112,8 +113,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
   - entity: sensor
     name: Scheduled stop hour
     icon: "mdi:battery-clock-outline"
@@ -122,8 +122,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "00FF"
+        mask: "00FF"
   - entity: sensor
     name: Fault reason
     icon: 'mdi:alert-outline'

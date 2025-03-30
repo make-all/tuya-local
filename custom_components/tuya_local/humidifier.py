@@ -5,6 +5,7 @@ Setup for different kinds of Tuya humidifier devices
 import logging
 
 from homeassistant.components.humidifier import (
+    HumidifierAction,
     HumidifierDeviceClass,
     HumidifierEntity,
     HumidifierEntityFeature,
@@ -15,9 +16,9 @@ from homeassistant.components.humidifier.const import (
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -49,6 +50,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         self._humidity_dp = dps_map.pop("humidity", None)
         self._mode_dp = dps_map.pop("mode", None)
         self._switch_dp = dps_map.pop("switch", None)
+        self._action_dp = dps_map.pop("action", None)
         self._init_end(dps_map)
 
         self._support_flags = HumidifierEntityFeature(0)
@@ -76,6 +78,24 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._switch_dp is None:
             return self.available
         return self._switch_dp.get_value(self._device)
+
+    @property
+    def action(self):
+        """Return the current action."""
+        if self._action_dp:
+            if not self.is_on:
+                return HumidifierAction.OFF
+
+            action = self._action_dp.get_value(self._device)
+            try:
+                return HumidifierAction(action) if action else None
+            except ValueError:
+                _LOGGER.warning(
+                    "%s/%s: Unrecognised action %s ignored",
+                    self._config._device.config,
+                    self.name or "humidifier",
+                    action,
+                )
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""

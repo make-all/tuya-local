@@ -1,39 +1,34 @@
 name: Circuit breaker energy meter
 products:
   - id: rrmpzckqm5pfd642
-    name: TOMPD-63LW
+    model: TOMPD-63LW
   - id: psjg8ldomxnelfp5
-    name: TOMZN-63A
-primary_entity:
-  entity: switch
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 17
-      name: alarm_set_1
-      optional: true
-      type: string
-    - id: 18
-      name: alarm_set_2
-      optional: true
-      type: string
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
-    - id: 9
-      name: fault
-      type: bitfield
-      optional: true
-      mapping:
-        - dps_val: 0
-          value: OK
-    - id: 19
-      name: breaker_number
-      type: string
-secondary_entities:
+    model: TOMZN-63A
+  - id: u0cxoxtfelys3ufx
+    model: TOMPD-63LW
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 17
+        name: alarm_set_1
+        optional: true
+        type: string
+      - id: 18
+        name: alarm_set_2
+        optional: true
+        type: string
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 19
+        name: breaker_number
+        type: string
   - entity: switch
     name: Prepayment
     icon: "mdi:cash-multiple"
@@ -118,7 +113,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
     class: voltage
     category: diagnostic
     dps:
@@ -127,11 +121,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -140,11 +133,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -153,6 +145,65 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Clear energy
+    class: restart
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 10

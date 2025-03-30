@@ -1,21 +1,22 @@
 name: Circuit breaker
 products:
   - id: 58bfahc5yvdpvpwd
-    name: Tongou AT-QCB2-JWT
+    manufacturer: Tongou
+    model: AT-QCB2-JWT
   - id: vhnq3ezhphqggwqt
-    name: Tongou AT-Q-SMR1-40-JWT
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Tongou
+    model: AT-Q-SMR1-40-JWT
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     name: Leakage current
     class: current
@@ -315,8 +316,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 126

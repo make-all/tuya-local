@@ -1,25 +1,22 @@
-name: Etersky aroma diffuser
+name: Aroma diffuser
 products:
   - id: rvajlvjh4qoj1lkn
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 2
-      name: switch
-      type: boolean
-    - id: 3
-      name: speed
-      type: string
-      mapping:
-        - dps_val: large
-          value: 100
-        - dps_val: small
-          value: 50
-    - id: 11
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    manufacturer: Etersky
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: string
+        mapping:
+          - dps_val: large
+            value: 100
+          - dps_val: small
+            value: 50
   - entity: switch
     name: Power
     class: switch
@@ -111,3 +108,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 11
+        name: fault_code
+        type: bitfield

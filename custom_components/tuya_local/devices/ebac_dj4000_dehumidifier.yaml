@@ -1,64 +1,47 @@
-name: EBAC DJ4000 dehumidifier
+name: Dehumidifier
 products:
   - id: ehsgslj5gb0amqnx
-    name: DJ4000
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:ait-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: dehumidify
-          value: comfort
-        - dps_val: drying
-          value: laundry
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
-        - dps_val: manual
-          value: normal
-        - dps_val: boost
-          value: boost
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 9
-      type: boolean
-      name: defrosst
-      optional: true
-    - id: 13
-      type: boolean
-      name: uv
-      optional: true
-    - id: 19
-      type: bitfield
-      name: fault_code
-    - id: 27
-      type: integer
-      name: total_runtime
-    - id: 28
-      type: boolean
-      name: runtime_reset
-secondary_entities:
+    manufacturer: EBAC
+    model: DJ4000
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:ait-humidifier-off"
+            icon_priority: 1
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+            icon_priority: 3
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: dehumidify
+            value: comfort
+          - dps_val: drying
+            value: laundry
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 2
+          - dps_val: manual
+            value: normal
+          - dps_val: boost
+            value: boost
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: fan
     dps:
       - id: 103
@@ -91,9 +74,8 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    icon: "mdi:air-filter"
     dps:
       - id: 20
         type: boolean
@@ -158,3 +140,49 @@ secondary_entities:
             value: 7h
           - dps_val: 8h
             value: 8h
+  - entity: binary_sensor
+    class: defrost
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Runtime reset
+    category: config
+    dps:
+      - id: 28
+        type: boolean
+        name: button

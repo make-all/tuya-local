@@ -1,30 +1,30 @@
 name: Curtain module
 products:
   - id: 5rr5k8fzjcogubkt
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-secondary_entities:
+    model: FS-03W
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
   - entity: light
     translation_key: backlight
     category: config
@@ -47,6 +47,7 @@ secondary_entities:
             value: Back
   - entity: number
     name: Travel time
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:

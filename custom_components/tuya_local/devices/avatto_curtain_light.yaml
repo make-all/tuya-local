@@ -1,31 +1,31 @@
 name: Avatto Curtain and Light
 products:
   - id: v59tpvs4ubvjalhq
-    name: Avatto CB3S
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-secondary_entities:
+    manufacturer: Avatto
+    model: CB3S
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
   - entity: light
     dps:
       - id: 102
@@ -68,6 +68,7 @@ secondary_entities:
   - entity: number
     name: Time control
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 10

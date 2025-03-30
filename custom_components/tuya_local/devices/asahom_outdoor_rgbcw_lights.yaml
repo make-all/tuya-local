@@ -1,0 +1,180 @@
+name: Decorative lights
+products:
+  - id: wcx02kgo8o1qwaf8
+    manufacturer: Asahom
+    model: S105A C
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: color
+            value: "off"
+          - dps_val: animation
+            value: Animation
+          - dps_val: music
+            value: Music
+          - dps_val: timer
+            value: Timer
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        optional: true
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        type: string
+        optional: true
+        name: music_data
+      - id: 101
+        type: string
+        name: color_addressable
+      - id: 102
+        type: string
+        optional: true
+        name: color_favorite
+      - id: 103
+        type: string
+        optional: true
+        name: animation_preset
+      - id: 104
+        type: string
+        optional: true
+        name: animation_diy
+      - id: 106
+        type: integer
+        name: light_count
+      - id: 107
+        type: string
+        optional: true
+        name: animation_folder
+      - id: 108
+        type: string
+        optional: true
+        name: music_devicedata
+      - id: 109
+        type: string
+        optional: true
+        name: button_setting
+      - id: 110
+        type: string
+        optional: true
+        name: splitter_setting
+      - id: 111
+        type: integer
+        optional: true
+        name: color_brightness
+      - id: 116
+        type: string
+        optional: true
+        name: color_sync
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Memory
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Remote pairing
+    icon: "mdi:remote"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 115
+        type: string
+        optional: true
+        name: information
+  - entity: select
+    name: Light mode
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: color
+            value: Color
+          - dps_val: fav
+            value: Favorite
+  - entity: switch
+    name: Color sync
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reconfigure
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: button

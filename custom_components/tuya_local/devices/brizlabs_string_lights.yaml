@@ -1,0 +1,79 @@
+name: String lights
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Brizlabs
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "00000301ff06ff0000ffff0000ff0000ffff0000ffff00ff"
+            value: "Solid Multicolor"
+          - dps_val: "00000301ff01ffffff"
+            value: "Solid White"
+          - dps_val: "00000301ff0200ff00ff0000"
+            value: "Solid Red-Green"
+          - dps_val: "03000301ff07ff0000ffff0000ff0000ffff0000ffff00ffffffff"
+            value: "Multicolor Chase"
+          - dps_val: "09000101ff02ff000000ff00"
+            value: "Slow Red-Green Swap"
+          - dps_val: "09000301ff02ff000000ff00"
+            value: "Fast Red-Green Swap"
+          - dps_val: "11000301ff02ff000000ff00"
+            value: "Color cycling pulse"
+          - dps_val: "0c000101ff06ff000000ff000000ffffff0000ffffff00ff"
+            value: "Multicolor Transition"
+          - dps_val: "13000301ff070000ff00ffff00ff00ff00ffff0000ffffffffff00"
+            value: "Fast color cycle"
+          - dps_val: "15000301ff01ff0000"
+            value: "Rotating Color Cycle"
+          - dps_val: "09000301ff01ffffff"
+            value: "White-White Swap"
+          - dps_val: "0c000101ff01ffffff"
+            value: "White-Off Swap"

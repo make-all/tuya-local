@@ -1,21 +1,25 @@
 name: Dual dimmer
 products:
   - id: bxoo2swd
-    name: Moes ZM-105B-M-MS
-primary_entity:
-  entity: light
-  name: Light 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Moes
+    model: ZM-105B-M-MS
+  - id: 9cfxqryaoqwwjkyy
+    manufacturer: Totebox
+    model: "2"
+    name: Dimmer plug
+entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: light
     name: Light 2
     dps:
@@ -113,8 +117,10 @@ secondary_entities:
             value: Halogen
             icon: "mdi:lightbulb-spot"
   - entity: number
-    translation_key: timer
-    name: Timer 1
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 6
@@ -128,8 +134,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    translation_key: timer
-    name: Timer 2
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 12
@@ -143,8 +151,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 14
@@ -153,8 +160,8 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: memory
-            value: Last state
+            value: memory

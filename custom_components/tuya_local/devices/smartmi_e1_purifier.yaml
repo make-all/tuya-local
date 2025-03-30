@@ -1,29 +1,26 @@
 name: Air Purifier
 products:
   - id: pwrmggdhwkz1lnvh
-    name: Smartmi E1
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: sleep
-          value: sleep
-        - dps_val: auto
-          value: normal
-        - dps_val: manual
-          value: strong
-    - id: 22
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Smartmi
+    model: E1
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: auto
+            value: normal
+          - dps_val: manual
+            value: strong
   - entity: light
     translation_key: indicator
     category: config
@@ -41,3 +38,17 @@ secondary_entities:
         name: sensor
         type: integer
         unit: h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

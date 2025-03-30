@@ -1,15 +1,14 @@
 name: Irrigation timer
 products:
   - id: 8t5hebn0
-    name: MoistenLand BLE
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      name: valve
-      type: boolean
-secondary_entities:
+    manufacturer: MoistenLand
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        name: valve
+        type: boolean
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -68,6 +67,7 @@ secondary_entities:
             value: "72h"
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 11

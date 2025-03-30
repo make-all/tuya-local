@@ -2,17 +2,18 @@
 # Model No:TEB2045QB
 # Controller Unit No: 039-WIFI
 
-name: Tontine Electric Blanket
+name: Electric blanket
 products:
   - id: m3kmcn9evognklsp
-primary_entity:
-  entity: switch
-  icon: "mdi:bed"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Tontine
+    model: O39
+entities:
+  - entity: switch
+    icon: "mdi:bed"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Temperature
     icon: "mdi:thermometer"
@@ -28,6 +29,7 @@ secondary_entities:
           - dps_val: high
             value: "high"
   - entity: number
+    class: duration
     translation_key: timer
     dps:
       - id: 9

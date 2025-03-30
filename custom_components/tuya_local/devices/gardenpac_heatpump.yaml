@@ -1,82 +1,63 @@
 name: GardenPAC pool heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: "mdi:hvac-off"
-          icon_priority: 1
-        - dps_val: true
-          value: "heat"
-          icon: "mdi:hot-tub"
-          icon_priority: 3
-    - id: 102
-      name: current_temperature
-      type: integer
-    - id: 103
-      name: temperature_unit
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: F
-        - dps_val: true
-          value: C
-    - id: 105
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-    - id: 106
-      name: temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: false
-              range:
-                min: 60
-                max: 115
-      range:
-        min: 18
-        max: 45
-    - id: 107
-      type: integer
-      name: min_temperature
-    - id: 108
-      type: integer
-      name: max_temperature
-    - id: 115
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 4
-          value: Water Flow Protection
-          icon: "mdi:water-pump-off"
-          icon_priority: 2
-    - id: 116
-      type: bitfield
-      name: error_2
-    - id: 117
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: sleep
-        - dps_val: true
-          value: activity
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: "mdi:hvac-off"
+            icon_priority: 1
+          - dps_val: true
+            value: "heat"
+            icon: "mdi:hot-tub"
+            icon_priority: 3
+      - id: 102
+        name: current_temperature
+        type: integer
+      - id: 103
+        name: temperature_unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+      - id: 105
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: warm
+            value: idle
+      - id: 106
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: false
+                range:
+                  min: 60
+                  max: 115
+        range:
+          min: 18
+          max: 45
+      - id: 107
+        type: integer
+        name: min_temperature
+      - id: 108
+        type: integer
+        name: max_temperature
+      - id: 117
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: sleep
+          - dps_val: true
+            value: activity
   - entity: sensor
     name: Power level
     class: power_factor
@@ -100,3 +81,24 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code
+            conditions:
+              - dps_val: [0, 4]
+                value: false
+          - value: true
+      - id: 115
+        type: bitfield
+        name: fault_code
+      - id: 116
+        type: bitfield
+        name: fault_code_2

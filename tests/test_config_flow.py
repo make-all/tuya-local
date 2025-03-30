@@ -350,9 +350,9 @@ def setup_device_mock(mock, failure=False, type="test"):
     mock_type.legacy_type = type
     mock_type.config_type = type
     mock_type.match_quality.return_value = 100
-    mock_iter = MagicMock()
-    mock_iter.__aiter__.return_value = [mock_type] if not failure else []
-    mock.async_possible_types = MagicMock(return_value=mock_iter)
+    mock.async_possible_types = AsyncMock(
+        return_value=[mock_type] if not failure else []
+    )
 
 
 @pytest.mark.asyncio
@@ -513,6 +513,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             "description": None,
             "description_placeholders": None,
             "result": ANY,
+            "subentries": (),
             "options": {},
             "data": {
                 CONF_DEVICE_ID: "deviceid",
@@ -598,7 +599,6 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: 3.3,
-            CONF_DEVICE_CID: "subdeviceid",
         },
     )
     expected = {
@@ -606,7 +606,6 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
         CONF_LOCAL_KEY: "new_key",
         CONF_POLL_ONLY: False,
         CONF_PROTOCOL_VERSION: 3.3,
-        CONF_DEVICE_CID: "subdeviceid",
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]

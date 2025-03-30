@@ -1,49 +1,50 @@
 name: Radiator heatpump
 products:
   - id: 3gabjnrhtblg3ub6
-    name: Fisher e-HeatR air-water heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-          hidden: true
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cool
-              value: cool
-              hidden: true
-            - dps_val: heat
-              value: heat
-              hidden: true
-            - dps_val: DHW
-              value: "off"
-            - dps_val: COOLDHW
-              value: cool
-            - dps_val: HEATDHW
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-    - id: 9
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 65
-      unit: C
-    - id: 10
-      type: integer
-      name: current_temperature
-    - id: 26
-      type: integer
-      name: temp_current_f
-secondary_entities:
+    manufacturer: Fisher
+    model: e-HeatR
+    name: Air-water heatpump
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            hidden: true
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: cool
+                hidden: true
+              - dps_val: heat
+                value: heat
+                hidden: true
+              - dps_val: DHW
+                value: "off"
+              - dps_val: COOLDHW
+                value: cool
+              - dps_val: HEATDHW
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+      - id: 9
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 65
+        unit: C
+      - id: 10
+        type: integer
+        name: current_temperature
+      - id: 26
+        type: integer
+        name: temp_current_f
   - entity: water_heater
     dps:
       - id: 7

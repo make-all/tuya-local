@@ -1,27 +1,27 @@
 name: Sprinkler controller
 products:
   - id: e1epsoiywcirul2u
-    name: Zemismart DP-WBS01
-primary_entity:
-  entity: valve
-  class: water
-  name: Main
-  dps:
-    - id: 40
-      type: string
-      name: valve
-      optional: true
-      mapping:
-        - dps_val: "on"
-          value: true
-        - dps_val: "off"
-          value: false
-        - dps_val: null
-          value: false
-    - id: 38
-      type: string
-      name: schedule
-secondary_entities:
+    manufacturer: Zemismart
+    model: DP-WBS01
+entities:
+  - entity: valve
+    class: water
+    name: Main
+    dps:
+      - id: 40
+        type: string
+        name: valve
+        optional: true
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+          - dps_val: null
+            value: false
+      - id: 38
+        type: string
+        name: schedule
   - entity: valve
     class: water
     name: Sprinkler 1
@@ -79,9 +79,11 @@ secondary_entities:
         type: boolean
         name: valve
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 13
         type: integer
@@ -94,9 +96,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 14
         type: integer
@@ -109,9 +113,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 3
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 15
         type: integer
@@ -124,9 +130,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 4
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 16
         type: integer
@@ -139,9 +147,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 5
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "5"
     dps:
       - id: 17
         type: integer
@@ -154,9 +164,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 6
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "6"
     dps:
       - id: 18
         type: integer
@@ -169,9 +181,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 7
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "7"
     dps:
       - id: 19
         type: integer
@@ -184,9 +198,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 8
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "8"
     dps:
       - id: 20
         type: integer
@@ -289,7 +305,7 @@ secondary_entities:
           - dps_val: cancel
             value: cancel
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:sprinkler"
     class: enum
     category: diagnostic
@@ -299,11 +315,11 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: manual
-            value: Manual
+            value: manual
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: idle
-            value: Idle
+            value: idle
   - entity: sensor
     name: Smart weather
     class: enum

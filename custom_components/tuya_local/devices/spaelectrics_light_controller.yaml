@@ -1,0 +1,606 @@
+name: Light controller
+products:
+  - id: nzmllynz7tligqp0
+    manufacturer: Spa Electrics
+    model: RM-WF Iris
+entities:
+  - entity: light
+    name: Zone 1
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 108
+        type: boolean
+        name: switch
+      - id: 112
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 3
+      - id: 110
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: WHITE
+            value: white
+          - dps_val: AQUA
+            value: aqua
+          - dps_val: BLUE
+            value: blue
+          - dps_val: MAGENTA
+            value: magenta
+          - dps_val: RED
+            value: red
+          - dps_val: LIME
+            value: lime
+          - dps_val: GREEN
+            value: green
+          - dps_val: OCEANIC
+            value: black
+          - value: black
+      - id: 110
+        type: string
+        name: effect
+        mapping:
+          - dps_val: WHITE
+            value: "off"
+          - dps_val: OCEANIC
+            value: Oceanic
+          - dps_val: TRANSCENDENCE
+            value: Transcendence
+          - dps_val: OUTBACK
+            value: Outback
+          - dps_val: SPRING
+            value: Spring
+      - id: 103
+        type: string
+        name: zone_name
+  - entity: light
+    name: Zone 2
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 120
+        type: boolean
+        name: switch
+      - id: 124
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 3
+      - id: 122
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: WHITE
+            value: white
+          - dps_val: AQUA
+            value: aqua
+          - dps_val: BLUE
+            value: blue
+          - dps_val: MAGENTA
+            value: magenta
+          - dps_val: RED
+            value: red
+          - dps_val: LIME
+            value: lime
+          - dps_val: GREEN
+            value: green
+          - dps_val: OCEANIC
+            value: black
+          - value: black
+      - id: 122
+        type: string
+        name: effect
+        mapping:
+          - dps_val: WHITE
+            value: "off"
+          - dps_val: OCEANIC
+            value: Oceanic
+          - dps_val: TRANSCENDENCE
+            value: Transcendence
+          - dps_val: OUTBACK
+            value: Outback
+          - dps_val: SPRING
+            value: Spring
+      - id: 104
+        type: string
+        name: zone_name
+  - entity: switch
+    name: Zone 1
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 2
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: select
+    name: Zone 1 type
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: RGB Lighting
+            icon: "mdi:wall-sconce-flat-variant"
+          - dps_val: true
+            value: General power outlet
+            icon: "mdi:toggle-switch"
+      - id: 174
+        type: boolean
+        optional: true
+        name: temporary_gpo
+  - entity: select
+    name: Zone 2 type
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: RGB Lighting
+            icon: "mdi:wall-sconce-flat-variant"
+          - dps_val: true
+            value: General power outlet
+            icon: "mdi:toggle-switch"
+      - id: 175
+        type: boolean
+        optional: true
+        name: temporary_gpo
+  - entity: number
+    name: Zone 1 effect speed
+    category: config
+    icon: "mdi:play-speed"
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: number
+    name: Zone 2 effect speed
+    category: config
+    icon: "mdi:play-speed"
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 126
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: switch
+    name: Link zones
+    icon: "mdi:link"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+      - id: 176
+        type: boolean
+        optional: true
+        name: temporary_linked
+  - entity: switch
+    name: Link on main panel
+    icon: "mdi:link-box"
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Schedules enabled
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
+      - id: 177
+        type: boolean
+        optional: true
+        name: temporary_enable
+  - entity: number
+    name: Zone 1 schedule hours
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 106
+        type: boolean
+        name: gpo_mode
+        hidden: true
+      - id: 130
+        type: boolean
+        name: available
+      - id: 132
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+        mapping:
+          - constraint: gpo_mode
+            conditions:
+              - dps_val: true
+                value_redirect: gpo_value
+      - id: 154
+        type: integer
+        name: gpo_value
+        hidden: true
+  - entity: number
+    name: Zone 1 schedule minutes
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 106
+        type: boolean
+        name: gpo_mode
+        hidden: true
+      - id: 130
+        type: boolean
+        name: available
+      - id: 134
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+        mapping:
+          - constraint: gpo_mode
+            conditions:
+              - dps_val: true
+                value_redirect: gpo_value
+      - id: 155
+        type: integer
+        name: gpo_value
+        hidden: true
+  - entity: select
+    name: Zone 1 schedule color
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+      - id: 136
+        type: string
+        name: option
+        mapping:
+          - dps_val: WHITE
+            value: White
+          - dps_val: AQUA
+            value: Aqua
+          - dps_val: BLUE
+            value: Blue
+          - dps_val: MAGENTA
+            value: Magenta
+          - dps_val: RED
+            value: Red
+          - dps_val: LIME
+            value: Lime
+          - dps_val: GREEN
+            value: Green
+          - dps_val: OCEANIC
+            value: Oceanic
+          - dps_val: TRANSCENDENCE
+            value: Transcendence
+          - dps_val: OUTBACK
+            value: Outback
+          - dps_val: SPRING
+            value: Spring
+  - entity: number
+    name: Zone 1 schedule brightness
+    category: config
+    icon: "mdi:brightness-4"
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+        hidden: true
+      - id: 137
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: number
+    name: Zone 1 schedule speed
+    category: config
+    icon: "mdi:play-speed"
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+        hidden: true
+      - id: 138
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: number
+    name: Zone 2 schedule hours
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 118
+        type: boolean
+        name: gpo_mode
+        hidden: true
+      - id: 130
+        type: boolean
+        name: available
+      - id: 140
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+        mapping:
+          - constraint: gpo_mode
+            conditions:
+              - dps_val: true
+                value_redirect: gpo_value
+      - id: 157
+        type: integer
+        name: gpo_value
+        hidden: true
+  - entity: number
+    name: Zone 2 schedule minutes
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 118
+        type: boolean
+        name: gpo_mode
+        hidden: true
+      - id: 130
+        type: boolean
+        name: available
+      - id: 142
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+        mapping:
+          - constraint: gpo_mode
+            conditions:
+              - dps_val: true
+                value_redirect: gpo_value
+      - id: 158
+        type: integer
+        name: gpo_value
+        hidden: true
+  - entity: select
+    name: Zone 2 schedule color
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+        hidden: true
+      - id: 144
+        type: string
+        name: option
+        mapping:
+          - dps_val: WHITE
+            value: White
+          - dps_val: AQUA
+            value: Aqua
+          - dps_val: BLUE
+            value: Blue
+          - dps_val: MAGENTA
+            value: Magenta
+          - dps_val: RED
+            value: Red
+          - dps_val: LIME
+            value: Lime
+          - dps_val: GREEN
+            value: Green
+          - dps_val: OCEANIC
+            value: Oceanic
+          - dps_val: TRANSCENDENCE
+            value: Transcendence
+          - dps_val: OUTBACK
+            value: Outback
+          - dps_val: SPRING
+            value: Spring
+  - entity: number
+    name: Zone 2 schedule brightness
+    category: config
+    icon: "mdi:brightness-4"
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+        hidden: true
+      - id: 146
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: number
+    name: Zone 2 schedule speed
+    category: config
+    icon: "mdi:play-speed"
+    dps:
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value_redirect: schedule_enabled
+          - dps_val: true
+            value: false
+      - id: 130
+        type: boolean
+        name: schedule_enabled
+        hidden: true
+      - id: 148
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 3
+  - entity: switch
+    name: Zone 1 timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 2 timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 152
+        type: boolean
+        name: switch
+  - entity: button
+    name: Sync
+    icon: "mdi:sync-circle"
+    dps:
+      - id: 160
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+      - id: 168
+        type: string
+        name: firmware_version
+      - id: 170
+        type: string
+        optional: true
+        name: startup_status
+      - id: 180
+        type: string
+        name: service_mode_status
+  - entity: switch
+    name: Light set mode
+    category: config
+    dps:
+      - id: 164
+        type: boolean
+        name: switch
+  - entity: event
+    name: Reset
+    dps:
+      - id: 166
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: reset
+          - dps_val: false
+            value: null
+  - entity: button
+    name: App reset
+    category: config
+    class: restart
+    dps:
+      - id: 179
+        type: boolean
+        optional: true
+        name: button

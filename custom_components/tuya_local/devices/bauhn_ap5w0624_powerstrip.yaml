@@ -1,43 +1,49 @@
 name: 5-way powerstrip
 products:
   - id: bf152cecbcf4180771k2lq
-    name: BAUHN AP5W-0624
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  icon: mdi:power-socket-au
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Bauhn
+    model: AP5W-0624
+entities:
   - entity: switch
-    name: Outlet 2
-    icon: mdi:power-socket-au
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
-    icon: mdi:power-socket-au
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
-    icon: mdi:power-socket-au
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 5
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "5"
     icon: mdi:power-socket-au
     class: outlet
     dps:
@@ -45,9 +51,11 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     dps:
       - id: 9
         type: integer
@@ -69,9 +77,11 @@ secondary_entities:
         type: string
         name: switch_inching
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 10
         type: integer
@@ -84,9 +94,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 3
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    class: duration
     dps:
       - id: 11
         type: integer
@@ -99,9 +111,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 4
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    class: duration
     dps:
       - id: 12
         type: integer
@@ -114,9 +128,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 5
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "5"
+    class: duration
     dps:
       - id: 13
         type: integer
@@ -175,8 +191,7 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -188,7 +203,7 @@ secondary_entities:
           - dps_val: "off"
             value: "off"
           - dps_val: "memory"
-            value: Last state
+            value: memory
   - entity: lock
     translation_key: child_lock
     category: config

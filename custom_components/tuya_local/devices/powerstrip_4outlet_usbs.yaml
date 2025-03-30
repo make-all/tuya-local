@@ -1,29 +1,36 @@
 name: 4 outlet + USB powerstrip
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
@@ -37,17 +44,16 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Restore power state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 7
         type: string
         name: option
         mapping:
-          - dps_val: 0
-            value: "OFF"
-          - dps_val: 1
-            value: "ON"
-          - dps_val: 2
-            value: Remember last state
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory

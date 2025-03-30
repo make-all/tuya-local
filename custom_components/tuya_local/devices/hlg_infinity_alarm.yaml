@@ -1,0 +1,303 @@
+name: Alarm control
+products:
+  - id: f4gbbzyp0e6asfnt
+    manufacturer: HLG
+    model: Infinity
+entities:
+  - entity: sensor
+    icon: "mdi:clipboard-text-clock"
+    dps:
+      - id: 33
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Sector 1
+    icon: "mdi:numeric-1-circle"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Armado
+            value: Armed
+          - dps_val: Desarmado
+            value: Disarmed
+          - dps_val: Memoria
+            value: Memory
+          - dps_val: Disparado
+            value: Triggered
+      - id: 120
+        type: string
+        name: sector_name
+  - entity: sensor
+    name: Sector 2
+    icon: "mdi:numeric-2-circle"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Armado
+            value: Armed
+          - dps_val: Desarmado
+            value: Disarmed
+          - dps_val: Memoria
+            value: Memory
+          - dps_val: Disparado
+            value: Triggered
+      - id: 121
+        type: string
+        name: sector_name
+  - entity: sensor
+    name: Sector 3
+    icon: "mdi:numeric-3-circle"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Armado
+            value: Armed
+          - dps_val: Desarmado
+            value: Disarmed
+          - dps_val: Memoria
+            value: Memory
+          - dps_val: Disparado
+            value: Triggered
+      - id: 122
+        type: string
+        name: sector_name
+  - entity: sensor
+    name: Sector 4
+    icon: "mdi:numeric-4-circle"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Armado
+            value: Armed
+          - dps_val: Desarmado
+            value: Disarmed
+          - dps_val: Memoria
+            value: Memory
+          - dps_val: Disparado
+            value: Triggered
+      - id: 123
+        type: string
+        name: sector_name
+  - entity: select
+    name: Sector selection
+    icon: "mdi:power-cycle"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "Todos"
+            value: "All sectors"
+          - dps_val: "S1"
+            value: "Sector 1"
+          - dps_val: "S2"
+            value: "Sector 2"
+          - dps_val: "S3"
+            value: "Sector 3"
+          - dps_val: "S4"
+            value: "Sector 4"
+          - dps_val: "S1_S2"
+            value: "Sectors 1 and 2"
+          - dps_val: "S3_S4"
+            value: "Sectors 3 and 4"
+          - dps_val: "S1_S2_S3"
+            value: "Sectors 1, 2 and 3"
+          - dps_val: "S2_S3_S4"
+            value: "Sectors 2, 3 and 4"
+  - entity: switch
+    name: Siren
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: LED
+    icon: "mdi:led-off"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Panic
+    icon: "mdi:alert-decagram"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Last Event
+    icon: "mdi:clipboard-text-clock"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: ARMADO
+            value: ARMED
+          - dps_val: DESARMADO
+            value: DISARMED
+          - dps_val: DISPARADO
+            value: TRIGGERED
+          - dps_val: MEMORIA
+            value: MEMORY
+          - dps_val: LED_ON
+            value: LED_ON
+          - dps_val: LED_OFF
+            value: LED_OFF
+          - dps_val: PANICO_ON
+            value: PANIC_ON
+          - dps_val: PANICO_OFF
+            value: PANIC_OFF
+          - dps_val: SIRENE_ON
+            value: SIREN_ON
+          - dps_val: SIRENE_OFF
+            value: SIREN_OFF
+          - dps_val: REINICIADO
+            value: RESTARTED
+  - entity: switch
+    name: Arm beep
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: select
+    name: Learn remote control
+    icon: "mdi:remote"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "S1_S2_S3_S4"
+            value: "All Sectors"
+          - dps_val: "S1"
+            value: "Sector 1"
+          - dps_val: "S2"
+            value: "Sector 2"
+          - dps_val: "S3"
+            value: "Sector 3"
+          - dps_val: "S4"
+            value: "Sector 4"
+          - dps_val: "S1_S2"
+            value: "Sectors: 1 and 2"
+          - dps_val: "S3_S4"
+            value: "Sectors: 3 and 4"
+          - dps_val: "S1_S3"
+            value: "Sectors: 1 and 3"
+          - dps_val: "S1_S4"
+            value: "Sectors: 1 and 4"
+          - dps_val: "S2_S3"
+            value: "Sectors: 2 and 3"
+          - dps_val: "S2_S4"
+            value: "Sectors: 2 and 4"
+          - dps_val: "S1_S2_S3"
+            value: "Sectors: 1, 2 and 3"
+          - dps_val: "S2_S3_S4"
+            value: "Sectors: 2, 3 and 4"
+          - dps_val: "S1_S3_S4"
+            value: "Sectors: 1, 3 and 4"
+          - dps_val: "S1_S2_S4"
+            value: "Sectors: 1, 2 and 4"
+          - dps_val: "PANICO"
+            value: "Panic"
+          - dps_val: "CANCEL"
+            value: "Cancel"
+          - dps_val: null
+            value: "Cancel"
+            hidden: true
+      - id: 113
+        type: integer
+        name: buttons_learned
+  - entity: select
+    name: Learn sensor
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "S1"
+            value: "Sector 1"
+          - dps_val: "S2"
+            value: "Sector 2"
+          - dps_val: "S3"
+            value: "Sector 3"
+          - dps_val: "S4"
+            value: "Sector 4"
+          - dps_val: "CANCEL"
+            value: "Cancel"
+          - dps_val: null
+            value: "Cancel"
+            hidden: true
+      - id: 114
+        type: integer
+        name: sensors_learned
+        optional: true
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Sector 1 battery
+    class: "battery"
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Sector 2 battery
+    class: "battery"
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Sector 3 battery
+    class: "battery"
+    category: diagnostic
+    dps:
+      - id: 118
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Sector 4 battery
+    class: "battery"
+    category: diagnostic
+    dps:
+      - id: 119
+        type: boolean
+        name: sensor

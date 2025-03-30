@@ -3,28 +3,24 @@
 name: Weather station
 products:
   - id: 8qk6p78udvbjwlof
-    name: Bresser C6085A
-primary_entity:
-  entity: sensor
-  name: Indoor temperature
-  class: temperature
-  dps:
-    - id: 1
-      <<: &temperature
-        type: integer
-        name: sensor
-        unit: C
-        mapping:
-          - scale: 10
-        class: measurement
-    - id: 22
-      type: string
-      name: fault_type
-      optional: true
-    - id: 68
-      type: string
-      name: com_index
-secondary_entities:
+    manufacturer: Bresser
+    model: ClimateConnect C6085A
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 1
+        <<: &temperature
+          type: integer
+          name: sensor
+          unit: C
+          mapping:
+            - scale: 10
+          class: measurement
+      - id: 68
+        type: string
+        name: com_index
   - entity: sensor
     name: Indoor humidity
     class: humidity
@@ -124,6 +120,24 @@ secondary_entities:
             value: fc
           - dps_val: wm2
             value: W/m2
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: ""
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: string
+        optional: true
+        name: description
   - entity: binary_sensor
     class: battery
     category: diagnostic

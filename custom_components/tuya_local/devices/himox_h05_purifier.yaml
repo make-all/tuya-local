@@ -1,24 +1,23 @@
 name: Himox H05 air purifier
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: low
-          value: sleep
-        - dps_val: mid
-          value: fresh
-        - dps_val: high
-          value: strong
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: low
+            value: sleep
+          - dps_val: mid
+            value: fresh
+          - dps_val: high
+            value: strong
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -45,8 +44,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
@@ -71,7 +69,7 @@ secondary_entities:
           - dps_val: 8h
             value: "8h"
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     dps:
       - id: 21
         type: string

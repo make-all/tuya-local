@@ -1,60 +1,57 @@
 name: LED strip
 products:
   - id: khu3zzkkjemj6oat
-    name: Blitzwolf BW-LT31
-primary_entity:
-  entity: light
-  icon: "mdi:led-strip-variant"
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: dynamic_mod
-          value: Dynamic
-        - dps_val: color
-          value: hs
-        - dps_val: scene_mod
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 103
-      name: line_sequence_adjustment
-      type: integer
-    - id: 104
-      name: strip_points
-      type: integer
-secondary_entities:
+    manufacturer: Blitzwolf
+    model: BW-LT31
+entities:
+  - entity: light
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: dynamic_mod
+            value: Dynamic
+          - dps_val: color
+            value: hs
+          - dps_val: scene_mod
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 103
+        name: line_sequence_adjustment
+        type: integer
   - entity: select
     name: Music
     icon: "mdi:palette"
@@ -136,8 +133,7 @@ secondary_entities:
             value: "Adjoint"
             # color1 W, speed 50, bright 100
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 108
@@ -145,23 +141,23 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "CJ_YD"
-            value: "Reading"
+          - dps_val: CJ_YD
+            value: reading
             # color: white, static
-          - dps_val: "CJ_QC"
-            value: "Get Up"
+          - dps_val: CJ_QC
+            value: morning
             # color: white, yellow, static
-          - dps_val: "CJ_WA"
-            value: "Good Night"
+          - dps_val: CJ_WA
+            value: night
             # color: red, static
-          - dps_val: "CJ_XK"
-            value: "Starry"
+          - dps_val: CJ_XK
+            value: twinkle
             # color: blue, flash
-          - dps_val: "CJ_JH"
-            value: "Party"
+          - dps_val: CJ_JH
+            value: party
             # color* All, Flash, Mid speed
-          - dps_val: "CJ_YS"
-            value: "Film"
+          - dps_val: CJ_YS
+            value: movie
             # color: lightblue, static
   - entity: number
     name: Strip points

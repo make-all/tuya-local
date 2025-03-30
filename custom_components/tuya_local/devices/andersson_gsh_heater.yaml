@@ -1,40 +1,54 @@
-name: Andersson GSH heater
+name: Heater
 legacy_type: gsh_heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 5
-        max: 35
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-        - dps_val: af
-          value: away
-    - id: 12
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
+products:
+  # - id: UNKNOWN
+  #   name: Andersson GSH
+  - id: qAmsenZuNF74vRvj
+    manufacturer: Devola
+    model: Intelligent
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+          - dps_val: af
+            value: away
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

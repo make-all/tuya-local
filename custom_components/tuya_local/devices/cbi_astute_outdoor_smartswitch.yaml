@@ -1,17 +1,18 @@
-name: Astute smart controller
+name: Switch
 products:
   - id: xzgtyrqbab8lm2zo
-    name: CBI ASC switch
-primary_entity:
-  entity: switch
-  class: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: CBI
+    model: Astute Smart Controller
+entities:
+  - entity: switch
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 7
@@ -26,19 +27,18 @@ secondary_entities:
             step: 60
   - entity: select
     category: config
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 14
         type: string
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
-          - dps_val: "memory"
-            value: "Last State"
+            value: "off"
+          - dps_val: memory
+            value: memory
   - entity: sensor
     category: diagnostic
     class: energy

@@ -1,37 +1,18 @@
 name: mmWave presence sensor
 products:
   - id: 4cjzlliucdjaanvl
-    name: ZY-M100-WIFI24G
-primary_entity:
-  entity: binary_sensor
-  class: motion
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: false
-        - dps_val: move
-          value: true
-        - dps_val: none
-          value: false
-secondary_entities:
-  - entity: sensor
-    class: enum
-    category: diagnostic
-    name: Status
+    model: ZY-M100-WIFI24G
+entities:
+  - entity: binary_sensor
+    class: motion
     dps:
       - id: 1
         type: string
         name: sensor
         mapping:
-          - dps_val: presence
-            value: Still
           - dps_val: move
-            value: Moving
-          - dps_val: none
-            value: Empty
+            value: true
+          - value: false
   - entity: number
     name: Sensitivity
     category: config
@@ -102,22 +83,27 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
-        unit: lux
+        unit: lx
         class: measurement
   - entity: binary_sensor
     class: occupancy
     dps:
-      - id: 104
+      - id: 1
         type: string
         name: sensor
         mapping:
-          - dps_val: nobody
-            value: false
-          - dps_val: exist
+          - dps_val: presence
             value: true
+          - dps_val: move
+            value: true
+          - value: false
+      - id: 104
+        type: string
+        name: manned
   - entity: number
     name: Delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 105

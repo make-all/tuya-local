@@ -1,5 +1,6 @@
 """Tests for the switch entity."""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -56,9 +57,9 @@ class TestGridConnectDoubleSwitch(
             INITIAL_DPS,
             self.entities.get("select_initial_state"),
             {
-                "on": "On",
-                "off": "Off",
-                "memory": "Last State",
+                "on": "on",
+                "off": "off",
+                "memory": "memory",
             },
         )
         # Master switch must go last, otherwise its tests interfere with
@@ -89,6 +90,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "unit": UnitOfEnergy.WATT_HOUR,
+                    "state_class": "measurement",
                 },
                 {
                     "name": "sensor_current",
@@ -121,12 +123,14 @@ class TestGridConnectDoubleSwitch(
                     "name": "number_timer_1",
                     "dps": COUNTDOWN1_DPS,
                     "max": 86400,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
                 {
                     "name": "number_timer_2",
                     "dps": COUNTDOWN2_DPS,
                     "max": 86400,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
             ]

@@ -1,27 +1,22 @@
 name: Aroma diffuser
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 103
-      type: string
-      name: speed
-      mapping:
-        - dps_val: small
-          value: 50
-        - dps_val: big
-          value: 100
-        - dps_val: "off"
-          value: 0
-          hidden: true
-    - id: 12
-      type: bitfield
-      name: fault_code
-      optional: true
-secondary_entities:
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 103
+        type: string
+        name: speed
+        mapping:
+          - dps_val: small
+            value: 50
+          - dps_val: big
+            value: 100
+          - dps_val: "off"
+            value: 0
+            hidden: true
   - entity: light
     category: config
     dps:
@@ -107,6 +102,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: timer
     category: config

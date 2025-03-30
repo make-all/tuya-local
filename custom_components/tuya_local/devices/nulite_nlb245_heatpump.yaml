@@ -1,0 +1,100 @@
+name: Heat pump
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Nulite
+#     model: NL-B245
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: air_only
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Heat
+                value: heat
+                available: air_only
+              - dps_val: Cool
+                value: cool
+                available: air_only
+              - dps_val: HotWater
+                value: "off"
+                available: dhw
+              - dps_val: Heat_HotWater
+                value: heat
+                available: dhw
+              - dps_val: Cool_HotWater
+                value: cool
+                available: dhw
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 8
+          max: 60
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: string
+        name: dhw
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [HotWater, Heat_HotWater, Cool_HotWater]
+                value: true
+      - id: 4
+        type: string
+        name: air_only
+        mapping:
+          - value: true
+            conditions:
+              - dps_val: [HotWater, Heat_HotWater, Cool_HotWater]
+                value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: water_heater
+    dps:
+      - id: 4
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: Heat
+            value: Heat
+          - dps_val: Cool
+            value: Cool
+          - dps_val: HotWater
+            value: Hot water
+          - dps_val: Heat_HotWater
+            value: Heat and hot water
+          - dps_val: Cool_HotWater
+            value: Cool and hot water
+      - id: 101
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 20
+          max: 50

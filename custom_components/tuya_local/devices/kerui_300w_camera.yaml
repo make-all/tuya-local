@@ -1,22 +1,42 @@
 name: Camera
 products:
   - id: 9waqosp1k5o0bqqh
-    name: Kerui JS-P162 300W
-primary_entity:
-  entity: camera
-  dps:
-    - id: 115
-      name: snapshot
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 134
-      name: motion_enable
-      type: boolean
-    - id: 150
-      name: record
-      type: boolean
-secondary_entities:
+    manufacturer: Kerui
+    model: JS-P162 300W
+  - id: o9jlvpqqunankygf
+    manufacturer: Fuers
+    model: "5MP"
+    name: Indoor camera
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 115
+        name: snapshot
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 134
+        name: motion_enable
+        type: boolean
+      - id: 150
+        name: record
+        type: boolean
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: push_message
+      - id: 241
+        type: string
+        optional: true
+        name: resolution_change
   - entity: light
     translation_key: indicator
     category: config
@@ -52,6 +72,8 @@ secondary_entities:
     name: Privacy
     icon: "mdi:incognito"
     category: config
+    # 2024-10-28
+    deprecated: camera switch
     dps:
       - id: 105
         type: boolean
@@ -157,6 +179,8 @@ secondary_entities:
         persist: false
   - entity: select
     name: PTZ control
+    # 2024-11-02
+    deprecated: buttons
     icon: "mdi:camera-control"
     category: config
     dps:
@@ -182,8 +206,110 @@ secondary_entities:
             value: left
           - dps_val: "7"
             value: left-up
-          - dps_val: null
-            value: (stopped)
+  - entity: button
+    name: PTZ up
+    icon: "mdi:pan-up"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-up
+    icon: "mdi:top-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right
+    icon: "mdi:pan-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-down
+    icon: "mdi:pan-bottom-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down
+    icon: "mdi:pan-down"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-down
+    icon: "mdi:pan-bottom-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:pan-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-up
+    icon: "mdi:pan-top-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "7"
+            value: true
+          - value: false
   - entity: select
     name: Recording mode
     icon: "mdi:file-video"
@@ -224,7 +350,16 @@ secondary_entities:
         type: string
         name: event
         optional: true
-        persist: false
         mapping:
           - dps_val: motion
-            value: true
+            value: detected
+      - id: 115
+        type: base64
+        optional: true
+        sensitive: true
+        name: image_details
+      - id: 185
+        type: utf16b64
+        optional: true
+        persist: false
+        name: alarm_message

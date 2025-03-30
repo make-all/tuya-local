@@ -1,37 +1,37 @@
 name: EV charger
 products:
   - id: o4zjlnwqwe0dzitl
-    name: Tera 22kW EV charger (32A / 3 phase)
-primary_entity:
-  entity: sensor
-  name: Status
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3  # work_state
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_free
-          value: Available
-        - dps_val: charger_insert
-          value: Plugged in
-        - dps_val: charger_free_fault
-          value: Fault
-        - dps_val: charger_wait
-          value: Delaying
-        - dps_val: charger_pause
-          value: Paused
-        - dps_val: charger_end
-          value: Charged
-        - dps_val: charger_fault
-          value: Fault (plugged in)
-    - id: 23  # system_version
-      type: string
-      name: system_version
-secondary_entities:
+    manufacturer: Tera
+    model: 22kW 32A 3 phase
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23  # system_version
+        type: string
+        name: system_version
   - entity: sensor
     class: energy
     dps:
@@ -66,9 +66,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: L1 Current
     class: current
@@ -79,9 +79,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: L1 Power
     class: power
@@ -92,9 +92,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: L2 Voltage
     class: voltage
@@ -105,9 +105,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: L2 Current
     class: current
@@ -118,9 +118,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: L2 Power
     class: power
@@ -131,9 +131,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: L3 Voltage
     class: voltage
@@ -144,9 +144,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: L3 Current
     class: current
@@ -157,9 +157,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: L3 Power
     class: power
@@ -170,9 +170,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: power
     dps:
@@ -256,6 +256,7 @@ secondary_entities:
         class: measurement
   - entity: number
     name: Delay charge
+    class: duration
     category: config
     icon: "mdi:car-clock"
     dps:

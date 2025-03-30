@@ -1,15 +1,17 @@
-name: ASC (Wi-Fi)
+name: Circuit breaker
 products:
   - id: yrzel5nutomegk6z
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: ASC
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7

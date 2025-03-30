@@ -1,48 +1,31 @@
-name: Eeese Adam dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 25
-        max: 80
-      mapping:
-        - step: 5
-    - id: 4
-      name: mode
-      type: string
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: laundry
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 3
-    - id: 16
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 1
-          icon: "mdi:cup-water"
-          icon_priority: 2
-      hidden: true
-secondary_entities:
+name: Dehumidifier
+legacy_type: eeese_emil_dehumidifier
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 4
+        name: mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: laundry
+            value: laundry
+      - id: 16
+        type: integer
+        name: current_humidity
   - entity: fan
     dps:
       - id: 1

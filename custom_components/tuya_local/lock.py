@@ -5,9 +5,9 @@ Setup for different kinds of Tuya lock devices
 from homeassistant.components.lock import LockEntity, LockEntityFeature
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -47,6 +47,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._unlock_voice_dp = dps_map.pop("unlock_voice", None)
         self._unlock_face_dp = dps_map.pop("unlock_face", None)
         self._unlock_multi_dp = dps_map.pop("unlock_multi", None)
+        self._unlock_ibeacon_dp = dps_map.pop("unlock_ibeacon", None)
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
@@ -76,6 +77,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                 self._unlock_voice_dp,
                 self._unlock_face_dp,
                 self._unlock_multi_dp,
+                self._unlock_ibeacon_dp,
             ):
                 if d:
                     if d.get_value(self._device):
@@ -118,6 +120,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             self._unlock_voice_dp: "Voice",
             self._unlock_face_dp: "Face",
             self._unlock_multi_dp: "Multifactor",
+            self._unlock_ibeacon_dp: "iBeacon",
         }.items():
             by = self.unlocker_id(dp, desc)
             if by:

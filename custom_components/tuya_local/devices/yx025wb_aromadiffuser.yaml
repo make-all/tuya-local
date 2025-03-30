@@ -1,37 +1,33 @@
 name: Aroma diffuser
 products:
   - id: yishet3p12fvohmd
-    name: Liplasting YX-025WB
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 2
-      name: switch
-      optional: true
-      type: boolean
-    - id: 3
-      type: string
-      optional: true
-      name: preset_mode
-      mapping:
-        - dps_val: small
-          value: low
-        - dps_val: large
-          value: high
-        - dps_val: interval
-          value: intermittent
-secondary_entities:
+    manufacturer: Liplasting
+    model: YX-025WB
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: small
+            value: low
+          - dps_val: large
+            value: high
+          - dps_val: interval
+            value: intermittent
   - entity: light
     icon: "mdi:light-recessed"
     dps:
       - id: 7
         name: switch
-        optional: true
         type: boolean
       - id: 9
         name: color_mode
-        optional: true
         type: string
         mapping:
           - dps_val: colour
@@ -78,17 +74,13 @@ secondary_entities:
       - id: 11
         type: bitfield
         name: sensor
-        optional: true
         mapping:
           - dps_val: 0
-            value: false
-          - dps_val: null
             value: false
           - value: true
       - id: 11
         type: bitfield
         name: fault_code
-        optional: true
   - entity: select
     translation_key: timer
     category: config
@@ -96,7 +88,6 @@ secondary_entities:
       - id: 4
         type: string
         name: option
-        optional: true
         mapping:
           - dps_val: 2h
             value: "2h"
@@ -113,7 +104,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
-        optional: true
         range:
           min: 0
           max: 360

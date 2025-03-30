@@ -1,26 +1,14 @@
 name: Tap timer
 products:
   - id: wfchjk5vc9bysjtk
-    name: Holman WX2
-primary_entity:
-  entity: valve
-  name: Manual 1
-  class: water
-  dps:
-    - id: 108
-      type: boolean
-      name: valve
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-secondary_entities:
+    manufacturer: Holman
+    model: WX2
+entities:
   - entity: valve
-    name: Manual 2
+    name: Manual 1
     class: water
     dps:
-      - id: 155
+      - id: 108
         type: boolean
         name: valve
         mapping:
@@ -28,29 +16,13 @@ secondary_entities:
             value: false
           - dps_val: false
             value: true
-  - entity: switch
-    name: Manual 1
-    category: config
-    deprecated: valve
-    icon: "mdi:watering-can"
-    dps:
-      - id: 108
-        type: boolean
-        name: switch
-        mapping:
-          - dps_val: true
-            value: false
-          - dps_val: false
-            value: true
-  - entity: switch
+  - entity: valve
     name: Manual 2
-    category: config
-    deprecated: valve
-    icon: "mdi:watering-can"
+    class: water
     dps:
       - id: 155
         type: boolean
-        name: switch
+        name: valve
         mapping:
           - dps_val: true
             value: false
@@ -120,6 +92,7 @@ secondary_entities:
   - entity: number
     name: Manual timer 1
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 107
@@ -152,32 +125,27 @@ secondary_entities:
         # flags for days of the week Sun-Sat, plus a bit for on/off
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 110
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 110
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 110
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 110
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start B 1 encoded
     category: diagnostic
@@ -190,32 +158,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 111
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 111
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 111
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 111
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start C 1 encoded
     category: diagnostic
@@ -228,32 +191,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 112
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 112
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 112
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 112
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: select
     name: Watering delay 1
     translation_key: timer
@@ -338,122 +296,102 @@ secondary_entities:
         optional: true
         name: 10_days
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 121
         optional: true
         name: 10_days_256
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 121
         optional: true
         name: 9_days
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 121
         optional: true
         name: 9_days_256
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 121
         optional: true
         name: 8_days
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 121
         optional: true
         name: 8_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 121
         optional: true
         name: 7_days
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 121
         optional: true
         name: 7_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
       - id: 121
         optional: true
         name: 6_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000"
+        mask: "FF0000000000000000"
       - id: 121
         optional: true
         name: 6_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000"
+        mask: "FF000000000000000000"
       - id: 121
         optional: true
         name: 5_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000"
+        mask: "FF00000000000000000000"
       - id: 121
         optional: true
         name: 5_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000"
+        mask: "FF0000000000000000000000"
       - id: 121
         optional: true
         name: 4_days
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000"
+        mask: "FF000000000000000000000000"
       - id: 121
         optional: true
         name: 4_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000"
+        mask: "FF00000000000000000000000000"
       - id: 121
         optional: true
         name: 3_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000"
+        mask: "FF0000000000000000000000000000"
       - id: 121
         optional: true
         name: 3_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000"
       - id: 121
         optional: true
         name: 2_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000"
       - id: 121
         optional: true
         name: 2_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000000000"
+        mask: "FF0000000000000000000000000000000000"
       - id: 121
         optional: true
         name: 1_day
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000000000"
       - id: 121
         optional: true
         name: 1_day_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000000000"
   - entity: sensor
     name: Temperature count 1 encoded
     category: diagnostic
@@ -497,32 +435,27 @@ secondary_entities:
         optional: true
         name: minute
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 128
         optional: true
         name: hour
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 128
         optional: true
         name: day
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 128
         optional: true
         name: month
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 128
         optional: true
         name: year
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
   - entity: sensor
     name: Soil temperature 2
     class: temperature
@@ -572,6 +505,7 @@ secondary_entities:
   - entity: number
     name: Manual timer 2
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 154
@@ -605,32 +539,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 157
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 157
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 157
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 157
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start B 2 encoded
     category: diagnostic
@@ -643,32 +572,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 158
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 158
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 158
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 158
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start C 2 encoded
     category: diagnostic
@@ -681,32 +605,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 159
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 159
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 159
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 159
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: select
     name: Watering delay 2
     translation_key: timer
@@ -751,122 +670,102 @@ secondary_entities:
         optional: true
         name: 10_days
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 163
         optional: true
         name: 10_days_256
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 163
         optional: true
         name: 9_days
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 163
         optional: true
         name: 9_days_256
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 163
         optional: true
         name: 8_days
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 163
         optional: true
         name: 8_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 163
         optional: true
         name: 7_days
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 163
         optional: true
         name: 7_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
       - id: 163
         optional: true
         name: 6_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000"
+        mask: "FF0000000000000000"
       - id: 163
         optional: true
         name: 6_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000"
+        mask: "FF000000000000000000"
       - id: 163
         optional: true
         name: 5_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000"
+        mask: "FF00000000000000000000"
       - id: 163
         optional: true
         name: 5_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000"
+        mask: "FF0000000000000000000000"
       - id: 163
         optional: true
         name: 4_days
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000"
+        mask: "FF000000000000000000000000"
       - id: 163
         optional: true
         name: 4_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000"
+        mask: "FF00000000000000000000000000"
       - id: 163
         optional: true
         name: 3_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000"
+        mask: "FF0000000000000000000000000000"
       - id: 163
         optional: true
         name: 3_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000"
       - id: 163
         optional: true
         name: 2_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000"
       - id: 163
         optional: true
         name: 2_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000000000"
+        mask: "FF0000000000000000000000000000000000"
       - id: 163
         optional: true
         name: 1_day
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000000000"
       - id: 163
         optional: true
         name: 1_day_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000000000"
   - entity: sensor
     name: Temperature count 2 encoded
     category: diagnostic
@@ -902,29 +801,24 @@ secondary_entities:
         optional: true
         name: minute
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 167
         optional: true
         name: hour
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 167
         optional: true
         name: day
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 167
         optional: true
         name: month
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 167
         optional: true
         name: year
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"

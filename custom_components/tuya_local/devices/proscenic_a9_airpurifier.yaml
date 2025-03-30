@@ -1,51 +1,51 @@
 name: Air Purifier
 products:
   - id: giwqfeiezesbkkbe
-    name: Proscenic A9
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "Sleep"
-          value: sleep
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "3"
-          value: high
-        - dps_val: "4"
-          value: turbo
-        - dps_val: "Auto"
-          value: auto
-    - id: 4
-      name: speed
-      type: string
-      mapping:
-        - dps_val: "Sleep"
-          value: 20
-        - dps_val: "1"
-          value: 40
-        - dps_val: "2"
-          value: 60
-        - dps_val: "3"
-          value: 80
-        - dps_val: "4"
-          value: 100
-        - dps_val: "Auto"
-          value: 0
-    - id: 102
-      name: unknown_102
-      type: string
-secondary_entities:
+    manufacturer: Proscenic
+    model: A9
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "Sleep"
+            value: sleep
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: "4"
+            value: turbo
+          - dps_val: "Auto"
+            value: auto
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "Sleep"
+            value: 20
+          - dps_val: "1"
+            value: 40
+          - dps_val: "2"
+            value: 60
+          - dps_val: "3"
+            value: 80
+          - dps_val: "4"
+            value: 100
+          - dps_val: "Auto"
+            value: 0
+      - id: 102
+        name: unknown_102
+        type: string
   - entity: sensor
     class: pm25
     dps:
@@ -110,22 +110,21 @@ secondary_entities:
         optional: true
         unit: m³
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     class: enum
-    icon: "mdi:air-filter"
     dps:
       - id: 21
         name: sensor
         type: string
         mapping:
-          - dps_val: "mild"
-            value: "Great"
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "medium"
-            value: "Medium"
-          - dps_val: "severe"
-            value: "Severe"
+          - dps_val: mild
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
   - entity: select
     translation_key: timer
     category: config

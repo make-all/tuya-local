@@ -1,69 +1,68 @@
 name: Nashone MTS-700-WB thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 3
-      type: string
-      name: work_state
-    - id: 16
-      type: integer
-      name: temperature
-      range:
-        min: -20
-        max: 105
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_f
-              range:
-                min: -4
-                max: 221
-    - id: 17
-      type: integer
-      name: temp_f
-      range:
-        min: -4
-        max: 221
-      hidden: true
-    - id: 23
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 29
-      type: integer
-      name: temp_current_f
-      hidden: true
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: string
+        name: work_state
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: -20
+          max: 105
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: -4
+                  max: 221
+      - id: 17
+        type: integer
+        name: temp_f
+        range:
+          min: -4
+          max: 221
+        hidden: true
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 29
+        type: integer
+        name: temp_current_f
+        hidden: true
   - entity: number
     category: config
     name: Calibration offset
@@ -76,9 +75,8 @@ secondary_entities:
           min: -5
           max: 5
   - entity: button
-    name: Factory reset
+    translation_key: factory_reset
     category: config
-    class: restart
     dps:
       - id: 39
         type: boolean

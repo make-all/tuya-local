@@ -1,28 +1,27 @@
 name: Air purifier
 products:
   - id: xhrfqobcbyk2br0z
-    name: NX-100AP Rapid
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Sleep
-          value: sleep
-        - dps_val: M
-          value: normal
-        - dps_val: H
-          value: strong
-        - dps_val: Auto
-          value: smart
-secondary_entities:
+    model: NX-100AP Rapid
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: M
+            value: normal
+          - dps_val: H
+            value: strong
+          - dps_val: Auto
+            value: smart
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -32,20 +31,19 @@ secondary_entities:
         type: integer
         unit: min
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     class: enum
-    icon: "mdi:air-filter"
     dps:
       - id: 21
         name: sensor
         type: string
         mapping:
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "medium"
-            value: "Medium"
-          - dps_val: "severe"
-            value: "Severe"
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
   - entity: sensor
     class: pm25
     dps:
@@ -79,9 +77,8 @@ secondary_entities:
           - dps_val: "24H"
             value: "24h"
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 11
         type: boolean
@@ -120,3 +117,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

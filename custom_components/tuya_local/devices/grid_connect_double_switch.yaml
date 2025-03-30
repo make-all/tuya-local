@@ -1,24 +1,27 @@
 name: Grid Connect double wall switch
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 11
-      type: integer
-      name: unknown_11
-    - id: 104
-      type: integer
-      name: unknown_104
-    - id: 105
-      type: boolean
-      name: unknown_105
-secondary_entities:
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 11
+        type: integer
+        name: unknown_11
+      - id: 104
+        type: integer
+        name: unknown_104
+      - id: 105
+        type: boolean
+        name: unknown_105
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: switch
     dps:
       - id: 2

@@ -1,18 +1,19 @@
 name: SmartPlug
 products:
   - id: e8dqdqxjgmilloml
-    name: Nooie NSP21
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Nooie
+    model: NSP21
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
     category: config
+    class: duration
     dps:
       - id: 9
         type: integer
@@ -47,8 +48,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: select
-    name: "Power on state"
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -56,8 +56,8 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
-          - dps_val: "memory"
-            value: "Last state"
+            value: "off"
+          - dps_val: memory
+            value: memory

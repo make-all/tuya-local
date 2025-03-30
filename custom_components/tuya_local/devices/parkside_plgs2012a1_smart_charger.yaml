@@ -1,21 +1,19 @@
-name: Parkside PLGS2012A1 charger
+name: Battery charger
 products:
   - id: h6pglenun37dzsgo
-primary_entity:
-  entity: switch
-  icon: "mdi:ev-station"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-      optional: true
-    - id: 2
-      type: string
-      name: model
-    - id: 11
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Parkside
+    model: PLGS2012A1
+entities:
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
+      - id: 2
+        type: string
+        name: model
   - entity: number
     name: Charge current
     icon: "mdi:current-dc"
@@ -155,3 +153,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code

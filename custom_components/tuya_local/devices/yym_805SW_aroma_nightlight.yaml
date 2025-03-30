@@ -3,44 +3,37 @@
 name: Aroma diffuser
 products:
   - id: c0nh3LmEk0NDebrq
-    name: YYM-805SW
-  - id: 4870500398f4abbfbae4
-    name: GX
+    model: YYM-805SW
   - id: kgczidn0awas0prr
-    name: Tellur
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: speed
-      type: string
-      mapping:
-        - conditions:
-            - dps_val:
-                - large
-                - small
-              mapping:
-                - dps_val: large
-                  value: 100
-                - dps_val: small
-                  value: 50
-            - dps_val:
-                - high
-                - low
-              mapping:
-                - dps_val: high
-                  value: 100
-                - dps_val: low
-                  value: 50
-    - id: 9
-      name: fault_code
-      type: bitfield
-      optional: true
-secondary_entities:
+    manufacturer: Tellur
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: speed
+        type: string
+        mapping:
+          - conditions:
+              - dps_val:
+                  - large
+                  - small
+                mapping:
+                  - dps_val: large
+                    value: 100
+                  - dps_val: small
+                    value: 50
+              - dps_val:
+                  - high
+                  - low
+                mapping:
+                  - dps_val: high
+                    value: 100
+                  - dps_val: low
+                    value: 50
   - entity: light
     translation_key: nightlight
     dps:
@@ -103,3 +96,21 @@ secondary_entities:
         range:
           min: 0
           max: 360
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true

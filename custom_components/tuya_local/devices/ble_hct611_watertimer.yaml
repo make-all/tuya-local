@@ -1,62 +1,53 @@
 name: Water timer
 products:
   - id: tqzkwarw
-    name: HCT-611
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-    - id: 12
-      type: string
-      name: state
-      optional: true
-    - id: 110
-      type: boolean
-      name: switch_record
-    - id: 101
-      type: base64
-      name: program_1
-      optional: true
-    - id: 102
-      type: base64
-      name: program_2
-      optional: true
-    - id: 103
-      type: base64
-      name: program_3
-      optional: true
-    - id: 104
-      type: base64
-      name: program_4
-      optional: true
-    - id: 105
-      type: base64
-      name: program_5
-      optional: true
-    - id: 106
-      type: base64
-      name: program_6
-      optional: true
-    - id: 107
-      type: base64
-      name: program_7
-      optional: true
-    - id: 108
-      type: base64
-      name: program_8
-      optional: true
-secondary_entities:
-  - entity: switch
-    icon: "mdi:pipe-valve"
-    deprecated: valve
-    category: config
+    model: HCT-611
+entities:
+  - entity: valve
+    class: water
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: valve
+      - id: 12
+        type: string
+        name: state
+        optional: true
+      - id: 110
+        type: boolean
+        name: switch_record
+      - id: 101
+        type: base64
+        name: program_1
+        optional: true
+      - id: 102
+        type: base64
+        name: program_2
+        optional: true
+      - id: 103
+        type: base64
+        name: program_3
+        optional: true
+      - id: 104
+        type: base64
+        name: program_4
+        optional: true
+      - id: 105
+        type: base64
+        name: program_5
+        optional: true
+      - id: 106
+        type: base64
+        name: program_6
+        optional: true
+      - id: 107
+        type: base64
+        name: program_7
+        optional: true
+      - id: 108
+        type: base64
+        name: program_8
+        optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -94,6 +85,7 @@ secondary_entities:
             hidden: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 11

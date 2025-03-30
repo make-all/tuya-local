@@ -1,31 +1,31 @@
 name: Smartplug
 products:
   - id: zmql6aexy8ua5rox
-    name: Gosund SP112-RTL
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-    - id: 101
-      name: unknown_101
-      type: boolean
-      optional: true
-secondary_entities:
+    manufacturer: Gosund
+    model: SP112-RTL
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
+      - id: 101
+        name: unknown_101
+        type: boolean
+        optional: true
   - entity: switch
     name: USB
     dps:
@@ -35,11 +35,13 @@ secondary_entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -93,6 +95,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -108,6 +111,7 @@ secondary_entities:
   - entity: number
     name: USB timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 15
@@ -121,8 +125,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -130,11 +133,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: "On"
+            value: "on"
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: Last state
+            value: memory
   - entity: select
     name: Light mode
     icon: "mdi:lightbulb"

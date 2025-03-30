@@ -1,32 +1,32 @@
 name: Litter box
 products:
   - id: ijas23irjjaenllv
-    name: DOEL Ti+
-primary_entity:
-  entity: sensor
-  name: Cat weight
-  icon: "mdi:cat"
-  class: weight
-  dps:
-    - id: 6
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 10
-          constraint: unit
-          conditions:
-            - dps_val: lb
-              value_redirect: weight_lb
-    - id: 108
-      type: string
-      name: unit
-    - id: 134
-      type: integer
-      name: weight_lb
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: DOEL
+    model: Ti+
+entities:
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: lb
+                value_redirect: weight_lb
+      - id: 108
+        type: string
+        name: unit
+      - id: 134
+        type: integer
+        name: weight_lb
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Daily visits
     icon: "mdi:emoticon-poop"
@@ -43,7 +43,7 @@ secondary_entities:
       - id: 8
         type: integer
         name: sensor
-        unit: seconds
+        unit: s
         class: measurement
   - entity: binary_sensor
     class: problem
@@ -59,21 +59,6 @@ secondary_entities:
       - id: 22
         type: bitfield
         name: fault_code
-      - id: 120
-        type: boolean
-        name: unknown_120
-      - id: 127
-        type: boolean
-        name: soft_mode
-      - id: 128
-        type: boolean
-        name: unknown_128
-      - id: 129
-        type: integer
-        name: unknown_129
-      - id: 135
-        type: boolean
-        name: dp_developer_mode
   - entity: button
     name: Clean
     icon: "mdi:shimmer"
@@ -128,6 +113,7 @@ secondary_entities:
   - entity: number
     name: Clean wait time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 117
@@ -207,12 +193,27 @@ secondary_entities:
           - dps_val: "lb"
             value: "lb"
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:toilet"
     dps:
       - id: 24
         type: string
         name: sensor
+      - id: 120
+        type: boolean
+        name: unknown_120
+      - id: 127
+        type: boolean
+        name: soft_mode
+      - id: 128
+        type: boolean
+        name: unknown_128
+      - id: 129
+        type: integer
+        name: unknown_129
+      - id: 135
+        type: boolean
+        name: dp_developer_mode
   - entity: select
     name: Litter type
     category: config

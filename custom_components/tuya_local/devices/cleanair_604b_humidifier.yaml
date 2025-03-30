@@ -1,37 +1,37 @@
 name: Humidifier
 products:
   - id: cqoisddoci9i3yer
-    name: Clean Air 604B Smart
-primary_entity:
-  entity: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 75
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 23
-      type: string
-      name: mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: level1
-          value: low
-        - dps_val: level2
-          value: middle
-        - dps_val: level3
-          value: high
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+    manufacturer: Clean Air Optima
+    model: CA-604B Smart
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 75
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 23
+        type: string
+        name: mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: level1
+            value: low
+          - dps_val: level2
+            value: middle
+          - dps_val: level3
+            value: high
+          - dps_val: sleep
+            value: sleep
   - entity: switch
     name: Sound
     icon: mdi:volume-high
@@ -118,9 +118,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    icon: mdi:air-filter
     dps:
       - id: 28
         type: boolean

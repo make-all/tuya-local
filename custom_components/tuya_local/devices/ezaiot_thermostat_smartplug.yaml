@@ -1,0 +1,272 @@
+name: Thermostat smartplug
+products:
+  # Brand name: EZAIOT
+  # Product link: aliexpress.com/item/1005007122621628.html
+  - id: msclnsfe0q3yd39q
+    manufacturer: EZAIoT
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 4
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "heat"
+            value: "heat"
+          - dps_val: "cool"
+            value: "cool"
+          - dps_val: "plug"
+            value: "off"
+      - id: 6
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 9
+        type: integer
+        optional: true
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 12
+        type: integer
+        name: min_temperature
+        optional: true
+        mapping:
+          - scale: 10
+      - id: 17
+        type: integer
+        name: temperature
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -300
+          max: 1100
+      - id: 114
+        type: integer
+        name: hvac_action
+        mapping:
+          - dps_val: 0
+            value: idle
+          - dps_val: 1
+            constraint: hvac_mode
+            conditions:
+              - dps_val: heat
+                value: heating
+              - dps_val: cool
+                value: cooling
+  # Control
+  # Control relay in plug mode
+  - entity: switch
+    name: Relay control
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  # Turn on the display on press for timeout time
+  - entity: button
+    name: Display on
+    dps:
+      - id: 118
+        name: button
+        optional: true
+        type: boolean
+
+  # Diagnostics
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+
+  # Configuration
+  # Child Lock
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 110
+        name: lock
+        type: boolean
+
+  # Display Timeout
+  - entity: select
+    name: Display timeout
+    icon: "mdi:timer-cog-outline"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "15s"
+            value: "15s"
+          - dps_val: "30s"
+            value: "30s"
+          - dps_val: "60s"
+            value: "60s"
+          - dps_val: "120s"
+            value: "120s"
+
+  # High temperature alarm audio
+  - entity: switch
+    category: config
+    name: High temperature alarm
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  # High temperature alarm setting
+  - entity: number
+    name: Alarm maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -300
+          max: 1200
+
+  # Low temperature alarm audio
+  - entity: switch
+    category: config
+    name: Low temperature alarm
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 11
+        name: switch
+        optional: true
+        type: boolean
+  # Low temperature alarm setting
+  - entity: number
+    name: Alarm minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -300
+          max: 1200
+
+  # Cooling Delay
+  # Delay on
+  - entity: switch
+    category: config
+    name: Cooling delay
+    icon: "mdi:pump"
+    dps:
+      - id: 13
+        name: switch
+        optional: true
+        type: boolean
+  # Delay time (minutes)
+  - entity: number
+    name: Cooling delay time
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 1200
+
+  # Frost protection
+  - entity: switch
+    category: config
+    translation_key: anti_frost
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+
+  # Difference Hysteresis
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer"
+    mode: "box"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+        mapping:
+          - scale: 10
+        unit: C
+        range:
+          min: 0
+          max: 100
+
+  # Temperature correction
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer"
+    mode: "box"
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        optional: true
+        mapping:
+          - scale: 10
+        unit: C
+        range:
+          min: -150
+          max: 150
+
+  # Brightness
+  - entity: select
+    name: Brightness
+    icon: "mdi:brightness-6"
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "Low"
+            value: "Low"
+          - dps_val: "Middle"
+            value: "Medium"
+          - dps_val: "High"
+            value: "High"
+
+  # Last State
+  - entity: switch
+    category: config
+    name: Restore last state
+    icon: "mdi:restore"
+    dps:
+      - id: 116
+        name: switch
+        optional: true
+        type: boolean

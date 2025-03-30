@@ -1,48 +1,47 @@
 name: Star projector
 products:
   - id: cw7kinnselbesfp9
-    name: Moes Smart Star Projector
-primary_entity:
-  entity: light
-  name: Background
-  icon: "mdi:projector"
-  dps:
-    - id: 103
-      type: boolean
-      name: switch
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 25
-      name: scene_data
-      type: hex
-secondary_entities:
+    manufacturer: Moes
+entities:
+  - entity: light
+    name: Background
+    icon: "mdi:projector"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        name: scene_data
+        type: hex
   - entity: light
     translation_key: laser
     dps:
@@ -68,12 +67,12 @@ secondary_entities:
           max: 1000
   - entity: switch
     name: Master
-    category: config
     dps:
       - id: 20
         type: boolean
         name: switch
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

@@ -1,23 +1,23 @@
-name: Irrigation Controller
+name: Irrigation controller
 products:
   - id: 3c8bxnseywh7radc
-    name: Holman WX8
-primary_entity:
-  entity: binary_sensor
-  class: running
-  icon: mdi:sprinkler-variant
-  dps:
-    - id: 123
-      name: sensor
-      type: boolean
-    - id: 116
-      name: firmware_version
-      type: integer
-    - id: 101
-      name: programming
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Holman
+    model: WX8
+entities:
+  - entity: binary_sensor
+    class: running
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 123
+        name: sensor
+        type: boolean
+      - id: 116
+        name: firmware_version
+        type: integer
+      - id: 101
+        name: programming
+        type: string
+        optional: true
   - entity: valve
     name: Zone 1
     class: water
@@ -74,78 +74,6 @@ secondary_entities:
       - id: 112
         type: boolean
         name: valve
-  - entity: switch
-    name: Zone 1
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 2
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 3
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 104
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 4
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 104
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 5
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 106
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 6
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 107
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 7
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 108
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Zone 8
-    category: config
-    deprecated: valve
-    icon: mdi:sprinkler-variant
-    dps:
-      - id: 112
-        type: boolean
-        name: switch
   - entity: switch
     name: Program A
     icon: mdi:timetable

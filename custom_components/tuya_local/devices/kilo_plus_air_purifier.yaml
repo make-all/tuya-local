@@ -1,0 +1,75 @@
+name: Air purifier
+products:
+  - id: ueldkqa5dggrzrio
+    manufacturer: Afloia
+    model: Kilo Plus
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+  - entity: sensor
+    name: Filter
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        name: button
+        type: boolean
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: "cancel"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+  - entity: select
+    name: Light
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: "Off"
+          - dps_val: "1"
+            value: "Gradient"
+          - dps_val: "2"
+            value: "On"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "min"

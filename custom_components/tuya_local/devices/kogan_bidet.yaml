@@ -1,36 +1,30 @@
 name: Bidet
 products:
   - id: 7cuimqtezvgbaeun
-    name: Kogan bidet
-primary_entity:
-  entity: switch
-  icon: "mdi:toilet"
-  dps:
-    - id: 45
-      type: boolean
-      name: switch
-    - id: 68
-      type: bitfield
-      name: fault_code
-      optional: true
-      # does not seem to show in logs
-    - id: 103
-      type: integer
-      name: ambient_temperature
-      optional: true
-    - id: 56
-      type: integer
-      name: clean_time
-      optional: true
-    - id: 57
-      type: string
-      name: wind_temperature
-      optional: true
-    - id: 59
-      type: integer
-      name: drying_time
-      optional: true
-secondary_entities:
+    manufacturer: Kogan
+entities:
+  - entity: switch
+    icon: "mdi:toilet"
+    dps:
+      - id: 45
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: ambient_temperature
+        optional: true
+      - id: 56
+        type: integer
+        name: clean_time
+        optional: true
+      - id: 57
+        type: string
+        name: wind_temperature
+        optional: true
+      - id: 59
+        type: integer
+        name: drying_time
+        optional: true
   - entity: select
     name: Mode
     icon: "mdi:toilet"
@@ -127,7 +121,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Light
     category: config
     dps:
       - id: 64
@@ -155,6 +148,10 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 68
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: binary_sensor
     name: Seated
     class: occupancy

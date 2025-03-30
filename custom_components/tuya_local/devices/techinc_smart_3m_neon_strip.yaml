@@ -1,0 +1,196 @@
+name: Light strip
+products:
+  - id: szzsfdqcrqkczzfi
+    manufacturer: Tech Inc
+    model: "3m Neon"
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 51
+        name: value
+        type: base64
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ARUKUlLgAABkAMFhALQwALVSAMRj"
+            value: "Iceland Blue"
+          - dps_val: "ARYKZGRgAABkAJJfAMZg"
+            value: "Glacier express"
+          - dps_val: "ARcDXl5gAABkADgvAB5cANVFARpk"
+            value: "Sea of clouds"
+          - dps_val: "ARgCZGTgAABkALI5AQpkAS1kAT9k"
+            value: "Fireworks at sea"
+          - dps_val: "ARkKVFRgAABkALEsAMBk"
+            value: "Hut in the snow"
+          - dps_val: "ARoDS0vgAABkAOA5AQlT"
+            value: "Firefly night"
+          - dps_val: "ARsDX19gAABkAK45AMRdAPlk"
+            value: "Northland"
+          - dps_val: "ARwKWlrgAABSAJ1kAI5k"
+            value: "Grassland"
+          - dps_val: "AR0DUlLgAABkAK5kAKZkAMFkAMxk"
+            value: "Northern lights"
+          - dps_val: "AR4KUlLgAABkABlkACJeACxbABRkAAxk"
+            value: "Late autumn"
+          - dps_val: "AUcFTU0AAABkAQNFAMFD"
+            value: "Dream meteor"
+          - dps_val: "AUgGMjIAAABkAU5BAB9J"
+            value: "Early spring"
+          - dps_val: "AUkHDg4AAABkANo3AVJBAFw3"
+            value: "Spring outing"
+          - dps_val: "AUoIMjIAAABkAPdQAClPAQ04AKMn"
+            value: "Night service"
+          - dps_val: "AUsJMjIAAABkAQNFAEE6ACVLAF5C"
+            value: "Wind chime"
+          - dps_val: "AUwMMjIAAABkANhNAMFDAQNFAFw3"
+            value: "City lights"
+          - dps_val: "AU0NMjIAAABkAChkAF5CAMFkAP9Q"
+            value: "Color marbles"
+          - dps_val: "AU4OMjIAAABkAD5fAL5c"
+            value: "Summer train"
+          - dps_val: "AU8PGRkAAABkALxkAC1OAABkAGQ8"
+            value: "Christmas Eve"
+          - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
+            value: "Dream Sea"
+          - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
+            value: gaming
+          - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
+            value: vacation
+          - dps_val: "ASEDPDxgAABkAL8YAQQX"
+            value: working
+          - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
+            value: party
+          - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
+            value: "Trend"
+          - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
+            value: "Sports"
+          - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
+            value: relax
+          - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
+            value: romantic
+          - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
+            value: "Christmas"
+          - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"
+            value: "Valentine's Day"
+          - dps_val: "ASsDWlrgAABkAABXARZkANpkALNkAJVk"
+            value: "Halloween"
+          - dps_val: "ASwKSEhgAABkAD1kAQxbALpJABdh"
+            value: "Thanksgiving Day"
+          - dps_val: "AS0CWVlgAABkAJxjALxiAHtg"
+            value: "Forest Day"
+          - dps_val: "AS4DWlpgAABkAT42AQxWAR8j"
+            value: "Mother's Day"
+          - dps_val: "AS8CZGTgAABkANxCALZKAOFN"
+            value: "Father's Day"
+          - dps_val: "ATACXl5gAABkAABkAHhkALtk"
+            value: "Football Day"
+          - dps_val: "ATMDUlJgAABkAIhQANI5APsn"
+            value: "Summer idyll"
+          - dps_val: "ATQDXV1gAABkAPc2ATUrAMY0AJEp"
+            value: "Dream of the sea"
+          - dps_val: "ATUDUlJgAABNARJiATBd"
+            value: "Love and dream"
+          - dps_val: "ATYCSUlgAABkAGY8ADxJAB5k"
+            value: "Spring fishing"
+          - dps_val: "ATcKWlpgAABkADNYABhkAQBFAONeAKww"
+            value: "Neon world"
+          - dps_val: "ATgCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: "Dreamland"
+          - dps_val: "ATkDSEjgAABkAFlkALNH"
+            value: "Summer wind"
+          - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
+            value: "Planet journey"
+  - entity: select
+    name: Music
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AQEAA2QyAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Rock"
+          - dps_val: "AQEAAmQyAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: "Jazz"
+          - dps_val: "AQEAEmQyAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Classic"
+          - dps_val: "AQEBAmQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Scroll"
+          - dps_val: "AQECAGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: "Energy"
+          - dps_val: "AQEDEGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: "Spectrum"

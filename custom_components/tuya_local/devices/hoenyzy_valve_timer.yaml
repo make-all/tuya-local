@@ -1,16 +1,17 @@
 name: Valve timer
 products:
   - id: gbm9ata1zrzaez4a
-    name: Hoenyzi DN15/20/25
-primary_entity:
-  entity: valve
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-secondary_entities:
+    manufacturer: Hoenyzi
+    model: DN15/20/25
+entities:
+  - entity: valve
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9

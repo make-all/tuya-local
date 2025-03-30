@@ -1,22 +1,21 @@
 name: mmWave presence sensor
 products:
   - id: k2h8vkj98fhvnpiv
-    name: ZY-M100-WIFI
+    model: ZY-M100-WIFI
   - id: yroelksjtb4ehda8
-    name: WZ-M100-W
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - dps_val: none
-          value: false
-secondary_entities:
+    model: WZ-M100-W
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
   - entity: number
     name: Sensitivity
     category: config
@@ -59,9 +58,10 @@ secondary_entities:
           - scale: 100
             step: 10
   - entity: sensor
-    name: Status
+    # 2024-11-02
+    deprecated: binary_sensor_problem
+    translation_key: status
     class: enum
-    icon: "mdi:list-status"
     category: diagnostic
     dps:
       - id: 6
@@ -81,6 +81,26 @@ secondary_entities:
             value: Timeout
           - dps_val: radar_fault
             value: Radar fault
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: check_success
+            value: false
+          - dps_val: checking
+            value: false
+          - value: true
+      - id: 6
+        type: string
+        optional: true
+        name: description
   - entity: sensor
     name: Target distance
     class: distance
@@ -97,6 +117,7 @@ secondary_entities:
     name: Detection delay
     category: config
     # mode: box
+    class: duration
     icon: "mdi:timer-sand"
     dps:
       - id: 101
@@ -111,6 +132,7 @@ secondary_entities:
   - entity: number
     name: Fading time
     category: config
+    class: duration
     icon: "mdi:timer-sand-complete"
     dps:
       - id: 102

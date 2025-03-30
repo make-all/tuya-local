@@ -1,19 +1,19 @@
 name: Dual water timer
 products:
   - id: r6ya07uz
-    name: Diivoo DWV010
-primary_entity:
-  entity: valve
-  class: water
-  name: Valve 1
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-    - id: 12
-      type: string
-      name: operation
-secondary_entities:
+    manufacturer: Diivoo
+    model: DWV010
+entities:
+  - entity: valve
+    class: water
+    name: Valve 1
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 12
+        type: string
+        name: operation
   - entity: valve
     class: water
     name: Valve 2
@@ -32,7 +32,12 @@ secondary_entities:
       - id: 112
         type: integer
         name: sensor
-        unit: "l"
+        unit: l
+        class: total_increasing
+      - id: 6
+        type: integer
+        name: daily
+        unit: l
   - entity: sensor
     class: battery
     category: diagnostic
@@ -91,3 +96,49 @@ secondary_entities:
             value: "6 days"
           - dps_val: "7"
             value: "7 days"
+  - entity: number
+    name: Irrigation time 1
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: number
+    name: Irrigation time 2
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    class: duration
+    name: Time remaining 1
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "s"
+  - entity: sensor
+    class: duration
+    name: Time remaining 2
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: "s"

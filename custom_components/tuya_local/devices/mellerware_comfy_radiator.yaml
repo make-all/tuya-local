@@ -1,90 +1,84 @@
 name: Heater
 products:
   - id: 5jidkruwamydvcfk
-    name: Mellerware Comfy Medium
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: P1
-              value: auto
-            - dps_val: [P2, P3]
-              value: auto
-              hidden: true
-            - dps_val: CF
-              value: heat
-            - dps_val: [EC, AF]
-              value: heat
-              hidden: true
-            - dps_val: ST
-              value: "off"
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 35
-      unit: C
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: EC
-              range:
-                min: 1
-                max: 31
-            - dps_val: AF
-              invalid: true
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: CF
-          value: comfort
-        - dps_val: EC
-          value: eco
-        - dps_val: P1
-          value: Daytime
-        - dps_val: P2
-          value: Morning+Evening
-        - dps_val: P3
-          value: Program
-        - dps_val: AF
-          value: away
-        - dps_val: ST
-          value: ST
-          hidden: true
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: working
-                  value: heating
-                - dps_val: standby
-                  value: idle
-    - id: 26
-      type: string
-      optional: true
-      name: custom_program
-secondary_entities:
+    manufacturer: Mellerware
+    model: Comfy Medium
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: P1
+                value: auto
+              - dps_val: [P2, P3]
+                value: auto
+                hidden: true
+              - dps_val: CF
+                value: heat
+              - dps_val: [EC, AF]
+                value: heat
+                hidden: true
+              - dps_val: ST
+                value: "off"
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 35
+        unit: C
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: EC
+                range:
+                  min: 1
+                  max: 31
+              - dps_val: AF
+                invalid: true
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: CF
+            value: comfort
+          - dps_val: EC
+            value: eco
+          - dps_val: P1
+            value: Daytime
+          - dps_val: P2
+            value: Morning+Evening
+          - dps_val: P3
+            value: Program
+          - dps_val: AF
+            value: away
+          - dps_val: ST
+            value: ST
+            hidden: true
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: working
+            value: heating
+          - dps_val: standby
+            value: idle
+      - id: 26
+        type: string
+        optional: true
+        name: custom_program
   - entity: lock
     translation_key: child_lock
     category: config
@@ -173,6 +167,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 21
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: button
     name: Night mode on
     icon: "mdi:weather-night"

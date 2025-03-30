@@ -1,39 +1,37 @@
 name: Dehumidifier
 products:
   - id: oya6k3fqen43zyi7
-    name: Argo DRY PURY EVO WF 21
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: dehumidify
-          value: comfort
-        - dps_val: drying
-          value: laundry
-        - dps_val: sleep
-          value: sleep
-    - id: 6
-      name: current_humidity
-      type: integer
-    - id: 19
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Argo
+    model: Dry Pury EVO
+    model_id: WF21
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: dehumidify
+            value: comfort
+          - dps_val: drying
+            value: laundry
+          - dps_val: sleep
+            value: sleep
+      - id: 6
+        name: current_humidity
+        type: integer
   - entity: fan
     dps:
       - id: 1
@@ -107,3 +105,6 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

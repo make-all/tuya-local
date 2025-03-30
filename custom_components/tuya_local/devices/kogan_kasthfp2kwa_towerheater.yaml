@@ -1,54 +1,54 @@
 name: Tower heater
 products:
   - id: jyota3jcxuelyf9t
-    name: Kogan KASTHFP2KWA
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      range:
-        min: 10
-        max: 35
-      name: temperature
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              invalid: true
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: LOW
-          value: eco
-        - dps_val: FAN
-          value: none
-          icon: "mdi:fan"
-        - dps_val: HIGH
-          value: boost
-    - id: 8
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "on"
-        - dps_val: false
-          value: "off"
-      name: swing_mode
-secondary_entities:
+    manufacturer: Kogan
+    model: KASTHFP2KWA
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        range:
+          min: 10
+          max: 35
+        name: temperature
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: false
+                invalid: true
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: LOW
+            value: eco
+          - dps_val: FAN
+            value: none
+            icon: "mdi:fan"
+          - dps_val: HIGH
+            value: boost
+      - id: 8
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+        name: swing_mode
   - entity: switch
     name: Flame effect
     category: config
@@ -106,3 +106,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

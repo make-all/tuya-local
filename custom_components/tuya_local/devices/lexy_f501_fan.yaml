@@ -1,51 +1,52 @@
-name: Lexy F501 fan
+name: Fan
 products:
   - id: unqopjvzu4ut6hb0
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "forestwindhigh"
-          value: strong
-        - dps_val: "forestwindlow"
-          value: nature
-        - dps_val: "sleepwindlow"
-          value: sleep
-        - dps_val: "sleepwindhigh"
-          value: fresh
-    - id: 4
-      name: oscillate
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: false
-        - dps_val: "30"
-          value: true
-        - dps_val: "60"
-          value: true
-        - dps_val: "90"
-          value: true
-        - dps_val: "360positive"
-          value: true
-        - dps_val: "360negative"
-          value: true
-    - id: 6
-      name: timer
-      type: integer
-    - id: 102
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 15
-secondary_entities:
+    manufacturer: Lexy
+    model: F501
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "forestwindhigh"
+            value: strong
+          - dps_val: "forestwindlow"
+            value: nature
+          - dps_val: "sleepwindlow"
+            value: sleep
+          - dps_val: "sleepwindhigh"
+            value: fresh
+      - id: 4
+        name: oscillate
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "30"
+            value: true
+          - dps_val: "60"
+            value: true
+          - dps_val: "90"
+            value: true
+          - dps_val: "360positive"
+            value: true
+          - dps_val: "360negative"
+            value: true
+      - id: 6
+        name: timer
+        type: integer
+      - id: 102
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 15
   - entity: light
     category: config
     dps:
@@ -78,6 +79,7 @@ secondary_entities:
             icon: "mdi:volume-mute"
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6

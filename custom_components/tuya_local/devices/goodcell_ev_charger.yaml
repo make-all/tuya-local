@@ -1,95 +1,120 @@
 name: EV charger
+legacy_type: feyree_3phase_ev_charger
 products:
   - id: j6bzjwhiv2cljjcy
-    name: Goodcell 32A 85-264V 3 phase EV charger
-primary_entity:
-  entity: sensor
-  class: enum
-  name: Status
-  icon: "mdi:ev-station"
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: no_connet
-          value: Disconnected
-        - dps_val: connect
-          value: Connected
-        - dps_val: charing
-          value: Charging
-        - dps_val: wait_rfid
-          value: Waiting for authorization
-        - dps_val: finish
-          value: Charged
-        - dps_val: wait_charing
-          value: Delaying charge
-        - dps_val: error
-          value: Error
-    - id: 3
-      type: string
-      optional: true
-      name: charger_status
-      mapping:
-        - dps_val: charger_free
-          value: Standby
-        - dps_val: charger_insert
-          value: Cable connected
-        - dps_val: charger_free_fault
-          value: Charger fault
-        - dps_val: charger_wait
-          value: Charger ready
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_pause
-          value: Charging paused
-        - dps_val: charger_end
-          value: Charging ended
-        - dps_val: charger_fault
-          value: Charger fault
-    - id: 10
-      type: bitfield
-      name: fault_code
-    - id: 11
-      type: string
-      optional: true
-      name: alarm_set_1
-    - id: 12
-      type: string
-      optional: true
-      name: alarm_set_2
-    - id: 14
-      type: string
-      optional: true
-      name: mode
-      mapping:
-        - dps_val: charge_now
-        - dps_val: charge_pct
-        - dps_val: charge_energy
-        - dps_val: charge_schedule
-    - id: 15
-      type: integer
-      optional: true
-      name: balance_energy
-      unit: kWh
-    - id: 18
-      type: boolean
-      optional: true
-      name: switch
-    - id: 23
-      type: string
-      optional: true
-      name: system_version
-    - id: 25
-      type: integer
-      optional: true
-      name: charge_energy_once
-      unit: kWh
-    - id: 27
-      type: string
-      optional: true
-      name: online_state
-secondary_entities:
+    manufacturer: Goodcell
+    model: 32A 85-264V 3 phase
+  - id: basqjlsmzcq8ipva
+    manufacturer: Feyree
+    model: 7.6kW 32A
+  - id: xiptqjoa8q9ltqhr
+    manufacturer: Feyree
+    model: FEL4-3 22kW 3-phase
+entities:
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: no_connet
+            value: available
+          - dps_val: connect
+            value: plugged_in
+          - dps_val: charing
+            value: charging
+          - dps_val: wait_rfid
+            value: waiting_for_authorization
+          - dps_val: finish
+            value: charged
+          - dps_val: wait_charing
+            value: waiting
+          - dps_val: error
+            value: fault
+          - dps_val: null
+            value: unknown
+      - id: 3
+        type: string
+        optional: true
+        name: charger_status
+        mapping:
+          - dps_val: charger_free
+            value: Standby
+          - dps_val: charger_insert
+            value: Cable connected
+          - dps_val: charger_free_fault
+            value: Charger fault
+          - dps_val: charger_wait
+            value: Charger ready
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Charging paused
+          - dps_val: charger_end
+            value: Charging ended
+          - dps_val: charger_fault
+            value: Charger fault
+      - id: 11
+        type: string
+        optional: true
+        name: alarm_set_1
+      - id: 12
+        type: string
+        optional: true
+        name: alarm_set_2
+      - id: 14
+        type: string
+        optional: true
+        name: mode
+        mapping:
+          - dps_val: charge_now
+          - dps_val: charge_pct
+          - dps_val: charge_energy
+          - dps_val: charge_schedule
+      - id: 15
+        type: integer
+        optional: true
+        name: balance_energy
+        unit: kWh
+      - id: 18
+        type: boolean
+        optional: true
+        name: switch
+      - id: 23
+        type: string
+        optional: true
+        name: system_version
+      - id: 25
+        type: integer
+        optional: true
+        name: charge_energy_once
+        unit: kWh
+      - id: 27
+        type: string
+        optional: true
+        name: online_state
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: button
     name: Clear energy
     class: restart
@@ -162,7 +187,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage L1
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L1
     class: voltage
     category: diagnostic
     dps:
@@ -174,7 +201,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage L2
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L2
     class: voltage
     category: diagnostic
     dps:
@@ -186,7 +215,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage L3
+    translation_key: voltage_x
+    translation_placeholders:
+      x: L3
     class: voltage
     category: diagnostic
     dps:
@@ -198,7 +229,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current L1
+    translation_key: current_x
+    translation_placeholders:
+      x: L1
     class: current
     category: diagnostic
     dps:
@@ -210,7 +243,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current L2
+    translation_key: current_x
+    translation_placeholders:
+      x: L2
     class: current
     category: diagnostic
     dps:
@@ -222,7 +257,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current L3
+    translation_key: current_x
+    translation_placeholders:
+      x: L3
     class: current
     category: diagnostic
     dps:
@@ -289,3 +326,12 @@ secondary_entities:
             value: Stop charging
           - dps_val: "WaitOperation"
             value: Waiting for command
+  - entity: switch
+    name: RFID
+    icon: "mdi:credit-card-wireless"
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+        optional: true

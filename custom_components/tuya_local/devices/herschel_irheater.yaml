@@ -1,37 +1,37 @@
 name: IR heater
 products:
   - id: 4aVbNfxEYUbylvvW
-    name: Herschel Infrared Heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      mapping:
-        - scale: 10
-          step: 10
-      range:
-        min: 0
-        max: 370
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: Herschel
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: 0
+          max: 370
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
   - entity: select
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 10

@@ -1,0 +1,177 @@
+name: Door lock
+products:
+  - id: rlyxv7pe
+    manufacturer: Raykube
+    model: A1 Pro Max
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: unlock_method_create
+      - id: 2
+        type: string
+        optional: true
+        name: unlock_method_delete
+      - id: 3
+        type: string
+        optional: true
+        name: unlock_method_modify
+      - id: 16
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_key
+      - id: 19
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_ble
+      - id: 20
+        type: string
+        optional: true
+        name: lock_record
+      - id: 46
+        type: boolean
+        name: lock
+      - id: 47
+        type: boolean
+        name: open
+        readonly: true
+      - id: 54
+        type: string
+        optional: true
+        name: sync_method
+      - id: 61
+        type: string
+        optional: true
+        name: remote_no_dp_key
+      - id: 62
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 63
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_voice
+      - id: 69
+        type: string
+        optional: true
+        name: record
+      - id: 70
+        type: string
+        optional: true
+        name: check_code_set
+      - id: 71
+        type: string
+        optional: true
+        name: ble_unlock_check
+      - id: 72
+        type: string
+        optional: true
+        name: unlock_record_check
+      - id: 73
+        type: string
+        optional: true
+        name: remote_pd_setkey_check
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 90
+          - dps_val: medium
+            value: 60
+          - dps_val: low
+            value: 30
+          - dps_val: poweroff
+            value: 0
+  - entity: event
+    name: Alert
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 31
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: normal
+            value: true
+          - dps_val: mute
+            value: false
+  - entity: switch
+    name: Auto-lock
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Auto lock time
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 1800
+        optional: true
+  - entity: button
+    name: Sync clock
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 44
+        type: boolean
+        name: button
+        optional: true
+  - entity: select
+    name: Special function
+    icon: "mdi:function"
+    category: config
+    dps:
+      - id: 68
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: function1
+            value: Recalibrate
+          - dps_val: function2
+            value: Unlock more
+          - dps_val: function3
+            value: Keep retracted
+          - dps_val: function4
+            value: Add force
+  - entity: switch
+    name: Change direction
+    category: config
+    dps:
+      - id: 78
+        type: boolean
+        name: switch

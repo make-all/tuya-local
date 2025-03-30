@@ -1,36 +1,37 @@
 name: Dual energy meter
 products:
   - id: 79a7z01v3n35kytb
-    name: V-WIFI-DL02-ES
-primary_entity:
-  entity: sensor
-  category: diagnostic
-  name: Total energy
-  class: energy
-  dps:
-    - id: 123
-      name: sensor
-      type: integer
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 103
-      name: Device state
-      type: string
-      mapping:
-        - dps_val: close
-          value: close
-          default: true
-        - dps_val: monitor
-          value: monitor
-        - dps_val: working
-          value: working
-        - dps_val: warning
-          value: warning
-secondary_entities:
+    model: V-WIFI-DL02-ES
+entities:
   - entity: sensor
-    name: Power A
+    category: diagnostic
+    name: Total energy
+    class: energy
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 103
+        name: Device state
+        type: string
+        mapping:
+          - dps_val: close
+            value: close
+            default: true
+          - dps_val: monitor
+            value: monitor
+          - dps_val: working
+            value: working
+          - dps_val: warning
+            value: warning
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: power
     dps:
@@ -43,7 +44,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: current
     dps:
@@ -56,7 +59,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     category: diagnostic
     class: voltage
     dps:
@@ -93,7 +98,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: power
     dps:
@@ -106,7 +113,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: current
     dps:
@@ -119,7 +128,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     category: diagnostic
     class: voltage
     dps:

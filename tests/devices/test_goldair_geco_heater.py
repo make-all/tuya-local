@@ -1,5 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import GECO_HEATER_PAYLOAD
@@ -41,6 +42,7 @@ class TestGoldairGECOHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.setUpBasicBinarySensor(
@@ -95,16 +97,17 @@ class TestGoldairGECOHeater(
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_extra_state_attributes(self):
-        # There are currently no known error states; update this as
-        # they are discovered
-        self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 10
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"error": "something", "timer": 10},
+            {"timer": 10},
         )
-        self.dps[ERROR_DPS] = "0"
         self.dps[TIMER_DPS] = 0
+        self.assertDictEqual(self.subject.extra_state_attributes, {"timer": 0})
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes, {"error": "OK", "timer": 0}
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
         )

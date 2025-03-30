@@ -1,63 +1,62 @@
 name: Orion Grid Connect smart lock
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 2
-      type: integer
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 3
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 4
-      type: integer
-      name: unlock_dynamic_pwd
-      optional: true
-      persist: false
-    - id: 5
-      type: integer
-      name: unlock_card
-      optional: true
-      persist: false
-    - id: 8
-      type: bitfield
-      name: jammed
-      mapping:
-        - dps_val: 16
-          value: true
-        - dps_val: 128
-          value: true
-        - value: false
-    - id: 9
-      type: integer
-      name: request_unlock
-    - id: 10
-      type: boolean
-      name: approve_unlock
-    - id: 15
-      type: integer
-      name: unlock_app
-    - id: 25
-      type: hex
-      name: fingers_enrolled
-      optional: true
-    - id: 26
-      type: hex
-      name: passwords_enrolled
-      optional: true
-    - id: 27
-      type: hex
-      name: cards_enrolled
-      optional: true
-secondary_entities:
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 4
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+      - id: 8
+        type: bitfield
+        name: jammed
+        mapping:
+          - dps_val: 16
+            value: true
+          - dps_val: 128
+            value: true
+          - value: false
+      - id: 9
+        type: integer
+        name: request_unlock
+      - id: 10
+        type: boolean
+        name: approve_unlock
+      - id: 15
+        type: integer
+        name: unlock_app
+      - id: 25
+        type: hex
+        name: fingers_enrolled
+        optional: true
+      - id: 26
+        type: hex
+        name: passwords_enrolled
+        optional: true
+      - id: 27
+        type: hex
+        name: cards_enrolled
+        optional: true
   - entity: sensor
     name: Alert
     class: enum

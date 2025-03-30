@@ -1,21 +1,21 @@
 name: Water timer
 products:
   - id: ew946yrp3pgbaziu
-    name: RainPoint TTV103FRF
-primary_entity:
-  entity: valve
-  class: water
-  icon: "mdi:watering-can"
-  dps:
-    - id: 108
-      type: boolean
-      name: valve
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-secondary_entities:
+    manufacturer: RainPoint
+    model: TTV103FRF
+entities:
+  - entity: valve
+    class: water
+    icon: "mdi:watering-can"
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Automatic irrigation
     category: config
@@ -76,6 +76,7 @@ secondary_entities:
         unit: L
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 107
@@ -86,9 +87,8 @@ secondary_entities:
           min: 0
           max: 60
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
-    icon: "mdi:list-status"
     category: diagnostic
     dps:
       - id: 106
@@ -96,13 +96,13 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: idle
           - dps_val: "1"
-            value: "Manual"
+            value: manual
           - dps_val: "2"
-            value: "Auto"
+            value: auto
           - dps_val: "3"
-            value: "Rain Delay"
+            value: rain_delay
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -114,3 +114,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 120
+        type: bitfield
+        name: fault_code

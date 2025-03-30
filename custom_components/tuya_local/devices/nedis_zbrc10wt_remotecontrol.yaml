@@ -1,24 +1,25 @@
 name: Remote control
 products:
   - id: fsiepnrh
-    name: Nedis ZBRC10WT
-primary_entity:
-  entity: event
-  name: Button 0
-  class: button
-  dps:
-    - id: 29
-      type: string
-      name: event
-      optional: true
-      mapping:
-        - dps_val: null
-          value: null
-        - value: pressed
-    - id: 29
-      type: string
-      name: code
-secondary_entities:
+    manufacturer: Nedis
+    model: ZBRC10WT
+entities:
+  - entity: event
+    name: Button 0
+    class: button
+    dps:
+      - id: 29
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: pressed
+      - id: 29
+        type: string
+        optional: true
+        name: code
   - entity: event
     name: Button 1
     class: button
@@ -33,6 +34,7 @@ secondary_entities:
           - value: pressed
       - id: 27
         type: string
+        optional: true
         name: code
   - entity: event
     name: Button A
@@ -48,6 +50,7 @@ secondary_entities:
           - value: pressed
       - id: 28
         type: string
+        optional: true
         name: code
   - entity: event
     name: Button B
@@ -63,6 +66,7 @@ secondary_entities:
           - value: pressed
       - id: 26
         type: string
+        optional: true
         name: code
   - entity: sensor
     class: battery

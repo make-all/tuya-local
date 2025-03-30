@@ -1,39 +1,38 @@
 name: Curtain
 products:
   - id: 550grkojy40jodv0
-    name: LS830-TY
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      type: string
-      name: control
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      type: integer
-      name: position
-      optional: true
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 3
-      type: integer
-      name: current_position
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-secondary_entities:
+    model: LS830-TY
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        type: integer
+        name: position
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
   - entity: select
     name: Direction
     icon: "mdi:arrow-u-left-bottom"
@@ -61,6 +60,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: sensor
     name: Running time
     class: duration

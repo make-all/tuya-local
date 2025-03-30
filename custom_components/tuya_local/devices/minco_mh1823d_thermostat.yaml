@@ -1,108 +1,97 @@
 name: Minco MH-1823D thermostat
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: manual
-              value: heat
-            - dps_val: program
-              value: auto
-            - dps_val: holiday
-              value: auto
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: program
-          value: program
-        - dps_val: manual
-          value: manual
-        - dps_val: holiday
-          value: away
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: stop
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-        - dps_val: start
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-    - id: 12
-      type: boolean
-      name: unknown_12
-    - id: 19
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 22
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 50
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_f
-              range:
-                min: 41
-                max: 99
-    - id: 23
-      type: integer
-      name: temp_f
-      range:
-        min: 41
-        max: 99
-      hidden: true
-    - id: 32
-      type: integer
-      name: unknown_32
-    - id: 33
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 37
-      type: integer
-      name: current_temp_f
-      mapping:
-        - scale: 10
-      hidden: true
-    - id: 45
-      type: integer
-      name: unknown_45
-    - id: 105
-      type: string
-      name: unknown_105
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: manual
+                value: heat
+              - dps_val: program
+                value: auto
+              - dps_val: holiday
+                value: auto
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: program
+            value: program
+          - dps_val: manual
+            value: manual
+          - dps_val: holiday
+            value: away
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: stop
+            value: idle
+          - dps_val: start
+            value: heating
+      - id: 12
+        type: boolean
+        name: unknown_12
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 22
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 50
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: 41
+                  max: 99
+      - id: 23
+        type: integer
+        name: temp_f
+        range:
+          min: 41
+          max: 99
+        hidden: true
+      - id: 32
+        type: integer
+        name: unknown_32
+      - id: 33
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 37
+        type: integer
+        name: current_temp_f
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 45
+        type: integer
+        name: unknown_45
+      - id: 105
+        type: string
+        name: unknown_105
   - entity: select
     name: Temperature sensor
     category: config

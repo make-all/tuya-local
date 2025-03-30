@@ -1,16 +1,17 @@
 name: Timer switch
 products:
   - id: ae0y7quogjcnzery
-    name: Minoston nhT06-WIFI
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Minoston
+    model: nhT06-WIFI
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7
@@ -22,6 +23,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Preset 1 time
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -34,6 +36,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Preset 2 time
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -47,6 +50,7 @@ secondary_entities:
   - entity: number
     name: Preset 3 time
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 103
@@ -58,6 +62,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Preset 4 time
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -70,6 +75,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Preset 5 time
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -82,6 +88,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Preset 6 time
+    class: duration
     translation_key: timer
     category: config
     dps:

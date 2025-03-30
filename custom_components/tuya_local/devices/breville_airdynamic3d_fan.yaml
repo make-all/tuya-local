@@ -1,42 +1,39 @@
 name: Air circulator
 products:
   - id: wpkdomrtayuzuqvc
-    name: Breville AirDynamic 3D
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 0
-        max: 8
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: NORMAL
-          value: normal
-        - dps_val: NATURAL_N1
-          value: Natural 1
-        - dps_val: NATURAL_N2
-          value: Natural 2
-        - dps_val: NATURAL_N3
-          value: Natural 3
-        - dps_val: ECO
-          value: smart
-        - dps_val: TURBO
-          value: strong
-    - id: 5
-      type: boolean
-      name: oscillate
-    - id: 24
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Breville
+    model: AirDynamic 3D
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 8
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: NORMAL
+            value: normal
+          - dps_val: NATURAL_N1
+            value: Natural 1
+          - dps_val: NATURAL_N2
+            value: Natural 2
+          - dps_val: NATURAL_N3
+            value: Natural 3
+          - dps_val: ECO
+            value: smart
+          - dps_val: TURBO
+            value: strong
+      - id: 5
+        type: boolean
+        name: oscillate
   - entity: switch
     name: Vertical oscillation
     icon: "mdi:swap-vertical"
@@ -107,3 +104,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code

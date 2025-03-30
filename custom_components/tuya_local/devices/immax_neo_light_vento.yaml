@@ -1,41 +1,41 @@
 name: Ceiling fan
 products:
   - id: ea6vpac5hfe5rqw4
-    name: Immax NEO LITE VENTO Smart
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: sleep
-          value: sleep
-        - dps_val: nature
-          value: nature
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 6
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: nature
-              step: 5
-            - dps_val: sleep
-              step: 5
-    - id: 8
-      name: direction
-      type: string
-secondary_entities:
+    manufacturer: Immax
+    model: NEO LITE VENTO Smart
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: nature
+            value: nature
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: nature
+                step: 5
+              - dps_val: sleep
+                step: 5
+      - id: 8
+        name: direction
+        type: string
   - entity: light
     dps:
       - id: 15

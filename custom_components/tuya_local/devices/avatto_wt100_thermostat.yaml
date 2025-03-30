@@ -1,75 +1,67 @@
 name: Thermostat
 products:
   - id: gw173aldekvpzalg
-    name: Avatto WT200W-EH
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: cold
-              # manual
-              value: heat
-            - dps_val: hot
-              # program
-              value: auto
-            - dps_val: wind
-              # temporary program - HA does not have a distinct mode for this
-              value: auto
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      optional: true
-      range:
-        min: 50
-        max: 700
-      mapping:
-        - scale: 10
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: cold
-          value: manual
-        - dps_val: hot
-          value: program
-        - dps_val: wind
-          value: temp_override
-          hidden: true
-    - id: 5
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: "0"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-        - dps_val: "1"
-          value: heating
-    - id: 16
-      name: fault_code
-      type: bitfield
-    - id: 21
-      name: max_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Avatto
+    model: WT200W-EH
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: cold
+                # manual
+                value: heat
+              - dps_val: hot
+                # program
+                value: auto
+              - dps_val: wind
+                # temporary program - HA does not have a distinct mode for this
+                value: auto
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        optional: true
+        range:
+          min: 50
+          max: 700
+        mapping:
+          - scale: 10
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: cold
+            value: manual
+          - dps_val: hot
+            value: program
+          - dps_val: wind
+            value: temp_override
+            hidden: true
+      - id: 5
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+      - id: 21
+        name: max_temperature
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -96,6 +88,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 16
+        name: fault_code
+        type: bitfield
   - entity: number
     name: Temperature calibration
     category: config

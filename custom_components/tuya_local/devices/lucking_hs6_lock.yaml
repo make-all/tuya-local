@@ -1,88 +1,88 @@
 name: Door lock
 products:
   - id: 7veecefmxfxsu0b8
-    name: Lucking HF06EM/HF06MF-W-WIFI
-primary_entity:
-  entity: lock
-  dps:
-    # dps 1 - 9 are config related and not supported
-    - id: 28
-      type: boolean
-      name: lock
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-    - id: 40
-      type: boolean
-      # this is a guess for "lock_motor_state"
-      name: jammed
-      optional: true
-      persist: false
-      mapping:
-        - dps_val: null
-          value: false
-    - id: 10
-      type: string
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 11
-      type: string
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 12
-      type: string
-      name: unlock_card
-      optional: true
-      persist: false
-    - id: 15
-      type: string
-      # "double" in Tuya doc, but no idea what that means.  Key is unused.
-      name: unlock_key
-      optional: true
-      persist: false
-    - id: 16
-      type: string
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 17
-      type: string
-      name: unlock_offline_pwd
-      optional: true
-      persist: false
-    - id: 22
-      type: string
-      name: unlock_app
-      optional: true
-      persist: false
-    - id: 23
-      type: string
-      name: lock_alarm_kit
-      optional: true
-    - id: 29
-      type: string
-      name: normal_open_period
-      optional: true
-    - id: 35
-      type: string
-      name: closed_open_kit
-      optional: true
-    - id: 104
-      type: string
-      name: ble_unlock_check
-      optional: true
-    - id: 105
-      type: integer
-      name: unlock_ble
-      optional: true
-    - id: 212
-      type: string
-      name: initiative_msg
-      optional: true
-secondary_entities:
+    manufacturer: Lucking
+    model: HF06EM/HF06MF-W-WIFI
+entities:
+  - entity: lock
+    dps:
+      # dps 1 - 9 are config related and not supported
+      - id: 28
+        type: boolean
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 40
+        type: boolean
+        # this is a guess for "lock_motor_state"
+        name: jammed
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 10
+        type: string
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 11
+        type: string
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 12
+        type: string
+        name: unlock_card
+        optional: true
+        persist: false
+      - id: 15
+        type: string
+        # "double" in Tuya doc, but no idea what that means.  Key is unused.
+        name: unlock_key
+        optional: true
+        persist: false
+      - id: 16
+        type: string
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 17
+        type: string
+        name: unlock_offline_pwd
+        optional: true
+        persist: false
+      - id: 22
+        type: string
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 23
+        type: string
+        name: lock_alarm_kit
+        optional: true
+      - id: 29
+        type: string
+        name: normal_open_period
+        optional: true
+      - id: 35
+        type: string
+        name: closed_open_kit
+        optional: true
+      - id: 104
+        type: string
+        name: ble_unlock_check
+        optional: true
+      - id: 105
+        type: integer
+        name: unlock_ble
+        optional: true
+      - id: 212
+        type: string
+        name: initiative_msg
+        optional: true
   - entity: select
     name: Multi-factor authentication
     icon: "mdi:two-factor-authentication"
@@ -106,8 +106,7 @@ secondary_entities:
           - dps_val: card_face
             value: Card+Face
   - entity: select
-    name: Language
-    icon: "mdi:translate"
+    translation_key: language
     category: config
     dps:
       - id: 27
@@ -116,27 +115,27 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: chinese_simplified
-            value: 中文简化字
+            value: chinese
           - dps_val: english
-            value: English
+            value: english
           - dps_val: japanese
-            value: 日本語
+            value: japanese
           - dps_val: german
-            value: Deutsch
+            value: german
           - dps_val: spanish
-            value: Español
+            value: spanish
           - dps_val: latin
-            value: Latin
+            value: latin
           - dps_val: french
-            value: Français
+            value: french
           - dps_val: russian
-            value: Русский
+            value: russian
           - dps_val: italian
-            value: Italiano
+            value: italian
           - dps_val: chinese_traditional
-            value: 中文正體字
+            value: chinese_traditional
           - dps_val: korean
-            value: 한글
+            value: korean
   - entity: switch
     name: Auto lock
     icon: "mdi:lock-reset"
@@ -160,6 +159,7 @@ secondary_entities:
           max: 1800
   - entity: number
     name: Alarm time
+    class: duration
     category: config
     icon: "mdi:timer-music"
     dps:

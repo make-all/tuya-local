@@ -1,89 +1,81 @@
 name: Lawnmower
 products:
   - id: mvt4l2evgq2l3nkn
-    name: MoeBot S20
+    manufacturer: MoeBot
+    model: S20
   - id: icw5sal7xfcevsve
-    name: Parkside PMRDA 20-Li A1
-primary_entity:
-  entity: lawn_mower
-  dps:
-    - id: 101
-      name: activity
-      type: string
-      mapping:
-        - dps_val: STANDBY
-          value: docked
-        - dps_val: MOWING
-          value: mowing
-        - dps_val: CHARGING
-          value: docked
-        - dps_val: EMERGENCY
-          value: error
-        - dps_val: LOCKED
-          value: docked
-        - dps_val: PAUSED
-          value: paused
-        - dps_val: PARK
-          value: paused
-        - dps_val: CHARGING_WITH_TASK_SUSPEND
-          value: docked
-        - dps_val: FIXED_MOWING
-          value: mowing
-        - dps_val: ERROR
-          value: error
-        - dps_val: UPDATA
-          value: docked
-        - dps_val: SELF_TEST
-          value: docked
-    - id: 115
-      name: command
-      type: string
-      optional: true
-      mapping:
-        - dps_val: StartMowing
-          value: start_mowing
-        - dps_val: StartFixedMowing
-          value: start_mowing
-          hidden: true
-        - dps_val: PauseWork
-          value: pause
-        - dps_val: CancelWork
-          value: pause
-          hidden: true
-        - dps_val: ContinueWork
-          value: start_mowing
-          hidden: true
-        - dps_val: StartReturnStation
-          value: dock
-    - id: 101
-      name: raw_activity
-      type: string
-    - id: 102
-      name: error
-      type: bitfield
-      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost,
-      # motor fault, overheated, battery damaged
-    - id: 106
-      type: integer
-      name: password
-      sensitive: true
-    - id: 110
-      type: string
-      name: schedule
-      optional: true
-    - id: 111
-      type: string
-      name: error_log
-      optional: true
-    - id: 112
-      type: string
-      name: work_log
-      optional: true
-    - id: 113
-      type: string
-      name: zones
-      optional: true
-secondary_entities:
+    manufacturer: Parkside
+    model: PMRDA 20-Li A1
+entities:
+  - entity: lawn_mower
+    dps:
+      - id: 101
+        name: activity
+        type: string
+        mapping:
+          - dps_val: STANDBY
+            value: docked
+          - dps_val: MOWING
+            value: mowing
+          - dps_val: CHARGING
+            value: docked
+          - dps_val: EMERGENCY
+            value: error
+          - dps_val: LOCKED
+            value: docked
+          - dps_val: PAUSED
+            value: paused
+          - dps_val: PARK
+            value: returning
+          - dps_val: CHARGING_WITH_TASK_SUSPEND
+            value: docked
+          - dps_val: FIXED_MOWING
+            value: mowing
+          - dps_val: ERROR
+            value: error
+          - dps_val: UPDATA
+            value: docked
+          - dps_val: SELF_TEST
+            value: docked
+      - id: 115
+        name: command
+        type: string
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: start_mowing
+          - dps_val: StartFixedMowing
+            value: start_mowing
+            hidden: true
+          - dps_val: PauseWork
+            value: pause
+          - dps_val: CancelWork
+            value: pause
+            hidden: true
+          - dps_val: ContinueWork
+            value: start_mowing
+            hidden: true
+          - dps_val: StartReturnStation
+            value: dock
+      - id: 101
+        name: raw_activity
+        type: string
+      - id: 106
+        type: integer
+        name: password
+        sensitive: true
+      - id: 110
+        type: string
+        name: schedule
+        optional: true
+      - id: 112
+        type: string
+        name: work_log
+        optional: true
+      - id: 113
+        type: string
+        name: zones
+        optional: true
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
@@ -140,6 +132,14 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 102
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 111
+        type: string
+        name: error_log
+        optional: true
   - entity: sensor
     name: Problem
     icon: "mdi:robot-mower-outline"

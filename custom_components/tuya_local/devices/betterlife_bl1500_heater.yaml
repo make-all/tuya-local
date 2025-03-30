@@ -1,44 +1,45 @@
-name: Betterlife BL1500 heater
+name: Heater
 products:
   - id: ptiFKEk2bgAslxOA
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 15
-        max: 30
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: "2"
-              value: 20
-              range:
-                min: 20
-                max: 20
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "0"
-          value: comfort
-        - dps_val: "1"
-          value: boost
-        - dps_val: "2"
-          value: eco
-secondary_entities:
+    manufacturer: Betterlife
+    model: BL1500
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 30
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: "2"
+                value: 20
+                range:
+                  min: 20
+                  max: 20
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "0"
+            value: comfort
+          - dps_val: "1"
+            value: boost
+          - dps_val: "2"
+            value: eco
   - entity: lock
     translation_key: child_lock
     category: config

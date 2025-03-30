@@ -1,37 +1,38 @@
-name: Breville Smart Air Plus
+name: Air purifier
 products:
   - id: "emh1sylyfw7n2b50"
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: manual
-          value: normal
-        - dps_val: sleep
-          value: sleep
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "low"
-          value: 25
-        - dps_val: "mid"
-          value: 50
-        - dps_val: "high"
-          value: 75
-        - dps_val: "tubo"  # there's a typo in the firmware
-          value: 100
-secondary_entities:
+    manufacturer: Breville
+    model: Smart Air Plus
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 25
+          - dps_val: "mid"
+            value: 50
+          - dps_val: "high"
+            value: 75
+          - dps_val: "tubo"  # there's a typo in the firmware
+            value: 100
   - entity: sensor
     class: pm25
     dps:
@@ -86,8 +87,7 @@ secondary_entities:
         type: integer
         unit: min
   - entity: sensor
-    name: Air quality
-    icon: "mdi:air-filter"
+    translation_key: air_quality
     dps:
       - id: 21
         type: string

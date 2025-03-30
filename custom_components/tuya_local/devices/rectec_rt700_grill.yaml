@@ -1,0 +1,44 @@
+name: Grill
+# products:
+#   - id: UNKNOWN
+#     manufacturer: RecTeq
+#     model: RT-700
+entities:
+  - entity: climate
+    icon: "mdi:grill"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 102
+        type: integer
+        name: temperature
+        range:
+          min: 180
+          max: 500
+        unit: F
+      - id: 103
+        type: integer
+        name: current_temperature
+        unit: F
+  - entity: sensor
+    name: Probe A Temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: F
+  - entity: sensor
+    name: Probe B Temperature
+    class: temperature
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: F

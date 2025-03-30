@@ -1,37 +1,37 @@
 name: Doorbell
 products:
   - id: 4kfqpaat5buefsv0
+    model: ZX-DB11B
     name: Alarm Hub with Melodies Pro
-primary_entity:
-  entity: binary_sensor
-  name: Alarm
-  class: sound
-  category: diagnostic
-  dps:
-    - id: 32
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: normal
-          value: false
-        - dps_val: alarm
-          value: true
-    - id: 24
-      type: string
-      name: mode_state
-    - id: 36
-      type: string
-      name: sub_class
-    - id: 37
-      type: string
-      name: sub_type
-    - id: 39
-      type: string
-      name: sub_state
-    - id: 40
-      type: string
-      name: master_language
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+      - id: 24
+        type: string
+        name: mode_state
+      - id: 36
+        type: string
+        name: sub_class
+      - id: 37
+        type: string
+        name: sub_type
+      - id: 39
+        type: string
+        name: sub_state
+      - id: 40
+        type: string
+        name: master_language
   - entity: alarm_control_panel
     name: Alarm
     dps:
@@ -50,6 +50,7 @@ secondary_entities:
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: "mdi:timer-lock"
     dps:
       - id: 2
@@ -287,6 +288,7 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer-lock-open"
     dps:
       - id: 28
@@ -329,8 +331,7 @@ secondary_entities:
             value: 0
             icon: "mdi:volume-mute"
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 34

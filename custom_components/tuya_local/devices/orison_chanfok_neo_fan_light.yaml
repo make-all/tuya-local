@@ -1,32 +1,32 @@
 name: Ceiling fan with light
 products:
   - id: zfwgeelmqcypcdgh
-    name: Orison Chanfok Neo
-primary_entity:
-  entity: fan
-  dps:
-    - id: 107
-      type: boolean
-      name: switch
-    - id: 106
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 105
-      type: integer
-      name: speed
-      optional: true
-      range:
-        min: 1
-        max: 6
-    - id: 104
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: Orison
+    model: Chanfok Neo
+entities:
+  - entity: fan
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 106
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 105
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 104
+        type: string
+        name: direction
   - entity: light
     dps:
       - id: 20
@@ -87,6 +87,7 @@ secondary_entities:
         name: mix_rgbcw
   - entity: number
     name: Light timer
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -103,6 +104,7 @@ secondary_entities:
   - entity: number
     name: Fan timer
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 103
@@ -126,10 +128,18 @@ secondary_entities:
       - id: 53
         type: boolean
         name: switch
-  - entity: select
-    name: Scene
+  - entity: text
+    translation_key: scene
     category: config
-    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 36
+        name: value
+        type: base64
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
     dps:
       - id: 36
         type: string
@@ -137,13 +147,13 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "AAABAQIODQAAyAAAAAA="
-            value: Night
+            value: night
           - dps_val: "AAEBAQIODQAD6AH0AAA="
-            value: Reading
+            value: reading
           - dps_val: "AAIBAQIODQAD6APoAAA="
-            value: Work
+            value: working
           - dps_val: "AAMBAQIODQAB9AH0AAA="
-            value: Casual
+            value: leisure
           - dps_val: "AAQAAAECA0ZGAgB4A+gD6EZGAgB4A+gACg=="
             value: Prairie
           - dps_val: "AAUAAAEGA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6EZGAQA9A+gD\

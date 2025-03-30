@@ -7,9 +7,7 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 
 This is a Home Assistant integration to support devices running Tuya
 firmware without going via the Tuya cloud.  Devices are supported
-over WiFi, other technologies need a Tuya gateway device (Zigbee
-devices will work with other Zigbee gateways, but not via this
-integration).
+over WiFi, limited support for devices connected via hubs is available.
 
 Note that many Tuya devices seem to support only one local connection.
 If you have connection issues when using this integration, ensure that
@@ -50,6 +48,10 @@ they can handle, with typical limits being 1 or 3, depending on the specific
 Tuya module they are using.  This severely limits the number of sub devices
 that can be connected through this integration.
 
+Sub devices should be added using the `device_id`, `address` and `local_key`
+of the hub they are attached to, and the `node_id` of the sub-device. If there
+is no `node_id` listed, try using the `uuid` instead.
+
 Tuya Zigbee devices are usually standard zigbee devices, so as an
 alternative to this integration with a Tuya hub, you can use a
 supported Zigbee USB stick or Wifi hub with
@@ -68,17 +70,20 @@ they try to emulate a fully smart air conditioner using internal memory
 of what settings are currently set, and internal temperature and humidity
 sensors.
 
+Some Tuya hubs now support Matter over WiFi, and this can be used as an
+alternative to this integration for connecting the hub and sub-devices
+to Home Assistant. Other limitations will apply to this, so you might want
+to try both, and only use this integration for devices that are not working
+properly over Matter.
+
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 
 Documentation on building a device configuration file is in [/custom_components/tuya_local/devices/README.md](https://github.com/make-all/tuya-local/blob/main/custom_components/tuya_local/devices/README.md)
 
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
-1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
+1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
 2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/) to get your local key, you should also have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
-3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
-
-https://www.zigbee2mqtt.io/advanced/support-new-devices/03_find_tuya_data_points.html
 
 If you file an issue to request support for a new device, please include the following information:
 
@@ -147,7 +152,7 @@ below](#finding-your-device-id-and-local-key).
 
 #### protocol_version
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4.  If you aren't sure, choose "auto", but some 3.2 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4, 3.5, 3.22.  If you aren't sure, choose "auto", but some 3.2, 3.22 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions. Protocol 3.22 is a special case, that enables tinytuya's "device22" detection with protocol 3.3. Previously we let tinytuya auto-detect this, but it was found to sometimes misdetect genuine 3.3 devices as device22 which stops them receiving updates, so an explicit version was added to enable the device22 detection.
 
 At the end of this step, an attempt is made to connect to the device and see if
 it returns any data. For tuya protocol version 3.1 devices, the local key is
@@ -227,113 +232,6 @@ work best with your devices.
 When adding devices, some devices that are detected as protocol version
 3.3 at first require version 3.2 to work correctly. Either they cannot be
 detected, or work as read-only if the pprotocol is set to 3.3.
-
-## Heater issues
-
-Goldair GPPH heaters have individual target temperatures for their
-Comfort and Eco modes, whereas Home Assistant only supports a single
-target temperature. Therefore, when you're in Comfort mode you will
-set the Comfort temperature (`5`-`35`), and when you're in Eco mode
-you will set the Eco temperature (`5`-`21`), just like you were using
-the heater's own control panel. Bear this in mind when writing
-automations that change the operation mode and set a temperature at
-the same time: you must change the operation mode _before_ setting the
-new target temperature, otherwise you will set the current thermostat
-rather than the new one.
-
-When switching to Anti-freeze mode, the heater will set the current
-power level to `1` as if you had manually chosen it. When you switch
-back to other modes, you will no longer be in `Auto` and will have to
-set it again if this is what you wanted. This could be worked around
-in code however it would require storing state that may be cleared if
-HA is restarted and due to this unreliability it's probably best that
-you just factor it into your automations.
-
-When child lock is enabled, the heater's display will flash with the
-child lock symbol (`[]`) whenever you change something in HA. This can
-be confusing because it's the same behaviour as when you try to change
-something via the heater's own control panel and the change is
-rejected due to being locked, however rest assured that the changes
-_are_ taking effect.
-
-When setting the target temperature, different heaters have different
-behaviour, which you may need to compensate for.  From observation,
-GPPH heaters allow the temperature to reach 3 degrees higher than the
-set temperature before turning off, and 1 degree lower before turning
-on again.  Kogan Heaters on the other hand turn off when the
-temperature reaches 1 degree over the target in LOW mode, and turn on
-again 3 degrees below the target.  To make these heaters act the same
-in LOW power mode, you need to set the Kogan thermostat 2 degrees
-higher than the GPPH thermostat.  In HIGH power mode however, they
-seem to act the same as the GPPH heaters.
-
-The Inkbird thermostat switch does not seem to work for setting
-anything.  If you can figure out how to make setting temperatures and
-presets work, please leave feedback in Issue #19.
-
-## Fan issues
-
-Reportedly, Goldair fans can be a bit flaky. If they become
-unresponsive, give them about 60 seconds to wake up again.
-
-Anko fans mostly work, except setting the speed does not seem to
-work. If you can figure out how to set the speed through the Tuya
-protocol for these devices, please leave feedback on Issue #22.
-
-
-## Smart Switch issues
-
-It has been observed after a while that the current and
-power readings from the switch were returning 0 when there was clearly
-a load on the switch.  After unplugging and replugging, the switch
-started returning only dps 1 and 2 (switch status and timer). If
-HomeAssistant is restarted in that state, the switch detection would
-fail, however as Home Assistant was left running, it continued to work
-with no readings for the current, power and voltage.  I unplugged the
-switch overnight, and in the morning it was working correctly.
-
-Cumulative Energy readings seem to be reset whenever the reading is
-successfully sent to the server.  This leads to the energy usage never moving
-from the minimum reporting level of 0.1kWh, which isn't very useful.
-It may be possible to get useful readings by blocking the switch from accessing
-the internet, otherwise an integration sensor based on the Power sensor
-will need to be set up on the Home Assistant side, and the Energy sensor
-ignored.
-
-For the amount of consumed energy, it may be reasonable to use an additional
-helper - the [Riemann integral](https://www.home-assistant.io/integrations/integration/).
-Select `power` of switch as the sensor for it. The result of the integral will be
-calculated in `(k/M/G/T)W*h` and will correspond to the consumed energy.
-
-## Kogan Kettle issues
-
-Although these look like simple devices, their behaviour is not
-consistent so they are difficult to detect.  Sometimes they are
-misdetected as a simple switch, other times they only output the
-temperature sensor so are not detected at all.
-
-## Beca thermostat issues
-
-Some of these devices support switching between Celcius and Fahrenheit
-on the control panel, but do not provide any information over the Tuya
-local protocol about which units are selected.  Three configurations
-for BHP6000 are provided, `beca_bhp6000_thermostat_c` and
-`beca_bhp6000_thermostat_f`, which use Celsius and Fahrenheit
-respectively, and `beca_bhp6000_thermostat_mapped` for a buggy looking
-firmware which displays the temperature on the thermostat in Celsius
-in increments of half a degree, but uses a slightly offset Fahrenheit
-for the protocol, as detailed in issue #215.  Please select the appropriate
-config for the temperature units you use.  If you change the units on the
-device control panel, you will need to delete the device from Home Assistant
-and set it up again.
-
-## Saswell C16 thermostat issues
-
-These support configuration as either heating or cooling controllers, but
-only have one output.  The HVAC mode is provided as an indicator of which
-mode they are in, but are set to readonly so that you cannot accidentally
-switch the thermostat to the wrong mode from HA.
-
 
 ## Finding your device ID and local key
 

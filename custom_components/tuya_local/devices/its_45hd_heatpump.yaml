@@ -1,104 +1,96 @@
 name: Heat pump
 products:
   - id: hqegspadimukzmll
-    name: ITS-4.5HD super
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: COOL
-              value: cool
-            - dps_val: HEAT
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 4
-      type: integer
-      name: temperature
-      range:
-        min: 15
-        max: 75
-      unit: C
-    - id: 14
-      type: integer
-      name: EEV
-    - id: 15
-      type: bitfield
-      name: fault_code
-    - id: 17
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: normal
-          constraint: four_valve_state
-          conditions:
-            - dps_val: false
-              value: heating
-            - dps_val: true
-              value: cooling
-        - dps_val: ERR
-          value: "off"
-        - dps_val: "NO"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-    - id: 18
-      type: integer
-      name: energy_today
-    - id: 20
-      type: integer
-      name: compressor_strength
-    - id: 21
-      type: integer
-      name: current_temperature
-    - id: 28
-      type: boolean
-      name: four_valve_state
-      hidden: true
-    - id: 30
-      type: boolean
-      name: chlorination
-    - id: 40
-      type: integer
-      name: model_code
-    - id: 101
-      type: integer
-      name: current
-    - id: 102
-      type: integer
-      name: voltage
-    - id: 103
-      type: integer
-      name: power
-    - id: 104
-      type: integer
-      name: energy
-    - id: 105
-      type: boolean
-      name: electricity_monitor
-    - id: 106
-      type: boolean
-      name: linkage
-    - id: 108
-      type: boolean
-      name: dipswitch_1
-    - id: 109
-      type: boolean
-      name: dipswitch_2
-secondary_entities:
+    manufacturer: ITS
+    model: "4.5HD super"
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: HEAT
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 15
+          max: 75
+        unit: C
+      - id: 14
+        type: integer
+        name: EEV
+      - id: 17
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: normal
+            constraint: four_valve_state
+            conditions:
+              - dps_val: false
+                value: heating
+              - dps_val: true
+                value: cooling
+          - dps_val: ERR
+            value: "off"
+          - dps_val: "NO"
+            value: idle
+      - id: 18
+        type: integer
+        name: energy_today
+      - id: 20
+        type: integer
+        name: compressor_strength
+      - id: 21
+        type: integer
+        name: current_temperature
+      - id: 28
+        type: boolean
+        name: four_valve_state
+        hidden: true
+      - id: 30
+        type: boolean
+        name: chlorination
+      - id: 40
+        type: integer
+        name: model_code
+      - id: 101
+        type: integer
+        name: current
+      - id: 102
+        type: integer
+        name: voltage
+      - id: 103
+        type: integer
+        name: power
+      - id: 104
+        type: integer
+        name: energy
+      - id: 105
+        type: boolean
+        name: electricity_monitor
+      - id: 106
+        type: boolean
+        name: linkage
+      - id: 108
+        type: boolean
+        name: dipswitch_1
+      - id: 109
+        type: boolean
+        name: dipswitch_2
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -117,6 +109,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
   - entity: sensor
     name: Water flow
     class: enum

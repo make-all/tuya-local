@@ -1,40 +1,38 @@
 name: Water heater
 products:
   - id: nqlqesmkrje7vdhm
-    name: EMS Thermal TH200DT heatpump
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_pump
-            - dps_val: mix
-              value: high_demand
-            - dps_val: electric
-              value: electric
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 10
-        max: 70
-      unit: C
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 9
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: EMS
+    model: 200L Magneto Thermo Tank
+    model_id: TH200DT
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_pump
+              - dps_val: mix
+                value: high_demand
+              - dps_val: electric
+                value: electric
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 10
+          max: 60
+        unit: C
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
   - entity: sensor
     class: temperature
     dps:
@@ -54,3 +52,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code

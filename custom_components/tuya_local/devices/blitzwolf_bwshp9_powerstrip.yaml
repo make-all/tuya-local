@@ -1,25 +1,31 @@
 name: 3 outlet + USB powerstrip
 products:
   - id: 4es44udrj48pqtlb
-    name: BlitzWolf SHP-9
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Outlet 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: BlitzWolf
+    model: SHP-9
+entities:
   - entity: switch
-    name: Outlet 2
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3

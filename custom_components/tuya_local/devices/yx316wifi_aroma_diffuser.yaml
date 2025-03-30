@@ -3,31 +3,26 @@
 name: Aroma diffuser with lamp
 products:
   - id: arkdxfhlkpdyof9x
-    name: YX316WIFI
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 2
-      name: switch
-      type: boolean
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "MID"
-          value: "medium"
-        - dps_val: "2H"
-          value: "low"
-        - dps_val: "4H"
-          value: "high"
-        - dps_val: "10SEC"
-          value: "intermittent"
-    - id: 11
-      name: fault_code
-      type: bitfield
-      optional: true
-secondary_entities:
+    model: YX316WIFI
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "MID"
+            value: "medium"
+          - dps_val: "2H"
+            value: "low"
+          - dps_val: "4H"
+            value: "high"
+          - dps_val: "10SEC"
+            value: "intermittent"
   # "master" switch - turns on and off both light and diffuser
   - entity: switch
     name: Power
@@ -99,3 +94,21 @@ secondary_entities:
             icon: "mdi:speaker-off"
             value: false
             hidden: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code

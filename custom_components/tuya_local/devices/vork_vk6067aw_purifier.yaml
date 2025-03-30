@@ -1,32 +1,30 @@
-name: Vork VK-6067AW air purifier
+name: Air purifier
 products:
   - id: trpege6ebn8at1el
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: low
-          value: nature
-        - dps_val: mid
-          value: fresh
-        - dps_val: high
-          value: strong
-        - dps_val: auto
-          value: smart
-        - dps_val: sleep
-          value: sleep
-    - id: 22
-      name: error_code
-      type: integer
-secondary_entities:
+    manufacturer: Vork
+    model: VK-6067AW
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: low
+            value: nature
+          - dps_val: mid
+            value: fresh
+          - dps_val: high
+            value: strong
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
   - entity: sensor
     name: Filter
     category: diagnostic
@@ -48,9 +46,8 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:led-off"
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 11
         type: boolean
@@ -79,23 +76,22 @@ secondary_entities:
         type: integer
         unit: min
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     category: diagnostic
     class: enum
-    icon: "mdi:air-filter"
     dps:
       - id: 21
         name: sensor
         type: string
         mapping:
           - dps_val: great
-            value: "Great"
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "medium"
-            value: "Medium"
-          - dps_val: "severe"
-            value: "Severe"
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -107,3 +103,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield

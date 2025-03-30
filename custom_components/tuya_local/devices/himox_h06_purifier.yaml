@@ -1,21 +1,20 @@
 name: Himox H06 air purifier
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "low"
-          value: 33
-        - dps_val: "mid"
-          value: 67
-        - dps_val: "high"
-          value: 100
-secondary_entities:
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 33
+          - dps_val: "mid"
+            value: 67
+          - dps_val: "high"
+            value: 100
   - entity: sensor
     name: Active filter life
     icon: "mdi:air-filter"
@@ -33,9 +32,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 11
         type: boolean
@@ -64,7 +62,7 @@ secondary_entities:
         name: sensor
         unit: "min"
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     dps:
       - id: 22
         type: string

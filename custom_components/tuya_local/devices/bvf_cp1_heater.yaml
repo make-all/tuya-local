@@ -1,57 +1,51 @@
 name: Heater
 products:
   - id: t2htqaryl4gymeuv
-    name: BVP CP-1
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: hot
-          value: comfort
-        - dps_val: eco
-          value: eco
-        - dps_val: cold
-          value: away
-        - dps_val: auto
-          value: home
-    - id: 3
-      type: string
-      optional: true
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: heating
-                  value: heating
-                - dps_val: standby
-                  value: idle
-    - id: 16
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 45
-      unit: C
-    - id: 24
-      type: integer
-      name: current_temperature
-secondary_entities:
+    manufacturer: BVP
+    model: CP-1
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: hot
+            value: comfort
+          - dps_val: eco
+            value: eco
+          - dps_val: cold
+            value: away
+          - dps_val: auto
+            value: home
+      - id: 3
+        type: string
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: standby
+            value: idle
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 45
+        unit: C
+      - id: 24
+        type: integer
+        name: current_temperature
   - entity: light
     translation_key: display
     category: config

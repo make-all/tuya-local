@@ -1,0 +1,133 @@
+rules:
+  # Bronze
+  config_flow: done
+  test-before-configure: done
+  unique-config-entry: done
+  config-flow-test-coverage:
+    status: todo
+    comment: line-rate="0.5019" branch-rate="0.2872", target 100%
+  runtime-data:
+    status: todo
+    comment: issue #1884
+  test-before-setup:
+    status: todo
+    comment: handle in connection rewrite
+  appropriate-polling:
+    status: todo
+    comment: handle in connection rewrite (possibly by eliminating polling)
+  entity-unique-id: done
+  has-entity-name: done
+  entity-event-setup:
+    status: todo
+    comment: issue #1916
+  dependency-transparency: done
+  action-setup:
+    status: exempt
+    comment: actions not implemented
+  common-modules:
+    status: todo
+    comment: entity done, coordinator in connection rewrite
+  docs-high-level-description:
+    status: todo
+    comment: need link to Tuya
+  docs-installation-instructions:
+    status: todo
+    comment: to review
+  docs-removal-instructions:
+    status: todo
+    comment: need adding
+  docs-actions:
+    status: exempt
+    comment: actions not implemented
+  brands:
+    status: todo
+    comment: currently using Tuya logo, do we need a unique one?
+  # Silver
+  config-entry-unloading: done
+  log-when-unavailable:
+    status: todo
+    comment: log when coming back online may be needed
+  entity-unavailable:
+    status: todo
+    comment: need review to ensure logic is correct
+  action-exceptions:
+    status: exempt
+    comment: actions not implemented
+  reauthentication-flow:
+    status: todo
+    comment: cloud and local_key
+  parallel-updates:
+    status: todo
+    comment: especially for hubs
+  test-coverage:
+    status: todo
+    comment: line-rate="0.7859" branch-rate="0.6018", target 95%
+  integration-owner: done
+  docs-installation-parameters:
+    status: todo
+    comment: needs review
+  docs-configuration-parameters:
+    status: todo
+    comment: needs review
+  # Gold
+  entity-translations:
+    status: todo
+    comment: issue #1708
+  entity-device-class: done
+  devices: done
+  entity-category: done
+  entity-disabled-by-default:
+    status: todo
+    comment: attribute for controlling this needed
+  discovery:
+    status: todo
+    comment: local and cloud
+  stale-devices:
+    status: todo
+    comment: need to implement async_remove_config_entry_device
+  diagnostics: done
+  exception-translations:
+    status: todo
+    comment: review which exceptions escape through to the user
+  icon-translations:
+    status: todo
+    comment: issue #1708
+  reconfiguration-flow:
+    status: todo
+    comment: how is this different than options flow?
+  dynamic-devices: done
+  discovery-update-info:
+    status: exempt
+    comment: until discovery implemented
+  repair-issues:
+    status: todo
+    comment: review what can be raised
+  docs-use-cases:
+    status: todo
+    comment: due to breadth of support, what can be documented?
+  docs-supported-devices: done
+  docs-supported-functions:
+    status: todo
+    comment: needs review
+  docs-data-update:
+    status: todo
+    comment: needs review
+  docs-known-limitations:
+    status: todo
+    comment: needs review
+  docs-troubleshooting:
+    status: todo
+    comment: needs review
+  docs-examples:
+    status: todo
+    comment: what examples to use?
+  # Platinum
+  async-dependency:
+    status: blocked
+    comment: tinytuya is sync, no good standalone alternative
+  inject-websession:
+    status: exempt
+    comment: relevant to http services only
+  strict-typing:
+    status: todo
+    comment: a lot of legacy codebase

@@ -1,0 +1,22 @@
+name: Pedestal 7 speed fan
+products:
+  - id: qdxgvuj2ncbx5aha
+    manufacturer: NEW WIDETECH
+    model: WPF-16SW5
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 7
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch

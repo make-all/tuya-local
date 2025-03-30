@@ -1,34 +1,34 @@
 name: Ceiling fan and light
 products:
   - id: qx9ovwpe9isccpb6
-    name: Casafan ECO Neo III
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: nature_off
-          value: normal
-        - dps_val: nature_Low
-          value: nature
-        - dps_val: nature_Hi
-          value: strong
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 8
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: Casafan
+    model: ECO Neo III
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: nature_off
+            value: normal
+          - dps_val: nature_Low
+            value: nature
+          - dps_val: nature_Hi
+            value: strong
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        type: string
+        name: direction
   - entity: light
     dps:
       - id: 15

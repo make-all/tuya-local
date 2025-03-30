@@ -3,8 +3,8 @@
 from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelEntityFeature as Feature,
 )
-from homeassistant.const import (
-    STATE_ALARM_DISARMED,
+from homeassistant.components.alarm_control_panel import (
+    AlarmControlPanelState,
 )
 
 from ..const import ZXG30_ALARM_PAYLOAD
@@ -58,7 +58,7 @@ class TestZXG30Alarm(TuyaDeviceTestCase):
 
     def test_state(self):
         self.dps[ALARMSTATE_DP] = "disarmed"
-        self.assertEqual(self.subject.state, STATE_ALARM_DISARMED)
+        self.assertEqual(self.subject.alarm_state, AlarmControlPanelState.DISARMED)
 
     async def test_arm_home(self):
         async with assert_device_properties_set(

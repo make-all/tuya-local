@@ -1,51 +1,43 @@
 name: Dehumidifier
 products:
   - id: bfaa8cc446a9c7a142bp7o
-    name: Pro Breeze PB-20
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: work_mode
-      type: string
-      hidden: true
-    - id: 101
-      type: boolean
-      name: mode
-      mapping:
-        - dps_val: false
-          constraint: work_mode
-          conditions:
-            - dps_val: "1"
-              value: boost
-            - dps_val: "0"
-              value: auto
-        - dps_val: true
-          value: Internal drying
-    - id: 3
-      name: current_humidity
-      type: integer
-    - id: 4
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 11
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 8
-          value: tank
-secondary_entities:
+    manufacturer: Pro Breeze
+    model: PB-20
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: work_mode
+        type: string
+        hidden: true
+      - id: 101
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: false
+            constraint: work_mode
+            conditions:
+              - dps_val: "1"
+                value: boost
+              - dps_val: "0"
+                value: auto
+          - dps_val: true
+            value: Internal drying
+      - id: 3
+        name: current_humidity
+        type: integer
+      - id: 4
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
   - entity: fan
     dps:
       - id: 1
@@ -143,3 +135,19 @@ secondary_entities:
           - dps_val: 8
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code

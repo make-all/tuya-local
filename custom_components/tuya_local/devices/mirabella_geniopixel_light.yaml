@@ -1,77 +1,78 @@
 name: Ceiling light
 products:
   - id: kllgg1iuwrtcvlnp
-    name: Mirabella Genio Pixel LED Oval light
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-        - dps_val: static
-          value: Static
-        - dps_val: pre_set
-          value: Preset
-        - dps_val: custom
-          value: Custom
-        - dps_val: local_music
-          value: Music
-    - id: 22
-      type: integer
-      name: brightness
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      type: integer
-      name: color_temp
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 24
-      type: hex
-      name: rgbhsv
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 25
-      type: hex
-      name: scene_data
-      optional: true
-    - id: 101
-      type: string
-      name: scene_num
-    - id: 105
-      type: base64
-      name: debug_info
-secondary_entities:
+    manufacturer: Mirabella Genio
+    model: Pixel LED Oval light
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: static
+            value: Static
+          - dps_val: pre_set
+            value: Preset
+          - dps_val: custom
+            value: Custom
+          - dps_val: local_music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        type: hex
+        name: scene_data
+        optional: true
+      - id: 101
+        type: string
+        name: scene_num
+      - id: 105
+        type: base64
+        name: debug_info
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

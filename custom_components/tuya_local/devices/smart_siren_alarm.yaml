@@ -1,40 +1,39 @@
 name: Smart Alarm Siren
 products:
   - id: rtbaqdh2io1pmn19
-    name: Smart Siren
-primary_entity:
-  entity: alarm_control_panel
-  name: Status
-  icon: "mdi:shield-off-outline"
-  dps:
-    - id: 116
-      type: string
-      name: alarm_state
-      force: true
-      mapping:
-        - dps_val: "Disarm_"
-          value: disarmed
-          icon: "mdi:shield-off-outline"
-        - dps_val: "Arm_"
-          value: armed_away
-          icon: "mdi:shield-lock-outline"
-        - dps_val: "HomeArm_"
-          value: armed_home
-          icon: "mdi:shield-home-outline"
-        - dps_val: "SOS"
-          value: triggered
-          icon: "mdi:lifebuoy"
-secondary_entities:
+entities:
+  - entity: alarm_control_panel
+    name: Status
+    icon: "mdi:shield-off-outline"
+    dps:
+      - id: 116
+        type: string
+        name: alarm_state
+        force: true
+        mapping:
+          - dps_val: "Disarm_"
+            value: disarmed
+            icon: "mdi:shield-off-outline"
+          - dps_val: "Arm_"
+            value: armed_away
+            icon: "mdi:shield-lock-outline"
+          - dps_val: "HomeArm_"
+            value: armed_home
+            icon: "mdi:shield-home-outline"
+          - dps_val: "SOS"
+            value: triggered
+            icon: "mdi:lifebuoy"
   - entity: number
     name: Alarm Time
     category: config
+    class: duration
     icon: "mdi:timer"
     mode: box
     dps:
       - id: 105
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 5
           max: 180
@@ -57,7 +56,6 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
-        readonly: true
   - entity: binary_sensor
     name: Remote Control
     icon: "mdi:crosshairs-question"
@@ -67,7 +65,6 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
-        readonly: true
   - entity: binary_sensor
     name: Alarm display push
     icon: "mdi:crosshairs-question"
@@ -77,7 +74,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true
@@ -91,7 +87,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "1"
             value: true
@@ -106,7 +101,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "1"
             value: true
@@ -155,7 +149,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true
@@ -169,7 +162,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true
@@ -183,7 +175,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true
@@ -197,7 +188,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true
@@ -211,7 +201,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true

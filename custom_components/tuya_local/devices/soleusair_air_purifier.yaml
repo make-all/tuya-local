@@ -1,36 +1,37 @@
 name: Air purifier
 products:
   - id: kik7qavg2baebtk9
-    name: Soleusair KJ1000F A10
+    manufacturer: Soleusair
+    model: KJ1000F A10
   - id: 5xrkvysk7z6xrjum
-    name: Soleusair KJ760F A02
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 101
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 5
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: auto
-          value: smart
-        - dps_val: sleep
-          value: sleep
-        - dps_val: displayoff
-          value: displayoff
-secondary_entities:
+    manufacturer: Soleusair
+    model: KJ760F A02
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 101
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+          - dps_val: displayoff
+            value: displayoff
   - entity: sensor
     name: Filter life
     category: diagnostic
@@ -85,8 +86,7 @@ secondary_entities:
         optional: true
         unit: ppb
   - entity: sensor
-    name: Air quality
-    icon: "mdi:approximately-equal"
+    translation_key: air_quality
     class: enum
     dps:
       - id: 21
@@ -94,11 +94,11 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: great
-            value: great
+            value: excellent
           - dps_val: good
             value: good
           - dps_val: medium
-            value: medium
+            value: poor
           - dps_val: severe
             value: severe
   - entity: sensor

@@ -1,61 +1,70 @@
 name: String light controller
 products:
   - id: swzi5fagtytgxe0f
-    name: Lexi Lighting LLXAPT01
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: effect
-      mapping:
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 25
-      name: scene_data
-      type: hex
-      optional: true
-    - id: 27
-      name: music_data
-      type: hex
-      optional: true
-    - id: 28
-      name: control_data
-      type: hex
-      optional: true
-    - id: 101
-      name: scene_list
-      # scene_configuration
-      type: string
-    - id: 103
-      name: scene_combine
-      type: string
-      # sets what 6 scenes get used
-      optional: true
-    - id: 102
-      name: scene
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Lexi Lighting
+    model: LLXAPT01
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 25
+        name: scene_data
+        type: hex
+        optional: true
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
+      - id: 101
+        name: scene_list
+        # scene_configuration
+        type: string
+      - id: 103
+        name: scene_combine
+        type: string
+        # sets what 6 scenes get used
+        optional: true
+      - id: 102
+        name: scene
+        type: string
+        optional: true
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 102
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "1e03e801f40000000"
             value: Combination - All
@@ -100,6 +109,7 @@ secondary_entities:
             default: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

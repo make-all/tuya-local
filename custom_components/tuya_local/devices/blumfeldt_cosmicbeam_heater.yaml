@@ -1,54 +1,52 @@
 name: Heater
 products:
   - id: maxyau6xjalwq5id
-    name: Blumfeltd Cosmic Beam Smart 24 IR radiant heater
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 5
-        max: 45
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              range:
-                min: 41
-                max: 113
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-    - id: 12
-      name: fault_code
-      type: bitfield
-    - id: 101
-      name: temperature_unit
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: C
-        - dps_val: true
-          value: F
-secondary_entities:
+    manufacturer: Blumfeltd
+    model: Cosmic Beam Smart 24
+    name: IR radiant heater
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 5
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 41
+                  max: 113
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+      - id: 101
+        name: temperature_unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
   - entity: lock
     translation_key: child_lock
     category: config
@@ -125,6 +123,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
   - entity: select
     translation_key: temperature_unit
     category: config

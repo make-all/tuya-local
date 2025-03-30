@@ -1,34 +1,33 @@
 name: Ceiling fan
 products:
   - id: keyxcgdguks9shua
-    name: Atomi 52 inch ceiling fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 64
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 3
-    - id: 71
-      type: string
-      name: unknown_71
-secondary_entities:
+    manufacturer: Atomi
+    name: "52 inch ceiling fan"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 64
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+      - id: 71
+        type: string
+        name: unknown_71
   - entity: light
-    name: Light
     dps:
       - id: 20
         type: boolean
@@ -57,6 +56,7 @@ secondary_entities:
               max: 6500
   - entity: number
     name: Light timer
+    class: duration
     category: config
     translation_key: timer
     dps:

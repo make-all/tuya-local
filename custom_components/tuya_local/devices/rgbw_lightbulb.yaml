@@ -1,71 +1,73 @@
 name: RGBW lightbulb
 products:
   - id: cqekgipywslyavsr
-    name: Merkury BW904 Smart Bulb
+    manufacturer: Merkury
+    model: BW904
   - id: p2i2oapbnxftdukj
-    name: Merkury BW904 Smart Bulb
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
-          value: hs
-    - id: 3
-      name: brightness
-      type: integer
-      range:
-        min: 25
-        max: 255
-    - id: 5
-      name: rgbhsv
-      type: hex
-      format:
-        - name: r
-          bytes: 1
-        - name: g
-          bytes: 1
-        - name: b
-          bytes: 1
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 1
-          range:
-            min: 0
-            max: 255
-        - name: v
-          bytes: 1
-          range:
-            min: 0
-            max: 255
-    - id: 6
-      name: scene
-      type: hex
-      optional: true
-    - id: 7
-      name: flash_scene1
-      type: hex
-      optional: true
-    - id: 8
-      name: flash_scene2
-      type: hex
-      optional: true
-    - id: 9
-      name: flash_scene3
-      type: hex
-      optional: true
-    - id: 10
-      name: flash_scene4
-      type: hex
-      optional: true
+    manufacturer: Merkury
+    model: BW904
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+      - id: 3
+        name: brightness
+        type: integer
+        range:
+          min: 25
+          max: 255
+      - id: 5
+        name: rgbhsv
+        type: hex
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+      - id: 6
+        name: scene
+        type: hex
+        optional: true
+      - id: 7
+        name: flash_scene1
+        type: hex
+        optional: true
+      - id: 8
+        name: flash_scene2
+        type: hex
+        optional: true
+      - id: 9
+        name: flash_scene3
+        type: hex
+        optional: true
+      - id: 10
+        name: flash_scene4
+        type: hex
+        optional: true

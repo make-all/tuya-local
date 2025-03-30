@@ -1,44 +1,44 @@
 name: Air purifier
 products:
   - id: ku6ae3y8ad6tbx3b
-    name: Klarta Stor 2
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: manual
-          value: normal
-        - dps_val: sleep
-          value: sleep
-        - dps_val: screenoff
-          value: displayoff
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: speedmode1
-          value: 17
-        - dps_val: speedmode2
-          value: 33
-        - dps_val: speedmode3
-          value: 50
-        - dps_val: speedmode4
-          value: 67
-        - dps_val: speedmode5
-          value: 83
-        - dps_val: speedmode6
-          value: 100
-secondary_entities:
+    manufacturer: Klarta
+    model: Stor 2
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: screenoff
+            value: displayoff
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: speedmode1
+            value: 17
+          - dps_val: speedmode2
+            value: 33
+          - dps_val: speedmode3
+            value: 50
+          - dps_val: speedmode4
+            value: 67
+          - dps_val: speedmode5
+            value: 83
+          - dps_val: speedmode6
+            value: 100
   - entity: sensor
     class: pm25
     dps:
@@ -85,8 +85,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
@@ -127,7 +126,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     dps:
       - id: 21
         type: string

@@ -1,0 +1,487 @@
+name: Pool heat pump
+products:
+  - id: trtfk7jrlez4hvxu
+    manufacturer: Poolex
+    model: SpaWer Ice Spa 70
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: heat_cool
+              - dps_val: "1"
+                value: cool
+              - dps_val: "4"
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 400
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 100
+            constraint: mode
+            conditions:
+              - dps_val: "1"
+                value_redirect: temp_set_cold
+              - dps_val: "4"
+                value_redirect: temp_set_heat
+      - id: 16
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 100
+      - id: 117
+        type: integer
+        name: temp_set_heat
+        hidden: true
+        mapping:
+          - scale: 100
+            step: 100
+        range:
+          min: 1500
+          max: 4000
+      - id: 118
+        type: integer
+        name: temp_set_cold
+        hidden: true
+        mapping:
+          - scale: 100
+            step: 100
+        range:
+          min: 400
+          max: 3500
+      # dps past 128 are not appearing in the log, so left as attributes rather
+      # than creating sensors for values that might never be seen
+      - id: 129
+        type: integer
+        optional: true
+        name: temperature_target_distance
+        mapping:
+          - scale: 100
+      - id: 130
+        type: boolean
+        optional: true
+        name: water_pump_status
+      - id: 131
+        type: boolean
+        optional: true
+        name: aux_heating
+      - id: 132
+        type: integer
+        optional: true
+        name: ac_voltage
+        mapping:
+          - scale: 100
+      - id: 133
+        type: integer
+        optional: true
+        name: ac_current
+        mapping:
+          - scale: 100
+      - id: 134
+        type: integer
+        optional: true
+        name: bus_voltage
+        mapping:
+          - scale: 100
+      - id: 135
+        type: integer
+        optional: true
+        name: compressor_current
+        mapping:
+          - scale: 100
+      - id: 136
+        type: integer
+        optional: true
+        name: fan_current
+        mapping:
+          - scale: 100
+      - id: 137
+        type: integer
+        optional: true
+        name: ipm_temp
+        mapping:
+          - scale: 100
+      - id: 138
+        type: boolean
+        optional: true
+        name: four_way_valve
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    name: Defrost
+    translation_key: anti_frost
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Compressor duty cycle
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Vent temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Outflow temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 33
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Power down memory
+    icon: "mdi:head-snowflake"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Inlet temperature compensation
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -400
+          max: 0
+        mapping:
+          - scale: 100
+            step: 100
+  - entity: select
+    name: Auxiliary heating
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: auto
+          - dps_val: "2"
+            value: manual
+  - entity: sensor
+    name: Fan speed
+    icon: "mdi:fan"
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: number
+    name: Auxiliary heating threshold
+    category: config
+    class: temperature
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2000
+          max: -2500
+        mapping:
+          - scale: 100
+            step: 100
+      - id: 103
+        type: string
+        name: available
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: number
+    name: Auxiliary heating hysteresis
+    category: config
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 100
+          max: 500
+        mapping:
+          - scale: 100
+            step: 100
+            constraint: mode
+            conditions:
+              - dps_val: "2"
+                value_redirect: manual
+      - id: 107
+        type: integer
+        name: manual
+        range:
+          min: 100
+          max: 500
+        mapping:
+          - scale: 100
+            step: 100
+        hidden: true
+      - id: 103
+        type: string
+        name: mode
+        hidden: true
+      - id: 103
+        type: string
+        name: available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value: true
+  - entity: sensor
+    name: Return air temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: select
+    name: Circulation pump
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: auto
+          - dps_val: "2"
+            value: manual
+  - entity: number
+    name: Sampling interval
+    category: config
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 30
+          max: 90
+        mapping:
+          - step: 10
+  - entity: number
+    name: Heating restart hysteresis
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 100
+  - entity: number
+    name: Heating stop hysteresis
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 100
+  - entity: number
+    name: Cooling restart hysteresis
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 100
+  - entity: number
+    name: Cooling stop hysteresis
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 100
+  - entity: select
+    name: Dry contact function
+    icon: "mdi:solar-power-variant"
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Disabled
+          - dps_val: true
+            value: In Grid
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: string
+        optional: true
+        persist: false
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 116
+        type: string
+        optional: true
+        name: fault_code
+      - id: 121
+        type: string
+        optional: true
+        name: history
+  - entity: sensor
+    name: Main EEV
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: pulse
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Aux EEV
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: pulse
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Jet valve
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 128
+        type: boolean
+        name: sensor

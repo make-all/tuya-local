@@ -1,36 +1,36 @@
 name: EV charger
 products:
   - id: 7bvgooyjhiua1yyq
-    name: Kolanky 3.6kW
-primary_entity:
-  entity: sensor
-  name: Status
-  class: enum
-  icon: "mdi:ev-station"
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: no_connet
-          value: Disconnected
-        - dps_val: connect
-          value: Connected
-        - dps_val: charing
-          value: Charging
-        - dps_val: wait_rfid
-          value: Waiting for authorization
-        - dps_val: finish
-          value: Charged
-        - dps_val: wait_charing
-          value: Delaying charge
-        - dps_val: error
-          value: Error
-    - id: 3
-      type: string
-      optional: true
-      name: work_state
-secondary_entities:
+    manufacturer: Kolanky
+    model: "3.6kW"
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:ev-station"
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_connet
+            value: available
+          - dps_val: connect
+            value: plugged_in
+          - dps_val: charing
+            value: charging
+          - dps_val: wait_rfid
+            value: waiting_for_authorization
+          - dps_val: finish
+            value: charged
+          - dps_val: wait_charing
+            value: waiting
+          - dps_val: error
+            value: fault
+      - id: 3
+        type: string
+        optional: true
+        name: work_state
   - entity: select
     name: Charging operation
     icon: "mdi:ev-station"
@@ -142,7 +142,7 @@ secondary_entities:
         type: integer
         optional: true
         name: sensor
-        unit: min
+        unit: h
         mapping:
           - scale: 10
   - entity: binary_sensor

@@ -1,14 +1,10 @@
 from homeassistant.components.button import ButtonDeviceClass
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.components.vacuum import (
-    STATE_CLEANING,
-    STATE_ERROR,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
+    VacuumActivity,
     VacuumEntityFeature,
 )
-from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
+from homeassistant.const import PERCENTAGE, UnitOfArea, UnitOfTime
 
 from ..const import KYVOL_E30_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -60,7 +56,6 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                 {
                     "dps": RSTFILTER_DPS,
                     "name": "button_filter_reset",
-                    "device_class": ButtonDeviceClass.RESTART,
                 },
             ]
         )
@@ -69,7 +64,8 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                 {
                     "dps": AREA_DPS,
                     "name": "sensor_clean_area",
-                    "unit": AREA_SQUARE_METERS,
+                    "unit": UnitOfArea.SQUARE_METERS,
+                    "device_class": SensorDeviceClass.AREA,
                     "testdata": (30, 3.0),
                 },
                 {
@@ -102,13 +98,14 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                     "name": "sensor_battery",
                     "unit": PERCENTAGE,
                     "device_class": SensorDeviceClass.BATTERY,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
             ],
         )
 
         self.mark_secondary(
             [
+                "binary_sensor_problem",
                 "button_edge_brush_reset",
                 "button_roll_brush_reset",
                 "button_filter_reset",
@@ -153,23 +150,23 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
         self.dps[COMMAND_DPS] = "spiral"
         self.assertEqual(self.subject.status, "clean_spot")
 
-    def test_state(self):
+    def test_activity(self):
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = True
         self.dps[ERROR_DPS] = 0
         self.dps[COMMAND_DPS] = "return_to_base"
-        self.assertEqual(self.subject.state, STATE_RETURNING)
+        self.assertEqual(self.subject.activity, VacuumActivity.RETURNING)
         self.dps[COMMAND_DPS] = "standby"
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[COMMAND_DPS] = "random"
-        self.assertEqual(self.subject.state, STATE_CLEANING)
+        self.assertEqual(self.subject.activity, VacuumActivity.CLEANING)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.state, STATE_PAUSED)
+        self.assertEqual(self.subject.activity, VacuumActivity.PAUSED)
         self.dps[ERROR_DPS] = 1
-        self.assertEqual(self.subject.state, STATE_ERROR)
+        self.assertEqual(self.subject.activity, VacuumActivity.ERROR)
 
     async def test_async_turn_on(self):
         async with assert_device_properties_set(

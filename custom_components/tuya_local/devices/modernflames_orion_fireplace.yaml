@@ -1,80 +1,80 @@
 name: Fireplace
 products:
   - id: buigpagr3xzmj6zk
-    name: Modern Flames Orion
-primary_entity:
-  entity: climate
-  icon: "mdi:campfire"
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: HIGH_HEAT
-              value: heat
-            - dps_val: LOW_HEAT
-              value: heat
-              hidden: true
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: "OFF"
-              value: "off"
-              hidden: true
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 20
-        max: 31
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 68
-                max: 90
-    - id: 9
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 10
-      name: temp_set_f
-      type: integer
-      range:
-        min: 68
-        max: 90
-      hidden: true
-    - id: 113
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "OFF"
-          value: none
-        - dps_val: "FAN"
-          value: Fan only
-        - dps_val: "LOW_HEAT"
-          value: eco
-        - dps_val: "HIGH_HEAT"
-          value: boost
-    - id: 122
-      name: custom
-      type: string
-      optional: true
-    - id: 123
-      type: string
-      name: save_custom
-      optional: true
-secondary_entities:
+    manufacturer: Modern Flames
+    model: Orion
+entities:
+  - entity: climate
+    icon: "mdi:campfire"
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: HIGH_HEAT
+                value: heat
+              - dps_val: LOW_HEAT
+                value: heat
+                hidden: true
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: "OFF"
+                value: "off"
+                hidden: true
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 20
+          max: 31
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 68
+                  max: 90
+      - id: 9
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 10
+        name: temp_set_f
+        type: integer
+        range:
+          min: 68
+          max: 90
+        hidden: true
+      - id: 113
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: none
+          - dps_val: "FAN"
+            value: Fan only
+          - dps_val: "LOW_HEAT"
+            value: eco
+          - dps_val: "HIGH_HEAT"
+            value: boost
+      - id: 122
+        name: custom
+        type: string
+        optional: true
+      - id: 123
+        type: string
+        name: save_custom
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -184,21 +184,21 @@ secondary_entities:
           - dps_val: HIGH
             value: 255
       - id: 102
-        name: effect
+        name: named_color
         type: string
         mapping:
           - dps_val: YELLOW
-            value: Yellow
+            value: yellow
           - dps_val: ORANGE
-            value: Orange
+            value: orange
           - dps_val: BLUE
-            value: Blue
+            value: blue
           - dps_val: GREEN
-            value: Green
+            value: green
           - dps_val: PURPLE
-            value: Purple
+            value: purple
           - dps_val: WHITE
-            value: White
+            value: white
   - entity: select
     name: Flame speed
     icon: "mdi:fire"
@@ -228,29 +228,29 @@ secondary_entities:
         mapping:
           - scale: 0.392
       - id: 105
-        name: effect
+        name: named_color
         type: string
         mapping:
           - dps_val: "1"
-            value: Orange
+            value: orange
           - dps_val: "2"
-            value: Red
+            value: red
           - dps_val: "3"
-            value: Blue
+            value: blue
           - dps_val: "4"
-            value: Yellow
+            value: yellow
           - dps_val: "5"
-            value: Green
+            value: green
           - dps_val: "6"
-            value: Purple
+            value: purple
           - dps_val: "7"
-            value: Sky blue
+            value: skyblue
           - dps_val: "8"
-            value: Magenta
+            value: magenta
           - dps_val: "9"
-            value: White
+            value: white
           - dps_val: "10"
-            value: Pink
+            value: pink
   - entity: switch
     name: Downlight night mode
     category: config
@@ -278,29 +278,29 @@ secondary_entities:
           min: 0
           max: 100
       - id: 109
-        name: effect
+        name: named_color
         type: string
         mapping:
           - dps_val: "1"
-            value: Orange
+            value: orange
           - dps_val: "2"
-            value: Red
+            value: red
           - dps_val: "3"
-            value: Blue
+            value: blue
           - dps_val: "4"
-            value: Yellow
+            value: yellow
           - dps_val: "5"
-            value: Green
+            value: green
           - dps_val: "6"
-            value: Purple
+            value: purple
           - dps_val: "7"
-            value: Sky blue
+            value: skyblue
           - dps_val: "8"
-            value: Magenta
+            value: magenta
           - dps_val: "9"
-            value: White
+            value: white
           - dps_val: "10"
-            value: Pink
+            value: pink
   - entity: switch
     name: Ember extras
     icon: "mdi:campfire"
@@ -318,8 +318,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 121

@@ -1,32 +1,28 @@
 name: Pet feeder
 products:
   - id: e1zs835joz1lc85q
-    name: Petlibro PLAF203
-primary_entity:
-  entity: sensor
-  name: Status
-  icon: "mdi:paw"
-  dps:
-    - id: 233
-      type: string
-      name: sensor
-      optional: true
-    - id: 231
-      type: hex
-      name: schedule
-    - id: 236
-      type: bitfield
-      name: fault_code
-      optional: true
-    - id: 237
-      type: string
-      name: planned_feed_report
-      optional: true
-    - id: 247
-      type: string
-      name: manual_feed_report
-      optional: true
-secondary_entities:
+    manufacturer: Petlibro
+    model: PLAF203
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:paw"
+    dps:
+      - id: 233
+        type: string
+        name: sensor
+        optional: true
+      - id: 231
+        type: hex
+        name: schedule
+      - id: 237
+        type: string
+        name: planned_feed_report
+        optional: true
+      - id: 247
+        type: string
+        name: manual_feed_report
+        optional: true
   - entity: light
     translation_key: indicator
     category: config
@@ -224,6 +220,30 @@ secondary_entities:
           - dps_val: 8
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 236
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 2
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 236
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: number
     name: Voice playback times
     category: config

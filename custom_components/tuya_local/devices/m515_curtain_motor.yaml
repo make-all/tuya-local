@@ -1,42 +1,37 @@
 name: Curtain motor
 products:
   - id: t6ief6k56sapz1ey
-    name: M515EGWT v2
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: stop
-          value: stop
-        - dps_val: close
-          value: close
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-    - id: 7
-      name: action
-      type: string
-      persist: false
-      optional: true
-      mapping:
-        - dps_val: opening
-          value: opening
-        - dps_val: closing
-          value: closing
-    - id: 12
-      name: fault_code
-      type: bitfield
-      optional: true
-secondary_entities:
+    model: M515EGWT v2
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: close
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 7
+        name: action
+        type: string
+        persist: false
+        optional: true
+        mapping:
+          - dps_val: opening
+            value: opening
+          - dps_val: closing
+            value: closing
   - entity: switch
     name: Reversed
     icon: "mdi:arrow-u-left-bottom"
@@ -64,6 +59,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+        optional: true
   - entity: select
     name: Border setting
     icon: "mdi:border-bottom-variant"

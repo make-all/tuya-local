@@ -1,17 +1,16 @@
 name: Pet fountain
 products:
   - id: cuw2k3ho3e25fade
-    name: Petoneer Fresco Hydrate Ultra
+    manufacturer: Petoneer
+    model: Fresco Hydrate Ultra
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
 
-primary_entity:
-  entity: switch
-  icon: "mdi:water-pump"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-
-secondary_entities:
   - entity: light
     translation_key: indicator
     category: config

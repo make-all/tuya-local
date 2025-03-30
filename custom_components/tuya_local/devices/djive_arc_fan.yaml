@@ -1,41 +1,38 @@
 name: Humidifying fan
 products:
   - id: bf5fd02f13d3f6d92exy2t
-    name: djive Flowmate ARC Humidifier
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: close
-          value: normal
-        - dps_val: auto
-          value: smart
-        - dps_val: strong
-          value: strong
-        - dps_val: fresh
-          value: fresh
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 9
-    - id: 5
-      type: boolean
-      name: oscillate
-    - id: 24
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: djive
+    model: Flowmate ARC
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: close
+            value: normal
+          - dps_val: auto
+            value: smart
+          - dps_val: strong
+            value: strong
+          - dps_val: fresh
+            value: fresh
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 9
+      - id: 5
+        type: boolean
+        name: oscillate
   - entity: select
     category: config
     name: Humidifier
@@ -66,6 +63,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code
   - entity: switch
     translation_key: uv_sterilization
     dps:

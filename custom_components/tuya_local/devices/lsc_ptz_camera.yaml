@@ -1,25 +1,37 @@
 name: Camera
 products:
   - id: n7h0m2x7i2yzol0p
-    name: LSC PTZ
-primary_entity:
-  entity: camera
-  dps:
-    - id: 134
-      type: boolean
-      name: motion_enable
-      optional: true
-    - id: 150
-      type: boolean
-      name: record
-      optional: true
-    - id: 115
-      type: base64
-      optional: true
-      persist: false
-      sensitive: true
-      name: snapshot
-secondary_entities:
+    manufacturer: LSC Smart Connect
+    model: PTZ
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+          - dps_val: null
+            value: true
+            hidden: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+      - id: 115
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        name: snapshot
   - entity: switch
     name: Flip image
     category: config
@@ -42,6 +54,8 @@ secondary_entities:
   - entity: switch
     name: Privacy
     category: config
+    # 2024-10-26
+    deprecated: camera switch
     icon: "mdi:incognito"
     dps:
       - id: 105

@@ -1,37 +1,38 @@
-name: Poiema One air purifier
+name: Air purifier
 products:
   - id: 2q2jgeegaziyugdg
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: auto
-          value: smart
-        - dps_val: sleep
-          value: sleep
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "low"
-          value: 25
-        - dps_val: "mid"
-          value: 50
-        - dps_val: "high"
-          value: 75
-        - dps_val: "strong"
-          value: 100
-secondary_entities:
+    manufacturer: Poiema
+    model: One
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 25
+          - dps_val: "mid"
+            value: 50
+          - dps_val: "high"
+            value: 75
+          - dps_val: "strong"
+            value: 100
   - entity: sensor
     class: pm25
     dps:
@@ -48,9 +49,8 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 11
         type: boolean

@@ -1,34 +1,35 @@
 name: Ceiling fan
+legacy_type: reiga_52_fan_light
 products:
   - id: g0ewlb1vmwqljzji
-    name: Ovlaim FP9805_TAIDE
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: sleep
-          value: sleep
-        - dps_val: nature
-          value: nature
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 6
-    - id: 8
-      name: direction
-      type: string
-secondary_entities:
+    manufacturer: Ovlaim / Reiga
+    model: "FP9805_TAIDE / 52"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: nature
+            value: nature
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        name: direction
+        type: string
   - entity: light
     dps:
       - id: 15
@@ -38,7 +39,7 @@ secondary_entities:
         name: brightness
         type: integer
         range:
-          min: 0
+          min: 2
           max: 100
       - id: 17
         name: color_temp

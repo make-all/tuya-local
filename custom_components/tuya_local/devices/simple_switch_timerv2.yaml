@@ -1,22 +1,35 @@
 name: Simple switch with timer
 products:
   - id: eetmtcempdyxgpx5
-    name: Nexxt 220v smartplug
+    manufacturer: Nexxt
+    model: 220v smartplug
   - id: 45gg9a0jfyzj1z1d
     name: Mini smart switch
   - id: qlrnevw57ezct7ta
-    name: On Wall WiFi Switch
+    name: Wall switch
   - id: flcvzjtnkhsreazp
-    name: GIRIER USB adaptor
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: GIRIER
+    name: USB adaptor
+  - id: lbqau5negh2zizit
+    manufacturer: Kruidvat
+    name: Outdoor smartplug
+  - id: uyvxoqhmac1dhvlm
+    manufacturer: Moes House
+  - id: a1yn4awusjnwmmvj
+    model: CB2S
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 44
+        name: inching
+        type: string
+        optional: true
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -29,9 +42,17 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+      - id: 42
+        name: cycle_timer
+        type: string
+        optional: true
+      - id: 43
+        name: random_timer
+        type: string
+        optional: true
   - entity: select
-    name: Power on state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
+    hidden: unavailable
     category: config
     dps:
       - id: 38
@@ -40,10 +61,16 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: Last state
+            value: memory
+      - id: 38
+        type: string
+        name: available
+        optional: true
+        mapping:
           - dps_val: null
-            invalid: true
+            value: false
+          - value: true

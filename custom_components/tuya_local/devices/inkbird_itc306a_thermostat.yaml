@@ -1,124 +1,115 @@
-name: Inkbird ITC-306A thermostat
+name: Thermostat
 legacy_type: inkbird_thermostat
 products:
   - id: wynvjn0ztufzrd0p
-    name: Inkbird ITC-306A V3.0
-primary_entity:
-  entity: climate
-  translation_only_key: thermo_switch
-  dps:
-    - id: 12
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
-    - id: 101
-      type: string
-      name: temperature_unit
-    - id: 103
-      type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: "on"
-          value: heat
-        - dps_val: pause
-          value: fan_only
-        - dps_val: "off"
-          value: "off"
-    - id: 104
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              value_redirect: current_temperature_f
-    - id: 106
-      type: integer
-      name: target_temp_low
-      range:
-        min: 0
-        max: 450
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              range:
-                min: 320
-                max: 1130
-    - id: 111
-      type: boolean
-      name: high_temp_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:thermometer-alert"
-          icon_priority: 1
-    - id: 112
-      type: boolean
-      name: low_temp_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:snowflake-alert"
-          icon_priority: 2
-    - id: 113
-      type: boolean
-      name: temperature_difference_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:thermometer-alert"
-          icon_priority: 3
-    - id: 114
-      type: integer
-      name: target_temp_high
-      range:
-        min: 0
-        max: 450
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              range:
-                min: 320
-                max: 1130
-    - id: 115
-      type: boolean
-      name: hvac_action
-      mapping:
-        - icon: "mdi:thermometer-off"
-          icon_priority: 5
-          value: "off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: "on"
-              mapping:
-                - dps_val: true
-                  icon: "mdi:thermometer"
-                  icon_priority: 6
-                  value: heating
-                - dps_val: false
-                  value: idle
-    - id: 116
-      type: integer
-      name: current_temperature_f
-      mapping:
-        - scale: 10
-      hidden: true
-    - id: 120
-      type: boolean
-      name: heat_time_alarm
-      hidden: true
-      mapping:
-        - dps_val: true
-          icon: "mdi:clock-alert"
-          icon_priority: 4
-secondary_entities:
+    manufacturer: Inkbird
+    model: ITC-306A V3.0
+entities:
+  - entity: climate
+    translation_only_key: thermo_switch
+    dps:
+      - id: 101
+        type: string
+        name: temperature_unit
+      - id: 103
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "on"
+            value: heat
+          - dps_val: pause
+            value: fan_only
+          - dps_val: "off"
+            value: "off"
+            icon: "mdi:thermometer-off"
+            icon_priority: 4
+      - id: 104
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: current_temperature_f
+      - id: 106
+        type: integer
+        name: target_temp_low
+        range:
+          min: 0
+          max: 450
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: 320
+                  max: 1130
+      - id: 111
+        type: boolean
+        name: high_temp_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermometer-alert"
+            icon_priority: 1
+      - id: 112
+        type: boolean
+        name: low_temp_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:snowflake-alert"
+            icon_priority: 2
+      - id: 113
+        type: boolean
+        name: temperature_difference_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermometer-alert"
+            icon_priority: 3
+      - id: 114
+        type: integer
+        name: target_temp_high
+        range:
+          min: 0
+          max: 450
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: 320
+                  max: 1130
+      - id: 115
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermometer"
+            icon_priority: 6
+            value: heating
+          - dps_val: false
+            icon: "mdi:thermometer-off"
+            icon_priority: 5
+            value: idle
+      - id: 116
+        type: integer
+        name: current_temperature_f
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 120
+        type: boolean
+        name: heat_time_alarm
+        hidden: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:clock-alert"
+            icon_priority: 4
   - entity: number
     category: config
     name: Calibration offset
@@ -245,6 +236,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     class: problem
     category: diagnostic
