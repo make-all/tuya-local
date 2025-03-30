@@ -169,6 +169,22 @@ entities:
             value: F
           - value: C
   - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
     name: Exhaust temperature
     class: temperature
     category: diagnostic
