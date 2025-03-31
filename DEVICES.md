@@ -329,6 +329,7 @@
 - Kogan 5 pro air purifier
 - Lifubide X600 air purifier
 - Morento HY4866-WF air purifier
+- Morento MR7566-WF air purifier
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
