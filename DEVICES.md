@@ -946,6 +946,7 @@ port and password.
 - CO2-Box air quality monitor
 - C30W gas leak detector
 - CT20W PIR motion detector
+- E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
