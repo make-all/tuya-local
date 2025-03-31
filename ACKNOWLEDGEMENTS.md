@@ -866,3 +866,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
 - [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips.
+- [Codeh4ack](https://github.com/Codeh4ack) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
