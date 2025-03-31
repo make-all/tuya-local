@@ -1,12 +1,11 @@
-name: Grow Planter
+name: Hydroponic grower
 products:
   - id: key8cpvp7wxgptce
+    manufacturer: Dongguan E Chief
     model: SGH01
-    name: Grow planter
 entities:
   - entity: switch
     icon: "mdi:sprout"
-    name: Power
     dps:
       - id: 101
         type: boolean
@@ -26,7 +25,6 @@ entities:
   #       type: integer
   #       name: switch
   - entity: light
-    name: Led Lights
     icon: "mdi:ceiling-light-multiple-outline"
     category: config
     dps:
@@ -34,37 +32,30 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Set Nutrient Countdown
+    name: Nutrient timer
     category: config
     class: duration
     translation_key: timer
-    mode: slider
     dps:
       - id: 106
-        unit: days
+        unit: d
         type: integer
         name: value
         range:
           min: 0
           max: 30
-  - entity: number
-    name: Nutrient Countdown
+  - entity: sensor
+    name: Nutrient time remaining
     category: config
     class: duration
-    translation_key: timer
-    # mode: slider
+    translation_key: time_remaining
     dps:
       - id: 107
         type: integer
-        name: value
-        readonly: true
-        range:
-          min: 0
-          max: 30
+        name: sensor
   - entity: select
-    translation_key: lightmode
     category: config
-    name: LED Mode
+    name: LED mode
     dps:
       - id: 105
         type: string
