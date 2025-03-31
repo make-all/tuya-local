@@ -389,6 +389,7 @@
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Luko dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
+- Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
 - Qlima D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
