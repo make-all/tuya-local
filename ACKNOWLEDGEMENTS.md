@@ -53,7 +53,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Skro11-ru](https://github.com/Skro11-ru) for assistance in supporting Moes BHT-002 variant without external temperature sensor.
 - [novisys](https://github.com/novisys) for clarifications about BHT-6000 thermostat functionality.
 - [nzcodarnoc](https://github.com/nzcodarnoc) for contributing support for Kogan KASHMFP heaters.
-- [pascaltippelt](https://github.com/pascaltippelt) for assistance in supporting Minco MH-1823 thermostat.
+- [pascaltippelt](https://github.com/pascaltippelt) for contributing support for Morris MDB-12160HIW dehumidifier, Avatto WS20R thermostat and assistance supporting Minco MH-1823 thermostat.
 - [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, based on CBE smart switch but seeming to follow a Tuya Standard Template, so probably applicable to others.
 - [myevit](https://github.com/myevit) for assistance in supporting simple garage doors.
 - [maartendamen](https://github.com/maartendamen) for assistance in supporting Eurom Mon Soleil 601 heaters.
@@ -327,7 +327,7 @@ Further device support has been made with the assistance of users. Please consid
 - [nicopret1](https://github.com/nicopret1) for assistance with support for ITS-4.5HD super pool heatpumps.
 - [simposiummm](https://github.com/simposiummm) for assistance with support for Sulion ceiling fans.
 - [mbakhtin](https://github.com/mbakhtin) for contributing support for Inkbird IBS-M1S thermo-probe hubs.
-- [Levanterman](https://github.com/Levanterman) for contributing support for LoraTap double curtain switches, ZC34T swing arm openers and assistance with Yidi fan and light switches.
+- [Levanterman](https://github.com/Levanterman) for contributing support for LoraTap double curtain switches, ZC34T swing arm openers, E Chief Hydroponic planter and assistance with Yidi fan and light switches.
 - [WallyCZ](https://github.com/WallyCZ) for contributing support for Sencor air conditioners.
 - [lageorgem](https://github.com/lageorgem) for contributing support for Loginovo TV sync backlights.
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
@@ -822,7 +822,7 @@ Further device support has been made with the assistance of users. Please consid
 - [tal6203](https://github.com/tal6203) for assisting with support for Delixing aroma diffuser.
 - [rclarkmorrow](https://github.com/rclarkmorrow) for contributing support for Powersav AHR-083 powerstrip (which was merged to generic quad powerstrip with timer), Gosund WP9 powerstrip with USB, child lock and initial state, and Feit garage light (merged with RGBW lightbulb V2).
 - [ralsinn](https://github.com/ralsinn) for contributing support for Absina Wallbox EV charger.
-- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier and improvements to TYTE-D1 thermostat switch.
+- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier, Morento MR7566-WF air purifier and improvements to TYTE-D1 thermostat switch.
 - [gurtjun](https://github.com/gurtjun) for contributing support for Sunred Triangle patio heater.
 - [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
 - [JackM-521](https://github.com/JackM-521) for assisting with support for Rohnson R-9530 dehumidifier.
@@ -866,3 +866,5 @@ Further device support has been made with the assistance of users. Please consid
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
 - [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips.
+- [Codeh4ack](https://github.com/Codeh4ack) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
+- [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.

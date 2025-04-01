@@ -180,6 +180,7 @@
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Avatto ME81 thermostat
+- Avatto WS20R smart knob thermostat
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
@@ -329,6 +330,7 @@
 - Kogan 5 pro air purifier
 - Lifubide X600 air purifier
 - Morento HY4866-WF air purifier
+- Morento MR7566-WF air purifier
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
@@ -388,6 +390,7 @@
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Luko dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
+- Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
 - Qlima D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
@@ -945,6 +948,7 @@ port and password.
 - CO2-Box air quality monitor
 - C30W gas leak detector
 - CT20W PIR motion detector
+- E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
