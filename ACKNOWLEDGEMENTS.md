@@ -867,3 +867,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
 - [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips.
 - [Codeh4ack](https://github.com/Codeh4ack) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
+- [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
