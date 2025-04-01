@@ -180,6 +180,7 @@
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Avatto ME81 thermostat
+- Avatto WS20R smart knob thermostat
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
