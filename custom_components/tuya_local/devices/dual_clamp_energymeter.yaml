@@ -26,22 +26,6 @@ entities:
         class: measurement
         mapping:
           - scale: 10
-      - id: 103
-        type: integer
-        name: apparent_power
-        mapping:
-          - scale: 10
-      - id: 104
-        type: integer
-        name: current_power
-        mapping:
-          - scale: 10
-      - id: 126
-        type: integer
-        name: calibration_a
-      - id: 131
-        type: integer
-        name: calibration_b
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -55,6 +39,7 @@ entities:
           - scale: 10
       - id: 123
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     class: current
@@ -74,9 +59,11 @@ entities:
           - scale: 1000
       - id: 125
         type: integer
+        optional: true
         name: calibration_a
       - id: 130
         type: integer
+        optional: true
         name: calibration_b
   - entity: sensor
     class: frequency
@@ -91,6 +78,7 @@ entities:
           - scale: 100
       - id: 124
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     class: energy
@@ -130,6 +118,7 @@ entities:
           - scale: 100
       - id: 127
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     translation_key: energy_produced_x
@@ -147,6 +136,7 @@ entities:
           - scale: 100
       - id: 128
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     translation_key: energy_consumed_x
@@ -164,6 +154,7 @@ entities:
           - scale: 100
       - id: 132
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     translation_key: energy_produced_x
@@ -181,6 +172,7 @@ entities:
           - scale: 100
       - id: 133
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     name: Power factor A
@@ -315,3 +307,39 @@ entities:
       - id: 148
         type: boolean
         name: sensor
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 126
+        type: integer
+        optional: true
+        name: calibration
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 131
+        type: integer
+        optional: true
+        name: calibration
