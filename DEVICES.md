@@ -201,6 +201,7 @@
 - Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
+- EleChico CCST6001 thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
