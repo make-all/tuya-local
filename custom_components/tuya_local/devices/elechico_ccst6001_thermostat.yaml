@@ -14,16 +14,15 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            mapping:
-              - constraint: mode
-                conditions:
-                  - dps_val: COOL
-                    value: cool
-                  - dps_val: HEAT
-                    value: heat
-                    available: heating_available
-                  - dps_val: FAN
-                    value: fan_only
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: HEAT
+                value: heat
+                available: heating_available
+              - dps_val: FAN
+                value: fan_only
       - id: 2
         type: string
         name: mode
