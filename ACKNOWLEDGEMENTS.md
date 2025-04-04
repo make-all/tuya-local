@@ -869,3 +869,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Codeh4ack](https://github.com/Codeh4ack) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
 - [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
+- [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
