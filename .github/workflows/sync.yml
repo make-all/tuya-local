@@ -1,4 +1,4 @@
-name: Sync Upstream
+name: Sync Upstream Release
 
 on:
   schedule:
@@ -6,22 +6,53 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
+  sync_release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your fork
+      - name: Checkout your repo
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
       - name: Set up Git
         run: |
-          git config user.name 'GitHub Actions'
-          git config user.email 'actions@github.com'
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
 
-      - name: Add upstream
+      - name: Get latest upstream release tag
+        id: upstream_tag
+        run: |
+          tag=$(curl -s https://api.github.com/repos/make-all/tuya-local/releases/latest | jq -r .tag_name)
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+
+      - name: Get latest local release tag
+        id: local_tag
+        run: |
+          tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+
+      - name: Compare tags
+        id: compare
+        run: |
+          if [ "${{ steps.upstream_tag.outputs.tag }}" != "${{ steps.local_tag.outputs.tag }}" ]; then
+            echo "release_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "release_needed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Add upstream, fetch, merge
+        if: steps.compare.outputs.release_needed == 'true'
         run: |
           git remote add upstream https://github.com/make-all/tuya-local.git
           git fetch upstream
           git merge upstream/main --allow-unrelated-histories -X theirs
           git push origin main
+
+      - name: Create new release with same tag
+        if: steps.compare.outputs.release_needed == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.upstream_tag.outputs.tag }}
+          name: Upstream ${{ steps.upstream_tag.outputs.tag }}
+          body: "Synced with upstream release."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
