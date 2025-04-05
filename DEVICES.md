@@ -938,8 +938,8 @@ port and password.
 
 ### Miscellaneous
 
-- generic PIR motion sensor
 - generic illuminance sensor (2 types using different dps)
+- generic PIR motion sensor
 - generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
@@ -1071,6 +1071,7 @@ entity types as sub devices.
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
 - PY321-Z-TY energy meter
+- Smart air box BR V2
 - Temperature and humidity sensor with alarm feature
 - WL-898WZ water leak sensor
 - WL-RTCZ-05Z human presence sensor

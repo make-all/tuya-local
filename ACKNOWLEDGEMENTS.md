@@ -870,3 +870,4 @@ Further device support has been made with the assistance of users. Please consid
 - [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
 - [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
+- [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
