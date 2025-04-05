@@ -1,0 +1,27 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # every day at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your fork
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Git
+        run: |
+          git config user.name 'GitHub Actions'
+          git config user.email 'actions@github.com'
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/make-all/tuya-local.git
+          git fetch upstream
+          git merge upstream/main --allow-unrelated-histories -X theirs
+          git push origin main
