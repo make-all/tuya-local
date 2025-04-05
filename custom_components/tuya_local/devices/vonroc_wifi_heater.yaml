@@ -3,6 +3,7 @@ products:
   - id: igx4agetzjknlnhr
     manufacturer: Vonroc
     model: GPH-XA-HEMAN
+    model_id: 000004a0y7
 entities:
   - entity: climate
     translation_only_key: heater
@@ -31,11 +32,11 @@ entities:
         optional: true
         mapping:
           - dps_val: AF
-            value: "AF"
+            value: "away"
           - dps_val: low
-            value: "Eco"
+            value: "eco"
           - dps_val: high
-            value: "Comfort"
+            value: "comfort"
   - entity: lock
     translation_key: child_lock
     category: config
