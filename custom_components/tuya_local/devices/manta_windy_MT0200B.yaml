@@ -1,11 +1,12 @@
-name: Weather Forecast
-products:
-  - id: bf9fc4b6e5c2c91014elwe
-    manufacturer: MANTA
-    model: Windy Smart MT0200B
+name: Weather station
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Manta
+#     model: Windy Smart
+#     model_id: MT0200B
 entities:
   - entity: sensor
-    name: Builtin temperature
+    name: Internal temperature
     class: temperature
     dps:
       - id: 101
@@ -16,7 +17,7 @@ entities:
           - scale: 10
         unit: C
   - entity: sensor
-    name: Builtin humidity
+    name: Internal humidity
     class: humidity
     dps:
       - id: 102
