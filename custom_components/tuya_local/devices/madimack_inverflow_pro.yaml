@@ -1,8 +1,15 @@
 name: Pool pump
+legacy_type: aquaforte_vsp_poolpump
 products:
   - id: ircs2n82vgrozoew
     manufacturer: Madimack
     model: Inverflow Pro P300i
+  - id: i0elff0w1pehctax
+    manufacturer: AquaForte
+    model: Inverter VSP
+  - id: skbzchwjmnf8vmm4
+    manufacturer: Aquagem
+    model: Inverpro v20230816
 entities:
   - entity: valve
     class: water
@@ -12,16 +19,16 @@ entities:
         name: valve
       - id: 116
         name: unknown_116
+        optional: true
         type: string
-        hidden: true
       - id: 117
         name: unknown_117
         type: string
-        hidden: true
+        optional: true
       - id: 115
         name: unknown_115
         type: boolean
-        hidden: true
+        optional: true
   - entity: select
     name: Pump mode
     icon: "mdi:pump"
@@ -35,14 +42,25 @@ entities:
             value: "Manual"
           - dps_val: "AI"
             value: "AI Flow"
+            available: aiflow_available
           - dps_val: "backwash"
             value: "Boost"
+      - id: 110
+        type: string
+        optional: true
+        name: aiflow_available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     name: Pump flow units
     category: config
+    hidden: unavailable
     dps:
       - id: 110
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "m3_h"
@@ -53,6 +71,14 @@ entities:
             value: "US gpm"
           - dps_val: "ipm_gpm"
             value: "Imperial gpm"
+      - id: 110
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Boost timer
     translation_key: timer
@@ -72,21 +98,30 @@ entities:
     class: volume_flow_rate
     category: config
     mode: slider
+    hidden: unavailable
     dps:
       - id: 106
         type: integer
+        optional: true
         name: value
+        range:
+          min: 0
+          max: 1000
       - id: 101
         type: integer
+        optional: true
         name: maximum
       - id: 107
         type: integer
+        optional: true
         name: minimum
       - id: 113
         type: integer
+        optional: true
         name: step
       - id: 110
         type: string
+        optional: true
         name: unit
         mapping:
           - dps_val: "m3_h"
@@ -97,6 +132,14 @@ entities:
             value: "gal/min"
           - dps_val: "ipm_gpm"
             value: "gal/min"
+      - id: 110
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Manual percentage power
     category: config
@@ -108,6 +151,8 @@ entities:
         range:
           min: 30
           max: 120
+        mapping:
+          - step: 5
         unit: "%"
   - entity: sensor
     name: Boost time remaining
@@ -129,12 +174,15 @@ entities:
   - entity: sensor
     class: volume_flow_rate
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 112
         type: integer
+        optional: true
         name: sensor
       - id: 110
         type: string
+        optional: true
         name: unit
         mapping:
           - dps_val: "m3_h"
@@ -145,28 +193,46 @@ entities:
             value: "gal/min"
           - dps_val: "ipm_gpm"
             value: "gal/min"
+      - id: 110
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
-    name: Hourly energy usage
+    class: energy
     category: diagnostic
     dps:
       - id: 109
         type: integer
         name: sensor
-        class: measurement
+        class: total_increasing
         unit: kWh
         mapping:
           - scale: 100
   - entity: sensor
     name: Actual pump speed
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 102
         type: integer
+        optional: true
         name: sensor
         unit: "%"
         range:
           min: 30
           max: 120
+      - id: 110
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -237,7 +303,17 @@ entities:
     name: Flow pressure warning
     category: diagnostic
     class: problem
+    hidden: unavailable
     dps:
       - id: 114
         type: boolean
+        optional: true
         name: sensor
+      - id: 110
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

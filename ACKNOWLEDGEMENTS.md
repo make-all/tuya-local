@@ -641,7 +641,7 @@ Further device support has been made with the assistance of users. Please consid
 - [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
 - [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
 - [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
-- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump.
+- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump which was merged with Madimack Inverflow.
 - [tv4you2016](https://github.com/tv4you2016) for contributing support for Cecotec ForceClima Soundless air conditioner.
 - [danieljohngomez](https://github.com/danieljohngomez) for assisting with support for BSTUOKEY invisible door lock.
 - [robinhood-code](https://github.com/robinhood-code) for assisting with support for Arlec USB strip lights.
@@ -873,3 +873,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
 - [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
 - [MichalSieciechowicz](https://github.com/MichalSieciechowicz) for contributing support for Manta Windy weather station.
+- [tomcastleman](https://github.com/tomcastleman) for contributing support for Aquagem Inverpro pool pump, which was merged with Madimack Inverflow.
