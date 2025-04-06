@@ -871,3 +871,4 @@ Further device support has been made with the assistance of users. Please consid
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
 - [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
 - [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
+- [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
