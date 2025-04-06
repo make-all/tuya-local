@@ -1,0 +1,157 @@
+name: Genio Galaxy Starship Projector
+products:
+  - id: shz7blrfcpfccvo3
+    manufacturer: Mirabella Genio
+    model: Genio Galaxy Starship Projector I004545
+entities:
+  - entity: light
+    name: Main
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: light
+    name: Color
+    dps:
+      - id: 52
+        type: boolean
+        name: switch
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: light
+    translation_key: laser
+    dps:
+      - id: 53
+        type: boolean
+        name: switch
+      - id: 54
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: fan
+    name: Motor
+    icon: "mdi:rotate-3d-variant"
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Work Mode
+    icon: "mdi:auto-mode"
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        mapping:
+          - dps_val: Manual
+            value: Manual
+            default: true
+          - dps_val: Scene
+            value: Scene
+          - dps_val: Music
+            value: Music
+  - entity: select
+    name: Scene
+    icon: "phu:scene-nightlight"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        name: option
+        mapping:
+          - dps_val: AAABAAABAAAD6APoAQMyAQPoATI=
+            value: Scene 1
+          - dps_val: AAEBAAABAHgD6APoAQMyAQPoATI=
+            value: Scene 2
+          - dps_val: AAIBAAABAPAD6APoAQMyAQPoATI=
+            value: Scene 3
+          - dps_val: AAMBAAABADwD6APoAQMyAQPoATI=
+            value: Scene 4
+          - dps_val: AAQBAAABALQD6APoAQMyAQPoATI=
+            value: Scene 5
+          - dps_val: AAUBAAABASwD6APoAQMyAQPoATI=
+            value: Scene 6
+          - dps_val: AAYBAAABAAAAAAPoAQMyAQPoATI=
+            value: Scene 7
+          - dps_val: AAcBAUMHAAAD6APoAHgD6APoAPAD6APoADwD6APoALQD6APoASwD6APoAAAAAAPoAQMyAQPoATI=
+            value: Scene 8
+          - dps_val: AAgBAkMGAAAD6APoADwD6APoAHgD6APoALQD6APoAPAD6APoASwD6APoAQMyAQPoATI=
+            value: Scene 9
+          - dps_val: AAkBAkMMAAAAAAPoADwD6APoAAAD6APoADwD6APoAAAAAAPoALQD6APoAHgD6APoALQD6APoAAAAAAPoASwD6APoAPAD6APoASwD6APoAQMyAQPoATI=
+            value: Scene 10
+          - dps_val: AAoBAUMHAAAD6APoAHgD6APoAPAD6APoADwD6APoALQD6APoASwD6APoAAAAAAPoAQAAAQPoATI=
+            value: Scene 11
+          - dps_val: AAsBAkMGAAAD6APoADwD6APoAHgD6APoALQD6APoAPAD6APoASwD6APoAQAAAQPoATI=
+            value: Scene 12
+          - dps_val: AAwBAkMMAAAAAAPoADwD6APoAAAD6APoADwD6APoAAAAAAPoALQD6APoAHgD6APoALQD6APoAAAAAAPoASwD6APoAPAD6APoASwD6APoAQAAAQPoATI=
+            value: Scene 13
+          - dps_val: AA0BAkMGAAAD6APoADwD6APoAHgD6APoALQD6APoAPAD6APoASwD6APoAAEy
+            value: Scene 14
+          - dps_val: AA4AAQMyAQPoATI=
+            value: Scene 15
+          - dps_val: AA8BAAABAPAD6APoAQAAAQPoAA==
+            value: Scene 16
+  - entity: select
+    name: Mic music sync
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 42
+        type: string
+        name: option
+        mapping:
+          - dps_val: "000100013264"
+            value: Music Mode 1
+          - dps_val: "000101003264"
+            value: Music Mode 2
+          - dps_val: "000102013264"
+            value: Music Mode 3
+          - dps_val: "000103003264"
+            value: Music Mode 4
+          - dps_val: "000104003264"
+            value: Music Mode 5
+          - dps_val: "000105003264"
+            value: Music Mode 6
+  - entity: number
+    name: Timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        optional: true
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
