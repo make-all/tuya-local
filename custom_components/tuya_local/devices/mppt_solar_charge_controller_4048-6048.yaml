@@ -15,7 +15,7 @@ entities:
         unit: kWh
         class: total_increasing
         mapping:
-          - scale: 10        
+          - scale: 10
   - entity: sensor
     name: Daily power
     class: energy
@@ -30,7 +30,7 @@ entities:
           # controls
   - entity: switch
     name: Switch (unknown)
-    hidden: true 
+    hidden: true
     dps:
       - id: 6
         type: boolean
@@ -38,7 +38,7 @@ entities:
         optional: true
   - entity: switch
     name: USB2 (unknown)
-    hidden: true 
+    hidden: true
     dps:
       - id: 17
         type: boolean
@@ -46,12 +46,12 @@ entities:
         optional: true
   - entity: button
     name: Self-checking 
-    # hidden: true 
+    # hidden: true
     dps:
       - id: 14
         type: boolean
         name: button
-        optional: true        
+        optional: true
   - entity: button
     hidden: true 
     name: Factory-reset (not tested)
@@ -59,7 +59,7 @@ entities:
       - id: 16
         type: boolean
         name: button
-        optional: true                
+        optional: true
   - entity: button
     name: Refresh
     # hidden: true 
@@ -87,7 +87,7 @@ entities:
         optional: true
   - entity: switch
     name: Load (unknown)
-    hidden: true 
+    hidden: true
     category: config
     dps:
       - id: 15
@@ -108,7 +108,7 @@ entities:
           min: 0
           max: 9999
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: number
     name: Under-voltage value
     category: config
@@ -123,7 +123,7 @@ entities:
           min: 0
           max: 9999
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: number
     name: Recovery-voltage value
     category: config
@@ -138,7 +138,7 @@ entities:
           min: 0
           max: 9999
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: select
     name: Charging method (unknown)
     hidden: true 
@@ -171,7 +171,7 @@ entities:
           min: 0
           max: 9999
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: number
     name: Load power (unknown)
     hidden: true 
@@ -187,7 +187,7 @@ entities:
           min: 0
           max: 10000
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: number
     name: Load mode (unknown)
     hidden: true 
@@ -239,7 +239,7 @@ entities:
           - dps_val: SLD
             value: SLD
           - dps_val: Li
-            value: Li        
+            value: Li
   - entity: number
     name: Load Mode
     category: config
@@ -377,7 +377,7 @@ entities:
       - id: 9
         type: string
         name: sensor
-        unit: H        
+        unit: H
   - entity: sensor
     name: Total power (unknown)
     hidden: true 
@@ -405,7 +405,7 @@ entities:
       - id: 119
         type: string
         name: sensor
-# base64 Diagnostic  
+# base64 Diagnostic
   - entity: sensor
     name: PV voltage
     class: voltage
@@ -420,7 +420,7 @@ entities:
         class: measurement
         mask: "FFFF00000000"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: PV current
     class: current
@@ -434,7 +434,7 @@ entities:
         class: measurement
         mask: "0000FFFF0000"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: PV power
     class: power
@@ -448,7 +448,7 @@ entities:
         class: measurement
         mask: "00000000FFFF"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: BAT voltage
     class: voltage
@@ -463,7 +463,7 @@ entities:
         class: measurement
         mask: "FFFF00000000"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: Bat current
     class: current
@@ -491,7 +491,7 @@ entities:
         class: measurement
         mask: "00000000FFFF"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: Load voltage
     class: voltage
@@ -506,7 +506,7 @@ entities:
         class: measurement
         mask: "FFFF00000000"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: Load current
     class: current
@@ -520,7 +520,7 @@ entities:
         class: measurement
         mask: "0000FFFF0000"
         mapping:
-          - scale: 10          
+          - scale: 10
   - entity: sensor
     name: Load power
     class: power
