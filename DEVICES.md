@@ -651,6 +651,7 @@ of device.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
+- Arknoah Aquarium lights
 - Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
@@ -943,7 +944,6 @@ port and password.
 - generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
-- AquaForte Inverter VSP pool pump
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
@@ -966,7 +966,8 @@ port and password.
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
-- Madimack Inverflow Pro pool pump
+- Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
+- Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
