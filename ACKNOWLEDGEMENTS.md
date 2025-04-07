@@ -876,4 +876,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tomcastleman](https://github.com/tomcastleman) for contributing support for Aquagem Inverpro pool pump, which was merged with Madimack Inverflow.
 - [vanhoofseppe](https://github.com/vanhoofseppe) for contributing support for Vonroc heater.
 - [lechuorzech](https://github.com/lechuorzech) for assisting with support for Xtreme TC20 carbon monoxide detector.
-
+- [forksiceberg](https://github.com/forksiceberg) for contributing support for Greenmigo Alpha Q13 pro which was merged with Eeese Otto dehumidifier.
