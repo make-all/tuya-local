@@ -874,3 +874,4 @@ Further device support has been made with the assistance of users. Please consid
 - [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
 - [MichalSieciechowicz](https://github.com/MichalSieciechowicz) for contributing support for Manta Windy weather station.
 - [tomcastleman](https://github.com/tomcastleman) for contributing support for Aquagem Inverpro pool pump, which was merged with Madimack Inverflow.
+- [vanhoofseppe](https://github.com/vanhoofseppe) for contributing support for Vonroc heater.
