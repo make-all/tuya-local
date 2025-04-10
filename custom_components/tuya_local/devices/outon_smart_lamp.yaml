@@ -1,10 +1,11 @@
-name: outon_smart_lamp
+name: Lamp
 products:
   - id: xaq7njftocha1f6z
-    name: Outron Smart Lamp
+    manufacturer: Outron
+    model: CTBRGB
 entities:
   - entity: light
-    name: uplighter
+    name: Uplighter
     dps:
       - id: 63
         type: boolean
@@ -59,25 +60,25 @@ entities:
         type: string
         optional: true
   - entity: switch
-    name: both lights
+    name: Master
     dps:
       - id: 20
         name: switch
         type: boolean
   - entity: light
-    name: LED light
+    name: Ambient
     dps:
       - id: 54
         name: switch
         type: boolean
       - id: 55
         type: string
-        name: color_mode
+        name: effect
         mapping:
-          - dps_val: white
-            value: color_temp
+          # - dps_val: white
+          #   value: color_temp
           - dps_val: colour
-            value: hs
+            value: "off"
           - dps_val: scene
             value: Scene
           - dps_val: music
@@ -122,8 +123,18 @@ entities:
           - scale: 60
             step: 60
           - dps_val: null
+  - entity: text
+    translation_key: scene
+    icon: "mdi:palette"
+    category: config
+    hidden: true
+    dps:
+      - id: 56
+        type: hex
+        optional: true
+        name: value
   - entity: select
-    name: Scene
+    translation_key: scene
     icon: "mdi:palette"
     category: config
     dps:
@@ -133,13 +144,13 @@ entities:
         optional: true
         mapping:
           - dps_val: "000e0d0000000000000000c80000"
-            value: "Good Night"
+            value: night
           - dps_val: "010e0d0000000000000003e801f4"
-            value: "Reading"
+            value: reading
           - dps_val: "020e0d0000000000000003e803e8"
-            value: "Working"
+            value: working
           - dps_val: "030e0d0000000000000001f401f4"
-            value: "Leisure"
+            value: leisure
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             value: "Grassland"
           - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
