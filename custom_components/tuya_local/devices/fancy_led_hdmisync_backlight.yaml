@@ -1,0 +1,153 @@
+name: HDMI Fancy Leds backlight
+products:
+  - id: s9tscadzzt5s2cz3
+    manufacturer: Fancy Leds
+    model: 3 HDMI 2.1 Fancy Sync Box
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 107
+        type: boolean
+        name: unknown_107
+  - entity: light
+    name: Color scene
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: switch
+    name: TV synchronization switch
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+  - entity: select
+    name: HDMI Input
+    icon: "mdi:hdmi-port"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: HDMI 1
+          - dps_val: 1
+            value: HDMI 2
+          - dps_val: 2
+            value: HDMI 3
+  - entity: select
+    name: Setup side
+    icon: "mdi:arrow-collapse-horizontal"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Right
+          - dps_val: 1
+            value: Left
+  - entity: number
+    category: config
+    name: Degree of diffusion
+    mode: slider
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        precision: 0
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        mapping:
+          - dps_val: "80000000000000000000000000000000"
+            value: Diffusion - Low
+          - dps_val: "81000000000000000000000000000000"
+            value: Diffusion - Medium
+          - dps_val: "82000000000000000000000000000000"
+            value: Diffusion - High
+          - dps_val: "98000000000000000000000000000000"
+            value: Music - Standard
+          - dps_val: "99000000000000000000000000000000"
+            value: Music - Punk
+          - dps_val: "9A000000000000000000000000000000"
+            value: Music - Rock
+          - dps_val: "9B000000000000000000000000000000"
+            value: Music - Ultimate
+          - dps_val: "9C000000000000000000000000000000"
+            value: Music - Electro
+          - dps_val: "9D000000000000000000000000000000"
+            value: Music - Retro
+          - dps_val: "86000000000000000000000000000000"
+            value: Scene - Rainbow
+          - dps_val: "87000000000000000000000000000000"
+            value: Scene - Fire
+          - dps_val: "88000000000000000000000000000000"
+            value: Scene - Calm
+          - dps_val: "89000000000000000000000000000000"
+            value: Scene - Firework
+          - dps_val: "90000000000000000000000000000000"
+            value: Scene (Color) - Star
+          - dps_val: "91000000000000000000000000000000"
+            value: Scene (Color) - Rain
+          - dps_val: "92000000000000000000000000000000"
+            value: Scene (Color) - Atome
+          - dps_val: "93000000000000000000000000000000"
+            value: Scene (Color) - Smooth
+          - dps_val: "94000000000000000000000000000000"
+            value: Scene (Color) - Bounce
+          - dps_val: "95000000000000000000000000000000"
+            value: Scene (Color) - Kinetic
+          - dps_val: "96000000000000000000000000000000"
+            value: Scene (Color) - Breathe
+          - dps_val: "97000000000000000000000000000000"
+            value: Scene (Color) - Color
