@@ -641,7 +641,7 @@ Further device support has been made with the assistance of users. Please consid
 - [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
 - [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
 - [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
-- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump.
+- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump which was merged with Madimack Inverflow.
 - [tv4you2016](https://github.com/tv4you2016) for contributing support for Cecotec ForceClima Soundless air conditioner.
 - [danieljohngomez](https://github.com/danieljohngomez) for assisting with support for BSTUOKEY invisible door lock.
 - [robinhood-code](https://github.com/robinhood-code) for assisting with support for Arlec USB strip lights.
@@ -866,8 +866,14 @@ Further device support has been made with the assistance of users. Please consid
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
 - [channafam](https://github.com/channafam) for contributing improvements for dreamlight LED strips and support for Fancy LEDs screen sync 2.0 lights.
-- [Codeh4ack](https://github.com/Codeh4ack) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
+- [Codeh4ck](https://github.com/Codeh4ck) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
 - [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
 - [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
 - [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
+- [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
+- [MichalSieciechowicz](https://github.com/MichalSieciechowicz) for contributing support for Manta Windy weather station.
+- [tomcastleman](https://github.com/tomcastleman) for contributing support for Aquagem Inverpro pool pump, which was merged with Madimack Inverflow.
+- [vanhoofseppe](https://github.com/vanhoofseppe) for contributing support for Vonroc heater.
+- [lechuorzech](https://github.com/lechuorzech) for assisting with support for Xtreme TC20 carbon monoxide detector.
+- [forksiceberg](https://github.com/forksiceberg) for contributing support for Greenmigo Alpha Q13 pro which was merged with Eeese Otto dehumidifier.

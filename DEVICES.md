@@ -69,6 +69,7 @@
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
+- Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
 - Wetair WCH-750 heater
@@ -651,6 +652,7 @@ of device.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
+- Arknoah Aquarium lights
 - Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
@@ -943,7 +945,6 @@ port and password.
 - generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
-- AquaForte Inverter VSP pool pump
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
@@ -966,7 +967,8 @@ port and password.
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
-- Madimack Inverflow Pro pool pump
+- Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
+- Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
@@ -1002,6 +1004,7 @@ port and password.
 - Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
 - Xiumii human presence radar
+- Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
 - Zecamin ZG-205W mmWave human presence sensor
