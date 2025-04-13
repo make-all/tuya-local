@@ -878,3 +878,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lechuorzech](https://github.com/lechuorzech) for assisting with support for Xtreme TC20 carbon monoxide detector.
 - [forksiceberg](https://github.com/forksiceberg) for contributing support for Greenmigo Alpha Q13 pro which was merged with Eeese Otto dehumidifier.
 - [latargere](https://github.com/latargere) for contributing support for Fancy LEDs 3 HDMI 2.1, which was merged with Lytmi sync light.
+- [thestumonkey](https://github.com/thestumonkey) for contributing support for Outon smart lamp.

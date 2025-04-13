@@ -698,6 +698,7 @@ of device.
 - Nedis Smart LED Strip
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
+- Outon Smart Lamp
 - Peteme recessed lighting
 - PowerAsia RGB 6-inch recessed lighting
 - Richelieu tunable white LED puck light (166142030)
