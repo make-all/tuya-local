@@ -1,12 +1,11 @@
-name: MPPT Solar Charge Controller
+name: Solar charger
 products:
   - id: vf7vdxbt6zd5xyuz
-    manufacturer: Demuda, Bluetti and others brands
+    manufacturer: Demuda
     model: LM 4048/6048
 entities:
-# energy
+  # energy
   - entity: sensor
-    name: Cumulative power
     class: energy
     dps:
       - id: 103
@@ -16,19 +15,18 @@ entities:
         class: total_increasing
         mapping:
           - scale: 10
-  - entity: sensor
-    name: Daily power
-    class: energy
-    dps:
       - id: 102
         type: integer
-        name: sensor
-        unit: kWh
-        class: total
+        name: daily
         mapping:
           - scale: 100
+      - id: 118
+        type: string
+        name: model
+      - id: 119
+        type: string
+        name: mac_address
   - entity: switch
-    name: Switch (unknown)
     hidden: true
     dps:
       - id: 6
@@ -36,7 +34,7 @@ entities:
         name: switch
         optional: true
   - entity: switch
-    name: USB2 (unknown)
+    name: USB
     hidden: true
     dps:
       - id: 17
@@ -44,7 +42,8 @@ entities:
         name: switch
         optional: true
   - entity: button
-    name: Self-checking
+    name: Self check
+    category: config
     dps:
       - id: 14
         type: boolean
@@ -52,7 +51,8 @@ entities:
         optional: true
   - entity: button
     hidden: true
-    name: Factory-reset (not tested)
+    category: config
+    translation_key: factory_reset
     dps:
       - id: 16
         type: boolean
@@ -65,7 +65,7 @@ entities:
         type: boolean
         name: button
         optional: true
-# configuration
+  # configuration
   - entity: button
     name: Save value
     category: config
@@ -75,7 +75,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Read value from device
+    name: Read value
     category: config
     dps:
       - id: 107
@@ -83,7 +83,7 @@ entities:
         name: button
         optional: true
   - entity: switch
-    name: Load (unknown)
+    name: Load
     hidden: true
     category: config
     dps:
@@ -92,9 +92,9 @@ entities:
         name: switch
         optional: true
   - entity: number
-    name: Over-voltage value
+    name: Over-voltage threshold
     category: config
-    class: battery
+    class: voltage
     dps:
       - id: 11
         type: integer
@@ -107,9 +107,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Under-voltage value
+    name: Under-voltage threshold
     category: config
-    class: battery
+    class: voltage
     dps:
       - id: 12
         type: integer
@@ -122,9 +122,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Recovery-voltage value
+    name: Recovery voltage
     category: config
-    class: battery
+    class: voltage
     dps:
       - id: 110
         type: integer
@@ -137,10 +137,9 @@ entities:
         mapping:
           - scale: 10
   - entity: select
-    name: Charging method (unknown)
+    name: Charging method
     hidden: true
     category: config
-    class: battery
     dps:
       - id: 1
         type: string
@@ -154,7 +153,7 @@ entities:
           - dps_val: mode_3
             value: mode 3
   - entity: number
-    name: Load Voltage (unknown)
+    name: Load voltage
     hidden: true
     category: config
     class: voltage
@@ -170,7 +169,7 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Load power (unknown)
+    name: Load power
     hidden: true
     category: config
     class: power
@@ -186,7 +185,7 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Load mode (unknown)
+    name: Load mode
     hidden: true
     category: config
     dps:
@@ -200,7 +199,6 @@ entities:
   - entity: select
     name: Battery voltage
     category: config
-    class: battery
     dps:
       - id: 111
         type: string
@@ -218,9 +216,8 @@ entities:
           - dps_val: auto
             value: auto
   - entity: select
-    name: Bat type
+    name: Battery type
     category: config
-    class: battery
     dps:
       - id: 112
         type: string
@@ -228,25 +225,26 @@ entities:
         name: option
         mapping:
           - dps_val: USE
-            value: USE
+            value: Custom
           - dps_val: FLD
-            value: FLD
+            value: Flooded
           - dps_val: GEL
-            value: GEL
+            value: Gelled electrolyte
           - dps_val: SLD
-            value: SLD
+            value: Sealed
           - dps_val: Li
-            value: Li
+            value: Lithium
   - entity: number
-    name: Load Mode
+    name: Load time
     category: config
+    class: duration
     mode: box
     dps:
       - id: 113
         type: integer
         optional: true
         name: value
-        unit: H
+        unit: h
         range:
           min: 0
           max: 24
@@ -265,7 +263,7 @@ entities:
           min: 0
           max: 100
   - entity: number
-    name: Over-current protection (unknown)
+    name: Over-current protection
     hidden: true
     category: config
     class: current
@@ -274,15 +272,15 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: V
+        unit: A
         range:
           min: 1
           max: 999
         mapping:
           - scale: 10
-# diagnostic
+  # diagnostic
   - entity: sensor
-    name: BAT power
+    name: Battery power
     class: power
     category: diagnostic
     dps:
@@ -294,7 +292,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Device temp
     class: temperature
     category: diagnostic
     dps:
@@ -303,10 +300,8 @@ entities:
         name: sensor
         unit: C
         class: measurement
-        mapping:
-          - scale: 1
   - entity: sensor
-    name: Photovoltaic voltage (unknown)
+    name: Photovoltaic voltage
     hidden: true
     class: voltage
     category: diagnostic
@@ -317,7 +312,7 @@ entities:
         unit: V
         class: measurement
   - entity: sensor
-    name: Load current (unknown)
+    name: Load current
     hidden: true
     class: current
     category: diagnostic
@@ -335,6 +330,8 @@ entities:
         type: bitfield
         name: sensor
         mapping:
+          - dps_val: 0
+            value: false
           - dps_val: 1
             value: false
           - dps_val: 64
@@ -366,16 +363,17 @@ entities:
           - dps_val: 128
             value: "Discharging"
   - entity: sensor
-    name: Total runing-time (unknown)
+    name: Total runtime
     hidden: true
+    class: duration
     category: diagnostic
     dps:
       - id: 9
         type: string
         name: sensor
-        unit: H
+        unit: h
   - entity: sensor
-    name: Total power (unknown)
+    name: Total energy
     hidden: true
     class: energy
     category: diagnostic
@@ -386,22 +384,8 @@ entities:
         unit: kWh
         class: total
         mapping:
-          - scale: 2
-  - entity: sensor
-    name: Controller model
-    category: diagnostic
-    dps:
-      - id: 118
-        type: string
-        name: sensor
-  - entity: sensor
-    name: MAC address
-    category: diagnostic
-    dps:
-      - id: 119
-        type: string
-        name: sensor
-# base64 diagnostic
+          - scale: 100
+  # base64 diagnostic
   - entity: sensor
     name: PV voltage
     class: voltage
@@ -446,7 +430,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: BAT voltage
+    name: Battery voltage
     class: voltage
     category: diagnostic
     dps:
@@ -461,7 +445,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Bat current
+    name: Battery current
     class: current
     category: diagnostic
     dps:
@@ -475,9 +459,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Battery charge %
     class: battery
-    category: diagnostic
     dps:
       - id: 105
         type: base64
