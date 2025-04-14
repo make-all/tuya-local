@@ -4,12 +4,15 @@ products:
     manufacturer: Arknoah
     model: 165W 3 channel
 entities:
-  - entity: light
-    name: Blue
+  - entity: switch
+    category: config
     dps:
       - id: 20
         type: boolean
-        name: switch
+        name: switch        
+  - entity: light
+    name: Blue
+    dps:
       - id: 21
         name: effect
         type: string
