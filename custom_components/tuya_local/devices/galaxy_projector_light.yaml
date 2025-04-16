@@ -8,6 +8,9 @@ products:
     model_id: SKY-EVOLVE-B-RCW8
   - id: l8xe7jasktrwjd7a
     model: Aurora Galaxy Star Projector
+  - id: shz7blrfcpfccvo3
+    manufacturer: Mirabella Genio
+    model: Genio Galaxy Starship Projector I004545
 entities:
   - entity: light
     dps:
@@ -90,6 +93,15 @@ entities:
         range:
           min: 0
           max: 100
+  - entity: text
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    hidden: true
+    dps:
+      - id: 58
+        type: base64
+        name: value
   - entity: select
     name: Theme
     icon: "mdi:movie-open-play"
@@ -107,3 +119,13 @@ entities:
             value: Space
           - dps_val: "AAM="
             value: Ocean
+  - entity: text
+    name: Music sync
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
+      - id: 42
+        type: hex
+        optional: true
+        name: value
