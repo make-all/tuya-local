@@ -1,0 +1,84 @@
+name: Siguro Fan
+products:
+  - id: ocajaux7xez7bpft
+    name: Siguro Sloupový ventilátor SGR-FN-U32xx
+primary_entity:
+  entity: fan
+  name: Fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 12
+      unit: ""
+    - id: 3
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: ordinary
+          value: Ordinary
+        - dps_val: nature
+          value: Nature
+        - dps_val: sleep
+          value: Sleep
+secondary_entities:
+  - entity: switch
+    name: Oscillation
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Ionizer
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: light
+    name: Display
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: number
+    name: Countdown Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721
+  - entity: number
+    name: On Timer
+    category: config
+    icon: "mdi:timer-play"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721
+  - entity: number
+    name: Off Timer
+    category: config
+    icon: "mdi:timer-off"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721
