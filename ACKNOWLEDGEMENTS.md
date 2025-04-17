@@ -881,3 +881,4 @@ Further device support has been made with the assistance of users. Please consid
 - [thestumonkey](https://github.com/thestumonkey) for contributing support for Outon smart lamp.
 - [Katawengineering](https://github.com/Katawengineering) for contributing support for Demuda MPPT solar charge controller.
 - [buschtoens](https://github.com/buschtoens) for contributing support for CST WB V1 cover switch with backlight.
+- [leksts](https://github.com/leksts) for contributing support for Eurom WiFi thermostat.
