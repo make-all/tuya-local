@@ -1,4 +1,8 @@
-name: ElectriQ EcoSilent14HPW
+name: Air conditioner
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Electriq
+#     model: EcoSilent 14HPW / 12HPW
 entities:
   - entity: climate
     dps:
@@ -15,7 +19,7 @@ entities:
                 value: fan_only
               - dps_val: "heat"
                 value: heat
-              - dps_val: "smart_cool"
+              - dps_val: "smartcool"
                 value: auto
               - dps_val: "dry"
                 value: dry
@@ -92,7 +96,6 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            constraint: hvac_mode
             value: "off"
           - dps_val: true
             value: vertical
