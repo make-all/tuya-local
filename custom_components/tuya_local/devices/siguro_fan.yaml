@@ -1,32 +1,31 @@
 name: Siguro Fan
 products:
   - id: ocajaux7xez7bpft
-    name: Siguro Sloupový ventilátor SGR-FN-U32xx
-primary_entity:
-  entity: fan
-  name: Fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 12
-      unit: ""
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: ordinary
-          value: Ordinary
-        - dps_val: nature
-          value: Nature
-        - dps_val: sleep
-          value: Sleep
-secondary_entities:
+    name: Siguro tower fan SGR-FN-U32xx
+entities:
+  - entity: fan
+    name: Fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+        unit: ""
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: ordinary
+            value: Ordinary
+          - dps_val: nature
+            value: Nature
+          - dps_val: sleep
+            value: Sleep
   - entity: switch
     name: Oscillation
     dps:
