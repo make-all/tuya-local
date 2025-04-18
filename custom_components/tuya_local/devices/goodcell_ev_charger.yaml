@@ -335,3 +335,15 @@ entities:
         type: boolean
         name: switch
         optional: true
+  - entity: sensor
+    name: Configured Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1 
