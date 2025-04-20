@@ -260,6 +260,10 @@ entities:
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 127
+        type: integer
+        name: add_ele
+        optional: true
   - entity: number
     name: Price
     class: monetary
@@ -365,15 +369,6 @@ entities:
         type: boolean
         name: sensor
         class: measurement
-  - entity: sensor
-    name: Add ele
-    category: diagnostic
-    dps:
-      - id: 127
-        type: integer
-        name: sensor
-        class: measurement
-        optional: true
   - entity: number
     name: Reporting interval
     class: duration
