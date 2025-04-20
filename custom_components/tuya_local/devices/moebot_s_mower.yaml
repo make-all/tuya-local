@@ -88,6 +88,28 @@ entities:
           - dps_val: StartFixedMowing
             value: true
   - entity: button
+    name: Start mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: true
+  - entity: button
+    name: Pause mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: PauseWork
+            value: true
+  - entity: button
     name: Cancel mowing
     icon: "mdi:mower"
     dps:
