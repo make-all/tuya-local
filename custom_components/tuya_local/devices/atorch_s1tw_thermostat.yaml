@@ -219,6 +219,13 @@ entities:
             value: C
           - dps_val: f
             value: F
+      - id: 126
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
   - entity: sensor
     class: current
     category: diagnostic
@@ -364,14 +371,6 @@ entities:
         class: total_increasing
         mapping:
           - scale: 1000
-  - entity: binary_sensor
-    name: Sensor detection flag
-    category: diagnostic
-    dps:
-      - id: 126
-        type: boolean
-        name: sensor
-        class: measurement
   - entity: number
     name: Reporting interval
     class: duration
