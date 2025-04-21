@@ -326,6 +326,7 @@
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
+- Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h air purifier
 - iHunt 50m³/h air purifier
