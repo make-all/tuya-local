@@ -885,3 +885,4 @@ Further device support has been made with the assistance of users. Please consid
 - [XargsUK](https://github.com/XargsUK) for contributing support for Electriq EcoSilent 12HPW, which was merged with 14HPW.
 - [deanillfeld](https://github.com/deanillfeld) for contributing support for Arlec ATF4602BHA 12 speed tower fan.
 - [muhhh0](https://github.com/muhhh0) for contributing improvements for Goodcell EV charger.
+- [Peck07](https://github.com/Peck07) for contributing improvements to Moebot S lawnmower.
