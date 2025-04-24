@@ -361,7 +361,22 @@ entities:
       - id: 167
         type: boolean
         name: switch
-        optional: false
+        optional: true
+        mapping:
+          - dps_val: false
+            icon: "mdi:baby-carriage-off"
+  - entity: switch
+    name: Pet detection
+    icon: "mdi:paw"
+    category: config
+    dps:
+      - id: 187
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: false
+            icon: "mdi:paw-off"
   - entity: switch
     name: Human detection
     icon: "mdi:human"
@@ -371,6 +386,9 @@ entities:
         type: boolean
         name: switch
         optional: true
+        mapping:
+          - dps_val: false
+            icon: "mdi:account-off"
   - entity: select
     name: Anti-flicker
     icon: "mdi:television-classic"
