@@ -718,7 +718,7 @@ Further device support has been made with the assistance of users. Please consid
 - [bvandenbogaard](https://github.com/bvandenbogaard) for contributing support for Medion S10 SW robot vacuum.
 - [fotis3d](https://github.com/fotis3d) for assisting with support for Digoo HamB alarm.
 - [Igooris](https://github.com/Igooris) for contributing support for PZIOT E01 energy meter.
-- [shadowkora](https://github.com/shadowkora) for assisting with support for Moes Smart control panel mini IR/Bluetooth hub.
+- [shadowkora](https://github.com/shadowkora) for assisting with support for Moes Smart control panel mini IR/Bluetooth hub and contributing support for Siguro SGR-FN-U32xx fan.
 - [megarch2021](https://github.com/megarch2021) for contributing support for Orion SWS07HA indoor siren, CCT "modeless" lightbulbs (like v1 but reserve dp 2 for mode even though it is unused).
 - [markussiegert](https://github.com/markussiegery) for assisting with support for smoke detector.
 - [giacomitti](https://github.com/giacomitti) for contributing support for an unknown brand of energy meter.
