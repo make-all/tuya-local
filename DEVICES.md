@@ -180,6 +180,7 @@
 
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
+- Atorch S1TW thermostat smart switch
 - Avatto ME81 thermostat
 - Avatto WS20R smart knob thermostat
 - Avatto WT100 thermostat
