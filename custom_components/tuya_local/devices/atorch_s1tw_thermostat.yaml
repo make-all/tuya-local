@@ -55,7 +55,7 @@ entities:
         hidden: true
         mapping:
           - scale: 10
-      - id: 0
+      - id: 104
         type: integer
         name: target_temp_low
         mapping:
@@ -72,7 +72,7 @@ entities:
                 range:
                   min: -40
                   max: 2480
-      - id: 0
+      - id: 104
         type: integer
         name: target_temp_low_c
         hidden: true
@@ -80,23 +80,15 @@ entities:
           - scale: 10
             constraint: hvac_mode
             conditions:
-              - dps_val: hot
-                value_redirect: heating_temp_low_c
               - dps_val: colding
                 value_redirect: cooling_temp_low_c
-      - id: 104
-        type: integer
-        name: heating_temp_low_c
-        hidden: true
-        mapping:
-          - scale: 10
       - id: 105
         type: integer
         name: cooling_temp_low_c
         hidden: true
         mapping:
           - scale: 10
-      - id: 0
+      - id: 120
         type: integer
         name: target_temp_low_f
         hidden: true
@@ -104,23 +96,15 @@ entities:
           - scale: 10
             constraint: hvac_mode
             conditions:
-              - dps_val: hot
-                value_redirect: heating_temp_low_f
               - dps_val: colding
                 value_redirect: cooling_temp_low_f
-      - id: 120
-        type: integer
-        name: heating_temp_low_f
-        hidden: true
-        mapping:
-          - scale: 10
       - id: 121
         type: integer
         name: cooling_temp_low_f
         hidden: true
         mapping:
           - scale: 10
-      - id: 0
+      - id: 106
         type: integer
         name: target_temp_high
         mapping:
@@ -137,7 +121,7 @@ entities:
                 range:
                   min: -40
                   max: 2480
-      - id: 0
+      - id: 106
         type: integer
         name: target_temp_high_c
         hidden: true
@@ -145,23 +129,15 @@ entities:
           - scale: 10
             constraint: hvac_mode
             conditions:
-              - dps_val: hot
-                value_redirect: heating_temp_high_c
               - dps_val: colding
                 value_redirect: cooling_temp_high_c
-      - id: 106
-        type: integer
-        name: heating_temp_high_c
-        hidden: true
-        mapping:
-          - scale: 10
       - id: 107
         type: integer
         name: cooling_temp_high_c
         hidden: true
         mapping:
           - scale: 10
-      - id: 0
+      - id: 122
         type: integer
         name: target_temp_high_f
         hidden: true
@@ -169,16 +145,8 @@ entities:
           - scale: 10
             constraint: hvac_mode
             conditions:
-              - dps_val: hot
-                value_redirect: heating_temp_high_f
               - dps_val: colding
                 value_redirect: cooling_temp_high_f
-      - id: 122
-        type: integer
-        name: heating_temp_high_f
-        hidden: true
-        mapping:
-          - scale: 10
       - id: 123
         type: integer
         name: cooling_temp_high_f
@@ -187,7 +155,6 @@ entities:
           - scale: 10
   - entity: switch
     class: outlet
-    name: Switch
     dps:
       - id: 103
         type: boolean
@@ -330,7 +297,6 @@ entities:
   - entity: lock
     translation_key: child_lock
     category: config
-    icon: "mdi:account-lock"
     dps:
       - id: 116
         type: boolean
