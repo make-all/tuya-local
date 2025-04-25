@@ -180,6 +180,7 @@
 
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
+- Atorch S1TW thermostat smart switch
 - Avatto ME81 thermostat
 - Avatto WS20R smart knob thermostat
 - Avatto WT100 thermostat
@@ -303,6 +304,7 @@
 - Reiga ceiling fans with and without light
 - Royal Clima RCB 150 ventilation system
 - Scheeair Nova 100 ventilation fan
+- Siguro SGR-FN-U32xx tower fan
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
