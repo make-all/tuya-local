@@ -7,10 +7,7 @@ products:
 entities:
   - entity: cover
     class: curtain
-    name: Cover 1
-    translation_key: cover_x
-    translation_placeholders:
-      x: "1"
+    name: Curtain 1
     dps:
       - id: 1
         name: control
@@ -33,10 +30,7 @@ entities:
           - step: 10
   - entity: cover
     class: curtain
-    name: Cover 2
-    translation_key: cover_x
-    translation_placeholders:
-      x: "2"
+    name: Curtain 2
     dps:
       - id: 4
         name: control
@@ -58,10 +52,7 @@ entities:
         mapping:
           - step: 10
   - entity: select
-    translation_key: mode_x
-    translation_placeholders:
-      x: "1"
-    name: Motor reverse mode 1
+    name: Direction 1
     category: config
     icon: "mdi:sign-direction"
     dps:
@@ -74,10 +65,7 @@ entities:
           - dps_val: back
             value: Back
   - entity: select
-    translation_key: mode_x
-    translation_placeholders:
-      x: "2"
-    name: Motor reverse mode 2
+    name: Direction 2
     category: config
     icon: "mdi:sign-direction"
     dps:
@@ -90,9 +78,6 @@ entities:
           - dps_val: back
             value: Back
   - entity: number
-    translation_key: time_x
-    translation_placeholders:
-      x: "1"
     name: Travel time 1
     category: config
     class: duration
@@ -106,9 +91,6 @@ entities:
           min: 1
           max: 60
   - entity: number
-    translation_key: time_x
-    translation_placeholders:
-      x: "2"
     name: Travel time 2
     category: config
     class: duration
