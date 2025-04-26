@@ -910,7 +910,8 @@ port and password.
 - Rojeco PTM-001 pet feeder (two versions)
 - Sobralik pet fountain
 - Tesla Smart pet feeder
-- Tonepie T1PRO automatic cat litter box
+- Tonepie T1PRO cat litter box
+- Tonepie T1 Pro MAX cat litter box
 - V330L pet feeder
 - Vevor 76L self-cleaning litter box
 - WellToBe Automatic Pet Feeder (WB S36D)
