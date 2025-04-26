@@ -1,15 +1,14 @@
-name: Cat litter box MAX
+name: Cat litter box
 products:
   - id: fgdeheqmt4mdhzr8
     manufacturer: Tonepie
-    model: T1Pro
+    model: T1Pro MAX
 entities:
   # Controls (Primary Actions)
   # Initiates immediate cleaning cycle
   - entity: button
     name: Clean now
     icon: "mdi:shimmer"
-    translation_key: clean_now
     dps:
       - id: 3
         type: boolean
@@ -19,7 +18,6 @@ entities:
   - entity: button
     name: Change sand
     icon: "mdi:delete-empty"
-    translation_key: change_sand
     dps:
       - id: 111
         type: boolean
@@ -29,7 +27,6 @@ entities:
   - entity: button
     name: Replace bag
     icon: "mdi:sack"
-    translation_key: replace_bag
     dps:
       - id: 117
         type: boolean
@@ -39,7 +36,6 @@ entities:
   - entity: button
     name: Smooth sand
     icon: "mdi:waves"
-    translation_key: smooth_sand
     dps:
       - id: 118
         type: boolean
@@ -49,7 +45,6 @@ entities:
   - entity: switch
     name: Deodorize
     icon: "mdi:scent"
-    translation_key: deodorize
     dps:
       - id: 17
         type: boolean
@@ -59,7 +54,6 @@ entities:
   - entity: switch
     name: Auto clean
     icon: "mdi:shimmer"
-    translation_key: auto_clean
     category: config
     dps:
       - id: 4
@@ -69,7 +63,6 @@ entities:
   - entity: number
     name: Clean wait time
     icon: "mdi:timer"
-    translation_key: clean_wait_time
     category: config
     class: duration
     dps:
@@ -84,7 +77,6 @@ entities:
   - entity: number
     name: Clean interval
     icon: "mdi:update"
-    translation_key: clean_interval
     category: config
     class: duration
     dps:
@@ -99,7 +91,6 @@ entities:
   - entity: switch
     name: Infrared detection
     icon: "mdi:motion-sensor"
-    translation_key: infrared_detection
     category: config
     dps:
       - id: 104
@@ -114,17 +105,14 @@ entities:
   - entity: switch
     name: Do not disturb
     icon: "mdi:power-sleep"
-    translation_key: do_not_disturb
     category: config
     dps:
       - id: 106
         type: boolean
         name: switch
   # Controls the device's LED lighting
-  - entity: switch
+  - entity: light
     name: Ambient light
-    icon: "mdi:lightbulb"
-    translation_key: ambient_light
     category: config
     dps:
       - id: 113
@@ -147,7 +135,6 @@ entities:
   - entity: number
     name: Litter calibration
     icon: "mdi:grain"
-    translation_key: litter_calibration
     category: config
     dps:
       - id: 110
@@ -160,7 +147,6 @@ entities:
   - entity: number
     name: Bin capacity calibration
     icon: "mdi:trash-can"
-    translation_key: bin_capacity_calibration
     category: config
     dps:
       - id: 109
@@ -173,7 +159,6 @@ entities:
   - entity: number
     name: Clean angle calibration
     icon: "mdi:angle-acute"
-    translation_key: clean_angle_calibration
     category: config
     dps:
       - id: 114
@@ -187,7 +172,6 @@ entities:
   - entity: button
     name: Weight reset
     icon: "mdi:scale-off"
-    translation_key: weight_reset
     category: diagnostic
     dps:
       - id: 112
@@ -197,7 +181,6 @@ entities:
   - entity: button
     name: Self-check reset
     icon: "mdi:refresh"
-    translation_key: self_check_reset
     category: diagnostic
     dps:
       - id: 115
@@ -205,9 +188,7 @@ entities:
         name: button
   # Reports device malfunctions and errors
   - entity: binary_sensor
-    name: Fault detected
     class: problem
-    translation_key: fault_detected
     category: diagnostic
     dps:
       - id: 22
@@ -220,6 +201,9 @@ entities:
       - id: 22
         type: bitfield
         name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 1
             value: "Motor malfunction"
@@ -238,7 +222,6 @@ entities:
     name: Total visits
     icon: "mdi:counter"
     class: measurement
-    translation_key: total_visits
     category: diagnostic
     dps:
       - id: 7
@@ -248,10 +231,9 @@ entities:
   # Status Monitoring
   # Last recorded cat weight in kg
   - entity: sensor
-    name: Cat weight
     icon: "mdi:cat"
+    name: Cat weight
     class: weight
-    translation_key: cat_weight
     dps:
       - id: 6
         type: integer
@@ -263,9 +245,7 @@ entities:
   # Duration of cat's last visit in seconds
   - entity: sensor
     name: Visit duration
-    icon: "mdi:timer"
     class: duration
-    translation_key: visit_duration
     dps:
       - id: 8
         type: integer
@@ -274,10 +254,7 @@ entities:
         class: measurement
   # Current weight reading in kg
   - entity: sensor
-    name: Real-time weight
-    icon: "mdi:scale"
     class: weight
-    translation_key: real_time_weight
     dps:
       - id: 116
         type: integer
@@ -288,10 +265,7 @@ entities:
           - scale: 1000
   # Internal temperature of device
   - entity: sensor
-    name: Temperature
-    icon: "mdi:thermometer"
     class: temperature
-    translation_key: temperature
     dps:
       - id: 101
         type: integer
@@ -299,10 +273,7 @@ entities:
         unit: °C
   # Internal humidity level
   - entity: sensor
-    name: Humidity
-    icon: "mdi:water-percent"
     class: humidity
-    translation_key: humidity
     dps:
       - id: 102
         type: integer
@@ -310,10 +281,8 @@ entities:
         unit: "%"
   # Detects if cat is currently in the box
   - entity: binary_sensor
-    name: Cat present
     icon: "mdi:cat"
     class: occupancy
-    translation_key: cat_present
     dps:
       - id: 116
         type: integer
@@ -327,7 +296,6 @@ entities:
   - entity: event
     name: Notification
     icon: "mdi:bell"
-    translation_key: notification
     dps:
       - id: 21
         type: bitfield
