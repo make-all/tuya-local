@@ -1,0 +1,28 @@
+name: Simple curtain switch
+products:
+  - id: 000003th5e
+    manufacturer: KIMEX
+    model: KIMEX 048-1511W
+  -
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+         - dps_val: open
+           value: open
+         - dps_val: close
+           value: close
+         - dps_val: stop
+           value: stop
+      - id: 8
+        name: control_back
+        type: string
+        mapping:
+         - dps_val: forward
+           value: forward
+         - dps_val: backward
+           value: backward   
