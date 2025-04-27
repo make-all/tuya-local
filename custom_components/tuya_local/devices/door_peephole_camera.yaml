@@ -145,3 +145,61 @@ entities:
         type: base64
         name: image_details
         optional: true
+  - entity: light
+    translation_key: indicator
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+      - id: 101
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: event
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 185
+        type: string
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: triggered
+      - id: 185
+        type: string
+        optional: true
+        name: message
+  - entity: event
+    name: Notification
+    category: diagnostic
+    dps:
+      - id: 212
+        type: string
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: string
+        optional: true
+        name: message
+  - entity: button
+    class: restart
+    category: config
+    hidden: true
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
