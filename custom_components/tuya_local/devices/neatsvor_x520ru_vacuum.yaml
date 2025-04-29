@@ -34,7 +34,7 @@ entities:
         name: status
         mapping:
           - dps_val: "0"
-            value: "Standby"
+            value: "standby"
           - dps_val: "1"
             value: "Smart cleaning"
           - dps_val: "2"
@@ -42,9 +42,9 @@ entities:
           - dps_val: "3"
             value: "Cleaning along the walls"
           - dps_val: "4"
-            value: "Recharging"
+            value: "charging"
           - dps_val: "5"
-            value: "Charging"
+            value: "charged"
           - dps_val: "6"
             value: "Spot cleaning"
           - dps_val: "7"
@@ -91,8 +91,8 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
+    class: area
     name: Last cleaning area
-    icon: mdi:floor-plan
     dps:
       - id: 16
         name: sensor
@@ -111,9 +111,8 @@ entities:
         unit: min
         class: measurement
   - entity: select
-    name: Language
+    translation_key: language
     category: config
-    icon: mdi:earth
     dps:
       - id: 29
         type: string
@@ -124,9 +123,8 @@ entities:
           - dps_val: "english"
             value: "english"
   - entity: select
-    name: Water step
+    translation_key: mopping
     category: config
-    icon: "mdi:water"
     dps:
       - id: 101
         type: string
@@ -135,7 +133,7 @@ entities:
           - dps_val: "low_step"
             value: "low"
           - dps_val: "mid_step"
-            value: "mid"
+            value: "medium"
           - dps_val: "high_step"
             value: "high"
   - entity: switch
