@@ -317,7 +317,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "Desumidificador",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Purificar",
+                            "dehumidify": "Desumidificar"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Ventilador",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -395,6 +407,16 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "Moeda",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
             "initial_state": {
                 "name": "Estado inicial",
                 "state": {

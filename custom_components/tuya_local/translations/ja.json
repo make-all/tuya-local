@@ -317,7 +317,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "除湿器",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "浄化",
+                            "dehumidify": "除湿"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "ファン",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -395,6 +407,16 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "通貨",
+                "state": {
+                    "usd": "米ドル",
+                    "eur": "ユーロ",
+                    "cny": "人民元",
+                    "cad": "カナダドル",
+                    "gbp": "英国ポンド"
+                }
+            },
             "initial_state": {
                 "name": "初期状態",
                 "state": {

@@ -22,6 +22,8 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 
+TESTKEY = ")<jO<@)'P1dkR$Kd"
+
 
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):
@@ -56,7 +58,7 @@ async def test_init_entry(hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
@@ -86,7 +88,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "auto",
             "climate": True,
             "child_lock": True,
@@ -106,7 +108,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "unknown",
             "climate": False,
         },
@@ -122,7 +124,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "auto",
         },
         options={
@@ -142,7 +144,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "smartplugv1",
         },
         options={
@@ -162,7 +164,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "smartplugv1",
         },
         options={
@@ -182,7 +184,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "goldair_dehumidifier",
         },
         options={
@@ -208,7 +210,7 @@ async def test_migrate_entry(mock_setup, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_TYPE: "grid_connect_usb_double_power_point",
         },
         options={
@@ -243,7 +245,7 @@ async def test_flow_user_init(hass):
     # the same object
     try:
         result["data_schema"](
-            {CONF_DEVICE_ID: "test", CONF_LOCAL_KEY: "test", CONF_HOST: "test"}
+            {CONF_DEVICE_ID: "test", CONF_LOCAL_KEY: TESTKEY, CONF_HOST: "test"}
         )
     except vol.MultipleInvalid:
         assert False
@@ -268,7 +270,7 @@ async def test_async_test_connection_valid(mock_device, hass):
     device = await config_flow.async_test_connection(
         {
             CONF_DEVICE_ID: "deviceid",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_HOST: "hostname",
             CONF_PROTOCOL_VERSION: "auto",
         },
@@ -293,7 +295,7 @@ async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
     device = await config_flow.async_test_connection(
         {
             CONF_DEVICE_ID: "deviceid",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_HOST: "hostname",
             CONF_PROTOCOL_VERSION: "auto",
             CONF_DEVICE_CID: "subdeviceid",
@@ -315,7 +317,7 @@ async def test_async_test_connection_invalid(mock_device, hass):
     device = await config_flow.async_test_connection(
         {
             CONF_DEVICE_ID: "deviceid",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_HOST: "hostname",
             CONF_PROTOCOL_VERSION: "auto",
         },
@@ -371,7 +373,7 @@ async def test_flow_user_init_data_valid(mock_test, hass):
         user_input={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
         },
     )
     assert "form" == result["type"]
@@ -485,7 +487,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         config_flow.ConfigFlowHandler.data,
         {
             CONF_DEVICE_ID: "deviceid",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_HOST: "hostname",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
@@ -513,11 +515,12 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             "description": None,
             "description_placeholders": None,
             "result": ANY,
+            "subentries": (),
             "options": {},
             "data": {
                 CONF_DEVICE_ID: "deviceid",
                 CONF_HOST: "hostname",
-                CONF_LOCAL_KEY: "localkey",
+                CONF_LOCAL_KEY: TESTKEY,
                 CONF_POLL_ONLY: False,
                 CONF_PROTOCOL_VERSION: "auto",
                 CONF_TYPE: "kogan_kahtp_heater",
@@ -537,7 +540,7 @@ async def test_options_flow_init(hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
@@ -558,7 +561,7 @@ async def test_options_flow_init(hass):
     assert result["data_schema"](
         {
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
         }
     )
 
@@ -576,7 +579,7 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
@@ -624,7 +627,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
@@ -664,7 +667,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCAL_KEY: TESTKEY,
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",

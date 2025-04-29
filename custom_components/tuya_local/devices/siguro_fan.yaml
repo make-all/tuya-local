@@ -1,0 +1,83 @@
+name: Fan
+products:
+  - id: ocajaux7xez7bpft
+    manufacturer: Siguro
+    model: SGR-FN-U32xx
+    name: Tower fan
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: ordinary
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 5
+        type: boolean
+        name: oscillate
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721
+  - entity: number
+    name: On Timer
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721
+  - entity: number
+    name: Off Timer
+    category: config
+    class: duration
+    icon: "mdi:timer-off"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 721

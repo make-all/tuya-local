@@ -317,7 +317,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "Осушитель",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Очистка",
+                            "dehumidify": "Осушение"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Вентилятор",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -395,6 +407,16 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "Валюта",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
             "initial_state": {
                 "name": "Начальное состояние",
                 "state": {

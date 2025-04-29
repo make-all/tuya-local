@@ -24,6 +24,13 @@ products:
     model: Grid Connect 6W RGB+CCT downlight
     name: RGBCW downlight
     model_id: ALD275HA
+  - id: kw2oclsjnfal3mfv
+    manufacturer: Beamlux
+    name: BLX501
+  - id: csmd08jaltoa4n15
+    manufacturer: Mirabella Genio
+    model: CLXRGB60
+    name: Genio RGBW Downlight
 entities:
   - entity: light
     dps:
@@ -120,6 +127,24 @@ entities:
           - scale: 60
             step: 60
           - dps_val: null
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:minus-circle"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: text
     translation_key: scene
     category: config

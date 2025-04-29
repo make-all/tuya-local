@@ -12,6 +12,12 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+
     strategy:
       matrix:
         python-version: ['3.13']

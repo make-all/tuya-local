@@ -22,7 +22,8 @@ body:
       description: |
         From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a **dps** list which is output when you attempt to add the device and are presented with a list of non-matching devices.
         Alternatively, if you already added the device, you can turn on debug logging for a minute or so, and find a message in the log from your device which has `full_poll: true` as part of the message.
-      placeholder: Reports without logs will be immediately closed
+        Providing logs shows that you have tried this integration, the device is able to connect, and existing configs are not adequate. They also show exactly what the device is sending, which helps avoid some back and forward steps to get the config working.
+      placeholder: Reports without local logs from this integration will be immediately closed
       render: text
     validations:
       required: true

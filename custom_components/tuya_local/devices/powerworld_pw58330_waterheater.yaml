@@ -1,5 +1,8 @@
 name: Water heat pump
-# products:
+products:
+  - id: hd8ubtj2bz38vuak
+    manufacturer: ALMEVO
+    model: HPHTXXXXXXXPW
 #   - id: UNKNOWN
 #     manufacturer: Powerworld
 #     model: PW58330
@@ -319,3 +322,172 @@ entities:
         type: boolean
         optional: true
         name: button
+  - entity: sensor
+    name: Heating capacity
+    class: power
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 10
+        mask: "FFFFFFFF0000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Current water flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: m³/h
+        mapping:
+          - scale: 100
+        mask: "00000000FFFFFFFF00000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Overall current
+    class: current
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+        mask: "0000000000000000FFFFFFFF000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Overall voltage
+    class: voltage
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        mask: "000000000000000000000000FFFFFFFF0000000000000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Overall power
+    class: power
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: W
+        mask: "00000000000000000000000000000000FFFFFFFF00000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Coefficient of performance
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        mask: "0000000000000000000000000000000000000000FFFFFFFF\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Energy today
+    class: energy
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mask: "000000000000000000000000000000000000000000000000\
+               00000000000000000000000000000000FFFFFFFF00000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 140
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

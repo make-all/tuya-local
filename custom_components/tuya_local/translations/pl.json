@@ -317,7 +317,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "Osuszacz",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Oczyszczanie",
+                            "dehumidify": "Osuszanie"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Wentylator",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -395,6 +407,16 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "Waluta",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
             "initial_state": {
                 "name": "Stan początkowy",
                 "state": {

@@ -1,0 +1,109 @@
+name: Dehumidifier
+products:
+  - id: pp03pgphjhirfiab
+    manufacturer: Morris
+    model: MDB-12160HIW
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: fan
+            value: purify
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: switch
+    name: Oscillation
+    icon: mdi:arrow-oscillating
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Laundry
+    icon: mdi:tshirt-crew
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch

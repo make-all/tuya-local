@@ -1,0 +1,35 @@
+name: Thermostat
+products:
+  - id: jqzvke4b1nzjcr5n
+    manufacturer: EUROM
+    model: Wifi Thermostat
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 6
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
