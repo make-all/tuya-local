@@ -24,8 +24,15 @@ entities:
       - id: 2
         type: integer
         name: sensor
-        unit: C
         class: measurement
+      - id: 112
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: sensor
     class: humidity
     dps:
@@ -95,15 +102,17 @@ entities:
         name: sensor
   # 28: alarm_volume enum["middle", ???]
   - entity: sensor
-    class: volatile_organic_compounds_parts
+    class: volatile_organic_compounds
     category: diagnostic
     dps:
       - id: 101
         type: integer
         optional: true
         name: sensor
-        unit: ppm
+        unit: µg/m³
         class: measurement
+        mapping:
+          - scale: 1000
   - entity: sensor
     class: carbon_monoxide
     category: diagnostic
