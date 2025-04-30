@@ -2,7 +2,7 @@ name: AirBox
 products:
   - id: owmkja70doamcxkh
     manufacturer: Mustool
-    model: MT29
+    model: MT15/MT29
 entities:
   - entity: sensor
     translation_key: air_quality
@@ -93,6 +93,30 @@ entities:
       - id: 23
         type: boolean
         name: sensor
+  # 28: alarm_volume enum["middle", ???]
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: carbon_monoxide
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: ppm
+        class: measurement
+  # 103: bl_level enum["level_1", ???]
+  # 104: co2_alarm_value int, unknown range
+  # 105: sleep_timer int, unknown range
   - entity: switch
     icon: "mdi:sprout"
     name: Enable alarm
@@ -100,3 +124,36 @@ entities:
       - id: 106
         type: boolean
         name: switch
+  - entity: sensor
+    name: PM 0.3
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  # 108: secondcal int, unknown range or purpose
+  # 109: clock1 int, unknown range or purpose
+  # 110: clock2 int, unknown range or purpose
+  # 111: clock3 int, unknown range or purpose
+  # 113: co_alarm_value int, unknown range
+  # 114: pm25_alarm_value int, unknown range
+  # 115: hcho_alarm_value int, unknown range
+  # 116: clock1_en bool, unknown purpose
+  # 117: clock2_en bool, unknown purpose
+  # 118: clock3_en bool, unknown purpose
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
