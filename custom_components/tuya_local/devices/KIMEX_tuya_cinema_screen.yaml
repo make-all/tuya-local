@@ -27,7 +27,15 @@ entities:
             value: stop
           - dps_val: close
             value: closed
+  - entity: select
+    icon: "mdi:arrow-u-left-bottom"
+    category: config
+    dps:
       - id: 8
-        name: control_back_mode
+        name: control_back
         type: string
-        category: config
+        mapping:
+          - dps_val: forward
+            value: "forward"
+          - dps_val: back
+            value: "reverse"
