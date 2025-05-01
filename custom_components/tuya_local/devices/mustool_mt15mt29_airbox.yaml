@@ -58,8 +58,6 @@ entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        mapping:
-          - scale: 0.001
   - entity: sensor
     class: pm25
     dps:
@@ -100,7 +98,24 @@ entities:
       - id: 23
         type: boolean
         name: sensor
-  # 28: alarm_volume enum["middle", ???]
+  - entity: select
+    name: Alarm volume
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: mute
+            value: mute
   - entity: sensor
     class: volatile_organic_compounds
     category: diagnostic
@@ -111,8 +126,6 @@ entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        mapping:
-          - scale: 0.001
   - entity: sensor
     class: carbon_monoxide
     category: diagnostic
@@ -124,8 +137,33 @@ entities:
         unit: ppm
         class: measurement
   # 103: bl_level enum["level_1", ???]
-  # 104: co2_alarm_value int, unknown range
-  # 105: sleep_timer int, unknown range
+  - entity: number
+    name: CO2 alarm threshold
+    category: config
+    class: carbon_dioxide
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 500
+          max: 3000
+  - entity: number
+    name: Sleep timer
+    category: config
+    class: duration
+    icon: "mdi:bed-clock"
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 100
   - entity: switch
     icon: "mdi:sprout"
     name: Enable alarm
@@ -147,12 +185,6 @@ entities:
   # 109: clock1 int, unknown range or purpose
   # 110: clock2 int, unknown range or purpose
   # 111: clock3 int, unknown range or purpose
-  # 113: co_alarm_value int, unknown range
-  # 114: pm25_alarm_value int, unknown range
-  # 115: hcho_alarm_value int, unknown range
-  # 116: clock1_en bool, unknown purpose
-  # 117: clock2_en bool, unknown purpose
-  # 118: clock3_en bool, unknown purpose
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -166,3 +198,43 @@ entities:
             value: celsius
           - dps_val: f
             value: fahrenheit
+  - entity: number
+    name: CO alarm threshold
+    class: carbon_monoxide
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 10
+          max: 500
+  - entity: number
+    name: PM2.5 alarm threshold
+    category: config
+    class: pm25
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 50
+          max: 300
+  # 116: clock1_en bool, unknown purpose
+  # 117: clock2_en bool, unknown purpose
+  # 118: clock3_en bool, unknown purpose
+  - entity: number
+    name: Formaldehyde alarm threshold
+    category: config
+    icon: "mdi:alert"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 80
+          max: 1990
