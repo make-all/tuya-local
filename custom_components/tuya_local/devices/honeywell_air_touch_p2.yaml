@@ -1,4 +1,8 @@
-name: Honeywell Air Touch P2
+name: Air purifier
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Honeywell
+#     model: Air Touch P2
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -11,11 +15,11 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: auto
-            value: Auto
+            value: smart
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: manual
-            value: Manual
+            value: normal
       - id: 4
         type: string
         name: speed
@@ -32,37 +36,35 @@ entities:
             value: 100
 
   - entity: sensor
-    name: PM2.5
-    icon: 'mdi:blur'
     class: pm25
     category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: 'µg/m³'
+        unit: µg/m³
         class: measurement
 
   - entity: sensor
     name: Filter Life
-    icon: 'mdi:air-filter'
+    icon: "mdi:air-filter"
     category: diagnostic
     dps:
       - id: 5
         type: integer
         name: sensor
-        unit: '%'
+        unit: "%"
         class: measurement
 
   - entity: sensor
-    name: Filter Days Left
-    icon: 'mdi:calendar'
+    name: Filter remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 16
         type: integer
         name: sensor
-        unit: 'days'
+        unit: d
         class: measurement
 
   - entity: sensor
@@ -81,8 +83,7 @@ entities:
         name: lock
 
   - entity: switch
-    name: UV Sterilizer
-    icon: 'mdi:ultraviolet'
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 9
@@ -107,38 +108,48 @@ entities:
         mapping:
           - dps_val: cancel
             value: cancel
-          - dps_val: 1h
-            value: '1h'
-          - dps_val: 2h
-            value: '2h'
-          - dps_val: 4h
-            value: '4h'
-          - dps_val: 8h
-            value: '8h'
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"
 
   - entity: sensor
-    name: Timer Remaining
-    icon: 'mdi:timer'
+    translation_key: time_remaining
     category: diagnostic
+    class: duration
     dps:
       - id: 19
         type: integer
         name: sensor
-        unit: 's'
+        unit: s
 
   - entity: binary_sensor
-    name: Fault Detected
+    class: problem
     category: diagnostic
     dps:
       - id: 22
         type: bitfield
         name: sensor
-
-  - entity: switch
-    name: Display Off
-    icon: 'mdi:monitor-off'
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
