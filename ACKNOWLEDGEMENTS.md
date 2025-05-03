@@ -891,3 +891,4 @@ Further device support has been made with the assistance of users. Please consid
 - [JanOstrowka](https://github.com/JanOstrowka) for contributing support for Tonepie T1 Pro Max cat litter box.
 - [KillDozerX2](https://github.com/KillDozerX2) for contributing support for Honeywell Air Touch P2 air purifier.
 - [Sapd](https://github.com/Sapd) for contributing support for Teknopoint Idra Skiv air conditioner.
+- [wuhgit](https://github.com/wuhgit) for contributing support for SC116-WZ3A camera.

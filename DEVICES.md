@@ -862,6 +862,7 @@ port and password.
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
+- SC116-WZ3A PTZ camera
 
 ### Alarm control panels
 
