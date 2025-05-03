@@ -60,6 +60,7 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
+            default: true
             value: C
           - dps_val: true
             value: F
@@ -78,15 +79,6 @@ entities:
       - id: 104
         type: integer
         name: unknown_104
-      - id: 109
-        type: boolean
-        name: unknown_109
-      - id: 112
-        type: integer
-        name: floor_temp_calibration
-      - id: 113
-        type: integer
-        name: room_temp_calibration
   - entity: lock
     translation_key: child_lock
     category: config
@@ -113,6 +105,9 @@ entities:
             value: C
           - dps_val: true
             value: F
+      - id: 113
+        type: integer
+        name: room_temp_calibration
   - entity: sensor
     name: Floor temperature
     class: temperature
@@ -132,16 +127,17 @@ entities:
             value: C
           - dps_val: true
             value: F
+      - id: 112
+        type: integer
+        name: floor_temp_calibration
   - entity: sensor
     name: Runtime
+    icon: "mdi:update"
     dps:
       - id: 117
         type: integer
         name: sensor
         unit: min
-      - id: 116
-        type: integer
-        name: load_w
   - entity: select
     category: config
     translation_key: temperature_unit
@@ -151,6 +147,7 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
+            default: true
             value: celsius
           - dps_val: true
             value: fahrenheit
@@ -197,9 +194,10 @@ entities:
             value: "Room"
             icon: "mdi:home-thermometer"
           - dps_val: "1"
+            default: true
             value: "Floor"
             icon: "mdi:heating-coil"
-          - dps_val: '2'
+          - dps_val: "2"
             value: "Both"
             icon: "mdi:thermometer"
   - entity: select
@@ -219,3 +217,34 @@ entities:
             value: "7 (Adaptive)"
           - dps_val: 3
             value: "5+1+1 (Adaptive)"
+  - entity: select
+    category: config
+    name: Sensor Type
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 116
+        type: integer
+        name: option
+        unit: W
+        mapping:
+          - dps_val: 3950
+            default: true
+            value: "3950"
+          - dps_val: 3600
+            value: "3600"
+          - dps_val: 3700
+            value: "3700"
+  - entity: select
+    category: config
+    name: Location
+    icon: "mdi:home-city"
+    dps:
+      - id: 109
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            default: true
+            value: "Home"
+          - dps_val: true
+            value: "Office"
