@@ -60,7 +60,6 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            default: true
             value: C
           - dps_val: true
             value: F
@@ -107,7 +106,7 @@ entities:
             value: F
       - id: 113
         type: integer
-        name: room_temp_calibration
+        name: calibration
   - entity: sensor
     name: Floor temperature
     class: temperature
@@ -129,9 +128,10 @@ entities:
             value: F
       - id: 112
         type: integer
-        name: floor_temp_calibration
+        name: calibration
   - entity: sensor
     name: Runtime
+    class: duration
     icon: "mdi:update"
     dps:
       - id: 117
@@ -147,7 +147,6 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            default: true
             value: celsius
           - dps_val: true
             value: fahrenheit
@@ -194,7 +193,6 @@ entities:
             value: "Room"
             icon: "mdi:home-thermometer"
           - dps_val: "1"
-            default: true
             value: "Floor"
             icon: "mdi:heating-coil"
           - dps_val: "2"
@@ -228,12 +226,11 @@ entities:
         unit: W
         mapping:
           - dps_val: 3950
-            default: true
-            value: "3950"
+            value: "3950 W"
           - dps_val: 3600
-            value: "3600"
+            value: "3600 W"
           - dps_val: 3700
-            value: "3700"
+            value: "3700 W"
   - entity: select
     category: config
     name: Location
@@ -244,7 +241,6 @@ entities:
         name: option
         mapping:
           - dps_val: false
-            default: true
             value: "Home"
           - dps_val: true
             value: "Office"
