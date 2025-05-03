@@ -1,7 +1,8 @@
 name: Air conditioner
 products:
   - id: f3goccgfj6qino4c
-    name: Tekno Point Idra Skiv Air Conditioner
+    manufacturer: Tekno Point
+    model: Idra Skiv
 entities:
   - entity: climate
     translation_key: aircon_extra
@@ -48,9 +49,6 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
-            constraint: temperature_unit
-            conditions:
-              - dps_val: f
       - id: 4
         type: string
         name: mode
@@ -203,14 +201,14 @@ entities:
         type: integer
         unit: h
   - entity: sensor
-    name: Electricity
+    class: energy
     category: diagnostic
-    icon: "mdi:check-circle"
     dps:
       - id: 103
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
         mapping:
           - scale: 10
       - id: 104
@@ -231,7 +229,7 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: select
-    name: Vertical
+    name: Vertical position
     category: config
     icon: "mdi:arrow-up-down"
     dps:
@@ -244,15 +242,15 @@ entities:
           - dps_val: "15"
             value: "Swing"
           - dps_val: "1"
-            value: "1"
+            value: Top
           - dps_val: "2"
-            value: "2"
+            value: Slightly up
           - dps_val: "3"
-            value: "3"
+            value: Middle
           - dps_val: "4"
-            value: "4"
+            value: Slightly down
           - dps_val: "5"
-            value: "5"
+            value: Bottom
   - entity: switch
     translation_key: sleep
     category: config
@@ -270,7 +268,6 @@ entities:
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    icon: "mdi:check-circle-outline"
     dps:
       - id: 20
         type: bitfield
@@ -288,7 +285,7 @@ entities:
         name: fault_code
       - id: 20
         type: bitfield
-        name: Fault Description
+        name: description
         mapping:
           - dps_val: 0
             value: ok
