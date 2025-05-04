@@ -1,11 +1,12 @@
-name: KIMEX cimema screen
+name: Cinema screen
 products:
   - id: hpg7erxfe5ypgh20
-    manufacturer: KIMEX
+    manufacturer: Kimex
     model: THM-02
 entities:
   - entity: cover
     class: blind
+    name: Screen
     dps:
       - id: 1
         name: control
@@ -32,10 +33,10 @@ entities:
     category: config
     dps:
       - id: 8
-        name: control_back
+        name: option
         type: string
         mapping:
           - dps_val: forward
-            value: "forward"
+            value: forward
           - dps_val: back
-            value: "reverse"
+            value: reverse
