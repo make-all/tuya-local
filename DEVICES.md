@@ -887,6 +887,7 @@ port and password.
 - Ceres Plus pet feeder with camera
 - Cleverio PF100 pet feeder
 - Doel cat litter box
+- Duoqu Neo-A cat litter box
 - Els Pet Spaceship pet litter box
 - Faroro PF50 pet feeder
 - HoneyGuardian S56 pet feeder
