@@ -100,7 +100,7 @@ entities:
         name: sensor
   - entity: select
     name: Alarm volume
-    icon: "mdi:bullhorn"
+    icon: "mdi:alarm-multiple"
     category: config
     dps:
       - id: 28
@@ -136,7 +136,23 @@ entities:
         name: sensor
         unit: ppm
         class: measurement
-  # 103: bl_level enum["level_1", ???] missing from log, maybe not implemented
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: brightness
+        mapping:
+          - dps_val: level_1
+            value: 64
+          - dps_val: level_2
+            value: 128
+          - dps_value: level_3
+            value: 192
+          - dps_value: level_4
+            value: 255
   - entity: number
     name: CO2 alarm threshold
     category: config
@@ -150,6 +166,11 @@ entities:
         range:
           min: 500
           max: 3000
+        mapping:
+          - step: 100
+      - id: 106
+        type: boolean
+        name: available
   - entity: number
     name: Sleep timer
     category: config
@@ -165,8 +186,8 @@ entities:
           min: 0
           max: 100
   - entity: switch
-    icon: "mdi:sprout"
-    name: Enable alarm
+    icon: "mdi:bullhorn"
+    name: Enable alarms
     dps:
       - id: 106
         type: boolean
@@ -181,10 +202,69 @@ entities:
         name: sensor
         unit: µg/m³
         class: measurement
-  # 108: secondcal int, unknown range or purpose, missing from log
-  # 109: clock1 int, unknown range or purpose
-  # 110: clock2 int, unknown range or purpose
-  # 111: clock3 int, unknown range or purpose
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 599
+  - entity: number
+    name: Alarm 1
+    icon: "mdi:alarm"
+    category: config
+    class: duration
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 116
+        type: boolean
+        name: available
+  - entity: number
+    name: Alarm 2
+    category: config
+    icon: "mdi:alarm"
+    class: duration
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 117
+        type: boolean
+        name: available
+  - entity: number
+    name: Alarm 3
+    category: config
+    icon: "mdi:alarm"
+    class: duration
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 118
+        type: boolean
+        name: available
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -211,6 +291,11 @@ entities:
         range:
           min: 10
           max: 500
+        mapping:
+          - step: 10
+      - id: 106
+        type: boolean
+        name: available
   - entity: number
     name: PM2.5 alarm threshold
     category: config
@@ -223,9 +308,11 @@ entities:
         range:
           min: 50
           max: 300
-  # 116: clock1_en bool, unknown purpose
-  # 117: clock2_en bool, unknown purpose
-  # 118: clock3_en bool, unknown purpose
+        mapping:
+          - step: 10
+      - id: 106
+        type: boolean
+        name: available
   - entity: number
     name: Formaldehyde alarm threshold
     category: config
@@ -236,5 +323,37 @@ entities:
         name: value
         unit: µg/m³
         range:
-          min: 80
-          max: 1990
+          min: 8
+          max: 199
+        mapping:
+          - scale: 0.1
+      - id: 106
+        type: boolean
+        name: available
+  - entity: switch
+    name: Alarm 1
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Alarm 2
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Alarm 3
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: switch
