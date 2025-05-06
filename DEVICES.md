@@ -864,6 +864,7 @@ port and password.
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
 - SC116-WZ3A PTZ camera
+- SMCM DDV-207 Doorbell Pro camera
 
 ### Alarm control panels
 
