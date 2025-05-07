@@ -57,30 +57,6 @@ entities:
         mapping:
           - scale: 100
             step: 10
-  - entity: sensor
-    # 2024-11-02
-    deprecated: binary_sensor_problem
-    translation_key: status
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 6
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: check_failure
-            value: Fault
-          - dps_val: check_success
-            value: OK
-          - dps_val: checking
-            value: Checking
-          - dps_val: comm_fault
-            value: Communication fault
-          - dps_val: others
-            value: Timeout
-          - dps_val: radar_fault
-            value: Radar fault
   - entity: binary_sensor
     class: problem
     category: diagnostic
