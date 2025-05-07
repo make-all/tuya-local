@@ -119,32 +119,6 @@ entities:
       - id: 6
         type: boolean
         name: switch
-  - entity: sensor
-    name: Button
-    # 2024-10-28
-    deprecated: event_doorbell
-    category: diagnostic
-    dps:
-      - id: 5
-        type: base64
-        name: sensor
-        optional: true
-        persist: false
-  - entity: binary_sensor
-    name: Ringing
-    class: sound
-    # 2024-10-28
-    deprecated: event_doorbell
-    dps:
-      - id: 5
-        type: base64
-        name: sensor
-        optional: true
-        persist: false
-        mapping:
-          - dps_val: null
-            value: false
-          - value: true
   - entity: event
     class: doorbell
     dps:
