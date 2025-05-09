@@ -105,18 +105,6 @@ entities:
         range:
           min: 0
           max: 15
-  - entity: number
-    name: Current charge current
-    icon: "mdi:ev-plug-type2"
-    category: config
-    dps:
-      - id: 105
-        type: integer
-        unit: mA
-        mapping:
-          - scale: 1
-        optional: true
-        name: current
   - entity: sensor
     class: power
     dps:
@@ -151,14 +139,6 @@ entities:
             default: true
           - dps_val: "OpenCharging"
             value: true
-  # Commented type mismatch
-  # - entity: switch
-  #   name: Charging enable
-  #   icon: "mdi:ev-station"
-  #   dps:
-  #     - id: 112
-  #       type: boolean
-  #       name: switch
   - entity: sensor
     class: voltage
     category: diagnostic
