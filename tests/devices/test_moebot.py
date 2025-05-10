@@ -49,6 +49,7 @@ class TestMoebot(TuyaDeviceTestCase):
                 "button_clear_schedule",
                 "button_query_schedule",
                 "button_query_zones",
+                "switch_hedgehog_protection",
             ]
         )
 

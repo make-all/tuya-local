@@ -66,16 +66,6 @@ class TestEssentialsPurifier(
                         "8h": "8h",
                     },
                 },
-                {
-                    "dps": MODE_DP,
-                    "name": "select_mode",
-                    "options": {
-                        "auto": "Auto",
-                        "M": "Medium",
-                        "H": "High",
-                        "sleep": "Sleep",
-                    },
-                },
             ]
         )
         self.setUpMultiSensors(
