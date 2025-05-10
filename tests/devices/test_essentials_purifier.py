@@ -97,10 +97,6 @@ class TestEssentialsPurifier(
         self.setUpMultiSwitch(
             [
                 {
-                    "dps": SWITCH_DP,
-                    "name": "switch",
-                },
-                {
                     "dps": UV_DP,
                     "name": "switch_uv_sterilization",
                 },
