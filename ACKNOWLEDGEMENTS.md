@@ -895,5 +895,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Airey001](https://github.com/Airey001) for contributing support for Neo-A Duoqu cat litter box.
 - [Akira97One](https://github.com/Akira97One) for assisting with support for SMCM DDV-207 Doorbell Pro camera.
 - [hemersonfds](https://github.com/hemersonfds) for assisting with support for EARU EAEMP3C energy monitoring breaker.
-
-
+- [jldg](https://github.com/jldg) for assisting with support for Lumary A1 ceiling fan with light.
