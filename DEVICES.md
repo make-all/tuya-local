@@ -485,6 +485,7 @@
 - Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
 - Dual CT clamp bidirectional meter
+- EARU EAEMP3C-100-TY-W 3 phase bidirectional energy monitoring breaker
 - EARU SW RCB breaker
 - EARU SW DPN breaker
 - eMylo EAI-90 smart meter
