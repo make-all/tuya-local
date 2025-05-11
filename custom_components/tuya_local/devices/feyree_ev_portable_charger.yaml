@@ -127,7 +127,7 @@ entities:
         mapping:
           - scale: 10
   - entity: switch
-    name: Start/Stop charging
+    name: Charging
     dps:
       - id: 124
         type: string
@@ -136,7 +136,6 @@ entities:
         mapping:
           - dps_val: "CloseCharging"
             value: false
-            default: true
           - dps_val: "OpenCharging"
             value: true
   - entity: sensor
