@@ -928,6 +928,7 @@ port and password.
 ### Remote controllers
 
 - Arlec HUBRF06HA RF 8x8 learning remote transmitter
+- Avatto WHS20S remote control with temperature and humidity sensors
 - Moes IR/RF remote controller (also IR controller pro, may work only for IR)
 - Moes touchscreen control panel mini with IR remote and Bluetooth sigmesh hub
 - Universal remote control with temperature and humidity sensors

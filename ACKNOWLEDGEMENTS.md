@@ -900,3 +900,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lemeshovich](https://github.com/lemeshovich) for contributing support for Haozee ZG-302ZM presence dual light switch.
 - [emmanuel-ferdman](https://github.com/emmanuel-ferdman) for contributing logging improvements.
 - [r3m0x](https://github.com/r3m0x) for contributing support for PTH9BW air quality monitor.
+- [JabeBRD](https://github.com/JabeBRD) for assisting with support for Avatto WHS20S climate IR remote.
