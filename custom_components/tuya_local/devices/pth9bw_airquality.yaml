@@ -1,11 +1,10 @@
-name: Air Quality Monitor - PTH9BW
+name: Air quality monitor
 products:
   - id: ohrikjoih1cat641
     model: PTH9BW
 entities:
   - entity: sensor
-    name: Air Quality Index
-    translation_key: air_quality_index
+    translation_key: air_quality
     class: enum
     dps:
       - id: 1
@@ -19,7 +18,6 @@ entities:
           - dps_val: level_3
             value: poor
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 2
@@ -29,9 +27,7 @@ entities:
         unit: C
         mapping:
           - scale: 10
-            step: 1
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 3
@@ -40,7 +36,6 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: CO2
     class: carbon_dioxide
     dps:
       - id: 4
@@ -55,25 +50,21 @@ entities:
       - id: 5
         type: integer
         name: sensor
-        unit: mg/m³
+        unit: ugm3
         class: measurement
         mapping:
-          - scale: 100
-            step: 1
+          - scale: 0.1
   - entity: sensor
-    name: VOC
     class: volatile_organic_compounds
     dps:
       - id: 6
         type: integer
         name: sensor
-        unit: mg/m³
+        unit: ugm3
         class: measurement
         mapping:
-          - scale: 100
-            step: 1
+          - scale: 0.1
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 7
@@ -82,7 +73,6 @@ entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: PM10
     class: pm10
     dps:
       - id: 9
@@ -91,8 +81,6 @@ entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: Battery Level
-    icon: "mdi:battery"
     class: battery
     category: diagnostic
     dps:
