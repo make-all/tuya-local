@@ -903,4 +903,5 @@ Further device support has been made with the assistance of users. Please consid
 - [JabeBRD](https://github.com/JabeBRD) for assisting with support for Avatto WHS20S climate IR remote.
 - [guruprasadah](https://github.com/guruprasadah) for contributing support for generic 5-speed fan controller.
 - [Zensonize](https://github.com/Zensonize) for contributing support for EWC02 air quality meter.
-- [Otte-S](https://github.com/Otte-S) for contributing support for LSC Smart Connect Neon LED strip.
+- [Otte-S](https://github.com/Otte-S) for assisting with support for LSC Smart Connect Neon LED strip.
+- [Wob76](https://github.com/Wob76) for assisting with support for Sailesi litter box.

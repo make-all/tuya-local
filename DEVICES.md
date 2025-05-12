@@ -918,6 +918,7 @@ port and password.
 - PNI water feeder
 - Puppy Kitty automatic pet feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- Sailesi self-cleaning litter box
 - Sobralik pet fountain
 - Tesla Smart pet feeder
 - Tonepie T1PRO cat litter box
