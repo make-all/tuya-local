@@ -1,0 +1,111 @@
+name: Air quality monitor
+products:
+  - id: ohrikjoih1cat641
+    model: PTH9BW
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: level_1
+            value: excellent
+          - dps_val: level_2
+            value: good
+          - dps_val: level_3
+            value: poor
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    name: HCHO
+    class: volatile_organic_compounds
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Alarm Ringtone
+    icon: "mdi:signal"
+    category: config
+    dps:
+      - id: 29
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ringtone_1"
+            value: "ringtone_1"
+          - dps_val: "ringtone_2"
+            value: "ringtone_2"
+          - dps_val: "ringtone_3"
+            value: "ringtone_3"
+          - dps_val: "ringtone_4"
+            value: "ringtone_4"
+          - dps_val: "ringtone_5"
+            value: "ringtone_5"
