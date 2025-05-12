@@ -898,3 +898,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jldg](https://github.com/jldg) for assisting with support for Lumary A1 ceiling fan with light.
 - [julianguinard](https://github.com/julianguinard) for contributing support for Feyree portable EV charger.
 - [lemeshovich](https://github.com/lemeshovich) for contributing support for Haozee ZG-302ZM presence dual light switch.
+- [emmanuel-ferdman](https://github.com/emmanuel-ferdman) for contributing logging improvements.
