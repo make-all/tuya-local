@@ -246,6 +246,7 @@
 
 ### Fans
 
+- generic 5-speed fan controller (HomeMate, Conbre)
 - 3A Nue 3 speed fan and light controller
 - Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Amico 52" ceiling fan with light
