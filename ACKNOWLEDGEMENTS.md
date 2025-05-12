@@ -902,3 +902,4 @@ Further device support has been made with the assistance of users. Please consid
 - [r3m0x](https://github.com/r3m0x) for contributing support for PTH9BW air quality monitor.
 - [JabeBRD](https://github.com/JabeBRD) for assisting with support for Avatto WHS20S climate IR remote.
 - [guruprasadah](https://github.com/guruprasadah) for contributing support for generic 5-speed fan controller.
+- [Zensonize](https://github.com/Zensonize) for contributing support for EWC02 air quality meter.
