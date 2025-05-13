@@ -906,3 +906,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Otte-S](https://github.com/Otte-S) for assisting with support for LSC Smart Connect Neon LED strip.
 - [Wob76](https://github.com/Wob76) for assisting with support for Sailesi litter box.
 - [Zycrannny](https://github.com/Zycrannny) for assisting with support for Prestige M3 ceiling fan with light.
+- [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.

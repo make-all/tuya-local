@@ -80,6 +80,7 @@ entities:
           min: 7
           max: 25
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -91,15 +92,15 @@ entities:
             constraint: mode
             conditions:
               - dps_val: Hot
-                value: hot_water
+                value: hotwater
               - dps_val: Heating
-                value: air_heating
+                value: heat
               - dps_val: Cooling
-                value: air_cooling
+                value: cool
               - dps_val: Hot_Heating
-                value: hot_water_and_heating
+                value: hotwater_heat
               - dps_val: Hot_Cooling
-                value: hot_water_and_cooling
+                value: hotwater_cool
       - id: 2
         type: string
         name: mode

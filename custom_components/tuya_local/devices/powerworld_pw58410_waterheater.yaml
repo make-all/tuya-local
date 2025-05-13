@@ -5,6 +5,7 @@ products:
     model: PW58410
 entities:
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -16,15 +17,15 @@ entities:
             constraint: work_mode
             conditions:
               - dps_val: wth
-                value: Hot water
+                value: hotwater
               - dps_val: heat
-                value: Heating
+                value: heat
               - dps_val: cool
-                value: Cooling
+                value: cool
               - dps_val: wth_heat
-                value: Hot water + heating
+                value: hotwater_heat
               - dps_val: wth_cool
-                value: Hot water + cooling
+                value: hotwater_cool
       - id: 5
         type: string
         name: work_mode

@@ -157,6 +157,7 @@ entities:
         mapping:
           - scale: 10
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -168,19 +169,19 @@ entities:
             constraint: work_mode
             conditions:
               - dps_val: cool
-                value: air_cooling
+                value: cool
               - dps_val: heat
-                value: air_heating
+                value: heat
               - dps_val: auto
-                value: air_heat_cool
+                value: auto
               - dps_val: hot_water
-                value: hot_water
-              - dps_val: cool_hot_water
+                value: hotwater
+              - dps_val: hotwater_cool
                 value: hot_water_and_cooling
-              - dps_val: heat_hot_water
+              - dps_val: hotwater_heat
                 value: hot_water_and_heating
               - dps_val: auto_dhw
-                value: hot_water_and_heat_cool
+                value: hotwater_auto
       - id: 104
         type: integer
         name: temperature
