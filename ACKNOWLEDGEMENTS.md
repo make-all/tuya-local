@@ -907,3 +907,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Wob76](https://github.com/Wob76) for assisting with support for Sailesi litter box.
 - [Zycrannny](https://github.com/Zycrannny) for assisting with support for Prestige M3 ceiling fan with light.
 - [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.
+- [amantia](https://github.com/amantia) for contributing improvements to Axen water+air heat pump.
