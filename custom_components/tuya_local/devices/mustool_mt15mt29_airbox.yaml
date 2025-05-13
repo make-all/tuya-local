@@ -24,15 +24,8 @@ entities:
       - id: 2
         type: integer
         name: sensor
+        unit: C
         class: measurement
-      - id: 112
-        type: string
-        optional: true
-        name: unit
-        mapping:
-          - dps_val: f
-            value: F
-          - value: C
   - entity: sensor
     class: humidity
     dps:
