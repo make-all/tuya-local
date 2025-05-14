@@ -146,7 +146,7 @@ Further device support has been made with the assistance of users. Please consid
 - [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.
 - [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
 - [iDontWantAUsername](https://github.com/iDontWantAUsername) for assistance supporting Grid Connect USB charger with power socket.
-- [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
+- [engusz](https://github.com/engusz) for assistance supporting Avatto CL02 curtain switches and dual switch with timers.
 - [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
 - [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiator, and contributing Benexmart blinds support.
@@ -908,3 +908,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Zycrannny](https://github.com/Zycrannny) for assisting with support for Prestige M3 ceiling fan with light.
 - [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.
 - [amantia](https://github.com/amantia) for contributing improvements to Axen water+air heat pump.
+- [gmudrets](https://github.com/gmudrets) for assisting with support for Avatto CLS02 curtain with dual lights.
