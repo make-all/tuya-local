@@ -719,6 +719,7 @@ of device.
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
 - Tech Inc 3m neon strip
+- TG Electro TG-MS-PIR-S201 motion sensor light
 - Treatlife outdoor dimmer with dual outlets
 - TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
