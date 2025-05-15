@@ -8,19 +8,19 @@ entities:
     icon: "mdi:air-purifier"
     translation_only_key: fan_with_presets
     dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: AUTO
-          value: smart
-        - dps_val: SLEEP
-          value: sleep
-        - dps_val: MANUAL
-          value: manual
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: AUTO
+            value: smart
+          - dps_val: SLEEP
+            value: sleep
+          - dps_val: MANUAL
+            value: manual
   - entity: select
     name: Fan Speed
     icon: "mdi:fan"
@@ -30,12 +30,12 @@ entities:
         type: string
         name: option
         mapping:
-        - dps_val: LOW
-          value: low
-        - dps_val: MID
-          value: medium
-        - dps_val: HI
-          value: high
+          - dps_val: LOW
+            value: low
+          - dps_val: MID
+            value: medium
+          - dps_val: HI
+            value: high
   - entity: sensor
     class: pm25
     category: diagnostic
