@@ -21,21 +21,16 @@ entities:
             value: sleep
           - dps_val: MANUAL
             value: manual
-  - entity: select
-    name: Fan Speed
-    icon: "mdi:fan"
-    category: config
-    dps:
       - id: 4
         type: string
-        name: option
+        name: speed
         mapping:
           - dps_val: LOW
-            value: low
+            value: 33
           - dps_val: MID
-            value: medium
+            value: 66
           - dps_val: HI
-            value: high
+            value: 100
   - entity: sensor
     class: pm25
     category: diagnostic
@@ -73,9 +68,10 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter Usage (hours)
+    name: Filter Usage
     icon: "mdi:calendar-clock"
     category: diagnostic
+    class: duration
     dps:
       - id: 16
         type: integer
@@ -91,26 +87,26 @@ entities:
         mapping:
           - dps_val: cancle
             value: cancel
-          - dps_val: 1H
+          - dps_val: 1h
             value: 1h
-          - dps_val: 2H
+          - dps_val: 2h
             value: 2h
-          - dps_val: 3H
+          - dps_val: 3h
             value: 3h
-          - dps_val: 4H
+          - dps_val: 4h
             value: 4h
-          - dps_val: 5H
+          - dps_val: 5h
             value: 5h
-          - dps_val: 6H
+          - dps_val: 6h
             value: 6h
-          - dps_val: 7H
+          - dps_val: 7h
             value: 7h
-          - dps_val: 8H
+          - dps_val: 8h
             value: 8h
   - entity: sensor
-    name: Timer Remaining
-    icon: "mdi:timer-sand"
+    translation_key: time_remaining
     category: diagnostic
+    class: duration
     dps:
       - id: 19
         type: integer
