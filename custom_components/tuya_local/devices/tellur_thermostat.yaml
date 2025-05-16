@@ -23,7 +23,7 @@ entities:
           - dps_val: manual
             value: manual
           - dps_val: eco
-            value: eco  
+            value: eco
       - id: 3
         type: string
         name: hvac_action
@@ -57,8 +57,8 @@ entities:
         name: value
         unit: C
         mapping:
-        - scale: 10
-          step: 5
+          - scale: 10
+            step: 5
         range:
           min: -80
           max: 80
@@ -76,7 +76,7 @@ entities:
       - id: 40
         optional: true
         type: boolean
-        name: lock  
+        name: lock
   - entity: binary_sensor
     category: diagnostic
     class: problem
