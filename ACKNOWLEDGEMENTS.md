@@ -911,3 +911,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gmudrets](https://github.com/gmudrets) for assisting with support for Avatto CLS02 curtain with dual lights.
 - [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor.
 - [ladalochness](https://github.com/ladalochness) for contributing support for Tellur thermostat.
+- [Garthcz](https://github.com/Garthcz) for contributing support for TrueLife P3 and P7 air purifiers.
