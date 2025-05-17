@@ -28,8 +28,7 @@ entities:
         class: measurement
         offset: 1
         length: 2
-        endianness: big
-        mask: "FFFF"
+        endianness: little
         mapping:
           - scale: 10
 
@@ -58,8 +57,9 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
+        offset: 1
+        length: 2
         endianness: little
-        mask: "FFFF"
         mapping:
           - scale: 10
 
