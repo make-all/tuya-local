@@ -62,6 +62,7 @@ entities:
     name: Single phase power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 5
         type: integer
@@ -75,6 +76,7 @@ entities:
     name: Phase A power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 6
         type: base64
@@ -231,9 +233,9 @@ entities:
           - value: false
             hidden: true
   - entity: number
-    name: Delay time
+    name: Delay
+    class: duration
     category: config
-    icon: "mdi:clock"
     dps:
       - id: 28
         type: integer
