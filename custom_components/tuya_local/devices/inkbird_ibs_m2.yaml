@@ -1,0 +1,68 @@
+name: Temperature probe hub M2
+products:
+  - id: bf509ac377fe2ac7c4jqib
+    manufacturer: Inkbird
+    model: IBS-M2
+
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: dummy
+    
+      - id: 104
+        optional: true
+        type: base64
+        name: type
+        persist: false
+        endianness: little
+        mask: "FF"
+      - id: 104
+        optional: true
+        type: base64
+        name: sensor
+        unit: C
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 2
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: dummy
+      
+      - id: 103
+        optional: true
+        type: base64
+        name: type
+        persist: false
+        endianness: little
+        mask: "FF"
+      - id: 103
+        optional: true
+        type: base64
+        name: sensor
+        unit: C
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+  
+
