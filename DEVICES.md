@@ -355,6 +355,7 @@
 - Pro Breeze 30L dehumidifier
 - Qlima D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
+- Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
