@@ -27,7 +27,6 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        endianness: little
         mask: "00FF0000000000000000"
         mapping:
           - scale: 10
@@ -63,7 +62,6 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        endianness: little
         mask: "00FF0000000000000000"
         mapping:
           - scale: 10
@@ -80,9 +78,8 @@ entities:
       - id: 104
         optional: true
         type: base64
-        name: battery
+        name: sensor
         unit: "%"
-        endianness: little
         mask: "000000000000000000FF"
         mapping:
           - constraint: type
@@ -90,94 +87,94 @@ entities:
               - dps_val: 0
                 invalid: true
 
-  - entity: sensor
-    name: Temperature probe 3
-    class: temperature
-    dps:
-      - id: 105
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "00FF0000000000000000"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 3
+  #   class: temperature
+  #   dps:
+  #     - id: 105
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "00FF0000000000000000"
+  #       mapping:
+  #         - scale: 10
 
-  - entity: sensor
-    name: Temperature probe 4
-    class: temperature
-    dps:
-      - id: 106
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "0000FFFF"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 4
+  #   class: temperature
+  #   dps:
+  #     - id: 106
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "0000FFFF"
+  #       mapping:
+  #         - scale: 10
 
-  - entity: sensor
-    name: Temperature probe 5
-    class: temperature
-    dps:
-      - id: 107
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "0000FFFF"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 5
+  #   class: temperature
+  #   dps:
+  #     - id: 107
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "0000FFFF"
+  #       mapping:
+  #         - scale: 10
 
-  - entity: sensor
-    name: Temperature probe 6
-    class: temperature
-    dps:
-      - id: 108
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "0000FFFF"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 6
+  #   class: temperature
+  #   dps:
+  #     - id: 108
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "0000FFFF"
+  #       mapping:
+  #         - scale: 10
 
-  - entity: sensor
-    name: Temperature probe 7
-    class: temperature
-    dps:
-      - id: 109
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "0000FFFF"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 7
+  #   class: temperature
+  #   dps:
+  #     - id: 109
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "0000FFFF"
+  #       mapping:
+  #         - scale: 10
 
-  - entity: sensor
-    name: Temperature probe 8
-    class: temperature
-    dps:
-      - id: 110
-        optional: true
-        type: base64
-        name: sensor
-        unit: "C"
-        class: measurement
-        endianness: little
-        mask: "0000FFFF"
-        mapping:
-          - scale: 10
+  # - entity: sensor
+  #   name: Temperature probe 8
+  #   class: temperature
+  #   dps:
+  #     - id: 110
+  #       optional: true
+  #       type: base64
+  #       name: sensor
+  #       unit: "C"
+  #       class: measurement
+  #       endianness: little
+  #       mask: "0000FFFF"
+  #       mapping:
+  #         - scale: 10
 
 
