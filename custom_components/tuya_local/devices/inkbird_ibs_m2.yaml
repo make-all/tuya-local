@@ -26,8 +26,7 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        offset: 1
-        length: 2
+        mask: "0000FFFF"
         endianness: little
         mapping:
           - scale: 10
@@ -42,8 +41,7 @@ entities:
         name: battery
         unit: "%"
         class: measurement
-        offset: 9
-        length: 1
+        mask: "FF00000000"
         mapping:
           - scale: 1
 
@@ -57,11 +55,25 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        offset: 1
-        length: 2
+        mask: "0000FFFF"
         endianness: little
         mapping:
           - scale: 10
+
+  - entity: sensor
+    name: Probe 2 Battery
+    class: battery
+    dps:
+      - id: 104
+        optional: true
+        type: base64
+        name: battery
+        unit: "%"
+        class: measurement
+        mask: "FF00000000"
+        endianness: little
+        mapping:
+          - scale: 1
 
   - entity: sensor
     name: Temperature probe 3
@@ -74,7 +86,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
@@ -89,7 +101,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
@@ -104,7 +116,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
@@ -119,7 +131,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
@@ -134,7 +146,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
@@ -149,7 +161,7 @@ entities:
         unit: "C"
         class: measurement
         endianness: little
-        mask: "FFFF"
+        mask: "0000FFFF"
         mapping:
           - scale: 10
 
