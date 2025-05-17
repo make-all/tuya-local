@@ -6,18 +6,22 @@ products:
 
 entities:
   - entity: sensor
-    name: Signal strength
-    class: signal_strength
-    dps:
-      - id: 101
-        type: integer
-        name: sensor
-        unit: dBm
-
-  - entity: sensor
     name: Temperature probe 1
     class: temperature
     dps:
+      - id: 9
+        type: integer
+        name: dummy
+      - id: 113
+        type: boolean
+        name: dummy2
+      - id: 114
+        type: boolean
+        name: dummy3
+      - id: 115
+        type: boolean
+        name: dummy4
+
       - id: 103
         type: base64
         name: sensor
