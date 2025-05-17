@@ -5,24 +5,23 @@ products:
     model: IBS_M2
 
 entities:
+  - entity: select
+    name: Temperature unit
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: "c"
+            value: "C"
+          - dps_val: "f"
+            value: "F"
   - entity: sensor
     name: Temperature probe 1
     class: temperature
     dps:
-      - id: 9
-        type: string
-        name: dummy
-      - id: 113
-        type: integer
-        name: dummy2
-      - id: 114
-        type: integer
-        name: dummy3
-      - id: 115
-        type: integer
-        name: dummy4
-
       - id: 103
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -37,6 +36,7 @@ entities:
     class: temperature
     dps:
       - id: 104
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -51,6 +51,7 @@ entities:
     class: temperature
     dps:
       - id: 105
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -65,6 +66,7 @@ entities:
     class: temperature
     dps:
       - id: 106
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -79,6 +81,7 @@ entities:
     class: temperature
     dps:
       - id: 107
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -93,6 +96,7 @@ entities:
     class: temperature
     dps:
       - id: 108
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -107,6 +111,7 @@ entities:
     class: temperature
     dps:
       - id: 109
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -121,6 +126,7 @@ entities:
     class: temperature
     dps:
       - id: 110
+        optional: true
         type: base64
         name: sensor
         unit: "C"
@@ -130,14 +136,4 @@ entities:
         mapping:
           - scale: 10
 
-  - entity: select
-    name: Temperature unit
-    dps:
-      - id: 9
-        type: string
-        name: option
-        mapping:
-          - dps_val: "c"
-            value: "C"
-          - dps_val: "f"
-            value: "F"
+
