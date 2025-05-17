@@ -973,8 +973,7 @@ port and password.
 - Arlec smart button
 - Arlec usb strip light
 - BSTUOKEY Invisible induction door lock
-- Diivoo DWV010 dual water timer
-- Diivoo WT05 dual water timer
+- Diivoo DWV010, WT05 dual water timers
 - Gainsborough Liberty entrance lock
 - HCT-611 water timer
 - HCT-626 dual water timer
@@ -986,6 +985,7 @@ port and password.
 - Orion DL021HA lock
 - O'TU R1O1 fingerprint door lock
 - Positivo Smart keypad and voice locks
+- Primebras Athenas lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Raykube A1 Pro Max clip over door lock
 - SGS01 plant sensor
