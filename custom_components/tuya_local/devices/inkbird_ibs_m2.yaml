@@ -16,6 +16,7 @@ entities:
             value: "C"
           - dps_val: "f"
             value: "F"
+
   - entity: sensor
     name: Temperature probe 1
     class: temperature
@@ -26,10 +27,14 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        mask: "00FF0000000000000000"
         endianness: little
+        mask: "00FF0000000000000000"
         mapping:
           - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
   - entity: sensor
     name: Probe 1 Battery
@@ -58,25 +63,32 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        mask: "00FF0000000000000000"
         endianness: little
+        mask: "00FF0000000000000000"
         mapping:
           - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
   - entity: sensor
     name: Probe 2 Battery
     class: battery
+    category: diagnostic
     dps:
       - id: 104
         optional: true
         type: base64
         name: battery
         unit: "%"
-        class: measurement
-        mask: "000000000000000000FF"
         endianness: little
+        mask: "000000000000000000FF"
         mapping:
-          - scale: 1
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
   - entity: sensor
     name: Temperature probe 3
