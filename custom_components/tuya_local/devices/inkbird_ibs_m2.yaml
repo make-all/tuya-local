@@ -87,94 +87,284 @@ entities:
               - dps_val: 0
                 invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 3
-  #   class: temperature
-  #   dps:
-  #     - id: 105
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "00FF0000000000000000"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Temperature probe 3
+    class: temperature
+    dps:
+      - id: 105
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 4
-  #   class: temperature
-  #   dps:
-  #     - id: 106
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "0000FFFF"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Probe 3 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 5
-  #   class: temperature
-  #   dps:
-  #     - id: 107
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "0000FFFF"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Temperature probe 4
+    class: temperature
+    dps:
+      - id: 106
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 6
-  #   class: temperature
-  #   dps:
-  #     - id: 108
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "0000FFFF"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Probe 4 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 106
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 7
-  #   class: temperature
-  #   dps:
-  #     - id: 109
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "0000FFFF"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Temperature probe 5
+    class: temperature
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
-  # - entity: sensor
-  #   name: Temperature probe 8
-  #   class: temperature
-  #   dps:
-  #     - id: 110
-  #       optional: true
-  #       type: base64
-  #       name: sensor
-  #       unit: "C"
-  #       class: measurement
-  #       endianness: little
-  #       mask: "0000FFFF"
-  #       mapping:
-  #         - scale: 10
+  - entity: sensor
+    name: Probe 5 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 6
+    class: temperature
+    dps:
+      - id: 108
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Probe 6 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 108
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 7
+    class: temperature
+    dps:
+      - id: 109
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Probe 7 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 109
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 8
+    class: temperature
+    dps:
+      - id: 110
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Probe 8 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 110
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 9
+    class: temperature
+    dps:
+      - id: 111
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Probe 9 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 111
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Temperature probe 10
+    class: temperature
+    dps:
+      - id: 112
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        mask: "00FF0000000000000000"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+
+  - entity: sensor
+    name: Probe 10 Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 112
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+        mapping:
+          - constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
 
 
