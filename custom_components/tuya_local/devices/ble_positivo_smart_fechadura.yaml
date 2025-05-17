@@ -1,88 +1,87 @@
-name: Positivo Smart Fechadura
+name: Door lock
 products:
   - id: uamrw6h3
-    name: Positivo Smart Fechadura
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      name: unlock_method_create
-      optional: true
-    - id: 2
-      type: string
-      name: unlock_method_delete
-      optional: true
-    - id: 3
-      type: string
-      name: unlock_method_modify
-      optional: true
-    - id: 18
-      type: boolean
-      name: open_inside
-      optional: true
-      persist: false
-    - id: 19
-      type: integer
-      name: unlock_ble
-      optional: true
-      persist: false
-    - id: 44
-      type: boolean
-      name: rtc_lock
-      optional: true
-      persist: false
-    - id: 46
-      type: boolean
-      name: manual_lock
-      optional: true
-    - id: 47
-      type: boolean
-      name: lock_motor_state
-      readonly: true
-    - id: 54
-      type: base64
-      name: sync_method
-      optional: true
-    - id: 60
-      type: string
-      name: remote_no_pd_setkey
-      optional: true
-    - id: 61
-      type: string
-      name: remote_no_dp_key
-      optional: true
-    - id: 62
-      type: integer
-      name: unlock_app
-      optional: true
-      persist: false
-    - id: 63
-      type: integer
-      name: unlock_voice
-      optional: true
-      persist: false
-    - id: 69
-      type: string
-      name: record
-      optional: true
-    - id: 70
-      type: string
-      name: check_code_set
-      optional: true
-    - id: 71
-      type: string
-      name: ble_unlock_check
-      optional: true
-    - id: 72
-      name: unlock_record_check
-      type: string
-      optional: true
-    - id: 73
-      type: string
-      name: remote_pd_setkey_check
-      optional: true
-secondary_entities:
+    manufacturer: Positivo
+    model: Smart Fechadura
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+      - id: 18
+        type: boolean
+        name: open_inside
+        optional: true
+        persist: false
+      - id: 19
+        type: integer
+        name: unlock_ble
+        optional: true
+        persist: false
+      - id: 44
+        type: boolean
+        name: rtc_lock
+        optional: true
+        persist: false
+      - id: 46
+        type: boolean
+        name: lock
+        optional: true
+      - id: 47
+        type: boolean
+        name: lock_state
+      - id: 54
+        type: base64
+        name: sync_method
+        optional: true
+      - id: 60
+        type: string
+        name: remote_no_pd_setkey
+        optional: true
+      - id: 61
+        type: string
+        name: remote_no_dp_key
+        optional: true
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        type: integer
+        name: unlock_voice
+        optional: true
+        persist: false
+      - id: 69
+        type: string
+        name: record
+        optional: true
+      - id: 70
+        type: string
+        name: check_code_set
+        optional: true
+      - id: 71
+        type: string
+        name: ble_unlock_check
+        optional: true
+      - id: 72
+        name: unlock_record_check
+        type: string
+        optional: true
+      - id: 73
+        type: string
+        name: remote_pd_setkey_check
+        optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -165,15 +164,13 @@ secondary_entities:
       - id: 33
         type: boolean
         name: switch
-  - entity: sensor
+  - entity: event
     name: Alert
-    class: enum
     icon: "mdi:alert"
-    category: diagnostic
     dps:
       - id: 21
         type: string
-        name: sensor
+        name: event
         optional: true
         mapping:
           - dps_val: wrong_finger
