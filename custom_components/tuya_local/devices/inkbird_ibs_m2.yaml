@@ -26,10 +26,27 @@ entities:
         name: sensor
         unit: "C"
         class: measurement
-        endianness: little
+        offset: 1
+        length: 2
+        endianness: big
         mask: "FFFF"
         mapping:
           - scale: 10
+
+  - entity: sensor
+    name: Probe 1 Battery
+    class: battery
+    dps:
+      - id: 103
+        optional: true
+        type: base64
+        name: battery
+        unit: "%"
+        class: measurement
+        offset: 9
+        length: 1
+        mapping:
+          - scale: 1
 
   - entity: sensor
     name: Temperature probe 2
