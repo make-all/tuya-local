@@ -912,3 +912,5 @@ Further device support has been made with the assistance of users. Please consid
 - [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor.
 - [ladalochness](https://github.com/ladalochness) for contributing support for Tellur thermostat.
 - [Garthcz](https://github.com/Garthcz) for contributing support for TrueLife P3 and P7 air purifiers.
+- [devlucasc](https://github.com/devlucasc) for contributing support for Positivo keypad and voice locks.
+
