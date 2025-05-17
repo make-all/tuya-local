@@ -694,6 +694,7 @@ The unlock... dps below are normally integers, but can also be boolean, in which
 no information will be available about which specific credential was used to unlock the lock.
 
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked.
+- **lock_state** (optional, boolean): a read-only dp to return the current state of the lock separately from the lock dp (if provided).
 - **open** (optional, boolean): a dp to open or close the door or gate controlled by the lock, or if marked readonly to report the open status.
 - **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
 - **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.

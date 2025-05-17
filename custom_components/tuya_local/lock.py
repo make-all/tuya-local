@@ -34,6 +34,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
         self._lock_dp = dps_map.pop("lock", None)
+        self._lock_state_dp = dps_map.pop("lock_state", None)
         self._open_dp = dps_map.pop("open", None)
         self._unlock_fp_dp = dps_map.pop("unlock_fingerprint", None)
         self._unlock_pw_dp = dps_map.pop("unlock_password", None)
@@ -61,9 +62,11 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     def is_locked(self):
         """Return the a boolean representing whether the lock is locked."""
         lock = None
-        if self._lock_dp:
+        if self._lock_state_dp:
+            lock = self._lock_state_dp.get_value(self._device)
+        if lock is None and self._lock_dp:
             lock = self._lock_dp.get_value(self._device)
-        else:
+        if lock is None:
             for d in (
                 self._unlock_card_dp,
                 self._unlock_dynpw_dp,
