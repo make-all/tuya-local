@@ -125,9 +125,14 @@ entities:
         optional: true
         persist: false
       - id: 64
-        type: base64
+        type: string
         optional: true
         name: pwd_offline_time
+      - id: 67
+        type: base64
+        optional: true
+        persist: false
+        name: unlock_offline_pwd
       - id: 69
         type: string
         optional: true
@@ -147,6 +152,11 @@ entities:
         optional: true
         sensitive: true
         name: remote_pd_setkey_check
+      - id: 74
+        type: base64
+        optional: true
+        sensitive: true
+        name: unlock_multi
   - entity: sensor
     class: battery
     dps:
