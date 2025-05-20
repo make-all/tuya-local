@@ -246,7 +246,7 @@ class DeviceListener(SharingDeviceListener):
 
     def add_device(self, device: CustomerDevice) -> None:
         """A new device has been added."""
-        _LOGGER.device(
+        _LOGGER.debug(
             "Received add device %s: %s",
             device.id,
             self._manager.device_map[device.id].status,
