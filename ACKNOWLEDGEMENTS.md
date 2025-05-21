@@ -917,3 +917,4 @@ Further device support has been made with the assistance of users. Please consid
 - [peng1can](https://github.com/peng1can) for contributing support for Sefaul Q9 dehumidifier.
 - [fernac03](https://github.com/fernac03) for assisting with support for Primebras Athenas BLE lock.
 - [drak202](https://github.com/drak202) for assisting with support for 4-TH quad temperature/humidity switch.
+- [duckati](https://github.com/duckati) for assisting with support for BBCoin AT5299 PCIe computer switch.

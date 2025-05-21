@@ -502,6 +502,7 @@ the best option.
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
+- BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
 - Blitzwolf BW-SHP-9 3 outlet + USB powerstrip
 - Brilliant 1/2/3/4 gang wall switches with power monitoring
