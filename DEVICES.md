@@ -162,6 +162,7 @@
 
 ### Thermostats
 
+- 4-TH quad temperature/humidity smart switch
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW thermostat smart switch

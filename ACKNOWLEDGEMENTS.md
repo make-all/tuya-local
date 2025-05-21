@@ -916,3 +916,4 @@ Further device support has been made with the assistance of users. Please consid
 - [farpudo](https://github.com/farpudo) for contributing support for Vevor 3.7kW EV charger.
 - [peng1can](https://github.com/peng1can) for contributing support for Sefaul Q9 dehumidifier.
 - [fernac03](https://github.com/fernac03) for assisting with support for Primebras Athenas BLE lock.
+- [drak202](https://github.com/drak202) for assisting with support for 4-TH quad temperature/humidity switch.
