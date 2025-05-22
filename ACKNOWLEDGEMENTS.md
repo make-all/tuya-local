@@ -919,3 +919,4 @@ Further device support has been made with the assistance of users. Please consid
 - [drak202](https://github.com/drak202) for assisting with support for 4-TH quad temperature/humidity switch.
 - [duckati](https://github.com/duckati) for assisting with support for BBCoin AT5299 PCIe computer switch.
 - [webkaktuspl](https://github.com/webkaktuspl) for assisting with support for Vidos M13-XT video doorbell.
+- [rybe](https://github.com/rybe) for assisting with support for Haozee PS10 presence sensing light switch.
