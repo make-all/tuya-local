@@ -105,8 +105,6 @@ entities:
         name: switch
   - entity: binary_sensor
     class: sound
-    # 2025-01-05
-    deprecated: event.alarm
     name: Alarm
     category: diagnostic
     dps:
@@ -118,22 +116,16 @@ entities:
             value: false
           - dps_val: alarm
             value: true
-      - id: 26
-        type: base64
-        name: message
-        optional: true
-        persist: false
   - entity: event
     name: Alarm
     dps:
-      - id: 32
+      - id: 26
         type: string
         name: event
         mapping:
-          - dps_val: normal
+          - dps_val: null
             value: null
-          - dps_val: alarm
-            value: alarm
+          - value: alarm
       - id: 26
         type: utf16b64
         name: message
