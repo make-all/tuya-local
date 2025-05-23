@@ -898,6 +898,7 @@ port and password.
 
 - generic illuminance sensor (2 types using different dps)
 - generic PIR motion sensor
+- generic PIR with alarm
 - generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
