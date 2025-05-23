@@ -1,0 +1,143 @@
+name: LED strip
+products:
+  - id: jdsjyhct8uotmaiw
+    manufacturer: LSC Smart Connect
+    model: 5m RGBIC+CCTIC
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: text
+    name: Music data
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Control data
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    name: Pixels
+    icon: "mdi:led-strip"
+    category: diagnostic
+    dps:
+      - id: 47
+        type: integer
+        name: sensor
+        unit: px
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 51
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Dreamlight music data
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Set pixels
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 53
+        type: integer
+        name: value
+        unit: px
+        range:
+          min: 1
+          max: 1000
+  - entity: text
+    name: Paint data
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 61
+        type: base64
+        optional: true
+        name: value

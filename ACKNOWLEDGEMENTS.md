@@ -921,3 +921,4 @@ Further device support has been made with the assistance of users. Please consid
 - [webkaktuspl](https://github.com/webkaktuspl) for assisting with support for Vidos M13-XT video doorbell.
 - [rybe](https://github.com/rybe) for assisting with support for Haozee PS10 presence sensing light switch.
 - [BeriBGood](https://github.com/BeriBGood) for assisting with support for SR208C solar water heating controller.
+- [deracloust](https://github.com/deracloust) for assisting with support for LSC Smart Connect RGBIC+CCTIC LED strip.
