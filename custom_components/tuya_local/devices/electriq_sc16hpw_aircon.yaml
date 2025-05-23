@@ -1,22 +1,26 @@
-name: ElectriQ SupremeCool SC16HPW Air Conditioner (XKA-G02)
-#multi_dps_update: false
+name: Air conditioner
+# products;
+#   - id: UNKNOWN
+#     manufacturer: ElectriQ
+#     model: SupremeCool SC16HPW
+# multi_dps_update: false
 entities:
-  - entity: climate
+  - entity: switch
     dps:
       - id: 1
-        name: hvac_mode
+        name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            value_mirror: current_hvac_mode
-          - dps_val: false
-            value: 'off'
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        name: available
+        type: boolean
       - id: 2
         name: current_temperature
         type: integer
         mapping:
-          - scale: 1
-            constraint: temperature_unit
+          - constraint: temperature_unit
             conditions:
               - dps_val: f
                 value_redirect: current_temperature_f
@@ -38,6 +42,7 @@ entities:
             value: drying
           - dps_val: wind
             value: fan
+          - value: idle
       - id: 5
         name: temperature
         type: integer
@@ -45,8 +50,7 @@ entities:
           min: 16
           max: 32
         mapping:
-          - scale: 1
-            constraint: temperature_unit
+          - constraint: temperature_unit
             conditions:
               - dps_val: f
                 value_redirect: temperature_f
@@ -62,79 +66,19 @@ entities:
           min: 61
           max: 90
       - id: 7
-        name: preset_mode
+        name: hvac_mode
         type: string
-        mapping:
-          - dps_val: cool
-            value: Cool
-          - dps_val: hot
-            value: Heat
-          - dps_val: wind
-            value: Fan
-          - dps_val: smartcool
-            value: Smart Cool
-          - dps_val: dehumidify
-            value: Dehumidify
-      - id: 7
-        name: mode_cool_active
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: cool
-            value: true
-          - value: false
-      - id: 7
-        name: mode_heat_active
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: hot
-            value: true
-          - value: false
-      - id: 7
-        name: mode_fan_active
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: wind
-            value: true
-          - value: false
-      - id: 7
-        name: mode_auto_active
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: smartcool
-            value: true
-          - value: false
-      - id: 7
-        name: mode_dry_active
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: dehumidify
-            value: true
-          - value: false
-      - id: 7
-        name: current_hvac_mode
-        type: string
-        hidden: true
         mapping:
           - dps_val: cool
             value: cool
-            available: mode_cool_active
           - dps_val: hot
             value: heat
-            available: mode_heat_active
           - dps_val: wind
             value: fan_only
-            available: mode_fan_active
           - dps_val: smartcool
             value: auto
-            available: mode_auto_active
           - dps_val: dehumidify
             value: dry
-            available: mode_dry_active
       - id: 8
         name: temperature_unit
         type: string
@@ -150,38 +94,29 @@ entities:
           - dps_val: F1
             value: low
           - dps_val: F2
-            value: middle
+            value: medlow
           - dps_val: F3
             value: medium
           - dps_val: F4
-            value: high
+            value: medhigh
           - dps_val: F5
-            value: top
-      - id: 12
-        name: sleep_mode
-        type: boolean
+            value: high
       - id: 103
         type: boolean
-        name: hidden_swing_horizontal_mode
-        hidden: true
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
       - id: 104
         type: boolean
         name: swing_mode
         mapping:
           - dps_val: true
-            constraint: hidden_swing_horizontal_mode
-            conditions:
-              - dps_val: true
-                value: both
-              - dps_val: false
-                value: vertical
+            value: "on"
           - dps_val: false
-            constraint: hidden_swing_horizontal_mode
-            conditions:
-              - dps_val: true
-                value: horizontal
-              - dps_val: false
-                value: 'off'
+            value: 'off'
   - entity: select
     category: config
     translation_key: temperature_unit
@@ -208,8 +143,7 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Water Full
-    class: moisture
+    translation_key: tank_full
     dps:
       - id: 16
         type: boolean
