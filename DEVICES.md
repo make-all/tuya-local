@@ -158,6 +158,7 @@
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Sanden GAU-A45HPD WiFi heat pump controller
+- Lohxa SR208C solar water heating controller
 - Thermex IF series V pro and Lima 80V hot water systems
 
 ### Thermostats

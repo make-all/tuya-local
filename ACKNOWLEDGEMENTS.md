@@ -920,3 +920,4 @@ Further device support has been made with the assistance of users. Please consid
 - [duckati](https://github.com/duckati) for assisting with support for BBCoin AT5299 PCIe computer switch.
 - [webkaktuspl](https://github.com/webkaktuspl) for assisting with support for Vidos M13-XT video doorbell.
 - [rybe](https://github.com/rybe) for assisting with support for Haozee PS10 presence sensing light switch.
+- [BeriBGood](https://github.com/BeriBGood) for assisting with support for SR208C solar water heating controller.
