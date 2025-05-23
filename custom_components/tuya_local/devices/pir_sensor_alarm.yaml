@@ -12,8 +12,7 @@ entities:
         mapping:
           - dps_val: pir
             value: true
-          - dps_val: "none"
-            value: false
+          - value: false
   - entity: switch
     name: Armed
     icon: "mdi:shield-home"
@@ -22,15 +21,13 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    translation_key: charge_energy
-    class: plug
+    class: battery_charging
     category: diagnostic
     dps:
       - id: 103
         type: boolean
         name: sensor
   - entity: sensor
-    translation_key: battery_level
     class: battery
     category: diagnostic
     dps:
@@ -40,6 +37,7 @@ entities:
         unit: "%"
   - entity: number
     name: Alarm time
+    class: duration
     category: config
     icon: "mdi:alarm"
     dps:
