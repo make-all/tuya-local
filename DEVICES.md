@@ -87,6 +87,7 @@
 - Eberg Qubo Q40HD
 - ElectriQ 12WMINV
 - ElectriQ Airflex, EcoSilent models
+- ElectriQ SupremeCool SC16HPW
 - Fersk Vind 2
 - Fisher Summer air conditioner
 - Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)

@@ -922,3 +922,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rybe](https://github.com/rybe) for assisting with support for Haozee PS10 presence sensing light switch.
 - [BeriBGood](https://github.com/BeriBGood) for assisting with support for SR208C solar water heating controller.
 - [deracloust](https://github.com/deracloust) for assisting with support for LSC Smart Connect RGBIC+CCTIC LED strip.
+- [bputtick](https://github.com/bputtick) for contributing support for ElectriQ SupremeCool SC16HPW air conditioner.
