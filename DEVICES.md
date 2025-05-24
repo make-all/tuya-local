@@ -395,6 +395,7 @@
 - Delixing KCL-1802A-M aroma diffuser
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Tesla Smart aroma diffuser with light
 - YX-025 WB aroma diffuser

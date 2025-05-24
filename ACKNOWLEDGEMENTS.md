@@ -869,7 +869,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Codeh4ck](https://github.com/Codeh4ck) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
 - [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
-- [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
+- [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier and InLine ultrasonic aroma diffuser.
 - [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
 - [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
 - [MichalSieciechowicz](https://github.com/MichalSieciechowicz) for contributing support for Manta Windy weather station.
