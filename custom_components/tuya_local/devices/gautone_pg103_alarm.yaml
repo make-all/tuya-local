@@ -112,15 +112,15 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: normal
-            value: false
           - dps_val: alarm
             value: true
+          - value: false
   - entity: event
     name: Alarm
     dps:
       - id: 26
         type: string
+        optional: true
         name: event
         mapping:
           - dps_val: null
@@ -138,8 +138,32 @@ entities:
         type: string
         optional: true
         name: sub_state
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: powerDisconnect
+            value: false
+          - value: true
   - entity: event
     name: Power
+    deprecated: binary_sensors for battery and power
     dps:
       - id: 101
         type: string
