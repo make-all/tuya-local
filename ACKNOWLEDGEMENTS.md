@@ -927,3 +927,4 @@ Further device support has been made with the assistance of users. Please consid
 - [LordGuenni](https://github.com/LordGuenni) for contributing support for Inkbird IBS-M2 temperature probe hub.
 - [arni077r](https://github.com/arni077r) for contributing support for Euroster 4040 Smart thermostat.
 - [maksim-petukhov](https://github.com/maksim-petukhov) for assisting with support for Fral Super Cool FSC14.2 DH portable air conditioner.
+- [MchlLyn](https://github.com/MchlLyn) for assisting with support for dé Wall Charger (3-phase 22Kw).
