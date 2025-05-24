@@ -24,15 +24,15 @@ entities:
         range:
           min: 5
           max: 35
-        # it is likely the F temperatures are encoded in a different place in the masked field,
-        # so assume we can ignore temperature unit and always use C
+        # it is likely the F temperatures are encoded in a different place
+        #  in the masked field, so ignore temperature unit and always use C
         unit: C
       - id: 103
         type: base64
         name: current_temperature
         optional: true
         mask: "00000000000000000000FF00000000000000"
-        # Full Current Temperature= "Current Temperature"+"Current Temperature Decimal"
+        # full current temp=current_temperature + current_temperature_decimal
       - id: 103
         type: base64
         name: current_temperature_decimal
@@ -51,6 +51,7 @@ entities:
           - dps_val: 5
             value: heating
           - value: idle
+  - entity: select
     translation_key: temperature_unit
     category: config
     dps:
@@ -65,8 +66,9 @@ entities:
 
   # HEX Value      2d 02 00 00 00 00 00 02 18 01 14 06 80 00 80 00 08 02
   # complex encoding that can't be directly supported, so provide it
-  # hidden by default in case someone wants to handle it with helpers, templates and automation
-  # Set_temperature= "Set Temperature"+"Set Temperature Decimal"
+  # hidden by default in case someone wants to handle it with helpers,
+  # templates and automation
+  # Set temperature = temperature+"Set temperature decimal"
   - entity: number
     name: Set temperature decimal
     category: diagnostic
@@ -104,7 +106,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    # requesting refresh of schedule - hide by default, as schedule is not exposed
+    # request refresh of schedule - hide by default, as schedule not exposed
     # (dp 104 - HEX Value(015555555aaaaaaaaaaaaaaa55170918010000))
     name: Fetch schedule
     icon: "mdi:calendar-sync"
