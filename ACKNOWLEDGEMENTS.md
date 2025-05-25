@@ -930,3 +930,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MchlLyn](https://github.com/MchlLyn) for assisting with support for dé Wall Charger (3-phase 22Kw).
 - [diegoschefer](https://github.com/diegoschefer) for assisting with support for Zemismart ZM85EL-1x roller blind motor.
 - [sangphan12](https://github.com/sangphan12) for assisting with support for Neo Siren Alarm 2.
+- [orzeu](https://github.com/orzeu) for assisting with support for Parkside PPWD 30 A1 workshop vacuum.

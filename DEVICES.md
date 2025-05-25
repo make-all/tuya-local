@@ -739,6 +739,7 @@ of device.
 - Mellerware City Move vacuum cleaner
 - Neatsvor X600 vacuum cleaner
 - OPK K2 vacuum cleaner
+- Parkside PPWD 30 A1 workshop vacuum
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
 - Tefal X-plorer serie 75 animal vacuum
