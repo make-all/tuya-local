@@ -566,7 +566,7 @@ Further device support has been made with the assistance of users. Please consid
 - [chris-garbas](https://github.com/chris-garbas) for contributing improvements to IPS pro heatpump.
 - [Nyotee](https://github.com/Nyotee) for assisting with support for Tesla Smart AUX series air conditioner.
 - [psuet](https://github.com/psuet) for assisting with support for XCase lock boxes.
-- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer and contributing support for Nybro heater.
+- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer, iGET HOME video doorbell and contributing support for Nybro heater.
 - [Zelaf](https://github.com/Zelaf) for contributing improvements to Nedis portable air conditioner.
 - [hwhesselink](https://github.com/hwhesselink) for contributing support for Amico ceiling fans.
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.

@@ -779,6 +779,7 @@ work reliably, even if listed below.
 
 - Cleverio CD200 video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
+- iGET HOME DS1 video doorbell
 - HunterTBK HF-6602T video doorbell
 - KW02 video doorbell
 - Linda Smart 7S video doorbell
