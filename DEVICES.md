@@ -1040,6 +1040,7 @@ entity types as sub devices.
 - Nedis ZBRC10WT 4 button remote control
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
+- Neo Siren Alarm 2
 - PY321-Z-TY energy meter
 - Smart air box BR V2
 - Temperature and humidity sensor with alarm feature
@@ -1048,7 +1049,6 @@ entity types as sub devices.
 - Zemismart SPM01 energy meter
 - Zemismart ZM85EL-1x roller blind motor
 - ZPmeter 214C-Z water meter (with and without valve control)
-
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
