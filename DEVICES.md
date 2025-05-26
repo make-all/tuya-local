@@ -404,6 +404,7 @@
 
 ### Kitchen Appliances
 
+- Aeno EK7S kettle
 - Anko 1.7L smart kettle
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
