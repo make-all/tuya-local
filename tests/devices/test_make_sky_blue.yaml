@@ -1,0 +1,55 @@
+name: MPTT Make Sky Blue
+products:
+  - id: 8dgup45mwlbnguby
+    manufacturer: Make Sky Blue
+    model: v123
+entities:
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: PV_input_voltage
+        unit: V
+        class: measurement
+      - id: 103
+        type: integer
+        name: battery_charging_voltage
+        unit: V
+        class: measurement 
+      - id: 104
+        type: integer
+        name: battery_charging_current
+        unit: A
+        class: measurement  
+      - id: 105
+        type: integer
+        name: power
+        unit: W
+        class: measurement    
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Standby
+            value: Standby
+          - dps_val: MPPT
+            value: MPPT
+  - entity: switch
+    name: Charging
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: on_off
+        mapping:
+          - dps_val: "Off"
+            value: false
+          - dps_val: "on"
+            value: true
