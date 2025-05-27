@@ -4,7 +4,6 @@ products:
     model: V-WIFI-DL01-ES
 entities:
   - entity: sensor
-    name: Total energy
     class: energy
     dps:
       - id: 108
@@ -122,6 +121,7 @@ entities:
           - value: false
   - entity: event
     name: Sync request
+    category: diagnostic
     dps:
       - id: 101
         type: string
