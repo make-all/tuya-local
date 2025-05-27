@@ -932,3 +932,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sangphan12](https://github.com/sangphan12) for assisting with support for Neo Siren Alarm 2.
 - [orzeu](https://github.com/orzeu) for assisting with support for Parkside PPWD 30 A1 workshop vacuum.
 - [RudikHotValliant](https://github.com/RudikHotValliant) for assisting with support for Aeno EK7S kettle.
+- [sidkipper1](https://github.com/sidkipper1) for assisting with support for V-WIFI-DL01-ES energy meter.

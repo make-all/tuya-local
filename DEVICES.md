@@ -466,7 +466,8 @@
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
 - Unknown brand dual channel smart meter
-- V-WIFI-DL02-ES energy consumption clamp meter
+- V-WIFI-DL01-ES energy consumption single clamp meter
+- V-WIFI-DL02-ES energy consumption dual clamp meter
 - WDYK 2P63A, 3P 400V, 4P100A  energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
