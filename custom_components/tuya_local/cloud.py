@@ -169,7 +169,16 @@ class Cloud:
             )
             existing = existing_id or existing_uuid
             cloud_device["exists"] = existing and existing.get("device")
-            cloud_devices[cloud_device["id"]] = cloud_device
+            if hasattr(device, "node_id"):
+                index = "/".join(
+                    [
+                        cloud_device["id"],
+                        cloud_device["node_id"],
+                    ]
+                )
+            else:
+                index = cloud_device["id"]
+            cloud_devices[index] = cloud_device
 
         return cloud_devices
 
