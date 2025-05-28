@@ -18,15 +18,37 @@ entities:
         name: battery_charging_voltage
         unit: V
         class: measurement
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
       - id: 104
         type: integer
         name: battery_charging_current
         unit: A
         class: measurement
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
       - id: 105
         type: integer
         name: power
         unit: W
+        class: measurement
+      - id: 108
+        type: integer
+        name: total_energy
+        unit: W
+        class: measurement      
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: temperature
+        unit: °C
         class: measurement
   - entity: sensor
     class: enum
@@ -35,7 +57,7 @@ entities:
     dps:
       - id: 101
         type: string
-        name: sensor
+        name: charge_mode
         mapping:
           - dps_val: Standby
             value: Standby
@@ -53,3 +75,58 @@ entities:
             value: false
           - dps_val: "on"
             value: true
+  - entity: number
+    name: undervoltage_recovery
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: undervoltage_protection_value
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: absorption_charging_voltage_setting
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: float_charging_voltage_setting
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: charging_current_setting
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 60
