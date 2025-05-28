@@ -209,6 +209,7 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
+- Polytherm Polyalpha thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
@@ -404,6 +405,7 @@
 
 ### Kitchen Appliances
 
+- Aeno EK7S kettle
 - Anko 1.7L smart kettle
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
@@ -465,7 +467,8 @@
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
 - Unknown brand dual channel smart meter
-- V-WIFI-DL02-ES energy consumption clamp meter
+- V-WIFI-DL01-ES energy consumption single clamp meter
+- V-WIFI-DL02-ES energy consumption dual clamp meter
 - WDYK 2P63A, 3P 400V, 4P100A  energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter

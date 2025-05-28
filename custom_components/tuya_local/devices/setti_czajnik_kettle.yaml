@@ -6,25 +6,25 @@ products:
     name: Czajnik
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 1
         type: boolean
         name: operation_mode
         mapping:
           - dps_val: false
-            value: "Off"
+            value: "off"
           - dps_val: true
             constraint: work_type
             conditions:
               - dps_val: setting_quick
-                value: Quick Set
+                value: quick_heat
               - dps_val: boiling_quick
-                value: Quick Boil
+                value: quick_boil
               - dps_val: temp_setting
-                value: Set
+                value: heat
               - dps_val: temp_boiling
-                value: Boil
+                value: boil
       - id: 2
         type: integer
         name: current_temperature

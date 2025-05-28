@@ -5,7 +5,7 @@ products:
     model: KE4071TF
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 2
         type: integer
@@ -54,13 +54,13 @@ entities:
         name: operation_mode
         mapping:
           - dps_val: setting_quick
-            value: Quick heat
+            value: quick_heat
           - dps_val: boiling_quick
-            value: Quick boil
+            value: quick_boil
           - dps_val: temp_setting
-            value: Heat
+            value: heat
           - dps_val: temp_boiling
-            value: Boil
+            value: boil
   - entity: switch
     dps:
       - id: 1

@@ -97,6 +97,14 @@ entities:
         name: switch
         optional: true
   - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
     name: Alarm notification
     category: config
     dps:
@@ -155,7 +163,7 @@ entities:
     category: diagnostic
     dps:
       - id: 101
-        type: boolean
+        type: string
         name: sensor
         mapping:
           - dps_val: powerDisconnect
