@@ -934,3 +934,4 @@ Further device support has been made with the assistance of users. Please consid
 - [RudikHotValliant](https://github.com/RudikHotValliant) for assisting with support for Aeno EK7S kettle.
 - [sidkipper1](https://github.com/sidkipper1) for assisting with support for V-WIFI-DL01-ES energy meter.
 - [ruygargar](https://github.com/ruygargar) for contributing support for Polytherm Polyalpha thermostat.
+- [TomMichalkevic](https://github.com/TomMichalkevic) for assisting with support for garage door opener with camera.

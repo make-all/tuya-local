@@ -803,6 +803,7 @@ port and password.
 - BCom Majic IPBox intercom camera
 - Camnsmart E27-TY camera
 - Door peephole camera
+- Garage door opener camera combo
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - LSC Smart Connect dual band outdoor camera
