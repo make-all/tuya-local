@@ -657,6 +657,7 @@ of device.
 - Moes star projector
 - MoesGo dimmer switch
 - Nedis Smart LED Strip
+- NemoLight Extreme Series aquarium light
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
 - Outon Smart Lamp
