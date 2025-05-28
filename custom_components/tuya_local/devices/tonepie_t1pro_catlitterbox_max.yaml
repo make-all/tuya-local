@@ -3,6 +3,9 @@ products:
   - id: fgdeheqmt4mdhzr8
     manufacturer: Tonepie
     model: T1Pro MAX
+  - id: 245oe8zmuebemjah
+    manufacturer: Tonepie
+    model: T1Pro
 entities:
   # Controls (Primary Actions)
   # Initiates immediate cleaning cycle
@@ -102,14 +105,24 @@ entities:
           - dps_val: true
             value: false
   # Prevents operation during specified quiet hours
-  - entity: switch
+  - entity: button
     name: Do not disturb
     icon: "mdi:power-sleep"
     category: config
     dps:
       - id: 106
         type: boolean
-        name: switch
+        optional: true
+        name: button
+  - entity: button
+    name: Do not disturb off
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        optional: true
+        name: button
   # Controls the device's LED lighting
   - entity: light
     name: Ambient light
@@ -117,12 +130,14 @@ entities:
     dps:
       - id: 113
         type: string
-        name: switch
+        name: brightness
         mapping:
           - dps_val: "led_on"
-            value: true
+            value: 255
+          - dps_val: "led_dim"
+            value: 128
           - dps_val: "led_off"
-            value: false
+            value: 0
   # Prevents accidental button presses
   - entity: lock
     translation_key: child_lock
@@ -346,3 +361,27 @@ entities:
             value: "Sand Smoothing Started"
           - dps_val: 2097152
             value: "Sand Smoothing Completed"
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: standby
+            value: standby
+          - dps_val: waiting_cluster
+            value: caking
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: uv
+            value: sterilizing
+          - dps_val: deodorization
+            value: deodorizing
+          - dps_val: sleep
+            value: sleep
