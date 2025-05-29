@@ -52,8 +52,8 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
 
         range = self._value_dp.range(device, False)
         if range:
-            self._attr_native_min = range["min"]
-            self._attr_native_max = range["max"]
+            self._attr_native_min = range[0]
+            self._attr_native_max = range[1]
             self._extra_info[ATTR_MIN] = self._attr_native_min
             self._extra_info[ATTR_MAX] = self._attr_native_max
 
