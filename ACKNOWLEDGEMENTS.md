@@ -936,3 +936,5 @@ Further device support has been made with the assistance of users. Please consid
 - [ruygargar](https://github.com/ruygargar) for contributing support for Polytherm Polyalpha thermostat.
 - [TomMichalkevic](https://github.com/TomMichalkevic) for assisting with support for garage door opener with camera.
 - [ald0001](https://github.com/ald0001) for assisting with support for NemoLight Extreme Series aquarium light.
+- [teichmaj](https://github.com/teichmaj) for assisting with support for Emmeti Zona thermostat.
+- [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations.
