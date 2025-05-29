@@ -5,8 +5,9 @@ products:
     model: v123
 entities:
   - entity: sensor
-    class: enum
-    category: sensor
+    class: string
+    category: diagnostic
+    name: charge_mode
     dps:
       - id: 101
         type: enum
@@ -24,54 +25,64 @@ entities:
             value: mode_5
   - entity: sensor
     class: voltage
-    category: sensor
+    category: diagnostic
+    name: pv_voltage
     dps:
       - id: 102
-        type: value
+        type: integer
         name: pv_voltage
         unit: V
-        max: 10000
-        min: 0
-        scale: 1
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
         step: 1
   - entity: sensor
     class: voltage
-    category: sensor
+    category: diagnostic
+    name: bat_voltage
     dps:
       - id: 103
-        type: value
+        type: integer
         name: bat_voltage
         unit: V
         class: measurement
-        max: 5000
-        min: 0
-        scale: 1
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - scale: 10
         step: 1
   - entity: sensor
     class: current
-    category: sensor
+    category: diagnostic
     dps:
       - id: 104
-        type: value
+        type: integer
         name: bat_current
         unit: A
         class: measurement
-        max: 2500
-        min: 0
-        scale: 1
+        range:
+          min: 0
+          max: 2500
+        mapping:
+          - scale: 10
         step: 1
   - entity: sensor
     class: current
-    category: sensor
+    category: diagnostic
     dps:
       - id: 104
-        type: value
+        type: ineger
         name: power
         unit: W
         class: measurement
-        max: 100000
-        min: 0
-        scale: 1
+        range:
+          min: 0
+          max: 100000
+        mapping:
+          - scale: 10
         step: 1
   - entity: switch
     name: Charging
@@ -87,49 +98,40 @@ entities:
             value: true
   - entity: sensor
     name: fault
-    category: sensor
+    category: diagnostic
     dps:
       - id: 107
-        type: bitmap
-        name: fault
-        maxlen: 6
+        type: bitfield
+        name: fault_code
         mapping:
-          - dps_val: alarm1
-            value: alarm1
-          - dps_val: alarm2
-            value: alarm2
-          - dps_val: alarm3
-            value: alarm3
-          - dps_val: alarm4
-            value: alarm4
-          - dps_val: alarm5
-            value: alarm5
-          - dps_val: alarm6
-            value: alarm6
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: sensor
     class: energy
-    category: sensor
+    category: diagnostic
     dps:
       - id: 108
         type: value
         name: electric_total
-        unit: KW.h
+        unit: W
         class: measurement
-        max: 100000
-        min: 0
-        scale: 1
+        range:
+          min: 0
+          max: 100000
+        mapping:
+          - scale: 10
         step: 1
   - entity: number
     name: uv_reco_value
     category: config
     dps:
       - id: 109
-        type: integer
+        type: value
         name: uv_reco_value
         unit: V
-        max: 999
-        min: 0
-        scale: 1
+        mapping:
+          - scale: 10
         step: 1
         range:
           min: 0
@@ -139,31 +141,32 @@ entities:
     category: config
     dps:
       - id: 110
-        type: integer
+        type: value
         name: undervol_value
         unit: V
-        max: 999
-        min: 0
-        scale: 1
+        mapping:
+          - scale: 10
         step: 1
         range:
           min: 0
           max: 1000
   - entity: sensor
-    name: battery_percentage
-    category: sensor
+    category: diagnostic
     class: battery
     dps:
       - id: 111
         type: integer
         name: battery_percentage
-        max: 100
-        min: 0
-        scale: 1
+        unit: "%"
+        ange:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 10
         step: 1
-  - entity: number
+  - entity: option
     name: battery_type
-    category: sensor
+    category: config
     dps:
       - id: 112
         class: enum
@@ -174,28 +177,30 @@ entities:
           - dps_val: lithium
             value: lithium
   - entity: sensor
-    name: temp_current
-    category: sensor
+    category: diagnostic
     class: temperature
     dps:
       - id: 113
         type: integer
         name: temp_current
         unit: ℃
-        max: 1200
-        min: -400
-        scale: 1
+        range:
+          min: -400
+          max: 1200
+        mapping:
+          - scale: 10
         step: 1
   - entity: sensor
-    name: battery_cell
-    category: sensor
+    name: battery_cell_count
+    category: diagnostic
     class: enum
     dps:
       - id: 114
         type: value
-        name: battery_cell
-        max: 20
-        min: 1
+        name: battery_cell_count
+        range:
+          min: 1
+          max: 20
         scale: 0
         step: 1
   - entity: number
@@ -204,12 +209,11 @@ entities:
     class: voltage
     dps:
       - id: 115
-        type: integer
+        type: value
         name: equalization_volt
         unit: V
-        max: 1000
-        min: 0
-        scale: 1
+        mapping:
+          - scale: 10
         step: 1
         range:
           min: 0
@@ -220,12 +224,11 @@ entities:
     class: voltage
     dps:
       - id: 116
-        type: integer
+        type: value
         name: float_charg_volt
         unit: V
-        max: 1000
-        min: 0
-        scale: 1
+        mapping:
+          - scale: 10
         step: 1
         range:
           min: 0
@@ -236,11 +239,9 @@ entities:
     class: current
     dps:
       - id: 117
-        type: integer
+        type: value
         name: constant_cur_set
         unit: A
-        max: 150
-        min: 0
         scale: 0
         step: 1
         range:
@@ -252,11 +253,9 @@ entities:
     class: duration
     dps:
       - id: 1189
-        type: integer
+        type: value
         name: output_timr
         unit: h
-        max: 24
-        min: 0
         scale: 0
         step: 1
         range:
