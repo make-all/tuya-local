@@ -5,128 +5,261 @@ products:
     model: v123
 entities:
   - entity: sensor
+    class: enum
+    category: sensor
+    dps:
+      - id: 101
+        type: enum
+        name: charge_mode
+        mapping:
+          - dps_val: mode_1
+            value: mode_1
+          - dps_val: mode_2
+            value: mode_2
+          - dps_val: mode_3
+            value: mode_3
+          - dps_val: MPPT
+            value: mode_4
+          - dps_val: mode_5
+            value: mode_5
+  - entity: sensor
     class: voltage
-    category: diagnostic
+    category: sensor
     dps:
       - id: 102
-        type: integer
-        name: sensor_voltage
+        type: value
+        name: pv_voltage
         unit: V
-        class: measurement
+        max: 10000
+        min: 0
+        scale: 1
+        step: 1
+  - entity: sensor
+    class: voltage
+    category: sensor
+    dps:
       - id: 103
-        type: integer
-        name: battery_charging_voltage
+        type: value
+        name: bat_voltage
         unit: V
         class: measurement
+        max: 5000
+        min: 0
+        scale: 1
+        step: 1
   - entity: sensor
     class: current
-    category: diagnostic
+    category: sensor
     dps:
       - id: 104
-        type: integer
-        name: battery_charging_current
+        type: value
+        name: bat_current
         unit: A
         class: measurement
+        max: 2500
+        min: 0
+        scale: 1
+        step: 1
   - entity: sensor
-    class: energy
-    category: diagnostic
+    class: current
+    category: sensor
     dps:
-      - id: 105
-        type: integer
+      - id: 104
+        type: value
         name: power
         unit: W
         class: measurement
-      - id: 108
-        type: integer
-        name: total_energy
-        unit: W
-        class: measurement
-  - entity: sensor
-    class: energy
-    category: diagnostic
-    dps:
-      - id: 113
-        type: integer
-        name: temperature
-        unit: °C
-        class: measurement
-  - entity: sensor
-    class: enum
-    translation_key: status
-    icon: "mdi:ev-station"
-    dps:
-      - id: 101
-        type: string
-        name: charge_mode
-        mapping:
-          - dps_val: Standby
-            value: Standby
-          - dps_val: MPPT
-            value: MPPT
+        max: 100000
+        min: 0
+        scale: 1
+        step: 1
   - entity: switch
     name: Charging
+    category: config
     dps:
       - id: 106
         type: bool
-        optional: true
         name: on_off
         mapping:
           - dps_val: "Off"
             value: false
           - dps_val: "on"
             value: true
+  - entity: sensor
+    name: fault
+    category: sensor
+    dps:
+      - id: 107
+        type: bitmap
+        name: fault
+        maxlen: 6
+        mapping:
+          - dps_val: alarm1
+            value: alarm1
+          - dps_val: alarm2
+            value: alarm2
+          - dps_val: alarm3
+            value: alarm3
+          - dps_val: alarm4
+            value: alarm4
+          - dps_val: alarm5
+            value: alarm5
+          - dps_val: alarm6
+            value: alarm6
+  - entity: sensor
+    class: energy
+    category: sensor
+    dps:
+      - id: 108
+        type: value
+        name: electric_total
+        unit: KW.h
+        class: measurement
+        max: 100000
+        min: 0
+        scale: 1
+        step: 1
   - entity: number
-    name: undervoltage_recovery
+    name: uv_reco_value
     category: config
     dps:
       - id: 109
         type: integer
-        name: value
+        name: uv_reco_value
         unit: V
+        max: 999
+        min: 0
+        scale: 1
+        step: 1
         range:
           min: 0
-          max: 100
+          max: 1000
   - entity: number
-    name: undervoltage_protection_value
+    name: undervol_value
     category: config
     dps:
       - id: 110
         type: integer
-        name: value
+        name: undervol_value
         unit: V
+        max: 999
+        min: 0
+        scale: 1
+        step: 1
         range:
           min: 0
-          max: 100
+          max: 1000
+  - entity: sensor
+    name: battery_percentage
+    category: sensor
+    class: battery
+    dps:
+      - id: 111
+        type: integer
+        name: battery_percentage
+        unit: %
+        max: 100
+        min: 0
+        scale: 1
+        step: 1
   - entity: number
-    name: absorption_charging_voltage_setting
+    name: battery_type
+    category: sensor
+    dps:
+      - id: 112
+        class: enum
+        name: battery_type
+        mapping:
+          - dps_val: lead_acid
+            value: lead_acid
+          - dps_val: lithium
+            value: lithium
+  - entity: sensor
+    name: temp_current
+    category: sensor
+    class: temperature
+    dps:
+      - id: 113
+        type: integer
+        name: temp_current
+        unit: ℃
+        max: 1200
+        min: -400
+        scale: 1
+        step: 1
+  - entity: sensor
+    name: battery_cell
+    category: sensor
+    class: enum
+    dps:
+      - id: 114
+        type: value
+        name: battery_cell
+        max: 20
+        min: 1
+        scale: 0
+        step: 1
+  - entity: number
+    name: equalization_volt
     category: config
+    class: voltage
     dps:
       - id: 115
         type: integer
-        name: value
+        name: equalization_volt
         unit: V
+        max: 1000
+        min: 0
+        scale: 1
+        step: 1
         range:
           min: 0
-          max: 100
+          max: 1000
   - entity: number
-    name: float_charging_voltage_setting
+    name: equalizatifloat_charg_volton_volt
     category: config
+    class: voltage
     dps:
       - id: 116
         type: integer
-        name: value
+        name: float_charg_volt
         unit: V
+        max: 1000
+        min: 0
+        scale: 1
+        step: 1
         range:
           min: 0
-          max: 100
+          max: 1000
   - entity: number
-    name: charging_current_setting
+    name: constant_cur_set
     category: config
+    class: current
     dps:
       - id: 117
         type: integer
-        name: value
+        name: constant_cur_set
         unit: A
+        max: 150
+        min: 0
+        scale: 0
+        step: 1
         range:
           min: 0
-          max: 60
+          max: 150
+  - entity: number
+    name: output_timr
+    category: config
+    class: duration
+    dps:
+      - id: 1189
+        type: integer
+        name: output_timr
+        unit: h
+        max: 24
+        min: 0
+        scale: 0
+        step: 1
+        range:
+          min: 0
+          max: 24
