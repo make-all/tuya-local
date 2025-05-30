@@ -30,7 +30,7 @@ entities:
     dps:
       - id: 102
         type: integer
-        name: pv_voltage
+        name: sensor
         unit: V
         range:
           min: 0
@@ -44,7 +44,7 @@ entities:
     dps:
       - id: 103
         type: integer
-        name: bat_voltage
+        name: sensor
         unit: V
         class: measurement
         range:
@@ -55,10 +55,11 @@ entities:
   - entity: sensor
     class: current
     category: diagnostic
+    name: bat_current
     dps:
       - id: 104
         type: integer
-        name: bat_current
+        name: sensor
         unit: A
         class: measurement
         range:
@@ -69,17 +70,18 @@ entities:
   - entity: sensor
     class: current
     category: diagnostic
+    name: power
     dps:
       - id: 105
         type: integer
-        name: power
+        name: sensor
         unit: W
         class: measurement
         range:
           min: 0
           max: 100000
         mapping:
-          - scale: 10
+          - scale: 1
   - entity: switch
     name: Charging
     category: config
@@ -88,10 +90,10 @@ entities:
         type: boolean
         name: on_off
         mapping:
-          - dps_val: "Off"
-            value: false
-          - dps_val: "on"
-            value: true
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            value: "on"
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -109,10 +111,11 @@ entities:
   - entity: sensor
     class: energy
     category: diagnostic
+    name: electric_total
     dps:
       - id: 108
         type: integer
-        name: electric_total
+        name: sensor
         unit: W
         class: measurement
         range:
@@ -148,17 +151,18 @@ entities:
           max: 1000
   - entity: sensor
     category: diagnostic
+    name: battery_percentage
     class: battery
     dps:
       - id: 111
         type: integer
-        name: battery_percentage
+        name: value
         unit: "%"
         range:
           min: 0
           max: 100
         mapping:
-          - scale: 10
+          - scale: 1
   - entity: select
     name: battery_type
     category: config
@@ -177,7 +181,7 @@ entities:
     dps:
       - id: 113
         type: integer
-        name: temp_current
+        name: value
         unit: ℃
         range:
           min: -400
@@ -191,7 +195,7 @@ entities:
     dps:
       - id: 114
         type: integer
-        name: battery_cell_count
+        name: value
         range:
           min: 1
           max: 20
