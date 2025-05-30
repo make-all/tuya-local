@@ -13,14 +13,14 @@ entities:
         type: string
         name: charge_mode
         mapping:
-          - dps_val: Standby
-            value: mode_1
+          - dps_val: mode_1
+            value: Standby
           - dps_val: mode_2
             value: mode_2
           - dps_val: mode_3
             value: mode_3
-          - dps_val: MPPT
-            value: mode_4
+          - dps_val: mode_4
+            value: MPPT
           - dps_val: mode_5
             value: mode_5
   - entity: sensor
@@ -160,18 +160,18 @@ entities:
           max: 100
         mapping:
           - scale: 10
-  - entity: option
+  - entity: select
     name: battery_type
     category: config
     dps:
       - id: 112
-        class: enum
-        name: battery_type
+        class: string
+        name: option
         mapping:
           - dps_val: lead_acid
-            value: lead_acid
+            value: Lead acid
           - dps_val: lithium
-            value: lithium
+            value: Lithium
   - entity: sensor
     category: diagnostic
     class: temperature
