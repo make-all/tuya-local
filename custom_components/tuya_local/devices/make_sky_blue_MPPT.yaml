@@ -81,19 +81,19 @@ entities:
           min: 0
           max: 100000
         mapping:
-          - scale: 1
+          - scale: 10
   - entity: switch
     name: Charging
     category: config
     dps:
       - id: 106
         type: boolean
-        name: on_off
+        name: switch
         mapping:
-          - dps_val: false
-            value: "Off"
-          - dps_val: true
-            value: "on"
+          - dps_val: "Off"
+            value: false
+          - dps_val: "on"
+            value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -116,7 +116,7 @@ entities:
       - id: 108
         type: integer
         name: sensor
-        unit: W
+        unit: kW
         class: measurement
         range:
           min: 0
@@ -156,7 +156,7 @@ entities:
     dps:
       - id: 111
         type: integer
-        name: value
+        name: sensor
         unit: "%"
         range:
           min: 0
@@ -168,7 +168,8 @@ entities:
     category: config
     dps:
       - id: 112
-        class: string
+        type: string
+        optional: true
         name: option
         mapping:
           - dps_val: lead_acid
@@ -181,7 +182,7 @@ entities:
     dps:
       - id: 113
         type: integer
-        name: value
+        name: sensor
         unit: ℃
         range:
           min: -400
@@ -195,7 +196,7 @@ entities:
     dps:
       - id: 114
         type: integer
-        name: value
+        name: sensor
         range:
           min: 1
           max: 20
@@ -246,9 +247,9 @@ entities:
   - entity: number
     name: output_timr
     category: config
-    class: duration
+    class: current
     dps:
-      - id: 1189
+      - id: 118
         type: integer
         name: value
         unit: h
