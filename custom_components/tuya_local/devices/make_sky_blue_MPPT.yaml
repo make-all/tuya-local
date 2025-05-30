@@ -10,7 +10,7 @@ entities:
     name: charge_mode
     dps:
       - id: 101
-        type: enum
+        type: string
         name: charge_mode
         mapping:
           - dps_val: Standby
@@ -113,7 +113,7 @@ entities:
     category: diagnostic
     dps:
       - id: 108
-        type: value
+        type: integer
         name: electric_total
         unit: W
         class: measurement
@@ -128,7 +128,7 @@ entities:
     category: config
     dps:
       - id: 109
-        type: value
+        type: integer
         name: uv_reco_value
         unit: V
         mapping:
@@ -142,7 +142,7 @@ entities:
     category: config
     dps:
       - id: 110
-        type: value
+        type: integer
         name: undervol_value
         unit: V
         mapping:
@@ -156,7 +156,7 @@ entities:
     class: battery
     dps:
       - id: 111
-        type: value
+        type: integer
         name: battery_percentage
         unit: "%"
         ange:
@@ -182,7 +182,7 @@ entities:
     class: temperature
     dps:
       - id: 113
-        type: value
+        type: integer
         name: temp_current
         unit: ℃
         range:
@@ -197,7 +197,7 @@ entities:
     class: enum
     dps:
       - id: 114
-        type: value
+        type: integer
         name: battery_cell_count
         range:
           min: 1
@@ -210,7 +210,7 @@ entities:
     class: voltage
     dps:
       - id: 115
-        type: value
+        type: integer
         name: equalization_volt
         unit: V
         mapping:
@@ -225,7 +225,7 @@ entities:
     class: voltage
     dps:
       - id: 116
-        type: value
+        type: integer
         name: float_charg_volt
         unit: V
         mapping:
@@ -240,7 +240,7 @@ entities:
     class: current
     dps:
       - id: 117
-        type: value
+        type: integer
         name: constant_cur_set
         unit: A
         scale: 0
@@ -254,7 +254,7 @@ entities:
     class: duration
     dps:
       - id: 1189
-        type: value
+        type: integer
         name: output_timr
         unit: h
         scale: 0
