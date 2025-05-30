@@ -1,4 +1,4 @@
-name: MPPT Make Sky Blue
+name: MPTT Make Sky Blue
 products:
   - id: 8dgup45mwlbnguby
     manufacturer: Make Sky Blue
@@ -83,17 +83,14 @@ entities:
         mapping:
           - scale: 10
   - entity: switch
+    hidden: true
     name: Charging
     category: config
     dps:
       - id: 106
         type: boolean
         name: switch
-        mapping:
-          - dps_val: "Off"
-            value: false
-          - dps_val: "on"
-            value: true
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
