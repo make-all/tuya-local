@@ -1,0 +1,168 @@
+name: Air conditioner
+products:
+  - id: vt8geitareko1itp
+    manufacturer: Fral
+    model: Super Cool
+    model_id: FSC14.2 DH
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cooling
+                value: cool
+              - dps_val: heating
+                value: heat
+              - dps_val: dehumidifying
+                value: dry
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 17
+          max: 30
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
+      - id: 18
+        type: integer
+        name: current_humidity
+      - id: 23
+        type: integer
+        name: temp_current_f
+      - id: 24
+        type: integer
+        name: temp_set_f
+      - id: 33
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+      - id: 101
+        type: string
+        name: humidity
+        range:
+          min: 25
+          max: 90
+        mapping:
+          - dps_val: CO
+            value: 25
+          - dps_val: "30"
+            value: 30
+          - dps_val: "35"
+            value: 35
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+          - dps_val: "85"
+            value: 85
+          - dps_val: "90"
+            value: 90
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1hrs"
+            value: "1h"
+          - dps_val: "2hrs"
+            value: "2h"
+          - dps_val: "3hrs"
+            value: "3h"
+          - dps_val: "4hrs"
+            value: "4h"
+          - dps_val: "5hrs"
+            value: "5h"
+          - dps_val: "6hrs"
+            value: "6h"
+          - dps_val: "7hrs"
+            value: "7h"
+          - dps_val: "8hrs"
+            value: "8h"
+          - dps_val: "9hrs"
+            value: "9h"
+          - dps_val: "10hrs"
+            value: "10h"
+          - dps_val: "11hrs"
+            value: "11h"
+          - dps_val: "12hrs"
+            value: "12h"
+          - dps_val: "13hrs"
+            value: "13h"
+          - dps_val: "14hrs"
+            value: "14h"
+          - dps_val: "15hrs"
+            value: "15h"
+          - dps_val: "16hrs"
+            value: "16h"
+          - dps_val: "17hrs"
+            value: "17h"
+          - dps_val: "18hrs"
+            value: "18h"
+          - dps_val: "19hrs"
+            value: "19h"
+          - dps_val: "20hrs"
+            value: "20h"
+          - dps_val: "21hrs"
+            value: "21h"
+          - dps_val: "22hrs"
+            value: "22h"
+          - dps_val: "23hrs"
+            value: "23h"
+          - dps_val: "24hrs"
+            value: "24h"
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+        optional: true

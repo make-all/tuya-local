@@ -1,0 +1,196 @@
+name: Garage door camera
+products:
+  - id: bwalvfjqrhmediec
+entities:
+  - entity: camera
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+          - dps_val: null
+            value: Auto
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    icon: "mdi:micro-sd"
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
+  - entity: button
+    name: Format SD card
+    icon: "mdi:micro-sd"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: "No SD card"
+          - dps_val: 2003
+            value: Card error
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: event
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: clear
+          - value: detected
+      - id: 115
+        type: base64
+        name: image_details
+        optional: true
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Buzzer
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 204
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Door 1
+    icon: "mdi:garage"
+    dps:
+      - id: 205
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Door 2
+    icon: "mdi:garage"
+    hidden: true
+    dps:
+      - id: 206
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Door 3
+    icon: "mdi:garage"
+    hidden: true
+    dps:
+      - id: 214
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Door 4
+    icon: "mdi:garage"
+    hidden: true
+    dps:
+      - id: 215
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Door 5
+    icon: "mdi:garage"
+    hidden: true
+    dps:
+      - id: 216
+        type: boolean
+        optional: true
+        name: switch

@@ -125,6 +125,12 @@ class TuyaDeviceConfig:
     @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
+        if "primary_entity" not in self._config:
+            # primary entity is a deprecated fallback, so if it is
+            # missing, we need to log a warning about the missing entities
+            # list.
+            _LOGGER.error(f"{self.config_type}.yaml does not define an entities list.")
+            return TuyaEntityConfig(self, self._config["entities"][0])
         if not self._reported_deprecated_primary:
             _LOGGER.warning(
                 f"{self.config_type}.yaml distinguishes between primary"

@@ -5,23 +5,23 @@ products:
     model: WK0828RT
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 1
         type: boolean
         name: operation_mode
         mapping:
           - dps_val: false
-            value: "Off"
+            value: "off"
           - dps_val: true
             constraint: warm
             conditions:
               - dps_val: false
-                value: Keep warm
+                value: keep_warm
               - dps_val: true
-                value: Boil
+                value: boil
               - dps_val: null
-                value: Boil
+                value: boil
                 hidden: true
       - id: 2
         type: integer
@@ -61,7 +61,7 @@ entities:
     name: Warm time
     category: config
     class: duration
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 14
         type: integer

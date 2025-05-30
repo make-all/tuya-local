@@ -47,7 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 7
+    MINOR_VERSION = 9
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -211,7 +211,11 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     hub_choice[CONF_DEVICE_CID] = (
                         device_choice["node_id"] or device_choice["uuid"]
                     )
-                    hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
+                    if device_choice.get(CONF_LOCAL_KEY):
+                        hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
+                    # Communicate the sub device product id to help match the
+                    # correect device config in the next step.
+                    hub_choice["product_id"] = device_choice["product_id"]
                     self.__cloud_device = hub_choice
                     return await self.async_step_search()
                 else:
@@ -299,7 +303,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 _LOGGER.debug(f"Found: {local_device}")
                 self.__cloud_device["ip"] = local_device.get("ip")
                 self.__cloud_device["version"] = local_device.get("version")
-                self.__cloud_device["local_product_id"] = local_device.get("productKey")
+                if not self.__cloud_device.get(CONF_DEVICE_CID):
+                    self.__cloud_device["local_product_id"] = local_device.get(
+                        "productKey"
+                    )
             else:
                 _LOGGER.warning(
                     f"Could not find device: {self.__cloud_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}"
@@ -413,7 +420,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 if model:
                     _LOGGER.warning(
-                        "Device specification:\n%s",
+                        "Cloud device spec:\n%s",
                         log_json(model),
                     )
             except Exception as e:

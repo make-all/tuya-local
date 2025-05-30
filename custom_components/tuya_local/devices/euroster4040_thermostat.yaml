@@ -1,0 +1,119 @@
+name: Thermostat
+products:
+  - id: f8oamfazwp5wo8go
+    manufacturer: Euroster
+    model: 4040 Smart
+    # room thermostat controlling the pump relay
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
+      - id: 103
+        type: base64
+        name: temperature
+        optional: true
+        mask: "0000000000000000FF000000000000000000"
+        range:
+          min: 5
+          max: 35
+        # it is likely the F temperatures are encoded in a different place
+        #  in the masked field, so ignore temperature unit and always use C
+        unit: C
+      - id: 103
+        type: base64
+        name: current_temperature
+        optional: true
+        mask: "00000000000000000000FF00000000000000"
+        # full current temp=current_temperature + current_temperature_decimal
+      - id: 103
+        type: base64
+        name: current_temperature_decimal
+        optional: true
+        mask: "0000000000000000000000FF000000000000"
+        mapping:
+          - scale: 10
+      - id: 103
+        type: base64
+        name: hvac_action
+        optional: true
+        mask: "0F0000000000000000000000000000000000"
+        mapping:
+          - dps_val: 1
+            value: preheating
+          - dps_val: 5
+            value: heating
+          - value: idle
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+
+  # HEX Value      2d 02 00 00 00 00 00 02 18 01 14 06 80 00 80 00 08 02
+  # complex encoding that can't be directly supported, so provide it
+  # hidden by default in case someone wants to handle it with helpers,
+  # templates and automation
+  # Set temperature = temperature+"Set temperature decimal"
+  - entity: number
+    name: Set temperature decimal
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        name: value
+        optional: true
+        mask: "000000000000000000FF0000000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0F0000000000000000000000000000000000"
+        mapping:
+          - dps_val: 7
+            value: true
+          - value: false
+  - entity: button
+    # requesting refresh of sensors (dp103)
+    name: Update sensors
+    icon: "mdi:refresh"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    # request refresh of schedule - hide by default, as schedule not exposed
+    # (dp 104 - HEX Value(015555555aaaaaaaaaaaaaaa55170918010000))
+    name: Fetch schedule
+    icon: "mdi:calendar-sync"
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+        optional: true

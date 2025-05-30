@@ -57,6 +57,7 @@ entities:
             value: "On"
   - entity: sensor
     name: SD status
+    translation_key: status
     class: enum
     icon: "mdi:micro-sd"
     category: diagnostic
@@ -67,17 +68,17 @@ entities:
         name: sensor
         mapping:
           - dps_val: 1
-            value: Normal
+            value: normal
           - dps_val: 2
-            value: Corrupt
+            value: fault
           - dps_val: 3
-            value: Full
+            value: full
           - dps_val: 4
-            value: Formatting
+            value: formatting
           - dps_val: 5
-            value: Missing
+            value: missing
           - dps_val: null
-            value: Normal
+            value: normal
       - id: 109
         type: string
         optional: true

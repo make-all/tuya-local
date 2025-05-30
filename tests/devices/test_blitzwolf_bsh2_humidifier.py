@@ -24,21 +24,6 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
         self.setUpMultiSelect(
             [
                 {
-                    "name": "select_light",
-                    "dps": LIGHT_DP,
-                    "options": {
-                        "close": "Off",
-                        "purple": "Purple",
-                        "blue": "Blue",
-                        "cyan": "Cyan",
-                        "green": "Green",
-                        "yellow": "Yellow",
-                        "orange": "Orange",
-                        "red": "Red",
-                        "colour": "Colorful",
-                    },
-                },
-                {
                     "name": "select_timer",
                     "dps": TIMER_DP,
                     "options": {
@@ -53,7 +38,7 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
                 },
             ]
         )
-        self.mark_secondary(["select_light", "select_timer"])
+        self.mark_secondary(["select_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

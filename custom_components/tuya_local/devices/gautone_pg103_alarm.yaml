@@ -97,6 +97,14 @@ entities:
         name: switch
         optional: true
   - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
     name: Alarm notification
     category: config
     dps:
@@ -105,8 +113,6 @@ entities:
         name: switch
   - entity: binary_sensor
     class: sound
-    # 2025-01-05
-    deprecated: event.alarm
     name: Alarm
     category: diagnostic
     dps:
@@ -114,26 +120,20 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: normal
-            value: false
           - dps_val: alarm
             value: true
-      - id: 26
-        type: base64
-        name: message
-        optional: true
-        persist: false
+          - value: false
   - entity: event
     name: Alarm
     dps:
-      - id: 32
+      - id: 26
         type: string
+        optional: true
         name: event
         mapping:
-          - dps_val: normal
+          - dps_val: null
             value: null
-          - dps_val: alarm
-            value: alarm
+          - value: alarm
       - id: 26
         type: utf16b64
         name: message
@@ -146,8 +146,33 @@ entities:
         type: string
         optional: true
         name: sub_state
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: powerDisconnect
+            value: false
+          - value: true
   - entity: event
     name: Power
+    # 2025-05-24
+    deprecated: binary_sensors for battery and power
     dps:
       - id: 101
         type: string

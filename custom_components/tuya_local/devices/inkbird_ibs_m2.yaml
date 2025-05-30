@@ -1,0 +1,425 @@
+name: Temperature probe hub
+products:
+  - id: cx7qfwsatomtk5p8
+    manufacturer: Inkbird
+    model: IBS-M2
+entities:
+  - entity: select
+    translation_key: temperature_unit
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: "c"
+            value: celsius
+          - dps_val: "f"
+            value: fahrenheit
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 103
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 103
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 1 battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 103
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 103
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 2
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 104
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 104
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 2 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 104
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 104
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 3
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 105
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 105
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 3 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 105
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 105
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 4
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 106
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 106
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 4 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 106
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 106
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 5
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 107
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 5 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 107
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 6
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 108
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 108
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 6 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 108
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 108
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 7
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 109
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 7 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 109
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 8
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 110
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 8 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 110
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 110
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 9
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 111
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 111
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 9 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 111
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 111
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Temperature probe 10
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 112
+        optional: true
+        type: base64
+        name: sensor
+        unit: "C"
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+      - id: 112
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Probe 10 battery
+    class: battery
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 112
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        mask: "000000000000000000FF"
+      - id: 112
+        type: string
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

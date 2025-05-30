@@ -162,6 +162,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "空調",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -677,7 +678,12 @@
                     "starting": "啟動中",
                     "emptying": "排空中",
                     "resetting": "重置中",
-                    "reverse": "反轉中"
+                    "reverse": "反轉中",
+                    "full": "滿",
+                    "empty": "空",
+                    "missing": "缺失",
+                    "formatting": "格式化中",
+                    "unformatted": "未格式化"
                 }
             },
             "time_remaining": {
@@ -774,6 +780,21 @@
                             "hotwater_cool": "熱水冷卻",
                             "hotwater_heat": "熱水加熱",
                             "hotwater_auto": "熱水自動"
+                        }
+                    }
+                }
+            },
+            "kettle": {
+                "name": "水壺",
+                "state_attributes": {
+                    "operation_mode": {
+                        "state": {
+                            "off": "關",
+                            "heat": "加熱",
+                            "boil": "煮沸",
+                            "quick_heat": "快速加熱",
+                            "quick_boil": "快速煮沸",
+                            "keep_warm": "保溫"
                         }
                     }
                 }
