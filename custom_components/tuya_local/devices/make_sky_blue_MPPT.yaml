@@ -37,7 +37,6 @@ entities:
           max: 10000
         mapping:
           - scale: 10
-        step: 1
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -53,7 +52,6 @@ entities:
           max: 5000
         mapping:
           - scale: 10
-        step: 1
   - entity: sensor
     class: current
     category: diagnostic
@@ -68,7 +66,6 @@ entities:
           max: 2500
         mapping:
           - scale: 10
-        step: 1
   - entity: sensor
     class: current
     category: diagnostic
@@ -83,7 +80,6 @@ entities:
           max: 100000
         mapping:
           - scale: 10
-        step: 1
   - entity: switch
     name: Charging
     category: config
@@ -122,7 +118,6 @@ entities:
           max: 100000
         mapping:
           - scale: 10
-        step: 1
   - entity: number
     name: uv_reco_value
     category: config
@@ -133,7 +128,6 @@ entities:
         unit: V
         mapping:
           - scale: 10
-        step: 1
         range:
           min: 0
           max: 1000
@@ -147,7 +141,6 @@ entities:
         unit: V
         mapping:
           - scale: 10
-        step: 1
         range:
           min: 0
           max: 1000
@@ -164,7 +157,6 @@ entities:
           max: 100
         mapping:
           - scale: 10
-        step: 1
   - entity: option
     name: battery_type
     category: config
@@ -190,7 +182,6 @@ entities:
           max: 1200
         mapping:
           - scale: 10
-        step: 1
   - entity: sensor
     name: battery_cell_count
     category: diagnostic
@@ -202,8 +193,8 @@ entities:
         range:
           min: 1
           max: 20
-        scale: 0
-        step: 1
+        mapping:
+          - scale: 1
   - entity: number
     name: equalization_volt
     category: config
@@ -215,7 +206,6 @@ entities:
         unit: V
         mapping:
           - scale: 10
-        step: 1
         range:
           min: 0
           max: 1000
@@ -230,7 +220,6 @@ entities:
         unit: V
         mapping:
           - scale: 10
-        step: 1
         range:
           min: 0
           max: 1000
@@ -243,8 +232,8 @@ entities:
         type: integer
         name: constant_cur_set
         unit: A
-        scale: 0
-        step: 1
+        mapping:
+          - scale: 1
         range:
           min: 0
           max: 150
@@ -257,8 +246,8 @@ entities:
         type: integer
         name: output_timr
         unit: h
-        scale: 0
-        step: 1
+        mapping:
+          - scale: 1
         range:
           min: 0
           max: 24
