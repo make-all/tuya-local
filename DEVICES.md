@@ -483,6 +483,7 @@
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
 - dé Wall Charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
+- Dowell iOneAIO EV charger
 - EcoPoint EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)

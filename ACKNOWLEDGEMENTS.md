@@ -937,5 +937,5 @@ Further device support has been made with the assistance of users. Please consid
 - [TomMichalkevic](https://github.com/TomMichalkevic) for assisting with support for garage door opener with camera.
 - [ald0001](https://github.com/ald0001) for assisting with support for NemoLight Extreme Series aquarium light.
 - [teichmaj](https://github.com/teichmaj) for assisting with support for Emmeti Zona thermostat.
-- [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations.
+- [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations and support for Dowell iOneAIO EV charger.
 - [alexeytm82](https://github.com/alexeytm82) for contributing support for MakeSkyBlue MPPT solar charger.
