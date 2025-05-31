@@ -1,8 +1,9 @@
 name: EV charger
 products:
-  - id: bf2dedfe80f14bc81czzwo
+  - id: rpbvcwf70qtilaxt
     manufacturer: Dowell Technology Co., Ltd.
-    model: DCHS-K7    # (Dowell iOneAIO ESS - 32A - 7kW)
+    model: DCHS-K7    #(Dowell iOneAIO ESS - 32A - 7kW)
+    name: EV_Charger_15_2023
 entities:
   - entity: sensor
     translation_key: status
@@ -44,7 +45,6 @@ entities:
         type: string
         name: sensor
   - entity: sensor
-    name: Total electricity consumption
     class: energy
     dps:
       - id: 1    # forward_energy_total
@@ -77,9 +77,7 @@ entities:
         optional: true
         range:
           min: 6
-          max: 80
-        mapping:
-          - scale: 1
+          max: 32   # 80 default config is higher in Tuya API
   - entity: number
     name: Household load balancing
     category: config
@@ -87,16 +85,14 @@ entities:
     mode: box
     icon: "mdi:current-ac"
     dps:
-      - id: 107    # dlb_cur_set
+      - id: 107    # dlb_cur_set - Actual Load = Set value - 5A 
         type: integer
         name: value
         unit: A
         optional: true
         range:
           min: 10
-          max: 140
-        mapping:
-          - scale: 1
+          max: 32   # 140 default config is higher in Tuya API
   - entity: sensor
     class: power
     category: diagnostic
@@ -461,6 +457,8 @@ entities:
         type: boolean
         optional: true
         name: button
+#  - entity: binary_sensor
+#    class: connectivity
   - entity: select
     name: online_state
     category: diagnostic
