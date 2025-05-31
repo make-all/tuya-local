@@ -939,3 +939,4 @@ Further device support has been made with the assistance of users. Please consid
 - [teichmaj](https://github.com/teichmaj) for assisting with support for Emmeti Zona thermostat.
 - [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations and support for Dowell iOneAIO EV charger.
 - [alexeytm82](https://github.com/alexeytm82) for contributing support for MakeSkyBlue MPPT solar charger.
+- [com6056](https://github.com/com6056) for assisting with support for Treatlife DS03 (v2) ceiling fan and light.
