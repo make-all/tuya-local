@@ -338,7 +338,7 @@ entities:
         mapping:
           - scale: 100
   - entity: number
-    name: energy_charge
+    name: Total daily charge
     category: diagnostic
     class: energy_storage
     dps:
@@ -353,7 +353,7 @@ entities:
         mapping:
           - scale: 100
   - entity: number
-    name: Charge time
+    name: Charging time
     category: config
     class: duration
     icon: "mdi:timer"
@@ -367,7 +367,7 @@ entities:
           min: 1
           max: 1440
   - entity: sensor
-    name: Charge energy
+    name: Single charge
     class: energy_storage
     dps:
       - id: 25    # charge_energy_once
@@ -379,7 +379,7 @@ entities:
           min: 1
           max: 20000000
         mapping:
-          - scale: 1000
+          - scale: 100
   - entity: switch
     icon: "mdi:ev-station"
     dps:
