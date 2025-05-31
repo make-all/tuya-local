@@ -1,0 +1,52 @@
+name: Safe barrier controller
+products:
+  - id: 07kifxaohklzpj0h
+    model: CON09-01
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "open"
+          - dps_val: false
+            value: "close"
+      - id: 1
+        name: open
+        type: boolean
+  - entity: switch
+    name: Sygnalizacja dźwiękowa
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Tryb On/Off dla przekaźnika
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wizualizacja stanu otwarcia
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: Czas pracy przekaźnika
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        mode: slider
+        range:
+          min: 1
+          max : 15
