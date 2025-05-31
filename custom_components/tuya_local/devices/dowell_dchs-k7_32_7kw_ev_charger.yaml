@@ -457,19 +457,19 @@ entities:
         type: boolean
         optional: true
         name: button
-  - entity: select
-    name: online_state
+  - entity: binary_sensor
+    class: connectivity
     category: diagnostic
     dps:
       - id: 27    # online_state
         type: string
         optional: true
-        name: option
+        name: sensor
         mapping:
           - dps_val: offline
-            value: offline
+            value: off
           - dps_val: online
-            value: online
+            value: on
   - entity: switch
     name: rf_enable
     category: config
