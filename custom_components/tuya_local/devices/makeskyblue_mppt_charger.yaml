@@ -1,13 +1,13 @@
-name: MPTT Make Sky Blue
+name: Solar charging controller
 products:
   - id: 8dgup45mwlbnguby
-    manufacturer: Make Sky Blue
-    model: v123
+    manufacturer: MakeSkyBlue
+    model: v123 MPPT controller
 entities:
   - entity: sensor
     class: enum
     category: diagnostic
-    name: charge_mode
+    name: Charge mode
     dps:
       - id: 101
         type: string
@@ -26,60 +26,47 @@ entities:
   - entity: sensor
     class: voltage
     category: diagnostic
-    name: pv_voltage
+    name: Solar voltage
     dps:
       - id: 102
         type: integer
         name: sensor
         unit: V
-        range:
-          min: 0
-          max: 10000
+        class: measurement
         mapping:
           - scale: 10
   - entity: sensor
     class: voltage
     category: diagnostic
-    name: bat_voltage
+    name: Battery voltage
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: V
         class: measurement
-        range:
-          min: 0
-          max: 5000
         mapping:
           - scale: 10
   - entity: sensor
     class: current
     category: diagnostic
-    name: bat_current
     dps:
       - id: 104
         type: integer
         name: sensor
         unit: A
         class: measurement
-        range:
-          min: 0
-          max: 2500
         mapping:
           - scale: 10
   - entity: sensor
-    class: current
+    class: power
     category: diagnostic
-    name: power
     dps:
       - id: 105
         type: integer
         name: sensor
         unit: W
         class: measurement
-        range:
-          min: 0
-          max: 100000
         mapping:
           - scale: 10
   - entity: switch
@@ -108,20 +95,17 @@ entities:
   - entity: sensor
     class: energy
     category: diagnostic
-    name: electric_total
     dps:
       - id: 108
         type: integer
         name: sensor
         unit: kW
-        class: measurement
-        range:
-          min: 0
-          max: 100000
+        class: total_increasing
         mapping:
           - scale: 10
   - entity: number
-    name: uv_reco_value
+    name: Undervoltage recovery level
+    class: voltage
     category: config
     dps:
       - id: 109
@@ -134,8 +118,9 @@ entities:
           min: 0
           max: 1000
   - entity: number
-    name: undervol_value
+    name: Undervoltage level
     category: config
+    class: voltage
     dps:
       - id: 110
         type: integer
@@ -148,7 +133,6 @@ entities:
           max: 1000
   - entity: sensor
     category: diagnostic
-    name: battery_percentage
     class: battery
     dps:
       - id: 111
@@ -158,10 +142,8 @@ entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - scale: 1
   - entity: select
-    name: battery_type
+    name: Battery type
     category: config
     dps:
       - id: 112
@@ -180,26 +162,21 @@ entities:
       - id: 113
         type: integer
         name: sensor
-        unit: ℃
+        unit: C
         range:
           min: -400
           max: 1200
         mapping:
           - scale: 10
   - entity: sensor
-    name: battery_cell_count
+    name: Battery cells
     category: diagnostic
     dps:
       - id: 114
         type: integer
         name: sensor
-        range:
-          min: 1
-          max: 20
-        mapping:
-          - scale: 1
   - entity: number
-    name: equalization_volt
+    name: Equalization voltage
     category: config
     class: voltage
     dps:
@@ -213,7 +190,7 @@ entities:
           min: 0
           max: 1000
   - entity: number
-    name: float_charg_volt
+    name: Float charge voltage
     category: config
     class: voltage
     dps:
@@ -227,7 +204,7 @@ entities:
           min: 0
           max: 1000
   - entity: number
-    name: constant_cur_set
+    name: Constant current
     category: config
     class: current
     dps:
@@ -235,22 +212,18 @@ entities:
         type: integer
         name: value
         unit: A
-        mapping:
-          - scale: 1
         range:
           min: 0
           max: 150
   - entity: number
-    name: output_timr
     category: config
-    class: current
+    translation_key: timer
+    class: duration
     dps:
       - id: 118
         type: integer
         name: value
         unit: h
-        mapping:
-          - scale: 1
         range:
           min: 0
           max: 24
