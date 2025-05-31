@@ -234,6 +234,7 @@ entities:
     translation_placeholders:
       x: B
     class: voltage
+    hidden: true
     dps:
       - id: 7    # phase_b
         type: base64
@@ -248,6 +249,7 @@ entities:
     translation_placeholders:
       x: B
     class: current
+    hidden: true
     dps:
       - id: 7    # phase_b
         type: base64
@@ -262,6 +264,7 @@ entities:
     translation_placeholders:
       x: B
     class: power
+    hidden: true
     dps:
       - id: 7    # phase_b
         type: base64
@@ -276,6 +279,7 @@ entities:
     translation_placeholders:
       x: C
     class: voltage
+    hidden: true
     dps:
       - id: 8    # phase_c
         type: base64
@@ -290,6 +294,7 @@ entities:
     translation_placeholders:
       x: C
     class: current
+    hidden: true
     dps:
       - id: 8    # phase_c
         type: base64
@@ -304,6 +309,7 @@ entities:
     translation_placeholders:
       x: C
     class: power
+    hidden: true
     dps:
       - id: 8    # phase_c
         type: base64
@@ -325,6 +331,7 @@ entities:
   - entity: number
     name: Remaining available power
     category: diagnostic
+    hidden: true
     class: energy_storage
     dps:
       - id: 15    # balance_energy
@@ -400,6 +407,7 @@ entities:
     name: Mode
     icon: "mdi:cogs"
     category: config
+    hidden: true
     dps:
       - id: 102    # mode
         type: string
@@ -418,6 +426,7 @@ entities:
     name: Minimum current
     class: current
     category: diagnostic
+    hidden: true
     dps:
       - id: 103    # current_limit
         type: base64
@@ -431,6 +440,7 @@ entities:
     name: Maximum current
     class: current
     category: diagnostic
+    hidden: true
     dps:
       - id: 103    # current_limit
         type: base64
@@ -465,6 +475,7 @@ entities:
   - entity: switch
     name: RF enable
     category: config
+    hidden: true
     dps:
       - id: 110    # rf_enable
         type: boolean
@@ -481,6 +492,7 @@ entities:
   - entity: binary_sensor
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 106    # safety_notice
         type: bitfield
@@ -507,6 +519,7 @@ entities:
   - entity: text
     name: OCCP IP
     category: config
+    hidden: true
     dps:
       - id: 104    # occp_ip
         type: string
@@ -515,6 +528,7 @@ entities:
   - entity: text
     name: OCCP port
     category: config
+    hidden: true
     dps:
       - id: 105    # occp_port
         type: string
@@ -523,6 +537,7 @@ entities:
   - entity: text
     name: Password
     category: config
+    hidden: true
     dps:
       - id: 109    # password
         type: string
@@ -531,6 +546,7 @@ entities:
   - entity: text
     name: Car binding
     category: config
+    hidden: true
     dps:
       - id: 21    # car_binding
         type: string
