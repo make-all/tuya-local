@@ -1,9 +1,9 @@
 name: EV charger
 products:
   - id: rpbvcwf70qtilaxt
-    manufacturer: Dowell Technology Co., Ltd.
-    model: DCHS-K7    # (Dowell iOneAIO ESS - 32A - 7kW)
-    name: EV_Charger_15_2023
+    manufacturer: Dowell
+    model: iOneAIO ESS
+    model_id: DCHS-K7
 entities:
   - entity: sensor
     translation_key: status
@@ -30,20 +30,12 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
-  - entity: sensor
-    name: meter_id
-    category: diagnostic
-    dps:
-      - id: 22    # meter_id
+      - id: 22
         type: string
-        name: sensor
-  - entity: sensor
-    category: diagnostic
-    name: system_version
-    dps:
-      - id: 23    # system_version
+        name: meter_id
+      - id: 23
         type: string
-        name: sensor
+        name: system_version
   - entity: sensor
     class: energy
     dps:
@@ -467,11 +459,11 @@ entities:
         name: sensor
         mapping:
           - dps_val: offline
-            value: off
+            value: false
           - dps_val: online
-            value: on
+            value: true
   - entity: switch
-    name: rf_enable
+    name: RF enable
     category: config
     dps:
       - id: 110    # rf_enable
@@ -479,7 +471,7 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: pen_enable
+    name: Pen enable
     category: config
     dps:
       - id: 108    # pen_enable
@@ -513,7 +505,7 @@ entities:
           - dps_val: 4
             value: software_change
   - entity: text
-    name: occp_ip
+    name: OCCP IP
     category: config
     dps:
       - id: 104    # occp_ip
@@ -521,7 +513,7 @@ entities:
         optional: true
         name: value
   - entity: text
-    name: occp_port
+    name: OCCP port
     category: config
     dps:
       - id: 105    # occp_port
@@ -529,16 +521,15 @@ entities:
         optional: true
         name: value
   - entity: text
-    name: password
+    name: Password
     category: config
     dps:
       - id: 109    # password
         type: string
-        hidden: true
         optional: true
         name: value
   - entity: text
-    name: car_binding
+    name: Car binding
     category: config
     dps:
       - id: 21    # car_binding
@@ -546,14 +537,16 @@ entities:
         optional: true
         name: value
   - entity: sensor
-    name: alarm_set_1
+    name: Alarm 1
+    hidden: true
     dps:
       - id: 11    # alarm_set_1
         type: base64
         name: sensor
         optional: true
   - entity: sensor
-    name: alarm_set_2
+    name: Alarm 2
+    hidden: true
     dps:
       - id: 12    # alarm_set_2
         type: base64
