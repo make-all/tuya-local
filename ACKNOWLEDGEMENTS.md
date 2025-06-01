@@ -909,7 +909,7 @@ Further device support has been made with the assistance of users. Please consid
 - [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.
 - [amantia](https://github.com/amantia) for contributing improvements to Axen water+air heat pump.
 - [gmudrets](https://github.com/gmudrets) for assisting with support for Avatto CLS02 curtain with dual lights.
-- [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor.
+- [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor, Safe CON09 barrier controller.
 - [ladalochness](https://github.com/ladalochness) for contributing support for Tellur thermostat.
 - [Garthcz](https://github.com/Garthcz) for contributing support for TrueLife P3 and P7 air purifiers.
 - [devlucasc](https://github.com/devlucasc) for contributing support for Positivo keypad and voice locks.
