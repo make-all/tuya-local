@@ -344,7 +344,7 @@ entities:
           max: 99999999
         mapping:
           - scale: 100
-  - entity: number
+  - entity: sensor
     name: Total daily charge
     category: diagnostic
     class: energy_storage
@@ -354,9 +354,6 @@ entities:
         optional: true
         name: value
         unit: kWh
-        range:
-          min: 1
-          max: 20000000
         mapping:
           - scale: 100
   - entity: number
@@ -374,7 +371,7 @@ entities:
           min: 1
           max: 1440
   - entity: sensor
-    name: Single charge
+    name: Latest charge
     class: energy_storage
     dps:
       - id: 25    # charge_energy_once
