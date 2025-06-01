@@ -942,3 +942,4 @@ Further device support has been made with the assistance of users. Please consid
 - [com6056](https://github.com/com6056) for assisting with support for Treatlife DS03 (v2) ceiling fan and light.
 - [georgekucher](https://github.com/georgekucher) for contributing improvements to Feyree portable EV charger.
 - [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan.
+- [dwd1](https://github.com/dwd1) for assisting with support for RH-PD10 peehole doorbell camera.
