@@ -1,6 +1,7 @@
-name: Safe barrier controller
+name: Barrier controller
 products:
   - id: 07kifxaohklzpj0h
+    manufacturer: Safe
     model: CON09-01
 entities:
   - entity: cover
@@ -14,39 +15,32 @@ entities:
             value: "open"
           - dps_val: false
             value: "close"
-      - id: 1
+      - id: 103
         name: open
         type: boolean
   - entity: switch
-    name: Sygnalizacja dźwiękowa
+    translation_key: keytone
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
   - entity: switch
-    name: Tryb On/Off dla przekaźnika
+    name: Relay
     category: config
     dps:
       - id: 102
         type: boolean
         name: switch
-  - entity: switch
-    name: Wizualizacja stanu otwarcia
-    category: config
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
   - entity: number
-    name: Czas pracy przekaźnika
+    name: Relay engage time
+    class: duration
     category: config
     dps:
       - id: 104
         type: integer
         name: value
         unit: s
-        mode: slider
         range:
           min: 1
-          max : 15
+          max: 15
