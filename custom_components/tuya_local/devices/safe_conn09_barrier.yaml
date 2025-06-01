@@ -16,20 +16,31 @@ entities:
           - dps_val: false
             value: "close"
       - id: 103
-        name: open
+        name: open_state
         type: boolean
+      - id: 102
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: true
+            constraint: control
+            conditions:
+              - dps_val: true
+                value: opening
+              - dps_val: false
+                value: closing
+          - dps_val: false
+            constraint: open_state
+            conditions:
+              - dps_val: true
+                value: opened
+              - dps_val: false
+                value: closed
   - entity: switch
     translation_key: keytone
     category: config
     dps:
       - id: 101
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Relay
-    category: config
-    dps:
-      - id: 102
         type: boolean
         name: switch
   - entity: number
