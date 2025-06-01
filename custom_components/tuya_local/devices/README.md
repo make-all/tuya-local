@@ -638,14 +638,14 @@ from the camera.
 
 ### `cover`
 
-Either **position** or **open** should be specified.
+Either **position**, **action** or **open** should be specified otherwise the cover will always appear in an unknown state.
 
 - **position** (optional, number 0-100): a dp to control the percentage that the cover is open.
     0 means completely close, 100 means completely open.
 - **control** (optional, mapping of strings): a dp to control the cover. Mainly useful if **position** cannot be used.
     Valid values are `open, close, stop`
 - **action** (optional, string): a dp that reports the current state of the cover.
-   Special values are `opening, closing`
+   Special values are `opening, closing, opened, closed`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
 - **tilt_position** (optional, number): a dp to control the tilt opening of the cover (an example is venetian blinds that tilt as well as go up and down). The range will be auto-converted to the 0-100 expected by HA.
 
