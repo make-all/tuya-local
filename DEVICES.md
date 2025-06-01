@@ -246,6 +246,7 @@
 - Carro PN-04F02D fan with dimmable light
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
+- Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
