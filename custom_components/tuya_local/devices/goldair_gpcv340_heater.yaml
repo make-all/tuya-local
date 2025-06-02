@@ -1,0 +1,62 @@
+name: Goldair Panel heater (GPCV340)
+products:
+  - id: ynjanlglr4qa6dxf
+    manufacturer: Goldair
+    model: NPH-2000G-WIFI
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 3
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 40
+      - id: 7
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Low
+            value: eco
+          - dps_val: High
+            value: boost
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: lock
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 60
+          max: 1440
+        mapping:
+          - step: 60
+            scale: 1
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
