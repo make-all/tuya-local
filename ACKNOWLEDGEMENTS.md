@@ -831,7 +831,7 @@ Further device support has been made with the assistance of users. Please consid
 - [yaro24](https://github.com/yaro24) for contributing support for Jiahong ET-44W thermostat.
 - [point2start](https://github.com/point2start) for assisting with support for Atorch AT4PTW thermostat.
 - [maLLoud86](https://github.com/maLLoud86) for assisting with support for iSparkle Curtain Micro Lights.
-- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker.
+- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker, Varin RGBCW ceiling fan.
 - [Karlsons88](https://github.com/Karlsons88) for assisting with support for Nulite monobloc heat pump.
 - [Watanuki-kun](https://github.com/Watanuki-kun) for assisting with support for Smart Amari ceiling fan with light.
 - [aherbjornsen](https://github.com/aherbjornsen) for assisting with support for Arida Venti 160 ventilation fan.
@@ -909,7 +909,7 @@ Further device support has been made with the assistance of users. Please consid
 - [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.
 - [amantia](https://github.com/amantia) for contributing improvements to Axen water+air heat pump.
 - [gmudrets](https://github.com/gmudrets) for assisting with support for Avatto CLS02 curtain with dual lights.
-- [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor.
+- [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor, Safe CON09 barrier controller.
 - [ladalochness](https://github.com/ladalochness) for contributing support for Tellur thermostat.
 - [Garthcz](https://github.com/Garthcz) for contributing support for TrueLife P3 and P7 air purifiers.
 - [devlucasc](https://github.com/devlucasc) for contributing support for Positivo keypad and voice locks.
@@ -940,4 +940,6 @@ Further device support has been made with the assistance of users. Please consid
 - [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations and support for Dowell iOneAIO EV charger.
 - [alexeytm82](https://github.com/alexeytm82) for contributing support for MakeSkyBlue MPPT solar charger.
 - [com6056](https://github.com/com6056) for assisting with support for Treatlife DS03 (v2) ceiling fan and light.
-- [georgekucher](https://github.com/georgekucher) for contributing improvements toFeyree portable EV charger.
+- [georgekucher](https://github.com/georgekucher) for contributing improvements to Feyree portable EV charger.
+- [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan.
+- [dwd1](https://github.com/dwd1) for assisting with support for RH-PD10 peehole doorbell camera.

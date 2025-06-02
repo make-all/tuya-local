@@ -1,0 +1,39 @@
+name: Noise meter
+products:
+  - id: yjebgze5hxevyji
+    manufacturer: Dienmern
+    model: DM165A
+entities:
+  - entity: sensor
+    class: sound_pressure
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: dBA
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
