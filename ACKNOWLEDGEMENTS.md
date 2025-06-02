@@ -923,7 +923,7 @@ Further device support has been made with the assistance of users. Please consid
 - [BeriBGood](https://github.com/BeriBGood) for assisting with support for SR208C solar water heating controller.
 - [deracloust](https://github.com/deracloust) for assisting with support for LSC Smart Connect RGBIC+CCTIC LED strip.
 - [bputtick](https://github.com/bputtick) for contributing support for ElectriQ SupremeCool SC16HPW air conditioner.
-- [EmilianoMorello](https://github.com/EmilianoMorello) for contributing support for generic PIR alarm.
+- [EmilianoMorello](https://github.com/EmilianoMorello) for contributing support for generic PIR alarm, Staniot alarm panel.
 - [LordGuenni](https://github.com/LordGuenni) for contributing support for Inkbird IBS-M2 temperature probe hub.
 - [arni077r](https://github.com/arni077r) for contributing support for Euroster 4040 Smart thermostat.
 - [maksim-petukhov](https://github.com/maksim-petukhov) for assisting with support for Fral Super Cool FSC14.2 DH portable air conditioner.
