@@ -1,0 +1,172 @@
+name: Goldair Panel heater (GPPH770/GPPH780; GPPH900/GPPH910)
+products:
+  - id: xr6jsgylldbpkaz9
+    manufacturer: Goldair
+    model: GPPH770/GPPH780; GPPH900/GPPH910
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Comfort
+            value: comfort
+          - dps_val: ECO
+            value: eco
+          - dps_val: AntiFrost
+            value: away
+      - id: 101
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 35
+  - entity: number
+    name: Eco Delta
+    icon: "mdi:leaf"
+    category: config
+    class: power
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 3
+          max: 7
+  - entity: number
+    name: AntiFrost
+    icon: "mdi:snowflake"
+    category: config
+    class: power
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 3
+          max: 7
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Brightness
+    icon: "mdi:led-on"
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Auto off LCD
+    icon: "mdi:monitor"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sound
+    icon: "mdi:music"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Heat mode
+    icon: "mdi:heat-wave"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Open window
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Timer switch
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 1440
+        mapping:
+          - step: 1
+            scale: 1
+  - entity: number
+    name: Custom power
+    category: config
+    class: power
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5
+        mapping:
+          - step: 1
+            scale: 1
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        class: measurement        
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
