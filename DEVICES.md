@@ -419,6 +419,7 @@
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Klarstein Amazonia dishwasher
 - Kogan glass 1.7L smart kettle
+- Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
 - Recteq RT700 grill
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
@@ -722,6 +723,7 @@ of device.
 - Moes WS-Y-EUC curtain switch with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - QS-WIFI-C02 dual curtain module
+- Safe CON09 barrier controller
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
@@ -818,6 +820,7 @@ port and password.
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
+- RH-PD10 3MP peephole doorbell camera
 - RL video intercom (reported unable to connect)
 - SC116-WZ3A PTZ camera
 - SMCM DDV-207 Doorbell Pro camera
@@ -829,6 +832,7 @@ port and password.
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
+- Staniot smart security panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
