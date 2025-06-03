@@ -1,0 +1,146 @@
+name: Wifi 2 Phase Energy Meter Max
+products:
+  - id: cdw24010001
+    manufacturer: Zemismart
+    model: SDM02T-TW
+entities:
+  - entity: sensor
+    name: Total Forward Energy
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total Reverse Energy
+    class: energy
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total Power
+    class: power
+    dps:
+      - id: 29
+        name: sensor
+        unit: W
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1
+  - entity: sensor
+    name: Phase A Power
+    class: power
+    dps:
+      - id: 105
+        name: sensor
+        unit: W
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1
+  - entity: sensor
+    name: Phase B Power
+    class: power
+    dps:
+      - id: 114
+        name: sensor
+        unit: W
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1         
+  - entity: sensor
+    name: Phase A Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        unit: V
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Phase B Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        name: sensor
+        unit: V
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Phase A Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        unit: A
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Phase B Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 113
+        name: sensor
+        unit: A
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1000         
+  - entity: sensor
+    name: Frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        name: sensor
+        unit: Hz
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Overall Power Factor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        unit: '%'
+        class: measurement
+        type: integer
+        mapping:
+          - scale: 1
+  - entity: number
+    name: Reporting interval
+    category: config
+    class: duration
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 3600
