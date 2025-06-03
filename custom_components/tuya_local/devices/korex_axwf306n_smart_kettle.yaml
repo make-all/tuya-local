@@ -90,11 +90,27 @@ entities:
         type: boolean
         name: keep_warm
         hidden: true
-      # data model says 104 can be: 0, 1, 2, 3, 4, 5
-      # but i don't know what this corresponds to.
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
       - id: 104
         type: string
-        name: status_reach
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+          - dps_val: "2"
+            value: at_temperature
+          - dps_val: "3"
+            value: cooling
+          - dps_val: "4"
+            value: keeping_warm
+          - dps_val: "5"
+            value: done
   - entity: binary_sensor
     # This config is designed for a fahrenheit market version
     name: Temperature unit mismatch
