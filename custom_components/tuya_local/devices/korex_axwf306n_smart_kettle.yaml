@@ -95,18 +95,20 @@ entities:
       - id: 104
         type: string
         name: status_reach
-  - entity: select
-    translation_key: temperature_unit
-    category: config
+  - entity: binary_sensor
+    # This config is designed for a fahrenheit market version
+    name: Temperature unit mismatch
+    category: diagnostic
+    class: problem
     dps:
       - id: 105
         type: string
-        name: option
+        name: sensor
         mapping:
           - dps_val: c
-            value: celcius
+            value: true
           - dps_val: f
-            value: fahrenheit
+            value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic
