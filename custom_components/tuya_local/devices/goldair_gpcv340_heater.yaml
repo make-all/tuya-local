@@ -1,8 +1,8 @@
-name: Goldair Panel heater (GPCV340)
+name: Goldair Panel heater
 products:
   - id: ynjanlglr4qa6dxf
     manufacturer: Goldair
-    model: NPH-2000G-WIFI
+    model: GPCV340
 entities:
   - entity: climate
     translation_key: heater
@@ -22,6 +22,10 @@ entities:
         range:
           min: 5
           max: 40
+      - id: 4
+        type: integer
+        name: current_temperature
+        unit: C
       - id: 7
         name: preset_mode
         type: string
@@ -49,14 +53,4 @@ entities:
         range:
           min: 60
           max: 1440
-        mapping:
-          - step: 60
-            scale: 1
-  - entity: sensor
-    class: temperature
-    dps:
-      - id: 4
-        type: integer
-        name: sensor
-        class: measurement
-        unit: C
+

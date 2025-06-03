@@ -1,4 +1,4 @@
-name: Goldair Panel heater (GPPH770/GPPH780; GPPH900/GPPH910)
+name: Goldair Panel heater
 products:
   - id: xr6jsgylldbpkaz9
     manufacturer: Goldair
@@ -15,6 +15,10 @@ entities:
             value: "heat"
           - dps_val: false
             value: "off"
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
       - id: 4
         name: preset_mode
         type: string
@@ -65,10 +69,8 @@ entities:
       - id: 7
         type: boolean
         name: lock
-  - entity: switch
-    name: Brightness
-    icon: "mdi:led-on"
-    translation_key: nightlight
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 10
@@ -84,8 +86,7 @@ entities:
         name: switch
   - entity: switch
     name: Sound
-    icon: "mdi:music"
-    category: config
+    translation_key: child_lock
     dps:
       - id: 106
         type: boolean
@@ -99,7 +100,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Open window
+    name: Open window detection
     icon: "mdi:window-open-variant"
     category: config
     dps:
@@ -143,15 +144,6 @@ entities:
         mapping:
           - step: 1
             scale: 1
-  - entity: sensor
-    class: temperature
-    category: diagnostic
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        class: measurement
-        unit: C
   - entity: sensor
     name: Power
     class: power
