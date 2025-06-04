@@ -1,0 +1,165 @@
+name: Smart Meter
+products:
+  - id: v5jlnn5hwyffkhp3
+    name: Smart Meter
+    manufacturer: Tuya
+    model: 更换互感器
+
+primary_entity:
+  entity: sensor
+  name: Total Power
+  class: power
+  dps:
+    - id: 103
+      name: sensor
+      type: integer
+      unit: W
+      class: measurement
+      mapping:
+        - scale: 10
+
+secondary_entities:
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Frequency
+    class: frequency
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Current A
+    class: current
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: mA
+        class: measurement
+
+  - entity: sensor
+    name: Power A
+    class: power
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+
+  - entity: sensor
+    name: Power B
+    class: power
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+
+  - entity: sensor
+    name: Current B
+    class: current
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: mA
+        class: measurement
+
+  - entity: sensor
+    name: Power Factor A
+    class: power_factor
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Power Factor B
+    class: power_factor
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Energy Imported A
+    class: energy
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Energy Exported A
+    class: energy
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Energy Imported B
+    class: energy
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Energy Exported B
+    class: energy
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  # - entity: number
+  #   name: Reporting rate
+  #   category: config
+  #   dps:
+  #     - id: 126
+  #       name: value
+  #       type: integer
+  #       unit: s
+  #       range:
+  #         min: 3
+  #         max: 60
+  #       optional: true
