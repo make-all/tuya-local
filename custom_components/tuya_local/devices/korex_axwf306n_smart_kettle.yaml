@@ -26,7 +26,6 @@ entities:
       - id: 101
         type: string
         name: temperature
-        unit: F
         range:
           min: 113
           max: 212
@@ -99,6 +98,14 @@ entities:
         type: boolean
         name: keep_warm
         hidden: true
+      - id: 105
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: C
+            value: true
+          - dps_val: F
+            value: false
   - entity: sensor
     translation_key: status
     class: enum
