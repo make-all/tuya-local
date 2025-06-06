@@ -1,0 +1,503 @@
+name: CN EV charger # Название, которое будет отображаться в Home Assistant
+products:
+  - id: s2wublk5n2pycus1 # product_id, который вы предодоставили
+    manufacturer: cn ev charger # Производитель, который вы предоставили
+    model: 22kw # Модель, которую вы предоставили
+    model_id: 000004uqrl # modelId из данных вашей зарядки
+entities:
+  # DP 109: charging_state (Boolean) - Переключатель состояния зарядки
+  # accessMode: rw
+  - entity: switch
+    icon: "mdi:ev-station"
+    name: Состояние Зарядки
+    dps:
+      - id: 109
+        type: boolean
+        name: switch # Имя DP для Home Assistant
+
+  # DP 103: voltage_phase_a (Value / integer, scale 2) - Сенсор напряжения Фазы A
+  # accessMode: ro
+  - entity: sensor
+    name: Напряжение Фазы A
+    class: voltage
+    unit: V
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100 # Делим на 100 для корректного значения
+
+  # DP 104: voltage_phase_b (Value / integer, scale 2) - Сенсор напряжения Фазы B
+  # accessMode: ro
+  - entity: sensor
+    name: Напряжение Фазы B
+    class: voltage
+    unit: V
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 105: voltage_phase_c (Value / integer, scale 2) - Сенсор напряжения Фазы C
+  # accessMode: ro
+  - entity: sensor
+    name: Напряжение Фазы C
+    class: voltage
+    unit: V
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 106: electricity_phase_a (Value / integer, scale 2) - Сенсор тока Фазы A
+  # accessMode: ro
+  - entity: sensor
+    name: Ток Фазы A
+    class: current
+    unit: A
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 107: electricity_phase_b (Value / integer, scale 2) - Сенсор тока Фазы B
+  # accessMode: ro
+  - entity: sensor
+    name: Ток Фазы B
+    class: current
+    unit: A
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 108: electricity_phase_c (Value / integer, scale 2) - Сенсор тока Фазы C
+  # accessMode: ro
+  - entity: sensor
+    name: Ток Фазы C
+    class: current
+    unit: A
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 131: electricity_total (Value / integer, scale 2) - Сенсор общего тока
+  # accessMode: ro
+  - entity: sensor
+    name: Общий Ток
+    class: current
+    unit: A
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 110: charge_electric_quantity (Value / integer, scale 2) - Сенсор заряженной энергии
+  # accessMode: ro
+  - entity: sensor
+    name: Заряженная Энергия
+    class: energy
+    unit: kWh
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: total_increasing # Или measurement, если это мгновенное значение
+        mapping:
+          - scale: 100
+
+  # DP 150: charge_power1 (Value / integer, scale 2) - Сенсор мощности зарядки 1
+  # accessMode: ro
+  - entity: sensor
+    name: Мощность Зарядки 1
+    class: power
+    unit: kW
+    dps:
+      - id: 150
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # DP 151: charge_power2 (Value / integer, scale 2) - Сенсор мощности зарядки 2
+  # accessMode: ro
+  - entity: sensor
+    name: Мощность Зарядки 2
+    class: power
+    unit: kW
+    dps:
+      - id: 151
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # DP 153: transaction_energy (Value / integer, scale 2) - Сенсор энергии транзакции
+  # accessMode: ro
+  - entity: sensor
+    name: Энергия Транзакции
+    class: energy
+    unit: kWh
+    dps:
+      - id: 153
+        type: integer
+        name: sensor
+        class: total_increasing # Или measurement
+        mapping:
+          - scale: 100
+
+  # DP 154: transaction_time (Value / integer, scale 0) - Сенсор времени транзакции
+  # accessMode: ro
+  - entity: sensor
+    name: Время Транзакции
+    class: duration
+    unit: s # Предполагаем секунды, так как unit в данных пустой
+    dps:
+      - id: 154
+        type: integer
+        name: sensor
+
+  # DP 155: transaction_monry (Value / integer, scale 2) - Сенсор суммы транзакции
+  # accessMode: ro
+  - entity: sensor
+    name: Сумма Транзакции
+    class: monetary
+    unit: RUB # Измените на вашу валюту при необходимости
+    dps:
+      - id: 155
+        type: integer
+        name: sensor
+        class: total_increasing # Или measurement
+        mapping:
+          - scale: 100
+
+  # DP 156: transaction_status (Boolean) - Бинарный сенсор состояния транзакции
+  # accessMode: ro
+  - entity: binary_sensor
+    name: Статус Транзакции
+    class: running
+    dps:
+      - id: 156
+        type: boolean
+        name: sensor
+
+  # DP 115: rated_current (Value / integer, scale 2) - Числовой регулятор номинального тока
+  # accessMode: rw
+  - entity: number
+    name: Номинальный Ток
+    class: current
+    mode: box
+    icon: "mdi:current-ac"
+    unit: A
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        range: # Согласно вашим данным (0-20000, т.е. 0-200 A)
+          min: 0
+          max: 200
+        mapping:
+          - scale: 100 # Умножаем на 100 перед отправкой на устройство
+
+  # DP 117: load_balancing_current (Value / integer, scale 2) - Числовой регулятор тока балансировки нагрузки
+  # accessMode: rw
+  - entity: number
+    name: Ток Балансировки Нагрузки
+    class: current
+    mode: box
+    icon: "mdi:current-ac"
+    unit: A
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        range: # Согласно вашим данным (0-20000, т.е. 0-200 A)
+          min: 0
+          max: 200
+        mapping:
+          - scale: 100
+
+  # DP 116: load_balancing_state (Boolean) - Бинарный сенсор состояния балансировки нагрузки
+  # accessMode: ro
+  - entity: binary_sensor
+    name: Состояние Балансировки Нагрузки
+    class: safety
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+
+  # DP 123: charge_pattern (Enum) - Селектор режима зарядки
+  # accessMode: rw
+  - entity: select
+    name: Режим Зарядки
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 123
+        type: string # Enum обычно как string
+        name: option
+        mapping: # Карта значений согласно вашим данным
+          - dps_val: netversion
+            value: Сетевая Версия
+          - dps_val: standalone
+            value: Автономный Нормальный
+          - dps_val: standalone_reserved
+            value: Автономный Резервный
+          - dps_val: plug_and_charge
+            value: Подключи и Заряжай
+
+  # DP 126: measurement_model (Enum) - Селектор режима измерения
+  # accessMode: rw
+  - entity: select
+    name: Режим Измерения
+    category: config
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping: # Карта значений согласно вашим данным
+          - dps_val: internal_meter
+            value: Внутренний Счетчик
+          - dps_val: external_meter
+            value: Внешний Счетчик
+
+  # DP 128: earth_test (Enum) - Селектор теста заземления
+  # accessMode: rw
+  - entity: select
+    name: Тест Заземления
+    category: config
+    dps:
+      - id: 128
+        type: string
+        name: option
+        mapping: # Карта значений согласно вашим данным
+          - dps_val: enabled_energy
+            value: Включен
+          - dps_val: forbidden_energy
+            value: Отключен
+
+  # DP 129: pen_protect (Enum) - Селектор защиты PEN
+  # accessMode: rw
+  - entity: select
+    name: PEN Защита
+    category: config
+    dps:
+      - id: 129
+        type: string
+        name: option
+        mapping: # Карта значений согласно вашим данным
+          - dps_val: enabled_energy
+            value: Включена
+          - dps_val: forbidden_energy
+            value: Отключена
+
+  # DP 140: network_model (Enum) - Селектор сетевого режима
+  # accessMode: rw
+  - entity: select
+    name: Режим Сети
+    category: config
+    dps:
+      - id: 140
+        type: string
+        name: option
+        mapping: # Карта значений согласно вашим данным
+          - dps_val: LAN
+            value: LAN
+          - dps_val: 4G
+            value: 4G
+
+  # DP 142: touch_warning (Boolean) - Бинарный сенсор предупреждения о прикосновении
+  # accessMode: ro
+  - entity: binary_sensor
+    name: Предупреждение о Прикосновении
+    class: problem # Или safety
+    dps:
+      - id: 142
+        type: boolean
+        name: sensor
+
+  # DP 143: ocpp_tls (Boolean) - Переключатель TLS шифрования OCPP
+  # accessMode: rw
+  - entity: switch
+    name: OCPP TLS Шифрование
+    category: config
+    dps:
+      - id: 143
+        type: boolean
+        name: switch
+
+  # DP 127: version_number (String) - Сенсор версии прошивки
+  # accessMode: ro
+  - entity: sensor
+    name: Версия Прошивки
+    category: diagnostic
+    dps:
+      - id: 127
+        type: string
+        name: sensor
+
+  # DP 152: device_number (String) - Сенсор номера устройства
+  # accessMode: ro
+  - entity: sensor
+    name: Номер Устройства
+    category: diagnostic
+    dps:
+      - id: 152
+        type: string
+        name: sensor
+
+  # DP 113: pile_number (String) - Сенсор кода станции/свай
+  # accessMode: rw - можно записывать, но здесь используется как сенсор для отображения
+  - entity: sensor
+    name: Код Станции
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+
+  # DP 111: charge_money (Value / integer, scale 2) - Сенсор зарядного баланса (деньги)
+  # accessMode: ro
+  - entity: sensor
+    name: Накопленный Баланс
+    class: monetary
+    unit: RUB # Измените на вашу валюту при необходимости
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 112: card_balance (Value / integer, scale 2) - Сенсор баланса карты
+  # accessMode: ro
+  - entity: sensor
+    name: Баланс Карты
+    class: monetary
+    unit: RUB # Измените на вашу валюту при необходимости
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 102: is_login (Boolean) - Бинарный сенсор статуса логина
+  # accessMode: ro
+  - entity: binary_sensor
+    name: Статус Логина
+    class: connectivity # Или other appropriate class
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+
+  # DP 114: cp (Value / integer, scale 2) - Сенсор напряжения CP
+  # accessMode: ro
+  - entity: sensor
+    name: Напряжение CP
+    class: voltage
+    unit: V
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # DP 124: equipment_time (String) - Сенсор времени оборудования
+  # accessMode: rw - используется как сенсор для отображения
+  - entity: sensor
+    name: Время Оборудования
+    category: diagnostic
+    dps:
+      - id: 124
+        type: string
+        name: sensor
+
+  # DP 125: ocpp_url (String) - Текстовое поле для OCPP URL
+  # accessMode: rw
+  - entity: text
+    name: OCPP URL
+    category: config
+    dps:
+      - id: 125
+        type: string
+        name: value
+
+  # DP 132: apn (String) - Текстовое поле для APN
+  # accessMode: rw
+  - entity: text
+    name: APN
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: value
+
+  # DP 133: apn_user_name (String) - Текстовое поле для APN Username
+  # accessMode: rw
+  - entity: text
+    name: APN Пользователь
+    category: config
+    dps:
+      - id: 133
+        type: string
+        name: value
+
+  # DP 134: apn_user_password (String) - Текстовое поле для APN Password
+  # accessMode: rw
+  - entity: text
+    name: APN Пароль
+    category: config
+    dps:
+      - id: 134
+        type: string
+        name: value
+
+  # DP 135: charge_card_no1 (String) - Текстовое поле для Авторизованной карты 1
+  # accessMode: rw
+  - entity: text
+    name: Авторизованная Карта 1
+    category: config
+    dps:
+      - id: 135
+        type: string
+        name: value
+
+  # DP 136: charge_card_no2 (String) - Текстовое поле для Авторизованной карты 2
+  # accessMode: rw
+  - entity: text
+    name: Авторизованная Карта 2
+    category: config
+    dps:
+      - id: 136
+        type: string
+        name: value
+
+  # DP 141: qr_code_prefix (String) - Текстовое поле для префикса QR-кода
+  # accessMode: rw
+  - entity: text
+    name: Префикс QR-кода
+    category: config
+    dps:
+      - id: 141
+        type: string
+        name: value
