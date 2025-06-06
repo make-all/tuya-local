@@ -1,9 +1,10 @@
-name: CN EV charger # Название, которое будет отображаться в Home Assistant
+name: Моя Зарядная Станция # Название, которое будет отображаться в Home Assistant
 products:
-  - id: s2wublk5n2pycus1 # product_id, который вы предодоставили
+  - id: s2wublk5n2pycus1 # Product ID из ваших данных
     manufacturer: cn ev charger # Производитель, который вы предоставили
     model: 22kw # Модель, которую вы предоставили
-    model_id: 000004uqrl # modelId из данных вашей зарядки
+    name: EV Charger # Название продукта
+    model_id: 000004uqrl # Model ID из ваших данных
 entities:
   # DP 109: charging_state (Boolean) - Переключатель состояния зарядки
   # accessMode: rw
@@ -19,12 +20,13 @@ entities:
   # accessMode: ro
   - entity: sensor
     name: Напряжение Фазы A
-    class: voltage
-    unit: V
+    class: voltage # device_class
     dps:
       - id: 103
         type: integer
         name: sensor
+        unit: V # unit_of_measurement
+        class: measurement # state_class
         mapping:
           - scale: 100 # Делим на 100 для корректного значения
 
@@ -33,11 +35,12 @@ entities:
   - entity: sensor
     name: Напряжение Фазы B
     class: voltage
-    unit: V
     dps:
       - id: 104
         type: integer
         name: sensor
+        unit: V
+        class: measurement
         mapping:
           - scale: 100
 
@@ -46,11 +49,12 @@ entities:
   - entity: sensor
     name: Напряжение Фазы C
     class: voltage
-    unit: V
     dps:
       - id: 105
         type: integer
         name: sensor
+        unit: V
+        class: measurement
         mapping:
           - scale: 100
 
@@ -59,11 +63,12 @@ entities:
   - entity: sensor
     name: Ток Фазы A
     class: current
-    unit: A
     dps:
       - id: 106
         type: integer
         name: sensor
+        unit: A
+        class: measurement
         mapping:
           - scale: 100
 
@@ -72,11 +77,12 @@ entities:
   - entity: sensor
     name: Ток Фазы B
     class: current
-    unit: A
     dps:
       - id: 107
         type: integer
         name: sensor
+        unit: A
+        class: measurement
         mapping:
           - scale: 100
 
@@ -85,11 +91,12 @@ entities:
   - entity: sensor
     name: Ток Фазы C
     class: current
-    unit: A
     dps:
       - id: 108
         type: integer
         name: sensor
+        unit: A
+        class: measurement
         mapping:
           - scale: 100
 
@@ -98,11 +105,12 @@ entities:
   - entity: sensor
     name: Общий Ток
     class: current
-    unit: A
     dps:
       - id: 131
         type: integer
         name: sensor
+        unit: A
+        class: measurement
         mapping:
           - scale: 100
 
@@ -111,12 +119,12 @@ entities:
   - entity: sensor
     name: Заряженная Энергия
     class: energy
-    unit: kWh
     dps:
       - id: 110
         type: integer
         name: sensor
-        class: total_increasing # Или measurement, если это мгновенное значение
+        unit: kWh
+        class: total_increasing # Этот state_class допустим для device_class: energy
         mapping:
           - scale: 100
 
@@ -125,11 +133,11 @@ entities:
   - entity: sensor
     name: Мощность Зарядки 1
     class: power
-    unit: kW
     dps:
       - id: 150
         type: integer
         name: sensor
+        unit: kW
         class: measurement
         mapping:
           - scale: 100
@@ -139,11 +147,11 @@ entities:
   - entity: sensor
     name: Мощность Зарядки 2
     class: power
-    unit: kW
     dps:
       - id: 151
         type: integer
         name: sensor
+        unit: kW
         class: measurement
         mapping:
           - scale: 100
@@ -153,12 +161,12 @@ entities:
   - entity: sensor
     name: Энергия Транзакции
     class: energy
-    unit: kWh
     dps:
       - id: 153
         type: integer
         name: sensor
-        class: total_increasing # Или measurement
+        unit: kWh
+        class: total_increasing # Этот state_class допустим для device_class: energy
         mapping:
           - scale: 100
 
@@ -167,23 +175,27 @@ entities:
   - entity: sensor
     name: Время Транзакции
     class: duration
-    unit: s # Предполагаем секунды, так как unit в данных пустой
     dps:
       - id: 154
         type: integer
         name: sensor
+        unit: s # unit_of_measurement: s (секунды)
+        class: measurement # state_class: measurement
+        # range: # Если есть диапазон, можно добавить
+        # min: 0
+        # max: 999999999
 
   # DP 155: transaction_monry (Value / integer, scale 2) - Сенсор суммы транзакции
   # accessMode: ro
   - entity: sensor
     name: Сумма Транзакции
-    class: monetary
-    unit: RUB # Измените на вашу валюту при необходимости
+    class: monetary # device_class
     dps:
       - id: 155
         type: integer
         name: sensor
-        class: total_increasing # Или measurement
+        unit: RUB # unit_of_measurement
+        # class: total # Удален total_increasing, можно оставить пустым или поставить total
         mapping:
           - scale: 100
 
@@ -191,7 +203,7 @@ entities:
   # accessMode: ro
   - entity: binary_sensor
     name: Статус Транзакции
-    class: running
+    class: running # device_class
     dps:
       - id: 156
         type: boolean
@@ -201,14 +213,15 @@ entities:
   # accessMode: rw
   - entity: number
     name: Номинальный Ток
-    class: current
+    category: config
+    class: current # device_class
     mode: box
     icon: "mdi:current-ac"
-    unit: A
     dps:
       - id: 115
         type: integer
         name: value
+        unit: A # unit_of_measurement
         range: # Согласно вашим данным (0-20000, т.е. 0-200 A)
           min: 0
           max: 200
@@ -219,14 +232,15 @@ entities:
   # accessMode: rw
   - entity: number
     name: Ток Балансировки Нагрузки
+    category: config
     class: current
     mode: box
     icon: "mdi:current-ac"
-    unit: A
     dps:
       - id: 117
         type: integer
         name: value
+        unit: A
         range: # Согласно вашим данным (0-20000, т.е. 0-200 A)
           min: 0
           max: 200
@@ -237,7 +251,7 @@ entities:
   # accessMode: ro
   - entity: binary_sensor
     name: Состояние Балансировки Нагрузки
-    class: safety
+    class: safety # device_class
     dps:
       - id: 116
         type: boolean
@@ -327,7 +341,7 @@ entities:
   # accessMode: ro
   - entity: binary_sensor
     name: Предупреждение о Прикосновении
-    class: problem # Или safety
+    class: problem # device_class
     dps:
       - id: 142
         type: boolean
@@ -378,11 +392,12 @@ entities:
   - entity: sensor
     name: Накопленный Баланс
     class: monetary
-    unit: RUB # Измените на вашу валюту при необходимости
     dps:
       - id: 111
         type: integer
         name: sensor
+        unit: RUB
+        # Удален state_class для monetary
         mapping:
           - scale: 100
 
@@ -391,11 +406,12 @@ entities:
   - entity: sensor
     name: Баланс Карты
     class: monetary
-    unit: RUB # Измените на вашу валюту при необходимости
     dps:
       - id: 112
         type: integer
         name: sensor
+        unit: RUB
+        # Удален state_class для monetary
         mapping:
           - scale: 100
 
@@ -403,7 +419,7 @@ entities:
   # accessMode: ro
   - entity: binary_sensor
     name: Статус Логина
-    class: connectivity # Или other appropriate class
+    class: connectivity # device_class
     dps:
       - id: 102
         type: boolean
@@ -414,11 +430,12 @@ entities:
   - entity: sensor
     name: Напряжение CP
     class: voltage
-    unit: V
     dps:
       - id: 114
         type: integer
         name: sensor
+        unit: V
+        class: measurement
         mapping:
           - scale: 100
 
@@ -441,7 +458,7 @@ entities:
       - id: 125
         type: string
         name: value
-
+        
   # DP 132: apn (String) - Текстовое поле для APN
   # accessMode: rw
   - entity: text
@@ -471,7 +488,7 @@ entities:
       - id: 134
         type: string
         name: value
-
+        
   # DP 135: charge_card_no1 (String) - Текстовое поле для Авторизованной карты 1
   # accessMode: rw
   - entity: text
@@ -481,7 +498,7 @@ entities:
       - id: 135
         type: string
         name: value
-
+        
   # DP 136: charge_card_no2 (String) - Текстовое поле для Авторизованной карты 2
   # accessMode: rw
   - entity: text
