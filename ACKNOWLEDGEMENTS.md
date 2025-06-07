@@ -944,3 +944,5 @@ Further device support has been made with the assistance of users. Please consid
 - [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan.
 - [dwd1](https://github.com/dwd1) for assisting with support for RH-PD10 peehole doorbell camera.
 - [thd6n75](https://github.com/thd6n75) for contributing support for Korex AX-WF306N kettle.
+- [1B9-MasterChief](https://github.com/1B9-MasterChief) for contributing support for Sonnenkönig Fresco 140/180 air conditioner.
+- [fribse](https://github.com/fribse) for assisting with support for Denver SHP-200mk2 dual smartplug.

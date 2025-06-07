@@ -108,7 +108,8 @@
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
-- Sensei Air Conditioner
+- Sensei air conditioner
+- Sonnenkönig Fresco 140/180 air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Teknopoint Idra Skiv air conditioner
@@ -524,6 +525,7 @@ the best option.
 - Brilliant quad powerstrip with USB
 - CBI Astute smart controller
 - CE Smart Home LQ-2-W3 AC wall outlet
+- Denver SHP-200mk2 dual smartplug with power monitoring
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
