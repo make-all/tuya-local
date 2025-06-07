@@ -48,10 +48,20 @@ entities:
             value: F
           - dps_val: c
             value: C
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+  - entity: select
+    translation_key: kettle_mode
+    dps:
       - id: 16
         type: string
-        optional: true
-        name: operation_mode
+        name: option
         mapping:
           - dps_val: setting_quick
             value: quick_heat
@@ -62,6 +72,8 @@ entities:
           - dps_val: temp_boiling
             value: boil
   - entity: switch
+    # 2025-06-07
+    deprecated: water_heater_kettle.operation_mode
     dps:
       - id: 1
         type: boolean
