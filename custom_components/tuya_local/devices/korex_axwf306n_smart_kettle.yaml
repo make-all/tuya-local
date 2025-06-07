@@ -22,8 +22,8 @@ entities:
         type: string
         name: temperature
         range:
-          min: 45
-          max: 212
+          min: 50
+          max: 221
         mapping:
           - constraint: temperature_unit
             conditions:
@@ -31,24 +31,22 @@ entities:
                 value_redirect: temperature_c
                 step: 5
                 range:
-                  min: 45
-                  max: 100
+                  min: 50
+                  max: 105
               - dps_val: f
                 value_redirect: temperature_f
                 step: 9
                 range:
-                  min: 113
-                  max: 212
+                  min: 122
+                  max: 221
       - id: 101
         type: string
         name: temperature_f
         hidden: true
         range:
-          min: 113
-          max: 212
+          min: 122
+          max: 221
         mapping:
-          - dps_val: "0"
-            value: 113  # actually off, but avoids disjointed values
           - dps_val: "11"
             value: 122
           - dps_val: "10"
@@ -71,6 +69,8 @@ entities:
             value: 203
           - dps_val: "1"
             value: 212
+          - dps_val: "0"
+            value: 221  # "cancel" means boil
       - id: 101
         type: string
         name: temperature_c
@@ -79,8 +79,6 @@ entities:
           min: 45
           max: 100
         mapping:
-          - dps_val: "0"
-            value: 45  # actually off, but avoids disjointed values
           - dps_val: "11"
             value: 50
           - dps_val: "10"
@@ -103,6 +101,8 @@ entities:
             value: 95
           - dps_val: "1"
             value: 100
+          - dps_val: "0"
+            value: 105  # "cancel" means boil
       - id: 105
         type: string
         name: temperature_unit
