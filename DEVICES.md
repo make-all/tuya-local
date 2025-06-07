@@ -246,6 +246,7 @@
 - Carro PN-04F02D fan with dimmable light
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
+- Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
@@ -295,6 +296,7 @@
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
+- Varin CFWI50 RGBCW ceiling fan
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 
@@ -417,6 +419,7 @@
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Klarstein Amazonia dishwasher
 - Kogan glass 1.7L smart kettle
+- Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
 - Recteq RT700 grill
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
@@ -720,6 +723,7 @@ of device.
 - Moes WS-Y-EUC curtain switch with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - QS-WIFI-C02 dual curtain module
+- Safe CON09 barrier controller
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
@@ -816,6 +820,7 @@ port and password.
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
+- RH-PD10 3MP peephole doorbell camera
 - RL video intercom (reported unable to connect)
 - SC116-WZ3A PTZ camera
 - SMCM DDV-207 Doorbell Pro camera
@@ -827,6 +832,7 @@ port and password.
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
+- Staniot smart security panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
@@ -923,6 +929,7 @@ port and password.
 - CO2-Box air quality monitor
 - C30W gas leak detector
 - CT20W PIR motion detector
+- Dienmern DM165A noise meter
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)

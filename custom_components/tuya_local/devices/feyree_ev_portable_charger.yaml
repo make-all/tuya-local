@@ -13,7 +13,7 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: no_connect
+          - dps_val: no_connet
             value: available
           - dps_val: connect
             value: plugged_in
@@ -73,6 +73,56 @@ entities:
           max: 999999
         mapping:
           - scale: 2
+  - entity: binary_sensor
+    name: Alarm event
+    class: problem
+    icon: 'mdi:alert-outline'
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: alarm_descriptions
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Under voltage protection"
+          - dps_val: 2
+            value: "Over voltage protection"
+          - dps_val: 4
+            value: "Over current protection"
+          - dps_val: 8
+            value: "Protective earth error"
+          - dps_val: 16
+            value: "Temperature is too high"
+          - dps_val: 32
+            value: "Control pilot line error"
+          - dps_val: 64
+            value: "Leak"
+          - dps_val: 128
+            value: "Relay socket"
+          - dps_val: 256
+            value: "Protective earth error 2"
+          - dps_val: 512
+            value: "Plug temperature is too high"
+          - dps_val: 1024
+            value: "PCB temperature is too high"
+          - dps_val: 2048
+            value: "Core temperature is too high"
+          - dps_val: 4096
+            value: "ESB"
+          - dps_val: 8192
+            value: "Socket protective earth error"
+          - dps_val: 16384
+            value: "Socket leakage"
+          - dps_val: 32768
+            value: "Socket temperature is too high"
   - entity: button
     name: Clear energy
     class: restart
@@ -147,3 +197,44 @@ entities:
         name: sensor
         unit: V
         class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charging duration
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: sensor
+    name: Charging time
+    category: diagnostic
+    dps:
+      - id: 120
+        type: string
+        name: sensor
