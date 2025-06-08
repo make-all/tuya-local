@@ -15,24 +15,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_type
-            conditions:
-              - dps_val: diy
-                value: custom
-              - dps_val: boiled_water
-                value: boil
-              - dps_val: dechlorination
-                value: dechlorination
-              - dps_val: black_tea
-                value: black tea
-              - dps_val: coffee
-                value: coffee
-              - dps_val: green_tea
-                value: green tea
-              - dps_val: honey_water
-                value: honey water
-              - dps_val: milk_powder
-                value: milk powder
+            value: electric
       - id: 2
         type: integer
         name: current_temperature
@@ -47,10 +30,29 @@ entities:
           min: 0
           max: 100
         unit: °C
+  - entity: select
+    translation_key: kettle_mode
+    dps:
       - id: 11
         type: string
-        name: work_type
-        hidden: true
+        name: option
+        mapping:
+          - dps_val: diy
+            value: custom
+          - dps_val: boiled_water
+            value: boil
+          - dps_val: dechlorination
+            value: dechlorinate
+          - dps_val: black_tea
+            value: black_tea
+          - dps_val: coffee
+            value: coffee
+          - dps_val: green_tea
+            value: green_tea
+          - dps_val: honey_water
+            value: honey_water
+          - dps_val: milk_powder
+            value: infant_formula
   - entity: number
     name: Boil temperature
     category: config
