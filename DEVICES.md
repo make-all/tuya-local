@@ -949,6 +949,7 @@ port and password.
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
+- Konlen SNT957W-TDE E3S temperature alarm
 - Konlen/Rockson WF96L water level controller
 - Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
 - Manta Windy MT0200B weather station
