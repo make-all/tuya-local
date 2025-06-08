@@ -946,3 +946,4 @@ Further device support has been made with the assistance of users. Please consid
 - [thd6n75](https://github.com/thd6n75) for contributing support for Korex AX-WF306N kettle.
 - [1B9-MasterChief](https://github.com/1B9-MasterChief) for contributing support for Sonnenkönig Fresco 140/180 air conditioner.
 - [fribse](https://github.com/fribse) for assisting with support for Denver SHP-200mk2 dual smartplug.
+- [DroidFreak32](https://github.com/DroidFreak32) for assisting with support for HomeMate PTZ indoor camera.
