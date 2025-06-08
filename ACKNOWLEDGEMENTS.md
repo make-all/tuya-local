@@ -948,3 +948,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fribse](https://github.com/fribse) for assisting with support for Denver SHP-200mk2 dual smartplug.
 - [DroidFreak32](https://github.com/DroidFreak32) for assisting with support for HomeMate PTZ indoor camera.
 - [danvit58](https://github.com/danvit58) for assisting with support for Konlen SNT957W-TDE E3S temperature alarm.
+- [Gotanius](https://github.com/Gotanius) for contributing support for PetsPride OO15 pet feeder.
