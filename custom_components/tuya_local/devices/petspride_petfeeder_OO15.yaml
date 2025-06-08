@@ -1,8 +1,9 @@
-name: PetsPride Petfeeder OO15
+name: Pet feeder
 products:
   - id: kknufilajvq2zh7t
     manufacturer: PetsPride
     model: 2Bowl-4L
+    model_id: OO15
 entities:
   - entity: light
     translation_key: indicator
@@ -79,7 +80,6 @@ entities:
           min: 5
           max: 20
         mapping:
-          - scale: 1
           - dps_val: null
             value: 0
   - entity: number
@@ -204,8 +204,6 @@ entities:
         type: integer
         optional: true
         name: grams
-        mapping:
-          - scale: 1
   - entity: event
     name: Auto feed
     icon: "mdi:food-drumstick"
@@ -222,8 +220,6 @@ entities:
         type: integer
         optional: true
         name: grams
-        mapping:
-          - scale: 1
   - entity: number
     name: Manual feed
     category: config
