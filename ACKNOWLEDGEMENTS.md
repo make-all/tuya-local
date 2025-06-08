@@ -312,7 +312,7 @@ Further device support has been made with the assistance of users. Please consid
 - [jrotenstein](https://github.com/jrotenstein) for contributing support for Aquatech Rapid X6 water heaters.
 - [hanzwo](https://github.com/hanzwo) for contributing support for Windcalm ceiling fans.
 - [stikonas](https://github.com/stikonas) for contributing support for Monzana Klimaanlage air conditioners.
-- [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans, and Arlec APR005HA air purifier.
+- [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans and GPPH900 heaters, and Arlec APR005HA air purifier.
 - [xpavli44](https://github.com/xpavli44) for contributing Czech translations.
 - [kondi](https://github.com/kondi) for contributing improvements to masked values and Starlight heatpumps.
 - [scotttimmins](https://github.com/scotttimmins) for contributing support for 4 outlet + USB smart powerstrip and Depauley ceiling fan.
