@@ -872,8 +872,9 @@ port and password.
 - Petoneer Fresco Mini pet fountain
 - Petoneer Nutri PF004 pet feeder
 - Petree 2.0 litter box
-- PetSnowy Snow+ litter box
 - Petrust TK-WF002 pet fountain
+- PetSnowy Snow+ litter box
+- PetsPride OO15 pet feeder with camera
 - PNI water feeder
 - Puppy Kitty automatic pet feeder
 - Rojeco PTM-001 pet feeder (two versions)
