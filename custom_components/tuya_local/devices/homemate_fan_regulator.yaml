@@ -1,0 +1,27 @@
+name: HomeMate Fan Regulator
+products:
+  - id: ewdmma4uccqydpmj
+    name: HomeMate Fan Regulator
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 5
+      # mapping:
+      #   - scale: 0.05
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 14
+        name: lock
+        type: boolean
