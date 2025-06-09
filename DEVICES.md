@@ -296,6 +296,7 @@
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
+- Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
