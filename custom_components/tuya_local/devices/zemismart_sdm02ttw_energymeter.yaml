@@ -1,11 +1,12 @@
-name: Wifi 2 Phase Energy Meter Max
+name: Energy meter
 products:
   - id: cdw24010001
     manufacturer: Zemismart
-    model: SDM02T-TW
+    model_id: SDM02T-TW
+    model: 2-Phase Energy Meter Max
 entities:
   - entity: sensor
-    name: Total Forward Energy
+    translation_key: energy_consumed
     class: energy
     dps:
       - id: 1
@@ -16,7 +17,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Reverse Energy
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 9
@@ -27,7 +28,6 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Power
     class: power
     dps:
       - id: 29
@@ -35,10 +35,10 @@ entities:
         unit: W
         class: measurement
         type: integer
-        mapping:
-          - scale: 1
   - entity: sensor
-    name: Phase A Power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 105
@@ -46,10 +46,10 @@ entities:
         unit: W
         class: measurement
         type: integer
-        mapping:
-          - scale: 1
   - entity: sensor
-    name: Phase B Power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 114
@@ -57,10 +57,10 @@ entities:
         unit: W
         class: measurement
         type: integer
-        mapping:
-          - scale: 1
   - entity: sensor
-    name: Phase A Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -72,7 +72,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Phase B Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -84,7 +86,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Phase A Current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -96,7 +100,9 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Phase B Current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -108,7 +114,6 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Frequency
     class: frequency
     category: diagnostic
     dps:
@@ -120,17 +125,13 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Overall Power Factor
     class: power_factor
     category: diagnostic
     dps:
       - id: 117
         name: sensor
-        unit: '%'
+        unit: "%"
         class: measurement
-        type: integer
-        mapping:
-          - scale: 1
   - entity: number
     name: Reporting interval
     category: config
