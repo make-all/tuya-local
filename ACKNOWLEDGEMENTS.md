@@ -892,7 +892,7 @@ Further device support has been made with the assistance of users. Please consid
 - [KillDozerX2](https://github.com/KillDozerX2) for contributing support for Honeywell Air Touch P2 air purifier.
 - [Sapd](https://github.com/Sapd) for contributing support for Teknopoint Idra Skiv air conditioner.
 - [wuhgit](https://github.com/wuhgit) for contributing support for SC116-WZ3A camera.
-- [Airey001](https://github.com/Airey001) for contributing support for Neo-A Duoqu cat litter box.
+- [Airey001](https://github.com/Airey001) for contributing support for Neo-A Duoqu cat litter box, ComfortZone Powr Curve fan.
 - [Akira97One](https://github.com/Akira97One) for assisting with support for SMCM DDV-207 Doorbell Pro camera.
 - [hemersonfds](https://github.com/hemersonfds) for assisting with support for EARU EAEMP3C energy monitoring breaker.
 - [jldg](https://github.com/jldg) for assisting with support for Lumary A1 ceiling fan with light.
