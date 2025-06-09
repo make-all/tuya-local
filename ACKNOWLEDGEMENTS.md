@@ -950,3 +950,4 @@ Further device support has been made with the assistance of users. Please consid
 - [danvit58](https://github.com/danvit58) for assisting with support for Konlen SNT957W-TDE E3S temperature alarm.
 - [Gotanius](https://github.com/Gotanius) for contributing support for PetsPride OO15 pet feeder.
 - [eliel-elie](https://github.com/eliel-elie) for contributing support for Zemismart SMD02T-TZ energy meter.
+- [justme871](https://github.com/justme871) for assisting with support for Garza thermostat.
