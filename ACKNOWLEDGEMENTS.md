@@ -952,3 +952,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eliel-elie](https://github.com/eliel-elie) for contributing support for Zemismart SMD02T-TZ energy meter.
 - [justme871](https://github.com/justme871) for assisting with support for Garza thermostat.
 - [jaso1000](https://github.com/jaso1000) for contributing support for Temple and Webster Alina ceiling fan.
+- [hprombex](https://github.com/hprombex) for contributing support for Götze and Jensen KT975K kettle.
