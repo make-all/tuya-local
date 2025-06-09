@@ -1,9 +1,8 @@
-name: Smart Kettle Götze & Jensen KT975K
+name: Kettle
 products:
   - id: m3piuietzgcgyrfk
     manufacturer: Götze & Jensen
     model: KT975K
-    name: Kettle KT975K
 entities:
   - entity: water_heater
     translation_key: kettle
@@ -19,7 +18,6 @@ entities:
       - id: 2
         type: integer
         name: current_temperature
-        unit: °C
         range:
           min: 0
           max: 100
@@ -29,7 +27,7 @@ entities:
         range:
           min: 0
           max: 100
-        unit: °C
+        unit: C
   - entity: select
     translation_key: kettle_mode
     dps:
@@ -62,7 +60,7 @@ entities:
       - id: 4
         type: integer
         name: value
-        unit: °C
+        unit: C
         range:
           min: 0
           max: 100
@@ -75,7 +73,7 @@ entities:
       - id: 15
         type: integer
         name: value
-        unit: °C
+        unit: C
         range:
           min: 0
           max: 100
@@ -83,7 +81,7 @@ entities:
     name: Keep warm time
     category: config
     class: duration
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 7
         type: integer
@@ -117,20 +115,19 @@ entities:
           - dps_val: warm
             value: keeping_warm
   - entity: sensor
-    name: Current temperature
     class: temperature
     category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: °C
+        unit: C
         class: measurement
         range:
           min: 0
           max: 100
   - entity: sensor
-    name: Keep warm remaining time
+    translation_key: remaining_time
     class: duration
     category: diagnostic
     dps:
