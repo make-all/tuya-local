@@ -1,15 +1,15 @@
 name: Моя Зарядная Станция
 products:
   - id: s2wublk5n2pycus1
-    manufacturer: cn ev charger
-    model: 22kw
-    name: Ev charger
+    manufacturer: TARY
+    model: TA-AC380/22
+    name: EV AC Charging Box
     model_id: 000004uqrl
 entities:
   # DP 109: charging_state (Boolean)
   - entity: switch
     icon: "mdi:ev-station"
-    name: Состояние Зарядки
+    translation_key: charging_state
     dps:
       - id: 109
         type: boolean
@@ -17,7 +17,9 @@ entities:
 
   # DP 103: voltage_phase_a (Value / integer, scale 2)
   - entity: sensor
-    name: Напряжение Фазы A
+    translation_key: voltage_phase
+    translation_parameters:
+      phase: A
     class: voltage
     dps:
       - id: 103
@@ -30,7 +32,9 @@ entities:
 
   # DP 104: voltage_phase_b (Value / integer, scale 2)
   - entity: sensor
-    name: Напряжение Фазы B
+    translation_key: voltage_phase
+    translation_parameters:
+      phase: B
     class: voltage
     dps:
       - id: 104
@@ -43,7 +47,9 @@ entities:
 
   # DP 105: voltage_phase_c (Value / integer, scale 2)
   - entity: sensor
-    name: Напряжение Фазы C
+    translation_key: voltage_phase
+    translation_parameters:
+      phase: C
     class: voltage
     dps:
       - id: 105
@@ -56,7 +62,9 @@ entities:
 
   # DP 106: electricity_phase_a (Value / integer, scale 2)
   - entity: sensor
-    name: Ток Фазы A
+    translation_key: current_phase
+    translation_parameters:
+      phase: A
     class: current
     dps:
       - id: 106
@@ -69,7 +77,9 @@ entities:
 
   # DP 107: electricity_phase_b (Value / integer, scale 2)
   - entity: sensor
-    name: Ток Фазы B
+    translation_key: current_phase
+    translation_parameters:
+      phase: B
     class: current
     dps:
       - id: 107
@@ -82,7 +92,9 @@ entities:
 
   # DP 108: electricity_phase_c (Value / integer, scale 2)
   - entity: sensor
-    name: Ток Фазы C
+    translation_key: current_phase
+    translation_parameters:
+      phase: C
     class: current
     dps:
       - id: 108
@@ -95,7 +107,7 @@ entities:
 
   # DP 131: electricity_total (Value / integer, scale 2)
   - entity: sensor
-    name: Общий Ток
+    translation_key: total_current
     class: current
     dps:
       - id: 131
@@ -108,7 +120,7 @@ entities:
 
   # DP 110: charge_electric_quantity (Value / integer, scale 2)
   - entity: sensor
-    name: Заряженная Энергия
+    translation_key: charged_energy
     class: energy
     dps:
       - id: 110
@@ -121,7 +133,7 @@ entities:
 
   # DP 150: charge_power1 (Value / integer, scale 2)
   - entity: sensor
-    name: Мощность Зарядки 1
+    translation_key: charging_power_1
     class: power
     dps:
       - id: 150
@@ -134,7 +146,7 @@ entities:
 
   # DP 151: charge_power2 (Value / integer, scale 2)
   - entity: sensor
-    name: Мощность Зарядки 2
+    translation_key: charging_power_2
     class: power
     dps:
       - id: 151
@@ -147,7 +159,7 @@ entities:
 
   # DP 153: transaction_energy (Value / integer, scale 2)
   - entity: sensor
-    name: Энергия Транзакции
+    translation_key: transaction_energy
     class: energy
     dps:
       - id: 153
@@ -160,7 +172,7 @@ entities:
 
   # DP 154: transaction_time (Value / integer, scale 0)
   - entity: sensor
-    name: Время Транзакции
+    translation_key: transaction_time
     class: duration
     dps:
       - id: 154
@@ -171,7 +183,7 @@ entities:
 
   # DP 155: transaction_monry (Value / integer, scale 2)
   - entity: sensor
-    name: Сумма Транзакции
+    translation_key: transaction_amount
     class: monetary
     dps:
       - id: 155
@@ -184,7 +196,7 @@ entities:
 
   # DP 156: transaction_status (Boolean)
   - entity: binary_sensor
-    name: Статус Транзакции
+    translation_key: transaction_status
     class: running
     dps:
       - id: 156
@@ -193,7 +205,7 @@ entities:
 
   # DP 115: rated_current (Value / integer, scale 2)
   - entity: number
-    name: Номинальный Ток
+    translation_key: rated_current
     category: config
     class: current
     mode: box
@@ -211,7 +223,7 @@ entities:
 
   # DP 117: load_balancing_current (Value / integer, scale 2)
   - entity: number
-    name: Ток Балансировки Нагрузки
+    translation_key: load_balancing_current
     category: config
     class: current
     mode: box
@@ -229,7 +241,7 @@ entities:
 
   # DP 116: load_balancing_state (Boolean)
   - entity: binary_sensor
-    name: Состояние Балансировки Нагрузки
+    translation_key: load_balancing_state
     class: safety
     dps:
       - id: 116
@@ -238,7 +250,7 @@ entities:
 
   # DP 123: charge_pattern (Enum)
   - entity: select
-    name: Режим Зарядки
+    translation_key: charge_pattern
     icon: "mdi:ev-station"
     category: config
     dps:
@@ -257,7 +269,7 @@ entities:
 
   # DP 126: measurement_model (Enum)
   - entity: select
-    name: Режим Измерения
+    translation_key: measurement_model
     category: config
     dps:
       - id: 126
@@ -271,7 +283,7 @@ entities:
 
   # DP 128: earth_test (Enum)
   - entity: select
-    name: Тест Заземления
+    translation_key: earth_test
     category: config
     dps:
       - id: 128
@@ -285,7 +297,7 @@ entities:
 
   # DP 129: pen_protect (Enum)
   - entity: select
-    name: PEN Защита
+    translation_key: pen_protect
     category: config
     dps:
       - id: 129
@@ -299,7 +311,7 @@ entities:
 
   # DP 140: network_model (Enum)
   - entity: select
-    name: Режим Сети
+    translation_key: network_model
     category: config
     dps:
       - id: 140
@@ -313,7 +325,7 @@ entities:
 
   # DP 142: touch_warning (Boolean)
   - entity: binary_sensor
-    name: Предупреждение о Прикосновении
+    translation_key: touch_warning
     class: problem
     dps:
       - id: 142
@@ -322,7 +334,7 @@ entities:
 
   # DP 143: ocpp_tls (Boolean)
   - entity: switch
-    name: OCPP TLS Шифрование
+    translation_key: ocpp_tls_encryption
     category: config
     dps:
       - id: 143
@@ -331,7 +343,7 @@ entities:
 
   # DP 127: version_number (String)
   - entity: sensor
-    name: Версия Прошивки
+    translation_key: firmware_version
     category: diagnostic
     dps:
       - id: 127
@@ -340,7 +352,7 @@ entities:
 
   # DP 152: device_number (String)
   - entity: sensor
-    name: Номер Устройства
+    translation_key: device_number
     category: diagnostic
     dps:
       - id: 152
@@ -349,7 +361,7 @@ entities:
 
   # DP 113: pile_number (String)
   - entity: sensor
-    name: Код Станции
+    translation_key: station_code
     category: diagnostic
     dps:
       - id: 113
@@ -358,7 +370,7 @@ entities:
 
   # DP 111: charge_money (Value / integer, scale 2)
   - entity: sensor
-    name: Накопленный Баланс
+    translation_key: accumulated_balance
     class: monetary
     dps:
       - id: 111
@@ -371,7 +383,7 @@ entities:
 
   # DP 112: card_balance (Value / integer, scale 2)
   - entity: sensor
-    name: Баланс Карты
+    translation_key: card_balance
     class: monetary
     dps:
       - id: 112
@@ -384,7 +396,7 @@ entities:
 
   # DP 102: is_login (Boolean)
   - entity: binary_sensor
-    name: Статус Логина
+    translation_key: login_status
     class: connectivity
     dps:
       - id: 102
@@ -393,7 +405,7 @@ entities:
 
   # DP 114: cp (Value / integer, scale 2)
   - entity: sensor
-    name: Напряжение CP
+    translation_key: cp_voltage
     class: voltage
     dps:
       - id: 114
@@ -406,7 +418,7 @@ entities:
 
   # DP 124: equipment_time (String)
   - entity: sensor
-    name: Время Оборудования
+    translation_key: equipment_time
     category: diagnostic
     dps:
       - id: 124
@@ -415,7 +427,7 @@ entities:
 
   # DP 125: ocpp_url (String)
   - entity: text
-    name: OCPP URL
+    translation_key: ocpp_url
     category: config
     dps:
       - id: 125
@@ -424,7 +436,7 @@ entities:
 
   # DP 132: apn (String)
   - entity: text
-    name: APN
+    translation_key: apn
     category: config
     dps:
       - id: 132
@@ -433,7 +445,7 @@ entities:
 
   # DP 133: apn_user_name (String)
   - entity: text
-    name: APN Пользователь
+    translation_key: apn_user
     category: config
     dps:
       - id: 133
@@ -442,7 +454,7 @@ entities:
 
   # DP 134: apn_user_password (String)
   - entity: text
-    name: APN Пароль
+    translation_key: apn_password
     category: config
     dps:
       - id: 134
@@ -451,7 +463,7 @@ entities:
 
   # DP 135: charge_card_no1 (String)
   - entity: text
-    name: Авторизованная Карта 1
+    translation_key: authorized_card_1
     category: config
     dps:
       - id: 135
@@ -460,7 +472,7 @@ entities:
 
   # DP 136: charge_card_no2 (String)
   - entity: text
-    name: Авторизованная Карта 2
+    translation_key: authorized_card_2
     category: config
     dps:
       - id: 136
@@ -469,7 +481,7 @@ entities:
 
   # DP 141: qr_code_prefix (String)
   - entity: text
-    name: Префикс QR-кода
+    translation_key: qr_code_prefix
     category: config
     dps:
       - id: 141
