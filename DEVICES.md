@@ -438,7 +438,7 @@
 
 ### Smart Meter/Circuit Breaker
 
-- Atorch S1WP energy monitoring switch with display
+- Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
 - Aulifants SMES200 energy monitoring breaker switch

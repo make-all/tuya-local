@@ -1,8 +1,8 @@
 name: Energy monitoring plug with display
 products:
-  - id: sqrf2g1amfutn4co
+  - id: pl28o0wkaopyft8u
     manufacturer: Atorch
-    model: S1WP
+    model: S1BW
 entities:
   - entity: switch
     class: outlet
@@ -19,13 +19,10 @@ entities:
       - id: 9
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 360000
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     class: current
     category: diagnostic
@@ -81,8 +78,22 @@ entities:
         mapping:
           - scale: 1000
   - entity: number
+    name: Over protection duration
     category: config
-    name: Overvoltage value
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 20
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Overvoltage threshold
     icon: "mdi:flash-triangle"
     dps:
       - id: 104
@@ -96,7 +107,7 @@ entities:
           - scale: 10
   - entity: number
     category: config
-    name: Overcurrent value
+    name: Overcurrent threshold
     icon: "mdi:flash-triangle"
     dps:
       - id: 105
@@ -110,7 +121,7 @@ entities:
           - scale: 100
   - entity: number
     category: config
-    name: Overpower value
+    name: Overpower threshold
     icon: "mdi:flash-triangle"
     dps:
       - id: 106
@@ -132,25 +143,24 @@ entities:
             value: chinese
           - dps_val: english
             value: english
-  - entity: number
+  - entity: light
     category: config
-    name: Screen brightness
-    icon: "mdi:brightness-7"
+    translation_key: display
     dps:
       - id: 108
         type: integer
-        name: value
+        name: brightness
         range:
           min: 1
           max: 9
-  - entity: number
+  - entity: light
     category: config
-    name: Standby brightness
+    name: Standby
     icon: "mdi:brightness-4"
     dps:
       - id: 109
         type: integer
-        name: value
+        name: brightness
         range:
           min: 1
           max: 9
@@ -245,9 +255,9 @@ entities:
           - dps_val: safety_protection
             value: Electricity price setting and bill
           - dps_val: outage_a
-            value: Smart power off (A)
+            value: Smart power off A
           - dps_val: outage_b
-            value: Smart power off (B)
+            value: Smart power off B
           - dps_val: timing_close
             value: Timing off
           - dps_val: timing_open
@@ -258,7 +268,7 @@ entities:
             value: Timing Countdown
   - entity: number
     category: config
-    name: (A) Power greater than
+    name: Low power threshold
     icon: "mdi:flash-triangle"
     dps:
       - id: 119
@@ -270,19 +280,20 @@ entities:
           max: 999
   - entity: number
     category: config
-    name: (A) Duration
+    name: Time minutes
+    class: duration
     icon: "mdi:clock"
     dps:
       - id: 120
         type: integer
         name: value
-        unit: minutes
+        unit: min
         range:
           min: 1
           max: 99
   - entity: number
     category: config
-    name: (B) Power lower than
+    name: High power threshold
     icon: "mdi:flash-triangle"
     dps:
       - id: 121
@@ -291,10 +302,11 @@ entities:
         unit: W
         range:
           min: 1
-          max: 999
+          max: 9999
   - entity: number
     category: config
-    name: (B) Duration
+    name: Time hours
+    class: duration
     icon: "mdi:clock"
     dps:
       - id: 122
@@ -305,7 +317,6 @@ entities:
           min: 1
           max: 99
   - entity: sensor
-    name: Total electricity
     class: energy
     dps:
       - id: 123
@@ -327,42 +338,35 @@ entities:
         unit: s
   - entity: number
     category: config
-    name: Timing off time
+    name: "Off timer"
     class: duration
     translation_key: timer
-    mode: slider
     dps:
       - id: 125
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 360000
-        mapping:
-          - scale: 60
   - entity: number
     category: config
-    name: Timing on time
+    name: "On timer"
     class: duration
     translation_key: timer
-    mode: slider
     dps:
       - id: 126
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
-    name: Timing loop on time
+    name: Cycle on timer
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 127
         type: integer
@@ -371,14 +375,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
-    name: Timing loop off time
+    name: Cycle off timer
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 128
         type: integer
@@ -387,14 +388,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
-    name: Timing countdown on time
+    name: One shot on timer
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 129
         type: integer
@@ -403,14 +401,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
-    name: Timing countdown off time
+    name: One shot off timer
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 130
         type: integer
@@ -419,8 +414,6 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: select
     category: config
     name: Switch state
@@ -454,9 +447,9 @@ entities:
           - dps_val: opp
             value: Overpower protection
           - dps_val: outage_a
-            value: Smart power off (A)
+            value: Smart power off A
           - dps_val: outage_b
-            value: Smart power off (B)
+            value: Smart power off B
           - dps_val: timing_open
             value: Timing on
           - dps_val: timing_close
@@ -487,7 +480,6 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: CPU Temperature
     category: diagnostic
     class: temperature
     dps:
@@ -537,16 +529,43 @@ entities:
             value: "off"
           - dps_val: memory
             value: memory
-  - entity: number
+  - entity: switch
+    name: Over protection
     category: config
-    name: Update interval
-    icon: "mdi:update"
     dps:
       - id: 139
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Fast refresh
+    category: config
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+  - entity: number
+    name: Low voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 141
         type: integer
         name: value
-        optional: true
-        unit: s
+        unit: V
         range:
           min: 1
-          max: 90
+          max: 2750
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Over protection time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement

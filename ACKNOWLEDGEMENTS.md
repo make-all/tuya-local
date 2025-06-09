@@ -54,7 +54,7 @@ Further device support has been made with the assistance of users. Please consid
 - [novisys](https://github.com/novisys) for clarifications about BHT-6000 thermostat functionality.
 - [nzcodarnoc](https://github.com/nzcodarnoc) for contributing support for Kogan KASHMFP heaters.
 - [pascaltippelt](https://github.com/pascaltippelt) for contributing support for Morris MDB-12160HIW dehumidifier, Avatto WS20R thermostat and assistance supporting Minco MH-1823 thermostat.
-- [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, based on CBE smart switch but seeming to follow a Tuya Standard Template, so probably applicable to others.
+- [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, Atorch S1BW display smartplug.
 - [myevit](https://github.com/myevit) for assistance in supporting simple garage doors.
 - [maartendamen](https://github.com/maartendamen) for assistance in supporting Eurom Mon Soleil 601 heaters.
 - [TeddyLafrite](https://github.com/TeddyLafrite) for assistance in supporting Nedis HTPL20F heaters.
