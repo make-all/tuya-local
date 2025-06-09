@@ -1,25 +1,31 @@
-name: Моя Зарядная Станция
+name: EV charger
 products:
   - id: s2wublk5n2pycus1
     manufacturer: TARY
     model: TA-AC380/22
-    name: EV AC Charging Box
-    model_id: 000004uqrl
 entities:
   # DP 109: charging_state (Boolean)
   - entity: switch
     icon: "mdi:ev-station"
-    translation_key: charging_state
     dps:
       - id: 109
         type: boolean
         name: switch
+      - id: 127
+        type: string
+        name: firmware_version
+      - id: 152
+        type: string
+        name: device_number
+      - id: 113
+        type: string
+        name: station_code
 
   # DP 103: voltage_phase_a (Value / integer, scale 2)
   - entity: sensor
-    translation_key: voltage_phase
+    translation_key: voltage_x
     translation_parameters:
-      phase: A
+      x: A
     class: voltage
     dps:
       - id: 103
@@ -32,9 +38,9 @@ entities:
 
   # DP 104: voltage_phase_b (Value / integer, scale 2)
   - entity: sensor
-    translation_key: voltage_phase
+    translation_key: voltage_x
     translation_parameters:
-      phase: B
+      x: B
     class: voltage
     dps:
       - id: 104
@@ -47,9 +53,9 @@ entities:
 
   # DP 105: voltage_phase_c (Value / integer, scale 2)
   - entity: sensor
-    translation_key: voltage_phase
+    translation_key: voltage_x
     translation_parameters:
-      phase: C
+      x: C
     class: voltage
     dps:
       - id: 105
@@ -62,9 +68,9 @@ entities:
 
   # DP 106: electricity_phase_a (Value / integer, scale 2)
   - entity: sensor
-    translation_key: current_phase
+    translation_key: current_x
     translation_parameters:
-      phase: A
+      x: A
     class: current
     dps:
       - id: 106
@@ -77,9 +83,9 @@ entities:
 
   # DP 107: electricity_phase_b (Value / integer, scale 2)
   - entity: sensor
-    translation_key: current_phase
+    translation_key: current_x
     translation_parameters:
-      phase: B
+      x: B
     class: current
     dps:
       - id: 107
@@ -92,9 +98,9 @@ entities:
 
   # DP 108: electricity_phase_c (Value / integer, scale 2)
   - entity: sensor
-    translation_key: current_phase
+    translation_key: current_x
     translation_parameters:
-      phase: C
+      x: C
     class: current
     dps:
       - id: 108
@@ -107,7 +113,6 @@ entities:
 
   # DP 131: electricity_total (Value / integer, scale 2)
   - entity: sensor
-    translation_key: total_current
     class: current
     dps:
       - id: 131
@@ -120,7 +125,7 @@ entities:
 
   # DP 110: charge_electric_quantity (Value / integer, scale 2)
   - entity: sensor
-    translation_key: charged_energy
+    name: Charged energy
     class: energy
     dps:
       - id: 110
@@ -133,7 +138,9 @@ entities:
 
   # DP 150: charge_power1 (Value / integer, scale 2)
   - entity: sensor
-    translation_key: charging_power_1
+    translation_key: power_x
+    translation_placeholders:
+      x: charging 1
     class: power
     dps:
       - id: 150
@@ -146,7 +153,9 @@ entities:
 
   # DP 151: charge_power2 (Value / integer, scale 2)
   - entity: sensor
-    translation_key: charging_power_2
+    translation_key: power_x
+    translation_placeholders:
+      x: charging 2
     class: power
     dps:
       - id: 151
@@ -159,7 +168,7 @@ entities:
 
   # DP 153: transaction_energy (Value / integer, scale 2)
   - entity: sensor
-    translation_key: transaction_energy
+    name: Transaction energy
     class: energy
     dps:
       - id: 153
@@ -172,7 +181,7 @@ entities:
 
   # DP 154: transaction_time (Value / integer, scale 0)
   - entity: sensor
-    translation_key: transaction_time
+    name: Transaction time
     class: duration
     dps:
       - id: 154
@@ -183,20 +192,20 @@ entities:
 
   # DP 155: transaction_monry (Value / integer, scale 2)
   - entity: sensor
-    translation_key: transaction_amount
-    class: monetary
+    name: Transaction amount
+    # class: monetary
+    hidden: true
     dps:
       - id: 155
         type: integer
         name: sensor
-        unit: RUB
         class: total_increasing
         mapping:
           - scale: 100
 
   # DP 156: transaction_status (Boolean)
   - entity: binary_sensor
-    translation_key: transaction_status
+    name: Transaction
     class: running
     dps:
       - id: 156
@@ -205,10 +214,9 @@ entities:
 
   # DP 115: rated_current (Value / integer, scale 2)
   - entity: number
-    translation_key: rated_current
+    name: Rated current
     category: config
     class: current
-    mode: box
     icon: "mdi:current-ac"
     dps:
       - id: 115
@@ -223,10 +231,9 @@ entities:
 
   # DP 117: load_balancing_current (Value / integer, scale 2)
   - entity: number
-    translation_key: load_balancing_current
+    name: Load balancing current
     category: config
     class: current
-    mode: box
     icon: "mdi:current-ac"
     dps:
       - id: 117
@@ -241,7 +248,7 @@ entities:
 
   # DP 116: load_balancing_state (Boolean)
   - entity: binary_sensor
-    translation_key: load_balancing_state
+    name: Load balancing
     class: safety
     dps:
       - id: 116
@@ -250,7 +257,7 @@ entities:
 
   # DP 123: charge_pattern (Enum)
   - entity: select
-    translation_key: charge_pattern
+    name: Charge pattern
     icon: "mdi:ev-station"
     category: config
     dps:
@@ -259,17 +266,17 @@ entities:
         name: option
         mapping:
           - dps_val: netversion
-            value: Сетевая Версия
+            value: Network version
           - dps_val: standalone
-            value: Автономный Нормальный
+            value: Standalone normal
           - dps_val: standalone_reserved
-            value: Автономный Резервный
+            value: Standalone reserved
           - dps_val: plug_and_charge
-            value: Подключи и Заряжай
+            value: Plug and charge
 
   # DP 126: measurement_model (Enum)
   - entity: select
-    translation_key: measurement_model
+    name: Measurement
     category: config
     dps:
       - id: 126
@@ -277,41 +284,41 @@ entities:
         name: option
         mapping:
           - dps_val: internal_meter
-            value: Внутренний Счетчик
+            value: Internal meter
           - dps_val: external_meter
-            value: Внешний Счетчик
+            value: External meter
 
   # DP 128: earth_test (Enum)
-  - entity: select
-    translation_key: earth_test
+  - entity: switch
+    name: Earth test
     category: config
     dps:
       - id: 128
         type: string
-        name: option
+        name: switch
         mapping:
           - dps_val: enabled_energy
-            value: Включен
+            value: true
           - dps_val: forbidden_energy
-            value: Отключен
+            value: false
 
   # DP 129: pen_protect (Enum)
-  - entity: select
-    translation_key: pen_protect
+  - entity: switch
+    name: Pen protect
     category: config
     dps:
       - id: 129
         type: string
-        name: option
+        name: switch
         mapping:
           - dps_val: enabled_energy
-            value: Включена
+            value: true
           - dps_val: forbidden_energy
-            value: Отключена
+            value: false
 
   # DP 140: network_model (Enum)
   - entity: select
-    translation_key: network_model
+    name: Network model
     category: config
     dps:
       - id: 140
@@ -325,8 +332,7 @@ entities:
 
   # DP 142: touch_warning (Boolean)
   - entity: binary_sensor
-    translation_key: touch_warning
-    class: problem
+    class: tamper
     dps:
       - id: 142
         type: boolean
@@ -334,69 +340,42 @@ entities:
 
   # DP 143: ocpp_tls (Boolean)
   - entity: switch
-    translation_key: ocpp_tls_encryption
+    name: OCCP TLS encryption
     category: config
+    hidden: true
     dps:
       - id: 143
         type: boolean
         name: switch
 
-  # DP 127: version_number (String)
-  - entity: sensor
-    translation_key: firmware_version
-    category: diagnostic
-    dps:
-      - id: 127
-        type: string
-        name: sensor
-
-  # DP 152: device_number (String)
-  - entity: sensor
-    translation_key: device_number
-    category: diagnostic
-    dps:
-      - id: 152
-        type: string
-        name: sensor
-
-  # DP 113: pile_number (String)
-  - entity: sensor
-    translation_key: station_code
-    category: diagnostic
-    dps:
-      - id: 113
-        type: string
-        name: sensor
-
   # DP 111: charge_money (Value / integer, scale 2)
   - entity: sensor
-    translation_key: accumulated_balance
-    class: monetary
+    name: Accumulated balance
+    # class: monetary
+    hidden: true
     dps:
       - id: 111
         type: integer
         name: sensor
-        unit: RUB
         class: total_increasing
         mapping:
           - scale: 100
 
   # DP 112: card_balance (Value / integer, scale 2)
   - entity: sensor
-    translation_key: card_balance
-    class: monetary
+    name: Card balance
+    # class: monetary
+    hidden: true
     dps:
       - id: 112
         type: integer
         name: sensor
-        unit: RUB
         class: total_increasing
         mapping:
           - scale: 100
 
   # DP 102: is_login (Boolean)
   - entity: binary_sensor
-    translation_key: login_status
     class: connectivity
     dps:
       - id: 102
@@ -405,7 +384,9 @@ entities:
 
   # DP 114: cp (Value / integer, scale 2)
   - entity: sensor
-    translation_key: cp_voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: CP
     class: voltage
     dps:
       - id: 114
@@ -418,8 +399,9 @@ entities:
 
   # DP 124: equipment_time (String)
   - entity: sensor
-    translation_key: equipment_time
+    name: Equipment time
     category: diagnostic
+    hidden: true
     dps:
       - id: 124
         type: string
@@ -427,8 +409,9 @@ entities:
 
   # DP 125: ocpp_url (String)
   - entity: text
-    translation_key: ocpp_url
+    name: OCCP URL
     category: config
+    hidden: true
     dps:
       - id: 125
         type: string
@@ -436,8 +419,9 @@ entities:
 
   # DP 132: apn (String)
   - entity: text
-    translation_key: apn
+    name: APN
     category: config
+    hidden: true
     dps:
       - id: 132
         type: string
@@ -445,8 +429,9 @@ entities:
 
   # DP 133: apn_user_name (String)
   - entity: text
-    translation_key: apn_user
+    name: APN user
     category: config
+    hidden: true
     dps:
       - id: 133
         type: string
@@ -454,8 +439,9 @@ entities:
 
   # DP 134: apn_user_password (String)
   - entity: text
-    translation_key: apn_password
+    name: APN password
     category: config
+    hidden: true
     dps:
       - id: 134
         type: string
@@ -463,8 +449,9 @@ entities:
 
   # DP 135: charge_card_no1 (String)
   - entity: text
-    translation_key: authorized_card_1
+    name: Authorized card 1
     category: config
+    hidden: true
     dps:
       - id: 135
         type: string
@@ -472,8 +459,9 @@ entities:
 
   # DP 136: charge_card_no2 (String)
   - entity: text
-    translation_key: authorized_card_2
+    name: Authorized card 2
     category: config
+    hidden: true
     dps:
       - id: 136
         type: string
@@ -481,8 +469,9 @@ entities:
 
   # DP 141: qr_code_prefix (String)
   - entity: text
-    translation_key: qr_code_prefix
+    name: QR code prefix
     category: config
+    hidden: true
     dps:
       - id: 141
         type: string
