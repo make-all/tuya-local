@@ -953,3 +953,4 @@ Further device support has been made with the assistance of users. Please consid
 - [justme871](https://github.com/justme871) for assisting with support for Garza thermostat.
 - [jaso1000](https://github.com/jaso1000) for contributing support for Temple and Webster Alina ceiling fan.
 - [hprombex](https://github.com/hprombex) for contributing support for Götze and Jensen KT975K kettle.
+- [Anzic23](https://github.com/Anzic23) for contributing support for Tary TA-AC380/22 EV charger.
