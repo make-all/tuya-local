@@ -839,6 +839,7 @@ port and password.
 ### Alarm control panels
 
 - BlitzWolf BW-IS6 security alarm system
+- CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm

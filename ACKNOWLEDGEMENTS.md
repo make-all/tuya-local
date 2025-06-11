@@ -956,3 +956,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Anzic23](https://github.com/Anzic23) for contributing support for Tary TA-AC380/22 EV charger.
 - [FragMenthor](https://github.com/FragMenthor) for assisting with support for Fuers video doorbell.
 - [netforceatg](https://github.com/netforceatg) for assisting with support for Arida S7L-2 dehumidifier.
+- [Dungeonkeaper](https://github.com/Dungeonkeaper) for assisting with support for CPVAN CP2W alarm system.
