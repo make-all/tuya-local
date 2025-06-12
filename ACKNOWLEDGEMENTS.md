@@ -957,3 +957,4 @@ Further device support has been made with the assistance of users. Please consid
 - [FragMenthor](https://github.com/FragMenthor) for assisting with support for Fuers video doorbell.
 - [netforceatg](https://github.com/netforceatg) for assisting with support for Arida S7L-2 dehumidifier.
 - [Dungeonkeaper](https://github.com/Dungeonkeaper) for assisting with support for CPVAN CP2W alarm system.
+- [danps1](https://github.com/danps1) for assisting with support for Arlec 10 path lights.
