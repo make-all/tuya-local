@@ -27,21 +27,22 @@ entities:
                 value: heat
       - id: 2
         name: temperature
-        type: float
+        type: integer
         unit: C
         range:
-          min: 15.0
+          min: 15
           max: 31.12
-          # I set max with an extra .12 to account for temperature unit conversion shenanigans.
-          # (88°F = 31.1111°C) The AC automaticaly rounds floats to the nearest whole.
+          # I set max with an extra .12 to account for temperature unit
+          # conversion shenanigans. (88°F = 31.1111°C) The AC automaticaly
+          # rounds floats to the nearest whole.
         mapping:
           - constraint: temperature_unit
             conditions:
               - dps_val: F
                 value_redirect: temperature_f
                 range:
-                  min: 59.0
-                  max: 88.0
+                  min: 59
+                  max: 88
       - id: 3
         name: current_temperature
         type: integer
@@ -80,7 +81,7 @@ entities:
           - dps_val: false
             value: "off"
       - id: 108
-        type: float
+        type: integer
         name: temperature_f
         hidden: true
   - entity: select
@@ -142,17 +143,3 @@ entities:
       - id: 106
         type: bitfield
         name: fault_code
-
-  # Don't know what bMachineType and bShakeEn are for
-  # - entity: binary_sensor
-  #   name: bMachineType
-  #   dps:
-  #     - id: 107
-  #       type: boolean
-  #       name: sensor
-  # - entity: binary_sensor
-  #   name: bShakeEn
-  #   dps:
-  #     - id: 109
-  #       type: boolean
-  #       name: sensor
