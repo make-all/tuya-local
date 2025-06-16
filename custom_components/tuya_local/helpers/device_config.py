@@ -88,6 +88,13 @@ def _remove_duplicates(seq):
     return [x for x in seq if not (x in seen or adder(x))]
 
 
+def to_signed(val, bits):
+    """Convert unsigned int to signed 2's complement of given bit length."""
+    if val & (1 << (bits - 1)):
+        return val - (1 << bits)
+    return val
+
+
 class TuyaDeviceConfig:
     """Representation of a device config for Tuya Local devices."""
 
@@ -473,7 +480,14 @@ class TuyaDpsConfig:
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
-            return self._map_from_dps((value & mask) // scale, device)
+            raw_result = (value & mask) // scale
+
+            # Insert signed interpretation here
+            signed_bits = self._config.get("signed_bits")
+            if signed_bits:
+                raw_result = to_signed(raw_result, signed_bits)
+
+            return self._map_from_dps(raw_result, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
 
