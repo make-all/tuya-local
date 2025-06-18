@@ -1,0 +1,344 @@
+name: PC473 Power clamp meter
+products:
+  - id: vnxcwomqkofjhjcc
+    model: PC473
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+        unit: kWh
+        class: total_increasing
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    hidden: unavailable
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 139
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    hidden: true
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    hidden: true
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    hidden: true
+    name: Power factor A
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    hidden: true
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    hidden: true
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    hidden: true
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+        force: true
+        unit: W
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    hidden: true
+    name: Power factor B
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    hidden: true
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 121
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    hidden: true
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 122
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    hidden: true
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        force: true
+        class: measurement
+        unit: W
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    hidden: true
+    name: Power factor C
+    dps:
+      - id: 124
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 126
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
