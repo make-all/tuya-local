@@ -14,18 +14,20 @@ entities:
         range:
           min: 1
           max: 20
-  - entity: sensor
-    name: Mode
-    class: enum
+  - entity: binary_sensor
+    name: Eco Mode
     category: diagnostic
     dps:
-      - id: 103
+      - id: 12
         type: string
         name: sensor
+      - id: 12
+        type: string
+        name: name
         mapping:
-          - dps_val: 1
+          - dps_val: false
             value: real_time_mode
-          - dps_val: 2
+          - dps_val: true
             value: eco_mode
 
   - entity: text
@@ -64,16 +66,22 @@ entities:
       - id: 12
         type: boolean
         name: sensor
-  - entity: sensor
-    name: Problem
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 14
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
       - id: 14
         type: bitfield
-        optional: true
+        name: fault_value
+      - id: 14
+        type: bitfield
         name: fault_name
         mapping:
           - dps_val: 0
