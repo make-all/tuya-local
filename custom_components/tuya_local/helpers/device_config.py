@@ -484,10 +484,10 @@ class TuyaDpsConfig:
 
             # Insert signed interpretation here
             if self._config.get("mask_signed", False):
-            # Count how many bits are set in the mask
+                # Count how many bits are set in the mask
                 bit_count = mask.bit_count()
                 raw_result = to_signed(raw_result, bit_count)
-    
+
             return self._map_from_dps(raw_result, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
