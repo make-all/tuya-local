@@ -1,0 +1,75 @@
+name: HomeMate 2Gang Switch
+products:
+  - id: jbaaqtkiuyjyuwtq
+    name: HomeMate 2Gang Switch
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: switch
+    icon: "mdi:toggle-switch"
+    name: MasterSwitch
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    icon: "mdi:timer"
+    name: Countdown_1
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    icon: "mdi:timer"
+    name: Countdown_2
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Power on state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: "Power Off"
+          - dps_val: "on"
+            value: "Power On"
+          - dps_val: "memory"
+            value: "Last state"
+          - dps_val: null
+            invalid: true
