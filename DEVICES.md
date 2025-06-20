@@ -272,6 +272,7 @@
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Klarstein Skyscaper Ice cooling fan
+- Klarstein Skytower Grand Smart cooling fan
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Lucci Connect Wi-Fi fan remote

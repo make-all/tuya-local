@@ -577,7 +577,7 @@ Further device support has been made with the assistance of users. Please consid
 - [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
 - [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers, Fisher air to water heat pump and Tesla Smart pet feeder.
 - [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
-- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeder and RQ400A gas alarm.
+- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeder, RQ400A gas alarm, Klarstein Skytower Grand Smart fan.
 - [contactnat](https://github.com/contactnat) for assistance with Goldair PH-ET07EA heaters.
 - [JackJackattack4](https://github.com/JackJackattack4) for assistance with Deakon EVI air to water heatpumps.
 - [dimasibs92](https://github.com/dimasibs92) for assistance with WL-898WZ water leak sensors.
