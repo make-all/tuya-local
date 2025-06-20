@@ -1,4 +1,4 @@
-name: EARU Multi-Circuit Power Meter
+name: Multi-circuit power meter
 products:
   - id: tehjajiyfp2phy4d
     manufacturer: EARU Electronic
@@ -110,7 +110,7 @@ entities:
     class: current
     translation_key: current_x
     translation_placeholders:
-      x: Total
+      x: total
     category: diagnostic
     dps:
       - id: 104
@@ -434,7 +434,7 @@ entities:
     class: power
     translation_key: power_x
     translation_placeholders:
-      x: Total
+      x: total
     category: diagnostic
     dps:
       - id: 104
@@ -919,14 +919,14 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Meter Type
+    name: Meter type
     category: diagnostic
     dps:
       - id: 108
         type: string
         name: sensor
   - entity: sensor
-    name: Solar Total
+    name: Solar total
     category: diagnostic
     dps:
       - id: 112
