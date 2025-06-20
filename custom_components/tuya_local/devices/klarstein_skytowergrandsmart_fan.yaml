@@ -62,16 +62,6 @@ entities:
             value: "8h"
           - dps_val: "9H"
             value: "9h"
-  - entity: sensor
-    category: diagnostic
-    translation_key: time_remaining
-    class: duration
-    dps:
-      - id: 12
-        name: sensor
-        type: integer
-        optional: true
-        unit: min
   - entity: switch
     name: Humidifier
     icon: "mdi:air-humidifier"
@@ -79,3 +69,21 @@ entities:
       - id: 6
         type: boolean
         name: switch
+  - entity: binary_sensor
+    name: Ionizer
+    class: running
+    icon: "mdi:atom"
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Purifier
+    class: running
+    icon: "mdi:air-purifier"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
