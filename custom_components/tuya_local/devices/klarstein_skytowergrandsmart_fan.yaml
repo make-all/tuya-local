@@ -62,15 +62,16 @@ entities:
             value: "8h"
           - dps_val: "9H"
             value: "9h"
-  # - entity: sensor
-    # category: diagnostic
-    # translation_key: time_remaining
-    # class: duration
-    # dps:
-      # - id: 12
-        # name: sensor
-        # type: integer
-        # unit: min
+  - entity: sensor
+    category: diagnostic
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 12
+        name: sensor
+        type: integer
+        optional: true
+        unit: min
   - entity: switch
     name: Humidifier
     icon: "mdi:air-humidifier"
