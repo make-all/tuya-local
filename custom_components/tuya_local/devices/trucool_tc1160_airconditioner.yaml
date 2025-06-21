@@ -31,10 +31,7 @@ entities:
         unit: C
         range:
           min: 15
-          max: 31.12
-          # I set max with an extra .12 to account for temperature unit
-          # conversion shenanigans. (88°F = 31.1111°C) The AC automaticaly
-          # rounds floats to the nearest whole.
+          max: 31
         mapping:
           - constraint: temperature_unit
             conditions:
