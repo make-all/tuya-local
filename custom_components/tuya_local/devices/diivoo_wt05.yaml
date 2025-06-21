@@ -1,22 +1,27 @@
 # "11": 100,     battery
-# "103": 0,      countdown (m)
-# "104": false,  switch
-# "105": false,  switch
-# "106": 0,      countdown (m)
 
-# "110": 44,     last run time (s)
-# "111": 60,     last run time (s)
+# Valve 1:
+#   "105": boolean,                   switch
+#   "106": 0 - 1440,                  countdown (m)
+#   "111": 0 - 86400,                 last run time (s)
+#   "112": "manual", "auto", "idle",  operation mode
+#   "117": "OFF", 1 - 7,              weather delay (d)
 
-# "112": "idle", status
-# "113": "idle", status
-# "114": "OFF",  rain (d)
-# "117": "OFF"   rain (d)
+# Valve 2:
+#   "104": boolean,                   switch
+#   "103": 0 - 1440,                  countdown (m)
+#   "110": 0 - 86400,                 last run time (s)
+#   "113": "manual", "auto", "idle",  operation mode
+#   "114": "OFF", 1 - 7,              weather delay (d)
 
 name: Dual water timer
 products:
   - id: fdrbxxbg
     manufacturer: Diivoo
     model: WT-05
+  - id: jntxv3q4
+    manufacturer: Insoma
+    model: YZD02B,SGW02MB,SGW08MB
 entities:
   - entity: valve
     class: water
