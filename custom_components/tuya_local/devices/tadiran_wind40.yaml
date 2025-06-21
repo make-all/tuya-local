@@ -1,0 +1,170 @@
+###Created By deliad2 (github.com/deliad2)
+
+name: Tadiran Wind40 Inverter AC
+products:
+  - id: pdwzhqdjh6ppnjpb
+    name: Tadiran Wind40
+primary_entity:
+  entity: climate
+  translation_key: wind40_ac
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cooling
+              value: cool
+            - dps_val: heating
+              value: heat
+            - dps_val: dehumidify
+              value: dry
+            - dps_val: fan_only
+              value: fan_only
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 32
+      mapping:
+        - step: 1
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: low_med
+          value: medlow
+        - dps_val: med
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: turbo
+          value: turbo
+
+secondary_entities:
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Coil-in temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Coil-mid temperature
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Coil-out temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        mapping: [{ scale: 10, unit: "°C" }]
+
+  - entity: sensor
+    name: Compressor power
+    class: power
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: sensor
+    name: Compressor current
+    class: current
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: A
+
+  - entity: sensor
+    name: AC input voltage
+    class: voltage
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: V
+
+  - entity: binary_sensor
+    name: Indoor unit error
+    class: problem
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+
+  - entity: binary_sensor
+    name: Outdoor unit error
+    class: problem
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
