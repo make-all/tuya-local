@@ -83,6 +83,7 @@ entities:
         hidden: true
   - entity: select
     translation_key: temperature_unit
+    category: config
     dps:
       - id: 19
         name: option
@@ -94,6 +95,7 @@ entities:
             value: fahrenheit
   - entity: binary_sensor
     translation_key: defrost
+    category: diagnostic
     dps:
       - id: 102
         type: boolean
@@ -120,6 +122,7 @@ entities:
         unit: min
   - entity: binary_sensor
     class: problem
+    category: diagnostic
     dps:
       - id: 106
         type: bitfield
