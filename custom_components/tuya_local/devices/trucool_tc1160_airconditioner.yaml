@@ -100,33 +100,24 @@ entities:
         name: sensor
   - entity: number
     class: duration
-    translation_key: timer_x
-    translation_placeholders:
-      x: set
-    mode: box
-    icon: mdi:timer-edit
+    translation_key: timer
     dps:
       - id: 103
         name: value
         type: integer
-        unit: hour
+        unit: h
         range:
           min: 0
           max: 24
-        mapping:
-          - dps_val: 0
-            icon: mdi:timer-cancel
   - entity: sensor
-    name: Timer
-    icon: mdi:timer
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
     dps:
       - id: 105
         name: sensor
         type: integer
         unit: min
-        mapping:
-          - dps_val: 0
-            icon: mdi:timer-off
   - entity: binary_sensor
     class: problem
     dps:
