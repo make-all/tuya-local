@@ -960,3 +960,4 @@ Further device support has been made with the assistance of users. Please consid
 - [danps1](https://github.com/danps1) for assisting with support for Arlec 10 path lights.
 - [GianlucaUlivi](https://github.com/GianlucaUlivi) for contributing improvements to Airrobo P20 vacuum.
 - [BevDan](https://github.com/BevDan) for contributing support for EARU EASEM-D multi-circuit power meter.
+- [Felwat](https://github.com/Felwat) for contributing support for TruCool TC1150 air conditioner.
