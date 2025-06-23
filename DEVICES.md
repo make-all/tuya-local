@@ -901,6 +901,7 @@ port and password.
 - Vevor 76L self-cleaning litter box
 - WellToBe Automatic Pet Feeder (WB S36D)
 - YP pet feeder
+- Yuposl dual-band pet feeder
 
 ### Remote controllers
 
