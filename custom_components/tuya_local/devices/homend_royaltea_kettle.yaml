@@ -25,32 +25,6 @@ entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - constraint: temp_mode
-            conditions:
-              - dps_val: temp_setting
-                readonly: true
-                value_mapping: quick_temp
-              - dps_val: temp_baby
-                # probably fixed at 65, but not sure
-                invalid: true
-      - id: 4
-        type: string
-        hidden: true
-        name: quick_temp
-        mapping:
-          - dps_val: "50"
-            value: 50
-          - dps_val: "65"
-            value: 65
-          - dps_val: "85"
-            value: 85
-          - dps_val: "90"
-            value: 90
-      - id: 16
-        type: string
-        name: temp_mode
-        hidden: true
   - entity: select
     translation_key: kettle_mode
     dps:
@@ -183,5 +157,3 @@ entities:
             value: Tone 9
           - dps_val: AR9
             value: Tone 10
-
-            
