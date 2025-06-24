@@ -962,3 +962,4 @@ Further device support has been made with the assistance of users. Please consid
 - [BevDan](https://github.com/BevDan) for contributing support for EARU EASEM-D multi-circuit power meter.
 - [Felwat](https://github.com/Felwat) for contributing support for TruCool TC1150 air conditioner.
 - [TrustyTristan](https://github.com/TrustyTristan) for assisting with support for Yuposl pet feeder.
+- [ryannewington](https://github.com/ryannewington) for assisting with support for SEVR X1 EV charger.
