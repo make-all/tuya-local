@@ -38,6 +38,7 @@ def validate_temp_unit(unit):
         return UnitOfTemperature(translated_unit)
     except ValueError:
         _LOGGER.warning("%s is not a valid temperature unit", unit)
+        return None 
 
 
 class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
