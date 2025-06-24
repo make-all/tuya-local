@@ -1,0 +1,187 @@
+name: Kettle
+products:
+  - id: ixclh0ml02riwbdz
+    manufacturer: Homend
+    model: Royaltea
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 2
+        type: integer
+        name: current_temperature
+      - id: 8
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - constraint: temp_mode
+            conditions:
+              - dps_val: temp_setting
+                readonly: true
+                value_mapping: quick_temp
+              - dps_val: temp_baby
+                # probably fixed at 65, but not sure
+                invalid: true
+      - id: 4
+        type: string
+        hidden: true
+        name: quick_temp
+        mapping:
+          - dps_val: "50"
+            value: 50
+          - dps_val: "65"
+            value: 65
+          - dps_val: "85"
+            value: 85
+          - dps_val: "90"
+            value: 90
+      - id: 16
+        type: string
+        name: temp_mode
+        hidden: true
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "50"
+            value: "off"
+          - dps_val: "65"
+            value: "infant_formula"
+          - dps_val: "85"
+            value: "green_tea"
+          - dps_val: "90"
+            value: "black_tea"
+  - entity: number
+    name: Keep warm time
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 180
+        mapping:
+          - step: 15
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 15
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: heating_temp
+            value: at_temperature
+          - dps_val: boiling_temp
+            value: boiling
+  - entity: select
+    name: Preset
+    translation_key: kettle_mode
+    category: config
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: temp_setting
+            value: heat
+          - dps_val: temp_boiling
+            value: boil
+          - dps_val: temp_baby
+            value: infant_formula
+  - entity: switch
+    name: Voice
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: select
+    name: Operating mode
+    translation_key: kettle_mode
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: isit
+            value: heat
+          - dps_val: sogut
+            value: boil
+  - entity: sensor
+    name: Use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: select
+    name: Alarm tone
+    icon: "mdi:alarm-note"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: AR0
+            value: Tone 1
+          - dps_val: AR1
+            value: Tone 2
+          - dps_val: AR2
+            value: Tone 3
+          - dps_val: AR3
+            value: Tone 4
+          - dps_val: AR4
+            value: Tone 5
+          - dps_val: AR5
+            value: Tone 6
+          - dps_val: AR6
+            value: Tone 7
+          - dps_val: AR7
+            value: Tone 8
+          - dps_val: AR8
+            value: Tone 9
+          - dps_val: AR9
+            value: Tone 10
+
+            

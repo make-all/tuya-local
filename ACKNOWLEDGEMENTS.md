@@ -963,3 +963,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Felwat](https://github.com/Felwat) for contributing support for TruCool TC1150 air conditioner.
 - [TrustyTristan](https://github.com/TrustyTristan) for assisting with support for Yuposl pet feeder.
 - [ryannewington](https://github.com/ryannewington) for assisting with support for SEVR X1 EV charger.
+- [ErsinErce](https://github.com/ErsinErce) for assisting with support for Homend Royaltea kettle.
