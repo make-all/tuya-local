@@ -79,8 +79,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Backlight
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     category: config
     dps:
       - id: 12
@@ -92,7 +91,7 @@ entities:
           - dps_val: relay
             value: state
           - dps_val: pos
-            value: position
+            value: locator
   - entity: binary_sensor
     class: problem
     category: diagnostic

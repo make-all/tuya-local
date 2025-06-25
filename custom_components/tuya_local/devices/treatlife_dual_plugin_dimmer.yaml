@@ -112,8 +112,7 @@ entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -121,8 +120,8 @@ entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: Status
+            value: state
           - dps_val: pos
-            value: "On"
+            value: locator

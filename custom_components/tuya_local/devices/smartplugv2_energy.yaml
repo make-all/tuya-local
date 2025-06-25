@@ -182,8 +182,7 @@ entities:
         optional: true
         hidden: true
   - entity: select
-    name: Light
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     hidden: unavailable
     category: config
     dps:
@@ -201,13 +200,13 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: lock
     translation_key: child_lock
     hidden: unavailable

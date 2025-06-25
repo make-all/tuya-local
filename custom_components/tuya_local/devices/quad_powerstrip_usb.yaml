@@ -196,8 +196,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Backlight
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     category: config
     dps:
       - id: 40
@@ -206,11 +205,11 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

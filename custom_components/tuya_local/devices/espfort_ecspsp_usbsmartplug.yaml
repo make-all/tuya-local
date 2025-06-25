@@ -73,8 +73,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
     dps:
       - id: 40
@@ -82,11 +81,11 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

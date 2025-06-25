@@ -118,8 +118,7 @@ entities:
           - dps_val: last
             value: memory
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -128,11 +127,11 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: binary_sensor
     class: problem
     category: diagnostic
