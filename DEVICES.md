@@ -672,6 +672,7 @@ of device.
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
+- Malmbergs NV-SWQ triple dimmer module
 - Marpou RGBCW ceiling light
 - Mirabella Genio Pixel LED oval light
 - Moes dimmer switch

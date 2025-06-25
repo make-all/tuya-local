@@ -965,4 +965,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ryannewington](https://github.com/ryannewington) for assisting with support for SEVR X1 EV charger.
 - [ErsinErce](https://github.com/ErsinErce) for assisting with support for Homend Royaltea kettle.
 - [anssih](https://github.com/anssih) for contributing improvements to Vevor 3.7kW EV charger.
-
+- [fayezvip](https://github.com/fayezvip) for assisting with support for Malmbergs NV-SWQ triple dimmer module.
