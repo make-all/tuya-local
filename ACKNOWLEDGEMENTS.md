@@ -967,3 +967,4 @@ Further device support has been made with the assistance of users. Please consid
 - [anssih](https://github.com/anssih) for contributing improvements to Vevor 3.7kW EV charger.
 - [fayezvip](https://github.com/fayezvip) for assisting with support for Malmbergs NV-SWQ triple dimmer module.
 - [hugglesfox](https://github.com/hugglesfox) for contributing support for Arlec CEH243HA ceramic heater.
+- [Pive-94](https://github.com/Pive-94) for assisting with support for Airam S1WFAA siren.
