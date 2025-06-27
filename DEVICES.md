@@ -423,6 +423,7 @@
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
 - Götze and Jensen KT975K smart kettle
+- Homend Royaltea kettle
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
@@ -506,6 +507,7 @@
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
+- SEVR X1 EV charger
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
@@ -670,6 +672,7 @@ of device.
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
+- Malmbergs NV-SWQ triple dimmer module
 - Marpou RGBCW ceiling light
 - Mirabella Genio Pixel LED oval light
 - Moes dimmer switch

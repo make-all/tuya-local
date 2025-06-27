@@ -162,8 +162,7 @@ entities:
         type: boolean
         name: lock
   - entity: select
-    name: Light mode
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
     hidden: unavailable
     dps:
@@ -181,11 +180,11 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: binary_sensor
     name: Online
     class: connectivity

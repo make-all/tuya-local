@@ -3,6 +3,8 @@ products:
   - id: m3piuietzgcgyrfk
     manufacturer: Götze & Jensen
     model: KT975K
+  - id: vizuizty8seqa5h8
+    model: D3815ES-D V0.1
 entities:
   - entity: water_heater
     translation_key: kettle
@@ -52,19 +54,6 @@ entities:
           - dps_val: milk_powder
             value: infant_formula
   - entity: number
-    name: Boil temperature
-    category: config
-    class: temperature
-    icon: "mdi:coolant-temperature"
-    dps:
-      - id: 4
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: 0
-          max: 100
-  - entity: number
     name: Keep warm temperature
     category: config
     class: temperature
@@ -77,6 +66,9 @@ entities:
         range:
           min: 0
           max: 100
+      - id: 14
+        type: boolean
+        name: available
   - entity: number
     name: Keep warm time
     category: config
@@ -90,6 +82,9 @@ entities:
         range:
           min: 0
           max: 120
+      - id: 14
+        type: boolean
+        name: available
   - entity: switch
     name: Keep warm
     icon: "mdi:kettle-outline"
@@ -114,6 +109,12 @@ entities:
             value: cooling
           - dps_val: warm
             value: keeping_warm
+      - id: 9
+        type: string
+        optional: true
+        # Should be a select entity, but only "boiling_quick" is documented
+        # (log shows "heating_quick" as current value)
+        name: setting
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -164,3 +165,25 @@ entities:
             value: lack_water
           - dps_val: 3
             value: sensor_fault
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 720
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
