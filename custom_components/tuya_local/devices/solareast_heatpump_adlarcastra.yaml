@@ -1,0 +1,401 @@
+name: Heat pump Adlår Castra / SolarEast
+products:
+  - id: g9m7honkxjweukvt
+    manufaturer: SolarEast
+    model: Aurora II
+    name: Adlår Castra Aurora II 6kWh
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: ""
+    class: switch
+    category: config
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: select
+    name: mode
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cold"
+            value: "cold"
+          - dps_val: "heating"
+            value: "heating"
+          - dps_val: "floor_heating"
+            value: "floor_heating"
+          - dps_val: "hot_water"
+            value: "hot_water"
+          - dps_val: "cold_and_hotwater"
+            value: "cold_and_hotwater"
+          - dps_val: "heating_and_hot_water"
+            value: "heating_and_hot_water"
+          - dps_val: "floor_heating_and_hot_water"
+            value: "floor_heating_and_hot_water"
+  - entity: number
+    name: temp_set
+    category: config
+    dps:
+      - id: 4
+        name: value
+        type: integer
+        unit: "C"
+        range:
+          min: 5
+          max: 75
+        step: 1
+  - entity: select
+    name: working_mode
+    category: config
+    dps:
+      - id: 5
+        name: option
+        type: string
+        mapping:
+          - dps_val: "ECO"
+            value: "ECO"
+          - dps_val: "Normal"
+            value: "Normal"
+          - dps_val: "Boost"
+            value: "Boost"
+  - entity: select
+    name: hot_water_curve_set
+    category: config
+    hidden: true # The pump is standard used for heating, not for regular hot water service
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "H1"
+            value: "H1"
+          - dps_val: "H2"
+            value: "H2"
+          - dps_val: "H3"
+            value: "H3"
+          - dps_val: "H4"
+            value: "H4"
+  - entity: select
+    name: heat_curve_set
+    category: config
+    dps:
+      - id: 13
+        name: option
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "H1"
+            value: "H1"
+          - dps_val: "H2"
+            value: "H2"
+          - dps_val: "H3"
+            value: "H3"
+          - dps_val: "H4"
+            value: "H4"
+          - dps_val: "H5"
+            value: "H5"
+          - dps_val: "H6"
+            value: "H6"
+          - dps_val: "H7"
+            value: "H7"
+          - dps_val: "H8"
+            value: "H8"
+          - dps_val: "L1"
+            value: "L1"
+          - dps_val: "L2"
+            value: "L2"
+          - dps_val: "L3"
+            value: "L3"
+          - dps_val: "L4"
+            value: "L4"
+          - dps_val: "L5"
+            value: "L5"
+          - dps_val: "L6"
+            value: "L6"
+          - dps_val: "L7"
+            value: "L7"
+          - dps_val: "L8"
+            value: "L8"
+  - entity: sensor
+    name: today_power_used
+    class: energy
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: compressor_frequency
+    category: diagnostic
+    hidden: true # Too advanced / unnecessary to view by default
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: Hz
+  - entity: sensor
+    name: inlet_temp
+    class: temperature
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: outlet_temp
+    class: temperature
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: coiler_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: discharge_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: ambient_temp
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: binary_sensor
+    name: compressor_state
+    category: diagnostic
+    dps:
+      - id: 27
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: backwater_state
+    category: diagnostic
+    dps:
+      - id: 31
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    #name: defrost_state
+    translation_key: defrost
+    dps:
+      - id: 33
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: high_pressure_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 35
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: low_pressure_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 36
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: incoiler_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 37
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: tank_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 38
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: water_flow
+    dps:
+      - id: 39
+        name: sensor
+        type: integer
+        unit: L/Min
+        class: measurement
+  - entity: sensor
+    name: fan_motor_frequency
+    category: diagnostic
+    hidden: true # Too advanced / unnecessary to view by default
+    dps:
+      - id: 40
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: suction_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 41
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: hot_water_temp_set
+    class: temperature
+    hidden: true # The pump is standard used for heating, not for regular hot water service
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: "C"
+        range:
+          min: 10
+          max: 75
+        step: 1
+        class: measurement
+  - entity: sensor
+    class: current
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: power
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: W
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: total_power_used
+    class: energy
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total
+  - entity: sensor
+    name: economizer_inlet_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: economy_inlet_temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    #name: currentB
+    translation_key: current_x
+    translation_placeholders:
+      x: "B"
+    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: A
+        mapping:
+          - scale: 1000
+        class: measurement
+  - entity: sensor
+    #name: voltageB
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "B"
+    class: voltage
+    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    #name: voltageC
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "C"
+    class: voltage
+    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement
