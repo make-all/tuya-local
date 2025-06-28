@@ -9,7 +9,6 @@ entities:
     translation_key: voltage_x
     translation_placeholders:
       x: A
-    category: diagnostic
     dps:
       - id: 101
         optional: true
@@ -26,7 +25,6 @@ entities:
     translation_key: voltage_x
     translation_placeholders:
       x: B
-    category: diagnostic
     dps:
       - id: 102
         optional: true
@@ -43,7 +41,6 @@ entities:
     translation_key: voltage_x
     translation_placeholders:
       x: C
-    category: diagnostic
     dps:
       - id: 103
         optional: true
@@ -60,7 +57,6 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: A
-    category: diagnostic
     dps:
       - id: 101
         optional: true
@@ -77,7 +73,6 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: B
-    category: diagnostic
     dps:
       - id: 102
         optional: true
@@ -94,7 +89,6 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: C
-    category: diagnostic
     dps:
       - id: 103
         optional: true
@@ -111,7 +105,6 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: total
-    category: diagnostic
     dps:
       - id: 104
         optional: true
@@ -128,16 +121,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB01
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000FFFFFFFF0000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000
         endianness: little
         mapping:
           - scale: 1000
@@ -146,16 +136,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB02
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000FFFFFFFF00000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -164,16 +151,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB03
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              0000000000000000000000FFFFFFFF000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -182,16 +166,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB04
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000FFFFFFFF0000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -200,16 +181,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB05
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              00FFFFFFFF00000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -218,16 +196,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB06
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              0000000000000000000000000000000000000000000000FFFFFFFF\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -236,16 +211,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB07
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000FFFFFFFF0000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -254,16 +226,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB08
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              00000000000000000000000000FFFFFFFF00000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -272,16 +241,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB09
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              0000000000000000FFFFFFFF000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -290,16 +256,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB10
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000FFFFFFFF0000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -308,16 +271,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB11
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 00000000000000000000000000000000000000000000000000FFFF\
-              FFFF00000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -326,16 +286,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB12
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 0000000000000000000000000000000000000000FFFFFFFF000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -344,16 +301,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB13
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 000000000000000000000000000000FFFFFFFF0000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -362,16 +316,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB14
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 00000000000000000000FFFFFFFF00000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -380,16 +331,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB15
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: 0000000000FFFFFFFF000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -398,16 +346,13 @@ entities:
     translation_key: current_x
     translation_placeholders:
       x: SUB16
-    category: diagnostic
     dps:
       - id: 106
         optional: true
         type: base64
         unit: A
         name: sensor
-        mask: FFFFFFFF0000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -416,7 +361,6 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: A
-    category: diagnostic
     dps:
       - id: 101
         optional: true
@@ -433,7 +377,6 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: B
-    category: diagnostic
     dps:
       - id: 102
         optional: true
@@ -450,7 +393,6 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: C
-    category: diagnostic
     dps:
       - id: 103
         optional: true
@@ -467,7 +409,6 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: total
-    category: diagnostic
     dps:
       - id: 104
         optional: true
@@ -484,16 +425,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB01
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000FFFFFFFF0000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000
         endianness: little
         mapping:
           - scale: 1000
@@ -502,16 +440,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB02
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000FFFFFFFF00000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -520,16 +455,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB03
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              0000000000000000000000FFFFFFFF000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -538,16 +470,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB04
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000FFFFFFFF0000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -556,16 +485,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB05
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              00FFFFFFFF00000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -574,16 +500,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB06
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              0000000000000000000000000000000000000000000000FFFFFFFF\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -592,16 +515,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB07
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000FFFFFFFF0000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -610,16 +530,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB08
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              00000000000000000000000000FFFFFFFF00000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -628,16 +545,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB09
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              0000000000000000FFFFFFFF000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -646,16 +560,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB10
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000000000000000000000000000\
-              000000FFFFFFFF0000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -664,16 +575,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB11
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 00000000000000000000000000000000000000000000000000FFFF\
-              FFFF00000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000000000000000000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -682,16 +590,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB12
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 0000000000000000000000000000000000000000FFFFFFFF000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000000000000000000000000000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -700,16 +605,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB13
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 000000000000000000000000000000FFFFFFFF0000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 000000000000000000000000000000FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -718,16 +620,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB14
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 00000000000000000000FFFFFFFF00000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 00000000000000000000FFFFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -736,16 +635,13 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB15
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: 0000000000FFFFFFFF000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: 0000000000FFFFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
@@ -754,23 +650,19 @@ entities:
     translation_key: power_x
     translation_placeholders:
       x: SUB16
-    category: diagnostic
     dps:
       - id: 105
         optional: true
         type: base64
         unit: kW
         name: sensor
-        mask: FFFFFFFF0000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000000000000000000
+        mask: FFFFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
         endianness: little
         mapping:
           - scale: 1000
   - entity: sensor
     name: Energy SUB01
     class: energy
-    category: diagnostic
     dps:
       - id: 115
         type: integer
@@ -782,7 +674,6 @@ entities:
   - entity: sensor
     name: Energy SUB02
     class: energy
-    category: diagnostic
     dps:
       - id: 116
         type: integer
@@ -794,7 +685,6 @@ entities:
   - entity: sensor
     name: Energy SUB03
     class: energy
-    category: diagnostic
     dps:
       - id: 117
         type: integer
@@ -806,7 +696,6 @@ entities:
   - entity: sensor
     name: Energy SUB04
     class: energy
-    category: diagnostic
     dps:
       - id: 118
         type: integer
@@ -818,7 +707,6 @@ entities:
   - entity: sensor
     name: Energy SUB05
     class: energy
-    category: diagnostic
     dps:
       - id: 119
         type: integer
@@ -830,7 +718,6 @@ entities:
   - entity: sensor
     name: Energy SUB06
     class: energy
-    category: diagnostic
     dps:
       - id: 120
         type: integer
@@ -842,7 +729,6 @@ entities:
   - entity: sensor
     name: Energy SUB07
     class: energy
-    category: diagnostic
     dps:
       - id: 121
         type: integer
@@ -854,7 +740,6 @@ entities:
   - entity: sensor
     name: Energy SUB08
     class: energy
-    category: diagnostic
     dps:
       - id: 122
         type: integer
@@ -866,7 +751,6 @@ entities:
   - entity: sensor
     name: Energy SUB09
     class: energy
-    category: diagnostic
     dps:
       - id: 123
         type: integer
@@ -878,7 +762,6 @@ entities:
   - entity: sensor
     name: Energy SUB10
     class: energy
-    category: diagnostic
     dps:
       - id: 124
         type: integer
@@ -890,7 +773,6 @@ entities:
   - entity: sensor
     name: Energy SUB11
     class: energy
-    category: diagnostic
     dps:
       - id: 125
         type: integer
@@ -902,7 +784,6 @@ entities:
   - entity: sensor
     name: Energy SUB12
     class: energy
-    category: diagnostic
     dps:
       - id: 126
         type: integer
@@ -914,7 +795,6 @@ entities:
   - entity: sensor
     name: Energy SUB13
     class: energy
-    category: diagnostic
     dps:
       - id: 127
         type: integer
@@ -926,7 +806,6 @@ entities:
   - entity: sensor
     name: Energy SUB14
     class: energy
-    category: diagnostic
     dps:
       - id: 128
         type: integer
@@ -938,7 +817,6 @@ entities:
   - entity: sensor
     name: Energy SUB15
     class: energy
-    category: diagnostic
     dps:
       - id: 129
         type: integer
@@ -950,7 +828,6 @@ entities:
   - entity: sensor
     name: Energy SUB16
     class: energy
-    category: diagnostic
     dps:
       - id: 130
         type: integer
