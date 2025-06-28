@@ -1,0 +1,383 @@
+name: Solar water heater
+products:
+  - id: hyrswocbx6i1rveo
+    manufacturer: Lohxa
+    model: SR223
+    #1 t3 enable waarde on/off                                                      ok
+    #2 Mode auto/heating en misschien meer. nog niet in code                        ok
+    #3 QHQM switch--werkt                                                           ok
+    #4 temp set temperatuur. --Lijkt te werken                                      ok
+    #6 temp unit c of f.                                                            ok
+    #8 Manual heating                                                               ok
+    #14 time remaining  geintegreerd geen data                                      ok
+    #15 fault                                                                       ok
+    #16 temp current geen data
+    #18 total kw-h 0.00                                                             ok
+    #21 t3 data waarschijnlijk tank midden                                          ok
+    #22 T2 temp tank onderin                                                        ok
+    #24 carbon saving                                                               ok
+    #25 t4 nog loos                                                                 ok
+    #26 t1 collector                                                                ok
+    #32 ele heating state                                                           ok
+    #35 temp current f
+    #101 water flow
+    #102 t5 retour glycol                                                           ok
+    #103 t4 TVFS enable switch                                                      ok
+    #104 t5 enable interne verwarming?                                              ok                                                              
+    #105 Heat unit
+    #106 daily heat                                                                 ok
+    #107 wifi                                                                       ok
+    #108 t0 sensor loos
+    #109 System gekozen. 
+    #110 t6 glycol naar tank temp                                                   ok
+    #111 TVFS nog onbekend nu 109 graden
+    #112 Pomp aan uit 100-0                                                         ok
+    #113 Nog onbekende waarde
+    #114 Nog onbekende waarde
+    #115 Nog onbekende waarde
+    #116 HR nog onbekende waarde
+    #117 HK Nog onbekende waarde
+    #118 bucket lock staat nu off werking onbekend
+    #119 cruise switch staat nu off werking onbekend
+    #120 switch staat nu off werking onbekend
+entities:
+  - entity: water_heater #id1,2,4 en 22                                             ok
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: eco
+                default: true
+              - dps_val: heating
+                value: electric
+              - dps_val: cold 
+                value: away
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 100
+      - id: 22
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: select  #id6 temperatuur seletie c of f                                 ok
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch  #id8 Manual heating                                             ok
+    name: Manual heating
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch  #id105 Heat unit                                                ok
+    name: Heat unit
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch  #id120 onbekend                                                ok
+    name: Switch120
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: switch  #id3 QHQM switch                                                ok
+    name: QHQM
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch  #id104 T5 enabled switch lijkt op interne verwarming            ok
+    name: T5 enable
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch  #id103 T4 TVFS enabled switch                                   ok
+    name: TVFS enable
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: sensor  #id14 Time remaining doet niks??                                OK
+    translation_key: time_remaining
+    device_class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        device_class: duration
+  - entity: sensor  #id 15 foutcode                                                 ok
+    name: Foutcode
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+  - entity: sensor   #id1 T4 aan/uit.                                                Ok 
+    name: Configuration1
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor  #id21 Temperatuur T3 waarschijnlijk tank midden                 ok
+    name: Tank boven temperatuur
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id22 Temperatuur T2  tank onder                                ok
+    name: Lower tank temperatuur
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id25 T4 sensor nu nog loos                                     ok nog geen sensor aangesloten
+    name: T4 loos
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id102 T5 sensor retour uit tank glycol                         ok
+    name: Glycol tank uit temp 
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id110 T6 sensor Aanvoertemp tank glycol                        ok
+    name: Glycol tank in temp. 
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id26 T1 collector temperatuur                                  ok
+    name: Collector temperatuur
+    device_class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        device_class: temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor  #id 18 kw-h                                                     ok maar waarde blijft 0.0
+    name: Totaal kWh
+    icon: "mdi:solar-power-variant"
+    category: diagnostic
+    dps:
+      - id: 18
+        type: string
+        name: sensor
+  - entity: sensor  #id 24 carbon saving                                            ok maar waarde blijft 0.0
+    name: Totaal carbon saving
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+  - entity: sensor  #id 106 dayly kw-h                                              ok maar waarde blijft 0.0
+    name: Totaal dagelijks warmte
+    icon: "mdi:solar-power-variant"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+  - entity: binary_sensor  #id32 electrisch element aan/uit                         ok
+    name: Electric element
+    device_class: running
+    icon: "mdi:heating-coil"
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+  - entity: sensor  #id107 Wifi sterkte                                             ok
+    name: Signaalsterkte
+    device_class: signal_strength
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: dBm
+        device_class: signal_strength
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - target_range:
+              min: -90
+              max: -20
+  - entity: sensor  #id 113                                             ok maar waarde blijft 0.0
+    name: onb113
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+  - entity: sensor  #id 114                                            ok maar waarde blijft 0.0
+    name: onb114
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 114
+        type: string
+        name: sensor
+  - entity: sensor  #id 115                                           ok maar waarde blijft 0.0
+    name: onb115
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+  - entity: sensor  #id 116                                            ok maar waarde blijft 0.0
+    name: HR
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 116
+        type: string
+        name: sensor
+  - entity: sensor  #id 117                                            ok maar waarde blijft 0.0
+    name: HK
+    icon: "mdi:leaf"
+    category: diagnostic
+    dps:
+      - id: 117
+        type: string
+        name: sensor
+  - entity: sensor #id 112 pomp                                  ok
+    name: "Pomp vermogen"
+    device_class: running
+    category: diagnostic
+    icon: mdi:pump
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+  - entity: binary_sensor #id 112 pomp                                  ok
+    name: "Pomp Status"
+    device_class: running
+    category: diagnostic
+    icon: mdi:pump
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 100
+            value: true
+  
+  
