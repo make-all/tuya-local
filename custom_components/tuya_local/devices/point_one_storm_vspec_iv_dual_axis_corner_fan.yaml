@@ -8,16 +8,16 @@ entities:
     dps:
       - id: 108
         type: boolean
-        name: Switch
+        name: switch
       - id: 22
         type: integer
-        name: Brightness
+        name: brightness
         range:
           min: 10
           max: 1000
       - id: 23
         type: integer
-        name: Temperature
+        name: temperature
         range:
           min: 0
           max: 1000
@@ -25,10 +25,10 @@ entities:
     dps:
       - id: 101
         type: boolean
-        name: Switch
+        name: switch
       - id: 102
         type: string
-        name: Mode
+        name: mode
         mapping:
           - dps_val: nature
             value: nature
@@ -40,29 +40,29 @@ entities:
             value: strong
       - id: 103
         type: integer
-        name: Speed
+        name: speed
         range:
           min: 1
           max: 6
       - id: 104
         type: boolean
-        name: Oscillate vertically
+        name: oscillate_vertically
       - id: 105
         type: boolean
-        name: Oscillate horizontally
+        name: oscillate_horizontally
       - id: 107
         type: boolean
-        name: Fan sound
+        name: fan_sound
       - id: 112
         type: boolean
-        name: Rotate 360°
+        name: rotate_360_degrees
   - entity: select
     translation_key: timer
     category: config
     dps:
       - id: 109
         type: string
-        name: Countdown set time
+        name: countdown_set_time
         mapping:
           - dps_val: "cancel"
             value: "cancel"
