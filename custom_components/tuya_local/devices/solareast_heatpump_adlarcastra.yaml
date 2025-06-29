@@ -66,7 +66,7 @@ entities:
   - entity: select
     name: hot_water_curve_set
     category: config
-    hidden: true # The pump is standard used for heating, not for regular hot water service
+    hidden: true
     dps:
       - id: 11
         name: option
@@ -138,7 +138,7 @@ entities:
   - entity: sensor
     name: compressor_frequency
     category: diagnostic
-    hidden: true # Too advanced / unnecessary to view by default
+    hidden: true
     dps:
       - id: 20
         name: sensor
@@ -206,7 +206,7 @@ entities:
         name: sensor
         type: boolean
   - entity: binary_sensor
-    #name: defrost_state
+    #  name: defrost_state
     translation_key: defrost
     dps:
       - id: 33
@@ -263,7 +263,7 @@ entities:
   - entity: sensor
     name: fan_motor_frequency
     category: diagnostic
-    hidden: true # Too advanced / unnecessary to view by default
+    hidden: true
     dps:
       - id: 40
         name: sensor
@@ -283,7 +283,7 @@ entities:
   - entity: sensor
     name: hot_water_temp_set
     class: temperature
-    hidden: true # The pump is standard used for heating, not for regular hot water service
+    hidden: true
     dps:
       - id: 101
         name: sensor
@@ -356,11 +356,11 @@ entities:
         unit: "C"
         class: measurement
   - entity: sensor
-    #name: currentB
+    #  name: currentB
     translation_key: current_x
     translation_placeholders:
       x: "B"
-    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    hidden: true
     dps:
       - id: 109
         name: sensor
@@ -370,12 +370,12 @@ entities:
           - scale: 1000
         class: measurement
   - entity: sensor
-    #name: voltageB
+    #  name: voltageB
     translation_key: voltage_x
     translation_placeholders:
       x: "B"
     class: voltage
-    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    hidden: true
     dps:
       - id: 111
         name: sensor
@@ -385,12 +385,12 @@ entities:
           - scale: 10
         class: measurement
   - entity: sensor
-    #name: voltageC
+    #  name: voltageC
     translation_key: voltage_x
     translation_placeholders:
       x: "C"
     class: voltage
-    hidden: true # this is used only for the 10kWh pump. How to differentiate? The 6kWh pump is the default one sold
+    hidden: true
     dps:
       - id: 112
         name: sensor
