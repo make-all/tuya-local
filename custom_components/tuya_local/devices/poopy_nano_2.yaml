@@ -1,0 +1,315 @@
+name: Poopy Nano 2
+products:
+  - manufacturer: Poopy
+    model: Nano 2
+    id: bf1da902428c7d35femw8x
+    model_id: f7upzk
+
+entities:
+  # Switch entities
+  - entity: switch
+    name: Auto clean
+    category: config
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Infrared detection
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Smart cleaning
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Deep clean
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Soft stool mode
+    category: config
+    icon: "mdi:water"
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Developer mode
+    category: config
+    icon: "mdi:developer-board"
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock
+
+  # Button entities
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Empty
+    icon: "mdi:delete-empty"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Device reset
+    category: config
+    icon: "mdi:restart"
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Scale calibration
+    category: config
+    icon: "mdi:scale-balance"
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Level litter
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+
+  # Sensor entities
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: lb
+                value_redirect: weight_lb
+      - id: 108
+        type: string
+        name: unit
+      - id: 134
+        type: integer
+        name: weight_lb
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Daily visits
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+
+  - entity: sensor
+    name: Daily visits duration
+    icon: "mdi:paper-roll"
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:toilet"
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "standly"
+            value: "Standby"
+          - dps_val: "clean"
+            value: "Cleaning"
+          - dps_val: "empty"
+            value: "Emptying"
+          - dps_val: "clock"
+            value: "Child lock"
+          - dps_val: "sleep"
+            value: "Sleep mode"
+          - dps_val: "level"
+            value: "Leveling"
+
+  # Binary sensor entities
+  - entity: binary_sensor
+    name: Notification
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+
+  - entity: binary_sensor
+    name: Bin full
+    icon: "mdi:trash-can"
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    class: occupancy
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Scheduled clean
+    icon: "mdi:clock-check"
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+
+  # Number entities
+  - entity: number
+    name: Clean wait time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+
+  - entity: number
+    name: Clean interval
+    category: config
+    icon: "mdi:update"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+
+  - entity: number
+    name: Capacity calibration
+    category: config
+    icon: "mdi:trash-can"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+
+  - entity: number
+    name: Detection sensitivity
+    category: config
+    icon: "mdi:scale"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: kg
+        mapping:
+          - scale: 10
+        range:
+          min: 6
+          max: 15
+
+  # Select entities
+  - entity: select
+    name: Unit select
+    category: config
+    icon: "mdi:pencil-ruler"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "kg"
+            value: "kg"
+          - dps_val: "lb"
+            value: "lb"
+
+  - entity: select
+    name: Litter type
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 131
+        type: string
+        name: option
+        mapping:
+          - dps_val: "mix_cat_litter"
+            value: "Mixed"
+          - dps_val: "mineral_cat_litter"
+            value: "Mineral"
