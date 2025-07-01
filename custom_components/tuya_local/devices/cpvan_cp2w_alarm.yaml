@@ -1,0 +1,350 @@
+name: Alarm system
+products:
+  - id: ito65xcfxhrkiya7
+    manufacturer: CPVAN
+    model: CP2W
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 33
+        type: string
+        optional: true
+        name: information
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    icon: "mdi:location-exit"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    icon: "mdi:location-enter"
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: siren
+    dps:
+      - id: 3
+        type: integer
+        name: duration
+        unit: s
+        range:
+          min: 1
+          max: 256
+      - id: 4
+        type: boolean
+        name: switch
+      - id: 5
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0
+          - dps_val: vol_1
+            value: 0.25
+          - dps_val: vol_2
+            value: 0.5
+          - dps_val: vol_3
+            value: 0.75
+          - dps_val: vol_4
+            value: 1.0
+      - id: 8
+        type: string
+        name: tone
+        mapping:
+          - dps_val: ringtone_1
+            value: Alarm 1
+          - dps_val: ringtone_2
+            value: Alarm 2
+          - dps_val: ringtone_3
+            value: Alarm 3
+          - dps_val: ringtone_4
+            value: Alarm 4
+          - dps_val: ringtone_5
+            value: Alarm 5
+  - entity: light
+    name: Alarm
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: alarm_control_panel
+    name: Zone
+    hidden: true
+    dps:
+      - id: 24
+        type: string
+        optional: true
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: SOS
+            value: triggered
+          - dps_val: welcome
+            value: armed_custom_bypass
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 26
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: triggered
+      - id: 26
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: switch
+    name: Alarm notifications
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: last_message
+  - entity: binary_sensor
+    class: sound
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: select
+    name: Sub class
+    icon: "mdi:shield-home"
+    category: config
+    hidden: true
+    dps:
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: detector
+            value: detector
+          - dps_val: remote_controller
+            value: remote_controller
+  - entity: select
+    name: Sub type
+    icon: "mdi:shield-home"
+    category: config
+    hidden: true
+    dps:
+      - id: 37
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: motion_sensor
+            value: motion_sensor
+          - dps_val: contact_sensor
+            value: contact_sensor
+          - dps_val: smoke_alarm
+            value: smoke_alarm
+          - dps_val: gas_alarm
+            value: gas_alarm
+          - dps_val: co_alarm
+            value: co_alarm
+          - dps_val: vibration_detector
+            value: vibration_detector
+          - dps_val: water_leak_sensor
+            value: water_leak_sensor
+          - dps_val: infrared_emission_detector
+            value: ir_detector
+          - dps_val: glass_break_detector
+            value: glass_break_detector
+          - dps_val: sos_button
+            value: sos_button
+          - dps_val: remote_controller
+            value: remote_controller
+          - dps_val: keypad
+            value: keypad
+          - dps_val: doorbell
+            value: doorbell
+          - dps_val: door_lock
+            value: door_lock
+          - dps_val: rfid
+            value: rfid
+          - dps_val: alarm
+            value: siren
+          - dps_val: environment_detector
+            value: environment_detector
+          - dps_val: others
+            value: other
+  - entity: text
+    name: Sub admin
+    category: config
+    icon: "mdi:shield-home"
+    hidden: true
+    dps:
+      - id: 38
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Sub state
+    class: enum
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 39
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: alarm
+            value: alarm
+          - dps_val: fault
+            value: fault
+          - dps_val: others
+            value: other
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: chinese_traditional
+            value: chinese_traditional
+          - dps_val: english
+            value: english
+          - dps_val: french
+            value: french
+          - dps_val: italian
+            value: italian
+          - dps_val: german
+            value: german
+          - dps_val: spanish
+            value: spanish
+          - dps_val: portuguese
+            value: portuguese
+          - dps_val: russian
+            value: russian
+          - dps_val: japanese
+            value: japanese
+  - entity: sensor
+    name: State detection
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Alarm detection
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Open detection
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false

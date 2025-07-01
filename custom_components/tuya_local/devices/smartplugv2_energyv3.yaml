@@ -13,6 +13,12 @@ products:
   - id: azpywu5zfg5wyzpn
     manufacturer: EARU
     model: 1P Breaker
+  - id: mkdejkrgvhsfwfrd
+    manufacturer: Antela
+    model: F1s302-UK
+  - id: rdvedq5bdkio96t1
+    manufacturer: LerLink
+    model: WBH01
 entities:
   - entity: switch
     class: outlet
@@ -166,22 +172,31 @@ entities:
         name: lock
         optional: true
   - entity: select
-    name: Light mode
+    translation_key: light_mode
     category: config
-    icon: "mdi:lightbulb"
+    hidden: unavailable
     dps:
       - id: 40
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Overcharge protection
     category: config

@@ -218,6 +218,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Podgrzewacz",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Poziom ogrzewania",
@@ -427,6 +428,24 @@
                     "memory": "Pamięć"
                 }
             },
+            "kettle_mode": {
+                "name": "Tryb czajnika",
+                "state": {
+                    "off": "Wyłączony",
+                    "heat": "Ogrzewanie",
+                    "boil": "Gotowanie",
+                    "quick_heat": "Szybkie ogrzewanie",
+                    "quick_boil": "Szybkie gotowanie",
+                    "keep_warm": "Podgrzewanie",
+                    "custom": "Niestandardowy",
+                    "dechlorinate": "Odchlorowanie",
+                    "black_tea": "Czarna herbata",
+                    "green_tea": "Zielona herbata",
+                    "coffee": "Kawa",
+                    "honey_water": "Woda z miodem",
+                    "infant_formula": "Mleko dla niemowląt"
+                }
+            },
             "language": {
                 "name": "Język",
                 "state": {
@@ -443,6 +462,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Tryb światła",
+                "state": {
+                    "off": "Wyłączony",
+                    "on": "Włączony",
+                    "state": "Stan",
+                    "locator": "Lokalizator"
                 }
             },
             "mopping": {
@@ -785,19 +813,7 @@
                 }
             },
             "kettle": {
-                "name": "Czajnik",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "off": "Wyłączony",
-                            "heat": "Ogrzewanie",
-                            "boil": "Gotowanie",
-                            "quick_heat": "Szybkie ogrzewanie",
-                            "quick_boil": "Szybkie gotowanie",
-                            "keep_warm": "Podgrzewanie"
-                        }
-                    }
-                }
+                "name": "Czajnik"
             }
         }
     }

@@ -1,0 +1,124 @@
+name: Dehumidifier
+products:
+  - id: umrsvtfdzbyfkskl
+    manufacturer: Arida
+    model: S7L-2
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 75
+        mapping:
+          - step: 5
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: button
+    name: "Preset 40%"
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        name: button
+        mapping:
+          - dps_val: "40"
+            value: true
+          - value: false
+  - entity: button
+    name: "Preset 50%"
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        name: button
+        mapping:
+          - dps_val: "50"
+            value: true
+          - value: false
+  - entity: button
+    name: "Preset 60%"
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        name: button
+        mapping:
+          - dps_val: "60"
+            value: true
+          - value: false
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 67
+          - dps_val: high
+            value: 100
+      - id: 8
+        type: boolean
+        name: oscillate
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "2h"
+          - dps_val: "2"
+            value: "4h"
+          - dps_val: "3"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min

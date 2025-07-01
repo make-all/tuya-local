@@ -1,4 +1,8 @@
-name: Beok TR9B thermostat
+name: Thermostat
+products:
+  - id: 7qx0q329p61h1ace
+    manufacturer: Rti-Tek
+    model: R7C.716
 entities:
   - entity: climate
     dps:
@@ -24,7 +28,7 @@ entities:
         name: temperature
         range:
           min: 50
-          max: 10000
+          max: 3000
         mapping:
           - scale: 10
             step: 5
@@ -55,12 +59,28 @@ entities:
         name: min_temperature
         mapping:
           - scale: 10
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
       - id: 101
         type: integer
         name: unknown_101
       - id: 102
         type: integer
         name: unknown_102
+      - id: 105
+        type: string
+        optional: true
+        name: model
+      - id: 110
+        type: boolean
+        optional: true
+        name: unknown_110
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -97,6 +117,7 @@ entities:
             value: "Daily"
   - entity: binary_sensor
     name: Valve
+    deprecated: climate.hvac_action
     class: opening
     category: diagnostic
     dps:
@@ -140,7 +161,7 @@ entities:
         unit: C
         range:
           min: 50
-          max: 10000
+          max: 3000
         mapping:
           - scale: 10
             step: 10
@@ -155,7 +176,7 @@ entities:
         unit: C
         range:
           min: 50
-          max: 10000
+          max: 3000
         mapping:
           - scale: 10
             step: 10

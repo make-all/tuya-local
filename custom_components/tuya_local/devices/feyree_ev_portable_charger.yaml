@@ -3,6 +3,9 @@ products:
   - id: 4ooiu7apnjjumn0d
     manufacturer: Feyree
     model: F-M24
+  - id: ebdm8ax35pgodi2s
+    manufacturer: Feyree
+    model: 22kW 3phase
 entities:
   - entity: sensor
     class: enum
@@ -13,7 +16,7 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: no_connect
+          - dps_val: no_connet
             value: available
           - dps_val: connect
             value: plugged_in
@@ -49,30 +52,79 @@ entities:
           - dps_val: charge_pct
           - dps_val: charge_energy
           - dps_val: charge_schedule
+      - id: 23
+        type: string
+        optional: true
+        name: version
+      - id: 108
+        type: string
+        optional: true
+        name: phase_info
+  - entity: binary_sensor
+    class: problem
+    icon: 'mdi:alert-outline'
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Under voltage protection"
+          - dps_val: 2
+            value: "Over voltage protection"
+          - dps_val: 4
+            value: "Over current protection"
+          - dps_val: 8
+            value: "Protective earth error"
+          - dps_val: 16
+            value: "Temperature is too high"
+          - dps_val: 32
+            value: "Control pilot line error"
+          - dps_val: 64
+            value: "Leak"
+          - dps_val: 128
+            value: "Relay socket"
+          - dps_val: 256
+            value: "Protective earth error 2"
+          - dps_val: 512
+            value: "Plug temperature is too high"
+          - dps_val: 1024
+            value: "PCB temperature is too high"
+          - dps_val: 2048
+            value: "Core temperature is too high"
+          - dps_val: 4096
+            value: "ESB"
+          - dps_val: 8192
+            value: "Socket protective earth error"
+          - dps_val: 16384
+            value: "Socket leakage"
+          - dps_val: 32768
+            value: "Socket temperature is too high"
+  - entity: sensor
+    name: Balance energy
+    class: energy_storage
+    category: diagnostic
+    dps:
       - id: 15
         type: integer
         optional: true
-        name: balance_energy
-        unit: A
-        range:
-          min: 8
-          max: 16
-        mapping:
-          - scale: 3
-      - id: 18
-        type: boolean
-        optional: true
-        name: switch
-      - id: 25
-        type: integer
-        optional: true
-        name: charge_energy_once
+        name: sensor
         unit: kWh
-        range:
-          min: 0
-          max: 999999
+        class: measurement
         mapping:
-          - scale: 2
+          - scale: 1000
   - entity: button
     name: Clear energy
     class: restart
@@ -82,6 +134,42 @@ entities:
         type: boolean
         name: button
         optional: true
+  - entity: switch
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: Last charge
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    category: config
+    name: Live updates
+    icon: "mdi:chart-bar"
+    dps:
+      - id: 27
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+          - value: false
+            hidden: true
   - entity: number
     name: Set charge current
     icon: "mdi:ev-plug-type2"
@@ -93,6 +181,79 @@ entities:
         range:
           min: 8
           max: 16
+        mapping:
+          - constraint: maximum
+            conditions:
+              - dps_val: Max32A
+                value_redirect: value_32a
+              - dps_val: Max40A
+                value_redirect: value_40a
+              - dps_val: Max50A
+                value_redirect: value_50a
+              - dps_val: Max60A
+                value_redirect: value_60a
+              - dps_val: Max80A
+                value_redirect: value_80a
+      - id: 113
+        type: string
+        optional: true
+        name: maximum
+        mapping:
+          - dps_val: Max16A
+            value: 16
+          - dps_val: Max32A
+            value: 32
+          - dps_val: Max40A
+            value: 40
+          - dps_val: Max50A
+            value: 50
+          - dps_val: Max60A
+            value: 60
+          - dps_val: Max80A
+            value: 80
+      - id: 113
+        type: string
+        optional: true
+        name: minimum
+        mapping:
+          - dps_val: Max80A
+            value: 24
+          - value: 8
+      - id: 115
+        type: integer
+        optional: true
+        name: value_32a
+        range:
+          min: 8
+          max: 32
+      - id: 116
+        type: integer
+        optional: true
+        name: value_40a
+        range:
+          min: 8
+          max: 40
+      - id: 117
+        type: integer
+        optional: true
+        name: value_50a
+        range:
+          min: 8
+          max: 50
+      - id: 125
+        type: integer
+        optional: true
+        name: value_60a
+        range:
+          min: 8
+          max: 60
+      - id: 126
+        type: integer
+        optional: true
+        name: value_80a
+        range:
+          min: 24
+          max: 80
   - entity: number
     name: Charge delay
     category: config
@@ -105,6 +266,10 @@ entities:
         range:
           min: 0
           max: 15
+      - id: 121
+        type: string
+        optional: true
+        name: display
   - entity: sensor
     class: power
     dps:
@@ -126,18 +291,42 @@ entities:
         class: measurement
         mapping:
           - scale: 10
-  - entity: switch
+  - entity: sensor
+    name: Temperature 2
+    class: temperature
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 111
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
     name: Charging
+    icon: "mdi:ev-station"
     dps:
       - id: 124
         type: string
-        optional: true
-        name: switch
+        name: option
         mapping:
-          - dps_val: "CloseCharging"
-            value: false
-          - dps_val: "OpenCharging"
-            value: true
+          - dps_val: CloseCharging
+            value: "off"
+          - dps_val: OpenCharging
+            value: "on"
+          - dps_val: WaitOperation
+            value: on_demand
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -147,3 +336,168 @@ entities:
         name: sensor
         unit: V
         class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 104
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 106
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 107
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charging duration
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+      - id: 122
+        type: string
+        optional: true
+        name: display
+  - entity: sensor
+    name: Charging time
+    category: diagnostic
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+  - entity: text
+    name: Alarm set 1
+    category: config
+    icon: "mdi:"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm set 2
+    category: config
+    icon: "mdi:"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: RFID
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        optional: true
+        name: switch

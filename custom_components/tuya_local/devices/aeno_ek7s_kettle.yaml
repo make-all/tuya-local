@@ -14,16 +14,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_type
-            conditions:
-              - dps_val: setting_quick
-                value: quick_heat
-              - dps_val: boiling_quick
-                value: quick_boil
-              - dps_val: temp_setting
-                value: heat
-              - dps_val: temp_boiling
-                value: boil
+            value: electric
       # Temperatures documented as having F equivalents at +1
       - id: 2
         type: integer
@@ -93,6 +84,21 @@ entities:
         type: string
         name: work_type
         hidden: true
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: setting_quick
+            value: quick_heat
+          - dps_val: boiling_quick
+            value: quick_boil
+          - dps_val: temp_setting
+            value: heat
+          - dps_val: temp_boiling
+            value: boil
   - entity: switch
     name: Keep warm
     icon: "mdi:kettle-steam"
