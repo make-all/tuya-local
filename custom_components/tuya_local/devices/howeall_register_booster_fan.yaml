@@ -4,153 +4,146 @@ products:
     manufacturer: Howeall
     name: Register Booster Fan
 entities:
-      # Primary Fan Entity
-      - entity: fan
-        # The 'name' for the fan entity itself. If omitted, HA will generate one.
-        # You can also use 'translation_key' if the integration supports it for standard fan types.
-        name: "Power"
-        dps:
-          - id: 1  # DP for Power ON/OFF
-            type: boolean
-            name: switch # This 'name' is how the fan platform identifies this DP's function
-      # Fan Speed as a separate select entity
-      - entity: select
-        name: "Fan Speed"
-          # category: control
-        icon: mdi:fan
-        dps:
-          - id: 12
-            type: string
-            name: option
-            mapping:
-              - dps_val: "1"
-                value: "1"
-              - dps_val: "2"
-                value: "2"
-              - dps_val: "3"
-                value: "3"
-              - dps_val: "4"
-                value: "4"
-              - dps_val: "5"
-                value: "5"
-              - dps_val: "6"
-                value: "6"
-              - dps_val: "7"
-                value: "7"
-              - dps_val: "8"
-                value: "8"
-              - dps_val: "9"
-                value: "9"
-              - dps_val: "10"
-                value: "10"
-      # Cooling temp trigger (temp below this will trigger the fan)
-      - entity: number
-        name: "Cooling Trigger"
-        category: config
-        icon: mdi:thermometer-low
-        dps:
-          - id: 45
-            type: integer
-            name: value
-            range:
-              min: 60
-              max: 90
-              step: 1
-            unit_of_measurement: "°F"
+  # Primary Fan Entity
+  - entity: fan
+    name: "Power"
+    dps:
+      - id: 1  # DP for Power ON/OFF
+        type: boolean
+        name: switch
+  - entity: select  # separate entity for speed control
+    name: "Speed"
+    icon: mdi:fan
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+          - dps_val: "10"
+            value: "10"
+  # Cooling temp trigger (temp below this will trigger the fan)
+  - entity: number
+    name: "Cooling Trigger"
+    category: config
+    icon: mdi:thermometer-low
+    dps:
+      - id: 45
+        type: integer
+        name: value
+        range:
+          min: 60
+          max: 90
+          step: 1
+        unit_of_measurement: "°F"
 
-      # Heating Temp Trigger (temp above this will trigger the fan)
-      - entity: number
-        name: "Heating Temp Trigger"
-        category: config
-        icon: mdi:thermometer
-        dps:
-          - id: 106
-            type: integer
-            name: value
-            range:
-              min: 60
-              max: 90
-              step: 1
-            unit_of_measurement: "°F"
+  # Heating Temp Trigger (temp above this will trigger the fan)
+  - entity: number
+    name: "Heating Temp Trigger"
+    category: config
+    icon: mdi:thermometer
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 60
+          max: 90
+          step: 1
+        unit_of_measurement: "°F"
 
-      - entity: select
-        name: "Operating Mode"
-        icon: mdi:hvac
-        dps:
-          - id: 2
-            type: string
-            name: option
-            mapping:
-              - dps_val: "FAN"
-                value: "Fan Only"
-              - dps_val: "COOL"
-                value: "Cooling"
-              - dps_val: "HEAT"
-                value: "Heating"
+  - entity: select
+    name: "Operating Mode"
+    icon: mdi:hvac
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: "FAN"
+            value: "Fan Only"
+          - dps_val: "COOL"
+            value: "Cooling"
+          - dps_val: "HEAT"
+            value: "Heating"
 
 
-      # Secondary Entities (Sensors and Switches for other DPs)
-      - entity: sensor
-        name: "Current Temperature"
-        # category: diagnostic # Optional: helps HA classify the entity
-        dps:
-          - id: 9
-            type: integer
-            name: sensor # The value of this DP will be the sensor's state
-            unit_of_measurement: "°F"
-            device_class: "temperature"
+  # Secondary Entities (Sensors and Switches for other DPs)
+  - entity: sensor
+    name: "Current Temperature"
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor  # The value of this DP will be the sensor's state
+        unit_of_measurement: "°F"
+        device_class: temperature
 
-      - entity: switch
-        name: "Child Lock"
-        category: config # Optional
-        dps:
-          - id: 14
-            type: boolean
-            name: switch # This DP's boolean state IS the switch state
+  - entity: switch
+    name: "Child Lock"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch  # This DP's boolean state IS the switch state
 
+  - entity: sensor
+    name: "Status DP101"
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor  # Generic name, the DP value will be the state
 
-      - entity: sensor
-        name: "Status DP101"
-        # category: diagnostic
-        dps:
-          - id: 101
-            type: string
-            name: sensor # Generic name, the DP value will be the state
+  - entity: select
+    name: "Light Control"
+    icon: mdi:lightbulb
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+  - entity: sensor
+    name: "Status DP103"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
 
-      - entity: select
-        name: "Light Control"
-          # category: control
-        icon: mdi:lightbulb
-        dps:
-          - id: 102
-            type: string
-            name: option
-            mapping:
-              - dps_val: "on"
-                value: "On"
-              - dps_val: "off"
-                value: "Off"
-      - entity: sensor
-        name: "Status DP103"
-        # category: diagnostic
-        dps:
-          - id: 103
-            type: string
-            name: sensor
+  - entity: sensor
+    name: "Status DP104"
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
 
-      - entity: sensor
-        name: "Status DP104"
-        # category: diagnostic
-        dps:
-          - id: 104
-            type: string
-            name: sensor
-
-      - entity: sensor
-        name: "Status DP105"
-        # category: diagnostic
-        dps:
-          - id: 105
-            type: string
-            name: sensor
-
+  - entity: sensor
+    name: "Status DP105"
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
