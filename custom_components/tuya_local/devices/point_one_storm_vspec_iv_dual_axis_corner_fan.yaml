@@ -17,10 +17,14 @@ entities:
           max: 1000
       - id: 23
         type: integer
-        name: temperature
+        name: color_temp
         range:
           min: 0
           max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
   - entity: fan
     dps:
       - id: 101
@@ -51,13 +55,14 @@ entities:
         type: boolean
         name: fan_sound
   - entity: switch
-    translation_key: oscillate_vertically
+    name: Vertical oscillation
     dps:
       - id: 104
         type: boolean
         name: switch
   - entity: switch
-    translation_key: rotate_360_degrees
+    name: Full rotation
+    dps:
       - id: 112
         type: boolean
         name: switch
@@ -86,6 +91,7 @@ entities:
   - entity: sensor
     translation_key: time_remaining
     class: duration
+    dps:
       - id: 110
         type: integer
         name: time_left
@@ -97,6 +103,13 @@ entities:
     class: problem
     category: diagnostic
     dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
       - id: 111
         type: bitfield
         name: fault_code
