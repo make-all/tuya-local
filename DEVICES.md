@@ -978,6 +978,7 @@ port and password.
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
+- Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor

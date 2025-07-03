@@ -969,3 +969,4 @@ Further device support has been made with the assistance of users. Please consid
 - [hugglesfox](https://github.com/hugglesfox) for contributing support for Arlec CEH243HA ceramic heater.
 - [Pive-94](https://github.com/Pive-94) for assisting with support for Airam S1WFAA siren.
 - [liaujianjie](https://github.com/liaujianjie) for contributing support for Point One Technology Storm VSPEC-IV fan.
+- [theqz](https://github.com/theqz) for assisting with support for Nedis WIFIPD10WT pill dispenser.
