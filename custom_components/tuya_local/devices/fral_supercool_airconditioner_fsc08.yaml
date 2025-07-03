@@ -26,7 +26,7 @@ entities:
         type: integer
         name: temperature
         optional: true
-        unit: C
+        unit: °C
         range:
           min: 17
           max: 30
@@ -35,7 +35,7 @@ entities:
         name: current_temperature
         readonly: true
         optional: true
-        unit: C
+        unit: °C
         range:
           min: 0
           max: 50
@@ -58,15 +58,15 @@ entities:
         name: temperature_unit
         mapping:
           - dps_val: c
-            value: C
+            value: °C
           - dps_val: f
-            value: F
+            value: °F
       - id: 23
         type: integer
         name: temp_current_f
         readonly: true
         optional: true
-        unit: F
+        unit: °F
         range:
           min: 32
           max: 99
@@ -74,7 +74,7 @@ entities:
         type: integer
         name: temp_set_f
         optional: true
-        unit: F
+        unit: °F
         range:
           min: 63
           max: 86
