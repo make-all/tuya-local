@@ -25,6 +25,7 @@ entities:
       - id: 2
         type: integer
         name: temperature
+        optional: true
         unit: C
         range:
           min: 17
@@ -33,6 +34,7 @@ entities:
         type: integer
         name: current_temperature
         readonly: true
+        optional: true
         unit: C
         range:
           min: 0
@@ -63,6 +65,7 @@ entities:
         type: integer
         name: temp_current_f
         readonly: true
+        optional: true
         unit: F
         range:
           min: 32
@@ -70,6 +73,7 @@ entities:
       - id: 24
         type: integer
         name: temp_set_f
+        optional: true
         unit: F
         range:
           min: 63
