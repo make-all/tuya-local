@@ -87,9 +87,7 @@ entities:
           - dps_val: false
             value: "off"
   - entity: select
-    name: shutoff_timer
     translation_key: timer
-    category: config
     dps:
       - id: 20
         type: string
@@ -146,9 +144,8 @@ entities:
           - dps_val: "24h"
             value: "24h"
   - entity: sensor
-    name: shutoff_timer_remaining
+    class: duration
     translation_key: time_remaining
-    category: config
     dps:
       - id: 21
         type: integer
