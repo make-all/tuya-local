@@ -5,7 +5,7 @@ products:
     name: Register Booster Fan
 entities:
   # Primary Fan Entity
-  - entity: fan
+  - entity: switch
     name: "Power"
     dps:
       - id: 1  # DP for Power ON/OFF
@@ -51,8 +51,6 @@ entities:
         range:
           min: 60
           max: 90
-          step: 1
-        unit_of_measurement: "°F"
 
   # Heating Temp Trigger (temp above this will trigger the fan)
   - entity: number
@@ -66,8 +64,6 @@ entities:
         range:
           min: 60
           max: 90
-          step: 1
-        unit_of_measurement: "°F"
 
   - entity: select
     name: "Operating Mode"
@@ -93,8 +89,6 @@ entities:
       - id: 9
         type: integer
         name: sensor  # The value of this DP will be the sensor's state
-        unit_of_measurement: "°F"
-        device_class: temperature
 
   - entity: switch
     name: "Child Lock"
