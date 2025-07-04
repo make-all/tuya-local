@@ -670,6 +670,7 @@ of device.
 - LSC Smart Connect CCT + RGB led strip
 - LSC Smart Connect garden spotlights
 - LSC Smart Connect Neon LED strip
+- LSC Smart Connect Party string lights
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module

@@ -802,7 +802,7 @@ Further device support has been made with the assistance of users. Please consid
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
-- [theqz](https://github.com/theqz) for assisting with support for A03 siren.
+- [theqz](https://github.com/theqz) for assisting with support for A03 siren, LSC Smart Connect Party string lights.
 - [luisolavea](https://github.com/luisolavea) for assisting with support for Zemismart ZMAi-90 energy meter smart switch.
 - [City-Zero](https://github.com/City-Zero) for contributing support for airx H8 humidifier.
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
