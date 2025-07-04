@@ -972,3 +972,4 @@ Further device support has been made with the assistance of users. Please consid
 - [theqz](https://github.com/theqz) for assisting with support for Nedis WIFIPD10WT pill dispenser.
 - [LunarEclipse363](https://github.com/LunarEclipse363) for contributing support for Fral FSC08 air conditioner.
 - [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
+- [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.

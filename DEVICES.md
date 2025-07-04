@@ -270,6 +270,7 @@
 - Goldair Platinum tower fan (2 variants)
 - Hiper T3 bladeless fan
 - Hoenofly Smart Amari ceiling fan with light
+- Hombli 6-speed ceiling fan with RGBCW light
 - Homebase 12" oscillating fan
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
