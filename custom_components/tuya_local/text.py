@@ -4,7 +4,7 @@ Setup for different kinds of Tuya text entities
 
 import logging
 
-from homeassistant.components.text import TextMode
+from homeassistant.components.text import RestoreText, TextMode
 from homeassistant.components.text.const import (
     ATTR_MAX,
     ATTR_MIN,
@@ -16,7 +16,6 @@ from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from homeassistant.components.text import RestoreText
 
 _LOGGER = logging.getLogger(__name__)
 
