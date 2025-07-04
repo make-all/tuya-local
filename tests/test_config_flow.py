@@ -22,7 +22,8 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 
-TESTKEY = ")<jO<@)'P1dkR$Kd"
+# Designed to contain "special" characters that users constantly suspect.
+TESTKEY = ")<jO<@)'P1|kR$Kd"
 
 
 @pytest.fixture(autouse=True)

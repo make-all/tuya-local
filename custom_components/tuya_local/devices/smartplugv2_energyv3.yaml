@@ -16,6 +16,9 @@ products:
   - id: mkdejkrgvhsfwfrd
     manufacturer: Antela
     model: F1s302-UK
+  - id: rdvedq5bdkio96t1
+    manufacturer: LerLink
+    model: WBH01
 entities:
   - entity: switch
     class: outlet
@@ -169,10 +172,9 @@ entities:
         name: lock
         optional: true
   - entity: select
-    name: Light mode
+    translation_key: light_mode
     category: config
     hidden: unavailable
-    icon: "mdi:lightbulb"
     dps:
       - id: 40
         type: string
@@ -180,13 +182,13 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
       - id: 40
         type: string
         optional: true
