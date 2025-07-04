@@ -437,6 +437,10 @@ class TuyaDpsConfig:
         return self._config.get("sensitive", False)
 
     @property
+    def ignore_none(self):
+        return self._config.get("ignore_none", False)
+
+    @property
     def format(self):
         fmt = self._config.get("format")
         if fmt:

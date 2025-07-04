@@ -16,6 +16,7 @@ from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
+from homeassistant.components.text import RestoreText
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -31,8 +32,18 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     )
 
 
-class TuyaLocalText(TuyaLocalEntity, TextEntity):
+class TuyaLocalText(TuyaLocalEntity, RestoreText):
     """Representation of a Tuya Text Entity"""
+
+    async def async_added_to_hass(self) -> None:
+        await super().async_added_to_hass()
+        # Restore last value if device does not provide one
+        if self._value_dp.get_value(self._device) is None:
+            last_data = await self.async_get_last_text_data()
+            if last_data is not None:
+                self._attr_native_value = last_data.native_value
+                self._attr_native_min = last_data.native_min
+                self._attr_native_max = last_data.native_max
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
         """
@@ -69,7 +80,12 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
     @property
     def native_value(self) -> str | None:
         """Return the current value"""
-        return self._value_dp.get_value(self._device)
+        value = self._value_dp.get_value(self._device)
+
+        if value is None and getattr(self._value_dp, "ignore_none", False):
+            return getattr(self, "_attr_native_value", None)
+
+        return value
 
     async def async_set_value(self, value: str) -> None:
         """Set the value"""
