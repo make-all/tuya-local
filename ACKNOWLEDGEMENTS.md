@@ -973,3 +973,4 @@ Further device support has been made with the assistance of users. Please consid
 - [LunarEclipse363](https://github.com/LunarEclipse363) for contributing support for Fral FSC08 air conditioner.
 - [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
 - [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.
+- [ThatStella7922](https://github.com/ThatStella7922) for assisting with support for 5 speed model of OmniBreeze tower fan.
