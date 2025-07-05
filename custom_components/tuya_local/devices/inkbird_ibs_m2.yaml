@@ -55,6 +55,32 @@ entities:
             value: false
           - value: true
   - entity: sensor
+    name: Humidity probe 1
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 103
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
+            value: false
+          - value: true
+  - entity: sensor
     name: Temperature probe 2
     class: temperature
     hidden: unavailable
@@ -93,6 +119,32 @@ entities:
         name: available
         mapping:
           - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Humidity probe 2
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 104
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
             value: false
           - value: true
   - entity: sensor
@@ -137,6 +189,32 @@ entities:
             value: false
           - value: true
   - entity: sensor
+    name: Humidity probe 3
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
+            value: false
+          - value: true
+  - entity: sensor
     name: Temperature probe 4
     class: temperature
     hidden: unavailable
@@ -175,6 +253,32 @@ entities:
         name: available
         mapping:
           - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Humidity probe 4
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 106
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
             value: false
           - value: true
   - entity: sensor
@@ -219,6 +323,32 @@ entities:
             value: false
           - value: true
   - entity: sensor
+    name: Humidity probe 5
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 107
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
+            value: false
+          - value: true
+  - entity: sensor
     name: Temperature probe 6
     class: temperature
     hidden: unavailable
@@ -257,6 +387,32 @@ entities:
         name: available
         mapping:
           - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Humidity probe 6
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 108
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
             value: false
           - value: true
   - entity: sensor
@@ -301,6 +457,32 @@ entities:
             value: false
           - value: true
   - entity: sensor
+    name: Humidity probe 7
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 109
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
+            value: false
+          - value: true
+  - entity: sensor
     name: Temperature probe 8
     class: temperature
     hidden: unavailable
@@ -339,6 +521,32 @@ entities:
         name: available
         mapping:
           - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Humidity probe 8
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 110
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
             value: false
           - value: true
   - entity: sensor
@@ -383,6 +591,32 @@ entities:
             value: false
           - value: true
   - entity: sensor
+    name: Humidity probe 9
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 111
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
+            value: false
+          - value: true
+  - entity: sensor
     name: Temperature probe 10
     class: temperature
     hidden: unavailable
@@ -421,5 +655,31 @@ entities:
         name: available
         mapping:
           - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Humidity probe 10
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        mask: "FFFF000000"
+        endianness: little
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 112
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - dps_val: 255
             value: false
           - value: true
