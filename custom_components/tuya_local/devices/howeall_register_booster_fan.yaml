@@ -1,11 +1,70 @@
-name: register_booster_fan
+name: Register booster fan
 products:
   - id: zbhikxau56accfsp
-    manufacturer: Howeall
-    name: Register Booster Fan
+    manufacturer: Howeall / Sanycasa
 entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: operating_mode
+            conditions:
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: COOL
+                value: cool
+              - dps_val: HEAT
+                value: heat
+              - dps_val: SLEEP
+                value: fan_only
+                hidden: true
+      - id: 2
+        type: string
+        name: operating_mode
+        hidden: true
+      - id: 9
+        type: integer
+        name: current_temperature
+      - id: 45
+        type: integer
+        name: temperature
+        unit: F
+        range:
+          min: 60
+          max: 90
+        mapping:
+          - constraint: operating_mode
+            conditions:
+              - dps_val: HEAT
+                value_redirect: heating_temp
+              - dps_val: FAN
+                invalid: true
+              - dps_val: SLEEP
+                invalid: true
+      - id: 106
+        type: integer
+        name: heating_temp
+        range:
+          min: 60
+          max: 90
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: FAN
+            value: Manual
+          - dps_val: HEAT
+            value: Heating
+          - dps_val: COOL
+            value: Cooling
+          - dps_val: SLEEP
+            value: sleep
   - entity: fan
-    translation_only_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -34,105 +93,33 @@ entities:
             value: 90
           - dps_val: "10"
             value: 100
-  # Cooling temp trigger (temp below this will trigger the fan)
-  - entity: number
-    name: "Cooling Trigger"
-    category: config
-    icon: mdi:thermometer-low
-    dps:
-      - id: 45
-        type: integer
-        name: value
-        range:
-          min: 60
-          max: 90
-
-  # Heating Temp Trigger (temp above this will trigger the fan)
-  - entity: number
-    name: "Heating Temp Trigger"
-    category: config
-    icon: mdi:thermometer
-    dps:
-      - id: 106
-        type: integer
-        name: value
-        range:
-          min: 60
-          max: 90
-
-  - entity: select
-    name: "Operating Mode"
-    icon: mdi:hvac
-    dps:
-      - id: 2
+      - id: 101
         type: string
-        name: option
-        mapping:
-          - dps_val: "FAN"
-            value: "Fan Only"
-          - dps_val: "COOL"
-            value: "Cooling"
-          - dps_val: "HEAT"
-            value: "Heating"
-
-
-  # Secondary Entities (Sensors and Switches for other DPs)
-  - entity: sensor
-    name: "Current Temperature"
-    category: diagnostic
-    dps:
-      - id: 9
-        type: integer
-        name: sensor  # The value of this DP will be the sensor's state
-
-  - entity: switch
-    name: "Child Lock"
+        name: cool_max
+      - id: 103
+        type: string
+        name: cool_min
+      - id: 104
+        type: string
+        name: heat_max
+      - id: 105
+        type: string
+        name: heat_min
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 14
         type: boolean
-        name: switch  # This DP's boolean state IS the switch state
-
-  - entity: sensor
-    name: "Status DP101"
-    category: diagnostic
-    dps:
-      - id: 101
-        type: string
-        name: sensor  # Generic name, the DP value will be the state
-
-  - entity: select
-    name: "Light Control"
-    icon: mdi:lightbulb
+        name: lock
+  - entity: light
+    translation_key: display
     dps:
       - id: 102
         type: string
-        name: option
+        name: switch
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: true
           - dps_val: "off"
-            value: "Off"
-  - entity: sensor
-    name: "Status DP103"
-    category: diagnostic
-    dps:
-      - id: 103
-        type: string
-        name: sensor
-
-  - entity: sensor
-    name: "Status DP104"
-    category: diagnostic
-    dps:
-      - id: 104
-        type: string
-        name: sensor
-
-  - entity: sensor
-    name: "Status DP105"
-    category: diagnostic
-    dps:
-      - id: 105
-        type: string
-        name: sensor
+            value: false
