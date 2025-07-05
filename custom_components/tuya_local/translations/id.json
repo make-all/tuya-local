@@ -420,6 +420,19 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode pompa panas",
+                "state": {
+                    "heat": "Pemanas",
+                    "cool": "Pendingin",
+                    "auto": "Otomatis",
+                    "off": "Mati",
+                    "hotwater": "Air panas",
+                    "hotwater_cool": "Pendingin air panas",
+                    "hotwater_heat": "Pemanas air panas",
+                    "hotwater_auto": "Otomatis air panas"
+                }
+            },
             "initial_state": {
                 "name": "Status awal",
                 "state": {
@@ -795,21 +808,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Pemanas air",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Pemanas",
-                            "cool": "Pendingin",
-                            "auto": "Otomatis",
-                            "off": "Mati",
-                            "hotwater": "Air panas",
-                            "hotwater_cool": "Pendingin air panas",
-                            "hotwater_heat": "Pemanas air panas",
-                            "hotwater_auto": "Otomatis air panas"
-                        }
-                    }
-                }
+                "name": "Pemanas air"
             },
             "kettle": {
                 "name": "Ketel"

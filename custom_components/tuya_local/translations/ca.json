@@ -555,6 +555,19 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode de bomba de calor",
+                "state": {
+                    "heat": "Escalfament",
+                    "cool": "Refredament",
+                    "auto": "Automàtic",
+                    "off": "Apagat",
+                    "hotwater": "Aigua calenta",
+                    "hotwater_cool": "Aigua calenta i refredament",
+                    "hotwater_heat": "Aigua calenta i escalfament",
+                    "hotwater_auto": "Aigua calenta i automàtic"
+                }
+            },
             "initial_state": {
                 "name": "Estat inicial",
                 "state": {
@@ -795,21 +808,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Escalfador d'aigua",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Escalfament",
-                            "cool": "Refredament",
-                            "auto": "Automàtic",
-                            "off": "Apagat",
-                            "hotwater": "Aigua calenta",
-                            "hotwater_cool": "Aigua calenta i refredament",
-                            "hotwater_heat": "Aigua calenta i escalfament",
-                            "hotwater_auto": "Aigua calenta i automàtic"
-                        }
-                    }
-                }
+                "name": "Escalfador d'aigua"
             },
             "kettle": {
                 "name": "Bullidor d'aigua"

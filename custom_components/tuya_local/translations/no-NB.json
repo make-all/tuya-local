@@ -421,6 +421,19 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Varme pumpe modus",
+                "state": {
+                    "heat": "Varm",
+                    "cool": "Kald",
+                    "auto": "Auto",
+                    "off": "Av",
+                    "hotwater": "Varmt vann",
+                    "hotwater_cool": "Varmt vann og kald",
+                    "hotwater_heat": "Varmt vann og varmt",
+                    "hotwater_auto": "Varmt vann og auto"
+                }
+            },
             "initial_state": {
                 "name": "Starttilstand",
                 "state": {
@@ -796,21 +809,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Vannvarmer",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Varm",
-                            "cool": "Kald",
-                            "auto": "Auto",
-                            "off": "Av",
-                            "hotwater": "Varmt vann",
-                            "hotwater_cool": "Varmt vann og kald",
-                            "hotwater_heat": "Varmt vann og varmt",
-                            "hotwater_auto": "Varmt vann og auto"
-                        }
-                    }
-                }
+                "name": "Vannvarmer"
             },
             "kettle": {
                 "name": "Vannkoker"

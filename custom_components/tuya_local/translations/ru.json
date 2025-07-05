@@ -420,6 +420,19 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Режим теплового насоса",
+                "state": {
+                    "heat": "Нагрев",
+                    "cool": "Охлаждение",
+                    "auto": "Авто",
+                    "off": "Выкл",
+                    "hotwater": "Горячая вода",
+                    "hotwater_cool": "Горячая вода и охлаждение",
+                    "hotwater_heat": "Горячая вода и нагрев",
+                    "hotwater_auto": "Горячая вода и авто"
+                }
+            },
             "initial_state": {
                 "name": "Начальное состояние",
                 "state": {
@@ -795,21 +808,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Водонагреватель",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Нагрев",
-                            "cool": "Охлаждение",
-                            "auto": "Авто",
-                            "off": "Выкл",
-                            "hotwater": "Горячая вода",
-                            "hotwater_cool": "Горячая вода и охлаждение",
-                            "hotwater_heat": "Горячая вода и нагрев",
-                            "hotwater_auto": "Горячая вода и авто"
-                        }
-                    }
-                }
+                "name": "Водонагреватель"
             },
             "kettle": {
                 "name": "Чайник"

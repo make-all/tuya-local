@@ -420,6 +420,19 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Режим на топлинна помпа",
+                "state": {
+                    "heat": "Нагряване",
+                    "cool": "Охлаждане",
+                    "auto": "Автоматично",
+                    "off": "Изключено",
+                    "hotwater": "Гореща вода",
+                    "hotwater_cool": "Гореща вода и охлаждане",
+                    "hotwater_heat": "Гореща вода и отопление",
+                    "hotwater_auto": "Гореща вода и автоматично"
+                }
+            },
             "initial_state": {
                 "name": "Начално състояние",
                 "state": {
@@ -796,21 +809,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Нагревател на вода",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Нагряване",
-                            "cool": "Охлаждане",
-                            "auto": "Автоматично",
-                            "off": "Изключено",
-                            "hotwater": "Гореща вода",
-                            "hotwater_cool": "Гореща вода и охлаждане",
-                            "hotwater_heat": "Гореща вода и отопление",
-                            "hotwater_auto": "Гореща вода и автоматично"
-                        }
-                    }
-                }
+                "name": "Нагревател на вода"
             },
             "kettle": {
                 "name": "Кана"
