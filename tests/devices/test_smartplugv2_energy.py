@@ -127,7 +127,7 @@ class TestSwitchV2Energy(
                 "lock_child_lock",
                 "number_timer",
                 "select_initial_state",
-                "select_light",
+                "select_light_mode",
                 "sensor_current",
                 "sensor_energy",
                 "sensor_power",
