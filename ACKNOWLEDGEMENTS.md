@@ -974,3 +974,4 @@ Further device support has been made with the assistance of users. Please consid
 - [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
 - [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.
 - [ThatStella7922](https://github.com/ThatStella7922) for assisting with support for 5 speed model of OmniBreeze tower fan.
+- [anuram2k](https://github.com/anuram2k) for contributing support for HomeMate multi switches and fan regulator, Tomzn energy meter.
