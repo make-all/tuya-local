@@ -655,7 +655,7 @@ Further device support has been made with the assistance of users. Please consid
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
 - [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.
 - [flocke](https://github.com/flocke) for assisting with support for MeacoDry Arete Two dehumidifier.
-- [FrederikM97](https://github.com/FrederickM97) for assisting with and contributing improvements to Cleverio PF100 pet feeder.
+- [FrederikM97](https://github.com/FrederickM97) for assisting with and contributing improvements to Cleverio PF100 and Honeyguardian S56 pet feeders.
 - [chadtheriault](https://github.com/chadtheriault) for assisting with Zemismart AM25 roller blinds.
 - [fmonday](https://github.com/fmonday) for assisting with Enlighten Café string lights.
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
@@ -802,7 +802,7 @@ Further device support has been made with the assistance of users. Please consid
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
-- [theqz](https://github.com/theqz) for assisting with support for A03 siren.
+- [theqz](https://github.com/theqz) for assisting with support for A03 siren, LSC Smart Connect Party string lights.
 - [luisolavea](https://github.com/luisolavea) for assisting with support for Zemismart ZMAi-90 energy meter smart switch.
 - [City-Zero](https://github.com/City-Zero) for contributing support for airx H8 humidifier.
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
@@ -971,3 +971,6 @@ Further device support has been made with the assistance of users. Please consid
 - [liaujianjie](https://github.com/liaujianjie) for contributing support for Point One Technology Storm VSPEC-IV fan.
 - [theqz](https://github.com/theqz) for assisting with support for Nedis WIFIPD10WT pill dispenser.
 - [LunarEclipse363](https://github.com/LunarEclipse363) for contributing support for Fral FSC08 air conditioner.
+- [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
+- [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.
+- [ThatStella7922](https://github.com/ThatStella7922) for assisting with support for 5 speed model of OmniBreeze tower fan.

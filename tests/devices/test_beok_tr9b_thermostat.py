@@ -102,7 +102,7 @@ class TestBeokTR9BThermostat(
                     "name": "number_low_temperature_limit",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
-                    "max": 1000.0,
+                    "max": 300.0,
                     "step": 1.0,
                     "scale": 10,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -112,7 +112,7 @@ class TestBeokTR9BThermostat(
                     "name": "number_high_temperature_limit",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
-                    "max": 1000.0,
+                    "max": 300.0,
                     "step": 1.0,
                     "scale": 10,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -186,16 +186,17 @@ class TestBeokTR9BThermostat(
     # Override - since min and max are set by attributes, the range
     # allowed when setting is wider than normal.  The thermostat seems
     # to be configurable as at least a water heater (to 212F), as tuya
-    # doc says max 1000.0 (after scaling)
+    # doc says max 300.0 for one matching device, and 1000.0 for
+    # another (after scaling)
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            "temperature \\(4.5\\) must be between 5.0 and 1000.0",
+            "temperature \\(4.5\\) must be between 5.0 and 300.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            "temperature \\(1001\\) must be between 5.0 and 1000.0",
+            "temperature \\(1001\\) must be between 5.0 and 300.0",
         ):
             await self.subject.async_set_target_temperature(1001)
 
