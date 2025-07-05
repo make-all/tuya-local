@@ -274,6 +274,7 @@
 - Hombli 6-speed ceiling fan with RGBCW light
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
+- Howeall Register Booster Fan
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
@@ -491,7 +492,7 @@
 - Unknown brand dual channel smart meter
 - V-WIFI-DL01-ES energy consumption single clamp meter
 - V-WIFI-DL02-ES energy consumption dual clamp meter
-- WDYK 2P63A, 3P 400V, 4P100A  energy meter circuit breakers
+- WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
