@@ -1,14 +1,13 @@
 name: Energy meter
 products:
   - id: sw9asyjj8j44frjl
-    name: Tomzn Energy Meter
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Tomzn
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     class: current
     category: diagnostic
