@@ -627,23 +627,6 @@ SASWELL_C16_THERMOSTAT_PAYLOAD = {
     "26": 50,
 }
 
-FERSK_VIND2_PAYLOAD = {
-    "1": True,
-    "2": 22,
-    "3": 23,
-    "4": "COOL",
-    "5": 1,
-    "19": "C",
-    "101": False,
-    "102": False,
-    "103": 0,
-    "104": False,
-    "105": 0,
-    "106": 0,
-    "109": False,
-    "110": 0,
-}
-
 KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "1": False,
     "5": 99,
