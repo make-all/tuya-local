@@ -977,3 +977,4 @@ Further device support has been made with the assistance of users. Please consid
 - [anuram2k](https://github.com/anuram2k) for contributing support for HomeMate multi switches and fan regulator, Tomzn energy meter.
 - [paulklinkenberg](https://github.com/paulklinkenberg) for contributing support for SolarEast water/air heat pump.
 - [dlee1j1](https://github.com/dlee1j1) for contributing support for Howeall register booster fan.
+- [l2jalbe](https://github.com/l2jalbe) for assisting with support for Blitzwill ceiling fan with light.

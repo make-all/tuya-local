@@ -244,6 +244,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
+- Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
 - Brilliant Ceiling fan with light
