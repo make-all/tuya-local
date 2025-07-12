@@ -132,20 +132,20 @@ entities:
         range:
           min: 0
           max: 99
-  - entity: select
+  - entity: switch
     name: Open window detection
     icon: "mdi:window-open"
     category: config
     dps:
       - id: 103
-        name: option
         type: string
+        name: switch
         optional: true
         mapping:
           - dps_val: continue
-            value: "On"
+            value: true
           - dps_val: close
-            value: "Off"
+            value: false
   - entity: sensor
     name: Up time
     class: duration
