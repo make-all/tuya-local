@@ -978,3 +978,5 @@ Further device support has been made with the assistance of users. Please consid
 - [paulklinkenberg](https://github.com/paulklinkenberg) for contributing support for SolarEast water/air heat pump.
 - [dlee1j1](https://github.com/dlee1j1) for contributing support for Howeall register booster fan.
 - [l2jalbe](https://github.com/l2jalbe) for assisting with support for Blitzwill ceiling fan with light.
+- [rigibe](https://github.com/rigibe) for contributing support for Aubess 3-gang switch.
+- [camillePernoud](https://github.com/camillePernoud) for contributing support for Moray level sensor, which was merged with EPT level sensor.
