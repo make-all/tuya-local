@@ -1,4 +1,4 @@
-name: Aubess triple switch with timer
+name: Triple switch with timer
 products:
   - id: 3njf1fgcsbuvkbhw
     manufacturer: Aubess
@@ -12,19 +12,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-      - id: 42
-        type: string
-        name: random_schedule
-      - id: 43
-        type: string
-        name: repeating_schedule
-      - id: 44
-        type: string
-        name: inching
-      - id: 48
-        type: string
-        optional: true
-        name: interlock
   - entity: switch
     translation_key: switch_x
     translation_placeholders:
@@ -103,6 +90,33 @@ entities:
             value: "on"
           - dps_val: "off"
             value: "off"
+  - entity: text
+    name: Random schedule
+    category: config
+    hidden: true
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 42
+        type: string
+        name: value
+  - entity: text
+    name: Regular schedule
+    category: config
+    hidden: true
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 43
+        type: string
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    hidden: true
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 44
+        type: string
+        name: value
   - entity: select
     name: Switch type
     icon: "mdi:toggle-switch"
@@ -118,3 +132,13 @@ entities:
             value: Synchronized
           - dps_val: button
             value: Button
+  - entity: text
+    name: Interlocking
+    category: config
+    hidden: true
+    icon: "mdi:link-lock"
+    dps:
+      - id: 48
+        type: string
+        optional: true
+        name: value
