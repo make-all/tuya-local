@@ -111,6 +111,7 @@
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Sensei air conditioner
+- SmartDGM Portable Air Conditioner PAC-W11C01
 - Sonnenkönig Fresco 140/180 air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
