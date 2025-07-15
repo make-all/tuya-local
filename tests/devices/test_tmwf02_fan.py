@@ -24,10 +24,9 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
-            max=1440,
-            scale=60,
+            max=86400,
             device_class=NumberDeviceClass.DURATION,
-            unit=UnitOfTime.MINUTES,
+            unit=UnitOfTime.SECONDS,
         )
         self.mark_secondary(["number_timer"])
 

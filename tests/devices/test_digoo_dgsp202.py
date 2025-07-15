@@ -53,18 +53,16 @@ class TestDigooDGSP202Switch(
                 {
                     "dps": TIMER1_DPS,
                     "name": "number_timer_1",
-                    "max": 1440,
-                    "scale": 60,
+                    "max": 86400,
                     "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.MINUTES,
+                    "unit": UnitOfTime.SECONDS,
                 },
                 {
                     "dps": TIMER2_DPS,
                     "name": "number_timer_2",
-                    "max": 1440,
-                    "scale": 60,
+                    "max": 86400,
                     "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.MINUTES,
+                    "unit": UnitOfTime.SECONDS,
                 },
             ]
         )

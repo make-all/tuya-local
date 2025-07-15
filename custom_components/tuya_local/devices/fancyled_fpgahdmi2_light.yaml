@@ -53,6 +53,7 @@ entities:
   - entity: number
     translation_key: timer
     category: config
+    class: duration
     dps:
       - id: 26
         type: integer
@@ -61,11 +62,7 @@ entities:
           min: 0
           max: 86400
         optional: true
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
+        unit: s
   - entity: select
     name: Scene
     icon: "mdi:palette"
