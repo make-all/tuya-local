@@ -2,6 +2,7 @@ name: Dehumidifier
 products:
   - id: keyfa7qemdvvux5c
     manufacturer: Dura Comfort
+    model: DH50PWM
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -33,7 +34,6 @@ entities:
         name: current_humidity
         type: integer
   - entity: fan
-    translation_only_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -55,6 +55,8 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: 32
             value: false
           - value: true
   - entity: binary_sensor
