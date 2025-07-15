@@ -1,8 +1,7 @@
 name: Level sensor
 products:
-  - id: npfinze0zsvta7aj
-    manufacturer: EPT
-    model: 3m ultrasonic
+  - id: 4u9z7qg3je42rsw8
+    model: ME201W
 entities:
   - entity: sensor
     translation_key: status
@@ -89,10 +88,10 @@ entities:
         name: value
         unit: m
         range:
-          min: 100
-          max: 3000
+          min: 10
+          max: 500
         mapping:
-          - scale: 1000
+          - scale: 100
   - entity: number
     name: Maximum depth
     category: config
@@ -105,10 +104,10 @@ entities:
         name: value
         unit: m
         range:
-          min: 100
-          max: 2900
+          min: 10
+          max: 500
         mapping:
-          - scale: 1000
+          - scale: 100
   - entity: sensor
     name: Level
     category: diagnostic

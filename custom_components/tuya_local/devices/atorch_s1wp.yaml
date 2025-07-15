@@ -19,13 +19,10 @@ entities:
       - id: 9
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 360000
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     class: current
     category: diagnostic
@@ -330,39 +327,32 @@ entities:
     name: Timing off time
     class: duration
     translation_key: timer
-    mode: slider
     dps:
       - id: 125
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 360000
-        mapping:
-          - scale: 60
   - entity: number
     category: config
     name: Timing on time
     class: duration
     translation_key: timer
-    mode: slider
     dps:
       - id: 126
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
     name: Timing loop on time
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 127
         type: integer
@@ -371,14 +361,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
     name: Timing loop off time
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 128
         type: integer
@@ -387,14 +374,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
     name: Timing countdown on time
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 129
         type: integer
@@ -403,14 +387,11 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: number
     category: config
     name: Timing countdown off time
     translation_key: timer
     class: duration
-    mode: slider
     dps:
       - id: 130
         type: integer
@@ -419,8 +400,6 @@ entities:
         range:
           min: 60
           max: 359940
-        mapping:
-          - scale: 60
   - entity: select
     category: config
     name: Switch state

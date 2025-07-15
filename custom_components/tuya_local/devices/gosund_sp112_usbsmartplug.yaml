@@ -101,13 +101,10 @@ entities:
       - id: 9
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: number
     name: USB timer
     category: config
@@ -117,13 +114,10 @@ entities:
       - id: 15
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

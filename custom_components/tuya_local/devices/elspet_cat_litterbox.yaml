@@ -117,12 +117,10 @@ entities:
       - id: 110
         type: integer
         name: value
-        unit: h
+        unit: min
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
   - entity: number
     name: Sleep end
     class: duration
@@ -132,12 +130,10 @@ entities:
       - id: 111
         type: integer
         name: value
-        unit: h
+        unit: min
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic

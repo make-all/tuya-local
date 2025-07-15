@@ -197,6 +197,7 @@
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Garza thermostat
+- Herschel XLS T-PL plugin thermostat
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308 thermostat smartplugs
@@ -356,6 +357,7 @@
 - Cleverio AD100 dehumidifier
 - Climative DH-20S Cube ION dehumidifier
 - DH-CSK03W dehumidifier
+- Dura Comfort DH50PWM dehumidifier
 - Ebac DJ4000 dehumidifier
 - Eberg Rico R12E2 dehumidifier
 - ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2, CD25PRO-LE-V2 dehumidifiers
@@ -538,7 +540,7 @@ the best option.
 - Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
-- Aubess 2-gang switch
+- Aubess 2 and 3-gang switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -986,6 +988,7 @@ port and password.
 - Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
+- ME201W level sensor
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
