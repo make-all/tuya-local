@@ -69,18 +69,20 @@ entities:
         type: string
         name: swing_mode
         mapping:
-          - constraint: support_only_hswing
+          - dps_val: "on"
+            value: "on"
+            available: support_swing
+            constraint: support_only_hswing
             conditions:
               - dps_val: true
                 value_redirect: swing_real_horizontal_mode
-              - dps_val: false
-                mapping:
-                  - dps_val: "on"
-                    value: "on"
-                    available: support_swing
-                  - dps_val: "off"
-                    value: "off"
-                    available: support_swing
+          - dps_val: "off"
+            value: "off"
+            available: support_swing
+            constraint: support_only_hswing
+            conditions:
+              - dps_val: true
+                value_redirect: swing_real_horizontal_mode
       - id: 107
         type: integer
         optional: true
@@ -124,7 +126,7 @@ entities:
         mapping:
           - dps_val: 1
             value: true
-          - value: redirect: support_hswing
+          - value_redirect: support_hswing
       - id: 109
         type: bitfield
         name: support_both_swing
@@ -157,18 +159,12 @@ entities:
         type: boolean
         name: swing_horizontal_mode
         mapping:
-          - constraint: support_only_hswing
-            conditions:
-              - dps_val: true
-                value: null
-              - dps_val: false
-                mapping:
-                  - dps_val: true
-                    value: "on"
-                    available: support_both_swing
-                  - dps_val: false
-                    value: "off"
-                    available: support_both_swing
+          - dps_val: true
+            value: "on"
+            available: support_both_swing
+          - dps_val: false
+            value: "off"
+            available: support_both_swing
       - id: 10
         type: boolean
         name: swing_real_horizontal_mode
