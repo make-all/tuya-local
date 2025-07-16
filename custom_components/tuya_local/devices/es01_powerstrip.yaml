@@ -46,10 +46,13 @@ entities:
       - id: 5
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     translation_key: timer_x
@@ -60,10 +63,13 @@ entities:
       - id: 6
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     translation_key: timer_x
@@ -74,10 +80,13 @@ entities:
       - id: 7
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     name: USB timer
@@ -87,7 +96,10 @@ entities:
       - id: 8
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60

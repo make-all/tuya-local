@@ -27,7 +27,10 @@ entities:
         range:
           min: 0
           max: 360000
-        unit: s
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
   - entity: sensor
     class: current
     category: diagnostic

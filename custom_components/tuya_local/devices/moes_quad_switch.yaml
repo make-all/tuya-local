@@ -53,10 +53,13 @@ entities:
       - id: 9
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
       - id: 42
         type: string
         name: random_timer
@@ -73,10 +76,13 @@ entities:
       - id: 10
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -87,10 +93,13 @@ entities:
       - id: 11
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -101,10 +110,13 @@ entities:
       - id: 12
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: select
     translation_key: initial_state
     category: config

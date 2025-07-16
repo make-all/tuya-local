@@ -57,11 +57,15 @@ entities:
       - id: 26
         name: value
         type: integer
-        unit: s
+        unit: min
         optional: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
   - entity: text
     translation_key: scene
     category: config

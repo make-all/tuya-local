@@ -74,10 +74,13 @@ entities:
       - id: 9
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -88,10 +91,13 @@ entities:
       - id: 10
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -102,10 +108,13 @@ entities:
       - id: 11
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -116,10 +125,13 @@ entities:
       - id: 12
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -130,10 +142,13 @@ entities:
       - id: 13
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: select
     category: config
     translation_key: initial_state

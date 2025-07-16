@@ -24,7 +24,10 @@ entities:
         range:
           min: 0
           max: 86400
-        unit: s
+        mapping:
+          - scale: 60
+            step: 60
+        unit: mi
   - entity: number
     name: USB timer
     class: duration
@@ -37,7 +40,10 @@ entities:
         range:
           min: 0
           max: 86400
-        unit: s
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
   - entity: select
     translation_key: initial_state
     category: config

@@ -112,25 +112,27 @@ entities:
           max: 3600
   - entity: number
     name: Disable time
-    class: duration
     category: config
     dps:
       - id: 101
         name: value
         type: integer
-        unit: min
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
   - entity: number
     name: Enable time
-    class: duration
     category: config
     dps:
       - id: 102
         name: value
         type: integer
-        unit: min
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
