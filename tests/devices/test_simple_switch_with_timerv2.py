@@ -23,9 +23,10 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
-            max=86400,
+            max=1440,
+            scale=60,
             device_class=NumberDeviceClass.DURATION,
-            unit=UnitOfTime.SECONDS,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["number_timer", "select_initial_state"])
 

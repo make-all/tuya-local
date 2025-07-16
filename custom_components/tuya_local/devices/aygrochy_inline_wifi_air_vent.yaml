@@ -118,10 +118,13 @@ entities:
       - id: 104
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 36000
+        mapping:
+          - scale: 60
+            step: 60
   - entity: sensor
     name: Alarm triggered
     category: diagnostic

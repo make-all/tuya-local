@@ -73,10 +73,13 @@ entities:
       - id: 11
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: sensor
     name: Work Mode
     class: enum

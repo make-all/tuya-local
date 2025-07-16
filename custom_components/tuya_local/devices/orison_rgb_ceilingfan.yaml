@@ -99,7 +99,10 @@ entities:
         range:
           min: 0
           max: 86400
-        unit: s
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
   - entity: number
     name: Fan timer
     translation_key: timer

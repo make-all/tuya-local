@@ -213,10 +213,13 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
       - id: 106
         type: string
         optional: true

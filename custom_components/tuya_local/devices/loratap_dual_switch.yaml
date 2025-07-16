@@ -30,10 +30,13 @@ entities:
       - id: 9
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
       - id: 42
         name: random_time
         type: string
@@ -50,10 +53,13 @@ entities:
       - id: 10
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: select
     translation_key: initial_state
     category: config

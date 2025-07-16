@@ -76,11 +76,14 @@ entities:
       - id: 7
         type: integer
         name: value
-        unit: s
+        unit: min
         optional: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -91,11 +94,14 @@ entities:
       - id: 8
         type: integer
         name: value
-        unit: s
+        unit: min
         optional: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: number
     category: config
     class: duration
@@ -107,11 +113,14 @@ entities:
       - id: 9
         type: integer
         name: value
-        unit: s
+        unit: min
         optional: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
       - id: 3
         name: available
         type: boolean
@@ -131,11 +140,14 @@ entities:
       - id: 10
         type: integer
         name: value
-        unit: s
+        unit: min
         optional: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
       - id: 4
         name: available
         type: boolean

@@ -99,7 +99,11 @@ entities:
         range:
           min: 0
           max: 86400
-        unit: s
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
   - entity: number
     name: Pixels
     category: config

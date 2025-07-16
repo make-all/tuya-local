@@ -30,7 +30,10 @@ entities:
         range:
           min: 60
           max: 3600
-        unit: s
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
   - entity: number
     translation_key: timer_x
     translation_placeholders:
@@ -44,7 +47,10 @@ entities:
         range:
           min: 60
           max: 3600
-        unit: s
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
   - entity: sensor
     name: Weather delay remaining
     category: diagnostic

@@ -22,7 +22,10 @@ entities:
       - id: 2
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60

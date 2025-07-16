@@ -51,7 +51,11 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86400
+        mapping:
+          - dps_val: null
+          - scale: 60
+            step: 60
