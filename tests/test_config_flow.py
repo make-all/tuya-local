@@ -49,8 +49,18 @@ def bypass_setup():
         yield
 
 
+@pytest.fixture
+def bypass_data_fetch():
+    """Prevent actual data fetching from the device."""
+    with patch(
+        "tinytuya.Device.status",
+        return_value={"1": True},
+    ):
+        yield
+
+
 @pytest.mark.asyncio
-async def test_init_entry(hass):
+async def test_init_entry(hass, bypass_data_fetch):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -532,7 +542,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
 
 
 @pytest.mark.asyncio
-async def test_options_flow_init(hass):
+async def test_options_flow_init(hass, bypass_data_fetch):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
@@ -618,7 +628,9 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
 
 @pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_fails_when_connection_fails(mock_test, hass):
+async def test_options_flow_fails_when_connection_fails(
+    mock_test, hass, bypass_data_fetch
+):
     mock_test.return_value = None
 
     config_entry = MockConfigEntry(
