@@ -141,6 +141,55 @@ entities:
           - dps_val: 2
             value: "Too Dry"
           - value: "Unknown state"
+  # Button entities
+  - entity: event
+    name: Left touch
+    class: button
+    dps:
+      - id: 127
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Right touch
+    class: button
+    dps:
+      - id: 128
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Plant touch
+    class: button
+    dps:
+      - id: 129
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Hug
+    class: button
+    dps:
+      - id: 111
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "hug"
+            value: pressed
+          - value: null
   # Diagnostic entities
   - entity: sensor
     class: battery
