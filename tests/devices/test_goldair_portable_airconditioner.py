@@ -13,7 +13,7 @@ CURRENT_TEMPERATURE_DP = "3"
 MODE_DP = "4"
 FANMODE_DP = "5"
 IONIZER_DP = "11"
-SWINGH_DP = "15"
+SWINGV_DP = "15"
 FAULT_DP = "20"
 SLEEP_DP = "103"
 ONTIMER_DP = "104"
@@ -21,7 +21,7 @@ OFFTIMER_DP = "105"
 TEMPF_DP = "107"
 CURTEMPF_DP = "108"
 FEATURE_DP = "109"
-SWINGV_DP = "110"
+SWINGH_DP = "110"
 
 
 class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
@@ -50,10 +50,9 @@ class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
 
     def test_swing_modes_with_vswing_unavailable(self):
         self.dps[FEATURE_DP] = 26
-        self.assertCountEqual(self.subject.swing_modes, [])
-        self.assertCountEqual(
-            self.subject.swing_horizontal_modes, [SWING_OFF, SWING_ON]
-        )
+        # config should arrange for hswing to move to swing_mode in this case
+        self.assertCountEqual(self.subject.swing_horizontal_modes, [])
+        self.assertCountEqual(self.subject.swing_modes, [SWING_OFF, SWING_ON])
 
     def test_swing_modes_with_vswing_available(self):
         self.dps[FEATURE_DP] = 27
@@ -64,14 +63,14 @@ class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
 
     def test_swing(self):
         self.dps[FEATURE_DP] = 27
-        self.dps[SWINGH_DP] = "on"
-        self.dps[SWINGV_DP] = True
+        self.dps[SWINGV_DP] = "on"
+        self.dps[SWINGH_DP] = True
         self.assertEqual(self.subject.swing_mode, SWING_ON)
         self.assertEqual(self.subject.swing_horizontal_mode, SWING_ON)
-        self.dps[SWINGH_DP] = "off"
-        self.assertEqual(self.subject.swing_horizontal_mode, SWING_OFF)
-        self.dps[SWINGV_DP] = False
+        self.dps[SWINGV_DP] = "off"
         self.assertEqual(self.subject.swing_mode, SWING_OFF)
+        self.dps[SWINGH_DP] = False
+        self.assertEqual(self.subject.swing_horizontal_mode, SWING_OFF)
 
     def test_available(self):
         """Override the base class, as this has availability logic."""
