@@ -379,7 +379,7 @@ class TuyaEntityConfig:
                     self._device.config_type,
                     self.name,
                 )
-            hidden = device.has_returned_state and not self.available(device)
+            hidden = not self.available(device)
         return not hidden and not self.deprecated
 
 

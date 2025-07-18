@@ -60,7 +60,9 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
         if self._value_dp.rawtype == "hex":
             self._attr_pattern = "[0-9a-fA-F]*"
         elif self._value_dp.rawtype == "base64":
-            self._attr_pattern = "[-A-Za-z0-9+\/]*={0,3}"
+            self._attr_pattern = (
+                "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+            )
         # TODO: general pattern support
 
         if hasattr(self, "_attr_pattern"):
