@@ -754,6 +754,19 @@ no information will be available about which specific credential was used to unl
      - if `hidden` is specified as `true`, the mode will be set to `password`, otherwise the mode will be `text`.
      - if the `type` is set to `base64` or `hex`, the `pattern` property of the text entity will be set appropriately. There is currently no way to set an arbitrary pattern.
 
+### `time`
+
+Time is intended to be used for setting wall clock time, daily alarms etc.
+However, it can also be convenient to use it for 24h timers. Since
+there is no way to change the limits in the UI, it is not recommended
+to use it for other length timers.
+
+*At least one of the following dps is required**
+
+- **hour** (optional, integer in range 0-24) - the hours component
+- **minute** (optional, integer in range 0-60 or 0-1440 if the only dp) - the minute component
+- **second** (optional, integer in range 0-60 or 0-84600 if the only dp) - the second component
+
 ### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
 - **command** (optional, mapping of strings): a dp to control the statuss of the vacuum. If supplied, the status dp is only used to report the state.
