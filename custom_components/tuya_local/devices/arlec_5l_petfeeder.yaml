@@ -15,8 +15,11 @@ entities:
         range:
           min: 1
           max: 12
-      - id: 1
-        type: string
+  - entity: text
+    name: Meal plan
+    category: config
+    optional: true
+    dps:
         # Meal plan is the following binary blob (1 byte per line), encoded
         # in base64 (can repeat up to 10 times):
         # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
@@ -25,8 +28,9 @@ entities:
         # - Minute
         # - Feed portions
         # - Enable/Disabled
-        name: meal_plan
-        optional: true
+      - id: 1
+        type: base64
+        name: value
   - entity: sensor
     translation_key: status
     class: enum

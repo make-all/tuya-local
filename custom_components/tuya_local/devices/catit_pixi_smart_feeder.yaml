@@ -17,10 +17,14 @@ entities:
         type: boolean
         name: button
         optional: true
+  - entity: text
+    name: Meal plan
+    category: config
+    optional: true
+    dps:
       - id: 1
-        name: meal_plan
-        type: string
-        optional: true
+        type: base64
+        name: value
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
