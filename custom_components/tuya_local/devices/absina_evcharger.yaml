@@ -5,7 +5,7 @@ products:
     model: Wallbox 11kw
 entities:
   # Always charger_free, function unclear
-  - entity: sensor  # work_state -3- enum
+  - entity: sensor # work_state -3- enum
     name: Charger state
     translation_key: status
     icon: "mdi:ev-station"
@@ -33,7 +33,7 @@ entities:
           - dps_val: charger_fault
             value: fault
 
-  - entity: binary_sensor  # fault -10- OK
+  - entity: binary_sensor # fault -10- OK
     class: problem
     category: diagnostic
     dps:
@@ -82,7 +82,7 @@ entities:
           - dps_val: 8192
             value: "err_pe_sck"
 
-  - entity: select  # work_mode -14- OK
+  - entity: select # work_mode -14- OK
     name: Charging mode
     icon: "mdi:ev-station"
     category: config
@@ -99,18 +99,18 @@ entities:
             value: Charge to percent
           - dps_val: charge_energy
             value: Fixed charge
-      - id: 11  # alarm_set_1 -11-
+      - id: 11 # alarm_set_1 -11-
         type: string
         name: alarm_set_1
-      - id: 12  # alarm_set_2 -12-
+      - id: 12 # alarm_set_2 -12-
         type: string
         name: alarm_set_2
-      - id: 23  # system_version -23-
+      - id: 23 # system_version -23-
         type: string
         name: system_version
 
   # Always 0, function unclear
-  - entity: sensor  # balance_energy -15-
+  - entity: sensor # balance_energy -15-
     name: Balance energy
     hidden: true
     dps:
@@ -125,7 +125,7 @@ entities:
           - scale: 1000
 
   # Sets Value on Cloud but unclear what function it has
-  - entity: button  # clear_energy -16- OK
+  - entity: button # clear_energy -16- OK
     name: Clear energy
     class: restart
     category: config
@@ -135,7 +135,7 @@ entities:
         name: button
 
   # Factory Reset
-  - entity: button  # switch -18- OK
+  - entity: button # switch -18- OK
     translation_key: factory_reset
     category: config
     hidden: true
@@ -145,7 +145,7 @@ entities:
         name: button
 
   # Always 1, unclear functiuon
-  - entity: sensor  # charge_energy_once -25-
+  - entity: sensor # charge_energy_once -25-
     name: Charge energy once
     hidden: true
     dps:
@@ -159,7 +159,7 @@ entities:
         mapping:
           - scale: 100
 
-  - entity: binary_sensor  # online_state -27-
+  - entity: binary_sensor # online_state -27-
     class: connectivity
     category: diagnostic
     dps:
@@ -172,7 +172,7 @@ entities:
           - dps_val: offline
             value: false
 
-  - entity: sensor  # DeviceState -101- OK
+  - entity: sensor # DeviceState -101- OK
     translation_key: status
     icon: "mdi:ev-station"
     class: enum
@@ -197,7 +197,7 @@ entities:
             value: fault
 
   # Only Channel A is providing values
-  - entity: sensor  # A_Voltage -102-104- OK
+  - entity: sensor # A_Voltage -102-104- OK
     translation_key: voltage_x
     translation_placeholders:
       x: A
@@ -209,7 +209,7 @@ entities:
         name: sensor
         unit: V
         class: measurement
-  - entity: sensor  # B_Voltage
+  - entity: sensor # B_Voltage
     translation_key: voltage_x
     translation_placeholders:
       x: B
@@ -229,7 +229,7 @@ entities:
           - dps_val: Three_phase
             value: true
           - value: false
-  - entity: sensor  # C_Voltage
+  - entity: sensor # C_Voltage
     translation_key: voltage_x
     translation_placeholders:
       x: C
@@ -251,7 +251,7 @@ entities:
           - value: false
 
   # Only Channel A is providing values
-  - entity: sensor  # A_Current -105-107- OK
+  - entity: sensor # A_Current -105-107- OK
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -265,7 +265,7 @@ entities:
         class: measurement
         mapping:
           - scale: 10
-  - entity: sensor  # B_Current
+  - entity: sensor # B_Current
     translation_key: current_x
     translation_placeholders:
       x: B
@@ -287,7 +287,7 @@ entities:
           - dps_val: Three_phase
             value: true
           - value: false
-  - entity: sensor  # C_Current
+  - entity: sensor # C_Current
     translation_key: current_x
     translation_placeholders:
       x: C
@@ -311,7 +311,7 @@ entities:
           - value: false
 
   # Seems not to work or change. on single phase even when loading 3 phase
-  - entity: sensor  # PhaseFlag -108-
+  - entity: sensor # PhaseFlag -108-
     name: Phase
     hidden: true
     icon: "mdi:transmission-tower"
@@ -330,7 +330,7 @@ entities:
           - dps_val: Phase_err
             value: "Phase Error"
 
-  - entity: sensor  # DeviceKw -109- OK
+  - entity: sensor # DeviceKw -109- OK
     class: power
     dps:
       - id: 109
@@ -342,7 +342,7 @@ entities:
         mapping:
           - scale: 10
 
-  - entity: sensor  # DeviceTemp -110- OK
+  - entity: sensor # DeviceTemp -110- OK
     class: temperature
     category: diagnostic
     dps:
@@ -356,7 +356,7 @@ entities:
         mapping:
           - scale: 10
 
-  - entity: sensor  # DeviceKwh -112- OK
+  - entity: sensor # DeviceKwh -112- OK
     class: energy
     dps:
       - id: 112
@@ -367,7 +367,7 @@ entities:
           - scale: 10
         class: total_increasing
 
-  - entity: number  # Set16A -114- OK
+  - entity: number # Set16A -114- OK
     name: Current limit
     class: current
     category: config
@@ -419,7 +419,7 @@ entities:
           min: 12
           max: 50
 
-  - entity: number  # SetDelayTime -118- OK
+  - entity: number # SetDelayTime -118- OK
     name: Charging delay
     class: duration
     category: config
@@ -432,7 +432,7 @@ entities:
           min: 0
           max: 15
 
-  - entity: number  # SetDefineTime -119- OK
+  - entity: number # SetDefineTime -119- OK
     name: Charging time
     class: duration
     category: config
@@ -445,7 +445,7 @@ entities:
           min: 0
           max: 15
 
-  - entity: sensor  # CTime2 -121- OK
+  - entity: sensor # CTime2 -121- OK
     name: Charging time
     class: duration
     dps:
@@ -459,7 +459,7 @@ entities:
         mapping:
           - scale: 10
 
-  - entity: switch  # IDVerificationSet -122-
+  - entity: switch # IDVerificationSet -122-
     name: Require RFID
     category: config
     dps:
@@ -467,7 +467,7 @@ entities:
         type: boolean
         name: switch
 
-  - entity: button  # RFID -123-
+  - entity: button # RFID -123-
     name: RFID present
     dps:
       - id: 123
@@ -480,7 +480,7 @@ entities:
             value: false
 
   # Seems not to work with the charger as always on waitOperation
-  - entity: sensor  # ChargingOperation -124-
+  - entity: sensor # ChargingOperation -124-
     name: Charging operation
     hidden: true
     dps:

@@ -3,7 +3,7 @@ Setup for Tuya time entities
 """
 
 import logging
-from datetime import time, timedelta, datetime
+from datetime import datetime, time, timedelta
 
 from homeassistant.components.time import TimeEntity
 

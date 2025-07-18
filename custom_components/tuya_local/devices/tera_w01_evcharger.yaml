@@ -9,7 +9,7 @@ entities:
     icon: "mdi:ev-station"
     class: enum
     dps:
-      - id: 3  # work_state
+      - id: 3 # work_state
         type: string
         name: sensor
         mapping:
@@ -29,13 +29,13 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
-      - id: 23  # system_version
+      - id: 23 # system_version
         type: string
         name: system_version
   - entity: sensor
     class: energy
     dps:
-      - id: 1  # forward_energy_total
+      - id: 1 # forward_energy_total
         type: integer
         optional: true
         name: sensor
@@ -49,7 +49,7 @@ entities:
     class: current
     icon: "mdi:ev-plug-type2"
     dps:
-      - id: 4  # charge_cur_set
+      - id: 4 # charge_cur_set
         type: integer
         name: value
         unit: A
@@ -61,7 +61,7 @@ entities:
     class: voltage
     category: diagnostic
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -74,7 +74,7 @@ entities:
     class: current
     category: diagnostic
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -87,7 +87,7 @@ entities:
     class: power
     category: diagnostic
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -100,7 +100,7 @@ entities:
     class: voltage
     category: diagnostic
     dps:
-      - id: 7  # phase_2
+      - id: 7 # phase_2
         type: base64
         name: sensor
         optional: true
@@ -113,7 +113,7 @@ entities:
     class: current
     category: diagnostic
     dps:
-      - id: 7  # phase_2
+      - id: 7 # phase_2
         type: base64
         name: sensor
         optional: true
@@ -126,7 +126,7 @@ entities:
     class: power
     category: diagnostic
     dps:
-      - id: 7  # phase_2
+      - id: 7 # phase_2
         type: base64
         name: sensor
         optional: true
@@ -139,7 +139,7 @@ entities:
     class: voltage
     category: diagnostic
     dps:
-      - id: 8  # phase_3
+      - id: 8 # phase_3
         type: base64
         name: sensor
         optional: true
@@ -152,7 +152,7 @@ entities:
     class: current
     category: diagnostic
     dps:
-      - id: 8  # phase_3
+      - id: 8 # phase_3
         type: base64
         name: sensor
         optional: true
@@ -165,7 +165,7 @@ entities:
     class: power
     category: diagnostic
     dps:
-      - id: 8  # phase_3
+      - id: 8 # phase_3
         type: base64
         name: sensor
         optional: true
@@ -176,7 +176,7 @@ entities:
   - entity: sensor
     class: power
     dps:
-      - id: 9  # power_total
+      - id: 9 # power_total
         type: integer
         name: sensor
         unit: kW
@@ -187,14 +187,14 @@ entities:
     class: problem
     category: diagnostic
     dps:
-      - id: 10  # fault
+      - id: 10 # fault
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
-      - id: 10  # fault
+      - id: 10 # fault
         type: bitfield
         name: fault_code
   - entity: sensor
@@ -202,7 +202,7 @@ entities:
     icon: "mdi:ev-plug-type2"
     class: enum
     dps:
-      - id: 13  # connection_state
+      - id: 13 # connection_state
         type: string
         name: sensor
         mapping:
@@ -225,7 +225,7 @@ entities:
     category: config
     icon: "mdi:ev-station"
     dps:
-      - id: 14  # work_mode
+      - id: 14 # work_mode
         type: string
         optional: true
         name: option
@@ -243,13 +243,13 @@ entities:
   - entity: switch
     icon: "mdi:ev-station"
     dps:
-      - id: 18  # switch
+      - id: 18 # switch
         type: boolean
         name: switch
   - entity: sensor
     class: temperature
     dps:
-      - id: 24  # temp_current
+      - id: 24 # temp_current
         type: integer
         name: sensor
         unit: C
@@ -260,7 +260,7 @@ entities:
     category: config
     icon: "mdi:car-clock"
     dps:
-      - id: 28  # timer_on
+      - id: 28 # timer_on
         type: integer
         name: value
         optional: true

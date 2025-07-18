@@ -6,7 +6,7 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
 
 This is a Home Assistant integration to support devices running Tuya
-firmware without going via the Tuya cloud.  Devices are supported
+firmware without going via the Tuya cloud. Devices are supported
 over WiFi, limited support for devices connected via hubs is available.
 
 Note that many Tuya devices seem to support only one local connection.
@@ -27,7 +27,6 @@ A similar but unrelated integration is
 your device is not supported by this integration, you may find it
 easier to set up using that as an alternative.
 
-
 ---
 
 ## Device support
@@ -41,11 +40,11 @@ etc which do not use a hub will be impossible to support locally, due
 to the power management that they need to do to get acceptable battery
 life.
 
-Hubs are currently supported, but with limitations.  Each connection
+Hubs are currently supported, but with limitations. Each connection
 to a sub device uses a separate network connection, but like other
 Tuya devices, hubs are usually limited in the number of connections
 they can handle, with typical limits being 1 or 3, depending on the specific
-Tuya module they are using.  This severely limits the number of sub devices
+Tuya module they are using. This severely limits the number of sub devices
 that can be connected through this integration.
 
 Sub devices should be added using the `device_id`, `address` and `local_key`
@@ -62,9 +61,9 @@ Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
 Tuya IR hubs that expose general IR remotes as sub devices usually
-expose them as one way devices (send only).  Due to the way this
+expose them as one way devices (send only). Due to the way this
 integration does device detection based on the dps returned by the
-device, it is not currently able to detect such devices at all.  Some
+device, it is not currently able to detect such devices at all. Some
 specialised IR hubs for air conditioner remote controls do work, as
 they try to emulate a fully smart air conditioner using internal memory
 of what settings are currently set, and internal temperature and humidity
@@ -91,7 +90,7 @@ If you file an issue to request support for a new device, please include the fol
 2. As much information on the datapoints you can gather using the above methods.
 3. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
 
-If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general.  So it may be necessary to remove and re-add your device once it has been integrated into a release.
+If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general. So it may be necessary to remove and re-add your device once it has been integrated into a release.
 
 ---
 
@@ -110,7 +109,7 @@ the integration will be available to install like any other.
 
 ## Configuration
 
-After installing, you can easily configure your devices using the Integrations configuration UI.  Go to Settings / Devices & Services and press the Add Integration button, or click the shortcut button below (requires My Homeassistant configured).
+After installing, you can easily configure your devices using the Integrations configuration UI. Go to Settings / Devices & Services and press the Add Integration button, or click the shortcut button below (requires My Homeassistant configured).
 
 [![Add Integration to your Home Assistant
 instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
@@ -118,6 +117,7 @@ instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://m
 ### Choose your configuration path
 
 There are two options for configuring a device:
+
 - You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
 - You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
 
@@ -149,16 +149,15 @@ Note that each time you pair the device, the local key changes, so if you obtain
 
 #### protocol_version
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4, 3.5, 3.22.  If you aren't sure, choose "auto", but some 3.2, 3.22 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions. Protocol 3.22 is a special case, that enables tinytuya's "device22" detection with protocol 3.3. Previously we let tinytuya auto-detect this, but it was found to sometimes misdetect genuine 3.3 devices as device22 which stops them receiving updates, so an explicit version was added to enable the device22 detection.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4, 3.5, 3.22. If you aren't sure, choose "auto", but some 3.2, 3.22 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions. Protocol 3.22 is a special case, that enables tinytuya's "device22" detection with protocol 3.3. Previously we let tinytuya auto-detect this, but it was found to sometimes misdetect genuine 3.3 devices as device22 which stops them receiving updates, so an explicit version was added to enable the device22 detection.
 
 At the end of this step, an attempt is made to connect to the device and see if
 it returns any data. For tuya protocol version 3.1 devices, the local key is
 only used for sending commands to the device, so if your local key is
 incorrect the setup will appear to work, and you will not see any problems
-until you try to control your device.  For more recent Tuya protocol versions,
+until you try to control your device. For more recent Tuya protocol versions,
 the local key is used to decrypt received data as well, so an incorrect key
 will be detected at this step and cause an immediate failure.
-
 
 ### Stage Two
 
@@ -188,36 +187,36 @@ the name to make it easier to distinguish them.
 #### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
-device.  This will be used as the base for the entity names in Home
+device. This will be used as the base for the entity names in Home
 Assistant.
 
 ## Offline operation issues
 
 Many Tuya devices will stop responding if unable to connect to the
-Tuya servers for an extended period.  Reportedly, some devices act
+Tuya servers for an extended period. Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
 ## General issues
 
 Many Tuya devices do not handle multiple commands sent in quick
-succession.  Some will reboot, possibly changing state in the process,
+succession. Some will reboot, possibly changing state in the process,
 others will go offline for 30s to a few minutes if you overload them.
 There is some rate limiting to try to avoid this, but it is not
 sufficient for many devices, and may not work across entities where
-you are sending commands to multiple entities on the same device.  The
+you are sending commands to multiple entities on the same device. The
 rate limiting also combines commands, which not all devices can
 handle. If you are sending commands from an automation, it is best to
 add delays between commands - if your automation is for multiple
 devices, it might be enough to send commands to other devices first
 before coming back to send a second command to the first one, or you
-may still need a delay after that.  The exact timing depends on the
+may still need a delay after that. The exact timing depends on the
 device, so you may need to experiment to find the minimum delay that
 gives reliable results.
 
 Some devices can handle multiple commands in a single message, so for
 entity platforms that support it (eg climate `set_temperature` can
 include presets, lights pretty much everything is set through
-`turn_on`) multiple settings are sent at once.  But some devices do
+`turn_on`) multiple settings are sent at once. But some devices do
 not like this and require all commands to set only a single dp at a
 time, so you may need to experiment with your automations to see
 whether a single command or multiple commands (with delays, see above)
@@ -241,5 +240,5 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 Beyond contributing device configs, here are some areas that could benefit from more hands:
 
 1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
+2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale.
 3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.

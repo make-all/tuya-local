@@ -10,8 +10,8 @@ if you manually configure the devices.
 The easiest way to find your local key is with the Tuya Developer portal.
 If you have previously configured the built in Tuya cloud integration, or
 localtuya, you probably already have a developer account with the Tuya app
-linked.  Note that you need to use Tuya's own branded "Tuya Smart" or
-"SmartLife" apps to access devices through the developer portal.  For most
+linked. Note that you need to use Tuya's own branded "Tuya Smart" or
+"SmartLife" apps to access devices through the developer portal. For most
 devices, your device will work identically with those apps as it does with
 your manufacturer's branded app, but there are a few devices where that is
 not the case and you will need to decide whether you are willing to potentially
@@ -20,14 +20,14 @@ lose access to some functionality (such as mapping for some vacuum cleaners).
 If you log on to your Developer Portal account, under Cloud you should
 be able to get a list of your devices, which contains the "Device ID".
 If you don't see them, check your server is set correctly at the top
-of the page.  Make a note of the Device IDs for all your devices, then
+of the page. Make a note of the Device IDs for all your devices, then
 select Cloud on the side bar again and go to the API Explorer.
 
 Under "Devices Management", select the "Query Device Details in Bulk"
 function, and enter your Device IDs, separated by commas.
 In the results you should see your local_key.
 
-The IP address you should be able to get from your router.  Using a
+The IP address you should be able to get from your router. Using a
 command line Tuya client like tuyaapi/cli or
 [tinytuya](https://github.com/jasonacox/tinytuya) you may also be able
 to scan your network for Tuya devices to find the IP address and also automate

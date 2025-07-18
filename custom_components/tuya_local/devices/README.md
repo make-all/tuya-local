@@ -18,10 +18,10 @@ generic name for the type of device should go in the top level name.
 
 ### `products`
 
-*Optional.*
+_Optional._
 
 A list of products that this config applies to. Each product in the list must
-have an `id` specified, which corresponds to the product_id from cloud device 
+have an `id` specified, which corresponds to the product_id from cloud device
 info, or productKey from the local discovery. If these are different, it is
 recommended that listings are created for both.
 
@@ -48,7 +48,7 @@ section below for details on specific requirements for each entity type.
 
 ### `class`
 
-*Optional.*
+_Optional._
 
 For some entity types, a device `class` can be set, for example `switch`
 entities can have a class of `outlet`. This may slightly alter the UI
@@ -58,7 +58,7 @@ also the state that off and on values translate to in the UI.
 
 ### `translation_key` / `translation_only_key`
 
-*Optional*
+_Optional_
 
 A key used to define strings and icons for this entity. If this is used,
 the name can be omited and instead defined in the translations files.
@@ -71,7 +71,7 @@ attribute strings but not the entity name.
 
 ### `translation_placeholders`
 
-*Optional*
+_Optional_
 
 A container for placeholders to be used in the translation string. Contents
 are a mapping from parameter keys used in the translation files, to actual
@@ -88,7 +88,7 @@ Example:
 
 ### `category`
 
-*Optional.*
+_Optional._
 
 This specifies the `entity category` of the entity. Entities can be categorized
 as `config` or `diagnostic` to restrict where they appear automatically in
@@ -96,7 +96,7 @@ Home Assistant.
 
 ### `name`
 
-*Optional.*
+_Optional._
 
 The name associated with this entity can be set here. If no name is
 set, it will inherit the name at the top level. This is mostly useful
@@ -108,7 +108,7 @@ Where possible, `translation_key` should be used instead of an explicit name.
 
 ### `mode`
 
-*Optional. For number entities, default="auto", for others, None*
+_Optional. For number entities, default="auto", for others, None_
 
 For number entities, this can be used to force `slider` or `box` as the
 input method. The default `auto` uses a slider if the range is small enough,
@@ -119,7 +119,7 @@ sense with one UI mode, then this is provided to handle those cases.
 
 ### `hidden`
 
-*Optional, true/unavailable, default=false*
+_Optional, true/unavailable, default=false_
 
 If `hidden` is `true`, then the entity will be disabled by default.
 If `hidden` is `unavailable`, then the entity will be disabled by default if
@@ -139,7 +139,6 @@ supported DPs reported by the device.
 
 The configuration of DPs entries is detailed in its own section below.
 
-
 ## DPs configuration
 
 ### `id`
@@ -150,16 +149,16 @@ Every DP must have a numeric ID matching the DP ID in the Tuya protocol.
 
 The type of data returned by the Tuya API. Can be one of the following:
 
- - **string** can contain arbitrary text.
- - **boolean** can contain the values **True** or **False**.
- - **integer** can contain only numbers. Integers can have range set on them, be scaled and steped
- - **bitfield** is a special case of integer, where the bits that make up the value each has individal meaning.
- - **unixtime** is a special case of integer, where the device uses a unix timestamp (seconds since 1970-01-01 00:00), which is converted to a datetime for Home Assistant
- - **base64** is a special case of string, where binary data is base64 encoded. Platforms that use this type will need special handling to make sense of the data.
- - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
- - **json** is a special case of string, where multiple data points are encoded in json format in the string. Platforms that use this type will need special handling to make sense of the data.
- - **utf16b64** is a special case of string, where a UTF-16 string is base64 encoded. This will be decoded into a UTF-8 string so it is readable in Home Assistant.
- - **float** can contain floating point numbers. No known devices use this, but it is supported if needed.
+- **string** can contain arbitrary text.
+- **boolean** can contain the values **True** or **False**.
+- **integer** can contain only numbers. Integers can have range set on them, be scaled and steped
+- **bitfield** is a special case of integer, where the bits that make up the value each has individal meaning.
+- **unixtime** is a special case of integer, where the device uses a unix timestamp (seconds since 1970-01-01 00:00), which is converted to a datetime for Home Assistant
+- **base64** is a special case of string, where binary data is base64 encoded. Platforms that use this type will need special handling to make sense of the data.
+- **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
+- **json** is a special case of string, where multiple data points are encoded in json format in the string. Platforms that use this type will need special handling to make sense of the data.
+- **utf16b64** is a special case of string, where a UTF-16 string is base64 encoded. This will be decoded into a UTF-8 string so it is readable in Home Assistant.
+- **float** can contain floating point numbers. No known devices use this, but it is supported if needed.
 
 ### `name`
 
@@ -172,15 +171,15 @@ to use an entity for that (typically switch, number or select).
 
 ### `sensitive`
 
-*Optional, default false.*
+_Optional, default false._
 
 A boolean setting yo mark attributes as containing potentially sensitive
-data.  Setting this to true will result in the data being redacted in
+data. Setting this to true will result in the data being redacted in
 device diagnostics output.
 
 ### `readonly`
 
-*Optional, default false.*
+_Optional, default false._
 
 A boolean setting to mark attributes as readonly. If not specified, the
 default is `false`. If set to `true`, the attributes will be reported
@@ -191,7 +190,7 @@ entity which is inherently read-only, then you do not need to specify this.
 
 ### `optional`
 
-*Optional, default false.*
+_Optional, default false._
 
 A boolean setting to mark attributes as optional. This allows a device to be
 matched even if it is not sending the dp at the time when adding a new device.
@@ -200,7 +199,7 @@ attributes that are sent.
 
 ### `persist`
 
-*Optional, default true.*
+_Optional, default true._
 
 Whether to persist the value if the device does not return it on every status
 refresh. Some devices don't return every value on every status poll. In most
@@ -211,7 +210,7 @@ the value needs to go to null in between when the device is not sending it.
 
 ### `force`
 
-*Optional, default false.*
+_Optional, default false._
 
 A boolean setting to mark dps as requiring an explicit update request
 to fetch. Many energy monitoring smartplugs require this, without a
@@ -221,7 +220,7 @@ require it. Use this only where needed, and generally only on read-only dps.
 
 ### `precision`
 
-*Optional, default None.*
+_Optional, default None._
 
 The number of decimals which should be used in the sensor's state when
 it's displayed. If unspecified, the Home Assistant will use the native
@@ -234,7 +233,7 @@ explicitly.
 
 ### `mapping`
 
-*Optional. Must be a list with each item starting with a `- ` (a dash and a space):*
+_Optional. Must be a list with each item starting with a `- ` (a dash and a space):_
 This can be used to define a list of additional rules that modify the DP
 to Home Assistant attribute mapping to something other than a one to one
 copy.
@@ -244,7 +243,7 @@ relationships involving other attributes.
 
 ### `hidden`
 
-*Optional, default false.*
+_Optional, default false._
 This can be used to define DPs that do not directly expose Home Assistant
 attributes. When set to **true**, no attribute will be sent. A `name` should
 still be specified and the attribute can be referenced as a `constraint`
@@ -260,7 +259,7 @@ is set to Eco.
 
 ### `range`
 
-*Optional, may be required in some contexts, may have defaults in others.*
+_Optional, may be required in some contexts, may have defaults in others._
 
 For integer attributes that are not readonly, a range can be set with `min`
 and `max` values that will limit the values that the user can enter in the
@@ -268,7 +267,7 @@ Home Assistant UI. This can also be set in a `mapping` or `conditions` block.
 
 ### `unit`
 
-*Optional, default="C" for temperature dps on climate devices.*
+_Optional, default="C" for temperature dps on climate devices._
 
 For temperature dps, some devices will use Fahrenhiet. This needs to be
 indicated back to HomeAssistant by defining `unit` as "F". For sensor
@@ -278,15 +277,14 @@ equivalents, other units are currently ASCII so can be easily entered directly).
 
 ### `class`
 
-*Optional.*
+_Optional._
 
 For sensors, this sets the state class of the sensor (measurement, total
 or total_increasing)
 
-
 ### `format`
 
-*Optional.*
+_Optional._
 
 For base64 and hex types, this specifies how to decode the binary data (after hex or base64 decoding).
 This is a container field, the contents of which should be a list consisting of `name`, `bytes` and `range` fields. `range` is as described above. `bytes` is the number of bytes for the field, which can be `1`, `2`, or `4`. `name` is a name for the field, which will have special handling depending on
@@ -294,13 +292,13 @@ the device type.
 
 ### `mask`
 
-*Optional.*
+_Optional._
 
 For base64 and hex types, this specifies how to extract a single numeric value from the binary data. The value should be a hex bit mask (eg 00FF00 to extract the middle byte of a 3 byte value). Unlike format, this does not require special handling in the entity platform, as only a single value is being extracted.
 
 ### `endianness`
 
-*Optional, default="big"*
+_Optional, default="big"_
 
 For base64 and hex types, this specifies the endianess of the data and mask. Could be "big" or "little".
 
@@ -315,8 +313,8 @@ elements.
 
 ### `dps_val`
 
-*Optional, if not provided, the rule is a default that will apply to all
-values not covered by their own dps_val rule.*
+_Optional, if not provided, the rule is a default that will apply to all
+values not covered by their own dps_val rule._
 
 `dps_val` defines the DP value that each
 rule in the list applies to. This can be used to map specific values from the
@@ -331,7 +329,7 @@ is one-way, the value will not be mapped back to a null when setting the dp.
 
 ### `value`
 
-*Optional.*
+_Optional._
 
 This can be used to set the attribute value seen by Home Assistant to something
 different than the DP value from the Tuya protocol. Normally it will be used
@@ -341,7 +339,7 @@ can be useful for a binary_sensor.
 
 ### `hidden`
 
-*Optional, default=false*
+_Optional, default=false_
 
 When set to true, the mapping value is hidden from the list of all values.
 This can be used for items that should not be available for selection by the
@@ -352,7 +350,7 @@ an explicit mode for the user to select.
 
 ### `available`
 
-*Optional.*
+_Optional._
 
 This works the similarly to `hidden` above, but instead of a boolean
 value, this should be set to the name of an attribute, which returns a
@@ -364,7 +362,7 @@ the referenced attribute is showing `false`, and shown when it is `true`.
 
 ### `scale`
 
-*Optional, default=1.*
+_Optional, default=1._
 
 This can be used in an `integer` dp mapping to scale the values. For example
 some climate devices represent the temperature as an integer in tenths of
@@ -375,7 +373,7 @@ of 0.03.
 
 ### `invert`
 
-*Optional, default=False.*
+_Optional, default=False._
 
 This can be used in an `integer` dp mapping to invert the range. For example,
 some cover devices have an opposite idea of which end of the percentage scale open
@@ -384,7 +382,7 @@ must also be specified for the dp.
 
 ### `step`
 
-*Optional, default=1.*
+_Optional, default=1._
 
 This can be used in an `integer` dp mapping to make values jump by a specific
 step. It can also be set in a conditions block so that the steps change only
@@ -393,14 +391,13 @@ only allows settings that are divisible by 10, so a step of 10 would be set.
 
 ### `target_range`
 
-*Optional, has `min` and `max` child attributes, like `range`*
+_Optional, has `min` and `max` child attributes, like `range`_
 
 A target range is used together with `range` on a numeric value, to
 map the value into a new range. Unlike `scale`, this can shift the
 value as well as scale it into the new range. Color temperature is a
 major use of this, as Tuya devices often use a range of 0 - 100, 0 -
-255 or 0 - 1000, and this needs to be mapped to the Kelvin like 2200 -
-6500.
+255 or 0 - 1000, and this needs to be mapped to the Kelvin like 2200 - 6500.
 
 This should normally only be used on a default mapping, as the code
 that uses this feature often needs to inform HA of the min and max
@@ -409,7 +406,7 @@ across the range.
 
 ### `icon`
 
-*Optional. Deprecated since HA 2024.2 (use translation_key and icons.json to define icons)*
+_Optional. Deprecated since HA 2024.2 (use translation_key and icons.json to define icons)_
 
 This can be used to override the icon. Most useful with a `dps_val` which
 indicates a change from normal operating mode, such as "fan-only",
@@ -417,7 +414,7 @@ indicates a change from normal operating mode, such as "fan-only",
 
 ### `icon_priority`
 
-*Optional. Default 10. Lower numbers mean higher priorities. Deprecated, icons should be defined using icons.json and translation_key since HA 2024.2*
+_Optional. Default 10. Lower numbers mean higher priorities. Deprecated, icons should be defined using icons.json and translation_key since HA 2024.2_
 
 When a number of rules on different attributes define `icon` changes, you
 may need to control which have priority over the others. For example,
@@ -432,7 +429,7 @@ icon will be displayed.
 
 ### `value_redirect`
 
-*Optional.*
+_Optional._
 
 When `value_redirect` is set, the value of the attribute and any attempt to
 set it will be redirected to the named attribute instead of the current one.
@@ -446,7 +443,7 @@ Home Assistant.
 
 ### `value_mirror`
 
-*Optional.*
+_Optional._
 
 When `value_mirror` is set, the value of the attribute will be redirected to
 the current value of the named attribute. Unlike `value_redirect`, this does
@@ -460,7 +457,7 @@ have a mapping that mirrors the value of the configuration dp.
 
 ### `invalid`
 
-*Optional, default false.*
+_Optional, default false._
 
 Invalid set to true allows an attribute to temporarily be set read-only in
 some conditions. Rather than passing requests to set the attribute through
@@ -473,7 +470,7 @@ control when the preset is in sleep mode (since sleep mode should force low).
 
 ### `default`
 
-*Optional, default false.*
+_Optional, default false._
 
 Default set to true allows an attribute to be set as the default value.
 This is used by some entities when an argument is not provided to a service call
@@ -484,14 +481,14 @@ pick a default tone to use to turn on the siren.
 
 ### `constraint`
 
-*Optional, always paired with `conditions`. Default if unspecified is the current attribute*
+_Optional, always paired with `conditions`. Default if unspecified is the current attribute_
 
 If a rule depends on an attribute other than the current one, then `constraint`
 can be used to specify the element that `conditions` applies to. `constraint` can also refer back to the same attribute - this can be useful for specifying conditional mappings, for example to support two different variants of a device in a single config file, where the only difference is the way they represent enum attributes.
 
 ### `conditions`
 
-*Optional, usually paired with `constraint.`*
+_Optional, usually paired with `constraint.`_
 
 Conditions defines a list of rules that are applied based on the `constraint` attribute. The contents are the same as Mapping Rules, but `dps_val` applies to the attribute specified by `constraint`, and also can be a list of values to match as well rather than a single value. All others act on the current attribute as they would in the mapping. Although conditions are specified within a mapping, they can also contain a `mapping` of their own to override that mapping. These nested mappings are limited to simple `dps_val` to `value` substitutions, as more complex rules would quickly become too complex to manage.
 
@@ -502,6 +499,7 @@ For non-readonly constraints that specify a single dps_val, the constraint dp wi
 For readonly constraints, the condition must match the constraint dp's current value for anything to be set.
 
 **Example**
+
 ```yaml
   ...
   name: target_dp
@@ -521,33 +519,34 @@ For readonly constraints, the condition must match the constraint dp's current v
         - dps_val: c
           value: y
 ```
+
 If `constraint_dp` is not readonly:
 
-| constraint_dp current dps_val | target_dp target value | dps set |
-|---|---|---|
-| a | x | target_dp: 1, constraint_dp: a |
-| a | y | target_dp: 2, constraint_dp: c |
-| a | z | target_dp: 1, constraint_dp: c |
-| b | x | target_dp: 1, constraint_dp: a |
-| b | y | target_dp: 2, constraint_dp: c |
-| b | z | target_dp: 1, constraint_dp: c |
-| c | x | target_dp: 1, constraint_dp: a |
-| c | y | target_dp: 2, constraint_dp: c |
-| c | z | target_dp: 1, constraint_dp: c |
+| constraint_dp current dps_val | target_dp target value | dps set                        |
+| ----------------------------- | ---------------------- | ------------------------------ |
+| a                             | x                      | target_dp: 1, constraint_dp: a |
+| a                             | y                      | target_dp: 2, constraint_dp: c |
+| a                             | z                      | target_dp: 1, constraint_dp: c |
+| b                             | x                      | target_dp: 1, constraint_dp: a |
+| b                             | y                      | target_dp: 2, constraint_dp: c |
+| b                             | z                      | target_dp: 1, constraint_dp: c |
+| c                             | x                      | target_dp: 1, constraint_dp: a |
+| c                             | y                      | target_dp: 2, constraint_dp: c |
+| c                             | z                      | target_dp: 1, constraint_dp: c |
 
 If `constraint_dp` is readonly:
 
-| current constraint_dp | target target_dp | dps set |
-|---|---|---|
-| a | x | target_dp: 1 |
-| a | y | - |
-| a | z | - |
-| b | x | target_dp: 2 |
-| b | y | - |
-| b | z | - |
-| c | x | - |
-| c | y | target_dp: 2 |
-| c | z | target_dp: 1 |
+| current constraint_dp | target target_dp | dps set      |
+| --------------------- | ---------------- | ------------ |
+| a                     | x                | target_dp: 1 |
+| a                     | y                | -            |
+| a                     | z                | -            |
+| b                     | x                | target_dp: 2 |
+| b                     | y                | -            |
+| b                     | z                | -            |
+| c                     | x                | -            |
+| c                     | y                | target_dp: 2 |
+| c                     | z                | target_dp: 1 |
 
 Note that each condition must specify a `dps_val` to match againt. If you want to specify a default match, do it outside the conditions.
 
@@ -561,18 +560,17 @@ Note that each condition must specify a `dps_val` to match againt. If you want t
             value: overridden
 ```
 
-
 ## Generic dps
 
 The following dps may be defined for any entity type. The names should be
 avoided for any extra attribute that is not for the listed purpose.
 
 - **available** (optional, string) a dp name that returns a boolean indicating
-whether the entity should show as available or not (even when it appears to be
-returning valid state). This may be used to disable entities that the device
-indicates it does not support, through a feature flag dp. This should only be
-used when the device is permanently indicating a missing feature, as HA may
-hide the entity if it is marked as unavailable early enough during startup.
+  whether the entity should show as available or not (even when it appears to be
+  returning valid state). This may be used to disable entities that the device
+  indicates it does not support, through a feature flag dp. This should only be
+  used when the device is permanently indicating a missing feature, as HA may
+  hide the entity if it is marked as unavailable early enough during startup.
 
 ## Entity types
 
@@ -583,56 +581,61 @@ If the type of dp does not match the expected type, a mapping should be provided
 Many entity types support a class attribute which may change the UI behaviour, icons etc. See the HA documentation for the entity type to see what is valid (these may expand over time)
 
 ### `alarm_control_panel`
+
 - **alarm_state** (required, string) the alarm state, used to report and change the current state of the alarm. Expects values from the set `disarmed`, `armed_home`, `armed_away`, `armed_night`, `armed_vacation`, `armed_custom_bypass`, `pending`, `arming`, `disarming`, `triggered`. Other states are allowed for read-only status, but only the armed... and disarmed states are available as commands.
 - **trigger** (optional, boolean) used to trigger the alarm remotely for test or panic button etc.
 
 ### `binary_sensor`
+
 - **sensor** (required, boolean) the dp to attach to the sensor.
 
 ### `button`
+
 - **button** (required, boolean) the dp to attach to the button. Any
-read value will be ignored, but the dp is expected to be present for
-device detection unless set to optional. A value of true will be sent
-for a button press, map this to the desired dps_val if a different
-value is required.
+  read value will be ignored, but the dp is expected to be present for
+  device detection unless set to optional. A value of true will be sent
+  for a button press, map this to the desired dps_val if a different
+  value is required.
 
 ### `camera`
+
 - **motion_enable** (optional, boolean) a dp that enables and disables motion detection features built into the camera.
 - **record** (optional, boolean) a dp that turns reecording on and off.
 - **snapshot** (optional, base64 string) a dp that returns a snapshot image.
-from the camera.
+  from the camera.
 - **switch** (optional, boolean) a dp to turn the camera on and off.
 
-**NOTE**: tuya-local does not directly support video streaming from cameras.  Some cameras provide ONVIF or WebRTC compliant streams locally which you can use the relevant integrations to capture, others may be cloud-only.
+**NOTE**: tuya-local does not directly support video streaming from cameras. Some cameras provide ONVIF or WebRTC compliant streams locally which you can use the relevant integrations to capture, others may be cloud-only.
 
 ### `climate`
+
 - **current_temperature** (optional, number) a dp that reports the current temperature.
 - **current_humidity** (optional, number) a dp that reports the current humidity (%).
 - **fan_mode** (optional, mapping of strings) a dp to control the fan mode if available.
-    Any value is allowed, but HA has some standard modes:
-    `"on", "off", auto, low, medium, high, top, middle, focus, diffuse`
+  Any value is allowed, but HA has some standard modes:
+  `"on", "off", auto, low, medium, high, top, middle, focus, diffuse`
 - **humidity** (optional, number) a dp to control the target humidity if available. (%)
 - **hvac_mode** (optional, mapping of strings) a dp to control the mode of the device.
-    Possible values are: `"off", cool, heat, heat_cool, auto, dry, fan_only`
+  Possible values are: `"off", cool, heat, heat_cool, auto, dry, fan_only`
 - **hvac_action** (optional, string) a dp that reports the current action of the device.
-    Possible values are: `"off", idle, cooling, heating, drying, fan, defrosting`
+  Possible values are: `"off", idle, cooling, heating, drying, fan, defrosting`
 - **preset_mode** (optional, mapping of strings) a dp to control preset modes of the device.
-   Any value is allowed, but HA has some standard presets:
-    `none, eco, away, boost, comfort, home, sleep, activity`
-   There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
+  Any value is allowed, but HA has some standard presets:
+  `none, eco, away, boost, comfort, home, sleep, activity`
+  There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
 - **swing_mode** (optional, mapping of strings) a dp to control swing modes of the device.
-   Standard values are: `"off", "on", vertical, horizontal, both`, non-standard values can also be used if needed.
+  Standard values are: `"off", "on", vertical, horizontal, both`, non-standard values can also be used if needed.
 - **swing_horizontal_mode** (optional, mapping of strings) a dp to control horizontal swing independently of the vertical swing.
-   Standard values are: `"off", "on"`, non-standard values can also be used if needed.
+  Standard values are: `"off", "on"`, non-standard values can also be used if needed.
 - **temperature** (optional, number) a dp to set the target temperature of the device.
-      A unit may be specified as part of the attribute if a temperature_unit dp is not available, if not
-      the default unit configured in HA will be used.
+  A unit may be specified as part of the attribute if a temperature_unit dp is not available, if not
+  the default unit configured in HA will be used.
 - **target_temp_high** (optional, number) a dp to set the upper temperature range of the device.
-     This dp should be paired with `target_temp_low`, and is mutually exclusive with `temperature`
+  This dp should be paired with `target_temp_low`, and is mutually exclusive with `temperature`
 - **target_temp_low** (optional, number) a dp to set the lower temperature range of the device.
 - **temperature_unit** (optional, string) a dp that specifies the unit the device is configured for.
-    Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or
-	lower case for this
+  Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or
+  lower case for this
 - **min_temperature** (optional, number) a dp that specifies the minimum temperature that can be set. Some devices provide this, otherwise a fixed range on the temperature dp can be used.
 - **max_temperature** (optional, number) a dp that specifies the maximum temperature that can be set.
 
@@ -641,26 +644,28 @@ from the camera.
 Either **position**, **action** or **open** should be specified otherwise the cover will always appear in an unknown state.
 
 - **position** (optional, number 0-100): a dp to control the percentage that the cover is open.
-    0 means completely close, 100 means completely open.
+  0 means completely close, 100 means completely open.
 - **control** (optional, mapping of strings): a dp to control the cover. Mainly useful if **position** cannot be used.
-    Valid values are `open, close, stop`
+  Valid values are `open, close, stop`
 - **action** (optional, string): a dp that reports the current state of the cover.
-   Special values are `opening, closing, opened, closed`
+  Special values are `opening, closing, opened, closed`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
 - **tilt_position** (optional, number): a dp to control the tilt opening of the cover (an example is venetian blinds that tilt as well as go up and down). The range will be auto-converted to the 0-100 expected by HA.
 
 ### `fan`
+
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
-   Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases. If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
+  Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases. If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
 - **speed** (optional, number): a dp to control the speed of the fan (%).
-    if a range is supplied, it will be automatically scaled to the 0-100 range.
-    if a mapping is used for dicrete steps, the values must be mapped within that range.
+  if a range is supplied, it will be automatically scaled to the 0-100 range.
+  if a mapping is used for dicrete steps, the values must be mapped within that range.
 - **oscillate** (optional, boolean): a dp to control whether the fan will oscillate or not.
 - **direction** (optional, string): a dp to control the spin direction of the fan.
-   Valid values are `forward, reverse`.
+  Valid values are `forward, reverse`.
 
 ### `humidifier`
+
 Humidifer can also cover dehumidifiers (use class to specify which).
 
 - **switch** (optional, boolean): a dp to control the power state of the fan
@@ -670,23 +675,25 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **action** (optional, string): a dp to report the current action the device is performing. Valid actions are `humidifying`, `drying`, `idle` and `off`
 
 ### `lawn_mower`
+
 - **activity** (required, string): a dp to report the current activity of the mower. Valid activities are `mowing`, `paused`, `docked`, `error`, `returning` (from LawnMowerActivities in https://github.com/home-assistant/core/blob/dev/homeassistant/components/lawn_mower/const.py). Any additional activities should be mapped to one of those, and exposed through an extra attribute or sensor entity that shows all the statuses that the mower is reporting.
 
 - **command** (required, string): a dp to send commands to the mower. Recognised commands are `start_mowing`, `pause` and `dock`. Any additional commands should be implemented via a `button` or `select` entity.
 
 ### `light`
+
 - **switch** (optional, boolean): a dp to control the on/off state of the light
-- **brightness** (optional, number): a dp to control the dimmer if available.  If a range is provided, the value will be automatically scaled into the 0-255 range for HA, so there is no need to provide a scale. If there is a fixed list of mappings, the values should be between 0 (off) and 255 (full brightness). If there is no switch dp, a brightness of 0 will be sent to turn the light off.
+- **brightness** (optional, number): a dp to control the dimmer if available. If a range is provided, the value will be automatically scaled into the 0-255 range for HA, so there is no need to provide a scale. If there is a fixed list of mappings, the values should be between 0 (off) and 255 (full brightness). If there is no switch dp, a brightness of 0 will be sent to turn the light off.
 - **color_temp** (optional, number): a dp to control the color temperature if available. See `target_range` above for mapping Tuya's range into Kelvin.
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values. The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`. If both RGB and HSV values are supplied by the light, the HSV will be preferred. Either RGB values or HS values are required. If V is missing, the brightness dp is required.
 - **named_color** (optional, string): a dp to control the color of the light, using a list of named colors. This is mutually exclusive with the rgbhsv dp. The list of recognised colors is from the HA COLORS table at https://github.com/home-assistant/core/blob/dev/homeassistant/util/color.py
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
-    Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,
-	Note: only white, color_temp and hs are currently supported, others listed above are reserved and may be implemented in future when the need arises.
-    If no `color_mode` dp is available, a single supported color mode will be
-    calculated based on which of the above dps are available.
+  Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,
+  Note: only white, color_temp and hs are currently supported, others listed above are reserved and may be implemented in future when the need arises.
+  If no `color_mode` dp is available, a single supported color mode will be
+  calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
-   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
+  Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
 ### `lock`
 
@@ -716,43 +723,51 @@ no information will be available about which specific credential was used to unl
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### `number`
+
 - **value** (required, number): a dp to control the number that is set.
 - **unit** (optional, string): a dp that reports the units returned by the number.
-    This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **value** dp can be used.
+  This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **value** dp can be used.
 - **minimum** (optional, number): a dp that reports the minimum the number can be set to.
-    This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
+  This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
-    This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
+  This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 
 ### `remote`
+
 - **send** (required, accepts a string): a dp to send remote codes.
-- **receive** (optional, returns strings): a dp to receive learned commands on. If not supplied, the `remote.learn_command` service call will not be available. 
+- **receive** (optional, returns strings): a dp to receive learned commands on. If not supplied, the `remote.learn_command` service call will not be available.
 - **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
 - **delay** (optional, accepts numbers): a dp to set the delay in ms between buttons when there are multiple in the send string. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
 - **code_type** (optional, accepts integers): a dp to set the type of code being sent. The current implementation only supports type `0`. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
+
 ### `select`
+
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 
 ### `sensor`
+
 - **sensor** (required, number or string): a dp that returns the current value of the sensor.
 - **unit** (optional, string): a dp that returns the unit returned by the sensor.
-    This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dp can be used.
+  This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dp can be used.
 
 ### `siren`
+
 - **switch** (optional, boolean): a dp to switch the siren on and off (depending on the siren, this may trigger it, or arm it for auto triggering). If this is not used, then the **tone** must be present, and containing an "off" option.
 - **tone** (optional, mapping of strings): a dp to report and control the siren tone. This dp is required is there is no **switch**, in which case the value "off" will be used for turning off the siren, and will be filtered from the list of available tones. When the **switch** dp is not used, one value must be marked as `default: true` so that the `turn_on` service with no commands works.
 - **volume_level** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
 - **duration** (optional, integer): a dp to control how long the siren will sound for.
 
 ### `switch`
+
 - **switch** (required, boolean): a dp to control the switch state.
 
 ### `text`
+
 - **value** (required, string): a dp to control the text that is set.
-   The value dp of a text entity has a few special attributes.
-     - `range` can be supplied to define the `min` and `max` length of the text.
-     - if `hidden` is specified as `true`, the mode will be set to `password`, otherwise the mode will be `text`.
-     - if the `type` is set to `base64` or `hex`, the `pattern` property of the text entity will be set appropriately. There is currently no way to set an arbitrary pattern.
+  The value dp of a text entity has a few special attributes.
+  - `range` can be supplied to define the `min` and `max` length of the text.
+  - if `hidden` is specified as `true`, the mode will be set to `password`, otherwise the mode will be `text`.
+  - if the `type` is set to `base64` or `hex`, the `pattern` property of the text entity will be set appropriately. There is currently no way to set an arbitrary pattern.
 
 ### `time`
 
@@ -761,28 +776,31 @@ However, it can also be convenient to use it for 24h timers. Since
 there is no way to change the limits in the UI, it is not recommended
 to use it for other length timers.
 
-*At least one of the following dps is required**
+\*At least one of the following dps is required\*\*
 
 - **hour** (optional, integer in range 0-24) - the hours component
 - **minute** (optional, integer in range 0-60 or 0-1440 if the only dp) - the minute component
 - **second** (optional, integer in range 0-60 or 0-84600 if the only dp) - the second component
 
 ### `vacuum`
+
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
 - **command** (optional, mapping of strings): a dp to control the statuss of the vacuum. If supplied, the status dp is only used to report the state.
-    Special values: `return_to_base, clean_spot`, others are sent as general commands
+  Special values: `return_to_base, clean_spot`, others are sent as general commands
 - **locate** (optional, boolean): a dp to trigger a locator beep on the vacuum.
 - **power** (optional, boolean): a dp to switch full system power on and off
 - **activate** (optional, boolean): a dp to start and pause the vacuum
 - **direction_control** (optional, mapping of strings): a dp that is used for directional commands
-    These are additional commands that are not part of **status**. They can be sent as general commands from HA.
+  These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.
-    As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
+  As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
 
 ### `valve`
-- **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
+
+- **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state. If a number, it should be a percentage between 0 and 100 indicating how far open the valve is. If a boolean, it should indicate open (true) or closed (false).
 
 ### `water_heater`
+
 - **current_temperature** (optional, number): a dp that reports the current water temperature.
 
 - **operation_mode** (optional, mapping of strings): a dp to report and control the operation mode of the water heater. If `away` is one of the modes, another mode must be marked as `default: true` to that the `away_mode_off` service knows which mode to switch out of away mode to.
@@ -790,11 +808,10 @@ to use it for other length timers.
 - **temperature** (optional, number): a dp to control the target water temperature of the water heater. A unit may be specified as an attribute if the `temperature_unit` dp is not available, otherwise the default of HA's current setting will be used.
 
 - **temperature_unit** (optional, string): a dp that reports the unit the device is configured for.
-    Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or	lower case for this
+  Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or lower case for this
 
 - **min_temperature** (optional, number): a dp that reports the minimum temperature the water heater can be set to, in case this is not a fixed value.
 
 - **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value.
 
 - **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
-

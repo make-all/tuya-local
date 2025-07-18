@@ -8,7 +8,6 @@ None of this would have been possible without some foundational discovery work t
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
 - [jasonacox](https://github.com/jasonacox)'s [tinytuya](https://github.com/jasonacox/tinytuya) library which improves on the original.
 
-
 Further device support has been made with the assistance of users. Please consider contributing if you find a device that is not supported by gathering some information about the device's DPS ids and their values.
 
 - [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters.
@@ -527,13 +526,13 @@ Further device support has been made with the assistance of users. Please consid
 - [ItsMe00007](https://github.com/ItsMe00007) for contributing support for Lehmann LHOHC-2013C radiators.
 - [bonius1](https://github.com/bonius1) for assisting with support for Zemismart DP-WBS01 8 zone irrigation controllers.
 - [airwebber](https://github.com/airwebber) for assisting with support for Orison ceiling fans with RGB lights.
-^ [cherokee13](https://github.com/cherokee13) for assisting with support for Eruiklink curtain motors.
+  ^ [cherokee13](https://github.com/cherokee13) for assisting with support for Eruiklink curtain motors.
 - [Szenky](https://github.com/Szensky) for assisting with support for Moes WS-Y-EUC curtain switches.
 - [Aironside](https://github.com/Aironside) for assisting with support for WF-WS02 RJ dual switches.
 - [phatrickk](https://github.com/phatrickk) for assisting with support for Camnsmart E27 cameras.
 - [phid78](https://github.com/phid78) for assisting with support for Tediton K7 door locks.
 - [jwGeorge](https://github.com/jwGeorge) for contributing improvements to Madimack Elite V3 heatpumps.
-- [luis-guilherme](https://github.com/luis-guilherme) for contributing support  for simple dual switches (eMylo dual RF/Wifi switches).
+- [luis-guilherme](https://github.com/luis-guilherme) for contributing support for simple dual switches (eMylo dual RF/Wifi switches).
 - [tiernan1979](https://github.com/tiernan1979) for contributing support for YSG BS01 bluetooth locks.
 - [benzoid](https://github.com/benzoid) for contributing support for SolAire Vitra S2 heaters.
 - [bigheadsmith](https://github.com/bigheadsmith) for contributing improvements to SolAire Vitra S2 heaters.

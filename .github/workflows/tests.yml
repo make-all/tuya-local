@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - '**.py'
+      - "**.py"
   push:
     paths:
-      - '**.py'
+      - "**.py"
 
 jobs:
   tests:
@@ -18,7 +18,7 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ["3.13"]
 
     steps:
       - uses: actions/checkout@v4

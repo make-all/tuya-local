@@ -10,7 +10,7 @@ entities:
     icon: "mdi:ev-station"
     class: enum
     dps:
-      - id: 3    # work_state
+      - id: 3 # work_state
         type: string
         name: sensor
         mapping:
@@ -39,7 +39,7 @@ entities:
   - entity: sensor
     class: energy
     dps:
-      - id: 1    # forward_energy_total
+      - id: 1 # forward_energy_total
         type: integer
         name: sensor
         class: total_increasing
@@ -50,7 +50,7 @@ entities:
     category: diagnostic
     class: battery
     dps:
-      - id: 2    # battery_percentage
+      - id: 2 # battery_percentage
         type: integer
         optional: true
         name: sensor
@@ -62,14 +62,14 @@ entities:
     mode: box
     icon: "mdi:current-ac"
     dps:
-      - id: 4    # charge_cur_set
+      - id: 4 # charge_cur_set
         type: integer
         name: value
         unit: A
         optional: true
         range:
           min: 6
-          max: 32   # 80 default config is higher in Tuya API
+          max: 32 # 80 default config is higher in Tuya API
   - entity: number
     name: Household load balancing
     category: config
@@ -77,19 +77,19 @@ entities:
     mode: box
     icon: "mdi:current-ac"
     dps:
-      - id: 107    # dlb_cur_set - Actual Load = Set value - 5A
+      - id: 107 # dlb_cur_set - Actual Load = Set value - 5A
         type: integer
         name: value
         unit: A
         optional: true
         range:
           min: 10
-          max: 32   # 140 default config is higher in Tuya API
+          max: 32 # 140 default config is higher in Tuya API
   - entity: sensor
     class: power
     category: diagnostic
     dps:
-      - id: 9    # power_total
+      - id: 9 # power_total
         type: integer
         optional: true
         name: sensor
@@ -101,17 +101,17 @@ entities:
     class: problem
     category: diagnostic
     dps:
-      - id: 10    # fault
+      - id: 10 # fault
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
-      - id: 10    # fault
+      - id: 10 # fault
         type: bitfield
         name: fault_code
-      - id: 10    # fault
+      - id: 10 # fault
         type: bitfield
         name: description
         mapping:
@@ -153,7 +153,7 @@ entities:
     class: enum
     category: diagnostic
     dps:
-      - id: 13    # connection_state
+      - id: 13 # connection_state
         type: string
         name: sensor
         mapping:
@@ -176,7 +176,7 @@ entities:
     icon: "mdi:ev-station"
     category: config
     dps:
-      - id: 14    # work_mode
+      - id: 14 # work_mode
         type: string
         optional: true
         name: option
@@ -193,7 +193,7 @@ entities:
       x: A
     class: voltage
     dps:
-      - id: 6    # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         optional: true
@@ -207,7 +207,7 @@ entities:
       x: A
     class: current
     dps:
-      - id: 6    # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         optional: true
@@ -221,7 +221,7 @@ entities:
       x: A
     class: power
     dps:
-      - id: 6    # phase_a
+      - id: 6 # phase_a
         type: base64
         name: sensor
         optional: true
@@ -236,7 +236,7 @@ entities:
     class: voltage
     hidden: true
     dps:
-      - id: 7    # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -251,7 +251,7 @@ entities:
     class: current
     hidden: true
     dps:
-      - id: 7    # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -266,7 +266,7 @@ entities:
     class: power
     hidden: true
     dps:
-      - id: 7    # phase_b
+      - id: 7 # phase_b
         type: base64
         name: sensor
         optional: true
@@ -281,7 +281,7 @@ entities:
     class: voltage
     hidden: true
     dps:
-      - id: 8    # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -296,7 +296,7 @@ entities:
     class: current
     hidden: true
     dps:
-      - id: 8    # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -311,7 +311,7 @@ entities:
     class: power
     hidden: true
     dps:
-      - id: 8    # phase_c
+      - id: 8 # phase_c
         type: base64
         name: sensor
         optional: true
@@ -323,7 +323,7 @@ entities:
     class: temperature
     category: diagnostic
     dps:
-      - id: 24    # temp_current
+      - id: 24 # temp_current
         type: integer
         name: sensor
         unit: C
@@ -334,7 +334,7 @@ entities:
     hidden: true
     class: energy_storage
     dps:
-      - id: 15    # balance_energy
+      - id: 15 # balance_energy
         type: integer
         optional: true
         name: value
@@ -349,7 +349,7 @@ entities:
     category: diagnostic
     class: energy_storage
     dps:
-      - id: 17    # energy_charge
+      - id: 17 # energy_charge
         type: integer
         optional: true
         name: sensor
@@ -362,7 +362,7 @@ entities:
     class: duration
     icon: "mdi:timer"
     dps:
-      - id: 19    # charge_time
+      - id: 19 # charge_time
         type: integer
         optional: true
         name: value
@@ -374,7 +374,7 @@ entities:
     name: Latest charge
     class: energy_storage
     dps:
-      - id: 25    # charge_energy_once
+      - id: 25 # charge_energy_once
         type: integer
         optional: true
         name: sensor
@@ -387,14 +387,14 @@ entities:
   - entity: switch
     icon: "mdi:ev-station"
     dps:
-      - id: 18    # switch
+      - id: 18 # switch
         type: boolean
         name: switch
   - entity: sensor
     name: Charging time
     class: duration
     dps:
-      - id: 101    # charging_time1
+      - id: 101 # charging_time1
         type: base64
         name: sensor
         optional: true
@@ -406,7 +406,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 102    # mode
+      - id: 102 # mode
         type: string
         optional: true
         name: option
@@ -425,7 +425,7 @@ entities:
     category: diagnostic
     hidden: true
     dps:
-      - id: 103    # current_limit
+      - id: 103 # current_limit
         type: base64
         optional: true
         name: sensor
@@ -439,7 +439,7 @@ entities:
     category: diagnostic
     hidden: true
     dps:
-      - id: 103    # current_limit
+      - id: 103 # current_limit
         type: base64
         optional: true
         name: sensor
@@ -452,7 +452,7 @@ entities:
     class: restart
     category: config
     dps:
-      - id: 16    # clear_energy
+      - id: 16 # clear_energy
         type: boolean
         optional: true
         name: button
@@ -460,7 +460,7 @@ entities:
     class: connectivity
     category: diagnostic
     dps:
-      - id: 27    # online_state
+      - id: 27 # online_state
         type: string
         optional: true
         name: sensor
@@ -474,7 +474,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 110    # rf_enable
+      - id: 110 # rf_enable
         type: boolean
         optional: true
         name: switch
@@ -482,7 +482,7 @@ entities:
     name: Pen enable
     category: config
     dps:
-      - id: 108    # pen_enable
+      - id: 108 # pen_enable
         type: boolean
         optional: true
         name: switch
@@ -491,17 +491,17 @@ entities:
     category: diagnostic
     hidden: true
     dps:
-      - id: 106    # safety_notice
+      - id: 106 # safety_notice
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
-      - id: 106    # safety_notice
+      - id: 106 # safety_notice
         type: bitfield
         name: fault_code
-      - id: 106    # safety_notice
+      - id: 106 # safety_notice
         type: bitfield
         name: description
         mapping:
@@ -518,7 +518,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 104    # occp_ip
+      - id: 104 # occp_ip
         type: string
         optional: true
         name: value
@@ -527,7 +527,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 105    # occp_port
+      - id: 105 # occp_port
         type: string
         optional: true
         name: value
@@ -536,7 +536,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 109    # password
+      - id: 109 # password
         type: string
         optional: true
         name: value
@@ -545,7 +545,7 @@ entities:
     category: config
     hidden: true
     dps:
-      - id: 21    # car_binding
+      - id: 21 # car_binding
         type: string
         optional: true
         name: value
@@ -553,7 +553,7 @@ entities:
     name: Alarm 1
     hidden: true
     dps:
-      - id: 11    # alarm_set_1
+      - id: 11 # alarm_set_1
         type: base64
         name: sensor
         optional: true
@@ -561,7 +561,7 @@ entities:
     name: Alarm 2
     hidden: true
     dps:
-      - id: 12    # alarm_set_2
+      - id: 12 # alarm_set_2
         type: base64
         name: sensor
         optional: true

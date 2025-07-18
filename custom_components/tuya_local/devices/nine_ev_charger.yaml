@@ -9,7 +9,7 @@ entities:
     icon: "mdi:ev-station"
     class: enum
     dps:
-      - id: 3  # work_state
+      - id: 3 # work_state
         type: string
         name: sensor
         mapping:
@@ -29,7 +29,7 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
-      - id: 23  # system_version
+      - id: 23 # system_version
         type: string
         name: system_version
   - entity: number
@@ -38,7 +38,7 @@ entities:
     class: current
     icon: "mdi:ev-plug-type2"
     dps:
-      - id: 4  # charge_cur_set
+      - id: 4 # charge_cur_set
         type: integer
         name: value
         unit: A
@@ -62,7 +62,7 @@ entities:
     class: problem
     category: diagnostic
     dps:
-      - id: 10  # fault sensor
+      - id: 10 # fault sensor
         type: bitfield
         name: sensor
         optional: true
@@ -70,11 +70,11 @@ entities:
           - dps_val: 0
             value: false
           - value: true
-      - id: 10  # fault code
+      - id: 10 # fault code
         type: bitfield
         name: fault_code
         optional: true
-      - id: 10  # fault desc
+      - id: 10 # fault desc
         type: bitfield
         name: description
         optional: true
@@ -116,7 +116,7 @@ entities:
     icon: "mdi:ev-station"
     category: config
     dps:
-      - id: 14  # work_mode
+      - id: 14 # work_mode
         type: string
         optional: true
         name: option
@@ -137,7 +137,7 @@ entities:
       x: A
     class: voltage
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -151,7 +151,7 @@ entities:
       x: A
     class: current
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -165,7 +165,7 @@ entities:
       x: A
     class: power
     dps:
-      - id: 6  # phase_1
+      - id: 6 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -179,7 +179,7 @@ entities:
       x: B
     class: voltage
     dps:
-      - id: 7  # phase_1
+      - id: 7 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -193,7 +193,7 @@ entities:
       x: B
     class: current
     dps:
-      - id: 7  # phase_1
+      - id: 7 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -207,7 +207,7 @@ entities:
       x: B
     class: power
     dps:
-      - id: 7  # phase_1
+      - id: 7 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -221,7 +221,7 @@ entities:
       x: C
     class: voltage
     dps:
-      - id: 8  # phase_1
+      - id: 8 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -235,7 +235,7 @@ entities:
       x: C
     class: current
     dps:
-      - id: 8  # phase_1
+      - id: 8 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -249,7 +249,7 @@ entities:
       x: C
     class: power
     dps:
-      - id: 8  # phase_1
+      - id: 8 # phase_1
         type: base64
         name: sensor
         optional: true
@@ -275,7 +275,7 @@ entities:
     name: Last session energy
     class: energy_storage
     dps:
-      - id: 25  # charge_energy_once
+      - id: 25 # charge_energy_once
         type: integer
         name: sensor
         optional: true
@@ -286,6 +286,6 @@ entities:
   - entity: switch
     icon: "mdi:ev-station"
     dps:
-      - id: 18  # switch
+      - id: 18 # switch
         type: boolean
         name: switch

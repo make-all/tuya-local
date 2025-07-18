@@ -7,11 +7,11 @@ If you cannot upgrade due to using an older version of Home Assistant,
 then you should upgrade HA also, as that may also have vulnerabilities
 in older versions.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| latest release | :white_check_mark: |
+| Version          | Supported          |
+| ---------------- | ------------------ |
+| latest release   | :white_check_mark: |
 | main branch HEAD | :white_check_mark: |
-| old versions   | :x:                |
+| old versions     | :x:                |
 
 ## Reporting a Vulnerability
 

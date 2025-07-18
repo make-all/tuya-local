@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - 'custom_components/tuya_local/devices/*.yaml'
+      - "custom_components/tuya_local/devices/*.yaml"
   push:
     paths:
-      - 'custom_components/tuya_local/devices/*.yaml'
+      - "custom_components/tuya_local/devices/*.yaml"
 
 jobs:
   tests:
@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ["3.13"]
 
     steps:
       - uses: actions/checkout@v4
