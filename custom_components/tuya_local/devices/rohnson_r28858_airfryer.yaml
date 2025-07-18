@@ -115,6 +115,7 @@ entities:
   - entity: number
     name: Cooking time
     class: duration
+    deprecated: time.cooking_time
     translation_key: timer
     dps:
       - id: 1
@@ -124,6 +125,18 @@ entities:
         type: integer
         name: value
         unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    name: Cooking time
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 9
+        type: integer
+        name: minute
         range:
           min: 0
           max: 1440
