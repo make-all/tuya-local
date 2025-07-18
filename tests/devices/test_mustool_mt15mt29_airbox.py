@@ -1,7 +1,5 @@
 """Tests for Mustool MT15/MT29 Airbox, mainly for time entity."""
 
-from homeassistant.const import UnitOfTime
-
 from ..const import MUSTOOL_MT15MT29_AIRBOX_PAYLOAD
 from ..mixins.time import MultiTimeTests
 from .base_device_tests import TuyaDeviceTestCase
