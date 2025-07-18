@@ -6,10 +6,9 @@ import logging
 from datetime import time, timedelta, datetime
 
 from homeassistant.components.time import TimeEntity
-from homeassistant.const import UnitOfTime
 
 from .device import TuyaLocalDevice
-from .entity import TuyaLocalEntity, unit_from_ascii
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 
