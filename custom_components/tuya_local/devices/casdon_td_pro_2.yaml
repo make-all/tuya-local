@@ -100,8 +100,31 @@ entities:
       - id: 2
         name: switch
         type: boolean
+  - entity: time
+    name: Start time
+    translation_key: timer
+    dps:
+      - id: 9
+        name: minute
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 1440
+  - entity: time
+    icon: "mdi:timer-edit"
+    name: Cooking time
+    dps:
+      - id: 10
+        name: minute
+        type: integer
+        range:
+          min: 1
+          max: 1440
   - entity: number
     name: Start time
+    # 2025-07-25
+    deprecated: time.start_time
     translation_key: timer
     class: duration
     dps:
@@ -113,8 +136,9 @@ entities:
           min: 1
           max: 1440
         unit: min
-        class: measurement
   - entity: number
+    # 2025-07-25
+    deprecated: time.cooking_time
     icon: "mdi:timer-edit"
     class: duration
     name: Cooking time
@@ -126,7 +150,6 @@ entities:
           min: 1
           max: 1440
         unit: min
-        class: measurement
   - entity: sensor
     translation_key: time_remaining
     class: duration

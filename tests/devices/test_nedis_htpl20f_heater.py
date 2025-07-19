@@ -50,7 +50,7 @@ class TestNedisHtpl20fHeater(
             device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
-        self.mark_secondary(["lock_child_lock", "number_timer"])
+        self.mark_secondary(["lock_child_lock", "number_timer", "time_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

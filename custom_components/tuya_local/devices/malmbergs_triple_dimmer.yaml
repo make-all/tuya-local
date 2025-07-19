@@ -62,10 +62,24 @@ entities:
         range:
           min: 10
           max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer_x
     translation_placeholders:
       x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
     class: duration
     category: config
     dps:
@@ -98,11 +112,25 @@ entities:
         range:
           min: 10
           max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
     category: config
     dps:
       - id: 12
@@ -148,10 +176,24 @@ entities:
         range:
           min: 10
           max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer_x
     translation_placeholders:
       x: "3"
+    # 2025-07-20
+    deprecated: time.timer_3
     class: duration
     category: config
     dps:

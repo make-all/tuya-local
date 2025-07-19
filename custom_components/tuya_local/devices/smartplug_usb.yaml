@@ -70,11 +70,35 @@ entities:
         type: integer
         name: calibration
         optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    dps:
+      - id: 15
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
     name: Outlet timer
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         type: integer
@@ -91,6 +115,8 @@ entities:
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer_usb
     dps:
       - id: 15
         type: integer

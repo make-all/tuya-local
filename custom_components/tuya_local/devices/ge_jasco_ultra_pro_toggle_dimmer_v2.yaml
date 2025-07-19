@@ -33,7 +33,19 @@ entities:
             value: Incandescent
           - dps_val: led
             value: LED
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 6
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     class: duration
     translation_key: timer

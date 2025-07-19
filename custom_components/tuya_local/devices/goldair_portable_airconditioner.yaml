@@ -224,8 +224,32 @@ entities:
       - id: 103
         type: boolean
         name: switch
+  - entity: time
+    name: "On timer"
+    category: config
+    translation_key: timer
+    dps:
+      - id: 104
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    name: "Off timer"
+    category: config
+    translation_key: timer
+    dps:
+      - id: 105
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: "On timer"
+    # 2025-07-20
+    deprecated: time.on_timer
     category: config
     class: duration
     translation_key: timer
@@ -242,6 +266,8 @@ entities:
             step: 60
   - entity: number
     name: "Off timer"
+    # 2025-07-20
+    deprecated: time.off_timer
     category: config
     class: duration
     translation_key: timer

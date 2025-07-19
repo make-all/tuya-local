@@ -42,12 +42,62 @@ entities:
       - id: 7
         type: boolean
         name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 11
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    dps:
+      - id: 15
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
     class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
     dps:
       - id: 9
         name: value
@@ -65,6 +115,8 @@ entities:
     translation_key: timer_x
     translation_placeholders:
       x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
     dps:
       - id: 10
         name: value
@@ -82,6 +134,8 @@ entities:
     translation_key: timer_x
     translation_placeholders:
       x: "3"
+    # 2025-07-20
+    deprecated: time.timer_3
     dps:
       - id: 11
         name: value
@@ -97,6 +151,8 @@ entities:
     category: config
     class: duration
     name: USB timer
+    # 2025-07-20
+    deprecated: time.timer_usb
     translation_key: timer
     dps:
       - id: 15

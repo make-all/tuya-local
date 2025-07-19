@@ -28,7 +28,7 @@ class TestTreatlifeFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
-        self.mark_secondary(["number_timer"])
+        self.mark_secondary(["number_timer", "time_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

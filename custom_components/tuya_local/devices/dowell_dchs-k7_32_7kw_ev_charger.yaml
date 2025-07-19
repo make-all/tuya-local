@@ -356,7 +356,21 @@ entities:
         unit: kWh
         mapping:
           - scale: 100
+  - entity: time
+    name: Charging time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 19    # charge_time
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 1
+          max: 1440
   - entity: number
+    # 2025-07-20
+    deprecated: time.charging_time
     name: Charging time
     category: config
     class: duration
