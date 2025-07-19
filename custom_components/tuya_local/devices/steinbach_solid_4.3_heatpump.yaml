@@ -1,0 +1,74 @@
+name: Pool Heat Pump
+products:
+  - id: vw4rtznkehten69o
+    manufacturer: Steinbach
+    model: Solid 4.3
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: "°C"
+        range:
+          min: 5
+          max: 40
+      - id: 101
+        type: integer
+        name: current_temperature
+
+  - entity: sensor
+    class: temperature
+    name: Ambient temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    class: temperature
+    name: Heatcoil temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 256
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
