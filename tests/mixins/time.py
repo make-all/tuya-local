@@ -128,4 +128,4 @@ class MultiTimeTests:
                 expected,
                 f"{key} failed to set correct value",
             ):
-                await subject.async_set_native_value(time.fromisoformat(val))
+                await subject.async_set_value(time.fromisoformat(val))
