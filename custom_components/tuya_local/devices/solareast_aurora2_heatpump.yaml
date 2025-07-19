@@ -1,0 +1,451 @@
+name: Heat pump
+products:
+  - id: g9m7honkxjweukvt
+    manufacturer: SolarEast/Adlår Castra
+    model: Aurora II
+entities:
+  - entity: water_heater
+    translation_key: water_air
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 38
+        name: current_temperature
+        type: integer
+      - id: 101
+        name: temperature
+        type: integer
+        unit: "C"
+        range:
+          min: 10
+          max: 75
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: cold
+            value: cool
+          - dps_val: heating
+            value: heat
+          - dps_val: floor_heating
+            value: floor_heat
+          - dps_val: hot_water
+            value: hotwater
+          - dps_val: cold_and_hot_water
+            value: hotwater_cool
+          - dps_val: heating_and_hot_water
+            value: hotwater_heat
+          - dps_val: floor_heating_and_hot_water
+            value: hotwater_floor_heat
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: wth_off
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: cold
+                value: cool
+                available: wth_off
+              # Since there are both heating and floor_heating, model
+              # the air heating as dry, and floor_heating as heat
+              - dps_val: heating
+                value: dry
+                available: wth_off
+              - dps_val: floor_heating
+                value: heat
+                available: wth_off
+              - dps_val: hot_water
+                value: "off"
+                available: wth_on
+              - dps_val: cold_and_hot_water
+                value: cool
+                available: wth_on
+              - dps_val: heating_and_hot_water
+                value: dry
+                available: wth_on
+              - dps_val: floor_heating_and_hot_water
+                value: heat
+                available: wth_on
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 2
+        type: string
+        name: wth_off
+        mapping:
+          - dps_val: hot_water
+            value: false
+          - dps_val: cold_and_hot_water
+            value: false
+          - dps_val: heating_and_hot_water
+            value: false
+          - dps_val: floor_heating_and_hot_water
+            value: false
+          - value: true
+      - id: 2
+        type: string
+        name: wth_on
+        mapping:
+          - dps_val: hot_water
+            value: true
+          - dps_val: cold_and_hot_water
+            value: true
+          - dps_val: heating_and_hot_water
+            value: true
+          - dps_val: floor_heating_and_hot_water
+            value: true
+          - value: false
+      - id: 4
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 75
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: ECO
+            value: eco
+          - dps_val: Normal
+            value: normal
+          - dps_val: "Boost"
+            value: boost
+      # Inlet temperature used here, as ambient is often the outdoor unit
+      # I don't see an indoor_temp, but if ambient is, then it may be more
+      # suitable to use here
+      - id: 21
+        name: temperature
+        type: integer
+      - id: 27
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+            constraint: work_mode
+            conditions:
+              - dps_val: [cold, cold_and_hot_water]
+                value: cooling
+              - dps_val: hotwater
+                value: "off"
+  - entity: select
+    name: Hot water curve
+    category: config
+    hidden: true
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "H1"
+            value: "H1"
+          - dps_val: "H2"
+            value: "H2"
+          - dps_val: "H3"
+            value: "H3"
+          - dps_val: "H4"
+            value: "H4"
+  - entity: select
+    name: Heat curve
+    category: config
+    dps:
+      - id: 13
+        name: option
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "H1"
+            value: "H1"
+          - dps_val: "H2"
+            value: "H2"
+          - dps_val: "H3"
+            value: "H3"
+          - dps_val: "H4"
+            value: "H4"
+          - dps_val: "H5"
+            value: "H5"
+          - dps_val: "H6"
+            value: "H6"
+          - dps_val: "H7"
+            value: "H7"
+          - dps_val: "H8"
+            value: "H8"
+          - dps_val: "L1"
+            value: "L1"
+          - dps_val: "L2"
+            value: "L2"
+          - dps_val: "L3"
+            value: "L3"
+          - dps_val: "L4"
+            value: "L4"
+          - dps_val: "L5"
+            value: "L5"
+          - dps_val: "L6"
+            value: "L6"
+          - dps_val: "L7"
+            value: "L7"
+          - dps_val: "L8"
+            value: "L8"
+  - entity: sensor
+    name: Compressor frequency
+    category: diagnostic
+    class: frequency
+    hidden: true
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: Hz
+  - entity: sensor
+    name: Inlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Discharge temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: binary_sensor
+    name: Backflow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 31
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 33
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: High pressure temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 35
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Low pressure temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 36
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Indoor coil temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 37
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    class: volume_flow_rate
+    dps:
+      - id: 39
+        name: sensor
+        type: integer
+        unit: L/min
+        class: measurement
+  - entity: sensor
+    name: Fan motor frequency
+    class: frequency
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 40
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Suction temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 41
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    class: current
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: power
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: W
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
+      - id: 18
+        name: today
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Economizer inlet temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    name: Economy inlet temp
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: "B"
+    hidden: true
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: A
+        mapping:
+          - scale: 1000
+        class: measurement
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "B"
+    class: voltage
+    hidden: true
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: "C"
+    class: voltage
+    hidden: true
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: V
+        mapping:
+          - scale: 10
+        class: measurement

@@ -228,7 +228,7 @@ Further device support has been made with the assistance of users. Please consid
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, GratKit filament dryers, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell, ME201W level sensor.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config, and Blitzwolf LED strips.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -566,7 +566,7 @@ Further device support has been made with the assistance of users. Please consid
 - [chris-garbas](https://github.com/chris-garbas) for contributing improvements to IPS pro heatpump.
 - [Nyotee](https://github.com/Nyotee) for assisting with support for Tesla Smart AUX series air conditioner.
 - [psuet](https://github.com/psuet) for assisting with support for XCase lock boxes.
-- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer, iGET HOME video doorbell and contributing support for Nybro heater.
+- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer, iGET HOME video doorbell, Immax Neo Lite weather station and contributing support for Nybro heater.
 - [Zelaf](https://github.com/Zelaf) for contributing improvements to Nedis portable air conditioner.
 - [hwhesselink](https://github.com/hwhesselink) for contributing support for Amico ceiling fans.
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
@@ -822,7 +822,7 @@ Further device support has been made with the assistance of users. Please consid
 - [tal6203](https://github.com/tal6203) for assisting with support for Delixing aroma diffuser.
 - [rclarkmorrow](https://github.com/rclarkmorrow) for contributing support for Powersav AHR-083 powerstrip (which was merged to generic quad powerstrip with timer), Gosund WP9 powerstrip with USB, child lock and initial state, and Feit garage light (merged with RGBW lightbulb V2).
 - [ralsinn](https://github.com/ralsinn) for contributing support for Absina Wallbox EV charger.
-- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier, Morento MR7566-WF air purifier and improvements to TYTE-D1 thermostat switch.
+- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier, Morento MR7566-WF air purifier, Dura Comfort DH50PWM dehumidifier, and improvements to TYTE-D1 thermostat switch.
 - [gurtjun](https://github.com/gurtjun) for contributing support for Sunred Triangle patio heater.
 - [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
 - [JackM-521](https://github.com/JackM-521) for assisting with support for Rohnson R-9530 dehumidifier.
@@ -974,3 +974,10 @@ Further device support has been made with the assistance of users. Please consid
 - [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
 - [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.
 - [ThatStella7922](https://github.com/ThatStella7922) for assisting with support for 5 speed model of OmniBreeze tower fan.
+- [anuram2k](https://github.com/anuram2k) for contributing support for HomeMate multi switches and fan regulator, Tomzn energy meter.
+- [paulklinkenberg](https://github.com/paulklinkenberg) for contributing support for SolarEast water/air heat pump.
+- [dlee1j1](https://github.com/dlee1j1) for contributing support for Howeall register booster fan.
+- [l2jalbe](https://github.com/l2jalbe) for assisting with support for Blitzwill ceiling fan with light.
+- [rigibe](https://github.com/rigibe) for contributing support for Aubess 3-gang switch.
+- [camillePernoud](https://github.com/camillePernoud) for contributing support for Moray level sensor, which was merged with EPT level sensor.
+- [Keith-H-T](https://github.com/Keith-H-T) for contributing support for Herschel XLS T-PL plugin thermostat.

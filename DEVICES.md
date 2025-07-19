@@ -159,11 +159,12 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
+- Lohxa SR208C solar water heating controller
 - Modena ES-15-SKY water heater
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Sanden GAU-A45HPD WiFi heat pump controller
-- Lohxa SR208C solar water heating controller
+- SolarEast (Adlar Castra) Aurora II heat pump
 - Thermex IF series V pro and Lima 80V hot water systems
 
 ### Thermostats
@@ -196,6 +197,7 @@
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Garza thermostat
+- Herschel XLS T-PL plugin thermostat
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308 thermostat smartplugs
@@ -243,6 +245,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
+- Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
 - Brilliant Ceiling fan with light
@@ -272,6 +275,8 @@
 - Hoenofly Smart Amari ceiling fan with light
 - Hombli 6-speed ceiling fan with RGBCW light
 - Homebase 12" oscillating fan
+- HomeMate 5 speed fan regulator
+- Howeall register booster fan (also branded Sanycasa)
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
@@ -352,6 +357,7 @@
 - Cleverio AD100 dehumidifier
 - Climative DH-20S Cube ION dehumidifier
 - DH-CSK03W dehumidifier
+- Dura Comfort DH50PWM dehumidifier
 - Ebac DJ4000 dehumidifier
 - Eberg Rico R12E2 dehumidifier
 - ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2, CD25PRO-LE-V2 dehumidifiers
@@ -481,6 +487,7 @@
 - Stepuptech SG800, SPD800 solar inverters
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
+- Tomzn energy meter
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
@@ -488,7 +495,7 @@
 - Unknown brand dual channel smart meter
 - V-WIFI-DL01-ES energy consumption single clamp meter
 - V-WIFI-DL02-ES energy consumption dual clamp meter
-- WDYK 2P63A, 3P 400V, 4P100A  energy meter circuit breakers
+- WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
@@ -533,7 +540,7 @@ the best option.
 - Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
-- Aubess 2-gang switch
+- Aubess 2 and 3-gang switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -556,6 +563,7 @@ the best option.
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
+- HomeMate 2gang and 4gang switches
 - Inna/Automat-ON AUTO000014 7 channel underfloor heating controller
 - JH PCIe mini computer switch
 - JH PCIe pro+ computer switch
@@ -970,6 +978,7 @@ port and password.
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
+- Immax Neo Lite 7-in-1 weather station
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
@@ -979,6 +988,7 @@ port and password.
 - Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
+- ME201W level sensor
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box

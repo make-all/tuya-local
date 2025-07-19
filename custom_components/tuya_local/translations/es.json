@@ -420,6 +420,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Modo de bomba de calor",
+                "state": {
+                    "cool": "Enfriar",
+                    "heat": "Calentar",
+                    "auto": "Auto",
+                    "floor_heat": "Calor de piso",
+                    "off": "Apagar",
+                    "hotwater": "Agua caliente",
+                    "hotwater_cool": "Agua caliente y enfriar",
+                    "hotwater_heat": "Agua caliente y calentar",
+                    "hotwater_auto": "Agua caliente y auto",
+                    "hotwater_floor_heat": "Agua caliente y calor de piso"
+                }
+            },
             "initial_state": {
                 "name": "Estado inicial",
                 "state": {
@@ -795,21 +810,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Calentador de agua",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Calor",
-                            "cool": "Frío",
-                            "auto": "Automático",
-                            "off": "Apagar",
-                            "hotwater": "Agua caliente",
-                            "hotwater_cool": "Agua caliente y frío",
-                            "hotwater_heat": "Agua caliente y calor",
-                            "hotwater_auto": "Agua caliente y automático"
-                        }
-                    }
-                }
+                "name": "Calentador de agua"
             },
             "kettle": {
                 "name": "Hervidor"

@@ -420,6 +420,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode de pompe à chaleur",
+                "state": {
+                    "heat": "Chauffage",
+                    "cool": "Refroidissement",
+                    "auto": "Auto",
+                    "floor_heat": "Chauffage de sol",
+                    "off": "Éteint",
+                    "hotwater": "Eau chaude",
+                    "hotwater_cool": "Eau chaude et refroidissement",
+                    "hotwater_heat": "Eau chaude et chauffage",
+                    "hotwater_auto": "Eau chaude et auto",
+                    "hotwater_floor_heat": "Eau chaude et chauffage de sol"
+                }
+            },
             "initial_state": {
                 "name": "État initial",
                 "state": {
@@ -795,21 +810,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Chauffe-eau",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Chauffage",
-                            "cool": "Refroidissement",
-                            "auto": "Auto",
-                            "off": "Éteint",
-                            "hotwater": "Eau chaude",
-                            "hotwater_cool": "Eau chaude et refroidissement",
-                            "hotwater_heat": "Eau chaude et chauffage",
-                            "hotwater_auto": "Eau chaude et auto"
-                        }
-                    }
-                }
+                "name": "Chauffe-eau"
             },
             "kettle": {
                 "name": "Bouilloire"

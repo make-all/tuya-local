@@ -421,6 +421,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Modalità pompa di calore",
+                "state": {
+                    "heat": "Riscaldamento",
+                    "cool": "Raffreddamento",
+                    "auto": "Auto",
+                    "floor_heat": "Riscaldamento pavimento",
+                    "off": "Spento",
+                    "hotwater": "Acqua calda",
+                    "hotwater_cool": "Acqua calda e raffreddamento",
+                    "hotwater_heat": "Acqua calda e riscaldamento",
+                    "hotwater_auto": "Acqua calda e auto",
+                    "hotwater_floor_heat": "Acqua calda e riscaldamento pavimento"
+                }
+            },
             "initial_state": {
                 "name": "Stato iniziale",
                 "state": {
@@ -796,21 +811,7 @@
         },
         "water_heater": {
             "water_air": {
-                "name": "Scaldabagno",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Riscaldamento",
-                            "cool": "Raffreddamento",
-                            "auto": "Auto",
-                            "off": "Spento",
-                            "hotwater": "Acqua calda",
-                            "hotwater_cool": "Acqua calda e raffreddamento",
-                            "hotwater_heat": "Acqua calda e riscaldamento",
-                            "hotwater_auto": "Acqua calda e auto"
-                        }
-                    }
-                }
+                "name": "Scaldabagno"
             },
             "kettle": {
                 "name": "Bollitore"

@@ -4,6 +4,9 @@ products:
     manufacturer: Holman
     model: WX1
     # DP decoding thanks to funtastix
+  - id: ixckfr3zke5fgach
+    manufacturer: RainPoint
+    model: TCS005FRF
 entities:
   - entity: valve
     name: Manual
@@ -17,6 +20,10 @@ entities:
             value: false
           - dps_val: false
             value: true
+      - id: 127
+        type: string
+        optional: true
+        name: version
   - entity: sensor
     name: Soil temperature
     class: temperature
