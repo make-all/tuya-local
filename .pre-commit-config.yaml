@@ -3,12 +3,12 @@ repos:
     rev: v3.0.3
     hooks:
       - id: prettier
+        files: \.(json|md|yaml|yml)$
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.12.1
     hooks:
       - id: ruff-check
         args:
-          - --output-format=github
           - --fix
       - id: ruff-check
         name: ruff include order
