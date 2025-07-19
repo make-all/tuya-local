@@ -1,0 +1,33 @@
+name: Raddy PT-5 pool thermometer
+products:
+  - id: qirx90k6hg4qzpbz
+    model: EM3406B-TY
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        name: indoor temperature
+        type: integer
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 102
+        name: indoor humidity
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        name: pool temperature
+        type: integer
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10

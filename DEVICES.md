@@ -956,6 +956,7 @@ port and password.
 
 ### Miscellaneous
 
+- Raddy PT-5 pool thermometer
 - generic illuminance sensor (2 types using different dps)
 - generic PIR motion sensor
 - generic PIR with alarm
