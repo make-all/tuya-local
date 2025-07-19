@@ -26,6 +26,17 @@ entities:
         type: integer
         name: test_bit
         optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
@@ -38,6 +49,8 @@ entities:
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         type: integer

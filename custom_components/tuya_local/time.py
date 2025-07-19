@@ -68,7 +68,7 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
         delta = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         return (MIDNIGHT + delta).time()
 
-    async def async_set_native_value(self, value: time):
+    async def async_set_value(self, value: time):
         """Set the number."""
         settings = {}
         hours = value.hour

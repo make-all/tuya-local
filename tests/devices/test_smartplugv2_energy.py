@@ -133,20 +133,17 @@ class TestSwitchV2Energy(
                 "sensor_power",
                 "sensor_voltage",
                 "switch_overcharge_cutoff",
+                "time_timer",
             ]
         )
 
     def test_multi_switch_state_attributes(self):
         self.dps[TEST_DPS] = 21
-        self.dps[CYCLE_DPS] = "1A2B"
-        self.dps[RANDOM_DPS] = "3C4D"
 
         self.assertDictEqual(
             self.multiSwitch["switch_outlet"].extra_state_attributes,
             {
                 "test_bit": 21,
-                "cycle_timer": "1A2B",
-                "random_timer": "3C4D",
             },
         )
 

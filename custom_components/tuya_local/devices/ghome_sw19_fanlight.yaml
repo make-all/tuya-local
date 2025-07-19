@@ -21,8 +21,21 @@ entities:
             value: 75
           - dps_val: level_4
             value: 100
+  - entity: time
+    name: Fan timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 2
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Fan timer
+    # 2025-07-20
+    deprecated: time.fan_timer
     class: duration
     category: config
     translation_key: timer
@@ -48,8 +61,21 @@ entities:
         range:
           min: 10
           max: 1000
+  - entity: time
+    name: Light timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Light timer
+    # 2025-07-20
+    deprecated: time.light_timer
     category: config
     class: duration
     translation_key: timer

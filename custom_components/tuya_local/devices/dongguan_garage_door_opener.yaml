@@ -24,8 +24,20 @@ entities:
       - id: 3
         type: boolean
         name: open
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -48,8 +60,21 @@ entities:
         range:
           min: 10
           max: 120
+  - entity: time
+    name: Alarm timeout
+    icon: mdi:timer-alert
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Timeout alarm
+    # 2025-07-20
+    deprecated: time.alarm_timeout
     icon: mdi:timer-alert
     class: duration
     category: config

@@ -7,9 +7,21 @@ entities:
       - id: 1
         name: switch
         type: boolean
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 7

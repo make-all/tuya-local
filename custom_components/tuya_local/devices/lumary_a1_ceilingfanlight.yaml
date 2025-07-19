@@ -61,9 +61,25 @@ entities:
       - id: 119
         type: boolean
         name: available
+  - entity: time
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 119
+        type: boolean
+        name: available
   - entity: number
     translation_key: timer
     name: Light timer
+    # 2025-07-20
+    deprecated: time.light_timer
     category: config
     class: duration
     dps:

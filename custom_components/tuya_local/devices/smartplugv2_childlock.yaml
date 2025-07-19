@@ -5,6 +5,19 @@ entities:
       - id: 1
         type: boolean
         name: switch
+      - id: 43
+        type: string
+        name: inching
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
@@ -13,12 +26,11 @@ entities:
         type: string
         name: random_timer
         optional: true
-      - id: 43
-        type: string
-        name: inching
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 9

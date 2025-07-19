@@ -45,6 +45,8 @@ class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
                 "binary_sensor_tank_full",
                 "number_on_timer",
                 "number_off_timer",
+                "time_on_timer",
+                "time_off_timer",
             ],
         )
 

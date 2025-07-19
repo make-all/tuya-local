@@ -46,8 +46,34 @@ entities:
             value: Mode 2
           - dps_val: mode3
             value: Mode 3
+  - entity: time
+    name: Fan timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
   - entity: number
     name: Fan timer
+    # 2025-07-20
+    deprecated: time.fan_timer
     translation_key: timer
     class: duration
     category: config
@@ -62,6 +88,8 @@ entities:
           max: 1440
   - entity: number
     name: Light timer
+    # 2025-07-20
+    deprecated: time.light_timer
     translation_key: timer
     class: duration
     category: config

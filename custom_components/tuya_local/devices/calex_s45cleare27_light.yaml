@@ -72,8 +72,21 @@ entities:
         name: random_timing
         type: string
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-25
+    deprecated: time.timer
     class: duration
     category: config
     dps:

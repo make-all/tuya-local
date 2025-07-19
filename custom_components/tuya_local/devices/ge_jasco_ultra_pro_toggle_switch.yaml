@@ -42,8 +42,21 @@ entities:
             value: locator
           - dps_val: relay
             value: state
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -56,6 +69,5 @@ entities:
           min: 0
           max: 86400
         mapping:
-          - dps_val: null
           - scale: 60
             step: 60

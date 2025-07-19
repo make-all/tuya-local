@@ -59,8 +59,34 @@ entities:
       - id: 2
         type: boolean
         name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
+    # 2025-07-20
+    deprecated: time.timer_2
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -78,6 +104,8 @@ entities:
             step: 60
   - entity: number
     category: config
+    # 2025-07-20
+    deprecated: time.timer_2
     translation_key: timer_x
     translation_placeholders:
       x: "2"
