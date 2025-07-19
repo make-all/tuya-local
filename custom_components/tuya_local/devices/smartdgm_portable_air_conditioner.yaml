@@ -1,0 +1,158 @@
+name: SmartDGM Portable air conditioner
+products:
+  - id: keyj38wgshgk7jcn
+    name: SmartDGM Portable Air Conditioner PAC-W11C01
+    manufacturer: SmartDGM
+    model: PAC-W11C01
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: fan_only
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: heat_cool
+              - dps_val: "2"
+                value: dry
+              - dps_val: "3"
+                value: cool
+              - dps_val: "4"
+                value: fan_only
+      - id: 4
+        type: integer
+        name: timer
+      - id: 5
+        type: string
+        name: mode
+      - id: 6
+        type: integer
+        name: temperature
+        range:
+          min: 13
+          max: 32
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 55
+                  max: 90
+      - id: 8
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+      - id: 10
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+      - id: 13
+        type: integer
+        name: timer_off_mins
+      - id: 14
+        type: integer
+        name: timer_on_mins
+      - id: 15
+        type: integer
+        name: fault
+      - id: 16
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: vertical
+      - id: 17
+        type: boolean
+        name: sleep_mode
+      - id: 18
+        name: temp_set_f
+        type: integer
+        range:
+          min: 55
+          max: 90
+        hidden: true
+        optional: true
+      - id: 19
+        type: boolean
+        name: force
+  - entity: select
+    category: config
+    translation_key: temperature_unit
+    dps:
+      - id: 10
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: fahrenheit
+          - dps_val: false
+            value: celsius
+  - entity: select
+    category: config
+    name: sleep_mode
+    dps:
+      - id: 17
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+  - entity: select
+    category: config
+    name: set_timer
+    dps:
+      - id: 4
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "off"
+          - dps_val: 1
+            value: "turn off in"
+          - dps_val: 2
+            value: "turn on in"
+  - entity: number
+    category: config
+    name: timer_on
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: number
+    category: config
+    name: timer_off
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
