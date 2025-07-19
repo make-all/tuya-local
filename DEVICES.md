@@ -317,6 +317,7 @@
 
 ### Air Purifiers
 
+- Alen BreatheSmart 35i air purifier
 - Arlec APR005HA air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus purifiers
 - Cleverio AP100 air purifier
