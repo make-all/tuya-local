@@ -4,7 +4,6 @@ products:
     model: EM3406B-TY
 entities:
   - entity: sensor
-    name: indoor temperature
     class: temperature
     dps:
       - id: 101
@@ -15,7 +14,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: indoor humidity
     class: humidity
     dps:
       - id: 102
@@ -24,7 +22,6 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: pool temperature
     class: temperature
     dps:
       - id: 103
