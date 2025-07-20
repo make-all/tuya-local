@@ -96,6 +96,7 @@
 - Fujicool Yuzu heat pump
 - Goldair GCPAC350W portable air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
+- Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
