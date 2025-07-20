@@ -956,7 +956,6 @@ port and password.
 
 ### Miscellaneous
 
-- Raddy PT-5 pool thermometer
 - generic illuminance sensor (2 types using different dps)
 - generic PIR motion sensor
 - generic PIR with alarm
@@ -1005,10 +1004,11 @@ port and password.
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- RSE TY-WFH v3.01 gate controller
-- RTCZ-03 human presence sensor
+- Raddy PT-5 pool thermometer
 - RainPoint TTV103FRF water timer
 - RQ400A gas alarm
+- RSE TY-WFH v3.01 gate controller
+- RTCZ-03 human presence sensor
 - Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
