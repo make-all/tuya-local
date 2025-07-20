@@ -655,7 +655,7 @@ Further device support has been made with the assistance of users. Please consid
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
 - [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.
 - [flocke](https://github.com/flocke) for assisting with support for MeacoDry Arete Two dehumidifier.
-- [FrederikM97](https://github.com/FrederickM97) for assisting with and contributing improvements to Cleverio PF100 and Honeyguardian S56 and many other pet feeders.
+- [FrederikM97](https://github.com/FrederickM97) for assisting with and contributing improvements to Cleverio PF100, Honeyguardian S56 and many other pet feeders, and improvements to the development environment.
 - [chadtheriault](https://github.com/chadtheriault) for assisting with Zemismart AM25 roller blinds.
 - [fmonday](https://github.com/fmonday) for assisting with Enlighten Café string lights.
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
@@ -984,3 +984,4 @@ Further device support has been made with the assistance of users. Please consid
 - [DJBenson](https://github.com/DJBenson) for contributing support for Igenix IG9901WIFI portable air conditioner.
 - [ptenderenda](https://github.com/ptenderenda) for contributing support for SmartDGM PAC-W11C01 portable air conditioner.
 - [orbitalellie](https://github.com/orbitalellie) for contributing support for Alen BreatheSmart 35i air purifier.
+- [mmaridev](https://github.com/mmaridev) for contributing improved support for Immax Neolite weather station.
