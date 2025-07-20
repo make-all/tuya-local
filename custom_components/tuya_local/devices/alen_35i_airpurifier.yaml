@@ -1,5 +1,4 @@
 name: Air Purifier
-legacy_type: alen_35i_purifier
 products:
   - id: bd4ztozj4aied1ps
     manufacturer: Alen
@@ -31,7 +30,7 @@ entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: Filter Life
+    name: Filter life
     dps:
       - id: 5
         type: integer
@@ -80,7 +79,6 @@ entities:
         unit: ppm
         class: measurement
   - entity: sensor
-    name: TVOC
     class: volatile_organic_compounds
     dps:
       - id: 117
