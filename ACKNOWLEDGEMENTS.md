@@ -985,3 +985,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ptenderenda](https://github.com/ptenderenda) for contributing support for SmartDGM PAC-W11C01 portable air conditioner.
 - [orbitalellie](https://github.com/orbitalellie) for contributing support for Alen BreatheSmart 35i air purifier.
 - [mmaridev](https://github.com/mmaridev) for contributing improved support for Immax Neolite weather station.
+- [gaggi](https://github.com/gaggi) for contributing support for Steinbach Solid 4.3 pool heat pump.
