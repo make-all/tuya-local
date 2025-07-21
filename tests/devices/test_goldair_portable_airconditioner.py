@@ -118,7 +118,6 @@ class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
 
     async def test_set_swing_modes_only_hswing(self):
         self.dps[FEATURE_DP] = 26
-        print(self.subject.extra_state_attributes)
         async with assert_device_properties_set(
             self.subject._device,
             {
