@@ -102,6 +102,7 @@
 - Kogan portable air conditioners (Y09, Y12, Y16)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
+- MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
