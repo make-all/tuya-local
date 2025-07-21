@@ -1017,6 +1017,7 @@ port and password.
 - Steigen Solar Pro clothes drying rack
 - Sunbeam dual heated mattress pad
 - Sunbeam single heated mattress pad
+- Sundream LC-series salt pool chlorinator (rebranded as Poolomio)
 - SWS-001 smart weather station
 - TH05Z temperature and humidity sensor
 - TH08 temperature and humidity sensor

@@ -987,3 +987,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mmaridev](https://github.com/mmaridev) for contributing improved support for Immax Neolite weather station.
 - [gaggi](https://github.com/gaggi) for contributing support for Steinbach Solid 4.3 pool heat pump.
 - [sportchucks](https://github.com/sportchucks) for contributing support for Raddy PT-5 pool thermometer.
+- [kfussmann](https://github.com/kfussmann) for assisting with support for Sundream LC-Series salt pool chlorinator.
