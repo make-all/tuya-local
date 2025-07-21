@@ -4,6 +4,7 @@ from homeassistant.components.climate.const import (
 )
 
 from ..const import GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD
+from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -71,8 +72,67 @@ class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
         self.assertEqual(self.subject.swing_horizontal_mode, SWING_ON)
         self.dps[SWINGV_DP] = "off"
         self.assertEqual(self.subject.swing_mode, SWING_OFF)
+        self.assertEqual(self.subject.swing_horizontal_mode, SWING_ON)
         self.dps[SWINGH_DP] = False
         self.assertEqual(self.subject.swing_horizontal_mode, SWING_OFF)
+
+    def test_swing_with_vswing_unavailable(self):
+        self.dps[FEATURE_DP] = 26
+        self.dps[SWINGV_DP] = "off"
+        self.dps[SWINGH_DP] = True
+        self.assertEqual(self.subject.swing_mode, SWING_ON)
+        self.dps[SWINGV_DP] = "on"
+        self.dps[SWINGH_DP] = False
+        self.assertEqual(self.subject.swing_mode, SWING_OFF)
+
+    async def test_set_swing_modes(self):
+        self.dps[FEATURE_DP] = 27
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGV_DP: "on",
+            },
+        ):
+            await self.subject.async_set_swing_mode(SWING_ON)
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGV_DP: "off",
+            },
+        ):
+            await self.subject.async_set_swing_mode(SWING_OFF)
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGH_DP: True,
+            },
+        ):
+            await self.subject.async_set_swing_horizontal_mode(SWING_ON)
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGH_DP: False,
+            },
+        ):
+            await self.subject.async_set_swing_horizontal_mode(SWING_OFF)
+
+    async def test_set_swing_modes_only_hswing(self):
+        self.dps[FEATURE_DP] = 26
+        print(self.subject.extra_state_attributes)
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGH_DP: True,
+            },
+        ):
+            await self.subject.async_set_swing_mode(SWING_ON)
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                SWINGH_DP: False,
+            },
+        ):
+            await self.subject.async_set_swing_mode(SWING_OFF)
 
     def test_available(self):
         """Override the base class, as this has availability logic."""

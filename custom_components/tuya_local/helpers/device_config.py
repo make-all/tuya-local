@@ -902,10 +902,8 @@ class TuyaDpsConfig:
             )
             for cond in conditions:
                 avail_dp = cond.get("available")
-                if avail_dp:
-                    avail_dps = self._entity.find_dps(avail_dp)
-                    if avail_dps and not avail_dps.get_value(device):
-                        continue
+                if avail_dp and not self.mapping_available(avail_dp, device):
+                    continue
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
