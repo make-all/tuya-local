@@ -992,3 +992,4 @@ Further device support has been made with the assistance of users. Please consid
 - [damru](https://github.com/damru) for contributing improvements to Windcalm fans.
 - [sam7567](https://github.com/sam7567) for assisting with support for Roomratv ceiling fan with light.
 - [mikeblackk](https://github.com/mikeblackk) for assisting with support for Madimack Elite V4 pool heat pump.
+- [vincedarley](https://github.com/vincedarley) for assisting with support for a second variant of Chanfok ceiling fan and light.
