@@ -995,3 +995,4 @@ Further device support has been made with the assistance of users. Please consid
 - [vincedarley](https://github.com/vincedarley) for assisting with support for a second variant of Chanfok ceiling fan and light.
 - [happy-daisy](https://github.com/happy-daisy) for assisting with support for Beca BHT-12 thermostat smartplug.
 - [nhadpck](https://github.com/nhadpck) for assisting with support for Moes human presence sensor.
+- [demartinoaj](https://github.com/demartinoaj) for contributing support for Holmes tower fan.
