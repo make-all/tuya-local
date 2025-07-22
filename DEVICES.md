@@ -604,6 +604,8 @@ different features enabled, so are known to work with multiple brands
 of device.
 
 - 2 outlet plus 2 USB smartplug with individual timers
+- 3 way power monitoring strip
+  _confirmed as working with LSC Smart Connect powerstrip_
 - 4 way power monitoring strip (2 types)
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip_
 - 4 way powerstrip with USB
