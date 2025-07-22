@@ -990,3 +990,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kfussmann](https://github.com/kfussmann) for assisting with support for Sundream LC-Series salt pool chlorinator.
 - [stepheninuk](https://github.com/stepheninuk) for assisting with support for MeacoCool MC Series Pro portable air conditioners.
 - [damru](https://github.com/damru) for contributing improvements to Windcalm fans.
+- [sam7567](https://github.com/sam7567) for assisting with support for Roomratv ceiling fan with light.

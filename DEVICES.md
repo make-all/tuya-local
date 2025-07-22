@@ -303,6 +303,7 @@
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
 - Reiga ceiling fans with and without light
+- Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Scheeair Nova 100 ventilation fan
 - Siguro SGR-FN-U32xx tower fan
