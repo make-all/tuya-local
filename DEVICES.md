@@ -134,7 +134,7 @@
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
-- Madimack Eco, Elite V2 and other model pool heat pumps
+- Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, and Ice Spa heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
@@ -180,6 +180,7 @@
 - Avatto ME81, WS20R and WT100 thermostats
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002, BAC-006, BHT-002/3000, BHP-6000 thermostats
+- Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
 - Beok TGM50, TOL47, TR8B thermostats
@@ -259,7 +260,7 @@
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
-- Chanfok ceiling fan with cool/warm white dimmable light
+- Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
 - ComfortZone Powr Curve stand fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
@@ -605,6 +606,8 @@ different features enabled, so are known to work with multiple brands
 of device.
 
 - 2 outlet plus 2 USB smartplug with individual timers
+- 3 way power monitoring strip
+  _confirmed as working with LSC Smart Connect powerstrip_
 - 4 way power monitoring strip (2 types)
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip_
 - 4 way powerstrip with USB
@@ -997,6 +1000,7 @@ port and password.
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - ME201W level sensor
 - Mirabella Genio motion sensor
+- Moes human presence sensor
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser

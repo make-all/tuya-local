@@ -831,7 +831,7 @@ Further device support has been made with the assistance of users. Please consid
 - [yaro24](https://github.com/yaro24) for contributing support for Jiahong ET-44W thermostat.
 - [point2start](https://github.com/point2start) for assisting with support for Atorch AT4PTW thermostat.
 - [maLLoud86](https://github.com/maLLoud86) for assisting with support for iSparkle Curtain Micro Lights.
-- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker, Varin RGBCW ceiling fan.
+- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker, Varin RGBCW ceiling fan, 3-way power monitoring strip (LSC).
 - [Karlsons88](https://github.com/Karlsons88) for assisting with support for Nulite monobloc heat pump.
 - [Watanuki-kun](https://github.com/Watanuki-kun) for assisting with support for Smart Amari ceiling fan with light.
 - [aherbjornsen](https://github.com/aherbjornsen) for assisting with support for Arida Venti 160 ventilation fan.
@@ -991,3 +991,7 @@ Further device support has been made with the assistance of users. Please consid
 - [stepheninuk](https://github.com/stepheninuk) for assisting with support for MeacoCool MC Series Pro portable air conditioners.
 - [damru](https://github.com/damru) for contributing improvements to Windcalm fans.
 - [sam7567](https://github.com/sam7567) for assisting with support for Roomratv ceiling fan with light.
+- [mikeblackk](https://github.com/mikeblackk) for assisting with support for Madimack Elite V4 pool heat pump.
+- [vincedarley](https://github.com/vincedarley) for assisting with support for a second variant of Chanfok ceiling fan and light.
+- [happy-daisy](https://github.com/happy-daisy) for assisting with support for Beca BHT-12 thermostat smartplug.
+- [nhadpck](https://github.com/nhadpck) for assisting with support for Moes human presence sensor.
