@@ -1,0 +1,203 @@
+name: Thermostat smartplug
+products:
+  - id: kw2kh2jfzxaej5tb
+    manufacturer: Beca
+    model: BHT-12
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: coldhot
+            conditions:
+              - dps_val: true
+                value: heat
+              - dps_val: false
+                value: cool
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+          - dps_val: temphold
+            value: temp_override
+          - dps_val: holidays
+            value: away
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 900
+        mapping:
+          - scale: 10
+            step: 5
+      # Both dps seem to always be present, so it is easier to
+      # fix the units and let HA do conversion
+      - id: 17
+        type: integer
+        name: temp_set_f
+      - id: 18
+        type: integer
+        optional: true
+        name: max_f
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 20
+        type: integer
+        optional: true
+        name: min_f
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 29
+        type: integer
+        optional: true
+        name: current_f
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: close
+            value: idle
+          - dps_val: open
+            constraint: coldhot
+            conditions:
+              - dps_val: true
+                value: heating
+              - dps_val: false
+                value: cooling
+      - id: 102
+        type: boolean
+        name: coldhot
+        hidden: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    name: Eco
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: text
+    name: Weekly program
+    category: config
+    icon: "mdi:calendar-week"
+    hidden: true
+    dps:
+      - id: 71
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Holiday length
+    class: duration
+    category: config
+    icon: "mdi:island"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 99
+  - entity: sensor
+    name: External temperature
+    class: temperature
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        optional: true
+        name: temp_f
+      - id: 104
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: number
+    name: Eco temperature
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 100
+          max: 500
+        mapping:
+          - scale: 10
+            constraint: coldhot
+            conditions:
+              - dps_val: false
+                value_redirect: cold
+      - id: 107
+        type: integer
+        name: cold
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 106
+        type: integer
+        optional: true
+        name: heat_f
+      - id: 108
+        type: integer
+        optional: true
+        name: cold_f
+      - id: 102
+        type: boolean
+        name: coldhot
+        hidden: true
