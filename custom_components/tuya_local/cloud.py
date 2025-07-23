@@ -114,7 +114,8 @@ class Cloud:
             _LOGGER.warning("Login failed: %s", info)
             self.__error_code = info.get(TUYA_RESPONSE_CODE, {})
             self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
-
+            # Ensure expired authentication is cleared on next attempt
+            self.__hass.data[DOMAIN]["auth_cache"] = None
         return success
 
     async def async_get_devices(self) -> dict[str, Any]:
