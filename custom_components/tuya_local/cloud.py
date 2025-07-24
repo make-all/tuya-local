@@ -116,6 +116,7 @@ class Cloud:
             self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
             # Ensure expired authentication is cleared on next attempt
             self.__hass.data[DOMAIN]["auth_cache"] = None
+            self.__authentication = {}
         return success
 
     async def async_get_devices(self) -> dict[str, Any]:
@@ -214,6 +215,13 @@ class Cloud:
                     }
                 )
         return transform
+
+    def logout(self) -> None:
+        """Logout from the Tuya cloud."""
+        _LOGGER.debug("Logging out from Tuya cloud")
+        # Clear authentication cache
+        self.__hass.data[DOMAIN]["auth_cache"] = None
+        self.__authentication = {}
 
     @property
     def is_authenticated(self) -> bool:
