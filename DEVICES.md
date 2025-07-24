@@ -304,6 +304,7 @@
 - Point One Technology Storm VSPEC-IV dual axis corner fan
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
+- Princess Smart Tower fan
 - Reiga ceiling fans with and without light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
