@@ -996,3 +996,4 @@ Further device support has been made with the assistance of users. Please consid
 - [happy-daisy](https://github.com/happy-daisy) for assisting with support for Beca BHT-12 thermostat smartplug.
 - [nhadpck](https://github.com/nhadpck) for assisting with support for Moes human presence sensor.
 - [demartinoaj](https://github.com/demartinoaj) for contributing support for Holmes tower fan.
+- [larduino](https://github.com/larduino) for assisting with support for EG4 solar heat pump.

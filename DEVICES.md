@@ -85,6 +85,7 @@
 - Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
+- EG4 solar heat pump
 - ElectriQ 12WMINV
 - ElectriQ Airflex, EcoSilent models
 - ElectriQ SupremeCool SC16HPW
