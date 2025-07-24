@@ -658,6 +658,7 @@ of device.
 - A60 1800-2700K RGBWW light
 - Arknoah Aquarium lights
 - Arlec 10 path lights
+- Arlec LVE160HA ball lights
 - Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
