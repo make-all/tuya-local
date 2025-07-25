@@ -973,6 +973,7 @@ port and password.
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
 - ASIP-0622 indoor planter
+- Bcetasy 18-in-1 air quality monitor
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
