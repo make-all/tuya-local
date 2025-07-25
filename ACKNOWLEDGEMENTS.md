@@ -998,3 +998,4 @@ Further device support has been made with the assistance of users. Please consid
 - [demartinoaj](https://github.com/demartinoaj) for contributing support for Holmes tower fan.
 - [larduino](https://github.com/larduino) for assisting with support for EG4 solar heat pump.
 - [simotomaton](https://github.com/simotomaton) for assisting with support for Arlec 160 ball lights.
+- [jpbede](https://github.com/jpbede) for contributing support for Poolex Mag FI pool heat pump.
