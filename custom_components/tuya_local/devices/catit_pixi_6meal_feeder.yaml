@@ -17,14 +17,14 @@ entities:
     category: config
     hidden: true
     dps:
-        # Meal plan is the following binary blob (1 byte per line), encoded
-        # in base64:
-        # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
-        #    Ex: Monday, Wednesday, Sunday -> 0b01010001
-        # - Hour
-        # - Minute
-        # - Feed number
-        # - Enable/Disabled
+      # Meal plan is the following binary blob (1 byte per line), encoded
+      # in base64:
+      # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
+      #    Ex: Monday, Wednesday, Sunday -> 0b01010001
+      # - Hour
+      # - Minute
+      # - Feed number
+      # - Enable/Disabled
       - id: 1
         type: base64
         name: value
