@@ -1001,3 +1001,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jpbede](https://github.com/jpbede) for contributing support for Poolex Mag FI pool heat pump.
 - [kane-tix](https://github.com/kane-tix) for assisting with support for ADPOW EV charger.
 - [psiberfunk](https://github.com/psiberfunk) for assisting with support for Bcetasy 18-in-1 air quality monitor.
+- [Raggaboi](https://github.com/Raggaboi) for assisting with support for LerLink high power switch.

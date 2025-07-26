@@ -578,6 +578,7 @@ the best option.
 - Inna/Automat-ON AUTO000014 7 channel underfloor heating controller
 - JH PCIe mini computer switch
 - JH PCIe pro+ computer switch
+- LerLink high power switch
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
