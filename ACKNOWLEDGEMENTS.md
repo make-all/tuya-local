@@ -1003,3 +1003,5 @@ Further device support has been made with the assistance of users. Please consid
 - [psiberfunk](https://github.com/psiberfunk) for assisting with support for Bcetasy 18-in-1 air quality monitor.
 - [Raggaboi](https://github.com/Raggaboi) for assisting with support for LerLink high power switch.
 - [bdelima](https://github.com/bdelima) for contributing support for Recteq RT-1250 grill.
+- [AUTFail](https://github.com/AUTFail) for contributing support for Aquark Mr Pure salt pool chlorinator.
+- [joelTXW](https://github.com/joelTXW) for assisting with support for imitOS BLE square downlight.
