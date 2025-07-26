@@ -973,6 +973,7 @@ port and password.
 - generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
+- Aquark Mr. Pure salt pool chlorinator
 - ASIP-0622 indoor planter
 - Bcetasy 18-in-1 air quality monitor
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
