@@ -1068,6 +1068,7 @@ port and password.
 - HCT-611 water timer
 - HCT-626 dual water timer
 - HU06 smart lock
+- imitOS square downlight
 - Ironzon fingerprint lock
 - KB150A keypad fingerprint lock
 - MoistenLand water timer
