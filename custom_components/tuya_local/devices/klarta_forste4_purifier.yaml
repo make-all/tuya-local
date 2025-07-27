@@ -91,7 +91,17 @@ entities:
         class: measurement
   - entity: sensor
     translation_key: air_quality
+    class: enum
     dps:
       - id: 21
         type: string
         name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: Good
+            value: good
+          - dps_val: mild
+            value: moderate
+          - dps_val: Poor
+            value: poor
