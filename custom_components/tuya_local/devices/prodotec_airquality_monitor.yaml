@@ -58,3 +58,17 @@ entities:
         name: sensor
         unit: µg/m³
         class: measurement
+  - entity: select
+    name: Screen backlight
+    icon: "mdi:monitor"
+    translation_key: brightness
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: Dim
+          - dps_val: level_2
+            value: Bright
