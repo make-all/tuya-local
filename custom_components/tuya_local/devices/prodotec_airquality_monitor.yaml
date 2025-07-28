@@ -1,0 +1,60 @@
+name: CO2 box
+products:
+  - id: 5kjpe3awcy70dmdx
+    model: PT02
+entities:
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        class: measurement
+        name: sensor
+        unit: ppm
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: mg/m³
+        class: measurement
+        mapping:
+          - scale: 100
+            step: 1
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
