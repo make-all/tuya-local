@@ -1007,3 +1007,5 @@ Further device support has been made with the assistance of users. Please consid
 - [joelTXW](https://github.com/joelTXW) for assisting with support for imitOS BLE square downlight.
 - [tmeuze](https://github.com/tmeuze) for assisting with support for Hapaw pet fountain.
 - [rimmiaciej](https://github.com/rimmiaciej) for contributing support for Klarta Forste 4 air purifier.
+- [dmostert](https://github.com/dmostert) for contributing improvements to ITS 45HD heat pump.
+
