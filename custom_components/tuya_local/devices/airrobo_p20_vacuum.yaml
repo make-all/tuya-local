@@ -15,7 +15,7 @@ entities:
         name: command
         mapping:
           - dps_val: standby
-            value: standby
+            value: stop
           - dps_val: smart
             value: smart
           - dps_val: wall_follow
@@ -43,7 +43,7 @@ entities:
         name: status
         mapping:
           - dps_val: standby
-            value: idle
+            value: standby
           - dps_val: smart_clean
             value: cleaning
           - dps_val: wall_clean
@@ -57,13 +57,18 @@ entities:
           - dps_val: charging
             value: charging
           - dps_val: charge_done
-            value: docked
+            value: charged
           - dps_val: paused
-            value: paused
+            value: pause
           - dps_val: cleaning
             value: cleaning
           - dps_val: sleep
-            value: idle
+            value: sleep
+      - id: 6
+        type: integer
+        name: battery_level
+        unit: "%"
+        class: measurement
       - id: 13
         type: boolean
         name: locate
@@ -75,16 +80,17 @@ entities:
           - dps_val: gentle
             value: Silent
           - dps_val: normal
-            value: Normal
+            value: Standard
           - dps_val: strong
-            value: Strong
+            value: High
       - id: 18
         type: bitfield
         name: error
-        optional: true
+        hidden: true
       - id: 104
         type: string
         name: serial_number
+        hidden: true
   - entity: sensor
     class: battery
     dps:
@@ -94,7 +100,7 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Edge brush life
+    name: Side brush life
     category: diagnostic
     icon: "mdi:arrow-expand-all"
     dps:
@@ -103,7 +109,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Roll brush life
+    name: Main brush life
     category: diagnostic
     icon: "mdi:tire"
     dps:
@@ -123,7 +129,7 @@ entities:
         unit: "%"
         class: measurement
   - entity: button
-    name: Reset edge brush
+    name: Reset side brush
     class: restart
     category: config
     dps:
@@ -132,7 +138,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Reset roll brush
+    name: Reset main brush
     class: restart
     category: config
     dps:
@@ -141,7 +147,7 @@ entities:
         type: boolean
         optional: true
   - entity: button
-    name: Reset filter
+    translation_key: filter_reset
     class: restart
     category: config
     dps:
@@ -163,6 +169,7 @@ entities:
     name: Clean time
     class: duration
     category: diagnostic
+    icon: "mdi:clock-outline"
     dps:
       - id: 17
         type: integer
@@ -188,15 +195,13 @@ entities:
       - id: 18
         type: bitfield
         name: sensor
-        optional: true
         mapping:
           - dps_val: 0
             value: false
           - value: true
       - id: 18
         type: bitfield
-        name: error
-        optional: true
+        name: fault_code
       - id: 18
         type: bitfield
         name: description
@@ -257,8 +262,9 @@ entities:
           - dps_val: italian
             value: italian
   - entity: switch
-    name: Quick clean
+    name: Quick clean mode
     category: config
+    icon: "mdi:speedometer"
     dps:
       - id: 101
         type: string
