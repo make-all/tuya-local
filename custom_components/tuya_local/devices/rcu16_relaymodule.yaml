@@ -1,4 +1,4 @@
-name: Relay Module Smart 16CH
+name: Relay 16CH
 products:
   - id: 05iqw2misedc8pgv
     model: RCU-16
@@ -148,11 +148,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Relay Status
-    icon: "mdi:lightning-bolt"
     translation_key: initial_state
-    translation_placeholders:
-      x: "1"
     category: config
     dps:
       - id: 117
@@ -168,10 +164,7 @@ entities:
   - entity: select
     name: 1-8 IO set
     icon: "mdi:lightning-bolt"
-    translation_key: initial_state 
-    translation_placeholders:
-      x: "2"
-    category: config 
+    category: config
     dps:
       - id: 118
         type: string
@@ -186,10 +179,7 @@ entities:
   - entity: select
     name: 9-16 IO set
     icon: "mdi:lightning-bolt"
-    translation_key: initial_state 
-    translation_placeholders:
-      x: "3"
-    category: config 
+    category: config
     dps:
       - id: 119
         type: string
@@ -203,10 +193,7 @@ entities:
             value: "sensor"
   - entity: select
     name: Mode 1
-    translation_key: initial_state 
-    translation_placeholders:
-      x: "4"
-    category: config 
+    category: config
     dps:
       - id: 120
         type: string
@@ -218,10 +205,7 @@ entities:
             value: "curtain"
   - entity: select
     name: Mode 2
-    translation_key: initial_state 
-    translation_placeholders:
-      x: "5"
-    category: config 
+    category: config
     dps:
       - id: 121
         type: string
@@ -233,10 +217,7 @@ entities:
             value: "curtain"
   - entity: select
     name: Mode 3
-    translation_key: initial_state 
-    translation_placeholders:
-      x: "6"
-    category: config 
+    category: config
     dps:
       - id: 122
         type: string
@@ -249,9 +230,7 @@ entities:
   - entity: select
     name: Scene
     translation_key: scene
-    translation_placeholders:
-      x: "7"
-    category: config 
+    category: config
     dps:
       - id: 123
         type: string
@@ -275,10 +254,7 @@ entities:
             value: "scene7"
   - entity: number
     name: Number 1-30
-    translation_key: number_x
-    translation_placeholders:
-      x: "8"
-    category: config 
+    category: config
     dps:
       - id: 125
         type: integer
