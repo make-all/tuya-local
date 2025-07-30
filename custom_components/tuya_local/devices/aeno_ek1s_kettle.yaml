@@ -26,30 +26,28 @@ entities:
         name: option
         mapping:
           - dps_val: mzj_black
-            value: Black tea
+            value: black_tea
           - dps_val: mzj_white
-            value: White tea
+            value: white_tea
           - dps_val: mzj_green
-            value: Green tea
+            value: green_tea
           - dps_val: mzj_water
-            value: Boil
+            value: boil
           - dps_val: mzj_boby
-            value: For kids
+            value: infant_formula
           - dps_val: mzj_oolong
-            value: Oolong
+            value: oolong_tea
           - dps_val: mzj_warm
-            value: Keep temperature
+            value: keep_warm
   - entity: switch
-    name: Power
     icon: "mdi:kettle-steam"
     category: config
     dps:
       - id: 2
         type: boolean
         name: switch
-  - entity: switch
-    name: LED
-    icon: "mdi:led-on"
+  - entity: light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
