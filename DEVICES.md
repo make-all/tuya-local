@@ -435,7 +435,7 @@
 
 ### Kitchen Appliances
 
-- Aeno EK7S kettle
+- Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
 - Anko 1.7L smart kettle
 - Ciarra CBCS4850 range hood
