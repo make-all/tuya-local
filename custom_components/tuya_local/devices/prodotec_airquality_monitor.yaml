@@ -1,6 +1,7 @@
-name: prodotec_plus_airquality_monitor
+name: Air quality monitor
 products:
   - id: 5kjpe3awcy70dmdx
+    manufacturer: Prodotec
     model: PT02
 entities:
   - entity: sensor
@@ -66,22 +67,23 @@ entities:
       - id: 102
         type: boolean
         name: switch
-  - entity: select
-    name: Screen backlight
-    icon: "mdi:monitor"
-    translation_key: brightness
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 103
         type: string
-        name: option
+        name: brightness
         mapping:
-          - dps_val: level_1
-            value: Dim
-          - dps_val: level_2
-            value: Bright
           - dps_val: closed
-            value: Closed
+            value: 0
+            step: 127
+          - dps_val: level_1
+            value: 128
+            step: 127
+          - dps_val: level_2
+            value: 255
+            step: 127
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -111,7 +113,7 @@ entities:
           - scale: 100
             step: 10
   - entity: number
-    name: TVOC alarm threshold shutdown
+    name: TVOC alarm cancel threshold
     category: config
     class: volatile_organic_compounds
     dps:
@@ -138,10 +140,9 @@ entities:
           min: 700
           max: 5000
         mapping:
-          - scale: 1
-            step: 50
+          - step: 50
   - entity: number
-    name: CO2 alarm threshold shutdown
+    name: CO2 alarm cancel threshold
     category: config
     class: carbon_dioxide
     dps:
@@ -153,8 +154,7 @@ entities:
           min: 700
           max: 5000
         mapping:
-          - scale: 1
-            step: 50
+          - step: 50
   - entity: number
     name: PM2.5 alarm threshold
     category: config
@@ -168,10 +168,9 @@ entities:
           min: 10
           max: 200
         mapping:
-          - scale: 1
-            step: 5
+          - step: 5
   - entity: number
-    name: PM2.5 alarm threshold shutdown
+    name: PM2.5 alarm cancel threshold
     category: config
     class: pm25
     dps:
@@ -183,10 +182,9 @@ entities:
           min: 10
           max: 200
         mapping:
-          - scale: 1
-            step: 5
+          - step: 5
   - entity: number
-    name: Humidity alarm threshold shutdown
+    name: Humidity alarm cancel threshold
     category: config
     class: humidity
     dps:
@@ -228,10 +226,9 @@ entities:
           min: 10
           max: 200
         mapping:
-          - scale: 1
-            step: 5
+          - step: 5
   - entity: number
-    name: PM1.0 alarm threshold shutdown
+    name: PM1.0 alarm cancel threshold
     category: config
     class: pm10
     dps:
@@ -243,8 +240,7 @@ entities:
           min: 10
           max: 200
         mapping:
-          - scale: 1
-            step: 5
+          - step: 5
   - entity: number
     name: Temperature alarm threshold
     category: config
@@ -259,9 +255,8 @@ entities:
           max: 500
         mapping:
           - scale: 10
-            step: 1
   - entity: number
-    name: Temperature alarm threshold shutdown
+    name: Temperature alarm cancel threshold
     category: config
     class: temperature
     dps:
@@ -274,7 +269,6 @@ entities:
           max: 500
         mapping:
           - scale: 10
-            step: 1
   - entity: number
     name: Alarm time
     translation_key: timer
@@ -290,7 +284,7 @@ entities:
           max: 60
         unit: s
   - entity: number
-    name: Contol open delay
+    name: Contol delay
     translation_key: timer
     class: duration
     category: config
@@ -304,7 +298,7 @@ entities:
           max: 1200
         unit: s
   - entity: number
-    name: Contol close delay
+    name: Contol stop delay
     translation_key: timer
     class: duration
     category: config
@@ -317,45 +311,40 @@ entities:
           min: 0
           max: 1200
         unit: s
-  - entity: sensor
-    name: Temp controller status
-    class: enum
+  - entity: binary_sensor
+    name: Temperature control
     icon: "mdi:fan-chevron-down"
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
-  - entity: sensor
-    name: CO2 controller status
-    class: enum
+  - entity: binary_sensor
+    name: CO2 control
     icon: "mdi:fan-chevron-down"
     category: diagnostic
     dps:
       - id: 106
         type: boolean
         name: sensor
-  - entity: sensor
-    name: TVOC controller status
-    class: enum
+  - entity: binary_sensor
+    name: TVOC control
     icon: "mdi:fan-chevron-down"
     category: diagnostic
     dps:
       - id: 107
         type: boolean
         name: sensor
-  - entity: sensor
-    name: PM2.5 controller status
-    class: enum
+  - entity: binary_sensor
+    name: PM2.5 control
     icon: "mdi:fan-chevron-down"
     category: diagnostic
     dps:
       - id: 108
         type: boolean
         name: sensor
-  - entity: sensor
-    name: Humidity controller status
-    class: enum
+  - entity: binary_sensor
+    name: Humidity control
     icon: "mdi:water-percent"
     category: diagnostic
     dps:
