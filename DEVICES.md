@@ -33,6 +33,7 @@
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
 - Herschel infrared heater
 - HJZ oil column radiator
+- Hoenofly Smart Wood Low Profile Ceiling Fan with Lights
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator

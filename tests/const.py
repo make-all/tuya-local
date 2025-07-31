@@ -1701,3 +1701,15 @@ MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
     "118": True,
     # last 3 must be true for the time entities to be enabled
 }
+CEILING_FAN_WITH_LIGHT_NEW_PAYLOAD = {
+    "20": False,
+    "21": "white",
+    "22": 500,
+    "23": 0,
+    "101": "forward",
+    "102": "level_2",
+    "103": "cancel",
+    "104": 1,
+    "105": False,
+    "106": "fresh",
+}
