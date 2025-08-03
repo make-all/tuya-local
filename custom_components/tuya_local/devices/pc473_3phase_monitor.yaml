@@ -1,0 +1,435 @@
+name: PC473 3-Phase Energy Monitor
+products:
+  - id: vnxcwomqkofjhjcc
+    manufacturer: EARU
+    model: PC473-R-W-TY
+
+primary_entity: sensor
+
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    category: diagnostic
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: kW
+        force: true
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor A
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10000
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    category: diagnostic
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        force: true
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor B
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10000
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    category: diagnostic
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        force: true
+        class: measurement
+        unit: kW
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor C
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10000
+
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+        unit: kWh
+        class: total_increasing
+
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Total current
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Total active power
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: kW
+        force: true
+        class: measurement
+        mapping:
+          - scale: 1000
+
+
+  - entity: sensor
+    category: diagnostic
+    class: frequency
+    name: Frequency
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+
+
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power generation
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    hidden: unavailable
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 124
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: Max power protection Phase A value
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: kW
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 1000
+
+  - entity: number
+    name: Max power protection Phase B value
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: kW
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 1000
+
+  - entity: number
+    name: Max power protection Phase C value
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: kW
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 1000
+
+  - entity: switch
+    name: Max power protection Phase A enabled
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Max power protection Phase B enabled
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Max power protection Phase C enabled
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
