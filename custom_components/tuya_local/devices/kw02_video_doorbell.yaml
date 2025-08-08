@@ -4,6 +4,14 @@ products:
     model: KW02
     name: IP video doorbell
 entities:
+  - entity: button
+    icon: "mdi:gate"
+    name: Door
+    dps:
+      - id: 148
+        type: boolean
+        optional: true
+        name: button
   - entity: siren
     name: Doorbell
     dps:

@@ -65,6 +65,8 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
             minutes = self._minute_dps.get_value(self._device)
         if self._second_dps:
             seconds = self._second_dps.get_value(self._device)
+        if hours is None and minutes is None and seconds is None:
+            return None
         delta = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         return (MIDNIGHT + delta).time()
 

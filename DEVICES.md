@@ -338,7 +338,7 @@
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
 - Kilo Plus air purifier
-- Klarta Stor 2 air purifier
+- Klarta Stor 2 and Forste 4 air purifiers
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Morento HY4866-WF and MR7566-WF air purifiers
@@ -436,7 +436,7 @@
 
 ### Kitchen Appliances
 
-- Aeno EK7S kettle
+- Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
 - Anko 1.7L smart kettle
 - Ciarra CBCS4850 range hood
