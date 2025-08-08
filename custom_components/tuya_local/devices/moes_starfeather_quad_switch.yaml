@@ -1,0 +1,334 @@
+# Definition for the new moes star feather smart switch series
+name: Smart Scene Switch
+products:
+  - id: unowxanmum3uzkur
+    model_id: fc1eu0
+    model: Star Feather Quad Switch
+    manufacturer: Moes
+    name: Smart Switch
+entities:
+  - entity: select
+    translation_key: scene_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 1
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "scene"
+            value: "scene"
+  - entity: select
+    translation_key: scene_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "scene"
+            value: "scene"
+  - entity: select
+    translation_key: scene_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "scene"
+            value: "scene"
+  - entity: select
+    translation_key: scene_x
+    translation_placeholders:
+      x: "4"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "scene"
+            value: "scene"
+  - entity: select
+    translation_key: mode_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "switch_1"
+            value: "switch"
+          - dps_val: "scene_1"
+            value: "scene"
+  - entity: select
+    translation_key: mode_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "switch_2"
+            value: "switch"
+          - dps_val: "scene_2"
+            value: "scene"
+  - entity: select
+    translation_key: mode_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "switch_3"
+            value: "switch"
+          - dps_val: "scene_3"
+            value: "scene"
+  - entity: select
+    translation_key: mode_x
+    translation_placeholders:
+      x: "4"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: scene
+        mapping:
+          - dps_val: "switch_4"
+            value: "switch"
+          - dps_val: "scene_4"
+            value: "scene"
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 24
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 31
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 32
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 33
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: switch
+    name: Switch_backlight
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: backlight
+  - entity: select
+    name: Light Mode
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: light_mode
+  - entity: select
+    name: Relay State
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+  - entity: switch
+    name: induction
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: enabled
+  - entity: select
+    name: Vibration
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: gear
+  - entity: number
+    category: config
+    class: duration
+    translation_key: momentary_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 3600
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: momentary_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 3600
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: momentary_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 3600
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    category: config
+    class: duration
+    translation_key: momentary_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: second
+        range:
+          min: 0
+          max: 3600
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: text
+    name: random_time
+    category: config
+    dps:
+      - id: 109
+        type: string
+        range:
+          min: 0
+          max: 255
+  - entity: text
+    name: cycle_time
+    category: config
+    dps:
+      - id: 110
+        type: string
+        range:
+          min: 0
+          max: 255
