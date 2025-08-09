@@ -991,6 +991,7 @@ port and password.
 - EPT ultrasonic 3m tank level sensor
 - Goldair Platinum SleepSmart electric blanket
 - GratKit filament dryer
+- GZAIR radon gas detector
 - Haier Nayun NY-GS-04 combustible gas alarm
 - Haoliyuen EWC02 air quality monitor
 - Haozee PS10 mmWave presence sensing light switch
