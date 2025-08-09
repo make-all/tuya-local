@@ -159,10 +159,10 @@ entities:
             value: "off"
           - dps_val: "on"
             value: "on"
-          - dps_val: "fixed"
-            value: "memory"
+          - dps_val: fixed
+            value: memory
   - entity: select
-    name: 1-8 IO set
+    name: IO mode 1-8
     icon: "mdi:lightning-bolt"
     category: config
     dps:
@@ -170,14 +170,14 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: "eturn"
-            value: "eturn"
-          - dps_val: "switch"
-            value: "switch"
-          - dps_val: "sensor"
-            value: "sensor"
+          - dps_val: eturn
+            value: Button
+          - dps_val: switch
+            value: Switch
+          - dps_val: sensor
+            value: Cover
   - entity: select
-    name: 9-16 IO set
+    name: IO mode 9-16
     icon: "mdi:lightning-bolt"
     category: config
     dps:
@@ -185,48 +185,48 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: "eturn"
-            value: "eturn"
-          - dps_val: "switch"
-            value: "switch"
-          - dps_val: "sensor"
-            value: "sensor"
+          - dps_val: eturn
+            value: Button
+          - dps_val: switch
+            value: Switch
+          - dps_val: sensor
+            value: Cover
   - entity: select
-    name: Mode 1
+    name: Function 11-12
     category: config
     dps:
       - id: 120
         type: string
         name: option
         mapping:
-          - dps_val: "switch"
-            value: "switch"
-          - dps_val: "curtain"
-            value: "curtain"
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
   - entity: select
-    name: Mode 2
+    name: Function 13-14
     category: config
     dps:
       - id: 121
         type: string
         name: option
         mapping:
-          - dps_val: "switch"
-            value: "switch"
-          - dps_val: "curtain"
-            value: "curtain"
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
   - entity: select
-    name: Mode 3
+    name: Function 15-16
     category: config
     dps:
       - id: 122
         type: string
         name: option
         mapping:
-          - dps_val: "switch"
-            value: "switch"
-          - dps_val: "curtain"
-            value: "curtain"
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
   - entity: select
     name: Scene
     translation_key: scene
@@ -236,24 +236,23 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: "ready"
-            value: "ready"
-          - dps_val: "scene1"
-            value: "scene1"
-          - dps_val: "scene2"
-            value: "scene2"
-          - dps_val: "scene3"
-            value: "scene3"
-          - dps_val: "scene4"
-            value: "scene4"
-          - dps_val: "scene5"
-            value: "scene5"
-          - dps_val: "scene6"
-            value: "scene6"
-          - dps_val: "scene7"
-            value: "scene7"
+          - dps_val: ready
+            value: none
+          - dps_val: scene1
+            value: Scene 1
+          - dps_val: scene2
+            value: Scene 2
+          - dps_val: scene3
+            value: Scene 3
+          - dps_val: scene4
+            value: Scene 4
+          - dps_val: scene5
+            value: Scene 5
+          - dps_val: scene6
+            value: Scene 6
+          - dps_val: scene7
+            value: Scene 7
   - entity: number
-    name: Number 1-30
     category: config
     dps:
       - id: 125
