@@ -596,6 +596,7 @@ the best option.
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
+- RCU16 16ch relay module
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
@@ -1016,6 +1017,7 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PlantsIO Ivy smart planter
+- Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
 - PV28-CW 8 in 1 air quality monitor
