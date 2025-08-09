@@ -1,94 +1,88 @@
-name: gzair_radon_gas_detector
+name: Radon detector
 products:
   - id: wgaxdhly7e9irlze
+    manufacturer: GZAIR
     model: PT07
 entities:
   - entity: sensor
-    class: volatile_organic_compounds
-    name: Radon gas - current
+    name: Radon
     dps:
       - id: 2
         type: integer
         class: measurement
         name: sensor
         unit: pCi/L
-        range:
-          min: 0
-          max: 999
         mapping:
           - scale: 100
-            step: 1
-  - entity: sensor
-    name: Tamper alarm
-    class: enum
-    icon: "mdi:radioactive"
+  - entity: binary_sensor
+    class: tamper
     category: diagnostic
     dps:
       - id: 4
         type: boolean
         name: sensor
-  - entity: select
-    name: Alaram volume
-    icon: "mdi:speaker"
-    translation_key: volume
+  - entity: siren
+    name: Alarm
     category: config
     dps:
       - id: 5
         type: string
-        name: option
+        name: volume_level
         mapping:
-          - dps_val: low
-            value: Low
-          - dps_val: middle
-            value: Middle
-          - dps_val: high
-            value: High
           - dps_val: mute
-            value: Mute
-  - entity: select
-    name: Alaram ringtone
-    icon: "mdi:speaker"
-    translation_key: volume
-    category: config
-    dps:
+            value: 0.0
+          - dps_val: low
+            value: 0.3
+          - dps_val: middle
+            value: 0.6
+          - dps_val: high
+            value: 1.0
       - id: 6
         type: string
-        name: option
+        name: tone
         mapping:
-          - dps_val: 1
-            value: 1
-          - dps_val: 2
-            value: 2
-          - dps_val: 3
-            value: 3
-          - dps_val: 4
-            value: 4
-          - dps_val: 5
-            value: 5
-  - entity: number
-    name: Duration of serious warning
-    translation_key: timer
-    class: duration
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 7
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+      - id: 13
+        type: boolean
+        name: switch
+      - id: 111
         type: integer
-        name: value
+        name: duration
         range:
           min: 0
           max: 60
         unit: s
-  - entity: switch
-    name: Auto check
+  - entity: number
+    class: duration
+    name: Serious warning duration
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: duration
+        range:
+          min: 0
+          max: 60
+        unit: s
+  - entity: button
+    name: Self test
     icon: "mdi:wrench-check-outline"
     category: config
     dps:
       - id: 8
         type: boolean
-        name: switch
+        name: button
   - entity: sensor
-    name: Self-check result
+    name: Self test result
     class: enum
     icon: "mdi:wrench-check-outline"
     category: diagnostic
@@ -105,23 +99,13 @@ entities:
             value: Failure
           - dps_val: other
             value: Other
-  - entity: sensor
-    name: Pre-heat
-    class: enum
-    icon: "mdi:sun-thermometer"
+  - entity: binary_sensor
+    class: cold
     category: diagnostic
     dps:
       - id: 10
         type: boolean
         name: sensor
-  - entity: switch
-    name: Alaram switch
-    icon: "mdi:alarm"
-    category: config
-    dps:
-      - id: 13
-        type: boolean
-        name: switch
   - entity: switch
     name: Muffling
     icon: "mdi:alarm"
@@ -131,7 +115,6 @@ entities:
         type: boolean
         name: switch
   - entity: sensor
-    class: volatile_organic_compounds
     name: Detection value
     dps:
       - id: 101
@@ -139,16 +122,11 @@ entities:
         class: measurement
         name: sensor
         unit: pCi/L
-        range:
-          min: 0
-          max: 999
         mapping:
           - scale: 100
-            step: 1
   - entity: number
-    name: Sever level threshold
+    name: Severe threshold
     category: config
-    class: volatile_organic_compounds
     dps:
       - id: 102
         type: integer
@@ -159,12 +137,9 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
   - entity: number
-    name: Bad level threshold
+    name: Bad threshold
     category: config
-    class: volatile_organic_compounds
     dps:
       - id: 103
         type: integer
@@ -175,50 +150,36 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
   - entity: sensor
-    class: volatile_organic_compounds
-    name: Radon gas - average daily
+    name: Daily average
     dps:
       - id: 104
         type: integer
         class: measurement
         name: sensor
         unit: pCi/L
-        range:
-          min: 0
-          max: 999
         mapping:
           - scale: 100
-            step: 1
   - entity: sensor
-    class: volatile_organic_compounds
-    name: Radon gas - average weekly
+    name: Weekly average
     dps:
       - id: 105
         type: integer
         class: measurement
         name: sensor
         unit: pCi/L
-        range:
-          min: 0
-          max: 999
         mapping:
           - scale: 100
-            step: 1
-  - entity: switch
-    name: Screen backlight
-    icon: "mdi:monitor"
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 107
         type: boolean
         name: switch
-  - entity: sensor
+  - entity: binary_sensor
     name: Yellow warning
-    class: enum
-    icon: "mdi:alert-outline"
+    class: gas
     category: diagnostic
     dps:
       - id: 108
@@ -226,13 +187,12 @@ entities:
         name: sensor
         mapping:
           - dps_val: mormal
-            value: Normal
+            value: false
           - dps_val: alarm
-            value: High
+            value: true
   - entity: number
     name: Yellow warning threshold
     category: config
-    class: volatile_organic_compounds
     dps:
       - id: 109
         type: integer
@@ -243,12 +203,9 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
   - entity: number
-    name: Threshold
+    name: Alarm threshold
     category: config
-    class: volatile_organic_compounds
     dps:
       - id: 110
         type: integer
@@ -259,26 +216,9 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
   - entity: number
-    name: Alarm duration
-    translation_key: timer
-    class: duration
+    name: Maximum threshold
     category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 111
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 60
-        unit: s
-  - entity: number
-    name: Threshold value max
-    category: config
-    class: volatile_organic_compounds
     dps:
       - id: 112
         type: integer
@@ -289,12 +229,9 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
   - entity: number
-    name: Threshold value min
+    name: Minimum threshold
     category: config
-    class: volatile_organic_compounds
     dps:
       - id: 113
         type: integer
@@ -305,7 +242,3 @@ entities:
           max: 999
         mapping:
           - scale: 10
-            step: 1
-            default: 9.90
-
-
