@@ -279,6 +279,7 @@
 - Goldair Platinum tower fan (2 variants)
 - Hiper T3 bladeless fan
 - Hoenofly Smart Amari ceiling fan with light
+- Hoenofly Smart Wood Low Profile Ceiling Fan with Lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
 - Homebase 12" oscillating fan
