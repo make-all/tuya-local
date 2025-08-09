@@ -2,7 +2,7 @@ name: Water heater
 products:
   - id: ox9jyuavu5v78o2y
     manufacturer: Geyserwise
-    model: TSE
+    model: MAX
     name: Geyser timer and controller
 entities:
   - entity: water_heater
@@ -189,6 +189,17 @@ entities:
     category: diagnostic
     dps:
       - id: 108
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+  - entity: sensor
+    name:  Current Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 10
         type: integer
         name: sensor
         optional: true
