@@ -1,9 +1,9 @@
 # Definition for the new moes star feather smart switch series
 name: Smart Scene Switch
 products:
-  - id: unowxanmum3uzkur
-    model_id: fc1eu0
-    model: Star Feather Quad Switch
+  - id: qcyyaszyvr5bwkm4
+    model_id: e1kbqips
+    model: Star Feather Triple Switch
     manufacturer: Moes
     name: Smart Switch
 entities:
@@ -43,18 +43,6 @@ entities:
             value: "switch"
           - dps_val: "scene_3"
             value: "scene"
-  - entity: select
-    name: Switch 4 mode
-    category: config
-    dps:
-      - id: 21
-        type: string
-        name: option
-        mapping:
-          - dps_val: "switch_4"
-            value: "switch"
-          - dps_val: "scene_4"
-            value: "scene"
   - entity: switch
     translation_key: switch_x
     translation_placeholders:
@@ -77,14 +65,6 @@ entities:
       x: "3"
     dps:
       - id: 26
-        type: boolean
-        name: switch
-  - entity: switch
-    translation_key: switch_x
-    translation_placeholders:
-      x: "4"
-    dps:
-      - id: 27
         type: boolean
         name: switch
   - entity: switch
