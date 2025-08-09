@@ -58,7 +58,7 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
     @property
     def native_value(self):
         """Return the current value of the time."""
-        hours = minutes = seconds = 0
+        hours = minutes = seconds = None
         if self._hour_dps:
             hours = self._hour_dps.get_value(self._device)
         if self._minute_dps:
@@ -67,6 +67,9 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
             seconds = self._second_dps.get_value(self._device)
         if hours is None and minutes is None and seconds is None:
             return None
+        hours = hours or 0
+        minutes = minutes or 0
+        seconds = seconds or 0
         delta = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         return (MIDNIGHT + delta).time()
 
