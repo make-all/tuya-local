@@ -26,7 +26,7 @@ entities:
                 value: auto
       - id: 2
         type: integer
-        name: target_temperature
+        name: temperature
         range:
           min: 7
           max: 40
@@ -38,42 +38,3 @@ entities:
         type: string
         name: mode
         hidden: true
-  - entity: switch
-    name: Power
-    icon: "mdi:power"
-    dps:
-      - id: 1
-        name: switch
-        type: boolean
-  - entity: sensor
-    name: Target Temperature
-    device_class: temperature
-    unit_of_measurement: "°C"
-    dps:
-      - id: 2
-        name: sensor
-        type: integer
-  - entity: sensor
-    name: Current Temperature  
-    device_class: temperature
-    unit_of_measurement: "°C"
-    dps:
-      - id: 3
-        name: sensor
-        type: integer
-  - entity: select
-    name: Mode
-    icon: "mdi:thermostat"
-    dps:
-      - id: 4
-        name: option
-        type: string
-        mapping:
-          - dps_val: hot
-            value: Hot
-          - dps_val: cold  
-            value: Cold
-          - dps_val: eco
-            value: Eco
-          - dps_val: auto
-            value: Auto
