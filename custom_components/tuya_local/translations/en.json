@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life cloud-assisted device setup.",
-                "manual": "Manually provide device connection information."
+                "manual": "Manually provide device connection information.",
+                "cloud_fresh_login": "Smart Life cloud-assisted device setup with fresh login."
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Heat pump mode",
+                "state": {
+                    "off": "Off",
+                    "heat": "Heat",
+                    "cool": "Cool",
+                    "floor_heat": "Floor heat",
+                    "auto": "Auto",
+                    "hotwater": "Hot water",
+                    "hotwater_cool": "Hot water & Cool",
+                    "hotwater_heat": "Hot water & Heat",
+                    "hotwater_auto": "Hot water & Auto",
+                    "hotwater_floor_heat": "Hot water & Floor heat"
+                }
+            },
             "initial_state": {
                 "name": "Initial state",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "Green tea",
                     "coffee": "Coffee",
                     "honey_water": "Honey water",
-                    "infant_formula": "Infant formula"
+                    "infant_formula": "Infant formula",
+                    "white_tea": "White tea",
+                    "oolong_tea": "Oolong tea"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Light mode",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "state": "State",
+                    "locator": "Locator"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "Scene"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Water heater",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "off": "Off",
-                            "heat": "Heat",
-                            "cool": "Cool",
-                            "auto": "Auto",
-                            "hotwater": "Hot water",
-                            "hotwater_cool": "Hot water & Cool",
-                            "hotwater_heat": "Hot water & Heat",
-                            "hotwater_auto": "Hot water & Auto"
-                        }
-                    }
-                }
+                "name": "Water heater"
             },
             "kettle": {
                 "name": "Kettle"

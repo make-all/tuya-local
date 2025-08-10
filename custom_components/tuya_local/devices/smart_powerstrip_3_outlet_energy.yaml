@@ -17,14 +17,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 41
-        type: string
-        name: cycle_timer
-        optional: true
-      - id: 42
-        type: string
-        name: random_timer
-        optional: true
   - entity: switch
     class: outlet
     translation_key: outlet_x
@@ -43,12 +35,58 @@ entities:
       - id: 3
         type: boolean
         name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 41
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 42
+        type: string
+        name: random_timer
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
     class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
     dps:
       - id: 9
         type: integer
@@ -66,6 +104,8 @@ entities:
     translation_key: timer_x
     translation_placeholders:
       x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
     dps:
       - id: 10
         type: integer
@@ -83,6 +123,8 @@ entities:
     translation_key: timer_x
     translation_placeholders:
       x: "3"
+    # 2025-07-20
+    deprecated: time.timer_3
     dps:
       - id: 11
         type: integer

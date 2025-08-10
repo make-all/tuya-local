@@ -1,0 +1,187 @@
+name: Pet fountain
+products:
+  - id: vjuxcwidghe5tmin
+    manufacturer: Hapaw
+    model: P002
+entities:
+  - entity: switch
+    icon: "mdi:paw"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Mode
+    icon: "mdi:paw"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: smart
+            value: Smart
+          - dps_val: night
+            value: Night
+          - dps_val: pir
+            value: PIR
+  - entity: sensor
+    name: Filter remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: d
+        class: measurement
+      - id: 7
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: Maintenance due
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: d
+        class: measurement
+  - entity: button
+    name: Filter reset
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: button
+  - entity: button
+    name: Maintenance reset
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: button
+  - entity: number
+    name: Filter life
+    category: config
+    class: duration
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 90
+  - entity: number
+    name: Maintenance interval
+    category: config
+    icon: "mdi:"
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 31
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 20
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: strong_power
+            value: true
+          - dps_val: battery_power
+            value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: select
+    name: Cleaning interval
+    translation_key: timer
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "24"
+            value: "24h"
+          - dps_val: "48"
+            value: "48h"
+  - entity: sensor
+    name: Drank
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        unit: times
+  - entity: binary_sensor
+    name: Dirty water
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: man
+            value: true
+          - dps_val: bu_man
+            value: false
+  - entity: binary_sensor
+    name: Purification
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: true
+          - dps_val: high
+            value: false
+  - entity: button
+    name: Manual water
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: button
+  - entity: switch
+    name: Heat
+    icon: "mdi:heatwave"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch

@@ -119,6 +119,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("format"): [FORMAT_SCHEMA],
         vol.Optional("mask"): str,
         vol.Optional("endianness"): vol.In(["little"]),
+        vol.Optional("mask_signed"): True,
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -144,6 +145,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "siren",
                 "switch",
                 "text",
+                "time",
                 "vacuum",
                 "valve",
                 "water_heater",
@@ -262,6 +264,7 @@ KNOWN_DPS = {
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "text": {"required": ["value"], "optional": []},
+    "time": {"required": [{"or": ["hour", "minute", "second"]}], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [

@@ -4,20 +4,14 @@ products:
     manufacturer: Atorch
     model: S1BW
 entities:
-  - entity: switch
-    class: outlet
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: sensor
         optional: true
-      - id: 131
-        type: string
-        name: available
-        mapping:
-          - dps_val: auto
-            value: false
-          - value: true
   - entity: number
     category: config
     class: duration
@@ -422,7 +416,6 @@ entities:
           min: 60
           max: 359940
   - entity: select
-    category: config
     name: Switch state
     dps:
       - id: 131

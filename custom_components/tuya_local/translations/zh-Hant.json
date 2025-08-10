@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life雲端輔助設備設定。",
-                "manual": "手動提供設備連接資訊。"
+                "manual": "手動提供設備連接資訊。",
+                "cloud_fresh_login": "Smart Life雲端輔助設備設定（新登入）。"
             }
         }
     },
@@ -421,6 +422,21 @@
                     "gbp": "英鎊"
                 }
             },
+            "heat_pump_mode": {
+                "name": "熱泵模式",
+                "state": {
+                    "heat": "加熱",
+                    "cool": "冷卻",
+                    "auto": "自動",
+                    "floor_heat": "地板加熱",
+                    "off": "關",
+                    "hotwater": "熱水",
+                    "hotwater_cool": "熱水冷卻",
+                    "hotwater_heat": "熱水加熱",
+                    "hotwater_auto": "熱水自動",
+                    "hotwater_floor_heat": "熱水地板加熱"
+                }
+            },
             "initial_state": {
                 "name": "初始狀態",
                 "state": {
@@ -444,7 +460,9 @@
                     "green_tea": "綠茶",
                     "coffee": "咖啡",
                     "honey_water": "蜂蜜水",
-                    "infant_formula": "嬰兒配方奶"
+                    "infant_formula": "嬰兒配方奶",
+                    "white_tea": "白茶",
+                    "oolong_tea": "烏龍茶"
                 }
             },
             "language": {
@@ -463,6 +481,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "燈光模式",
+                "state": {
+                    "off": "關",
+                    "on": "開",
+                    "state": "狀態",
+                    "locator": "定位"
                 }
             },
             "mopping": {
@@ -785,23 +812,17 @@
                 "name": "場景"
             }
         },
+        "time": {
+            "timer": {
+                "name": "計時器"
+            },
+            "timer_x": {
+                "name": "計時器{x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "熱水器",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "加熱",
-                            "cool": "冷卻",
-                            "auto": "自動",
-                            "off": "關",
-                            "hotwater": "熱水",
-                            "hotwater_cool": "熱水冷卻",
-                            "hotwater_heat": "熱水加熱",
-                            "hotwater_auto": "熱水自動"
-                        }
-                    }
-                }
+                "name": "熱水器"
             },
             "kettle": {
                 "name": "水壺"

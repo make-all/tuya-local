@@ -25,9 +25,14 @@ entities:
             value: feeding
           - dps_val: feed_end
             value: feeding_complete
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        name: meal_plan
-        type: string
+        type: base64
+        name: value
         optional: true
   - entity: number
     name: Manual feed

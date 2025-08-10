@@ -68,35 +68,6 @@ entities:
             value: "45°"
           - dps_val: "90"
             value: "90°"
-  - entity: fan
-    translation_only_key: fan_with_presets
-    # 2024-12-22
-    deprecated: select_direction
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-      - id: 102
-        name: preset_mode
-        type: string
-        optional: true
-        mapping:
-          - dps_val: "45"
-            value: sleep
-          - dps_val: "90"
-            value: fresh
-          - dps_val: "0_90"
-            value: nature
-      - id: 102
-        name: oscillate
-        type: string
-        optional: true
-        mapping:
-          - dps_val: "0_90"
-            value: true
-          - dps_val: "90"
-            value: false
-          - value: false
   - entity: switch
     translation_key: uv_sterilization
     dps:

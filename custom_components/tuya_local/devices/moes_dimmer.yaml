@@ -44,8 +44,7 @@ entities:
           - dps_val: halogen
             value: Halogen
   - entity: select
-    name: Backlight mode
-    icon: "mdi:circle-outline"
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -53,8 +52,8 @@ entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: Status
+            value: state
           - dps_val: pos
-            value: Locator
+            value: locator

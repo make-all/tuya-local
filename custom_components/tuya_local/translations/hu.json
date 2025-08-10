@@ -75,7 +75,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life felhő által támogatott eszközbeállítás.",
-                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait."
+                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait.",
+                "cloud_fresh_login": "Smart Life felhő által támogatott eszközbeállítás, friss bejelentkezés."
             }
         }
     },
@@ -421,6 +422,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Hőszivattyú mód",
+                "state": {
+                    "heat": "Fűtés",
+                    "cool": "Hűtés",
+                    "auto": "Auto",
+                    "floor_heat": "Padlófűtés",
+                    "off": "Ki",
+                    "hotwater": "Meleg víz",
+                    "hotwater_cool": "Meleg víz és hűtés",
+                    "hotwater_heat": "Meleg víz és fűtés",
+                    "hotwater_auto": "Meleg víz és automatikus",
+                    "hotwater_floor_heat": "Meleg víz és padlófűtés"
+                }
+            },
             "initial_state": {
                 "name": "Kezdeti állapot",
                 "state": {
@@ -444,7 +460,9 @@
                     "green_tea": "Zöld tea",
                     "coffee": "Kávé",
                     "honey_water": "Mézes víz",
-                    "infant_formula": "Csecsemőtápszer"
+                    "infant_formula": "Csecsemőtápszer",
+                    "white_tea": "Fehér tea",
+                    "oolong_tea": "Oolong tea"
                 }
             },
             "language": {
@@ -463,6 +481,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Fény mód",
+                "state": {
+                    "off": "Ki",
+                    "on": "Be",
+                    "state": "Állapot",
+                    "locator": "Helymeghatározó"
                 }
             },
             "mopping": {
@@ -785,23 +812,17 @@
                 "name": "Jelenet"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Időzítő"
+            },
+            "timer_x": {
+                "name": "Időzítő {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Vízmelegítő",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Fűtés",
-                            "cool": "Hűtés",
-                            "auto": "Auto",
-                            "off": "Ki",
-                            "hotwater": "Meleg víz",
-                            "hotwater_cool": "Meleg víz és hűtés",
-                            "hotwater_heat": "Meleg víz és fűtés",
-                            "hotwater_auto": "Meleg víz és automatikus"
-                        }
-                    }
-                }
+                "name": "Vízmelegítő"
             },
             "kettle": {
                 "name": "Vízforraló"

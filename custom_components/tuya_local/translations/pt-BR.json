@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Configuração do dispositivo assistido pela nuvem Smart Life.",
-                "manual": "Forneça manualmente informações de conexão do dispositivo."
+                "manual": "Forneça manualmente informações de conexão do dispositivo.",
+                "cloud_fresh_login": "Configuração do dispositivo assistido pela nuvem Smart Life com novo login."
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Modo da bomba de calor",
+                "state": {
+                    "heat": "Aquecimento",
+                    "cool": "Resfriamento",
+                    "auto": "Automático",
+                    "floor_heat": "Aquecimento do chão",
+                    "off": "Desligado",
+                    "hotwater": "Água quente",
+                    "hotwater_cool": "Água quente e resfriamento",
+                    "hotwater_heat": "Aquecimento de água quente",
+                    "hotwater_auto": "Água quente automática",
+                    "hotwater_floor_heat": "Aquecimento de água quente do chão"
+                }
+            },
             "initial_state": {
                 "name": "Estado inicial",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "Chá verde",
                     "coffee": "Café",
                     "honey_water": "Água com mel",
-                    "infant_formula": "Fórmula infantil"
+                    "infant_formula": "Fórmula infantil",
+                    "white_tea": "Chá branco",
+                    "oolong_tea": "Chá oolong"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Modo de luz",
+                "state": {
+                    "off": "Desligado",
+                    "on": "Ligado",
+                    "state": "Estado",
+                    "locator": "Localizador"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "Cena"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Cronômetro"
+            },
+            "timer_x": {
+                "name": "Cronômetro {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Aquecedor de água",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Aquecimento",
-                            "cool": "Resfriamento",
-                            "auto": "Automático",
-                            "off": "Desligado",
-                            "hotwater": "Água quente",
-                            "hotwater_cool": "Água quente e resfriamento",
-                            "hotwater_heat": "Aquecimento de água quente",
-                            "hotwater_auto": "Água quente automática"
-                        }
-                    }
-                }
+                "name": "Aquecedor de água"
             },
             "kettle": {
                 "name": "Chaleira"

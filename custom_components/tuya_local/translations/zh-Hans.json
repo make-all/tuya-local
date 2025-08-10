@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life云辅助设备设置。",
-                "manual": "手动提供设备连接信息。"
+                "manual": "手动提供设备连接信息。",
+                "cloud_fresh_login": "Smart Life云辅助设备设置（新登录）。"
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "英镑"
                 }
             },
+            "heat_pump_mode": {
+                "name": "热泵模式",
+                "state": {
+                    "heat": "加热",
+                    "cool": "制冷",
+                    "auto": "自动",
+                    "floor_heat": "地板加热",
+                    "off": "关闭",
+                    "hotwater": "热水",
+                    "hotwater_cool": "热水制冷",
+                    "hotwater_heat": "热水加热",
+                    "hotwater_auto": "热水自动",
+                    "hotwater_floor_heat": "热水地板加热"
+                }
+            },
             "initial_state": {
                 "name": "初始状态",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "绿茶",
                     "coffee": "咖啡",
                     "honey_water": "蜂蜜水",
-                    "infant_formula": "婴儿配方"
+                    "infant_formula": "婴儿配方",
+                    "white_tea": "白茶",
+                    "oolong_tea": "乌龙茶"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "灯光模式",
+                "state": {
+                    "off": "关闭",
+                    "on": "打开",
+                    "state": "状态",
+                    "locator": "定位"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "场景"
             }
         },
+        "time": {
+            "timer": {
+                "name": "计时器"
+            },
+            "timer_x": {
+                "name": "计时器{x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "热水器",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "加热",
-                            "cool": "制冷",
-                            "auto": "自动",
-                            "off": "关闭",
-                            "hotwater": "热水",
-                            "hotwater_cool": "热水制冷",
-                            "hotwater_heat": "热水加热",
-                            "hotwater_auto": "热水自动"
-                        }
-                    }
-                }
+                "name": "热水器"
             },
             "kettle": {
                 "name": "电热水壶"

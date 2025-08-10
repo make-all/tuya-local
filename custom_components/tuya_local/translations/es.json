@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Configuración del dispositivo asistida por la nube Smart Life.",
-                "manual": "Proporcione manualmente información de conexión del dispositivo."
+                "manual": "Proporcione manualmente información de conexión del dispositivo.",
+                "cloud_fresh_login": "Configuración del dispositivo asistida por la nube Smart Life con inicio de sesión fresco."
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Modo de bomba de calor",
+                "state": {
+                    "cool": "Enfriar",
+                    "heat": "Calentar",
+                    "auto": "Auto",
+                    "floor_heat": "Calor de piso",
+                    "off": "Apagar",
+                    "hotwater": "Agua caliente",
+                    "hotwater_cool": "Agua caliente y enfriar",
+                    "hotwater_heat": "Agua caliente y calentar",
+                    "hotwater_auto": "Agua caliente y auto",
+                    "hotwater_floor_heat": "Agua caliente y calor de piso"
+                }
+            },
             "initial_state": {
                 "name": "Estado inicial",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "Matcha",
                     "coffee": "Café",
                     "honey_water": "Agua con miel",
-                    "infant_formula": "Fórmula infantil"
+                    "infant_formula": "Fórmula infantil",
+                    "white_tea": "Té blanco",
+                    "oolong_tea": "Té Oolong"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Modo de luz",
+                "state": {
+                    "off": "Apagar",
+                    "on": "Encender",
+                    "state": "Estado",
+                    "locator": "Localizador"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "Escena"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Temporizador"
+            },
+            "timer_x": {
+                "name": "Temporizador {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Calentador de agua",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Calor",
-                            "cool": "Frío",
-                            "auto": "Automático",
-                            "off": "Apagar",
-                            "hotwater": "Agua caliente",
-                            "hotwater_cool": "Agua caliente y frío",
-                            "hotwater_heat": "Agua caliente y calor",
-                            "hotwater_auto": "Agua caliente y automático"
-                        }
-                    }
-                }
+                "name": "Calentador de agua"
             },
             "kettle": {
                 "name": "Hervidor"

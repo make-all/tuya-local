@@ -94,5 +94,9 @@ class TestWooxR4028Powerstrip(
                 "number_timer_2",
                 "number_timer_3",
                 "number_usb_timer",
+                "time_timer_1",
+                "time_timer_2",
+                "time_timer_3",
+                "time_timer_usb",
             ]
         )

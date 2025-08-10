@@ -76,7 +76,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Хмарне налаштування пристрою Smart Life.",
-                "manual": "Вручну надайте інформацію про підключення пристрою."
+                "manual": "Вручну надайте інформацію про підключення пристрою.",
+                "cloud_fresh_login": "Хмарне налаштування пристрою Smart Life з новим входом."
             }
         }
     },
@@ -423,6 +424,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Режим теплового насоса",
+                "state": {
+                    "heat": "Нагрівання",
+                    "cool": "Охолодження",
+                    "auto": "Авто",
+                    "floor_heat": "Тепла підлога",
+                    "off": "Вимк",
+                    "hotwater": "Гаряча вода",
+                    "hotwater_cool": "Гаряча вода та охолодження",
+                    "hotwater_heat": "Гаряча вода та нагрівання",
+                    "hotwater_auto": "Гаряча вода та авто",
+                    "hotwater_floor_heat": "Гаряча вода та тепла підлога"
+                }
+            },
             "initial_state": {
                 "name": "Початковий стан",
                 "state": {
@@ -446,7 +462,9 @@
                     "green_tea": "Зелений чай",
                     "coffee": "Кава",
                     "honey_water": "Медова вода",
-                    "infant_formula": "Дитяча суміш"
+                    "infant_formula": "Дитяча суміш",
+                    "white_tea": "Білий чай",
+                    "oolong_tea": "Улун"
                 }
             },
             "language": {
@@ -465,6 +483,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Режим світла",
+                "state": {
+                    "off": "Вимк",
+                    "on": "Увімк",
+                    "state": "Стан",
+                    "locator": "Локатор"
                 }
             },
             "mopping": {
@@ -787,23 +814,17 @@
                 "name": "Сцена"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Водонагрівач",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Нагрівання",
-                            "cool": "Охолодження",
-                            "auto": "Авто",
-                            "off": "Вимк",
-                            "hotwater": "Гаряча вода",
-                            "hotwater_cool": "Гаряча вода та охолодження",
-                            "hotwater_heat": "Гаряча вода та нагрівання",
-                            "hotwater_auto": "Гаряча вода та авто"
-                        }
-                    }
-                }
+                "name": "Водонагрівач"
             },
             "kettle": {
                 "name": "Чайник"

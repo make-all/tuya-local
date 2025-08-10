@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life クラウド支援デバイスのセットアップ。",
-                "manual": "デバイスの接続情報を手動で提供します。"
+                "manual": "デバイスの接続情報を手動で提供します。",
+                "cloud_fresh_login": "Smart Life クラウド支援デバイスのセットアップ (新しいログイン)。"
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "英国ポンド"
                 }
             },
+            "heat_pump_mode": {
+                "name": "ヒートポンプモード",
+                "state": {
+                    "heat": "加熱",
+                    "cool": "冷却",
+                    "auto": "自動",
+                    "floor_heat": "床暖房",
+                    "off": "オフ",
+                    "hotwater": "給湯",
+                    "hotwater_cool": "給湯冷却",
+                    "hotwater_heat": "給湯加熱",
+                    "hotwater_auto": "給湯自動",
+                    "hotwater_floor_heat": "給湯床暖房"
+                }
+            },
             "initial_state": {
                 "name": "初期状態",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "緑茶",
                     "coffee": "コーヒー",
                     "honey_water": "蜂蜜水",
-                    "infant_formula": "乳児用調製粉乳"
+                    "infant_formula": "乳児用調製粉乳",
+                    "white_tea": "白茶",
+                    "oolong_tea": "烏龍茶"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "ライトモード",
+                "state": {
+                    "off": "オフ",
+                    "on": "オン",
+                    "state": "状態",
+                    "locator": "ロケーター"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "シーン"
             }
         },
+        "time": {
+            "timer": {
+                "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "給湯器",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "加熱",
-                            "cool": "冷却",
-                            "auto": "自動",
-                            "off": "オフ",
-                            "hotwater": "給湯",
-                            "hotwater_cool": "給湯冷却",
-                            "hotwater_heat": "給湯加熱",
-                            "hotwater_auto": "給湯自動"
-                        }
-                    }
-                }
+                "name": "給湯器"
             },
             "kettle": {
                 "name": "ケトル"

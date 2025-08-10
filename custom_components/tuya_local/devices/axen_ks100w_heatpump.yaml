@@ -165,7 +165,12 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: available
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
       - id: 104
         type: integer
         name: temperature
@@ -181,9 +186,21 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+      - id: 165
+        type: boolean
+        optional: true
+        name: away_mode
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
       - id: 109
         type: string
-        name: operation_mode
+        name: option
         mapping:
           - dps_val: cool
             value: cool
@@ -199,14 +216,6 @@ entities:
             value: hotwater_heat
           - dps_val: auto_dhw
             value: hotwater_auto
-      - id: 165
-        type: boolean
-        optional: true
-        name: away_mode
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
   - entity: sensor
     name: Inlet temperature
     class: temperature

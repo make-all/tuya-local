@@ -195,8 +195,26 @@ entities:
       - id: 110
         type: boolean
         name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 112
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
   - entity: number
     name: Timer hours
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     class: duration
     translation_key: timer
@@ -210,6 +228,8 @@ entities:
           max: 23
   - entity: number
     name: Timer minutes
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     class: duration
     translation_key: timer

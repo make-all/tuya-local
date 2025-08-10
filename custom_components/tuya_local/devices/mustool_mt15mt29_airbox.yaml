@@ -199,6 +199,7 @@ entities:
     dps:
       - id: 108
         type: integer
+        optional: true
         name: value
         unit: min
         range:
@@ -206,6 +207,8 @@ entities:
           max: 599
   - entity: number
     name: Alarm 1
+    # 2025-07-20
+    deprecated: time.alarm_1
     icon: "mdi:alarm"
     category: config
     class: duration
@@ -223,6 +226,8 @@ entities:
         name: available
   - entity: number
     name: Alarm 2
+    # 2025-07-20
+    deprecated: time.alarm_2
     category: config
     icon: "mdi:alarm"
     class: duration
@@ -240,6 +245,8 @@ entities:
         name: available
   - entity: number
     name: Alarm 3
+    # 2025-07-20
+    deprecated: time.alarm_3
     category: config
     icon: "mdi:alarm"
     class: duration
@@ -249,6 +256,48 @@ entities:
         optional: true
         name: value
         unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 118
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 1
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 116
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 2
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 117
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 3
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: minute
         range:
           min: 0
           max: 1440

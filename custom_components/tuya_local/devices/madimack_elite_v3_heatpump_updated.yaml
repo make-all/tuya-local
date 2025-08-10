@@ -195,7 +195,23 @@ entities:
         type: integer
         unit: P
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 107
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
   - entity: sensor
+    # 2025-07-22
+    deprecated: binary_sensor.problem
     category: diagnostic
     name: Fault code
     dps:

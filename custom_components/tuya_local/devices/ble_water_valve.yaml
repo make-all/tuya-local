@@ -102,6 +102,8 @@ entities:
             value: "72h"
   - entity: number
     name: Irrigation time
+    # 2025-07-20
+    deprecated: time.irrigation_time
     category: config
     class: duration
     translation_key: timer
@@ -117,6 +119,17 @@ entities:
         mapping:
           - scale: 60
             step: 60
+  - entity: time
+    name: Irrigation time
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: switch
     name: Smart weather switch
     icon: "mdi:sun-wireless"

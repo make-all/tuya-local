@@ -26,10 +26,22 @@ entities:
         name: sensor
         type: integer
         unit: s
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 105
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
   - entity: number
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 105
         type: integer

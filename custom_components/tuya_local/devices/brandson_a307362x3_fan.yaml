@@ -1,0 +1,122 @@
+name: Tower fan
+products:
+  - id: 8yxnkegycpds3zay
+    manufacturer: Brandson
+    model: Tower Fan DC motor
+    model_id: "307362"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: normal
+          - dps_val: "2"
+            value: nature
+          - dps_val: "3"
+            value: sleep
+          - dps_val: "4"
+            value: baby
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 8
+          - dps_val: "2"
+            value: 16
+          - dps_val: "3"
+            value: 25
+          - dps_val: "4"
+            value: 33
+          - dps_val: "5"
+            value: 41
+          - dps_val: "6"
+            value: 50
+          - dps_val: "7"
+            value: 58
+          - dps_val: "8"
+            value: 66
+          - dps_val: "9"
+            value: 75
+          - dps_val: "10"
+            value: 83
+          - dps_val: "11"
+            value: 91
+          - dps_val: "12"
+            value: 100
+      - id: 4
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+          - dps_val: "10"
+            value: "10h"
+          - dps_val: "11"
+            value: "11h"
+          - dps_val: "12"
+            value: "12h"
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

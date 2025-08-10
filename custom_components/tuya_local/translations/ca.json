@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Configuració del dispositiu assistida amb el núvol Smart Life.",
-                "manual": "Proporciona manualment la informació de connexió al dispositiu."
+                "manual": "Proporciona manualment la informació de connexió al dispositiu.",
+                "cloud_fresh_login": "Inicia la sessió en un altre compte de núvol de Smart Life."
             }
         }
     },
@@ -555,6 +556,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode de bomba de calor",
+                "state": {
+                    "heat": "Escalfament",
+                    "cool": "Refredament",
+                    "auto": "Automàtic",
+                    "floor_heat": "Escalfament de terra",
+                    "off": "Apagat",
+                    "hotwater": "Aigua calenta",
+                    "hotwater_cool": "Aigua calenta i refredament",
+                    "hotwater_heat": "Aigua calenta i escalfament",
+                    "hotwater_auto": "Aigua calenta i automàtic",
+                    "hotwater_floor_heat": "Aigua calenta i escalfament de terra"
+                }
+            },
             "initial_state": {
                 "name": "Estat inicial",
                 "state": {
@@ -578,7 +594,9 @@
                     "green_tea": "Te verd",
                     "coffee": "Cafè",
                     "honey_water": "Aigua amb mel",
-                    "infant_formula": "Fórmula infantil"
+                    "infant_formula": "Fórmula infantil",
+                    "white_tea": "Te blanc",
+                    "oolong_tea": "Te oolong"
                 }
             },
             "language": {
@@ -597,6 +615,15 @@
                     "japanese": "日本語",
                     "korean": "한국어",
                     "russian": "Русский"
+                }
+            },
+            "light_mode": {
+                "name": "Mode de llum",
+                "state": {
+                    "off": "Apagat",
+                    "on": "Activat",
+                    "state": "Estat",
+                    "locator": "Localitzador"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "Escena"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Temporitzador"
+            },
+            "timer_x": {
+                "name": "Temporitzador {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Escalfador d'aigua",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Escalfament",
-                            "cool": "Refredament",
-                            "auto": "Automàtic",
-                            "off": "Apagat",
-                            "hotwater": "Aigua calenta",
-                            "hotwater_cool": "Aigua calenta i refredament",
-                            "hotwater_heat": "Aigua calenta i escalfament",
-                            "hotwater_auto": "Aigua calenta i automàtic"
-                        }
-                    }
-                }
+                "name": "Escalfador d'aigua"
             },
             "kettle": {
                 "name": "Bullidor d'aigua"

@@ -75,7 +75,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Smart Life sky-assistert enhetsoppsett.",
-                "manual": "Oppgi informasjon om enhetstilkobling manuelt."
+                "manual": "Oppgi informasjon om enhetstilkobling manuelt.",
+                "cloud_fresh_login": "Smart Life sky-assistert enhetsoppsett med ny pålogging."
             }
         }
     },
@@ -421,6 +422,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Varme pumpe modus",
+                "state": {
+                    "heat": "Varm",
+                    "cool": "Kald",
+                    "auto": "Auto",
+                    "floor_heat": "Gulvvarme",
+                    "off": "Av",
+                    "hotwater": "Varmt vann",
+                    "hotwater_cool": "Varmt vann og kald",
+                    "hotwater_heat": "Varmt vann og varmt",
+                    "hotwater_auto": "Varmt vann og auto",
+                    "hotwater_floor_heat": "Varmt vann og gulvvarme"
+                }
+            },
             "initial_state": {
                 "name": "Starttilstand",
                 "state": {
@@ -444,7 +460,9 @@
                     "green_tea": "Grønn te",
                     "coffee": "Kaffe",
                     "honey_water": "Honningvann",
-                    "infant_formula": "Barnemat"
+                    "infant_formula": "Barnemat",
+                    "white_tea": "Hvit te",
+                    "oolong_tea": "Oolong te"
                 }
             },
             "language": {
@@ -463,6 +481,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Lysmodus",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "state": "Tilstand",
+                    "locator": "Lokaliser"
                 }
             },
             "mopping": {
@@ -785,23 +812,17 @@
                 "name": "Scene"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Vannvarmer",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Varm",
-                            "cool": "Kald",
-                            "auto": "Auto",
-                            "off": "Av",
-                            "hotwater": "Varmt vann",
-                            "hotwater_cool": "Varmt vann og kald",
-                            "hotwater_heat": "Varmt vann og varmt",
-                            "hotwater_auto": "Varmt vann og auto"
-                        }
-                    }
-                }
+                "name": "Vannvarmer"
             },
             "kettle": {
                 "name": "Vannkoker"

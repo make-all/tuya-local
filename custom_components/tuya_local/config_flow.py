@@ -73,9 +73,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             self.hass.data[DOMAIN][DATA_STORE] = {}
 
         if user_input is not None:
-            if user_input["setup_mode"] == "cloud":
+            mode = user_input.get("setup_mode")
+            if mode == "cloud" or mode == "cloud_fresh_login":
                 self.init_cloud()
                 try:
+                    if mode == "cloud_fresh_login":
+                        # Force a fresh login
+                        self.cloud.logout()
+
                     if self.cloud.is_authenticated:
                         self.__cloud_devices = await self.cloud.async_get_devices()
                         return await self.async_step_choose_device()
@@ -84,14 +89,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     _LOGGER.warning("Connection test failed with %s %s", type(e), e)
                     _LOGGER.warning("Re-authentication is required.")
                 return await self.async_step_cloud()
-            if user_input["setup_mode"] == "manual":
+            if mode == "manual":
                 return await self.async_step_local()
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
         fields[vol.Required("setup_mode")] = SelectSelector(
             SelectSelectorConfig(
-                options=["cloud", "manual"],
+                options=["cloud", "manual", "cloud_fresh_login"],
                 mode=SelectSelectorMode.LIST,
                 translation_key="setup_mode",
             )

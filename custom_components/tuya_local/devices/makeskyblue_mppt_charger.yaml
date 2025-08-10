@@ -16,7 +16,7 @@ entities:
           - dps_val: mode_1
             value: Standby
           - dps_val: mode_2
-            value: mode_2
+            value: Constant current
           - dps_val: mode_3
             value: Constant voltage
           - dps_val: mode_4
@@ -92,6 +92,16 @@ entities:
       - id: 107
         type: bitfield
         name: fault_code
+      - id: 107
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: Battery undervoltage
+          - dps_val: 2
+            value: Battery overvoltage
   - entity: sensor
     class: energy
     category: diagnostic

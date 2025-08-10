@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Penyiapan perangkat berbantuan cloud Smart Life.",
-                "manual": "Berikan informasi koneksi perangkat secara manual."
+                "manual": "Berikan informasi koneksi perangkat secara manual.",
+                "cloud_fresh_login": "Penyiapan perangkat berbantuan cloud Smart Life dengan login baru."
             }
         }
     },
@@ -420,6 +421,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode pompa panas",
+                "state": {
+                    "heat": "Pemanas",
+                    "cool": "Pendingin",
+                    "auto": "Otomatis",
+                    "floor_heat": "Pemanas lantai",
+                    "off": "Mati",
+                    "hotwater": "Air panas",
+                    "hotwater_cool": "Pendingin air panas",
+                    "hotwater_heat": "Pemanas air panas",
+                    "hotwater_auto": "Otomatis air panas",
+                    "hotwater_floor_heat": "Pemanas lantai air panas"
+                }
+            },
             "initial_state": {
                 "name": "Status awal",
                 "state": {
@@ -443,7 +459,9 @@
                     "green_tea": "Teh hijau",
                     "coffee": "Kopi",
                     "honey_water": "Air madu",
-                    "infant_formula": "Susu formula bayi"
+                    "infant_formula": "Susu formula bayi",
+                    "white_tea": "Teh putih",
+                    "oolong_tea": "Teh oolong"
                 }
             },
             "language": {
@@ -462,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Mode lampu",
+                "state": {
+                    "off": "Mati",
+                    "on": "Hidup",
+                    "state": "Status",
+                    "locator": "Penanda"
                 }
             },
             "mopping": {
@@ -784,23 +811,17 @@
                 "name": "Adegan"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Pengatur waktu"
+            },
+            "timer_x": {
+                "name": "Pengatur waktu {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Pemanas air",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Pemanas",
-                            "cool": "Pendingin",
-                            "auto": "Otomatis",
-                            "off": "Mati",
-                            "hotwater": "Air panas",
-                            "hotwater_cool": "Pendingin air panas",
-                            "hotwater_heat": "Pemanas air panas",
-                            "hotwater_auto": "Otomatis air panas"
-                        }
-                    }
-                }
+                "name": "Pemanas air"
             },
             "kettle": {
                 "name": "Ketel"

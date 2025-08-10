@@ -81,9 +81,21 @@ entities:
         type: boolean
         hidden: true
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
     class: duration
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 7

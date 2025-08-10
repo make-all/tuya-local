@@ -156,10 +156,6 @@ class TestLexyF501Fan(
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 12}):
             await self.subject.async_set_percentage(78)
 
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "5"
-        self.assertEqual(self.subject.extra_state_attributes, {"timer": 5})
-
     def test_icons(self):
         self.dps[LIGHT_DPS] = True
         self.assertEqual(self.basicLight.icon, "mdi:led-on")

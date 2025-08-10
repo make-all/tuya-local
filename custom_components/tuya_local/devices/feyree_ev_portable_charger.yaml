@@ -1,11 +1,14 @@
-name: EV portable charger
+name: EV charger
 products:
   - id: 4ooiu7apnjjumn0d
     manufacturer: Feyree
-    model: F-M24
+    model: F-M24 portable
   - id: ebdm8ax35pgodi2s
     manufacturer: Feyree
     model: 22kW 3phase
+  - id: uqmtey1qymnyzobg
+    manufacturer: Feyree
+    model: "4.3 11kW 3phase wallbox"
 entities:
   - entity: sensor
     class: enum
@@ -66,16 +69,21 @@ entities:
     dps:
       - id: 10
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 10
         type: bitfield
+        optional: true
         name: fault_code
       - id: 10
         type: bitfield
+        optional: true
         name: description
         mapping:
           - dps_val: 0
@@ -190,10 +198,10 @@ entities:
                 value_redirect: value_40a
               - dps_val: Max50A
                 value_redirect: value_50a
-              - dps_val: Max60A
-                value_redirect: value_60a
-              - dps_val: Max80A
-                value_redirect: value_80a
+                # - dps_val: Max60A
+                #   value_redirect: value_60a
+                # - dps_val: Max80A
+                #   value_redirect: value_80a
       - id: 113
         type: string
         optional: true
@@ -207,10 +215,10 @@ entities:
             value: 40
           - dps_val: Max50A
             value: 50
-          - dps_val: Max60A
-            value: 60
-          - dps_val: Max80A
-            value: 80
+            # - dps_val: Max60A
+            #   value: 60
+            # - dps_val: Max80A
+            #   value: 80
       - id: 113
         type: string
         optional: true
@@ -240,20 +248,20 @@ entities:
         range:
           min: 8
           max: 50
-      - id: 125
-        type: integer
-        optional: true
-        name: value_60a
-        range:
-          min: 8
-          max: 60
-      - id: 126
-        type: integer
-        optional: true
-        name: value_80a
-        range:
-          min: 24
-          max: 80
+          # - id: 125
+          #   type: integer
+          #   optional: true
+          #   name: value_60a
+          #   range:
+          #     min: 8
+          #     max: 60
+          # - id: 126
+          #   type: integer
+          #   optional: true
+          #   name: value_80a
+          #   range:
+          #     min: 24
+          #     max: 80
   - entity: number
     name: Charge delay
     category: config
