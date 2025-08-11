@@ -1011,4 +1011,4 @@ Further device support has been made with the assistance of users. Please consid
 - [infestonn](https://github.com/infestonn) for contributing support for Aeno EK1S kettle.
 - [stepsolar](https://github.com/stepsolar) for contributing improvements to KW02 video doorbell and support for RCU16 relay module.
 - [saberraz](https://github.com/saberraz) for contributing support for Prodotec PT02 air quality monitor, GZAIR radon gas detector.
-
+- [fender4645](https://github.com/fender4645) for contributing support for Heonofly Smart Wood ceiling fan with lights.
