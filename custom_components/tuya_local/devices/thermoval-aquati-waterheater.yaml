@@ -1,4 +1,4 @@
-name: Thermoval Aqua Ti Water Heater
+name: Electric Water Heater
 products:
   - id: jxma5t0bc0sagddh
     manufacturer: Thermoval
@@ -10,19 +10,19 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: operation_mode
+        name: water_heater_mode
         mapping:
           - dps_val: false
-            value: Off
+            value: off
           - dps_val: true
             constraint: work_mode
             conditions:
               - dps_val: Manual
-                value: Manual
+                value: manual
               - dps_val: Eco
-                value: Eco
+                value: eco
               - dps_val: Turbo
-                value: Turbo
+                value: turbo
       - id: 2
         type: string
         name: work_mode
