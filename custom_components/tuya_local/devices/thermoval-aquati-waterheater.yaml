@@ -10,19 +10,12 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: water_heater_mode
+        name: operation_mode
         mapping:
           - dps_val: false
-            value: off
+            value: "off"
           - dps_val: true
-            constraint: work_mode
-            conditions:
-              - dps_val: Manual
-                value: manual
-              - dps_val: Eco
-                value: eco
-              - dps_val: Turbo
-                value: turbo
+            value: electric
       - id: 2
         type: string
         name: work_mode
@@ -39,6 +32,19 @@ entities:
       - id: 10
         type: integer
         name: current_temperature
+  - entity: select
+    translation_key: water_heater_mode
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: Manual
+            value: "manual"
+          - dps_val: Eco
+            value: "eco"
+          - dps_val: Turbo
+            value: "turbo"
   - entity: binary_sensor
     class: problem
     category: diagnostic
