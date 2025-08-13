@@ -1,11 +1,8 @@
-name: PC473 3-Phase Energy Monitor
+name: Energy monitor
 products:
   - id: vnxcwomqkofjhjcc
     manufacturer: EARU
     model: PC473-R-W-TY
-
-primary_entity: sensor
-
 entities:
   - entity: switch
     dps:
@@ -286,7 +283,6 @@ entities:
         mapping:
           - scale: 100
 
-
   - entity: sensor
     class: energy
     dps:
@@ -326,11 +322,9 @@ entities:
         mapping:
           - scale: 1000
 
-
   - entity: sensor
     category: diagnostic
     class: frequency
-    name: Frequency
     dps:
       - id: 122
         type: integer
@@ -375,7 +369,7 @@ entities:
           - scale: 100
 
   - entity: number
-    name: Max power protection Phase A value
+    name: Power limit A
     dps:
       - id: 125
         type: integer
@@ -386,9 +380,12 @@ entities:
           max: 100
         mapping:
           - scale: 1000
+      - id: 128
+        type: boolean
+        name: available
 
   - entity: number
-    name: Max power protection Phase B value
+    name: Power limit B
     dps:
       - id: 126
         type: integer
@@ -399,9 +396,12 @@ entities:
           max: 100
         mapping:
           - scale: 1000
+      - id: 129
+        type: boolean
+        name: available
 
   - entity: number
-    name: Max power protection Phase C value
+    name: Power limit C
     dps:
       - id: 127
         type: integer
@@ -412,23 +412,26 @@ entities:
           max: 100
         mapping:
           - scale: 1000
+      - id: 130
+        type: boolean
+        name: available
 
   - entity: switch
-    name: Max power protection Phase A enabled
+    name: Limit power A
     dps:
       - id: 128
         type: boolean
         name: switch
 
   - entity: switch
-    name: Max power protection Phase B enabled
+    name: Limit power B
     dps:
       - id: 129
         type: boolean
         name: switch
 
   - entity: switch
-    name: Max power protection Phase C enabled
+    name: Limit power C
     dps:
       - id: 130
         type: boolean
