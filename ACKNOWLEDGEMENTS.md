@@ -1015,3 +1015,4 @@ Further device support has been made with the assistance of users. Please consid
 - [JakubMadro](https://github.com/JakubMadro) for contributing support for EARU PC473 3-phase energy monitor.
 - [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
 - [KoenVanduffel](https://github.com/KoenVanduffel) for assisting with support for Oscal PowerMax 6000 portable power station.
+- [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches.
