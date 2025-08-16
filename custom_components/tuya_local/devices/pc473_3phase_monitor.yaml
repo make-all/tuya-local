@@ -9,7 +9,39 @@ entities:
       - id: 1
         type: boolean
         name: switch
-
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -335,17 +367,21 @@ entities:
 
   - entity: sensor
     category: diagnostic
-    class: power
-    name: Power generation
+    class: enum
+    translation_key: status
     dps:
       - id: 123
-        type: integer
+        type: string
         name: sensor
-        unit: kW
-        class: measurement
         mapping:
-          - scale: 100
-
+          - dps_val: "0"
+            value: "unknown_0"
+          - dps_val: "1"
+            value: "unknown_1"
+          - dps_val: "2"
+            value: "unknown_2"
+          - dps_val: "3"
+            value: "unknown_3"
   - entity: sensor
     translation_key: energy_produced
     class: energy
