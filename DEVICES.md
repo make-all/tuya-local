@@ -1091,6 +1091,7 @@ port and password.
 - TCS024B plant moisture sensor
 - TH05 temperature and humidity sensor
 - THB2 temperature and humidity sensor
+- Unistyle WT-04W water timer
 - XCase NX-4964 lock box
 - YL01 water quality tester
 - YSG BS01 lock

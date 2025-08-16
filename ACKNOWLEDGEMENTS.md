@@ -1013,3 +1013,4 @@ Further device support has been made with the assistance of users. Please consid
 - [saberraz](https://github.com/saberraz) for contributing support for Prodotec PT02 air quality monitor, GZAIR radon gas detector.
 - [fender4645](https://github.com/fender4645) for contributing support for Heonofly Smart Wood ceiling fan with lights.
 - [JakubMadro](https://github.com/JakubMadro) for contributing support for EARU PC473 3-phase energy monitor.
+- [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
