@@ -2,8 +2,8 @@ name: Electric Water Heater
 products:
   - id: jxma5t0bc0sagddh
     manufacturer: Thermoval
-    model_id: "WS-42S-2"
-    model: "Aqua Ti Water Heater"
+    model_id: WS-42S-2
+    model: Aqua Ti
 entities:
   - entity: water_heater
     translation_key: water_air
@@ -15,7 +15,14 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: electric
+            constraint: work_mode
+            conditions:
+              - dps_val: Manual
+                value: electric
+              - dps_val: Eco
+                value: eco
+              - dps_val: Turbo
+                value: performance
       - id: 2
         type: string
         name: work_mode
@@ -32,19 +39,6 @@ entities:
       - id: 10
         type: integer
         name: current_temperature
-  - entity: select
-    translation_key: water_heater_mode
-    dps:
-      - id: 2
-        type: string
-        name: option
-        mapping:
-          - dps_val: Manual
-            value: "manual"
-          - dps_val: Eco
-            value: "eco"
-          - dps_val: Turbo
-            value: "turbo"
   - entity: binary_sensor
     class: problem
     category: diagnostic
