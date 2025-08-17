@@ -929,7 +929,7 @@ port and password.
 - PetSnowy Snow+ litter box
 - PetsPride OO15 pet feeder with camera
 - PNI water feeder
-- Puppy Kitty automatic pet feeder
+- Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain

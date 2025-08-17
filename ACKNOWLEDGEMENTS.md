@@ -1016,3 +1016,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
 - [KoenVanduffel](https://github.com/KoenVanduffel) for assisting with support for Oscal PowerMax 6000 portable power station.
 - [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches.
+- [AFumi39](https://github.com/AFumi39) for contributing support for Puppy Kitty F14-W pet feeder.
