@@ -171,6 +171,7 @@
 - Sanden GAU-A45HPD WiFi heat pump controller
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermex IF series V pro and Lima 80V hot water systems
+- Thermoval Aqua TI water heater
 
 ### Thermostats
 
