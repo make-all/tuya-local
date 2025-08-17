@@ -14,10 +14,22 @@ entities:
         range:
           min: 1
           max: 100
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 2
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 2
         name: value

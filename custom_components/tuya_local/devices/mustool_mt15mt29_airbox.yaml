@@ -1,0 +1,398 @@
+name: AirBox
+products:
+  - id: owmkja70doamcxkh
+    manufacturer: Mustool
+    model: MT15/MT29
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: level_1
+            value: excellent
+          - dps_val: level_2
+            value: good
+          - dps_val: level_3
+            value: poor
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    name: Formaldehyde
+    class: volatile_organic_compounds
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm1
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 23
+        type: boolean
+        name: sensor
+  - entity: select
+    name: Alarm volume
+    icon: "mdi:alarm-multiple"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: mute
+            value: mute
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: brightness
+        mapping:
+          - dps_val: level_1
+            value: 64
+          - dps_val: level_2
+            value: 128
+          - dps_val: level_3
+            value: 192
+          - dps_val: level_4
+            value: 255
+  - entity: number
+    name: CO2 alarm threshold
+    category: config
+    class: carbon_dioxide
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 500
+          max: 3000
+        mapping:
+          - step: 100
+      - id: 106
+        type: boolean
+        name: available
+  - entity: number
+    name: Sleep timer
+    category: config
+    class: duration
+    icon: "mdi:bed-clock"
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    icon: "mdi:bullhorn"
+    name: Enable alarms
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: PM 0.3
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 599
+  - entity: number
+    name: Alarm 1
+    # 2025-07-20
+    deprecated: time.alarm_1
+    icon: "mdi:alarm"
+    category: config
+    class: duration
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 116
+        type: boolean
+        name: available
+  - entity: number
+    name: Alarm 2
+    # 2025-07-20
+    deprecated: time.alarm_2
+    category: config
+    icon: "mdi:alarm"
+    class: duration
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 117
+        type: boolean
+        name: available
+  - entity: number
+    name: Alarm 3
+    # 2025-07-20
+    deprecated: time.alarm_3
+    category: config
+    icon: "mdi:alarm"
+    class: duration
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+      - id: 118
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 1
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 116
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 2
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 117
+        type: boolean
+        name: available
+  - entity: time
+    name: Alarm 3
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 118
+        type: boolean
+        name: available
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: CO alarm threshold
+    class: carbon_monoxide
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 10
+          max: 500
+        mapping:
+          - step: 10
+      - id: 106
+        type: boolean
+        name: available
+  - entity: number
+    name: PM2.5 alarm threshold
+    category: config
+    class: pm25
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 50
+          max: 300
+        mapping:
+          - step: 10
+      - id: 106
+        type: boolean
+        name: available
+  - entity: number
+    name: Formaldehyde alarm threshold
+    category: config
+    icon: "mdi:alert"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 8
+          max: 199
+        mapping:
+          - scale: 0.1
+      - id: 106
+        type: boolean
+        name: available
+  - entity: switch
+    name: Alarm 1
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Alarm 2
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Alarm 3
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: switch

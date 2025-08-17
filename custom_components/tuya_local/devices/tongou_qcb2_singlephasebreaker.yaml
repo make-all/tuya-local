@@ -147,6 +147,8 @@ entities:
   - entity: switch
     category: config
     name: Live updates
+    # Deprecated 2025-04-01
+    deprecated: button
     icon: "mdi:chart-bar"
     dps:
       - id: 109
@@ -160,6 +162,19 @@ entities:
             value: false
           - value: false
             hidden: true
+  - entity: button
+    category: config
+    name: Live updates
+    icon: "mdi:chart-bar"
+    dps:
+      - id: 109
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: online
+            value: true
+          - value: false
   - entity: event
     dps:
       - id: 110

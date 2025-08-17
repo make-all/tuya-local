@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Nastavte sve lokální zařízení",
-                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace Smart Life.",
+                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace SmartLife.",
                 "data": {
                     "setup_mode": "Možnost nastavení:"
                 }
             },
             "cloud": {
                 "title": "Přihlaste se do Tuya",
-                "description": "Zadejte svůj uživatelský kód Smart Life nebo Tuya Smart.\n\nTento kód najdete v aplikaci Smart Life nebo Tuya Smart na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
+                "description": "Zadejte svůj uživatelský kód SmartLife nebo Tuya.\n\nTento kód najdete v aplikaci SmartLife nebo Tuya na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
                 "data": {
                     "user_code": "Uživatelský kód:"
                 }
             },
             "scan": {
                 "title": "Dokončete přihlášení",
-                "description": "Pomocí aplikace Smart Life nebo Tuya Smart naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
+                "description": "Pomocí aplikace SmartLife nebo Tuya naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
             },
             "choose_device": {
                 "title": "Vyberte zařízení",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Nastavení zařízení pomocí cloudu Smart Life.",
-                "manual": "Ručně zadejte informace o připojení zařízení."
+                "cloud": "Nastavení zařízení pomocí cloudu SmartLife.",
+                "manual": "Ručně zadejte informace o připojení zařízení.",
+                "cloud_fresh_login": "Přihlaste se pomocí jiného účtu SmartLife nebo Tuya."
             }
         }
     },
@@ -162,6 +163,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "Klimatizace",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -217,6 +219,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Ohřívač",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Úroveň vytápění",
@@ -317,7 +320,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "Odvlhčovač",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Očistit",
+                            "dehumidify": "Odvlhčovat"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Ventilátor",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -328,6 +343,7 @@
                             "fresh": "Svěží",
                             "smart": "Chytrý",
                             "strong": "Silný",
+                            "custom": "Vlastní",
                             "high": "Vysoký",
                             "medium": "Střední",
                             "low": "Nízký",
@@ -395,12 +411,57 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "Měna",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Režim tepelného čerpadla",
+                "state": {
+                    "heat": "Ohřátí",
+                    "cool": "Chlazení",
+                    "auto": "Auto",
+                    "floor_heat": "Tepelná podlaha",
+                    "off": "Vypnuto",
+                    "hotwater": "Horká voda",
+                    "hotwater_cool": "Horká voda chlazení",
+                    "hotwater_heat": "Horká voda ohřátí",
+                    "hotwater_auto": "Horká voda auto",
+                    "hotwater_floor_heat": "Horká voda tepelná podlaha"
+                }
+            },
             "initial_state": {
                 "name": "Počáteční stav",
                 "state": {
                     "off": "Vypnuto",
                     "on": "Zapnuto",
                     "memory": "Paměť"
+                }
+            },
+            "kettle_mode": {
+                "name": "Režim konvice",
+                "state": {
+                    "off": "Vypnuto",
+                    "heat": "Ohřátí",
+                    "boil": "Vaření",
+                    "quick_heat": "Rychlé ohřátí",
+                    "quick_boil": "Rychlé vaření",
+                    "keep_warm": "Udržování tepla",
+                    "custom": "Vlastní",
+                    "dechlorinate": "Odstranění chlóru",
+                    "black_tea": "Černý čaj",
+                    "green_tea": "Zelený čaj",
+                    "coffee": "Káva",
+                    "honey_water": "Med",
+                    "infant_formula": "Dětská výživa",
+                    "white_tea": "Bílý čaj",
+                    "oolong_tea": "Oolong čaj"
                 }
             },
             "language": {
@@ -419,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Režim světla",
+                "state": {
+                    "off": "Vypnuto",
+                    "on": "Zapnuto",
+                    "state": "Stav",
+                    "locator": "Lokalizátor"
                 }
             },
             "mopping": {
@@ -482,6 +552,9 @@
                 "state": {
                     "cancel": "Zrušit",
                     "continuous": "Nepřetržitý",
+                    "30s": "30 sekund",
+                    "1m": "1 minuta",
+                    "2m": "2 minuty",
                     "5m": "5 minut",
                     "10m": "10 minut",
                     "20m": "20 minut",
@@ -522,7 +595,14 @@
                     "24h": "24 hodin",
                     "36h": "36 hodin",
                     "48h": "48 hodin",
-                    "72h": "72 hodin"
+                    "72h": "72 hodin",
+                    "1d": "1 den",
+                    "2d": "2 dny",
+                    "3d": "3 dny",
+                    "4d": "4 dny",
+                    "5d": "5 dní",
+                    "6d": "6 dní",
+                    "7d": "7 dní"
                 }
             },
             "temperature_unit": {
@@ -587,6 +667,7 @@
                     "plugged_in": "Zapojeno",
                     "fault_unplugged": "Chyba (Odpojeno)",
                     "charging": "Nabíjení",
+                    "discharging": "Vybíjení",
                     "waiting": "Čekání",
                     "charged": "Nabitý",
                     "fault": "Chyba",
@@ -646,11 +727,23 @@
                     "close": "Zavřeno",
                     "monitor": "Monitor",
                     "working": "Pracuje",
-                    "warning": "Varování"
+                    "warning": "Varování",
+                    "starting": "Začíná",
+                    "emptying": "Vyprazdňování",
+                    "resetting": "Resetování",
+                    "reverse": "Obrácený",
+                    "full": "Plný",
+                    "empty": "Prázdný",
+                    "missing": "Chybí",
+                    "formatting": "Formátování",
+                    "unformatted": "Neformátováno"
                 }
             },
             "time_remaining": {
                 "name": "Zbývající čas"
+            },
+            "time_remaining_x": {
+                "name": "Zbývající čas {x}"
             },
             "cooking_status": {
                 "name": "Vaření",
@@ -727,6 +820,27 @@
         "text": {
             "scene": {
                 "name": "Scéna"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Časovač"
+            },
+            "timer_x": {
+                "name": "Časovač {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Ohřívač vody"
+            },
+            "kettle": {
+                "name": "Konvice"
             }
         }
     }

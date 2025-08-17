@@ -1,0 +1,114 @@
+name: PCIe controller
+products:
+  - id: ycsoojvkvwipbubo
+    manufacturer: BTBcoin
+    model: AC5299
+entities:
+  - entity: switch
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Force shutdown
+    icon: "mdi:power-off"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: switch
+    name: Auto power-on
+    icon: "mdi:refresh-auto"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: lock
+  - entity: button
+    name: Reset
+    class: restart
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+        precision: 0
+        mapping:
+          - scale: 0.016667
+  - entity: sensor
+    class: enum
+    translation_key: status
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: power_on
+            value: working
+          - dps_val: power_off
+            value: "off"
+          - dps_val: booting
+            value: starting
+          - dps_val: shutting
+            value: standby
+          - dps_val: restarting
+            value: resetting
+          - dps_val: forced_off
+            value: close
+          - dps_val: down_failure
+            value: fault
+          - dps_val: on_failuer
+            value: warning
+          - dps_val: forced_failure
+            value: blocked
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400

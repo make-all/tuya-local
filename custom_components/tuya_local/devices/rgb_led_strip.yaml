@@ -14,6 +14,10 @@ products:
     name: Sunset lamp
   - id: whomcoylqdl8r4jw
     manufacturer: Nince
+  - id: 1pxpwqg6ddyqifkr
+    manufacturer: Serene
+    model: ColorPlus
+    name: Aquarium light
 entities:
   - entity: light
     dps:
@@ -55,8 +59,21 @@ entities:
             range:
               min: 0
               max: 1000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -176,3 +193,23 @@ entities:
             value: "Easter"
           - dps_val: "28525201011303e803e800000000525201001e03e803e800000000"
             value: "Halloween"
+          - dps_val: "006262020000000003e800000000626202002c008203de00000000"
+            value: "Aquarium daylight"
+          - dps_val: "01565602002c008203de00000000565602012c012c022600000000"
+            value: "Aquarium sunrise"
+          - dps_val: "0262620200f003e803e80000000062620200e5035c00e600000000"
+            value: "Aquarium moonlight"
+          - dps_val: "0366660200d100a0026c0000000066660200c102bc01ae00000000\
+              66660200bb03c0035c00000000"
+            value: "Aquarium rain storm"
+          - dps_val: "046666020000000003e80000000066660200c7004603a200000000\
+              666602002c008203de00000000"
+            value: "Aquarium cloudy"
+          - dps_val: "0666660200e6038e03e80000000066660200fe03ca025800000000\
+              66660200c9035203e800000000"
+            value: "Aquarium glow"
+          - dps_val: "0762620200d002940384000000006262020000000003e800000000"
+            value: "Aquarium stream"
+          - dps_val: "0866660200d7033402440000000066660200c603e801f400000000\
+              666602011702b2023a00000000"
+            value: "Aquarium deepwater"

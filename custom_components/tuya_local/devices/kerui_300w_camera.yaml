@@ -68,16 +68,6 @@ entities:
           - dps_val: null
             value: false
             hidden: true
-  - entity: switch
-    name: Privacy
-    icon: "mdi:incognito"
-    category: config
-    # 2024-10-28
-    deprecated: camera switch
-    dps:
-      - id: 105
-        type: boolean
-        name: switch
   - entity: select
     name: Motion sensitivity
     icon: "mdi:motion-sensor"
@@ -117,6 +107,7 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     icon: "mdi:micro-sd"
     dps:
@@ -125,17 +116,17 @@ entities:
         name: sensor
         mapping:
           - dps_val: 1
-            value: Normal
+            value: normal
           - dps_val: 2
-            value: Corrupt
+            value: fault
           - dps_val: 3
-            value: Full
+            value: full
           - dps_val: 4
-            value: Formatting
+            value: formatting
           - dps_val: 5
-            value: Missing
+            value: missing
           - dps_val: null
-            value: Normal
+            value: normal
       - id: 109
         type: string
         name: capacity
@@ -177,35 +168,6 @@ entities:
         name: button
         optional: true
         persist: false
-  - entity: select
-    name: PTZ control
-    # 2024-11-02
-    deprecated: buttons
-    icon: "mdi:camera-control"
-    category: config
-    dps:
-      - id: 119
-        type: string
-        name: option
-        optional: true
-        persist: false
-        mapping:
-          - dps_val: "0"
-            value: up
-          - dps_val: "1"
-            value: right-up
-          - dps_val: "2"
-            value: right
-          - dps_val: "3"
-            value: right-down
-          - dps_val: "4"
-            value: down
-          - dps_val: "5"
-            value: left-down
-          - dps_val: "6"
-            value: left
-          - dps_val: "7"
-            value: left-up
   - entity: button
     name: PTZ up
     icon: "mdi:pan-up"

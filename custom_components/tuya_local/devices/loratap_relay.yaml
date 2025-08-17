@@ -21,8 +21,20 @@ entities:
         type: string
         name: inching
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -48,20 +60,19 @@ entities:
           - dps_val: 2
             value: memory
   - entity: select
-    name: Light Mode
+    translation_key: light_mode
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 40
         type: string
         name: option
         mapping:
           - dps_val: relay
-            value: "Indicate switch on/off"
+            value: state
           - dps_val: pos
-            value: "Indicate switch location"
+            value: locator
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

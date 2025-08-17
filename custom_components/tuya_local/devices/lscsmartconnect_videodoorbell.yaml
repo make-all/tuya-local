@@ -1,0 +1,251 @@
+name: Video doorbell
+products:
+  - id: i3olzxc2chxmlz9l
+    manufacturer: LSC Smart Connect
+    model: "3208999"
+entities:
+  - entity: switch
+    name: Watermark
+    category: config
+    icon: "mdi:watermark"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+      - id: 109
+        type: string
+        optional: true
+        name: capacity
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: call_info
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 146
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: number
+    name: Low battery threshold
+    category: config
+    icon: "mdi:battery-low"
+    dps:
+      - id: 147
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 50
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 149
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: select
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 152
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low sensitivity
+          - dps_val: "2"
+            value: Medium sensitivity
+          - dps_val: "3"
+            value: High sensitivity
+  - entity: siren
+    dps:
+      - id: 159
+        type: boolean
+        optional: true
+        name: switch
+      - id: 160
+        type: integer
+        optional: true
+        name: volume_level
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Humanoid filter
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    name: Alarm
+    icon: "mdi:alert"
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 185
+        type: string
+        optional: true
+        name: message
+  - entity: select
+    name: Anti-flicker
+    icon: "mdi:waves"
+    category: config
+    dps:
+      - id: 188
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "50Hz"
+          - dps_val: "2"
+            value: "60Hz"
+  - entity: event
+    name: Notification
+    icon: "mdi:message"
+    dps:
+      - id: 212
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: string
+        name: message
+        optional: true
+  - entity: switch
+    name: Hide voice change
+    category: config
+    dps:
+      - id: 231
+        type: boolean
+        optional: true
+        name: switch

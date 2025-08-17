@@ -1,0 +1,515 @@
+name: Solar charger
+products:
+  - id: vf7vdxbt6zd5xyuz
+    manufacturer: Demuda
+    model: LM 4048/6048
+entities:
+  # energy
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 102
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 118
+        type: string
+        name: model
+      - id: 119
+        type: string
+        name: mac_address
+  - entity: switch
+    hidden: true
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: USB
+    hidden: true
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+        optional: true
+  - entity: button
+    name: Self check
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    hidden: true
+    category: config
+    translation_key: factory_reset
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Refresh
+    dps:
+      - id: 120
+        type: boolean
+        name: button
+        optional: true
+  # configuration
+  - entity: button
+    name: Save value
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Read value
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Load
+    hidden: true
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Over-voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Under-voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Recovery voltage
+    category: config
+    class: voltage
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Charging method
+    hidden: true
+    category: config
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: mode 1
+          - dps_val: mode_2
+            value: mode 2
+          - dps_val: mode_3
+            value: mode 3
+  - entity: number
+    name: Load voltage
+    hidden: true
+    category: config
+    class: voltage
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Load power
+    hidden: true
+    category: config
+    class: power
+    dps:
+      - id: 5
+        type: integer
+        optional: true
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Load mode
+    hidden: true
+    category: config
+    dps:
+      - id: 8
+        type: string
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 9999
+  - entity: select
+    name: Battery voltage
+    category: config
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 12V
+            value: 12V-14.8V
+          - dps_val: 24V
+            value: 24V-29.6V
+          - dps_val: 36V
+            value: 36V-44.4V
+          - dps_val: 48V
+            value: 48V-59.2
+          - dps_val: auto
+            value: auto
+  - entity: select
+    name: Battery type
+    category: config
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: USE
+            value: Custom
+          - dps_val: FLD
+            value: Flooded
+          - dps_val: GEL
+            value: Gelled electrolyte
+          - dps_val: SLD
+            value: Sealed
+          - dps_val: Li
+            value: Lithium
+  - entity: number
+    name: Load time
+    category: config
+    class: duration
+    mode: box
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: Charging power
+    category: config
+    mode: box
+    class: battery
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Over-current protection
+    hidden: true
+    category: config
+    class: current
+    dps:
+      - id: 13
+        type: integer
+        optional: true
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 999
+        mapping:
+          - scale: 10
+  # diagnostic
+  - entity: sensor
+    name: Battery power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Photovoltaic voltage
+    hidden: true
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    name: Load current 2
+    hidden: true
+    class: current
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 64
+            value: false
+          - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code
+      - id: 7
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "No status"
+          - dps_val: 1
+            value: "Standby"
+          - dps_val: 2
+            value: "Bat_over-voltage"
+          - dps_val: 4
+            value: "Bat_under-voltage"
+          - dps_val: 8
+            value: "Pv_over-voltage"
+          - dps_val: 16
+            value: "Load_short-circuit"
+          - dps_val: 32
+            value: "Load_over-voltage"
+          - dps_val: 64
+            value: "Charging"
+          - dps_val: 128
+            value: "Discharging"
+  - entity: sensor
+    name: Total runtime
+    hidden: true
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Total energy
+    hidden: true
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+        unit: kWh
+        class: total
+        mapping:
+          - scale: 100
+  # base64 diagnostic
+  - entity: sensor
+    name: PV voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: PV current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: PV power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Load voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Load current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Load power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10

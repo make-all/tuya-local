@@ -3,20 +3,29 @@ products:
   - id: 5ok0wq7drlqyo2hb
     manufacturer: Yieryi
     model: YY-9909
+  - id: kyzep93ngjs4up3b
+    manufacturer: RC Yago
+    model: PH-W3988
 entities:
   - entity: sensor
-    name: pH
-    icon: "mdi:ph"
+    class: ph
     dps:
       - id: 102
         type: integer
         name: sensor
-        unit: pH
         class: measurement
         mapping:
           - scale: 100
           - dps_val: 1500
             value: null
+      - id: 101
+        type: string
+        optional: true
+        mask: "01000000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
     class: temperature
     dps:
@@ -27,6 +36,14 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+      - id: 101
+        type: string
+        optional: true
+        mask: "00010000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
     name: Total disolved solids
     dps:
@@ -35,7 +52,16 @@ entities:
         name: sensor
         unit: ppm
         class: measurement
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000100000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
+    class: conductivity
     name: Electrical conductivity
     dps:
       - id: 110
@@ -43,6 +69,18 @@ entities:
         name: sensor
         unit: µS/cm
         class: measurement
+      - id: 136
+        type: integer
+        optional: true
+        name: cf
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000001000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
     name: Salinity
     dps:
@@ -51,6 +89,14 @@ entities:
         name: sensor
         unit: ppm
         class: measurement
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000010000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
     name: Specific gravity
     dps:
@@ -61,6 +107,14 @@ entities:
         unit: g/ml
         mapping:
           - scale: 1000
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000100"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
   - entity: sensor
     name: Oxidation reduction potential
     dps:
@@ -69,3 +123,384 @@ entities:
         name: sensor
         unit: mV
         class: measurement
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000001"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+  - entity: sensor
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: Maximum pH
+    class: ph
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+      - id: 101
+        type: string
+        optional: true
+        mask: "01000000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Minimum pH
+    class: ph
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+      - id: 101
+        type: string
+        optional: true
+        mask: "01000000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Maximum temperature
+    class: temperature
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: -100
+          max: 1100
+        mapping:
+          - scale: 10
+      - id: 101
+        type: string
+        optional: true
+        mask: "00010000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Minimum temperature
+    class: temperature
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: -100
+          max: 1100
+        mapping:
+          - scale: 10
+      - id: 101
+        type: string
+        optional: true
+        mask: "00010000000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Maximum TDS
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000100000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Minimum TDS
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000100000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    class: conductivity
+    name: Maximum EC
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: µS/cm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000001000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    class: conductivity
+    name: Minimum EC
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: µS/cm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000001000000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Maximum salinity
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000010000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Minimum salinity
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 0
+          max: 199999
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000010000"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Maximum specific gravity
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 500
+          max: 2000
+        unit: g/ml
+        mapping:
+          - scale: 1000
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000100"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Minimum specific gravity
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 118
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 500
+          max: 2000
+        unit: g/ml
+        mapping:
+          - scale: 1000
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000100"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Maximum ORP
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 120
+        type: integer
+        optional: true
+        name: value
+        unit: mV
+        range:
+          min: -2000
+          max: 2000
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000001"
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+  - entity: number
+    name: Minimum ORP
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: value
+        unit: mV
+        range:
+          min: -2000
+          max: 2000
+      - id: 101
+        type: string
+        optional: true
+        mask: "00000000000001"
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: sensor
+    name: Maximum humidity
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Minimum humidity
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 141
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

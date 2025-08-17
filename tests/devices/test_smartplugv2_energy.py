@@ -94,6 +94,7 @@ class TestSwitchV2Energy(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "unit": UnitOfEnergy.WATT_HOUR,
+                    "state_class": "measurement",
                 },
                 {
                     "name": "sensor_voltage",
@@ -126,26 +127,23 @@ class TestSwitchV2Energy(
                 "lock_child_lock",
                 "number_timer",
                 "select_initial_state",
-                "select_light",
+                "select_light_mode",
                 "sensor_current",
                 "sensor_energy",
                 "sensor_power",
                 "sensor_voltage",
                 "switch_overcharge_cutoff",
+                "time_timer",
             ]
         )
 
     def test_multi_switch_state_attributes(self):
         self.dps[TEST_DPS] = 21
-        self.dps[CYCLE_DPS] = "1A2B"
-        self.dps[RANDOM_DPS] = "3C4D"
 
         self.assertDictEqual(
             self.multiSwitch["switch_outlet"].extra_state_attributes,
             {
                 "test_bit": 21,
-                "cycle_timer": "1A2B",
-                "random_timer": "3C4D",
             },
         )
 

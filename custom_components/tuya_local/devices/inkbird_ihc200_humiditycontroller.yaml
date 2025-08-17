@@ -19,6 +19,18 @@ entities:
           max: 990
         mapping:
           - scale: 10
+      - id: 115
+        type: string
+        name: action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: drying
+          - dps_val: "2"
+            value: idle
+          - dps_val: "3"
+            value: humidifying
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -61,6 +73,20 @@ entities:
           min: 0
           max: 10
   - entity: number
+    name: High humidity threshold
+    category: config
+    icon: "mdi:format-vertical-align-bottom"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 50
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: number
     name: Low humidity threshold
     category: config
     icon: "mdi:format-vertical-align-bottom"
@@ -74,22 +100,22 @@ entities:
           max: 990
         mapping:
           - scale: 10
-  - entity: switch
+  - entity: binary_sensor
     name: High humidity alarm
     icon: "mdi:water-percent-alert"
     category: config
     dps:
       - id: 111
         type: boolean
-        name: switch
-  - entity: switch
+        name: sensor
+  - entity: binary_sensor
     name: Low humidity alarm
     icon: "mdi:water-percent-alert"
     category: config
     dps:
       - id: 112
         type: boolean
-        name: switch
+        name: sensor
   - entity: binary_sensor
     name: Probe error
     class: problem
@@ -101,6 +127,8 @@ entities:
   - entity: sensor
     name: Output
     class: enum
+    # Deprecated 2025-05-07
+    deprecated: humidifier action
     icon: "mdi:air-humidifier"
     category: diagnostic
     dps:

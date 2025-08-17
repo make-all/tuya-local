@@ -5,6 +5,10 @@ on: [push, pull_request]
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 

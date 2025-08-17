@@ -77,21 +77,23 @@ entities:
         type: string
         name: word_values
         mapping:
-          - dps_val: "on"
-            value: true
-          - dps_val: "off"
-            value: true
-          - dps_val: memory
-            value: true
-          - value: false
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: false
+          - dps_val: "2"
+            value: false
+          - value: true
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 20
         name: sensor
         type: integer
         optional: true
+        class: measurement
         unit: Wh
   - entity: sensor
     class: current

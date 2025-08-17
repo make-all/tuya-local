@@ -41,7 +41,15 @@ class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
             self.entities.get("text_scene"),
             pattern=TEXT_PATTERN_HEX,
         )
-        self.mark_secondary(["number_timer", "select_scene", "text_scene"])
+        self.mark_secondary(
+            [
+                "number_timer",
+                "select_scene",
+                "text_scene",
+                "time_timer",
+                "switch_do_not_disturb",
+            ]
+        )
 
     def test_is_on(self):
         self.dps[SWITCH_DPS] = True
@@ -182,6 +190,10 @@ class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
             await self.subject.async_turn_on(
                 hs_color=(0, 100),
             )
+
+    def test_available(self):
+        self.assertFalse(self.entities.get("switch_do_not_disturb").available)
+        self.assertTrue(self.subject.available)
 
     def test_disabled_by_default(self):
         self.assertFalse(self.basicText.entity_registry_enabled_default)

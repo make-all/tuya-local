@@ -1,0 +1,263 @@
+name: Relay 16CH
+products:
+  - id: 05iqw2misedc8pgv
+    model: RCU-16
+entities:
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "5"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "6"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "7"
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "8"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "9"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "10"
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "11"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "12"
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "13"
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "14"
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "15"
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    icon: "mdi:power"
+    translation_key: switch_x
+    translation_placeholders:
+      x: "16"
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: fixed
+            value: memory
+  - entity: select
+    name: IO mode 1-8
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: eturn
+            value: Button
+          - dps_val: switch
+            value: Switch
+          - dps_val: sensor
+            value: Cover
+  - entity: select
+    name: IO mode 9-16
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: option
+        mapping:
+          - dps_val: eturn
+            value: Button
+          - dps_val: switch
+            value: Switch
+          - dps_val: sensor
+            value: Cover
+  - entity: select
+    name: Function 11-12
+    category: config
+    dps:
+      - id: 120
+        type: string
+        name: option
+        mapping:
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
+  - entity: select
+    name: Function 13-14
+    category: config
+    dps:
+      - id: 121
+        type: string
+        name: option
+        mapping:
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
+  - entity: select
+    name: Function 15-16
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: switch
+            value: Switch
+          - dps_val: curtain
+            value: Curtain
+  - entity: select
+    name: Scene
+    translation_key: scene
+    category: config
+    dps:
+      - id: 123
+        type: string
+        name: option
+        mapping:
+          - dps_val: ready
+            value: none
+          - dps_val: scene1
+            value: Scene 1
+          - dps_val: scene2
+            value: Scene 2
+          - dps_val: scene3
+            value: Scene 3
+          - dps_val: scene4
+            value: Scene 4
+          - dps_val: scene5
+            value: Scene 5
+          - dps_val: scene6
+            value: Scene 6
+          - dps_val: scene7
+            value: Scene 7
+  - entity: number
+    category: config
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 30

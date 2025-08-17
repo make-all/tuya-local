@@ -3,6 +3,9 @@ products:
   - id: aok3caeleulg1neh
     manufacturer: LSC
     model: RGBIC+CCT 2x5M
+  - id: rqrkvuxebofiaifp
+    manufacturer: Fancy LED
+    model: Fancy Lightstrip  3
 entities:
   - entity: light
     dps:
@@ -84,8 +87,21 @@ entities:
         name: paint_colour_data
         type: string
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -100,7 +116,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-          - dps_val: null
   - entity: number
     name: Pixels
     category: config
@@ -112,3 +127,117 @@ entities:
         range:
           min: 1
           max: 1000
+  - entity: select
+    name: Color mode
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "color"
+            value: "Color"
+          - dps_val: "scene"
+            value: "Scene"
+          - dps_val: "music"
+            value: "Music"
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ARUKUlLgAABkAMFhALQwALVSAMRj"
+            value: "Iceland blue"
+          - dps_val: "ARYKZGRgAABkAJJfAMZg"
+            value: "Glacier express"
+          - dps_val: "ARcDXl5gAABkADgvAB5cANVFARpk"
+            value: "Sea of clouds"
+          - dps_val: "ARgCZGTgAABkALI5AQpkAS1kAT9k"
+            value: "Fireworks at sea"
+          - dps_val: "ARkKVFRgAABkALEsAMBk"
+            value: "Hut in the snow"
+          - dps_val: "ARoDS0vgAABkAOA5AQlT"
+            value: "Firefly night"
+          - dps_val: "ARsDX19gAABkAK45AMRdAPlk"
+            value: "Northland"
+          - dps_val: "ARwKWlrgAABSAJ1kAI5k"
+            value: "Grassland"
+          - dps_val: "AR0DUlLgAABkAK5kAKZkAMFkAMxk"
+            value: "Northern lights"
+          - dps_val: "AR4KUlLgAABkABlkACJeACxbABRkAAxk"
+            value: "Late autumn"
+          - dps_val: "AUcFTU0AAABkAQNFAMFD"
+            value: "Dream meteor"
+          - dps_val: "AUgGMjIAAABkAU5BAB9J"
+            value: "Early spring"
+          - dps_val: "AUkHDg4AAABkANo3AVJBAFw3"
+            value: "Spring outing"
+          - dps_val: "AUoIMjIAAABkAPdQAClPAQ04AKMn"
+            value: "Night service"
+          - dps_val: "AUsJMjIAAABkAQNFAEE6ACVLAF5C"
+            value: "Wind chime"
+          - dps_val: "AUwMMjIAAABkANhNAMFDAQNFAFw3"
+            value: "City lights"
+          - dps_val: "AU0NMjIAAABkAChkAF5CAMFkAP9Q"
+            value: "Colour marbles"
+          - dps_val: "AU4OMjIAAABkAD5fAL5c"
+            value: "Summer train"
+          - dps_val: "AU8PGRkAAABkALxkAC1OAABkAGQ8"
+            value: "Christmas eve"
+          - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
+            value: "Dream sea"
+          - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
+            value: "Game"
+          - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
+            value: "Holiday"
+          - dps_val: "ASEDPDxgAABkAL8YAQQX"
+            value: "Work"
+          - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
+            value: "Party"
+          - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
+            value: "Trend"
+          - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
+            value: "Sports"
+          - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
+            value: "Meditation"
+          - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
+            value: "Dating"
+          - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
+            value: "Christmas"
+          - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"
+            value: "Valentines's Day"
+          - dps_val: "ASsDWlrgAABkAABXARZkANpkALNkAJVk"
+            value: "Halloween"
+          - dps_val: "ASwKSEhgAABkAD1kAQxbALpJABdh"
+            value: "Thanksgiving Day"
+          - dps_val: "AS0CWVlgAABkAJxjALxiAHtg"
+            value: "Forest Day"
+          - dps_val: "AS4DWlpgAABkAT42AQxWAR8j"
+            value: "Mothers Day"
+          - dps_val: "AS8CZGTgAABkANxCALZKAOFN"
+            value: "Fathers Day"
+          - dps_val: "ATACXl5gAABkAABkAHhkALtk"
+            value: "Football Day"
+          - dps_val: "ATMDUlJgAABkAIhQANI5APsn"
+            value: "Summer idyll"
+          - dps_val: "ATQDXV1gAABkAPc2ATUrAMY0AJEp"
+            value: "Dream of the sea"
+          - dps_val: "ATUDUlJgAABNARJiATBd"
+            value: "Love and dream"
+          - dps_val: "ATYCSUlgAABkAGY8ADxJAB5k"
+            value: "Spring fishing"
+          - dps_val: "ATcKWlpgAABkADNYABhkAQBFAONeAKww"
+            value: "Neon world"
+          - dps_val: "ATgCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: "Dreamland"
+          - dps_val: "ATkDSEjgAABkAFlkALNH"
+            value: "Summer wind"
+          - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
+            value: "Planet journey"

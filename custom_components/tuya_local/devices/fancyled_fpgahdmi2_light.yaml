@@ -1,0 +1,149 @@
+name: HDMI sync light
+products:
+  - id: eoiix1chj4q8wyxq
+    manufacturer: Fancy LED
+    model_id: fpga-hdmi2.0
+    model: Screen sync smart light 2.0
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        optional: true
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        mapping:
+          - dps_val: 80000000000000000000000000000000
+            value: Screen - Movie
+          - dps_val: 81000000000000000000000000000000
+            value: Screen - Video
+          - dps_val: 82000000000000000000000000000000
+            value: Screen - Game
+          - dps_val: 83000000000000000000000000000000
+            value: Music - Spectrum
+          - dps_val: 84000000000000000000000000000000
+            value: Music - Electronic
+          - dps_val: 85000000000000000000000000000000
+            value: Music - Listen
+          - dps_val: 86000000000000000000000000000000
+            value: Scene - Rainbow
+          - dps_val: 87000000000000000000000000000000
+            value: Scene - Fire
+          - dps_val: 88000000000000000000000000000000
+            value: Scene - Read
+          - dps_val: 89000000000000000000000000000000
+            value: Scene - Firework
+          - dps_val: 90000000000000000000000000000000
+            value: Color Scene - Star
+          - dps_val: 91000000000000000000000000000000
+            value: Color Scene - Drip
+          - dps_val: 92000000000000000000000000000000
+            value: Color Scene - Particle
+          - dps_val: 93000000000000000000000000000000
+            value: Color Scene - Flow
+          - dps_val: 94000000000000000000000000000000
+            value: Color Scene - Ball
+          - dps_val: 95000000000000000000000000000000
+            value: Color Scene - Swing
+          - dps_val: 96000000000000000000000000000000
+            value: Color Scene - Breath
+          - dps_val: 97000000000000000000000000000000
+            value: Color Scene - Pure
+  - entity: select
+    name: Installation side
+    category: config
+    icon: "mdi:cast-variant"
+    icon_priority: 2
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Left
+            icon: "mdi:rotate-left-variant"
+            icon_priority: 1
+          - dps_val: 1
+            value: Right
+            icon: "mdi:rotate-right-variant"
+            icon_priority: 1
+  - entity: select
+    name: Lamp type
+    icon: "mdi:led-strip-variant"
+    icon_priority: 2
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Light strip
+          - dps_val: 1
+            value: Light post
+            icon: "mdi:post-lamp"
+            icon_priority: 1

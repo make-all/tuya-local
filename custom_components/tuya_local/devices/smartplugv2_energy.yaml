@@ -26,6 +26,17 @@ entities:
         type: integer
         name: test_bit
         optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
@@ -38,9 +49,12 @@ entities:
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         type: integer
+        optional: true
         name: value
         unit: min
         range:
@@ -51,12 +65,14 @@ entities:
             step: 60
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -179,8 +195,7 @@ entities:
         optional: true
         hidden: true
   - entity: select
-    name: Light
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     hidden: unavailable
     category: config
     dps:
@@ -198,13 +213,13 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: lock
     translation_key: child_lock
     hidden: unavailable

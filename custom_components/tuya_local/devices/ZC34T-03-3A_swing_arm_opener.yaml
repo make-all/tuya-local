@@ -17,6 +17,16 @@ entities:
             value: close
           - dps_val: stop
             value: stop
+      - id: 1
+        type: string
+        optional: true
+        name: open
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+          - value: null
   - entity: lock
     dps:
       - id: 102
@@ -30,6 +40,8 @@ entities:
             value: false
   - entity: binary_sensor
     class: window
+    # 2025-02-24
+    deprecated: cover
     dps:
       - id: 1
         type: string

@@ -6,9 +6,6 @@ products:
   - id: w7lvyyxyevpwf20e
     manufacturer: Vevor
     model: SS US 7kW
-  - id: ypdfdnwauasb8rje
-    manufacturer: Vevor
-    model: SS EU Mode2 3.7kW
 entities:
   - entity: sensor
     translation_key: status
@@ -68,6 +65,7 @@ entities:
     name: Single phase power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 5
         type: integer
@@ -81,6 +79,7 @@ entities:
     name: Phase A power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 6
         type: base64
@@ -152,7 +151,7 @@ entities:
         mapping:
           - dps_val: controlpi_12v
             value: Standby
-          - dps_val: controlpi_12v_pwn
+          - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
             value: Vehicle detected
@@ -237,9 +236,9 @@ entities:
           - value: false
             hidden: true
   - entity: number
-    name: Delay time
+    name: Delay
+    class: duration
     category: config
-    icon: "mdi:clock"
     dps:
       - id: 28
         type: integer

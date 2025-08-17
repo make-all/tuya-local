@@ -4,9 +4,12 @@ products:
     model: V330L
     model_id: V330L_AF3V_223A
   - id: cjrm04np59ut4pwb
+    # Needs to be added using the 3.2 protocol
     model: V330L
     model_id: V330L-DU4L-VS
-    # Needs to be added using the 3.2 protocol
+  - id: 7bkqbfbpv7qbfskr
+    manufacturer: iGET Home
+    model: 9LC
 entities:
   - entity: number
     name: Manual feed
@@ -126,6 +129,7 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
           - dps_val: 16777216
             value: true
@@ -143,6 +147,7 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
           - dps_val: 33554432
             value: true
@@ -156,6 +161,7 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
           - dps_val: 67108864
             value: true

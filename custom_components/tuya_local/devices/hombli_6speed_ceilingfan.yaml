@@ -1,0 +1,179 @@
+name: Ceiling fan
+products:
+  - id: rdadbolinmhmxuss
+    manufacturer: Hombli
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 63
+        type: string
+        name: direction
+      - id: 71
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "3"
+            value: 16
+          - dps_val: "4"
+            value: 33
+          - dps_val: "5"
+            value: 50
+          - dps_val: "6"
+            value: 66
+          - dps_val: "7"
+            value: 83
+          - dps_val: "8"
+            value: 100
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:memory"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:sleep"
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Light transition
+    category: config
+    icon: "mdi:transition"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: fan
+    category: config
+    class: duration
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: event
+    name: Reconnection
+    dps:
+      - id: 101
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: connected
+      - id: 101
+        type: string
+        optional: true
+        name: message

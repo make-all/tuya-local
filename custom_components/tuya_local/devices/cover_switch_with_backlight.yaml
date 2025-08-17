@@ -1,0 +1,44 @@
+name: Cover switch with backlight
+products:
+  - id: fthu3wguzoqdayzp
+    model: CST_WB_V1
+entities:
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Calibration
+    icon: "mdi:arrow-collapse-vertical"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: End
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 7
+        type: boolean
+        name: switch

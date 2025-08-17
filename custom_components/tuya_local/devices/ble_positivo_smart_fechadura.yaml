@@ -1,0 +1,203 @@
+name: Door lock
+products:
+  - id: uamrw6h3
+    manufacturer: Positivo
+    model: Smart Fechadura
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+      - id: 18
+        type: boolean
+        name: open_inside
+        optional: true
+        persist: false
+      - id: 19
+        type: integer
+        name: unlock_ble
+        optional: true
+        persist: false
+      - id: 44
+        type: boolean
+        name: rtc_lock
+        optional: true
+        persist: false
+      - id: 46
+        type: boolean
+        name: lock
+        optional: true
+      - id: 47
+        type: boolean
+        name: lock_state
+      - id: 54
+        type: base64
+        name: sync_method
+        optional: true
+      - id: 60
+        type: string
+        name: remote_no_pd_setkey
+        optional: true
+      - id: 61
+        type: string
+        name: remote_no_dp_key
+        optional: true
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        type: integer
+        name: unlock_voice
+        optional: true
+        persist: false
+      - id: 69
+        type: string
+        name: record
+        optional: true
+      - id: 70
+        type: string
+        name: check_code_set
+        optional: true
+      - id: 71
+        type: string
+        name: ble_unlock_check
+        optional: true
+      - id: 72
+        name: unlock_record_check
+        type: string
+        optional: true
+      - id: 73
+        type: string
+        name: remote_pd_setkey_check
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    category: config
+    name: Doorbell Volume
+    icon: "mdi:volume-high"
+    dps:
+      - id: 27
+        name: option
+        type: string
+        mapping:
+          - dps_val: mute
+            value: mute
+            icon: "mdi:volume-mute"
+          - dps_val: low
+            value: low
+            icon: mdi:volume-low
+          - dps_val: normal
+            value: normal
+            icon: mdi:volume-medium
+          - dps_val: high
+            value: high
+            icon: "mdi:volume-high"
+  - entity: select
+    category: config
+    name: Lock Motor Direction
+    icon: "mdi:sign-direction"
+    dps:
+      - id: 48
+        name: option
+        type: string
+        mapping:
+          - dps_val: clockwise
+            value: clockwise
+            icon: mdi:cog-clockwise
+          - dps_val: anticlockwise
+            value: anticlockwise
+            icon: mdi:cog-counterclockwise
+  - entity: select
+    category: config
+    name: Motor Torque
+    icon: "mdi:sign-direction"
+    dps:
+      - id: 56
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: torque_low
+            value: low
+          - dps_val: torque_middle
+            value: middle
+          - dps_val: torque_high
+            value: high
+  - entity: number
+    category: config
+    name: Auto lock delay
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        unit: "s"
+        range:
+          min: 1
+          max: 30
+        mapping:
+          - step: 1
+  - entity: switch
+    category: config
+    name: Auto Lock
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+  - entity: event
+    name: Alert
+    icon: "mdi:alert"
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense

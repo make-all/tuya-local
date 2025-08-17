@@ -1,0 +1,64 @@
+name: Dehumidifier
+products:
+  - id: fiqjksldhlsc0oag
+    manufacturer: Emerio
+    model: DH-129238.1
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 85
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: normal
+          - dps_val: "1"
+            value: purify
+          - dps_val: "2"
+            value: laundry
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 101
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: lock

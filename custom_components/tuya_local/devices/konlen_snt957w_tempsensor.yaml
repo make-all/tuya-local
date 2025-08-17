@@ -1,0 +1,82 @@
+name: Temperature alarm
+products:
+  - id: pbgnjxdebaomrxjl
+    manufacturer: Konlen
+    model: SNT957W-TDE E3S
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 10
+        type: integer
+        name: target_temp_high
+        mapping:
+          - scale: 10
+        range:
+          min: -400
+          max: 1200
+      - id: 11
+        type: integer
+        name: target_temp_low
+        mapping:
+          - scale: 10
+        range:
+          min: -400
+          max: 1200
+  - entity: binary_sensor
+    class: cold
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: loweralarm
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: heat
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: upperalarm
+            value: true
+          - value: false
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit

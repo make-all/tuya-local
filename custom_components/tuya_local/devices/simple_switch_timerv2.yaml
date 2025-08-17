@@ -13,16 +13,44 @@ products:
   - id: lbqau5negh2zizit
     manufacturer: Kruidvat
     name: Outdoor smartplug
+  - id: uyvxoqhmac1dhvlm
+    manufacturer: Moes House
+  - id: a1yn4awusjnwmmvj
+    model: CB2S
 entities:
   - entity: switch
     dps:
       - id: 1
         name: switch
         type: boolean
+      - id: 44
+        name: inching
+        type: string
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+      - id: 42
+        name: cycle_timer
+        type: string
+        optional: true
+      - id: 43
+        name: random_timer
+        type: string
+        optional: true
   - entity: number
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         name: value

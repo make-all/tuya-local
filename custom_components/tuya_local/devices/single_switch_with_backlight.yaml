@@ -7,9 +7,21 @@ entities:
       - id: 1
         name: switch
         type: boolean
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 7
@@ -38,19 +50,18 @@ entities:
             value: "off"
   - entity: select
     category: config
-    name: "Backlight Mode"
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     dps:
       - id: 15
         name: option
         type: string
         mapping:
           - dps_val: relay
-            value: "Indicate On/Off"
+            value: state
           - dps_val: pos
-            value: "Indicate Location"
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: light
     translation_key: backlight
     category: config

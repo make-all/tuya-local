@@ -3,6 +3,8 @@ products:
   - id: kpzc6pm8
     manufacturer: Arlec
     model: SG022HA
+  - id: ja5osu5g
+    model: ZG101Z
 entities:
   - entity: event
     class: button
@@ -10,6 +12,7 @@ entities:
       - id: 1
         type: string
         name: event
+        optional: true
         mapping:
           - dps_val: single_click
             value: single_click

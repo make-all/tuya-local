@@ -1,0 +1,230 @@
+name: Litter box
+products:
+  - id: djxo7tynpa1aocaa
+    manufacturer: Vevor
+    model: 76L
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Cleaning
+    icon: "mdi:broom"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto_clean
+            value: Auto
+          - dps_val: manual_clean
+            value: Manual
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: lock
+  - entity: number
+    name: Cleaning delay
+    category: config
+    icon: "mdi:timer-pause"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 60
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Daily usage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+  - entity: sensor
+    name: Last usage
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+  - entity: button
+    name: Clean
+    icon: "mdi:broom"
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Visit count
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: times
+  - entity: light
+    dps:
+      - id: 107
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 255
+      - id: 102
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: red
+            value: red
+          - dps_val: green
+            value: green
+          - dps_val: blue
+            value: blue
+          - dps_val: yellow
+            value: yellow
+          - dps_val: purple
+            value: purple
+          - dps_val: white
+            value: white
+  - entity: sensor
+    name: Cleans in bin
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+  - entity: event
+    name: Notification
+    dps:
+      - id: 104
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: null
+            value: null
+          - value: toilet
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        mapping:
+          - scale: 10
+      - id: 108
+        type: string
+        name: log
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value: true
+      - id: 105
+        type: string
+        name: fault_code
+      - id: 105
+        type: string
+        name: description
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: door
+          - dps_val: "2"
+            value: bin
+          - dps_val: "3"
+            value: pressure
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 106
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 255
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Standby
+            value: standby
+          - dps_val: Wait_Cluster
+            value: caking
+          - dps_val: Clean_Pause
+            value: paused
+          - dps_val: Clean_Start
+            value: starting
+          - dps_val: Cleaning
+            value: cleaning
+          - dps_val: Empty_Pause
+            value: paused
+          - dps_val: Empty_Start
+            value: starting
+          - dps_val: Emptying
+            value: emptying
+          - dps_val: Reset_Pause
+            value: paused
+          - dps_val: Reset_Start
+            value: starting
+          - dps_val: Resetting
+            value: resetting
+          - dps_val: Abnormal
+            value: fault
+          - dps_val: Reverse_rotation
+            value: reverse
+          - dps_val: Drawers_open
+            value: door_open
+          - dps_val: Cat_into
+            value: occupied
+      - id: 109
+        type: string
+        name: trigger

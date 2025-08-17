@@ -1,14 +1,23 @@
 name: Air conditioner
 products:
-  - id: bf8705744de2dd5ab4ogqj
-    manufacturer: Fisher
-    model: Summer
+  # - id: UNKNOWN
+  #   manufacturer: Fisher
+  #   model: Summer
   - id: u9jjsaluqe1trtxv
     manufacturer: Daitsu
     model: DS-9KTP
   - id: fcnlevuwfd1jgkvx
     manufacturer: Tesla
     model: TT34TP21-1232IAWUV
+  - id: 0v9shs7pwdjuwi9e
+    manufacturer: Kogan
+    model: 8.2kW split aircon
+  - id: 2mixrhxp38ehekxx
+    manufacturer: Kogan
+    model: 2.6kW/3.5kW split aircon
+  - id: hrzr8mr0mtgfwwri
+    manufacturer: ComfortStar
+    model: 12000 BTU mini split
 entities:
   - entity: climate
     translation_only_key: aircon_extra
@@ -81,7 +90,8 @@ entities:
         #   2. Whether the temperature is adjustable in automatic mode
         #   3. Fresh air volume mark
         #   4. Vector air supply (implemented on Set vertical direction)
-        #   5. Left and right sweeping air (implemented on horizontal sweep)
+        #   5. Left and right sweeping air (implemented on horizontal sweep
+        #      and et horizontal mode basic options)
         #   6. Photosensitive
         #   7. Intelligent dehumidification and anti-mildew
         #   8. Humidity sensor
@@ -101,7 +111,7 @@ entities:
         #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
         #   22. soft wind (implemented on Sleep)
         #   23. left and right wide-angle air supply (implemented on Set
-        #       horizontal direction)
+        #       horizontal direction to filter "wide" options)
       - id: 123
         name: options
         type: string
@@ -139,6 +149,89 @@ entities:
           - dps_val: 32
             value: true
           - value: false
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0008"
+  - entity: switch
+    name: Buzzer
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0020"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0001"
+  - entity: switch
+    name: Self cleaning
+    category: config
+    icon: "mdi:spray-bottle"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0004"
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: power
+            conditions:
+              - dps_val: true
+                invalid: true
+              - dps_val: false
+                value: Cleaning
+      - id: 1
+        name: power
+        type: boolean
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -175,6 +268,7 @@ entities:
   - entity: select
     name: Sleep
     category: config
+    icon: "mdi:weather-night"
     hidden: unavailable
     dps:
       - id: 105
@@ -201,6 +295,7 @@ entities:
   - entity: select
     name: Vertical sweep
     category: config
+    icon: "mdi:arrow-up-down-bold"
     dps:
       - id: 113
         name: option
@@ -218,6 +313,7 @@ entities:
   - entity: select
     name: Horizontal sweep
     category: config
+    icon: "mdi:arrow-left-right-bold"
     hidden: unavailable
     dps:
       - id: 114
@@ -241,11 +337,19 @@ entities:
             value: Partial Right
           - dps_val: "7"
             value: Wide Angle
+            available: wide_available
       - id: 110
         type: bitfield
         name: available
         mapping:
           - dps_val: 32
+            value: true
+          - value: false
+      - id: 110
+        type: bitfield
+        name: wide_available
+        mapping:
+          - dps_val: 8388608
             value: true
           - value: false
   - entity: select
@@ -277,6 +381,7 @@ entities:
   - entity: select
     name: Generator mode
     category: config
+    icon: "mdi:generator-stationary"
     hidden: unavailable
     dps:
       - id: 120
@@ -287,12 +392,11 @@ entities:
             value: None
             default: true
           - dps_val: L1
-            value: L1
+            value: L1 (30%)
           - dps_val: L2
-            value: L2
+            value: L2 (50%)
           - dps_val: L3
-            value: L3
-        optional: true
+            value: L3 (80%)
       - id: 110
         type: bitfield
         name: available
@@ -302,12 +406,25 @@ entities:
           - value: false
   - entity: sensor
     translation_key: air_quality
+    class: enum
+    category: diagnostic
     hidden: unavailable
     dps:
       - id: 125
         name: sensor
         type: string
         optional: true
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: middle
+            value: moderate
+          - dps_val: bad
+            value: poor
+          - dps_val: varybad
+            value: severe
       - id: 110
         name: available
         type: bitfield
@@ -318,6 +435,7 @@ entities:
   - entity: select
     name: Set vertical direction
     category: config
+    icon: "mdi:unfold-more-horizontal"
     hidden: unavailable
     dps:
       - id: 126
@@ -347,6 +465,7 @@ entities:
   - entity: select
     name: Set horizontal direction  # Tuya JSON phrasing: Freeze Horizontal
     category: config
+    icon: "mdi:unfold-more-vertical"
     hidden: unavailable
     dps:
       - id: 127
@@ -368,17 +487,28 @@ entities:
             value: Right
           - dps_val: "6"
             value: Wide angle left
+            available: wide_available
           - dps_val: "7"
             value: Wide angle right
+            available: wide_available
           - dps_val: "8"
             value: Wide angle
+            available: wide_available
       - id: 110
         type: bitfield
         name: available
         mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+      - id: 110
+        type: bitfield
+        name: wide_available
+        mapping:
           - dps_val: 8388608
             value: true
           - value: false
+
   - entity: select
     name: Power
     category: config
@@ -424,6 +554,7 @@ entities:
     class: problem
     hidden: unavailable
     category: diagnostic
+    icon: "mdi:air-filter"
     dps:
       - id: 131
         type: boolean
@@ -439,17 +570,25 @@ entities:
   - entity: select
     name: Hot cold wind
     category: config
-    hidden: unavailable
+    icon: "mdi:sun-snowflake"
     dps:
       - id: 132
         name: option
         type: boolean
-        mapping:
-          - dps_val: true
-            value: Cold Wind
-          - dps_val: false
-            value: Hot wind
         optional: true
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: Cold wind
+              - dps_val: hot
+                value: Hot wind
+      - id: 4
+        name: mode
+        type: string
       - id: 110
         type: bitfield
         name: available
@@ -460,9 +599,64 @@ entities:
   - entity: sensor
     name: Running time
     class: duration
+    hidden: unavailable
     dps:
       - id: 135
         name: sensor
         type: integer
-        unit: s
+        unit: min
         optional: true
+        mapping:
+          - scale: 0.5
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 1024
+            value: true
+          - value: false
+  - entity: select
+    name: Fresh air
+    icon: "mdi:weather-windy"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "mid"
+            value: "Medium"
+          - dps_val: "strong"
+            value: "Strong"
+          - dps_val: "off"
+            value: "Off"
+  - entity: binary_sensor
+    name: Fresh air filter
+    class: problem
+    hidden: unavailable
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 103
+        type: boolean
+        optional: true
+        name: sensor

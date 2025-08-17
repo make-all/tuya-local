@@ -1,0 +1,171 @@
+name: Solar water heater
+products:
+  - id: hyrswocbx6i1rveo
+    manufacturer: Lohxa
+    model: SR208C
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: eco
+                default: true
+              - dps_val: heating
+                value: electric
+              - dps_val: cold
+                value: away
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 100
+      - id: 22
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    name: Instant heating
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: sensor
+    name: Upper tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: sensor
+    name: Solar collector temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+          - dps_val: 3888
+            value: null
+          - dps_val: 3999
+            value: null
+  - entity: binary_sensor
+    name: Solar
+    icon: "mdi:solar-power-variant"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 30
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Electric element
+    class: running
+    icon: "mdi:heating-coil"
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: dBm
+        class: measurement
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - target_range:
+              min: -90
+              max: -20
+  - entity: text
+    name: Configuration
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        name: value

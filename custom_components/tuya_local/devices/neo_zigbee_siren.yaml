@@ -1,0 +1,79 @@
+name: Siren alarm
+products:
+  - id: t1blo2bj
+    manufacturer: Neo
+    model: Siren Alarm 2
+entities:
+  - entity: siren
+    dps:
+      - id: 5
+        type: string
+        optional: true
+        name: volume_level
+        mapping:
+          - dps_val: low
+            value: 0.3
+          - dps_val: middle
+            value: 0.6
+          - dps_val: high
+            value: 1.0
+      - id: 7
+        type: integer
+        name: duration
+        unit: s
+        range:
+          min: 0
+          max: 1800
+      - id: 13
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: tone
+        mapping:
+          - dps_val: mode_1
+            value: Type 1
+          - dps_val: mode_2
+            value: Type 2
+          - dps_val: mode_3
+            value: Type 3
+          - dps_val: mode_4
+            value: Type 4
+          - dps_val: mode_5
+            value: Type 5
+          - dps_val: mode_6
+            value: Type 6
+          - dps_val: mode_7
+            value: Type 7
+          - dps_val: mode_8
+            value: Type 8
+          - dps_val: mode_9
+            value: Type 9
+          - dps_val: mode_10
+            value: Type 10
+          - dps_val: mode_11
+            value: Type 11
+          - dps_val: mode_12
+            value: Type 12
+          - dps_val: mode_13
+            value: Type 13
+          - dps_val: mode_14
+            value: Type 14
+          - dps_val: mode_15
+            value: Type 15
+          - dps_val: mode_16
+            value: Type 16
+          - dps_val: mode_17
+            value: Type 17
+          - dps_val: mode_18
+            value: Type 18
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement

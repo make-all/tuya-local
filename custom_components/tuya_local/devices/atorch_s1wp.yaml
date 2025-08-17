@@ -28,6 +28,7 @@ entities:
             step: 60
   - entity: sensor
     class: current
+    category: diagnostic
     dps:
       - id: 18
         name: sensor
@@ -38,6 +39,7 @@ entities:
           - scale: 1000
   - entity: sensor
     class: power
+    category: diagnostic
     dps:
       - id: 19
         name: sensor
@@ -48,6 +50,7 @@ entities:
           - scale: 100
   - entity: sensor
     class: voltage
+    category: diagnostic
     dps:
       - id: 20
         name: sensor
@@ -184,7 +187,7 @@ entities:
             value: Normally Open
   - entity: button
     name: Reset data
-    category: diagnostic
+    category: config
     class: restart
     dps:
       - id: 113
@@ -193,7 +196,7 @@ entities:
         optional: true
   - entity: button
     name: Reset Wi-Fi
-    category: diagnostic
+    category: config
     class: restart
     dps:
       - id: 114
@@ -202,7 +205,7 @@ entities:
         optional: true
   - entity: button
     translation_key: factory_reset
-    category: diagnostic
+    category: config
     dps:
       - id: 115
         type: boolean
@@ -302,7 +305,7 @@ entities:
           min: 1
           max: 99
   - entity: sensor
-    name: Total Electricity
+    name: Total electricity
     class: energy
     dps:
       - id: 123
@@ -320,6 +323,7 @@ entities:
       - id: 124
         name: sensor
         type: integer
+        optional: true
         unit: s
   - entity: number
     category: config
@@ -463,6 +467,7 @@ entities:
             value: Countdown
   - entity: sensor
     class: frequency
+    category: diagnostic
     dps:
       - id: 133
         name: sensor
@@ -473,6 +478,7 @@ entities:
           - scale: 100
   - entity: sensor
     class: power_factor
+    category: diagnostic
     dps:
       - id: 134
         name: sensor

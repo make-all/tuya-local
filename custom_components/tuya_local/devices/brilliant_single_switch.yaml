@@ -10,8 +10,20 @@ entities:
       - id: 1
         type: boolean
         name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -28,11 +40,13 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 101
         type: integer
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor

@@ -1,4 +1,8 @@
-name: Della air conditioner
+name: Air conditioner
+products:
+  - id: wxqdp6ecfkd78zzz
+    manufacturer: Sendo
+    model: Hermes Gold
 entities:
   - entity: climate
     dps:
@@ -15,12 +19,14 @@ entities:
                 value: cool
               - dps_val: hot
                 value: heat
+                available: full_heatpump
               - dps_val: wet
                 value: dry
               - dps_val: wind
                 value: fan_only
               - dps_val: auto
                 value: heat_cool
+                available: full_heatpump
       - id: 2
         name: temperature
         type: integer
@@ -49,6 +55,9 @@ entities:
         name: fan_mode
         type: string
         mapping:
+          - dps_val: mute
+            value: "off"
+            available: inverter_model
           - dps_val: low
             value: low
           - dps_val: mid
@@ -69,14 +78,42 @@ entities:
       - id: 19
         name: temperature_unit
         type: string
+      - id: 33
+        name: swing_horizontal_mode
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
       - id: 105
         name: swing_mode
         type: boolean
         mapping:
           - dps_val: true
-            value: vertical
+            value: "on"
           - dps_val: false
             value: "off"
+      - id: 108
+        name: full_heatpump
+        optional: true
+        type: bitfield
+        mapping:
+          # if feature flags are unavailable, make it available
+          - dps_val: null
+            value: true
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 108
+        name: inverter_model
+        optional: true
+        type: bitfield
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
   - entity: switch
     name: Emergency heat
     icon: "mdi:fire"
@@ -128,12 +165,15 @@ entities:
         type: boolean
   - entity: switch
     name: Clean
+    icon: "mdi:shimmer"
+    category: config
     dps:
       - id: 103
         name: switch
         type: boolean
   - entity: switch
-    translation_key: anti_frost
+    name: Anti-mould
+    icon: "mdi:water-off"
     category: config
     dps:
       - id: 104
@@ -159,3 +199,47 @@ entities:
       - id: 107
         type: bitfield
         name: fault_code
+  - entity: number
+    name: Power limit
+    icon: "mdi:meter-electric-outline"
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 30
+          max: 100
+        mapping:
+          - dps_val: null
+            value: 100
+            hidden: true
+      - id: 113
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Limit power
+    icon: "mdi:meter-electric-outline"
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: switch
+      - id: 114
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

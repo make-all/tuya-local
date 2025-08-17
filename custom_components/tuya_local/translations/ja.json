@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "デバイスは手動で追加することも、Smart Life アプリを使用してクラウド支援で追加することもできます。",
+                "description": "デバイスは手動で追加することも、SmartLife アプリを使用してクラウド支援で追加することもできます。",
                 "data": {
                     "setup_mode": "セットアップの選択:"
                 }
             },
             "cloud": {
                 "title": "Tuyaにログイン",
-                "description": "Smart Life または Tuya Smart のユーザー コードを入力してください。\n\nこのコードは、Smart Life アプリまたは Tuya Smart アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
+                "description": "SmartLife または Tuya のユーザー コードを入力してください。\n\nこのコードは、SmartLife アプリまたは Tuya アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
                 "data": {
                     "user_code": "ユーザーコード:"
                 }
             },
             "scan": {
                 "title": "ログインを完了する",
-                "description": "Smart Life アプリまたは Tuya Smart アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
+                "description": "SmartLife アプリまたは Tuya アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
             },
             "choose_device": {
                 "title": "追加するデバイスを選択してください",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life クラウド支援デバイスのセットアップ。",
-                "manual": "デバイスの接続情報を手動で提供します。"
+                "cloud": "SmartLife クラウド支援デバイスのセットアップ。",
+                "manual": "デバイスの接続情報を手動で提供します。",
+                "cloud_fresh_login": "SmartLife クラウド支援デバイスのセットアップ (新しいログイン)。"
             }
         }
     },
@@ -162,6 +163,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "エアコン",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -217,6 +219,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "ヒーター",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "加熱レベル",
@@ -317,7 +320,19 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "name": "除湿器",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "浄化",
+                            "dehumidify": "除湿"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "ファン",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -328,6 +343,7 @@
                             "fresh": "新鮮",
                             "smart": "スマート",
                             "strong": "強い",
+                            "custom": "カスタム",
                             "high": "高い",
                             "medium": "中",
                             "low": "低い",
@@ -395,12 +411,57 @@
             }
         },
         "select": {
+            "currency": {
+                "name": "通貨",
+                "state": {
+                    "usd": "米ドル",
+                    "eur": "ユーロ",
+                    "cny": "人民元",
+                    "cad": "カナダドル",
+                    "gbp": "英国ポンド"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "ヒートポンプモード",
+                "state": {
+                    "heat": "加熱",
+                    "cool": "冷却",
+                    "auto": "自動",
+                    "floor_heat": "床暖房",
+                    "off": "オフ",
+                    "hotwater": "給湯",
+                    "hotwater_cool": "給湯冷却",
+                    "hotwater_heat": "給湯加熱",
+                    "hotwater_auto": "給湯自動",
+                    "hotwater_floor_heat": "給湯床暖房"
+                }
+            },
             "initial_state": {
                 "name": "初期状態",
                 "state": {
                     "off": "オフ",
                     "on": "オン",
                     "memory": "メモリ"
+                }
+            },
+            "kettle_mode": {
+                "name": "ケトルモード",
+                "state": {
+                    "off": "オフ",
+                    "heat": "加熱",
+                    "boil": "沸騰",
+                    "quick_heat": "急速加熱",
+                    "quick_boil": "急速沸騰",
+                    "keep_warm": "保温",
+                    "custom": "カスタム",
+                    "dechlorinate": "脱塩素",
+                    "black_tea": "紅茶",
+                    "green_tea": "緑茶",
+                    "coffee": "コーヒー",
+                    "honey_water": "蜂蜜水",
+                    "infant_formula": "乳児用調製粉乳",
+                    "white_tea": "白茶",
+                    "oolong_tea": "烏龍茶"
                 }
             },
             "language": {
@@ -419,6 +480,15 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "ライトモード",
+                "state": {
+                    "off": "オフ",
+                    "on": "オン",
+                    "state": "状態",
+                    "locator": "ロケーター"
                 }
             },
             "mopping": {
@@ -482,6 +552,9 @@
                 "state": {
                     "cancel": "キャンセル",
                     "continuous": "連続",
+                    "30s": "30秒",
+                    "1m": "1分",
+                    "2m": "2分",
                     "5m": "5分",
                     "10m": "10分",
                     "20m": "20分",
@@ -522,7 +595,14 @@
                     "24h": "24時間",
                     "36h": "36時間",
                     "48h": "48時間",
-                    "72h": "72時間"
+                    "72h": "72時間",
+                    "1d": "1日",
+                    "2d": "2日",
+                    "3d": "3日",
+                    "4d": "4日",
+                    "5d": "5日",
+                    "6d": "6日",
+                    "7d": "7日"
                 }
             },
             "temperature_unit": {
@@ -587,6 +667,7 @@
                     "plugged_in": "プラグイン",
                     "fault_unplugged": "故障（プラグインされていない）",
                     "charging": "充電中",
+                    "discharging": "放電中",
                     "waiting": "待機中",
                     "charged": "充電済み",
                     "fault": "故障",
@@ -646,11 +727,23 @@
                     "close": "閉じる",
                     "monitor": "モニター",
                     "working": "作業中",
-                    "warning": "警告"
+                    "warning": "警告",
+                    "starting": "開始中",
+                    "emptying": "排出中",
+                    "resetting": "リセット中",
+                    "reverse": "逆",
+                    "full": "満杯",
+                    "empty": "空",
+                    "missing": "欠落",
+                    "formatting": "フォーマット中",
+                    "unformatted": "未フォーマット"
                 }
             },
             "time_remaining": {
                 "name": "残り時間"
+            },
+            "time_remaining_x": {
+                "name": "残り時間{x}"
             },
             "cooking_status": {
                 "name": "調理状況",
@@ -727,6 +820,27 @@
         "text": {
             "scene": {
                 "name": "シーン"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "バルブ{x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "給湯器"
+            },
+            "kettle": {
+                "name": "ケトル"
             }
         }
     }

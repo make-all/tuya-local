@@ -6,7 +6,7 @@ products:
 entities:
   - entity: cover
     name: Curtain 1
-    class: blind
+    class: curtain
     dps:
       - id: 1
         name: control
@@ -29,6 +29,7 @@ entities:
         type: integer
   - entity: cover
     name: Curtain 2
+    class: curtain
     dps:
       - id: 4
         name: control
@@ -104,20 +105,19 @@ entities:
           - dps_val: "back"
             value: back
   - entity: select
-    name: Backlight
+    translation_key: light_mode
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: "relay"
-            value: Mode 1
+            value: state
           - dps_val: "pos"
-            value: Mode 2
+            value: locator
           - dps_val: "none"
-            value: None
+            value: "off"
   - entity: select
     name: Calibration 1
     category: config

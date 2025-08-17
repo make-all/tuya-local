@@ -77,15 +77,13 @@ entities:
       - id: 108
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
-    class: duration
     dps:
       - id: 112
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
@@ -101,6 +99,20 @@ entities:
         type: string
         optional: true
         name: timer_mgr
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    category: config
+    class: duration
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
   - entity: switch
     name: Main switch
     category: config

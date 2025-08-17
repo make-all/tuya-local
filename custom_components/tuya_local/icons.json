@@ -48,6 +48,12 @@
                     "off": "mdi:radiator-off"
                 }
             },
+            "swing_as_powerlevel": {
+                "default": "mdi:radiator",
+                "state": {
+                    "off": "mdi:radiator-off"
+                }
+            },
             "oven": {
                 "default": "mdi:stove"
             },
@@ -135,18 +141,57 @@
         },
         "number": {
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-cancel"
+                }
             },
             "timer_x": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-cancel"
+                }
             }
         },
         "select": {
+            "currency": {
+                "default": "mdi:cash",
+                "state": {
+                    "usd": "mdi:currency-usd",
+                    "eur": "mdi:currency-eur",
+                    "cny": "mdi:currency-cny",
+                    "cad": "mdi:currency-usd",
+                    "gbp": "mdi:currency-gbp"
+                }
+            },
+            "heat_pump_mode": {
+                "default": "mdi:heat-pump",
+                "state": {
+                    "heat": "mdi:fire",
+                    "cool": "mdi:snowflake",
+                    "auto": "mdi:auto-mode",
+                    "hotwater": "mdi:water-boiler",
+                    "hotwater_heat": "mdi:fire-circle",
+                    "hotwater_cool": "mdi:snowflake-melt",
+                    "hotwater_auto": "mdi:water-boiler"
+                }
+            },
             "initial_state": {
                 "default": "mdi:toggle-switch"
             },
             "language": {
                 "default": "mdi:translate"
+            },
+            "kettle_mode": {
+                "default": "mdi:kettle",
+                "state": {
+                    "keep_warm": "mdi:heat-wave",
+                    "boil": "mdi:kettle-steam",
+                    "quick_boil": "mdi:kettle-steam"
+                }
+            },
+            "light_mode": {
+                "default": "mdi:circle-double"
             },
             "mopping": {
                 "default": "mdi:water"
@@ -193,7 +238,10 @@
                 }
             },
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "cancel": "mdi:timer-cancel"
+                }
             },
             "temperature_unit": {
                 "default": "mdi:temperature-celsius",
@@ -280,7 +328,10 @@
                 }
             },
             "time_remaining": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-stop"
+                }
             },
             "energy_consumed": {
                 "default": "mdi:flash"
@@ -321,6 +372,22 @@
         "text": {
             "scene": {
                 "default": "mdi:palette"
+            }
+        },
+        "time": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "timer_x": {
+                "default": "mdi:timer"
+            }
+        },
+        "water_heater": {
+            "kettle": {
+                "default": "mdi:kettle",
+                "state": {
+                    "off": "mdi:kettle-off"
+                }
             }
         }
     }

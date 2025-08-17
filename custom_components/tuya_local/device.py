@@ -76,26 +76,28 @@ class TuyaLocalDevice(object):
         self.dev_cid = dev_cid
         try:
             if dev_cid:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
                 else:
                     parent = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
                 self._api = tinytuya.Device(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
             else:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
                 else:
                     self._api = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
-                type(e),
+                type(e).__name__,
                 e,
                 dev_id,
             )
@@ -285,6 +287,7 @@ class TuyaLocalDevice(object):
             self._api.parent.set_socketPersistent(persist)
 
         while self._running:
+            error_count = self._api_working_protocol_failures
             try:
                 last_cache = self._cached_state.get("updated_at", 0)
                 now = time()
@@ -334,7 +337,10 @@ class TuyaLocalDevice(object):
 
                 if poll:
                     if "Error" in poll:
-                        if self._api_working_protocol_failures == 0:
+                        # increment the error count if not done already
+                        if error_count == self._api_working_protocol_failures:
+                            self._api_working_protocol_failures += 1
+                        if self._api_working_protocol_failures == 1:
                             _LOGGER.warning(
                                 "%s error reading: %s", self.name, poll["Error"]
                             )
@@ -367,7 +373,7 @@ class TuyaLocalDevice(object):
                 _LOGGER.exception(
                     "%s receive loop error %s:%s",
                     self.name,
-                    type(t),
+                    type(t).__name__,
                     t,
                 )
                 self._api.set_socketPersistent(False)
@@ -472,7 +478,7 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state:
+        if new_state and "Err" not in new_state:
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
             for entity in self._children:
@@ -505,6 +511,7 @@ class TuyaLocalDevice(object):
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
         )
+        return new_state
 
     async def async_set_properties(self, properties):
         if len(properties) == 0:
@@ -603,7 +610,7 @@ class TuyaLocalDevice(object):
             except Exception as e:
                 _LOGGER.debug(
                     "Retrying after exception %s %s (%d/%d)",
-                    type(e),
+                    type(e).__name__,
                     e,
                     i,
                     connections,
