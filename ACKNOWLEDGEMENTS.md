@@ -1021,3 +1021,4 @@ Further device support has been made with the assistance of users. Please consid
 - [FritzeF](https://github.com/FritzeF) for assisting with support for Kavunion C1 100 ventilation fan.
 - [StaRipper](https://github.com/StaRipper) for assisting with support for Pinjia PJ3101A human presence sensor.
 - [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock.
+- [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.
