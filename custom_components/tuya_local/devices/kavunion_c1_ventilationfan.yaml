@@ -1,0 +1,299 @@
+name: Ventilation fan
+products:
+  - id: sr1eqkpkk4fxa3gw
+    manufacturer: Kavunion
+    model: "C1 100"
+entities:
+  - entity: switch
+    # Apparently does not do anything
+    hidden: true
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: timer
+            value: timer
+          - dps_val: auto
+            value: auto
+      - id: 12
+        type: string
+        name: speed
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: auto
+                value_redirect: auto_speed
+              - dps_val: ["on", timer, "off"]
+                mapping:
+                  - dps_val: f1
+                    value: 0
+                  - dps_val: f2
+                    value: 20
+                  - dps_val: f3
+                    value: 40
+                  - dps_val: f4
+                    value: 60
+                  - dps_val: f5
+                    value: 80
+                  - dps_val: f6
+                    value: 100
+      - id: 116
+        type: string
+        name: auto_speed
+        hidden: true
+        mapping:
+          - dps_val: f1
+            value: 0
+          - dps_val: f2
+            value: 20
+          - dps_val: f3
+            value: 40
+          - dps_val: f4
+            value: 60
+          - dps_val: f5
+            value: 80
+          - dps_val: f6
+            value: 100
+      - id: 119
+        type: integer
+        name: customer_id
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 2
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: auto
+            value: fan_only
+          - dps_val: "off"
+            value: "off"
+          - value: "off"
+            hidden: true
+      - id: 9
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+      - id: 45
+        type: integer
+        name: target_temp_high
+        range:
+          min: 1
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: htemp_setf
+                range:
+                  min: 33
+                  max: 113
+      - id: 102
+        type: integer
+        name: target_temp_low
+        range:
+          min: 1
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: ltemp_setf
+                range:
+                  min: 33
+                  max: 113
+      - id: 105
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 114
+        type: integer
+        name: htemp_setf
+        hidden: true
+        range:
+          min: 33
+          max: 113
+      - id: 115
+        type: integer
+        name: ltemp_setf
+        hidden: true
+        range:
+          min: 33
+          max: 113
+      - id: 117
+        type: integer
+        name: temp_f
+        hidden: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: High humidity threshold
+    class: humidity
+    dps:
+      - id: 46
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 99
+      - id: 109
+        type: boolean
+        name: available
+  - entity: number
+    name: Low humidity threshold
+    class: humidity
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 99
+      - id: 110
+        type: boolean
+        name: available
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: time
+    translation_key: timer
+    dps:
+      - id: 104
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 111
+        type: boolean
+        name: available
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Auto trigger
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: ht
+            value: High temperature
+          - dps_val: lt
+            value: Low temperature
+          - dps_val: hh
+            value: High humidity
+          - dps_val: lh
+            value: Low humidity
+  - entity: switch
+    name: High temperature
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Low temperature
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: High humidity
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Low humidity
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Timer
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 112
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: B0
+            value: 0
+          - dps_val: B1
+            value: 128
+          - dps_val: B2
+            value: 255
+  - entity: binary_sensor
+    name: FG signal
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Temperature sensor
+    class: plugged
+    category: diagnostic
+    dps:
+      - id: 118
+        type: boolean
+        name: sensor

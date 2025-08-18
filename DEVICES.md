@@ -289,6 +289,7 @@
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
+- Kavunion C1 100 ventilation fan
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Ledkia fan and light controller
