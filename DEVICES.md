@@ -171,6 +171,7 @@
 - Sanden GAU-A45HPD WiFi heat pump controller
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermex IF series V pro and Lima 80V hot water systems
+- Thermoval Aqua TI water heater
 
 ### Thermostats
 
@@ -279,6 +280,7 @@
 - Goldair Platinum tower fan (2 variants)
 - Hiper T3 bladeless fan
 - Hoenofly Smart Amari ceiling fan with light
+- Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
 - Homebase 12" oscillating fan
@@ -287,6 +289,7 @@
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
+- Kavunion C1 100 ventilation fan
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Ledkia fan and light controller
@@ -435,7 +438,7 @@
 
 ### Kitchen Appliances
 
-- Aeno EK7S kettle
+- Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
 - Anko 1.7L smart kettle
 - Ciarra CBCS4850 range hood
@@ -489,6 +492,7 @@
 - Parkside PG/PMW-300 solar inverter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
+- PC473 3-phase energy monitor
 - PJ-1103 power clamp meter
 - PZIOT E01 energy meter
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
@@ -528,6 +532,7 @@
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
+- Oscal PowerMax 6000 portable power station
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - Tary TA-AC380/22 EV charger
@@ -552,6 +557,7 @@ the best option.
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2 and 3-gang switches
+- Aziot 7 and 8 gang multi-switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -589,6 +595,7 @@ the best option.
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
+- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - Moes motion sensor smart switch
 - MoesHouse smartplug with RGBW nightlight
 - Noiee NSP21 smartplug
@@ -596,6 +603,7 @@ the best option.
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
+- RCU16 16ch relay module
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
@@ -923,7 +931,7 @@ port and password.
 - PetSnowy Snow+ litter box
 - PetsPride OO15 pet feeder with camera
 - PNI water feeder
-- Puppy Kitty automatic pet feeder
+- Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
@@ -990,6 +998,7 @@ port and password.
 - EPT ultrasonic 3m tank level sensor
 - Goldair Platinum SleepSmart electric blanket
 - GratKit filament dryer
+- GZAIR radon gas detector
 - Haier Nayun NY-GS-04 combustible gas alarm
 - Haoliyuen EWC02 air quality monitor
 - Haozee PS10 mmWave presence sensing light switch
@@ -1015,7 +1024,9 @@ port and password.
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
+- Pinjia PJ3101A presence sensor
 - PlantsIO Ivy smart planter
+- Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
 - PV28-CW 8 in 1 air quality monitor
@@ -1086,6 +1097,7 @@ port and password.
 - TCS024B plant moisture sensor
 - TH05 temperature and humidity sensor
 - THB2 temperature and humidity sensor
+- Unistyle WT-04W water timer
 - XCase NX-4964 lock box
 - YL01 water quality tester
 - YSG BS01 lock
@@ -1105,6 +1117,7 @@ entity types as sub devices.
 - Aubess temperature and humidity sensor
 - Avatto TRV06 radiator valve (also sold branded as Thaleos)
 - Generic Zigbee Door Sensor
+- Haozee RB-SRAIN01 solar rain sensor
 - Haozee ZG-302ZM mmWave presence dual light switch
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor

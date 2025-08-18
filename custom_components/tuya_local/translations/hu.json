@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Állítsd be a helyi Tuya eszközöd",
-                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a Smart Life alkalmazás segítségével.",
+                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a SmartLife alkalmazás segítségével.",
                 "data": {
                     "setup_mode": "Beállítás választás:"
                 }
             },
             "cloud": {
                 "title": "Jelentkezzen be Tuyába",
-                "description": "Adja meg Smart Life vagy Tuya Smart felhasználói kódját.\n\nEzt a kódot a Smart Life alkalmazásban vagy a Tuya Smart alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
+                "description": "Adja meg SmartLife vagy Tuya felhasználói kódját.\n\nEzt a kódot a SmartLife alkalmazásban vagy a Tuya alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
                 "data": {
                     "user_code": "Felhasználói kód:"
                 }
             },
             "scan": {
                 "title": "Töltse ki a bejelentkezést",
-                "description": "Használja a Smart Life alkalmazást vagy a Tuya Smart alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
+                "description": "Használja a SmartLife alkalmazást vagy a Tuya alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
             },
             "choose_device": {
                 "title": "Válassza ki a hozzáadni kívánt eszközt",
@@ -74,9 +74,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life felhő által támogatott eszközbeállítás.",
+                "cloud": "SmartLife felhő által támogatott eszközbeállítás.",
                 "manual": "Adja meg manuálisan az eszköz csatlakozási adatait.",
-                "cloud_fresh_login": "Smart Life felhő által támogatott eszközbeállítás, friss bejelentkezés."
+                "cloud_fresh_login": "SmartLife felhő által támogatott eszközbeállítás, friss bejelentkezés."
             }
         }
     },
@@ -366,7 +366,10 @@
                             "eco": "Eco",
                             "anti-condensation": "Pára mentesítés",
                             "extractor": "Kivonat",
-                            "heat_recovery": "Hővisszanyerés"
+                            "heat_recovery": "Hővisszanyerés",
+                            "timer": "Időzítő",
+                            "on": "Be",
+                            "off": "Ki"
                         }
                     }
                 }
@@ -460,7 +463,9 @@
                     "green_tea": "Zöld tea",
                     "coffee": "Kávé",
                     "honey_water": "Mézes víz",
-                    "infant_formula": "Csecsemőtápszer"
+                    "infant_formula": "Csecsemőtápszer",
+                    "white_tea": "Fehér tea",
+                    "oolong_tea": "Oolong tea"
                 }
             },
             "language": {
@@ -594,7 +599,14 @@
                     "24h": "24 óra",
                     "36h": "36 óra",
                     "48h": "48 óra",
-                    "72h": "72 óra"
+                    "72h": "72 óra",
+                    "1d": "1 nap",
+                    "2d": "2 nap",
+                    "3d": "3 nap",
+                    "4d": "4 nap",
+                    "5d": "5 nap",
+                    "6d": "6 nap",
+                    "7d": "7 nap"
                 }
             },
             "temperature_unit": {
@@ -659,6 +671,7 @@
                     "plugged_in": "Csatlakoztatva",
                     "fault_unplugged": "Hiba (nincs csatlakoztatva)",
                     "charging": "Töltés",
+                    "discharging": "Kisütés",
                     "waiting": "Várakozás",
                     "charged": "Töltve",
                     "fault": "Hiba",
@@ -732,6 +745,9 @@
             },
             "time_remaining": {
                 "name": "Hátralevő idő"
+            },
+            "time_remaining_x": {
+                "name": "Hátralevő idő {x}"
             },
             "cooking_status": {
                 "name": "Főzési állapot",
@@ -816,6 +832,11 @@
             },
             "timer_x": {
                 "name": "Időzítő {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Szelep {x}"
             }
         },
         "water_heater": {

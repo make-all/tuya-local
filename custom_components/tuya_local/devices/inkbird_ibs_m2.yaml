@@ -15,6 +15,7 @@ entities:
             value: celsius
           - dps_val: "f"
             value: fahrenheit
+
   - entity: sensor
     name: Temperature probe 1
     class: temperature
@@ -30,6 +31,7 @@ entities:
         mapping:
           - scale: 10
       - id: 103
+        optional: true
         type: string
         name: available
         mapping:
@@ -48,6 +50,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 103
+        optional: true
         type: string
         name: available
         mapping:
@@ -70,6 +73,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 103
         type: base64
         optional: true
@@ -77,8 +82,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -99,6 +102,7 @@ entities:
         mapping:
           - scale: 10
       - id: 104
+        optional: true
         type: string
         name: available
         mapping:
@@ -118,6 +122,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 104
+        optional: true
         type: string
         name: available
         mapping:
@@ -140,6 +145,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 104
         type: base64
         mask: "FFFF000000"
@@ -147,8 +154,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -169,6 +174,7 @@ entities:
         mapping:
           - scale: 10
       - id: 105
+        optional: true
         type: string
         name: available
         mapping:
@@ -188,6 +194,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 105
+        optional: true
         type: string
         name: available
         mapping:
@@ -210,6 +217,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 105
         type: base64
         mask: "FFFF000000"
@@ -217,8 +226,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -239,6 +246,7 @@ entities:
         mapping:
           - scale: 10
       - id: 106
+        optional: true
         type: string
         name: available
         mapping:
@@ -258,6 +266,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 106
+        optional: true
         type: string
         name: available
         mapping:
@@ -280,6 +289,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 106
         type: base64
         mask: "FFFF000000"
@@ -287,8 +298,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -309,6 +318,7 @@ entities:
         mapping:
           - scale: 10
       - id: 107
+        optional: true
         type: string
         name: available
         mapping:
@@ -328,6 +338,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 107
+        optional: true
         type: string
         name: available
         mapping:
@@ -350,6 +361,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 107
         type: base64
         mask: "FFFF000000"
@@ -357,8 +370,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -379,6 +390,7 @@ entities:
         mapping:
           - scale: 10
       - id: 108
+        optional: true
         type: string
         name: available
         mapping:
@@ -398,6 +410,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 108
+        optional: true
         type: string
         name: available
         mapping:
@@ -420,6 +433,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 108
         type: base64
         mask: "FFFF000000"
@@ -427,8 +442,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -449,6 +462,7 @@ entities:
         mapping:
           - scale: 10
       - id: 109
+        optional: true
         type: string
         name: available
         mapping:
@@ -468,6 +482,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 109
+        optional: true
         type: string
         name: available
         mapping:
@@ -490,6 +505,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 109
         type: base64
         mask: "FFFF000000"
@@ -497,8 +514,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -519,6 +534,7 @@ entities:
         mapping:
           - scale: 10
       - id: 110
+        optional: true
         type: string
         name: available
         mapping:
@@ -538,6 +554,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 110
+        optional: true
         type: string
         name: available
         mapping:
@@ -560,6 +577,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 110
         type: base64
         mask: "FFFF000000"
@@ -567,8 +586,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -589,6 +606,7 @@ entities:
         mapping:
           - scale: 10
       - id: 111
+        optional: true
         type: string
         name: available
         mapping:
@@ -608,6 +626,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 111
+        optional: true
         type: string
         name: available
         mapping:
@@ -630,6 +649,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 111
         type: base64
         mask: "FFFF000000"
@@ -637,8 +658,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false
@@ -659,6 +678,7 @@ entities:
         mapping:
           - scale: 10
       - id: 112
+        optional: true
         type: string
         name: available
         mapping:
@@ -678,6 +698,7 @@ entities:
         unit: "%"
         mask: "000000000000000000FF"
       - id: 112
+        optional: true
         type: string
         name: available
         mapping:
@@ -700,6 +721,8 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: 65535
+            value: null
       - id: 112
         type: base64
         mask: "FFFF000000"
@@ -707,8 +730,6 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
-          - dps_val: 0
             value: false
           - dps_val: 65535
             value: false

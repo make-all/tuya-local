@@ -228,7 +228,7 @@ Further device support has been made with the assistance of users. Please consid
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, GratKit filament dryers, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell, ME201W level sensor.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell, ME201W level sensor, Thermoval Aqua TI water heater.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config, and Blitzwolf LED strips.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -1007,3 +1007,18 @@ Further device support has been made with the assistance of users. Please consid
 - [joelTXW](https://github.com/joelTXW) for assisting with support for imitOS BLE square downlight.
 - [tmeuze](https://github.com/tmeuze) for assisting with support for Hapaw pet fountain.
 - [rimmiaciej](https://github.com/rimmiaciej) for contributing support for Klarta Forste 4 air purifier.
+- [dmostert](https://github.com/dmostert) for contributing improvements to ITS 45HD heat pump.
+- [infestonn](https://github.com/infestonn) for contributing support for Aeno EK1S kettle.
+- [stepsolar](https://github.com/stepsolar) for contributing improvements to KW02 video doorbell and support for RCU16 relay module.
+- [saberraz](https://github.com/saberraz) for contributing support for Prodotec PT02 air quality monitor, GZAIR radon gas detector.
+- [fender4645](https://github.com/fender4645) for contributing support for Heonofly Smart Wood ceiling fan with lights.
+- [JakubMadro](https://github.com/JakubMadro) for contributing support for EARU PC473 3-phase energy monitor.
+- [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
+- [KoenVanduffel](https://github.com/KoenVanduffel) for assisting with support for Oscal PowerMax 6000 portable power station.
+- [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches.
+- [AFumi39](https://github.com/AFumi39) for contributing support for Puppy Kitty F14-W pet feeder.
+- [hussainaljamri](https://github.com/hussainaljamri) for contributing support for Moes Star Feather series switches.
+- [FritzeF](https://github.com/FritzeF) for assisting with support for Kavunion C1 100 ventilation fan.
+- [StaRipper](https://github.com/StaRipper) for assisting with support for Pinjia PJ3101A human presence sensor.
+- [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock.
+- [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.

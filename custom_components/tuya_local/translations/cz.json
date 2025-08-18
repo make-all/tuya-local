@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Nastavte sve lokální zařízení",
-                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace Smart Life.",
+                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace SmartLife.",
                 "data": {
                     "setup_mode": "Možnost nastavení:"
                 }
             },
             "cloud": {
                 "title": "Přihlaste se do Tuya",
-                "description": "Zadejte svůj uživatelský kód Smart Life nebo Tuya Smart.\n\nTento kód najdete v aplikaci Smart Life nebo Tuya Smart na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
+                "description": "Zadejte svůj uživatelský kód SmartLife nebo Tuya.\n\nTento kód najdete v aplikaci SmartLife nebo Tuya na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
                 "data": {
                     "user_code": "Uživatelský kód:"
                 }
             },
             "scan": {
                 "title": "Dokončete přihlášení",
-                "description": "Pomocí aplikace Smart Life nebo Tuya Smart naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
+                "description": "Pomocí aplikace SmartLife nebo Tuya naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
             },
             "choose_device": {
                 "title": "Vyberte zařízení",
@@ -73,9 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Nastavení zařízení pomocí cloudu Smart Life.",
+                "cloud": "Nastavení zařízení pomocí cloudu SmartLife.",
                 "manual": "Ručně zadejte informace o připojení zařízení.",
-                "cloud_fresh_login": "Přihlaste se pomocí jiného účtu Smart Life nebo Tuya Smart."
+                "cloud_fresh_login": "Přihlaste se pomocí jiného účtu SmartLife nebo Tuya."
             }
         }
     },
@@ -365,7 +365,10 @@
                             "eco": "Eco",
                             "anti-condensation": "Proti kondenzaci",
                             "extractor": "Odsávání",
-                            "heat_recovery": "Ovzduší"
+                            "heat_recovery": "Ovzduší",
+                            "timer": "Časovač",
+                            "on": "Zapnuto",
+                            "off": "Vypnuto"
                         }
                     }
                 }
@@ -459,7 +462,9 @@
                     "green_tea": "Zelený čaj",
                     "coffee": "Káva",
                     "honey_water": "Med",
-                    "infant_formula": "Dětská výživa"
+                    "infant_formula": "Dětská výživa",
+                    "white_tea": "Bílý čaj",
+                    "oolong_tea": "Oolong čaj"
                 }
             },
             "language": {
@@ -593,7 +598,14 @@
                     "24h": "24 hodin",
                     "36h": "36 hodin",
                     "48h": "48 hodin",
-                    "72h": "72 hodin"
+                    "72h": "72 hodin",
+                    "1d": "1 den",
+                    "2d": "2 dny",
+                    "3d": "3 dny",
+                    "4d": "4 dny",
+                    "5d": "5 dní",
+                    "6d": "6 dní",
+                    "7d": "7 dní"
                 }
             },
             "temperature_unit": {
@@ -658,6 +670,7 @@
                     "plugged_in": "Zapojeno",
                     "fault_unplugged": "Chyba (Odpojeno)",
                     "charging": "Nabíjení",
+                    "discharging": "Vybíjení",
                     "waiting": "Čekání",
                     "charged": "Nabitý",
                     "fault": "Chyba",
@@ -731,6 +744,9 @@
             },
             "time_remaining": {
                 "name": "Zbývající čas"
+            },
+            "time_remaining_x": {
+                "name": "Zbývající čas {x}"
             },
             "cooking_status": {
                 "name": "Vaření",
@@ -815,6 +831,11 @@
             },
             "timer_x": {
                 "name": "Časovač {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
             }
         },
         "water_heater": {
