@@ -43,13 +43,13 @@ entities:
         name: status
         mapping:
           - dps_val: standby
-            value: standby
+            value: idle
           - dps_val: smart_clean
-            value: cleaning
+            value: auto
           - dps_val: wall_clean
-            value: cleaning
+            value: edge
           - dps_val: spot_clean
-            value: cleaning
+            value: spot
           - dps_val: mop_clean
             value: cleaning
           - dps_val: goto_charge
@@ -57,13 +57,13 @@ entities:
           - dps_val: charging
             value: charging
           - dps_val: charge_done
-            value: charged
+            value: docked
           - dps_val: paused
-            value: pause
+            value: paused
           - dps_val: cleaning
             value: cleaning
           - dps_val: sleep
-            value: sleep
+            value: idle
       - id: 6
         type: integer
         name: battery_level
