@@ -1024,6 +1024,7 @@ port and password.
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
+- Pinjia PJ3101A presence sensor
 - PlantsIO Ivy smart planter
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
