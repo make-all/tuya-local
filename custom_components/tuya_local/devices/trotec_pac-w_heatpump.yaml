@@ -70,6 +70,18 @@ entities:
       - id: 110
         name: model
         type: string
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
   - entity: switch
     translation_key: sleep
     category: config
