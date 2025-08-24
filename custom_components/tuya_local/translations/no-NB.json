@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Konfigurer din lokale Tuya enhet",
-                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av Smart Life-appen.",
+                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av SmartLife appen.",
                 "data": {
                     "setup_mode": "Oppsettvalg:"
                 }
             },
             "cloud": {
                 "title": "Logg inn på Tuya",
-                "description": "Skriv inn Smart Life- eller Tuya Smart-brukerkoden din.\n\nDu finner denne koden i Smart Life-appen eller Tuya Smart-appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
+                "description": "Skriv inn SmartLife eller Tuya brukerkoden din.\n\nDu finner denne koden i SmartLife appen eller Tuya appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
                 "data": {
                     "user_code": "Brukerkode:"
                 }
             },
             "scan": {
                 "title": "Fullfør påloggingen",
-                "description": "Bruk Smart Life-appen eller Tuya Smart-appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
+                "description": "Bruk SmartLife appen eller Tuya appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
             },
             "choose_device": {
                 "title": "Velg enheten du vil legge til",
@@ -74,9 +74,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life sky-assistert enhetsoppsett.",
+                "cloud": "SmartLife sky-assistert enhetsoppsett.",
                 "manual": "Oppgi informasjon om enhetstilkobling manuelt.",
-                "cloud_fresh_login": "Smart Life sky-assistert enhetsoppsett med ny pålogging."
+                "cloud_fresh_login": "SmartLife sky-assistert enhetsoppsett med ny pålogging."
             }
         }
     },
@@ -366,7 +366,10 @@
                             "eco": "Øko",
                             "anti-condensation": "Anti-kondens",
                             "extractor": "Ekstraktor",
-                            "heat_recovery": "Varmeutvinning"
+                            "heat_recovery": "Varmeutvinning",
+                            "timer": "Timer",
+                            "on": "På",
+                            "off": "Av"
                         }
                     }
                 }
@@ -499,7 +502,8 @@
                     "auto": "Auto",
                     "low": "Lav",
                     "medium": "Medium",
-                    "high": "Høy"
+                    "high": "Høy",
+                    "very_high": "Veldig høy"
                 }
             },
             "recipe": {
@@ -596,7 +600,14 @@
                     "24h": "24 timer",
                     "36h": "36 timer",
                     "48h": "48 timer",
-                    "72h": "72 timer"
+                    "72h": "72 timer",
+                    "1d": "1 dag",
+                    "2d": "2 dager",
+                    "3d": "3 dager",
+                    "4d": "4 dager",
+                    "5d": "5 dager",
+                    "6d": "6 dager",
+                    "7d": "7 dager"
                 }
             },
             "temperature_unit": {
@@ -661,6 +672,7 @@
                     "plugged_in": "Tilkoblet",
                     "fault_unplugged": "Feil (frakoblet)",
                     "charging": "Lading",
+                    "discharging": "Utladning",
                     "waiting": "Venter",
                     "charged": "Ladet",
                     "fault": "Feil",
@@ -679,6 +691,7 @@
                     "manual": "Manuell",
                     "rain_delay": "Regn forsinkelse",
                     "off": "Av",
+                    "on": "På",
                     "cooking": "Matla",
                     "done": "Ferdig",
                     "door_open": "Dør åpen",
@@ -734,6 +747,9 @@
             },
             "time_remaining": {
                 "name": "Gjenstående tid"
+            },
+            "time_remaining_x": {
+                "name": "Gjenstående tid {x}"
             },
             "cooking_status": {
                 "name": "Koketilstand",
@@ -818,6 +834,11 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
             }
         },
         "water_heater": {

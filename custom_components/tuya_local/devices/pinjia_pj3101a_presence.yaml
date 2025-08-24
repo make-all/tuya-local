@@ -1,0 +1,183 @@
+name: Presence sensor
+products:
+  - id: bztylj4zlxnlhell
+    manufacturer: Dongguan Pinjia Technologies
+    model: PJ3101A
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+  - entity: number
+    name: Minimum movement distance
+    class: distance
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 10
+          max: 700
+  - entity: number
+    name: Maximum movement distance
+    class: distance
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 10
+          max: 700
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: cm
+        class: measurement
+  - entity: number
+    name: Present delay
+    category: config
+    class: duration
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: number
+    name: Clear delay
+    category: config
+    class: duration
+    icon: "mdi:motion-sensor-off"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Distant movement sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: X
+        range:
+          min: 0
+          max: 10
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: button
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: number
+    name: Minimum presence distance
+    category: config
+    icon: "mdi:seat"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 10
+          max: 500
+  - entity: number
+    name: Near presence sensitivity
+    category: config
+    icon: "mdi:seat"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: X
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Near movement sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: X
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Distant presence sensitivity
+    category: config
+    icon: "mdi:seat"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: X
+        range:
+          min: 0
+          max: 10
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: mov
+            value: true
+          - value: false
+  - entity: event
+    name: Status
+    dps:
+      - id: 104
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: none
+            value: clear
+          - dps_val: mov
+            value: movement
+          - dps_val: occ
+            value: presence

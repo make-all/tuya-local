@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Konfigurieren Sie Ihr Tuya Local-Gerät",
-                "description": "Geräte können entweder manuell oder cloudgestützt mit Hilfe der Smart Life App hinzugefügt werden.",
+                "description": "Geräte können entweder manuell oder cloudgestützt mit Hilfe der SmartLife App hinzugefügt werden.",
                 "data": {
                     "setup_mode": "Setup-Auswahl:"
                 }
             },
             "cloud": {
                 "title": "Melden Sie sich bei Tuya an",
-                "description": "Geben Sie Ihren Smart Life- oder Tuya Smart-Benutzercode ein.\n\nSie finden diesen Code in der Smart Life-App oder Tuya Smart-App im Bildschirm **Einstellungen** > **Konto und Sicherheit** und geben Sie den dort angezeigten Code ein ",
+                "description": "Geben Sie Ihren SmartLife oder Tuya Benutzercode ein.\n\nSie finden diesen Code in der SmartLife App oder Tuya App im Bildschirm **Einstellungen** > **Konto und Sicherheit** und geben Sie den dort angezeigten Code ein ",
                 "data": {
                     "user_code": "Benutzercode:"
                 }
             },
             "scan": {
                 "title": "Schließen Sie die Anmeldung ab",
-                "description": "Verwenden Sie die Smart Life-App oder die Tuya Smart-App"
+                "description": "Verwenden Sie die SmartLife App oder die Tuya App"
             },
             "choose_device": {
                 "title": "Wählen Sie das hinzuzufügende Gerät aus",
@@ -73,9 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Cloud-gestützte Geräteeinrichtung von Smart Life.",
+                "cloud": "Cloud-gestützte Geräteeinrichtung von SmartLife.",
                 "manual": "Geben Sie manuell Informationen zur Geräteverbindung an.",
-                "cloud_fresh_login": "Cloud-gestützte Geräteeinrichtung von Smart Life mit einem frischen Login."
+                "cloud_fresh_login": "Cloud-gestützte Geräteeinrichtung von SmartLife mit einem frischen Login."
             }
         }
     },
@@ -364,7 +364,10 @@
                             "eco": "Eco",
                             "anti-condensation": "Anti-Kondensation",
                             "extractor": "Abluft",
-                            "heat_recovery": "Wärmerückgewinnung"
+                            "heat_recovery": "Wärmerückgewinnung",
+                            "timer": "Timer",
+                            "on": "An",
+                            "off": "Aus"
                         }
                     }
                 }
@@ -497,7 +500,8 @@
                     "auto": "Automatisch",
                     "low": "Niedrig",
                     "medium": "Mittel",
-                    "high": "Hoch"
+                    "high": "Hoch",
+                    "very_high": "Sehr hoch"
                 }
             },
             "recipe": {
@@ -594,7 +598,14 @@
                     "24h": "24 Stunden",
                     "36h": "36 Stunden",
                     "48h": "48 Stunden",
-                    "72h": "72 Stunden"
+                    "72h": "72 Stunden",
+                    "1d": "1 Tag",
+                    "2d": "2 Tage",
+                    "3d": "3 Tage",
+                    "4d": "4 Tage",
+                    "5d": "5 Tage",
+                    "6d": "6 Tage",
+                    "7d": "7 Tage"
                 }
             },
             "temperature_unit": {
@@ -659,6 +670,7 @@
                     "plugged_in": "Angeschlossen",
                     "fault_unplugged": "Fehler (nicht angeschlossen)",
                     "charging": "Laden",
+                    "discharging": "Entladen",
                     "waiting": "Warten",
                     "charged": "Geladen",
                     "fault": "Fehler",
@@ -677,6 +689,7 @@
                     "manual": "Manuell",
                     "rain_delay": "Regenverzögerung",
                     "off": "Aus",
+                    "on": "An",
                     "cooking": "Kochen",
                     "done": "Fertig",
                     "door_open": "Tür offen",
@@ -733,6 +746,9 @@
             },
             "time_remaining": {
                 "name": "Verbleibende Zeit"
+            },
+            "time_remaining_x": {
+                "name": "Verbleibende Zeit {x}"
             },
             "cooking_status": {
                 "name": "Kochstatus",
@@ -817,6 +833,11 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
             }
         },
         "water_heater": {

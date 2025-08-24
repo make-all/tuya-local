@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Configure o seu dispositivo Tuya Local",
-                "description": "Os dispositivos podem ser adicionados manualmente ou assistidos pela Tuya Cloud com a ajuda do aplicativo Smart Life.",
+                "description": "Os dispositivos podem ser adicionados manualmente ou assistidos pela Tuya Cloud com a ajuda do aplicativo SmartLife.",
                 "data": {
                     "setup_mode": "Escolha de configuração:"
                 }
             },
             "cloud": {
                 "title": "Faça login no serviço Tuya",
-                "description": "Insira o seu código de utilizador Smart Life ou Tuya Smart.\n\nPode encontrar esse código na App Smart Life ou Tuya Smart em **Configurações** > opção **Conta e segurança** e insira o código apresentado ",
+                "description": "Insira o seu código de utilizador SmartLife ou Tuya.\n\nPode encontrar esse código na App SmartLife ou Tuya em **Configurações** > opção **Conta e segurança** e insira o código apresentado ",
                 "data": {
                     "user_code": "Código de utilizador:"
                 }
             },
             "scan": {
                 "title": "Conclua o login",
-                "description": "Use a App Smart Life ou Tuya Smart para ler o seguinte código QR e concluir o login.\n\nPasse à próxima etapa assim que concluir a leitura na App."
+                "description": "Use a App SmartLife ou Tuya para ler o seguinte código QR e concluir o login.\n\nPasse à próxima etapa assim que concluir a leitura na App."
             },
             "choose_device": {
                 "title": "Escolha o dispositivo a ser adicionado",
@@ -73,9 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Configuração do dispositivo assistido pela Cloud Smart Life.",
+                "cloud": "Configuração do dispositivo assistido pela Cloud SmartLife.",
                 "manual": "Forneça manualmente informações de conexão do dispositivo.",
-                "cloud_fresh_login": "Configuração do dispositivo assistido pela Cloud Smart Life com login fresco."
+                "cloud_fresh_login": "Configuração do dispositivo assistido pela Cloud SmartLife com login fresco."
             }
         }
     },
@@ -365,7 +365,10 @@
                             "eco": "Ecológico",
                             "anti-condensation": "Anti-condensação",
                             "extractor": "Extrator",
-                            "heat_recovery": "Recuperação de calor"
+                            "heat_recovery": "Recuperação de calor",
+                            "timer": "Temporizador",
+                            "on": "Ligado",
+                            "off": "Desligado"
                         }
                     }
                 }
@@ -498,7 +501,8 @@
                     "auto": "Automático",
                     "low": "Baixo",
                     "medium": "Médio",
-                    "high": "Alto"
+                    "high": "Alto",
+                    "very_high": "Muito alto"
                 }
             },
             "recipe": {
@@ -595,7 +599,14 @@
                     "24h": "24 horas",
                     "36h": "36 horas",
                     "48h": "48 horas",
-                    "72h": "72 horas"
+                    "72h": "72 horas",
+                    "1d": "1 dia",
+                    "2d": "2 dias",
+                    "3d": "3 dias",
+                    "4d": "4 dias",
+                    "5d": "5 dias",
+                    "6d": "6 dias",
+                    "7d": "7 dias"
                 }
             },
             "temperature_unit": {
@@ -660,6 +671,7 @@
                     "plugged_in": "Conectado",
                     "fault_unplugged": "Falha (desconectado)",
                     "charging": "Carregando",
+                    "discharging": "Descarregando",
                     "waiting": "Aguardando",
                     "charged": "Carregado",
                     "fault": "Falha",
@@ -678,6 +690,7 @@
                     "manual": "Manual",
                     "rain_delay": "Atraso de chuva",
                     "off": "Desligado",
+                    "on": "Ligado",
                     "cooking": "Cozinhando",
                     "done": "Concluído",
                     "door_open": "Porta aberta",
@@ -733,6 +746,9 @@
             },
             "time_remaining": {
                 "name": "Tempo restante"
+            },
+            "time_remaining_x": {
+                "name": "Tempo restante {x}"
             },
             "cooking_status": {
                 "name": "Status de cozimento",
@@ -817,6 +833,11 @@
             },
             "timer_x": {
                 "name": "Cronômetro {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Válvula {x}"
             }
         },
         "water_heater": {

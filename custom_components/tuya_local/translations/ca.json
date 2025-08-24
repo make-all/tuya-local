@@ -6,18 +6,18 @@
                 "data": {
                     "setup_mode": "Opció de configuració:"
                 },
-                "description": "Els dispositius es poden afegir manualment o amb l'ajuda del núvol i de l'aplicació Smart Life."
+                "description": "Els dispositius es poden afegir manualment o amb l'ajuda del núvol i de l'aplicació SmartLife."
             },
             "cloud": {
                 "title": "Inicia la sessió a Tuya",
                 "data": {
                     "user_code": "Codi d'usuari:"
                 },
-                "description": "Introduïu el vostre codi d'usuari Smart Life o Tuya Smart.\n\nPodeu trobar aquest codi a l'aplicació Smart Life o a l'aplicació Tuya Smart a la pantalla **Configuració** > **Compte i seguretat**, i introduÏu el codi que es mostra al camp **Codi d'usuari**. El codi d'usuari distingeix entre majúscules i minúscules, assegureu-vos d'introduir-lo exactament com es mostra a l'aplicació."
+                "description": "Introduïu el vostre codi d'usuari SmartLife o Tuya.\n\nPodeu trobar aquest codi a l'aplicació SmartLife o a l'aplicació Tuya a la pantalla **Configuració** > **Compte i seguretat**, i introduÏu el codi que es mostra al camp **Codi d'usuari**. El codi d'usuari distingeix entre majúscules i minúscules, assegureu-vos d'introduir-lo exactament com es mostra a l'aplicació."
             },
             "scan": {
                 "title": "Completa l'inici de sessió",
-                "description": "Useu l'aplicació Smart Life o l'aplicació Tuya Smart per a escanejar el codi QR següent i completar l'inici de sessió.\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
+                "description": "Useu l'aplicació SmartLife o l'aplicació Tuya per a escanejar el codi QR següent i completar l'inici de sessió.\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
             },
             "choose_device": {
                 "title": "Trieu el dispositiu a afegir",
@@ -73,9 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Configuració del dispositiu assistida amb el núvol Smart Life.",
+                "cloud": "Configuració del dispositiu assistida amb el núvol SmartLife.",
                 "manual": "Proporciona manualment la informació de connexió al dispositiu.",
-                "cloud_fresh_login": "Inicia la sessió en un altre compte de núvol de Smart Life."
+                "cloud_fresh_login": "Inicia la sessió en un altre compte de núvol de SmartLife."
             }
         }
     },
@@ -369,6 +369,7 @@
                     "plugged_in": "Connectat",
                     "fault_unplugged": "Errada (desconnectat)",
                     "charging": "Carregant",
+                    "discharging": "Descàrrega",
                     "waiting": "Esperant",
                     "charged": "Carregat",
                     "fault": "Fallada",
@@ -387,6 +388,7 @@
                     "manual": "Manual",
                     "rain_delay": "Retard per pluja",
                     "off": "Desactivat",
+                    "on": "Activat",
                     "cooking": "Cuina",
                     "done": "Fet",
                     "door_open": "Porta oberta",
@@ -442,6 +444,9 @@
             },
             "time_remaining": {
                 "name": "Temps restant"
+            },
+            "time_remaining_x": {
+                "name": "Temps restant {x}"
             },
             "current_x": {
                 "name": "Corrent {x}"
@@ -526,7 +531,10 @@
                             "eco": "Ecològic",
                             "anti-condensation": "Anticondensació",
                             "extractor": "Extractor",
-                            "heat_recovery": "Recuperació de calor"
+                            "heat_recovery": "Recuperació de calor",
+                            "timer": "Temporitzador",
+                            "on": "Activat",
+                            "off": "Desactivat"
                         }
                     }
                 }
@@ -633,7 +641,8 @@
                     "auto": "Automàtic",
                     "low": "Baix",
                     "medium": "Mitjà",
-                    "high": "Alt"
+                    "high": "Alt",
+                    "very_high": "Molt alt"
                 }
             },
             "recipe": {
@@ -730,7 +739,14 @@
                     "24h": "24 hores",
                     "36h": "36 hores",
                     "48h": "48 hores",
-                    "72h": "72 hores"
+                    "72h": "72 hores",
+                    "1d": "1 dia",
+                    "2d": "2 dies",
+                    "3d": "3 dies",
+                    "4d": "4 dies",
+                    "5d": "5 dies",
+                    "6d": "6 dies",
+                    "7d": "7 dies"
                 }
             },
             "temperature_unit": {
@@ -817,6 +833,11 @@
             },
             "timer_x": {
                 "name": "Temporitzador {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Vàlvula {x}"
             }
         },
         "water_heater": {
