@@ -119,7 +119,7 @@ instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://m
 
 There are two options for configuring a device:
 - You can login to Tuya cloud with the Tuya or SmartLife app and retrieve a list of devices and the necessary local connection data.
-- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+- You can provide all the necessary information manually [as per the instructions in DEVICES_DETAILS.md](DEVICE_DETAILS.md#finding-your-device-id-and-local-key).
 
 The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
 
@@ -243,3 +243,4 @@ Beyond contributing device configs, here are some areas that could benefit from 
 1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
 2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
 3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
+
