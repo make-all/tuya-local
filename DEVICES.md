@@ -794,6 +794,7 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
+- Cecotec Conga 1970 vacuum cleaner
 - iHome Autoac Nova vacuum cleaner
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
