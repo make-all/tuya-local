@@ -1,0 +1,172 @@
+name: RIYUE BOX 3 Fan Light
+products:
+  - id: shrracpw0ve9jooc
+    manufacturer: RIYUE
+    model: RIYUE BOX 3 - Health Lighting
+entities:
+  - entity: fan
+    name: Fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+      - id: 64
+        name: countdown_left
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: light
+    name: Light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        optional: true
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: color
+          - dps_val: scene
+            value: scene
+          - dps_val: music
+            value: music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 26
+        name: countdown
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+      - id: 25
+        name: scene_data
+        type: string
+        optional: true
+      - id: 27
+        name: music_data
+        type: string
+        optional: true
+      - id: 28
+        name: control_data
+        type: string
+        optional: true
+  - entity: light
+    name: Night light
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    name: Oscillation 1
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 2
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 3
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 4
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: switch
+    name: Do not disturb
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Fan beeper
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: switch
+    name: General beeper
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+#  - entity: binary_sensor
+#    name: Motor fault
+#    dps:
+#      - id: 67
+#        type: bitmap
+#        name: sensor
+#        mapping:
+#          - dps_val: 0
+#            value: false
+#          - dps_val: 1
+#            value: true
+
+  
