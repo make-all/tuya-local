@@ -1023,3 +1023,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock.
 - [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.
 - [tobias-b-gmx](https://github.com/tobias-b-gmx) for assisting with support for Dewin KWS-306WF energy monitoring circuit breaker, Sichler ZX-7655 heater.
+- [chrkov](https://github.com/chrkov) for assisting with support for Revesien Q-Pro-W aroma diffuser.

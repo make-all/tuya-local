@@ -432,6 +432,7 @@
 - Etersky aroma diffuser with light
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
+- Revesien Q-Pro-W aroma diffuser
 - Tesla Smart aroma diffuser with light
 - YX-025 WB aroma diffuser
 - YX316WIFI aroma diffuser
