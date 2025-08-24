@@ -69,6 +69,7 @@ entities:
           min: 0
           max: 99
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -77,22 +78,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_mode
-            conditions:
-              - dps_val: wth
-                value: Hot water
-              - dps_val: heat
-                value: Heating
-              - dps_val: cool
-                value: Cooling
-              - dps_val: wth_heat
-                value: Hot water + heating
-              - dps_val: wth_cool
-                value: Hot water + cooling
-      - id: 5
-        type: string
-        name: work_mode
-        hidden: true
+            value: heat_pump
       - id: 6
         type: string
         name: temperature_unit
@@ -150,6 +136,24 @@ entities:
         type: string
         optional: true
         name: power_statistics
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: wth
+            value: hotwater
+          - dps_val: heat
+            value: heat
+          - dps_val: cool
+            value: cool
+          - dps_val: wth_heat
+            value: hotwater_heat
+          - dps_val: wth_cool
+            value: hotwater_cool
   - entity: select
     translation_key: temperature_unit
     category: config

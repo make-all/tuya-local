@@ -9,6 +9,16 @@ entities:
       - id: 1
         type: boolean
         name: switch
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 101
         type: base64
         name: random
@@ -22,6 +32,8 @@ entities:
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 11
         type: integer

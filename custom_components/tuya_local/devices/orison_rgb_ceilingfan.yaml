@@ -87,8 +87,21 @@ entities:
       - id: 25
         type: hex
         name: scene_data
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Light timer
+    # 2025-07-20
+    deprecated: time.light_timer
     translation_key: timer
     class: duration
     category: config

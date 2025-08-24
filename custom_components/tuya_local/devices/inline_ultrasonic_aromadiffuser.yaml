@@ -1,0 +1,145 @@
+name: Aroma diffuser
+products:
+  - id: jhScexmS2WhfeOnt
+    manufacturer: InLine
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: speed
+        type: string
+        optional: true
+        mapping:
+          - dps_val: large
+            value: 100
+          - dps_val: middle
+            value: 66
+          - dps_val: small
+            value: 33
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+        optional: true
+      - id: 6
+        name: effect
+        type: string
+        optional: true
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: colourful1
+            value: Colorful
+          - value: "off"
+            hidden: true
+      - id: 7
+        type: integer
+        optional: true
+        name: brightness
+        range:
+          min: 0
+          max: 255
+      - id: 8
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 3
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "6"
+            value: "6h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: switch
+    dps:
+      - id: 10
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: keytone
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch

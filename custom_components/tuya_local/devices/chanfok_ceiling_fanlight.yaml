@@ -1,0 +1,78 @@
+name: Ceiling fan
+products:
+  - id: yos17rcreaqlpi5i
+    manufacturer: Chanfok
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 105
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 104
+        type: string
+        name: direction
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:tune-vertical"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        name: value
+        optional: true
+  - entity: switch
+    name: Beep
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 53
+        type: boolean
+        name: switch

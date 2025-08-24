@@ -1,0 +1,319 @@
+name: Litter box
+products:
+  - id: hvalyynkccqpdwrd
+    manufacturer: Sailesi
+entities:
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        class: measurement
+      - id: 129
+        type: integer
+        optional: true
+        name: lbs
+      # 116: unit (boolean) I guess weight unit, but what is true and false
+      - id: 116
+        type: boolean
+        optional: true
+        name: cfg_unit
+  - entity: sensor
+    name: Daily uses
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    name: Daily time spent
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: switch
+    name: Deodorization
+    icon: "mdi:spray"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: motor_fault
+          - dps_val: 2
+            value: program_fault
+          - dps_val: 4
+            value: g_sensor_fault
+      # 128: number - not clear what this is for
+      - id: 128
+        type: integer
+        name: number
+      # 130: deport_mode (Chinese name translates to Deportation mode)
+      - id: 130
+        type: boolean
+        name: deport_mode
+  - entity: button
+    name: Clean
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: button
+    name: Empty
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+  - entity: event
+    name: Trash
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: false
+            value: empty
+          - dps_val: true
+            value: full
+  - entity: event
+    name: Presence
+    dps:
+      - id: 104
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: enter
+          - dps_val: false
+            value: leave
+  - entity: switch
+    name: Induction cleaning
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: text
+    name: Clean schedule
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Scheduled cleaning
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      # 108 Clean_taste: Chinese name translates to version identification
+      #                  description same as clean_schedule
+      - id: 108
+        type: base64
+        optional: true
+        name: clean_taste
+      # 109 Clean_tasteSwitch: Chinese name translates to Alternate version id
+      - id: 109
+        type: boolean
+        name: clean_taste_sw
+  - entity: text
+    name: Do not disturb schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    name: Toilet
+    dps:
+      - id: 112
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: used
+          - value: null
+      # 111: Clean_notice: description translates to infrared function on/off
+      - id: 111
+        type: boolean
+        name: clean_notice
+      # 113: Net_notice: description translates drum reset if fault triggered
+      - id: 113
+        type: boolean
+        optional: true
+        name: net_notice
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock
+  - entity: button
+    name: Calibrate scale
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Induction clean delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Induction clean interval
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  - entity: event
+    name: Store full
+    dps:
+      - id: 119
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: full
+          - value: null
+  - entity: button
+    name: Deodorize
+    icon: "mdi:spray"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: button
+  - entity: switch
+    name: Smart cleaning
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Usage
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: number
+    name: Capacity calibration
+    category: config
+    icon: "mdi:resize"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Sand calibration
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 6
+  - entity: switch
+    name: Auto deodorize
+    icon: "mdi:spray"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: number
+    name: Detection sensitivity
+    class: weight
+    category: config
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 600
+          max: 1500
+        mapping:
+          - step: 100

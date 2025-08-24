@@ -1,0 +1,385 @@
+name: Quad climate switch
+products:
+  - id: gc4b1mdw7kebtuyz
+    model: 4-TH
+entities:
+  - entity: switch
+    name: Main
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: select
+    name: Operating mode
+    icon: "mdi:thermometer-auto"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+            icon: "mdi:thermometer-off"
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 6
+        type: integer
+        name: current_temperature
+        unit: C
+        mapping:
+          - scale: 10
+      - id: 7
+        type: integer
+        name: target_temp_high
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+      - id: 10
+        type: integer
+        name: target_temp_low
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+      - id: 20
+        type: integer
+        optional: true
+        name: current_humidity
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
+    category: config
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 19
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: 1
+            value: cooling_fault
+          - dps_val: 2
+            value: heating_fault
+          - dps_val: 4
+            value: temperature_difference_fault
+  - entity: number
+    name: Maximum humidity
+    class: humidity
+    dps:
+      - id: 21
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum humidity
+    class: humidity
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: text
+    name: Switch 1 config
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 101
+        type: string
+        name: value
+  - entity: text
+    name: Switch 2 config
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 102
+        type: string
+        name: value
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 42300
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Sensor type
+    icon: "mdi:thermometer-water"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: None
+          - dps_val: tpm
+            value: Temperature
+          - dps_val: mix
+            value: Temperature + humidity
+          - dps_val: soil
+            value: Soil moisture
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    class: duration
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    class: duration
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: lock
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 113
+        type: string
+        name: value
+  - entity: text
+    name: Switch 3 config
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 117
+        type: string
+        name: value
+  - entity: text
+    name: Switch 4 config
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 118
+        type: string
+        name: value
+  - entity: number
+    name: Humidity calibration
+    category: config
+    class: humidity
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+  - entity: number
+    name: Temperature sensitivity
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity sensitivity
+    class: humidity
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 10
+  - entity: event
+    name: Temperature alarm
+    dps:
+      - id: 122
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: low_temperature
+          - dps_val: "1"
+            value: high_temperature
+      - id: 103
+        type: bitfield
+        name: switches
+        optional: true
+  - entity: event
+    name: Humidity alarm
+    dps:
+      - id: 123
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: low_humidity
+          - dps_val: "1"
+            value: high_humidity
+      - id: 103
+        type: bitfield
+        name: switches
+        optional: true
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch

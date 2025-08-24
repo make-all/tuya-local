@@ -1,0 +1,178 @@
+name: Ceiling fan with led
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Blitzwill
+entities:
+  - entity: fan
+    icon: "mdi:ceiling-fan"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 105
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 104
+        type: string
+        name: direction
+  - entity: switch
+    translation_key: keytone
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    icon: "mdi:ceiling-fan-light"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: work_mode
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Light timer
+    # 2025-07-20
+    deprecated: time.light_timer
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Fan timer
+    category: config
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mixed scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 36
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mixed RGBCW
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Segment dimming
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 53
+        type: boolean
+        name: switch

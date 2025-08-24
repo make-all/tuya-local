@@ -76,21 +76,8 @@ entities:
         type: bitfield
         name: fault_code
   - entity: water_heater
+    translation_only_key: water_air
     dps:
-      - id: 4
-        type: string
-        name: operation_mode
-        mapping:
-          - dps_val: Heat
-            value: Heat
-          - dps_val: Cool
-            value: Cool
-          - dps_val: HotWater
-            value: Hot water
-          - dps_val: Heat_HotWater
-            value: Heat and hot water
-          - dps_val: Cool_HotWater
-            value: Cool and hot water
       - id: 101
         type: integer
         name: temperature
@@ -98,3 +85,21 @@ entities:
         range:
           min: 20
           max: 50
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: Heat
+            value: heat
+          - dps_val: Cool
+            value: cool
+          - dps_val: HotWater
+            value: hotwater
+          - dps_val: Heat_HotWater
+            value: hotwater_heat
+          - dps_val: Cool_HotWater
+            value: hotwater_cool

@@ -1,0 +1,179 @@
+name: Kettle
+products:
+  - id: ryy1qf80nhv1rspe
+    manufacturer: Aeno
+    model: EK7S
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      # Temperatures documented as having F equivalents at +1
+      - id: 2
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: temperature
+        range:
+          min: 40
+          max: 100
+        mapping:
+          - constraint: work_type
+            conditions:
+              - dps_val: setting_quick
+                value_redirect: temp_setting_quick
+              - dps_val: boiling_quick
+                value_redirect: temp_boiling_quick
+                range:
+                  min: 40
+                  max: 90
+              - dps_val: temp_setting
+                value_redirect: temp_set
+              - dps_val: temp_boiling
+                value_redirect: temp_boil
+                range:
+                  min: 40
+                  max: 90
+      - id: 4
+        type: string
+        name: temp_setting_quick
+        mapping:
+          - dps_val: "40"
+            value: 40
+          - dps_val: "55"
+            value: 55
+          - dps_val: "80"
+            value: 80
+          - dps_val: "90"
+            value: 90
+          - dps_val: "100"
+            value: 100
+      - id: 6
+        type: string
+        name: temp_boiling_quick
+        mapping:
+          - dps_val: "40"
+            value: 40
+          - dps_val: "55"
+            value: 55
+          - dps_val: "80"
+            value: 80
+          - dps_val: "90"
+            value: 90
+      - id: 8
+        type: integer
+        name: temp_set
+        range:
+          min: 40
+          max: 100
+      - id: 10
+        type: integer
+        name: temp_boil
+        range:
+          min: 40
+          max: 90
+      - id: 16
+        type: string
+        name: work_type
+        hidden: true
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: setting_quick
+            value: quick_heat
+          - dps_val: boiling_quick
+            value: quick_boil
+          - dps_val: temp_setting
+            value: heat
+          - dps_val: temp_boiling
+            value: boil
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:kettle-steam"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: time
+    name: Keep warm time
+    category: config
+    dps:
+      - id: 14
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - step: 5
+  - entity: number
+    name: Keep warm time
+    # 2025-07-20
+    deprecated: time.keep_warm_time
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - step: 5
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: heating_temp
+            value: heating_temp
+          - dps_val: boiling
+            value: done
+          - dps_val: reserve_1
+            value: reserve_1
+          - dps_val: reserve_2
+            value: reserve_2
+          - dps_val: reserve_3
+            value: reserve_3
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

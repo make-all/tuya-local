@@ -1,0 +1,194 @@
+name: EV charger
+products:
+  - id: witok7vhhjohtr02
+    manufacturer: dé
+    model: Wall charger
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: SLEEP
+            value: sleep
+          - dps_val: IDLE
+            value: idle
+          - dps_val: IDLEINS
+            value: plugged_in
+          - dps_val: WORKING
+            value: charging
+          - dps_val: WAIT
+            value: waiting
+          - dps_val: ERRORPAUSE
+            value: fault
+          - dps_val: PAUSE
+            value: paused
+          - dps_val: STOP
+            value: charged
+      - id: 102
+        type: string
+        name: metrics
+      - id: 103
+        type: string
+        optional: true
+        name: selftest
+      - id: 104
+        type: string
+        optional: true
+        name: alarm
+      - id: 105
+        type: string
+        optional: true
+        name: history
+      - id: 157
+        type: integer
+        optional: true
+        name: product_variant
+  - entity: button
+    name: Charge
+    icon: "mdi:ev-station"
+    dps:
+      - id: 140
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 140
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Reset
+    icon: "mdi:refresh"
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 142
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Charge current
+    category: config
+    class: current
+    dps:
+      - id: 150
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 1000
+      - id: 152
+        type: integer
+        name: maximum
+      - id: 107
+        type: string
+        name: steps
+  - entity: number
+    name: Maximum current
+    category: config
+    class: current
+    dps:
+      - id: 152
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 1000
+  - entity: select
+    name: Plug in action
+    icon: "mdi:ev-plug-type2"
+    category: config
+    dps:
+      - id: 154
+        type: integer
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Prompt
+          - dps_val: 1
+            value: Charge
+          - dps_val: 2
+            value: Idle
+  - entity: switch
+    name: NFC
+    icon: "mdi:nfc"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 155
+        type: boolean
+        name: switch
+      - id: 157
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: 1
+            value: false
+          - value: true
+  - entity: switch
+    name: Unearthed
+    icon: "mdi:lightning-bolt-circle"
+    category: config
+    dps:
+      - id: 156
+        type: boolean
+        name: switch
+  - entity: number
+    name: Operating state
+    category: config
+    icon: "mdi:state-machine"
+    hidden: true
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10000
+  - entity: text
+    name: Charger info
+    category: config
+    icon: "mdi:information"
+    hidden: true
+    dps:
+      - id: 106
+        type: string
+        name: value
+  - entity: text
+    name: Charge mode
+    category: config
+    icon: "mdi:ev-station"
+    hidden: true
+    dps:
+      - id: 151
+        type: string
+        name: value
+  - entity: text
+    name: Language config
+    icon: "mdi:translate"
+    category: config
+    hidden: true
+    dps:
+      - id: 153
+        type: string
+        optional: true
+        name: value

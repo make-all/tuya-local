@@ -31,6 +31,9 @@ products:
     manufacturer: Mirabella Genio
     model: CLXRGB60
     name: Genio RGBW Downlight
+  - id: iucfl5wpdk4w0cjm
+    manufacturer: Laser Smart Home
+    model: LSH-E14RGB5W
 entities:
   - entity: light
     dps:
@@ -110,8 +113,21 @@ entities:
         name: wakeup_mode
         type: base64
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -126,7 +142,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-          - dps_val: null
   - entity: switch
     name: Do not disturb
     icon: "mdi:minus-circle"

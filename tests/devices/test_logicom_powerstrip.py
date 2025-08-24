@@ -110,5 +110,10 @@ class TestLogicomPowerstrip(
                 "number_timer_3",
                 "number_timer_4",
                 "number_usb_timer",
+                "time_timer_1",
+                "time_timer_2",
+                "time_timer_3",
+                "time_timer_4",
+                "time_timer_usb",
             ]
         )

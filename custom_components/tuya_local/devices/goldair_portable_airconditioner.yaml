@@ -67,14 +67,21 @@ entities:
             value: high
       - id: 15
         type: string
-        name: swing_horizontal_mode
+        name: swing_mode
         mapping:
           - dps_val: "on"
             value: "on"
-            available: support_hswing
+            available: support_vswing
           - dps_val: "off"
+            available: support_vswing
             value: "off"
-            available: support_hswing
+          - dps_val: "on"
+            available: support_only_hswing
+            value: "on"
+            value_redirect: swing_horizontal_only
+          - available: support_only_hswing
+            value: "off"
+            value_redirect: swing_horizontal_only
       - id: 107
         type: integer
         optional: true
@@ -100,10 +107,31 @@ entities:
           - value: false
       - id: 109
         type: bitfield
+        name: support_only_hswing
+        mapping:
+          - dps_val: 1
+            value: false
+          - value_redirect: support_hswing
+      - id: 109
+        type: bitfield
         name: support_hswing
         mapping:
           - dps_val: 2
             value: true
+          - value: false
+      - id: 109
+        type: bitfield
+        name: support_swing
+        mapping:
+          - dps_val: 1
+            value: true
+          - value_redirect: support_hswing
+      - id: 109
+        type: bitfield
+        name: support_both_swing
+        mapping:
+          - dps_val: 1
+            value_redirect: support_hswing
           - value: false
       - id: 109
         type: bitfield
@@ -128,14 +156,24 @@ entities:
           - value: C
       - id: 110
         type: boolean
-        name: swing_mode
+        name: swing_horizontal_mode
         mapping:
           - dps_val: true
             value: "on"
-            available: support_vswing
+            available: support_both_swing
           - dps_val: false
             value: "off"
-            available: support_vswing
+            available: support_both_swing
+      - id: 110
+        type: boolean
+        name: swing_horizontal_only
+        mapping:
+          - dps_val: true
+            value: "on"
+            available: support_hswing
+          - dps_val: false
+            value: "off"
+            available: support_hswing
   - entity: switch
     translation_key: ionizer
     hidden: unavailable
@@ -185,8 +223,32 @@ entities:
       - id: 103
         type: boolean
         name: switch
+  - entity: time
+    name: "On timer"
+    category: config
+    translation_key: timer
+    dps:
+      - id: 104
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    name: "Off timer"
+    category: config
+    translation_key: timer
+    dps:
+      - id: 105
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: "On timer"
+    # 2025-07-20
+    deprecated: time.on_timer
     category: config
     class: duration
     translation_key: timer
@@ -203,6 +265,8 @@ entities:
             step: 60
   - entity: number
     name: "Off timer"
+    # 2025-07-20
+    deprecated: time.off_timer
     category: config
     class: duration
     translation_key: timer

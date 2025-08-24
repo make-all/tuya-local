@@ -1,0 +1,77 @@
+name: Smart switch
+products:
+  - id: rdvedq5bdkio96t1
+    manufacturer: LerLink
+    model: WBH01
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: power_off
+            value: "off"
+          - dps_val: power_on
+            value: "on"
+          - dps_val: last
+            value: memory
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+  - entity: text
+    name: Regular schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 17
+        type: string
+        name: value
+  - entity: text
+    name: Random schedule
+    category: config
+    icon: "mdi:home-clock"
+    hidden: true
+    dps:
+      - id: 18
+        type: string
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:timer-refresh"
+    hidden: true
+    dps:
+      - id: 19
+        type: string
+        optional: true
+        name: value

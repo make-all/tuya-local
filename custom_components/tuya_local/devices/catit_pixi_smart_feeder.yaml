@@ -17,9 +17,14 @@ entities:
         type: boolean
         name: button
         optional: true
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        name: meal_plan
-        type: string
+        type: base64
+        name: value
         optional: true
   - entity: sensor
     icon: "mdi:paw"

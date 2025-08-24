@@ -1,0 +1,273 @@
+name: Robot vacuum
+products:
+  - id: daxvacilskoxsl2c
+    manufacturer: Cecotec
+    model: Conga S1970
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: none
+            value: None
+          - dps_val: auto
+            value: Auto
+          - dps_val: random
+            value: Random
+          - dps_val: Gyro
+            value: Gyro
+          - dps_val: Edges
+            value: Edges
+          - dps_val: Punctual
+            value: Punctual
+          - dps_val: Area
+            value: Area
+          - dps_val: Twice
+            value: Twice
+          - dps_val: Scrubbing
+            value: Scrubbing
+          - dps_val: ChargeGo
+            value: return_to_base
+      - id: 4
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: foward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: turn_left
+          - dps_val: turn_right
+            value: turn_right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: Standby
+            value: Standby
+          - dps_val: paused
+            value: Pause
+          - dps_val: ChargeGo
+            value: Returning
+          - dps_val: Charging_Base
+            value: Charging
+          - dps_val: Charge_Comp
+            value: Docked
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: fault
+            value: Error
+          - dps_val: direction_control
+            value: direction_control
+      - id: 13
+        type: boolean
+        optional: true
+        name: locate
+      - id: 15
+        type: string
+        name: clean_record
+      - id: 18
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: Strong
+      - id: 102
+        type: string
+        name: model
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Mode
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    name: Mop attached
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Clean area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: m2
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Edge brush life
+    category: diagnostic
+    icon: "mdi:arrow-expand-all"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Roll brush life
+    category: diagnostic
+    icon: "mdi:tire"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    name: Carpet adaptive
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 12
+        name: button
+        type: boolean
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_sweep
+          - dps_val: 2
+            value: right_wheel
+          - dps_val: 4
+            value: middle_sweep
+          - dps_val: 8
+            value: left_wheel
+          - dps_val: 16
+            value: land_check
+          - dps_val: 32
+            value: garbage_box
+          - dps_val: 64
+            value: collision
+          - dps_val: 256
+            value: garbage_box_missing
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: "4"
+            value: very_high
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sound
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch

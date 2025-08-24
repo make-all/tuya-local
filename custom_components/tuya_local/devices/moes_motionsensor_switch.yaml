@@ -50,7 +50,7 @@ entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator light
+    name: light_mode
     category: config
     dps:
       - id: 15
@@ -58,9 +58,9 @@ entities:
         type: string
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: "Status"
+            value: state
   - entity: switch
     name: Illuminance enable
     dps:

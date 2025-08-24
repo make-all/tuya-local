@@ -1,0 +1,253 @@
+name: Pet feeder
+products:
+  - id: kknufilajvq2zh7t
+    manufacturer: PetsPride
+    model: 2Bowl-4L
+    model_id: OO15
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Private Mode
+    icon: "mdi:eye-off"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: number
+    name: Sound volume
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: '%'
+        range:
+          min: 0
+          max: 100
+  - entity: button
+    class: restart
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Food weight
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 232
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        range:
+          min: 5
+          max: 20
+        mapping:
+          - dps_val: null
+            value: 0
+  - entity: number
+    name: Control code
+    category: config
+    icon: "mdi:function-variant"
+    dps:
+      - id: 233
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 2147483646
+      - id: 234
+        type: integer
+        optional: true
+        name: return_code
+      - id: 236
+        type: integer
+        optional: true
+        name: history
+  - entity: number
+    name: Auto ration
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 235
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 255
+      - id: 237
+        type: string
+        optional: true
+        name: schedule
+      - id: 247
+        type: string
+        optional: true
+        name: backup_log
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 238
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: low
+            value: 20
+          - dps_val: "no"
+            value: 0
+  - entity: sensor
+    name: Food level
+    class: enum
+    icon: "mdi:train-car-centerbeam-full"
+    category: diagnostic
+    dps:
+      - id: 239
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: full
+            value: Full
+          - dps_val: less
+            value: Low
+          - dps_val: lack
+            value: Empty
+  - entity: binary_sensor
+    name: Blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 240
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    name: Jammed
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 241
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: event
+    name: Voice recording
+    icon: "mdi:account-voice"
+    dps:
+      - id: 242
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: stopped
+          - dps_val: "1"
+            value: start_recording
+          - dps_val: "2"
+            value: error
+  - entity: event
+    name: Manual feed report
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 243
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: feed
+      - id: 243
+        type: integer
+        optional: true
+        name: grams
+  - entity: event
+    name: Auto feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 244
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: feed
+      - id: 244
+        type: integer
+        optional: true
+        name: grams
+  - entity: number
+    name: Manual feed
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 245
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 99
+  - entity: event
+    name: Feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 246
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: fail
+          - value: feed
+      - id: 246
+        type: integer
+        optional: true
+        name: portions

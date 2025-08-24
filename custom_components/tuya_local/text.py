@@ -52,15 +52,17 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
 
         range = self._value_dp.range(device, False)
         if range:
-            self._attr_native_min = range["min"]
-            self._attr_native_max = range["max"]
+            self._attr_native_min = range[0]
+            self._attr_native_max = range[1]
             self._extra_info[ATTR_MIN] = self._attr_native_min
             self._extra_info[ATTR_MAX] = self._attr_native_max
 
         if self._value_dp.rawtype == "hex":
             self._attr_pattern = "[0-9a-fA-F]*"
         elif self._value_dp.rawtype == "base64":
-            self._attr_pattern = "[-A-Za-z0-9+/]*={0,3}"
+            self._attr_pattern = (
+                "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+            )
         # TODO: general pattern support
 
         if hasattr(self, "_attr_pattern"):

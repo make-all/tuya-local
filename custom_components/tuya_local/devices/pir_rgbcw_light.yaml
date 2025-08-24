@@ -188,8 +188,20 @@ entities:
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000\
               666602011702b2023a00000000"
             value: "Aquarium deepwater"
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -203,7 +215,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-          - dps_val: null
   - entity: switch
     name: Manual mode
     category: config

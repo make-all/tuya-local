@@ -61,6 +61,9 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             support |= SirenEntityFeature.VOLUME_SET
         if self._duration_dp:
             support |= SirenEntityFeature.DURATION
+        if self._switch_dp:
+            support |= SirenEntityFeature.TURN_ON | SirenEntityFeature.TURN_OFF
+
         self._attr_supported_features = support
 
     @property

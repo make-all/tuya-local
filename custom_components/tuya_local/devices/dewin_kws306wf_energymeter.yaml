@@ -1,0 +1,547 @@
+name: Energy meter
+products:
+  - id: rw34oa0bvgg3arsh
+    manufacturer: Dewin
+    model: KWS-306WF
+entities:
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+      - id: 136
+        type: integer
+        optional: true
+        name: alt
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: alt
+      - id: 135
+        type: integer
+        optional: true
+        name: alt
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: overvoltage
+          - dps_val: 2
+            value: undervoltage
+          - dps_val: 4
+            value: overcurrent
+          - dps_val: 8
+            value: overpower
+          - dps_val: 16
+            value: overpower
+          - dps_val: 32
+            value: overtemperature
+          - dps_val: 64
+            value: voltage_imbalance
+          - dps_val: 128
+            value: current_balance
+  - entity: switch
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+      - id: 137
+        type: integer
+        optional: true
+        name: alt
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Power factor B
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+      - id: 138
+        type: integer
+        optional: true
+        name: alt
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: C
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: null
+            value_redirect: alt
+      - id: 139
+        type: integer
+        optional: true
+        name: alt
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Run time
+    class: duration
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10000000
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: -1
+          max: 86400
+  - entity: number
+    name: Over voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 130
+          max: 290
+  - entity: number
+    name: Under voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 85
+          max: 220
+  - entity: number
+    name: Over current threshold
+    category: config
+    class: current
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Over power
+    category: config
+    class: power
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: kW
+        range:
+          min: 0
+          max: 2320
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Energy limit
+    category: config
+    class: energy
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 9999999
+  - entity: number
+    name: Over temperature threshold
+    category: config
+    class: temperature
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 150
+  - entity: number
+    name: Voltage balance
+    category: config
+    class: voltage
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Current balance
+    category: config
+    class: current
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 800
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Display timeout
+    category: config
+    class: duration
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+  - entity: button
+    name: Clear runtime
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Clear energy
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: standby
+          - dps_val: "2"
+            value: "on"
+  - entity: sensor
+    name: Power factor C
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 123
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: overvoltage
+          - dps_val: "2"
+            value: undervoltage
+          - dps_val: "3"
+            value: overcurrent
+          - dps_val: "4"
+            value: overpower
+          - dps_val: "5"
+            value: overpower
+          - dps_val: "6"
+            value: overtemperature
+          - dps_val: "7"
+            value: voltage_imbalance
+          - dps_val: "8"
+            value: current_balance
+  - entity: sensor
+    name: Power factor A
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: switch
+    name: Panel
+    hidden: true
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch

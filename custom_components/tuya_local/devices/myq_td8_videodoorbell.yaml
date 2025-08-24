@@ -50,6 +50,8 @@ entities:
         optional: true
   - entity: sensor
     name: SD status
+    translation_key: status
+    class: enum
     category: diagnostic
     icon: "mdi:micro-sd"
     dps:
@@ -57,6 +59,20 @@ entities:
         type: integer
         name: sensor
         optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
       - id: 109
         type: string
         name: storage

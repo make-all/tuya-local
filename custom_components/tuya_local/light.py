@@ -88,7 +88,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     self.name or "light",
                     self.color_mode,
                 )
-        return set()
 
     @property
     def supported_features(self):

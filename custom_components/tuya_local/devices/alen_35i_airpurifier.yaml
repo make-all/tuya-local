@@ -1,0 +1,88 @@
+name: Air Purifier
+products:
+  - id: bd4ztozj4aied1ps
+    manufacturer: Alen
+    model: BreatheSmart 35i
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 104
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 25
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 75
+          - dps_val: "4"
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "F"
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    name: EtOH
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement

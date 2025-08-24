@@ -97,7 +97,7 @@ class TuyaLocalDevice(object):
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
-                type(e),
+                type(e).__name__,
                 e,
                 dev_id,
             )
@@ -373,7 +373,7 @@ class TuyaLocalDevice(object):
                 _LOGGER.exception(
                     "%s receive loop error %s:%s",
                     self.name,
-                    type(t),
+                    type(t).__name__,
                     t,
                 )
                 self._api.set_socketPersistent(False)
@@ -610,7 +610,7 @@ class TuyaLocalDevice(object):
             except Exception as e:
                 _LOGGER.debug(
                     "Retrying after exception %s %s (%d/%d)",
-                    type(e),
+                    type(e).__name__,
                     e,
                     i,
                     connections,

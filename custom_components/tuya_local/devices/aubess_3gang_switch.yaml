@@ -1,0 +1,144 @@
+name: Triple switch with timer
+products:
+  - id: 3njf1fgcsbuvkbhw
+    manufacturer: Aubess
+    model: MINI-W1
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    class: duration
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: memory
+            value: memory
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+  - entity: text
+    name: Random schedule
+    category: config
+    hidden: true
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 42
+        type: string
+        name: value
+  - entity: text
+    name: Regular schedule
+    category: config
+    hidden: true
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 43
+        type: string
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    hidden: true
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 44
+        type: string
+        name: value
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 47
+        type: string
+        name: option
+        mapping:
+          - dps_val: flip
+            value: Flip
+          - dps_val: sync
+            value: Synchronized
+          - dps_val: button
+            value: Button
+  - entity: text
+    name: Interlocking
+    category: config
+    hidden: true
+    icon: "mdi:link-lock"
+    dps:
+      - id: 48
+        type: string
+        optional: true
+        name: value

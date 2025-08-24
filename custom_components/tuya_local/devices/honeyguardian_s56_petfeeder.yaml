@@ -15,10 +15,15 @@ entities:
         range:
           min: 1
           max: 6
+
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        type: string
-        name: plan
-        optional: true
+        type: base64
+        name: value
   - entity: switch
     category: config
     name: Slow feeding

@@ -1,0 +1,299 @@
+name: Water timer
+products:
+  - id: ojrvmfkk
+    manufacturer: Unistyle
+    model: WT-04W
+entities:
+  - entity: valve
+    translation_key: valve_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 102
+        type: base64
+        optional: true
+        name: irrigation_log
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-cloudy-clock"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1day"
+            value: "1d"
+          - dps_val: "2day"
+            value: "2d"
+          - dps_val: "3day"
+            value: "3d"
+          - dps_val: "4day"
+            value: "4d"
+          - dps_val: "5day"
+            value: "5d"
+          - dps_val: "6day"
+            value: "6d"
+          - dps_val: "7day"
+            value: "7d"
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: sensor
+    class: enum
+    translation_key: status
+    name: Valve 1 status
+    category: diagnostic
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: idle
+            value: idle
+          - dps_val: spray
+            value: working
+          - dps_val: delay
+            value: rain_delay
+  - entity: select
+    name: Weather
+    icon: "mdi:weather-cloudy"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: sunny
+            value: Sunny
+            icon: "mdi:weather-sunny"
+            icon_priority: 1
+          - dps_val: rainy
+            value: Rainy
+            icon: "mdi:weather-pouring"
+            icon_priority: 1
+  - entity: switch
+    name: Use weather
+    icon: "mdi:weather-cloudy"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: duration
+    translation_key: time_remaining_x
+    translation_placeholders:
+      x: "1"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: text
+    name: Valve 1 schedule 1
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 1 schedule 2
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 1 schedule 3
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 1 schedule 4
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 1 cyclic schedule
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 1 schedule 5
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 2 cyclic schedule
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: valve
+    translation_key: valve_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 121
+        type: boolean
+        name: valve
+      - id: 112
+        type: base64
+        optional: true
+        name: irrigation_log
+  - entity: text
+    name: Valve 2 schedule 1
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 2 schedule 2
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 2 schedule 3
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 2 schedule 4
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Valve 2 schedule 5
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 117
+        type: base64
+        optional: true
+        name: value
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 122
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: sensor
+    class: enum
+    translation_key: status
+    name: Valve 2 status
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: idle
+            value: idle
+          - dps_val: spray
+            value: working
+          - dps_val: delay
+            value: rain_delay
+  - entity: sensor
+    class: duration
+    translation_key: time_remaining_x
+    translation_placeholders:
+      x: "2"
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement

@@ -5,7 +5,7 @@ products:
     model: KE4071TF
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 2
         type: integer
@@ -48,20 +48,32 @@ entities:
             value: F
           - dps_val: c
             value: C
-      - id: 16
-        type: string
-        optional: true
+      - id: 1
+        type: boolean
         name: operation_mode
         mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
           - dps_val: setting_quick
-            value: Quick heat
+            value: quick_heat
           - dps_val: boiling_quick
-            value: Quick boil
+            value: quick_boil
           - dps_val: temp_setting
-            value: Heat
+            value: heat
           - dps_val: temp_boiling
-            value: Boil
+            value: boil
   - entity: switch
+    # 2025-06-07
+    deprecated: water_heater_kettle.operation_mode
     dps:
       - id: 1
         type: boolean

@@ -1,0 +1,251 @@
+name: Multi Switch
+products:
+  - id: ai2cizw27dqsamlr
+    manufacturer: HomeMate
+    model: 4Gang Switch
+  - id: jbaaqtkiuyjyuwtq
+    manufacturer: HomeMate
+    model: 2Gang Switch
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    hidden: unavailable
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+        optional: true
+      - id: 3
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    hidden: unavailable
+    dps:
+      - id: 4
+        name: switch
+        type: boolean
+        optional: true
+      - id: 4
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    icon: "mdi:toggle-switch"
+    name: Main switch
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 8
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
+      - id: 3
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    hidden: unavailable
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
+      - id: 4
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_1
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_2
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_3
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+      - id: 3
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_4
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    hidden: unavailable
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+      - id: 4
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "memory"
+            value: "memory"

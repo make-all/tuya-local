@@ -1,0 +1,107 @@
+name: Air purifier
+products:
+  - id: zxpmhropoeoigxav
+    manufacturer: Klarta
+    model: Forste 4
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: screenoff
+            value: displayoff
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: 8
+            value: 100
+          - dps_val: 6
+            value: 75
+          - dps_val: 4
+            value: 50
+          - dps_val: 2
+            value: 25
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Active filter life
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: Good
+            value: good
+          - dps_val: mild
+            value: moderate
+          - dps_val: Poor
+            value: poor

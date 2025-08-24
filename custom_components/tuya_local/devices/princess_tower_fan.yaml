@@ -1,0 +1,53 @@
+name: Tower fan
+products:
+  - id: bknpvtphln5e07oj
+    manufacturer: Princess
+    model: Smart Tower fan
+    model_id: "3582xx"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "2"
+            value: 66
+          - dps_val: "3"
+            value: 100
+      - id: 4
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "auto"
+            value: true
+          - dps_val: "off"
+            value: false
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 8

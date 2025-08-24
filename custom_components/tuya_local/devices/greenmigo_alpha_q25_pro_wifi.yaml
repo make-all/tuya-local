@@ -36,37 +36,6 @@ entities:
       - id: 6
         type: integer
         name: current_humidity
-  - entity: sensor
-    translation_key: status
-    class: enum
-    # 2024-11-02
-    deprecated: binary_sensor problem/defrost/tank_full
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: Normal
-            icon: "mdi:check-circle-outline"
-            icon_priority: 2
-          - dps_val: 1
-            value: E1
-            icon: "mdi:alert-circle-outline"
-            icon_priority: 2
-          - dps_val: 2
-            value: E2
-            icon: "mdi:alert-circle-outline"
-            icon_priority: 2
-          - dps_val: 4
-            value: Tank full
-            icon: "mdi:cup-water"
-            icon_priority: 2
-          - dps_val: 8
-            value: Defrosting
-            icon: "mdi:snowflake-melt"
-            icon_priority: 2
   - entity: binary_sensor
     class: problem
     category: diagnostic

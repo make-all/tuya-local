@@ -96,8 +96,20 @@ entities:
               046460200ae03e803e800000000464602011303e803e800000000"
             # color* R+G+B+Y+C+V, Breath, Mid speed
             value: Gorgeous
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

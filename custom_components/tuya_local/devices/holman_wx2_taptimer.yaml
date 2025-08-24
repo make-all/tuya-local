@@ -3,6 +3,9 @@ products:
   - id: wfchjk5vc9bysjtk
     manufacturer: Holman
     model: WX2
+  - id: pjnbcfv3bzwg4yyo
+    manufacturer: RainPoint
+    model: TWG004WRF
 entities:
   - entity: valve
     name: Manual 1
@@ -39,7 +42,7 @@ entities:
         unit: C
   - entity: sensor
     name: Soil moisture 1
-    class: humidity
+    class: moisture
     category: diagnostic
     dps:
       - id: 102
@@ -467,7 +470,7 @@ entities:
         unit: C
   - entity: sensor
     name: Soil moisture 2
-    class: humidity
+    class: moisture
     category: diagnostic
     dps:
       - id: 151

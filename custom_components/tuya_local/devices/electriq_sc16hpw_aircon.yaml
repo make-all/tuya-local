@@ -1,0 +1,150 @@
+name: Air conditioner
+# products;
+#   - id: UNKNOWN
+#     manufacturer: ElectriQ
+#     model: SupremeCool SC16HPW
+# multi_dps_update: false
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        name: available
+        type: boolean
+      - id: 2
+        name: current_temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temperature_f
+      - id: 3
+        name: current_temperature_f
+        type: integer
+        optional: true
+        hidden: true
+      - id: 4
+        name: hvac_action
+        optional: true
+        type: string
+        mapping:
+          - dps_val: colding
+            value: cooling
+          - dps_val: hot
+            value: heating
+          - dps_val: dehumidify
+            value: drying
+          - dps_val: wind
+            value: fan
+          - value: idle
+      - id: 5
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 32
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temperature_f
+                range:
+                  min: 61
+                  max: 90
+      - id: 6
+        name: temperature_f
+        type: integer
+        optional: true
+        hidden: true
+        range:
+          min: 61
+          max: 90
+      - id: 7
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: cool
+            value: cool
+          - dps_val: hot
+            value: heat
+          - dps_val: wind
+            value: fan_only
+          - dps_val: smartcool
+            value: auto
+          - dps_val: dehumidify
+            value: dry
+      - id: 8
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 9
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: F1
+            value: low
+          - dps_val: F2
+            value: medlow
+          - dps_val: F3
+            value: medium
+          - dps_val: F4
+            value: medhigh
+          - dps_val: F5
+            value: high
+      - id: 103
+        type: boolean
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 104
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: 'off'
+  - entity: select
+    category: config
+    translation_key: temperature_unit
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Quiet Mode
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor

@@ -30,9 +30,6 @@ entities:
           - dps_val: true
             value: "heat"
         name: hvac_mode
-      - id: 8
-        type: integer
-        name: timer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -40,8 +37,20 @@ entities:
       - id: 6
         type: boolean
         name: lock
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 8
+        name: minute
+        type: integer
+        range:
+          min: 0
+          max: 1440
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

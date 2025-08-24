@@ -2,6 +2,9 @@ name: Camera
 products:
   - id: fzsbulp3wg64l8vx
     model: TY-W160D
+  - id: dm7sckewmyflqgj1
+    manufacturer: HQCAM
+    model: 2MP peephole camera
 entities:
   - entity: camera
     dps:
@@ -70,6 +73,7 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
@@ -80,7 +84,7 @@ entities:
           - dps_val: 1
             value: normal
           - dps_val: 2
-            value: error
+            value: fault
           - dps_val: 3
             value: full
           - dps_val: 4

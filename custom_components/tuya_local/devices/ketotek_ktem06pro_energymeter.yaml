@@ -450,8 +450,20 @@ entities:
         class: measurement
         mapping:
           - scale: 100
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

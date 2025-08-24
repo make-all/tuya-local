@@ -1,0 +1,145 @@
+name: Keypad lock
+products:
+  - id: bb0nmoax
+    manufacturer: Positivo
+    model: Smart KeyPad
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+      - id: 4
+        type: string
+        name: temporary_password_creat
+        optional: true
+      - id: 5
+        type: string
+        name: temporary_password_delete
+        optional: true
+      - id: 6
+        type: string
+        name: temporary_password_modify
+        optional: true
+      - id: 7
+        type: base64
+        name: synch_method
+        optional: true
+      - id: 51
+        type: string
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 58
+        type: string
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 60
+        type: string
+        name: alarm_lock
+        readonly: true
+        optional: true
+        mapping:
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+      - id: 70
+        type: string
+        name: password_offline_time
+        optional: true
+      - id: 71
+        type: string
+        name: unlock_offline_clear_single
+        optional: true
+      - id: 72
+        type: string
+        name: unlock_offline_clear
+        optional: true
+      - id: 73
+        type: string
+        name: unlock_offline_pwd
+        optional: true
+        persist: false
+      - id: 74
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+      - id: 91
+        type: boolean
+        name: message
+        optional: true
+  - entity: switch
+    category: config
+    translation_key: keytone
+    dps:
+      - id: 22
+        name: switch
+        type: string
+        optional: true
+        mapping:
+          - dps_val: mute
+            value: false
+          - dps_val: normal
+            value: true
+  - entity: switch
+    category: config
+    name: Verify Lock
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    category: config
+    name: Unlock multiple doors
+    icon: "mdi:volume-high"
+    dps:
+      - id: 28
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: single
+            value: single
+          - dps_val: multiple
+            value: multiple
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 40
+        optional: true
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Batery state
+    class: enum
+    icon: "mdi:battery"
+    category: diagnostic
+    dps:
+      - id: 41
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: medium
+            value: medium
+          - dps_val: low
+            value: low
+          - dps_val: power_off
+            value: power_off

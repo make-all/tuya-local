@@ -289,8 +289,22 @@ entities:
           max: 20000000
         mapping:
           - scale: 1000
+  - entity: time
+    name: Charging time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 1
+          max: 1440
   - entity: number
     name: Charge time
+    # 2025-07-20
+    deprecated: time.charging_time
     category: config
     class: duration
     icon: "mdi:timer"

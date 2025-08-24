@@ -110,6 +110,8 @@ entities:
         name: switch
   - entity: number
     name: Sleep start
+    # 2025-07-20
+    deprecated: time.sleep_start
     class: duration
     category: config
     icon: "mdi:timer"
@@ -125,6 +127,8 @@ entities:
           - scale: 60
   - entity: number
     name: Sleep end
+    # 2025-07-20
+    deprecated: time.sleep_end
     class: duration
     category: config
     icon: "mdi:timer"
@@ -138,6 +142,26 @@ entities:
           max: 1440
         mapping:
           - scale: 60
+  - entity: time
+    name: Sleep start
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    name: Sleep end
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
   - entity: binary_sensor
     class: problem
     category: diagnostic

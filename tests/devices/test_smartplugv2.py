@@ -74,6 +74,7 @@ class TestSwitchV2(
                 "sensor_current",
                 "sensor_power",
                 "sensor_voltage",
+                "time_timer",
             ]
         )
 

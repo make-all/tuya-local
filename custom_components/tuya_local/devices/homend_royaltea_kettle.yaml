@@ -1,0 +1,177 @@
+name: Kettle
+products:
+  - id: ixclh0ml02riwbdz
+    manufacturer: Homend
+    model: Royaltea
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 2
+        type: integer
+        name: current_temperature
+      - id: 8
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: null
+            range:
+              min: 50
+              max: 90
+            step: 13
+            value_redirect: quick_temp
+      - id: 4
+        type: string
+        name: quick_temp
+        mapping:
+          - dps_val: "50"
+            value: 50
+          - dps_val: "65"
+            value: 65
+          - dps_val: "85"
+            value: 85
+          - dps_val: "90"
+            value: 90
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "50"
+            value: "off"
+          - dps_val: "65"
+            value: "infant_formula"
+          - dps_val: "85"
+            value: "green_tea"
+          - dps_val: "90"
+            value: "black_tea"
+  - entity: number
+    name: Keep warm time
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 180
+        mapping:
+          - step: 15
+  - entity: select
+    name: Preset
+    translation_key: kettle_mode
+    category: config
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: temp_setting
+            value: heat
+          - dps_val: temp_boiling
+            value: boil
+          - dps_val: temp_baby
+            value: infant_formula
+            hidden: true
+  - entity: switch
+    name: Voice
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: select
+    name: Operating mode
+    translation_key: kettle_mode
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: isit
+            value: heat
+          - dps_val: sogut
+            value: boil
+  - entity: sensor
+    name: Use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 104
+        type: string
+        name: alarm_ringtone
+        mapping:
+          - dps_val: AR0
+            value: Unknown 0
+          - dps_val: AR1
+            value: Unknown 1
+          - dps_val: AR2
+            value: done
+          - dps_val: AR3
+            value: cooling
+          - dps_val: AR4
+            value: Unknown 4
+          - dps_val: AR5
+            value: keeping_warm
+          - dps_val: AR6
+            value: standby
+          - dps_val: AR7
+            value: Unknown 7
+          - dps_val: AR8
+            value: Unknown 8
+          - dps_val: AR9
+            value: at_temperature
+      - id: 15
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value_redirect: alarm_ringtone
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: heating_temp
+            value: at_temperature
+          - dps_val: boiling_temp
+            value: boiling

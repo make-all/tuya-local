@@ -1,0 +1,500 @@
+name: Water heat pump
+products:
+  - id: 5oc9wmac3bbidekc
+    manufacturer: Powerworld / Michl
+    model: PW040 / SMP13
+entities:
+  - entity: water_heater
+    translation_key: water_air
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 125
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 28
+          max: 55
+      - id: 108  # Warmwasser_T (ist): hot water (actual value)
+        type: integer
+        name: current_temperature
+      - id: 4
+        hidden: true
+        type: integer
+        name: temp_set
+        optional: true
+        range:
+          min: 0
+          max: 9999
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: heat
+            value: heat
+          - dps_val: wth
+            value: hotwater
+          - dps_val: cool
+            value: cool
+          - dps_val: wth_heat
+            value: hotwater_heat
+          - dps_val: wth_cool
+            value: hotwater_cool
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: wth_off
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: heat
+                value: heat
+                available: wth_off
+              - dps_val: cool
+                value: cool
+                available: wth_off
+              - dps_val: wth
+                value: "off"
+                available: wth_on
+              - dps_val: wth_heat
+                value: heat
+                available: wth_on
+              - dps_val: wth_cool
+                value: cool
+                available: wth_on
+      - id: 5
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 5
+        type: string
+        name: wth_on
+        hidden: true
+        mapping:
+          - dps_val: wth
+            value: true
+          - dps_val: wth_heat
+            value: true
+          - dps_val: wth_cool
+            value: true
+          - value: false
+      - id: 5
+        type: string
+        name: wth_off
+        hidden: true
+        mapping:
+          - dps_val: wth
+            value: false
+          - dps_val: wth_heat
+            value: false
+          - dps_val: wth_cool
+            value: false
+          - value: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: smart
+            value: comfort
+          - dps_val: strong
+            value: boost
+          - dps_val: mute
+            value: eco
+      - id: 101
+        type: integer
+        name: current_temperature
+      - id: 123
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 55
+        mapping:
+          - constraint: work_mode
+            conditions:
+              - dps_val:
+                  - cool
+                  - wth_cool
+                value_redirect: cooling_temp
+                range:
+                  min: 7
+                  max: 30
+      - id: 124
+        hidden: true
+        type: integer
+        unit: C
+        name: cooling_temp
+        range:
+          min: 7
+          max: 30
+  - entity: select
+    name: Heating return
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Manual
+          - dps_val: 1
+            value: Eco
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        unit: C
+        name: sensor
+  - entity: sensor
+    class: temperature
+    name: Ambient temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        unit: C
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Gas outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        unit: C
+        name: sensor
+        class: measurement
+        range:
+          min: -30
+          max: 99
+  - entity: sensor
+    name: Gas return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        unit: C
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Vaporiser temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        unit: C
+        name: sensor
+        class: measurement
+        range:
+          min: -30
+          max: 99
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        unit: C
+        name: sensor
+        class: measurement
+        range:
+          min: -30
+          max: 99
+  - entity: sensor
+    name: EEV opening
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+        range:
+          min: 0
+          max: 500
+  - entity: sensor  # enthalpy expansion valve opening level
+    name: EEV2 opening
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+        range:
+          min: 0
+          max: 500
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        range:
+          min: 0
+          max: 65
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        range:
+          min: -99
+          max: 150
+  - entity: sensor
+    name: Heatsink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        range:
+          min: -99
+          max: 150
+  - entity: sensor
+    name: DC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        range:
+          min: 0
+          max: 999
+  - entity: sensor
+    name: DC fan 1
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+        range:
+          min: 0
+          max: 1500
+  - entity: sensor
+    name: DC fan 2
+    category: diagnostic
+    dps:
+      - id: 15
+        hidden: true
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+        range:
+          min: 0
+          max: 1500
+  - entity: number
+    name: Cooling hysteresis
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 18
+  - entity: number
+    name: Heating hysteresis
+    category: config
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 18
+  - entity: number
+    name: Water temperature offset
+    class: temperature
+    category: config
+    dps:
+      - id: 126
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: -5
+          max: 15
+  - entity: number  # temperature offset of characteristic curve
+    name: Characteristic curve offset
+    class: temperature
+    category: config
+    dps:
+      - id: 133
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: 0
+          max: 40
+  - entity: number
+    name: Characteristic curve gradient
+    category: config
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 30
+  - entity: select
+    name: Target temperature action
+    category: config
+    dps:
+      - id: 135
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Compressor off
+          - dps_val: "1"
+            value: Compressor reduced frequency
+  - entity: number
+    name: Pipe heating start temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 136
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: -20
+          max: 20
+  - entity: number
+    name: Hot water start temperature
+    category: config
+    dps:
+      - id: 137
+        type: integer
+        unit: min
+        name: value
+        range:
+          min: 0
+          max: 60
+  - entity: select
+    name: Water pump stop mode
+    category: config
+    dps:
+      - id: 138
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Immediate stop
+          - dps_val: 1
+            value: Ramp down
+  - entity: number  # defrost start temperature
+    name: Defrost start temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 139
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: -15
+          max: -1
+  - entity: number
+    name: Defrost stop temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 140
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: 1
+          max: 40
+  - entity: number
+    name: Defrost hysteresis
+    class: temperature
+    category: config
+    dps:
+      - id: 141
+        type: integer
+        unit: C
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Minimum compressor frequency
+    class: frequency
+    category: config
+    dps:
+      - id: 142
+        type: integer
+        unit: Hz
+        name: value
+        range:
+          min: 30
+          max: 120
+  - entity: number
+    name: Maximum compressor frequency
+    class: frequency
+    category: config
+    dps:
+      - id: 143
+        type: integer
+        unit: Hz
+        name: value
+        range:
+          min: 30
+          max: 120
+  - entity: number
+    name: Compressor hot water frequency compensation
+    class: frequency
+    category: config
+    dps:
+      - id: 144
+        type: integer
+        unit: Hz
+        name: value
+        range:
+          min: -50
+          max: 20

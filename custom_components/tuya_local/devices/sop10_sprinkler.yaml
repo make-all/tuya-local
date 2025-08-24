@@ -66,8 +66,28 @@ entities:
             value: "48h"
           - dps_val: "72h"
             value: "72h"
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 16
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 17
+        type: string
+        name: schedule
+        optional: true
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -80,14 +100,6 @@ entities:
           max: 86400
         mapping:
           - scale: 60
-      - id: 16
-        type: string
-        name: cycle_timer
-        optional: true
-      - id: 17
-        type: string
-        name: schedule
-        optional: true
   - entity: sensor
     name: Weather
     icon: "mdi:weather-cloudy-alert"

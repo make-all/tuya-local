@@ -1,0 +1,334 @@
+name: Door lock
+products:
+  - id: 6fibxtph
+    manufacturer: Primebras
+    model: Athenas
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: create_unlock_method
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: delete_unlock_method
+        optional: true
+      - id: 3
+        type: string
+        name: modify_unlock_method
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 14
+        name: unlock_dynamic_pwd
+        type: integer
+        optional: true
+        persist: false
+      - id: 15
+        name: unlock_card
+        type: integer
+        optional: true
+        persist: false
+      - id: 16
+        name: unlock_key
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 20
+        name: lock_record
+        type: base64
+        optional: true
+      - id: 21
+        name: jammed
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - dps_val: null
+            value: false
+          - value: false
+      - id: 40
+        type: boolean
+        optional: true
+        readonly: true
+        name: open
+      - id: 46
+        name: lock
+        type: boolean
+        optional: true
+      - id: 47
+        name: lock_state
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 51
+        type: string
+        optional: true
+        sensitive: true
+        name: temp_pwd_create
+      - id: 52
+        type: string
+        optional: true
+        name: temp_pwd_delete
+      - id: 53
+        type: string
+        optional: true
+        sensitive: true
+        name: temp_pwd_modify
+      - id: 54
+        type: string
+        optional: true
+        sensitive: true
+        name: sync_method
+      - id: 55
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 61
+        type: string
+        optional: true
+        sensitive: true
+        name: remote_no_dp_key
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        name: unlock_voice
+        type: integer
+        optional: true
+        persist: false
+      - id: 64
+        type: string
+        optional: true
+        name: pwd_offline_time
+      - id: 67
+        type: base64
+        optional: true
+        persist: false
+        name: unlock_offline_pwd
+      - id: 69
+        type: string
+        optional: true
+        name: log
+      - id: 70
+        type: base64
+        optional: true
+        sensitive: true
+        name: check_code_set
+      - id: 71
+        type: base64
+        optional: true
+        sensitive: true
+        name: ble_unlock_check
+      - id: 73
+        type: base64
+        optional: true
+        sensitive: true
+        name: remote_pd_setkey_check
+      - id: 74
+        type: base64
+        optional: true
+        sensitive: true
+        name: unlock_multi
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+      - id: 9
+        type: string
+        optional: true
+        name: battery_state
+  - entity: event
+    name: Alert
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: Wrong Finger
+          - dps_val: wrong_password
+            value: Wrong Password
+          - dps_val: wrong_card
+            value: Wrong Card
+          - dps_val: wrong_face
+            value: Wrong Face
+          - dps_val: tongue_bad
+            value: Tongue Bad
+          - dps_val: too_hot
+            value: Too Hot
+          - dps_val: unclosed_time
+            value: Unclosed Time
+          - dps_val: tongue_not_out
+            value: Tongue Not Out
+          - dps_val: pry
+            value: Pry
+          - dps_val: key_in
+            value: Key In
+          - dps_val: low_battery
+            value: Low Battery
+          - dps_val: power_off
+            value: Power Off
+          - dps_val: shock
+            value: Shock
+          - dps_val: defense
+            value: Defense
+          - dps_val: wrong_unlock
+            value: Wrong Unlock
+  - entity: event
+    name: Hijack
+    dps:
+      - id: 22
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: hijack
+          - dps_val: false
+            value: null
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 24
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
+  - entity: number
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 33
+          max: 100
+        mapping:
+          - dps_val: low
+            step: 33
+            value: 33
+            icon: "mdi:volume-low"
+          - dps_val: normal
+            step: 33
+            value: 66
+            icon: "mdi:volume-medium"
+          - dps_val: high
+            step: 33
+            value: 100
+            icon: "mdi:volume-high"
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    name: Multifactor
+    category: config
+    icon: "mdi:lock-check"
+    dps:
+      - id: 34
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: single_unlock
+            value: "off"
+          - dps_val: finger_password
+            value: Finger + password
+          - dps_val: finger_card
+            value: Finger + card
+          - dps_val: finger_face
+            value: Finger + face
+          - dps_val: password_card
+            value: Card + password
+          - dps_val: card_face
+            value: Card + face
+          - dps_val: combination
+            value: Combination
+  - entity: number
+    name: Auto lock delay
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1800
+        unit: s
+  - entity: switch
+    name: Local clock
+    category: config
+    dps:
+      - id: 44
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Lock motor direction
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 50
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: clockwise
+            value: Clockwise
+          - dps_val: anticlockwise
+            value: Anti-clockwise

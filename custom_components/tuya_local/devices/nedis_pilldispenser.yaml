@@ -1,0 +1,788 @@
+name: Pill dispenser
+products:
+  - id: 8noakuggsvhniojb
+    manufacturer: Nedis
+    model: WIFIPD10WT
+entities:
+  - entity: event
+    name: Empty
+    icon: "mdi:medication-outline"
+    dps:
+      - id: 101
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: empty
+          - value: null
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000000000000001
+        name: sensor
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            constraint: battery_state
+            conditions:
+              - dps_val: 2
+                value: true
+              - dps_val: [0, 1, 3]
+                value: false
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000000000000700
+        name: battery_state
+        mapping:
+          - dps_val: 0
+            value: normal
+          - dps_val: 1
+            value: full
+          - dps_val: 2
+            value: low
+          - dps_val: 3
+            value: charging
+          - dps_val: 4
+            value: not_fitted
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000000000000700
+        name: sensor
+        mapping:
+          - dps_val: 3
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000000000FF0000
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Lid
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000000001000000
+        name: sensor
+  - entity: sensor
+    name: Total compartments
+    icon: "mdi:pill-multiple"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          000000000000000000000000000000000000000000000000000000FF00000000
+        name: sensor
+  - entity: sensor
+    name: Loaded compartments
+    category: diagnostic
+    icon: "mdi:pill-multiple"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          0000000000000000000000000000000000000000000000000000FF0000000000
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Current compartment
+    category: diagnostic
+    icon: "mdi:pill"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          00000000000000000000000000000000000000000000000000FF000000000000
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Remaining compartments
+    category: diagnostic
+    icon: "mdi:pill-multiple"
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        mask: >-
+          000000000000000000000000000000000000000000000000FF00000000000000
+        name: sensor
+        class: measurement
+  - entity: event
+    name: Medication
+    icon: "mdi:medication"
+    dps:
+      - id: 103
+        type: base64
+        mask: "00FF"
+        optional: true
+        name: event
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: 1
+            value: ready
+          - dps_val: 2
+            value: late
+          - dps_val: 3
+            value: taken_early
+          - dps_val: 4
+            value: taken
+          - dps_val: 5
+            value: taken_late
+          - dps_val: 6
+            value: missed
+          - dps_val: 7
+            value: taken_out_of_schedule
+      - id: 103
+        type: base64
+        optional: true
+        mask: "FF0000000000000000000000000000"
+        name: compartment
+      - id: 103
+        type: base64
+        optional: true
+        name: full_info
+  - entity: event
+    name: Reminder
+    icon: "mdi:clock-in"
+    dps:
+      - id: 105
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: due
+          - value: null
+  - entity: event
+    name: Late reminder
+    icon: "mdi:clock-alert"
+    dps:
+      - id: 106
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: past_due
+          - value: null
+  - entity: event
+    name: Missed notification
+    icon: "mdi:clock-remove"
+    dps:
+      - id: 107
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: missed_dose
+          - value: null
+  - entity: event
+    name: Refill
+    icon: "mdi:reload-alert"
+    dps:
+      - id: 108
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: refill
+          - value: null
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 109
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 109
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 109
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: rotation_fault
+          - dps_val: 2
+            value: reset_fault
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 1
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 2
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 3
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 4
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 5
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 6
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 7
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 117
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 8
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm config 9
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 119
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    name: Taken notification
+    dps:
+      - id: 120
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: taken
+          - value: null
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:sleep"
+    category: config
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        mask: "0000000001"
+        name: switch
+  - entity: number
+    name: DND start hour
+    category: config
+    icon: "mdi:bed-clock"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        mask: "000000FF00"
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: DND start minute
+    category: config
+    icon: "mdi:bed-clock"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        mask: "0000FF0000"
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: DND end hour
+    category: config
+    icon: "mdi:sun-clock"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        mask: "00FF000000"
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: DND end minute
+    category: config
+    icon: "mdi:sun-clock"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        mask: "FF00000000"
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: text
+    name: Alarm period
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: value
+  - entity: select
+    name: Date format
+    icon: "mdi:calendar-question"
+    category: config
+    dps:
+      - id: 123
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "East Asia (ISO)"
+          - dps_val: "1"
+            value: "Europe"
+          - dps_val: "2"
+            value: "US"
+  - entity: select
+    name: Time format
+    icon: "mdi:wrench-clock"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "24 hour"
+          - dps_val: "1"
+            value: "12 hour"
+  - entity: number
+    name: Late timeout
+    category: config
+    class: duration
+    icon: "mdi:timer-alert"
+    dps:
+      - id: 125
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  - entity: number
+    name: Missed timeout
+    category: config
+    class: duration
+    icon: "mdi:timer-remove"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 240
+  - entity: number
+    name: Loaded compartments
+    category: config
+    icon: "mdi:pill-mulitple"
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 28
+  - entity: select
+    name: Remind method
+    icon: "mdi:message"
+    category: config
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        mask: "000003"
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "No reminder"
+          - dps_val: 1
+            value: Remind doses left
+          - dps_val: 2
+            value: Remind time left
+  - entity: number
+    name: Remind doses threshold
+    category: config
+    icon: "mdi:message-badge"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        mask: "00FF00"
+        name: value
+        unit: doses
+        range:
+          min: 0
+          max: 255
+  - entity: number
+    name: Remind time threshold
+    category: config
+    icon: "mdi:message-badge"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        mask: "FF0000"
+        name: value
+        range:
+          min: 0
+          max: 255
+  - entity: siren
+    name: Alarm
+    dps:
+      - id: 129
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: Tone 1
+          - dps_val: "2"
+            value: Tone 2
+          - dps_val: "3"
+            value: Tone 3
+      - id: 130
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: "0"
+            value: 1.0
+          - dps_val: "1"
+            value: 0.7
+          - dps_val: "2"
+            value: 0.3
+          - dps_val: "3"
+            value: 0
+  - entity: event
+    name: Emergency call
+    icon: "mdi:phone-alert"
+    dps:
+      - id: 131
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: sos
+          - dps_val: false
+            value: end
+  - entity: switch
+    name: Auto time sync
+    category: config
+    hidden: true
+    icon: "mdi:clock"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "000000000001"
+        name: switch
+  - entity: switch
+    name: Auto time zone
+    category: config
+    hidden: true
+    icon: "mdi:web-clock"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "000000000100"
+        name: switch
+  - entity: number
+    name: Time offset
+    category: config
+    hidden: true
+    icon: "mdi:clock-edit"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "0000FFFF0000"
+        endianness: little
+        name: value
+        range:
+          min: 0
+          max: 65535
+  - entity: number
+    name: Area index
+    category: config
+    hidden: true
+    icon: "mdi:map"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "FFFF00000000"
+        endianness: little
+        name: value
+        range:
+          min: 0
+          max: 65535
+  - entity: switch
+    translation_key: keytone
+    dps:
+      - id: 133
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Emergency call delay
+    category: config
+    class: duration
+    icon: "mdi:phone-clock"
+    dps:
+      - id: 134
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 3600
+  - entity: switch
+    name: Low battery notification
+    icon: "mdi:battery-alert-variant-outline"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000000003"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Medication due notification
+    icon: "mdi:pill"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000000300"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Medication late notification
+    icon: "mdi:pill"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000030000"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Medication missed notification
+    icon: "mdi:pill-off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000003000000"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Medication empty notification
+    icon: "mdi:pill-off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000300000000"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Medication taken notification
+    icon: "mdi:pill"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000030000000000"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null
+  - entity: switch
+    name: Emergency call notification
+    icon: "mdi:phone-alert"
+    category: config
+    hidden: true
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000003000000000000"
+        name: switch
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: false
+          - value: null

@@ -96,8 +96,21 @@ entities:
             value: Color Scene - Breath
           - dps_val: 97000000000000000000000000000000
             value: Color Scene - Pure
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+        optional: true
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

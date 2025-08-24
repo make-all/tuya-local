@@ -1,0 +1,115 @@
+name: Corner fan
+products:
+  - id: lzjzcjqgzwkt6ked
+    manufacturer: Point One Technology
+    model: Storm VSPEC-IV Dual-axis Smart Corner Fan
+entities:
+  - entity: light
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: fan
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: mode
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: strong
+            value: strong
+      - id: 103
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 105
+        type: boolean
+        name: oscillate
+      - id: 107
+        type: boolean
+        name: fan_sound
+  - entity: switch
+    name: Vertical oscillation
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Full rotation
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "cancel"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 360
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code

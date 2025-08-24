@@ -1,0 +1,171 @@
+name: Portable Air Conditioner
+products:
+  - id: pkudk18s3u1dshxn
+    manufacturer: Fral
+    model: Super Cool FSC08 WiFi
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: dry
+                value: dry
+              - dps_val: fan
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        optional: true
+        range:
+          min: 17
+          max: 86
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                range:
+                  min: 17
+                  max: 30
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 63
+                  max: 86
+      - id: 3
+        type: integer
+        name: current_temperature
+        optional: true
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: low
+            value: low
+          - dps_val: auto
+            value: auto
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 23
+        type: integer
+        name: temp_current_f
+        optional: true
+      - id: 24
+        type: integer
+        name: temp_set_f
+        optional: true
+        range:
+          min: 63
+          max: 86
+      - id: 33
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+          - dps_val: "13h"
+            value: "13h"
+          - dps_val: "14h"
+            value: "14h"
+          - dps_val: "15h"
+            value: "15h"
+          - dps_val: "16h"
+            value: "16h"
+          - dps_val: "17h"
+            value: "17h"
+          - dps_val: "18h"
+            value: "18h"
+          - dps_val: "19h"
+            value: "19h"
+          - dps_val: "20h"
+            value: "20h"
+          - dps_val: "21h"
+            value: "21h"
+          - dps_val: "22h"
+            value: "22h"
+          - dps_val: "23h"
+            value: "23h"
+          - dps_val: "24h"
+            value: "24h"
+  - entity: sensor
+    class: duration
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: min

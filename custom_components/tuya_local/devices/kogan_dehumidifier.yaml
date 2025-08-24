@@ -34,12 +34,6 @@ entities:
       - id: 3
         name: current_humidity
         type: integer
-      - id: 12
-        name: timer_hr
-        type: integer
-      - id: 13
-        name: timer
-        type: integer
       - id: 101
         name: humidity
         type: integer
@@ -94,3 +88,13 @@ entities:
       - id: 11
         type: bitfield
         name: fault_code
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        name: hour
+        type: integer
+      - id: 13
+        name: minute
+        type: integer

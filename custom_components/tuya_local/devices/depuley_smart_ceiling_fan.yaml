@@ -180,8 +180,22 @@ entities:
         mapping:
           - dps_val: null
             value: 0
+  - entity: time
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.light_timer
     class: duration
     name: Light timer
     category: config

@@ -1,0 +1,220 @@
+name: Triple dimmer
+products:
+  - id: kgrgldje301tqiav
+    manufacturer: Malmbergs
+    model: NV-SWQ triple dimmer CB2S
+entities:
+  - entity: light
+    name: Dimmer 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Dimmer 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Dimmer 3
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Minimum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: number
+    name: Minimum brightness 3
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness 3
+    category: config
+    icon: "mdi:lightbulb-on"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    # 2025-07-20
+    deprecated: time.timer_3
+    class: duration
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator

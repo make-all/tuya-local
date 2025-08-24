@@ -26,6 +26,10 @@ entities:
       - id: 6
         type: bitfield
         name: fault_code
+      - id: 130
+        type: boolean
+        optional: true
+        name: fault_flag
   - entity: switch
     name: Mute
     icon: "mdi:volume-mute"
@@ -151,12 +155,13 @@ entities:
                 value: idle
               - dps_val: ["auto", "auto_dhw"]
                 value: null
-      - id: 118
+      - id: 106
         type: integer
         name: current_temperature
         mapping:
           - scale: 10
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -165,22 +170,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_mode
-            conditions:
-              - dps_val: cool
-                value: air_cooling
-              - dps_val: heat
-                value: air_heating
-              - dps_val: auto
-                value: air_heat_cool
-              - dps_val: hot_water
-                value: hot_water
-              - dps_val: cool_hot_water
-                value: hot_water_and_cooling
-              - dps_val: heat_hot_water
-                value: hot_water_and_heating
-              - dps_val: auto_dhw
-                value: hot_water_and_heat_cool
+            value: heat_pump
       - id: 104
         type: integer
         name: temperature
@@ -196,10 +186,6 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
-      - id: 109
-        type: string
-        name: work_mode
-        hidden: true
       - id: 165
         type: boolean
         optional: true
@@ -208,9 +194,33 @@ entities:
           - dps_val: null
             value: false
             hidden: true
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: cool
+            value: cool
+          - dps_val: heat
+            value: heat
+          - dps_val: auto
+            value: auto
+          - dps_val: hot_water
+            value: hotwater
+          - dps_val: cool_hot_water
+            value: hotwater_cool
+          - dps_val: heat_hot_water
+            value: hotwater_heat
+          - dps_val: auto_dhw
+            value: hotwater_auto
   - entity: sensor
     name: Inlet temperature
     class: temperature
+    # 2025-05-13
+    deprecated: climate current_temperature
     category: diagnostic
     dps:
       - id: 106
@@ -224,6 +234,7 @@ entities:
     name: Outlet temperature
     class: temperature
     category: diagnostic
+    hidden: true
     dps:
       - id: 107
         type: integer
@@ -236,6 +247,7 @@ entities:
     name: Frost protection
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 114
         type: boolean
@@ -260,9 +272,22 @@ entities:
         type: boolean
         name: sensor
   - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
     name: Exhaust temperature
     class: temperature
     category: diagnostic
+    hidden: true
     dps:
       - id: 119
         type: integer
@@ -275,6 +300,7 @@ entities:
     name: Return temperature
     class: temperature
     category: diagnostic
+    hidden: true
     dps:
       - id: 120
         type: integer
@@ -287,6 +313,7 @@ entities:
     name: Compressor frequency
     class: frequency
     category: diagnostic
+    hidden: true
     dps:
       - id: 121
         type: integer
@@ -295,28 +322,28 @@ entities:
         class: measurement
   - entity: sensor
     name: Main EEV
-    class: frequency
     category: diagnostic
+    hidden: true
     dps:
       - id: 122
         type: integer
         name: sensor
-        unit: Hz
         class: measurement
   - entity: sensor
     name: Auxiliary EEV
-    class: frequency
     category: diagnostic
+    hidden: true
     dps:
       - id: 123
         type: integer
         name: sensor
-        unit: Hz
         class: measurement
   - entity: sensor
     name: AC Fan
+    icon: "mdi:fan-auto"
     class: enum
     category: diagnostic
+    hidden: true
     dps:
       - id: 124
         type: string
@@ -330,7 +357,9 @@ entities:
             value: high
   - entity: sensor
     name: DC fan 1
+    icon: "mdi:fan-speed-1"
     category: diagnostic
+    hidden: true
     dps:
       - id: 125
         type: integer
@@ -339,7 +368,9 @@ entities:
         class: measurement
   - entity: sensor
     name: DC fan 2
+    icon: "mdi:fan-speed-2"
     category: diagnostic
+    hidden: true
     dps:
       - id: 126
         type: integer

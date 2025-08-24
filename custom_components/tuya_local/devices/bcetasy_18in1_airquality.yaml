@@ -1,0 +1,484 @@
+name: Air quality monitor
+products:
+  - id: jp75jjsyxwirdhhk
+    manufacturer: Bcetasy
+    model: PV33
+entities:
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: binary_sensor
+    name: CO2 alarm
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: siren
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: "mute"
+            value: 0.0
+          - dps_val: "low"
+            value: 0.3
+          - dps_val: "middle"
+            value: 0.7
+          - dps_val: "high"
+            value: 1.0
+      - id: 6
+        type: string
+        optional: true
+        name: tone
+        mapping:
+          - dps_val: ringtone_1
+            value: alarm_1
+          - dps_val: ringtone_2
+            value: alarm_2
+          - dps_val: ringtone_3
+            value: alarm_3
+          - dps_val: ringtone_4
+            value: alarm_4
+          - dps_val: ringtone_5
+            value: alarm_5
+      - id: 7
+        type: integer
+        optional: true
+        name: duration
+        unit: s
+        range:
+          min: 1
+          max: 60
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charge
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 17
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 124
+        name: available
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 103
+        type: integer
+        name: current
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: Formaldehyde
+    class: volatile_organic_compounds
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: number
+    name: CO2 alarm threshold
+    category: config
+    class: carbon_dioxide
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 800
+          max: 2000
+        mapping:
+          - step: 100
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 104
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: mild
+            value: moderate
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
+  - entity: number
+    name: PM2.5 alarm threshold
+    category: config
+    class: pm25
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 25
+          max: 150
+        mapping:
+          - step: 5
+  - entity: binary_sensor
+    name: PM2.5 alarm
+    class: smoke
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: switch
+    name: Time sync
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Display sleep
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: number
+    name: Display timeout
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 300
+        mapping:
+          - step: 10
+  - entity: binary_sensor
+    name: CO alarm
+    class: gas
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 110
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+      - id: 112
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: CO alarm threshold
+    class: carbon_monoxide
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: ppm
+        range:
+          min: 20
+          max: 75
+        mapping:
+          - step: 5
+      - id: 112
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: carbon_monoxide
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: sensor
+        unit: ppm
+        class: measurement
+      - id: 112
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: aqi
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: binary_sensor
+    name: Formaldehyde alarm
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 114
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: AQI alarm
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: number
+    name: Formaldehyde alarm threshold
+    category: config
+    class: volatile_organic_compounds
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 50
+          max: 200
+        mapping:
+          - step: 50
+  - entity: binary_sensor
+    name: TVOC alarm
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 117
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: number
+    name: TVOC alarm threshold
+    category: config
+    class: volatile_organic_compounds
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 300
+          max: 1500
+        mapping:
+          - step: 100
+  - entity: number
+    name: AQI alarm threshold
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: 50
+          max: 150
+  - entity: number
+    name: PM1 alarm threshold
+    category: config
+    class: pm1
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 25
+          max: 150
+        mapping:
+          - step: 5
+  - entity: binary_sensor
+    name: PM1 alarm
+    class: smoke
+    category: diagnostic
+    dps:
+      - id: 121
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: number
+    name: PM10 alarm threshold
+    category: config
+    class: pm10
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: ugm3
+        range:
+          min: 50
+          max: 250
+        mapping:
+          - step: 5
+  - entity: binary_sensor
+    name: PM10 alarm
+    class: smoke
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: switch
+    name: Auto brightness
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: select
+    name: Sampling rate
+    category: config
+    dps:
+      - id: 125
+        type: string
+        name: option
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: middle
+            value: medium
+          - dps_val: low
+            value: low

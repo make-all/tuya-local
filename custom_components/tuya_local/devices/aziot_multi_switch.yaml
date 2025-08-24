@@ -1,0 +1,206 @@
+name: Multi switch
+products:
+  - id: xs4fwrqy9rxg5tak
+    manufacturer: Aziot
+    model: 8 Node Smart Switch
+  - id: kqkj2vssnbwqq34j
+    manufacturer: Aziot
+    model: 7 Node-IO Smart Switch
+
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "1"}
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "2"}
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "3"}
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "4"}
+    dps:
+      - id: 4
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "5"}
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "6"}
+    dps:
+      - id: 6
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "7"}
+    dps:
+      - id: 141
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders: {x: "8"}
+    hidden: unavailable
+    dps:
+      - id: 171
+        name: switch
+        type: boolean
+        optional: true
+      - id: 171
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+
+  - entity: switch
+    name: Main switch
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+
+  # Timers 1 to 8
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 8
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "5"
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "6"
+    dps:
+      - id: 12
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "7"
+    dps:
+      - id: 143
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "8"
+    hidden: unavailable
+    dps:
+      - id: 172
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 171
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

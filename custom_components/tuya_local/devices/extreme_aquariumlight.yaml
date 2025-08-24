@@ -1,0 +1,285 @@
+name: Aquarium light
+products:
+  - id: v6pejhqu
+    manufacturer: NemoLight
+    model: Extreme Series
+entities:
+  - entity: light
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+      - id: 102
+        name: effect
+        type: string
+        mapping:
+          - dps_val: manual
+            value: "off"
+          - dps_val: auto
+            value: Auto
+          - dps_val: acclimation
+            value: Acclimation
+      - id: 3
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - step: 10
+  - entity: select
+    name: Preview
+    icon: "mdi:fishbowl"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: none
+            value: None
+          - dps_val: auto
+            value: Auto
+          - dps_val: acclimation
+            value: Acclimation
+          - dps_val: lunar
+            value: Lunar
+          - dps_val: lighting
+            value: Lighting
+          - dps_val: cloudy
+            value: Cloudy
+  - entity: switch
+    name: Time 24h
+    icon: "mdi:hours-24"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:hours-12"
+            icon_priority: 1
+  - entity: light
+    name: Channel A
+    icon: "mdi:lightbulb-group-outline"
+    category: config
+    dps:
+      - id: 105
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: light
+    name: Channel B
+    icon: "mdi:lightbulb-group-outline"
+    category: config
+    dps:
+      - id: 106
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: light
+    name: Channel C
+    icon: "mdi:lightbulb-group-outline"
+    category: config
+    dps:
+      - id: 107
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: light
+    name: Channel D
+    icon: "mdi:lightbulb-group-outline"
+    category: config
+    dps:
+      - id: 108
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: text
+    name: Auto config
+    category: config
+    icon: "mdi:fishbowl"
+    hidden: true
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Acclimation config
+    category: config
+    icon: "mdi:fishbowl-outline"
+    hidden: true
+    dps:
+      - id: 110
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Lunar config
+    category: config
+    icon: "mdi:weather-night"
+    hidden: true
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Lighting config
+    category: config
+    icon: "mdi:weather-sunny"
+    hidden: true
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Cloudy config
+    category: config
+    icon: "mdi:weather-cloudy"
+    hidden: true
+    dps:
+      - id: 113
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 12V
+    category: config
+    icon: "mdi:clock-start"
+    hidden: true
+    dps:
+      - id: 114
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 24V
+    category: config
+    icon: "mdi:clock-start"
+    hidden: true
+    dps:
+      - id: 115
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule pump
+    category: config
+    icon: "mdi:clock-start"
+    hidden: true
+    dps:
+      - id: 116
+        type: string
+        optional: true
+        name: value
+  - entity: number
+    name: Power LED
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 117
+        type: base64
+        mask: "FF0000"
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 70
+  - entity: number
+    name: Power 24V
+    category: config
+    icon: "mdi:water-pump"
+    dps:
+      - id: 117
+        type: base64
+        mask: "00FF00"
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 20
+  - entity: number
+    name: Power 12V
+    category: config
+    icon: "mdi:car-battery"
+    dps:
+      - id: 117
+        type: base64
+        mask: "0000FF"
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 10
+  - entity: select
+    name: Equipment
+    icon: "mdi:water-pump"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "24v"
+            value: General 24V
+          - dps_val: pump
+            value: Pump
+  - entity: select
+    name: Channel
+    category: config
+    icon: "mdi:access-point"
+    hidden: true
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+  - entity: switch
+    name: Pairing
+    icon: "mdi:bluetooth-connect"
+    category: config
+    hidden: true
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: switch

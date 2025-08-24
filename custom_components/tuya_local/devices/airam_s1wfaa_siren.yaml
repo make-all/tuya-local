@@ -1,0 +1,41 @@
+name: Siren
+products:
+  - id: h2hhafbfuczgcibk
+    manufacturer: Airam
+    model: S1WFAA
+entities:
+  - entity: siren
+    dps:
+      - id: 1
+        type: string
+        name: tone
+        mapping:
+          - dps_val: light
+            value: Light
+          - dps_val: voice
+            value: Siren
+          - dps_val: light_voice
+            value: Light and siren
+          - dps_val: mute
+            value: Silent
+      - id: 5
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0
+          - dps_val: low
+            value: 33
+          - dps_val: middle
+            value: 66
+          - dps_val: high
+            value: 100
+      - id: 7
+        type: integer
+        name: duration
+        range:
+          min: 1
+          max: 30
+      - id: 13
+        type: boolean
+        name: switch

@@ -1,0 +1,126 @@
+name: Light
+products:
+  - id: ix6bgswz
+    manufacturer: imitOS
+    model: Square downlight
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+          - dps_val: null
+            value: color_temp
+            hidden: true
+      - id: 3
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 4
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 11
+        name: rgbhsv
+        type: base64
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 100
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 100
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: second
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 13
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Timer sync
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 18
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Segment dimming
+    category: config
+    icon: "mdi:chart-pie"
+    hidden: true
+    dps:
+      - id: 53
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 73
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Timer config
+    category: config
+    icon: "mdi:timer-cog"
+    hidden: true
+    dps:
+      - id: 75
+        type: base64
+        optional: true
+        name: value

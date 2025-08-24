@@ -1,0 +1,509 @@
+name: Weather station
+products:
+  - id: wkbc51nj8mqiws0n
+    manufacturer: Immax
+    model: Neo Lite Smart professional 7-in-1
+  - id: 6cwineqz1ndjmuee
+    manufacturer: Immax
+    model: Neo Lite Smart professional 7-in-1
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Windspeed unit
+    icon: "mdi:wind-power"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: kmph
+            value: km/h
+          - dps_val: mph
+            value: mph
+          - dps_val: mps
+            value: m/s
+          - dps_val: knots
+            value: knots
+  - entity: select
+    name: Pressure units
+    icon: "mdi:gauge"
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: hpa
+            value: hPa
+          - dps_val: inhg
+            value: inHg
+          - dps_val: mmhg
+            value: mmHg
+  - entity: select
+    name: Rainfall unit
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: mm
+            value: mm
+          - dps_val: inch
+            value: inch
+  - entity: select
+    name: Illuminance unit
+    icon: "mdi:weather-sunny"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: klux
+            value: kilolux
+          - dps_val: kfc
+            value: kilo foot-candle
+          - dps_val: wm2
+            value: W/m²
+  - entity: text
+    name: Clock set
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 14
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 38
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 39
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Remote temperature 1
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 40
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 40
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Remote humidity 1
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 41
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 41
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Remote temperature 2
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 42
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 42
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Remote humidity 2
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 43
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 43
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Remote temperature 3
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 44
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 44
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Remote humidity 3
+    class: humidity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 45
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 45
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: atmospheric_pressure
+    dps:
+      - id: 55
+        type: integer
+        name: sensor
+        unit: hPa
+        class: measurement
+      - id: 54
+        type: integer
+        name: absolute
+  - entity: sensor
+    class: wind_speed
+    dps:
+      - id: 56
+        type: integer
+        name: sensor
+        unit: km/h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Gust speed
+    class: wind_speed
+    dps:
+      - id: 57
+        type: integer
+        name: sensor
+        unit: km/h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: precipitation
+    dps:
+      - id: 60
+        type: integer
+        name: sensor
+        unit: mm
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 59
+        type: integer
+        name: hourly
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: precipitation_intensity
+    dps:
+      - id: 61
+        type: integer
+        name: sensor
+        unit: mm/h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: UV index
+    category: diagnostic
+    dps:
+      - id: 62
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Dew point
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 64
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Feels like
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 65
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Heat index
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 66
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Windchill index
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 67
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Time format
+    icon: "mdi:clock-digital"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "12Hr"
+            value: "12h"
+          - dps_val: "24Hr"
+            value: "24h"
+  - entity: select
+    name: Date format
+    icon: "mdi:calendar"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: D_M
+            value: Day Month
+          - dps_val: M_D
+            value: Month Day
+  - entity: sensor
+    name: Data
+    icon: "mdi:cogs"
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Settings
+    icon: "mdi:cogs"
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: sensor
+  - entity: select
+    name: Wind direction display
+    icon: "mdi:windsock"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "name"
+            value: Direction name
+          - dps_val: angle
+            value: Compass angle
+  - entity: sensor
+    name: Power status
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: sensor
+  - entity: text
+    name: Backlight
+    category: config
+    icon: "mdi:television-ambient-light"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Data overflow
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Last rainfall
+    class: precipitation
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: mm
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Real-time wind speed
+    class: wind_speed
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: km/h
+        class: measurement
+      - id: 134
+        type: base64
+        optional: true
+        name: direction_data
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    name: Sunlight
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement

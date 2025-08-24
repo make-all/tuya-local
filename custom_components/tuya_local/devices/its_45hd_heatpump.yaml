@@ -35,18 +35,19 @@ entities:
         name: EEV
       - id: 17
         type: string
+        name: work_mode
+      - id: 27
+        type: boolean
         name: hvac_action
         mapping:
-          - dps_val: normal
+          - dps_val: true
             constraint: four_valve_state
             conditions:
               - dps_val: false
                 value: heating
               - dps_val: true
                 value: cooling
-          - dps_val: ERR
-            value: "off"
-          - dps_val: "NO"
+          - dps_val: false
             value: idle
       - id: 18
         type: integer

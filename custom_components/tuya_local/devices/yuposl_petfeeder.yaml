@@ -1,0 +1,176 @@
+name: Pet feeder
+products:
+  - id: eb3olqllh0l0hvwz
+    manufacturer: Yuposl
+    model: Dual band
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 50
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    name: Food
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: enough
+            value: available
+          - dps_val: insufficient
+            value: low
+          - dps_val: run_out
+            value: empty
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: jammed
+          - dps_val: 2
+            value: food_low
+          - dps_val: 4
+            value: food_empty
+          - dps_val: 8
+            value: dessicant_empty
+          - dps_val: 16
+            value: battery_low
+          - dps_val: 32
+            value: stuck
+          - dps_val: 64
+            value: offline
+  - entity: event
+    name: Feed report
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: null
+          - value: fed
+      - id: 14
+        type: integer
+        optional: true
+        name: portions
+  - entity: number
+    name: Voice playback count
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 0
+          max: 5
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: number
+    name: Button feed amount
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 20
+  - entity: event
+    name: Battery
+    dps:
+      - id: 110
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: low
+            value: low
+          - dps_val: "no"
+            value: "none"
+  - entity: event
+    name: Food stuck
+    dps:
+      - id: 130
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: normal
+            value: null
+          - dps_val: stuck
+            value: stuck

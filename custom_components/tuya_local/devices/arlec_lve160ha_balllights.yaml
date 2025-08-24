@@ -1,0 +1,77 @@
+name: Ball lights
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Arlec
+#     model: LED 160 ball lights
+#     model_id: LVE160HA
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: Twinkle
+          - dps_val: "3"
+            value: Multi-flash
+          - dps_val: "4"
+            value: Slo-glo
+          - dps_val: "5"
+            value: Auto color change
+          - dps_val: "6"
+            value: Auto flash
+          - dps_val: "7"
+            value: Combination
+      - id: 107
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 64
+  - entity: number
+    name: Speed
+    category: config
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 50
+  - entity: text
+    name: Mode 1 data
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mode 2 data
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mode 4 data
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value

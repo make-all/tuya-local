@@ -80,6 +80,7 @@ entities:
           min: 7
           max: 25
   - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -88,22 +89,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: Hot
-                value: hot_water
-              - dps_val: Heating
-                value: air_heating
-              - dps_val: Cooling
-                value: air_cooling
-              - dps_val: Hot_Heating
-                value: hot_water_and_heating
-              - dps_val: Hot_Cooling
-                value: hot_water_and_cooling
-      - id: 2
-        type: string
-        name: mode
-        hidden: true
+            value: heat_pump
       - id: 119
         type: integer
         name: temperature
@@ -116,6 +102,24 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: Hot
+            value: hotwater
+          - dps_val: Heating
+            value: heat
+          - dps_val: Cooling
+            value: cool
+          - dps_val: Hot_Heating
+            value: hotwater_heat
+          - dps_val: Hot_Cooling
+            value: hotwater_cool
   - entity: switch
     name: Night mode
     icon: "mdi:weather-night"

@@ -112,9 +112,13 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._preset_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
-            self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
+            if self._swing_mode_dps.values(device):
+                self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
         if self._swing_horizontal_mode_dps:
-            self._attr_supported_features |= ClimateEntityFeature.SWING_HORIZONTAL_MODE
+            if self._swing_horizontal_mode_dps.values(device):
+                self._attr_supported_features |= (
+                    ClimateEntityFeature.SWING_HORIZONTAL_MODE
+                )
         if self._temp_high_dps and self._temp_low_dps:
             self._attr_supported_features |= (
                 ClimateEntityFeature.TARGET_TEMPERATURE_RANGE

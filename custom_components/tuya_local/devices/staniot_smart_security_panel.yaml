@@ -1,0 +1,230 @@
+name: Smart Security Panel
+products:
+  - id: 7gscfzq34lyzura8
+    manufacturer: Staniot
+    model: H700
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:clock-out"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 181
+  - entity: number
+    name: Alarm siren duration
+    category: config
+    icon: "mdi:alarm"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 31
+  - entity: switch
+    name: Local alarm
+    category: config
+    icon: "mdi:alarm-bell"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: System volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 9
+  - entity: switch
+    name: Siren alarm
+    category: config
+    icon: "mdi:alarm-light"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Siren sound
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Delayed sound
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Voice guide
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    translation_key: plug
+    class: power
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: sensor
+    translation_key: battery_level
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Doorbell notification
+    category: config
+    icon: "mdi:doorbell"
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Call alarm notification
+    category: config
+    icon: "mdi:phone"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Telephone state
+    class: enum
+    category: diagnostic
+    icon: "mdi:cellphone-check"
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "normal"
+            value: "normal"
+          - dps_val: "network_no"
+            value: "no network"
+          - dps_val: "phone_no"
+            value: "no phone"
+          - dps_val: "sim_card_no"
+            value: "no sim card"
+          - dps_val: "network_search"
+            value: "network search"
+          - dps_val: "signal_level_1"
+            value: "signal level 1"
+          - dps_val: "signal_level_2"
+            value: "signal level 2"
+          - dps_val: "signal_level_3"
+            value: "signal level 3"
+          - dps_val: "signal_level_4"
+            value: "signal level 4"
+          - dps_val: "signal_level_5"
+            value: "signal level 5"
+  - entity: switch
+    name: SMS alarm notification
+    category: config
+    icon: "mdi:message-processing"
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm notification
+    category: config
+    icon: "mdi:bell-badge"
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+  - entity: number
+    name: Doorbell volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 9
+  - entity: binary_sensor
+    name: Alarm state
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: english
+            value: "english"
+          - dps_val: german
+            value: "german"
+          - dps_val: russian
+            value: "russian"
+          - dps_val: french
+            value: "french"
+          - dps_val: portuguese
+            value: "portuguese"
+          - dps_val: spanish
+            value: "spanish"
+          - dps_val: italian
+            value: "italian"

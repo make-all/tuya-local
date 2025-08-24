@@ -1,0 +1,437 @@
+name: Air quality monitor
+products:
+  - id: 5kjpe3awcy70dmdx
+    manufacturer: Prodotec
+    model: PT02
+entities:
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        class: measurement
+        name: sensor
+        unit: ppm
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: mg/m³
+        class: measurement
+        mapping:
+          - scale: 100
+            step: 1
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: closed
+            value: 0
+            step: 127
+          - dps_val: level_1
+            value: 128
+            step: 127
+          - dps_val: level_2
+            value: 255
+            step: 127
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: fahrenheit
+          - dps_val: "c"
+            value: celsius
+        optional: true
+  - entity: number
+    name: TVOC alarm threshold
+    category: config
+    class: volatile_organic_compounds
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: mg/m³
+        range:
+          min: 100
+          max: 1999
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: TVOC alarm cancel threshold
+    category: config
+    class: volatile_organic_compounds
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: mg/m³
+        range:
+          min: 100
+          max: 1999
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: CO2 alarm threshold
+    category: config
+    class: carbon_dioxide
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 700
+          max: 5000
+        mapping:
+          - step: 50
+  - entity: number
+    name: CO2 alarm cancel threshold
+    category: config
+    class: carbon_dioxide
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 700
+          max: 5000
+        mapping:
+          - step: 50
+  - entity: number
+    name: PM2.5 alarm threshold
+    category: config
+    class: pm25
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - step: 5
+  - entity: number
+    name: PM2.5 alarm cancel threshold
+    category: config
+    class: pm25
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - step: 5
+  - entity: number
+    name: Humidity alarm cancel threshold
+    category: config
+    class: humidity
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 150
+          max: 750
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Humidity alarm threshold
+    category: config
+    class: humidity
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 150
+          max: 750
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: PM1.0 alarm threshold
+    category: config
+    class: pm10
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - step: 5
+  - entity: number
+    name: PM1.0 alarm cancel threshold
+    category: config
+    class: pm10
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: µg/m³
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - step: 5
+  - entity: number
+    name: Temperature alarm threshold
+    category: config
+    class: temperature
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 10
+          max: 500
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Temperature alarm cancel threshold
+    category: config
+    class: temperature
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 10
+          max: 500
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Alarm time
+    translation_key: timer
+    class: duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 60
+        unit: s
+  - entity: number
+    name: Contol delay
+    translation_key: timer
+    class: duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1200
+        unit: s
+  - entity: number
+    name: Contol stop delay
+    translation_key: timer
+    class: duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1200
+        unit: s
+  - entity: binary_sensor
+    name: Temperature control
+    icon: "mdi:fan-chevron-down"
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: CO2 control
+    icon: "mdi:fan-chevron-down"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: TVOC control
+    icon: "mdi:fan-chevron-down"
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: PM2.5 control
+    icon: "mdi:fan-chevron-down"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Humidity control
+    icon: "mdi:water-percent"
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: TVOC state
+    class: enum
+    icon: "mdi:blur"
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High
+  - entity: sensor
+    name: CO2 state
+    class: enum
+    icon: "mdi:molecule-co2"
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High
+  - entity: sensor
+    name: PM2.5 state
+    class: enum
+    icon: "mdi:blur"
+    category: diagnostic
+    dps:
+      - id: 124
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High
+  - entity: sensor
+    name: PM1.0 state
+    class: enum
+    icon: "mdi:blur"
+    category: diagnostic
+    dps:
+      - id: 125
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High
+  - entity: sensor
+    name: Temperature state
+    class: enum
+    icon: "mdi:thermometer"
+    category: diagnostic
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High
+  - entity: sensor
+    name: Humidity state
+    class: enum
+    icon: "mdi:water-percent"
+    category: diagnostic
+    dps:
+      - id: 127
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: alarm
+            value: High

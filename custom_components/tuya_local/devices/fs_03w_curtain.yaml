@@ -59,8 +59,7 @@ entities:
           min: 1
           max: 60
   - entity: select
-    name: Light mode
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     category: config
     dps:
       - id: 14
@@ -68,8 +67,8 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"

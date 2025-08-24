@@ -1,0 +1,581 @@
+name: EV charger
+products:
+  - id: rpbvcwf70qtilaxt
+    manufacturer: Dowell
+    model: iOneAIO ESS
+    model_id: DCHS-K7
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3    # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 22
+        type: string
+        name: meter_id
+      - id: 23
+        type: string
+        name: system_version
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1    # forward_energy_total
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 2    # battery_percentage
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Maximum charging current
+    category: config
+    class: current
+    mode: box
+    icon: "mdi:current-ac"
+    dps:
+      - id: 4    # charge_cur_set
+        type: integer
+        name: value
+        unit: A
+        optional: true
+        range:
+          min: 6
+          max: 32   # 80 default config is higher in Tuya API
+  - entity: number
+    name: Household load balancing
+    category: config
+    class: current
+    mode: box
+    icon: "mdi:current-ac"
+    dps:
+      - id: 107    # dlb_cur_set - Actual Load = Set value - 5A
+        type: integer
+        name: value
+        unit: A
+        optional: true
+        range:
+          min: 10
+          max: 32   # 140 default config is higher in Tuya API
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9    # power_total
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10    # fault
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10    # fault
+        type: bitfield
+        name: fault_code
+      - id: 10    # fault
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ov_cr
+          - dps_val: 1
+            value: ov2_cr_fault
+          - dps_val: 2
+            value: ov_vol
+          - dps_val: 4
+            value: undervoltage_alarm
+          - dps_val: 8
+            value: contactor_adhesion
+          - dps_val: 16
+            value: contactor_fault
+          - dps_val: 32
+            value: earth_fault
+          - dps_val: 64
+            value: meter_hardware_alarm
+          - dps_val: 128
+            value: scram_fault
+          - dps_val: 256
+            value: cp_fault
+          - dps_val: 512
+            value: meter_commu_fault
+          - dps_val: 1024
+            value: card_reader_fault
+          - dps_val: 2048
+            value: cir_short_fault
+          - dps_val: 4096
+            value: adhesion_fault
+          - dps_val: 8192
+            value: self_test_alarm
+          - dps_val: 16384
+            value: leakagecurr_alarm
+  - entity: sensor
+    name: Connection
+    icon: "mdi:ev-plug-type2"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13    # connection_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Standby
+          - dps_val: controlpi_12v_pwm
+            value: Communication initialising
+          - dps_val: controlpi_9v
+            value: Vehicle detected
+          - dps_val: controlpi_9v_pwm
+            value: Vehicle connected
+          - dps_val: controlpi_6v
+            value: Ready to charge
+          - dps_val: controlpi_6v_pwm
+            value: Charging
+          - dps_val: controlpi_error
+            value: Error
+  - entity: select
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14    # work_mode
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Plug and Play
+          - dps_val: charge_energy
+            value: Normal mode
+          - dps_val: charge_schedule
+            value: Scheduled
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 6    # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 6    # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    dps:
+      - id: 6    # phase_a
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    hidden: true
+    dps:
+      - id: 7    # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    hidden: true
+    dps:
+      - id: 7    # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    hidden: true
+    dps:
+      - id: 7    # phase_b
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    hidden: true
+    dps:
+      - id: 8    # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    hidden: true
+    dps:
+      - id: 8    # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    hidden: true
+    dps:
+      - id: 8    # phase_c
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24    # temp_current
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Remaining available power
+    category: diagnostic
+    hidden: true
+    class: energy_storage
+    dps:
+      - id: 15    # balance_energy
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 99999999
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total daily charge
+    category: diagnostic
+    class: energy_storage
+    dps:
+      - id: 17    # energy_charge
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: time
+    name: Charging time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 19    # charge_time
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 1
+          max: 1440
+  - entity: number
+    # 2025-07-20
+    deprecated: time.charging_time
+    name: Charging time
+    category: config
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 19    # charge_time
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 1440
+  - entity: sensor
+    name: Latest charge
+    class: energy_storage
+    dps:
+      - id: 25    # charge_energy_once
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        range:
+          min: 1
+          max: 20000000
+        mapping:
+          - scale: 100
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18    # switch
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Charging time
+    class: duration
+    dps:
+      - id: 101    # charging_time1
+        type: base64
+        name: sensor
+        optional: true
+        unit: s
+        mask: "0000FFFF"
+  - entity: select
+    name: Mode
+    icon: "mdi:cogs"
+    category: config
+    hidden: true
+    dps:
+      - id: 102    # mode
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: home
+            value: Home
+          - dps_val: mode
+            value: Mode
+          - dps_val: recode
+            value: Recode
+          - dps_val: setting
+            value: Setting
+  - entity: sensor
+    name: Minimum current
+    class: current
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103    # current_limit
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mask: "FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Maximum current
+    class: current
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103    # current_limit
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mask: "0000FFFF"
+        mapping:
+          - scale: 10
+  - entity: button
+    name: Reset energy counter
+    class: restart
+    category: config
+    dps:
+      - id: 16    # clear_energy
+        type: boolean
+        optional: true
+        name: button
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27    # online_state
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+  - entity: switch
+    name: RF enable
+    category: config
+    hidden: true
+    dps:
+      - id: 110    # rf_enable
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Pen enable
+    category: config
+    dps:
+      - id: 108    # pen_enable
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: safety
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 106    # safety_notice
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 106    # safety_notice
+        type: bitfield
+        name: fault_code
+      - id: 106    # safety_notice
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: software_safety
+          - dps_val: 1
+            value: case_open
+          - dps_val: 2
+            value: lock_fault
+          - dps_val: 4
+            value: software_change
+  - entity: text
+    name: OCCP IP
+    category: config
+    hidden: true
+    dps:
+      - id: 104    # occp_ip
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: OCCP port
+    category: config
+    hidden: true
+    dps:
+      - id: 105    # occp_port
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Password
+    category: config
+    hidden: true
+    dps:
+      - id: 109    # password
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Car binding
+    category: config
+    hidden: true
+    dps:
+      - id: 21    # car_binding
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    name: Alarm 1
+    hidden: true
+    dps:
+      - id: 11    # alarm_set_1
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Alarm 2
+    hidden: true
+    dps:
+      - id: 12    # alarm_set_2
+        type: base64
+        name: sensor
+        optional: true

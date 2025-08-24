@@ -46,6 +46,7 @@ class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
                 "number_timer",
                 "select_scene",
                 "text_scene",
+                "time_timer",
                 "switch_do_not_disturb",
             ]
         )

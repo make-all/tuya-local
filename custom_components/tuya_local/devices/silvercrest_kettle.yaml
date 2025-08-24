@@ -5,24 +5,19 @@ products:
     model: WK0828RT
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 1
         type: boolean
         name: operation_mode
         mapping:
           - dps_val: false
-            value: "Off"
+            value: "off"
           - dps_val: true
-            constraint: warm
-            conditions:
-              - dps_val: false
-                value: Keep warm
-              - dps_val: true
-                value: Boil
-              - dps_val: null
-                value: Boil
-                hidden: true
+            value: electric
+          - dps_val: null
+            value: electric
+            hidden: true
       - id: 2
         type: integer
         name: current_temperature
@@ -35,13 +30,8 @@ entities:
           max: 100
         mapping:
           - step: 5
-      - id: 13
-        type: boolean
-        name: warm
-        optional: true
-        hidden: true
-        # One of these unknowns should be the "16 preset programs".
-        # Both are numeric strings (so probably enums)
+      # One of these unknowns should be the "16 preset programs".
+      # Both are numeric strings (so probably enums)
       - id: 15
         type: string
         name: unknown_15
@@ -54,6 +44,18 @@ entities:
       - id: 104
         type: integer
         name: unknown_104
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:kettle-steam"
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   # Portal docs say there is a number to set, and also a countdown remaining.
   # This might be the remaining (log was 5, which is not a 30 minute step)
   # with the other unknown string above a 0/30/60/90/120 selection
@@ -61,7 +63,7 @@ entities:
     name: Warm time
     category: config
     class: duration
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 14
         type: integer

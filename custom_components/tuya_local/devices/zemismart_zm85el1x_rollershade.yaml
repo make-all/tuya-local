@@ -1,0 +1,154 @@
+name: Roller blinds
+products:
+  - id: nwxr8qcu4seltoro
+    manufacturer: Zemismart
+    model: ZM85EL-1x
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        optional: true
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 7
+        # seems intended to match action, but doesn't change in observation
+        name: work_state
+        type: string
+        optional: true
+      - id: 11
+        name: action
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: fully_open
+            value: opened
+          - dps_val: fully_close
+            value: closed
+  - entity: select
+    name: Mode
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: morning
+            value: morning
+          - dps_val: night
+            value: night
+  - entity: switch
+    name: Reverse
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 5
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Border setting
+    icon: "mdi:arrow-expand-vertical"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: up
+            value: Set top
+          - dps_val: down
+            value: Set bottom
+          - dps_val: up_delete
+            value: Clear top
+          - dps_val: down_delete
+            value: Clear bottom
+          - dps_val: remove_top_bottom
+            value: Clear all
+  - entity: number
+    name: Saved position
+    category: config
+    icon: "mdi:blinds-horizontal"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: button
+    name: Up
+    icon: "mdi:arrow-up-bold-circle"
+    hidden: true
+    dps:
+      - id: 20
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: up
+            value: true
+  - entity: button
+    name: Down
+    icon: "mdi:arrow-down-bold-circle"
+    hidden: true
+    dps:
+      - id: 20
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: down
+            value: true

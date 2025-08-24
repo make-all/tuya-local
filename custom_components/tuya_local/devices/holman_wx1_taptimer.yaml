@@ -1,9 +1,16 @@
 name: Tap timer
+legacy_type: garza_irrigation_system
 products:
   - id: zrsgzc8jktsricjj
     manufacturer: Holman
     model: WX1
     # DP decoding thanks to funtastix
+  - id: ixckfr3zke5fgach
+    manufacturer: RainPoint
+    model: TCS005FRF
+  - id: xnajzurgqo1ugohn
+    manufacturer: Garza
+    model: ITV103W
 entities:
   - entity: valve
     name: Manual
@@ -17,27 +24,51 @@ entities:
             value: false
           - dps_val: false
             value: true
+      - id: 127
+        type: string
+        optional: true
+        name: version
   - entity: sensor
     name: Soil temperature
     class: temperature
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 101
         name: sensor
         type: integer
+        optional: true
         unit: C
       - id: 115
-        name: sensor_present
+        name: available
         type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
   - entity: sensor
     name: Soil moisture
-    class: humidity
+    class: moisture
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 102
         name: sensor
         type: integer
+        optional: true
         unit: "%"
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 65535
+            value: false
+          - dps_val: -1
+            value: false
+          - value: true
   - entity: sensor
     name: Water flow
     class: water
@@ -212,6 +243,7 @@ entities:
       - id: 113
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: 0
             value: cancel
@@ -237,10 +269,19 @@ entities:
   - entity: binary_sensor
     name: Soil sensor power OK
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 117
         name: sensor
+        optional: true
         type: boolean
+      - id: 115
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
   - entity: select
     name: Units
     category: config
@@ -389,14 +430,19 @@ entities:
   - entity: binary_sensor
     name: Postponed due to rain
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 125
         name: sensor
         type: boolean
+        optional: true
       - id: 116
         optional: true
-        name: sensor_present
+        name: available
         type: boolean
+        mapping:
+          - dps_val: null
+            value: false
   - entity: sensor
     # based on starts A, B and C
     name: Next watering encoded

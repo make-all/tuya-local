@@ -1,0 +1,237 @@
+name: Thermostat
+products:
+  - id: snflej6i7rpqnmhv
+    manufacturer: Emmeti
+    model: Zona
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: home
+          - dps_val: "2"
+            value: away
+          - dps_val: "3"
+            value: program
+          - dps_val: "4"
+            value: manual
+      - id: 105
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+      - id: 107
+        type: string
+        name: mcu_date
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Temperature sensor
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Internal
+          - dps_val: "1"
+            value: External
+          - dps_val: "2"
+            value: Both
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 1
+          max: 9
+  - entity: text
+    name: Temporary program
+    category: config
+    icon: "mdi:home-clock"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Optimum startup
+    icon: "mdi:progress-check"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Geofencing
+    icon: "mdi:map-marker-radius"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    icon: "mdi:rocket-launch"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: number
+    name: Boost time
+    class: duration
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: Boost temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Holiday
+    icon: "mdi:beach"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: number
+    name: Holiday length
+    class: duration
+    category: config
+    icon: "mdi:airplane-clock"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 300
+  - entity: number
+    name: Holiday temperature
+    category: config
+    icon: "mdi:home-thermometer-outline"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Program mode
+    icon: "mdi:calendar-expand-horizontal"
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "7 days"
+          - dps_val: "1"
+            value: "5+2 days"
+          - dps_val: "2"
+            value: "6+1 days"

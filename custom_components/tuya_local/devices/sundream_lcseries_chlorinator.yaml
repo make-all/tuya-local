@@ -1,0 +1,400 @@
+name: Salt chlorinator
+products:
+  - id: vntmgagpom1v8env
+    manufacturer: Sundream
+    model: LC25
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    icon: "mdi:rocket-launch"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Winter mode
+    icon: "mdi:snowman"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Level
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 50
+          max: 100
+      - id: 105
+        type: integer
+        optional: true
+        name: level_lc150
+        range:
+          min: 0
+          max: 9999
+      - id: 115
+        type: integer
+        name: model_type
+  - entity: select
+    name: Running time
+    icon: "mdi:timer-play"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "12"
+            value: "12h"
+          - dps_val: "24"
+            value: "24h"
+  - entity: select
+    name: Polarity reversal time
+    icon: "mdi:magnet-on"
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "12"
+            value: "12h"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: true
+            value: fahrenheit
+          - dps_val: false
+            value: celsius
+          - dps_val: null
+            value: celsius
+            hidden: true
+  - entity: button
+    name: Salinity test
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Detect flow
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: temperature
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 108
+        type: boolean
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 112
+        type: integer
+        name: fault_code
+      - id: 134
+        type: integer
+        optional: true
+        name: version
+  - entity: binary_sensor
+    name: Water flow
+    class: moving
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: sensor
+    name: Salinity
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Vee
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: v
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Vele-p
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: v
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Vele-n
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: v
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: R-work
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: r
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: V-dim
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: v
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: sensor
+    name: Minute
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Second
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: C-hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: sensor
+    name: i25 percent
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 127
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: i50 percent
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: i100 percent
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: R percent
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 131
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: nomal
+            value: normal
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+  - entity: number
+    name: Pool size
+    category: config
+    icon: "mdi:pool"
+    dps:
+      - id: 132
+        type: integer
+        optional: true
+        name: value
+        unit: gal
+        range:
+          min: 10
+          max: 100000
+  - entity: event
+    name: Salt added
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: null
+          - value: added
+      - id: 133
+        type: integer
+        optional: true
+        name: amount
+        mapping:
+          - scale: 100
+  - entity: number
+    name: PIN code
+    category: config
+    dps:
+      - id: 135
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 9999
+        sensitive: true
+  - entity: sensor
+    name: Usage time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 136
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
+        class: measurement

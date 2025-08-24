@@ -28,7 +28,13 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
-        self.mark_secondary(["number_timer", "select_initial_state"])
+        self.mark_secondary(
+            [
+                "number_timer",
+                "select_initial_state",
+                "time_timer",
+            ]
+        )
 
     def test_extra_state_attributes_set(self):
         self.assertDictEqual(

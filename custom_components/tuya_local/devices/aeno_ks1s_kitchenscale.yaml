@@ -1,0 +1,88 @@
+name: Kitchen scale
+products:
+  - id: wuimqx2t
+    manufacturer: Aeno
+    model: KS1S
+    model_id: EC5402-BT
+entities:
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: button
+    name: Tare
+    icon: "mdi:bowl-outline"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: select
+    name: Units
+    icon: "mdi:clock-digital"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: g
+            value: g
+          - dps_val: oz
+            value: oz
+          - dps_val: lb_oz
+            value: lb oz
+          - dps_val: ml
+            value: mL
+          - dps_val: fl_oz
+            constraint: system
+            conditions:
+              - dps_val: fl_oz_us
+                value: US fl.oz
+              - dps_val: fl_oz_eu
+                value: Imperial fl.oz
+      - id: 8
+        type: string
+        name: system
+        hidden: true
+      - id: 4
+        type: string
+        name: data_identification
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: true
+          - value: false
+  - entity: sensor
+    name: Realtime
+    class: weight
+    hidden: true
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code

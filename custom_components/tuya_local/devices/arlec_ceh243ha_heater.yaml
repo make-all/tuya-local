@@ -1,0 +1,76 @@
+name: Heater
+products:
+  - id: aghicza5yssgo84u
+    manufacturer: Arlec
+    model_id: ceh243ha
+    model: "2400W ceramic heater"
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: LO
+            value: low
+          - dps_val: HI
+            value: high
+      - id: 8
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min

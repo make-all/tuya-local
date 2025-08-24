@@ -1,0 +1,213 @@
+# Definition for the new moes star feather smart switch series
+name: Smart scene switch
+products:
+  - id: unowxanmum3uzkur
+    model_id: fc1eu0
+    model: Star Feather Quad Switch
+    manufacturer: Moes
+  - id: qcyyaszyvr5bwkm4
+    model_id: e1kbqips
+    model: Star Feather Triple Switch
+    manufacturer: Moes
+entities:
+  - entity: select
+    name: Switch 1 mode
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: "switch_1"
+            value: "switch"
+          - dps_val: "scene_1"
+            value: "scene"
+  - entity: select
+    hidden: unavailable
+    name: Switch 2 mode
+    category: config
+    dps:
+      - id: 19
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "switch_2"
+            value: "switch"
+          - dps_val: "scene_2"
+            value: "scene"
+      - id: 25
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    hidden: unavailable
+    name: Switch 3 mode
+    category: config
+    dps:
+      - id: 20
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "switch_3"
+            value: "switch"
+          - dps_val: "scene_3"
+            value: "scene"
+      - id: 26
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    hidden: unavailable
+    name: Switch 4 mode
+    category: config
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "switch_4"
+            value: "switch"
+          - dps_val: "scene_4"
+            value: "scene"
+      - id: 27
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 24
+        type: boolean
+        name: switch
+  - entity: switch
+    hidden: unavailable
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 25
+        type: boolean
+        optional: true
+        name: switch
+      - id: 25
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    hidden: unavailable
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 26
+        type: boolean
+        optional: true
+        name: switch
+      - id: 26
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    hidden: unavailable
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 27
+        type: boolean
+        optional: true
+        name: switch
+      - id: 27
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: light
+    name: backlight
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        mapping:
+          - dps_val: "none"
+            value: "off"
+          - dps_val: "relay"
+            value: "state"
+          - dps_val: "pos"
+            value: "locator"
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: memory
+            value: memory
+  - entity: switch
+    name: Induction
+    icon: "mdi:gesture-tap"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: select
+    name: Haptic feedback
+    translation_key: mopping
+    icon: "mdi:vibrate"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "low"
+          - dps_val: "2"
+            value: "medium"
+          - dps_val: "3"
+            value: "high"

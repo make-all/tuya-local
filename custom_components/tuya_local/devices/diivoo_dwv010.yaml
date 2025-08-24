@@ -100,6 +100,8 @@ entities:
     name: Irrigation time 1
     category: config
     class: duration
+    # 2025-07-20
+    deprecated: time.irrigation_time_1
     icon: "mdi:timer"
     dps:
       - id: 15
@@ -114,12 +116,36 @@ entities:
     name: Irrigation time 2
     category: config
     class: duration
+    # 2025-07-20
+    deprecated: time.irrigation_time_1
     icon: "mdi:timer"
     dps:
       - id: 127
         type: integer
         name: value
         unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    name: Irrigation time 1
+    category: config
+    dps:
+      - id: 15
+        type: integer
+        name: minute
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    name: Irrigation time 2
+    category: config
+    dps:
+      - id: 127
+        type: integer
+        name: minute
         optional: true
         range:
           min: 0

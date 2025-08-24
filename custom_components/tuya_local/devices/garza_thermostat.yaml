@@ -1,0 +1,444 @@
+name: Thermostat
+products:
+  - id: ymntalsqggewwzko
+    manufacturer: Garza
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                range:
+                  min: 50
+                  max: 350
+              - dps_val: f
+                step: 10
+                range:
+                  min: 410
+                  max: 950
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: away
+          - dps_val: false
+            constraint: prog_sw
+            conditions:
+              - dps_val: true
+                value: program
+              - dps_val: false
+                value: manual
+      - id: 102
+        type: boolean
+        name: prog_sw
+        hidden: true
+      - id: 111
+        type: base64
+        optional: true
+        name: min_temperature
+        mask: "0000FFFF"
+        mapping:
+          - scale: 10
+      - id: 111
+        type: base64
+        optional: true
+        name: max_temperature
+        mask: "FFFF0000"
+        mapping:
+          - scale: 10
+      - id: 130
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Program type
+    icon: "mdi:calendar-range"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Daily
+          - dps_val: "2"
+            value: Weekday+Weekend
+          - dps_val: "3"
+            value: Weekday+Sat+Sun
+          - dps_val: "4"
+            value: Individual days
+      - id: 102
+        type: boolean
+        name: available
+  - entity: text
+    name: Program 1
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+  - entity: text
+    name: Program 2
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: true
+            constraint: prog_type
+            conditions:
+              - dps_val: "1"
+                value: false
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: text
+    name: Program 3
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: prog_type
+            conditions:
+              - dps_val: ["4", "3"]
+                value: true
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: text
+    name: Program 4
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: prog_type
+            conditions:
+              - dps_val: "4"
+                value: true
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: text
+    name: Program 5
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: prog_type
+            conditions:
+              - dps_val: "4"
+                value: true
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: text
+    name: Program 6
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: prog_type
+            conditions:
+              - dps_val: "4"
+                value: true
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: text
+    name: Program 7
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+      - id: 102
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: prog_type
+            conditions:
+              - dps_val: "4"
+                value: true
+      - id: 103
+        type: string
+        name: prog_type
+        hidden: true
+  - entity: sensor
+    name: Weekly history
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: sensor
+      - id: 112
+        type: base64
+        optional: true
+        name: set_temp
+      - id: 120
+        type: base64
+        optional: true
+        name: power
+  - entity: sensor
+    name: Monthly history
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 117
+        type: base64
+        optional: true
+        name: sensor
+      - id: 113
+        type: base64
+        optional: true
+        name: set_temp
+      - id: 121
+        type: base64
+        optional: true
+        name: power
+  - entity: sensor
+    name: Yearly history
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+      - id: 114
+        type: base64
+        optional: true
+        name: set_temp
+      - id: 122
+        type: base64
+        optional: true
+        name: power
+  - entity: sensor
+    name: Daily history
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: sensor
+      - id: 123
+        type: base64
+        optional: true
+        name: set_temp
+      - id: 119
+        type: base64
+        optional: true
+        name: power
+  - entity: text
+    name: Program data
+    category: config
+    icon: "mdi:calendar-range"
+    hidden: true
+    dps:
+      - id: 124
+        type: base64
+        optional: true
+        name: value
+      - id: 129
+        type: string
+        name: number
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 125
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: sensor
+    name: Pairing
+    class: enum
+    icon: "mdi:handshake"
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "Pairing..."
+          - dps_val: "1"
+            value: Paired
+          - dps_val: "2"
+            value: Pairing failed
+          - dps_val: "3"
+            value: Unpaired
+  - entity: button
+    name: Pair
+    hidden: true
+    category: config
+    dps:
+      - id: 126
+        type: string
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: Unpair
+    hidden: true
+    category: config
+    dps:
+      - id: 126
+        type: string
+        name: button
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  # Less precision than the climate one, docs say it is for Alexa
+  - entity: number
+    name: Set temperature
+    class: temperature
+    icon: "mdi:account-voice"
+    hidden: true
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 35
+  # Less precision than the climate one, docs say it is for Alexa
+  - entity: sensor
+    class: temperature
+    hidden: true
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+# Log: 127,128,129,130

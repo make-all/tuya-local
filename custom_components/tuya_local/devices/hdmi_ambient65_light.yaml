@@ -52,8 +52,21 @@ entities:
         type: boolean
         name: switch
 
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
+    # 2025-07-20
+    deprecated: time.timer
     translation_key: timer
     category: config
     dps:

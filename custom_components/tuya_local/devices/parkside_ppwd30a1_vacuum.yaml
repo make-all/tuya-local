@@ -1,0 +1,182 @@
+name: Workshop vacuum
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Parkside
+#     model: PPWD 30 A1
+entities:
+  - entity: vacuum
+    icon: "mdi:vacuum"
+    dps:
+      - id: 4
+        type: string
+        optional: true
+        name: status
+      - id: 3
+        type: string
+        optional: true
+        name: command
+        mapping:
+          - dps_val: smart
+            value: Auto
+          - dps_val: manual
+            value: Manual
+      - id: 26
+        type: bitfield
+        optional: true
+        name: error
+      - id: 8
+        type: string
+        optional: true
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Head attachment
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: floor_brush
+            value: Floor brush
+          - dps_val: mites_brush
+            value: Mite brush
+          - dps_val: mop_brush
+            value: Mop
+          - dps_val: brush_tip
+            value: Dusting brush
+          - dps_val: crevice_tip
+            value: Crevice tool
+  - entity: binary_sensor
+    name: Sync
+    class: connection
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: sync
+            value: true
+          - dps_val: indie
+            value: false
+  - entity: number
+    name: Suction
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 70
+          max: 100
+  - entity: switch
+    name: Air flow alarm
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Suction
+    class: pressure
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: kPa
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    name: Air flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: number
+    name: "Off delay"
+    category: config
+    class: duration
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 30
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+  - entity: number
+    name: Tool timer
+    class: duration
+    icon: "mdi:wrench-clock"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 100
+  - entity: text
+    name: Tool
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: value
+  - entity: switch
+    name: Water alarm
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Delay
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sync
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
