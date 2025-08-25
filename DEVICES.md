@@ -292,15 +292,16 @@
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Kavunion C1 100 ventilation fan
+- KCvents VT501-W heat recovery ventilation
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
-- Ledkia fan and light controller
-- Lexy F501 fan
-- Lucci Connect Wi-Fi fan remote
-- Lumary A1 ceiling fan with light
-- KCvents VT501-W heat recovery ventilation
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
+- Ledkia fan and light controller
+- Lexy F501 fan
+- Living Comfort LC310S twin window fan
+- Lucci Connect Wi-Fi fan remote
+- Lumary A1 ceiling fan with light
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
