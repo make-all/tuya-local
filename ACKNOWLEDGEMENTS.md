@@ -1020,7 +1020,7 @@ Further device support has been made with the assistance of users. Please consid
 - [hussainaljamri](https://github.com/hussainaljamri) for contributing support for Moes Star Feather series switches.
 - [FritzeF](https://github.com/FritzeF) for assisting with support for Kavunion C1 100 ventilation fan.
 - [StaRipper](https://github.com/StaRipper) for assisting with support for Pinjia PJ3101A human presence sensor.
-- [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock.
+- [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock and support for Komeco QC60 pool heat pump.
 - [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.
 - [tobias-b-gmx](https://github.com/tobias-b-gmx) for assisting with support for Dewin KWS-306WF energy monitoring circuit breaker, Sichler ZX-7655 heater.
 - [chrkov](https://github.com/chrkov) for assisting with support for Revesien Q-Pro-W aroma diffuser.
