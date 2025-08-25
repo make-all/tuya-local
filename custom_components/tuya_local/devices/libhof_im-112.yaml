@@ -4,9 +4,8 @@ products:
   - id: rp52hshgsrdkvvuk
     manufacturer: Libhof
     model: IM-112
-    
-entities:
 
+entities:
 # Power on/off
   - entity: switch
     name: Power
@@ -15,7 +14,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-
 # Auto clean
   - entity: switch
     name: Auto clean
@@ -24,7 +22,6 @@ entities:
       - id: 101
         type: boolean
         name: switch
-       
 # Cubes size swtich
   - entity: switch
     name: Big cubes
@@ -38,7 +35,6 @@ entities:
             value: true
           - dps_val: small
             value: false
-
 # No water error
   - entity: binary_sensor
     name: No water
@@ -51,7 +47,6 @@ entities:
           - dps_val: 1
             value: true
           - value: false
-
 # Basket is full error
   - entity: binary_sensor
     name: Ice basket full
@@ -64,7 +59,6 @@ entities:
           - dps_val: 2
             value: true
           - value: false
-
 # Lid is open error
   - entity: binary_sensor
     name: Lid open
