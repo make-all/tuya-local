@@ -820,6 +820,7 @@ of device.
 ### Lawnmowers
 
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
+- Parkside PMRDA 20-Li A1 / PAMRS 1000 A1 mowers
 
 ### Locks
 
