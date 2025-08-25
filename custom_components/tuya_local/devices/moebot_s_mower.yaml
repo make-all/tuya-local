@@ -306,3 +306,26 @@ entities:
         type: boolean
         name: switch
         optional: true
+  - entity: switch
+    name: Backward blade stop
+    icon: "mdi:saw-blade"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 121
+        type: integer
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+      - id: 121
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
