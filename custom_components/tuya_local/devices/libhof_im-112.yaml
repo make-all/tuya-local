@@ -1,0 +1,73 @@
+name: Libhof IM-112
+
+products:
+  - id: rp52hshgsrdkvvuk
+    manufacturer: Libhof
+    model: IM-112
+
+entities:
+# Power on/off
+  - entity: switch
+    name: Power
+    icon: mdi:power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+# Auto clean
+  - entity: switch
+    name: Auto clean
+    icon: mdi:broom
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+# Cubes size swtich
+  - entity: switch
+    name: Big cubes
+    icon: mdi:cube-outline
+    dps:
+      - id: 2
+        type: string
+        name: switch
+        mapping:
+          - dps_val: big
+            value: true
+          - dps_val: small
+            value: false
+# No water error
+  - entity: binary_sensor
+    name: No water
+    icon: mdi:water-off-outline
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+# Basket is full error
+  - entity: binary_sensor
+    name: Ice basket full
+    icon: mdi:basket-unfill
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+# Lid is open error
+  - entity: binary_sensor
+    name: Lid open
+    icon: mdi:movie-open-outline
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
