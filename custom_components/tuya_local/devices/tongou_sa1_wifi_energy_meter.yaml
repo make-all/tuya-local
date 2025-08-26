@@ -1,0 +1,42 @@
+name: Energy meter
+products:
+  - id: gnr22vuyz8uis3gr
+    manufacturer: Tongou
+    model: TOSA1-0150XJWT2A
+entities:
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kW
+        class: measurement
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
