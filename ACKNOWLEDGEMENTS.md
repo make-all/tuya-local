@@ -1028,3 +1028,4 @@ Further device support has been made with the assistance of users. Please consid
 - [malkavi](https://github.com/malkavi) for contributing support for Cecotec Conga 1970 robot vacuum.
 - [LuckyG3000](https://github.com/LuckyG3000) for assisting with support for Klarstein Wonderwall 600 IR heater.
 - [Gillstrap](https://github.com/Gillstrap) for assisting with support for Living Comfort LC310S Series twin window fan.
+- [tribut](https://github.com/tribut) for contributing improvements for Moebot/Parkside mowers.
