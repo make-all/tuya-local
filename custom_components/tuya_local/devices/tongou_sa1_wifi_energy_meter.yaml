@@ -4,6 +4,19 @@ products:
     manufacturer: Tongou
     model: TOSA1-0150XJWT2A
 entities:
+  - entity: select
+    category: config
+    name: Status
+    icon: "mdi:wifi"
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: online
+            value: Online
+          - dps_val: offline
+            value: Offline
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -12,6 +25,8 @@ entities:
         type: base64
         name: sensor
         optional: true
+        class: measurement
+        force: true
         persist: false
         unit: V
         mask: "FFFF000000000000"
@@ -25,6 +40,8 @@ entities:
         type: base64
         name: sensor
         optional: true
+        class: measurement
+        force: true
         persist: false
         unit: A
         mask: "0000FFFFFF000000"
@@ -39,6 +56,8 @@ entities:
         name: sensor
         optional: true
         persist: false
+        class: measurement
+        force: true
         unit: kW
         mask: "0000000000FFFFFF"
         mapping:
