@@ -880,7 +880,7 @@ port and password.
 - LSC Smart Connect dual band outdoor camera
 - LSC Smart Connect Outdoor PTZ camera
 - LSC Smart Connect PTZ camera
-- Moes PTZ indoor security camera
+- Moes PTZ indoor security camera (WCM-P52 v1 and v2)
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RH-PD10 3MP peephole doorbell camera
