@@ -11,8 +11,9 @@ entities:
       - id: 6
         type: base64
         name: sensor
+        optional: true
+        persist: false
         unit: V
-        class: measurement
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
@@ -23,8 +24,9 @@ entities:
       - id: 6
         type: base64
         name: sensor
+        optional: true
+        persist: false
         unit: A
-        class: measurement
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
@@ -35,8 +37,9 @@ entities:
       - id: 6
         type: base64
         name: sensor
+        optional: true
+        persist: false
         unit: kW
-        class: measurement
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
