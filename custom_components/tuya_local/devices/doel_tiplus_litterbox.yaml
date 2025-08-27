@@ -1,14 +1,20 @@
-name: Litter box
+name: Litter Box
+
 products:
   - id: ijas23irjjaenllv
     manufacturer: DOEL
     model: Ti+
+
+# ─────────────────────────────────────────────────────────────
+# SENSORS (measurements & counters)
+# ─────────────────────────────────────────────────────────────
 entities:
   - entity: sensor
-    name: Cat weight
+    name: Cat Weight
     icon: "mdi:cat"
     class: weight
     dps:
+      # Main weight reading (kg). If unit is "lb", redirect to DPS 134.
       - id: 6
         type: integer
         name: sensor
@@ -27,17 +33,19 @@ entities:
         name: weight_lb
         mapping:
           - scale: 10
+
   - entity: sensor
-    name: Daily visits
+    name: Daily Visits
     icon: "mdi:emoticon-poop"
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: visits
+
   - entity: sensor
-    name: Daily visits duration
-    icon: "mdi:paper-roll"
+    name: Daily Visits Duration
+    icon: "mdi:timer-sand"
     class: duration
     dps:
       - id: 8
@@ -45,6 +53,35 @@ entities:
         name: sensor
         unit: s
         class: measurement
+
+  - entity: sensor
+    name: Status
+    icon: "mdi:toilet"
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+      - id: 128
+        type: boolean
+        name: time
+      - id: 129
+        type: integer
+        name: time_clear
+        class: duration
+        unit: s
+
+  - entity: sensor
+    name: Bag Change Count
+    icon: "mdi:counter"
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: uses
+
+# ─────────────────────────────────────────────────────────────
+# BINARY SENSORS (boolean states)
+# ─────────────────────────────────────────────────────────────
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -59,50 +96,92 @@ entities:
       - id: 22
         type: bitfield
         name: fault_code
-  - entity: button
-    name: Clean
-    icon: "mdi:shimmer"
-    dps:
-      - id: 101
-        type: boolean
-        name: button
-  - entity: button
-    name: Empty
-    icon: "mdi:delete-empty"
-    dps:
-      - id: 102
-        type: boolean
-        name: button
+
   - entity: binary_sensor
-    name: Bin full
+    name: Bin Full
     icon: "mdi:trash-can"
     dps:
-      - id: 103
+      - id: 119
         type: boolean
         name: sensor
+
   - entity: binary_sensor
+    name: Occupancy
     class: occupancy
     icon: "mdi:motion-sensor"
     dps:
       - id: 104
         type: boolean
         name: sensor
+
+  - entity: binary_sensor
+    name: Smart Cleaning
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 121
+        type: boolean
+        name: sensor
+
+# ─────────────────────────────────────────────────────────────
+# SWITCHES (toggles / configuration options)
+# ─────────────────────────────────────────────────────────────
   - entity: switch
-    name: Auto clean
+    name: Auto Clean
     category: config
     icon: "mdi:auto-mode"
     dps:
       - id: 105
         type: boolean
         name: switch
+
   - entity: switch
-    name: Infrared detection
+    name: Infrared Detection
     category: config
     icon: "mdi:leak"
     dps:
       - id: 111
         type: boolean
         name: switch
+
+  - entity: switch
+    name: Thin Feces Detection
+    category: config
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Developer Mode
+    category: config
+    icon: "mdi:cog"
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Sleep Mode
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Deep Clean
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+
+# ─────────────────────────────────────────────────────────────
+# LOCK
+# ─────────────────────────────────────────────────────────────
   - entity: lock
     translation_key: child_lock
     category: config
@@ -110,8 +189,12 @@ entities:
       - id: 114
         type: boolean
         name: lock
+
+# ─────────────────────────────────────────────────────────────
+# NUMBERS (numeric configuration values)
+# ─────────────────────────────────────────────────────────────
   - entity: number
-    name: Clean wait time
+    name: Clean Wait Time
     category: config
     class: duration
     icon: "mdi:timer"
@@ -123,8 +206,9 @@ entities:
         range:
           min: 0
           max: 60
+
   - entity: number
-    name: Clean interval
+    name: Clean Interval
     category: config
     icon: "mdi:update"
     dps:
@@ -135,26 +219,21 @@ entities:
         range:
           min: 0
           max: 120
-  - entity: binary_sensor
-    name: Smart cleaning
-    icon: "mdi:refresh-auto"
-    dps:
-      - id: 121
-        type: boolean
-        name: sensor
+
   - entity: number
-    name: Capacity calibration
+    name: Sand Surface Calibration
     category: config
-    icon: "mdi:trash-can"
+    icon: "mdi:terrain"
     dps:
-      - id: 123
+      - id: 130
         type: integer
         name: value
         range:
           min: 0
-          max: 15
+          max: 6
+
   - entity: number
-    name: Detection sensitivity
+    name: Detection Sensitivity
     category: config
     icon: "mdi:scale"
     dps:
@@ -164,23 +243,12 @@ entities:
         unit: kg
         mapping:
           - scale: 10
-  - entity: switch
-    name: Deep clean
-    category: config
-    icon: "mdi:shimmer"
-    dps:
-      - id: 125
-        type: boolean
-        name: switch
-  - entity: button
-    name: Level litter
-    icon: "mdi:arrow-collapse-down"
-    dps:
-      - id: 126
-        type: boolean
-        name: button
+
+# ─────────────────────────────────────────────────────────────
+# SELECTS (discrete options)
+# ─────────────────────────────────────────────────────────────
   - entity: select
-    name: Unit select
+    name: Unit
     category: config
     icon: "mdi:pencil-ruler"
     dps:
@@ -192,30 +260,9 @@ entities:
             value: "kg"
           - dps_val: "lb"
             value: "lb"
-  - entity: sensor
-    translation_key: status
-    icon: "mdi:toilet"
-    dps:
-      - id: 24
-        type: string
-        name: sensor
-      - id: 120
-        type: boolean
-        name: unknown_120
-      - id: 127
-        type: boolean
-        name: soft_mode
-      - id: 128
-        type: boolean
-        name: unknown_128
-      - id: 129
-        type: integer
-        name: unknown_129
-      - id: 135
-        type: boolean
-        name: dp_developer_mode
+
   - entity: select
-    name: Litter type
+    name: Litter Type
     category: config
     icon: "mdi:dots-hexagon"
     dps:
@@ -227,3 +274,38 @@ entities:
             value: "Mineral"
           - dps_val: "mixed_cat_litter"
             value: "Mixed"
+
+# ─────────────────────────────────────────────────────────────
+# BUTTONS (actions)
+# ─────────────────────────────────────────────────────────────
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Empty
+    icon: "mdi:delete-empty"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Level Litter
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Bag Change Mode
+    icon: "mdi:bag-personal"
+    dps:
+      - id: 138
+        type: boolean
+        name: button
