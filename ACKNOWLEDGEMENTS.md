@@ -1030,3 +1030,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Gillstrap](https://github.com/Gillstrap) for assisting with support for Living Comfort LC310S Series twin window fan.
 - [tribut](https://github.com/tribut) for contributing improvements for Moebot/Parkside mowers.
 - [duchu-net](https://github.com/duchu-net) for assisting with support for Moes WCM-P52 v2 PTZ indoor camera.
+- [lenard-a](https://github.com/lenard-a) for assisting with support for Dyras TF-16WIFI tower fan.

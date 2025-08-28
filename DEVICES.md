@@ -273,6 +273,7 @@
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
+- Dyras TF-16WIFI tower fan
 - Eberg Fyn tower fan
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
