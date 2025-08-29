@@ -8,7 +8,6 @@ products:
 # LubadiPaw
 # Previous brands:
 # MEEGEEM
-#primary_entity:
 entities:
   - entity: sensor
     name: Action
@@ -36,6 +35,8 @@ entities:
           - dps_val: 7
             value: Resetting Paused
 
+# Probably shouldn't be shown.  Option in Smart Life app but just spins the
+# litter chamber around all the way, dumping all litter (clean litter too!)
   - entity: button
     name: Empty
     icon: "mdi:shimmer"
@@ -44,8 +45,6 @@ entities:
     - id: "1"
       type: boolean
       name: button
-# Probably shouldn't be shown.  Option in Smart Life app but just spins the
-# litter chamber around all the way, dumping all litter (clean litter too!)
 
   - entity: button
     name: Clean
@@ -200,7 +199,7 @@ entities:
 # Threshold unknown.  Based on litter weight?
 
   - entity: sensor
-    name: Operating mode
+    name: Operating Mode
     icon: "mdi:shimmer"
     hidden: true
     dps:
