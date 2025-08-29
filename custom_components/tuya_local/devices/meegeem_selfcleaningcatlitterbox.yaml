@@ -1,0 +1,225 @@
+name: Cat Litter Box
+products:
+  - id: e2uhpgprwtq40un2
+    manufacturer: MEEGEEM
+# Other brands available at the time of purchase - all appear to be clones.  Can this be a list?  Generic?
+# August 2025 list of brands:
+# BCHARYA
+# LubadiPaw
+# Previous brands:
+# MEEGEEM
+#primary_entity:
+entities:
+  - entity: sensor
+    name: Action
+    icon: "mdi:shimmer"
+    class: enum
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: Standby
+          - dps_val: 1
+            value: Cleaning
+          - dps_val: 2
+            value: Emptying
+          - dps_val: 3
+            value: Resetting
+          - dps_val: 4
+            value: Deodorizing
+          - dps_val: 5
+            value: Cleaning Paused
+          - dps_val: 6
+            value: Emptying Paused
+          - dps_val: 7
+            value: Resetting Paused
+
+  - entity: button
+    name: Empty
+    icon: "mdi:shimmer"
+    hidden: true
+    dps:
+    - id: "1"
+      type: boolean
+      name: button
+# Probably shouldn't be shown.  Option in Smart Life app but just spins the
+# litter chamber around all the way, dumping all litter (clean litter too!)
+
+  - entity: button
+    name: Clean
+    icon: "mdi:delete-empty"
+    dps:
+    - id: "3"
+      type: boolean
+      name: button
+
+  - entity: button
+    name: Reset
+    icon: "mdi:shimmer"
+    dps:
+    - id: "4"
+      type: boolean
+      name: button
+
+  - entity: button
+    name: Deodorize
+    icon: "mdi:scent"
+    dps:
+    - id: "9"
+      type: boolean
+      name: button
+
+  - entity: sensor
+    name: Weight
+    class: enum
+    dps:
+      - id: 21
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: Unused
+          - dps_val: 1
+            value: Unknown
+          - dps_val: 2
+            value: 1
+          - dps_val: 4
+            value: 2
+          - dps_val: 8
+            value: 3
+          - dps_val: 16
+            value: 4
+          - dps_val: 32
+            value: 5
+          - dps_val: 64
+            value: 6
+          - dps_val: 128
+            value: 7
+          - dps_val: 256
+            value: 8
+          - dps_val: 512
+            value: 9
+          - dps_val: 1024
+            value: 10
+          - dps_val: 2048
+            value: 11
+          - dps_val: 4096
+            value: 12
+          - dps_val: 8192
+            value: 13
+          - dps_val: 16384
+            value: 14
+          - dps_val: 32768
+            value: 15
+          - dps_val: 65536
+            value: 16
+          - dps_val: 131072
+            value: 17
+          - dps_val: 262144
+            value: 18
+          - dps_val: 524288
+            value: 19
+          - dps_val: 1048576
+            value: 20
+
+  - entity: sensor
+    name: State
+    icon: "mdi:emoticon-poop"
+    class: enum
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: Unused
+          - dps_val: 1
+            value: Other
+          - dps_val: 2
+            value: Litter Low
+          - dps_val: 4
+            value: Waste Bin Full
+          - dps_val: 8
+            value: Cleaning Interrupted
+          - dps_val: 16
+            value: Litter Reset Failed
+          - dps_val: 32
+            value: Other
+          - dps_val: 64
+            value: Cleaning Complete
+          - dps_val: 128
+            value: Emptying Complete
+          - dps_val: 256
+            value: Reset Complete
+          - dps_val: 512
+            value: Deodorizing Complete
+
+  - entity: number
+    name: Auto-Clean Delay # How long after cat leaves to start cleaning
+    icon: "mdi:clock"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 20
+
+  - entity: switch
+    name: Auto-Clean # Whether to clean after cat leaves
+    icon: "mdi:shimmer"
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Auto-Deodorize # Whether to run "ozone generator" in waste bin after cleaning is complete
+    icon: "mdi:shimmer"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+
+  - entity: sensor
+    name: Litter Status
+    icon: "mdi:shimmer"
+    class: enum
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: Needs Attention
+          - dps_val: 1
+            value: Acceptable
+# Threshold unknown.  Based on litter weight?
+
+  - entity: sensor
+    name: Operating mode
+    icon: "mdi:shimmer"
+    hidden: true
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+# 0-3 in steps of 1, not shown in Smart Life app, unknown function
+
+  - entity: sensor
+    name: Waste Bin Status
+    icon: "mdi:shimmer"
+    class: enum
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: Needs Attention
+          - dps_val: 1
+            value: Acceptable
+# Threshold unknown.  Can be triggered by waste bag improperly installed.  Suspect a light gate across top of bin.  Not weight based.
