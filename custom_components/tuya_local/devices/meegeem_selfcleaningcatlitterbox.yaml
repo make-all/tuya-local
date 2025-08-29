@@ -11,7 +11,7 @@ products:
 entities:
   - entity: sensor
     name: Action
-    icon: "mdi:shimmer"
+    icon: "mdi:bell"
     class: enum
     dps:
       - id: 107
@@ -39,7 +39,7 @@ entities:
 # litter chamber around all the way, dumping all litter (clean litter too!)
   - entity: button
     name: Empty
-    icon: "mdi:shimmer"
+    icon: "mdi:delete-empty-outline"
     hidden: true
     dps:
     - id: "1"
@@ -56,7 +56,7 @@ entities:
 
   - entity: button
     name: Reset
-    icon: "mdi:shimmer"
+    icon: "mdi:refresh"
     dps:
     - id: "4"
       type: boolean
@@ -72,6 +72,7 @@ entities:
 
   - entity: sensor
     name: Weight
+    icon: "mdi:weight-kilogram"
     class: enum
     dps:
       - id: 21
@@ -125,7 +126,7 @@ entities:
 
   - entity: sensor
     name: State
-    icon: "mdi:emoticon-poop"
+    icon: "mdi:cat"
     class: enum
     dps:
       - id: 22
@@ -169,7 +170,7 @@ entities:
 
   - entity: switch
     name: Auto-Clean # Whether to clean after cat leaves
-    icon: "mdi:shimmer"
+    icon: "mdi:delete-empty"
     dps:
       - id: 102
         name: switch
@@ -177,7 +178,7 @@ entities:
 
   - entity: switch
     name: Auto-Deodorize # Whether to run "ozone generator" in waste bin after cleaning is complete
-    icon: "mdi:shimmer"
+    icon: "mdi:scent"
     dps:
       - id: 103
         name: switch
@@ -185,7 +186,7 @@ entities:
 
   - entity: sensor
     name: Litter Status
-    icon: "mdi:shimmer"
+    icon: "mdi:toilet"
     class: enum
     dps:
       - id: 104
@@ -210,7 +211,7 @@ entities:
 
   - entity: sensor
     name: Waste Bin Status
-    icon: "mdi:shimmer"
+    icon: "mdi:delete"
     class: enum
     dps:
       - id: 106
