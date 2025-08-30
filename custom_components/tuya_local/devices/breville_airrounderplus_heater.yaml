@@ -16,13 +16,12 @@ entities:
           - dps_val: true
             value: heat
             hidden: true
-            mapping:
-              - constraint: preset_mode
-                conditions:
-                  - dps_val: heat_0
-                    value: fan_only
-                  - dps_val: heat_mid
-                    value: heat
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat_0
+                value: fan_only
+              - dps_val: heat_mid
+                value: heat
       - id: 2
         type: integer
         name: temperature
