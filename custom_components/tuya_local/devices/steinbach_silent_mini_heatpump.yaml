@@ -1,0 +1,187 @@
+name: Steinbach Silent Mini Heatpump
+products:
+  - manufacturer: Steinbach
+    model: Silent Mini
+
+entities:
+  # Main-Entity: Climate
+  - entity: climate
+    translation_key: pool_heatpump
+    icon: mdi:heat-pump
+    dps:  
+      # DP1 = Power (On/Off)
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "Heating"
+                value: heat
+              - dps_val: "Cooling"
+                value: cool
+      
+      # DP4 supporting DP for dp1 constraint
+      - id: 4
+        type: string
+        name: mode
+  
+      # DP2 = target temperature (°C, integer)
+      - id: 2
+        type: integer
+        name: temperature
+        unit: "°C"
+        range:
+          min: 10
+          max: 45
+        step: 1
+  
+      # DP3 = Current Temperature (°C)
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: "°C"
+
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: "c"
+            value: C
+          - dps_val: "f"
+            value: F
+
+  - entity: switch
+    name: Power
+    icon: mdi:power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Operation mode
+    icon: mdi:cached
+    dps:
+      - id: 4
+        type: string
+        option: operation_mode
+        mapping:
+          - dps_val: "Heating"
+            value: heat
+          - dps_val: "Cooling"
+            value: cool
+
+  - entity: sensor
+    name: Target temperature
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: DP21 Fault code (raw)
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+
+  # - entity: sensor
+  #   name: Water temperature
+  #   class: temperature
+  #   hidden: yes
+  #   dps:
+  #     - id: 101
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP102 Ambient? temperature
+  #   class: temperature
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 102
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP103 Coil? temperature
+  #   class: temperature
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 103
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP104 Compressor? temperature
+  #   class: temperature
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 104
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP105 Unknown raw
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 105
+  #       type: integer
+  #       name: sensor
+
+  # - entity: sensor
+  #   name: DP106 Coil(aux)? temperature
+  #   class: temperature
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 106
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP107 Temperatur Kompressor Austritt?
+  #   class: temperature
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 107
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+
+  # - entity: sensor
+  #   name: DP108 TargetSetpoint? (0.1°C)
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 108
+  #       type: integer
+  #       name: sensor
+  #       unit: "°C"
+  #       scale: 10
