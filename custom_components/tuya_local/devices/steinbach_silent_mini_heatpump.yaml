@@ -1,3 +1,5 @@
+# Connection: local tuya, protocol versio: 3.4
+
 name: Steinbach Silent Mini Heatpump
 products:
   - manufacturer: Steinbach
@@ -68,12 +70,12 @@ entities:
     dps:
       - id: 4
         type: string
-        option: operation_mode
+        name: option
         mapping:
           - dps_val: "Heating"
-            value: heat
+            value: Heating
           - dps_val: "Cooling"
-            value: cool
+            value: Cooling
 
   - entity: sensor
     name: Target temperature
