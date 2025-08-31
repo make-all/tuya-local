@@ -511,6 +511,7 @@
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
 - Tomzn energy meter
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou SA1 WiFi energy meter
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker

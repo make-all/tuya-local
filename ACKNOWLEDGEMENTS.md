@@ -1033,3 +1033,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lenard-a](https://github.com/lenard-a) for assisting with support for Dyras TF-16WIFI tower fan.
 - [Kevin6872](https://github.com/Kevin6872) for assisting with support for Petwant F13-W pet feeder.
 - [stevene1919](https://github.com/stevene1919) for assisting with support for Breville AirRounder Plus Connect purifier heater.
+- [Dead96](https://github.com/Dead96) for contributing support for Tongou SA1 energy meter.
