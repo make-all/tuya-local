@@ -1,4 +1,4 @@
-name: Petempo PAF-02 pet feeder
+name: pet feeder
 products:
   - id: go142kwowvlxvmmn
     manufacturer: Petempo
@@ -40,9 +40,8 @@ entities:
             value: feeding
           - dps_val: done
             value: feeding_complete
-  - entity: sensor
-    name: Battery
-    class: battery
+   - entity: sensor
+     class: battery
     category: diagnostic
     dps:
       - id: 10
@@ -50,9 +49,8 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: binary_sensor
-    name: Charging
-    class: battery_charging
+   - entity: binary_sensor
+     class: battery_charging
     category: diagnostic
     dps:
       - id: 11
@@ -67,14 +65,13 @@ entities:
         type: integer
         name: sensor
         unit: portions
-  - entity: switch
-    name: display
-    icon: "mdi:light-switch"
-    category: config
-    dps:
-      - id: 17
-        type: boolean
-        name: switch
+   - entity: light
+     translation_key: display
+     category: config
+     dps:
+       - id: 17
+         type: boolean
+         name: switch
   - entity: switch
     name: Slow feed
     icon: "mdi:speedometer-slow"
@@ -83,14 +80,13 @@ entities:
       - id: 23
         type: boolean
         name: switch
-  - entity: button
-    name: Factory reset
-    icon: "mdi:restore"
-    category: config
-    dps:
-      - id: 24
-        type: boolean
-        name: button
-        mapping:
-          - dps_val: true
-            value: true
+   - entity: button
+     translation_key: factory_reset
+     category: config
+     dps:
+       - id: 24
+         type: boolean
+         name: button
+         mapping:
+           - dps_val: true
+             value: true
