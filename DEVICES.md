@@ -9,6 +9,7 @@
 - Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
+- Breville AirRounder Plus Connect purifier heater
 - Bonaire HPC5200020 electric heater
 - BVF CP1 heater
 - Caldo Up T fan heater
@@ -510,6 +511,7 @@
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
 - Tomzn energy meter
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou SA1 WiFi energy meter
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
@@ -938,6 +940,7 @@ port and password.
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
 - PetsPride OO15 pet feeder with camera
+- Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
