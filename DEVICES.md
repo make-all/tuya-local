@@ -688,6 +688,7 @@ of device.
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
+- Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
@@ -900,6 +901,7 @@ port and password.
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
+- Tolviviov DP-W2.1 security alarm panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
