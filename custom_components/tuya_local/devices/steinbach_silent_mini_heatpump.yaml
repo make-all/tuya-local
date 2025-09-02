@@ -10,7 +10,7 @@ entities:
   - entity: climate
     translation_key: pool_heatpump
     icon: mdi:heat-pump
-    dps:  
+    dps:
       # DP1 = Power (On/Off)
       - id: 1
         type: boolean
@@ -25,12 +25,12 @@ entities:
                 value: heat
               - dps_val: "Cooling"
                 value: cool
-      
+
       # DP4 supporting DP for dp1 constraint
       - id: 4
         type: string
         name: mode
-  
+
       # DP2 = target temperature (°C, integer)
       - id: 2
         type: integer
@@ -40,7 +40,7 @@ entities:
           min: 10
           max: 45
         step: 1
-  
+
       # DP3 = Current Temperature (°C)
       - id: 3
         type: integer
@@ -102,88 +102,87 @@ entities:
       - id: 21
         type: bitfield
         name: sensor
+# - entity: sensor
+#   name: Water temperature
+#   class: temperature
+#   hidden: yes
+#   dps:
+#     - id: 101
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: Water temperature
-  #   class: temperature
-  #   hidden: yes
-  #   dps:
-  #     - id: 101
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
+# - entity: sensor
+#   name: DP102 Ambient? temperature
+#   class: temperature
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 102
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: DP102 Ambient? temperature
-  #   class: temperature
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 102
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
+# - entity: sensor
+#   name: DP103 Coil? temperature
+#   class: temperature
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 103
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: DP103 Coil? temperature
-  #   class: temperature
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 103
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
+# - entity: sensor
+#   name: DP104 Compressor? temperature
+#   class: temperature
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 104
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: DP104 Compressor? temperature
-  #   class: temperature
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 104
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
+# - entity: sensor
+#   name: DP105 Unknown raw
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 105
+#       type: integer
+#       name: sensor
 
-  # - entity: sensor
-  #   name: DP105 Unknown raw
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 105
-  #       type: integer
-  #       name: sensor
+# - entity: sensor
+#   name: DP106 Coil(aux)? temperature
+#   class: temperature
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 106
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: DP106 Coil(aux)? temperature
-  #   class: temperature
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 106
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
+# - entity: sensor
+#   name: DP107 Temperatur Kompressor Austritt?
+#   class: temperature
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 107
+#       type: integer
+#       name: sensor
+#       unit: "°C"
 
-  # - entity: sensor
-  #   name: DP107 Temperatur Kompressor Austritt?
-  #   class: temperature
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 107
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
-
-  # - entity: sensor
-  #   name: DP108 TargetSetpoint? (0.1°C)
-  #   category: diagnostic
-  #   hidden: yes
-  #   dps:
-  #     - id: 108
-  #       type: integer
-  #       name: sensor
-  #       unit: "°C"
-  #       scale: 10
+# - entity: sensor
+#   name: DP108 TargetSetpoint? (0.1°C)
+#   category: diagnostic
+#   hidden: yes
+#   dps:
+#     - id: 108
+#       type: integer
+#       name: sensor
+#       unit: "°C"
+#       scale: 10
