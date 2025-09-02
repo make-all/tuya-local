@@ -1,0 +1,30 @@
+name: Fan switch
+products:
+  - id: sqxyktpwizo2yuhc
+    manufacturer: Aziot
+    model: Fan modular switch
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Normal
+            value: normal
+          - dps_val: Nature
+            value: nature
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: Breeze
+            value: fresh
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5

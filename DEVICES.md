@@ -255,6 +255,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
+- Aziot fan modular switch
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
@@ -566,7 +567,7 @@ the best option.
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2 and 3-gang switches
-- Aziot 7 and 8 gang multi-switches
+- Aziot 4, 7 and 8 gang multi-switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -688,6 +689,7 @@ of device.
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
+- Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
@@ -900,6 +902,7 @@ port and password.
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
+- Tolviviov DP-W2.1 security alarm panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system

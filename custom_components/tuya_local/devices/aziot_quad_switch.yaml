@@ -1,0 +1,137 @@
+name: Quad switch
+products:
+  - id: vbjatuxv6yoezkk5
+    manufacturer: Aziot
+    model: 4 Node smart switch
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 8
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:home-clock"
+    hidden: true
+    dps:
+      - id: 17
+        type: string
+        name: value
+  - entity: text
+    name: Random schedule
+    category: config
+    icon: "mdi:airplane-clock"
+    hidden: true
+    dps:
+      - id: 18
+        type: string
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 19
+        type: string
+        name: value
