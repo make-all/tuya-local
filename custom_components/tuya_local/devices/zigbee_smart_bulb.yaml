@@ -1,4 +1,4 @@
-name: Zigbee light
+name: Light
 legacy_type: peteme_smart_recessed_lighting
 products:
   - id: mja6r5ix
@@ -12,6 +12,9 @@ products:
     manufacturer: Peteme
     model: SIG_DL_RGBCW
     name: Recessed lighting
+  - id: mz2q6zlu
+    manufacturer: Kojima
+    model: GU10 smart bulb
 entities:
   - entity: light
     dps:
@@ -102,3 +105,40 @@ entities:
               46460200f003e803e800000000464602003d03e803e80000000046460200ae\
               03e803e800000000464602011303e803e800000000"
             value: Gorgeous
+  - entity: time
+    translation_key: timer
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 7
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Do not disturb
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
