@@ -1,0 +1,52 @@
+name: "Air conditioner"
+products:
+  - id: nn2ooaacswz6uyi0
+    manufacturer: Kaisai
+    model: Pro Heat+ AC
+
+entities:
+  - entity: climate
+    name: "HVAC"
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: auto
+              - dps_val: "1"
+                value: cool
+              - dps_val: "2"
+                value: dry
+              - dps_val: "3"
+                value: fan_only
+              - dps_val: "4"
+                value: heat
+
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+
+      - id: 2
+        name: temperature
+        type: integer
+        unit: "°C"
+        range:
+          min: 1600
+          max: 3100
+        mapping:
+          - scale: 100
+            step: 50
+
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: "°C"
+        mapping:
+          - scale: 100
