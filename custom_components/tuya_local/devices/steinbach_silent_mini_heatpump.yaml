@@ -1,18 +1,13 @@
-# Connection: local tuya, protocol versio: 3.4
-
-name: Steinbach Silent Mini Heatpump
-products:
-  - manufacturer: Steinbach
-    model: Silent Mini
-    id: QR46359
-
+name: Heatpump
+# products:
+#   - manufacturer: Steinbach
+#     model: Silent Mini
+#     id: QR46359
 entities:
-  # Main-Entity: Climate
   - entity: climate
     translation_key: pool_heatpump
     icon: mdi:heat-pump
     dps:
-      # DP1 = Power (On/Off)
       - id: 1
         type: boolean
         name: hvac_mode
@@ -26,163 +21,165 @@ entities:
                 value: heat
               - dps_val: "Cooling"
                 value: cool
-
-      # DP4 supporting DP for dp1 constraint
       - id: 4
         type: string
         name: mode
-
-      # DP2 = target temperature (°C, integer)
       - id: 2
         type: integer
         name: temperature
-        unit: "°C"
         range:
           min: 10
           max: 45
-
-      # DP3 = Current Temperature (°C)
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 50
+                  max: 113
       - id: 3
         type: integer
         name: current_temperature
-        unit: "°C"
-
       - id: 13
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: "c"
-            value: C
-          - dps_val: "f"
+          - dps_val: f
             value: F
-
-  - entity: switch
-    name: Power
-    icon: mdi:power
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-
-  - entity: select
-    name: Operation mode
-    icon: mdi:cached
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: "Heating"
-            value: Heating
-          - dps_val: "Cooling"
-            value: Cooling
-
-  - entity: sensor
-    name: Target temperature
-    class: temperature
-    dps:
-      - id: 2
-        type: integer
-        name: sensor
-        unit: "°C"
-
-  - entity: sensor
-    name: Current temperature
-    class: temperature
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "°C"
-
-  - entity: sensor
-    name: DP21 Fault code (raw)
+          - value: C
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 21
         type: bitfield
         name: sensor
-# - entity: sensor
-#   name: Water temperature
-#   class: temperature
-#   hidden: yes
-#   dps:
-#     - id: 101
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP102 Ambient? temperature
-#   class: temperature
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 102
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP103 Coil? temperature
-#   class: temperature
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 103
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP104 Compressor? temperature
-#   class: temperature
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 104
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP105 Unknown raw
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 105
-#       type: integer
-#       name: sensor
-
-# - entity: sensor
-#   name: DP106 Coil(aux)? temperature
-#   class: temperature
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 106
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP107 Temperatur Kompressor Austritt?
-#   class: temperature
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 107
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-
-# - entity: sensor
-#   name: DP108 TargetSetpoint? (0.1°C)
-#   category: diagnostic
-#   hidden: yes
-#   dps:
-#     - id: 108
-#       type: integer
-#       name: sensor
-#       unit: "°C"
-#       scale: 10
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Water temperature
+    class: temperature
+    hidden: yes
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Compressor temperature
+    class: temperature
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  # - entity: sensor
+  #   name: DP105 Unknown raw
+  #   category: diagnostic
+  #   hidden: yes
+  #   dps:
+  #     - id: 105
+  #       type: base64
+  #       optional: true
+  #       name: sensor
+  - entity: sensor
+    name: Aux coil temperature
+    class: temperature
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          ^ value: C
+  - entity: sensor
+    name: Target setpoint
+    category: diagnostic
+    hidden: yes
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: "°"
+        mapping:
+          - scale: 10
