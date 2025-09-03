@@ -9,6 +9,7 @@
 - Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
+- Breville AirRounder Plus Connect purifier heater
 - Bonaire HPC5200020 electric heater
 - BVF CP1 heater
 - Caldo Up T fan heater
@@ -31,6 +32,7 @@
 - Goldair GPPH, GCPV, GECO and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
+- Herschel Select XLS heated bathroom mirror with lights
 - Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
@@ -254,6 +256,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
+- Aziot fan modular switch
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
@@ -331,6 +334,7 @@
 - Varin CFWI50 RGBCW ceiling fan
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
+- Yijingkc 284-8 ceiling fan
 
 ### Air Purifiers
 
@@ -510,6 +514,7 @@
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
 - Tomzn energy meter
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou SA1 WiFi energy meter
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
@@ -529,6 +534,7 @@
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- Ampbolt Level 1/2 portable EV charger
 - dé Wall Charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
@@ -564,7 +570,7 @@ the best option.
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2 and 3-gang switches
-- Aziot 7 and 8 gang multi-switches
+- Aziot 4, 7 and 8 gang multi-switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -686,6 +692,7 @@ of device.
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
+- Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
@@ -898,6 +905,7 @@ port and password.
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
+- Tolviviov DP-W2.1 security alarm panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
@@ -938,6 +946,7 @@ port and password.
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
 - PetsPride OO15 pet feeder with camera
+- Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)

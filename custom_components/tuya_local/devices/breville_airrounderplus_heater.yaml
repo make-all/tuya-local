@@ -1,0 +1,173 @@
+name: Purifier heater
+products:
+  - id: h8fjsjf8tbhdm6aw
+    manufacturer: Breville
+    model: AirRounder Plus
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+            hidden: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat_0
+                value: fan_only
+              - dps_val: heat_mid
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 35
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat_low
+            value: eco
+          - dps_val: heat_mid
+            value: comfort
+          - dps_val: heat_high
+            value: boost
+          - dps_val: heat_0
+            value: none
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: SleepWind
+            value: low
+          - dps_val: NatureWind_Low
+            value: medium
+          - dps_val: NatureWind_High
+            value: high
+          - dps_val: CoolWind_0
+            value: focus
+      - id: 101
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "30"
+            value: "60°"
+          - dps_val: "60"
+            value: "120°"
+          - dps_val: "180"
+            value: "360°"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 23
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Filter remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: min
+        # tuya doc says %, but range is to 420k, manual says approx 9 months
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: aqi
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: excellent
+          - dps_val: "1"
+            value: good
+          - dps_val: "2"
+            value: moderate
+          - dps_val: "3"
+            value: poor
