@@ -705,7 +705,7 @@ Further device support has been made with the assistance of users. Please consid
 - [ianjsikes](https://github.com/ianjsikes) for contributing support for Windmill window air conditioner.
 - [luis-lain](https://github.com/luis-lain) for contributing support for S11+ RF+IR remote and Sulion Cadillac Fan via RF remote.
 - [gaspuas](https://github.com/gaspuas) for assisting with support for Linda Smart 7S video doorbell.
-- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.
+- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat, Ampbolt level 1/2 portable EV charger.
 - [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
 - [drbartek](https://github.com/drbartek) for assisting with support for Psmart T436 thermostat.
 - [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
