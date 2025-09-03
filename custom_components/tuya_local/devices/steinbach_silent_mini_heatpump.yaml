@@ -64,7 +64,7 @@ entities:
   - entity: sensor
     name: Water temperature
     class: temperature
-    hidden: yes
+    hidden: true
     dps:
       - id: 101
         type: integer
@@ -81,7 +81,7 @@ entities:
     name: Ambient temperature
     class: temperature
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 102
         type: integer
@@ -98,7 +98,7 @@ entities:
     name: Coil temperature
     class: temperature
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 103
         type: integer
@@ -115,7 +115,7 @@ entities:
     name: Compressor temperature
     class: temperature
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 104
         type: integer
@@ -131,7 +131,7 @@ entities:
   # - entity: sensor
   #   name: DP105 Unknown raw
   #   category: diagnostic
-  #   hidden: yes
+  #   hidden: true
   #   dps:
   #     - id: 105
   #       type: base64
@@ -141,7 +141,7 @@ entities:
     name: Aux coil temperature
     class: temperature
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 106
         type: integer
@@ -158,7 +158,7 @@ entities:
     name: Outlet temperature
     class: temperature
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 107
         type: integer
@@ -170,11 +170,11 @@ entities:
         mapping:
           - dps_val: f
             value: F
-          ^ value: C
+          - value: C
   - entity: sensor
     name: Target setpoint
     category: diagnostic
-    hidden: yes
+    hidden: true
     dps:
       - id: 108
         type: integer
