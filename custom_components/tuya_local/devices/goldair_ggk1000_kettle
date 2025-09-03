@@ -1,4 +1,4 @@
-name: Goldair Kettle
+name: Kettle
 products:
   - id: 2vuvtw0cj8wmjrpc
     manufacturer: Goldair
@@ -51,14 +51,12 @@ entities:
         name: switch
   - entity: sensor
     name: Work mode
+    hidden: true
     category: diagnostic
     dps:
       - id: 11
         type: string
         name: sensor
-        mapping:
-          - dps_val: boiling_quick
-            value: boil
   - entity: sensor
     translation_key: status
     class: enum
@@ -89,7 +87,6 @@ entities:
           min: 0
           max: 720
   - entity: number
-    name: Countdown timer
     category: config
     class: duration
     translation_key: timer
