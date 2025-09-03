@@ -1035,3 +1035,4 @@ Further device support has been made with the assistance of users. Please consid
 - [stevene1919](https://github.com/stevene1919) for assisting with support for Breville AirRounder Plus Connect purifier heater.
 - [Dead96](https://github.com/Dead96) for contributing support for Tongou SA1 energy meter.
 - [dustball62](https://github.com/dustball62) for assisting with support for Tolviviov DP-W2.1 alarm panel.
+- [jkfromk](https://github.com/jkfromk) for assisting with support for Yijingkc 284-8 ceiling fan.
