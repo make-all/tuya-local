@@ -1037,3 +1037,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dustball62](https://github.com/dustball62) for assisting with support for Tolviviov DP-W2.1 alarm panel.
 - [jkfromk](https://github.com/jkfromk) for assisting with support for Yijingkc 284-8 ceiling fan.
 - [dysphasi](https://github.com/dysphasi) for assisting with support for Herschel Select XLS bathroom mirror.
+- [ashabala](https://github.com/ashabala) for contributing support for Goldair GGK1000 kettle.
