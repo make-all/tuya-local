@@ -1,0 +1,215 @@
+name: Heated mirror
+products:
+  - id: hvoftosygk27useo
+    manufacturer: Herschel
+    model: Select XLS mirror with lights
+entities:
+  - entity: climate
+    translation_key: thermostat
+    name: Heater
+    icon: "mdi:heatwave"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: holiday
+            value: away
+          - dps_val: auto
+            value: program
+          - dps_val: null
+            value: manual
+            hidden: true
+      - id: 111
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+  - entity: number
+    name: Holiday length
+    category: config
+    class: duration
+    icon: "mdi:calendar"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 99
+      - id: 4
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: holiday
+            value: true
+          - value: false
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar"
+    hidden: true
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        name: value
+      - id: 4
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: auto
+            value: true
+          - value: false
+  - entity: switch
+    name: Window open detection
+    icon: "mdi:window-open"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    # not appearing in log
+    hidden: true
+    dps:
+      - id: 104
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+          - dps_val: null
+            value: celsius
+            hidden: true
+  - entity: light
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+      - id: 105
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 100
+      - id: 113
+        name: color_temp
+        type: integer
+        range:
+          min: 3000
+          max: 6000
+        mapping:
+          - step: 100
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -5
+          max: 5
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Pre-start
+    category: config
+    # not appearing in logs
+    hidden: true
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+      - id: 110
+        type: integer
+        optional: true
+        name: weekly
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Anti-fog
+    icon: "mdi:mirror"
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch

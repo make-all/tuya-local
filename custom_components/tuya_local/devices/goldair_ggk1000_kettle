@@ -1,0 +1,100 @@
+name: Kettle
+products:
+  - id: 2vuvtw0cj8wmjrpc
+    manufacturer: Goldair
+    model: GGK1000
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 2
+        type: integer
+        name: current_temperature
+        range:
+          min: 0
+          max: 100
+        unit: C
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 100
+        unit: C
+  - entity: number
+    name: Keep warm time
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 720
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:kettle-outline"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Work mode
+    hidden: true
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+          - dps_val: warm
+            value: keeping_warm
+  - entity: sensor
+    translation_key: remaining_time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+        range:
+          min: 0
+          max: 720
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 720

@@ -1,0 +1,320 @@
+name: EV charger
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Ampbolt
+#     model: Level 1/2 Portable
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23
+        type: string
+        optional: true
+        name: version
+      - id: 32
+        type: string
+        optional: true
+        name: ip_address
+  - entity: number
+    class: current
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 16
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: single_phase
+      - id: 5
+        type: integer
+        optional: true
+        name: single_phase
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: phase_a
+      - id: 6
+        type: base64
+        optional: true
+        name: phase_a
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 16384
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: over_current
+          - dps_val: 2
+            value: over_current_fault
+          - dps_val: 4
+            value: over_voltage
+          - dps_val: 8
+            value: under_voltage
+          - dps_val: 16
+            value: loose_contact
+          - dps_val: 32
+            value: contact_fault
+          - dps_val: 64
+            value: earth_fault
+          - dps_val: 128
+            value: meter_hardware_alarm
+          - dps_val: 256
+            value: scram_fault
+          - dps_val: 512
+            value: cp_fault
+          - dps_val: 1024
+            value: meter_communication_fault
+          - dps_val: 2048
+            value: card_reader_fault
+          - dps_val: 4096
+            value: short_circuit
+          - dps_val: 8192
+            value: adhesion_fault
+          - dps_val: 16384
+            value: self_test
+          - dps_val: 32768
+            value: current_leakage
+  - entity: text
+    name: Alarm set 1
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm set 2
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Connection
+    translation_key: status
+    icon: "mdi:ev-plug-ccs2"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: standby
+          - dps_val: controlpi_12v_pwm
+            value: monitor
+          - dps_val: controlpi_9v
+            value: starting
+          - dps_val: controlpi_9v_pwm
+            value: plugged_in
+          - dps_val: controlpi_6v
+            value: idle
+          - dps_val: controlpi_6v_pwm
+            value: charging
+          - dps_val: controlpi_error
+            value: fault
+  - entity: select
+    name: Charging mode
+    icon: "mdi:car-select"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_pct
+            value: Charge to percent
+          - dps_val: charge_energy
+            value: Fixed energy
+          - dps_val: charge_schedule
+            value: Scheduled
+          - dps_val: charge_delay
+            value: Delayed
+          - dps_val: null
+            value: Immediate
+            hidden: true
+  - entity: switch
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: energy_storage
+    name: Last charge
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Real time updates
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: switch
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: number
+    translation_key: timer
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12
+      - id: 14
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: charge_delay
+            value: true
+          - value: false
+  - entity: text
+    name: Charging mode
+    category: config
+    icon: "mdi:car-select"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Clock set
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 101
+        type: base64
+        optional: true
+        name: value

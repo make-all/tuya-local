@@ -705,7 +705,7 @@ Further device support has been made with the assistance of users. Please consid
 - [ianjsikes](https://github.com/ianjsikes) for contributing support for Windmill window air conditioner.
 - [luis-lain](https://github.com/luis-lain) for contributing support for S11+ RF+IR remote and Sulion Cadillac Fan via RF remote.
 - [gaspuas](https://github.com/gaspuas) for assisting with support for Linda Smart 7S video doorbell.
-- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.
+- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat, Ampbolt level 1/2 portable EV charger.
 - [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
 - [drbartek](https://github.com/drbartek) for assisting with support for Psmart T436 thermostat.
 - [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
@@ -957,7 +957,7 @@ Further device support has been made with the assistance of users. Please consid
 - [FragMenthor](https://github.com/FragMenthor) for assisting with support for Fuers video doorbell.
 - [netforceatg](https://github.com/netforceatg) for assisting with support for Arida S7L-2 dehumidifier.
 - [Dungeonkeaper](https://github.com/Dungeonkeaper) for assisting with support for CPVAN CP2W alarm system.
-- [danps1](https://github.com/danps1) for assisting with support for Arlec 10 path lights.
+- [danps1](https://github.com/danps1) for assisting with support for Arlec 10 path lights and contributing support for Dream of You dual lamp.
 - [GianlucaUlivi](https://github.com/GianlucaUlivi) for contributing improvements to Airrobo P20 vacuum.
 - [BevDan](https://github.com/BevDan) for contributing support for EARU EASEM-D multi-circuit power meter.
 - [Felwat](https://github.com/Felwat) for contributing support for TruCool TC1150 air conditioner, Princess Smart Tower fan.
@@ -1015,7 +1015,7 @@ Further device support has been made with the assistance of users. Please consid
 - [JakubMadro](https://github.com/JakubMadro) for contributing support for EARU PC473 3-phase energy monitor.
 - [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
 - [KoenVanduffel](https://github.com/KoenVanduffel) for assisting with support for Oscal PowerMax 6000 portable power station.
-- [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches.
+- [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches and assisting with support for Aziot 4 gang switches and Aziot fan modular switch.
 - [AFumi39](https://github.com/AFumi39) for contributing support for Puppy Kitty F14-W pet feeder.
 - [hussainaljamri](https://github.com/hussainaljamri) for contributing support for Moes Star Feather series switches.
 - [FritzeF](https://github.com/FritzeF) for assisting with support for Kavunion C1 100 ventilation fan.
@@ -1034,3 +1034,8 @@ Further device support has been made with the assistance of users. Please consid
 - [Kevin6872](https://github.com/Kevin6872) for assisting with support for Petwant F13-W pet feeder.
 - [stevene1919](https://github.com/stevene1919) for assisting with support for Breville AirRounder Plus Connect purifier heater.
 - [Dead96](https://github.com/Dead96) for contributing support for Tongou SA1 energy meter.
+- [dustball62](https://github.com/dustball62) for assisting with support for Tolviviov DP-W2.1 alarm panel.
+- [jkfromk](https://github.com/jkfromk) for assisting with support for Yijingkc 284-8 ceiling fan.
+- [dysphasi](https://github.com/dysphasi) for assisting with support for Herschel Select XLS bathroom mirror.
+- [ashabala](https://github.com/ashabala) for contributing support for Goldair GGK1000 kettle.
+- [Wakinyan](https://github.com/Wakinyan) for contributing support for Steinback Silent Mini pool heat pump.
