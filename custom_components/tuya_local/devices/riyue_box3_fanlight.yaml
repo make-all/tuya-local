@@ -30,31 +30,27 @@ entities:
       - id: 20
         type: boolean
         name: switch
-      - id: 21
-        type: string
-        name: color_mode
-        optional: true
-        mapping:
-          - dps_val: white
-            value: white
-          - dps_val: colour
-            value: color
-          - dps_val: scene
-            value: scene
-          - dps_val: music
-            value: music
       - id: 22
         name: brightness
         type: integer
+        optional: true
         range:
           min: 10
           max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
       - id: 23
         name: color_temp
         type: integer
+        optional: true
         range:
           min: 0
           max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
       - id: 25
         name: scene_data
         type: string
