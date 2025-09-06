@@ -1,0 +1,147 @@
+name: Ceiling Fan Light
+products:
+  - id: shrracpw0ve9jooc
+    manufacturer: RIYUE
+    model: RIYUE BOX 3
+entities:
+  - entity: fan
+    name: Fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+  - entity: light
+    name: Light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 25
+        name: scene_data
+        type: string
+        optional: true
+      - id: 27
+        name: music_data
+        type: string
+        optional: true
+      - id: 28
+        name: control_data
+        type: string
+        optional: true
+  - entity: light
+    name: Night light
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    name: Oscillation 1
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 2
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 3
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 4
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: switch
+    name: Do not disturb
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch gradient
+    dps:
+      - id: 35
+        type: raw
+        name: switch
+  - entity: switch
+    name: Fan beeper
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: switch
+    name: General beeper
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
