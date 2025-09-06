@@ -1,8 +1,8 @@
-name: RIYUE BOX 3 Fan Light
+name: Ceiling Fan Light
 products:
   - id: shrracpw0ve9jooc
     manufacturer: RIYUE
-    model: RIYUE BOX 3 - Health Lighting
+    model: RIYUE BOX 3
 entities:
   - entity: fan
     name: Fan
@@ -24,13 +24,6 @@ entities:
         range:
           min: 1
           max: 100
-      - id: 64
-        name: countdown_left
-        type: integer
-        unit: min
-        range:
-          min: 0
-          max: 540
   - entity: light
     name: Light
     dps:
@@ -62,13 +55,6 @@ entities:
         range:
           min: 0
           max: 1000
-      - id: 26
-        name: countdown
-        type: integer
-        unit: s
-        range:
-          min: 0
-          max: 86400
       - id: 25
         name: scene_data
         type: string
@@ -146,6 +132,12 @@ entities:
         type: boolean
         name: switch
   - entity: switch
+    name: Switch gradient
+    dps:
+      - id: 35
+        type: raw
+        name: switch
+  - entity: switch
     name: Fan beeper
     dps:
       - id: 66
@@ -157,14 +149,3 @@ entities:
       - id: 106
         type: boolean
         name: switch
-#  - entity: binary_sensor
-#    name: Motor fault
-#    dps:
-#      - id: 67
-#        type: bitmap
-#        name: sensor
-#        mapping:
-#          - dps_val: 0
-#            value: false
-#          - dps_val: 1
-#            value: true
