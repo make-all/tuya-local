@@ -287,7 +287,7 @@ class TuyaLocalDevice(object):
                 )
                 raise e
 
-      async def async_receive(self):
+    async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
         # If we didn't yet get any state from the device, we may need to
         # negotiate the protocol before making the connection persistent
