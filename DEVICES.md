@@ -318,6 +318,7 @@
 - Princess DC pedestal fan
 - Princess Smart Tower fan
 - Reiga ceiling fans with and without light
+- Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Scheeair Nova 100 ventilation fan

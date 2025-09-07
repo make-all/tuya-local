@@ -899,7 +899,7 @@ Further device support has been made with the assistance of users. Please consid
 - [julianguinard](https://github.com/julianguinard) for contributing support for Feyree portable EV charger.
 - [lemeshovich](https://github.com/lemeshovich) for contributing support for Haozee ZG-302ZM presence dual light switch.
 - [emmanuel-ferdman](https://github.com/emmanuel-ferdman) for contributing logging improvements.
-- [r3m0x](https://github.com/r3m0x) for contributing support for PTH9BW air quality monitor.
+- [r3m0x](https://github.com/r3m0x) for contributing support for PTH9BW air quality monitor, Riyue Box 3 fan with light.
 - [JabeBRD](https://github.com/JabeBRD) for assisting with support for Avatto WHS20S climate IR remote.
 - [guruprasadah](https://github.com/guruprasadah) for contributing support for generic 5-speed fan controller.
 - [Zensonize](https://github.com/Zensonize) for contributing support for EWC02 air quality meter.
@@ -1041,3 +1041,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Wakinyan](https://github.com/Wakinyan) for contributing support for Steinback Silent Mini pool heat pump.
 - [angus-thompson](https://github.com/angus-thompson) for assisting with support for Advwin 6L camera pet feeder.
 - [aleks31031992](https://github.com/aleks31031992) for assisting with support for Moes single outlet water timer.
+
