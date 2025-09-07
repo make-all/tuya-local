@@ -1,0 +1,465 @@
+name: Pioneer WYT Mini Split AC/Heat Pump
+primary_entity:
+  entity: climate
+  translation_key: aircon_extra
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: "mdi:hvac"
+              value: heat_cool
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: hot
+              icon: "mdi:fire"
+              value: heat
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry            
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 610
+        max: 880
+      mapping:
+        - scale: 10
+          step: 10
+      unit: F
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - dps_val: 15
+          value: 59 
+        - dps_val: 16
+          value: 61 
+        - dps_val: 17
+          value: 63 
+        - dps_val: 18
+          value: 64 
+        - dps_val: 19
+          value: 66 
+        - dps_val: 20
+          value: 68 
+        - dps_val: 21
+          value: 70 
+        - dps_val: 22
+          value: 72 
+        - dps_val: 23
+          value: 73 
+        - dps_val: 24
+          value: 75 
+        - dps_val: 25
+          value: 77 
+        - dps_val: 26
+          value: 79 
+        - dps_val: 27
+          value: 81 
+        - dps_val: 28
+          value: 82 
+        - dps_val: 29
+          value: 84 
+        - dps_val: 30
+          value: 86 
+        - dps_val: 31
+          value: 88
+        - dps_val: 32
+          value: 90
+      unit: F
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: mute
+          value: quiet
+        - dps_val: low
+          value: low
+        - dps_val: mid_low
+          value: medlow
+        - dps_val: mid
+          value: medium
+        - dps_val: mid_high
+          value: medhigh
+        - dps_val: high
+          value: high
+        - dps_val: strong
+          value: strong
+    - id: 20
+      name: unknown_20
+      type: integer
+    - id: 105
+      name: sleep_mode
+      type: string
+    - id: 110
+      name: unknown_110
+      type: integer
+    - id: 113
+      name: swing_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: "off"
+            - dps_val: "1"
+              value: horizontal
+            - value: horizontal
+        - dps_val: "1"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - dps_val: "1"
+              value: both
+            - value: both
+        - dps_val: "2"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+        - dps_val: "3"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+    - id: 114
+      name: horizontal_swing
+      type: string
+      hidden: true
+    - id: 116
+      name: unknown_116
+      type: integer
+      optional: true
+    - id: 119
+      name: electricity_management
+      type: string
+    - id: 120
+      name: unknown_120
+      type: string
+    - id: 123
+      name: flags
+      type: string
+    - id: 126
+      name: vertical_flow_position
+      type: string
+    - id: 127
+      name: horizontal_flow_position
+      type: string
+    - id: 128
+      name: unknown_128
+      type: string
+    - id: 129
+      name: unknown_129
+      type: string
+    - id: 130
+      name: maybe_eco_temp
+      type: integer
+    - id: 131
+      name: unknown_131
+      type: boolean
+    - id: 132
+      name: unknown_132
+      type: boolean
+    - id: 133
+      name: unknown_133
+      type: string
+    - id: 134
+      name: unknown_134
+      type: json
+secondary_entities:
+  - entity: sensor
+    name: Current humidity
+    category: diagnostic
+    class: humidity
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Vertical swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+  - entity: select
+    name: Vertical position
+    category: config
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Top
+          - dps_val: "2"
+            value: Slightly Up
+          - dps_val: "3"
+            value: Middle
+          - dps_val: "4"
+            value: Slightly Down
+          - dps_val: "5"
+            value: Bottom
+  - entity: select
+    name: Horizontal swing
+    category: config
+    icon: "mdi:arrow-left-right-bold"
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+  - entity: select
+    name: Horizontal position
+    category: config
+    icon: "mdi:unfold-more-vertical"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Leftmost
+          - dps_val: "2"
+            value: Slight Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Slight Right
+          - dps_val: "5"
+            value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
+  - entity: sensor
+    class: power
+    category: diagnostic
+    name: Power
+    dps:
+      - id: 116
+        optional: true
+        type: integer
+        name: sensor
+        unit: "W"
+        class: measurement
+        mapping:
+          - scale: 30
+  - entity: sensor
+    class: power
+    category: diagnostic
+    name: unk_119
+    dps:
+      - id: 119
+        optional: true
+        type: integer
+        name: sensor
+        unit: "W"
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    name: unk_120
+    dps:
+      - id: 120
+        optional: true
+        type: string
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_128
+    dps:
+      - id: 128
+        optional: true
+        type: string
+        name: sensor
+        
+  - entity: sensor
+    category: diagnostic
+    name: unk_129
+    dps:
+      - id: 129
+        optional: true
+        type: string
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_130
+    dps:
+      - id: 130
+        optional: true
+        type: integer
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_131
+    dps:
+      - id: 131
+        optional: true
+        type: boolean
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_132
+    dps:
+      - id: 132
+        optional: true
+        type: boolean
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_133
+    dps:
+      - id: 133
+        optional: true
+        type: string
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: unk_134
+    dps:
+      - id: 134
+        optional: true
+        type: string
+        name: sensor
+        
+        
+        
+  - entity: switch
+    name: Display
+    category: config
+    icon: "mdi:lightbulb-on-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0008"
+  - entity: switch
+    name: Buzzer
+    category: config
+    icon: "mdi:access-point"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0020"
+  - entity: switch
+    name: Anti-freeze
+    category: config
+    icon: "mdi:radiator"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0001"
