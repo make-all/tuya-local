@@ -915,6 +915,7 @@ port and password.
 
 ### Pet care
 
+- Advwin 6L camera pet feeder
 - AF3W pet feeder
 - Arlec Grid Connect 5L pet feeder
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)

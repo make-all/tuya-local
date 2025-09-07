@@ -1039,3 +1039,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dysphasi](https://github.com/dysphasi) for assisting with support for Herschel Select XLS bathroom mirror.
 - [ashabala](https://github.com/ashabala) for contributing support for Goldair GGK1000 kettle.
 - [Wakinyan](https://github.com/Wakinyan) for contributing support for Steinback Silent Mini pool heat pump.
+- [angus-thompson](https://github.com/angus-thompson) for assisting with support for Advwin 6L camera pet feeder.
