@@ -1037,6 +1037,7 @@ port and password.
 - ME201W level sensor
 - Mirabella Genio motion sensor
 - Moes human presence sensor
+- Moes single outlet water timer
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
