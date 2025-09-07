@@ -44,7 +44,7 @@ class TestMoebot(TuyaDeviceTestCase):
                 "binary_sensor_problem",
                 "select_mowing_mode",
                 "sensor_problem",
-                "switch.backward_blade_stop",
+                "switch_backward_blade_stop",
                 "switch_rain_mode",
                 "number_running_time",
                 "button_clear_schedule",
