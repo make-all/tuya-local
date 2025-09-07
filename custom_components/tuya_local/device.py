@@ -82,7 +82,7 @@ class TuyaLocalDevice(object):
                     parent = tinytuya.Device(dev_id, address, local_key)
                     if name != "Test":
                         hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
-                self._api = tinytuya.Device(
+                self._api = await tinytuya.DeviceAsync.create(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
@@ -193,6 +193,7 @@ class TuyaLocalDevice(object):
             await self._refresh_task
         _LOGGER.debug("Monitor loop for %s stopped", self.name)
         self._refresh_task = None
+        await self._api.close()
 
     def register_entity(self, entity):
         # If this is the first child entity to register, and HA is still
@@ -324,13 +325,8 @@ class TuyaLocalDevice(object):
                         dps_updated = False
                         full_poll = True
                 elif persist:
-                    await self._hass.async_add_executor_job(
-                        self._api.heartbeat,
-                        True,
-                    )
-                    poll = await self._hass.async_add_executor_job(
-                        self._api.receive,
-                    )
+                    await self._api.heartbeat(True)
+                    poll = await self._api.receive()
                 else:
                     await asyncio.sleep(5)
                     poll = None
@@ -476,8 +472,8 @@ class TuyaLocalDevice(object):
         self._pending_updates = {}
         self._last_connection = 0
 
-    def _refresh_cached_state(self):
-        new_state = self._api.status()
+    async def _refresh_cached_state(self):
+        new_state = await self._api.status()
         if new_state and "Err" not in new_state:
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
@@ -572,10 +568,10 @@ class TuyaLocalDevice(object):
             "Failed to update device state.",
         )
 
-    def _set_values(self, properties):
+    async def _set_values(self, properties):
         try:
             self._lock.acquire()
-            self._api.set_multiple_values(properties, nowait=True)
+            await self._api.set_multiple_values(properties, nowait=True)
             self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
@@ -588,7 +584,7 @@ class TuyaLocalDevice(object):
 
     async def _retry_on_failed_connection(self, func, error_message):
         if self._api_protocol_version_index is None:
-            await self._rotate_api_protocol_version()
+            self._rotate_api_protocol_version()
         auto = (self._protocol_configured == "auto") and (
             not self._api_protocol_working
         )
@@ -601,7 +597,7 @@ class TuyaLocalDevice(object):
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
-                    retval = await self._hass.async_add_executor_job(func)
+                    retval = await func()
                     if isinstance(retval, dict) and "Error" in retval:
                         raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
@@ -632,7 +628,7 @@ class TuyaLocalDevice(object):
                         _LOGGER.debug(error_message)
 
                 if not self._api_protocol_working:
-                    await self._rotate_api_protocol_version()
+                    self._rotate_api_protocol_version()
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
@@ -665,7 +661,7 @@ class TuyaLocalDevice(object):
         }
         return self._pending_updates
 
-    async def _rotate_api_protocol_version(self):
+    def _rotate_api_protocol_version(self):
         if self._api_protocol_version_index is None:
             try:
                 self._api_protocol_version_index = API_PROTOCOL_VERSIONS.index(
@@ -694,15 +690,9 @@ class TuyaLocalDevice(object):
         else:
             self._api.disabledetect = True
 
-        await self._hass.async_add_executor_job(
-            self._api.set_version,
-            new_version,
-        )
+        self._api.set_version(new_version)
         if self._api.parent:
-            await self._hass.async_add_executor_job(
-                self._api.parent.set_version,
-                new_version,
-            )
+            self._api.parent.set_version(new_version)
 
     @staticmethod
     def get_key_for_value(obj, value, fallback=None):
