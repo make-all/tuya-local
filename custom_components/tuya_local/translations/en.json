@@ -411,6 +411,24 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "overcurrent_threshold": {
+                "name": "Overcurrent Threshold"
+            },
+            "overvoltage_threshold": {
+                "name": "Overvoltage Threshold"
+            },
+            "undervoltage_threshold": {
+                "name": "Undervoltage Threshold"
+            },
+            "leakage_threshold": {
+                "name": "Leakage Threshold"
+            },
+            "temperature_threshold": {
+                "name": "Temperature Threshold"
+            },
+            "overpower_threshold": {
+                "name": "Overpower Threshold"
             }
         },
         "select": {
@@ -445,6 +463,14 @@
                     "off": "Off",
                     "on": "On",
                     "memory": "Memory"
+                }
+			},
+            "power_on_state": {
+                "name": "Power On State",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "last_state": "Last State"
                 }
             },
             "kettle_mode": {
@@ -501,8 +527,7 @@
                     "auto": "Auto",
                     "low": "Low",
                     "medium": "Medium",
-                    "high": "High",
-                    "very_high": "Very High"
+                    "high": "High"
                 }
             },
             "recipe": {
@@ -651,6 +676,54 @@
                     "red_bean_bread": "Red Bean Bread",
                     "milk_toast": "Milk Toast"
                 }
+            },
+            "overvoltage_action": {
+                "name": "Overvoltage Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
+            },
+            "undervoltage_action": {
+                "name": "Undervoltage Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
+            },
+            "overcurrent_action": {
+                "name": "Overcurrent Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
+            },
+            "overpower_action": {
+                "name": "Overpower Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
+            },
+            "temperature_action": {
+                "name": "Temperature Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
+            },
+            "leakage_action": {
+                "name": "Leakage Action",
+                "state": {
+                    "closed": "Remain closed",
+                    "alarm": "Alarm",
+                    "trip": "Trip"
+                }
             }
         },
         "sensor": {
@@ -791,6 +864,42 @@
             },
             "power_x": {
                 "name": "Power {x}"
+            },
+            "total_energy": {
+                "name": "Total Energy"
+            },
+            "leakage": {
+                "name": "Leakage"
+            },
+			"fuse_event": {
+                "name": "Event",
+				"state": {
+					"normal": "Normal",
+					"overcurrent_trip": "Overcurrent Trip",
+					"overpower_trip": "Overpower Trip",
+					"high_temp_trip": "High Temp Trip",
+					"overvoltage_trip": "Overvoltage Trip",
+					"undervoltage_trip": "Undervoltage Trip",
+					"overcurrent_alarm": "Overcurrent Alarm",
+					"overpower_alarm": "Overpower Alarm",
+					"high_temp_alarm": "High Temp Alarm",
+					"overvoltage_alarm": "Overvoltage Alarm",
+					"undervoltage_alarm": "Undervoltage Alarm",
+					"remote_on": "Remote On",
+					"remote_off": "Remote Off",
+					"manual_on": "Manual On",
+					"manual_off": "Manual Off",
+					"leakage_trip": "Leakage Trip",
+					"leakage_alarm": "Leakage Alarm",
+					"factory_reset": "Factory Reset",
+					"automatic_closing": "Automatic Closing",
+					"electricity_shortage": "Electricity Shortage",
+					"timing_switch_on": "Timing Switch On",
+					"timing_switch_off": "Timing Switch Off"
+				}
+			},
+            "forward_energy": {
+                "name": "Forward Energy"
             }
         },
         "switch": {
@@ -820,6 +929,21 @@
             },
             "electrolytic_sterilization": {
                 "name": "Electrolytic sterilization"
+            },
+            "overvoltage_recloser": {
+                "name": "Overvoltage Recloser"
+            },
+            "undervoltage_recloser": {
+                "name": "Undervoltage Recloser"
+            },
+            "overcurrent_recloser": {
+                "name": "Overcurrent Recloser"
+            },
+            "leakage_recloser": {
+                "name": "Leakage Recloser"
+            },
+            "overpower_recloser": {
+                "name": "Overpower Recloser"
             }
         },
         "text": {
