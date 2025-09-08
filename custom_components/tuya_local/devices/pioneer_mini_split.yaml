@@ -8,26 +8,26 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          value: "off"
-          icon: "mdi:hvac-off"
+          value: 'off'
+          icon: 'mdi:hvac-off'
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:hvac"
+              icon: 'mdi:hvac'
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
+              icon: 'mdi:snowflake'
               value: cool
             - dps_val: hot
-              icon: "mdi:fire"
+              icon: 'mdi:fire'
               value: heat
             - dps_val: wind
-              icon: "mdi:fan"
+              icon: 'mdi:fan'
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
-              value: dry            
+              icon: 'mdi:water'
+              value: dry
     - id: 2
       type: integer
       name: temperature
@@ -43,37 +43,37 @@ primary_entity:
       type: integer
       mapping:
         - dps_val: 15
-          value: 59 
+          value: 59
         - dps_val: 16
-          value: 61 
+          value: 61
         - dps_val: 17
-          value: 63 
+          value: 63
         - dps_val: 18
-          value: 64 
+          value: 64
         - dps_val: 19
-          value: 66 
+          value: 66
         - dps_val: 20
-          value: 68 
+          value: 68
         - dps_val: 21
-          value: 70 
+          value: 70
         - dps_val: 22
-          value: 72 
+          value: 72
         - dps_val: 23
-          value: 73 
+          value: 73
         - dps_val: 24
-          value: 75 
+          value: 75
         - dps_val: 25
-          value: 77 
+          value: 77
         - dps_val: 26
-          value: 79 
+          value: 79
         - dps_val: 27
-          value: 81 
+          value: 81
         - dps_val: 28
-          value: 82 
+          value: 82
         - dps_val: 29
-          value: 84 
+          value: 84
         - dps_val: 30
-          value: 86 
+          value: 86
         - dps_val: 31
           value: 88
         - dps_val: 32
@@ -116,32 +116,32 @@ primary_entity:
       name: swing_mode
       type: string
       mapping:
-        - dps_val: "0"
+        - dps_val: '0'
           constraint: horizontal_swing
           conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
+            - dps_val: '0'
+              value: 'off'
+            - dps_val: '1'
               value: horizontal
             - value: horizontal
-        - dps_val: "1"
+        - dps_val: '1'
           constraint: horizontal_swing
           conditions:
-            - dps_val: "0"
+            - dps_val: '0'
               value: vertical
-            - dps_val: "1"
+            - dps_val: '1'
               value: both
             - value: both
-        - dps_val: "2"
+        - dps_val: '2'
           constraint: horizontal_swing
           conditions:
-            - dps_val: "0"
+            - dps_val: '0'
               value: vertical
             - value: both
-        - dps_val: "3"
+        - dps_val: '3'
           constraint: horizontal_swing
           conditions:
-            - dps_val: "0"
+            - dps_val: '0'
               value: vertical
             - value: both
     - id: 114
@@ -197,103 +197,103 @@ secondary_entities:
       - id: 18
         name: sensor
         type: integer
-        unit: "%"
+        unit: '%'
         class: measurement
   - entity: select
     name: Vertical swing
     category: config
-    icon: "mdi:arrow-up-down-bold"
+    icon: 'mdi:arrow-up-down-bold'
     dps:
       - id: 113
         type: string
         name: option
         mapping:
-          - dps_val: "0"
-            value: "Off"
-          - dps_val: "1"
+          - dps_val: '0'
+            value: 'Off'
+          - dps_val: '1'
             value: Full
-          - dps_val: "2"
+          - dps_val: '2'
             value: Upper
-          - dps_val: "3"
+          - dps_val: '3'
             value: Lower
   - entity: select
     name: Vertical position
     category: config
-    icon: "mdi:unfold-more-horizontal"
+    icon: 'mdi:unfold-more-horizontal'
     dps:
       - id: 126
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: '0'
             value: Unknown
-          - dps_val: "1"
+          - dps_val: '1'
             value: Top
-          - dps_val: "2"
+          - dps_val: '2'
             value: Slightly Up
-          - dps_val: "3"
+          - dps_val: '3'
             value: Middle
-          - dps_val: "4"
+          - dps_val: '4'
             value: Slightly Down
-          - dps_val: "5"
+          - dps_val: '5'
             value: Bottom
   - entity: select
     name: Horizontal swing
     category: config
-    icon: "mdi:arrow-left-right-bold"
+    icon: 'mdi:arrow-left-right-bold'
     dps:
       - id: 114
         type: string
         name: option
         mapping:
-          - dps_val: "0"
-            value: "Off"
-          - dps_val: "1"
+          - dps_val: '0'
+            value: 'Off'
+          - dps_val: '1'
             value: Full
-          - dps_val: "2"
+          - dps_val: '2'
             value: Left
-          - dps_val: "3"
+          - dps_val: '3'
             value: Center
-          - dps_val: "4"
+          - dps_val: '4'
             value: Right
   - entity: select
     name: Horizontal position
     category: config
-    icon: "mdi:unfold-more-vertical"
+    icon: 'mdi:unfold-more-vertical'
     dps:
       - id: 127
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: '0'
             value: Unknown
-          - dps_val: "1"
+          - dps_val: '1'
             value: Leftmost
-          - dps_val: "2"
+          - dps_val: '2'
             value: Slight Left
-          - dps_val: "3"
+          - dps_val: '3'
             value: Center
-          - dps_val: "4"
+          - dps_val: '4'
             value: Slight Right
-          - dps_val: "5"
+          - dps_val: '5'
             value: Rightmost
   - entity: select
     name: Sleep mode
     category: config
-    icon: "mdi:weather-night"
+    icon: 'mdi:weather-night'
     dps:
       - id: 105
         type: string
         name: option
         mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: "normal"
+          - dps_val: 'off'
+            value: 'Off'
+          - dps_val: normal
             value: Standard
-          - dps_val: "old"
-            value: "Elderly"
-          - dps_val: "child"
-            value: "Child"
+          - dps_val: old
+            value: Elderly
+          - dps_val: child
+            value: Child
   - entity: sensor
     class: power
     category: diagnostic
@@ -303,7 +303,7 @@ secondary_entities:
         optional: true
         type: integer
         name: sensor
-        unit: "W"
+        unit: W
         class: measurement
         mapping:
           - scale: 30
@@ -316,7 +316,7 @@ secondary_entities:
         optional: true
         type: integer
         name: sensor
-        unit: "W"
+        unit: W
         class: measurement
   - entity: sensor
     category: diagnostic
@@ -334,7 +334,6 @@ secondary_entities:
         optional: true
         type: string
         name: sensor
-        
   - entity: sensor
     category: diagnostic
     name: unk_129
@@ -383,83 +382,80 @@ secondary_entities:
         optional: true
         type: string
         name: sensor
-        
-        
-        
   - entity: switch
     name: Display
     category: config
-    icon: "mdi:lightbulb-on-outline"
+    icon: 'mdi:lightbulb-on-outline'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "0008"
+            mask: 0008
   - entity: switch
     name: Buzzer
     category: config
-    icon: "mdi:access-point"
+    icon: 'mdi:access-point'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "0010"
+            mask: '0010'
   - entity: switch
     name: Soft wind
     category: config
-    icon: "mdi:weather-windy"
+    icon: 'mdi:weather-windy'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "8000"
+            mask: '8000'
   - entity: switch
     name: Anti-mildew
     category: config
-    icon: "mdi:water-off-outline"
+    icon: 'mdi:water-off-outline'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "0100"
+            mask: '0100'
   - entity: switch
     name: Health
     category: config
-    icon: "mdi:heart-outline"
+    icon: 'mdi:heart-outline'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "0020"
+            mask: '0020'
   - entity: switch
     name: Anti-freeze
     category: config
-    icon: "mdi:radiator"
+    icon: 'mdi:radiator'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "1000"
+            mask: '1000'
   - entity: switch
     name: Eco mode
     category: config
-    icon: "mdi:leaf"
+    icon: 'mdi:leaf'
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
           - scale: 1
-            mask: "0001"
+            mask: '0001'
