@@ -151,6 +151,24 @@
                 "state": {
                     "0": "mdi:timer-cancel"
                 }
+            },
+            "overcurrent_threshold": {
+                "default": "mdi:arrow-collapse-up"
+            },
+            "overvoltage_threshold": {
+                "default": "mdi:arrow-collapse-up"
+            },
+            "undervoltage_threshold": {
+                "default": "mdi:arrow-collapse-down"
+            },
+            "leakage_threshold": {
+                "default": "mdi:arrow-collapse-up"
+            },
+            "temperature_threshold": {
+                "default": "mdi:thermometer-alert"
+            },
+            "overpower_threshold": {
+                "default": "mdi:arrow-collapse-up"
             }
         },
         "select": {
@@ -248,6 +266,57 @@
                 "state": {
                     "fahrenheit": "mdi:temperature-fahrenheit"
                 }
+            },
+            "overvoltage_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "undervoltage_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "overcurrent_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "overpower_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "temperature_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "leakage_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "closed": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip": "mdi:electric-switch"
+                }
+            },
+            "power_on_state": {
+                "default": "mdi:toggle-switch"
             }
         },
         "sensor": {
@@ -344,6 +413,9 @@
             },
             "energy_produced_x": {
                 "default": "mdi:solar-power"
+            },
+            "fuse_event": {
+                "default": "mdi:eye-check"
             }
         },
         "switch": {
@@ -367,8 +439,30 @@
             },
             "electrolytic_sterilization": {
                 "default": "mdi:flash"
+            },
+             "fuse": {
+                "default": "mdi:fuse",
+                "state": {
+                    "on": "mdi:fuse",
+                    "off": "mdi:fuse-off"
+                }
+            },
+             "overvoltage_recloser": {
+                "default": "mdi:refresh-auto"
+            },
+             "undervoltage_recloser": {
+                "default": "mdi:refresh-auto"
+            },
+             "overcurrent_recloser": {
+                "default": "mdi:refresh-auto"
+            },
+             "leakage_recloser": {
+                "default": "mdi:refresh-auto"
+            },
+             "overpower_recloser": {
+                "default": "mdi:refresh-auto"
             }
-        },
+       },
         "text": {
             "scene": {
                 "default": "mdi:palette"
