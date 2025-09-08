@@ -56,12 +56,10 @@ entities:
         name: fan_mode
         type: string
         mapping:
-          # When auto_fan (DP 7) is true, show as auto regardless of manual speed setting
           - constraint: auto_fan
             conditions:
               - dps_val: true
                 value: "auto"
-          # When auto_fan is false, use manual speed settings
           - dps_val: "1"
             constraint: auto_fan
             conditions:
