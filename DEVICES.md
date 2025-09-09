@@ -9,6 +9,7 @@
 - Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
+- Breville AirRounder Plus Connect purifier heater
 - Bonaire HPC5200020 electric heater
 - BVF CP1 heater
 - Caldo Up T fan heater
@@ -31,6 +32,7 @@
 - Goldair GPPH, GCPV, GECO and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
+- Herschel Select XLS heated bathroom mirror with lights
 - Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
@@ -39,7 +41,7 @@
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
 - Klarstein Bornholm Smart 1500 convection heater
-- Klarstein Wonderwall IR heaters (including Air Art, Bornholm models)
+- Klarstein Wonderwall IR heaters (including Air Art, Bornholm, 600 models)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
@@ -58,6 +60,7 @@
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
 - Semptec ZX7007 infrared heater
+- Sichler ZX-7655/ZX-7656 hybrid infrared convection heater
 - SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Sunred Smart Triangle Dark patio wall heater
@@ -135,13 +138,14 @@
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
+- Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
 - Remora pool heat pump
-- Steinbach Solid 4.3 pool heat pump
+- Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -252,6 +256,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
+- Aziot fan modular switch
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
@@ -271,6 +276,8 @@
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
+- Dyras TF-16WIFI tower fan
+- Eberg Fyn tower fan
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
@@ -290,15 +297,16 @@
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Kavunion C1 100 ventilation fan
+- KCvents VT501-W heat recovery ventilation
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
-- Ledkia fan and light controller
-- Lexy F501 fan
-- Lucci Connect Wi-Fi fan remote
-- Lumary A1 ceiling fan with light
-- KCvents VT501-W heat recovery ventilation
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
+- Ledkia fan and light controller
+- Lexy F501 fan
+- Living Comfort LC310S twin window fan
+- Lucci Connect Wi-Fi fan remote
+- Lumary A1 ceiling fan with light
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
@@ -310,6 +318,7 @@
 - Princess DC pedestal fan
 - Princess Smart Tower fan
 - Reiga ceiling fans with and without light
+- Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Scheeair Nova 100 ventilation fan
@@ -326,6 +335,7 @@
 - Varin CFWI50 RGBCW ceiling fan
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
+- Yijingkc 284-8 ceiling fan
 
 ### Air Purifiers
 
@@ -431,6 +441,7 @@
 - Etersky aroma diffuser with light
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
+- Revesien Q-Pro-W aroma diffuser
 - Tesla Smart aroma diffuser with light
 - YX-025 WB aroma diffuser
 - YX316WIFI aroma diffuser
@@ -445,6 +456,7 @@
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
+- Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
 - Homend Royaltea kettle
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S cooking probe thermometers
@@ -476,6 +488,7 @@
 - Compteur digital electric (single phase)
 - CT-1203 dual clamp meter
 - Dcenta dual clamp meter
+- Dewin KWS-306WF 3-phase energy monitoring breaker switch
 - DTS238-7 3 phase smart meter
 - Dual CT clamp bidirectional meter
 - EARU EAEMP3C-100-TY-W 3 phase bidirectional energy monitoring breaker
@@ -503,6 +516,7 @@
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
 - Tomzn energy meter
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou SA1 WiFi energy meter
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
@@ -522,6 +536,7 @@
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- Ampbolt Level 1/2 portable EV charger
 - dé Wall Charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
@@ -557,7 +572,7 @@ the best option.
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2 and 3-gang switches
-- Aziot 7 and 8 gang multi-switches
+- Aziot 4, 7 and 8 gang multi-switches
 - Bauhn APSW-0624 5 way powerstrip (with unswitched USB)
 - BBCoin AC5299 PCIe computer switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
@@ -679,6 +694,7 @@ of device.
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
+- Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
@@ -790,6 +806,7 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
+- Cecotec Conga 1970 vacuum cleaner
 - iHome Autoac Nova vacuum cleaner
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
@@ -814,7 +831,7 @@ of device.
 
 ### Lawnmowers
 
-- MoeBot S-series mowers (may require protocol version set manually to 3.4)
+- MoeBot S-series mowers (also sold under Parkside and other brands, may require protocol version set manually to 3.4)
 
 ### Locks
 
@@ -873,7 +890,7 @@ port and password.
 - LSC Smart Connect dual band outdoor camera
 - LSC Smart Connect Outdoor PTZ camera
 - LSC Smart Connect PTZ camera
-- Moes PTZ indoor security camera
+- Moes PTZ indoor security camera (WCM-P52 v1 and v2)
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RH-PD10 3MP peephole doorbell camera
@@ -890,6 +907,7 @@ port and password.
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
+- Tolviviov DP-W2.1 security alarm panel
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
@@ -898,6 +916,7 @@ port and password.
 
 ### Pet care
 
+- Advwin 6L camera pet feeder
 - AF3W pet feeder
 - Arlec Grid Connect 5L pet feeder
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
@@ -930,6 +949,7 @@ port and password.
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
 - PetsPride OO15 pet feeder with camera
+- Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
@@ -1018,6 +1038,7 @@ port and password.
 - ME201W level sensor
 - Mirabella Genio motion sensor
 - Moes human presence sensor
+- Moes single outlet water timer
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser

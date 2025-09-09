@@ -1,0 +1,110 @@
+name: Pet feeder
+products:
+  - id: vuizkgeyohvpcrmr
+    manufacturer: Petwant
+    model: F13-W
+entities:
+  - entity: button
+    name: Manual feed
+    category: config
+    icon: "mdi:paw"
+    dps:
+      - id: 3
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 1
+            value: true
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+      - id: 112
+        type: json
+        name: feed_record
+      - id: 130
+        type: string
+        name: mcu_version
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 50
+  - entity: number
+    name: Meal plan
+    category: config
+    icon: "mdi:paw"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:paw"
+    hidden: true
+    dps:
+      - id: 108
+        type: string
+        name: value
+  - entity: event
+    name: Alert
+    dps:
+      - id: 113
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: feeding_successful
+          - dps_val: 4
+            value: device_problem
+          - dps_val: 5
+            value: feed_blockage
+          - dps_val: 6
+            value: motor_stuck
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 114
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

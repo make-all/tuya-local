@@ -3,6 +3,9 @@ products:
   - id: khu3zzkkjemj6oat
     manufacturer: Blitzwolf
     model: BW-LT31
+  - id: mzlyh8vz7p33qbz9
+    manufacturer: Casalux
+    model: LR1321
 entities:
   - entity: light
     icon: "mdi:led-strip-variant"
@@ -12,12 +15,12 @@ entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
+        name: effect
         mapping:
+          - dps_val: color
+            value: "off"
           - dps_val: dynamic_mod
             value: Dynamic
-          - dps_val: color
-            value: hs
           - dps_val: scene_mod
             value: Scene
           - dps_val: music
@@ -49,9 +52,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 103
-        name: line_sequence_adjustment
-        type: integer
   - entity: select
     name: Music
     icon: "mdi:palette"
@@ -132,6 +132,16 @@ entities:
           - dps_val: "0932640000000003e8"
             value: "Adjoint"
             # color1 W, speed 50, bright 100
+  - entity: text
+    name: Dynamic scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 106
+        type: hex
+        optional: true
+        name: value
   - entity: select
     translation_key: scene
     category: config
@@ -159,6 +169,26 @@ entities:
           - dps_val: CJ_YS
             value: movie
             # color: lightblue, static
+  - entity: select
+    name: RGB order
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 1
+            value: RGB
+          - dps_val: 2
+            value: RBG
+          - dps_val: 3
+            value: GRB
+          - dps_val: 4
+            value: GBR
+          - dps_val: 5
+            value: BRG
+          - dps_val: 6
+            value: BGR
   - entity: number
     name: Strip points
     category: config

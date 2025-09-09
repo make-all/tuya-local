@@ -150,10 +150,6 @@ entities:
         type: boolean
         optional: true
         name: history_data
-      - id: 236
-        type: string
-        optional: true
-        name: schedule
   - entity: number
     name: Portion weight
     class: weight
@@ -207,3 +203,13 @@ entities:
         mapping:
           - dps_val: "0"
             value: true
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 236
+        type: hex
+        optional: true
+        name: value

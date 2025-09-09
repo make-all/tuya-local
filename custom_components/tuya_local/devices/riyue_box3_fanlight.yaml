@@ -1,0 +1,209 @@
+name: Ceiling fan light
+products:
+  - id: shrracpw0ve9jooc
+    manufacturer: Riyue
+    model: Box 3
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: text
+    name: Scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: string
+        optional: true
+  - entity: text
+    name: Music
+    category: config
+    hidden: true
+    dps:
+      - id: 27
+        name: value
+        type: string
+        optional: true
+  - entity: text
+    name: Light control
+    category: config
+    hidden: true
+    dps:
+      - id: 28
+        name: value
+        type: string
+        optional: true
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    name: Oscillation 1
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 2
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 3
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: select
+    name: Oscillation 4
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: "pause"
+  - entity: switch
+    name: Do not disturb
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Switch gradient
+    category: config
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Fan beep
+    category: config
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 64
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 67
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 67
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 67
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: motor_fault

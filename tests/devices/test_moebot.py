@@ -44,6 +44,7 @@ class TestMoebot(TuyaDeviceTestCase):
                 "binary_sensor_problem",
                 "select_mowing_mode",
                 "sensor_problem",
+                "switch_backward_blade_stop",
                 "switch_rain_mode",
                 "number_running_time",
                 "button_clear_schedule",
@@ -62,6 +63,10 @@ class TestMoebot(TuyaDeviceTestCase):
                 | LawnMowerEntityFeature.DOCK
             ),
         )
+
+    def test_available(self):
+        """Skip available tests as this device has disabled entities."""
+        pass
 
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
