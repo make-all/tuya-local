@@ -187,21 +187,30 @@ entities:
         name: value
         unit: A
         range:
-          min: 8
+          min: 6
           max: 16
         mapping:
           - constraint: maximum
             conditions:
               - dps_val: Max32A
                 value_redirect: value_32a
+                range:
+                  min: 6
+                  max: 32
               - dps_val: Max40A
                 value_redirect: value_40a
+                range:
+                  min: 8
+                  max: 40
               - dps_val: Max50A
                 value_redirect: value_50a
-                # - dps_val: Max60A
-                #   value_redirect: value_60a
-                # - dps_val: Max80A
-                #   value_redirect: value_80a
+                range:
+                  min: 8
+                  max: 50
+                  # - dps_val: Max60A
+                  #   value_redirect: value_60a
+                  # - dps_val: Max80A
+                  #   value_redirect: value_80a
       - id: 113
         type: string
         optional: true
@@ -226,13 +235,17 @@ entities:
         mapping:
           - dps_val: Max80A
             value: 24
+          - dps_val: Max16A
+            value: 6
+          - dps_val: Max32A
+            value: 6
           - value: 8
       - id: 115
         type: integer
         optional: true
         name: value_32a
         range:
-          min: 8
+          min: 6
           max: 32
       - id: 116
         type: integer

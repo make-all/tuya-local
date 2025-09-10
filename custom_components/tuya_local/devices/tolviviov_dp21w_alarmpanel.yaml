@@ -1,0 +1,175 @@
+name: Alarm security system
+products:
+  - id: bsck4bhwubkpggmb
+    manufacturer: Tolviviov
+    name: DP-W2.1
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 101
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: "1"
+            value: armed_away
+          - dps_val: "2"
+            value: disarmed
+          - dps_val: "3"
+            value: armed_home
+      - id: 103
+        type: boolean
+        name: trigger
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: siren
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 60
+      - id: 106
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: Tone 1
+          - dps_val: "2"
+            value: Tone 2
+          - dps_val: "3"
+            value: Tone 3
+          - dps_val: "4"
+            value: Tone 4
+          - dps_val: "5"
+            value: Tone 5
+          - dps_val: "6"
+            value: Tone 6
+          - dps_val: "7"
+            value: Tone 7
+          - dps_val: "8"
+            value: Tone 8
+      - id: 107
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: "0"
+            value: 0.0
+          - dps_val: "25"
+            value: 0.25
+          - dps_val: "50"
+            value: 0.5
+          - dps_val: "75"
+            value: 0.75
+          - dps_val: "100"
+            value: 1.0
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Remote notification
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sensor notification
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: event
+    name: Remote
+    category: diagnostic
+    dps:
+      - id: 115
+        type: utf16b64
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: triggered
+      - id: 115
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: event
+    name: Accessory
+    category: diagnostic
+    dps:
+      - id: 116
+        type: utf16b64
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: triggered
+      - id: 116
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: event
+    name: Sensor
+    category: diagnostic
+    dps:
+      - id: 120
+        type: utf16b64
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 120
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: event
+    name: Accessory History
+    category: diagnostic
+    dps:
+      - id: 121
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: logged
+      - id: 121
+        type: utf16b64
+        name: information
+        optional: true
+        # missing: dp 110 (wr) - Accessory pairing (enum ["1", "2", "3"])

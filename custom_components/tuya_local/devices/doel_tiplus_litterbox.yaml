@@ -29,7 +29,7 @@ entities:
           - scale: 10
   - entity: sensor
     name: Daily visits
-    icon: "mdi:emoticon-poop"
+    icon: "mdi:paper-roll"
     dps:
       - id: 7
         type: integer
@@ -37,7 +37,7 @@ entities:
         unit: visits
   - entity: sensor
     name: Daily visits duration
-    icon: "mdi:paper-roll"
+    icon: "mdi:timer-sand"
     class: duration
     dps:
       - id: 8
@@ -77,7 +77,7 @@ entities:
     name: Bin full
     icon: "mdi:trash-can"
     dps:
-      - id: 103
+      - id: 119
         type: boolean
         name: sensor
   - entity: binary_sensor
@@ -143,16 +143,16 @@ entities:
         type: boolean
         name: sensor
   - entity: number
-    name: Capacity calibration
+    name: Sand surface calibration
     category: config
-    icon: "mdi:trash-can"
+    icon: "mdi:scale-balance"
     dps:
-      - id: 123
+      - id: 130
         type: integer
         name: value
         range:
           min: 0
-          max: 15
+          max: 6
   - entity: number
     name: Detection sensitivity
     category: config
@@ -199,21 +199,14 @@ entities:
       - id: 24
         type: string
         name: sensor
-      - id: 120
-        type: boolean
-        name: unknown_120
-      - id: 127
-        type: boolean
-        name: soft_mode
       - id: 128
         type: boolean
-        name: unknown_128
+        name: time
       - id: 129
         type: integer
-        name: unknown_129
-      - id: 135
-        type: boolean
-        name: dp_developer_mode
+        name: time_clear
+        class: measurement
+        unit: min
   - entity: select
     name: Litter type
     category: config
@@ -227,3 +220,43 @@ entities:
             value: "Mineral"
           - dps_val: "mixed_cat_litter"
             value: "Mixed"
+  - entity: switch
+    name: Developer mode
+    category: config
+    icon: "mdi:cog"
+    hidden: true
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Thin feces detection
+    category: config
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+  - entity: button
+    name: Bag change
+    icon: "mdi:bag-personal"
+    dps:
+      - id: 138
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Bag change count
+    icon: "mdi:counter"
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: uses
