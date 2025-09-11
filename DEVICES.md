@@ -936,6 +936,7 @@ port and password.
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder
+- Meegeem cat litter box
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Papifeed pet feeder

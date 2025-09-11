@@ -1041,4 +1041,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Wakinyan](https://github.com/Wakinyan) for contributing support for Steinback Silent Mini pool heat pump.
 - [angus-thompson](https://github.com/angus-thompson) for assisting with support for Advwin 6L camera pet feeder.
 - [aleks31031992](https://github.com/aleks31031992) for assisting with support for Moes single outlet water timer.
-
+- [robosphinx](https://github.com/robosphinx) for contributing support for Meegeem cat litter box.
