@@ -207,10 +207,10 @@ entities:
                 range:
                   min: 8
                   max: 50
-                # - dps_val: Max60A
-                #   value_redirect: value_60a
-                # - dps_val: Max80A
-                #   value_redirect: value_80a
+                  # - dps_val: Max60A
+                  #   value_redirect: value_60a
+                  # - dps_val: Max80A
+                  #   value_redirect: value_80a
       - id: 113
         type: string
         optional: true
@@ -235,6 +235,10 @@ entities:
         mapping:
           - dps_val: Max80A
             value: 24
+          - dps_val: Max16A
+            value: 6
+          - dps_val: Max32A
+            value: 6
           - value: 8
       - id: 115
         type: integer
