@@ -316,6 +316,7 @@
 - Point One Technology Storm VSPEC-IV dual axis corner fan
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
+- Princess Smart air cooler
 - Princess Smart Tower fan
 - Reiga ceiling fans with and without light
 - Riyue Box 3 fan with light
