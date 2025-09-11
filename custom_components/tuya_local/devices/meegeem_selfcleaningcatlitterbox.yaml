@@ -1,11 +1,10 @@
-name: Cat Litter Box
+name: Litter box
 products:
   - id: e2uhpgprwtq40un2
-    manufacturer: MEEGEEM
+    manufacturer: Meegeem
 entities:
   - entity: sensor
-    name: Action
-    icon: "mdi:bell"
+    translation_key: status
     class: enum
     dps:
       - id: 107
@@ -13,28 +12,26 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: Standby
+            value: standby
           - dps_val: 1
-            value: Cleaning
+            value: cleaning
           - dps_val: 2
-            value: Emptying
+            value: emptying
           - dps_val: 3
-            value: Resetting
+            value: resetting
           - dps_val: 4
-            value: Deodorizing
+            value: deodorizing
           - dps_val: 5
-            value: Cleaning Paused
+            value: Cleaning paused
           - dps_val: 6
-            value: Emptying Paused
+            value: Emptying paused
           - dps_val: 7
-            value: Resetting Paused
+            value: Resetting paused
 
   - entity: button
-    # Probably shouldn't be shown.  Option in Smart Life app but just spins the
-    # litter chamber around all the way, dumping all litter (clean litter too!)
     name: Empty
     icon: "mdi:delete-empty-outline"
-    hidden: true
+    category: config
     dps:
       - id: 1
         type: boolean
@@ -65,18 +62,17 @@ entities:
         name: button
 
   - entity: sensor
-    name: Weight
-    icon: "mdi:weight-kilogram"
-    class: enum
+    class: weight
     dps:
       - id: 21
         name: sensor
         type: bitfield
+        unit: kg
         mapping:
           - dps_val: 0
-            value: Unused
+            value: null
           - dps_val: 1
-            value: Unknown
+            value: null
           - dps_val: 2
             value: 1
           - dps_val: 4
@@ -118,42 +114,59 @@ entities:
           - dps_val: 1048576
             value: 20
 
-  - entity: sensor
-    name: State
-    icon: "mdi:cat"
-    class: enum
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
     dps:
       - id: 22
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 64
+            value: false
+          - dps_val: 128
+            value: false
+          - dps_val: 256
+            value: false
+          - dps_val: 512
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        name: description
         type: bitfield
         mapping:
           - dps_val: 0
-            value: Unused
+            value: OK
           - dps_val: 1
             value: Other
           - dps_val: 2
-            value: Litter Low
+            value: Litter low
           - dps_val: 4
-            value: Waste Bin Full
+            value: Waste bin full
           - dps_val: 8
-            value: Cleaning Interrupted
+            value: Cleaning interrupted
           - dps_val: 16
-            value: Litter Reset Failed
+            value: Litter reset failed
           - dps_val: 32
             value: Other
           - dps_val: 64
-            value: Cleaning Complete
+            value: Cleaning complete
           - dps_val: 128
-            value: Emptying Complete
+            value: Emptying complete
           - dps_val: 256
-            value: Reset Complete
+            value: Reset complete
           - dps_val: 512
-            value: Deodorizing Complete
+            value: Deodorizing complete
 
   - entity: number
-    # How long after cat leaves to start cleaning
-    name: Auto-Clean Delay
+    name: Auto-clean delay
     icon: "mdi:clock"
+    category: config
     dps:
       - id: 101
         type: integer
@@ -164,41 +177,40 @@ entities:
           max: 20
 
   - entity: switch
-    # Whether to clean after cat leaves
-    name: Auto-Clean
+    name: Auto-clean
     icon: "mdi:delete-empty"
+    category: config
     dps:
       - id: 102
         name: switch
         type: boolean
 
   - entity: switch
-    # Whether to run "ozone generator" in waste bin after cleaning is complete
-    name: Auto-Deodorize
+    name: Auto-deodorize
     icon: "mdi:scent"
+    category: config
     dps:
       - id: 103
         name: switch
         type: boolean
 
-  - entity: sensor
-    # Threshold unknown.  Based on litter weight?
-    name: Litter Status
+  - entity: binary_sensor
+    name: Litter
     icon: "mdi:toilet"
-    class: enum
+    class: problem
     dps:
       - id: 104
         type: string
         name: sensor
         mapping:
-          - dps_val: 0
-            value: Needs Attention
-          - dps_val: 1
-            value: Acceptable
+          - dps_val: "0"
+            value: true
+          - dps_val: "1"
+            value: false
 
   - entity: sensor
     # 0-3 in steps of 1, not shown in Smart Life app, unknown function
-    name: Operating Mode
+    name: Operating mode
     icon: "mdi:shimmer"
     hidden: true
     dps:
@@ -206,18 +218,16 @@ entities:
         type: integer
         name: sensor
 
-  - entity: sensor
-    # Threshold unknown.  Can be triggered by waste bag improperly installed.
-    # Suspect a light gate across top of bin.  Not weight based.
-    name: Waste Bin Status
+  - entity: binary_sensor
+    name: Waste bin
     icon: "mdi:delete"
-    class: enum
+    class: problem
     dps:
       - id: 106
         type: string
         name: sensor
         mapping:
-          - dps_val: 0
-            value: Needs Attention
-          - dps_val: 1
-            value: Acceptable
+          - dps_val: "0"
+            value: true
+          - dps_val: "1"
+            value: false
