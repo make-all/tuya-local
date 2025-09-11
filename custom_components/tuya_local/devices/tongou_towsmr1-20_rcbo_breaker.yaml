@@ -6,7 +6,6 @@ products:
     model_id: TOSMR1-20JWTR
 entities:
   - entity: sensor
-    translation_key: total_energy
     class: energy
     category: diagnostic
     dps:
@@ -75,11 +74,6 @@ entities:
       - id: 16
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            value: on
-          - dps_val: false
-            value: off
   - entity: select
     translation_key: overvoltage_action
     category: config
@@ -175,9 +169,9 @@ entities:
         optional: true
         mapping:
           - dps_val: online
-            value: on
+            value: true
           - dps_val: offline
-            value: off
+            value: false
   - entity: sensor
     translation_key: fuse_event
     class: enum
@@ -334,7 +328,7 @@ entities:
           max: 24995
         unit: W
   - entity: sensor
-    translation_key: forward_energy
+    translation_key: energy_consumed
     class: energy
     category: diagnostic
     dps:
@@ -360,7 +354,7 @@ entities:
         mapping:
           - scale: 10
   - entity: select
-    translation_key: power_on_state
+    translation_key: initial_state
     category: config
     dps:
       - id: 142
@@ -372,7 +366,7 @@ entities:
           - dps_val: "on"
             value: "on"
           - dps_val: memory
-            value: last_state
+            value: memory
   - entity: switch
     translation_key: overcurrent_recloser
     category: config
