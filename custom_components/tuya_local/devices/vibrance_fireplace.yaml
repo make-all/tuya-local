@@ -1,0 +1,173 @@
+name: Vibrance Fireplace
+products:
+  - id: nabdubjo2qqnrxs6
+    manufacturer: Vibrance
+    model: XH-BG-15W/30WZKWIFI-10
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+        readonly: true
+      - id: 13
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 41
+          max: 95
+        constraint: temperature_unit
+        conditions:
+          - dps_val: F
+      - id: 15
+        name: current_temperature
+        type: integer
+        unit: F
+        readonly: true
+        constraint: temperature_unit
+        conditions:
+          - dps_val: F
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: H0
+            value: "off"
+          - dps_val: H1
+            value: low
+          - dps_val: H2
+            value: medium
+          - dps_val: H3
+            value: high
+      - id: 103
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: heat
+          - dps_val: true
+            value: "off"
+  - entity: switch
+    name: heat_mode
+    category: config
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: select
+    name: flame_color
+    category: config
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: orange
+          - dps_val: "2"
+            value: red
+          - dps_val: "3"
+            value: green
+          - dps_val: "4"
+            value: blue
+          - dps_val: "5"
+            value: orange_red
+          - dps_val: "6"
+            value: orange_green
+          - dps_val: "7"
+            value: orange_blue
+  - entity: select
+    name: flame_brightness
+    category: config
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: F1
+            value: "20%"
+          - dps_val: F2
+            value: "40%"
+          - dps_val: F3
+            value: "60%"
+          - dps_val: F4
+            value: "80%"
+          - dps_val: F5
+            value: "100%"
+  - entity: select
+    name: flame_speed
+    category: config
+    dps:
+      - id: 108
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: slow
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: fast
+  - entity: select
+    name: sound_level
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: string
+        mapping:
+          - dps_val: S0
+            value: "off"
+          - dps_val: S1
+            value: low
+          - dps_val: S2
+            value: medium
+          - dps_val: S3
+            value: high
+  - entity: select
+    name: timer
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "off"
+          - dps_val: "30m"
+            value: "30 minutes"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "5h"
+            value: "5 hours"

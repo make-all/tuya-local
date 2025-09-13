@@ -66,6 +66,7 @@
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
+- Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
