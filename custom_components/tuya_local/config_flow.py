@@ -36,6 +36,7 @@ from .const import (
     CONF_TYPE,
     CONF_USER_CODE,
     DATA_STORE,
+    CONF_PORT
 )
 from .device import TuyaLocalDevice
 from .helpers.config import get_device_id
@@ -330,6 +331,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         proto_opts = {"default": 3.3}
         polling_opts = {"default": False}
         devcid_opts = {}
+        port_opts = {"default": None}
 
         if self.__cloud_device is not None:
             # We already have some or all of the device settings from the cloud flow. Set them into the defaults.
@@ -372,6 +374,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 {
                     vol.Required(CONF_DEVICE_ID, **devid_opts): str,
                     vol.Required(CONF_HOST, **host_opts): str,
+                    vol.Optional(CONF_PORT, **port_opts): int,
                     vol.Required(CONF_LOCAL_KEY, **key_opts): str,
                     vol.Required(
                         CONF_PROTOCOL_VERSION,
@@ -506,6 +509,7 @@ class OptionsFlowHandler(OptionsFlow):
                 default=config.get(CONF_LOCAL_KEY, ""),
             ): str,
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
+            vol.Optional(CONF_PORT, default=config.get(CONF_PORT, None)): int,
             vol.Required(
                 CONF_PROTOCOL_VERSION,
                 default=config.get(CONF_PROTOCOL_VERSION, "auto"),
@@ -540,6 +544,7 @@ def create_test_device(hass: HomeAssistant, config: dict):
         subdevice_id,
         hass,
         True,
+        config.get(CONF_PORT)
     )
 
     return device
