@@ -5,6 +5,7 @@ products:
     model: Pro Heat+ AC
 entities:
   - entity: climate
+    translation_key: aircon_extra
     dps:
       - id: 1
         name: hvac_mode
@@ -16,7 +17,7 @@ entities:
             constraint: mode
             conditions:
               - dps_val: "0"
-                value: auto
+                value: heat_cool
               - dps_val: "1"
                 value: cool
               - dps_val: "2"
@@ -46,98 +47,87 @@ entities:
         mapping:
           - scale: 100
       - id: 5
-        name: fan_mode
         type: string
-        mapping:
-          - constraint: auto_fan
-            conditions:
-              - dps_val: true
-                value: auto
-          - dps_val: "1"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: quiet
-          - dps_val: "2"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: low
-          - dps_val: "3"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: medium_low
-          - dps_val: "4"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: medium
-          - dps_val: "5"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: medium_high
-          - dps_val: "6"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: high
-          - dps_val: "7"
-            constraint: auto_fan
-            conditions:
-              - dps_val: false
-                value: turbo
-      - id: 7
-        name: auto_fan
-        type: boolean
+        name: manual_fan_mode
         hidden: true
+      - id: 7
+        name: fan_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            constraint: manual_fan_mode
+            conditions:
+              - dps_val: "0"
+                value: "off"
+                hidden: true
+              - dps_val: "1"
+                value: quiet
+              - dps_val: "2"
+                value: low
+              - dps_val: "3"
+                value: medlow
+              - dps_val: "4"
+                value: medium
+              - dps_val: "5"
+                value: medhigh
+              - dps_val: "6"
+                value: high
+              - dps_val: "7"
+                value: strong
       - id: 31
         name: swing_mode
         type: string
         mapping:
-          - dps_val: "0"
+          - dps_val: "8"
             value: "off"
           - dps_val: "1"
-            value: vertical
+            value: "on"
           - dps_val: "2"
-            value: up
+            value: upper_half
           - dps_val: "3"
-            value: down
+            value: lower_half
+          - dps_val: "6"
+            value: surround
           - dps_val: "9"
-            value: up_fixed
+            value: topmost
           - dps_val: "10"
-            value: up_offset_fixed
+            value: top
           - dps_val: "11"
-            value: middle_fixed
+            value: middle
           - dps_val: "12"
-            value: down_offset_fixed
+            value: down
           - dps_val: "13"
-            value: down_fixed
+            value: downmost
       - id: 34
         name: swing_horizontal_mode
         type: string
         mapping:
-          - dps_val: "0"
+          - dps_val: "8"
             value: "off"
           - dps_val: "1"
-            value: horizontal
+            value: "on"
           - dps_val: "2"
-            value: left
+            value: left_swing
           - dps_val: "3"
-            value: center
+            value: center_swing
           - dps_val: "4"
-            value: right
+            value: right_swing
+          - dps_val: "5"
+            value: direct
           - dps_val: "9"
-            value: left_fixed
+            value: leftmost
           - dps_val: "10"
-            value: left_offset_fixed
+            value: left
           - dps_val: "11"
-            value: center_fixed
+            value: center
           - dps_val: "12"
-            value: right_offset_fixed
+            value: right
           - dps_val: "13"
-            value: right_fixed
+            value: rightmost
+          - dps_val: "17"
+            value: surround
       - id: 8
         name: preset_mode
         type: boolean
