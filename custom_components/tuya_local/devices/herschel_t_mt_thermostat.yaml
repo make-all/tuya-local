@@ -1,0 +1,111 @@
+name: Thermostat
+products:
+  - id: ma3oamwzywooctul
+    manufacturer: Herschel
+    model: T-MT Mains powered Wifi thermostat
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 0
+          max: 370
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 104
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: "C"
+          - dps_val: "f"
+            value: "F"
+      - id: 111
+        name: hvac_action
+        type: boolean
+        mapping:
+            - dps_val: true
+              value: "heating"
+            - dps_val: false
+              value: "off"
+
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 4
+        name: option
+        type: string
+        mapping:
+          - dps_val: manual
+            value: Manual
+          - dps_val: holiday
+            value: Holiday
+          - dps_val: auto
+            value: Auto
+        
+  - entity: switch
+    name: Child lock
+    category: config
+    dps:
+      - id: 6
+        name: switch
+        type: boolean
+        
+  - entity: number
+    name: Holiday days
+    category: config
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 99
+          
+  - entity: switch
+    name: Open window technology
+    category: config
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+
+  - entity: number
+    name: Calibration
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+          
+  - entity: switch
+    name: Adaptive start
+    category: config
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+        
