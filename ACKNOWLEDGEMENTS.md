@@ -1043,3 +1043,4 @@ Further device support has been made with the assistance of users. Please consid
 - [aleks31031992](https://github.com/aleks31031992) for assisting with support for Moes single outlet water timer.
 - [robosphinx](https://github.com/robosphinx) for contributing support for Meegeem cat litter box.
 - [OriginalArkus](https://github.com/OriginalArkus) for contributing support for Princess Smart air cooler.
+- [k0ff33](https://github.com/k0ff33) for contributing support for Kasai Pro Heat+ air conditioner.
