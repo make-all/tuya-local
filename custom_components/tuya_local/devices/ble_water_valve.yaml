@@ -7,6 +7,7 @@ products:
     manufacturer: Diivoo
     model: WT-03
   - id: nxquc5lb
+    manufacturer: Insoma
     model: SOP10
   - id: so5ybnw9
     manufacturer: Royal Gardineer
@@ -133,9 +134,18 @@ entities:
   - entity: switch
     name: Smart weather switch
     icon: "mdi:sun-wireless"
+    hidden: unavailable
     category: config
     dps:
       - id: 14
         type: boolean
         name: switch
         optional: true
+      - id: 14
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
