@@ -146,6 +146,7 @@
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
 - Remora pool heat pump
+- Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
