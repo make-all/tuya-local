@@ -37,11 +37,12 @@
                 "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
+                    "port": "Číslo portu (volitelné)",
                     "device_id": "identifikátor zařízení (device_id, nebo device_id brány pro zařízení připojená pomocí brány) ",
                     "local_key": "lokální klíč (local_key)",
                     "protocol_version": "Verze protokolu (zkuste auto pokud ji neznáte)",
                     "poll_only": "Poll only (vyzkoušejte pokud zařízení úplně nefunguje)",
-                     "device_cid": "Sub device node_id nebo uuid (pro zařízení připojená pomocí brány)"
+                    "device_cid": "Sub device node_id nebo uuid (pro zařízení připojená pomocí brány)"
                 }
             },
             "select_type": {
@@ -568,7 +569,7 @@
                     "reading": "Čtení",
                     "twinkle": "Blikání",
                     "gaming": "Hraní her",
-                     "none": "Žádný"
+                    "none": "Žádný"
                 }
             },
             "timer": {
