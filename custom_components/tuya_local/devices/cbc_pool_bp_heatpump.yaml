@@ -1,11 +1,11 @@
-name: CBC-Pool BP Heat Pump
+name: Pool heat pump
 products:
   - id: h6ttvtg8klgnleva
     manufacturer: Sibrape
-    name: Sibrape Heat Pump
+    model: CBC-Pool BP
 entities:
   - entity: climate
-    translation_key: thermostat
+    translation_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -17,7 +17,7 @@ entities:
             constraint: mode
             conditions:
               - dps_val: "Auto"
-                value: auto
+                value: heat_cool
               - dps_val: "Heating"
                 value: heat
               - dps_val: "Cooling"
@@ -29,147 +29,111 @@ entities:
         range:
           min: 0
           max: 40
-
       - id: 3
         name: current_temperature
         type: integer
         unit: C
-        readonly: true
-        range:
-          min: -20
-          max: 50
-
       - id: 4
         name: mode
         type: string
-        mapping:
-          - dps_val: "Auto"
-            value: auto
-          - dps_val: "Heating"
-            value: heat
-          - dps_val: "Cooling"
-            value: cool
-
+        hidden: true
       - id: 5
         name: preset_mode
         type: string
         mapping:
           - dps_val: "Power"
-            value: power
+            value: quick
           - dps_val: "Smart"
             value: smart
           - dps_val: "Silent"
-            value: silent
+            value: quiet
 
   - entity: sensor
-    name: Inlet Temperature
+    name: Inlet temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 101
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 99
-        readonly: true
-
   - entity: sensor
-    name: Ambient Temperature
+    name: Ambient temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 102
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 99
-        readonly: true
-
   - entity: sensor
-    name: Compressor Exhaust
+    name: Compressor exhaust
     class: temperature
+    category: diagnostic
     dps:
       - id: 103
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 127
-        readonly: true
-
   - entity: sensor
-    name: Heating Coil Temperature
+    name: Heating coil temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 104
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 99
-        readonly: true
-
   - entity: sensor
-    name: Outlet Water Temperature
+    name: Outlet water temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 105
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 99
-        readonly: true
-
   - entity: sensor
-    name: Return Temperature
+    name: Return temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 106
         name: sensor
         type: integer
         unit: C
-        range:
-          min: -30
-          max: 99
-        readonly: true
-
   - entity: sensor
-    name: Operating Frequency
+    name: Operating frequency
     class: frequency
+    category: diagnostic
     dps:
       - id: 107
         name: sensor
         type: integer
         unit: Hz
-        range:
-          min: 0
-          max: 100
-        readonly: true
-
   - entity: sensor
-    name: Expansion Valve
+    name: Expansion valve
+    category: diagnostic
     dps:
       - id: 108
         name: sensor
         type: integer
         unit: P
-        range:
-          min: 0
-          max: 500
-        readonly: true
-
-  - entity: sensor
-    name: Fault Bitmap
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 13
         name: sensor
         type: bitfield
         optional: true
-        readonly: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        optional: true
+        name: fault_code
