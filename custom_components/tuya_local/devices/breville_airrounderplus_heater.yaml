@@ -18,9 +18,9 @@ entities:
             hidden: true
             constraint: preset_mode
             conditions:
-              - dps_val: heat_0
+              - dps_val: heat_low
                 value: fan_only
-              - dps_val: heat_mid
+              - dps_val: heat_high
                 value: heat
       - id: 2
         type: integer
@@ -36,26 +36,26 @@ entities:
         type: string
         name: preset_mode
         mapping:
-          - dps_val: heat_low
-            value: eco
           - dps_val: heat_mid
-            value: comfort
+            value: eco
           - dps_val: heat_high
-            value: boost
+            value: comfort
           - dps_val: heat_0
+            value: boost
+          - dps_val: heat_low
             value: none
       - id: 5
         type: string
         name: fan_mode
         mapping:
           - dps_val: SleepWind
-            value: low
+            value: "off"
           - dps_val: NatureWind_Low
-            value: medium
+            value: low
           - dps_val: NatureWind_High
-            value: high
+            value: medium
           - dps_val: CoolWind_0
-            value: focus
+            value: high
       - id: 101
         type: string
         name: swing_mode

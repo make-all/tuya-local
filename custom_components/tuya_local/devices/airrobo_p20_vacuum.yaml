@@ -15,7 +15,7 @@ entities:
         name: command
         mapping:
           - dps_val: standby
-            value: standby
+            value: stop
           - dps_val: smart
             value: smart
           - dps_val: wall_follow
@@ -45,13 +45,13 @@ entities:
           - dps_val: standby
             value: idle
           - dps_val: smart_clean
-            value: cleaning
+            value: auto
           - dps_val: wall_clean
-            value: cleaning
+            value: edge
           - dps_val: spot_clean
-            value: cleaning
+            value: spot
           - dps_val: mop_clean
-            value: cleaning
+            value: mopping
           - dps_val: goto_charge
             value: returning
           - dps_val: charging
@@ -82,6 +82,7 @@ entities:
         type: bitfield
         name: error
         optional: true
+        hidden: true
       - id: 104
         type: string
         name: serial_number
@@ -195,7 +196,7 @@ entities:
           - value: true
       - id: 18
         type: bitfield
-        name: error
+        name: fault_code
         optional: true
       - id: 18
         type: bitfield

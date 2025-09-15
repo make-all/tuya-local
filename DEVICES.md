@@ -102,6 +102,7 @@
 - Idea Heating Belt (with CS1 USB dongle)
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
+- Kaisai Pro Heat+ air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
 - Kogan vertical window air conditioner
@@ -145,6 +146,7 @@
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
 - Remora pool heat pump
+- Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
@@ -316,6 +318,7 @@
 - Point One Technology Storm VSPEC-IV dual axis corner fan
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
+- Princess Smart air cooler
 - Princess Smart Tower fan
 - Reiga ceiling fans with and without light
 - Riyue Box 3 fan with light
@@ -936,6 +939,7 @@ port and password.
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder
+- Meegeem cat litter box
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Papifeed pet feeder
