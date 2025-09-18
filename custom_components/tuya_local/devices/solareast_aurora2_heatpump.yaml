@@ -38,7 +38,7 @@ entities:
           - dps_val: heating
             value: heat
           - dps_val: floor_heating
-            value: floor_heat
+            value: heat_cool
           - dps_val: hot_water
             value: hotwater
           - dps_val: cold_and_hot_water
@@ -63,12 +63,12 @@ entities:
                 value: cool
                 available: wth_off
               # Since there are both heating and floor_heating, model
-              # the air heating as dry, and floor_heating as heat
+              # the regular (radiator) heating as heat, and floor_heating as heat_cool
               - dps_val: heating
-                value: dry
+                value: heat
                 available: wth_off
               - dps_val: floor_heating
-                value: heat
+                value: heat_cool
                 available: wth_off
               - dps_val: hot_water
                 value: "off"
@@ -88,6 +88,7 @@ entities:
         hidden: true
       - id: 2
         type: string
+        # "wth_off" true = the heatpump does not supply hot tap water
         name: wth_off
         mapping:
           - dps_val: hot_water
@@ -101,6 +102,7 @@ entities:
           - value: true
       - id: 2
         type: string
+        # "wth_on" true = the heatpump does supply hot tap water
         name: wth_on
         mapping:
           - dps_val: hot_water
@@ -112,7 +114,7 @@ entities:
           - dps_val: floor_heating_and_hot_water
             value: true
           - value: false
-      - id: 4
+      - id: 4 # temp_set
         name: temperature
         type: integer
         unit: C
@@ -132,6 +134,7 @@ entities:
       # Inlet temperature used here, as ambient is often the outdoor unit
       # I don't see an indoor_temp, but if ambient is, then it may be more
       # suitable to use here
+      # PK 20250918: ambient is indeed outdoor temp. There is no indoor temp sensor like from a connected thermostat.
       - id: 21
         name: temperature
         type: integer
@@ -382,7 +385,7 @@ entities:
         mapping:
           - scale: 100
         class: total_increasing
-      - id: 18
+      - id: 18 # It seems this entity is unreachable from within HASS
         name: today
         type: integer
         unit: kWh
