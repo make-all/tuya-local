@@ -59,7 +59,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    translation_key: leakage
+    name: Leakage
     class: current
     category: diagnostic
     dps:
@@ -69,13 +69,15 @@ entities:
         unit: mA
         class: measurement
   - entity: switch
-    translation_key: fuse
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
         name: switch
   - entity: select
-    translation_key: overvoltage_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
     category: config
     dps:
       - id: 102
@@ -83,13 +85,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: select
-    translation_key: undervoltage_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 103
@@ -97,13 +101,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: select
-    translation_key: overcurrent_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overcurrent
     category: config
     dps:
       - id: 104
@@ -111,13 +117,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: select
-    translation_key: overpower_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overpower
     category: config
     dps:
       - id: 105
@@ -125,13 +133,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: select
-    translation_key: temperature_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Temperature
     category: config
     dps:
       - id: 107
@@ -139,13 +149,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: select
-    translation_key: leakage_action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Leakage
     category: config
     dps:
       - id: 108
@@ -153,11 +165,11 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: closed
+            value: ignore
           - dps_val: Alarm
             value: alarm
           - dps_val: Trip
-            value: trip
+            value: trip_breaker
   - entity: binary_sensor
     class: connectivity
     category: diagnostic
@@ -173,7 +185,7 @@ entities:
           - dps_val: offline
             value: false
   - entity: sensor
-    translation_key: fuse_event
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -184,56 +196,56 @@ entities:
           - dps_val: Normal
             value: normal
           - dps_val: Over_Current_Trip
-            value: overcurrent_trip
+            value: tripped_by_overcurrent
           - dps_val: Over_Power_Trip
-            value: overpower_trip
+            value: tripped_by_overpower
           - dps_val: High_Temp_Trip
-            value: high_temp_trip
+            value: tripped_by_high_temperature
           - dps_val: Over_Voltage_Trip
-            value: overvoltage_trip
+            value: tripped_by_overvoltage
           - dps_val: Undervoltage Trip
-            value: undervoltage_trip
+            value: tripped_by_undervoltage
           - dps_val: Over_Current_Alarm
             value: overcurrent_alarm
           - dps_val: Over_Power_Alarm
             value: overpower_alarm
           - dps_val: High_Temp_Alarm
-            value: high_temp_alarm
+            value: high_temperature_alarm
           - dps_val: Over_Voltage_Alarm
             value: overvoltage_alarm
           - dps_val: Under_Voltage_Alarm
             value: undervoltage_alarm
           - dps_val: Remote_ON
-            value: remote_on
+            value: switched_on_remotely
           - dps_val: Remote_OFF
-            value: remote_off
+            value: switched_off_remotely
           - dps_val: Manual_ON
-            value: manual_on
+            value: switched_on_manually
           - dps_val: Manual_OFF
-            value: manual_off
+            value: switched_off_manually
           - dps_val: Leakage_Trip
-            value: leakage_trip
+            value: tripped_by_leakage
           - dps_val: Leakage_Alarm
             value: leakage_alarm
           - dps_val: Restore_Default
-            value: factory_reset
+            value: resetting
           - dps_val: Automatic_Closing
             value: automatic_closing
           - dps_val: Electricity_Shortage
-            value: electricity_shortage
+            value: prepaid_electricity_used
           - dps_val: Timing_switch_ON
-            value: timing_switch_on
+            value: switched_on_by_timer
           - dps_val: Timing_switch_OFF
-            value: timing_switch_off
+            value: switched_off_by_timer
   - entity: switch
-    translation_key: overvoltage_recloser
+    name: Overvoltage recloser
     category: config
     dps:
       - id: 112
         type: boolean
         name: switch
   - entity: switch
-    translation_key: undervoltage_recloser
+    name: Undervoltage recloser
     category: config
     dps:
       - id: 112
@@ -248,7 +260,9 @@ entities:
         name: button
         optional: true
   - entity: number
-    translation_key: overcurrent_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overcurrent
     class: current
     category: config
     dps:
@@ -260,7 +274,9 @@ entities:
           min: 1
           max: 20
   - entity: number
-    translation_key: overvoltage_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overvoltage
     class: voltage
     category: config
     dps:
@@ -272,7 +288,9 @@ entities:
           min: 245
           max: 295
   - entity: number
-    translation_key: undervoltage_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Undervoltage
     class: voltage
     category: config
     dps:
@@ -284,7 +302,9 @@ entities:
           min: 145
           max: 220
   - entity: number
-    translation_key: leakage_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Leakage
     class: current
     category: config
     dps:
@@ -298,7 +318,9 @@ entities:
         mapping:
           - step: 5
   - entity: number
-    translation_key: temperature_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Temperature
     class: temperature
     category: config
     dps:
@@ -312,7 +334,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    translation_key: overpower_threshold
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overpower
     class: power
     category: config
     mode: slider
@@ -368,21 +392,21 @@ entities:
           - dps_val: memory
             value: memory
   - entity: switch
-    translation_key: overcurrent_recloser
+    name: Overcurrent recloser
     category: config
     dps:
       - id: 143
         type: boolean
         name: switch
   - entity: switch
-    translation_key: leakage_recloser
+    name: Leakage recloser
     category: config
     dps:
       - id: 144
         type: boolean
         name: switch
   - entity: switch
-    translation_key: overpower_recloser
+    name: Overpower recloser
     category: config
     dps:
       - id: 145

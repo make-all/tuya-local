@@ -428,6 +428,9 @@
             },
             "timer_x": {
                 "name": "タイマー{x}"
+            },
+            "sensor_threshold": {
+                "name": "しきい値{sensor}"
             }
         },
         "select": {
@@ -633,6 +636,14 @@
                     "fahrenheit": "華氏"
                 }
             },
+            "breaker_trigger_action": {
+                "name": "アクション{trigger}",
+                "state": {
+                    "ignore": "無視",
+                    "alarm": "アラーム",
+                    "trip_breaker": "ブレーカーを落とす"
+                }
+            },
             "oven_built_in_recipe": {
                 "name": "内蔵レシピ",
                 "state": {
@@ -813,6 +824,13 @@
         "switch": {
             "anti_frost": {
                 "name": "霜防止"
+            },
+            "breaker": {
+                "name": "ブレーカー",
+                "state": {
+                    "off": "トリップ",
+                    "on": "リセット"
+                }
             },
             "evaporator_cleaning": {
                 "name": "エバポレーターの掃除"

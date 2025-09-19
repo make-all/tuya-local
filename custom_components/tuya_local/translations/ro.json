@@ -182,7 +182,24 @@
                             "top": "Sus",
                             "middle": "Mijloc",
                             "down": "Jos",
-                            "downmost": "Foarte jos"
+                            "downmost": "Foarte jos",
+                            "upper_half": "Jumătatea superioară",
+                            "lower_half": "Jumătatea inferioară",
+                            "surround": "În jur"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Foarte stânga",
+                            "left": "Stânga",
+                            "center": "Centru",
+                            "right": "Dreapta",
+                            "rightmost": "Foarte dreapta",
+                            "left_swing": "Oscilație stânga",
+                            "right_swing": "Oscilație dreapta",
+                            "center_swing": "Oscilație centru",
+                            "surround": "În jur",
+                            "direct": "Direct"
                         }
                     }
                 }
@@ -412,23 +429,8 @@
             "timer_x": {
                 "name": "Temporizator {x}"
             },
-            "overcurrent_threshold": {
-                "name": "Prag supracurent"
-            },
-            "overvoltage_threshold": {
-                "name": "Prag supratensiune"
-            },
-            "undervoltage_threshold": {
-                "name": "Prag subtensiune"
-            },
-            "leakage_threshold": {
-                "name": "Prag curent rezidual"
-            },
-            "temperature_threshold": {
-                "name": "Prag temperatură"
-            },
-            "overpower_threshold": {
-                "name": "Prag supraputere"
+            "sensor_threshold": {
+                "name": "Prag {sensor}"
             }
         },
         "select": {
@@ -519,7 +521,8 @@
                     "auto": "Auto",
                     "low": "Scăzut",
                     "medium": "Mediu",
-                    "high": "Ridicat"
+                    "high": "Ridicat",
+                    "very_high": "Foarte ridicat"
                 }
             },
             "recipe": {
@@ -633,6 +636,14 @@
                     "fahrenheit": "Fahrenheit"
                 }
             },
+            "breaker_trigger_action": {
+                "name": "Acțiune {trigger}",
+                "state": {
+                    "ignore": "Ignoră",
+                    "alarm": "Alarmă",
+                    "trip_breaker": "Declanșare"
+                }
+            },
             "oven_built_in_recipe": {
                 "name": "Rețetă încorporată",
                 "state": {
@@ -667,54 +678,6 @@
                     "puff_pastry": "Foietaj",
                     "red_bean_bread": "Pâine cu fasole roșie",
                     "milk_toast": "Toast cu lapte"
-                }
-            },
-            "overvoltage_action": {
-                "name": "Acțiune supratensiune",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
-                }
-            },
-            "undervoltage_action": {
-                "name": "Acțiune subtensiune",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
-                }
-            },
-            "overcurrent_action": {
-                "name": "Acțiune supracurent",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
-                }
-            },
-            "overpower_action": {
-                "name": "Acțiune supra-putere",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
-                }
-            },
-            "temperature_action": {
-                "name": "Acțiune temperatură",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
-                }
-            },
-            "leakage_action": {
-                "name": "Acțiune scurgere",
-                "state": {
-                    "closed": "Rămâne închis",
-                    "alarm": "Alarmă",
-                    "trip": "Declanșare"
                 }
             }
         },
@@ -856,41 +819,18 @@
             },
             "power_x": {
                 "name": "Putere {x}"
-            },
-            "leakage": {
-                "name": "Scurgere"
-            },
-            "fuse_event": {
-                "name": "Eveniment",
-                "state": {
-                    "normal": "Normal",
-                    "overcurrent_trip": "Declanșare supracurent",
-                    "overpower_trip": "Declanșare supraputere",
-                    "high_temp_trip": "Declanșare temperatură ridicată",
-                    "overvoltage_trip": "Declanșare supratensiune",
-                    "undervoltage_trip": "Declanșare subtensiune",
-                    "overcurrent_alarm": "Alarmă supracurent",
-                    "overpower_alarm": "Alarmă supraputere",
-                    "high_temp_alarm": "Alarmă temperatură ridicată",
-                    "overvoltage_alarm": "Alarmă supratensiune",
-                    "undervoltage_alarm": "Alarmă subtensiune",
-                    "remote_on": "Pornire la distanță",
-                    "remote_off": "Oprire la distanță",
-                    "manual_on": "Pornire manuală",
-                    "manual_off": "Oprire manuală",
-                    "leakage_trip": "Declanșare diferențială",
-                    "leakage_alarm": "Alarmă scurgere",
-                    "factory_reset": "Resetare la fabrică",
-                    "automatic_closing": "Închidere automată",
-                    "electricity_shortage": "Lipsă energie",
-                    "timing_switch_on": "Comutator temporizat pornit",
-                    "timing_switch_off": "Comutator temporizat oprit"
-                }
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "Antigel"
+            },
+            "breaker": {
+                "name": "Siguranță",
+                "state": {
+                    "on": "Normal",
+                    "off": "Declanșat"
+                }
             },
             "evaporator_cleaning": {
                 "name": "Curățare evaporator"
@@ -915,21 +855,6 @@
             },
             "electrolytic_sterilization": {
                 "name": "Sterilizare electrolitică"
-            },
-            "overvoltage_recloser": {
-                "name": "Reînchidere supratensiune"
-            },
-            "undervoltage_recloser": {
-                "name": "Reînchidere subtensiune"
-            },
-            "overcurrent_recloser": {
-                "name": "Reînchidere supracurent"
-            },
-            "leakage_recloser": {
-                "name": "Reînchidere scurgere"
-            },
-            "overpower_recloser": {
-                "name": "Reînchidere supraputere"
             }
         },
         "text": {
