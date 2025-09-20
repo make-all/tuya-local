@@ -151,6 +151,9 @@
                 "state": {
                     "0": "mdi:timer-cancel"
                 }
+            },
+            "sensor_threshold": {
+                "default": "mdi:arrow-collapse-up"
             }
         },
         "select": {
@@ -247,6 +250,14 @@
                 "default": "mdi:temperature-celsius",
                 "state": {
                     "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "ignore": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip_breaker": "mdi:electric-switch"
                 }
             }
         },
@@ -367,6 +378,13 @@
             },
             "electrolytic_sterilization": {
                 "default": "mdi:flash"
+            },
+            "breaker": {
+                "default": "mdi:fuse",
+                "state": {
+                    "on": "mdi:fuse",
+                    "off": "mdi:fuse-off"
+                }
             }
         },
         "text": {
