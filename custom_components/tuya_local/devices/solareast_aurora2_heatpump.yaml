@@ -38,7 +38,7 @@ entities:
           - dps_val: heating
             value: heat
           - dps_val: floor_heating
-            value: heat_cool
+            value: floor_heat
           - dps_val: hot_water
             value: hotwater
           - dps_val: cold_and_hot_water
@@ -78,10 +78,10 @@ entities:
                 value: cool
                 available: wth_on
               - dps_val: heating_and_hot_water
-                value: dry
+                value: heat
                 available: wth_on
               - dps_val: floor_heating_and_hot_water
-                value: heat
+                value: heat_cool
                 available: wth_on
       - id: 2
         type: string
@@ -136,7 +136,7 @@ entities:
       #  PK 20250918: ambient is indeed outdoor temp. There is no indoor
       #  temp sensor like from a connected thermostat.
       - id: 21
-        name: temperature
+        name: current_temperature
         type: integer
       - id: 27
         name: hvac_action
@@ -420,6 +420,7 @@ entities:
       - id: 109
         name: sensor
         type: integer
+        optional: true
         unit: A
         mapping:
           - scale: 1000
@@ -434,6 +435,7 @@ entities:
       - id: 111
         name: sensor
         type: integer
+        optional: true
         unit: V
         mapping:
           - scale: 10
@@ -448,6 +450,7 @@ entities:
       - id: 112
         name: sensor
         type: integer
+        optional: true
         unit: V
         mapping:
           - scale: 10
