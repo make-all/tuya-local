@@ -9,6 +9,7 @@ from homeassistant.const import (
     UnitOfArea,
     UnitOfTemperature,
 )
+from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity import EntityCategory
 
 _LOGGER = logging.getLogger(__name__)
@@ -115,11 +116,7 @@ class TuyaLocalEntity:
 
     async def async_added_to_hass(self):
         if not self.enabled:
-            _LOGGER.warning(
-                "HA bug #152729: Entity %s is not enabled, but async_added_to_hass was called",
-                self.unique_id,
-            )
-            return
+            raise HomeAssistantError("HA bug #152729")
         self._device.register_entity(self)
         if self._config.deprecated:
             _LOGGER.warning(self._config.deprecation_message)
