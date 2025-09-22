@@ -115,7 +115,7 @@ class TuyaLocalEntity:
         await self._device.async_refresh()
 
     async def async_added_to_hass(self):
-        if not self.enabled:
+        if not self.enabled or self.registry_entry is None:
             raise HomeAssistantError("HA bug #152729")
         self._device.register_entity(self)
         if self._config.deprecated:
