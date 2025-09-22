@@ -163,9 +163,31 @@ entities:
       - id: 27
         type: boolean
         name: switch
+  - entity: event
+    name: Push message
+    dps:
       - id: 101
         type: string
-        name: last_message
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: disarmed
+          - dps_val: "1"
+            value: armed_away
+          - dps_val: "2"
+            value: armed_home
+          - dps_val: "3"
+            value: panic_trigger
+          - dps_val: "14"
+            value: motion_trigger
+          - dps_val: null
+            value: null
+          - value: unknown_trigger
+      - id: 101
+        type: string
+        optional: true
+        name: raw_value
   - entity: binary_sensor
     class: sound
     name: Alarm
