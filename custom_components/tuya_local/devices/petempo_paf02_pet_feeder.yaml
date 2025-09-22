@@ -40,8 +40,8 @@ entities:
             value: feeding
           - dps_val: done
             value: feeding_complete
-   - entity: sensor
-     class: battery
+  - entity: sensor
+    class: battery
     category: diagnostic
     dps:
       - id: 10
@@ -49,8 +49,8 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-   - entity: binary_sensor
-     class: battery_charging
+  - entity: binary_sensor
+    class: battery_charging
     category: diagnostic
     dps:
       - id: 11
@@ -65,13 +65,13 @@ entities:
         type: integer
         name: sensor
         unit: portions
-   - entity: light
-     translation_key: display
-     category: config
-     dps:
-       - id: 17
-         type: boolean
-         name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
   - entity: switch
     name: Slow feed
     icon: "mdi:speedometer-slow"
