@@ -9,7 +9,6 @@ from homeassistant.const import (
     UnitOfArea,
     UnitOfTemperature,
 )
-from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity import EntityCategory
 
 _LOGGER = logging.getLogger(__name__)
