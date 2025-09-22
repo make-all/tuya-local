@@ -115,11 +115,9 @@ class TuyaLocalEntity:
         await self._device.async_refresh()
 
     async def async_added_to_hass(self):
-        if not self.enabled or self.registry_entry is None:
-            raise HomeAssistantError("HA bug #152729")
         self._device.register_entity(self)
         if self._config.deprecated:
-            _LOGGER.warning(self._config.deprecation_message)
+            _LOGGER.warning(self._config.deprecation_message, stack_info=True)
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
