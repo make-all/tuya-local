@@ -944,6 +944,7 @@ port and password.
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Papifeed pet feeder
+- Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Petoneer Fresco EzGo pet fountain
