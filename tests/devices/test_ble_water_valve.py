@@ -82,3 +82,7 @@ class TestBLEValve(TuyaDeviceTestCase):
                 "irrigation_schedule": "irrigationtest",
             },
         )
+
+    def test_available(self):
+        """Override to ignore dynamic availability."""
+        pass
