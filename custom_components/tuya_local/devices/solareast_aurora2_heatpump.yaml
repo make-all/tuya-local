@@ -62,13 +62,14 @@ entities:
               - dps_val: cold
                 value: cool
                 available: wth_off
-              # Since there are both heating and floor_heating, model
-              # the air heating as dry, and floor_heating as heat
+              #  Since there is both heating and floor_heating, model the
+              #  regular (radiator) heating as heat, and floor_heating
+              #  as heat_cool
               - dps_val: heating
-                value: dry
+                value: heat
                 available: wth_off
               - dps_val: floor_heating
-                value: heat
+                value: heat_cool
                 available: wth_off
               - dps_val: hot_water
                 value: "off"
@@ -77,10 +78,10 @@ entities:
                 value: cool
                 available: wth_on
               - dps_val: heating_and_hot_water
-                value: dry
+                value: heat
                 available: wth_on
               - dps_val: floor_heating_and_hot_water
-                value: heat
+                value: heat_cool
                 available: wth_on
       - id: 2
         type: string
@@ -112,7 +113,7 @@ entities:
           - dps_val: floor_heating_and_hot_water
             value: true
           - value: false
-      - id: 4
+      - id: 4  # temp_set
         name: temperature
         type: integer
         unit: C
@@ -129,11 +130,13 @@ entities:
             value: normal
           - dps_val: "Boost"
             value: boost
-      # Inlet temperature used here, as ambient is often the outdoor unit
-      # I don't see an indoor_temp, but if ambient is, then it may be more
-      # suitable to use here
+      #  Inlet temperature used here, as ambient is often the outdoor unit
+      #  I don't see an indoor_temp, but if ambient is, then it may be more
+      #  suitable to use here
+      #  PK 20250918: ambient is indeed outdoor temp. There is no indoor
+      #  temp sensor like from a connected thermostat.
       - id: 21
-        name: temperature
+        name: current_temperature
         type: integer
       - id: 27
         name: hvac_action
@@ -382,7 +385,7 @@ entities:
         mapping:
           - scale: 100
         class: total_increasing
-      - id: 18
+      - id: 18  # It seems this entity is unreachable from within HASS
         name: today
         type: integer
         unit: kWh
@@ -417,6 +420,7 @@ entities:
       - id: 109
         name: sensor
         type: integer
+        optional: true
         unit: A
         mapping:
           - scale: 1000
@@ -431,6 +435,7 @@ entities:
       - id: 111
         name: sensor
         type: integer
+        optional: true
         unit: V
         mapping:
           - scale: 10
@@ -445,6 +450,7 @@ entities:
       - id: 112
         name: sensor
         type: integer
+        optional: true
         unit: V
         mapping:
           - scale: 10
