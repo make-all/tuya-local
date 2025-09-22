@@ -59,25 +59,25 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-   - entity: number
-     name: Voice playback times
-     category: config
-     icon: "mdi:account-voice"
-     dps:
-       - id: 16
-         type: integer
-         name: value
-         unit: times
-         range:
-           min: 0
-           max: 10
-   - entity: button
-     translation_key: factory_reset
-     category: config
-     dps:
-       - id: 20
-         type: boolean
-         name: button
+  - entity: number
+    name: Voice playback times
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 0
+          max: 10
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
   - entity: switch
     name: Slow feed
     icon: "mdi:speedometer-slow"
