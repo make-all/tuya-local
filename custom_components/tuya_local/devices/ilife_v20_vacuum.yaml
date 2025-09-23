@@ -224,27 +224,6 @@ entities:
           - dps_val: high
             value: high
   - entity: select
-    category: config
-    name: Mode
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: smart
-            value: smart
-          - dps_val: goto_charge
-            value: goto_charge
-          - dps_val: zone
-            value: zone
-          - dps_val: pose
-            value: pose
-          - dps_val: part
-            value: part
-          - dps_val: select_room
-            value: select_room
-
-  - entity: select
     name: Fetch request
     icon: "mdi:message-question"
     category: config
@@ -457,7 +436,6 @@ entities:
           - dps_val: installed
             value: true
           - value: false
-            dps_val: none
   - entity: select
     name: Operation mode
     icon: "mdi:robot-vacuum"
