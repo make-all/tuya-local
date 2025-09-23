@@ -13,7 +13,7 @@ entities:
         optional: true
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 100
           - dps_val: null
@@ -107,7 +107,7 @@ entities:
         optional: true
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 100
           - dps_val: null
@@ -141,7 +141,7 @@ entities:
         optional: true
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 100
           - dps_val: null
@@ -164,7 +164,7 @@ entities:
         optional: true
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 100
           - dps_val: null
@@ -175,19 +175,16 @@ entities:
         name: alt
         mapping:
           - scale: 100
-  - entity: number
+  - entity: sensor
     name: Run time
     class: duration
-    category: config
+    category: diagnostic
     dps:
       - id: 106
         type: integer
         optional: true
-        name: value
+        name: sensor
         unit: min
-        range:
-          min: 0
-          max: 10000000
   - entity: sensor
     class: frequency
     category: diagnostic
