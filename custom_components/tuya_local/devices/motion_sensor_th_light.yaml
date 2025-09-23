@@ -1,6 +1,7 @@
-name: Motion Sensor&TH
+name: Motion sensor
 products:
   - id: e1mwwvns
+    model: 10GHz 4in1
 entities:
   - entity: binary_sensor
     class: occupancy
@@ -21,7 +22,6 @@ entities:
       - id: 2
         type: integer
         name: value
-        unit: x
         range:
           min: 0
           max: 19
@@ -53,9 +53,9 @@ entities:
         name: unit
         mapping:
           - dps_val: c
-            value: "°C"
+            value: C
           - dps_val: f
-            value: "°F"
+            value: F
   - entity: number
     name: Temperature correction
     category: config
@@ -65,7 +65,7 @@ entities:
       - id: 105
         type: integer
         name: value
-        unit: °C
+        unit: °
         range:
           min: -30
           max: 30
@@ -105,13 +105,12 @@ entities:
           min: -10
           max: 10
   - entity: sensor
-    name: Light intensity
-    icon: "mdi:brightness-5"
+    translation_key: illuminance
     dps:
       - id: 106
         type: integer
         name: sensor
-        unit: x
+        unit: lx
         class: measurement
   - entity: number
     name: Light sampling interval
