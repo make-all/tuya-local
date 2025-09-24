@@ -1,4 +1,4 @@
-name: Ceiling Fan with RBCW Light
+name: Ceiling fan
 products:
   - id: twyyic5gptzkhbav
     manufacturer: Globe
@@ -16,9 +16,9 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: nature
-            value: Nature
+            value: nature
       - id: 105
         type: integer
         name: speed
@@ -92,16 +92,13 @@ entities:
             icon: "mdi:sleep-off"
             icon_priority: 1
   - entity: switch
-    name: Night Light
-    icon: "mdi:lightbulb-night"
-    category: config
+    translation_key: nightlight
     dps:
       - id: 53
         type: boolean
         name: switch
   - entity: time
     name: Light Timer
-    icon: "mdi:timer"
     translation_key: timer
     category: config
     dps:
@@ -114,7 +111,6 @@ entities:
           max: 86400
   - entity: time
     name: Fan Timer
-    icon: "mdi:fan-clock"
     translation_key: timer
     category: config
     dps:
@@ -125,18 +121,7 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: Fan Timer Duration
-    icon: "mdi:fan-clock"
-    translation_key: timer
-    category: config
-    class: duration
-    dps:
-      - id: 103
-        type: integer
-        optional: true
-        name: value
-        unit: s
+
         range:
           min: 0
           max: 86400
