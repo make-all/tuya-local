@@ -1048,3 +1048,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Epictek](https://github.com/Epictek) for contributing support for Fukumaru AF01-W, Petempo PAF-02 pet feeders.
 - [RichardL64](https://github.com/RichardL64) for contributing support for Herschel XLS T-MT thermostat.
 - [blackscreener](https://github.com/blackscreener) for contributing support for ILIFE V20 and A30 pro robot vacuums.
+- [IshanAPatel](https://github.com/IshanAPatel) for contributing support for two models of Globe ceiling fans with RGBCW lights.

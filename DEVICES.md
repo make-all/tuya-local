@@ -285,6 +285,7 @@
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - FlinQ Breeze indoor pedestal fan
 - GHome SW19 ceiling fan and light switch
+- Globe ceiling fans with RGBCW lights (with and without presets)
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
 - Hiper T3 bladeless fan
