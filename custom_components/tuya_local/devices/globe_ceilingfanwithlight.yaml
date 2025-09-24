@@ -1,4 +1,4 @@
-name: Ceiling Fan with Light
+name: Ceiling fan
 products:
   - id: qasrgndvbbtrula9
     manufacturer: Globe
@@ -6,7 +6,6 @@ products:
 entities:
   - entity: fan
     icon: "mdi:ceiling-fan"
-    translation_only_key: fan_with_presets
     dps:
       - id: 60
         type: boolean
@@ -85,7 +84,6 @@ entities:
             icon_priority: 1
   - entity: time
     name: Light Timer
-    icon: "mdi:timer"
     translation_key: timer
     category: config
     dps:
@@ -98,7 +96,6 @@ entities:
           max: 86400
   - entity: time
     name: Fan Timer
-    icon: "mdi:fan-clock"
     translation_key: timer
     category: config
     dps:
@@ -106,21 +103,6 @@ entities:
         type: integer
         optional: true
         name: second
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    name: Fan Timer Duration
-    icon: "mdi:fan-clock"
-    translation_key: timer
-    category: config
-    class: duration
-    dps:
-      - id: 64
-        type: integer
-        optional: true
-        name: value
-        unit: s
         range:
           min: 0
           max: 86400
