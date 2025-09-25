@@ -4,30 +4,6 @@ products:
     manufacturer: "Momo's Choice"
     model: Ceres Plus
 entities:
-  - entity: sensor
-    translation_key: status
-    icon: "mdi:paw"
-    dps:
-      - id: 234
-        type: string
-        name: sensor
-        optional: true
-      - id: 237
-        type: string
-        name: feed_plan
-        optional: true
-      - id: 242
-        name: feeding_record
-        type: string
-        optional: true
-      - id: 244
-        type: string
-        name: planned_feed_report
-        optional: true
-      - id: 246
-        type: string
-        name: feed_report
-        optional: true
   - entity: light
     translation_key: indicator
     category: config
@@ -51,8 +27,8 @@ entities:
     dps:
       - id: 108
         type: string
-        name: option
         optional: true
+        name: option
         mapping:
           - dps_val: "0"
             value: Auto
@@ -60,32 +36,72 @@ entities:
             value: "Off"
           - dps_val: "2"
             value: "On"
+          - dps_val: null
+            value: Auto
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+      - id: 109
+        type: string
+        optional: true
+        name: memory_card_capacity
   - entity: button
     name: Format SD card
-    icon: "mdi:micro-sd"
     category: config
     dps:
       - id: 111
         type: boolean
+        optional: true
         name: button
-        optional: true
-      - id: 110
-        type: integer
-        name: status
-        optional: true
-        mapping:
-          - dps_val: "1"
-            value: "Formatted"
-          - dps_val: "4"
-            value: "Formatting"
-      - id: 109
-        type: string
-        name: capacity
-        optional: true
       - id: 117
         type: integer
-        name: format_state
         optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: "No SD card"
+          - dps_val: 2003
+            value: Card error
+  - entity: switch
+    name: Motion record
+    icon: "mdi:motion"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            value: Motion
+          - dps_val: false
+            value: full-time
   - entity: switch
     name: Record
     icon: "mdi:record-rec"
@@ -113,56 +129,183 @@ entities:
     class: restart
     category: config
     dps:
-      - id: 111
+      - id: 162
         type: boolean
         name: button
         optional: true
+  - entity: sensor
+    name: Food weight
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 232
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 10
+          - dps_val: null
+            value: 0
+  - entity: number
+    name: Control code
+    category: config
+    icon: "mdi:function-variant"
+    dps:
+      - id: 233
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 2147483646
+      - id: 234
+        type: integer
+        optional: true
+        name: return_code
+  - entity: number
+    name: Automatic portioning
+    icon: "mdi:burger"
+    category: config
+    dps:
+      - id: 235
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 255
+# The hundreds digit indicates whether remote grain discharge control is enabled. The ones and tens digits represent the automatic grain discharge fraction.
+  - entity: sensor
+    name: history data
+    category: diagnostic
+    icon: "mdi:function-variant"
+    translation_key: status
+    dps:
+      - id: 236
+        type: string
+        optional: true
+        name: sensor
+        range:
+          min: 0
+          max: 2147483645
+# After completing execution, the device reports historical data. When reporting historical data, the value is composed of four bytes: - The most significant byte indicates the error code (1: No grain, 2: Insufficient food, 3: Grain blockage); - The second most significant byte (hundreds place) indicates the grain dispensing type (2: Alex, 1: Manual, 0: Automatic); - The third byte indicates the actual number of grain portions dispensed; The final byte indicates the reporting ID, incremented by 1 after each report. result = ((uint32)devState.errType & < 24 | (uint32)foodCount & < 16 | (uint32)rebackCount &lt;&amp;amp;amp;amp;amp;lt;8 | (uint32)sendID);
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 237
+        type: hex
+        optional: true
+        name: value
   - entity: sensor
     class: battery
     category: diagnostic
     dps:
       - id: 238
         type: string
-        name: sensor
         optional: true
+        name: sensor
+        unit: "%"
         mapping:
           - dps_val: high
             value: 80
           - dps_val: low
             value: 20
+          - dps_val: "no"
+            value: 0
   - entity: sensor
-    name: Food bucket
-    icon: "mdi:fridge"
+    name: Food level
+    class: enum
+    icon: "mdi:train-car-centerbeam-full"
     category: diagnostic
     dps:
       - id: 239
         type: string
-        name: sensor
         optional: true
+        name: sensor
+        mapping:
+          - dps_val: full
+            value: Full
+          - dps_val: less
+            value: Low
+          - dps_val: lack
+            value: Empty
   - entity: binary_sensor
-    name: Food blockage
+    name: Blocked
     class: problem
     category: diagnostic
     dps:
       - id: 240
-        type: string
-        name: sensor
+        type: boolean
         optional: true
-        mapping:
-          - dps_val: null
-            value: false
+        name: sensor
   - entity: binary_sensor
-    name: Dispenser stuck
+    name: Jammed
     class: problem
     category: diagnostic
     dps:
       - id: 241
-        type: string
+        type: boolean
+        optional: true
         name: sensor
+  - entity: select
+    name: Feeding voice recording
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 242
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: stopped
+          - dps_val: "1"
+            value: start_recording
+          - dps_val: "2"
+            value: error
+  - entity: event
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 243
+        type: integer
+        name: event
         optional: true
         mapping:
           - dps_val: null
-            value: false
+            value: null
+          - value: feed
+      - id: 243
+        type: integer
+        optional: true
+        name: grams
+        mapping:
+          - scale: 10
+  - entity: event
+    name: Auto feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 244
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: feed
+      - id: 244
+        type: integer
+        optional: true
+        name: grams
+        mapping:
+          - scale: 10
   - entity: number
     name: Manual feed
     icon: "mdi:food-drumstick"
@@ -176,19 +319,28 @@ entities:
         range:
           min: 0
           max: 3
-      - id: 243
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 247
         type: string
-        name: report
         optional: true
-  - entity: number
-    category: config
-    class: weight
+        name: backup_log
+  - entity: event
+    name: Last Feed
+    icon: "mdi:food-drumstick"
     dps:
-      - id: 232
+      - id: 246
         type: integer
-        name: value
+        name: event
         optional: true
-        unit: g
-        range:
-          min: 1
-          max: 255
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: fail
+          - value: feed
+      - id: 246
+        type: integer
+        optional: true
+        name: portions
