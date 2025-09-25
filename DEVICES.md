@@ -1102,6 +1102,7 @@ port and password.
 
 - Adaprox Fingerbot plus
 - Ailrinni fingerprint door lock
+- AM24 venetian blinds motor
 - Arlec smart button
 - Arlec usb strip light
 - BSTUOKEY Invisible induction door lock
