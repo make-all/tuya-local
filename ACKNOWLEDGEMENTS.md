@@ -1049,3 +1049,4 @@ Further device support has been made with the assistance of users. Please consid
 - [RichardL64](https://github.com/RichardL64) for contributing support for Herschel XLS T-MT thermostat.
 - [blackscreener](https://github.com/blackscreener) for contributing support for ILIFE V20 and A30 pro robot vacuums.
 - [IshanAPatel](https://github.com/IshanAPatel) for contributing support for two models of Globe ceiling fans with RGBCW lights.
+- [swarshah](https://github.com/swarshah) for contributing support for 4-in-1 10GHz motion sensor.
