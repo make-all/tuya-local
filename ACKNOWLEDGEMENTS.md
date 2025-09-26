@@ -1051,3 +1051,4 @@ Further device support has been made with the assistance of users. Please consid
 - [IshanAPatel](https://github.com/IshanAPatel) for contributing support for two models of Globe ceiling fans with RGBCW lights.
 - [swarshah](https://github.com/swarshah) for contributing support for 4-in-1 10GHz motion sensor.
 - [fragpic](https://github.com/fragpic) for assisting with support for AM24 venetian blinds motor.
+- [rachinibop](https://github.com/rachinibop) for assisting with support for SunnyBot plant light.

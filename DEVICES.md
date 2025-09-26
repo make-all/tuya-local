@@ -746,6 +746,7 @@ of device.
 - Richelieu tunable white LED puck light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
+- SunnyBot plant light
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
 - Tech Inc 3m neon strip
