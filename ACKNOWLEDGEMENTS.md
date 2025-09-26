@@ -1052,3 +1052,4 @@ Further device support has been made with the assistance of users. Please consid
 - [swarshah](https://github.com/swarshah) for contributing support for 4-in-1 10GHz motion sensor.
 - [fragpic](https://github.com/fragpic) for assisting with support for AM24 venetian blinds motor.
 - [rachinibop](https://github.com/rachinibop) for assisting with support for SunnyBot plant light.
+- [chucknorris101](https://github.com/chucknorris101) for assisting with support for Alen Breathesmart 45i air purifier.
