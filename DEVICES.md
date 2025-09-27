@@ -47,7 +47,8 @@
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
 - Lehmann LHOHC-2013C electric radiator
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
-- Modern Flames Orion fireplace
+- Modern Ember Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
+- Modern Flames Orion electric fireplace
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
@@ -66,7 +67,6 @@
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
-- Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
@@ -414,7 +414,7 @@
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
-- VacPlus dehumidifier
+- VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Woods WDD90 dehumidifier
 
