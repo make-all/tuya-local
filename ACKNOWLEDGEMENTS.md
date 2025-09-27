@@ -1053,3 +1053,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fragpic](https://github.com/fragpic) for assisting with support for AM24 venetian blinds motor.
 - [rachinibop](https://github.com/rachinibop) for assisting with support for SunnyBot plant light.
 - [chucknorris101](https://github.com/chucknorris101) for assisting with support for Alen Breathesmart 45i air purifier.
+- [ffonte](https://github.com/ffonte) for assisting with support for Proscenic 850T robot vacuum.

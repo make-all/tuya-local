@@ -1,0 +1,411 @@
+name: Robot vacuum
+products:
+  - id: azunidlguro1hvic
+    manufacturer: Proscenic
+    model: "850T"
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 11
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 25
+        type: string
+        name: command
+        mapping:
+          - dps_val: NONE
+            value: stop
+          - dps_val: smart
+            value: smart
+          - dps_val: wallfollow
+            value: wall_follow
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: mop
+            value: mop
+            available: tank_fitted
+          - dps_val: depth
+            value: deep_clean
+          - dps_val: chargego
+            value: return_to_base
+      - id: 26
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turnleft
+            value: left
+          - dps_val: turnright
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 27
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: high
+          - dps_val: normal
+            value: medium
+          - dps_val: ECO
+            value: low
+          - dps_val: close
+            value: "off"
+      - id: 33
+        type: boolean
+        name: activate
+      - id: 38
+        type: string
+        name: status
+        mapping:
+          - dps_val: "0"
+            value: standby
+          - dps_val: "1"
+            value: smart_cleaning
+          - dps_val: "2"
+            value: mopping
+          - dps_val: "3"
+            value: wall_following
+          - dps_val: "4"
+            value: returning
+          - dps_val: "5"
+            value: charging
+          - dps_val: "6"
+            value: idle
+          - dps_val: "7"
+            value: pause
+          - dps_val: "8"
+            value: deep_cleaning
+          - dps_val: "9"
+            value: remote_controlled
+      - id: 50
+        type: boolean
+        optional: true
+        name: locate
+      - id: 58
+        type: string
+        name: serial_number
+      - id: 49
+        type: string
+        optional: true
+        name: tank_fitted
+        hidden: true
+        mapping:
+          - dps_val: "mop"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+      - id: 103
+        type: integer
+        optional: true
+        name: case_info
+      - id: 104
+        type: integer
+        name: exception_info
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 39
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Cleaned area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+        unit: m2
+        class: measurement
+      - id: 40
+        type: string
+        optional: true
+        name: last_clean
+  - entity: sensor
+    name: Cleaning duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: switch
+    name: Voice
+    category: config
+    dps:
+      - id: 43
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Sensor cleaning
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 44
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Filter replacement
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 45
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: sensor
+    name: Edge brush replacement
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 47
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: sensor
+    name: Roller brush replacement
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 48
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: binary_sensor
+    name: Water tank
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 49
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: mop
+            value: true
+          - value: false
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 51
+        type: boolean
+        name: switch
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 52
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Suction
+    category: config
+    dps:
+      - id: 53
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Sensor cleaned
+    category: config
+    dps:
+      - id: 54
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Filter replaced
+    category: config
+    dps:
+      - id: 55
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Edge brush replaced
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Roller brush replaced
+    category: config
+    dps:
+      - id: 57
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    translation_key: mopping
+    icon: "mdi:water"
+    category: config
+    dps:
+      - id: 60
+        type: string
+        name: option
+        mapping:
+          - dps_val: small
+            value: low
+          - dps_val: medium
+            value: medium
+          - dps_val: big
+            value: high
+          - dps_val: super
+            value: very_high
+      - id: 49
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: "mop"
+            value: true
+          - value: false
+  - entity: button
+    name: Empty dustbin
+    icon: "mdi:trash-can"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: button
+      - id: 106
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: "102"
+            value: true
+          - dps_val: "103"
+            value: true
+          - value: false
+  - entity: select
+    name: Dustbin emptying
+    icon: "mdi:trash-can"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Manual
+          - dps_val: "1"
+            value: Each time
+          - dps_val: "2"
+            value: Every 2 times
+          - dps_val: "3"
+            value: Every 3 times
+      - id: 106
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: "102"
+            value: true
+          - dps_val: "103"
+            value: true
+          - value: false
+  - entity: text
+    name: Program
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: value
+  - entity: select
+    name: Dock type
+    icon: "mdi:home-circle"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "101"
+            value: Charger
+          - dps_val: "102"
+            value: Dustbin
+          - dps_val: "103"
+            value: Backwash
+  - entity: sensor
+    name: Mopping type
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "201"
+            value: Standard
+          - dps_val: "202"
+            value: Vibration
+          - dps_val: "203"
+            value: Dual-rotating
+          - dps_val: null
+            value: "None"
+  - entity: switch
+    name: Mopping control
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: switch
+      - id: 107
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: "202"
+            value: true
+          - dps_val: "203"
+            value: true
+          - value: false
+  - entity: switch
+    name: IR remote
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: switch
