@@ -1054,3 +1054,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rachinibop](https://github.com/rachinibop) for assisting with support for SunnyBot plant light.
 - [chucknorris101](https://github.com/chucknorris101) for assisting with support for Alen Breathesmart 45i air purifier.
 - [ffonte](https://github.com/ffonte) for assisting with support for Proscenic 850T robot vacuum.
+- [Shmob1](https://github.com/Shmob1) for assisting with support for Brilliant Smart PIR outdoor sensor.
