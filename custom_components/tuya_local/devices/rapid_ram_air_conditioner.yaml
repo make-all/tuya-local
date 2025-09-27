@@ -1,0 +1,105 @@
+name: Rapid RAM-N1/Wi-Fi Air conditioner
+products:
+  - id: bfeebdaf293fcbde6fabw7
+    manufacturer: Rapid
+    model: RAM-07HJ/N1/Wi-Fi
+entities:
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: auto
+          - dps_val: "2"
+            value: turbo
+          - dps_val: "3"
+            value: low
+          - dps_val: "4"
+            value: medium
+          - dps_val: "5"
+            value: high
+      - id: 106
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+  - entity: switch
+    name: Eco Mode
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Sleep Mode
+    icon: "mdi:sleep"
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+        optional: true
+  - entity: switch
+    name: Vertical Swing
+    icon: "mdi:arrow-up-down"
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+  - entity: switch
+    name: LCD Display
+    icon: "mdi:monitor"
+    category: config
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Self Clean
+    icon: "mdi:auto-fix"
+    category: config
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
