@@ -325,6 +325,7 @@
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
+- Royal Clima RCS-1000-P 3.0 ventilation system
 - Scheeair Nova 100 ventilation fan
 - Siguro SGR-FN-U32xx tower fan
 - Skyfan DC fan
