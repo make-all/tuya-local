@@ -25,6 +25,7 @@ from .const import (
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
+    CONF_PORT,
 )
 from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
@@ -49,6 +50,7 @@ class TuyaLocalDevice(object):
         dev_cid,
         hass: HomeAssistant,
         poll_only=False,
+        port=None,
     ):
         """
         Represents a Tuya-based device.
@@ -62,6 +64,7 @@ class TuyaLocalDevice(object):
             dev_cid (str): The sub device id.
             hass (HomeAssistant): The Home Assistant instance.
             poll_only (bool): True if the device should be polled only
+            port (int): The port number.
         """
         self._name = name
         self._children = []
@@ -76,24 +79,17 @@ class TuyaLocalDevice(object):
         self.dev_cid = dev_cid
         try:
             if dev_cid:
-                if hass.data[DOMAIN].get(dev_id) and name != "Test":
-                    parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
-                else:
-                    parent = tinytuya.Device(dev_id, address, local_key)
-                    if name != "Test":
-                        hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
+                parent = self._create_or_get_cached_device(
+                    hass, name, dev_id, address, local_key, port)
                 self._api = tinytuya.Device(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
             else:
-                if hass.data[DOMAIN].get(dev_id) and name != "Test":
-                    self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
-                else:
-                    self._api = tinytuya.Device(dev_id, address, local_key)
-                    if name != "Test":
-                        hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
+                self._api = self._create_or_get_cached_device(
+                    hass, name, dev_id, address, local_key, port)
+
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
@@ -705,6 +701,19 @@ class TuyaLocalDevice(object):
             )
 
     @staticmethod
+    def _create_or_get_cached_device(hass, name, dev_id, address, local_key, port):
+        if hass.data[DOMAIN].get(dev_id) and name != "Test":
+            device = hass.data[DOMAIN][dev_id]["tuyadevice"]
+        else:
+            if port is not None and isinstance(port, int) and port > 0:
+                device = tinytuya.Device(dev_id, address, local_key, port=port)
+            else:
+                device = tinytuya.Device(dev_id, address, local_key)
+            if name != "Test":
+                hass.data[DOMAIN][dev_id] = {"tuyadevice": device}
+        return device
+
+    @staticmethod
     def get_key_for_value(obj, value, fallback=None):
         keys = list(obj.keys())
         values = list(obj.values())
@@ -725,6 +734,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config.get(CONF_DEVICE_CID),
         hass,
         config[CONF_POLL_ONLY],
+        config.get(CONF_PORT),
     )
     hass.data[DOMAIN][get_device_id(config)] = {
         "device": device,
