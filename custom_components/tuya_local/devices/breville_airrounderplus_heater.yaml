@@ -34,22 +34,23 @@ entities:
         name: current_temperature
       - id: 4
         type: string
-        name: preset_mode
+        name: heat_mode
         mapping:
           - dps_val: heat_mid
-            value: eco
+            value: low
           - dps_val: heat_high
-            value: comfort
+            value: medium
           - dps_val: heat_0
-            value: boost
+            value: high
           - dps_val: heat_low
-            value: none
+            value: "off"
+            hidden: true
       - id: 5
         type: string
         name: fan_mode
         mapping:
           - dps_val: SleepWind
-            value: "off"
+            value_redirect: heat_mode
           - dps_val: NatureWind_Low
             value: low
           - dps_val: NatureWind_High
