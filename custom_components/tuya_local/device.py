@@ -616,6 +616,10 @@ class TuyaLocalDevice(object):
                         raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
+
+                    # Report successful communication to IP manager
+                    report_device_success(self._dev_id)
+
                     return retval
             except Exception as e:
                 _LOGGER.debug(
@@ -629,6 +633,10 @@ class TuyaLocalDevice(object):
                 if i + 1 == connections:
                     self._reset_cached_state()
                     self._api_working_protocol_failures += 1
+
+                    # Report device failure to IP manager
+                    report_device_failure(self._dev_id)
+
                     if (
                         self._api_working_protocol_failures
                         > self._AUTO_FAILURE_RESET_COUNT

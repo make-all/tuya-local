@@ -88,12 +88,21 @@
                     "host": "IP address or hostname",
                     "local_key": "Local key",
                     "protocol_version": "Protocol version (try auto if not known)",
-                    "poll_only": "Poll only (try this if your device does not work fully)"
+                    "poll_only": "Poll only (try this if your device does not work fully)",
+                    "scan_ip": "Scan for new IP address"
                 }
+            },
+            "scan_ip": {
+                "title": "Scan for Device IP Address",
+                "description": "Scanning for device {device_id} on your local network.\n\nCurrent IP: {current_ip}\n\nThis may take up to 20 seconds. Make sure the device is powered on and connected to your network."
             }
         },
         "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect.",
+            "ip_updated": "✅ IP address updated successfully!\n\nDevice {device_id} IP changed from {old_ip} to {new_ip}.\n\nThe device will be restarted with the new IP address.",
+            "ip_unchanged": "ℹ️ IP address unchanged.\n\nDevice {device_id} is still using IP {current_ip}.\n\nNo changes were made.",
+            "device_not_found": "❌ Device not found.\n\nCould not find device {device_id} on your local network.\n\nPlease check that:\n• The device is powered on\n• The device is connected to your network\n• The device ID is correct",
+            "scan_error": "❌ Scan failed.\n\nError scanning for device {device_id}: {error}\n\nPlease try again or check the device manually."
         },
         "abort": {
             "not_supported": "Sorry, there is no support for this device."

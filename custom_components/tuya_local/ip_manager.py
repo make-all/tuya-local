@@ -55,24 +55,46 @@ class IPManager:
     def report_device_failure(self, device_id: str):
         """Report that a device communication failed."""
         _failing_devices[device_id] = _failing_devices.get(device_id, 0) + 1
+        failure_count = _failing_devices[device_id]
         _LOGGER.debug(
-            "Device %s failure count: %d", device_id, _failing_devices[device_id]
+            "Device %s failure count: %d (threshold: %d)",
+            device_id,
+            failure_count,
+            FAILURE_THRESHOLD,
         )
+
+        if failure_count >= FAILURE_THRESHOLD:
+            _LOGGER.info(
+                "Device %s has reached failure threshold (%d), will be scanned for IP update",
+                device_id,
+                FAILURE_THRESHOLD,
+            )
 
     def report_device_success(self, device_id: str):
         """Report that a device communication succeeded."""
         if device_id in _failing_devices:
+            failure_count = _failing_devices[device_id]
+            _LOGGER.info(
+                "Device %s communication restored (was at %d failures)",
+                device_id,
+                failure_count,
+            )
             del _failing_devices[device_id]
-            _LOGGER.debug("Device %s communication restored", device_id)
+        else:
+            _LOGGER.debug("Device %s communication successful", device_id)
 
     async def _check_device_ips(self, now=None):
         """Check for devices that need IP updates."""
+        _LOGGER.debug("Checking for devices that need IP updates")
+
         # Get all Tuya Local config entries
         entries = [
             entry
             for entry in self.hass.config_entries.async_entries(DOMAIN)
             if not entry.disabled_by
         ]
+
+        _LOGGER.debug("Found %d Tuya Local devices", len(entries))
 
         for entry in entries:
             device_id = entry.data.get(CONF_DEVICE_ID)
@@ -81,11 +103,18 @@ class IPManager:
 
             # Check if this device is having communication issues
             failure_count = _failing_devices.get(device_id, 0)
+            _LOGGER.debug("Device %s failure count: %d", device_id, failure_count)
+
             if failure_count >= FAILURE_THRESHOLD:
                 # Avoid duplicate IP update tasks
                 if device_id not in _ip_update_tasks:
+                    _LOGGER.info("Starting IP update task for device %s", device_id)
                     _ip_update_tasks.add(device_id)
                     asyncio.create_task(self._update_device_ip(entry, device_id))
+                else:
+                    _LOGGER.debug(
+                        "IP update already in progress for device %s", device_id
+                    )
 
     async def _update_device_ip(self, entry: ConfigEntry, device_id: str):
         """Update the IP address for a specific device."""

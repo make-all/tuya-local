@@ -3,7 +3,6 @@ import logging
 from collections import OrderedDict
 from typing import Any
 
-import tinytuya
 import voluptuous as vol
 from homeassistant.config_entries import (
     CONN_CLASS_LOCAL_PUSH,
@@ -494,6 +493,10 @@ class OptionsFlowHandler(OptionsFlow):
         config = {**self.config_entry.data, **self.config_entry.options}
 
         if user_input is not None:
+            # Check if this is an IP scan request
+            if user_input.get("scan_ip"):
+                return await self.async_step_scan_ip()
+
             config = {**config, **user_input}
             device = await async_test_connection(config, self.hass)
             if device:
@@ -514,6 +517,7 @@ class OptionsFlowHandler(OptionsFlow):
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
+            vol.Optional("scan_ip", default=False): bool,
         }
         cfg = await self.hass.async_add_executor_job(
             get_config,
@@ -527,6 +531,178 @@ class OptionsFlowHandler(OptionsFlow):
             data_schema=vol.Schema(schema),
             errors=errors,
         )
+
+    async def async_step_scan_ip(self, user_input=None):
+        """Handle IP scanning for the device."""
+        device_id = self.config_entry.data.get(CONF_DEVICE_ID)
+        current_ip = self.config_entry.data.get(CONF_HOST, "")
+
+        if user_input is None:
+            # Show the scanning form
+            return self.async_show_form(
+                step_id="scan_ip",
+                data_schema=vol.Schema({}),
+                description_placeholders={
+                    "device_id": device_id,
+                    "current_ip": current_ip,
+                },
+            )
+
+        # Perform the IP scan
+        try:
+            _LOGGER.info("Scanning for device %s IP address", device_id)
+            local_device = await self.hass.async_add_executor_job(
+                scan_for_device, device_id
+            )
+
+            if local_device and local_device.get("ip"):
+                new_ip = local_device.get("ip")
+                if new_ip != current_ip:
+                    # Update the configuration entry with new IP
+                    new_data = {**self.config_entry.data, CONF_HOST: new_ip}
+                    self.hass.config_entries.async_update_entry(
+                        self.config_entry, data=new_data
+                    )
+
+                    _LOGGER.info(
+                        "Found new IP %s for device %s (was %s)",
+                        new_ip,
+                        device_id,
+                        current_ip,
+                    )
+
+                    # Show success message and return to options
+                    return self.async_show_form(
+                        step_id="user",
+                        data_schema=vol.Schema(
+                            {
+                                vol.Required(
+                                    CONF_LOCAL_KEY,
+                                    default=self.config_entry.data.get(
+                                        CONF_LOCAL_KEY, ""
+                                    ),
+                                ): str,
+                                vol.Required(CONF_HOST, default=new_ip): str,
+                                vol.Required(
+                                    CONF_PROTOCOL_VERSION,
+                                    default=self.config_entry.data.get(
+                                        CONF_PROTOCOL_VERSION, "auto"
+                                    ),
+                                ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                                vol.Required(
+                                    CONF_POLL_ONLY,
+                                    default=self.config_entry.data.get(
+                                        CONF_POLL_ONLY, False
+                                    ),
+                                ): bool,
+                                vol.Optional("scan_ip", default=False): bool,
+                            }
+                        ),
+                        errors={"base": "ip_updated"},
+                        description_placeholders={
+                            "device_id": device_id,
+                            "old_ip": current_ip,
+                            "new_ip": new_ip,
+                        },
+                    )
+                else:
+                    # IP hasn't changed - return to options with unchanged message
+                    return self.async_show_form(
+                        step_id="user",
+                        data_schema=vol.Schema(
+                            {
+                                vol.Required(
+                                    CONF_LOCAL_KEY,
+                                    default=self.config_entry.data.get(
+                                        CONF_LOCAL_KEY, ""
+                                    ),
+                                ): str,
+                                vol.Required(CONF_HOST, default=current_ip): str,
+                                vol.Required(
+                                    CONF_PROTOCOL_VERSION,
+                                    default=self.config_entry.data.get(
+                                        CONF_PROTOCOL_VERSION, "auto"
+                                    ),
+                                ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                                vol.Required(
+                                    CONF_POLL_ONLY,
+                                    default=self.config_entry.data.get(
+                                        CONF_POLL_ONLY, False
+                                    ),
+                                ): bool,
+                                vol.Optional("scan_ip", default=False): bool,
+                            }
+                        ),
+                        errors={"base": "ip_unchanged"},
+                        description_placeholders={
+                            "device_id": device_id,
+                            "current_ip": current_ip,
+                        },
+                    )
+            else:
+                # Device not found - return to options with error
+                return self.async_show_form(
+                    step_id="user",
+                    data_schema=vol.Schema(
+                        {
+                            vol.Required(
+                                CONF_LOCAL_KEY,
+                                default=self.config_entry.data.get(CONF_LOCAL_KEY, ""),
+                            ): str,
+                            vol.Required(CONF_HOST, default=current_ip): str,
+                            vol.Required(
+                                CONF_PROTOCOL_VERSION,
+                                default=self.config_entry.data.get(
+                                    CONF_PROTOCOL_VERSION, "auto"
+                                ),
+                            ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                            vol.Required(
+                                CONF_POLL_ONLY,
+                                default=self.config_entry.data.get(
+                                    CONF_POLL_ONLY, False
+                                ),
+                            ): bool,
+                            vol.Optional("scan_ip", default=False): bool,
+                        }
+                    ),
+                    errors={"base": "device_not_found"},
+                    description_placeholders={
+                        "device_id": device_id,
+                        "current_ip": current_ip,
+                    },
+                )
+
+        except Exception as e:
+            _LOGGER.error("Error scanning for device %s: %s", device_id, e)
+            return self.async_show_form(
+                step_id="user",
+                data_schema=vol.Schema(
+                    {
+                        vol.Required(
+                            CONF_LOCAL_KEY,
+                            default=self.config_entry.data.get(CONF_LOCAL_KEY, ""),
+                        ): str,
+                        vol.Required(CONF_HOST, default=current_ip): str,
+                        vol.Required(
+                            CONF_PROTOCOL_VERSION,
+                            default=self.config_entry.data.get(
+                                CONF_PROTOCOL_VERSION, "auto"
+                            ),
+                        ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                        vol.Required(
+                            CONF_POLL_ONLY,
+                            default=self.config_entry.data.get(CONF_POLL_ONLY, False),
+                        ): bool,
+                        vol.Optional("scan_ip", default=False): bool,
+                    }
+                ),
+                errors={"base": "scan_error"},
+                description_placeholders={
+                    "device_id": device_id,
+                    "current_ip": current_ip,
+                    "error": str(e),
+                },
+            )
 
 
 def create_test_device(hass: HomeAssistant, config: dict):
