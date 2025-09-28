@@ -3,6 +3,8 @@ products:
   - id: vwqnz1sn
     manufacturer: Moes
     model: XZ-CGV3
+  - id: 3towulqd
+    model: ZG-204L
 entities:
   - entity: binary_sensor
     name: Motion detected
@@ -22,11 +24,20 @@ entities:
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 12
+        type: integer
+        optional: true
+        name: alt
+        hidden: true
   - entity: sensor
-    name: Battery Level
+    name: Battery level
     class: battery
     dps:
       - id: 4
