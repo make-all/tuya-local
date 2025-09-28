@@ -1,0 +1,48 @@
+name: Apricus Water Heater
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 48
+          max: 70
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+        readonly: true
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: AUTO
+            value: Auto
+          - dps_val: ECO
+            value: Eco
+          - dps_val: BOOST
+            value: Boost
+          - dps_val: ELE
+            value: Element
+  - entity: sensor
+    name: Power Consumption
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
