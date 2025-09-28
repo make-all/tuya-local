@@ -2,6 +2,7 @@
 
 import asyncio
 import logging
+from datetime import timedelta
 from typing import Dict, Optional, Set
 
 from homeassistant.config_entries import ConfigEntry
@@ -40,7 +41,7 @@ class IPManager:
             self._unsub_timer = async_track_time_interval(
                 self.hass,
                 self._check_device_ips,
-                interval=asyncio.timedelta(minutes=IP_CHECK_INTERVAL),
+                interval=timedelta(minutes=IP_CHECK_INTERVAL),
             )
             _LOGGER.info("Started IP manager for automatic device discovery")
 
