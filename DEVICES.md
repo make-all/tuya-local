@@ -708,6 +708,7 @@ of device.
 - Fancy LEDs screen sync light 2.0
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
+- Feit OneSync Smart Bridge lighting controller
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
 - Gosund SW2 dimmer switch
