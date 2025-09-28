@@ -7,11 +7,10 @@ from typing import Dict, Optional, Set
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, CONF_DEVICE_ID
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.event import async_track_time_interval
 
 from .const import DOMAIN
-from .config_flow import scan_for_device
+from .device_scanner import scan_for_device
 
 _LOGGER = logging.getLogger(__name__)
 

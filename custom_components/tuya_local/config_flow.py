@@ -38,6 +38,7 @@ from .const import (
     DATA_STORE,
 )
 from .device import TuyaLocalDevice
+from .device_scanner import scan_for_device
 from .helpers.config import get_device_id
 from .helpers.device_config import get_config
 from .helpers.log import log_json
@@ -570,7 +571,3 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].resume()
 
     return retval
-
-
-def scan_for_device(id):
-    return tinytuya.find_device(dev_id=id)
