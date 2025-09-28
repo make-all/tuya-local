@@ -28,6 +28,7 @@ from .const import (
 )
 from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
+from .ip_manager import report_device_failure, report_device_success
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
@@ -337,6 +338,9 @@ class TuyaLocalDevice(object):
 
                 if poll:
                     if "Error" in poll:
+                        # Report communication failure to IP manager
+                        report_device_failure(self._dev_id)
+
                         # increment the error count if not done already
                         if error_count == self._api_working_protocol_failures:
                             self._api_working_protocol_failures += 1
@@ -355,6 +359,9 @@ class TuyaLocalDevice(object):
                                 poll["Payload"],
                             )
                     else:
+                        # Report successful communication to IP manager
+                        report_device_success(self._dev_id)
+
                         if "dps" in poll:
                             poll = poll["dps"]
                         poll["full_poll"] = full_poll
@@ -370,6 +377,9 @@ class TuyaLocalDevice(object):
                     self._api.parent.set_socketPersistent(False)
                 raise
             except Exception as t:
+                # Report communication failure to IP manager
+                report_device_failure(self._dev_id)
+
                 _LOGGER.exception(
                     "%s receive loop error %s:%s",
                     self.name,

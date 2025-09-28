@@ -26,6 +26,8 @@ from .const import (
 )
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
+from .ip_manager import async_setup_ip_manager, async_stop_ip_manager
+from .services import async_setup_services, async_unload_services
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
@@ -699,3 +701,25 @@ async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Updating entry for device: %s", get_device_id(entry.data))
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
+
+
+async def async_setup(hass: HomeAssistant, config: dict) -> bool:
+    """Set up the Tuya Local integration."""
+    # Initialize the IP manager for automatic IP updates
+    await async_setup_ip_manager(hass)
+
+    # Set up services
+    await async_setup_services(hass)
+
+    return True
+
+
+async def async_unload(hass: HomeAssistant) -> bool:
+    """Unload the Tuya Local integration."""
+    # Stop the IP manager
+    await async_stop_ip_manager()
+
+    # Unload services
+    await async_unload_services(hass)
+
+    return True
