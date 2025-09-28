@@ -1,0 +1,28 @@
+# Services for Tuya Local integration
+
+scan_device_ip:
+  name: Scan device IP address
+  description: Manually trigger IP address scanning for a specific device
+  fields:
+    device_id:
+      name: Device ID
+      description: The device ID to scan for
+      required: true
+      selector:
+        text:
+
+scan_all_devices:
+  name: Scan all devices
+  description: Manually trigger IP address scanning for all configured devices
+  fields: {}
+
+get_device_status:
+  name: Get device status
+  description: Get the current status of devices (failure count, IP update status)
+  fields:
+    device_id:
+      name: Device ID
+      description: The device ID to check status for (optional, omit to get all devices)
+      required: false
+      selector:
+        text:

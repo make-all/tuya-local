@@ -65,6 +65,7 @@ class TuyaLocalDevice(object):
             poll_only (bool): True if the device should be polled only
         """
         self._name = name
+        self._dev_id = dev_id
         self._children = []
         self._force_dps = []
         self._product_ids = []
