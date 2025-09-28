@@ -1057,3 +1057,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Shmob1](https://github.com/Shmob1) for assisting with support for Brilliant Smart PIR outdoor sensor.
 - [siobhanellis](https://github.com/siobhanellis) for assisting with support for Weeket KES5211TE-CE kettle.
 - [saappleg](https://github.com/saappleg) for assisting with support for MolyPet F02W pet feeder.
+- [trebic](https://github.com/trebic) for assisting with support for Deta 6914HA Series 3 fan controller.

@@ -274,7 +274,7 @@
 - ComfortZone Powr Curve stand fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
-- Deta fan controller
+- Deta fan controllers (6914HA Series 2 and 3)
 - Djive ARC humidifying fan
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
