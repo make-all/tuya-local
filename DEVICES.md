@@ -1088,6 +1088,7 @@ port and password.
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
 - Valehaus SYZN119 towel warmer
+- VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
