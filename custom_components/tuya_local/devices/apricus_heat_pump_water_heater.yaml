@@ -12,17 +12,18 @@ entities:
             constraint: work_mode
             conditions:
               - dps_val: AUTO
-                value: Auto
+                value: heat_pump
               - dps_val: ECO
-                value: Eco
+                value: eco
               - dps_val: BOOST
-                value: Boost
+                value: high_demand
               - dps_val: ELE
-                value: Element            
+                value: electric
       - id: 2
         name: temperature
         type: integer
         unit: C
+        precision: 0
         range:
           min: 48
           max: 70
@@ -46,4 +47,3 @@ entities:
         class: measurement
         mapping:
           - scale: 10
-        
