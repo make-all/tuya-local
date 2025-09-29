@@ -3,6 +3,9 @@ products:
   - id: vntmgagpom1v8env
     manufacturer: Sundream
     model: LC25
+  - id: 6tlupa3nlid5m4sl
+    manufacturer: Sundream
+    model: LC300
 entities:
   - entity: switch
     dps:
@@ -31,18 +34,28 @@ entities:
     dps:
       - id: 104
         type: integer
+        optional: true
         name: value
         unit: "%"
         range:
           min: 50
           max: 100
+        mapping:
+          - dps_val: null
+            value_redirect: level_lc150
+            step: 5
+            range:
+              min: 5
+              max: 100
+          - step: 50
       - id: 105
         type: integer
         optional: true
         name: level_lc150
+        # #3387 says max 9999 and no unit, but LC300 seems to be %
         range:
-          min: 0
-          max: 9999
+          min: 5
+          max: 100
       - id: 115
         type: integer
         name: model_type
@@ -54,6 +67,7 @@ entities:
     dps:
       - id: 106
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "4"
@@ -233,6 +247,7 @@ entities:
     dps:
       - id: 122
         type: integer
+        optional: true
         name: sensor
         unit: v
         mapping:
@@ -264,6 +279,7 @@ entities:
     dps:
       - id: 125
         type: integer
+        optional: true
         name: sensor
         unit: s
         class: measurement
