@@ -626,6 +626,7 @@ class TuyaDpsConfig:
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
+            r = mapping.get("range", r)
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
