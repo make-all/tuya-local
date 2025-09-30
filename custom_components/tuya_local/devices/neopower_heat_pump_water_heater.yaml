@@ -1,0 +1,97 @@
+name: Neopower All in One Heat Pump
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: ECO
+                value: eco
+              - dps_val: Stand
+                value: heat_pump
+              - dps_val: HYB
+                value: performance
+              - dps_val: ELE
+                value: electric
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 75
+        readonly: false
+      - id: 7
+        type: boolean
+        name: defrosting
+      - id: 16
+        type: integer
+        name: current_temperature
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 32
+        type: boolean
+        name: ele_heating_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"            
+      - id: 27
+        type: boolean
+        name: compressor_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"                 
+      - id: 7
+        type: boolean
+        name: defrost_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"             
+      - id: 24
+        type: integer
+        name: venting_temp
+      - id: 18
+        type: integer
+        name: power_consumption
+      - id: 21
+        type: integer
+        name: temp_top     
+      - id: 22
+        type: integer
+        name: temp_bottom           
+      - id: 28
+        type: boolean
+        name: four_valve_state
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"                   
