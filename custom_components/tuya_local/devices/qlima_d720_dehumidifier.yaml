@@ -1,0 +1,100 @@
+name: Dehumidifier
+products:
+  - id: dpks5tfgim6o3faw
+    manufacturer: Qlima
+    model: D720
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 85
+          step: 5
+        unit: "%"
+      - id: 4
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: "low"
+            value: "low"
+          - dps_val: "mid"
+            value: "medium"
+          - dps_val: "high"
+            value: "high"
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "manual"
+            value: "normal"
+          - dps_val: "continuous"
+            value: "continuous"
+          - dps_val: "smart"
+            value: "auto"
+          - dps_val: "drying"
+            value: "dry"
+  - entity: sensor
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: binary_sensor
+    translation_key: water_full
+    category: diagnostic
+    dps:
+      - id: 25
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: switch
+    translation_key: water_pump
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: water_capacity
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 4
+          step: 1
+        unit: "L"
