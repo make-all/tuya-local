@@ -590,7 +590,7 @@ the best option.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
-- Dual power monitoring smartplug v2 (Smatrul, Deltaco)
+- Dual power monitoring smartplug v2 (Smatrul, Deltaco, Knightsbridge)
 - Eightree ET43 3-outlet powerstrip with energy monitoring
 - ES01 3 outlet + USB powerstrip with individual timers
 - ESP Fort EC-SPSP USB and mains smartplug
