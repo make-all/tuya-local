@@ -36,28 +36,48 @@ entities:
         type: string
         name: heat_mode
         hidden: true
-        mapping:
-          - dps_val: heat_mid
-            value: low
-          - dps_val: heat_high
-            value: medium
-          - dps_val: heat_0
-            value: high
-          - dps_val: heat_low
-            value: "off"
-            hidden: true
       - id: 5
         type: string
         name: fan_mode
         mapping:
           - dps_val: SleepWind
-            value_redirect: heat_mode
+            constraint: heat_mode
+            conditions:
+              - dps_val: heat_mid
+                value: low
+                available: in_heat_mode
+              - dps_val: heat_high
+                value: medium
+                available: in_heat_mode
+              - dps_val: heat_0
+                value: high
+                available: in_heat_mode
+              - dps_val: heat_low
+                value: "off"
+                hidden: true
           - dps_val: NatureWind_Low
             value: low
+            available: in_fan_mode
           - dps_val: NatureWind_High
             value: medium
+            available: in_fan_mode
           - dps_val: CoolWind_0
             value: high
+            available: in_fan_mode
+      - id: 5
+        type: string
+        name: in_fan_mode
+        mapping:
+          - dps_val: SleepWind
+            value: false
+          - value: true
+      - id: 4
+        type: string
+        name: in_heat_mode
+        mapping:
+          - dps_val: heat_low
+            value: false
+          - value: true
       - id: 101
         type: string
         name: swing_mode
