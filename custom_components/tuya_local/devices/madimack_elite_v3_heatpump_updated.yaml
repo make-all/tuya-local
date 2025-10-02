@@ -5,6 +5,7 @@ products:
     model: Elite V3 11-40kW
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 101
         name: hvac_mode
@@ -16,7 +17,7 @@ entities:
             constraint: mode
             conditions:
               - dps_val: auto
-                value: auto
+                value: heat_cool
               - dps_val: cold
                 value: cool
               - dps_val: heating
