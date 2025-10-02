@@ -84,14 +84,15 @@ entities:
         type: boolean
         name: switch
         optional: true
-  - entity: select
+  - entity: text
     name: Schedule
     icon: "mdi:calendar-clock"
     category: config
+    hidden: true
     dps:
       - id: 9
         type: string
-        name: schedule_data
+        name: value
         optional: true
       - id: 10
         type: string

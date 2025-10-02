@@ -56,14 +56,15 @@ entities:
       - id: 12
         type: bitfield
         name: fault_code
-  - entity: select
+  - entity: text
     name: Schedule
     icon: "mdi:calendar-clock"
     category: config
+    hidden: true
     dps:
       - id: 103
         type: string
-        name: schedule_data
+        name: value
         optional: true
       - id: 104
         type: string
