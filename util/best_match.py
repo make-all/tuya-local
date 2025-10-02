@@ -30,6 +30,8 @@ def main() -> int:
             for dp in entity.dps():
                 dps_seen.discard(dp.id)
                 print(f"    {dp.name}: {dp.get_value(device)}")
+                if dp.values(device):
+                    print(f"      values: {dp.values(device)}")
         for dp in dps_seen:
             print(f"  Missing {dp}: {dps[dp]}")
 
