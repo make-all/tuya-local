@@ -16,6 +16,20 @@ from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 
+SERVICE_FIXED_MOWING = "fixed_mowing"
+SERVICE_CANCEL = "cancel"
+
+
+from homeassistant.components.lawn_mower.const import LawnMowerEntityFeature as BaseFeature
+from enum import IntFlag
+
+class ExtendedLawnMowerEntityFeature(IntFlag):
+    START_MOWING = BaseFeature.START_MOWING
+    PAUSE = BaseFeature.PAUSE
+    DOCK = BaseFeature.DOCK
+    FIXED_MOWING = 8
+    CANCEL = 16
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
@@ -26,6 +40,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         "lawn_mower",
         TuyaLocalLawnMower,
     )
+
 
 
 class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
@@ -47,11 +62,17 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         if self._command_dp:
             available_commands = self._command_dp.values(self._device)
             if SERVICE_START_MOWING in available_commands:
-                self._attr_supported_features |= LawnMowerEntityFeature.START_MOWING
+                self._attr_supported_features |= ExtendedLawnMowerEntityFeature.START_MOWING
             if SERVICE_PAUSE in available_commands:
-                self._attr_supported_features |= LawnMowerEntityFeature.PAUSE
+                self._attr_supported_features |= ExtendedLawnMowerEntityFeature.PAUSE
             if SERVICE_DOCK in available_commands:
-                self._attr_supported_features |= LawnMowerEntityFeature.DOCK
+                self._attr_supported_features |= ExtendedLawnMowerEntityFeature.DOCK
+            if SERVICE_FIXED_MOVING in available_commands:
+                self._attr_supported_features |= ExtendedLawnMowerEntityFeature.FIXED_MOWING
+            if SERVICE_CANCEL in available_commands:
+                self._attr_supported_features |= ExtendedLawnMowerEntityFeature.CANCEL
+
+
 
     @property
     def activity(self) -> LawnMowerActivity | None:
@@ -72,3 +93,15 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         """Stop mowing and return to dock."""
         if self._command_dp:
             await self._command_dp.async_set_value(self._device, SERVICE_DOCK)
+
+    async def async_fixed_mowing(self):
+        """Start spot mowing."""
+        if self._command_dp:
+            await self._command_dp.async_set_value(self._device, SERVICE_FIXED_MOWING)
+
+    async def async_cancel(self):
+        """Cancel lawn mower ongoing task."""
+        if self._command_dp:
+            await self._command_dp.async_set_value(self._device, SERVICE_CANCEL)
+            
+
