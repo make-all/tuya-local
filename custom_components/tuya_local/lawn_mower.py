@@ -67,7 +67,7 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
                 self._attr_supported_features |= ExtendedLawnMowerEntityFeature.PAUSE
             if SERVICE_DOCK in available_commands:
                 self._attr_supported_features |= ExtendedLawnMowerEntityFeature.DOCK
-            if SERVICE_FIXED_MOVING in available_commands:
+            if SERVICE_FIXED_MOWING in available_commands:
                 self._attr_supported_features |= ExtendedLawnMowerEntityFeature.FIXED_MOWING
             if SERVICE_CANCEL in available_commands:
                 self._attr_supported_features |= ExtendedLawnMowerEntityFeature.CANCEL
