@@ -1,6 +1,8 @@
 """
 Setup for different kinds of Tuya lawn mowers
 """
+from enum import IntFlag
+from homeassistant.components.lawn_mower.const import LawnMowerEntityFeature as BaseFeature
 
 from homeassistant.components.lawn_mower import LawnMowerEntity
 from homeassistant.components.lawn_mower.const import (
@@ -8,7 +10,6 @@ from homeassistant.components.lawn_mower.const import (
     SERVICE_PAUSE,
     SERVICE_START_MOWING,
     LawnMowerActivity,
-    LawnMowerEntityFeature,
 )
 
 from .device import TuyaLocalDevice
@@ -19,17 +20,12 @@ from .helpers.device_config import TuyaEntityConfig
 SERVICE_FIXED_MOWING = "fixed_mowing"
 SERVICE_CANCEL = "cancel"
 
-
-from homeassistant.components.lawn_mower.const import LawnMowerEntityFeature as BaseFeature
-from enum import IntFlag
-
 class ExtendedLawnMowerEntityFeature(IntFlag):
     START_MOWING = BaseFeature.START_MOWING
     PAUSE = BaseFeature.PAUSE
     DOCK = BaseFeature.DOCK
     FIXED_MOWING = 8
     CANCEL = 16
-
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
