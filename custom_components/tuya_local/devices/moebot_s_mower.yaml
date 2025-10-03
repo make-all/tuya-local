@@ -30,7 +30,7 @@ entities:
           - dps_val: CHARGING_WITH_TASK_SUSPEND
             value: docked
           - dps_val: FIXED_MOWING
-            value: mowing
+            value: spot mowing
           - dps_val: ERROR
             value: error
           - dps_val: UPDATA
@@ -45,7 +45,7 @@ entities:
           - dps_val: StartMowing
             value: start_mowing
           - dps_val: StartFixedMowing
-            value: start_mowing
+            value: fixed_mowing
             hidden: true
           - dps_val: PauseWork
             value: pause
@@ -77,6 +77,17 @@ entities:
         name: zones
         optional: true
   - entity: button
+    name: Start mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: true
+  - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
     dps:
@@ -88,6 +99,17 @@ entities:
           - dps_val: StartFixedMowing
             value: true
   - entity: button
+    name: Pause mowing
+    icon: "mdi:mower"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: PauseWork
+            value: true
+  - entity: button
     name: Cancel mowing
     icon: "mdi:mower"
     dps:
@@ -97,6 +119,17 @@ entities:
         optional: true
         mapping:
           - dps_val: CancelWork
+            value: true
+  - entity: button
+    name: Start docking
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartReturnStation
             value: true
   - entity: button
     name: Continue mowing
@@ -228,6 +261,9 @@ entities:
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
+      - id: 103
+        name: raw_problem
+        type: string
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -288,7 +324,7 @@ entities:
           - dps_val: AutoMode
             value: Auto
           - dps_val: GardenMode
-            value: Garden
+            value: Garde
   - entity: binary_sensor
     name: Cover
     category: diagnostic
