@@ -1060,3 +1060,4 @@ Further device support has been made with the assistance of users. Please consid
 - [trebic](https://github.com/trebic) for assisting with support for Deta 6914HA Series 3 fan controller.
 - [millerim](https://github.com/millerim) for assisting with support for Feit OneSync Smart Bridge lighting controller.
 - [ip1464](https://github.com/ip1464) for contributing compatible products to Dual power monitor smartplug.
+- [admackin](https://github.com/admackin) for contributing support for Apricus heat pump water heater.
