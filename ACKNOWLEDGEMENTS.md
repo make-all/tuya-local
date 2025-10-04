@@ -1062,3 +1062,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ip1464](https://github.com/ip1464) for contributing compatible products to Dual power monitor smartplug.
 - [admackin](https://github.com/admackin) for contributing support for Apricus heat pump water heater.
 - [pmaene](https://github.com/pmaene) for contributing support for Eurom Mon Soleil DSP and Sani heaters.
+- [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
