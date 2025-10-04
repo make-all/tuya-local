@@ -20,7 +20,7 @@ entities:
         name: temperature
         range:
           min: 0
-          max: 37
+          max: 99
         mapping:
           - constraint: temperature_unit
             conditions:
@@ -29,6 +29,10 @@ entities:
                 range:
                   min: 32
                   max: 99
+              - dps_val: false
+                range:
+                  min: 0
+                  max: 37
       - id: 3
         type: integer
         name: temp_set_f
@@ -42,10 +46,9 @@ entities:
         name: temperature_unit
         optional: true
         mapping:
-          - dps_val: false
-            value: C
           - dps_val: true
             value: F
+          - value: C
       - id: 5
         type: integer
         name: current_temperature
@@ -60,7 +63,7 @@ entities:
         optional: true
         hidden: true
   - entity: time
-    name: Countdown time
+    translation_key: timer
     category: config
     dps:
       - id: 7
@@ -69,8 +72,6 @@ entities:
         range:
           min: 0
           max: 1440
-        mapping:
-          - step: 60
       - id: 8
         type: boolean
         name: available
@@ -108,3 +109,16 @@ entities:
             value: Holiday
           - dps_val: program
             value: Program
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
