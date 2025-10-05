@@ -1063,3 +1063,4 @@ Further device support has been made with the assistance of users. Please consid
 - [admackin](https://github.com/admackin) for contributing support for Apricus heat pump water heater.
 - [pmaene](https://github.com/pmaene) for contributing support for Eurom Mon Soleil DSP and Sani heaters.
 - [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
+- [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
