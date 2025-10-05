@@ -9,6 +9,8 @@ from homeassistant.components.lawn_mower.const import (
     SERVICE_PAUSE,
     SERVICE_START_MOWING,
     LawnMowerActivity,
+)
+from homeassistant.components.lawn_mower.const import (
     LawnMowerEntityFeature as BaseFeature,
 )
 
