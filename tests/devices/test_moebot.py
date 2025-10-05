@@ -4,8 +4,6 @@ Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
 
-from enum import IntFlag, StrEnum
-
 from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerActivity
 from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerEntityFeature
 
