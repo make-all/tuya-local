@@ -37,14 +37,10 @@ COMMAND_DP = "115"
 SERVICE_FIXED_MOWING = "fixed_mowing"
 SERVICE_CANCEL = "cancel"
 
-class ExtendedLawnMowerEntityFeature(IntFlag):
-    START_MOWING = BaseFeature.START_MOWING
-    PAUSE = BaseFeature.PAUSE
-    DOCK = BaseFeature.DOCK
-    FIXED_MOWING = 8
-    CANCEL = 16
 
 class ExtendedLawnMowerActivity(StrEnum):
+    """Extend Base Lawn Mower Activities of HA."""
+    
     """Device is in error state, needs assistance."""
     ERROR = BaseActivity.ERROR
 
@@ -80,6 +76,16 @@ class ExtendedLawnMowerActivity(StrEnum):
 
     """Device is mowing around a fixed spot."""
     FIXED_MOWING = "fixed mowing"
+
+
+class ExtendedLawnMowerEntityFeature(IntFlag):
+    """Extend Base Lawn Mower Entity Features of HA."""
+
+    START_MOWING = BaseFeature.START_MOWING
+    PAUSE = BaseFeature.PAUSE
+    DOCK = BaseFeature.DOCK
+    FIXED_MOWING = 8
+    CANCEL = 16
 
 
 class TestMoebot(TuyaDeviceTestCase):
@@ -141,7 +147,9 @@ class TestMoebot(TuyaDeviceTestCase):
         self.dps[STATUS_DP] = "LOCKED"
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.LOCKED)
         self.dps[STATUS_DP] = "CHARGING_WITH_TASK_SUSPEND"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND)
+        self.assertEqual(
+            self.mower.activity, ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND
+        )
 
     async def test_async_start_mowing(self):
         async with assert_device_properties_set(
@@ -177,4 +185,3 @@ class TestMoebot(TuyaDeviceTestCase):
             {COMMAND_DP: "CancelWork"},
         ):
             await self.mower.async_cancel()
-
