@@ -103,6 +103,8 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         self._command_dp = dps_map.pop("command", None)
         self._init_end(dps_map)
 
+        self._attr_supported_features = 0 
+
         if self._command_dp:
             available_commands = self._command_dp.values(self._device)
             if SERVICE_START_MOWING in available_commands:
@@ -119,6 +121,10 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
                 )
             if SERVICE_CANCEL in available_commands:
                 self._attr_supported_features |= ExtendedLawnMowerEntityFeature.CANCEL
+
+    @property
+    def supported_features(self):
+        return self._attr_supported_features
 
     @property
     def activity(self) -> ExtendedLawnMowerActivity | None:
