@@ -27,8 +27,10 @@
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
+- Eurom Mon Soleil DSP 400,650,770 heaters
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
+- Eurom Sani 400,600,800 heaters
 - Goldair GPPH, GCPV, GECO and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
@@ -193,7 +195,7 @@
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
-- Beok TGM50, TOL47, TR8B thermostats
+- Beok SH-TGM50-WP, TGM50, TOL47, TR8B thermostats
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW and GABW thermostats _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
@@ -372,6 +374,7 @@
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
+- Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
 
@@ -949,6 +952,7 @@ port and password.
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder
 - Meegeem cat litter box
+- Meowmatic pet feeder
 - MolyPet F02W pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
