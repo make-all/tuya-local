@@ -68,7 +68,7 @@ class ExtendedLawnMowerActivity(StrEnum):
 
 class ExtendedLawnMowerEntityFeature(IntFlag):
     """Extend Base Lawn Mower Entity Features of HA."""
-    
+
     START_MOWING = BaseFeature.START_MOWING
     PAUSE = BaseFeature.PAUSE
     DOCK = BaseFeature.DOCK
@@ -149,5 +149,3 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         """Cancel lawn mower ongoing task."""
         if self._command_dp:
             await self._command_dp.async_set_value(self._device, SERVICE_CANCEL)
-            
-
