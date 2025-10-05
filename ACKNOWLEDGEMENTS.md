@@ -1064,3 +1064,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pmaene](https://github.com/pmaene) for contributing support for Eurom Mon Soleil DSP and Sani heaters.
 - [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
 - [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
+- [patriiiiiiiiiick](https://github.com/patriiiiiiiiiick) for assisting with support for Meowmatic pet feeder.
