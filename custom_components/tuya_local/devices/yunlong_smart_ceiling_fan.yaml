@@ -2,7 +2,6 @@ name: Ceiling fan
 products:
   - id: nay3m50enerxo9av
     manufacturer: Yunlong
-    model: Smart Ceiling Fan
 entities:
   - entity: light
     dps:
@@ -11,10 +10,10 @@ entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
+        name: effect
         mapping:
           - dps_val: white
-            value: color_temp
+            value: "off"
           - dps_val: scene
             value: Scene
           - dps_val: music
@@ -40,23 +39,18 @@ entities:
         name: mix_rgbcw
         type: base64
         optional: true
-  - entity: number
-    name: Light Timer
+  - entity: time
+    name: Light timer
     translation_key: timer
     category: config
     dps:
       - id: 26
         type: integer
         optional: true
-        name: value
-        unit: min
-        precision: 0
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: fan
     translation_only_key: fan_with_presets
     dps:
@@ -87,7 +81,7 @@ entities:
         optional: true
         name: direction
   - entity: number
-    name: Fan Timer
+    name: Fan timer
     translation_key: timer
     category: config
     icon: "mdi:fan-clock"
