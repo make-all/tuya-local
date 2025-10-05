@@ -16,7 +16,6 @@ from homeassistant.components.lawn_mower.const import (
     LawnMowerEntityFeature as BaseFeature,
 )
 
-
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
