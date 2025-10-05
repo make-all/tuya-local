@@ -176,11 +176,11 @@ class TestMoebot(TuyaDeviceTestCase):
             self.mower._device,
             {COMMAND_DP: "StartFixedMowing"},
         ):
-            await self.mower.async_fixed_mowing("fixed_mowing")
+            await self.mower.async_fixed_mowing()
 
     async def test_async_cancel(self):
         async with assert_device_properties_set(
             self.mower._device,
             {COMMAND_DP: "CancelWork"},
         ):
-            await self.mower.async_cancel("cancel")
+            await self.mower.async_cancel()
