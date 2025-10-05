@@ -6,12 +6,8 @@ and the lawn_mower platform.
 
 from enum import IntFlag, StrEnum
 
-from homeassistant.components.lawn_mower.const import (
-    LawnMowerActivity as BaseActivity,
-)
-from homeassistant.components.lawn_mower.const import (
-    LawnMowerEntityFeature as BaseFeature,
-)
+from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerActivity
+from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerEntityFeature
 
 from ..const import MOEBOT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -33,59 +29,6 @@ WORKLOG_DP = "112"
 ZONES_DP = "113"
 AUTOMODE_DP = "114"
 COMMAND_DP = "115"
-
-SERVICE_FIXED_MOWING = "fixed_mowing"
-SERVICE_CANCEL = "cancel"
-
-
-class ExtendedLawnMowerActivity(StrEnum):
-    """Extend Base Lawn Mower Activities of HA."""
-
-    """Device is in error state, needs assistance."""
-    ERROR = BaseActivity.ERROR
-
-    """Paused during activity."""
-    PAUSED = BaseActivity.PAUSED
-
-    """Device is mowing."""
-    MOWING = BaseActivity.MOWING
-
-    """Device is docked, but not charging."""
-    DOCKED = BaseActivity.DOCKED
-
-    """Device is returning."""
-    RETURNING = BaseActivity.RETURNING
-
-    """Device is in standby/idle state."""
-    STANDBY = "standby"
-
-    """Device is charging."""
-    CHARGING = "charging"
-
-    """Device is stopped."""
-    EMERGENCY = "manually stopped"
-
-    """Device is Locked by the UI/cover opening"""
-    LOCKED = "locked"
-
-    """Device is returning to the docking station."""
-    PARK = BaseActivity.RETURNING
-
-    """Device is got an additional task but it is hanged until charged."""
-    CHARGING_WITH_TASK_SUSPEND = "charging with queued task"
-
-    """Device is mowing around a fixed spot."""
-    FIXED_MOWING = "fixed mowing"
-
-
-class ExtendedLawnMowerEntityFeature(IntFlag):
-    """Extend Base Lawn Mower Entity Features of HA."""
-
-    START_MOWING = BaseFeature.START_MOWING
-    PAUSE = BaseFeature.PAUSE
-    DOCK = BaseFeature.DOCK
-    FIXED_MOWING = 8
-    CANCEL = 16
 
 
 class TestMoebot(TuyaDeviceTestCase):
