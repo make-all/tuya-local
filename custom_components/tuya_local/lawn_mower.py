@@ -143,9 +143,11 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
     async def async_fixed_mowing(self):
         """Start spot mowing."""
         if self._command_dp:
-            await self._command_dp.async_set_value(self._device, SERVICE_FIXED_MOWING)
+            await self._command_dp.async_set_value(self._device, "StartFixedMowing")
+        return {str(self._command_dp.id): "StartFixedMowing"}
 
     async def async_cancel(self):
-        """Cancel lawn mower ongoing task."""
+        """Cancel ongoing task."""
         if self._command_dp:
-            await self._command_dp.async_set_value(self._device, SERVICE_CANCEL)
+            await self._command_dp.async_set_value(self._device, "CancelWork")
+        return {str(self._command_dp.id): "CancelWork"}
