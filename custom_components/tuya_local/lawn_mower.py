@@ -33,7 +33,7 @@ class ExtendedLawnMowerActivity(StrEnum):
     ERROR = BaseActivity.ERROR
 
     """Paused during activity."""
-    PAUSED = BaseActivity.PAUSE
+    PAUSED = BaseActivity.PAUSED
 
     """Device is mowing."""
     MOWING = BaseActivity.MOWING
