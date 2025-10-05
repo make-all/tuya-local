@@ -55,7 +55,7 @@ class ExtendedLawnMowerActivity(StrEnum):
     CHARGING = "charging"
 
     """Device is stopped."""
-    EMERGENCY = "manualy stopped"
+    EMERGENCY = "manually stopped"
 
     """Device is Locked by the UI/cover opening"""
     LOCKED = "locked"
