@@ -40,7 +40,7 @@ SERVICE_CANCEL = "cancel"
 
 class ExtendedLawnMowerActivity(StrEnum):
     """Extend Base Lawn Mower Activities of HA."""
-    
+
     """Device is in error state, needs assistance."""
     ERROR = BaseActivity.ERROR
 
