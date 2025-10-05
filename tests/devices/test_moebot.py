@@ -4,12 +4,11 @@ Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
 
-from enum import IntFlag
+from enum import IntFlag, StrEnum
 
 from homeassistant.components.lawn_mower.const import (
-    LawnMowerActivity,
+    LawnMowerActivity as BaseActivity,
 )
-
 from homeassistant.components.lawn_mower.const import (
     LawnMowerEntityFeature as BaseFeature,
 )
@@ -44,6 +43,43 @@ class ExtendedLawnMowerEntityFeature(IntFlag):
     DOCK = BaseFeature.DOCK
     FIXED_MOWING = 8
     CANCEL = 16
+
+class ExtendedLawnMowerActivity(StrEnum):
+    """Device is in error state, needs assistance."""
+    ERROR = BaseActivity.ERROR
+
+    """Paused during activity."""
+    PAUSED = BaseActivity.PAUSE
+
+    """Device is mowing."""
+    MOWING = BaseActivity.MOWING
+
+    """Device is docked, but not charging."""
+    DOCKED = BaseActivity.DOCKED
+
+    """Device is returning."""
+    RETURNING = BaseActivity.RETURNING
+
+    """Device is in standby/idle state."""
+    STANDBY = "standby"
+
+    """Device is charging."""
+    CHARGING = "charging"
+
+    """Device is stopped."""
+    EMERGENCY = "manually stopped"
+
+    """Device is Locked by the UI/cover opening"""
+    LOCKED = "locked"
+
+    """Device is returning to the docking station."""
+    PARK = BaseActivity.RETURNING
+
+    """Device is got an additional task but it is hanged until charged."""
+    CHARGING_WITH_TASK_SUSPEND = "charging with queued task"
+
+    """Device is mowing around a fixed spot."""
+    FIXED_MOWING = "fixed mowing"
 
 
 class TestMoebot(TuyaDeviceTestCase):
@@ -87,25 +123,25 @@ class TestMoebot(TuyaDeviceTestCase):
 
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.ERROR)
         self.dps[STATUS_DP] = "EMERGENCY"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.EMERGENCY)
         self.dps[STATUS_DP] = "PAUSED"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "PARK"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.RETURNING)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.RETURNING)
         self.dps[STATUS_DP] = "MOWING"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "FIXED_MOWING"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.FIXED_MOWING)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.FIXED_MOWING)
         self.dps[STATUS_DP] = "STANDBY"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.STANDBY)
         self.dps[STATUS_DP] = "CHARGING"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.CHARGING)
         self.dps[STATUS_DP] = "LOCKED"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.LOCKED)
         self.dps[STATUS_DP] = "CHARGING_WITH_TASK_SUSPEND"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
+        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND)
 
     async def test_async_start_mowing(self):
         async with assert_device_properties_set(
@@ -128,7 +164,7 @@ class TestMoebot(TuyaDeviceTestCase):
         ):
             await self.mower.async_dock()
 
-    async def test_async_start_fixed_mowing(self):
+    async def test_async_fixed_mowing(self):
         async with assert_device_properties_set(
             self.mower._device,
             {COMMAND_DP: "StartFixedMowing"},
