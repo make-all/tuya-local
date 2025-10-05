@@ -1,18 +1,21 @@
 """
 Setup for different kinds of Tuya lawn mowers
 """
-from enum import IntFlag
+from enum import IntFlag, StrEnum
 
 from homeassistant.components.lawn_mower import LawnMowerEntity
 from homeassistant.components.lawn_mower.const import (
     SERVICE_DOCK,
     SERVICE_PAUSE,
     SERVICE_START_MOWING,
-    LawnMowerActivity,
 )
 from homeassistant.components.lawn_mower.const import (
     LawnMowerEntityFeature as BaseFeature,
 )
+from homeassistant.components.lawn_mower.const import (
+    LawnMowerActivity as BaseActivity,
+)
+
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
@@ -28,6 +31,44 @@ class ExtendedLawnMowerEntityFeature(IntFlag):
     DOCK = BaseFeature.DOCK
     FIXED_MOWING = 8
     CANCEL = 16
+
+class ExtendedLawnMowerActivity(StrEnum):
+    """Device is in error state, needs assistance."""
+    ERROR = BaseActivity.ERROR
+
+    """Paused during activity."""
+    PAUSED = BaseActivity.PAUSE
+
+    """Device is mowing."""
+    MOWING = BaseActivity.MOWING
+
+    """Device is docked, but not charging."""
+    DOCKED = BaseActivity.DOCKED
+
+    """Device is returning."""
+    RETURNING = BaseActivity.RETURNING
+
+    """Device is in standby/idle state."""
+    STANDBY = "standby"
+
+    """Device is charging."""
+    CHARGING = "charging"
+
+    """Device is stopped."""
+    EMERGENCY = "manualy stopped"
+
+    """Device is Locked by the UI/cover opening"""
+    LOCKED = "locked"
+
+    """Device is returning to the docking station."""
+    PARK = BaseActivity.RETURNING
+
+    """Device is got an additional task but it is hanged until charged."""
+    CHARGING_WITH_TASK_SUSPEND = "charging with queued task"
+
+    """Device is mowing around a fixed spot."""
+    FIXED_MOWING = "fixed mowing"
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
@@ -73,9 +114,9 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
 
 
     @property
-    def activity(self) -> LawnMowerActivity | None:
+    def activity(self) -> ExtendedLawnMowerActivity | None:
         """Return the status of the lawn mower."""
-        return LawnMowerActivity(self._activity_dp.get_value(self._device))
+        return ExtendedLawnMowerActivity(self._activity_dp.get_value(self._device))
 
     async def async_start_mowing(self) -> None:
         """Start mowing the lawn."""
