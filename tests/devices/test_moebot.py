@@ -94,7 +94,6 @@ class TestMoebot(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")
-        self.start_button = self.entities.get("button_start_fixed_mowing")
         self.mark_secondary(
             [
                 "binary_sensor_cover",
@@ -177,11 +176,11 @@ class TestMoebot(TuyaDeviceTestCase):
             self.mower._device,
             {COMMAND_DP: "StartFixedMowing"},
         ):
-            await self.mower.async_fixed_mowing()
+            await self.mower.async_fixed_mowing("fixed_mowing")
 
     async def test_async_cancel(self):
         async with assert_device_properties_set(
             self.mower._device,
             {COMMAND_DP: "CancelWork"},
         ):
-            await self.mower.async_cancel()
+            await self.mower.async_cancel("cancel")
