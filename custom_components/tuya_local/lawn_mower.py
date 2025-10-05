@@ -10,10 +10,10 @@ from homeassistant.components.lawn_mower.const import (
     SERVICE_START_MOWING,
 )
 from homeassistant.components.lawn_mower.const import (
-    LawnMowerEntityFeature as BaseFeature,
+    LawnMowerActivity as BaseActivity,
 )
 from homeassistant.components.lawn_mower.const import (
-    LawnMowerActivity as BaseActivity,
+    LawnMowerEntityFeature as BaseFeature,
 )
 
 
@@ -24,13 +24,6 @@ from .helpers.device_config import TuyaEntityConfig
 
 SERVICE_FIXED_MOWING = "fixed_mowing"
 SERVICE_CANCEL = "cancel"
-
-class ExtendedLawnMowerEntityFeature(IntFlag):
-    START_MOWING = BaseFeature.START_MOWING
-    PAUSE = BaseFeature.PAUSE
-    DOCK = BaseFeature.DOCK
-    FIXED_MOWING = 8
-    CANCEL = 16
 
 class ExtendedLawnMowerActivity(StrEnum):
     """Device is in error state, needs assistance."""
@@ -69,6 +62,12 @@ class ExtendedLawnMowerActivity(StrEnum):
     """Device is mowing around a fixed spot."""
     FIXED_MOWING = "fixed mowing"
 
+class ExtendedLawnMowerEntityFeature(IntFlag):
+    START_MOWING = BaseFeature.START_MOWING
+    PAUSE = BaseFeature.PAUSE
+    DOCK = BaseFeature.DOCK
+    FIXED_MOWING = 8
+    CANCEL = 16
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
