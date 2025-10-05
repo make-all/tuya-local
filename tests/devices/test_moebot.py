@@ -4,8 +4,10 @@ Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
 
-from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerActivity
-from custom_components.tuya_local.lawn_mower import ExtendedLawnMowerEntityFeature
+from custom_components.tuya_local.lawn_mower import (
+    ExtendedLawnMowerActivity,
+    ExtendedLawnMowerEntityFeature,
+    )
 
 from ..const import MOEBOT_PAYLOAD
 from ..helpers import assert_device_properties_set
