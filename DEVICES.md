@@ -263,6 +263,7 @@
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
+- BKZO ceiling fan with RGBCW light
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
@@ -344,6 +345,7 @@
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
+- Yunlong ceiling fan with RGBCW lights
 
 ### Air Purifiers
 

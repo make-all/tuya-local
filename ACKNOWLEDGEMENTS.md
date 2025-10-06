@@ -1065,3 +1065,4 @@ Further device support has been made with the assistance of users. Please consid
 - [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
 - [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
 - [patriiiiiiiiiick](https://github.com/patriiiiiiiiiick) for assisting with support for Meowmatic pet feeder.
+- [sjeffrey101](https://github.com/sjeffrey101) for contributing support for BKZO and Yunlong ceiling fans.
