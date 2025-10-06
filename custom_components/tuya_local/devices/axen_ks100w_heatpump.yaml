@@ -136,7 +136,7 @@ entities:
             value: heat
             available: water_on
           - dps_val: auto_dhw
-            value: auto
+            value: heat_cool
             available: water_on
       - id: 117
         type: boolean
@@ -385,6 +385,28 @@ entities:
         type: integer
         name: sensor
         unit: m³/h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
         class: measurement
         mapping:
           - scale: 10
