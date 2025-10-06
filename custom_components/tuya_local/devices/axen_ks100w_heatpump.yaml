@@ -147,9 +147,9 @@ entities:
           - dps_val: true
             constraint: hvac_mode
             conditions:
-              - dps_val: ["cool", "cool_hotwater"]
+              - dps_val: ["cool", "cool_hotwater", "cool_hot_water"]
                 value: cooling
-              - dps_val: ["heat", "heat_hotwater"]
+              - dps_val: ["heat", "heat_hotwater", "heat_hot_water"]
                 value: heating
               - dps_val: "hot_water"
                 value: idle
