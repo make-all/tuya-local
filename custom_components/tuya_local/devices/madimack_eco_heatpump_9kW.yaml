@@ -1,0 +1,130 @@
+name: Madimack Eco Heatpump 9kW
+products:
+  - id: 3z98f9dmfwtieuc7
+    manufacturer: Madimack
+    model: Eco 9kW
+
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: heating
+            value: heat
+          - dps_val: cold
+            value: cool
+          - dps_val: auto
+            value: heat_cool
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 18
+          max: 40
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 102
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: boost
+            value: boost
+          - dps_val: silence
+            value: sleep
+          - dps_val: power
+            value: boost
+
+  # Fault code as a SENSOR (no binary_sensor) – name must be 'sensor'
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+
+  - entity: sensor
+    name: Compressor strength
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    name: Max temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Min temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Vent temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Outlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Ambient air temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: "°C"
