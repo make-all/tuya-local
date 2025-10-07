@@ -1,0 +1,20 @@
+name: "VIVO FD55 Motorized TV Mount"
+
+products:
+  - id: ejr6szbimwutiaqp
+    manufacturer: VIVO
+    name: FD55 Motorized TV Mount
+
+primary_entity:
+  entity: cover
+  name: "Mount"
+  class: shutter
+  dps:
+    - id: 101
+      name: control
+      type: string
+      mapping:
+        - dps_val: move_up
+          value: open
+        - dps_val: move_down
+          value: close
