@@ -1066,3 +1066,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
 - [patriiiiiiiiiick](https://github.com/patriiiiiiiiiick) for assisting with support for Meowmatic pet feeder.
 - [sjeffrey101](https://github.com/sjeffrey101) for contributing support for BKZO and Yunlong ceiling fans.
+- [acheronfail](https://github.com/acheronfail) for assisting with support for Madimack InverChlor salt and mineral chlorinator.
