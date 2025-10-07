@@ -1,0 +1,254 @@
+name: Air Vent
+products:
+  - id: lc29ihcc61xcyhyj
+    manufacturer: Plikc
+    model: Ario Wifi
+    model_id: PLKARW100
+entities:
+  # {"updated_at": 1759779037.63353, "1": false, "24": 131, "39": true, "101": 73, "102": 60, "103": false, "104": false, "105": false, "106": false, "107": false, "108": false, "109": 10, "113": "using_on", "114": "day_7", "115": 0}
+  - entity: climate
+    dps:
+      #   { "result": [
+      #     {
+      #       "dpId": 1,
+      #       "dpName": "Switch" (global on/off?)
+      #     },
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: fan_only
+
+      #     {
+      #       "dpId": 101,
+      #       "dpName": "Humidity Current"
+      #     },
+      - id: 101
+        name: current_humidity
+        type: integer
+        unit: "%"
+      #     {
+      #       "dpId": 102,
+      #       "dpName": "Humidity Set"
+      #     },
+      - id: 102
+        name: humidity
+        type: integer
+        unit: "%"
+      #     {
+      #       "dpId": 24,
+      #       "dpName": "Current temperature"
+      #     }
+      - id: 24
+        name: current_temperature
+        type: integer
+        unit: "°C"
+        min: 0
+        max: 400
+        mapping:
+          - scale: 10
+  #     {
+  #       "dpId": 39,
+  #       "dpName": "Factory data reset"
+  #     },
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: button
+        optional: true
+
+  #     {
+  #       "dpId": 103,
+  #       "dpName": "Timer" (timer_mode?)
+  #     },
+  - entity: switch
+    name: Timer mode
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  #     {
+  #       "dpId": 40,
+  #       "dpName": "Child lock"
+  #     },
+  - entity: lock
+    name: Child lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: null
+            value: false
+  #     {
+  #       "dpId": 104,
+  #       "dpName": "Umidità" (humidity_mode?)
+  #     },
+  - entity: switch
+    name: Humidity mode
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+  #     {
+  #       "dpId": 105,
+  #       "dpName": "Programma" (program_mode?)
+  #     },
+  - entity: switch
+    name: Program mode
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+  #     {
+  #       "dpId": 106,
+  #       "dpName": "Manuale" (manual_mode?)
+  #     },
+  - entity: switch
+    name: Manual mode
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+  #     {
+  #       "dpId": 107,
+  #       "dpName": "Ventola" (fan_switch?)
+  #     },
+  - entity: switch
+    name: Fan
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+  #     {
+  #       "dpId": 108,
+  #       "dpName": "Led" (lamp_switch?)
+  #     },
+  - entity: switch
+    name: LED
+    dps:
+      - id: 108 # Not sure, this might be an LED status DP, but it does not change its value
+        name: switch
+        type: boolean
+        hidden: true
+  #     {
+  #       "dpId": 113,
+  #       "dpName": "Led_State"
+  #     },
+  # - id: 113
+  #   type: string
+  #   name: current_option
+  - entity: select
+    name: LED
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "using_on"
+            value: "using_on"
+
+  #     {
+  #       "dpId": 45,
+  #       "dpName": "Fault alarm"
+  #     },
+  #     {
+  #       "dpId": 109,
+  #       "dpName": "Timer" (timer_time?)
+  #     },
+  - entity: number
+    name: Timer time
+    dps:
+      - id: 109
+        type: integer
+        unit: "min"
+        name: value
+        range:
+          min: 1
+          max: 30
+          step: 1
+  #     {
+  #       "dpId": 110,
+  #       "dpName": "schedule_7day"
+  #     },
+  #     {
+  #       "dpId": 111,
+  #       "dpName": "schedule_52"
+  #     },
+  #     {
+  #       "dpId": 112,
+  #       "dpName": "schedule_24h"
+  #     },
+  #     {
+  #       "dpId": 114,
+  #       "dpName": "schedule mode"
+  #     },
+  - entity: select
+    name: Schedule mode
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: day_7
+            value: day_7
+          - dps_val: day_52
+            value: day_52
+          - dps_val: hour_24
+            value: hour_24
+  #     {
+  #       "dpId": 115,
+  #       "dpName": "Humidity Calibration"
+  #     },
+  - entity: number
+    name: Humidity calibration
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+          step: 1
+
+  #     {
+  #       "dpId": 116,
+  #       "dpName": "led"
+  #     },
+  #     {
+  #       "dpId": 117,
+  #       "dpName": "Swing"
+  #     },
+  - entity: number
+    name: Swing
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: ""
+        range:
+          min: 1
+          max: 5
+          step: 1
+  #   ],
+  #   "t": 1759611228227,
+  #   "success": true,
+  #   "status": "ok"
+  # }
