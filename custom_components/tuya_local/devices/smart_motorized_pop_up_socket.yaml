@@ -1,0 +1,96 @@
+name: "Smart Motorized Pop-up Socket"
+products:
+  - id: hfeuatvaoedf2mqo
+    manufacturer: Generic
+    name: "Smart Motorized Pop-up Socket"
+
+entities:
+  - entity: select
+    name: Light mode
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 1
+        type: string
+        name: option
+        mapping:
+          - dps_val: "S3"
+            value: "OFF"
+          - dps_val: "S2"
+            value: "100%"
+          - dps_val: "S1"
+            value: "60%"
+          - dps_val: "OFF"
+            value: "20%"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: lock
+        mapping:
+          - dps_val: "start"
+            value: false
+          - dps_val: "off"
+            value: true
+  - entity: switch
+    name: Enable sockets
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: button
+    name: Open
+    icon: "mdi:arrow-up-thick"
+    dps:
+      - id: 6
+        type: string
+        name: button
+        mapping:
+          - dps_val: "open"
+            value: true
+          - dps_val: "end"
+            value: false
+  - entity: button
+    name: Close
+    icon: "mdi:arrow-down-thick"
+    dps:
+      - id: 8
+        type: string
+        name: button
+        mapping:
+          - dps_val: "open"
+            value: true
+          - dps_val: "end"
+            value: false
+  - entity: sensor
+    class: enum
+    name: Status
+    dps:
+      - id: 101
+        readonly: true
+        optional: true
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: "a1"
+            value: "a1"
+          - dps_val: "a2"
+            value: "Child lock disabled"
+          - dps_val: "a3"
+            value: "Child lock enabled"
+          - dps_val: "a4"
+            value: "Opening"
+          - dps_val: "a5"
+            value: "Opening Interrupted"
+          - dps_val: "a6"
+            value: "Opened"
+          - dps_val: "a7"
+            value: "Closing"
+          - dps_val: "as8" #Intentional
+            value: "Closing Interrupted"
+          - dps_val: "a9"
+            value: "Closed"
