@@ -4,7 +4,7 @@ Setup for different kinds of Tuya climate devices
 
 import logging
 import base64
-from typing import List, Tuple
+from typing import list, tuple
 from datetime import datetime
 
 from homeassistant.components.climate import (
@@ -64,7 +64,7 @@ def validate_temp_unit(unit):
         if unit:
             _LOGGER.warning("%s is not a valid temperature unit", unit)
 
-def decode_schedule_base64(schedule_str: str) -> List[List[Tuple[int, int, float]]] | None:
+def decode_schedule_base64(schedule_str: str) -> list[list[tuple[int, int, float]]] | None:
     """
     Decodes the thermostat schedule BASE64 string.
     Returns a 3x6 array: [day][slot] = (hour, minute, temperature)
