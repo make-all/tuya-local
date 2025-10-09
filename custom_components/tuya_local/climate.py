@@ -3,6 +3,9 @@ Setup for different kinds of Tuya climate devices
 """
 
 import logging
+import base64
+from typing import List, Tuple
+from datetime import datetime
 
 from homeassistant.components.climate import (
     ClimateEntity,
@@ -61,6 +64,66 @@ def validate_temp_unit(unit):
         if unit:
             _LOGGER.warning("%s is not a valid temperature unit", unit)
 
+def decode_schedule_base64(schedule_str: str) -> List[List[Tuple[int, int, float]]] | None:
+    """
+    Decodes the thermostat schedule BASE64 string.
+    Returns a 3x6 array: [day][slot] = (hour, minute, temperature)
+    day: 0 = weekdays, 1 = Saturday, 2 = Sunday
+    If the string does not contain exactly 18 records (18*4=72 bytes), returns None.
+    """
+    try:
+        raw = base64.b64decode(schedule_str)
+    except Exception:
+        return None
+
+    # 18 records, 4 bytes/record = 72 bytes
+    if len(raw) != 72:
+        return None
+
+    records = []
+    for i in range(0, 72, 4):
+        hour = raw[i]
+        minute = raw[i + 1]
+        temp = int.from_bytes(raw[i + 2:i + 4], "big") / 10.0
+        records.append((hour, minute, temp))
+
+    schedule = [records[0:6], records[6:12], records[12:18]]
+    return schedule
+
+def get_schedule_temperature_for_timestamp(schedule_str: str, timestamp: datetime) -> float | None:
+    """
+    Returns the temperature value for the given timestamp based on the schedule string.
+    Returns None if not found.
+    """
+    schedule = decode_schedule_base64(schedule_str)
+    if schedule is None:
+        return None
+
+    weekday = timestamp.weekday()  # 0=Monday, ..., 6=Sunday
+
+    # schedule index: 0=weekdays, 1=Saturday, 2=Sunday
+    if weekday < 5:
+        day_idx = 0
+    elif weekday == 5:
+        day_idx = 1
+    else:
+        day_idx = 2
+
+    day_schedule = schedule[day_idx]
+    hour = timestamp.hour
+    minute = timestamp.minute
+
+    # Find the last time slot that is not later than the timestamp
+    last_temp = None
+    for h, m, t in day_schedule:
+        if h is None or m is None or t is None:
+            continue
+        if (h < hour) or (h == hour and m <= minute):
+            last_temp = t
+        elif (h > hour) or (h == hour and m > minute):
+            break
+
+    return last_temp
 
 class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     """Representation of a Tuya Climate entity."""
@@ -96,6 +159,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._unit_dps = dps_map.pop("temperature_unit", None)
         self._mintemp_dps = dps_map.pop("min_temperature", None)
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
+        self._schedule_dps = dps_map.get("schedule", None)
 
         self._init_end(dps_map)
 
@@ -178,6 +242,19 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def target_temperature(self):
         """Return the currently set target temperature."""
+        if self._schedule_dps is not None and self.hvac_mode is HVACMode.AUTO:
+            schedule = self._schedule_dps.get_value(self._device)
+            if schedule:
+                try:
+                    temp = get_schedule_temperature_for_timestamp(
+                        schedule,
+                        datetime.now(),
+                    )
+                    if temp is not None:
+                        return temp
+                except Exception as e:
+                    _LOGGER.info("Failed to decode schedule [%s]: %s", schedule, e)
+
         if self._temperature_dps is None:
             raise NotImplementedError()
         return self._temperature_dps.get_value(self._device)
