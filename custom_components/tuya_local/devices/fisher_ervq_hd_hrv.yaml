@@ -44,7 +44,6 @@ entities:
         class: measurement
   - entity: sensor
     class: humidity
-    name: Indoor humidity
     dps:
       - id: 8
         type: integer
@@ -53,7 +52,6 @@ entities:
         class: measurement
   - entity: sensor
     class: temperature
-    name: Indoor temperature
     dps:
       - id: 9
         type: integer
@@ -62,13 +60,13 @@ entities:
         class: measurement
   - entity: sensor
     name: Filter remaining
+    class: duration
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 11
         name: sensor
         type: integer
-        unit: days
+        unit: d
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -85,7 +83,6 @@ entities:
         name: fault_code
   - entity: number
     name: Supply fan speed
-    icon: "mdi:fan"
     category: config
     dps:
       - id: 103
@@ -96,7 +93,6 @@ entities:
           max: 8
   - entity: number
     name: Exhaust fan speed
-    icon: "mdi:fan"
     category: config
     dps:
       - id: 104
@@ -108,7 +104,6 @@ entities:
   - entity: select
     name: Filter time setting
     category: config
-    icon: "mdi:air-filter"
     dps:
       - id: 105
         name: option
