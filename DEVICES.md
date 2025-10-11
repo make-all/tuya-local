@@ -312,6 +312,7 @@
 - Kogan bladeless fans
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
 - Lumary A1 ceiling fan with light

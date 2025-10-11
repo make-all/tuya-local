@@ -1069,3 +1069,4 @@ Further device support has been made with the assistance of users. Please consid
 - [acheronfail](https://github.com/acheronfail) for assisting with support for Madimack InverChlor salt and mineral chlorinator.
 - [controller999](https://github.com/controller999) for assisting with support for Lubluelu A901 vacuum cleaner.
 - [mjens118](https://github.com/mjens118) for contributing support for Madimack Eco 9kW heat pump.
+- [TheDarkPreacher](https://github.com/TheDarkPreacher) for assisting with support for Ligency E26 socket ceiling fan with RGBCW light.
