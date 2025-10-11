@@ -1,26 +1,24 @@
 name: "Smart Motorized Pop-up Socket"
 products:
   - id: hfeuatvaoedf2mqo
-    manufacturer: Generic
     name: "Smart Motorized Pop-up Socket"
 
 entities:
-  - entity: select
-    name: Light mode
+  - entity: light
     icon: "mdi:lightbulb"
     dps:
       - id: 1
         type: string
-        name: option
+        name: brightness
         mapping:
           - dps_val: "S3"
-            value: "OFF"
+            value: 0
+          - dps_val: "S1" # 60%
+            value: 153
+          - dps_val: "OFF" # 20%
+            value: 51
           - dps_val: "S2"
-            value: "100%"
-          - dps_val: "S1"
-            value: "60%"
-          - dps_val: "OFF"
-            value: "20%"
+            value: 255
   - entity: lock
     translation_key: child_lock
     category: config
@@ -34,36 +32,32 @@ entities:
           - dps_val: "off"
             value: true
   - entity: switch
-    name: Enable sockets
+    name: Enable outlets
+    icon: "mdi:lightning-bolt"
     category: config
     dps:
       - id: 7
         type: boolean
         name: switch
-  - entity: button
-    name: Open
-    icon: "mdi:arrow-up-thick"
+  - entity: cover
+    class: shutter
     dps:
       - id: 6
+        name: control
         type: string
-        name: button
         mapping:
           - dps_val: "open"
-            value: true
-          - dps_val: "end"
-            value: false
-  - entity: button
-    name: Close
-    icon: "mdi:arrow-down-thick"
-    dps:
+            value: "open"
+          - dps_val: "close"
+            value: "close"
+            value_redirect: close
       - id: 8
         type: string
-        name: button
+        name: close
+        hidden: true
         mapping:
           - dps_val: "open"
-            value: true
-          - dps_val: "end"
-            value: false
+            value: "close"
   - entity: sensor
     class: enum
     name: Status
