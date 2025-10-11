@@ -628,6 +628,7 @@ the best option.
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
 - Novadigital 4-way switch with backlight, power on state and timers
+- Pop-up smart socket (unknown brand)
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
 - RCU16 16ch relay module
