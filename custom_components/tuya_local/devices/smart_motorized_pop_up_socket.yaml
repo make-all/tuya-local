@@ -1,11 +1,10 @@
-name: "Smart Motorized Pop-up Socket"
+name: Popup socket
 products:
   - id: hfeuatvaoedf2mqo
-    name: "Smart Motorized Pop-up Socket"
-
 entities:
   - entity: light
-    icon: "mdi:lightbulb"
+    translation_key: backlight
+    category: config
     dps:
       - id: 1
         type: string
@@ -13,9 +12,9 @@ entities:
         mapping:
           - dps_val: "S3"
             value: 0
-          - dps_val: "S1" #  60%
+          - dps_val: "S1"  # 60%
             value: 153
-          - dps_val: "OFF" #  20%
+          - dps_val: "OFF"  # 20%
             value: 51
           - dps_val: "S2"
             value: 255
@@ -102,3 +101,4 @@ entities:
             value: "Closing Interrupted"
           - dps_val: "a9"
             value: "Closed"
+
