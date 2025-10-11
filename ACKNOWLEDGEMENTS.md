@@ -1068,3 +1068,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sjeffrey101](https://github.com/sjeffrey101) for contributing support for BKZO and Yunlong ceiling fans.
 - [acheronfail](https://github.com/acheronfail) for assisting with support for Madimack InverChlor salt and mineral chlorinator.
 - [controller999](https://github.com/controller999) for assisting with support for Lubluelu A901 vacuum cleaner.
+- [mjens118](https://github.com/mjens118) for contributing support for Madimack Eco 9kW heat pump.
