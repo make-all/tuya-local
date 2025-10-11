@@ -830,7 +830,7 @@ of device.
 - Lefant LS1 Pro, M213, N33, T700 vacuum cleaners
 - Lenovo E1 vacuum cleaner
 - Liectroux G7. XR500 vacuum cleaners
-- Lubluelu SL60D vacuum cleaner with mop
+- Lubluelu A901, SL60D vacuum cleaners
 - MAMNV BR151 vacuum cleaner with mop
 - Medion S10 SW, S20 SW, X10 SW vacuum cleaners
 - Mellerware City Move vacuum cleaner
