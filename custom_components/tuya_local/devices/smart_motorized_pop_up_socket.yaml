@@ -57,13 +57,27 @@ entities:
         mapping:
           - dps_val: "open"
             value: "close"
+      - id: 101
+        type: string
+        name: action
+        mapping:
+          # enabling child lock forces socket to close, treat child lock disabled as closed state.
+          - dps_val: "a2"
+            value: closed
+          - dps_val: "a4"
+            value: opening
+          - dps_val: "a6"
+            value: opened
+          - dps_val: "a7"
+            value: closing
+          - dps_val: "a9"
+            value: closed
   - entity: sensor
     class: enum
     name: Status
     dps:
       - id: 101
         readonly: true
-        optional: true
         type: string
         name: sensor
         mapping:
