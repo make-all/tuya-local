@@ -13,9 +13,9 @@ entities:
         mapping:
           - dps_val: "S3"
             value: 0
-          - dps_val: "S1" # 60%
+          - dps_val: "S1" #  60%
             value: 153
-          - dps_val: "OFF" # 20%
+          - dps_val: "OFF" #  20%
             value: 51
           - dps_val: "S2"
             value: 255
@@ -61,7 +61,8 @@ entities:
         type: string
         name: action
         mapping:
-          # enabling child lock forces socket to close, treat child lock disabled as closed state.
+          #  enabling child lock forces socket to close,
+          #  treat child lock disabled as closed state.
           - dps_val: "a2"
             value: closed
           - dps_val: "a4"
