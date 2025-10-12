@@ -2,6 +2,7 @@
 Setup for different kinds of Tuya lawn mowers
 """
 
+import logging
 from enum import IntFlag, StrEnum
 
 from homeassistant.components.lawn_mower import LawnMowerEntity
@@ -16,7 +17,6 @@ from homeassistant.components.lawn_mower.const import (
 from homeassistant.components.lawn_mower.const import (
     LawnMowerEntityFeature as BaseFeature,
 )
-import logging
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
