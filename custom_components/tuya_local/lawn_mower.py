@@ -73,7 +73,7 @@ class ExtendedLawnMowerActivity(StrEnum):
 # Create a new flag that includes both base and extended features
 class ExtendedLawnMowerEntityFeature(IntFlag):
     """Extended Lawn Mower Entity Features."""
-    # Base features (0-7)
+
     START_MOWING = BaseFeature.START_MOWING
     PAUSE = BaseFeature.PAUSE
     DOCK = BaseFeature.DOCK
@@ -82,9 +82,10 @@ class ExtendedLawnMowerEntityFeature(IntFlag):
     RESUME = 32
 
     @classmethod
-    def from_base_features(cls, features: int) -> 'ExtendedLawnMowerEntityFeature':
+    def from_base_features(cls, features: int) -> "ExtendedLawnMowerEntityFeature":
         """Convert base features to extended features."""
         return cls(features)
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
@@ -124,19 +125,23 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
 
             if hasattr(self._command_dp, 'values'):
                 available_commands = self._command_dp.values(self._device)
-                _LOGGER.debug("Raw available_commands: %s (type: %s)", available_commands, type(available_commands).__name__)
+                _LOGGER.debug(
+                    "Raw available_commands: %s (type: %s)",
+                    available_commands,
+                    type(available_commands).__name__,
+                )
 
                 if not available_commands:
                     return
 
                 # Map of command values to their corresponding feature flags
                 command_to_feature = {
-                    'start_mowing': ExtendedLawnMowerEntityFeature.START_MOWING,
-                    'pause': ExtendedLawnMowerEntityFeature.PAUSE,
-                    'dock': ExtendedLawnMowerEntityFeature.DOCK,
-                    'fixed_mowing': ExtendedLawnMowerEntityFeature.FIXED_MOWING,
-                    'cancel': ExtendedLawnMowerEntityFeature.CANCEL,
-                    'resume': ExtendedLawnMowerEntityFeature.RESUME
+                    "start_mowing": ExtendedLawnMowerEntityFeature.START_MOWING,
+                    "pause": ExtendedLawnMowerEntityFeature.PAUSE,
+                    "dock": ExtendedLawnMowerEntityFeature.DOCK,
+                    "fixed_mowing": ExtendedLawnMowerEntityFeature.FIXED_MOWING,
+                    "cancel": ExtendedLawnMowerEntityFeature.CANCEL,
+                    "resume": ExtendedLawnMowerEntityFeature.RESUME,
                 }
 
                 _LOGGER.debug("Command to feature mapping: %s", command_to_feature)
@@ -148,23 +153,34 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
 
                 # Log the final features in a readable format
                 features = []
-                if self._attr_supported_features & ExtendedLawnMowerEntityFeature.START_MOWING:
+                if (
+                    self._attr_supported_features
+                    & ExtendedLawnMowerEntityFeature.START_MOWING
+                ):
                     features.append(ExtendedLawnMowerEntityFeature.START_MOWING.name)
                 if self._attr_supported_features & ExtendedLawnMowerEntityFeature.PAUSE:
                     features.append(ExtendedLawnMowerEntityFeature.PAUSE.name)
                 if self._attr_supported_features & ExtendedLawnMowerEntityFeature.DOCK:
                     features.append(ExtendedLawnMowerEntityFeature.DOCK.name)
-                if self._attr_supported_features & ExtendedLawnMowerEntityFeature.FIXED_MOWING:
+                if (
+                    self._attr_supported_features
+                    & ExtendedLawnMowerEntityFeature.FIXED_MOWING
+                ):
                     features.append(ExtendedLawnMowerEntityFeature.FIXED_MOWING.name)
-                if self._attr_supported_features & ExtendedLawnMowerEntityFeature.CANCEL:
+                if (
+                    self._attr_supported_features
+                    & ExtendedLawnMowerEntityFeature.CANCEL
+                ):
                     features.append(ExtendedLawnMowerEntityFeature.CANCEL.name)
-                if self._attr_supported_features & ExtendedLawnMowerEntityFeature.RESUME:
+                if (
+                    self._attr_supported_features
+                    & ExtendedLawnMowerEntityFeature.RESUME
+                ):
                     features.append(ExtendedLawnMowerEntityFeature.RESUME.name)
 
-                _LOGGER.debug("Enabled features: %s",
-                            ", ".join(features) if features else "None")
-
-
+                _LOGGER.debug(
+                    "Enabled features: %s", ", ".join(features) if features else "None"
+                )
 
     @property
     def activity(self) -> ExtendedLawnMowerActivity | None:
