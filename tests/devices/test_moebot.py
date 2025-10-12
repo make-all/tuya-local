@@ -4,9 +4,9 @@ Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
 
-from custom_components.tuya_local.lawn_mower import (
-    ExtendedLawnMowerActivity,
-    ExtendedLawnMowerEntityFeature,
+from homeassistant.components.lawn_mower.const import (
+    LawnMowerActivity,
+    LawnMowerEntityFeature,
 )
 
 from ..const import MOEBOT_PAYLOAD
@@ -37,6 +37,7 @@ class TestMoebot(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")
+        self.start_button = self.entities.get("button_start_fixed_mowing")
         self.mark_secondary(
             [
                 "binary_sensor_cover",
@@ -57,12 +58,9 @@ class TestMoebot(TuyaDeviceTestCase):
         self.assertEqual(
             self.mower.supported_features,
             (
-                ExtendedLawnMowerEntityFeature.START_MOWING
-                | ExtendedLawnMowerEntityFeature.PAUSE
-                | ExtendedLawnMowerEntityFeature.DOCK
-                | ExtendedLawnMowerEntityFeature.FIXED_MOWING
-                | ExtendedLawnMowerEntityFeature.CANCEL
-                | ExtendedLawnMowerEntityFeature.RESUME
+                LawnMowerEntityFeature.START_MOWING
+                | LawnMowerEntityFeature.PAUSE
+                | LawnMowerEntityFeature.DOCK
             ),
         )
 
@@ -72,27 +70,25 @@ class TestMoebot(TuyaDeviceTestCase):
 
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.ERROR)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
         self.dps[STATUS_DP] = "EMERGENCY"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.EMERGENCY)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
         self.dps[STATUS_DP] = "PAUSED"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.PAUSED)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "PARK"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.RETURNING)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.RETURNING)
         self.dps[STATUS_DP] = "MOWING"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.MOWING)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "FIXED_MOWING"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.FIXED_MOWING)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "STANDBY"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.STANDBY)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "CHARGING"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.CHARGING)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "LOCKED"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.LOCKED)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "CHARGING_WITH_TASK_SUSPEND"
-        self.assertEqual(
-            self.mower.activity, ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
 
     async def test_async_start_mowing(self):
         async with assert_device_properties_set(
@@ -100,6 +96,13 @@ class TestMoebot(TuyaDeviceTestCase):
             {COMMAND_DP: "StartMowing"},
         ):
             await self.mower.async_start_mowing()
+
+    async def test_async_start_fixed_mowing(self):
+        async with assert_device_properties_set(
+            self.start_button._device,
+            {COMMAND_DP: "StartFixedMowing"},
+        ):
+            await self.start_button.async_press()
 
     async def test_async_pause(self):
         async with assert_device_properties_set(
@@ -114,24 +117,3 @@ class TestMoebot(TuyaDeviceTestCase):
             {COMMAND_DP: "StartReturnStation"},
         ):
             await self.mower.async_dock()
-
-    async def test_async_fixed_mowing(self):
-        async with assert_device_properties_set(
-            self.mower._device,
-            {COMMAND_DP: "StartFixedMowing"},
-        ):
-            await self.mower.async_fixed_mowing()
-
-    async def test_async_cancel(self):
-        async with assert_device_properties_set(
-            self.mower._device,
-            {COMMAND_DP: "CancelWork"},
-        ):
-            await self.mower.async_cancel
-
-    async def test_async_resume(self):
-        async with assert_device_properties_set(
-            self.mower._device,
-            {COMMAND_DP: "ContinueWork"},
-        ):
-            await self.mower.async_resume
