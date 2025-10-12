@@ -122,8 +122,7 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         self._attr_supported_features = 0
 
         if self._command_dp:
-
-            if hasattr(self._command_dp, 'values'):
+            if hasattr(self._command_dp, "values"):
                 available_commands = self._command_dp.values(self._device)
                 _LOGGER.debug(
                     "Raw available_commands: %s (type: %s)",
@@ -222,4 +221,3 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         if self._command_dp:
             _LOGGER.debug("Resuming ongoing task...")
             await self._command_dp.async_set_value(self._device, SERVICE_RESUME)
-
