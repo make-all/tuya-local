@@ -484,6 +484,7 @@
 - Silvercrest 1.7L smart kettle
 - Silvercrest coffee maker
 - Silvercrest HF-6602T air fryer
+- Svensson Smart06C kettle
 - Ultenic K10 air fryer
 - Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weeket KE4071TF, KES5211TE-CE smart kettles
