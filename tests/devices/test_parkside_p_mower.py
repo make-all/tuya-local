@@ -9,7 +9,7 @@ from custom_components.tuya_local.lawn_mower import (
     ExtendedLawnMowerEntityFeature,
 )
 
-from ..const import MOEBOT_PAYLOAD
+from ..const import PARKSIDE_P_MOWER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -31,11 +31,11 @@ AUTOMODE_DP = "114"
 COMMAND_DP = "115"
 
 
-class TestMoebot(TuyaDeviceTestCase):
+class TestParksidePMower(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
+        self.setUpForConfig("moebot_s_mower.yaml", PARKSIDE_P_MOWER_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")
         self.mark_secondary(
             [
@@ -127,11 +127,11 @@ class TestMoebot(TuyaDeviceTestCase):
             self.mower._device,
             {COMMAND_DP: "CancelWork"},
         ):
-            await self.mower.async_cancel
+            await self.mower.async_cancel()
 
     async def test_async_resume(self):
         async with assert_device_properties_set(
             self.mower._device,
             {COMMAND_DP: "ContinueWork"},
         ):
-            await self.mower.async_resume
+            await self.mower.async_resume()
