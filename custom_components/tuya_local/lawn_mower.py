@@ -208,16 +208,16 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         """Start spot mowing."""
         if self._command_dp:
             _LOGGER.debug("Fixed mowing started...")
-            await self._command_dp.async_set_value(self._device, SERVICE_FIXED_MOWING)
+            await self._command_dp.async_set_value(self._device, "StartFixedMowing")
 
     async def async_cancel(self):
         """Cancel ongoing task."""
         if self._command_dp:
             _LOGGER.debug("Canceling ongoing task...")
-            await self._command_dp.async_set_value(self._device, SERVICE_CANCEL)
+            await self._command_dp.async_set_value(self._device, "CancelWork")
 
     async def async_resume(self):
         """Continue ongoing task."""
         if self._command_dp:
             _LOGGER.debug("Resuming ongoing task...")
-            await self._command_dp.async_set_value(self._device, SERVICE_RESUME)
+            await self._command_dp.async_set_value(self._device, "ContinueWork")
