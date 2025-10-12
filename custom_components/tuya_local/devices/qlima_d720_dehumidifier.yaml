@@ -16,18 +16,8 @@ entities:
         range:
           min: 35
           max: 85
-          step: 5
-        unit: "%"
-      - id: 4
-        type: string
-        name: fan_speed
         mapping:
-          - dps_val: "low"
-            value: "low"
-          - dps_val: "mid"
-            value: "medium"
-          - dps_val: "high"
-            value: "high"
+          - step: 5
       - id: 5
         type: string
         name: mode
@@ -40,14 +30,24 @@ entities:
             value: "auto"
           - dps_val: "drying"
             value: "dry"
-  - entity: sensor
-    class: humidity
-    category: diagnostic
-    dps:
       - id: 6
         type: integer
-        name: sensor
-        unit: "%"
+        name: current_humidity
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 33
+          - dps_val: "mid"
+            value: 66
+          - dps_val: "high"
+            value: 100
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -67,8 +67,11 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
-    translation_key: water_full
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 25
@@ -80,14 +83,15 @@ entities:
           - dps_val: "on"
             value: true
   - entity: switch
-    translation_key: water_pump
+    name: Water pump
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
   - entity: number
-    translation_key: water_capacity
+    class: volume_storage
+    name: Water capacity
     category: config
     dps:
       - id: 102
@@ -96,5 +100,4 @@ entities:
         range:
           min: 1
           max: 4
-          step: 1
-        unit: "L"
+        unit: L
