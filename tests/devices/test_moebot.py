@@ -7,7 +7,7 @@ and the lawn_mower platform.
 from custom_components.tuya_local.lawn_mower import (
     ExtendedLawnMowerActivity,
     ExtendedLawnMowerEntityFeature,
-    )
+)
 
 from ..const import MOEBOT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -62,6 +62,7 @@ class TestMoebot(TuyaDeviceTestCase):
                 | ExtendedLawnMowerEntityFeature.DOCK
                 | ExtendedLawnMowerEntityFeature.FIXED_MOWING
                 | ExtendedLawnMowerEntityFeature.CANCEL
+                | ExtendedLawnMowerEntityFeature.RESUME
             ),
         )
 
@@ -126,4 +127,11 @@ class TestMoebot(TuyaDeviceTestCase):
             self.mower._device,
             {COMMAND_DP: "CancelWork"},
         ):
-            await self.mower.async_cancel()
+            await self.mower.async_cancel
+
+    async def test_async_resume(self):
+        async with assert_device_properties_set(
+            self.mower._device,
+            {COMMAND_DP: "ContinueWork"},
+        ):
+            await self.mower.async_resume
