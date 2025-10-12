@@ -1,8 +1,8 @@
 name: Lawnmower
 products:
-  - id: mvt4l2evgq2l3nkn
-    manufacturer: MoeBot
-    model: S20
+  - id: icw5sal7xfcevsve
+    manufacturer: Parkside
+    model: PMRDA 20-Li
 entities:
   - entity: lawn_mower
     dps:
@@ -11,23 +11,23 @@ entities:
         type: string
         mapping:
           - dps_val: STANDBY
-            value: docked
+            value: standby
           - dps_val: MOWING
             value: mowing
           - dps_val: CHARGING
-            value: docked
+            value: charging
           - dps_val: EMERGENCY
-            value: error
+            value: manually stopped
           - dps_val: LOCKED
-            value: docked
+            value: locked
           - dps_val: PAUSED
             value: paused
           - dps_val: PARK
             value: returning
           - dps_val: CHARGING_WITH_TASK_SUSPEND
-            value: docked
+            value: charging with queued task
           - dps_val: FIXED_MOWING
-            value: mowing
+            value: fixed mowing
           - dps_val: ERROR
             value: error
           - dps_val: UPDATA
@@ -42,15 +42,13 @@ entities:
           - dps_val: StartMowing
             value: start_mowing
           - dps_val: StartFixedMowing
-            value: start_mowing
-            hidden: true
+            value: fixed_mowing
           - dps_val: PauseWork
             value: pause
           - dps_val: CancelWork
-            value: pause
-            hidden: true
+            value: cancel
           - dps_val: ContinueWork
-            value: start_mowing
+            value: resume
             hidden: true
           - dps_val: StartReturnStation
             value: dock
@@ -74,6 +72,17 @@ entities:
         name: zones
         optional: true
   - entity: button
+    name: Start mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: true
+  - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
     dps:
@@ -85,6 +94,17 @@ entities:
           - dps_val: StartFixedMowing
             value: true
   - entity: button
+    name: Pause mowing
+    icon: "mdi:mower"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: PauseWork
+            value: true
+  - entity: button
     name: Cancel mowing
     icon: "mdi:mower"
     dps:
@@ -94,6 +114,17 @@ entities:
         optional: true
         mapping:
           - dps_val: CancelWork
+            value: true
+  - entity: button
+    name: Start docking
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartReturnStation
             value: true
   - entity: button
     name: Continue mowing
@@ -225,6 +256,15 @@ entities:
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
+          - dps_val: DISCHARGE_ERROR
+            value: Discharge error
+            icon: mdi:battery-arrow-down-outline
+          - dps_val: CHARGE_TEMP_ERROR
+            value: Battery overheated
+            icon: mdi:battery-alert
+      - id: 103
+        name: raw_problem
+        type: string
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -272,20 +312,6 @@ entities:
         type: boolean
         name: button
         optional: true
-  - entity: select
-    name: Mowing mode
-    icon: "mdi:mower"
-    category: config
-    dps:
-      - id: 114
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: AutoMode
-            value: Auto
-          - dps_val: GardenMode
-            value: Garden
   - entity: binary_sensor
     name: Cover
     category: diagnostic
@@ -303,26 +329,3 @@ entities:
         type: boolean
         name: switch
         optional: true
-  - entity: switch
-    name: Backward blade stop
-    icon: "mdi:saw-blade"
-    category: config
-    hidden: unavailable
-    dps:
-      - id: 121
-        type: integer
-        name: switch
-        optional: true
-        mapping:
-          - dps_val: 0
-            value: false
-          - dps_val: 1
-            value: true
-      - id: 121
-        type: integer
-        optional: true
-        name: available
-        mapping:
-          - dps_val: null
-            value: false
-          - value: true

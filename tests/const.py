@@ -1526,6 +1526,16 @@ MOEBOT_PAYLOAD = {
     "114": "AutoMode",
 }
 
+PARKSIDE_P_MOWER_PAYLOAD = {
+    "6": 100,
+    "101": "FIXED_MOWING",
+    "102": 0,
+    "103": "MOWER_LEAN",
+    "104": True,
+    "105": 8,
+    "106": 1343,
+}
+
 TOMPD63LW_SOCKET_PAYLOAD = {
     "1": 139470,
     "6": "CPQAFEkAAuk=",
