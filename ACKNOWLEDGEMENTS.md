@@ -1072,3 +1072,4 @@ Further device support has been made with the assistance of users. Please consid
 - [TheDarkPreacher](https://github.com/TheDarkPreacher) for assisting with support for Ligency E26 socket ceiling fan with RGBCW light.
 - [3ek](https://github.com/3ek) for contributing support for Motorized pop-up smart sockets.
 - [den4ikmega](https://github.com/den4ikmega) for assisting with support for Digma DiSense G1 gas leak detector.
+- [StodgyWaif](https://github.com/StodgyWaif) for assisting with support for idoo Smart Bloom 8 hydroponic system.
