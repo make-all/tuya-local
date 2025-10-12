@@ -35,7 +35,7 @@ class TestParksidePMower(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("moebot_s_mower.yaml", PARKSIDE_P_MOWER_PAYLOAD)
+        self.setUpForConfig("parkside_p_mower.yaml", PARKSIDE_P_MOWER_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")
         self.mark_secondary(
             [
@@ -54,17 +54,15 @@ class TestParksidePMower(TuyaDeviceTestCase):
         )
 
     def test_supported_features(self):
-        self.assertEqual(
-            self.mower.supported_features,
-            (
-                ExtendedLawnMowerEntityFeature.START_MOWING
-                | ExtendedLawnMowerEntityFeature.PAUSE
-                | ExtendedLawnMowerEntityFeature.DOCK
-                | ExtendedLawnMowerEntityFeature.FIXED_MOWING
-                | ExtendedLawnMowerEntityFeature.CANCEL
-                | ExtendedLawnMowerEntityFeature.RESUME
-            ),
+        expected = (
+            ExtendedLawnMowerEntityFeature.START_MOWING.value
+            | ExtendedLawnMowerEntityFeature.PAUSE.value
+            | ExtendedLawnMowerEntityFeature.DOCK.value
+            | ExtendedLawnMowerEntityFeature.FIXED_MOWING.value
+            | ExtendedLawnMowerEntityFeature.CANCEL.value
+            | ExtendedLawnMowerEntityFeature.RESUME.value
         )
+        self.assertEqual(self.mower.supported_features, expected)
 
     def test_available(self):
         """Skip available tests as this device has disabled entities."""
