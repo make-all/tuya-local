@@ -1,4 +1,8 @@
-name: Neopower All in One Heat Pump
+name: Water heat pump
+products:
+  - id: opugd8qgpbqbcizu
+    manufacturer: Neopower
+    model: Black Diamond all-in-one
 entities:
   - entity: water_heater
     dps:
@@ -30,12 +34,16 @@ entities:
         range:
           min: 15
           max: 75
-      - id: 7
-        type: boolean
-        name: defrosting
       - id: 16
         type: integer
         name: current_temperature
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 7
+        type: boolean
+        name: sensor
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -50,47 +58,63 @@ entities:
       - id: 15
         type: bitfield
         name: fault_code
+  - entity: binary_sensor
+    name: Element
+    class: running
+    category: diagnostic
+    icon: "mdi:heating-coil"
+    dps:
       - id: 32
         type: boolean
-        name: ele_heating_state
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
       - id: 27
         type: boolean
-        name: compressor_state
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
-      - id: 7
-        type: boolean
-        name: defrost_state
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
+        name: sensor
+  - entity: sensor
+    name: Vent temperature
+    class: temperature
+    category: diagnostic
+    dps:
       - id: 24
         type: integer
-        name: venting_temp
+        name: sensor
+        unit: C
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
       - id: 18
         type: integer
-        name: power_consumption
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Top temperature
+    class: temperature
+    category: diagnostic
+    dps:
       - id: 21
         type: integer
-        name: temp_top
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Bottom temperature
+    class: temperature
+    category: diagnostic
+    dps:
       - id: 22
         type: integer
-        name: temp_bottom
+        name: sensor
+        unit: C
+  - entity: binary_sensor
+    class: opening
+    name: Four-way valve
+    category: diagnostic
+    dps:
       - id: 28
         type: boolean
-        name: four_valve_state
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
+        name: sensor
