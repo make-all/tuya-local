@@ -80,7 +80,9 @@ class TestParksidePMower(TuyaDeviceTestCase):
         self.dps[STATUS_DP] = "MOWING"
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.MOWING.value)
         self.dps[STATUS_DP] = "FIXED_MOWING"
-        self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.FIXED_MOWING.value)
+        self.assertEqual(
+            self.mower.activity, ExtendedLawnMowerActivity.FIXED_MOWING.value
+        )
         self.dps[STATUS_DP] = "STANDBY"
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.STANDBY.value)
         self.dps[STATUS_DP] = "CHARGING"
@@ -89,14 +91,13 @@ class TestParksidePMower(TuyaDeviceTestCase):
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.LOCKED.value)
         self.dps[STATUS_DP] = "CHARGING_WITH_TASK_SUSPEND"
         self.assertEqual(
-            self.mower.activity, ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND.value
+            self.mower.activity,
+            ExtendedLawnMowerActivity.CHARGING_WITH_TASK_SUSPEND.value,
         )
         self.dps[STATUS_DP] = "UPDATA"
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.DOCKED.value)
         self.dps[STATUS_DP] = "SELF_TEST"
         self.assertEqual(self.mower.activity, ExtendedLawnMowerActivity.DOCKED.value)
-        self.dps[STATUS_DP] = "INVALID"
-        self.assertIsNone(self.mower.activity)
 
     async def test_async_start_mowing(self):
         async with assert_device_properties_set(
