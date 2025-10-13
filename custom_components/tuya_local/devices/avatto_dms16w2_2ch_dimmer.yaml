@@ -1,0 +1,175 @@
+name: Dual channel dimmer
+products:
+  - id: qfqqrzlzgkhdln97
+    manufacturer: Avatto
+    model: DMS16-W2
+
+entities:
+#Global entities
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: "Off at Boot"
+          - dps_val: "on"
+            value: "On at Boot"
+          - dps_val: memory
+            value: "Restore previous"
+
+#Light 1 related entities
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+
+  - entity: number
+    name: Minimum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-30"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+
+  - entity: number
+    name: Maximum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-90"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+
+  - entity: select
+    name: Switch type 1
+    category: config
+    icon: "mdi:electric-switch"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: flip
+            value: "Seesaw Toggle Switch"
+          - dps_val: sync
+            value: "Seesaw Sync Switch"
+          - dps_val: button
+            value: "Kick Back Switch"
+
+  - entity: number
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    # 2025-07-20
+    deprecated: time.timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+
+#Light 2 related entities
+  - entity: light
+    name: Light 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+
+  - entity: number
+    name: Minimum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-30"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+
+  - entity: number
+    name: Maximum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-90"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+
+  - entity: select
+    name: Switch type 2
+    category: config
+    icon: "mdi:electric-switch"
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: flip
+            value: "Seesaw Toggle Switch"
+          - dps_val: sync
+            value: "Seesaw Sync Switch"
+          - dps_val: button
+            value: "Kick Back Switch"
+
+  - entity: number
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    # 2025-07-20
+    deprecated: time.timer
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
