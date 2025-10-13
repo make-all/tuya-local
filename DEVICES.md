@@ -176,6 +176,7 @@
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
 - Modena ES-15-SKY water heater
+- Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -414,7 +415,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
-- Qlima D812 and D820A dehumidifiers
+- Qlima D720, D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -1036,6 +1037,7 @@ port and password.
 - C30W gas leak detector
 - CT20W PIR motion detector
 - Dienmern DM165A noise meter
+- Digma DiSense G1 gas leak detector
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
@@ -1049,6 +1051,7 @@ port and password.
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
+- idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
@@ -1081,6 +1084,7 @@ port and password.
 - RQ400A gas alarm
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
+- Ryakka 7-in-1 smart pool monitor
 - Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor

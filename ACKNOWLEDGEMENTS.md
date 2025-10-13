@@ -1071,3 +1071,8 @@ Further device support has been made with the assistance of users. Please consid
 - [mjens118](https://github.com/mjens118) for contributing support for Madimack Eco 9kW heat pump.
 - [TheDarkPreacher](https://github.com/TheDarkPreacher) for assisting with support for Ligency E26 socket ceiling fan with RGBCW light.
 - [3ek](https://github.com/3ek) for contributing support for Motorized pop-up smart sockets.
+- [den4ikmega](https://github.com/den4ikmega) for assisting with support for Digma DiSense G1 gas leak detector.
+- [StodgyWaif](https://github.com/StodgyWaif) for assisting with support for idoo Smart Bloom 8 hydroponic system.
+- [Veuchez](https://github.com/Veuchez) for assisting with support for Ryakka 7-in-1 pool monitor.
+- [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
+- [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
