@@ -57,6 +57,7 @@ entities:
       - id: 9
         name: lock
         type: boolean
+        persist: true
   - entity: sensor
     class: power
     dps:
@@ -68,17 +69,16 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
       - id: 11
-        type: string
+        type: bitfield
         name: sensor
-        class: measurement
         mapping:
           - dps_val: 0
-            value: ok 
+            value: ok
   - entity: sensor
     class: energy
     dps:
@@ -103,6 +103,7 @@ entities:
       - id: 113
         type: boolean
         name: switch
+        persist: true
   - entity: switch
     translation_key: eco_mode
     category: config
@@ -110,6 +111,7 @@ entities:
       - id: 8
         type: boolean
         name: switch
+        persist: true
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -117,12 +119,14 @@ entities:
       - id: 123
         type: boolean
         name: switch
+        persist: true
   - entity: select
     name: Mode
     dps:
       - id: 111
         type: string
         name: option
+        persist: true
         mapping:
           - dps_val: manual
             value: Manual
@@ -136,8 +140,8 @@ entities:
         name: option
         mapping:
           - dps_val: "cancel"
-          # - dps_val: "0min"
             value: "off"
+            default: true
           - dps_val: "5min"
             value: "5 min"
           - dps_val: "10min"
@@ -186,3 +190,4 @@ entities:
             value: "115 min"
           - dps_val: "120min"
             value: "2 h"
+
