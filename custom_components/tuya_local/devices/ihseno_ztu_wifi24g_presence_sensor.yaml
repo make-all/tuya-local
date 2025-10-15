@@ -1,0 +1,67 @@
+name: mmWave presence sensor
+products:
+  - id: chaayllciae8dlhn
+    model: IHSENO Wi-Fi Human presence detector
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: pir
+            value: true
+          - dps_val: "none"
+            value: false
+  - entity: select
+    name: Trigger Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: select
+    name: Exist Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: number
+    name: Exist Time
+    category: config
+    class: duration
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 600
