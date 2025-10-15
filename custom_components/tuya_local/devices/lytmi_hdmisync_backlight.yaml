@@ -44,6 +44,13 @@ entities:
         type: integer
         optional: true
         name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
       - id: 23
         type: integer
         optional: true
@@ -60,7 +67,10 @@ entities:
           - dps_val: "88000000000000000000000000000000"
             available: color_temp_supported
             value: color_temp
+          - dps_val: "97000000000000000000000000000000"
+            value: hs
           - value: hs
+            hidden: true
   - entity: switch
     name: TV synchronization switch
     category: config

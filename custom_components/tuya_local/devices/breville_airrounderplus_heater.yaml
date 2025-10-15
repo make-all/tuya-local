@@ -16,10 +16,10 @@ entities:
           - dps_val: true
             value: heat
             hidden: true
-            constraint: heat_mode
+            constraint: fan_mode
             conditions:
               - dps_val: heat_low
-                value: fan_only
+                value: "off"
               - dps_val: heat_high
                 value: heat
       - id: 2
@@ -34,8 +34,7 @@ entities:
         name: current_temperature
       - id: 4
         type: string
-        name: heat_mode
-        hidden: true
+        name: fan_mode
         mapping:
           - dps_val: heat_mid
             value: low
@@ -46,18 +45,6 @@ entities:
           - dps_val: heat_low
             value: "off"
             hidden: true
-      - id: 5
-        type: string
-        name: fan_mode
-        mapping:
-          - dps_val: SleepWind
-            value_redirect: heat_mode
-          - dps_val: NatureWind_Low
-            value: low
-          - dps_val: NatureWind_High
-            value: medium
-          - dps_val: CoolWind_0
-            value: high
       - id: 101
         type: string
         name: swing_mode
@@ -70,6 +57,46 @@ entities:
             value: "120°"
           - dps_val: "180"
             value: "360°"
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: false
+          - dps_val: true
+            value: true
+            hidden: true
+            constraint: speed
+            conditions:
+              - dps_val: SleepWInd
+                value: false
+                hidden: true
+              - dps_val: NatureWind_High
+                value: true
+      - id: 5
+        type: string
+        name: speed
+        mapping:
+          - dps_val: SleepWind
+            value: 0
+            hidden: true
+          - dps_val: NatureWind_Low
+            value: 33
+          - dps_val: NatureWind_High
+            value: 66
+          - dps_val: CoolWind_0
+            value: 100
+      - id: 101
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "180"
+            value: true
+          - value: true
   - entity: lock
     translation_key: child_lock
     category: config

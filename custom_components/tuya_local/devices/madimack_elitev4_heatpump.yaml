@@ -17,7 +17,7 @@ entities:
             constraint: mode
             conditions:
               - dps_val: auto
-                value: auto
+                value: heat_cool
               - dps_val: cold
                 value: cool
                 available: supports_cool
@@ -27,6 +27,20 @@ entities:
         name: mode
         type: string
         hidden: true
+      - id: 102
+        name: enable_sleep
+        type: string
+        hidden: true
+        mapping:
+          - dps_val: heating
+            value: true
+          - value: false
+      - id: 102
+        name: enable_boost
+        type: string
+        hidden: true
+        mapping:
+          - value: false
       - id: 104
         name: temperature
         type: integer
@@ -39,12 +53,14 @@ entities:
         mapping:
           - dps_val: silence
             value: sleep
+            available: enable_sleep
           - dps_val: perfect
             value: comfort
           - dps_val: power
             value: quick
           - dps_val: boost
             value: boost
+            available: enable_boost
       - id: 106
         name: temperature_unit
         type: string
@@ -53,7 +69,7 @@ entities:
             value: F
           - dps_val: c
             value: C
-      - id: 107
+      - id: 108
         type: integer
         optional: true
         name: current_temperature

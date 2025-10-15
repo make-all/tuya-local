@@ -27,8 +27,10 @@
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
+- Eurom Mon Soleil DSP 400,650,770 heaters
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
+- Eurom Sani 400,600,800 heaters
 - Goldair GPPH, GCPV, GECO and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
@@ -159,6 +161,7 @@
 
 ### Water heaters
 
+- Apricus heat pump water heater
 - Aquatech Rapid/X6 heat pump water heater
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Deakon EVI DC inverter heat pump
@@ -173,6 +176,7 @@
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
 - Modena ES-15-SKY water heater
+- Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -192,7 +196,7 @@
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
-- Beok TGM50, TOL47, TR8B thermostats
+- Beok SH-TGM50-WP, TGM50, TOL47, TR8B thermostats
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW and GABW thermostats _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
@@ -260,6 +264,7 @@
 - Atomi 52 inch ceiling fan
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
+- BKZO ceiling fan with RGBCW light
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
@@ -308,6 +313,7 @@
 - Kogan bladeless fans
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
 - Lumary A1 ceiling fan with light
@@ -341,6 +347,7 @@
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
+- Yunlong ceiling fan with RGBCW lights
 
 ### Air Purifiers
 
@@ -371,6 +378,7 @@
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
+- Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
 
@@ -407,7 +415,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
-- Qlima D812 and D820A dehumidifiers
+- Qlima D720, D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -477,6 +485,7 @@
 - Silvercrest 1.7L smart kettle
 - Silvercrest coffee maker
 - Silvercrest HF-6602T air fryer
+- Svensson Smart06C kettle
 - Ultenic K10 air fryer
 - Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weeket KE4071TF, KES5211TE-CE smart kettles
@@ -621,6 +630,7 @@ the best option.
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
 - Novadigital 4-way switch with backlight, power on state and timers
+- Pop-up smart socket (unknown brand)
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
 - RCU16 16ch relay module
@@ -824,7 +834,7 @@ of device.
 - Lefant LS1 Pro, M213, N33, T700 vacuum cleaners
 - Lenovo E1 vacuum cleaner
 - Liectroux G7. XR500 vacuum cleaners
-- Lubluelu SL60D vacuum cleaner with mop
+- Lubluelu A901, SL60D vacuum cleaners
 - MAMNV BR151 vacuum cleaner with mop
 - Medion S10 SW, S20 SW, X10 SW vacuum cleaners
 - Mellerware City Move vacuum cleaner
@@ -948,6 +958,7 @@ port and password.
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder
 - Meegeem cat litter box
+- Meowmatic pet feeder
 - MolyPet F02W pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
@@ -1026,6 +1037,7 @@ port and password.
 - C30W gas leak detector
 - CT20W PIR motion detector
 - Dienmern DM165A noise meter
+- Digma DiSense G1 gas leak detector
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
@@ -1039,6 +1051,7 @@ port and password.
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
+- idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
@@ -1046,7 +1059,8 @@ port and password.
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen SNT957W-TDE E3S temperature alarm
 - Konlen/Rockson WF96L water level controller
-- Madimack Inverflow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
+- Madimack InverChlor pool salt and mineral chlorinator
+- Madimack InverFlow Pro pool pump (also AquaForte Inverter VSP, Aquagem Inverpro)
 - Manta Windy MT0200B weather station
 - Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - ME201W level sensor
@@ -1070,6 +1084,7 @@ port and password.
 - RQ400A gas alarm
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
+- Ryakka 7-in-1 smart pool monitor
 - Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor

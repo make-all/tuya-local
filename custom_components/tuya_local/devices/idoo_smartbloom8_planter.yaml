@@ -1,0 +1,134 @@
+name: Hydroponic system
+products:
+  - id: prrqdilbrficdp1c
+    manufacturer: idoo
+    model: Smart Bloom 8
+    model_id: ID-IG307S
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: valve
+    class: water
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+  - entity: light
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: time
+    name: Light on
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 103
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    name: Light off
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 113
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 59
+  - entity: time
+    name: Watering on
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: minute
+        range:
+          min: 10
+          max: 1440
+        mapping:
+          - step: 10
+  - entity: time
+    name: Watering off
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: minute
+        range:
+          min: 10
+          max: 1440
+        mapping:
+          - step: 10
+  - entity: switch
+    name: Sleep
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Plant type
+    icon: "mdi:sprout"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: Fruits
+            value: Fruit
+          - dps_val: vegetables
+            value: Vegetable
+  - entity: binary_sensor
+    class: light
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Watering
+    class: running
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan
+    class: running
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: sensor

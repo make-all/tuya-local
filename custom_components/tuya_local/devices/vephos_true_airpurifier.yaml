@@ -1,0 +1,129 @@
+name: Air purifier
+products:
+  - id: mhzbjznygqaqjx8w
+    manufacturer: Vephos
+    model: "True"
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: speed1
+            value: 33
+          - dps_val: speed2
+            value: 67
+          - dps_val: speed3
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: switch
+    translation_key: ionizer
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "12"
+            value: "12h"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: Close filter cover
+          - dps_val: 2
+            value: Motor fault
+          - dps_val: 4
+            value: Clean filter 1/2/3
+          - dps_val: 8
+            value: Replace filter 4
+  - entity: button
+    name: Filter 1/2/3 reset
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: select
+    name: Airflow angle
+    category: config
+    icon: "mdi:angle-acute"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "30"
+            value: "30°"
+          - dps_val: "60"
+            value: "60°"
+          - dps_val: "90"
+            value: "90°"
