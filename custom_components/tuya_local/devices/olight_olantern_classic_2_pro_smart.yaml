@@ -1,0 +1,89 @@
+name: Olantern Classic 2 Pro Smart
+manufacturer: Olight
+model: Olantern Classic 2 Pro Smart
+product_id: sccicczk
+category: dj
+entities:
+  - name: Light Power
+    entity: light
+    dps:
+      - id: 1
+        name: switch_led
+        type: boolean
+      - id: 101
+        name: light_model
+        type: enum
+        mapping:
+          - dps_val: warm
+            value: warm
+          - dps_val: cold
+            value: cold
+      - id: 102
+        name: brightness
+        type: integer
+        range: [1, 100]
+  - name: Countdown
+    entity: number
+    icon: mdi:timer
+    dps:
+      - id: 7
+        name: countdown
+        type: integer
+        unit: s
+        range: [0, 86400]
+  - name: Battery
+    entity: sensor
+    device_class: battery
+    unit: "%"
+    dps:
+      - id: 103
+        name: battery_percentage
+        type: integer
+        range: [0, 100]
+  - name: Sleep Switch
+    entity: switch
+    icon: mdi:sleep
+    dps:
+      - id: 104
+        name: sleep_switch
+        type: boolean
+  - name: Do Not Disturb
+    entity: switch
+    icon: mdi:minus-circle
+    dps:
+      - id: 34
+        name: do_not_disturb
+        type: boolean
+  - name: Power Memory
+    entity: sensor
+    icon: mdi:power-settings
+    dps:
+      - id: 33
+        name: power_memory
+        type: raw
+  - name: Runtime
+    entity: sensor
+    unit: min
+    dps:
+      - id: 105
+        name: runtime
+        type: integer
+        range: [0, 99999]
+  - name: Runtime Type
+    entity: select
+    icon: mdi:clock-outline
+    dps:
+      - id: 106
+        name: runtime_type
+        type: enum
+        mapping:
+          - dps_val: hide
+            value: hidden
+          - dps_val: second
+            value: Seconds
+          - dps_val: minute
+            value: Minutes
+          - dps_val: hour
+            value: Hours
+          - dps_val: day
+            value: Days
