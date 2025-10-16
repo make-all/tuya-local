@@ -1076,3 +1076,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Veuchez](https://github.com/Veuchez) for assisting with support for Ryakka 7-in-1 pool monitor.
 - [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
 - [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
+- [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat.
