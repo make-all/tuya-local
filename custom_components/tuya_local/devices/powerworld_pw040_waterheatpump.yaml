@@ -15,12 +15,12 @@ entities:
             value: "off"
           - dps_val: true
             value: heat_pump
-      - id: 125
+      - id: 123
         type: integer
         name: temperature
         unit: C
         range:
-          min: 28
+          min: 30
           max: 55
       - id: 108  # Warmwasser_T (ist): hot water (actual value)
         type: integer
@@ -119,12 +119,12 @@ entities:
       - id: 101
         type: integer
         name: current_temperature
-      - id: 123
+      - id: 125
         type: integer
         name: temperature
         unit: C
         range:
-          min: 30
+          min: 28
           max: 55
         mapping:
           - constraint: work_mode
@@ -139,7 +139,6 @@ entities:
       - id: 124
         hidden: true
         type: integer
-        unit: C
         name: cooling_temp
         range:
           min: 7
