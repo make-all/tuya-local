@@ -508,8 +508,8 @@ Further device support has been made with the assistance of users. Please consid
 - [dakker78](https://github.com/dakker78) for contributing support for Herschel IR heaters.
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
-- [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
-- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers and contributing support for SNT957W-DE temperature and humidity sensors.
+- [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breaker and Svensson Smart06C kettle.
+- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breaker and contributing support for SNT957W-DE temperature and humidity sensors.
 - [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3 and Madimack Inverflow Pro pump.
 - [halmaizsolt92](https://github.com/halmaizsolt92) for assisting with support for SNT857W-TDE temperature sensors.
 - [nk00li](https://github.com/nk00li) for assisting with support for BHT-002 GBLW thermometers that differ slightly from GALW in how they report the heating state.
@@ -1065,3 +1065,15 @@ Further device support has been made with the assistance of users. Please consid
 - [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
 - [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
 - [patriiiiiiiiiick](https://github.com/patriiiiiiiiiick) for assisting with support for Meowmatic pet feeder.
+- [sjeffrey101](https://github.com/sjeffrey101) for contributing support for BKZO and Yunlong ceiling fans.
+- [acheronfail](https://github.com/acheronfail) for assisting with support for Madimack InverChlor salt and mineral chlorinator.
+- [controller999](https://github.com/controller999) for assisting with support for Lubluelu A901 vacuum cleaner.
+- [mjens118](https://github.com/mjens118) for contributing support for Madimack Eco 9kW heat pump.
+- [TheDarkPreacher](https://github.com/TheDarkPreacher) for assisting with support for Ligency E26 socket ceiling fan with RGBCW light.
+- [3ek](https://github.com/3ek) for contributing support for Motorized pop-up smart sockets.
+- [den4ikmega](https://github.com/den4ikmega) for assisting with support for Digma DiSense G1 gas leak detector.
+- [StodgyWaif](https://github.com/StodgyWaif) for assisting with support for idoo Smart Bloom 8 hydroponic system.
+- [Veuchez](https://github.com/Veuchez) for assisting with support for Ryakka 7-in-1 pool monitor.
+- [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
+- [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
+- [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat.

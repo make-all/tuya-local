@@ -1,0 +1,103 @@
+name: Popup socket
+products:
+  - id: hfeuatvaoedf2mqo
+entities:
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 1
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: "S3"
+            value: 0
+          - dps_val: "S1"  # 60%
+            value: 153
+          - dps_val: "OFF"  # 20%
+            value: 51
+          - dps_val: "S2"
+            value: 255
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: lock
+        mapping:
+          - dps_val: "start"
+            value: false
+          - dps_val: "off"
+            value: true
+  - entity: switch
+    name: Enable outlets
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 6
+        name: control
+        type: string
+        mapping:
+          - dps_val: "open"
+            value: "open"
+          - value: "close"
+            value_redirect: close_redirection
+      - id: 8
+        type: string
+        name: close_redirection
+        hidden: true
+        mapping:
+          - dps_val: "open"
+            value: "close"
+      - id: 101
+        type: string
+        name: action
+        mapping:
+          #  enabling child lock forces socket to close,
+          #  treat child lock disabled as closed state.
+          - dps_val: "a2"
+            value: closed
+          - dps_val: "a4"
+            value: opening
+          - dps_val: "a6"
+            value: opened
+          - dps_val: "a7"
+            value: closing
+          - dps_val: "a9"
+            value: closed
+  - entity: sensor
+    class: enum
+    name: Status
+    dps:
+      - id: 101
+        readonly: true
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: "a1"
+            value: "a1"
+          - dps_val: "a2"
+            value: "Child lock disabled"
+          - dps_val: "a3"
+            value: "Child lock enabled"
+          - dps_val: "a4"
+            value: "Opening"
+          - dps_val: "a5"
+            value: "Opening Interrupted"
+          - dps_val: "a6"
+            value: "Opened"
+          - dps_val: "a7"
+            value: "Closing"
+          - dps_val: "as8"  # Intentional
+            value: "Closing Interrupted"
+          - dps_val: "a9"
+            value: "Closed"
