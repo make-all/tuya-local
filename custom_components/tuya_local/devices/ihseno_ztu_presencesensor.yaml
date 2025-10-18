@@ -1,7 +1,8 @@
-name: mmWave presence sensor
+name: Presence sensor
 products:
   - id: chaayllciae8dlhn
-    model: IHSENO Wi-Fi 24g MmWave Human presence detector
+    manudactureer: iHseno
+    model: ZTU 24GHz mmWave WiFi
 entities:
   - entity: binary_sensor
     class: occupancy
@@ -12,10 +13,9 @@ entities:
         mapping:
           - dps_val: pir
             value: true
-          - dps_val: "none"
-            value: false
+          - value: false
   - entity: select
-    name: Trigger Sensitivity
+    name: Motion sensitivity
     category: config
     icon: "mdi:motion-sensor"
     dps:
@@ -38,7 +38,7 @@ entities:
         unit: lx
         class: measurement
   - entity: select
-    name: Exist Sensitivity
+    name: Presence sensitivity
     category: config
     icon: "mdi:motion-sensor"
     dps:
@@ -53,7 +53,7 @@ entities:
           - dps_val: high
             value: High
   - entity: number
-    name: Exist Time
+    name: Presence timeout
     category: config
     class: duration
     icon: "mdi:camera-timer"
