@@ -1031,6 +1031,7 @@ port and password.
 - Aquark Mr. Pure salt pool chlorinator
 - ASIP-0622 indoor planter
 - Bcetasy 18-in-1 air quality monitor
+- Boundless Brothers PA-210W gas alarm
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer

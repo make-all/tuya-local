@@ -1077,3 +1077,4 @@ Further device support has been made with the assistance of users. Please consid
 - [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
 - [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
 - [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat.
+- [norb-HB](https://github.com/norb-HB) for assisting with support for Boundless Brothers PA-210W gas alarm.
