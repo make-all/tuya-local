@@ -1053,6 +1053,7 @@ port and password.
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
+- iHseno ZTU human presence sensor
 - idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
 - Inkbird PTH-9CW air quality monitor
