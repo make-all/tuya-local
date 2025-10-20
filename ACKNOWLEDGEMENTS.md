@@ -1079,3 +1079,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat.
 - [norb-HB](https://github.com/norb-HB) for assisting with support for Boundless Brothers PA-210W gas alarm.
 - [arsenicks](https://github.com/arsenicks) for contributing support for iHseno human presence sensor.
+- [diegaccio](https://github.com/diegaccio) for contributing improvements for Beok TGM50-WPB-WF / M5-G2 variants.
