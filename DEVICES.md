@@ -48,6 +48,7 @@
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
 - Lehmann LHOHC-2013C electric radiator
+- Livn Arosa electric fireplace
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Ember Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Modern Flames Orion electric fireplace
