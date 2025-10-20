@@ -252,6 +252,7 @@
 - generic 5-speed fan controller (HomeMate, Conbre)
 - 3A Nue 3 speed fan and light controller
 - Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
+- Airwoods AV-EW8/DF heat recovery ventilation with humidity control
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arida Venti 160 small through-wall heat-recovery ventilation fan

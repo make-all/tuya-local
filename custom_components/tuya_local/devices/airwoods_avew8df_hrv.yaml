@@ -1,0 +1,162 @@
+name: Ventilation
+products:
+  - id: ycmsi0gq6qfa9zm3
+    manufacturer: Airwoods
+    model: AV-EW8/DF
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: supply
+            value: fresh
+          - dps_val: exhaust
+            value: extractor
+          - dps_val: ventilate
+            value: heat_recovery
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: climate
+    name: Free cooling
+    dps:
+      - id: 102
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: fan_only
+      - id: 20
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 29
+      - id: 21
+        type: integer
+        optional: true
+        name: current_temperature
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: connectivity
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: humidifier
+    class: dehumidifier
+    name: Humidity control
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 104
+        type: integer
+        name: humidity
+        range:
+          min: 40
+          max: 95
+      - id: 105
+        type: integer
+        name: current_humidity
+  - entity: binary_sensor
+    name: Filter change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Boost
+    icon: "mdi:rocket-launch"
+    dps:
+      - id: 107
+        type: boolean
+        name: switch

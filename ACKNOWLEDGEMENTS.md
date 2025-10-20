@@ -731,7 +731,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Thommav](https://github.com/Thommav) for assisting with support for ZPmeter 214C water meter.
 - [Esp32-zapper](https://github.com/Esp32-zapper) for assisting with support for HunterTBK video doorbell.
 - [masfernandez](https://github.com/masfernandez) for assisting with support for Create Warm Towel Advance bathroom heater.
-- [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher and Weaja gas alarm.
+- [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher, Weaja gas alarm, Airwoods AV-EW8/DF HRV.
 - [ChrisDes](https://github.com/ChrisDes) for assisting with support for Raykube A1 Pro Max clip-over door lock.
 - [pimpalaputty](https://github.com/pimpalaputty) for contributing support for AFYEEV 16A EV charger.
 - [SimonAnnetts](https://github.com/SimonAnnetts) for contributing support for Solar Grid/Smart GTB series solar inverters.
