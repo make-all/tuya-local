@@ -1,7 +1,6 @@
 """Tests for the ELEGRP DTR10 dimmer switch."""
 
 from homeassistant.components.light import ColorMode
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import PERCENTAGE
 
 from ..const import ELEGRP_DTR10_PAYLOAD
@@ -16,15 +15,12 @@ SWITCH_DPS = "1"
 BRIGHTNESS_DPS = "2"
 MIN_BRIGHTNESS_DPS = "3"
 BULB_TYPE_DPS = "4"
-MAX_BRIGHTNESS_DPS = "5"
-INDICATOR_BRIGHTNESS_DPS = "101"
 FADE_ON_SPEED_DPS = "103"
 TIMER_REMAINING_DPS = "6"
 FADE_OFF_SPEED_DPS = "104"
 LONGPRESS_BRIGHTNESS_DPS = "108"
 TIMER_MODE_DPS = "110"
 TIMER_DPS = "111"
-FIRMWARE_VERSION_DPS = "113"
 
 
 class TestElegRPDTR10(
@@ -48,7 +44,7 @@ class TestElegRPDTR10(
             tests=[(100, 18), (500, 94), (1000, 191)],
         )
 
-        # Set up number entities
+        # Set up number entities (minimum brightness only)
         self.setUpMultiNumber(
             [
                 {
@@ -59,21 +55,7 @@ class TestElegRPDTR10(
                     "unit": PERCENTAGE,
                     "scale": 10,
                     "step": 1,
-                },
-                {
-                    "dps": INDICATOR_BRIGHTNESS_DPS,
-                    "name": "number_night_indicator_light",
-                    "min": 0,
-                    "max": 100,
-                    "unit": PERCENTAGE,
-                },
-                {
-                    "dps": TIMER_DPS,
-                    "name": "number_timer_duration",
-                    "min": 0,
-                    "max": 86400,
-                    "unit": "s",
-                },
+                }
             ]
         )
 
@@ -114,7 +96,6 @@ class TestElegRPDTR10(
                     "dps": LONGPRESS_BRIGHTNESS_DPS,
                     "name": "select_long_press_on",
                     "options": {
-                        1000: "Max Brightness",
                         258: "Nap 25%",
                         505: "Cuddle 50%",
                         753: "Leisure 75%",
@@ -139,11 +120,7 @@ class TestElegRPDTR10(
                     "dps": TIMER_REMAINING_DPS,
                     "name": "sensor_timer_remaining",
                     "unit": "s",
-                },
-                {
-                    "dps": FIRMWARE_VERSION_DPS,
-                    "name": "sensor_firmware_version",
-                },
+                }
             ]
         )
 
@@ -153,10 +130,7 @@ class TestElegRPDTR10(
         self.mark_secondary(
             [
                 "number_minimum_brightness",
-                "number_night_indicator_light",
-                "number_timer_duration",
                 "sensor_timer_remaining",
-                "sensor_firmware_version",
                 "select_bulb_type",
                 "select_fade_on_speed",
                 "select_fade_off_speed",

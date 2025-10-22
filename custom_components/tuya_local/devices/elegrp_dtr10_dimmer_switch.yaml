@@ -4,7 +4,7 @@ products:
     manufacturer: ELEGRP
     model: DTR10 Single Pole 2.4 GHz WiFi Dimmable Switch
 entities:
-  # Main Light Control
+  # Main light control
   - entity: light
     dps:
       - id: 1
@@ -16,8 +16,12 @@ entities:
         range:
           min: 10
           max: 1000
+      - id: 113
+        type: string
+        name: firmware_version
+        optional: true
 
-  # Bulb Configuration
+  # Bulb configuration
   - entity: select
     name: Bulb type
     icon: "mdi:lightbulb-variant"
@@ -39,7 +43,7 @@ entities:
 
   # Settings
   - entity: select
-    name: 'Long Press "On"'
+    name: 'Long press "On"'
     category: config
     icon: "mdi:gesture-tap-hold"
     dps:
@@ -48,8 +52,6 @@ entities:
         name: option
         optional: true
         mapping:
-          - dps_val: 1000
-            value: "Max Brightness"
           - dps_val: 258
             value: "Nap 25%"
           - dps_val: 505
@@ -59,7 +61,7 @@ entities:
           - dps_val: 1000
             value: "Bright 100%"
   - entity: select
-    name: Fade On Speed
+    name: Fade on speed
     icon: "mdi:transition"
     category: config
     dps:
@@ -77,7 +79,7 @@ entities:
           - dps_val: "Slow"
             value: Slow (15s)
   - entity: select
-    name: Fade Off Speed
+    name: Fade off speed
     icon: "mdi:transition"
     category: config
     dps:
@@ -94,23 +96,23 @@ entities:
             value: Medium (5s)
           - dps_val: "Slow"
             value: Slow (15s)
-
-  - entity: number
-    name: Night Indicator Light
+  # Indicator LED converted to light (brightness only)
+  - entity: light
+    name: Night indicator light
     category: config
     icon: "mdi:led-on"
     dps:
       - id: 101
         type: integer
-        name: value
+        name: brightness
         unit: "%"
         range:
           min: 0
           max: 100
 
-  # Brightness Configuration
+  # Brightness configuration
   - entity: number
-    name: Minimum Brightness
+    name: Minimum brightness
     category: config
     icon: "mdi:brightness-4"
     dps:
@@ -153,30 +155,21 @@ entities:
   #       mapping:
   #         - scale: 10
 
-  # Timer
-  - entity: number
-    name: Timer Duration
+  # Timer (converted from number with two value dps)
+  - entity: time
+    name: Timer
     category: config
     icon: "mdi:timer"
     dps:
       - id: 111
         type: integer
-        name: value
-        unit: "s"
-        range:
-          min: 0
-          max: 86400
-        optional: true
-      - id: 6
-        type: integer
-        name: value
-        unit: "s"
+        name: second
         range:
           min: 0
           max: 86400
         optional: true
   - entity: select
-    name: Timer Action
+    name: Timer action
     category: config
     icon: "mdi:timer-cog"
     dps:
@@ -190,7 +183,7 @@ entities:
           - dps_val: true
             value: "On"
   - entity: sensor
-    name: Timer Remaining
+    name: Timer remaining
     icon: "mdi:timer-sand"
     dps:
       - id: 6
@@ -198,16 +191,3 @@ entities:
         name: sensor
         unit: "s"
         optional: true
-        readonly: true
-
-  # Diagnostics
-  - entity: sensor
-    name: Firmware Version
-    category: diagnostic
-    icon: "mdi:chip"
-    dps:
-      - id: 113
-        type: string
-        name: sensor
-        optional: true
-        readonly: true
