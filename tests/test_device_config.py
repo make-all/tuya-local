@@ -264,7 +264,7 @@ KNOWN_DPS = {
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "text": {"required": ["value"], "optional": []},
-    "time": {"required": [{"or": ["hour", "minute", "second"]}], "optional": []},
+    "time": {"required": [{"or": ["hour", "minute", "second", "hms"]}], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [
