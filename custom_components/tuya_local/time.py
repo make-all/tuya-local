@@ -45,10 +45,12 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
         self._hour_dps = dps_map.pop("hour", None)
         self._minute_dps = dps_map.pop("minute", None)
         self._second_dps = dps_map.pop("second", None)
+        self._hms_dps = dps_map.pop("hms", None)
         if (
             self._hour_dps is None
             and self._minute_dps is None
             and self._second_dps is None
+            and self._hms_dps is None
         ):
             raise AttributeError(
                 f"{config.config_id} is missing an hour, minute or second dp"
@@ -65,6 +67,28 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
             minutes = self._minute_dps.get_value(self._device)
         if self._second_dps:
             seconds = self._second_dps.get_value(self._device)
+        if self._hms_dps:
+            hms = self._hms_dps.get_value(self._device)
+            if hms is not None and isinstance(hms, str):
+                parts = hms.split(":")
+                if len(parts) == 3:
+                    hours = int(parts[0])
+                    minutes = int(parts[1])
+                    seconds = int(parts[2])
+                elif len(parts) == 2:
+                    hours = int(parts[0])
+                    minutes = int(parts[1])
+                    seconds = 0
+                elif len(parts) == 1:
+                    if len(hms) <= 2:
+                        hours = hms
+                    elif len(hms) <= 4:
+                        hours = hms[0 : len(hms) - 2]
+                        minutes = hms[len(hms) - 2 :]
+                    else:
+                        hours = hms.substring(0, len(hms) - 4)
+                        minutes = hms.substring(len(hms) - 4, len(hms) - 2)
+                        seconds = hms.substring(len(hms) - 2)
         if hours is None and minutes is None and seconds is None:
             return None
         hours = hours or 0

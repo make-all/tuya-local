@@ -1072,6 +1072,7 @@ port and password.
 - Mirabella Genio motion sensor
 - Moes human presence sensor
 - Moes single outlet water timer
+- Moes smart wake up light alarm clock
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser

@@ -1082,3 +1082,5 @@ Further device support has been made with the assistance of users. Please consid
 - [diegaccio](https://github.com/diegaccio) for contributing improvements for Beok TGM50-WPB-WF / M5-G2 variants.
 - [Kriseh1337](https://github.com/Kriseh1337) for assisting with support for Livn Arosa electric fireplace.
 - [AD8-sven](https://github.com/AD8-sven) for assisting with support for ZMP71SH variable speed pool pump.
+- [f3peter](https://github.com/f3peter) for assisting with support for Moes smart wake up light alarm clock.
+.
