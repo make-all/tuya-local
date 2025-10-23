@@ -114,23 +114,20 @@ class TestElegRPDTR10(
         )
 
         # Set up sensor entities
-        self.setUpMultiSensor(
+        self.setUpMultiSensors(
             [
                 {
                     "dps": TIMER_REMAINING_DPS,
-                    "name": "sensor_timer_remaining",
+                    "name": "sensor_time_remaining",
                     "unit": "s",
                 }
             ]
         )
-
-
-
-                # Mark secondary entities
+        # Mark secondary entities
         self.mark_secondary(
             [
                 "number_minimum_brightness",
-                "sensor_timer_remaining",
+                "sensor_time_remaining",
                 "select_bulb_type",
                 "select_fade_on_speed",
                 "select_fade_off_speed",
