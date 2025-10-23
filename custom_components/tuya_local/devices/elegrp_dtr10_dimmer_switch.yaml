@@ -1,6 +1,6 @@
 name: Dimmable switch
 products:
-  - id: elegrp_dtr10
+  - id: bealnjtopbhmi5nn
     manufacturer: ELEGRP
     model: DTR10 Single Pole 2.4 GHz WiFi Dimmable Switch
 entities:
@@ -155,9 +155,9 @@ entities:
   #       mapping:
   #         - scale: 10
 
-  # Timer (converted from number with two value dps)
+  # Timer
   - entity: time
-    name: Timer
+    name: Timer duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -166,10 +166,10 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
         optional: true
   - entity: select
-    name: Timer action
+    name: Timer switch
     category: config
     icon: "mdi:timer-cog"
     dps:
@@ -183,7 +183,7 @@ entities:
           - dps_val: true
             value: "On"
   - entity: sensor
-    name: Timer remaining
+    name: Time remaining
     icon: "mdi:timer-sand"
     dps:
       - id: 6
