@@ -17,7 +17,7 @@ in older versions.
 
 Please use the button below.
 
-### [![https://img.shields.io/badge/Report_a_vulnerability-00cc00]](https://github.com/make-all/tuya-local/security/advisories/new)
+### ![https://img.shields.io/badge/Report_a_vulnerability-00cc00](https://github.com/make-all/tuya-local/security/advisories/new)
 
 This will give the developers a heads up about the issue before posting publicly, to protect other users who may be affected.
 Security issues will be treated as top priority, so you should get a response within 72 hours, usually much sooner.
