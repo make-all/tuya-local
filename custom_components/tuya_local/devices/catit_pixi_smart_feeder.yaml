@@ -59,7 +59,7 @@ entities:
     name: Feed portion size
     category: config
     dps:
-      # Button-triggered meals do not update this sensor on Catit 43752 (remote feeds only)
+      # Updated by remote feeds only on Catit 43752
       - id: 3
         name: value
         type: integer
@@ -117,7 +117,8 @@ entities:
     name: Last meal details
     category: diagnostic
     dps:
-      # 104 takes value such as `R:0  C:1  T:1761264924` for a while after a meal has been dispensed
+      # 104 takes value such as `R:0  C:1  T:1761264924`
+      # Value persists for a while
       - id: 104
         name: last_meal_details
         type: string
