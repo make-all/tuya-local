@@ -117,8 +117,31 @@ entities:
     dps:
       # Takes value such as `R:0  C:1  T:1761264924`,
       # where `R=result`, `C=meal_size`, `T=unix_time`.
-      # Extracting the individual metrics with Tuya Local
-      # is not currently possible - use a template sensor.
+      # Extracting the timestamp with Tuya Local is not currently
+      # possible - use a template sensor:
+      # ```
+      # template:
+      #   sensor:
+      #     - name: Catit Pixi Smart Feeder last meal time
+      #       state: >
+      #         {% set s = states("sensor.your_last_meal_details") %}
+      #         {% if s in [""] %}
+      #           unknown
+      #         {% else %}
+      #           {% set ts = namespace(val=None) %}
+      #           {% for p in s.split() %}
+      #             {% if p.startswith("T:") %}
+      #               {% set ts.val = (p[2:]|int) %}
+      #             {% endif %}
+      #           {% endfor %}
+      #           {% if ts.val is none %}
+      #             unknown
+      #           {% else %}
+      #             {{ (ts.val | int) | timestamp_utc }}
+      #           {% endif %}
+      #         {% endif %}
+      #       device_class: timestamp
+      # ```
       # Value persists until next feed, or device power off
       - id: 104
         name: sensor
