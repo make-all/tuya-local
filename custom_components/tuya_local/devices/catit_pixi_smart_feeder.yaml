@@ -14,7 +14,7 @@ products:
     name: Pixi Smart Feeder
 entities:
   - entity: button
-    name: Quick Feed
+    name: Quick feed
     icon: "mdi:food-drumstick"
     dps:
       # Feeds the meal size, regardless of dps value
@@ -34,7 +34,7 @@ entities:
         optional: true
   - entity: sensor
     icon: "mdi:paw"
-    name: Feed report
+    name: Last meal size
     category: diagnostic
     dps:
       - id: 15
@@ -56,10 +56,8 @@ entities:
         optional: true
   - entity: number
     icon: "mdi:paw"
-    name: Feed portion size
-    category: config
+    name: Feed meal
     dps:
-      # Updated by remote feeds only on Catit 43752
       - id: 3
         name: value
         type: integer
@@ -113,23 +111,26 @@ entities:
           - dps_val: null
             value: null
           - value: false
-  - entity: text
+  - entity: sensor
     name: Last meal details
     category: diagnostic
     dps:
-      # 104 takes value such as `R:0  C:1  T:1761264924`
-      # Value persists for a while
+      # Takes value such as `R:0  C:1  T:1761264924`,
+      # where `R=result`, `C=meal_size`, `T=unix_time`.
+      # Extracting the individual metrics with Tuya Local
+      # is not currently possible - use a template sensor.
+      # Value persists until next feed, or device power off
       - id: 104
-        name: value
+        name: sensor
         type: string
         optional: true
         readonly: true
-  - entity: text
+  - entity: sensor
     name: IP address
     category: diagnostic
     dps:
       - id: 107
-        name: value
+        name: sensor
         type: string
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
