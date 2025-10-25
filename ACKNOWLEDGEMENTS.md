@@ -1084,3 +1084,4 @@ Further device support has been made with the assistance of users. Please consid
 - [AD8-sven](https://github.com/AD8-sven) for assisting with support for ZMP71SH variable speed pool pump.
 - [f3peter](https://github.com/f3peter) for assisting with support for Moes smart wake up light alarm clock.
 - [jeppesens](https://github.com/jeppesens) for contributing support for Woods MRD25GW.
+- [slowrie23](https://github.com/slowrie23) for assisting with support for RecTeq RT-B380X Bullseye Deluxe grill.
