@@ -120,7 +120,7 @@ entities:
       # 104 takes value such as `R:0  C:1  T:1761264924`
       # Value persists for a while
       - id: 104
-        name: last_meal_details
+        name: value
         type: string
         optional: true
         readonly: true
@@ -129,7 +129,7 @@ entities:
     category: diagnostic
     dps:
       - id: 107
-        name: ip_address
+        name: value
         type: string
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
@@ -139,7 +139,7 @@ entities:
     category: config
     dps:
       - id: 103
-        name: sound_enabled
+        name: switch
         type: boolean
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
@@ -148,7 +148,7 @@ entities:
     category: config
     dps:
       - id: 102
-        name: feed_button_enabled
+        name: switch
         type: boolean
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
@@ -157,7 +157,7 @@ entities:
     category: config
     dps:
       - id: 101
-        name: meal_size
+        name: value
         type: integer
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
