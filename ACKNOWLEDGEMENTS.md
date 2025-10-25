@@ -1086,3 +1086,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jeppesens](https://github.com/jeppesens) for contributing support for Woods MRD25GW.
 - [slowrie23](https://github.com/slowrie23) for assisting with support for RecTeq RT-B380X Bullseye Deluxe grill.
 - [cihancelikkk](https://github.com/cihancelikkk) for assisting with support for Moes WHT-S01 thermostat.
+- [Macrisu](https://github.com/Macrisu) for assisting with support for Ipengen GO-E31-15A EV charger.
