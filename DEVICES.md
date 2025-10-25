@@ -230,7 +230,7 @@
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
-- Moes WHT-009 thermostat
+- Moes WHT-009, WHT-S01 thermostats
 - Multi Leaf DY-107 thermostat
 - Myuet ME82 thermostat
 - Nashone MTS-700-WB thermostat smartplug
