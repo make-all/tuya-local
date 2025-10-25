@@ -8,11 +8,16 @@ products:
   - id: ojqmjnoxqygqldsp
     manufacturer: Puppy Kitty
     name: Automatic pet feeder
+  - id: s3rvixmeqx62vud5
+    manufacturer: Catit
+    model: 43752
+    name: Pixi Smart Feeder
 entities:
   - entity: button
     name: Quick Feed
     icon: "mdi:food-drumstick"
     dps:
+      # Feeds the meal size, regardless of dps value
       - id: 2
         type: boolean
         name: button
@@ -22,6 +27,7 @@ entities:
     category: config
     hidden: true
     dps:
+      # Not thought to be used with Catit 43752
       - id: 1
         type: base64
         name: value
@@ -34,6 +40,12 @@ entities:
       - id: 15
         name: sensor
         type: integer
+        range:
+          min: 1
+          max: 12
+        # Only present after feeding on Catit 43752
+        optional: true
+        readonly: true
   - entity: button
     translation_key: factory_reset
     category: config
@@ -44,15 +56,18 @@ entities:
         optional: true
   - entity: number
     icon: "mdi:paw"
-    name: Manual feed
+    name: Feed portion size
     category: config
     dps:
+      # Button-triggered meals do not update this sensor on Catit 43752 (remote feeds only)
       - id: 3
         name: value
         type: integer
         range:
           min: 1
           max: 12
+        # Only present after feeding on Catit 43752
+        optional: true
   - entity: binary_sensor
     name: Food shortage
     class: problem
@@ -66,6 +81,7 @@ entities:
           - dps_val: 2
             value: true
           - value: false
+        readonly: true
   - entity: binary_sensor
     name: Food blockage
     class: problem
@@ -79,12 +95,14 @@ entities:
           - dps_val: 4
             value: true
           - value: false
+        readonly: true
   - entity: binary_sensor
     name: Feeding
     class: running
     icon: "mdi:paw"
     category: diagnostic
     dps:
+      # Not observed in Catit 43752
       - id: 4
         type: string
         name: sensor
@@ -95,3 +113,53 @@ entities:
           - dps_val: null
             value: null
           - value: false
+  - entity: text
+    name: Last meal details
+    category: diagnostic
+    dps:
+      # 104 takes value such as `R:0  C:1  T:1761264924` for a while after a meal has been dispensed
+      - id: 104
+        name: last_meal_details
+        type: string
+        optional: true
+        readonly: true
+  - entity: text
+    name: IP address
+    category: diagnostic
+    dps:
+      - id: 107
+        name: ip_address
+        type: string
+        # Present at all times on Catit 43752 but unsure about other products
+        optional: true
+        readonly: true
+  - entity: switch
+    name: Sound enabled
+    category: config
+    dps:
+      - id: 103
+        name: sound_enabled
+        type: boolean
+        # Present at all times on Catit 43752 but unsure about other products
+        optional: true
+  - entity: switch
+    name: Feed button enabled
+    category: config
+    dps:
+      - id: 102
+        name: feed_button_enabled
+        type: boolean
+        # Present at all times on Catit 43752 but unsure about other products
+        optional: true
+  - entity: number
+    name: Meal size
+    category: config
+    dps:
+      - id: 101
+        name: meal_size
+        type: integer
+        # Present at all times on Catit 43752 but unsure about other products
+        optional: true
+        range:
+          min: 1
+          max: 12
