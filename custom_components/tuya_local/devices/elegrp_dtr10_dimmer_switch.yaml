@@ -98,14 +98,12 @@ entities:
             value: Slow (15s)
   # Indicator LED converted to light (brightness only)
   - entity: light
-    name: Night indicator light
+    translation_key: indicator
     category: config
-    icon: "mdi:led-on"
     dps:
       - id: 101
         type: integer
         name: brightness
-        unit: "%"
         range:
           min: 0
           max: 100
@@ -157,9 +155,8 @@ entities:
 
   # Timer
   - entity: time
-    name: Timer duration
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 111
         type: integer
@@ -169,7 +166,7 @@ entities:
           max: 86399
         optional: true
   - entity: select
-    name: Timer auto on mode
+    name: Timer mode
     category: config
     icon: "mdi:timer-cog"
     dps:
@@ -183,8 +180,9 @@ entities:
           - dps_val: true
             value: "On"
   - entity: sensor
-    name: Time remaining
-    icon: "mdi:timer-sand"
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
     dps:
       - id: 6
         type: integer
