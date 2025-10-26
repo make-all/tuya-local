@@ -499,6 +499,7 @@
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
+- Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
 - Avidsen Soria 400W solar inverter
 - CBI Astute smart controller breaker switch

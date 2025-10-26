@@ -1089,3 +1089,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Macrisu](https://github.com/Macrisu) for assisting with support for Ipengen GO-E31-15A EV charger.
 - [davidmurdoch](https://github.com/davidmurdoch) for contributing support for Elegrp DTR10 dimmer light switch.
 - [nitedani](https://github.com/nitedani) for contributing support for Fisher F-ERVQ-B150CO2-I heat recovery ventilator.
+- [kbeanio](https://github.com/kbeanio) for assisting with support for Atorch DT20HBW battery monitor.
