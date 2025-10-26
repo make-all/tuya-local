@@ -1087,3 +1087,4 @@ Further device support has been made with the assistance of users. Please consid
 - [slowrie23](https://github.com/slowrie23) for assisting with support for RecTeq RT-B380X Bullseye Deluxe grill.
 - [cihancelikkk](https://github.com/cihancelikkk) for assisting with support for Moes WHT-S01 thermostat.
 - [Macrisu](https://github.com/Macrisu) for assisting with support for Ipengen GO-E31-15A EV charger.
+- [davidmurdoch](https://github.com/davidmurdoch) for contributing support for Elegrp DTR10 dimmer light switch.

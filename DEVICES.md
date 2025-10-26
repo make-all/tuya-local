@@ -717,6 +717,7 @@ of device.
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
+- Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
 - Fancy LEDs screen sync light 2.0
