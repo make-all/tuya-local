@@ -1,4 +1,4 @@
-name: Outdoor Zip Blind
+name: Blind
 products:
   - id: f91miyhj
     manufacturer: Outdoor Inc
@@ -6,8 +6,6 @@ products:
 entities:
   - entity: cover
     class: blind
-    current_position_dp: 8
-    set_position_dp: 9
     dps:
       - id: 1
         name: control
@@ -32,7 +30,7 @@ entities:
           min: 0
           max: 100
       - id: 3
-        name: state
+        name: work_state
         type: string
         optional: true
         mapping:
@@ -42,7 +40,7 @@ entities:
             value: "closing"
 
   - entity: switch
-    name: Reverse Direction
+    name: Reverse
     category: config
     icon: "mdi:swap-vertical"
     dps:
