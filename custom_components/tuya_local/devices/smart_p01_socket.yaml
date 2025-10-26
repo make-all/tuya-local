@@ -1,7 +1,6 @@
-name: Smart P01 Socket
+name: Smartplug
 products:
   - id: ocazi2dacnofqidn
-    manufacturer: Smart
     model: P01
 entities:
   - entity: switch
@@ -14,14 +13,6 @@ entities:
         type: integer
         name: add_ele
         optional: true
-      - id: 42
-        type: string
-        name: random_schedule
-        optional: true
-      - id: 43
-        type: string
-        name: cycle_schedule
-        optional: true
   - entity: time
     category: config
     translation_key: timer
@@ -31,17 +22,7 @@ entities:
         name: second
         range:
           min: 0
-          max: 86400
-  - entity: sensor
-    class: energy
-    dps:
-      - id: 20
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 1000
+          max: 86399
   - entity: sensor
     class: current
     category: diagnostic
@@ -108,3 +89,23 @@ entities:
             value: memory
           - dps_val: null
             invalid: true
+  - entity: text
+    name: Random schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 42
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 43
+        type: base64
+        name: value
+        optional: true
