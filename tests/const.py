@@ -1701,21 +1701,3 @@ MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
     "118": True,
     # last 3 must be true for the time entities to be enabled
 }
-
-ELEGRP_DTR10_PAYLOAD = {
-    "1": True,
-    "2": 500,
-    "3": 100,
-    "4": "Led",
-    "5": 1000,
-    "6": 0,
-    "101": 50,
-    "103": "Slow",
-    "104": "Immediate",
-    "108": 753,
-    "109": "CC.36",
-    "110": False,
-    "111": 0,
-    "113": "2.0.4",
-    "114": True,
-}
