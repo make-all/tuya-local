@@ -1,8 +1,8 @@
-name: Heat Recovery Ventilator
-products:
-  - id: 000003vwap
-    manufacturer: Fisher
-    model: F-ERVQ-B150CO2-I
+name: Heat recovery ventilator
+# products:
+#  - id: UNKNOWN
+#    manufacturer: Fisher
+#    model: F-ERVQ-B150CO2-I
 entities:
   - entity: fan
     translation_only_key: ventilation
@@ -17,9 +17,9 @@ entities:
           - dps_val: "0"
             value: Manual
           - dps_val: "1"
-            value: Auto
+            value: auto
           - dps_val: "2"
-            value: Sleep
+            value: sleep
           - dps_val: "3"
             value: Pure L
           - dps_val: "4"
@@ -61,6 +61,7 @@ entities:
   - entity: sensor
     name: Filter remaining
     class: duration
+    icon: "mdi:air-filter"
     category: diagnostic
     dps:
       - id: 11
@@ -83,6 +84,7 @@ entities:
         name: fault_code
   - entity: number
     name: Supply fan speed
+    icon: "mdi:fan"
     category: config
     dps:
       - id: 103
@@ -93,6 +95,7 @@ entities:
           max: 8
   - entity: number
     name: Exhaust fan speed
+    icon: "mdi:fan"
     category: config
     dps:
       - id: 104
@@ -102,7 +105,8 @@ entities:
           min: 1
           max: 8
   - entity: select
-    name: Filter time setting
+    name: Filter lifespan
+    icon: "mdi:air-filter"
     category: config
     dps:
       - id: 105
