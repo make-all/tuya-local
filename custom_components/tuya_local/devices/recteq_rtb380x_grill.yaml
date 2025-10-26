@@ -1,13 +1,14 @@
 name: Grill
-# products:
-#   - id: UNKNOWN
-#     manufacturer: RecTeq
-#     model: RT-700
+products:
+  - id: fasfaumc9mykaws3
+    manufacturer: RecTeq
+    model: Bullseye Deluxe
+    model_id: RT-B380X
 entities:
   - entity: climate
     icon: "mdi:grill"
     dps:
-      - id: 1
+      - id: 2
         type: boolean
         name: hvac_mode
         mapping:
@@ -15,33 +16,18 @@ entities:
             value: "off"
           - dps_val: true
             value: heat
-      - id: 102
+      - id: 101
         type: integer
         name: temperature
         range:
           min: 180
-          max: 500
+          max: 1000
         unit: F
-      - id: 103
+        mapping:
+          - step: 5
+      - id: 102
         type: integer
         name: current_temperature
-        unit: F
-  - entity: sensor
-    name: Probe A Temperature
-    class: temperature
-    dps:
-      - id: 105
-        type: integer
-        name: sensor
-        unit: F
-  - entity: sensor
-    name: Probe B Temperature
-    class: temperature
-    dps:
-      - id: 106
-        type: integer
-        name: sensor
-        unit: F
   - entity: number
     name: Minimum feed rate
     dps:
@@ -53,11 +39,19 @@ entities:
           max: 255
         mapping:
           - step: 5
+  - entity: sensor
+    name: Probe A temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: F
   - entity: number
     name: Temperature compensation
     class: temperature
     dps:
-      - id: 107
+      - id: 105
         type: integer
         name: value
         range:
@@ -67,20 +61,20 @@ entities:
     name: Power failure
     class: problem
     dps:
-      - id: 109
+      - id: 106
         type: boolean
         name: sensor
   - entity: binary_sensor
     name: Ignition failure
     class: problem
     dps:
-      - id: 110
+      - id: 107
         type: boolean
         name: sensor
   - entity: binary_sensor
     name: Probe fault
     class: problem
     dps:
-      - id: 111
+      - id: 108
         type: boolean
         name: sensor

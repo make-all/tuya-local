@@ -230,7 +230,7 @@
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
-- Moes WHT-009 thermostat
+- Moes WHT-009, WHT-S01 thermostats
 - Multi Leaf DY-107 thermostat
 - Myuet ME82 thermostat
 - Nashone MTS-700-WB thermostat smartplug
@@ -292,6 +292,7 @@
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
 - GHome SW19 ceiling fan and light switch
 - Globe ceiling fans with RGBCW lights (with and without presets)
@@ -315,6 +316,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Ledkia fan and light controller
+^ Ledvance Ceiling fan with light
 - Lexy F501 fan
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
@@ -427,7 +429,7 @@
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
-- Woods WDD90 dehumidifier
+- Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
 
@@ -482,7 +484,7 @@
 - Kogan glass 1.7L smart kettle
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
-- Recteq RT700 and RT1250 grills
+- Recteq RT-700, RT-1250, RT-B380X grills
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
@@ -498,6 +500,7 @@
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
+- Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
 - Avidsen Soria 400W solar inverter
 - CBI Astute smart controller breaker switch
@@ -560,6 +563,7 @@
 - EcoPoint EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
+- Ipengen GO-E31-16A EV charger
 - Kolanky 3.6kW EV charger
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
@@ -716,6 +720,7 @@ of device.
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
+- Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
 - Fancy LEDs screen sync light 2.0
@@ -1072,6 +1077,7 @@ port and password.
 - Mirabella Genio motion sensor
 - Moes human presence sensor
 - Moes single outlet water timer
+- Moes smart wake up light alarm clock
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
@@ -1118,6 +1124,7 @@ port and password.
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
 - Zecamin ZG-205W mmWave human presence sensor
+- ZMP71SH variable speed swimming pool pump
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-HPS01 human presence sensor

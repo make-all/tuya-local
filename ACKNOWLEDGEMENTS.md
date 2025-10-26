@@ -1081,3 +1081,13 @@ Further device support has been made with the assistance of users. Please consid
 - [arsenicks](https://github.com/arsenicks) for contributing support for iHseno human presence sensor.
 - [diegaccio](https://github.com/diegaccio) for contributing improvements for Beok TGM50-WPB-WF / M5-G2 variants.
 - [Kriseh1337](https://github.com/Kriseh1337) for assisting with support for Livn Arosa electric fireplace.
+- [AD8-sven](https://github.com/AD8-sven) for assisting with support for ZMP71SH variable speed pool pump.
+- [f3peter](https://github.com/f3peter) for assisting with support for Moes smart wake up light alarm clock.
+- [jeppesens](https://github.com/jeppesens) for contributing support for Woods MRD25GW.
+- [slowrie23](https://github.com/slowrie23) for assisting with support for RecTeq RT-B380X Bullseye Deluxe grill and improvements for RT-700.
+- [cihancelikkk](https://github.com/cihancelikkk) for assisting with support for Moes WHT-S01 thermostat.
+- [Macrisu](https://github.com/Macrisu) for assisting with support for Ipengen GO-E31-15A EV charger.
+- [davidmurdoch](https://github.com/davidmurdoch) for contributing support for Elegrp DTR10 dimmer light switch.
+- [nitedani](https://github.com/nitedani) for contributing support for Fisher F-ERVQ-B150CO2-I heat recovery ventilator.
+- [kbeanio](https://github.com/kbeanio) for assisting with support for Atorch DT20HBW battery monitor.
+- [pbambr](https://github.com/pbambr) for assisting with support for Ledvance ceiling fan with light.

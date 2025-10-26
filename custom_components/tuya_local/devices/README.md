@@ -766,6 +766,7 @@ to use it for other length timers.
 - **hour** (optional, integer in range 0-24) - the hours component
 - **minute** (optional, integer in range 0-60 or 0-1440 if the only dp) - the minute component
 - **second** (optional, integer in range 0-60 or 0-84600 if the only dp) - the second component
+- **hms** (optional, string in format "hh:mm", "hh:mm:ss", "hhmm" or "hhmmss" - all components as a string
 
 ### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
