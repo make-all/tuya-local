@@ -642,6 +642,7 @@ the best option.
 - Relay switch with 433MHz remote (unbranded)
 - RCU16 16ch relay module
 - Single switch with backlight (unbranded)
+- Smart P01 power monitoring smartplug
 - Somgam single wall switch
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
