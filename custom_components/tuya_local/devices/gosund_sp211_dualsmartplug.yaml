@@ -1,0 +1,207 @@
+name: Dual smartplug
+products:
+  - id: p2tjkvgdhvuadnlj
+    manufacturer: Gosund
+    model: SP211
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 41
+        type: string
+        name: cycle_time
+        optional: true
+      - id: 42
+        type: string
+        name: random_time
+        optional: true
+      - id: 43
+        type: string
+        name: inching
+        optional: true
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_1
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_2
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 25
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: memory
+            value: memory
+          - dps_val: power_off
+            value: "off"
+          - dps_val: power_on
+            value: "on"
+          - dps_val: last
+            value: memory
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 39
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+        optional: true
