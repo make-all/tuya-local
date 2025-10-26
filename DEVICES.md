@@ -316,6 +316,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Ledkia fan and light controller
+^ Ledvance Ceiling fan with light
 - Lexy F501 fan
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
