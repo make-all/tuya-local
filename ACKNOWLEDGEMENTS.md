@@ -1092,3 +1092,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kbeanio](https://github.com/kbeanio) for assisting with support for Atorch DT20HBW battery monitor.
 - [pbambr](https://github.com/pbambr) for assisting with support for Ledvance ceiling fan with light.
 - [luckyTamme](https://github.com/luckyTamme) for contributing support for Smart P01 smartplug.
+- [justinwyq](https://github.com/justinwyq) for contributing support for Outdoor Inc zip blind.
