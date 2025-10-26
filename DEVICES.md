@@ -292,6 +292,7 @@
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
 - GHome SW19 ceiling fan and light switch
 - Globe ceiling fans with RGBCW lights (with and without presets)
