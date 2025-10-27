@@ -1116,6 +1116,7 @@ port and password.
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
 - Valehaus SYZN119 towel warmer
+- Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
