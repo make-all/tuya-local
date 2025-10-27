@@ -205,6 +205,7 @@
 - Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
+- EARU Electronic K6RH3A-WiFi thermostat
 - EleChico CCST6001 thermostat
 - Emmeti Zona thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
@@ -427,7 +428,8 @@
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
-- VacPlus dehumidifier
+- VacPlus dehumidifier
+
 - Vivosun DE0003 dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
@@ -1217,3 +1219,4 @@ thing, it expands the support requirements beyond the capacity of the
 volunteer manpower of this project. The community would be better served by
 making Tuya devices work with the standard BLE and Zigbee support in
 Home Assistant rather than the other way around.
+
