@@ -6,54 +6,62 @@ products:
     model: WATCH 2
 entities:
   # ------------------------------------
-  # 1. Main Camera Entity (Snapshot/Detection/Recording)
+  # 1. Main Camera & Snapshot
   # ------------------------------------
-  - entity: camera
+  # USE RTSP
+
+  - entity: sensor
+    name: Latest snapshot
+    category: diagnostic
+    icon: "mdi:camera-burst"
     # Snapshot trigger (matches movement_detect_pic: 115)
     dps:
       - id: 115
-        name: snapshot
+        name: sensor
         type: base64
         optional: true
         sensitive: true
-      # Motion Detection Switch (matches motion_switch: 134)
+
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    # Motion Detection Switch (matches motion_switch: 134)
+    dps:
       - id: 134
-        name: motion_enable
+        name: switch
         type: boolean
         optional: true
-        mapping:
-          # Ensure a default state if DP is absent
-          - dps_val: null
-            value: false
-            hidden: true
-      # Recording Switch (matches record_switch: 150)
+
+  - entity: switch
+    name: SD card recording
+    icon: "mdi:video-outline"
+    category: config
+    # Recording Switch (matches record_switch: 150)
+    dps:
       - id: 150
-        name: record
+        name: switch
         type: boolean
         optional: true
-        mapping:
-          # Ensure a default state if DP is absent
-          - dps_val: null
-            value: false
-            hidden: true
 
   # ------------------------------------
-  # 2. Basic Configuration Switches/Lights (101, 103, 104)
+  # 2. Battery and Power
   # ------------------------------------
-  - entity: switch
+  # WIRED Camera so no "battery" sensors are present!
+
+  # ------------------------------------
+  # 3. Basic Configuration
+  # ------------------------------------
+
+  - entity: light
     name: Indicator
+    icon: "mdi:lightbulb-on"
     category: config
-    icon: "mdi:lightbulb"
-    # Indicator LED Switch (matches basic_indicator: 101)
+    # Basic Indicator (matches basic_indicator: 101)
     dps:
       - id: 101
         type: boolean
         name: switch
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
 
   - entity: switch
     name: Flip image
@@ -64,29 +72,38 @@ entities:
       - id: 103
         type: boolean
         name: switch
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
 
   - entity: switch
     name: Watermark (OSD)
-    category: config
     icon: "mdi:watermark"
+    category: config
     # Watermark/OSD Switch (matches basic_osd: 104)
     dps:
       - id: 104
         type: boolean
         name: switch
         optional: true
+
+  - entity: select
+    name: Night vision mode
+    icon: "mdi:weather-night"
+    category: config
+    # Night Vision Mode Selector (matches basic_nightvision: 108)
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
         mapping:
-          - dps_val: null
-            value: false
-            hidden: true
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
 
   # ------------------------------------
-  # 3. Sensitivity Selectors (106, 108, 140, 151)
+  # 4. Detection & Alarm
   # ------------------------------------
   - entity: select
     name: Motion sensitivity
@@ -105,30 +122,38 @@ entities:
             value: Medium
           - dps_val: "2"
             value: High
-          - dps_val: null
-            value: Unknown
-            hidden: true
 
-  - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+  - entity: switch
+    name: Motion alarm area
+    icon: "mdi:crop"
     category: config
-    # Night Vision Mode Selector (matches basic_nightvision: 108)
+    # Motion Area Switch (matches motion_area_switch: 168)
     dps:
-      - id: 108
-        type: string
-        name: option
+      - id: 168
+        type: boolean
+        name: switch
         optional: true
-        mapping:
-          - dps_val: "0"
-            value: Auto
-          - dps_val: "1"
-            value: "Off"
-          - dps_val: "2"
-            value: "On"
-          - dps_val: null
-            value: Unknown
-            hidden: true
+      # Motion Area String Data (matches motion_area: 169)
+      - id: 169
+        type: string
+        name: area
+        optional: true
+
+  - entity: switch
+    name: Sound detection
+    category: config
+    icon: "mdi:ear-hearing"
+    # Decibel Switch (matches decibel_switch: 139)
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+        optional: true
+      # Decibel Upload Data (matches decibel_upload: 141)
+      - id: 141
+        type: string
+        name: upload_timestamp
+        optional: true
 
   - entity: select
     name: Sound sensitivity
@@ -144,31 +169,19 @@ entities:
             value: Low
           - dps_val: "1"
             value: High
-          - dps_val: null
-            value: Unknown
-            hidden: true
-
-  - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
-    category: config
-    # Recording Mode Selector (matches record_mode: 151)
-    dps:
-      - id: 151
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: "1"
-            value: Event
-          - dps_val: "2"
-            value: Continuous
-          - dps_val: null
-            value: None
-            hidden: true
 
   # ------------------------------------
-  # 4. SD Card and Storage Entities (109, 110, 111, 117)
+  # 5. Alarm Mode & Linkage
+  # ------------------------------------
+  # Does not exist in V2
+
+  # ------------------------------------
+  # 6. Lights & Sirens
+  # ------------------------------------
+  # Does not exist in V2
+
+  # ------------------------------------
+  # 7. SD Card and Storage
   # ------------------------------------
   - entity: sensor
     name: SD capacity
@@ -184,7 +197,6 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
-    translation_key: status
     category: diagnostic
     icon: "mdi:micro-sd"
     # SD Status Sensor (matches sd_status: 110)
@@ -224,6 +236,8 @@ entities:
         optional: true
         persist: false
         mapping:
+          - dps_val: 0 # Current value from the data dump
+            value: Ready
           - dps_val: 2000
             value: Formatting
           - dps_val: 2001
@@ -235,54 +249,24 @@ entities:
           - dps_val: null
             value: Formatted
 
-  # ------------------------------------
-  # 5. Sound Detection (139, 141)
-  # ------------------------------------
-  - entity: switch
-    name: Sound detection
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
     category: config
-    icon: "mdi:ear-hearing"
-    # Decibel Switch (matches decibel_switch: 139)
+    # Recording Mode Selector (matches record_mode: 151)
     dps:
-      - id: 139
-        type: boolean
-        name: switch
+      - id: 151
+        type: string
+        name: option
         optional: true
         mapping:
-          - dps_val: null
-            value: false
-            hidden: true
-      # Decibel Upload Data (matches decibel_upload: 141)
-      - id: 141
-        type: string
-        name: upload
-        optional: true
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
 
   # ------------------------------------
-  # 6. Motion Area (168, 169)
-  # ------------------------------------
-  - entity: switch
-    name: Motion alarm area
-    icon: "mdi:crop"
-    category: config
-    # Motion Area Switch (matches motion_area_switch: 168)
-    dps:
-      - id: 168
-        type: boolean
-        name: switch
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
-      # Motion Area String Data (matches motion_area: 169)
-      - id: 169
-        type: string
-        name: area
-        optional: true
-
-  # ------------------------------------
-  # 7. ONVIF Stream (253, 254, 255)
+  # 8. Advanced / ONVIF
   # ------------------------------------
   - entity: switch
     name: ONVIF stream
@@ -293,19 +277,27 @@ entities:
         type: boolean
         name: switch
         optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
-      # ONVIF IP Address (matches onvif_ip_addr: 254)
+
+  - entity: sensor
+    name: ONVIF IP Address
+    category: diagnostic
+    icon: "mdi:ip-network"
+    # ONVIF IP Address (matches onvif_ip_addr: 254)
+    dps:
       - id: 254
         type: string
-        name: ip_address
+        name: sensor
         sensitive: true
         optional: true
-      # ONVIF Password Change (matches onvif_change_pwd: 253)
+
+  - entity: button
+    name: ONVIF password change
+    category: config
+    icon: "mdi:lock-reset"
+    # ONVIF Password Change (matches onvif_change_pwd: 253)
+    dps:
       - id: 253
         type: string
-        name: password_change
+        name: button
         sensitive: true
         optional: true
