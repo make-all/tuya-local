@@ -7,11 +7,10 @@ products:
     manufacturer: GiotoHun
   - id: ojqmjnoxqygqldsp
     manufacturer: Puppy Kitty
-    name: Automatic pet feeder
   - id: s3rvixmeqx62vud5
     manufacturer: Catit
-    model: "43752"
-    name: Pixi Smart Feeder
+    model: Pixi Smart Feeder
+    model_id: "43752"
 entities:
   - entity: button
     name: Quick feed
@@ -34,18 +33,14 @@ entities:
         optional: true
   - entity: sensor
     icon: "mdi:paw"
-    name: Last meal size
+    name: Feed report
     category: diagnostic
     dps:
       - id: 15
         name: sensor
         type: integer
-        range:
-          min: 1
-          max: 12
         # Only present after feeding on Catit 43752
         optional: true
-        readonly: true
   - entity: button
     translation_key: factory_reset
     category: config
@@ -56,7 +51,7 @@ entities:
         optional: true
   - entity: number
     icon: "mdi:paw"
-    name: Feed meal
+    name: Manual feed
     dps:
       - id: 3
         name: value
@@ -79,7 +74,6 @@ entities:
           - dps_val: 2
             value: true
           - value: false
-        readonly: true
   - entity: binary_sensor
     name: Food blockage
     class: problem
@@ -93,7 +87,6 @@ entities:
           - dps_val: 4
             value: true
           - value: false
-        readonly: true
   - entity: binary_sensor
     name: Feeding
     class: running
@@ -147,7 +140,6 @@ entities:
         name: sensor
         type: string
         optional: true
-        readonly: true
   - entity: sensor
     name: IP address
     category: diagnostic
@@ -157,7 +149,6 @@ entities:
         type: string
         # Present at all times on Catit 43752 but unsure about other products
         optional: true
-        readonly: true
   - entity: switch
     name: Sound enabled
     category: config
