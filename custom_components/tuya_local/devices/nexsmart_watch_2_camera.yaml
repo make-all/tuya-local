@@ -40,15 +40,21 @@ entities:
   # ------------------------------------
   # 2. Basic Configuration Switches/Lights (101, 103, 104)
   # ------------------------------------
-  - entity: light
-    translation_key: indicator
+  - entity: switch
+    name: Indicator
     category: config
+    icon: "mdi:lightbulb"
     # Indicator LED Switch (matches basic_indicator: 101)
     dps:
       - id: 101
         type: boolean
         name: switch
-        
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+
   - entity: switch
     name: Flip image
     icon: "mdi:flip-horizontal"
@@ -102,7 +108,7 @@ entities:
           - dps_val: null
             value: Unknown
             hidden: true
-            
+ 
   - entity: select
     name: Night vision
     icon: "mdi:weather-night"
@@ -246,7 +252,7 @@ entities:
           - dps_val: null
             value: false
             hidden: true
-      # Decibel Upload Data (matches decibel_upload: 141) - not strictly needed for a switch, but good to include if it reports status
+      # Decibel Upload Data (matches decibel_upload: 141)
       - id: 141
         type: string
         name: upload
