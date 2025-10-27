@@ -13,18 +13,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 41
-        type: string
-        name: cycle_time
-        optional: true
-      - id: 42
-        type: string
-        name: random_time
-        optional: true
-      - id: 43
-        type: string
-        name: inching
-        optional: true
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:
@@ -204,4 +192,33 @@ entities:
       - id: 40
         type: boolean
         name: lock
+        optional: true
+  - entity: text
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 41
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Random schedule
+    icon: "mdi:island"
+    category: config
+    hidden: true
+    dps:
+      - id: 42
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Inching
+    icon: "mdi:timer-refresh"
+    category: config
+    hidden: true
+      - id: 43
+        type: string
+        name: value
         optional: true
