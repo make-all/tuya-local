@@ -228,6 +228,7 @@
 - KKMoon knob thermostat
 - Ledlux thermostat
 - ME80 touchscreen thermostat
+- Mi-Heat TH11-WF thermostat
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
