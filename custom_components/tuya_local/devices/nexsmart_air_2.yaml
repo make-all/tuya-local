@@ -7,7 +7,7 @@ products:
 entities:
   # ------------------------------------
   # 1. Main Camera & Snapshot
-  # ------------------------------------ 
+  # ------------------------------------
   # USE RTSP
 
   - entity: sensor
@@ -28,7 +28,6 @@ entities:
   - entity: sensor
     name: Battery level
     class: battery
-    unit: "%"
     category: diagnostic
     # Battery Level Sensor (matches wireless_electricity: 145)
     dps:
@@ -99,7 +98,6 @@ entities:
   # ------------------------------------
   # 3. Basic Configuration
   # ------------------------------------
-  # 
 
   - entity: switch
     name: Flip image
@@ -127,7 +125,7 @@ entities:
     name: Night vision mode
     icon: "mdi:weather-night"
     category: config
-    # Night Vision Mode Selector (matches basic_nightvision: 108) - Mapped from V2's 108
+    # Night Vision Mode Selector(matches basic_nightvision: 108)
     dps:
       - id: 108
         type: string
@@ -246,7 +244,7 @@ entities:
         optional: true
         persist: false
         mapping:
-          - dps_val: -20000 # Current value from the data dump
+          - dps_val: -20000
             value: Unknown
           - dps_val: 2000
             value: Formatting
