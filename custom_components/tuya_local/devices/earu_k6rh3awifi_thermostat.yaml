@@ -175,24 +175,6 @@ entities:
         mapping:
           - scale: 10
             step: 10
-  - entity: select
-    name: Working week
-    icon: "mdi:calendar-clock"
-    category: config
-    dps:
-      - id: 31
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: "00"
-            value: "Off"
-          - dps_val: "5_2"
-            value: "5 days"
-          - dps_val: "6_1"
-            value: "6 days"
-          - dps_val: "70"
-            value: "7 days"
   - entity: light
     name: Backlight
     category: config
