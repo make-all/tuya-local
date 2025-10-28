@@ -28,7 +28,6 @@ entities:
   - entity: sensor
     name: Battery level
     class: battery
-    unit: "%"
     category: diagnostic
     # Battery Level Sensor (matches wireless_electricity: 145)
     dps:
@@ -45,7 +44,7 @@ entities:
     dps:
       - id: 146
         # CORRECTED TYPE to string as per the data: "value": "1"
-        type: string 
+        type: string
         name: sensor
         mapping:
           - dps_val: "0"
@@ -328,7 +327,7 @@ entities:
         optional: true
         persist: false
         mapping:
-          - dps_val: -20000 # Current value from the data dump
+          - dps_val: -20000
             value: Unknown
           - dps_val: 2000
             value: Formatting
