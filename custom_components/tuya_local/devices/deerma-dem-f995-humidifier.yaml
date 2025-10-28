@@ -1,0 +1,111 @@
+name: Humidifier
+products:
+  - id: your_device_id_here
+    manufacturer: tuya
+    model: smart_humidifier
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+
+      - id: 14
+        name: current_humidity
+        type: integer
+
+      - id: 24
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "AUTO"
+            value: auto
+          - dps_val: "NOR"
+            value: manual
+
+  - entity: fan
+    icon: "mdi:sprinkler-variant"
+    name: Spray
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 33
+          - dps_val: level_2
+            value: 67
+          - dps_val: level_3
+            value: 100
+
+  - entity: switch
+    translation_key: sleep_mode
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    translation_key: temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: "C"
+
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    icon: "mdi:virus-outline"
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    icon: "mdi:chemical-weapon"
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+
+  - entity: light
+    translation_key: display
+    category: config
+    icon: "mdi:led-outline"
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    translation_key: fault
+    class: safety
+    category: diagnostic
+    icon: "mdi:alert-circle-outline"
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
