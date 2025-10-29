@@ -494,6 +494,9 @@ class TuyaDpsConfig:
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
+        return self.decode_value(v, device)
+
+    def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
                 return bytes.fromhex(v)
@@ -922,10 +925,10 @@ class TuyaDpsConfig:
 
         return c_match
 
-    def get_values_to_set(self, device, value):
+    def get_values_to_set(self, device, value, pending_map={}):
         """Return the dps values that would be set when setting to value"""
         result = value
-        dps_map = {}
+        dps_map = pending_map
         if self.readonly:
             return dps_map
 
@@ -1055,7 +1058,12 @@ class TuyaDpsConfig:
             # Convert to int
             endianness = self.endianness
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), endianness)
+            decoded_value = self.decoded_value(device)
+            # if we have already updated it as part of this update,
+            # use it to preserve bits
+            if self.id in dps_map:
+                decoded_value = self.decode_value(dps_map[self.id], device)
+            current_value = int.from_bytes(decoded_value, endianness)
             result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
 
