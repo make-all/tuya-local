@@ -1,0 +1,40 @@
+name: Translation tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'custom_components/tuya_local/translations/*.json'
+      - 'custom_components/tuya_local/icons.json'
+  push:
+    paths:
+      - 'custom_components/tuya_local/translations/*.json'
+      - 'custom_components/tuya_local/icons.json'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+
+    strategy:
+      matrix:
+        python-version: ['3.13']
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+      - name: Translations check with pytest
+        run: pytest tests/test_translations.py

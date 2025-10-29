@@ -48,6 +48,7 @@
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
 - Lehmann LHOHC-2013C electric radiator
+- Livn Arosa electric fireplace
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Ember Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Modern Flames Orion electric fireplace
@@ -176,6 +177,7 @@
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
 - Modena ES-15-SKY water heater
+- Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -209,6 +211,7 @@
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - ETOP-HT-CH thermostat (branded as Ferco GN1)
+- Ettroit LN4102 thermostat
 - Eurom WiFi thermostat
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
@@ -224,10 +227,11 @@
 - KKMoon knob thermostat
 - Ledlux thermostat
 - ME80 touchscreen thermostat
+- Mi-Heat TH11-WF thermostat
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
-- Moes WHT-009 thermostat
+- Moes WHT-009, WHT-S01 thermostats
 - Multi Leaf DY-107 thermostat
 - Myuet ME82 thermostat
 - Nashone MTS-700-WB thermostat smartplug
@@ -250,6 +254,7 @@
 - generic 5-speed fan controller (HomeMate, Conbre)
 - 3A Nue 3 speed fan and light controller
 - Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
+- Airwoods AV-EW8/DF heat recovery ventilation with humidity control
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arida Venti 160 small through-wall heat-recovery ventilation fan
@@ -288,6 +293,7 @@
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
 - GHome SW19 ceiling fan and light switch
 - Globe ceiling fans with RGBCW lights (with and without presets)
@@ -311,6 +317,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Ledkia fan and light controller
+^ Ledvance Ceiling fan with light
 - Lexy F501 fan
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
@@ -414,7 +421,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
-- Qlima D812 and D820A dehumidifiers
+- Qlima D720, D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -423,7 +430,7 @@
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
-- Woods WDD90 dehumidifier
+- Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
 
@@ -478,7 +485,7 @@
 - Kogan glass 1.7L smart kettle
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
-- Recteq RT700 and RT1250 grills
+- Recteq RT-700, RT-1250, RT-B380X grills
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
@@ -494,6 +501,7 @@
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
+- Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
 - Avidsen Soria 400W solar inverter
 - CBI Astute smart controller breaker switch
@@ -556,6 +564,7 @@
 - EcoPoint EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
+- Ipengen GO-E31-16A EV charger
 - Kolanky 3.6kW EV charger
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
@@ -603,7 +612,8 @@ the best option.
 - ES01 3 outlet + USB powerstrip with individual timers
 - ESP Fort EC-SPSP USB and mains smartplug
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
-- Gosund SP112-RTL energy monitoring smartplug with USB
+- Gosund SP112-RTL power monitoring smartplug with USB
+- Gosund SP211 power monitoring dual smartplug
 - Gosund WP9-RTL 3 outlet + USB powerstrip with child lock and initial state
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
@@ -634,6 +644,7 @@ the best option.
 - Relay switch with 433MHz remote (unbranded)
 - RCU16 16ch relay module
 - Single switch with backlight (unbranded)
+- Smart P01 power monitoring smartplug
 - Somgam single wall switch
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
@@ -712,6 +723,7 @@ of device.
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dream of You dual dimmable lamp
 - Dual-mode magic light string controller
+- Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
 - Fancy LEDs screen sync light 2.0
@@ -808,6 +820,7 @@ of device.
 - Moes SCS80 Touch curtain switch with backlight and timing control
 - Moes WS-USR-2C double curtain switch with backlight
 - Moes WS-Y-EUC curtain switch with backlight and timing control
+- Outdoor Inc zip blind
 - QS-WIFI-C01(BK) curtain module
 - QS-WIFI-C02 dual curtain module
 - Safe CON09 barrier controller
@@ -1029,6 +1042,7 @@ port and password.
 - Aquark Mr. Pure salt pool chlorinator
 - ASIP-0622 indoor planter
 - Bcetasy 18-in-1 air quality monitor
+- Boundless Brothers PA-210W gas alarm
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
@@ -1050,6 +1064,7 @@ port and password.
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
+- iHseno ZTU human presence sensor
 - idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
 - Inkbird PTH-9CW air quality monitor
@@ -1066,6 +1081,7 @@ port and password.
 - Mirabella Genio motion sensor
 - Moes human presence sensor
 - Moes single outlet water timer
+- Moes smart wake up light alarm clock
 - Momcozy white noise machine (2 variants)
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
@@ -1102,6 +1118,7 @@ port and password.
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
 - Valehaus SYZN119 towel warmer
+- Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
@@ -1112,6 +1129,7 @@ port and password.
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
 - Zecamin ZG-205W mmWave human presence sensor
+- ZMP71SH variable speed swimming pool pump
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-HPS01 human presence sensor

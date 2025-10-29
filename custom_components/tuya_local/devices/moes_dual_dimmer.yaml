@@ -7,6 +7,9 @@ products:
     manufacturer: Totebox
     model: "2"
     name: Dimmer plug
+  - id: qfqqrzlzgkhdln97
+    manufacturer: Avatto
+    model: DMS16-W2
 entities:
   - entity: light
     name: Light 1
@@ -98,6 +101,15 @@ entities:
           - dps_val: halogen
             value: Halogen
             icon: "mdi:lightbulb-spot"
+          - conditions:
+              - dps_val: [flip, sync, button]
+                mapping:
+                  - dps_val: flip
+                    value: Toggle
+                  - dps_val: sync
+                    value: Sync
+                  - dps_val: button
+                    value: Button
   - entity: select
     name: Light type 2
     category: config
@@ -116,6 +128,15 @@ entities:
           - dps_val: halogen
             value: Halogen
             icon: "mdi:lightbulb-spot"
+          - conditions:
+              - dps_val: [flip, sync, button]
+                mapping:
+                  - dps_val: flip
+                    value: Toggle
+                  - dps_val: sync
+                    value: Sync
+                  - dps_val: button
+                    value: Button
   - entity: time
     translation_key: timer_x
     translation_placeholders:
