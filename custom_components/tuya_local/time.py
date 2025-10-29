@@ -105,11 +105,31 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
         seconds = value.second
         if self._hour_dps:
             settings.update(self._hour_dps.get_values_to_set(self._device, hours))
+
+            # If hour dps is using the same masked ID as minute dps, it's important to update hours before processing minute
+            if (
+                self._minute_dps
+                and self._hour_dps.id == self._minute_dps.id
+                and self._hour_dps.mask
+                and self._minute_dps.mask
+            ):
+                await self._device.async_set_properties(settings)
+                settings = {}
         else:
             minutes = minutes + hours * 60
 
         if self._minute_dps:
             settings.update(self._minute_dps.get_values_to_set(self._device, minutes))
+
+            # If minute dps is using the same masked ID as second dps, it's important to update minute before processing second
+            if (
+                self._second_dps
+                and self._minute_dps.id == self._second_dps.id
+                and self._minute_dps.mask
+                and self._second_dps.mask
+            ):
+                await self._device.async_set_properties(settings)
+                settings = {}
         else:
             seconds = seconds + minutes * 60
 
