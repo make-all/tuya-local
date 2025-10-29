@@ -928,7 +928,7 @@ class TuyaDpsConfig:
     def get_values_to_set(self, device, value, pending_map={}):
         """Return the dps values that would be set when setting to value"""
         result = value
-        dps_map = pending_map
+        dps_map = {}
         if self.readonly:
             return dps_map
 
@@ -968,7 +968,9 @@ class TuyaDpsConfig:
                             cond.get("dps_val", device.get_property(c_dps.id)),
                             device,
                         )
-                        dps_map.update(c_dps.get_values_to_set(device, c_val))
+                        dps_map.update(
+                            c_dps.get_values_to_set(device, c_val, pending_map)
+                        )
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
@@ -1061,8 +1063,8 @@ class TuyaDpsConfig:
             decoded_value = self.decoded_value(device)
             # if we have already updated it as part of this update,
             # use it to preserve bits
-            if self.id in dps_map:
-                decoded_value = self.decode_value(dps_map[self.id], device)
+            if self.id in pending_map:
+                decoded_value = self.decode_value(pending_map[self.id], device)
             current_value = int.from_bytes(decoded_value, endianness)
             result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
