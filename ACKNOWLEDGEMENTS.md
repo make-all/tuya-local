@@ -1096,3 +1096,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tr1ckz](https://github.com/tr1ckz) for contributing support for Vivo FD55 TV mount.
 - [smeegoan](https://github.com/smeegoan) for contributing support for GoSund SP211 power monitoring dual smartplug.
 - [colin-nolan](https://github.com/colin-nolan) for contributing improvements to Catit Pixi smart feeder.
+- [flow-c](https://github.com/flow-c) for contributing support for Mi-Heat TH11 thermostat.
