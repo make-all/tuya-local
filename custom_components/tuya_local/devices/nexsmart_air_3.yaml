@@ -1,4 +1,4 @@
-name: NEXSMART AIR 3 Camera (Battery)
+name: AIR 3 Camera (Battery)
 products:
   # The product ID (or product_id) from your device information
   - id: vjjoayeljqpxz2oe
@@ -26,7 +26,6 @@ entities:
   # 2. Battery and Power
   # ------------------------------------
   - entity: sensor
-    name: Battery level
     class: battery
     category: diagnostic
     # Battery Level Sensor (matches wireless_electricity: 145)
@@ -35,15 +34,13 @@ entities:
         type: integer
         name: sensor
 
-  - entity: sensor
+  - entity: binary_sensor
     name: Power source
-    class: enum
+    class: battery_charging
     icon: "mdi:power-plug"
-    category: diagnostic
     # Power Mode Sensor (matches wireless_powermode: 146)
     dps:
       - id: 146
-        # CORRECTED TYPE to string as per the data: "value": "1"
         type: string
         name: sensor
         mapping:
@@ -54,7 +51,7 @@ entities:
 
   - entity: binary_sensor
     name: Device state
-    class: running
+    class: connectivity
     category: diagnostic
     icon: "mdi:sleep"
     # Awake/Sleep Status (matches wireless_awake: 149)
@@ -77,16 +74,6 @@ entities:
         range:
           min: 10
           max: 50
-          step: 1
-
-  - entity: sensor
-    name: Battery report capability
-    category: diagnostic
-    # Battery Report Capability (matches battery_report_cap: 126)
-    dps:
-      - id: 126
-        type: integer
-        name: sensor
 
   # ------------------------------------
   # 3. Basic Configuration
@@ -164,7 +151,6 @@ entities:
         range:
           min: 1
           max: 10
-          step: 1
 
   - entity: switch
     name: Humanoid Filter
@@ -262,7 +248,6 @@ entities:
         range:
           min: 0
           max: 100
-          step: 1
 
   # ------------------------------------
   # 7. SD Card and Storage
@@ -332,31 +317,3 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
-
-  # ------------------------------------
-  # 8. Alarm Messages
-  # ------------------------------------
-  - entity: sensor
-    name: Latest alarm message
-    class: "motion"
-    category: diagnostic
-    icon: "mdi:message-badge-outline"
-    # Alarm Message (matches alarm_message: 185)
-    dps:
-      - id: 185
-        type: raw
-        name: sensor
-        optional: true
-
-  - entity: sensor
-    name: Latest initiative message
-    class: "motion"
-    category: diagnostic
-    icon: "mdi:message-processing-outline"
-    # Initiative Message (matches initiative_message: 212)
-    dps:
-      - id: 212
-        type: raw
-        name: sensor
-        optional: true
-
