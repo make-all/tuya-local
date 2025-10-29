@@ -1,9 +1,9 @@
-name: NEXSMART AIR 3 Camera (Battery)
+name: NEXSMART AIR 2 Camera (Battery)
 products:
   # The product ID (or product_id) from your device information
-  - id: vjjoayeljqpxz2oe
+  - id: 0waimqh4mplog68x
     manufacturer: Nexsmart
-    model: AIR 3
+    model: AIR 2
 entities:
   # ------------------------------------
   # 1. Main Camera & Snapshot
@@ -82,7 +82,7 @@ entities:
   - entity: sensor
     name: Battery report capability
     category: diagnostic
-    # Battery Report Capability (matches battery_report_cap: 126)
+    # Battery Report Capability (matches battery_report_cap: 126) - ADDED
     dps:
       - id: 126
         type: integer
@@ -91,25 +91,17 @@ entities:
   # ------------------------------------
   # 3. Basic Configuration
   # ------------------------------------
-  - entity: light
-    translation_key: indicator
-    icon: "mdi:lightbulb-on"
-    category: config
-    # Indicator LED (matches basic_indicator: 101)
-    dps:
-      - id: 101
-        type: boolean
-        name: switch
 
   - entity: switch
     name: Flip image
-    icon: "mdi:flip-horizontal"
     category: config
+    icon: "mdi:flip-horizontal"
     # Flip Image Switch (matches basic_flip: 103)
     dps:
       - id: 103
         type: boolean
         name: switch
+        optional: true
 
   - entity: switch
     name: Watermark (OSD)
@@ -120,23 +112,25 @@ entities:
       - id: 104
         type: boolean
         name: switch
+        optional: true
 
   - entity: select
     name: Night vision mode
     icon: "mdi:weather-night"
     category: config
-    # Night Vision Mode Selector (matches nightvision_mode: 124)
+    # Night Vision Mode Selector(matches basic_nightvision: 108)
     dps:
-      - id: 124
+      - id: 108
         type: string
         name: option
+        optional: true
         mapping:
-          - dps_val: "auto"
+          - dps_val: "0"
             value: Auto
-          - dps_val: "color_mode"
-            value: Color Night Vision
-          - dps_val: "ir_mode"
-            value: Infrared Night Vision
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
 
   # ------------------------------------
   # 4. Detection & Alarm
@@ -179,90 +173,12 @@ entities:
   # ------------------------------------
   # 5. Alarm Mode & Linkage
   # ------------------------------------
-  - entity: select
-    name: Alarm mode
-    icon: "mdi:bell-ring-outline"
-    category: config
-    # Alarm Mode (matches alarm_mode: 243)
-    dps:
-      - id: 243
-        type: string
-        name: option
-        mapping:
-          # Mapping based on typical Tuya IPC modes
-          - dps_val: "0"
-            value: Disabled
-          - dps_val: "1"
-            value: All Day
-          - dps_val: "2"
-            value: Custom Schedule
-
-  - entity: select
-    name: Device linkage
-    icon: "mdi:link-variant"
-    category: config
-    # Device Linkage (matches linkage: 245)
-    dps:
-      - id: 245
-        type: string
-        name: option
-        mapping:
-          # Mapping based on typical Tuya IPC linkage/pre-record settings
-          - dps_val: "0"
-            value: Pre-Record Disabled
-          - dps_val: "1"
-            value: Short Pre-Record
-          - dps_val: "3"
-            value: Full Linkage/Record
+  # V2 does not support this
 
   # ------------------------------------
   # 6. Lights & Sirens
   # ------------------------------------
-  - entity: light
-    name: Floodlight
-    icon: "mdi:spotlight"
-    category: config
-    # Floodlight Light (matches floodlight_switch: 138)
-    dps:
-      - id: 138
-        type: boolean
-        name: switch
-
-  - entity: switch
-    name: Audible Alarm
-    icon: "mdi:bell-alert"
-    category: config
-    # Audible Alarm Switch (matches ipc_audible_alarm: 242)
-    dps:
-      - id: 242
-        type: boolean
-        name: switch
-
-  - entity: switch
-    name: Siren
-    icon: "mdi:alarm-light"
-    category: config
-    # Siren Switch (matches siren_switch: 159)
-    dps:
-      - id: 159
-        type: boolean
-        name: switch
-
-  - entity: number
-    name: Siren Volume
-    icon: "mdi:volume-high"
-    category: config
-    # Siren Volume (matches ipc_siren_volume: 195)
-    dps:
-      - id: 195
-        type: integer
-        name: value
-        unit: "%"
-        # Range is 0-100 based on device dump
-        range:
-          min: 0
-          max: 100
-          step: 1
+  # V2 does not support this
 
   # ------------------------------------
   # 7. SD Card and Storage
@@ -289,6 +205,7 @@ entities:
       - id: 110
         type: integer
         name: sensor
+        optional: true
         mapping:
           - dps_val: 1
             value: normal
@@ -332,3 +249,31 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
+
+  # ------------------------------------
+  # 8. Alarm Messages
+  # ------------------------------------
+  - entity: sensor
+    name: Latest alarm message
+    class: "motion"
+    category: diagnostic
+    icon: "mdi:message-badge-outline"
+    # Alarm Message (matches alarm_message: 185) - ADDED
+    dps:
+      - id: 185
+        type: raw
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Latest initiative message
+    class: "motion"
+    category: diagnostic
+    icon: "mdi:message-processing-outline"
+    # Initiative Message (matches initiative_message: 212) - ADDED
+    dps:
+      - id: 212
+        type: raw
+        name: sensor
+        optional: true
+

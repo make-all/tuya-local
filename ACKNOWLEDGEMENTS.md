@@ -1093,3 +1093,6 @@ Further device support has been made with the assistance of users. Please consid
 - [pbambr](https://github.com/pbambr) for assisting with support for Ledvance ceiling fan with light.
 - [luckyTamme](https://github.com/luckyTamme) for contributing support for Smart P01 smartplug.
 - [justinwyq](https://github.com/justinwyq) for contributing support for Outdoor Inc zip blind.
+- [tr1ckz](https://github.com/tr1ckz) for contributing support for Vivo FD55 TV mount.
+- [smeegoan](https://github.com/smeegoan) for contributing support for GoSund SP211 power monitoring dual smartplug.
+- [colin-nolan](https://github.com/colin-nolan) for contributing improvements to Catit Pixi smart feeder.
