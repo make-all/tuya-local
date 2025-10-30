@@ -4,39 +4,38 @@ products:
     manufacturer: Pro Breeze
     model: PB-D-23W-W
 
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: mode
-      mapping:
-        - dps_val: 0
-          value: auto
-        - dps_val: 1
-          value: max
-        - dps_val: 2
-          value: continuous
-        - dps_val: 3
-          value: laundry
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 30
-        max: 80
-    - id: 104
-      type: integer
-      name: current_humidity
-    - id: 103
-      type: integer
-      name: current_temperature
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: 0
+            value: auto
+          - dps_val: 1
+            value: max
+          - dps_val: 2
+            value: continuous
+          - dps_val: 3
+            value: laundry
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+      - id: 104
+        type: integer
+        name: current_humidity
+      - id: 103
+        type: integer
+        name: current_temperature
 
-secondary_entities:
   - entity: sensor
     name: Temperature
     class: temperature
