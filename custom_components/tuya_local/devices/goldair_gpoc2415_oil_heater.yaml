@@ -1,0 +1,121 @@
+name: Goldair Platinum 2400W Oil Heater
+products:
+  - id: ebbac89343b5fc10624myw
+    manufacturer: Goldair
+    model: GPOC2415
+    name: Platinum 2400W Oil Heater
+
+entities:
+  - entity: climate
+    name: Heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+        readonly: true
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "level_0"
+            value: eco
+          - dps_val: "level_1"
+            value: low
+          - dps_val: "level_2"
+            value: medium
+          - dps_val: "level_3"
+            value: high
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "heating"
+            value: heating
+          - dps_val: "warm"
+            value: heating
+          - dps_val: "stop"
+            value: idle
+          - dps_val: "standby"
+            value: idle
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
+
+  - entity: sensor
+    name: Countdown Remaining
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+        readonly: true
+
+  - entity: binary_sensor
+    name: Sensor Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        readonly: true
+
+  - entity: switch
+    name: Sound
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false  # inverted: true = no sound = switch off
+          - dps_val: false
+            value: true   # inverted: false = sound on = switch on
+
+  - entity: number
+    name: Preheat Timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: number
+    name: Auto Shutoff
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
