@@ -1,0 +1,113 @@
+name: Pro Breeze D-23 Dehumidifier
+products:
+  - product_name: "D-23 20L Compressor Dehumidifier"
+    product_id: "nb4b1dtoa3ljpstn"
+    model: "D-23"
+    manufacturer: "Pro Breeze"
+
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: mode
+      mapping:
+        - dps_val: 0
+          value: auto
+        - dps_val: 1
+          value: max
+        - dps_val: 2
+          value: continuous
+        - dps_val: 3
+          value: laundry
+    - id: 4
+      type: integer
+      name: humidity
+      range:
+        min: 30
+        max: 80
+    - id: 104
+      type: integer
+      name: current_humidity
+    - id: 103
+      type: integer
+      name: current_temperature
+
+secondary_entities:
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: select
+    name: Fan Speed
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 1
+            value: "Low"
+          - dps_val: 3
+            value: "High"
+
+  - entity: switch
+    name: Ventilation Mode
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: LED Display
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Child Lock
+    icon: "mdi:lock"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    name: Defrost Mode
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    name: Tank Problem
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: false
+          - dps_val: 8
+            value: true
+          - value: false
