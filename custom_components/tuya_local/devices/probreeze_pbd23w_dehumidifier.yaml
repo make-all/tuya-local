@@ -1,9 +1,8 @@
-name: Pro Breeze D-23 Dehumidifier
+name: Dehumidifier
 products:
   - id: nb4b1dtoa3ljpstn
     manufacturer: Pro Breeze
     model: PB-D-23W-W
-
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -12,17 +11,17 @@ entities:
         type: boolean
         name: switch
       - id: 2
-        type: string
+        type: integer
         name: mode
         mapping:
           - dps_val: 0
             value: auto
           - dps_val: 1
-            value: max
+            value: boost
           - dps_val: 2
-            value: continuous
+            value: Continuous
           - dps_val: 3
-            value: laundry
+            value: Laundry
       - id: 4
         type: integer
         name: humidity
@@ -32,19 +31,13 @@ entities:
       - id: 104
         type: integer
         name: current_humidity
-      - id: 103
-        type: integer
-        name: current_temperature
-
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: C
-
   - entity: select
     name: Fan Speed
     icon: "mdi:fan"
@@ -58,7 +51,6 @@ entities:
             value: "Low"
           - dps_val: 3
             value: "High"
-
   - entity: switch
     name: Ventilation Mode
     icon: "mdi:fan"
@@ -67,45 +59,57 @@ entities:
       - id: 5
         type: boolean
         name: switch
-
   - entity: switch
-    name: LED Display
-    icon: "mdi:led-on"
+    translation_key: sleep
     category: config
     dps:
       - id: 102
         type: boolean
         name: switch
-
-  - entity: switch
-    name: Child Lock
-    icon: "mdi:lock"
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
-        name: switch
-
+        name: lock
   - entity: binary_sensor
-    name: Defrost Mode
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
-
   - entity: binary_sensor
-    name: Tank Problem
+    translation_key: tank_full
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
       - id: 11
         type: bitfield
         name: sensor
+        optional: true
         mapping:
+          - dps_val: 0
+            value: false
           - dps_val: 1
             value: false
           - dps_val: 8
-            value: true
-          - value: false
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code
