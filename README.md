@@ -37,9 +37,12 @@ versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
 Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
+etc which do not use a hub are not possible to support locally, due
 to the power management that they need to do to get acceptable battery
-life.
+life. In some cases that may also apply when a device that can be
+either battery or USB powered is plugged into USB. If you cannot gather
+Warning level logs with dps listed when attempting to set it up, then it
+will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
