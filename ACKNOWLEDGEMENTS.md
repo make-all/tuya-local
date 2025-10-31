@@ -1098,3 +1098,4 @@ Further device support has been made with the assistance of users. Please consid
 - [colin-nolan](https://github.com/colin-nolan) for contributing improvements to Catit Pixi smart feeder.
 - [flow-c](https://github.com/flow-c) for contributing support for Mi-Heat TH11 thermostat.
 - [kjpg99](https://github.com/kjpg99) for contributing improvements to Klarta Stor 2 and Forste 4 purifiers, and Polish translations.
+- [MiguelDomingues](https://github.com/MiguelDomingues) for contributing support for EARU K6RH-3A thermostat.
