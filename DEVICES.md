@@ -471,6 +471,7 @@
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
 - Anko 1.7L smart kettle
+- BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
