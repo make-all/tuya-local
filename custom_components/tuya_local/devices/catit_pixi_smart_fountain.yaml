@@ -91,15 +91,16 @@ entities:
         name: sensor
         unit: s
 
-  - entity: sensor
-    name: Water Lack
+  - entity: binary_sensor
+    name: Water low
+    translation_key: tank_empty
     dps:
       - id: 101
         type: boolean
         name: sensor
 
   - entity: switch
-    name: Eco Mode
+    name: Eco mode
     category: config
     dps:
       - id: 102
@@ -111,15 +112,15 @@ entities:
           - dps_val: 2
             value: true
 
-  - entity: sensor
-    name: Water State
+  - entity: binary_sensor
+    translation_key: running
     dps:
       - id: 103
         type: boolean
         name: sensor
 
-  - entity: sensor
-    name: Water Empty
+  - entity: binary_sensor
+    translation_key: tank_empty
     dps:
       - id: 104
         type: boolean
