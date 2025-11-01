@@ -655,7 +655,7 @@ Further device support has been made with the assistance of users. Please consid
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
 - [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.
 - [flocke](https://github.com/flocke) for assisting with support for MeacoDry Arete Two dehumidifier.
-- [FredrikM97](https://github.com/FredrikM97) for assisting with and contributing improvements to Cleverio PF100, Honeyguardian S56 and many other pet feeders, and improvements to the development environment.
+- [FredrikM97](https://github.com/FredrikM97) for assisting with and contributing improvements to Cleverio PF100, Honeyguardian S56 and many other pet feeders, Catit Pixi pet fountain and improvements to the development environment.
 - [chadtheriault](https://github.com/chadtheriault) for assisting with Zemismart AM25 roller blinds.
 - [fmonday](https://github.com/fmonday) for assisting with Enlighten Café string lights.
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
@@ -1097,3 +1097,8 @@ Further device support has been made with the assistance of users. Please consid
 - [smeegoan](https://github.com/smeegoan) for contributing support for GoSund SP211 power monitoring dual smartplug.
 - [colin-nolan](https://github.com/colin-nolan) for contributing improvements to Catit Pixi smart feeder.
 - [flow-c](https://github.com/flow-c) for contributing support for Mi-Heat TH11 thermostat.
+- [kjpg99](https://github.com/kjpg99) for contributing improvements to Klarta Stor 2 and Forste 4 purifiers, and Polish translations.
+- [MiguelDomingues](https://github.com/MiguelDomingues) for contributing support for EARU K6RH-3A thermostat.
+- [barneybastelt](https://github.com/barneybastelt) for contributing support for BlitzHome BH-CDW1 dishwasher.
+- [bobek212141-wq](https://github.com/bobek212141-wq) for assisting with support for Moes TRV601 thermostat radiator valve.
+- [1stDeadeye](https://github.com/1stDeadeye) for assisting with support for Haozee gas leak and carbon monoxide alarm.

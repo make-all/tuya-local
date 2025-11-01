@@ -8,12 +8,15 @@ body:
       value: |
         This form is for reporting a **New Device**.  If you are looking for general help, including cases where you do not see anything in the log, see [Discussions](https://github.com/make-all/tuya-local/discussions).
 
+        **Battery powered Wi-fi devices are not compatible with local use, so please do not request support for them even if you are able to use some trick to gather logs.** Long term, any tricks to get them to stay connected will only drain the battery extremely rapidly.
+
         Thank you for reporting your unsupported device. Please provide as much information as you can. Because the developers are busy, new device requests will be prioritised as follows:
 
-          1. Pull requests
-          2. Issues with warning level logs from when adding the device and QueryThingsDataModel API results or equivalent
-          3. Issues with logs and enough dps info to make a useful config.
-          4. Issues with logs and a tested config
+          1. Well written pull requests
+          2. Well written issues with warning level logs from when adding the device and QueryThingsDataModel API results or equivalent
+          3. AI generated pull requests where the submitter is not responsive in fixing auto-detected issues and making requested changes
+          4. Issues with logs and enough dps info to make a useful config.
+          5. Issues with logs and a tested config
 
   - type: textarea
     id: log

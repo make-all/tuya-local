@@ -269,11 +269,11 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         dps_map = {}
         if low is not None and self._temp_low_dps is not None:
             dps_map.update(
-                self._temp_low_dps.get_values_to_set(self._device, low),
+                self._temp_low_dps.get_values_to_set(self._device, low, dps_map),
             )
         if high is not None and self._temp_high_dps is not None:
             dps_map.update(
-                self._temp_high_dps.get_values_to_set(self._device, high),
+                self._temp_high_dps.get_values_to_set(self._device, high, dps_map),
             )
         if dps_map:
             await self._device.async_set_properties(dps_map)

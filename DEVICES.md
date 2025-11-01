@@ -471,6 +471,7 @@
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
 - Anko 1.7L smart kettle
+- BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
@@ -1060,6 +1061,7 @@ port and password.
 - GZAIR radon gas detector
 - Haier Nayun NY-GS-04 combustible gas alarm
 - Haoliyuen EWC02 air quality monitor
+- Haozee explosive gas leak and carbon monoxide alarm
 - Haozee PS10 mmWave presence sensing light switch
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
@@ -1193,9 +1195,10 @@ entity types as sub devices.
 - LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
-- Moes BRT-100-TRV radiator valve
+- Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb
+- Moes TRV601/605/606 thermostat radiator valve
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBRC10WT 4 button remote control

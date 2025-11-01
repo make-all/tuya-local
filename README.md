@@ -37,9 +37,12 @@ versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
 Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
+etc which do not use a hub are not possible to support locally, due
 to the power management that they need to do to get acceptable battery
-life.
+life. In some cases that may also apply when a device that can be
+either battery or USB powered is plugged into USB. If you cannot gather
+Warning level logs with dps listed when attempting to set it up, then it
+will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
@@ -83,7 +86,7 @@ Documentation on building a device configuration file is in [/custom_components/
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
-2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp id in addition to range information that is needed for integer and enum data types.
 
 If you file an issue to request support for a new device, please include the following information:
 
