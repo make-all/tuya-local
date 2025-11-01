@@ -1,0 +1,61 @@
+name: Heater
+products:
+  - id: laagtqcj40q1uwg8
+    manufacturer: Devola
+    model: Designer Glass Panel Heater
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 50
+        unit: C
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: af
+                value: 5
+                range:
+                  min: 5
+                  max: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: comfort
+          - dps_val: af
+            value: away
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
