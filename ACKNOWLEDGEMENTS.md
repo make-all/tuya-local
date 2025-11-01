@@ -1100,3 +1100,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kjpg99](https://github.com/kjpg99) for contributing improvements to Klarta Stor 2 and Forste 4 purifiers, and Polish translations.
 - [MiguelDomingues](https://github.com/MiguelDomingues) for contributing support for EARU K6RH-3A thermostat.
 - [barneybastelt](https://github.com/barneybastelt) for contributing support for BlitzHome BH-CDW1 dishwasher.
+- [bobek212141-wq](https://github.com/bobek212141-wq) for assisting with support for Moes TRV601 thermostat radiator valve.
