@@ -1,0 +1,153 @@
+name: MINI-B-Public
+
+products:
+  - id: "93at0k76rfvteseb"
+    manufacturer: Tuya
+    model: MINI-B-Public
+
+entities:
+  - entity: switch
+    name: Power
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Work mode
+    icon: "mdi:robot-vacuum"
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto_clean
+            value: Auto clean
+          - dps_val: manual_clean
+            value: Manual clean
+
+  - entity: switch
+    name: Empty
+    icon: "mdi:trash-can-outline"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Cleaning delay time
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+        step: 1
+        
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:scale"
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        optional: true
+        persist: true
+        mapping:
+          - scale: 10       
+            precision: 1    
+
+  - entity: sensor
+    name: Times today
+    icon: "mdi:counter"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        optional: true
+  
+  - entity: sensor
+    name: Toilet duration
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        optional: true
+        persist: true
+        
+  - entity: switch
+    name: Clean
+    icon: "mdi:broom"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+        
+  - entity: switch
+    name: Reset
+    icon: "mdi:restore"
+    dps:
+      - id: 23
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Cleaning times
+    icon: "mdi:counter"
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+
+  - entity: number
+    name: Backlight brightness
+    icon: "mdi:brightness-6"
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        step: 1
+
+  - entity: sensor
+    name: Message
+    icon: "mdi:message-alert-outline"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Device status
+    icon: "mdi:state-machine"
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+
+  - entity: select
+    name: Unit setup
+    icon: "mdi:weight-kilogram"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "KG"
+            value: Kilograms
+          - dps_val: "LB"
+            value: Pounds
