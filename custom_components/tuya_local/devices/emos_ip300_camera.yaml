@@ -27,10 +27,6 @@ entities:
         optional: true
         sensitive: true
         name: snapshot
-      - id: 185
-        type: base64
-        name: log_message
-        optional: true
   - entity: light
     translation_key: indicator
     category: config
@@ -230,18 +226,32 @@ entities:
             value: Continuous
           - dps_val: null
             value: null
-  - entity: switch
-    name: Siren
-    icon: "mdi:bullhorn"
+  - entity: siren
     category: config
     dps:
       - id: 159
         type: boolean
         name: switch
         optional: true
+      - id: 194
+        type: integer
+        name: duration
+        optional: true
+        unit: s
+        range:
+          min: 10
+          max: 600
         mapping:
-          - dps_val: null
-            value: null
+          - step: 10
+      - id: 195
+        type: integer
+        name: volume_level
+        optional: true
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - scale: 100
   - entity: switch
     name: Motion tracking
     icon: "mdi:motion-sensor"
@@ -300,34 +310,6 @@ entities:
         range:
           min: 5
           max: 600
-  - entity: number
-    name: Siren duration
-    icon: "mdi:timer-outline"
-    category: config
-    dps:
-      - id: 194
-        type: integer
-        name: value
-        optional: true
-        unit: s
-        range:
-          min: 10
-          max: 600
-        mapping:
-          - step: 10
-  - entity: number
-    name: Siren volume
-    icon: "mdi:volume-high"
-    category: config
-    dps:
-      - id: 195
-        type: integer
-        name: value
-        optional: true
-        unit: "%"
-        range:
-          min: 10
-          max: 100
   - entity: event
     name: Alarm
     dps:
@@ -340,11 +322,11 @@ entities:
             value: null
           - value: alarm
       - id: 185
-        type: base64
+        type: utf16b64
         name: alarm_message
         optional: true
   - entity: event
-    name: Initiative message
+    name: Notification
     dps:
       - id: 212
         type: base64
@@ -355,7 +337,7 @@ entities:
             value: null
           - value: message
       - id: 212
-        type: base64
+        type: utf16b64
         name: message
         optional: true
   - entity: switch
