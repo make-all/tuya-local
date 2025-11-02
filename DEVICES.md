@@ -916,6 +916,7 @@ port and password.
 - BCom Majic IPBox intercom camera
 - Camnsmart E27-TY camera
 - Door peephole camera
+- EMOS IP-300 camera with floodlight
 - Garage door opener camera combo
 - HomeMate PTZ indoor camera
 - Kerui 200W camera

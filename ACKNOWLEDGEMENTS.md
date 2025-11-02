@@ -1102,3 +1102,4 @@ Further device support has been made with the assistance of users. Please consid
 - [barneybastelt](https://github.com/barneybastelt) for contributing support for BlitzHome BH-CDW1 dishwasher.
 - [bobek212141-wq](https://github.com/bobek212141-wq) for assisting with support for Moes TRV601 thermostat radiator valve.
 - [1stDeadeye](https://github.com/1stDeadeye) for assisting with support for Haozee gas leak and carbon monoxide alarm.
+- [jkolo](https://github.com/jkolo) for contributing support for EMOS IP-300 camera with floodlight.
