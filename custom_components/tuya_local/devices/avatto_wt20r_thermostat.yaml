@@ -163,3 +163,73 @@ entities:
             value: Internal
           - dps_val: out
             value: External
+  # Additional entities from WT20R variants
+  - entity: switch
+    name: Open window detection
+    category: config
+    icon: "mdi:window-open-variant"
+    hidden: unavailable
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+      - id: 8
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: Holiday temperature
+    category: config
+    icon: "mdi:island"
+    hidden: unavailable
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: 32
+                  max: 41
+      - id: 103
+        type: integer
+        optional: true
+        name: temp_f
+        range:
+          min: 32
+          max: 41
+      - id: 23
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: temp_f
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+# 104: sencer_c (sic) value "in", range unknown but probably same as 101?
+# 105/107: Home temperature, not sure if it is a setting or sensor
+# 112/113: Cook temperature, not sure what this is for (bad translation?)
