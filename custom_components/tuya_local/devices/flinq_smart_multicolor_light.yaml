@@ -1,4 +1,4 @@
-name: FlinQ Smart Multicolor String Light
+name: String light
 products:
   - id: kerlphr7ehml1kgl
     manufacturer: FlinQ Smart
@@ -11,7 +11,7 @@ entities:
         type: boolean
         name: switch
       - id: 21
-        name: work_mode
+        name: effect
         type: string
         mapping:
           - dps_val: scene
@@ -24,14 +24,35 @@ entities:
         range:
           min: 10
           max: 1000
+  - entity: text
+    name: Music data
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
       - id: 27
         type: string
         optional: true
-        name: music_data
+        name: value
+  - entity: text
+    name: Direct control
+    icon: "mdi:tune-vertical"
+    category: config
+    hidden: true
+    dps:
       - id: 28
         type: string
         optional: true
-        name: control_data
+        name: value
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional:true
+        name: value
   - entity: select
     translation_key: scene
     category: config
