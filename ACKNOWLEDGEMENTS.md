@@ -1103,3 +1103,4 @@ Further device support has been made with the assistance of users. Please consid
 - [bobek212141-wq](https://github.com/bobek212141-wq) for assisting with support for Moes TRV601 thermostat radiator valve.
 - [1stDeadeye](https://github.com/1stDeadeye) for assisting with support for Haozee gas leak and carbon monoxide alarm.
 - [jkolo](https://github.com/jkolo) for contributing support for EMOS IP-300 camera with floodlight.
+- [tomvansambeek](https://github.com/tomvansambeek) for contributing support for FlinQ Smart multicolor string lights.

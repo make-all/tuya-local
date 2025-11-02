@@ -732,6 +732,7 @@ of device.
   optional minimum brightness and bulb type)
 - Feit OneSync Smart Bridge lighting controller
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
+- FlinQ Smart multicolor string lights
 - Galaxy Projector
 - Gosund SW2 dimmer switch
 - HDMI sync light
