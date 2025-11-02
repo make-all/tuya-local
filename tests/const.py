@@ -1701,3 +1701,17 @@ MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
     "118": True,
     # last 3 must be true for the time entities to be enabled
 }
+
+GOLDAIR_GPOC2415_PAYLOAD = {
+    "1": True,  
+    "2": 22, 
+    "3": 20,  
+    "5": "level_2", 
+    "7": False,  
+    "11": "warm",  
+    "20": 60,  
+    "21": 0,  
+    "101": False,  
+    "102": 2,  
+    "103": 0,  
+}
