@@ -62,7 +62,8 @@ entities:
         name: lock
 
   - entity: sensor
-    name: Countdown Remaining
+    translation_key: time_remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 20
@@ -94,7 +95,7 @@ entities:
         name: switch
 
   - entity: number
-    name: Preheat Timer
+    translation_key: timer
     category: config
     class: duration
     dps:
@@ -118,4 +119,3 @@ entities:
         range:
           min: 0
           max: 24
-
