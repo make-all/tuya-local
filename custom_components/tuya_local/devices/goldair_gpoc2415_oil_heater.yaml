@@ -1,13 +1,13 @@
-name: Goldair Platinum 2400W Oil Heater
+name: Oil heater
 products:
   - id: ebbac89343b5fc10624myw
     manufacturer: Goldair
-    model: GPOC2415
-    name: Platinum 2400W Oil Heater
+    model_id: GPOC2415
+    model: Platinum 2400W Oil Heater
 
 entities:
   - entity: climate
-    name: Heater
+    translation_key: heater
     dps:
       - id: 1
         name: hvac_mode
@@ -28,7 +28,6 @@ entities:
         type: integer
         name: current_temperature
         unit: C
-        readonly: true
       - id: 5
         type: string
         name: preset_mode
@@ -71,34 +70,34 @@ entities:
         type: integer
         name: sensor
         unit: min
-        readonly: true
 
   - entity: binary_sensor
-    name: Sensor Fault
     class: problem
     category: diagnostic
     dps:
       - id: 21
         type: bitfield
         name: sensor
-        readonly: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
 
   - entity: switch
-    name: Sound
+    name: Mute
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            value: false  # inverted: true = no sound = switch off
-          - dps_val: false
-            value: true   # inverted: false = sound on = switch on
 
   - entity: number
     name: Preheat Timer
     category: config
+    class: duration
     dps:
       - id: 102
         type: integer
@@ -111,6 +110,7 @@ entities:
   - entity: number
     name: Auto Shutoff
     category: config
+    class: duration
     dps:
       - id: 103
         type: integer
