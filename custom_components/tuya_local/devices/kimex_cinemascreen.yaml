@@ -1,0 +1,42 @@
+name: Cinema screen
+products:
+  - id: hpg7erxfe5ypgh20
+    manufacturer: Kimex
+    model: THM-02
+entities:
+  - entity: cover
+    class: blind
+    name: Screen
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: close
+      - id: 1
+        name: action
+        type: string
+        mapping:
+          - dps_val: open
+            value: opened
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: closed
+  - entity: select
+    icon: "mdi:arrow-u-left-bottom"
+    category: config
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: back
+            value: reverse

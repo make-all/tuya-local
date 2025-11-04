@@ -40,6 +40,15 @@ entities:
         # format: min,max
   - entity: sensor
     class: humidity
+    deprecated: sensor_moisture
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: moisture
     dps:
       - id: 7
         type: integer
@@ -89,7 +98,7 @@ entities:
       - id: 102
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
       - id: 120
         type: string

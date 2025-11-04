@@ -3,6 +3,10 @@ products:
   - id: q66b4arnni1rnqlk
     manufacturer: Calex
     model: S45 Clear E27
+  - id: iqetz8i0jjsxbker
+    manufacturer: Cree
+    model: B11 Candleabra 40W
+    name: Vintage glass filament bulb
 entities:
   - entity: light
     dps:
@@ -11,12 +15,14 @@ entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
+        name: effect
         mapping:
           - dps_val: white
-            value: color_temp
+            value: none
+          # colour exists in docs, but this bulb does not support it
           - dps_val: colour
-            value: Colour
+            value: none
+            hidden: true
           - dps_val: scene
             value: Scene
           - dps_val: music
@@ -24,9 +30,13 @@ entities:
       - id: 22
         name: brightness
         type: integer
+        optional: true
         range:
           min: 10
           max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
       - id: 23
         name: color_temp
         type: integer
@@ -40,7 +50,7 @@ entities:
               max: 6500
       - id: 28
         name: control_data
-        type: hex
+        type: string
         optional: true
       - id: 30
         name: rhythm_mode
@@ -54,13 +64,35 @@ entities:
         name: wakeup_mode
         type: base64
         optional: true
+      - id: 41
+        name: remote_switch
+        type: boolean
+        optional: true
+      - id: 210
+        name: random_timing
+        type: string
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-25
+    deprecated: time.timer
     class: duration
     category: config
     dps:
       - id: 26
         type: integer
+        optional: true
         name: value
         unit: min
         range:
@@ -69,7 +101,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-        optional: true
   - entity: text
     translation_key: scene
     category: config
@@ -100,3 +131,7 @@ entities:
           - dps_val: "030e0d00001403e8000001f401f4"
             # color: grey, static
             value: leisure
+          - dps_val: "0432320000000000000001f40000"
+            value: relax
+          - dps_val: "0532320000000000000003e8002f"
+            value: movie

@@ -72,9 +72,6 @@ entities:
           - dps_val: "5"
             value: "5"
         name: power_level
-      - id: 102
-        type: integer
-        name: timer
       - id: 103
         type: boolean
         name: timer_mode
@@ -133,8 +130,20 @@ entities:
       - id: 6
         type: boolean
         name: lock
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

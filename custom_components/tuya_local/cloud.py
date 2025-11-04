@@ -87,7 +87,7 @@ class Cloud:
     async def async_login(self) -> bool:
         """Login to the Tuya cloud."""
         if not self.__user_code or not self.__qr_code:
-            _LOGGER.warn("Login attempted without successful QR scan")
+            _LOGGER.warning("Login attempted without successful QR scan")
             return False, {}
 
         success, info = await self.__hass.async_add_executor_job(
@@ -114,7 +114,9 @@ class Cloud:
             _LOGGER.warning("Login failed: %s", info)
             self.__error_code = info.get(TUYA_RESPONSE_CODE, {})
             self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
-
+            # Ensure expired authentication is cleared on next attempt
+            self.__hass.data[DOMAIN]["auth_cache"] = None
+            self.__authentication = {}
         return success
 
     async def async_get_devices(self) -> dict[str, Any]:
@@ -161,7 +163,7 @@ class Cloud:
                     or not hasattr(device, "local_key")
                 ),
             }
-            _LOGGER.debug("Found device: {cloud_device}")
+            _LOGGER.debug("Found device: %s", cloud_device["product_name"])
 
             existing_id = domain_data.get(cloud_device["id"]) if domain_data else None
             existing_uuid = (
@@ -169,7 +171,16 @@ class Cloud:
             )
             existing = existing_id or existing_uuid
             cloud_device["exists"] = existing and existing.get("device")
-            cloud_devices[cloud_device["id"]] = cloud_device
+            if hasattr(device, "node_id"):
+                index = "/".join(
+                    [
+                        cloud_device["id"],
+                        cloud_device["node_id"],
+                    ]
+                )
+            else:
+                index = cloud_device["id"]
+            cloud_devices[index] = cloud_device
 
         return cloud_devices
 
@@ -186,7 +197,6 @@ class Cloud:
         )
         response = await self.__hass.async_add_executor_job(
             manager.customer_api.get,
-            manager.customer_api,
             f"/v1.0/m/life/devices/{device_id}/status",
         )
         _LOGGER.debug("Datamodel response: %s", response)
@@ -195,14 +205,23 @@ class Cloud:
         transform = []
         for entry in response.get("dpStatusRelationDTOS"):
             if entry["supportLocal"]:
-                transform += {
-                    "id": entry["dpId"],
-                    "name": entry["dpCode"],
-                    "type": entry["valueType"],
-                    "format": entry["valueDesc"],
-                    "enumMap": entry["enumMappingMap"],
-                }
+                transform.append(
+                    {
+                        "id": entry["dpId"],
+                        "name": entry["dpCode"],
+                        "type": entry["valueType"],
+                        "format": entry["valueDesc"],
+                        "enumMap": entry["enumMappingMap"],
+                    }
+                )
         return transform
+
+    def logout(self) -> None:
+        """Logout from the Tuya cloud."""
+        _LOGGER.debug("Logging out from Tuya cloud")
+        # Clear authentication cache
+        self.__hass.data[DOMAIN]["auth_cache"] = None
+        self.__authentication = {}
 
     @property
     def is_authenticated(self) -> bool:
@@ -230,17 +249,22 @@ class DeviceListener(SharingDeviceListener):
         self.__hass = hass
         self._manager = manager
 
-    def update_device(self, device: CustomerDevice) -> None:
+    def update_device(
+        self,
+        device: CustomerDevice,
+        updated_status_properties: list[str] | None,
+    ) -> None:
         """Device status has updated."""
         _LOGGER.debug(
-            "Received update for device %s: %s",
+            "Received update for device %s: %s (properties %s)",
             device.id,
             self._manager.device_map[device.id].status,
+            updated_status_properties,
         )
 
     def add_device(self, device: CustomerDevice) -> None:
         """A new device has been added."""
-        _LOGGER.device(
+        _LOGGER.debug(
             "Received add device %s: %s",
             device.id,
             self._manager.device_map[device.id].status,

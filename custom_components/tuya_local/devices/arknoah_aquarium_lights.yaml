@@ -1,0 +1,109 @@
+name: Aquarium lights
+products:
+  - id: h5knkuawivfnolpu
+    manufacturer: Arknoah
+    model: 165W 3 channel
+entities:
+  - entity: switch
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: light
+    name: Blue
+    dps:
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: music
+            value: Music
+          - dps_val: rhythm
+            value: Rhythm
+          - dps_val: DIY
+            value: Custom
+          - dps_val: schedule
+            value: Scheduled
+      - id: 101
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+  - entity: light
+    name: White
+    dps:
+      - id: 102
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+  - entity: light
+    name: Moonlight
+    dps:
+      - id: 103
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-standby"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Do not disturb
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Rhythm pattern
+    category: config
+    icon: "mdi:music-note-plus"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:timetable"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Custom
+    category: config
+    icon: "mdi:cog"
+    hidden: true
+    dps:
+      - id: 108
+        type: hex
+        optional: true
+        name: value

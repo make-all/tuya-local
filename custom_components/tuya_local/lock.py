@@ -34,6 +34,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
         self._lock_dp = dps_map.pop("lock", None)
+        self._lock_state_dp = dps_map.pop("lock_state", None)
         self._open_dp = dps_map.pop("open", None)
         self._unlock_fp_dp = dps_map.pop("unlock_fingerprint", None)
         self._unlock_pw_dp = dps_map.pop("unlock_password", None)
@@ -47,6 +48,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._unlock_voice_dp = dps_map.pop("unlock_voice", None)
         self._unlock_face_dp = dps_map.pop("unlock_face", None)
         self._unlock_multi_dp = dps_map.pop("unlock_multi", None)
+        self._unlock_ibeacon_dp = dps_map.pop("unlock_ibeacon", None)
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
@@ -60,9 +62,11 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     def is_locked(self):
         """Return the a boolean representing whether the lock is locked."""
         lock = None
-        if self._lock_dp:
+        if self._lock_state_dp:
+            lock = self._lock_state_dp.get_value(self._device)
+        if lock is None and self._lock_dp:
             lock = self._lock_dp.get_value(self._device)
-        else:
+        if lock is None:
             for d in (
                 self._unlock_card_dp,
                 self._unlock_dynpw_dp,
@@ -76,6 +80,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                 self._unlock_voice_dp,
                 self._unlock_face_dp,
                 self._unlock_multi_dp,
+                self._unlock_ibeacon_dp,
             ):
                 if d:
                     if d.get_value(self._device):
@@ -118,6 +123,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             self._unlock_voice_dp: "Voice",
             self._unlock_face_dp: "Face",
             self._unlock_multi_dp: "Multifactor",
+            self._unlock_ibeacon_dp: "iBeacon",
         }.items():
             by = self.unlocker_id(dp, desc)
             if by:

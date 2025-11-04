@@ -1,0 +1,486 @@
+name: Salt chlorinator
+products:
+  - id: yvsy0qxx6wboxoyh
+    manufacturer: Aquark
+    model: Mr.Pure
+entities:
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: temperature
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 133
+        type: integer
+        optional: true
+        name: f
+        mapping:
+          - scale: 10
+  - entity: switch
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 127
+        type: string
+        optional: true
+        name: config
+      - id: 134
+        type: string
+        optional: true
+        name: model
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+  - entity: sensor
+    name: Chassis temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Electrolysis voltage
+    class: voltage
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Turbo
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: number
+    name: ORP
+    category: config
+    class: voltage
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: mV
+        range:
+          min: 650
+          max: 800
+        mapping:
+          - step: 10
+  - entity: number
+    name: Pool volume
+    category: config
+    class: water
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: m³
+        range:
+          min: 5
+          max: 150
+        mapping:
+          - step: 5
+  - entity: number
+    class: ph
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: pH
+        range:
+          min: 72
+          max: 76
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: ORP
+    class: voltage
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: pH
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Chlorine produced
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    name: Water flow
+    class: moving
+    category: diagnostic
+    dps:
+      - id: 114
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Low acidity
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Calibration required
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Low salt
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Sensor fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: true
+          - value: false
+  - entity: sensor
+    name: Water quality
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: WAIT
+            value: poor
+          - dps_val: GOOD
+            value: good
+          - dps_val: GREAT
+            value: excellent
+  - entity: number
+    name: Electrolytic chip size
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+  - entity: select
+    name: Polarity reversal interval
+    translation_key: timer
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "6"
+            value: "6h"
+  - entity: button
+    name: Salinity check
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Electrolysis power
+    class: power
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: W
+        mapping:
+          - scale: 100
+        class: measurement
+  - entity: number
+    name: Yield
+    category: config
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
+  - entity: number
+    name: Acid addition rate
+    category: config
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: mL/day
+        range:
+          min: 0
+          max: 990
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Electrolysis current
+    class: current
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: inverter
+            value: inverter
+          - dps_val: auto_ph
+            value: auto_ph
+          - dps_val: smart
+            value: smart
+          - dps_val: manual
+            value: manual
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 129
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 129
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: text
+    name: Display config
+    category: config
+    icon: "mdi:television"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000000001"
+        name: switch
+      - id: 121
+        type: boolean
+        name: available
+  - entity: switch
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000000100"
+        name: switch
+      - id: 121
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1 on"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000000000FF0000"
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        mask: "000000000000FF000000"
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 121
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1 off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "0000000000FF00000000"
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00000000FF0000000000"
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 121
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2 on"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "000000FF000000000000"
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        mask: "0000FF00000000000000"
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 121
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2 off"
+    category: config
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        mask: "00FF0000000000000000"
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 135
+        type: base64
+        optional: true
+        mask: "FF000000000000000000"
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 121
+        type: boolean
+        name: available

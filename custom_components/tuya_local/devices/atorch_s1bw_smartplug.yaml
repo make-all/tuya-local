@@ -1,0 +1,571 @@
+name: Energy monitoring plug with display
+products:
+  - id: pl28o0wkaopyft8u
+    manufacturer: Atorch
+    model: S1BW
+entities:
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 360000
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 100
+  - entity: number
+    category: config
+    name: Electricity price
+    icon: "mdi:cash-multiple"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total Cost
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Over protection duration
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 20
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Overvoltage threshold
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 1
+          max: 2750
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Overcurrent threshold
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 2000
+        mapping:
+          - scale: 100
+  - entity: number
+    category: config
+    name: Overpower threshold
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 1
+          max: 4500
+  - entity: select
+    category: config
+    translation_key: language
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese
+            value: chinese
+          - dps_val: english
+            value: english
+  - entity: light
+    category: config
+    translation_key: display
+    dps:
+      - id: 108
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 9
+  - entity: light
+    category: config
+    name: Standby
+    icon: "mdi:brightness-4"
+    dps:
+      - id: 109
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    category: config
+    name: Standby time
+    icon: "mdi:sun-clock"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 99
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: select
+    name: Switch mode
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: controlled
+            value: Controlled
+          - dps_val: normally_open
+            value: Normally Open
+  - entity: button
+    name: Reset data
+    category: config
+    class: restart
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset Wi-Fi
+    category: config
+    class: restart
+    dps:
+      - id: 114
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Screen rotate
+    category: config
+    icon: "mdi:screen-rotation"
+    dps:
+      - id: 116
+        type: boolean
+        name: button
+        optional: true
+  - entity: select
+    category: config
+    name: Standby screen
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: original
+            value: Original
+          - dps_val: measurement
+            value: Measurement
+  - entity: select
+    category: config
+    name: Display
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: wifi1
+            value: Safety protection
+          - dps_val: safety_protection
+            value: Electricity price setting and bill
+          - dps_val: outage_a
+            value: Smart power off A
+          - dps_val: outage_b
+            value: Smart power off B
+          - dps_val: timing_close
+            value: Timing off
+          - dps_val: timing_open
+            value: Timing on
+          - dps_val: loop_timing
+            value: Timing loop
+          - dps_val: countdown
+            value: Timing Countdown
+  - entity: number
+    category: config
+    name: Low power threshold
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 1
+          max: 999
+  - entity: number
+    category: config
+    name: Time minutes
+    class: duration
+    icon: "mdi:clock"
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 99
+  - entity: number
+    category: config
+    name: High power threshold
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 1
+          max: 9999
+  - entity: number
+    category: config
+    name: Time hours
+    class: duration
+    icon: "mdi:clock"
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 99
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 124
+        name: sensor
+        type: integer
+        optional: true
+        unit: s
+  - entity: number
+    category: config
+    name: "Off timer"
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 360000
+  - entity: number
+    category: config
+    name: "On timer"
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 60
+          max: 359940
+  - entity: number
+    category: config
+    name: Cycle on timer
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 60
+          max: 359940
+  - entity: number
+    category: config
+    name: Cycle off timer
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 60
+          max: 359940
+  - entity: number
+    category: config
+    name: One shot on timer
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 60
+          max: 359940
+  - entity: number
+    category: config
+    name: One shot off timer
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 60
+          max: 359940
+  - entity: select
+    name: Switch state
+    dps:
+      - id: 131
+        type: string
+        name: option
+        mapping:
+          - dps_val: open
+            value: "On"
+          - dps_val: close
+            value: "Off"
+          - dps_val: auto
+            value: Auto
+  - entity: sensor
+    name: Warning
+    class: enum
+    category: diagnostic
+    icon: "mdi:eye-circle-outline"
+    dps:
+      - id: 132
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: ovp
+            value: Overvoltage protection
+          - dps_val: ocp
+            value: Overcurrent protection
+          - dps_val: opp
+            value: Overpower protection
+          - dps_val: outage_a
+            value: Smart power off A
+          - dps_val: outage_b
+            value: Smart power off B
+          - dps_val: timing_open
+            value: Timing on
+          - dps_val: timing_close
+            value: Timing off
+          - dps_val: loop_timing
+            value: Timing loop
+          - dps_val: countdown
+            value: Countdown
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 133
+        name: sensor
+        type: integer
+        class: measurement
+        unit: Hz
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 134
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 135
+        name: sensor
+        type: integer
+        class: measurement
+        unit: C
+  - entity: select
+    category: config
+    name: Energy tariff
+    dps:
+      - id: 136
+        type: string
+        name: option
+        mapping:
+          - dps_val: single_rate
+            value: Single rate
+          - dps_val: stair
+            value: Stair
+          - dps_val: peak_valley_stair
+            value: Peak-valley
+  - entity: number
+    category: config
+    name: Overvoltage recovery delay
+    icon: "mdi:timer"
+    class: duration
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 99
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 138
+        type: string
+        name: option
+        mapping:
+          - dps_val: open
+            value: "on"
+          - dps_val: colse
+            value: "off"
+          - dps_val: memory
+            value: memory
+  - entity: switch
+    name: Over protection
+    category: config
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Fast refresh
+    category: config
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+  - entity: number
+    name: Low voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 141
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 1
+          max: 2750
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Over protection time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement

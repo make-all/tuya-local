@@ -1,0 +1,40 @@
+name: Komeco QC60 Heat Pump
+products:
+  - id: zb3ismuzrxcsbe6z
+    manufacturer: Komeco
+    name: QC60 Heat Pump
+entities:
+  - entity: climate
+    name: Heat Pump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: hot
+                value: heat
+              - dps_val: cold
+                value: cool
+              - dps_val: eco
+                value: heat_cool
+              - dps_val: auto
+                value: auto
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 7
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true

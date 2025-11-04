@@ -30,9 +30,6 @@ async def async_tuya_setup_platform(
             try:
                 data[ecfg.config_id] = entity_class(device, ecfg)
                 entities.append(data[ecfg.config_id])
-                if ecfg.deprecated:
-                    _LOGGER.warning(ecfg.deprecation_message)
-                _LOGGER.debug("Adding %s for %s", platform, ecfg.config_id)
             except Exception as e:
                 _LOGGER.error(
                     "Error adding %s for %s: %s",

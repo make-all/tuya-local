@@ -40,10 +40,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 51
-        type: string
-        optional: true
-        name: dreamlight_scene_mode
       - id: 52
         type: string
         optional: true
@@ -52,8 +48,20 @@ entities:
         type: string
         optional: true
         name: paint_color_data
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -68,6 +76,15 @@ entities:
         mapping:
           - scale: 60
             step: 60
+  - entity: text
+    translation_key: scene
+    hidden: true
+    category: config
+    dps:
+      - id: 51
+        type: string
+        optional: true
+        name: value
   - entity: number
     name: LED count
     category: config

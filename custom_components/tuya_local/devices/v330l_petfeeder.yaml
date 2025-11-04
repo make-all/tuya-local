@@ -1,10 +1,15 @@
 name: Pet feeder
 products:
   - id: ibnk6keua0zzc2gr
-    model: V330
+    model: V330L
+    model_id: V330L_AF3V_223A
   - id: cjrm04np59ut4pwb
-    model: V330L-DU4L-VS
     # Needs to be added using the 3.2 protocol
+    model: V330L
+    model_id: V330L-DU4L-VS
+  - id: 7bkqbfbpv7qbfskr
+    manufacturer: iGET Home
+    model: 9LC
 entities:
   - entity: number
     name: Manual feed
@@ -19,6 +24,10 @@ entities:
         range:
           min: 0
           max: 10
+        mapping:
+          - dps_val: null
+            value: 0
+            hidden: true
       - id: 202
         type: integer
         name: food_weight
@@ -120,10 +129,15 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 1
+          - dps_val: 16777216
             value: true
           - value: false
+      - id: 206
+        type: bitfield
+        name: raw
+        optional: true
   - entity: binary_sensor
     name: Not enough food
     class: problem
@@ -133,8 +147,9 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 2
+          - dps_val: 33554432
             value: true
           - value: false
   - entity: binary_sensor
@@ -146,8 +161,9 @@ entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 4
+          - dps_val: 67108864
             value: true
           - value: false
   - entity: switch

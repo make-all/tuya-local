@@ -1,6 +1,10 @@
 name: RGBW lightbulb
 products:
   - id: dik6z7of4nailf94
+  - id: jpbst6n8suqi3rcw
+    manufacturer: Feit
+    model: "3 panel RGBW garage light"
+    model_id: ADJ4000
 entities:
   - entity: light
     dps:
@@ -44,10 +48,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
-        name: scene
-        type: string
-        optional: true
       - id: 27
         name: music
         type: string
@@ -56,8 +56,77 @@ entities:
         name: control_data
         type: string
         optional: true
+      - id: 30
+        name: rhythm_mode
+        type: string
+        optional: true
+      - id: 31
+        name: sleep_mode
+        type: string
+        optional: true
+      - id: 32
+        name: wakeup_mode
+        type: string
+        optional: true
+      - id: 33
+        name: power_memory
+        type: string
+        optional: true
+      - id: 210
+        name: random_timing
+        type: string
+        optional: true
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: null
+            value: none
+            hidden: true
+          - dps_val: "03323201000003e803e800000000323201007803e803e800000000"
+            value: Victory Day
+          - dps_val: "013232020084000003e800000000323202000003e803e800000000\
+                      323202012c03e803e800000000323202015e00fa03e800000000"
+            value: Easter
+          - dps_val: "02323202001903e803e800000000323202012c03e803e800000000"
+            value: Halloween
+          - dps_val: "03323201000003e803e800000000323201007803e803e800000000"
+            value: Christmas
+          - dps_val: "043232010084000003e800000000323201000003e803e800000000\
+                      323201001903e803e800000000323201007803e803e80000000032\
+                      320100b403e803e80000000032320100f003e803e8000000003232\
+                      01012c03e803e800000000323201015e00fa03e800000000"
+            value: party
+          - dps_val: "053232020078000003e800000000323202007803e8000a03e80000"
+            value: relax
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

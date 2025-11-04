@@ -119,9 +119,14 @@ sense with one UI mode, then this is provided to handle those cases.
 
 ### `hidden`
 
-*Optional, default=false*
+*Optional, true/unavailable, default=false*
 
 If `hidden` is `true`, then the entity will be disabled by default.
+If `hidden` is `unavailable`, then the entity will be disabled by default if
+the entity's `available` dp indicates it is unavailable. This may not work
+correctly if the device has not returned data yet when HA checks
+for this at startup.
+
 This can be used with advanced config or diagnostic entities that general
 users will not be interested in. To use such entities, the user must explicitly
 enable them after adding the device to Home Assistant.
@@ -633,14 +638,14 @@ from the camera.
 
 ### `cover`
 
-Either **position** or **open** should be specified.
+Either **position**, **action** or **open** should be specified otherwise the cover will always appear in an unknown state.
 
 - **position** (optional, number 0-100): a dp to control the percentage that the cover is open.
     0 means completely close, 100 means completely open.
 - **control** (optional, mapping of strings): a dp to control the cover. Mainly useful if **position** cannot be used.
     Valid values are `open, close, stop`
 - **action** (optional, string): a dp that reports the current state of the cover.
-   Special values are `opening, closing`
+   Special values are `opening, closing, opened, closed`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
 - **tilt_position** (optional, number): a dp to control the tilt opening of the cover (an example is venetian blinds that tilt as well as go up and down). The range will be auto-converted to the 0-100 expected by HA.
 
@@ -689,6 +694,7 @@ The unlock... dps below are normally integers, but can also be boolean, in which
 no information will be available about which specific credential was used to unlock the lock.
 
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked.
+- **lock_state** (optional, boolean): a read-only dp to return the current state of the lock separately from the lock dp (if provided).
 - **open** (optional, boolean): a dp to open or close the door or gate controlled by the lock, or if marked readonly to report the open status.
 - **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
 - **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.
@@ -701,6 +707,8 @@ no information will be available about which specific credential was used to unl
 - **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
 - **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
 - **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.
+- **unlock_ibeacon** (optional, integer): a dp to identify the BLE iBeacon used to unlock the lock.
+- **unlock_multi** (optional, integer): a dp to identify the multi-factor user that unlocked the lock.
 - **request_unlock** (optional, integer): a dp to signal that a request has been made to unlock, the value should indicate the time remaining for approval.
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
@@ -731,9 +739,9 @@ no information will be available about which specific credential was used to unl
     This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dp can be used.
 
 ### `siren`
-- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
-The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
-- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
+- **switch** (optional, boolean): a dp to switch the siren on and off (depending on the siren, this may trigger it, or arm it for auto triggering). If this is not used, then the **tone** must be present, and containing an "off" option.
+- **tone** (optional, mapping of strings): a dp to report and control the siren tone. This dp is required is there is no **switch**, in which case the value "off" will be used for turning off the siren, and will be filtered from the list of available tones. When the **switch** dp is not used, one value must be marked as `default: true` so that the `turn_on` service with no commands works.
+- **volume_level** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
 - **duration** (optional, integer): a dp to control how long the siren will sound for.
 
 ### `switch`
@@ -745,6 +753,20 @@ The value "off" will be used for turning off the siren, and will be filtered fro
      - `range` can be supplied to define the `min` and `max` length of the text.
      - if `hidden` is specified as `true`, the mode will be set to `password`, otherwise the mode will be `text`.
      - if the `type` is set to `base64` or `hex`, the `pattern` property of the text entity will be set appropriately. There is currently no way to set an arbitrary pattern.
+
+### `time`
+
+Time is intended to be used for setting wall clock time, daily alarms etc.
+However, it can also be convenient to use it for 24h timers. Since
+there is no way to change the limits in the UI, it is not recommended
+to use it for other length timers.
+
+*At least one of the following dps is required**
+
+- **hour** (optional, integer in range 0-24) - the hours component
+- **minute** (optional, integer in range 0-60 or 0-1440 if the only dp) - the minute component
+- **second** (optional, integer in range 0-60 or 0-84600 if the only dp) - the second component
+- **hms** (optional, string in format "hh:mm", "hh:mm:ss", "hhmm" or "hhmmss" - all components as a string
 
 ### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.

@@ -1,0 +1,106 @@
+name: Air quality monitor
+products:
+  - id: jqwywcbqaa0xucg7
+    model: VT-14N1
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        # platform.tuya.com says 6 levels, but device screen only shows 4
+        mapping:
+          - dps_val: level_1
+            value: excellent
+          - dps_val: level_2
+            value: good
+          - dps_val: level_3
+            value: moderate
+          - dps_val: level_4
+            value: poor
+          - dps_val: level_5
+            value: severe
+          - dps_val: level_6
+            value: danger
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    name: HCHO
+    class: volatile_organic_compounds
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement

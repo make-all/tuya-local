@@ -119,6 +119,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("format"): [FORMAT_SCHEMA],
         vol.Optional("mask"): str,
         vol.Optional("endianness"): vol.In(["little"]),
+        vol.Optional("mask_signed"): True,
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -144,6 +145,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "siren",
                 "switch",
                 "text",
+                "time",
                 "vacuum",
                 "valve",
                 "water_heater",
@@ -158,7 +160,7 @@ ENTITY_SCHEMA = vol.Schema(
         vol.Optional("icon_priority"): int,
         vol.Optional("deprecated"): str,
         vol.Optional("mode"): vol.In(["box", "slider"]),
-        vol.Optional("hidden"): True,
+        vol.Optional("hidden"): vol.In([True, "unavailable"]),
         vol.Required("dps"): [DP_SCHEMA],
     }
 )
@@ -231,6 +233,7 @@ KNOWN_DPS = {
         "required": [],
         "optional": [
             "lock",
+            "lock_state",
             {"and": ["request_unlock", "approve_unlock"]},
             {"and": ["request_intercom", "approve_intercom"]},
             "unlock_fingerprint",
@@ -261,6 +264,7 @@ KNOWN_DPS = {
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "text": {"required": ["value"], "optional": []},
+    "time": {"required": [{"or": ["hour", "minute", "second", "hms"]}], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [

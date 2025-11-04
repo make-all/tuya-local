@@ -1,0 +1,137 @@
+name: Air purifier
+products:
+  - id: bsgh7gwfmazrxsta
+    manufacturer: Kogan
+    model: AP-3029UAS
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 25
+          - dps_val: mid
+            value: 50
+          - dps_val: high
+            value: 75
+          - dps_val: turbo
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - name: Filter remaining
+    entity: sensor
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - translation_key: child_lock
+    entity: lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - translation_key: uv_sterilization
+    entity: switch
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - translation_key: filter_reset
+    entity: button
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+        optional: true
+  - translation_key: time_remaining
+    entity: sensor
+    class: duration
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: s
+  - translation_key: air_quality
+    entity: sensor
+    class: enum
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: Medium
+            value: moderate
+          - dps_val: severe
+            value: severe
+  - class: problem
+    entity: binary_sensor
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - name: Filter time
+    entity: sensor
+    class: duration
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: s
+  - translation_key: timer
+    entity: number
+    class: duration
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12

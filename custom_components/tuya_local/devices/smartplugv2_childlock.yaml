@@ -5,6 +5,19 @@ entities:
       - id: 1
         type: boolean
         name: switch
+      - id: 43
+        type: string
+        name: inching
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
@@ -13,12 +26,11 @@ entities:
         type: string
         name: random_timer
         optional: true
-      - id: 43
-        type: string
-        name: inching
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 9
@@ -34,12 +46,14 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
         optional: true
+        class: measurement
   - entity: sensor
     class: current
     category: diagnostic
@@ -86,8 +100,7 @@ entities:
           - dps_val: last
             value: memory
   - entity: select
-    name: Backlight
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -95,11 +108,11 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

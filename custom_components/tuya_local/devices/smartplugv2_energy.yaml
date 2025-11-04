@@ -13,8 +13,8 @@ products:
     manufacturer: SWE SAGEWE
     model: F2s501-GB
   - id: uqehhcrmk5depvtl
-    manufacturer: Smatrul
-    model: 16A/20A
+    manufacturer: Smatrul / Beston
+    model: 16A/20A / BDS01
 entities:
   - entity: switch
     class: outlet
@@ -26,6 +26,17 @@ entities:
         type: integer
         name: test_bit
         optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
@@ -38,9 +49,12 @@ entities:
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         type: integer
+        optional: true
         name: value
         unit: min
         range:
@@ -51,12 +65,14 @@ entities:
             step: 60
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -126,8 +142,17 @@ entities:
         optional: true
   - entity: select
     category: config
+    hidden: unavailable
     translation_key: initial_state
     dps:
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 38
         type: string
         name: option
@@ -142,37 +167,72 @@ entities:
   - entity: switch
     name: Overcharge cutoff
     category: config
+    hidden: unavailable
     icon: "mdi:battery-charging"
     dps:
+      - id: 46
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt_switch
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
       - id: 46
         type: boolean
         name: switch
         optional: true
         mapping:
           - dps_val: null
-            invalid: true
+            value_redirect: alt_switch
+      - id: 51
+        type: boolean
+        name: alt_switch
+        optional: true
+        hidden: true
   - entity: select
-    name: Light
-    icon: "mdi:circle-double"
+    translation_key: light_mode
+    hidden: unavailable
     category: config
     dps:
+      - id: 39
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: string
         name: option
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: lock
     translation_key: child_lock
+    hidden: unavailable
     category: config
     dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 40
         type: boolean
         name: lock

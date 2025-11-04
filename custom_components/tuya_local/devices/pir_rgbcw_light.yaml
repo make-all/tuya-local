@@ -3,6 +3,10 @@ products:
   - id: hbmq4wdi5vyx9qgu
     manufacturer: Kojima
     name: Motion sensor nightlight
+  - id: lgekqfxdabipm3tn
+    manufacturer: Smartrul
+    model: SMR-YD002W
+    name: PIR colorful nightlight
 entities:
   - entity: light
     dps:
@@ -55,15 +59,149 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
-        name: scene_data
-        type: hex
       - id: 28
         name: control_data
         type: string
         optional: true
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "00303000002e03e802c600000000"
+            value: "Good night"
+          - dps_val: "013030000084000003e800000000"
+            value: reading
+          - dps_val: "02303000001403e803e800000000"
+            value: working
+          - dps_val: "0330300000e8037a031600000000"
+            value: leisure
+          - dps_val: "04525202007803e803e800000000525202007803e8000a00000000"
+            value: "Grassland"
+          - dps_val: "05525201000003e803e800000000525201007803e803e800000000\
+              52520100f003e803e800000000525201003d03e803e80000000052\
+              520100ae03e803e800000000525201011303e803e800000000"
+            value: "Colorful"
+          - dps_val: "06525201000003e803e800000000525201007803e803e800000000\
+              52520100f003e803e800000000"
+            value: "Dazzling"
+          - dps_val: "07525202000003e803e800000000525202007803e803e800000000\
+              52520200f003e803e800000000525202003d03e803e80000000052\
+              520200ae03e803e800000000525202011303e803e800000000"
+            value: "Gorgeous"
+          - dps_val: "08282800001e0320012c00000000"
+            value: night
+          - dps_val: "1452520200ae03e803e80000000052520200b4012c03e8000000005\
+              2520200b4003203e800000000"
+            value: "Blue Sky"
+          - dps_val: "1546460200f003e800640000000046460200f003e803e8000000004\
+              64602012703e802ee00000000464602000003e803e8000000004646\
+              02001302ee03e8000000004646020032025803e8000000004646020\
+              05a038403e800000000"
+            value: "Sunrise"
+          - dps_val: "16464602005a0384006400000000464602005a038403e8000000004\
+              646020032025803e800000000464602001e02ee03e8000000004646\
+              02000003e803e800000000"
+            value: "Sunset glow"
+          - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
+            value: "Ocean"
+          - dps_val: "185252020028032003e800000000525202001e038403e8000000005\
+              252020014038403e800000000"
+            value: "Sunflower"
+          - dps_val: "19525201007803e803e800000000525201006e03200258000000005\
+              25201005a038403e800000000"
+            value: "Forest"
+          - dps_val: "1a525202000a038403e800000000525202000003e803e800000000"
+            value: "Kung Fu"
+          - dps_val: "1b525202001803e803e800000000"
+            value: "Candlelight"
+          - dps_val: "1c5252020104032003e800000000525202011802bc03e8000000005\
+              25202011303e803e800000000"
+            value: "Dream"
+          - dps_val: "1d646401000003e803e80000000064640100f003e803e8000000006\
+              46401007803e803e800000000646401003d03e803e800000000"
+            value: "Mediterranean"
+          - dps_val: "1e464601015e01f403e800000000464601003201f403e8000000004\
+              6460100a001f403e800000000"
+            value: "French Street"
+          - dps_val: "1f52520100dc02bc03e800000000525201006e03200258000000005\
+              252010014038403e800000000525201012703e802ee000000005252\
+              0100000384028a00000000"
+            value: "American"
+          - dps_val: "20646401003d03e803e800000000646401007803e803e8000000006\
+              46401011303e803e80000000064640100ae03e803e8000000006464\
+              01003201f403e800000000646401000003e803e800000000"
+            value: "Birthday"
+          - dps_val: "21464602015e01f403e800000000464602011303e803e800000000"
+            value: "Wedding day"
+          - dps_val: "225e5e0100f003e803e8000000005e5e01003d03e803e8000000005\
+              e5e01000003e803e8000000005e5e0100ae03e803e8000000005e5e\
+              01011303e803e8000000005e5e01007803e803e800000000"
+            value: "Christmas"
+          - dps_val: "23585802000003e803e80000000058580200f003e803e800000000"
+            value: "Independence day"
+          - dps_val: "24525202000003e803e800000000525202003d03e803e8000000005\
+              25202011303e803e80000000052520200f003e803e8000000005252\
+              02007803e803e800000000"
+            value: "Diwali"
+          - dps_val: "25525201011303e803e800000000525201000003e803e8000000005\
+              25201003d03e803e8000000005252010154032003e8000000005252\
+              010140032003e800000000525201001e02ee03e800000000"
+            value: "Holi"
+          - dps_val: "265e5e020014006403e8000000005e5e02000003e803e800000000"
+            value: "Victory Day"
+          - dps_val: "275e5e020014006403e8000000005e5e02000003e803e8000000005\
+              e5e02015e01f403e8000000005e5e02011303e803e800000000"
+            value: "Easter"
+          - dps_val: "28525201011303e803e800000000525201001e03e803e800000000"
+            value: "Halloween"
+          - dps_val: "006262020000000003e800000000626202002c008203de00000000"
+            value: "Aquarium daylight"
+          - dps_val: "01565602002c008203de00000000565602012c012c022600000000"
+            value: "Aquarium sunrise"
+          - dps_val: "0262620200f003e803e80000000062620200e5035c00e600000000"
+            value: "Aquarium moonlight"
+          - dps_val: "0366660200d100a0026c0000000066660200c102bc01ae00000000\
+              66660200bb03c0035c00000000"
+            value: "Aquarium rain storm"
+          - dps_val: "046666020000000003e80000000066660200c7004603a200000000\
+              666602002c008203de00000000"
+            value: "Aquarium cloudy"
+          - dps_val: "0666660200e6038e03e80000000066660200fe03ca025800000000\
+              66660200c9035203e800000000"
+            value: "Aquarium glow"
+          - dps_val: "0762620200d002940384000000006262020000000003e800000000"
+            value: "Aquarium stream"
+          - dps_val: "0866660200d7033402440000000066660200c603e801f400000000\
+              666602011702b2023a00000000"
+            value: "Aquarium deepwater"
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -77,7 +215,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-          - dps_val: null
   - entity: switch
     name: Manual mode
     category: config

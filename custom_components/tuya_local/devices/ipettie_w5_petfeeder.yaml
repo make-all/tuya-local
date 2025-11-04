@@ -16,10 +16,15 @@ entities:
         range:
           min: 1
           max: 12
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        type: string
+        type: base64
+        name: value
         optional: true
-        name: meal_plan
   - entity: sensor
     translation_key: status
     class: enum

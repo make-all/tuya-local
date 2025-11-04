@@ -1,0 +1,86 @@
+name: String light
+products:
+  - id: kerlphr7ehml1kgl
+    manufacturer: FlinQ Smart
+    model: Multicolor Light
+entities:
+  - entity: light
+    icon: "mdi:string-lights"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: text
+    name: Music data
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Direct control
+    icon: "mdi:tune-vertical"
+    category: config
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - value: "Combination"
+            dps_val: "AB4JZAAB"
+          - value: "C1 Steady On"
+            dps_val: "AAEBZGQB"
+          - value: "C2 Steady On"
+            dps_val: "AAIBZAAB"
+          - value: "Breathing"
+            dps_val: "AAsBZAAB"
+          - value: "Slo-Glo"
+            dps_val: "AAoBZAAB"
+          - value: "C1 Slo Glo"
+            dps_val: "ABABZGQB"
+          - value: "C2 Slo Glo"
+            dps_val: "ABEBZAAB"
+          - value: "Waves"
+            dps_val: "AAwFZAAB"
+          - value: "Slow Fade"
+            dps_val: "AAUFZDIB"
+          - value: "Jump Flashing"
+            dps_val: "ABIFZAAB"
+          - value: "In Wave"
+            dps_val: "AA0BZAAB"

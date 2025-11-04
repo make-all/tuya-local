@@ -1,8 +1,8 @@
 name: Panel heater
 products:
-  - id: jyota3jcxuelyf9t
-    manufacturer: Kogan
-    model_id: NPH-2000G-WIFI
+  - id: ynjanlglr4qa6dxf
+    manufacturer: Kogan / Goldair
+    model_id: NPH-2000G-WIFI / GPCV340
     model: Glass panel heater
 entities:
   - entity: climate
@@ -41,8 +41,20 @@ entities:
       - id: 2
         type: boolean
         name: lock
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

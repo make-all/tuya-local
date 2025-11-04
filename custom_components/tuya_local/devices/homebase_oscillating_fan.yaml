@@ -1,0 +1,71 @@
+name: Oscillating fan
+products:
+  - id: rastwarkmv7aa3oo
+    manufacturer: Homebase
+    model: DC fan XJ-30-5SDC-W
+    model_id: XJ-35-1SDC
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: nature
+            value: nature
+          - dps_val: smart
+            value: smart
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 12
+      - id: 5
+        name: oscillate
+        type: boolean
+  - entity: switch
+    name: Vertical oscillation
+    icon: mdi:swap-vertical
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 5h
+            value: 5h
+          - dps_val: 6h
+            value: 6h

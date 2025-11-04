@@ -19,9 +19,21 @@ entities:
         type: base64
         name: historical_current
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 9

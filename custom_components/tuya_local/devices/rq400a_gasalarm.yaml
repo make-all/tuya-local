@@ -1,0 +1,83 @@
+name: Gas leak detector
+products:
+  - id: stqmzk01tbm3qwhg
+    model: RQ400A-Update CB2S
+entities:
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+  - entity: sensor
+    name: Gas level
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "% LEL"
+        range:
+          min: 1
+          max: 1000
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: siren
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+      - id: 8
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: Alarm 1
+          - dps_val: "2"
+            value: Alarm 2
+          - dps_val: "3"
+            value: Alarm 3
+          - dps_val: "4"
+            value: Alarm 4
+          - dps_val: "5"
+            value: Alarm 5
+      - id: 3
+        type: integer
+        name: duration
+        unit: s
+        range:
+          min: 1
+          max: 180
+  - entity: button
+    name: Self check
+    icon: "mdi:alert-circle-check"
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+      - id: 1
+        type: string
+        name: result
+  - entity: binary_sensor
+    name: Warm up
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 10
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch

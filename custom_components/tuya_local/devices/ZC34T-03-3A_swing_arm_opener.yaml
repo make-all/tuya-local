@@ -17,6 +17,16 @@ entities:
             value: close
           - dps_val: stop
             value: stop
+      - id: 1
+        type: string
+        optional: true
+        name: open
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+          - value: null
   - entity: lock
     dps:
       - id: 102
@@ -28,19 +38,6 @@ entities:
             value: true
           - dps_val: unlock
             value: false
-  - entity: binary_sensor
-    class: window
-    dps:
-      - id: 1
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: open
-            value: true
-          - dps_val: closed
-            value: false
-
   - entity: binary_sensor
     name: Wind and rain
     class: moisture

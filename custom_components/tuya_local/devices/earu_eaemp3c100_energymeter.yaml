@@ -1,0 +1,888 @@
+name: Energy meter
+products:
+  - id: 4x198rybhwtzirm7
+    manufacturer: EARU
+    model: EAEMP3C-100-TY-W
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+          - dps_val: null
+            value_redirect: instant
+      - id: 113
+        type: base64
+        optional: true
+        name: instant
+        mask: "FFFF00000000000000000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 113
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000FFFFFF00000000000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 113
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000000000FFFFFF00000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+          - dps_val: null
+            value_redirect: instant
+      - id: 114
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000FFFFFF00000000000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 114
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000FFFFFF00000000000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 114
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000000000FFFFFF00000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+          - dps_val: null
+            value_redirect: instant
+      - id: 115
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000FFFFFF00000000000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 115
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000FFFFFF00000000000000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+          - dps_val: null
+            value_redirect: instant
+      - id: 115
+        type: base64
+        optional: true
+        name: instant
+        mask: "0000000000FFFFFF00000000000000"
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: short
+          - dps_val: 2
+            value: surge
+          - dps_val: 4
+            value: overload
+          - dps_val: 8
+            value: earth_leak
+          - dps_val: 16
+            value: temperature_diff
+          - dps_val: 32
+            value: fire
+          - dps_val: 64
+            value: high_power
+          - dps_val: 128
+            value: self_test
+          - dps_val: 256
+            value: over_current
+          - dps_val: 512
+            value: unbalanced
+          - dps_val: 1024
+            value: over_voltage
+          - dps_val: 2048
+            value: under_voltage
+          - dps_val: 4096
+            value: out_of_phase
+          - dps_val: 8192
+            value: outage
+          - dps_val: 16384
+            value: magnetism
+          - dps_val: 32768
+            value: credit_low
+          - dps_val: 65536
+            value: no_balance
+          - dps_val: 131072
+            value: phase_seq_err
+          - dps_val: 262144
+            value: voltage_unbalanced
+          - dps_val: 524288
+            value: low_current
+  - entity: switch
+    name: Prepayment
+    icon: "mdi:cash"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: button
+    name: Clear energy
+    icon: "mdi:delete"
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+      - id: 11
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: sensor
+    name: Balance energy
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:hand-coin"
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 999999
+        mapping:
+          - scale: 100
+      - id: 11
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: switch
+    icon: "mdi:fuse"
+    name: Circuit breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: text
+    name: Alarm 1
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 17
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm 2
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 18
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Auto-reset wait time
+    category: config
+    class: duration
+    icon: "mdi:history"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+      - id: 104
+        type: boolean
+        name: available
+  - entity: number
+    name: Auto-reset limit
+    category: config
+    icon: "mdi:fuse-alert"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 1
+          max: 30
+      - id: 104
+        type: boolean
+        name: available
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    name: Auto-reclose
+    icon: "mdi:electric-switch"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: text
+    name: Cycle timer
+    category: config
+    icon: "mdi:timer-refresh"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        name: value
+  - entity: number
+    name: Leakage reset delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+  - entity: text
+    name: Random timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:undo-variant"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        name: value
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: reactive_power
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kvar
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: reactive_power
+    name: Reactive power A
+    category: diagnostic
+    dps:
+      - id: 113
+        optional: true
+        type: base64
+        unit: kvar
+        class: measurement
+        name: sensor
+        mask: "0000000000000000FFFFFF00000000"
+        mapping:
+          - scale: 10000
+  - entity: sensor
+    class: power_factor
+    name: Power factor A
+    category: diagnostic
+    dps:
+      - id: 113
+        optional: true
+        type: base64
+        class: measurement
+        name: sensor
+        mask: "0000000000000000000000FFFF0000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    name: Frequency A
+    category: diagnostic
+    dps:
+      - id: 113
+        optional: true
+        type: base64
+        unit: Hz
+        class: measurement
+        name: sensor
+        mask: "00000000000000000000000000FFFF"
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: reactive_power
+    name: Reactive power B
+    category: diagnostic
+    dps:
+      - id: 114
+        optional: true
+        type: base64
+        unit: kvar
+        class: measurement
+        name: sensor
+        mask: "0000000000000000FFFFFF00000000"
+        mapping:
+          - scale: 10000
+  - entity: sensor
+    class: power_factor
+    name: Power factor B
+    category: diagnostic
+    dps:
+      - id: 114
+        optional: true
+        type: base64
+        class: measurement
+        name: sensor
+        mask: "0000000000000000000000FFFF0000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    name: Frequency B
+    category: diagnostic
+    dps:
+      - id: 114
+        optional: true
+        type: base64
+        unit: Hz
+        class: measurement
+        name: sensor
+        mask: "00000000000000000000000000FFFF"
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: reactive_power
+    name: Reactive power C
+    category: diagnostic
+    dps:
+      - id: 115
+        optional: true
+        type: base64
+        unit: kvar
+        class: measurement
+        name: sensor
+        mask: "0000000000000000FFFFFF00000000"
+        mapping:
+          - scale: 10000
+  - entity: sensor
+    class: power_factor
+    name: Power factor C
+    category: diagnostic
+    dps:
+      - id: 115
+        optional: true
+        type: base64
+        class: measurement
+        name: sensor
+        mask: "0000000000000000000000FFFF0000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    name: Frequency C
+    category: diagnostic
+    dps:
+      - id: 115
+        optional: true
+        type: base64
+        unit: Hz
+        class: measurement
+        name: sensor
+        mask: "00000000000000000000000000FFFF"
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 117
+        type: base64
+        optional: true
+        name: full_report
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Power on delay
+    category: config
+    class: duration
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 9999
+  - entity: number
+    name: Voltage recovery delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 9999
+      - id: 123
+        type: integer
+        name: cnt
+  - entity: number
+    name: Overcurrent recovery delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 9999
+      - id: 124
+        type: integer
+        name: cnt
+  - entity: number
+    name: Undercurrent recovery delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 9999
+      - id: 125
+        type: integer
+        name: cnt
+  - entity: text
+    name: Alarm 3
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 126
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Status A
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 127
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: Inactive
+          - dps_val: "1"
+            value: Consuming
+          - dps_val: "2"
+            value: Generating
+  - entity: sensor
+    name: Status B
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 128
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: Inactive
+          - dps_val: "1"
+            value: Consuming
+          - dps_val: "2"
+            value: Generating
+  - entity: sensor
+    name: Status C
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 129
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: Inactive
+          - dps_val: "1"
+            value: Consuming
+          - dps_val: "2"
+            value: Generating
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Overcurrent count
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    name: Lost current count
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    name: Leakage count
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 134
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory
+  - entity: number
+    name: Switch delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9999
+  - entity: number
+    name: Voltage multiplier
+    category: config
+    dps:
+      - id: 136
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9999
+  - entity: number
+    name: Current multiplier
+    category: config
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9999

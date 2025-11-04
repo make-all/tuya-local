@@ -31,14 +31,32 @@ entities:
         type: string
         optional: true
         mapping:
-          - dps_val: ECO
-            value: eco
-          - dps_val: Comfort
-            value: comfort
-          - dps_val: Antifrost
-            value: away
-          - dps_val: null
-            value: unknown
+          - constraint: preset_mode
+            conditions:
+              - dps_val: [ECO, Comfort, Antifrost]
+                mapping:
+                  - dps_val: ECO
+                    value: eco
+                  - dps_val: Comfort
+                    value: comfort
+                  - dps_val: Antifrost
+                    value: away
+              - dps_val: [low, high, af]
+                mapping:
+                  - dps_val: low
+                    value: eco
+                  - dps_val: high
+                    value: comfort
+                  - dps_val: af
+                    value: away
+              - dps_val: null
+                mapping:
+                  - dps_val: ECO
+                    value: eco
+                  - dps_val: Comfort
+                    value: comfort
+                  - dps_val: Antifrost
+                    value: away
   - entity: lock
     translation_key: child_lock
     category: config

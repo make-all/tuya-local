@@ -1,0 +1,62 @@
+name: Lights
+products:
+  - id: md1jguhfrhdklqyh
+    manufacturer: Feit
+    model: OneSync Smart Bridge
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: work_mode
+        optional: true
+      - id: 101
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: "Low"
+            value: 1
+          - dps_val: "Mid"
+            value: 82
+          - dps_val: "High"
+            value: 164
+          - dps_val: "Max"
+            value: 255
+      - id: 102
+        name: color_temp
+        type: string
+        mapping:
+          - dps_val: 2700K
+            value: 2700
+          - dps_val: 3000K
+            value: 3000
+          - dps_val: 3500K
+            value: 3500
+          - dps_val: 4000K
+            value: 4000
+          - dps_val: 5000K
+            value: 5000
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        name: value
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 86400

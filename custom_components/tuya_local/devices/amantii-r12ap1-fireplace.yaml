@@ -1,0 +1,341 @@
+name: Fireplace
+products:
+  - id: aggdycelaybrbp7s
+    manufacturer: Amantii
+    model: Bespoke
+    model_id: R1-2-AP1
+entities:
+  - entity: switch
+    icon: "mdi:power"
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+  - entity: climate
+    icon: "mdi:fireplace"
+    dps:
+      - id: 108
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: H1
+            value: heat
+            hidden: true
+          - dps_val: H2
+            value: heat
+            hidden: true
+          - dps_val: Auto
+            value: heat
+      - id: 108
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: H1
+            value: Low
+          - dps_val: H2
+            value: High
+          - dps_val: Auto
+            value: Auto
+      - id: 110
+        name: temperature
+        type: string
+        unit: C
+        range:
+          min: 15
+          max: 28
+        mapping:
+          - dps_val: 15C_59F
+            value: 15
+          - dps_val: 16C_60F_61F
+            value: 16
+          - dps_val: 17C_62F_63F
+            value: 17
+          - dps_val: 18C_64F_65F
+            value: 18
+          - dps_val: 19C_66F_67F
+            value: 19
+          - dps_val: 20C_68F
+            value: 20
+          - dps_val: 21C_69F_70F
+            value: 21
+          - dps_val: 22C_71F_72F
+            value: 22
+          - dps_val: 23C_73F_74F
+            value: 23
+          - dps_val: 24C_75F_76F
+            value: 24
+          - dps_val: 25C_77F_78F
+            value: 25
+          - dps_val: 26C_79F_80F
+            value: 26
+          - dps_val: 27C_81F_82F
+            value: 27
+          - dps_val: 28C_83F
+            value: 28
+      - id: 111
+        name: current_temperature
+        type: string
+        unit: C
+        mapping:
+          - dps_val: 5C_41F
+            value: 5
+          - dps_val: 6C_42F_43F
+            value: 6
+          - dps_val: 7C_44F_45F
+            value: 7
+          - dps_val: 8C_46F_47F
+            value: 8
+          - dps_val: 9C_48F_49F
+            value: 9
+          - dps_val: 10C_50F
+            value: 10
+          - dps_val: 11C_51F_52F
+            value: 11
+          - dps_val: 12C_53F_54F
+            value: 12
+          - dps_val: 13C_55F_56F
+            value: 13
+          - dps_val: 14C_57F_58F
+            value: 14
+          - dps_val: 15C_59F
+            value: 15
+          - dps_val: 16C_60F_61F
+            value: 16
+          - dps_val: 17C_62F_63F
+            value: 17
+          - dps_val: 18C_64F_65F
+            value: 18
+          - dps_val: 19C_66F_67F
+            value: 19
+          - dps_val: 20C_68F
+            value: 20
+          - dps_val: 21C_69F_70F
+            value: 21
+          - dps_val: 22C_71F_72F
+            value: 22
+          - dps_val: 23C_73F_74F
+            value: 23
+          - dps_val: 24C_75F_76F
+            value: 24
+          - dps_val: 25C_77F_78F
+            value: 25
+          - dps_val: 26C_79F_80F
+            value: 26
+          - dps_val: 27C_81F_82F
+            value: 27
+          - dps_val: 28C_83F
+            value: 28
+          - dps_val: 29C_84F_85F
+            value: 29
+          - dps_val: 30C_86F
+            value: 30
+          - dps_val: 31C_87F_88F
+            value: 31
+          - dps_val: 32C_89F_90F
+            value: 32
+          - dps_val: 33C_91F_92F
+            value: 33
+          - dps_val: 34C_93F_94F
+            value: 34
+          - dps_val: 35C_95F
+            value: 35
+          - dps_val: 36C_96F_97F
+            value: 36
+  - entity: switch
+    name: Sound
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: light
+    translation_key: embers
+    category: config
+    dps:
+      - id: 116
+        name: switch
+        type: boolean
+  - entity: number
+    name: Embers red
+    category: config
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 8
+  - entity: number
+    name: Embers green
+    category: config
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 8
+  - entity: number
+    name: Embers blue
+    category: config
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 8
+  - entity: light
+    translation_key: flame
+    category: config
+    dps:
+      - id: 117
+        name: switch
+        type: boolean
+  - entity: number
+    name: Flame yellow
+    category: config
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 6
+  - entity: number
+    name: Flame red
+    category: config
+    dps:
+      - id: 105
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 6
+  - entity: number
+    name: Flame orange
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 6
+  - entity: number
+    name: Flame speed
+    category: config
+    dps:
+      - id: 113
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 3
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 114
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: cancel
+          - dps_val: 5
+            value: 30m
+          - dps_val: 10
+            value: 1h
+          - dps_val: 15
+            value: 1h30m
+          - dps_val: 20
+            value: 2h
+          - dps_val: 25
+            value: 2h30m
+          - dps_val: 30
+            value: 3h
+          - dps_val: 35
+            value: 3h30m
+          - dps_val: 40
+            value: 4h
+          - dps_val: 45
+            value: 4h30m
+          - dps_val: 50
+            value: 5h
+          - dps_val: 55
+            value: 5h30m
+          - dps_val: 60
+            value: 6h
+          - dps_val: 65
+            value: 6h30m
+          - dps_val: 70
+            value: 7h
+          - dps_val: 75
+            value: 7h30m
+          - dps_val: 80
+            value: 8h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 115
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: none
+            value: false
+          - value: true
+      - id: 115
+        name: fault_code
+        type: string
+      - id: 115
+        name: description
+        type: string
+        mapping:
+          - dps_val: none
+            value: ok
+          - dps_val: E1
+            value: Overheating
+          - dps_val: E2
+            value: NTC is defective
+          - dps_val: E3
+            value: Heater not working
+  - entity: select
+    name: Canopy light
+    icon: "mdi:wall-sconce-flat-outline"
+    category: config
+    dps:
+      - id: 112
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: Red
+          - dps_val: 2
+            value: Green
+          - dps_val: 3
+            value: Blue
+          - dps_val: 4
+            value: Turquoise
+          - dps_val: 5
+            value: Purple
+          - dps_val: 6
+            value: Cyan
+          - dps_val: 7
+            value: Lavender
+          - dps_val: 8
+            value: Light Cyan
+          - dps_val: 9
+            value: Light Sky Blue
+          - dps_val: 10
+            value: Light Slate Gray
+          - dps_val: 11
+            value: Cycle

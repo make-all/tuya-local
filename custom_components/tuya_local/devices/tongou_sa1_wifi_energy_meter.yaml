@@ -1,0 +1,145 @@
+name: Energy meter
+products:
+  - id: gnr22vuyz8uis3gr
+    manufacturer: Tongou
+    model: TOSA1-0150XJWT2A
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: button
+    name: Live updates
+    category: config
+    icon: "mdi:wifi"
+    dps:
+      - id: 109
+        type: string
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        force: true
+        persist: false
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        class: measurement
+        force: true
+        persist: false
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        persist: false
+        class: measurement
+        force: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Prepay
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Energy reset
+    category: config
+    icon: "mdi:restore"
+    dps:
+      - id: 12
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "empty"
+            value: true
+  - entity: sensor
+    class: energy_storage
+    name: Balance energy
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+      - id: 11
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    class: energy_storage
+    name: Charge energy
+    category: config
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        mapping:
+          - scale: 100
+        range:
+          min: 0
+          max: 999999
+      - id: 11
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false

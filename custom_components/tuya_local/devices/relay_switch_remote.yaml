@@ -10,12 +10,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 42
-        type: string
-        name: random_time
-      - id: 43
-        type: string
-        name: cycle_time
       - id: 49
         name: add_remote
         type: string
@@ -24,8 +18,26 @@ entities:
         name: list_remote
         type: string
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 42
+        type: string
+        name: random_time
+      - id: 43
+        type: string
+        name: cycle_time
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

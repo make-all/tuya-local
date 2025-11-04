@@ -10,6 +10,9 @@ products:
     model: STY-63TM
   - id: uvbhl96dsubgimll
     manufacturer: Almo
+  - id: dsbptnyuqso0uber
+    manufacturer: Aziot
+    model: 10A smart plug
 entities:
   - entity: switch
     class: outlet
@@ -21,6 +24,20 @@ entities:
         type: integer
         name: test_bit
         optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 42
         type: string
         name: cycle_timer
@@ -29,14 +46,12 @@ entities:
         type: string
         name: random_timer
         optional: true
-      - id: 44
-        type: string
-        name: inching
-        optional: true
   - entity: number
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 9
         type: integer
@@ -50,6 +65,7 @@ entities:
             step: 60
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
@@ -57,6 +73,7 @@ entities:
         type: integer
         optional: true
         unit: Wh
+        class: measurement
       - id: 25
         type: integer
         name: calibration
@@ -138,7 +155,16 @@ entities:
   - entity: switch
     name: Overcharge protection
     category: config
+    hidden: unavailable
     dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: boolean
         name: switch
@@ -151,28 +177,45 @@ entities:
         type: boolean
         name: lock
   - entity: select
-    name: Light mode
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
+    hidden: unavailable
     dps:
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 40
         type: string
         name: option
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: binary_sensor
     name: Online
     class: connectivity
+    hidden: unavailable
     category: diagnostic
     dps:
       - id: 66
-        type: boolean
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 66
+        type: string
         optional: true
         name: sensor
         mapping:

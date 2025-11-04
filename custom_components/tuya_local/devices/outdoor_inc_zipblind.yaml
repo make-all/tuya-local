@@ -1,0 +1,54 @@
+name: Blind
+products:
+  - id: f91miyhj
+    manufacturer: Outdoor Inc
+    model: DC1545BE
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 9
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 8
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 3
+        name: work_state
+        type: string
+        optional: true
+        mapping:
+          - dps_val: opening
+            value: "opening"
+          - dps_val: closing
+            value: "closing"
+
+  - entity: switch
+    name: Reverse
+    category: config
+    icon: "mdi:swap-vertical"
+    dps:
+      - id: 11
+        name: switch
+        type: string
+        mapping:
+          - dps_val: back
+            value: true
+          - dps_val: forward
+            value: false

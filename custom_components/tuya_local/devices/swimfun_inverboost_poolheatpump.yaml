@@ -1,0 +1,268 @@
+name: Pool heat pump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: AUTO
+                value: heat_cool
+              - dps_val: HEATING
+                value: heat
+              - dps_val: COOLING
+                value: cool
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: TURBO
+            value: quick
+          - dps_val: SMART
+            value: smart
+          - dps_val: SILENT
+            value: quiet
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 60
+          max: 410
+        mapping:
+          - scale: 10
+            constraint: work_mode
+            conditions:
+              - dps_val: HEATING
+                value_redirect: heat_temp
+              - dps_val: COOLING
+                value_redirect: cool_temp
+      - id: 12
+        type: string
+        optional: true
+        name: schedule
+      - id: 108
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 113
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 114
+        type: integer
+        name: cool_temp
+        hidden: true
+        range:
+          min: 60
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 115
+        type: integer
+        name: heat_temp
+        hidden: true
+        range:
+          min: 60
+          max: 410
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    hidden: true
+    category: config
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 15
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: sys_high
+          - dps_val: 2
+            value: sys_low
+          - dps_val: 4
+            value: flow
+          - dps_val: 8
+            value: power
+          - dps_val: 16
+            value: cooling
+          - dps_val: 32
+            value: heating
+          - dps_val: 64
+            value: temp_dif
+          - dps_val: 128
+            value: in_temp
+          - dps_val: 256
+            value: eff_temp
+          - dps_val: 512
+            value: coil_temp
+          - dps_val: 1024
+            value: ret_temp
+          - dps_val: 2048
+            value: news
+          - dps_val: 4096
+            value: amb_temp
+          - dps_val: 8192
+            value: EE01
+          - dps_val: 16384
+            value: EE02
+          - dps_val: 32768
+            value: EE03
+          - dps_val: 65536
+            value: EE11
+          - dps_val: 131072
+            value: EE17
+  - entity: sensor
+    name: Compressor strength
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -99
+          max: 99
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: sensor
+    name: IPM module
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+  - entity: sensor
+    name: EEV step
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement

@@ -88,7 +88,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     self.name or "light",
                     self.color_mode,
                 )
-        return set()
 
     @property
     def supported_features(self):
@@ -196,7 +195,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         scale = 360 / mx
                     elif n == "s":
                         scale = 100 / mx
-                    else:
+                    elif n in ["v", "r", "g", "b"]:
                         scale = 255 / mx
 
                     rgbhsv[n] = round(scale * v)
@@ -297,6 +296,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._brightness_dps.get_values_to_set(
                         self._device,
                         bright,
+                        settings,
                     ),
                 }
         elif self._color_temp_dps and ATTR_COLOR_TEMP_KELVIN in params:
@@ -317,6 +317,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 **self._color_temp_dps.get_values_to_set(
                     self._device,
                     color_temp,
+                    settings,
                 ),
             }
         elif self._rgbhsv_dps and (
@@ -348,28 +349,33 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     hs[1],
                     brightness,
                 )
+
+                current = self._unpacked_rgbhsv
                 ordered = []
                 idx = 0
                 for n in fmt["names"]:
-                    r = fmt["ranges"][idx]
-                    scale = 1
-                    if n == "s":
-                        scale = r["max"] / 100
-                    elif n == "h":
-                        scale = r["max"] / 360
+                    if n in rgbhsv:
+                        r = fmt["ranges"][idx]
+                        scale = 1
+                        if n == "s":
+                            scale = r["max"] / 100
+                        elif n == "h":
+                            scale = r["max"] / 360
+                        else:
+                            scale = r["max"] / 255
+                        val = round(rgbhsv[n] * scale)
+                        if val < r["min"]:
+                            _LOGGER.warning(
+                                "%s/%s: Color data %s=%d constrained to be above %d",
+                                self._config._device.config,
+                                self.name or "light",
+                                n,
+                                val,
+                                r["min"],
+                            )
+                            val = r["min"]
                     else:
-                        scale = r["max"] / 255
-                    val = round(rgbhsv[n] * scale)
-                    if val < r["min"]:
-                        _LOGGER.warning(
-                            "%s/%s: Color data %s=%d constrained to be above %d",
-                            self._config._device.config,
-                            self.name or "light",
-                            n,
-                            val,
-                            r["min"],
-                        )
-                        val = r["min"]
+                        val = current[n]
                     ordered.append(val)
                     idx += 1
                 binary = pack(fmt["format"], *ordered)
@@ -378,6 +384,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._rgbhsv_dps.get_values_to_set(
                         self._device,
                         self._rgbhsv_dps.encode_value(binary),
+                        settings,
                     ),
                 }
         elif self._named_color_dps and ATTR_HS_COLOR in params:
@@ -393,6 +400,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._named_color_dps.get_values_to_set(
                         self._device,
                         best_match,
+                        settings,
                     ),
                 }
         if self._color_mode_dps:
@@ -403,11 +411,12 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._color_mode_dps.get_values_to_set(
                         self._device,
                         color_mode,
+                        settings,
                     ),
                 }
             elif not self._effect_dps:
                 effect = params.get(ATTR_EFFECT)
-                if effect:
+                if effect and effect != self.effect:
                     if effect == EFFECT_OFF:
                         # Turn off the effect. Ideally this should keep the
                         # previous mode, but since the mode is shared with
@@ -425,6 +434,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         **self._color_mode_dps.get_values_to_set(
                             self._device,
                             effect,
+                            settings,
                         ),
                     }
 
@@ -445,6 +455,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 **self._brightness_dps.get_values_to_set(
                     self._device,
                     bright,
+                    settings,
                 ),
             }
 
@@ -457,6 +468,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._effect_dps.get_values_to_set(
                         self._device,
                         effect,
+                        settings,
                     ),
                 }
 
@@ -470,11 +482,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 # that have tristate switch available as effect
                 if self._effect_dps.id not in settings:
                     settings = settings | self._effect_dps.get_values_to_set(
-                        self._device, "on"
+                        self._device, "on", settings
                     )
             else:
                 settings = settings | self._switch_dps.get_values_to_set(
-                    self._device, True
+                    self._device, True, settings
                 )
         elif self._brightness_dps and not self.is_on:
             bright = 255
@@ -483,7 +495,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 bright = color_util.brightness_to_value(r, bright)
 
             settings = settings | self._brightness_dps.get_values_to_set(
-                self._device, bright
+                self._device, bright, settings
             )
 
         if settings:

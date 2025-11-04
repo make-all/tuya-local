@@ -48,7 +48,16 @@ entities:
     name: Overcurrent alarm
     class: problem
     category: diagnostic
+    hidden: unavailable
     dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 7
         type: boolean
         name: sensor
@@ -56,10 +65,22 @@ entities:
         mapping:
           - dps_val: null
             value: false
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 2
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 2
         type: integer

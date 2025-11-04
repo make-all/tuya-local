@@ -21,11 +21,13 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -77,8 +79,20 @@ entities:
         type: integer
         name: calibration
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:
@@ -107,8 +121,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -116,11 +129,11 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

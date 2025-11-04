@@ -4,6 +4,9 @@ products:
     model: PC321-TY
   - id: 9rjjf6rdkca9woju
     model: PC321-TY 80A
+  - id: gqmmtjclqb7reg5p
+    manufacturer: Owon
+    model: PCT321-W-TY 80A
 entities:
   - entity: sensor
     class: energy
@@ -16,11 +19,32 @@ entities:
         unit: kWh
         class: total_increasing
   - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    hidden: unavailable
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 139
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
     category: diagnostic
+    class: voltage
     translation_key: voltage_x
     translation_placeholders:
       x: A
-    class: voltage
     dps:
       - id: 101
         name: sensor
@@ -33,6 +57,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: current
+    hidden: true
     translation_key: current_x
     translation_placeholders:
       x: A
@@ -48,6 +73,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power
+    hidden: true
     translation_key: power_x
     translation_placeholders:
       x: A
@@ -61,6 +87,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power_factor
+    hidden: true
     name: Power factor A
     dps:
       - id: 104
@@ -71,20 +98,42 @@ entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Energy A
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 106
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
     category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    hidden: true
     translation_key: voltage_x
     translation_placeholders:
       x: B
-    class: voltage
     dps:
       - id: 111
         name: sensor
@@ -97,6 +146,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: current
+    hidden: true
     translation_key: current_x
     translation_placeholders:
       x: B
@@ -112,6 +162,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power
+    hidden: true
     translation_key: power_x
     translation_placeholders:
       x: B
@@ -125,6 +176,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power_factor
+    hidden: true
     name: Power factor B
     dps:
       - id: 114
@@ -135,20 +187,42 @@ entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Energy B
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 116
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
     category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    hidden: true
     translation_key: voltage_x
     translation_placeholders:
       x: C
-    class: voltage
     dps:
       - id: 121
         name: sensor
@@ -161,6 +235,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: current
+    hidden: true
     translation_key: current_x
     translation_placeholders:
       x: C
@@ -176,6 +251,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power
+    hidden: true
     translation_key: power_x
     translation_placeholders:
       x: C
@@ -189,6 +265,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power_factor
+    hidden: true
     name: Power factor C
     dps:
       - id: 124
@@ -199,18 +276,38 @@ entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Energy C
+    class: energy
+    hidden: true
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: C
     dps:
       - id: 126
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: energy
+    hidden: true
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
     category: diagnostic
     class: current
-    name: Total current
     dps:
       - id: 132
         type: integer
@@ -223,7 +320,6 @@ entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Total active power
     dps:
       - id: 133
         type: integer

@@ -112,7 +112,8 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
-            return self._state_to_percent(state)
+            if state is not None:
+                return self._state_to_percent(state)
 
         if self._position_dp:
             pos = self._position_dp.get_value(self._device)

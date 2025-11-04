@@ -10,12 +10,14 @@ entities:
       - id: 2
         type: string
         name: hvac_mode
+        optional: true
         mapping:
           - dps_val: AUTO
             value: auto
           - dps_val: MANUAL
             value: heat
           - value: heat
+            hidden: true
       - id: 2
         type: string
         name: preset_mode
@@ -42,7 +44,6 @@ entities:
       - id: 16
         type: integer
         name: temperature
-        unit: C
         range:
           min: 50
           max: 400
@@ -249,12 +250,13 @@ entities:
       - id: 112
         type: integer
         name: value
+        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
-            constraint: unit
+            constraint: temp_unit
             conditions:
               - dps_val: false
                 range:
@@ -262,7 +264,7 @@ entities:
                   max: 50
       - id: 107
         type: boolean
-        name: unit
+        name: temp_unit
         hidden: true
   - entity: number
     name: Floor temperature calibration
@@ -273,12 +275,13 @@ entities:
         type: integer
         name: value
         optional: true
+        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
-            constraint: unit
+            constraint: temp_unit
             conditions:
               - dps_val: false
                 range:
@@ -286,7 +289,7 @@ entities:
                   max: 50
       - id: 107
         type: boolean
-        name: unit
+        name: temp_unit
         hidden: true
   - entity: select
     name: Temperature hysteresis
@@ -319,6 +322,16 @@ entities:
                     value: "3.0"
                   - dps_val: "3"
                     value: "4.0"
+              - dps_val: null
+                mapping:
+                  - dps_val: "0_5"
+                    value: "0.5"
+                  - dps_val: "1"
+                    value: "1.0"
+                  - dps_val: "2"
+                    value: "1.5"
+                  - dps_val: "3"
+                    value: "2.0"
       - id: 107
         type: boolean
         name: unit

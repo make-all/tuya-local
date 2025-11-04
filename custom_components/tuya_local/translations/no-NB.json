@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Konfigurer din lokale Tuya enhet",
-                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av Smart Life-appen.",
+                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av SmartLife appen.",
                 "data": {
                     "setup_mode": "Oppsettvalg:"
                 }
             },
             "cloud": {
                 "title": "Logg inn på Tuya",
-                "description": "Skriv inn Smart Life- eller Tuya Smart-brukerkoden din.\n\nDu finner denne koden i Smart Life-appen eller Tuya Smart-appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
+                "description": "Skriv inn SmartLife eller Tuya brukerkoden din.\n\nDu finner denne koden i SmartLife appen eller Tuya appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
                 "data": {
                     "user_code": "Brukerkode:"
                 }
             },
             "scan": {
                 "title": "Fullfør påloggingen",
-                "description": "Bruk Smart Life-appen eller Tuya Smart-appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
+                "description": "Bruk SmartLife appen eller Tuya appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
             },
             "choose_device": {
                 "title": "Velg enheten du vil legge til",
@@ -74,8 +74,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life sky-assistert enhetsoppsett.",
-                "manual": "Oppgi informasjon om enhetstilkobling manuelt."
+                "cloud": "SmartLife sky-assistert enhetsoppsett.",
+                "manual": "Oppgi informasjon om enhetstilkobling manuelt.",
+                "cloud_fresh_login": "SmartLife sky-assistert enhetsoppsett med ny pålogging."
             }
         }
     },
@@ -101,6 +102,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Retning",
+                "state": {
+                    "off": "Inne",
+                    "on": "Ute"
+                }
+            },
             "defrost": {
                 "name": "Tine",
                 "state": {
@@ -156,6 +164,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "Klimaanlegg",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -174,7 +183,24 @@
                             "top": "Høy",
                             "middle": "Midterst",
                             "down": "Nedre",
-                            "downmost": "Nederst"
+                            "downmost": "Nederst",
+                            "upper_half": "Øvre halvdel",
+                            "lower_half": "Nedre halvdel",
+                            "surround": "Omgivelse"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Venstre",
+                            "left": "Midt-venstre",
+                            "center": "Senter",
+                            "right": "Midt-høyre",
+                            "rightmost": "Høyre",
+                            "left_swing": "Venstre sving",
+                            "right_swing": "Høyre sving",
+                            "center_swing": "Senter sving",
+                            "surround": "Omgivelse",
+                            "direct": "Direkte"
                         }
                     }
                 }
@@ -211,6 +237,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Varmeapparat",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Varme nivå",
@@ -305,12 +332,25 @@
                             "medium": "Medium",
                             "high": "Høy",
                             "continuous": "Kontinuerlig",
-                            "intermittent": "Intermitterende"
+                            "intermittent": "Intermitterende",
+                            "timer": "Timer"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "Avfukter",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Rens",
+                            "dehumidify": "Avfukte"
                         }
                     }
                 }
             },
             "fan_with_presets": {
+                "name": "Vifte",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -321,6 +361,7 @@
                             "fresh": "Fresh",
                             "smart": "Smart",
                             "strong": "Sterk",
+                            "custom": "Egendefinert",
                             "high": "Høy",
                             "medium": "Medium",
                             "low": "Lav",
@@ -340,7 +381,12 @@
                             "sleep": "Sove",
                             "auto": "Auto",
                             "eco": "Øko",
-                            "anti-condensation": "Anti-kondens"
+                            "anti-condensation": "Anti-kondens",
+                            "extractor": "Ekstraktor",
+                            "heat_recovery": "Varmeutvinning",
+                            "timer": "Timer",
+                            "on": "På",
+                            "off": "Av"
                         }
                     }
                 }
@@ -383,15 +429,63 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} terskel"
             }
         },
         "select": {
+            "currency": {
+                "name": "Valuta",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Varme pumpe modus",
+                "state": {
+                    "heat": "Varm",
+                    "cool": "Kald",
+                    "auto": "Auto",
+                    "floor_heat": "Gulvvarme",
+                    "off": "Av",
+                    "hotwater": "Varmt vann",
+                    "hotwater_cool": "Varmt vann og kald",
+                    "hotwater_heat": "Varmt vann og varmt",
+                    "hotwater_auto": "Varmt vann og auto",
+                    "hotwater_floor_heat": "Varmt vann og gulvvarme"
+                }
+            },
             "initial_state": {
                 "name": "Starttilstand",
                 "state": {
                     "off": "Av",
                     "on": "På",
                     "memory": "Minne"
+                }
+            },
+            "kettle_mode": {
+                "name": "Kjelemodus",
+                "state": {
+                    "off": "Av",
+                    "heat": "Varm",
+                    "boil": "Kok",
+                    "quick_heat": "Kjapp varming",
+                    "quick_boil": "Kjapp koking",
+                    "keep_warm": "Hold varm",
+                    "custom": "Egendefinert",
+                    "dechlorinate": "Avkalkning",
+                    "black_tea": "Svart te",
+                    "green_tea": "Grønn te",
+                    "coffee": "Kaffe",
+                    "honey_water": "Honningvann",
+                    "infant_formula": "Barnemat",
+                    "white_tea": "Hvit te",
+                    "oolong_tea": "Oolong te"
                 }
             },
             "language": {
@@ -412,6 +506,15 @@
                     "turkish": "Türkçe"
                 }
             },
+            "light_mode": {
+                "name": "Lysmodus",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "state": "Tilstand",
+                    "locator": "Lokaliser"
+                }
+            },
             "mopping": {
                 "name": "Mopping",
                 "state": {
@@ -419,7 +522,8 @@
                     "auto": "Auto",
                     "low": "Lav",
                     "medium": "Medium",
-                    "high": "Høy"
+                    "high": "Høy",
+                    "very_high": "Veldig høy"
                 }
             },
             "recipe": {
@@ -441,6 +545,8 @@
                     "cake": "Kake",
                     "bread": "Brød",
                     "toast": "Toast",
+                    "sausage": "Pølse",
+                    "dry_fruit": "Tørket frukt",
                     "custom": "Egendefinert",
                     "cloud_recipe": "Skyoppskrift",
                     "default": "Standard",
@@ -470,10 +576,33 @@
                 "name": "Timer",
                 "state": {
                     "cancel": "Avbryt",
+                    "continuous": "Kontinuerlig",
+                    "30s": "30 sekunder",
+                    "1m": "1 minutt",
+                    "2m": "2 minutter",
+                    "5m": "5 minutter",
                     "10m": "10 minutter",
+                    "15m": "15 minutter",
+                    "20m": "20 minutter",
+                    "25m": "25 minutter",
                     "30m": "30 minutter",
+                    "35m": "35 minutter",
+                    "40m": "40 minutter",
+                    "45m": "45 minutter",
+                    "50m": "50 minutter",
+                    "55m": "55 minutter",
                     "1h": "1 time",
+                    "1h5m": "1 time 5 minutter",
+                    "1h10m": "1 time 10 minutter",
+                    "1h15m": "1 time 15 minutter",
+                    "1h20m": "1 time 20 minutter",
+                    "1h25m": "1 time 25 minutter",
                     "1h30m": "1 time 30 minutter",
+                    "1h35m": "1 time 35 minutter",
+                    "1h40m": "1 time 40 minutter",
+                    "1h45m": "1 time 45 minutter",
+                    "1h50m": "1 time 50 minutter",
+                    "1h55m": "1 time 55 minutter",
                     "2h": "2 timer",
                     "2h30m": "2 timer 30 minutter",
                     "3h": "3 timer",
@@ -507,7 +636,14 @@
                     "24h": "24 timer",
                     "36h": "36 timer",
                     "48h": "48 timer",
-                    "72h": "72 timer"
+                    "72h": "72 timer",
+                    "1d": "1 dag",
+                    "2d": "2 dager",
+                    "3d": "3 dager",
+                    "4d": "4 dager",
+                    "5d": "5 dager",
+                    "6d": "6 dager",
+                    "7d": "7 dager"
                 }
             },
             "temperature_unit": {
@@ -515,6 +651,14 @@
                 "state": {
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} handling",
+                "state": {
+                    "ignore": "Ignorer",
+                    "alarm": "Alarm",
+                    "trip_breaker": "Utløsningsbryter"
                 }
             },
             "oven_built_in_recipe": {
@@ -562,7 +706,8 @@
                     "good": "God",
                     "moderate": "Moderat",
                     "poor": "Dårlig",
-                    "severe": "Alvorlig"
+                    "severe": "Alvorlig",
+                    "danger": "Farlig"
                 }
             },
             "status": {
@@ -572,6 +717,7 @@
                     "plugged_in": "Tilkoblet",
                     "fault_unplugged": "Feil (frakoblet)",
                     "charging": "Lading",
+                    "discharging": "Utladning",
                     "waiting": "Venter",
                     "charged": "Ladet",
                     "fault": "Feil",
@@ -590,6 +736,7 @@
                     "manual": "Manuell",
                     "rain_delay": "Regn forsinkelse",
                     "off": "Av",
+                    "on": "På",
                     "cooking": "Matla",
                     "done": "Ferdig",
                     "door_open": "Dør åpen",
@@ -631,11 +778,23 @@
                     "close": "Lukk",
                     "monitor": "Overvåk",
                     "working": "Arbeider",
-                    "warning": "Advarsel"
+                    "warning": "Advarsel",
+                    "starting": "Starter",
+                    "emptying": "Tømming",
+                    "resetting": "Tilbakestilling",
+                    "reverse": "Revers",
+                    "full": "Full",
+                    "empty": "Tom",
+                    "missing": "Manglende",
+                    "formatting": "Formatering",
+                    "unformatted": "Uformaterte"
                 }
             },
             "time_remaining": {
                 "name": "Gjenstående tid"
+            },
+            "time_remaining_x": {
+                "name": "Gjenstående tid {x}"
             },
             "cooking_status": {
                 "name": "Koketilstand",
@@ -684,13 +843,20 @@
             "anti_frost": {
                 "name": "Anti-frost"
             },
+            "breaker": {
+                "name": "Bryter",
+                "state": {
+                    "off": "Åpen",
+                    "on": "Lukket"
+                }
+            },
             "evaporator_cleaning": {
                 "name": "Rengjøring av fordamper"
             },
             "ionizer": {
                 "name": "Ionisator"
             },
-            "keytone" : {
+            "keytone": {
                 "name": "Tastaturtone"
             },
             "outlet_x": {
@@ -712,6 +878,27 @@
         "text": {
             "scene": {
                 "name": "Scene"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Vannvarmer"
+            },
+            "kettle": {
+                "name": "Vannkoker"
             }
         }
     }

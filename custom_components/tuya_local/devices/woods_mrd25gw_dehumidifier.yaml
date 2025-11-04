@@ -1,0 +1,74 @@
+name: Dehumidifier
+products:
+  - id: mgg4xziqqrzuozwv
+    manufacturer: Woods
+    model: MRD25GW
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      # Target humidity (your device exposes presets "40" and "50")
+      # We map those enum strings to numeric setpoints so HA shows 40%/50%.
+      - id: 3
+        name: humidity
+        type: string
+        mapping:
+          - dps_val: "40"
+            value: 40
+            step: 10
+          - dps_val: "50"
+            value: 50
+            step: 10
+        range:
+          min: 40
+          max: 50
+      # Fan speed as mode (Low/High)
+      - id: 4
+        name: mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: high
+            value: High
+      # Current humidity measurement
+      - id: 6
+        name: sensor
+        type: integer
+
+  # Swing flap
+  - entity: switch
+    name: Swing
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+
+  # Child lock
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        name: lock
+        type: boolean
+
+  # Fault / Tank / Error indicator (true if any bit set)
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

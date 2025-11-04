@@ -627,23 +627,6 @@ SASWELL_C16_THERMOSTAT_PAYLOAD = {
     "26": 50,
 }
 
-FERSK_VIND2_PAYLOAD = {
-    "1": True,
-    "2": 22,
-    "3": 23,
-    "4": "COOL",
-    "5": 1,
-    "19": "C",
-    "101": False,
-    "102": False,
-    "103": 0,
-    "104": False,
-    "105": 0,
-    "106": 0,
-    "109": False,
-    "110": 0,
-}
-
 KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "1": False,
     "5": 99,
@@ -1677,4 +1660,44 @@ GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
     "108": 80,
     "109": 26,
     "110": False,
+}
+
+LEDVANCE_PANEL_PAYLOAD = {
+    "20": True,
+    "22": 670,
+    "23": 200,
+    "24": "003903e803e8",
+    "26": 0,
+    "51": "AAcAOQPoA+gCngDI",
+}
+
+MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
+    "1": "level_1",
+    "2": 26,
+    "3": 53,
+    "4": 814,
+    "5": 4,
+    "7": 3,
+    "8": 2,
+    "9": 3,
+    "22": 100,
+    "23": True,
+    "28": "middle",
+    "101": 20,
+    "102": 0,
+    "104": 1500,
+    "105": 10,
+    "106": True,
+    "107": 2,
+    "109": 0,
+    "110": 0,
+    "111": 0,
+    "112": "c",
+    "113": 200,
+    "114": 100,
+    "115": 61,
+    "116": True,
+    "117": True,
+    "118": True,
+    # last 3 must be true for the time entities to be enabled
 }
