@@ -1,4 +1,4 @@
-name: WATCH 2 Camera
+name: Camera
 products:
   # The product ID (or product_id) from your device information
   - id: j0gmpjxe9pvqnsqx
@@ -54,8 +54,7 @@ entities:
   # ------------------------------------
 
   - entity: light
-    name: Indicator
-    icon: "mdi:lightbulb-on"
+    translation_key: indicator
     category: config
     # Basic Indicator (matches basic_indicator: 101)
     dps:
@@ -74,7 +73,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Watermark (OSD)
+    name: Watermark
     icon: "mdi:watermark"
     category: config
     # Watermark/OSD Switch (matches basic_osd: 104)
@@ -85,7 +84,7 @@ entities:
         optional: true
 
   - entity: select
-    name: Night vision mode
+    name: Night vision
     icon: "mdi:weather-night"
     category: config
     # Night Vision Mode Selector (matches basic_nightvision: 108)
@@ -134,9 +133,15 @@ entities:
         name: switch
         optional: true
       # Motion Area String Data (matches motion_area: 169)
+  - entity: text
+    name: Motion alarm area
+    icon: "mdi:crop"
+    category: config
+    hidden: true
+    dps:
       - id: 169
-        type: string
-        name: area
+        type: base64
+        name: value
         optional: true
 
   - entity: switch
@@ -279,7 +284,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: ONVIF IP Address
+    name: ONVIF IP address
     category: diagnostic
     icon: "mdi:ip-network"
     # ONVIF IP Address (matches onvif_ip_addr: 254)
@@ -290,14 +295,15 @@ entities:
         sensitive: true
         optional: true
 
-  - entity: button
+  - entity: text
     name: ONVIF password change
     category: config
     icon: "mdi:lock-reset"
+    hidden: true
     # ONVIF Password Change (matches onvif_change_pwd: 253)
     dps:
       - id: 253
         type: string
-        name: button
+        name: value
         sensitive: true
         optional: true
