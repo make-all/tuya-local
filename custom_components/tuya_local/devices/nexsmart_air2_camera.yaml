@@ -8,19 +8,6 @@ entities:
   # ------------------------------------
   # 1. Main Camera & Snapshot
   # ------------------------------------
-  # USE RTSP
-
-  - entity: sensor
-    name: Latest snapshot
-    category: diagnostic
-    icon: "mdi:camera-burst"
-    # Snapshot trigger (matches movement_detect_pic: 115)
-    dps:
-      - id: 115
-        name: sensor
-        type: base64
-        optional: true
-        sensitive: true
 
   # ------------------------------------
   # 2. Battery and Power
@@ -231,4 +218,5 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
+
 
