@@ -421,6 +421,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
+- Pro Breeze D-23 dehumidifier
 - Qlima D720, D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
@@ -428,7 +429,7 @@
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
-- VacPlus dehumidifier
+- VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
@@ -732,6 +733,7 @@ of device.
   optional minimum brightness and bulb type)
 - Feit OneSync Smart Bridge lighting controller
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
+  - FlinQ Smart multicolor string lights
 - Galaxy Projector
 - Gosund SW2 dimmer switch
 - HDMI sync light

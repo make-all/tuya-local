@@ -1,8 +1,11 @@
 name: Thermostat
 products:
-  - id: axhyyv6w36e5oagp
+  - id: wwucdzi28uei6cri
     manufacturer: Avatto
-    model: WS20R smart knob
+    model: WT20R-WH-3A-W
+  - id: n6xrizqbjgmvhgtk
+    manufacturer: Avatto
+    model: WT20R-BH-3A-W
 entities:
   - entity: climate
     translation_key: thermostat
@@ -48,6 +51,8 @@ entities:
             conditions:
               - dps_val: f
                 value_redirect: temp_cur_f
+              - dps_val: c
+                scale: 10
       - id: 23
         type: string
         optional: true
@@ -163,3 +168,49 @@ entities:
             value: Internal
           - dps_val: out
             value: External
+  - entity: switch
+    name: Open window detection
+    category: config
+    icon: "mdi:window-open-variant"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: number
+    name: Holiday temperature
+    category: config
+    icon: "mdi:island"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: 32
+                  max: 41
+      - id: 103
+        type: integer
+        optional: true
+        name: temp_f
+        range:
+          min: 32
+          max: 41
+      - id: 23
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+# 104: sencer_c (sic) value "in", range unknown but probably same as 101?
+# 105/107: Home temperature, not sure if it is a setting or sensor
+# 112/113: Cook temperature, not sure what this is for (bad translation?)
