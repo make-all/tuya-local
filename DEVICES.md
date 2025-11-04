@@ -429,7 +429,7 @@
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
-- VacPlus dehumidifier
+- VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
