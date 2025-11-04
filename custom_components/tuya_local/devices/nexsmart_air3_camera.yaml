@@ -1,4 +1,4 @@
-name: AIR 3 Camera (Battery)
+name: Camera
 products:
   # The product ID (or product_id) from your device information
   - id: vjjoayeljqpxz2oe
@@ -35,9 +35,7 @@ entities:
         name: sensor
 
   - entity: binary_sensor
-    name: Power source
     class: battery_charging
-    icon: "mdi:power-plug"
     # Power Mode Sensor (matches wireless_powermode: 146)
     dps:
       - id: 146
@@ -45,15 +43,13 @@ entities:
         name: sensor
         mapping:
           - dps_val: "0"
-            value: Battery
+            value: false
           - dps_val: "1"
-            value: Plugged in / Charging
+            value: true
 
   - entity: binary_sensor
-    name: Device state
     class: connectivity
     category: diagnostic
-    icon: "mdi:sleep"
     # Awake/Sleep Status (matches wireless_awake: 149)
     dps:
       - id: 149
@@ -61,7 +57,7 @@ entities:
         name: sensor
 
   - entity: number
-    name: Low Battery Alarm Threshold
+    name: Low battery threshold
     icon: "mdi:battery-alert-variant-outline"
     category: config
     # Low Battery Threshold (matches wireless_lowpower: 147)
@@ -80,7 +76,6 @@ entities:
   # ------------------------------------
   - entity: light
     translation_key: indicator
-    icon: "mdi:lightbulb-on"
     category: config
     # Indicator LED (matches basic_indicator: 101)
     dps:
@@ -99,7 +94,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Watermark (OSD)
+    name: Watermark
     category: config
     icon: "mdi:watermark"
     # Watermark/OSD Switch (matches basic_osd: 104)
@@ -109,7 +104,7 @@ entities:
         name: switch
 
   - entity: select
-    name: Night vision mode
+    name: Night vision
     icon: "mdi:weather-night"
     category: config
     # Night Vision Mode Selector (matches nightvision_mode: 124)
@@ -129,8 +124,8 @@ entities:
   # 4. Detection & Alarm
   # ------------------------------------
   - entity: switch
-    name: PIR Motion Detection
-    icon: "mdi:motion-sensor-light"
+    name: Motion detection
+    icon: "mdi:motion-sensor"
     category: config
     # PIR Switch (matches ipc_pir_switch: 240)
     dps:
@@ -139,7 +134,7 @@ entities:
         name: switch
 
   - entity: number
-    name: PIR Sensitivity
+    name: Motion sensitivity
     icon: "mdi:ruler-square"
     category: config
     # PIR Sensitivity (matches ipc_pir_sensitivity: 241)
@@ -153,7 +148,7 @@ entities:
           max: 10
 
   - entity: switch
-    name: Humanoid Filter
+    name: Humanoid filter
     icon: "mdi:account-alert"
     category: config
     # Humanoid Filter (matches humanoid_filter: 170)
@@ -206,7 +201,7 @@ entities:
   # ------------------------------------
   - entity: light
     name: Floodlight
-    icon: "mdi:spotlight"
+    icon: "mdi:light-flood-down"
     category: config
     # Floodlight Light (matches floodlight_switch: 138)
     dps:
@@ -215,7 +210,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Audible Alarm
+    name: Audible alarm
     icon: "mdi:bell-alert"
     category: config
     # Audible Alarm Switch (matches ipc_audible_alarm: 242)
@@ -224,31 +219,22 @@ entities:
         type: boolean
         name: switch
 
-  - entity: switch
-    name: Siren
-    icon: "mdi:alarm-light"
+  - entity: siren
     category: config
     # Siren Switch (matches siren_switch: 159)
     dps:
       - id: 159
         type: boolean
         name: switch
-
-  - entity: number
-    name: Siren Volume
-    icon: "mdi:volume-high"
-    category: config
-    # Siren Volume (matches ipc_siren_volume: 195)
-    dps:
       - id: 195
         type: integer
-        name: value
-        unit: "%"
+        name: volume_level
         # Range is 0-100 based on device dump
         range:
           min: 0
           max: 100
-
+        mapping:
+          - scale: 100
   # ------------------------------------
   # 7. SD Card and Storage
   # ------------------------------------
@@ -317,3 +303,4 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
+
