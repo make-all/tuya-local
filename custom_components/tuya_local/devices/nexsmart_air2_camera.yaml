@@ -1,4 +1,4 @@
-name: AIR 2 Camera (Battery)
+name: Camera
 products:
   # The product ID (or product_id) from your device information
   - id: 0waimqh4mplog68x
@@ -35,9 +35,7 @@ entities:
         name: sensor
 
   - entity: binary_sensor
-    name: Power source
     class: battery_charging
-    icon: "mdi:power-plug"
     # Power Mode Sensor (matches wireless_powermode: 146)
     dps:
       - id: 146
@@ -45,15 +43,13 @@ entities:
         name: sensor
         mapping:
           - dps_val: "0"
-            value: Battery
+            value: false
           - dps_val: "1"
-            value: Plugged in / Charging
+            value: true
 
   - entity: binary_sensor
-    name: Device state
     class: connectivity
     category: diagnostic
-    icon: "mdi:sleep"
     # Awake/Sleep Status (matches wireless_awake: 149)
     dps:
       - id: 149
@@ -61,7 +57,7 @@ entities:
         name: sensor
 
   - entity: number
-    name: Low Battery Alarm Threshold
+    name: Low battery threshold
     icon: "mdi:battery-alert-variant-outline"
     category: config
     # Low Battery Threshold (matches wireless_lowpower: 147)
@@ -91,7 +87,7 @@ entities:
         optional: true
 
   - entity: switch
-    name: Watermark (OSD)
+    name: Watermark
     category: config
     icon: "mdi:watermark"
     # Watermark/OSD Switch (matches basic_osd: 104)
@@ -102,7 +98,7 @@ entities:
         optional: true
 
   - entity: select
-    name: Night vision mode
+    name: Night vision
     icon: "mdi:weather-night"
     category: config
     # Night Vision Mode Selector(matches basic_nightvision: 108)
@@ -123,8 +119,8 @@ entities:
   # 4. Detection & Alarm
   # ------------------------------------
   - entity: switch
-    name: PIR Motion Detection
-    icon: "mdi:motion-sensor-light"
+    name: Motion detection
+    icon: "mdi:motion-sensor"
     category: config
     # PIR Switch (matches ipc_pir_switch: 240)
     dps:
@@ -133,7 +129,7 @@ entities:
         name: switch
 
   - entity: number
-    name: PIR Sensitivity
+    name: Motion sensitivity
     icon: "mdi:ruler-square"
     category: config
     # PIR Sensitivity (matches ipc_pir_sensitivity: 241)
@@ -147,7 +143,7 @@ entities:
           max: 10
 
   - entity: switch
-    name: Humanoid Filter
+    name: Humanoid filter
     icon: "mdi:account-alert"
     category: config
     # Humanoid Filter (matches humanoid_filter: 170)
@@ -235,3 +231,4 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
+
