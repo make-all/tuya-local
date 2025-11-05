@@ -8,7 +8,26 @@ entities:
   # ------------------------------------
   # 1. Main Camera & Snapshot
   # ------------------------------------
-
+  - entity: event
+    name: Camera
+    category: diagnostic
+    icon: "mdi:camera-burst"
+    # Snapshot trigger (matches movement_detect_pic: 115)
+    dps:
+      - id: 115
+        name: event
+        type: base64
+        optional: true
+        sensitive: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: captured
+      - id: 115
+        name: snapshot_data
+        type: base64
+        optional: true
+        sensitive: true
   # ------------------------------------
   # 2. Battery and Power
   # ------------------------------------
@@ -218,3 +237,4 @@ entities:
             value: Card error
           - dps_val: null
             value: Formatted
+
