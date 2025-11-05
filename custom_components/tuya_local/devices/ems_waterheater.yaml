@@ -32,12 +32,13 @@ entities:
         range:
           min: 10
           max: 60
-        unit: C
       - id: 4
         type: string
         name: mode
         hidden: true
   - entity: sensor
+    # 2025-11-05
+    deprecated: water_heater.current_temperature
     name: Current Temperature
     class: temperature
     dps:
@@ -55,8 +56,6 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
-          - dps_val: null
             value: false
           - value: true
       - id: 9
