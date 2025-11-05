@@ -29,7 +29,26 @@ entities:
         name: switch
         type: boolean
         optional: true
-
+  - entity: event
+    name: Camera
+    category: diagnostic
+    icon: "mdi:camera-burst"
+    # Snapshot trigger (matches movement_detect_pic: 115)
+    dps:
+      - id: 115
+        name: event
+        type: base64
+        optional: true
+        sensitive: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: captured
+      - id: 115
+        name: snapshot_data
+        type: base64
+        optional: true
+        sensitive: true
   # ------------------------------------
   # 2. Battery and Power
   # ------------------------------------
@@ -118,12 +137,13 @@ entities:
         type: boolean
         name: switch
         optional: true
-    # Motion Area String Data (matches motion_area: 169)
+
   - entity: text
     name: Motion alarm area
     icon: "mdi:crop"
     category: config
     hidden: true
+    # Motion Area String Data (matches motion_area: 169)
     dps:
       - id: 169
         type: base64
