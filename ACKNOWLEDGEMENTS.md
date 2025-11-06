@@ -1108,3 +1108,4 @@ Further device support has been made with the assistance of users. Please consid
 - [darchons](https://github.com/darchons) for contributing improvements to subdevice support.
 - [creoludifico](https://github.com/creoludifico) for contributing support for Nexsmart Watch 2, Air 2 and Air 3 cameras.
 - [PMKA](https://github.com/PMKA) for contributing support for Goldair GPOC2415 oil heater.
+- [fbesserp](https://github.com/fbesserp) for contributing improvements to Catit Pixi smart feeder.
