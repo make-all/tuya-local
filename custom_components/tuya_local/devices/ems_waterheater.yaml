@@ -25,10 +25,10 @@ entities:
       - id: 3
         type: integer
         name: current_temperature
-        unit: C
       - id: 2
         type: integer
         name: temperature
+        unit: C
         range:
           min: 10
           max: 60
@@ -39,7 +39,6 @@ entities:
   - entity: sensor
     # 2025-11-05
     deprecated: water_heater.current_temperature
-    name: Current Temperature
     class: temperature
     dps:
       - id: 3
@@ -61,14 +60,9 @@ entities:
       - id: 9
         type: bitfield
         name: fault_code
-  - entity: sensor
-    name: Fault Description
-    class: enum
-    category: diagnostic
-    dps:
       - id: 9
         type: bitfield
-        name: sensor
+        name: description
         mapping:
           - dps_val: 0
             value: ok
@@ -91,7 +85,7 @@ entities:
           - dps_val: 256
             value: E03 Overheat protection
           - dps_val: 512
-            value: PA Compressor operating limit environment or water tank temperature protection
+            value: PA Compressor limit or water tank temperature protection
           - dps_val: 1024
             value: E08 Communication fault
           - dps_val: 2048
