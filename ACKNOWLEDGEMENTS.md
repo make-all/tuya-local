@@ -1106,3 +1106,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tomvansambeek](https://github.com/tomvansambeek) for contributing support for FlinQ Smart multicolor string lights.
 - [8none1](https://github.com/8none1) for contributing support for Pro Breeze D-23 dehumidifier.
 - [darchons](https://github.com/darchons) for contributing improvements to subdevice support.
+- [creoludifico](https://github.com/creoludifico) for contributing support for Nexsmart Watch 2, Air 2 and Air 3 cameras.
