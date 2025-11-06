@@ -1,0 +1,45 @@
+name: Thermostat Mini Series-Mini04 Plus
+products:
+  - id: qnkkma3qcqzmchx4
+    manufacturer: eTowel
+    model: Mini04 Plus
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 4
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: 'Standby'
+            value: 'off'
+          - dps_val: 'Manual'
+            value: heat
+      - id: 101
+        name: temperature
+        type: integer
+        unit: C
+        optional: true
+        range:
+          min: 45
+          max: 70
+        mapping:
+          - step: 5
+      - id: 103
+        name: current_temperature
+        type: integer
+      - id: 106
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
