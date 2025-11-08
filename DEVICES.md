@@ -959,7 +959,7 @@ port and password.
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
-- Ceres Plus pet feeder with camera
+- Ceres Plus camera pet feeder
 - Cleverio PF100 pet feeder
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
@@ -978,12 +978,13 @@ port and password.
 - Meowmatic pet feeder
 - Mini-B Public litter box
 - MolyPet F02W pet feeder
-- Mypin 6L Video pet feeder
+- Mypin 6L camera pet feeder
 - Nedis pet feeder
+- Ningbo BF314A camera pet feeder
 - Papifeed pet feeder
 - Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
-- Petlibro PLAF203 pet feeder with camera
+- Petlibro PLAF203 camera pet feeder
 - Petoneer Fresco EzGo pet fountain
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
@@ -991,7 +992,7 @@ port and password.
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
-- PetsPride OO15 pet feeder with camera
+- PetsPride OO15 camera pet feeder
 - Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)

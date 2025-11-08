@@ -1110,3 +1110,4 @@ Further device support has been made with the assistance of users. Please consid
 - [PMKA](https://github.com/PMKA) for contributing support for Goldair GPOC2415 oil heater.
 - [fbesserp](https://github.com/fbesserp) for contributing improvements to Catit Pixi smart feeder.
 - [amotruk](https://github.com/amotruk) for contributing support for Mini-B Public litter box.
+- [p1x3lmx](https://github.com/p1x3lmx) for assisting with support for Ningbo BF314A camera pet feeder.
