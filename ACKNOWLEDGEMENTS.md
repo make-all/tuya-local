@@ -1111,3 +1111,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fbesserp](https://github.com/fbesserp) for contributing improvements to Catit Pixi smart feeder.
 - [amotruk](https://github.com/amotruk) for contributing support for Mini-B Public litter box.
 - [p1x3lmx](https://github.com/p1x3lmx) for assisting with support for Ningbo BF314A camera pet feeder.
+- [sajtdavid](https://github.com/sajtdavid) for contributing support for CO2v1 carbon dioxide sensor.

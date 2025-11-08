@@ -1054,6 +1054,7 @@ port and password.
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
+- CO2v1 carbon dioxide sensor
 - C30W gas leak detector
 - CT20W PIR motion detector
 - Dienmern DM165A noise meter
