@@ -976,6 +976,7 @@ port and password.
 - LSC Smart Connect pet feeder
 - Meegeem cat litter box
 - Meowmatic pet feeder
+- Mini-B Public litter box
 - MolyPet F02W pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
