@@ -48,9 +48,11 @@ entities:
         type: string
         name: remote_no_pd_setkey
         optional: true
+        sensitive: true
       - id: 61
-        type: string
-        name: remote_no_dp_key
+        type: base64
+        name: code_unlock
+        sensitive: true
         optional: true
       - id: 62
         type: integer
