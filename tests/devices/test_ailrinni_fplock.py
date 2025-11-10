@@ -35,6 +35,17 @@ class TestAilrinniFingerprintLock(TuyaDeviceTestCase):
             [
                 "sensor_alert",
                 "number_lock_volume",
+                "text_remote_unlock_code",
+                "text_new_credential",
+                "text_delete_credential",
+                "text_modify_credential",
+                "text_new_temp_password",
+                "text_delete_temp_password",
+                "text_modify_temp_password",
+                "text_sync_credentials",
+                "text_offline_password_timestamp",
+                "sensor_used_offline_password",
+                "sensor_cleared_offline_passwords",
             ]
         )
 

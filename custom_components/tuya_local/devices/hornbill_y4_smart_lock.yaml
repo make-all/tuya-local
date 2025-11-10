@@ -6,28 +6,6 @@ products:
 entities:
   - entity: lock
     dps:
-      # [Add unlocking method] After the device is online, add unlocking
-      # methods. Support adding fingerprint, password, card and face unlocking
-      # methods; support administrator tagging.
-      - id: 1
-        type: string
-        optional: true
-        sensitive: true
-        name: unlock_method_create
-      # [Delete unlocking method] After the device is online, delete the
-      # unlocking method. Supports deleting fingerprint, password, card and
-      # face unlocking methods. This dp appears in pairs with the added dp.
-      - id: 2
-        type: string
-        optional: true
-        sensitive: true
-        name: unlock_method_delete
-      # [Modify unlocking method] After the device is online, you can modify
-      # the name of the unlocking method and the content of the password.
-      - id: 3
-        type: string
-        optional: true
-        name: unlock_method_modify
       # [Report unlocking record] is used for the device to report the record
       # of fingerprint unlocking. This dp is only enabled when the smart lock
       # product has a fingerprint recognition function in the hardware.
@@ -109,37 +87,6 @@ entities:
         type: boolean
         optional: true
         name: lock_state
-      # [Online Temporary Password] is used to add an online temporary
-      # password, and supports setting time periods and recurring time limits.
-      - id: 51
-        type: string
-        optional: true
-        sensitive: true
-        name: temporary_password_create
-      # [Online temporary password] is used to delete the online temporary
-      # password.
-      - id: 52
-        type: string
-        optional: true
-        persist: false
-        name: temporary_password_delete
-      # [Online temporary password] is used to modify the password content and
-      # corresponding validity period of the online temporary password.
-      - id: 53
-        type: string
-        optional: true
-        sensitive: true
-        persist: false
-        name: temporary_password_modify
-      # [Synchronous unlocking method] is used to synchronize all unlocking
-      # methods on the local device with the mobile phone. It is strongly
-      # recommended to enable this function.
-      - id: 54
-        type: string
-        optional: true
-        persist: false
-        sensitive: true
-        name: synch_method
       # [Report unlocking record] is used for the device to report the record
       # of online temporary password unlocking.
       - id: 55
@@ -185,29 +132,6 @@ entities:
         range:
           min: 0
           max: 999
-      # [Offline Password] is used to synchronize the timestamp between the
-      # cloud and the device. If it is not selected or not synchronized, the
-      # offline password will not be available.
-      - id: 64
-        type: string
-        optional: true
-        persist: false
-        name: password_offline_time
-      # [Offline password clear] When a single offline password is cleared
-      # locally on the device, the clearing operation record is reported.
-      - id: 65
-        type: string
-        optional: true
-        persist: false
-        name: offline_pwd_cleared
-      # [Offline password clear] When all offline passwords are cleared locally
-      # on the device, the clearing operation record is reported.
-      - id: 66
-        type: string
-        optional: true
-        persist: false
-        sensitive: true
-        name: unlock_offline_clear
       # [Report unlocking record] is used for the device to report offline
       # password unlocking records.
       - id: 67
@@ -230,15 +154,6 @@ entities:
       - id: 71
         type: string
         name: ble_unlock_check
-        optional: true
-        persist: false
-        sensitive: true
-      # [Remote unlock] is used to configure the key required for remote
-      # unlocking. If the device needs to be unlocked remotely, this DP is
-      # required.
-      - id: 73
-        type: string
-        name: remote_pd_setkey_check
         optional: true
         persist: false
         sensitive: true
@@ -466,3 +381,148 @@ entities:
         range:
           min: 1
           max: 1800
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      # [Remote unlock] is used to configure the key required for remote
+      # unlocking. If the device needs to be unlocked remotely, this DP is
+      # required.
+      - id: 73
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      # [Add unlocking method] After the device is online, add unlocking
+      # methods. Support adding fingerprint, password, card and face unlocking
+      # methods; support administrator tagging.
+      - id: 1
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      # [Delete unlocking method] After the device is online, delete the
+      # unlocking method. Supports deleting fingerprint, password, card and
+      # face unlocking methods. This dp appears in pairs with the added dp.
+      - id: 2
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:pencil-lock"
+    hidden: true
+    dps:
+      # [Modify unlocking method] After the device is online, you can modify
+      # the name of the unlocking method and the content of the password.
+      - id: 3
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: New temp password
+    category: config
+    icon: "mdi:lock-open-plus"
+    hidden: true
+    dps:
+      # [Online Temporary Password] is used to add an online temporary
+      # password, and supports setting time periods and recurring time limits.
+      - id: 51
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Delete temp password
+    category: config
+    icon: "mdi:lock-open-minus"
+    hidden: true
+    dps:
+      # [Online temporary password] is used to delete the online temporary
+      # password.
+      - id: 52
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Modify temp password
+    category: config
+    icon: "mdi:pencil-lock"
+    hidden: true
+    dps:
+      # [Online temporary password] is used to modify the password content and
+      # corresponding validity period of the online temporary password.
+      - id: 53
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      # [Synchronous unlocking method] is used to synchronize all unlocking
+      # methods on the local device with the mobile phone. It is strongly
+      # recommended to enable this function.
+      - id: 54
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Offline password timestamp
+    category: config
+    icon: "mdi:clock-digital"
+    hidden: true
+    dps:
+      # [Offline Password] is used to synchronize the timestamp between the
+      # cloud and the device. If it is not selected or not synchronized, the
+      # offline password will not be available.
+      - id: 64
+        type: string
+        optional: true
+        persist: false
+        name: value
+  - entity: sensor
+    name: Used offline password
+    category: diagnostic
+    dps:
+      # [Offline password clear] When a single offline password is cleared
+      # locally on the device, the clearing operation record is reported.
+      - id: 65
+        type: base64
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Cleared offline passwords
+    category: diagnostic
+    dps:
+      # [Offline password clear] When all offline passwords are cleared locally
+      # on the device, the clearing operation record is reported.
+      - id: 66
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        name: value
