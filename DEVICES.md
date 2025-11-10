@@ -24,6 +24,7 @@
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
 - Essentials Smart Home electric bathroom heater
+- eTowel Mini04 plus towel rail thermostat
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
