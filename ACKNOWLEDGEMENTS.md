@@ -1113,3 +1113,4 @@ Further device support has been made with the assistance of users. Please consid
 - [p1x3lmx](https://github.com/p1x3lmx) for assisting with support for Ningbo BF314A camera pet feeder.
 - [sajtdavid](https://github.com/sajtdavid) for contributing support for CO2v1 carbon dioxide sensor.
 - [dermocles9308](https://github.com/dermocles9308) for assisting with support for Tongou QCB2-100 3 phase circuit breaker.
+- [bvweerd](https://github.com/bvweerd) for contributing improvements to Fararo pet feeder.
