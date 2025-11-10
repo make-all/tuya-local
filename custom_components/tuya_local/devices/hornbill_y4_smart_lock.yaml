@@ -502,11 +502,11 @@ entities:
       - id: 64
         type: string
         optional: true
-        persist: false
         name: value
   - entity: sensor
     name: Used offline password
     category: diagnostic
+    hidden: true
     dps:
       # [Offline password clear] When a single offline password is cleared
       # locally on the device, the clearing operation record is reported.
@@ -517,12 +517,12 @@ entities:
   - entity: sensor
     name: Cleared offline passwords
     category: diagnostic
+    hidden: true
     dps:
       # [Offline password clear] When all offline passwords are cleared locally
       # on the device, the clearing operation record is reported.
       - id: 66
         type: base64
         optional: true
-        persist: false
         sensitive: true
-        name: value
+        name: sensor
