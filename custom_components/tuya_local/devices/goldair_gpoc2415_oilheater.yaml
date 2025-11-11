@@ -1,0 +1,123 @@
+name: Oil heater
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Goldair
+#     model_id: GPOC2415
+#     model: Platinum 2400W Oil Heater
+
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "level_0"
+            value: eco
+          - dps_val: "level_1"
+            value: low
+          - dps_val: "level_2"
+            value: medium
+          - dps_val: "level_3"
+            value: high
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "heating"
+            value: heating
+          - dps_val: "warm"
+            value: heating
+          - dps_val: "stop"
+            value: idle
+          - dps_val: "standby"
+            value: idle
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+
+  - entity: switch
+    name: Mute
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: On timer
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: number
+    name: Off timer
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24

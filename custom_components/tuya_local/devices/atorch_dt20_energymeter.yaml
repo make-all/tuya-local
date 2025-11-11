@@ -61,22 +61,22 @@ entities:
         name: value
         unit: V
         range:
-          min: 1
-          max: 2750
+          min: 0
+          max: 42000
         mapping:
-          - scale: 10
+          - scale: 100
   - entity: number
     category: config
-    name: Overcurrent threshold
-    class: current
+    name: Over temperature threshold
+    class: temperature
     dps:
       - id: 105
         type: integer
         name: value
-        unit: A
+        unit: C
         range:
           min: 1
-          max: 1000
+          max: 1500
         mapping:
           - scale: 10
   - entity: number
@@ -90,7 +90,7 @@ entities:
         unit: W
         range:
           min: 1
-          max: 27500
+          max: 252000
   - entity: select
     category: config
     translation_key: language
@@ -194,9 +194,26 @@ entities:
             value: Measurement
           - dps_val: back
             value: Settings
+          - dps_val: display_off
+            value: "Off"
+  - entity: number
+    name: Undervoltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 42000
+        mapping:
+          - scale: 100
   - entity: number
     category: config
-    name: Mini measure Amp
+    name: Mini measure amp
     icon: "mdi:resize-bottom-right"
     dps:
       - id: 121
@@ -252,14 +269,16 @@ entities:
             value: ok
           - dps_val: ""
             value: ok
+          - dps_val: "off"
+            value: "off"
           - dps_val: ovp
-            value: Overvoltage
+            value: Over voltage
           - dps_val: opp
-            value: Overpower
+            value: Over power
           - dps_val: lvp
-            value: Undervoltage
+            value: Under voltage
           - dps_val: otp
-            value: Overtemp
+            value: Over temperature
   - entity: sensor
     name: Total charge
     dps:
@@ -324,4 +343,6 @@ entities:
           - dps_val: 500A
             value: "500 amp"
           - dps_val: 600A
+            value: "600 amp"
+          - dps_val: 1000A
             value: "1000 amp"

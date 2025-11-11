@@ -1,0 +1,230 @@
+name: Thermostat
+products:
+  - id: qnkkma3qcqzmchx4
+    manufacturer: eTowel
+    model: Mini04 Plus
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 4
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: Standby
+            value: "off"
+          - dps_val: None
+            value: "off"
+            hidden: true
+          - dps_val: Manual
+            value: heat
+          - dps_val: Program
+            value: auto
+          - dps_val: RBT
+            value: auto
+            hidden: true
+          - dps_val: Comfort
+            value: heat
+            hidden: true
+          - dps_val: Setback
+            value: heat
+            hidden: true
+          - dps_val: LST
+            value: heat
+            hidden: true
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: None
+            value: "off"
+            hidden: true
+          - dps_val: Standby
+            value: away
+          - dps_val: Manual
+            value: Towel
+          - dps_val: Comfort
+            value: Room
+          - dps_val: Setback
+            value: Eco room
+          - dps_val: LST
+            value: Eco towel
+          - dps_val: Program
+            value: Program
+          - dps_val: RBT
+            value: Timer towel
+      - id: 101
+        name: temperature
+        type: integer
+        unit: C
+        optional: true
+        range:
+          min: 7
+          max: 70
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: Comfort
+                value_redirect: comfort_temperature
+                range:
+                  min: 7
+                  max: 28
+              - dps_val: [Manual, RBT]
+                step: 5
+                range:
+                  min: 45
+                  max: 70
+              - dps_val: [Standby, LST, Setback, Program]
+                invalid: true
+      - id: 102
+        name: comfort_temperature
+        type: integer
+        range:
+          min: 7
+          max: 28
+      - id: 103
+        name: current_temperature
+        type: integer
+      - id: 106
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 9
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+  - entity: text
+    name: Program
+    category: config
+    hidden: true
+    dps:
+      - id: 23
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    class: window
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            constraint: description
+            conditions:
+              - dps_val: open
+                value: true
+              - dps_val: closed
+                value: false
+      - id: 108
+        type: string
+        optional: true
+        name: description
+      - id: 107
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: description
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: binary_sensor
+    name: Window 2
+    class: window
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            constraint: description
+            conditions:
+              - dps_val: open
+                value: true
+              - dps_val: closed
+                value: false
+      - id: 110
+        type: string
+        optional: true
+        name: description
+      - id: 109
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: description
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: binary_sensor
+    name: Window 3
+    class: window
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            constraint: description
+            conditions:
+              - dps_val: open
+                value: true
+              - dps_val: closed
+                value: false
+      - id: 112
+        type: string
+        optional: true
+        name: description
+      - id: 111
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: description
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true

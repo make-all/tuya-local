@@ -1105,3 +1105,13 @@ Further device support has been made with the assistance of users. Please consid
 - [jkolo](https://github.com/jkolo) for contributing support for EMOS IP-300 camera with floodlight.
 - [tomvansambeek](https://github.com/tomvansambeek) for contributing support for FlinQ Smart multicolor string lights.
 - [8none1](https://github.com/8none1) for contributing support for Pro Breeze D-23 dehumidifier.
+- [darchons](https://github.com/darchons) for contributing improvements to subdevice support.
+- [creoludifico](https://github.com/creoludifico) for contributing support for Nexsmart Watch 2, Air 2 and Air 3 cameras.
+- [PMKA](https://github.com/PMKA) for contributing support for Goldair GPOC2415 oil heater.
+- [fbesserp](https://github.com/fbesserp) for contributing improvements to Catit Pixi smart feeder.
+- [amotruk](https://github.com/amotruk) for contributing support for Mini-B Public litter box.
+- [p1x3lmx](https://github.com/p1x3lmx) for assisting with support for Ningbo BF314A camera pet feeder.
+- [sajtdavid](https://github.com/sajtdavid) for contributing support for CO2v1 carbon dioxide sensor.
+- [dermocles9308](https://github.com/dermocles9308) for assisting with support for Tongou QCB2-100 3 phase circuit breaker.
+- [bvweerd](https://github.com/bvweerd) for contributing improvements to Fararo pet feeder.
+- [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat.

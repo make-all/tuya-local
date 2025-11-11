@@ -24,6 +24,7 @@
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
 - Essentials Smart Home electric bathroom heater
+- eTowel Mini04 plus towel rail thermostat
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
@@ -31,7 +32,7 @@
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
 - Eurom Sani 400,600,800 heaters
-- Goldair GPPH, GCPV, GECO and PH-ET heaters
+- Goldair GPPH, GCPV, GECO, GPOC and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
 - Herschel Select XLS heated bathroom mirror with lights
@@ -928,6 +929,7 @@ port and password.
 - LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera (WCM-P52 v1 and v2)
 - Nedis outdoor camera
+- Nexsmart Watch 2, Air 2, Air 3 cameraa
 - Pinelake BF02 birdfeeder camera
 - RH-PD10 3MP peephole doorbell camera
 - RL video intercom (reported unable to connect)
@@ -958,7 +960,7 @@ port and password.
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
-- Ceres Plus pet feeder with camera
+- Ceres Plus camera pet feeder
 - Cleverio PF100 pet feeder
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
@@ -975,13 +977,15 @@ port and password.
 - LSC Smart Connect pet feeder
 - Meegeem cat litter box
 - Meowmatic pet feeder
+- Mini-B Public litter box
 - MolyPet F02W pet feeder
-- Mypin 6L Video pet feeder
+- Mypin 6L camera pet feeder
 - Nedis pet feeder
+- Ningbo BF314A camera pet feeder
 - Papifeed pet feeder
 - Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
-- Petlibro PLAF203 pet feeder with camera
+- Petlibro PLAF203 camera pet feeder
 - Petoneer Fresco EzGo pet fountain
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
@@ -989,7 +993,7 @@ port and password.
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
-- PetsPride OO15 pet feeder with camera
+- PetsPride OO15 camera pet feeder
 - Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
@@ -1051,6 +1055,7 @@ port and password.
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
+- CO2v1 carbon dioxide sensor
 - C30W gas leak detector
 - CT20W PIR motion detector
 - Dienmern DM165A noise meter

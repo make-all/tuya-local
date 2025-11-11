@@ -5,20 +5,6 @@ products:
 entities:
   - entity: lock
     dps:
-      - id: 1
-        type: string
-        name: unlock_method_create
-        optional: true
-        sensitive: true
-      - id: 2
-        type: string
-        name: unlock_method_delete
-        optional: true
-      - id: 3
-        type: string
-        name: unlock_method_modify
-        optional: true
-        sensitive: true
       - id: 12
         type: integer
         name: unlock_fingerprint
@@ -41,14 +27,9 @@ entities:
         type: boolean
         name: lock_state
         optional: true
-      - id: 54
-        type: string
-        name: sync_method
-        optional: true
-        sensitive: true
       - id: 61
-        type: string
-        name: remote_no_dp_key
+        type: base64
+        name: code_unlock
         optional: true
         sensitive: true
       - id: 62
@@ -64,11 +45,6 @@ entities:
       - id: 71
         type: string
         name: ble_unlock_check
-        optional: true
-        sensitive: true
-      - id: 73
-        type: string
-        name: remote_pd_setkey_check
         optional: true
         sensitive: true
   - entity: sensor
@@ -157,3 +133,57 @@ entities:
       - id: 78
         type: boolean
         name: switch
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 73
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
