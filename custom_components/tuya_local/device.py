@@ -762,3 +762,4 @@ async def async_delete_device(hass: HomeAssistant, config: dict):
     await hass.data[DOMAIN][device_id]["device"].async_stop()
     del hass.data[DOMAIN][device_id]["device"]
     del hass.data[DOMAIN][device_id]["tuyadevice"]
+    del hass.data[DOMAIN][device_id]["tuyadevicelock"]
