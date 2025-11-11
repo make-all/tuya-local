@@ -406,6 +406,7 @@ class TuyaDpsConfig:
             "bitfield": int,
             "json": str,
             "base64": str,
+            "latin1b64": str,
             "utf16b64": str,
             "hex": str,
             "unixtime": int,
@@ -469,6 +470,12 @@ class TuyaDpsConfig:
             return int(mask, 16)
 
     @property
+    def cutoff_mask(self):
+        cutoff_mask = self._config.get("cutoff_mask")
+        if cutoff_mask:
+            return int(cutoff_mask)
+
+    @property
     def endianness(self):
         endianness = self._config.get("endianness", "big")
         return endianness
@@ -476,8 +483,11 @@ class TuyaDpsConfig:
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask
+        cutoff_mask = self.cutoff_mask
         bytevalue = self.decoded_value(device)
         if mask and isinstance(bytevalue, bytes):
+            if cutoff_mask:
+                bytevalue = bytevalue[:cutoff_mask]
             value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
             raw_result = (value & mask) // scale
@@ -489,8 +499,12 @@ class TuyaDpsConfig:
                 raw_result = to_signed(raw_result, bit_count)
 
             return self._map_from_dps(raw_result, device)
-        else:
-            return self._map_from_dps(device.get_property(self.id), device)
+        if self.rawtype == "latin1b64" and isinstance(bytevalue, str):
+            raw_result = bytevalue
+            if self.cutoff_mask:
+                raw_result = bytevalue[: self.cutoff_mask]
+            return self._map_from_dps(raw_result, device)
+        return self._map_from_dps(device.get_property(self.id), device)
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
@@ -512,6 +526,17 @@ class TuyaDpsConfig:
         elif self.rawtype == "base64" and isinstance(v, str):
             try:
                 return b64decode(v)
+            except ValueError:
+                _LOGGER.warning(
+                    "%s sent invalid base64 '%s' for %s",
+                    device.name,
+                    v,
+                    self.name,
+                )
+                return None
+        elif self.rawtype == "latin1b64" and isinstance(v, str):
+            try:
+                return b64decode(v).decode("latin1")
             except ValueError:
                 _LOGGER.warning(
                     "%s sent invalid base64 '%s' for %s",
