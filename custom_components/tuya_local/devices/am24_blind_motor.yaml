@@ -1,0 +1,121 @@
+name: Venetian blinds
+products:
+  - id: dy4dh1q0
+    model: AM24
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: close
+          - dps_val: continue
+            # HA does not support this
+            hidden: true
+      - id: 2
+        type: integer
+        name: position
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+          - dps_val: null
+            value_mirror: current_position
+      - id: 3
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 7
+        type: string
+        name: work_state
+      - id: 101
+        type: integer
+        name: tilt_position
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 0.1
+  - entity: select
+    name: Direction
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: forward
+            value: Clockwise
+            icon: "mdi:horizontal-rotate-clockwise"
+          - dps_val: back
+            value: Anti-clockwise
+            icon: "mdi:horizontal-rotate-counterclockwise"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    name: Border
+    icon: "mdi:arrow-expand-vertical"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: up
+            value: Top
+          - dps_val: down
+            value: Bottom
+          - dps_val: delete_limit
+            value: Clear
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        optional: true
+        type: boolean
+        name: button
+  - entity: select
+    name: Speed
+    icon: "mdi:blinds-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: continue
+            value: Normal
+          - dps_val: crawl
+            value: Slow

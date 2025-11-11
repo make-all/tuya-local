@@ -88,6 +88,13 @@ def _remove_duplicates(seq):
     return [x for x in seq if not (x in seen or adder(x))]
 
 
+def to_signed(val, bits):
+    """Convert unsigned int to signed 2's complement of given bit length."""
+    if val & (1 << (bits - 1)):
+        return val - (1 << bits)
+    return val
+
+
 class TuyaDeviceConfig:
     """Representation of a device config for Tuya Local devices."""
 
@@ -293,7 +300,7 @@ class TuyaEntityConfig:
             "deprecated", "nothing, this warning has been raised in error"
         )
         return (
-            f"The use of {self.entity} for {self._device.name} is "
+            f"The use of {self.config_id} for {self._device.name} is "
             f"deprecated and should be replaced by {replacement}."
         )
 
@@ -372,7 +379,7 @@ class TuyaEntityConfig:
                     self._device.config_type,
                     self.name,
                 )
-            hidden = device.has_returned_state and not self.available(device)
+            hidden = not self.available(device)
         return not hidden and not self.deprecated
 
 
@@ -473,12 +480,23 @@ class TuyaDpsConfig:
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
-            return self._map_from_dps((value & mask) // scale, device)
+            raw_result = (value & mask) // scale
+
+            # Insert signed interpretation here
+            if self._config.get("mask_signed", False):
+                # Count how many bits are set in the mask
+                bit_count = mask.bit_count()
+                raw_result = to_signed(raw_result, bit_count)
+
+            return self._map_from_dps(raw_result, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
+        return self.decode_value(v, device)
+
+    def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
                 return bytes.fromhex(v)
@@ -611,6 +629,7 @@ class TuyaDpsConfig:
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
+            r = mapping.get("range", r)
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
@@ -886,11 +905,8 @@ class TuyaDpsConfig:
                 )
             )
             for cond in conditions:
-                avail_dp = cond.get("available")
-                if avail_dp:
-                    avail_dps = self._entity.find_dps(avail_dp)
-                    if avail_dps and not avail_dps.get_value(device):
-                        continue
+                if not self.mapping_available(cond, device):
+                    continue
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
@@ -909,7 +925,7 @@ class TuyaDpsConfig:
 
         return c_match
 
-    def get_values_to_set(self, device, value):
+    def get_values_to_set(self, device, value, pending_map={}):
         """Return the dps values that would be set when setting to value"""
         result = value
         dps_map = {}
@@ -952,7 +968,9 @@ class TuyaDpsConfig:
                             cond.get("dps_val", device.get_property(c_dps.id)),
                             device,
                         )
-                        dps_map.update(c_dps.get_values_to_set(device, c_val))
+                        dps_map.update(
+                            c_dps.get_values_to_set(device, c_val, pending_map)
+                        )
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
@@ -1042,7 +1060,12 @@ class TuyaDpsConfig:
             # Convert to int
             endianness = self.endianness
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), endianness)
+            decoded_value = self.decoded_value(device)
+            # if we have already updated it as part of this update,
+            # use it to preserve bits
+            if self.id in pending_map:
+                decoded_value = self.decode_value(pending_map[self.id], device)
+            current_value = int.from_bytes(decoded_value, endianness)
             result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
 

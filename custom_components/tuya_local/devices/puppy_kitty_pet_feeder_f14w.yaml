@@ -1,0 +1,112 @@
+name: Pet feeder
+products:
+  - id: cyip5aunfcx3ftws
+    manufacturer: Puppy Kitty
+    model: F14-W
+entities:
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: done
+      - id: 112
+        name: feed_record
+        type: string
+        optional: true
+  - entity: sensor
+    name: Meal plans
+    icon: "mdi:numeric-1-box-multiple-outline"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: "mV"
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
+      # Meal plan is the following binary blob (1 byte per line), encoded
+      # in base64 (can repeat up to 10 times):
+      # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
+      #    Ex: Monday, Wednesday, Sunday -> 0b01010001
+      # - Hour
+      # - Minute
+      # - Feed portions
+      # - Enable/Disabled
+      - id: 108
+        type: base64
+        name: value
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 113
+        type: bitfield
+        name: fault_code
+      - id: 113
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 4
+            value: device_anomaly
+          - dps_val: 5
+            value: resolve_anomaly
+          - dps_val: 6
+            value: motor_grain
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 114
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 114
+        type: bitfield
+        optional: true
+        name: fault_code

@@ -1,0 +1,47 @@
+name: Water heat pump
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        name: operation_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: AUTO
+                value: heat_pump
+              - dps_val: ECO
+                value: eco
+              - dps_val: BOOST
+                value: high_demand
+              - dps_val: ELE
+                value: electric
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        precision: 0
+        range:
+          min: 48
+          max: 70
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: work_mode
+        type: string
+        hidden: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10

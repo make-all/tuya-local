@@ -69,6 +69,7 @@ class TestQotoSprinkler(
                 "number_timer",
                 "sensor_open",
                 "sensor_time_remaining",
+                "time_timer",
             ]
         )
 

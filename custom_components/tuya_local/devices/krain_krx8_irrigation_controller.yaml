@@ -1,12 +1,18 @@
-name: Irrigation Controller
+name: Irrigation controller
 products:
   - id: o4lzusmr4igv5ux3
     manufacturer: KRain
     model: KRX8
 entities:
+  - entity: switch
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: binary_sensor
     class: running
-    icon: mdi:sprinkler-variant
+    icon: "mdi:sprinkler-variant"
     dps:
       - id: 132
         name: sensor
@@ -70,30 +76,39 @@ entities:
         name: valve
   - entity: switch
     name: Program A
-    icon: mdi:timetable
+    icon: "mdi:timetable"
+    category: config
     dps:
       - id: 117
         type: boolean
         name: switch
   - entity: switch
     name: Program B
-    icon: mdi:timetable
+    icon: "mdi:timetable"
+    category: config
     dps:
       - id: 118
         type: boolean
         name: switch
   - entity: switch
     name: Program C
-    icon: mdi:timetable
+    icon: "mdi:timetable"
     dps:
       - id: 119
         type: boolean
         name: switch
   - entity: switch
     name: Program D
-    icon: mdi:timetable
+    icon: "mdi:timetable"
     dps:
       - id: 120
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Enable programs
+    icon: "mdi:calendar-check"
+    dps:
+      - id: 121
         type: boolean
         name: switch
   - entity: binary_sensor
@@ -102,12 +117,41 @@ entities:
       - id: 130
         name: sensor
         type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: binary_sensor
     class: plug
     dps:
       - id: 131
         name: sensor
         type: boolean
+  - entity: switch
+    name: Watering delay
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 136
+        type: boolean
+        name: switch
+  - entity: number
+    name: Watering delay
+    class: duration
+    category: config
+    icon: "mdi:weather-pouring"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 1
+          max: 15
+      - id: 136
+        type: boolean
+        name: available
   - entity: binary_sensor
     name: Rain
     class: moisture
@@ -115,3 +159,57 @@ entities:
       - id: 137
         name: sensor
         type: boolean
+  - entity: text
+    name: Program
+    category: config
+    icon: "mdi:timetable"
+    hidden: true
+    dps:
+      - id: 127
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Zone config
+    category: config
+    icon: "mdi:view-grid-outline"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Date and time
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 129
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Watering delay
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        mask: "0000FF00"
+        name: sensor
+        unit: d
+        class: measurement
+      - id: 134
+        type: base64
+        name: technical_info
+  - entity: text
+    name: Manual command
+    category: config
+    icon: "mdi:account-cog"
+    hidden: true
+    dps:
+      - id: 133
+        type: base64
+        optional: true
+        name: value

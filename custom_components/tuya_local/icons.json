@@ -141,10 +141,19 @@
         },
         "number": {
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-cancel"
+                }
             },
             "timer_x": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-cancel"
+                }
+            },
+            "sensor_threshold": {
+                "default": "mdi:arrow-collapse-up"
             }
         },
         "select": {
@@ -156,6 +165,18 @@
                     "cny": "mdi:currency-cny",
                     "cad": "mdi:currency-usd",
                     "gbp": "mdi:currency-gbp"
+                }
+            },
+            "heat_pump_mode": {
+                "default": "mdi:heat-pump",
+                "state": {
+                    "heat": "mdi:fire",
+                    "cool": "mdi:snowflake",
+                    "auto": "mdi:auto-mode",
+                    "hotwater": "mdi:water-boiler",
+                    "hotwater_heat": "mdi:fire-circle",
+                    "hotwater_cool": "mdi:snowflake-melt",
+                    "hotwater_auto": "mdi:water-boiler"
                 }
             },
             "initial_state": {
@@ -171,6 +192,9 @@
                     "boil": "mdi:kettle-steam",
                     "quick_boil": "mdi:kettle-steam"
                 }
+            },
+            "light_mode": {
+                "default": "mdi:circle-double"
             },
             "mopping": {
                 "default": "mdi:water"
@@ -217,12 +241,23 @@
                 }
             },
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "cancel": "mdi:timer-cancel"
+                }
             },
             "temperature_unit": {
                 "default": "mdi:temperature-celsius",
                 "state": {
                     "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "ignore": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip_breaker": "mdi:electric-switch"
                 }
             }
         },
@@ -304,7 +339,10 @@
                 }
             },
             "time_remaining": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-stop"
+                }
             },
             "energy_consumed": {
                 "default": "mdi:flash"
@@ -340,11 +378,26 @@
             },
             "electrolytic_sterilization": {
                 "default": "mdi:flash"
+            },
+            "breaker": {
+                "default": "mdi:fuse",
+                "state": {
+                    "on": "mdi:fuse",
+                    "off": "mdi:fuse-off"
+                }
             }
         },
         "text": {
             "scene": {
                 "default": "mdi:palette"
+            }
+        },
+        "time": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "timer_x": {
+                "default": "mdi:timer"
             }
         },
         "water_heater": {

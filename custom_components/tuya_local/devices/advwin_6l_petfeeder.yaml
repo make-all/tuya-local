@@ -1,0 +1,183 @@
+name: Pet feeder
+products:
+  - id: cwoaxapwqubwkg6o
+    manufacturer: Advwin
+    model: 6L camera
+entities:
+  - entity: camera
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 115
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        name: snapshot
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: push
+      - id: 212
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: sensor
+    name: Food weight
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 232
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 234
+        type: boolean
+        name: history_data
+  - entity: event
+    name: Feed problem
+    dps:
+      - id: 233
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: empty
+          - dps_val: "1"
+            value: blocked
+  - entity: button
+    name: Voice record
+    icon: "mdi:record-rec"
+    category: config
+    dps:
+      - id: 235
+        type: string
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Stop voice record
+    icon: "mdi:stop-circle"
+    category: config
+    dps:
+      - id: 235
+        type: string
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 236
+        type: hex
+        name: value
+  - entity: number
+    name: Feed
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 237
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 20
+  - entity: sensor
+    name: Last feed
+    category: diagnostic
+    dps:
+      - id: 238
+        type: integer
+        name: sensor
+        unit: portions

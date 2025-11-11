@@ -36,6 +36,7 @@ class TestBLEValve(TuyaDeviceTestCase):
                 "sensor_last_use_time",
                 "select_weather_delay",
                 "number_irrigation_time",
+                "time_irrigation_time",
                 "switch_smart_weather_switch",
             ]
         )
@@ -81,3 +82,7 @@ class TestBLEValve(TuyaDeviceTestCase):
                 "irrigation_schedule": "irrigationtest",
             },
         )
+
+    def test_available(self):
+        """Override to ignore dynamic availability."""
+        pass

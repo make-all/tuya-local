@@ -1,0 +1,124 @@
+name: Heater
+products:
+  - id: vx9tbbzhfmcc0f3k
+    manufacturer: Eurom
+    model: Sani 800
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 99
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 99
+              - dps_val: false
+                range:
+                  min: 0
+                  max: 37
+      - id: 3
+        type: integer
+        name: temp_set_f
+        optional: true
+        hidden: true
+        range:
+          min: 32
+          max: 99
+      - id: 4
+        type: boolean
+        name: temperature_unit
+        optional: true
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+      - id: 5
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_current_f
+      - id: 6
+        type: integer
+        name: temp_current_f
+        optional: true
+        hidden: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+      - id: 8
+        type: boolean
+        name: available
+        optional: true
+  - entity: switch
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+        optional: true
+  - entity: text
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: string
+        name: value
+        optional: true
+  - entity: select
+    name: Schedule mode
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: holiday
+            value: Holiday
+          - dps_val: program
+            value: Program
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit

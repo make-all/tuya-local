@@ -58,9 +58,22 @@ entities:
           max: 1000
         mapping:
           - scale: 10
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     category: config
     dps:
       - id: 6
@@ -89,8 +102,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Indicator light
-    icon: "mdi:power"
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -98,8 +110,8 @@ entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator

@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
-                "description": "Devices can either be added manually or cloud-assisted with the help of the Smart Life app.",
+                "description": "Devices can either be added manually or cloud-assisted with the help of the SmartLife app.",
                 "data": {
                     "setup_mode": "Setup choice:"
                 }
             },
             "cloud": {
                 "title": "Login to Tuya",
-                "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+                "description": "Enter your SmartLife or Tuya user code.\n\nYou can find this code in the SmartLife app or Tuya app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
                 "data": {
                     "user_code": "User code:"
                 }
             },
             "scan": {
                 "title": "Complete the login",
-                "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+                "description": "Use SmartLife app or Tuya app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
             },
             "choose_device": {
                 "title": "Choose the device to add",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life cloud-assisted device setup.",
-                "manual": "Manually provide device connection information."
+                "cloud": "SmartLife cloud-assisted device setup.",
+                "manual": "Manually provide device connection information.",
+                "cloud_fresh_login": "SmartLife cloud-assisted device setup with fresh login."
             }
         }
     },
@@ -181,7 +182,24 @@
                             "top": "Top",
                             "middle": "Middle",
                             "down": "Down",
-                            "downmost": "Downmost"
+                            "downmost": "Downmost",
+                            "upper_half": "Upper half",
+                            "lower_half": "Lower half",
+                            "surround": "Surround"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Leftmost",
+                            "left": "Left",
+                            "center": "Center",
+                            "right": "Right",
+                            "rightmost": "Rightmost",
+                            "left_swing": "Left swing",
+                            "right_swing": "Right swing",
+                            "center_swing": "Center swing",
+                            "surround": "Surround",
+                            "direct": "Direct"
                         }
                     }
                 }
@@ -364,7 +382,10 @@
                             "eco": "Eco",
                             "anti-condensation": "Anti-condensation",
                             "extractor": "Extractor",
-                            "heat_recovery": "Heat recovery"
+                            "heat_recovery": "Heat recovery",
+                            "timer": "Timer",
+                            "on": "On",
+                            "off": "Off"
                         }
                     }
                 }
@@ -407,6 +428,9 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} threshold"
             }
         },
         "select": {
@@ -418,6 +442,21 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Heat pump mode",
+                "state": {
+                    "off": "Off",
+                    "heat": "Heat",
+                    "cool": "Cool",
+                    "floor_heat": "Floor heat",
+                    "auto": "Auto",
+                    "hotwater": "Hot water",
+                    "hotwater_cool": "Hot water & Cool",
+                    "hotwater_heat": "Hot water & Heat",
+                    "hotwater_auto": "Hot water & Auto",
+                    "hotwater_floor_heat": "Hot water & Floor heat"
                 }
             },
             "initial_state": {
@@ -443,7 +482,9 @@
                     "green_tea": "Green tea",
                     "coffee": "Coffee",
                     "honey_water": "Honey water",
-                    "infant_formula": "Infant formula"
+                    "infant_formula": "Infant formula",
+                    "white_tea": "White tea",
+                    "oolong_tea": "Oolong tea"
                 }
             },
             "language": {
@@ -464,6 +505,15 @@
                     "turkish": "Türkçe"
                 }
             },
+            "light_mode": {
+                "name": "Light mode",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "state": "State",
+                    "locator": "Locator"
+                }
+            },
             "mopping": {
                 "name": "Mopping",
                 "state": {
@@ -471,7 +521,8 @@
                     "auto": "Auto",
                     "low": "Low",
                     "medium": "Medium",
-                    "high": "High"
+                    "high": "High",
+                    "very_high": "Very High"
                 }
             },
             "recipe": {
@@ -530,11 +581,27 @@
                     "2m": "2 minutes",
                     "5m": "5 minutes",
                     "10m": "10 minutes",
+                    "15m": "15 minutes",
                     "20m": "20 minutes",
+                    "25m": "25 minutes",
                     "30m": "30 minutes",
+                    "35m": "35 minutes",
                     "40m": "40 minutes",
+                    "45m": "45 minutes",
+                    "50m": "50 minutes",
+                    "55m": "55 minutes",
                     "1h": "1 hour",
+                    "1h5m": "1 hour 5 minutes",
+                    "1h10m": "1 hour 10 minutes",
+                    "1h15m": "1 hour 15 minutes",
+                    "1h20m": "1 hour 20 minutes",
+                    "1h25m": "1 hour 25 minutes",
                     "1h30m": "1 hour 30 minutes",
+                    "1h35m": "1 hour 35 minutes",
+                    "1h40m": "1 hour 40 minutes",
+                    "1h45m": "1 hour 45 minutes",
+                    "1h50m": "1 hour 50 minutes",
+                    "1h55m": "1 hour 55 minutes",
                     "2h": "2 hours",
                     "2h30m": "2 hours 30 minutes",
                     "3h": "3 hours",
@@ -568,7 +635,14 @@
                     "24h": "24 hours",
                     "36h": "36 hours",
                     "48h": "48 hours",
-                    "72h": "72 hours"
+                    "72h": "72 hours",
+                    "1d": "1 day",
+                    "2d": "2 days",
+                    "3d": "3 days",
+                    "4d": "4 days",
+                    "5d": "5 days",
+                    "6d": "6 days",
+                    "7d": "7 days"
                 }
             },
             "temperature_unit": {
@@ -576,6 +650,14 @@
                 "state": {
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} action",
+                "state": {
+                    "ignore": "Ignore",
+                    "alarm": "Alarm",
+                    "trip_breaker": "Trip breaker"
                 }
             },
             "oven_built_in_recipe": {
@@ -623,7 +705,8 @@
                     "good": "Good",
                     "moderate": "Moderate",
                     "poor": "Poor",
-                    "severe": "Severe"
+                    "severe": "Severe",
+                    "danger": "Danger"
                 }
             },
             "status": {
@@ -633,6 +716,7 @@
                     "plugged_in": "Plugged in",
                     "fault_unplugged": "Fault (unplugged)",
                     "charging": "Charging",
+                    "discharging": "Discharging",
                     "waiting": "Waiting",
                     "charged": "Charged",
                     "fault": "Fault",
@@ -651,6 +735,7 @@
                     "manual": "Manual",
                     "rain_delay": "Rain delay",
                     "off": "Off",
+                    "on": "On",
                     "cooking": "Cooking",
                     "done": "Done",
                     "door_open": "Door open",
@@ -707,6 +792,9 @@
             "time_remaining": {
                 "name": "Time remaining"
             },
+            "time_remaining_x": {
+                "name": "Time remaining {x}"
+            },
             "cooking_status": {
                 "name": "Status",
                 "state": {
@@ -754,6 +842,13 @@
             "anti_frost": {
                 "name": "Anti-frost"
             },
+            "breaker": {
+                "name": "Breaker",
+                "state": {
+                    "off": "Open",
+                    "on": "Closed"
+                }
+            },
             "evaporator_cleaning": {
                 "name": "Evaporator cleaning"
             },
@@ -784,23 +879,22 @@
                 "name": "Scene"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Valve {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Water heater",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "off": "Off",
-                            "heat": "Heat",
-                            "cool": "Cool",
-                            "auto": "Auto",
-                            "hotwater": "Hot water",
-                            "hotwater_cool": "Hot water & Cool",
-                            "hotwater_heat": "Hot water & Heat",
-                            "hotwater_auto": "Hot water & Auto"
-                        }
-                    }
-                }
+                "name": "Water heater"
             },
             "kettle": {
                 "name": "Kettle"

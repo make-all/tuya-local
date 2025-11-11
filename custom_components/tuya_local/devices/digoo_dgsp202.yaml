@@ -1,4 +1,5 @@
-name: DIGOO DG-SP202
+name: Dual switch
+# products: DIGOO DG-SP202
 entities:
   - entity: switch
     class: outlet
@@ -52,8 +53,34 @@ entities:
         unit: W
         mapping:
           - scale: 10
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
+    # 2025-07-20
+    deprecated: time.timer_1
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -71,6 +98,8 @@ entities:
             step: 60
   - entity: number
     category: config
+    # 2025-07-20
+    deprecated: time.timer_2
     translation_key: timer_x
     translation_placeholders:
       x: "2"

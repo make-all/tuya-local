@@ -6,23 +6,10 @@ products:
 entities:
   - entity: lock
     dps:
-      - id: 1
-        type: string
-        name: unlock_method_create
-        optional: true
-      - id: 2
-        type: string
-        name: unlock_method_delete
-        optional: true
-      - id: 3
-        type: string
-        name: unlock_method_modify
-        optional: true
       - id: 18
         type: boolean
         name: open_inside
         optional: true
-        persist: false
       - id: 19
         type: integer
         name: unlock_ble
@@ -40,17 +27,10 @@ entities:
       - id: 47
         type: boolean
         name: lock_state
-      - id: 54
-        type: base64
-        name: sync_method
-        optional: true
-      - id: 60
-        type: string
-        name: remote_no_pd_setkey
-        optional: true
       - id: 61
-        type: string
-        name: remote_no_dp_key
+        type: base64
+        name: code_unlock
+        sensitive: true
         optional: true
       - id: 62
         type: integer
@@ -93,7 +73,7 @@ entities:
         class: measurement
   - entity: select
     category: config
-    name: Doorbell Volume
+    name: Doorbell volume
     icon: "mdi:volume-high"
     dps:
       - id: 27
@@ -114,7 +94,7 @@ entities:
             icon: "mdi:volume-high"
   - entity: select
     category: config
-    name: Lock Motor Direction
+    name: Lock motor direction
     icon: "mdi:sign-direction"
     dps:
       - id: 48
@@ -129,7 +109,7 @@ entities:
             icon: mdi:cog-counterclockwise
   - entity: select
     category: config
-    name: Motor Torque
+    name: Motor torque
     icon: "mdi:sign-direction"
     dps:
       - id: 56
@@ -159,7 +139,7 @@ entities:
           - step: 1
   - entity: switch
     category: config
-    name: Auto Lock
+    name: Auto lock
     dps:
       - id: 33
         type: boolean
@@ -201,3 +181,57 @@ entities:
             value: shock
           - dps_val: defense
             value: defense
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 60
+        type: string
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:reset-lock"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        name: value
+        optional: true

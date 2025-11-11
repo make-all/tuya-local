@@ -14,13 +14,26 @@ entities:
         range:
           min: 1
           max: 20
-      - id: 1
-        type: string
-        optional: true
-        name: meal_plan
+  - entity: binary_sensor
+    name: Eco mode
+    category: diagnostic
+    dps:
       - id: 103
         type: string
-        name: mode
+        name: sensor
+        mapping:
+          - dps_val: real_time_mode
+            value: false
+          - dps_val: eco_mode
+            value: true
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
   - entity: button
     translation_key: factory_reset
     category: config
@@ -62,6 +75,20 @@ entities:
       - id: 14
         type: bitfield
         name: fault_code
+      - id: 14
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: 'OK'
+          - dps_val: 1
+            value: food_shortages
+          - dps_val: 2
+            value: food_jam
+          - dps_val: 4
+            value: battery_low
+          - dps_val: 4
+            value: ac_power_off
   - entity: sensor
     name: Last feed
     icon: "mdi:food-drumstick"

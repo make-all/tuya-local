@@ -10,14 +10,30 @@ products:
     manufacturer: Andeli
     model: Smart Boiler
     name: Water heater
+  - id: oisqyl4o
+    manufacturer: Outsmart
+    model: A-ZB 40A
+    name: Water heater
 entities:
   - entity: switch
     dps:
       - id: 1
         name: switch
         type: boolean
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     class: duration
     category: config
     dps:

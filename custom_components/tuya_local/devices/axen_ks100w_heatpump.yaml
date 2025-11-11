@@ -136,7 +136,7 @@ entities:
             value: heat
             available: water_on
           - dps_val: auto_dhw
-            value: auto
+            value: heat_cool
             available: water_on
       - id: 117
         type: boolean
@@ -147,9 +147,9 @@ entities:
           - dps_val: true
             constraint: hvac_mode
             conditions:
-              - dps_val: ["cool", "cool_hotwater"]
+              - dps_val: ["cool", "cool_hot_water"]
                 value: cooling
-              - dps_val: ["heat", "heat_hotwater"]
+              - dps_val: ["heat", "heat_hot_water"]
                 value: heating
               - dps_val: "hot_water"
                 value: idle
@@ -165,7 +165,12 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: available
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
       - id: 104
         type: integer
         name: temperature
@@ -181,9 +186,21 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+      - id: 165
+        type: boolean
+        optional: true
+        name: away_mode
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
       - id: 109
         type: string
-        name: operation_mode
+        name: option
         mapping:
           - dps_val: cool
             value: cool
@@ -199,14 +216,6 @@ entities:
             value: hotwater_heat
           - dps_val: auto_dhw
             value: hotwater_auto
-      - id: 165
-        type: boolean
-        optional: true
-        name: away_mode
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
   - entity: sensor
     name: Inlet temperature
     class: temperature
@@ -330,7 +339,7 @@ entities:
         name: sensor
         class: measurement
   - entity: sensor
-    name: AC Fan
+    name: AC fan
     icon: "mdi:fan-auto"
     class: enum
     category: diagnostic
@@ -376,6 +385,28 @@ entities:
         type: integer
         name: sensor
         unit: m³/h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
         class: measurement
         mapping:
           - scale: 10

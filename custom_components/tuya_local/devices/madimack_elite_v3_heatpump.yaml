@@ -1,6 +1,7 @@
-name: Madimack Elite V3 pool heatpump
+name: Pool heat pump
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -8,18 +9,14 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
           - dps_val: true
             constraint: mode
             conditions:
               - dps_val: auto
-                icon: "mdi:refresh-auto"
                 value: heat_cool
               - dps_val: cold
-                icon: "mdi:snowflake"
                 value: cool
               - dps_val: heating
-                icon: "mdi:hot-tub"
                 value: heat
       - id: 2
         name: mode

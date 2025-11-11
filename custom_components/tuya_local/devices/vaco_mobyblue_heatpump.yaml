@@ -1,31 +1,33 @@
-name: Heatpump
+name: Heat pump
 products:
   - id: asbtgrmtbjt5nubd
     manufacturer: Vaco / Arrifana
     model_id: AC-WBR3
     model: Moby Blue 14 / Arrifana 16
 entities:
-  - entity: climate
+  - entity: switch
     dps:
       - id: 1
+        type: boolean
+        name: switch
+  - entity: climate
+    dps:
+      - id: 4
         name: hvac_mode
         type: boolean
         mapping:
-          - value: "off"
-            dps_val: false
-          - dps_val: true
-            constraint: mode
-            conditions:
-              - value: cool
-                dps_val: "0"
-              - value: heat
-                dps_val: "1"
-              - value: dry
-                dps_val: "2"
-              - value: fan_only
-                dps_val: "3"
-              - value: heat_cool
-                dps_val: "4"  # Listed as ECO
+          - value: cool
+            dps_val: "0"
+          - value: heat
+            dps_val: "1"
+            available: support_heat
+          - value: dry
+            dps_val: "2"
+          - value: fan_only
+            dps_val: "3"
+          - value: heat_cool
+            dps_val: "4"  # Listed as ECO
+            available: support_eco
       - id: 2
         type: integer
         name: temperature
@@ -48,10 +50,6 @@ entities:
             conditions:
               - dps_val: f
                 value_redirect: temp_current_f
-      - id: 4
-        type: string
-        name: mode
-        hidden: true
       - id: 5
         type: string
         name: fan_mode
@@ -107,6 +105,23 @@ entities:
             value: NPE cooling
           - dps_val: "5"
             value: NPE heating and cooling
+      - id: 103
+        type: string
+        name: support_heat
+        mapping:
+          - dps_val: "3"
+            value: true
+          - dps_val: "5"
+            value: true
+          - value: false
+      - id: 103
+        type: string
+        name: support_eco
+        mapping:
+          - dps_val: "5"
+            value: false
+            # only the spec for model 5 is known for sure
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic

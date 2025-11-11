@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Configura tu dispositivo Tuya Local",
-                "description": "Los dispositivos se pueden agregar manualmente o con la ayuda de la nube con la ayuda de la aplicación Smart Life.",
+                "description": "Los dispositivos se pueden agregar manualmente o con la ayuda de la nube con la ayuda de la aplicación SmartLife.",
                 "data": {
                     "setup_mode": "Elección de configuración:"
                 }
             },
             "cloud": {
                 "title": "Iniciar sesión en Tuya",
-                "description": "Ingresa tu código de usuario de Smart Life o Tuya Smart.\n\nPuedes encontrar este código en la aplicación Smart Life o Tuya Smart en la pantalla **Configuración** > **Cuenta y seguridad** e ingresa el código que se muestra en el ",
+                "description": "Ingresa tu código de usuario de SmartLife o Tuya.\n\nPuedes encontrar este código en la aplicación SmartLife o Tuya en la pantalla **Configuración** > **Cuenta y seguridad** e ingresa el código que se muestra en el ",
                 "data": {
                     "user_code": "Codigo de usuario:"
                 }
             },
             "scan": {
                 "title": "Completa el inicio de sesión",
-                "description": "Utilice la aplicación Smart Life o la aplicación Tuya Smart para escanear el siguiente código QR y completar el inicio de sesión.\n\nContinúe con el siguiente paso una vez que haya completado este paso en la aplicación."
+                "description": "Utilice la aplicación SmartLife o la aplicación Tuya para escanear el siguiente código QR y completar el inicio de sesión.\n\nContinúe con el siguiente paso una vez que haya completado este paso en la aplicación."
             },
             "choose_device": {
                 "title": "Elija el dispositivo para agregar",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Configuración del dispositivo asistida por la nube Smart Life.",
-                "manual": "Proporcione manualmente información de conexión del dispositivo."
+                "cloud": "Configuración del dispositivo asistida por la nube SmartLife.",
+                "manual": "Proporcione manualmente información de conexión del dispositivo.",
+                "cloud_fresh_login": "Configuración del dispositivo asistida por la nube SmartLife con inicio de sesión fresco."
             }
         }
     },
@@ -181,7 +182,24 @@
                             "top": "Alto",
                             "middle": "Medio",
                             "down": "Abajo",
-                            "downmost": "Más abajo"
+                            "downmost": "Más abajo",
+                            "upper_half": "Mitad superior",
+                            "lower_half": "Mitad inferior",
+                            "surround": "Alrededor"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Más a la izquierda",
+                            "left": "Izquierda",
+                            "center": "Centro",
+                            "right": "Derecha",
+                            "rightmost": "Más a la derecha",
+                            "left_swing": "Oscilación izquierda",
+                            "right_swing": "Oscilación derecha",
+                            "center_swing": "Oscilación central",
+                            "surround": "Alrededor",
+                            "direct": "Directo"
                         }
                     }
                 }
@@ -364,7 +382,10 @@
                             "eco": "Ecológico",
                             "anti-condensation": "Anticondensación",
                             "extractor": "Extractor",
-                            "heat_recovery": "Recuperación de calor"
+                            "heat_recovery": "Recuperación de calor",
+                            "timer": "Temporizador",
+                            "on": "Encender",
+                            "off": "Apagar"
                         }
                     }
                 }
@@ -407,6 +428,9 @@
             },
             "timer_x": {
                 "name": "Temporizador {x}"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} umbral"
             }
         },
         "select": {
@@ -418,6 +442,21 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Modo de bomba de calor",
+                "state": {
+                    "cool": "Enfriar",
+                    "heat": "Calentar",
+                    "auto": "Auto",
+                    "floor_heat": "Calor de piso",
+                    "off": "Apagar",
+                    "hotwater": "Agua caliente",
+                    "hotwater_cool": "Agua caliente y enfriar",
+                    "hotwater_heat": "Agua caliente y calentar",
+                    "hotwater_auto": "Agua caliente y auto",
+                    "hotwater_floor_heat": "Agua caliente y calor de piso"
                 }
             },
             "initial_state": {
@@ -443,7 +482,9 @@
                     "green_tea": "Matcha",
                     "coffee": "Café",
                     "honey_water": "Agua con miel",
-                    "infant_formula": "Fórmula infantil"
+                    "infant_formula": "Fórmula infantil",
+                    "white_tea": "Té blanco",
+                    "oolong_tea": "Té Oolong"
                 }
             },
             "language": {
@@ -464,6 +505,15 @@
                     "turkish": "Türkçe"
                 }
             },
+            "light_mode": {
+                "name": "Modo de luz",
+                "state": {
+                    "off": "Apagar",
+                    "on": "Encender",
+                    "state": "Estado",
+                    "locator": "Localizador"
+                }
+            },
             "mopping": {
                 "name": "Fregado",
                 "state": {
@@ -471,7 +521,8 @@
                     "auto": "Automático",
                     "low": "Bajo",
                     "medium": "Medio",
-                    "high": "Alto"
+                    "high": "Alto",
+                    "very_high": "Muy alto"
                 }
             },
             "recipe": {
@@ -530,11 +581,27 @@
                     "2m": "2 minutos",
                     "5m": "5 minutos",
                     "10m": "10 minutos",
+                    "15m": "15 minutos",
                     "20m": "20 minutos",
+                    "25m": "25 minutos",
                     "30m": "30 minutos",
+                    "35m": "35 minutos",
                     "40m": "40 minutos",
+                    "45m": "45 minutos",
+                    "50m": "50 minutos",
+                    "55m": "55 minutos",
                     "1h": "1 hora",
+                    "1h5m": "1 hora 5 minutos",
+                    "1h10m": "1 hora 10 minutos",
+                    "1h15m": "1 hora 15 minutos",
+                    "1h20m": "1 hora 20 minutos",
+                    "1h25m": "1 hora 25 minutos",
                     "1h30m": "1 hora 30 minutos",
+                    "1h35m": "1 hora 35 minutos",
+                    "1h40m": "1 hora 40 minutos",
+                    "1h45m": "1 hora 45 minutos",
+                    "1h50m": "1 hora 50 minutos",
+                    "1h55m": "1 hora 55 minutos",
                     "2h": "2 horas",
                     "2h30m": "2 horas 30 minutos",
                     "3h": "3 horas",
@@ -568,7 +635,14 @@
                     "24h": "24 horas",
                     "36h": "36 horas",
                     "48h": "48 horas",
-                    "72h": "72 horas"
+                    "72h": "72 horas",
+                    "1d": "1 día",
+                    "2d": "2 días",
+                    "3d": "3 días",
+                    "4d": "4 días",
+                    "5d": "5 días",
+                    "6d": "6 días",
+                    "7d": "7 días"
                 }
             },
             "temperature_unit": {
@@ -576,6 +650,14 @@
                 "state": {
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} acción",
+                "state": {
+                    "ignore": "Ignorar",
+                    "alarm": "Alarma",
+                    "trip_breaker": "Disyuntor"
                 }
             },
             "oven_built_in_recipe": {
@@ -623,7 +705,8 @@
                     "good": "Bueno",
                     "moderate": "Moderado",
                     "poor": "Malo",
-                    "severe": "Severo"
+                    "severe": "Severo",
+                    "danger": "Peligro"
                 }
             },
             "status": {
@@ -633,6 +716,7 @@
                     "plugged_in": "Conectado",
                     "fault_unplugged": "Error (desconectado)",
                     "charging": "Cargando",
+                    "discharging": "Descargando",
                     "waiting": "Esperando",
                     "charged": "Cargado",
                     "fault": "Error",
@@ -651,6 +735,7 @@
                     "manual": "Manual",
                     "rain_delay": "Retraso por lluvia",
                     "off": "Apagado",
+                    "on": "Encendido",
                     "cooking": "Cocinando",
                     "done": "Hecho",
                     "door_open": "Puerta abierta",
@@ -707,6 +792,9 @@
             "time_remaining": {
                 "name": "Tiempo restante"
             },
+            "time_remaining_x": {
+                "name": "Tiempo restante {x}"
+            },
             "cooking_status": {
                 "name": "Estado de cocción",
                 "state": {
@@ -754,6 +842,13 @@
             "anti_frost": {
                 "name": "Antihielo"
             },
+            "breaker": {
+                "name": "Disyuntor",
+                "state": {
+                    "off": "Abierto",
+                    "on": "Cerrado"
+                }
+            },
             "evaporator_cleaning": {
                 "name": "Limpieza del evaporador"
             },
@@ -784,23 +879,22 @@
                 "name": "Escena"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Temporizador"
+            },
+            "timer_x": {
+                "name": "Temporizador {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Válvula {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Calentador de agua",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Calor",
-                            "cool": "Frío",
-                            "auto": "Automático",
-                            "off": "Apagar",
-                            "hotwater": "Agua caliente",
-                            "hotwater_cool": "Agua caliente y frío",
-                            "hotwater_heat": "Agua caliente y calor",
-                            "hotwater_auto": "Agua caliente y automático"
-                        }
-                    }
-                }
+                "name": "Calentador de agua"
             },
             "kettle": {
                 "name": "Hervidor"

@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Állítsd be a helyi Tuya eszközöd",
-                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a Smart Life alkalmazás segítségével.",
+                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a SmartLife alkalmazás segítségével.",
                 "data": {
                     "setup_mode": "Beállítás választás:"
                 }
             },
             "cloud": {
                 "title": "Jelentkezzen be Tuyába",
-                "description": "Adja meg Smart Life vagy Tuya Smart felhasználói kódját.\n\nEzt a kódot a Smart Life alkalmazásban vagy a Tuya Smart alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
+                "description": "Adja meg SmartLife vagy Tuya felhasználói kódját.\n\nEzt a kódot a SmartLife alkalmazásban vagy a Tuya alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
                 "data": {
                     "user_code": "Felhasználói kód:"
                 }
             },
             "scan": {
                 "title": "Töltse ki a bejelentkezést",
-                "description": "Használja a Smart Life alkalmazást vagy a Tuya Smart alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
+                "description": "Használja a SmartLife alkalmazást vagy a Tuya alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
             },
             "choose_device": {
                 "title": "Válassza ki a hozzáadni kívánt eszközt",
@@ -74,8 +74,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life felhő által támogatott eszközbeállítás.",
-                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait."
+                "cloud": "SmartLife felhő által támogatott eszközbeállítás.",
+                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait.",
+                "cloud_fresh_login": "SmartLife felhő által támogatott eszközbeállítás, friss bejelentkezés."
             }
         }
     },
@@ -182,7 +183,24 @@
                             "top": "Fent",
                             "middle": "Középen",
                             "down": "Lent",
-                            "downmost": "Legalacsonyabban"
+                            "downmost": "Legalacsonyabban",
+                            "upper_half": "Felső fél",
+                            "lower_half": "Alsó fél",
+                            "surround": "Körül"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Legbaloldalibb",
+                            "left": "Balra",
+                            "center": "Középre",
+                            "right": "Jobbra",
+                            "rightmost": "Legjobboldalibb",
+                            "left_swing": "Balra lengő",
+                            "right_swing": "Jobbra lengő",
+                            "center_swing": "Középre lengő",
+                            "surround": "Körül",
+                            "direct": "Közvetlen"
                         }
                     }
                 }
@@ -365,7 +383,10 @@
                             "eco": "Eco",
                             "anti-condensation": "Pára mentesítés",
                             "extractor": "Kivonat",
-                            "heat_recovery": "Hővisszanyerés"
+                            "heat_recovery": "Hővisszanyerés",
+                            "timer": "Időzítő",
+                            "on": "Be",
+                            "off": "Ki"
                         }
                     }
                 }
@@ -408,6 +429,9 @@
             },
             "timer_x": {
                 "name": "Időzítő {x}"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} küszöb"
             }
         },
         "select": {
@@ -419,6 +443,21 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Hőszivattyú mód",
+                "state": {
+                    "heat": "Fűtés",
+                    "cool": "Hűtés",
+                    "auto": "Auto",
+                    "floor_heat": "Padlófűtés",
+                    "off": "Ki",
+                    "hotwater": "Meleg víz",
+                    "hotwater_cool": "Meleg víz és hűtés",
+                    "hotwater_heat": "Meleg víz és fűtés",
+                    "hotwater_auto": "Meleg víz és automatikus",
+                    "hotwater_floor_heat": "Meleg víz és padlófűtés"
                 }
             },
             "initial_state": {
@@ -444,7 +483,9 @@
                     "green_tea": "Zöld tea",
                     "coffee": "Kávé",
                     "honey_water": "Mézes víz",
-                    "infant_formula": "Csecsemőtápszer"
+                    "infant_formula": "Csecsemőtápszer",
+                    "white_tea": "Fehér tea",
+                    "oolong_tea": "Oolong tea"
                 }
             },
             "language": {
@@ -465,6 +506,15 @@
                     "turkish": "Türkçe"
                 }
             },
+            "light_mode": {
+                "name": "Fény mód",
+                "state": {
+                    "off": "Ki",
+                    "on": "Be",
+                    "state": "Állapot",
+                    "locator": "Helymeghatározó"
+                }
+            },
             "mopping": {
                 "name": "Felmosás",
                 "state": {
@@ -472,7 +522,8 @@
                     "auto": "Auto",
                     "low": "Alacsony",
                     "medium": "Közepes",
-                    "high": "Magas"
+                    "high": "Magas",
+                    "very_high": "Nagyon magas"
                 }
             },
             "recipe": {
@@ -531,11 +582,27 @@
                     "2m": "2 perc",
                     "5m": "5 perc",
                     "10m": "10 perc",
+                    "15m": "15 perc",
                     "20m": "20 perc",
+                    "25m": "25 perc",
                     "30m": "30 perc",
+                    "35m": "35 perc",
                     "40m": "40 perc",
+                    "45m": "45 perc",
+                    "50m": "50 perc",
+                    "55m": "55 perc",
                     "1h": "1 óra",
+                    "1h5m": "1 óra 5 perc",
+                    "1h10m": "1 óra 10 perc",
+                    "1h15m": "1 óra 15 perc",
+                    "1h20m": "1 óra 20 perc",
+                    "1h25m": "1 óra 25 perc",
                     "1h30m": "1 óra 30 perc",
+                    "1h35m": "1 óra 35 perc",
+                    "1h40m": "1 óra 40 perc",
+                    "1h45m": "1 óra 45 perc",
+                    "1h50m": "1 óra 50 perc",
+                    "1h55m": "1 óra 55 perc",
                     "2h": "2 óra",
                     "2h30m": "2 óra 30 perc",
                     "3h": "3 óra",
@@ -569,7 +636,14 @@
                     "24h": "24 óra",
                     "36h": "36 óra",
                     "48h": "48 óra",
-                    "72h": "72 óra"
+                    "72h": "72 óra",
+                    "1d": "1 nap",
+                    "2d": "2 nap",
+                    "3d": "3 nap",
+                    "4d": "4 nap",
+                    "5d": "5 nap",
+                    "6d": "6 nap",
+                    "7d": "7 nap"
                 }
             },
             "temperature_unit": {
@@ -577,6 +651,14 @@
                 "state": {
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} művelet",
+                "state": {
+                    "ignore": "Figyelmen kívül hagyás",
+                    "alarm": "Riasztás",
+                    "trip_breaker": "Kismegszakító"
                 }
             },
             "oven_built_in_recipe": {
@@ -624,7 +706,8 @@
                     "good": "Jó",
                     "moderate": "Közepes",
                     "poor": "Rossz",
-                    "severe": "Súlyos"
+                    "severe": "Súlyos",
+                    "danger": "Veszély"
                 }
             },
             "status": {
@@ -634,6 +717,7 @@
                     "plugged_in": "Csatlakoztatva",
                     "fault_unplugged": "Hiba (nincs csatlakoztatva)",
                     "charging": "Töltés",
+                    "discharging": "Kisütés",
                     "waiting": "Várakozás",
                     "charged": "Töltve",
                     "fault": "Hiba",
@@ -652,6 +736,7 @@
                     "manual": "Manuális",
                     "rain_delay": "Eső késleltetés",
                     "off": "Ki",
+                    "on": "Be",
                     "cooking": "Főzés",
                     "done": "Kész",
                     "door_open": "Ajtó nyitva",
@@ -708,6 +793,9 @@
             "time_remaining": {
                 "name": "Hátralevő idő"
             },
+            "time_remaining_x": {
+                "name": "Hátralevő idő {x}"
+            },
             "cooking_status": {
                 "name": "Főzési állapot",
                 "state": {
@@ -755,6 +843,13 @@
             "anti_frost": {
                 "name": "Fagyálló"
             },
+            "breaker": {
+                "name": "Kismegszakító",
+                "state": {
+                    "off": "Nyitott",
+                    "on": "Zárt"
+                }
+            },
             "evaporator_cleaning": {
                 "name": "Elpárologtató tisztítása"
             },
@@ -785,23 +880,22 @@
                 "name": "Jelenet"
             }
         },
+        "time": {
+            "timer": {
+                "name": "Időzítő"
+            },
+            "timer_x": {
+                "name": "Időzítő {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Szelep {x}"
+            }
+        },
         "water_heater": {
             "water_air": {
-                "name": "Vízmelegítő",
-                "state_attributes": {
-                    "operation_mode": {
-                        "state": {
-                            "heat": "Fűtés",
-                            "cool": "Hűtés",
-                            "auto": "Auto",
-                            "off": "Ki",
-                            "hotwater": "Meleg víz",
-                            "hotwater_cool": "Meleg víz és hűtés",
-                            "hotwater_heat": "Meleg víz és fűtés",
-                            "hotwater_auto": "Meleg víz és automatikus"
-                        }
-                    }
-                }
+                "name": "Vízmelegítő"
             },
             "kettle": {
                 "name": "Vízforraló"

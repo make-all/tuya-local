@@ -3,6 +3,9 @@ products:
   - id: v6foggibzyjlvwdx
     manufacturer: EARU
     model: K6H-3A-W
+  - id: tqzbywoehwchxlk9
+    manufacturer: EARU
+    model: K6RH-3A-WiFi
 entities:
   - entity: climate
     translation_key: thermostat
@@ -31,11 +34,12 @@ entities:
         unit: C
         range:
           min: 0
-          max: 900
+          max: 950
         mapping:
           - scale: 10
             step: 5
       - id: 19
+        optional: true
         type: integer
         name: max_temperature
         mapping:
@@ -103,6 +107,27 @@ entities:
           - dps_val: ALL
             icon: "mdi:thermometer"
             value: Both
+            available: k6h
+          - dps_val: all
+            icon: "mdi:thermometer"
+            value: Both
+            available: k6rh
+      - id: 7
+        type: boolean
+        optional: true
+        name: k6h
+        mapping:
+          - dps_val: null
+            value: true
+          - value: false
+      - id: 7
+        type: boolean
+        optional: true
+        name: k6rh
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     category: diagnostic
     class: problem
@@ -124,15 +149,26 @@ entities:
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
-        type: integer
+        optional: true
         name: value
+        type: integer
         unit: C
         range:
           min: 200
-          max: 900
+          max: 950
         mapping:
           - scale: 10
             step: 10
+            constraint: k6h
+            conditions:
+              - dps_val: null
+                range:
+                  min: 200
+                  max: 900
+      - id: 7
+        type: boolean
+        optional: true
+        name: k6h
   - entity: number
     name: Minimum temperature
     category: config
@@ -176,12 +212,18 @@ entities:
             value: "6 days"
           - dps_val: "70"
             value: "7 days"
+  - entity: text
+    name: Week program
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
       - id: 30
-        type: string
+        type: base64
+        name: value
         optional: true
-        name: week_program
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 44
@@ -196,11 +238,65 @@ entities:
     category: config
     class: temperature
     icon: "mdi:thermometer-alert"
+    hidden: unavailable
     dps:
       - id: 101
         type: integer
+        optional: true
         name: value
         unit: C
         range:
           min: 20
           max: 100
+      - id: 101
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Sound
+    icon: "mdi:ear-hearing"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: switch
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: Hysteresis
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-alert"
+    hidden: unavailable
+    dps:
+      - id: 75
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 75
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

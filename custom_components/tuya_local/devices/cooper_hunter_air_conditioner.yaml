@@ -86,6 +86,14 @@ entities:
             value: "down"
           - dps_val: "angle5"
             value: "downmost"
+      - id: 34
+        name: swing_horizontal_mode
+        type: string
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
       - id: 19
         name: temperature_unit
         type: string
@@ -205,7 +213,8 @@ entities:
         type: boolean
         optional: true
   - entity: switch
-    name: Horizontal Swing
+    name: Horizontal swing
+    deprecated: climate.swing_horizontal_mode  # 2025-11-08
     category: config
     icon: "mdi:arrow-left-right-bold"
     dps:
@@ -234,7 +243,7 @@ entities:
         type: boolean
         optional: true
   - entity: sensor
-    name: AC Voltage
+    name: AC voltage
     category: diagnostic
     class: voltage
     dps:
@@ -244,7 +253,7 @@ entities:
         unit: "V"
         class: measurement
   - entity: sensor
-    name: AC Current
+    name: AC current
     category: diagnostic
     class: current
     dps:
@@ -257,7 +266,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Outdoor Temperature
+    name: Outdoor temperature
     category: diagnostic
     class: temperature
     dps:

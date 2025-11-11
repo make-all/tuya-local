@@ -3,6 +3,9 @@ products:
   - id: ryy1qf80nhv1rspe
     manufacturer: Aeno
     model: EK7S
+  - id: pgruqekfbbgwtov9
+    manufacturer: Kogan
+    model: KASMTSSKTLA
 entities:
   - entity: water_heater
     translation_key: kettle
@@ -21,6 +24,7 @@ entities:
         name: current_temperature
       - id: 4
         type: string
+        optional: true
         name: temperature
         range:
           min: 40
@@ -44,6 +48,7 @@ entities:
                   max: 90
       - id: 4
         type: string
+        optional: true
         name: temp_setting_quick
         mapping:
           - dps_val: "40"
@@ -58,6 +63,7 @@ entities:
             value: 100
       - id: 6
         type: string
+        optional: true
         name: temp_boiling_quick
         mapping:
           - dps_val: "40"
@@ -107,8 +113,22 @@ entities:
       - id: 13
         type: boolean
         name: switch
+  - entity: time
+    name: Keep warm time
+    category: config
+    dps:
+      - id: 14
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - step: 5
   - entity: number
     name: Keep warm time
+    # 2025-07-20
+    deprecated: time.keep_warm_time
     translation_key: timer
     class: duration
     category: config
@@ -143,12 +163,24 @@ entities:
             value: heating_temp
           - dps_val: boiling
             value: done
+          - dps_val: boiling_temp
+            value: done
           - dps_val: reserve_1
             value: reserve_1
           - dps_val: reserve_2
             value: reserve_2
           - dps_val: reserve_3
             value: reserve_3
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
   - entity: binary_sensor
     class: problem
     category: diagnostic

@@ -46,7 +46,7 @@ entities:
         class: measurement
         mask: "0000FFFFFF000000"
         mapping:
-          - scale: 10
+          - scale: 1000
   - entity: sensor
     class: power
     category: diagnostic
@@ -58,8 +58,6 @@ entities:
         unit: W
         class: measurement
         mask: "0000000000FFFFFF"
-        mapping:
-          - scale: 10
       - id: 111
         type: integer
         optional: true

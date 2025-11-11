@@ -15,7 +15,9 @@ in older versions.
 
 ## Reporting a Vulnerability
 
-Please use the "Report a VUlnerability" button on the new Issue page to report vulnerabilities.
+Please use the button below.
+
+### [![Report a vulnerability](https://img.shields.io/badge/Report_a_vulnerability-00cc00)](https://github.com/make-all/tuya-local/security/advisories/new)
 
 This will give the developers a heads up about the issue before posting publicly, to protect other users who may be affected.
 Security issues will be treated as top priority, so you should get a response within 72 hours, usually much sooner.

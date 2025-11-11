@@ -102,5 +102,7 @@ class TestDigooDGSP202Switch(
                 "sensor_voltage",
                 "sensor_current",
                 "sensor_power",
+                "time_timer_1",
+                "time_timer_2",
             ]
         )

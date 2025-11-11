@@ -1,0 +1,32 @@
+repos:
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        files: \.(json|md|yaml|yml)$
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.1
+    hooks:
+      - id: ruff-check
+        args:
+          - --fix
+      - id: ruff-check
+        name: ruff include order
+        args:
+          - --select
+          - I
+          - --fix
+      - id: ruff-format
+        name: ruff coding style
+        args:
+          - --check
+          - --diff
+        files: ^((homeassistant|pylint|script|tests)/.+)?[^/]+\.(py|pyi)$
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args:
+          - --format
+          - github
+        files: ^custom_components/tuya_local/devices/.+

@@ -112,9 +112,13 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._preset_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
-            self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
+            if self._swing_mode_dps.values(device):
+                self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
         if self._swing_horizontal_mode_dps:
-            self._attr_supported_features |= ClimateEntityFeature.SWING_HORIZONTAL_MODE
+            if self._swing_horizontal_mode_dps.values(device):
+                self._attr_supported_features |= (
+                    ClimateEntityFeature.SWING_HORIZONTAL_MODE
+                )
         if self._temp_high_dps and self._temp_low_dps:
             self._attr_supported_features |= (
                 ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
@@ -265,11 +269,11 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         dps_map = {}
         if low is not None and self._temp_low_dps is not None:
             dps_map.update(
-                self._temp_low_dps.get_values_to_set(self._device, low),
+                self._temp_low_dps.get_values_to_set(self._device, low, dps_map),
             )
         if high is not None and self._temp_high_dps is not None:
             dps_map.update(
-                self._temp_high_dps.get_values_to_set(self._device, high),
+                self._temp_high_dps.get_values_to_set(self._device, high, dps_map),
             )
         if dps_map:
             await self._device.async_set_properties(dps_map)

@@ -115,6 +115,7 @@ class TuyaLocalEntity:
 
     async def async_added_to_hass(self):
         self._device.register_entity(self)
+        _LOGGER.debug("Adding %s for %s", self._config.config_id, self._device.name)
         if self._config.deprecated:
             _LOGGER.warning(self._config.deprecation_message)
 

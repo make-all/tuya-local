@@ -1,0 +1,54 @@
+name: Water timer
+products:
+  - id: 7wptjnujjkf1gzm1
+    manufacturer: Moes
+entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:sprinkler"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+  - entity: number
+    name: Watering time
+    class: duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 56
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Watering interval
+    class: duration
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 360
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement

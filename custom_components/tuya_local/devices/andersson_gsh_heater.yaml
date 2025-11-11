@@ -6,6 +6,9 @@ products:
   - id: qAmsenZuNF74vRvj
     manufacturer: Devola
     model: Intelligent
+  - id: laagtqcj40q1uwg8
+    manufacturer: Devola
+    model: Designer Glass Panel Heater
 entities:
   - entity: climate
     translation_only_key: heater
@@ -25,6 +28,14 @@ entities:
         range:
           min: 5
           max: 35
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: af
+                value: 5
+                range:
+                  min: 5
+                  max: 5
       - id: 3
         name: current_temperature
         type: integer
