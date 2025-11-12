@@ -169,19 +169,3 @@ entities:
           - dps_val: powerDisconnect
             value: false
           - value: true
-  - entity: event
-    name: Power
-    # 2025-05-24
-    deprecated: binary_sensors for battery and power
-    dps:
-      - id: 101
-        type: string
-        name: event
-        optional: true
-        mapping:
-          - dps_val: normal
-            value: null
-          - dps_val: powerDisconnect
-            value: power_disconnect
-          - dps_val: BatteryIsLow
-            value: low_battery

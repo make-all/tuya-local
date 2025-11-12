@@ -68,7 +68,7 @@ Further device support has been made with the assistance of users. Please consid
 - [PaulJoosten](https://github.com/PaulJoosten) for assistance in figuring out the similarities and capabilities of different Eurom heaters.
 - [jdavidr17](https://github.com/jdavidr17) for assistance with discovering timer parameters for switches.
 - [miannelli516](https://github.com/miannelli516) for assistance with TR9B thermostats.
-- [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 and JPD02 dehumidifiers and assistance with Poiema One purifiers.
+- [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 and JPD02 dehumidifiers, EASTtime D401 water purifier and assistance with Poiema One purifiers.
 - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermostats.
 - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters and contributing support for iQ Ceramic radiators and INOW heating elements.
 - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs, SmartMCB Energy meter, BlitzWolf BW-IS6 alarm panels.

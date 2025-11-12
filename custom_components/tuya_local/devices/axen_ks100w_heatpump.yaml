@@ -217,20 +217,6 @@ entities:
           - dps_val: auto_dhw
             value: hotwater_auto
   - entity: sensor
-    name: Inlet temperature
-    class: temperature
-    # 2025-05-13
-    deprecated: climate current_temperature
-    category: diagnostic
-    dps:
-      - id: 106
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
-        mapping:
-          - scale: 10
-  - entity: sensor
     name: Outlet temperature
     class: temperature
     category: diagnostic
