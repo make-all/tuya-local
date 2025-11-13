@@ -437,8 +437,7 @@ entities:
     dps:
       - id: 113
         type: base64
-        mask: "FFFF"
-        cutoff_mask: 2
+        mask: "00FF000000000000000000000000000000000000000000000000000000000000"
         unit: "%"
         name: sensor
   - entity: text
@@ -480,6 +479,8 @@ entities:
         name: sensor
         unit: km/h
         class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Wind direction
     icon: "mdi:compass-rose"

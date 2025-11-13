@@ -486,8 +486,6 @@ class TuyaDpsConfig:
         cutoff_mask = self.cutoff_mask
         bytevalue = self.decoded_value(device)
         if mask and isinstance(bytevalue, bytes):
-            if cutoff_mask:
-                bytevalue = bytevalue[:cutoff_mask]
             value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
             raw_result = (value & mask) // scale
@@ -501,8 +499,8 @@ class TuyaDpsConfig:
             return self._map_from_dps(raw_result, device)
         if self.rawtype == "latin1b64" and isinstance(bytevalue, str):
             raw_result = bytevalue
-            if self.cutoff_mask:
-                raw_result = bytevalue[: self.cutoff_mask]
+            if cutoff_mask:
+                raw_result = bytevalue[:cutoff_mask]
             return self._map_from_dps(raw_result, device)
         return self._map_from_dps(device.get_property(self.id), device)
 
