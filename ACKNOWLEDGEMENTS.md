@@ -1116,3 +1116,4 @@ Further device support has been made with the assistance of users. Please consid
 - [bvweerd](https://github.com/bvweerd) for contributing improvements to Fararo pet feeder.
 - [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat.
 - [StrandmonYellow](https://github.com/StrandmonYellow) for assisting with support for Amenzo dishwasher.
+- [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.

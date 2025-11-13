@@ -174,6 +174,7 @@
 - Giatsu VAW 2 heat pump water heater
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
+- Intaflo Intabloc DC Inverter air-water heat pump
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
