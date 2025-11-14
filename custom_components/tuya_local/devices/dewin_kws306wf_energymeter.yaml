@@ -3,6 +3,9 @@ products:
   - id: rw34oa0bvgg3arsh
     manufacturer: Dewin
     model: KWS-306WF
+  - id: 8afses1qqzgmof1w
+    manufacturer: Komsi
+    model: KWS-306WF
 entities:
   - entity: sensor
     class: energy
@@ -50,16 +53,21 @@ entities:
     dps:
       - id: 10
         type: bitfield
+        optional: true
         name: sensor
         mapping:
+          - dps_val: null
+            value: false
           - dps_val: 0
             value: false
           - value: true
       - id: 10
         type: bitfield
+        optional: true
         name: fault_code
       - id: 10
         type: bitfield
+        optional: true
         name: description
         mapping:
           - dps_val: 0
@@ -84,7 +92,15 @@ entities:
     dps:
       - id: 16
         type: boolean
+        optional: true
         name: switch
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 141
+        type: boolean
+        optional: true
+        name: alt
   - entity: sensor
     class: power_factor
     category: diagnostic
@@ -214,7 +230,17 @@ entities:
         optional: true
         name: second
         range:
-          min: -1
+          min: 0
+          max: 86400
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 142
+        type: integer
+        optional: true
+        name: alt
+        range:
+          min: 0
           max: 86400
   - entity: number
     name: Over voltage threshold
@@ -542,3 +568,25 @@ entities:
         type: boolean
         optional: true
         name: switch
+  - entity: number
+    name: Reset delay
+    category: config
+    icon: "mdi:timer-sand"
+    hidden: unavailable
+    dps:
+      - id: 140
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 500
+      - id: 140
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
