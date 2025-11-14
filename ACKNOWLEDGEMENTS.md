@@ -1117,3 +1117,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat and WarmeHaus thermostatic towel rail element.
 - [StrandmonYellow](https://github.com/StrandmonYellow) for assisting with support for Amenzo dishwasher.
 - [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.
+- [evilpig](https://github.com/evilpig) for assisting with support for Homvana H111S humidifier.
