@@ -74,6 +74,7 @@
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
+- WarmeHaus AFD-02-TJ thermostatic towel rain element
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heat pumps

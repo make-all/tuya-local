@@ -1114,6 +1114,6 @@ Further device support has been made with the assistance of users. Please consid
 - [sajtdavid](https://github.com/sajtdavid) for contributing support for CO2v1 carbon dioxide sensor.
 - [dermocles9308](https://github.com/dermocles9308) for assisting with support for Tongou QCB2-100 3 phase circuit breaker.
 - [bvweerd](https://github.com/bvweerd) for contributing improvements to Fararo pet feeder.
-- [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat.
+- [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat and WarmeHaus thermostatic towel rail element.
 - [StrandmonYellow](https://github.com/StrandmonYellow) for assisting with support for Amenzo dishwasher.
 - [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.
