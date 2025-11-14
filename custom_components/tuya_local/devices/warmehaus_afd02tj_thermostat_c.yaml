@@ -53,7 +53,7 @@ entities:
             value: heating
           - dps_val: false
             value: idle
-  - entity: sensor
+  - entity: number
     translation_key: timer
     class: duration
     category: config
@@ -74,8 +74,8 @@ entities:
     category: diagnostic
     dps:
       - id: 111
-        type: float
-        name: value
+        type: integer
+        name: sensor
         unit: h
         mapping:
           - scale: 10
@@ -107,4 +107,3 @@ entities:
         type: base64
         optional: true
         name: value
-
