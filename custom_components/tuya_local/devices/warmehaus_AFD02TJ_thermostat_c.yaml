@@ -5,6 +5,7 @@ products:
     model: AFD-02-TJ
 entities:
   - entity: climate
+    translation_only_key: thermostat
     dps:
       - id: 1
         type: boolean
@@ -13,54 +14,82 @@ entities:
           - dps_val: false
             value: 'off'
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: cold
-                value: cool
-              - dps_val: hot
-                value: heat
-              - dps_val: eco
-                value: heat
-      - id: 1
-        type: boolean
-        name: hvac_action
-        mapping:
-          - dps_val: false
-            value: 'off'
-          - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: cold
-                value: cooling
-              - dps_val: ['hot', 'eco', 'auto']
-                value: heating
+            value: heat
       - id: 2
         type: string
-        name: mode
-        hidden: true
+        name: preset_mode
+        mapping:
+          - dps_val: hot
+            value: Free mode
+          - dps_val: cold
+            value: Constant mode
+          - dps_val: eco
+            value: Boost
+          - dps_val: auto
+            value: Program
       - id: 16
-        type: integer
         name: temperature
+        type: integer
+        unit: C
+        optional: true
         range:
           min: 300
           max: 700
         mapping:
           - scale: 10
             step: 10
+            constraint: preset_mode
+            conditions:
+              - dps_val: [cold, eco, auto]
+                invalid: true
       - id: 24
         type: integer
         name: current_temperature
+      - id: 1
+        type: boolean
+        name: hvac_action
         mapping:
-          - scale: 10
-            step: 10
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+  - entity: sensor
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 111
+        type: float
+        name: value
+        unit: h
+        range:
+          min: .5
+          max: 8
+        mapping:
+          - scale: 1
+            step: .5
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 111
+        type: float
+        name: value
+        unit: h
+        range:
+          min: .5
+          max: 8
+        mapping:
+          - scale: 1
+            step: .5
   - entity: lock
     translation_key: child_lock
     category: config
     dps:
       - id: 40
-        optional: true
-        type: boolean
         name: lock
+        type: boolean
   - entity: number
     name: Temperature calibration
     category: config
@@ -68,9 +97,17 @@ entities:
     dps:
       - id: 27
         type: integer
-        optional: true
         name: value
-        unit: C
+        unit: °C
         range:
           min: -5
           max: 5
+  - entity: text
+    name: Program
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
