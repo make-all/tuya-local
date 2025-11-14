@@ -59,15 +59,15 @@ entities:
     category: config
     dps:
       - id: 111
-        type: float
+        type: integer
         name: value
-        unit: h
+        unit: m
         range:
-          min: .5
-          max: 8
+          min: 5
+          max: 80
         mapping:
           - scale: 1
-            step: .5
+            step: 5
   - entity: sensor
     translation_key: time_remaining
     class: duration
