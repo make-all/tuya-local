@@ -32,7 +32,6 @@ entities:
         class: measurement
   - entity: sensor
     class: battery
-    name: Indoor battery
     category: diagnostic
     dps:
       - id: 4
@@ -431,7 +430,7 @@ entities:
           - dps_val: angle
             value: Compass angle
   - entity: sensor
-    name: Battery
+    name: Outdoor battery
     class: battery
     category: diagnostic
     dps:
@@ -482,13 +481,13 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Wind direction
-    icon: "mdi:compass-rose"
+    class: wind_direction
     dps:
       - id: 134
-        type: latin1b64
+        type: base64
         name: sensor
-        cutoff_mask: 5
+        mask: "0000000000FFFF0000"
+        unit: °
   - entity: sensor
     class: illuminance
     dps:
