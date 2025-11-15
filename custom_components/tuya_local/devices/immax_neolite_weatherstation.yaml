@@ -6,6 +6,9 @@ products:
   - id: 6cwineqz1ndjmuee
     manufacturer: Immax
     model: Neo Lite Smart professional 7-in-1
+  - id: pj4qomlesttsisgi
+    manufacturer: Horisont
+    model: Pro-5 WIFI Weather Station
 entities:
   - entity: sensor
     name: Indoor temperature
@@ -29,6 +32,7 @@ entities:
         class: measurement
   - entity: sensor
     class: battery
+    category: diagnostic
     dps:
       - id: 4
         type: integer
@@ -159,7 +163,6 @@ entities:
   - entity: sensor
     name: Remote humidity 1
     class: humidity
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 41
@@ -200,7 +203,6 @@ entities:
   - entity: sensor
     name: Remote humidity 2
     class: humidity
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 43
@@ -241,7 +243,6 @@ entities:
   - entity: sensor
     name: Remote humidity 3
     class: humidity
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 45
@@ -317,7 +318,7 @@ entities:
           - scale: 10
   - entity: sensor
     name: UV index
-    category: diagnostic
+    icon: "mdi:sun-wireless"
     dps:
       - id: 62
         type: integer
@@ -326,7 +327,6 @@ entities:
   - entity: sensor
     name: Dew point
     class: temperature
-    category: diagnostic
     dps:
       - id: 64
         type: integer
@@ -338,7 +338,6 @@ entities:
   - entity: sensor
     name: Feels like
     class: temperature
-    category: diagnostic
     dps:
       - id: 65
         type: integer
@@ -350,7 +349,6 @@ entities:
   - entity: sensor
     name: Heat index
     class: temperature
-    category: diagnostic
     dps:
       - id: 66
         type: integer
@@ -362,7 +360,6 @@ entities:
   - entity: sensor
     name: Windchill index
     class: temperature
-    category: diagnostic
     dps:
       - id: 67
         type: integer
@@ -433,14 +430,18 @@ entities:
           - dps_val: angle
             value: Compass angle
   - entity: sensor
-    name: Power status
+    name: Outdoor battery
+    class: battery
     category: diagnostic
-    hidden: true
     dps:
       - id: 113
         type: base64
-        optional: true
+        mask: "00FF000000000000000000000000000000000000000000000000000000000000"
+        unit: "%"
         name: sensor
+      - id: 113
+        type: base64
+        name: raw_data
   - entity: text
     name: Backlight
     category: config
@@ -463,7 +464,6 @@ entities:
   - entity: sensor
     name: Last rainfall
     class: precipitation
-    category: diagnostic
     dps:
       - id: 127
         type: integer
@@ -475,20 +475,27 @@ entities:
   - entity: sensor
     name: Real-time wind speed
     class: wind_speed
-    category: diagnostic
     dps:
       - id: 131
         type: integer
         name: sensor
         unit: km/h
         class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: wind_direction
+    dps:
       - id: 134
         type: base64
-        optional: true
-        name: direction_data
+        name: sensor
+        mask: "0000000000FFFF0000"
+        unit: °
+      - id: 134
+        type: base64
+        name: raw_data
   - entity: sensor
     class: illuminance
-    category: diagnostic
     dps:
       - id: 135
         type: integer
@@ -500,7 +507,6 @@ entities:
   - entity: sensor
     name: Sunlight
     class: duration
-    category: diagnostic
     dps:
       - id: 137
         type: integer
