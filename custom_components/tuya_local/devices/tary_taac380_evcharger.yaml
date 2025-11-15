@@ -218,16 +218,18 @@ entities:
     category: config
     class: current
     icon: "mdi:current-ac"
+    mode: slider
     dps:
       - id: 115
         type: integer
         name: value
         unit: A
         range:
-          min: 0
-          max: 200
+          min: 900
+          max: 3200
         mapping:
           - scale: 100
+            step: 100
 
   # DP 117: load_balancing_current (Value / integer, scale 2)
   - entity: number
@@ -235,16 +237,18 @@ entities:
     category: config
     class: current
     icon: "mdi:current-ac"
+    mode: slider
     dps:
       - id: 117
         type: integer
         name: value
         unit: A
         range:
-          min: 0
-          max: 200
+          min: 100
+          max: 10000
         mapping:
           - scale: 100
+            step: 100
 
   # DP 116: load_balancing_state (Boolean)
   - entity: binary_sensor
