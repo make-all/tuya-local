@@ -439,6 +439,9 @@ entities:
         mask: "00FF000000000000000000000000000000000000000000000000000000000000"
         unit: "%"
         name: sensor
+      - id: 113
+        type: base64
+        name: raw_data
   - entity: text
     name: Backlight
     category: config
@@ -488,6 +491,9 @@ entities:
         name: sensor
         mask: "0000000000FFFF0000"
         unit: °
+      - id: 134
+        type: base64
+        name: raw_data
   - entity: sensor
     class: illuminance
     dps:
