@@ -1119,3 +1119,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.
 - [evilpig](https://github.com/evilpig) for assisting with support for Homvana H111S humidifier.
 - [veista](https://github.com/veista) for contributing improvements to Immax Neo Lite weather station.
+- [DavidRomao](https://github.com/DavidRomao) for contributing support for Jocel JCT007452 heater, merged into compatible Lehmann config.
