@@ -1121,3 +1121,4 @@ Further device support has been made with the assistance of users. Please consid
 - [veista](https://github.com/veista) for contributing improvements to Immax Neo Lite weather station.
 - [DavidRomao](https://github.com/DavidRomao) for contributing support for Jocel JCT007452 heater, merged into compatible Lehmann config.
 - [phiten](https://github.com/phiten) for assisting with support for FeelNeedy P-LFP01 camera pet feeder.
+- [dbeinder](https://github.com/dbeinder) for contributing improvements to dé EV charger.
