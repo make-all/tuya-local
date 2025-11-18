@@ -5,7 +5,7 @@ products:
     model_id: SPM02-D2TW
     model: 3-Phase Energy Meter
 entities:
-    # Total energy consumed
+  # Total energy consumed
   - entity: sensor
     translation_key: energy_consumed
     class: energy
@@ -17,7 +17,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Total energy produced
+  # Total energy produced
   - entity: sensor
     translation_key: energy_produced
     class: energy
@@ -29,7 +29,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Total active power
+  # Total active power
   - entity: sensor
     class: power
     dps:
@@ -38,7 +38,7 @@ entities:
         unit: W
         class: measurement
         type: integer
-    # Active power L1
+  # Active power L1
   - entity: sensor
     translation_key: power_x
     translation_placeholders:
@@ -50,7 +50,7 @@ entities:
         unit: W
         class: measurement
         type: integer
-    # Active power L2
+  # Active power L2
   - entity: sensor
     translation_key: power_x
     translation_placeholders:
@@ -62,7 +62,7 @@ entities:
         unit: W
         class: measurement
         type: integer
-    # Active power L3
+  # Active power L3
   - entity: sensor
     translation_key: power_x
     translation_placeholders:
@@ -74,7 +74,7 @@ entities:
         unit: W
         class: measurement
         type: integer
-    # Voltage L1
+  # Voltage L1
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -89,7 +89,7 @@ entities:
         type: integer
         mapping:
           - scale: 10
-    # Voltage L2
+  # Voltage L2
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -104,7 +104,7 @@ entities:
         type: integer
         mapping:
           - scale: 10
-    # Voltage L3
+  # Voltage L3
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -119,7 +119,7 @@ entities:
         type: integer
         mapping:
           - scale: 10
-    # Current L1
+  # Current L1
   - entity: sensor
     translation_key: current_x
     translation_placeholders:
@@ -134,7 +134,7 @@ entities:
         type: integer
         mapping:
           - scale: 1000
-    # Current L2
+  # Current L2
   - entity: sensor
     translation_key: current_x
     translation_placeholders:
@@ -149,7 +149,7 @@ entities:
         type: integer
         mapping:
           - scale: 1000
-    # Current L3
+  # Current L3
   - entity: sensor
     translation_key: current_x
     translation_placeholders:
@@ -164,7 +164,7 @@ entities:
         type: integer
         mapping:
           - scale: 1000
-    # Power factor L1
+  # Power factor L1
   - entity: sensor
     name: Power factor L1
     class: power_factor
@@ -175,7 +175,7 @@ entities:
         unit: "%"
         class: measurement
         type: integer
-    # Power factor L2
+  # Power factor L2
   - entity: sensor
     name: Power factor L2
     class: power_factor
@@ -186,7 +186,7 @@ entities:
         unit: "%"
         class: measurement
         type: integer
-    # Power factor L3
+  # Power factor L3
   - entity: sensor
     name: Power factor L3
     class: power_factor
@@ -197,7 +197,7 @@ entities:
         unit: "%"
         class: measurement
         type: integer
-    # Total power factor
+  # Total power factor
   - entity: sensor
     class: power_factor
     category: diagnostic
@@ -207,7 +207,7 @@ entities:
         type: integer
         unit: "%"
         class: measurement
-    # Energy consumed L1
+  # Energy consumed L1
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
@@ -222,7 +222,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Energy produced L1
+  # Energy produced L1
   - entity: sensor
     translation_key: energy_produced_x
     translation_placeholders:
@@ -237,7 +237,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Energy consumed L2
+  # Energy consumed L2
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
@@ -252,7 +252,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Energy produced L2
+  # Energy produced L2
   - entity: sensor
     translation_key: energy_produced_x
     translation_placeholders:
@@ -267,7 +267,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Energy consumed L3
+  # Energy consumed L3
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
@@ -282,7 +282,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Energy produced L3
+  # Energy produced L3
   - entity: sensor
     translation_key: energy_produced_x
     translation_placeholders:
@@ -297,7 +297,7 @@ entities:
         class: total_increasing
         mapping:
           - scale: 100
-    # Frequency
+  # Frequency
   - entity: sensor
     class: frequency
     category: diagnostic
@@ -309,7 +309,7 @@ entities:
         type: integer
         mapping:
           - scale: 100
-    # Phase current imbalance
+  # Phase current imbalance
   - entity: sensor
     name: Current imbalance
     category: diagnostic
@@ -319,7 +319,7 @@ entities:
         type: integer
         unit: "%"
         class: measurement
-    # Fault status
+  # Fault status
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -374,7 +374,7 @@ entities:
             value: credit_low
           - dps_val: 65536
             value: credit_expired
-    # Clear energy counters
+  # Clear energy counters
   - entity: button
     name: Reset energy
     class: restart
@@ -383,7 +383,7 @@ entities:
       - id: 12
         type: boolean
         name: button
-    # Report interval
+  # Report interval
   - entity: number
     name: Reporting interval
     category: config
