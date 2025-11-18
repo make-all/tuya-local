@@ -932,6 +932,18 @@ class TuyaDpsConfig:
         if self.readonly:
             return dps_map
 
+        # Special case: if the current value has a redirect mapping,
+        # follow that.
+        current_value = device.get_property(self.id)
+        current_mapping = self._find_map_for_dps(current_value, device)
+        if current_mapping:
+            redirect = current_mapping.get("value_redirect")
+            if redirect:
+                return self._entity.find_dps(redirect).get_values_to_set(
+                    device,
+                    value,
+                )
+        # If no redirect, we need to check for mapped values in reverse
         mapping = self._find_map_for_value(value, device)
         scale = self.scale(device)
         mask = self.mask
