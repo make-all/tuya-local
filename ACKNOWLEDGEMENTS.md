@@ -1118,3 +1118,8 @@ Further device support has been made with the assistance of users. Please consid
 - [StrandmonYellow](https://github.com/StrandmonYellow) for assisting with support for Amenzo dishwasher.
 - [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.
 - [evilpig](https://github.com/evilpig) for assisting with support for Homvana H111S humidifier.
+- [veista](https://github.com/veista) for contributing improvements to Immax Neo Lite weather station.
+- [DavidRomao](https://github.com/DavidRomao) for contributing support for Jocel JCT007452 heater, merged into compatible Lehmann config.
+- [phiten](https://github.com/phiten) for assisting with support for FeelNeedy P-LFP01 camera pet feeder.
+- [dbeinder](https://github.com/dbeinder) for contributing improvements to dé EV charger.
+- [johndparker](https://github.com/johndparker) for assisting with support for HHC AM24 curtain motor.

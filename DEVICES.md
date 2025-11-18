@@ -815,6 +815,7 @@ of device.
 - FS-03W curtain switch with backlight control
 - Graywind window shades
 - GW Motor roller blinds
+- HHC AM68 curtain motor
 - Kimex motorized cinema screen
 - Kogan garage door with tilt sensor
 - KY motor 35W-10 shutter controller
@@ -970,6 +971,7 @@ port and password.
 - Duoqu Neo-A cat litter box
 - Els Pet Spaceship pet litter box
 - Faroro PF50 pet feeder
+- FeelNeedy P-LFP01 camera pet feeder
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - HoneyGuardian S56 pet feeder
