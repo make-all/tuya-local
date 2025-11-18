@@ -15,12 +15,35 @@ entities:
           - dps_val: true
             constraint: mode
             conditions:
-              - dps_val: "COOL"
-                value: cool
-              - dps_val: "DRY"
-                value: dry
-              - dps_val: "FAN"
-                value: fan_only
+             # cool
+             - dps_val: "COOL"
+               value: cool
+             - dps_val: "cool"
+               value: cool
+             # dry
+             - dps_val: "DRY"
+               value: dry
+             - dps_val: "dry"
+               value: dry
+             # fan
+             - dps_val: "FAN"
+               value: fan_only
+             - dps_val: "fan"
+               value: fan_only
+             # heat
+             - dps_val: "HEAT"
+               value: heat
+             - dps_val: "heat"
+               value: heat
+             - dps_val: "HOT"
+               value: heat
+             - dps_val: "hot"
+               value: heat
+             # auto
+             - dps_val: "AUTO"
+               value: auto
+             - dps_val: "auto"
+               value: auto            
       - id: 2
         name: temperature
         type: integer
