@@ -13,6 +13,7 @@ from homeassistant.const import (
 )
 
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD
+from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
