@@ -1123,3 +1123,4 @@ Further device support has been made with the assistance of users. Please consid
 - [phiten](https://github.com/phiten) for assisting with support for FeelNeedy P-LFP01 camera pet feeder.
 - [dbeinder](https://github.com/dbeinder) for contributing improvements to dé EV charger.
 - [johndparker](https://github.com/johndparker) for assisting with support for HHC AM24 curtain motor.
+- [emcyaman](https://github.com/emcyaman) for contributing support for Zemismart SPM02-D2TW energy meter.
