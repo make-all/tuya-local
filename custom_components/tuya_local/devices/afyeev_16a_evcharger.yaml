@@ -2,7 +2,10 @@ name: EV charger
 products:
   - id: dsmsam7xpb3ht7rl
     manufacturer: Afyeev
-    name: "16A EV Charger"
+    model: "16A EV charger"
+  - id: zma7jiuomnao0lk4
+    manufacturer: Afyeev
+    model: "16A 11kW EV charger"
 entities:
   - entity: sensor
     translation_key: status
@@ -29,6 +32,10 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
+      - id: 22
+        type: string
+        optional: true
+        name: identity
       - id: 23
         type: string
         name: system_version
@@ -57,7 +64,22 @@ entities:
           min: 6
           max: 16
   - entity: sensor
+    class: power
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
     class: voltage
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
@@ -69,6 +91,10 @@ entities:
           - scale: 10
   - entity: sensor
     class: current
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
@@ -80,6 +106,10 @@ entities:
           - scale: 1000
   - entity: sensor
     class: power
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
@@ -88,14 +118,6 @@ entities:
         unit: kW
         class: measurement
         mask: "000000000000FFFF"
-        mapping:
-          - scale: 1000
-          - dps_val: null
-            value_redirect: total_power
-      - id: 9
-        type: integer
-        name: total_power
-        optional: true
         mapping:
           - scale: 1000
   - entity: binary_sensor
@@ -112,6 +134,42 @@ entities:
       - id: 10
         type: bitfield
         name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: Over current
+          - dps_val: 2
+            value: Over voltage
+          - dps_val: 4
+            value: Under voltage
+          - dps_val: 8
+            value: Contact adhesion fault
+          - dps_val: 16
+            value: Contact fault
+          - dps_val: 32
+            value: Earth fault
+          - dps_val: 64
+            value: Meter fault
+          - dps_val: 128
+            value: Scram fault
+          - dps_val: 256
+            value: CP fault
+          - dps_val: 512
+            value: Communication fault
+          - dps_val: 1024
+            value: Card reader fault
+          - dps_val: 2048
+            value: Short circuit
+          - dps_val: 4096
+            value: Adhesion fault
+          - dps_val: 8192
+            value: Self test
+          - dps_val: 16384
+            value: Earth leak
   - entity: select
     name: Charging mode
     icon: "mdi:ev-station"
@@ -132,11 +190,52 @@ entities:
             value: Charge schedule
           - dps_val: charge_delay
             value: Charge delay
+  - entity: sensor
+    name: Balance energy
+    class: energy_storage
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 15
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: button
+    name: Clear energy
+    class: restart
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 16
+        type: boolean
+        optional: true
+        name: button
+      - id: 15
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     icon: "mdi:ev-station"
     dps:
       - id: 18
         type: boolean
+        optional: true
         name: switch
   - entity: sensor
     class: temperature
@@ -144,6 +243,7 @@ entities:
     dps:
       - id: 24
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -184,3 +284,149 @@ entities:
         range:
           min: 0
           max: 15
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    hidden: unavailable
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+      - id: 7
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: current
+    category: diagnostic
+    hidden: unavailable
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "000000FFFF000000"
+        mapping:
+          - scale: 1000
+      - id: 7
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    hidden: unavailable
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mask: "000000000000FFFF"
+        mapping:
+          - scale: 1000
+      - id: 7
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    hidden: unavailable
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+      - id: 8
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: current
+    category: diagnostic
+    hidden: unavailable
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "000000FFFF000000"
+        mapping:
+          - scale: 1000
+      - id: 8
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    hidden: unavailable
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mask: "000000000000FFFF"
+        mapping:
+          - scale: 1000
+      - id: 8
+        type: base64
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

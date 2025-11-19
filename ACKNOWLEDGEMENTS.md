@@ -1124,3 +1124,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dbeinder](https://github.com/dbeinder) for contributing improvements to dé EV charger.
 - [johndparker](https://github.com/johndparker) for assisting with support for HHC AM24 curtain motor.
 - [emcyaman](https://github.com/emcyaman) for contributing support for Zemismart SPM02-D2TW energy meter.
+- [gec75](https://github.com/gec75) for contributing support for Afyeev 11kW 3x15A EV charger, which was merged with the existing Afyeev 16A config.
