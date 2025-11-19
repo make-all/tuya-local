@@ -38,6 +38,7 @@ LOCK_DPS = "40"
 CYCLE_DPS = "41"
 RANDOM_DPS = "42"
 OVERCHARGE_DPS = "46"
+ALT_OVERCHARGE_DPS = "51"
 
 
 class TestSwitchV2Energy(
@@ -177,8 +178,27 @@ class TestSwitchV2Energy(
             {"fault_code": 2},
         )
 
+    async def test_redirected_switch(self):
+        overcharge_switch = self.multiSwitch["switch_overcharge_cutoff"]
+        self.dps[OVERCHARGE_DPS] = None
+        self.dps[ALT_OVERCHARGE_DPS] = False
+        async with assert_device_properties_set(
+            overcharge_switch._device,
+            {ALT_OVERCHARGE_DPS: True},
+        ):
+            await overcharge_switch.async_turn_on()
+
     def test_available(self):
         self.dps[INITIAL_DPS] = None
         self.assertFalse(self.basicSelect.available)
         self.dps[INITIAL_DPS] = "on"
         self.assertTrue(self.basicSelect.available)
+        self.dps[OVERCHARGE_DPS] = None
+        self.dps[ALT_OVERCHARGE_DPS] = None
+        overcharge_switch = self.multiSwitch["switch_overcharge_cutoff"]
+        self.assertFalse(overcharge_switch.available)
+        self.dps[ALT_OVERCHARGE_DPS] = False
+        self.assertTrue(overcharge_switch.available)
+        self.dps[ALT_OVERCHARGE_DPS] = None
+        self.dps[OVERCHARGE_DPS] = True
+        self.assertTrue(overcharge_switch.available)

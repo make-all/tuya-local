@@ -82,3 +82,11 @@ class TestDuuxBlizzard(TargetTemperatureTests, TuyaDeviceTestCase):
         self.assertFalse(self.ionizer.available)
         self.dps[IONSHOW_DP] = True
         self.assertTrue(self.ionizer.available)
+
+    async def test_set_redirected_temperature(self):
+        self.dps[UNIT_DP] = True  # Fahrenheit
+        async with assert_device_properties_set(
+            self.subject._device,
+            {SETTEMPF_DP: 75},
+        ):
+            await self.subject.async_set_target_temperature(75)
