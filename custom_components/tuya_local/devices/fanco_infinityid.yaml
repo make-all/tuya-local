@@ -1,0 +1,91 @@
+name: Fan
+products:
+  - id: agyqzsfpafsvkrl9
+    manufacturer: Fanco
+    model: Infinity-ID
+    model_id: MZ-DCFAN
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        name: direction
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 17
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 5000
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+  - entity: binary_sensor
+    translation_key: fault
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
