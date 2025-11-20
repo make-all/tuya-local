@@ -3,6 +3,9 @@ products:
   - id: i3olzxc2chxmlz9l
     manufacturer: LSC Smart Connect
     model: "3208999"
+  - id: qi0vjgvbtzun2bbr
+    manufacturer: LSC Smart Connect
+    model: "1296P BT"
 entities:
   - entity: switch
     name: Watermark
@@ -11,6 +14,7 @@ entities:
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
   - entity: select
     name: Nightvision
@@ -217,6 +221,7 @@ entities:
     dps:
       - id: 188
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
