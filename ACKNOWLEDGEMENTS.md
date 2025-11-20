@@ -1126,3 +1126,4 @@ Further device support has been made with the assistance of users. Please consid
 - [emcyaman](https://github.com/emcyaman) for contributing support for Zemismart SPM02-D2TW energy meter.
 - [gec75](https://github.com/gec75) for contributing support for Afyeev 11kW 3x15A EV charger, which was merged with the existing Afyeev 16A config.
 - [brendanlees](https://github.com/brendanlees) for contributing support for Fanco Infinity, which was merged with existing Fanco Eco Silent.
+- [widegaint](https://github.com/widegaint) for assisting with support for dLuft Smart Flow ventilation fan.

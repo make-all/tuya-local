@@ -288,6 +288,7 @@
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
 - Djive ARC humidifying fan
+- dLuft Smart Flow ventilator fan
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
