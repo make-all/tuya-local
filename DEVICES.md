@@ -659,6 +659,7 @@ the best option.
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
+- TY-12W 12 switch relay board
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
