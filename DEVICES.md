@@ -14,7 +14,7 @@
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
-- Cecotec ReadyWarm 8400 fan heater
+- Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cleverio AR10/AR20 panel heaters
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
