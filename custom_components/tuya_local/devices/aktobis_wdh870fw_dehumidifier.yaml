@@ -1,0 +1,90 @@
+name: Dehumidifier
+products:
+  - id: 28ts8zanupz0yytl
+    manufacturer: Aktobis
+    model: WDH-870FW
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 70
+        mapping:
+          - step: 5
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: dry
+            value: laundry
+          - dps_val: continuous
+            value: boost
+          - dps_val: dehumidify
+            value: normal
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: med
+            value: 67
+          - dps_val: high
+            value: 100
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor

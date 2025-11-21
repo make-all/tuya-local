@@ -853,7 +853,7 @@ Further device support has been made with the assistance of users. Please consid
 - [nickmcgill](https://github.com/nickmcgill) for contributing support for Devola Intelligent heater.
 - [Kappa71](https://github.com/Kappa71) for contributing support for Emerio DH-129238.1 dehumidifier.
 - [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch
-- [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve.
+- [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve and Aktobis DHW-870FW dehumidifier.
 - [istenik](https://github.com/istenik) for assisting with support for Klarstein Bornholm Smart 1500 convection heater and TH05Z temperature humidity sensor.
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
