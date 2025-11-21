@@ -1127,3 +1127,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gec75](https://github.com/gec75) for contributing support for Afyeev 11kW 3x15A EV charger, which was merged with the existing Afyeev 16A config.
 - [brendanlees](https://github.com/brendanlees) for contributing support for Fanco Infinity, which was merged with existing Fanco Eco Silent.
 - [widegaint](https://github.com/widegaint) for assisting with support for dLuft Smart Flow ventilation fan.
+- [felixfx2](https://github.com/felixfx2) for assisting with support for Prism+ Oasis Pro ceiling fan with RGBCCT light.

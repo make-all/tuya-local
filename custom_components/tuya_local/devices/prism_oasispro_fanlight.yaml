@@ -1,0 +1,238 @@
+name: Ceiling fan
+products:
+  - id: plo5ztftts1fjtay
+    manufacturer: Prism+
+    model: Oasis Pro
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:magnify"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep mode
+    category: config
+    icon: "mdi:bed-clock"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup mode
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 53
+        type: boolean
+        name: switch
+  - entity: select
+    name: Color presets
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mode1
+            value: Mode 1
+          - dps_val: mode2
+            value: Mode 2
+          - dps_val: mode3
+            value: Mode 3
+          - dps_val: mode4
+            value: Mode 4
+          - dps_val: mode5
+            value: Mode 5
+          - dps_val: mode6
+            value: Mode 6
+          - dps_val: mode7
+            value: Mode 7
+          - dps_val: mode8
+            value: Mode 8
+          - dps_val: mode9
+            value: Mode 9
+          - dps_val: mode10
+            value: Mode 10
+          - dps_val: mode11
+            value: Mode 11
+          - dps_val: mode12
+            value: Mode 12
+          - dps_val: mode13
+            value: Mode 13
+          - dps_val: mode14
+            value: Mode 14
+          - dps_val: mode15
+            value: Mode 15
+          - dps_val: mode16
+            value: Mode 16
+          - dps_val: mode17
+            value: Mode 17
+          - dps_val: mode18
+            value: Mode 18
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 102
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: number
+    name: Fan timer
+    category: config
+    icon: "mdi:fan-clock"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 106
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 104
+        type: string
+        name: direction

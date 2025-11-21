@@ -338,6 +338,7 @@
 - Princess DC pedestal fan
 - Princess Smart air cooler
 - Princess Smart Tower fan
+- Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Reiga ceiling fans with and without light
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
