@@ -149,10 +149,9 @@ entities:
           min: 0
           max: 96
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-alert"
     dps:
       - id: 109
         name: value
@@ -173,8 +172,7 @@ entities:
         type: string
         hidden: true
   - entity: number
-    name: Low temperature limit
-    icon: "mdi:snowflake-alert"
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:

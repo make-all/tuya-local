@@ -37,6 +37,10 @@ def replace_unique_ids(entity_entry, device_id, conf_file, replacements):
     platform = entity_entry.entity_id.split(".", 1)[0]
     for suffix, new_suffix in replacements.items():
         if old_id.endswith(suffix):
+            # If the entity still exists in the config, do not migrate
+            for e in conf_file.all_entities():
+                if e.unique_id(device_id) == old_id:
+                    return None
             for e in conf_file.all_entities():
                 new_id = e.unique_id(device_id)
                 if e.entity == platform and not e.name and new_id.endswith(new_suffix):
@@ -655,6 +659,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "switch_disturb_switch": "switch_do_not_disturb",
                 "number_temperature_correction": "number_temperature_calibration",
                 "number_calibration_offset": "number_temperature_calibration",
+                "number_high_temperature_limit": "number_maximum_temperature",
+                "number_low_temperature_limit": "number_minimum_temperature",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 

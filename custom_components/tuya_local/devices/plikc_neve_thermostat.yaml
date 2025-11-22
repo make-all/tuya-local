@@ -226,10 +226,10 @@ entities:
           - scale: 10
   # Pro only entities
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
+    class: temperature
     category: config
     hidden: unavailable
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -250,10 +250,10 @@ entities:
             value: false
           - value: true
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     hidden: unavailable
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 26
         type: integer
