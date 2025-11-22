@@ -1,4 +1,4 @@
-name: Geyserwise MWS
+name: Water heater
 products:
   - id: qwbyia2yr5ip9y4v
     manufacturer: Geyserwise
@@ -12,21 +12,20 @@ entities:
         name: operation_mode
         mapping:
           - dps_val: false
-            value: "Off"
+            value: "off"
           - dps_val: true
-            value: "On"
+            value: electric
       - id: 2
         type: string
         name: away_mode
         mapping:
-          - dps_val: "Timer"
+          - dps_val: Timer
             value: false
-          - dps_val: "Holiday"
+          - dps_val: Holiday
             value: true
       - id: 10
         type: integer
         name: current_temperature
-        readonly: true
       - id: 102
         type: integer
         name: temperature
@@ -62,10 +61,6 @@ entities:
       - id: 20
         type: bitfield
         name: fault_code
-  - entity: sensor
-    class: problem
-    category: diagnostic
-    dps:
       - id: 20
         type: bitfield
         name: description
@@ -91,7 +86,7 @@ entities:
           - dps_val: 256
             value: Pump failure
   - entity: switch
-    name: AC Boost
+    name: AC boost
     category: config
     dps:
       - id: 101
@@ -146,19 +141,17 @@ entities:
           min: 30
           max: 75
   - entity: sensor
-    name: Element AC Runtime
+    name: Element AC runtime
     category: diagnostic
     class: duration
-    readonly: true
     dps:
       - id: 107
         type: integer
         name: value
-        unit: H
+        unit: h
   - entity: sensor
-    name: Power Source
+    name: Power source
     category: diagnostic
-    readonly: true
     dps:
       - id: 110
         type: string
@@ -166,7 +159,7 @@ entities:
   - entity: sensor
     class: power
     category: diagnostic
-    name: AC Element Power
+    name: AC element power
     dps:
       - id: 108
         type: integer
@@ -179,7 +172,7 @@ entities:
   - entity: sensor
     class: power
     category: diagnostic
-    name: PV Power
+    name: PV power
     dps:
       - id: 113
         type: integer
@@ -192,7 +185,7 @@ entities:
   - entity: sensor
     class: current
     category: diagnostic
-    name: PV Current
+    name: PV current
     dps:
       - id: 112
         type: integer
@@ -205,7 +198,7 @@ entities:
   - entity: sensor
     class: voltage
     category: diagnostic
-    name: PV Voltage
+    name: PV voltage
     dps:
       - id: 111
         type: integer
