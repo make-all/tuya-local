@@ -15,35 +15,35 @@ entities:
           - dps_val: true
             constraint: mode
             conditions:
-             # cool
-             - dps_val: "COOL"
-               value: cool
-             - dps_val: "cool"
-               value: cool
-             # dry
-             - dps_val: "DRY"
-               value: dry
-             - dps_val: "dry"
-               value: dry
-             # fan
-             - dps_val: "FAN"
-               value: fan_only
-             - dps_val: "fan"
-               value: fan_only
-             # heat
-             - dps_val: "HEAT"
-               value: heat
-             - dps_val: "heat"
-               value: heat
-             - dps_val: "HOT"
-               value: heat
-             - dps_val: "hot"
-               value: heat
-             # auto
-             - dps_val: "AUTO"
-               value: auto
-             - dps_val: "auto"
-               value: auto            
+              # cool
+              - dps_val: "COOL"
+                value: cool
+                available: cool_only_model
+              - dps_val: "cool"
+                value: cool
+                available: heat_cool_model
+              # dry
+              - dps_val: "DRY"
+                value: dry
+                available: cool_only_model
+              - dps_val: "dry"
+                value: dry
+                available: heat_cool_model
+              # fan
+              - dps_val: "FAN"
+                value: fan_only
+                available: cool_only_model
+              - dps_val: "fan"
+                value: fan_only
+                available: heat_cool_model
+              # heat
+              - dps_val: "HOT"
+                value: heat
+                available: heat_cool_model
+              # auto
+              - dps_val: "AUTO"
+                value: heat_cool
+                available: heat_cool_model
       - id: 2
         name: temperature
         type: integer
@@ -58,6 +58,24 @@ entities:
         name: mode
         type: string
         hidden: true
+      - id: 4
+        name: cool_only_model
+        type: string
+        hidden: true
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [COOL, FAN, DRY]
+                value: true
+      - id: 4
+        name: heat_cool_model
+        type: string
+        hidden: true
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [cool, fan, dry, HOT, AUTO]
+                value: true
       - id: 5
         name: fan_mode
         type: string
