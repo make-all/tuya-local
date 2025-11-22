@@ -653,6 +653,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             # Standardistion of entity naming to use translation_key
             replacements = {
                 "switch_disturb_switch": "switch_do_not_disturb",
+                "number_temperature_correction": "number_temperature_calibration",
+                "number_calibration_offset": "number_temperature_calibration",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 

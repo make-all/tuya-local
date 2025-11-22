@@ -156,15 +156,14 @@ entities:
         type: boolean
         name: sensor
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 106
         type: integer
         optional: true
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 40

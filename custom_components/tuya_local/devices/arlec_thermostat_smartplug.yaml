@@ -219,24 +219,16 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:pan-vertical"
     dps:
       - id: 30
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9
-      - id: 20
-        type: string
-        name: unit
-        mapping:
-          - dps_val: c
-            value: C
-          - dps_val: f
-            value: F
   - entity: number
     name: Humidity hysteresis
     category: config

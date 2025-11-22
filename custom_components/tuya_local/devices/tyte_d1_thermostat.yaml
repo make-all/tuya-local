@@ -193,13 +193,13 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 30
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9

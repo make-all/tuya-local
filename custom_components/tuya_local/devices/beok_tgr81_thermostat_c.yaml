@@ -64,15 +64,14 @@ entities:
           - dps_val: open
             value: heating
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         optional: true
         name: value
-        unit: C
+        unit: °
         range:
           min: -9
           max: 9

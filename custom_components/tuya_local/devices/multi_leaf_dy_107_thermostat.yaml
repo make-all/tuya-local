@@ -55,14 +55,13 @@ entities:
             icon_priority: 2
             value: heating
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -9
           max: 9
