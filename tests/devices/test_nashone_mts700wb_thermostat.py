@@ -74,7 +74,7 @@ class TestNashoneMTS700WBThermostat(
         self.mark_secondary(
             [
                 "button_factory_reset",
-                "number_calibration_offset",
+                "number_temperature_calibration",
                 "select_timer",
                 "sensor_time_remaining",
             ],

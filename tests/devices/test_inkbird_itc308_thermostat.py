@@ -146,8 +146,8 @@ class TestInkbirdITC308Thermostat(
                 "binary_sensor_problem",
                 "number_calibration_offset",
                 "number_compressor_delay",
-                "number_high_temperature_limit",
-                "number_low_temperature_limit",
+                "number_maximum_temperature",
+                "number_minimum_temperature",
                 "number_cooling_hysteresis",
                 "number_heating_hysteresis",
             ]
