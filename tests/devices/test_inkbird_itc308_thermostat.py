@@ -90,6 +90,7 @@ class TestInkbirdITC308Thermostat(
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
+                    "unit": "°",
                 },
                 {
                     "name": "number_compressor_delay",

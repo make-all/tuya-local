@@ -56,6 +56,7 @@ class TestNashoneMTS700WBThermostat(
             self.entities.get("number_temperature_calibration"),
             min=-5,
             max=5,
+            unit="°",
         )
         self.setUpBasicSelect(
             TIMER_DPS,
