@@ -1,0 +1,177 @@
+name: Purificator Humidifier
+products:
+  - id: rjhsz1vaxpp4gih3
+    manufacturer: AlecoAir
+    model: PU55 HUMINO
+entities:
+  - entity: humidifier
+    class: humidifier
+    translate_only_key: humidifier_with_presets
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+      - id: 101
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 70
+        step: 5
+      - id: 13
+        name: current_humidity
+        type: integer
+
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 25
+          - dps_val: mid
+            value: 50
+          - dps_val: high
+            value: 75
+          - dps_val: max
+            value: 100
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: ai_clean
+            value: AI Clean
+          - dps_val: sleep
+            value: sleep
+
+  - entity: sensor
+    name: Filter Life
+    dps: 
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        icon: "mdi:air-filter"
+
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Air Quality
+    dps: 
+      - id: 21
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Clean Water Tank
+    dps: 
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: UV Lamp
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Mute
+    category: config
+    dps: 
+      - id: 28
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:volume-variant-off"
+          - dps_val: false
+            icon: "mdi:volume-medium"
+
+  - entity: switch
+    name: Display
+    translation_key: display
+    category: config
+    dps: 
+      - id: 103
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:fit-to-screen-outline"
+          - dps_val: false
+            icon: "mdi:fit-to-screen"
+
+  - entity: switch
+    name: Dry Fan
+    category: config
+    dps: 
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Auto OFF
+    translation_key: timer
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 24
+
+  - entity: switch
+    name: Humidify
+    dps:
+    - id: 10
+      type: boolean
+      name: switch
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+  
+  - entity: switch
+    name: Humidify Controlled
+    dps:
+    - id: 105
+      type: boolean
+      name: switch
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
