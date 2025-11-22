@@ -84,7 +84,7 @@ class TestInkbirdITC308Thermostat(
         self.setUpMultiNumber(
             [
                 {
-                    "name": "number_calibration_offset",
+                    "name": "number_temperature_calibration",
                     "dps": CALIBRATE_DPS,
                     "scale": 10,
                     "step": 0.1,
@@ -144,7 +144,7 @@ class TestInkbirdITC308Thermostat(
                 "binary_sensor_low_temperature",
                 "binary_sensor_sensor_fault",
                 "binary_sensor_problem",
-                "number_calibration_offset",
+                "number_temperature_calibration",
                 "number_compressor_delay",
                 "number_maximum_temperature",
                 "number_minimum_temperature",
