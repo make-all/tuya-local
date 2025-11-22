@@ -53,7 +53,7 @@ class TestNashoneMTS700WBThermostat(
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
-            self.entities.get("number_calibration_offset"),
+            self.entities.get("number_temperature_calibration"),
             min=-5,
             max=5,
         )

@@ -99,7 +99,7 @@ class TestBeokTR9BThermostat(
             [
                 {
                     "dps": MINTEMP_DPS,
-                    "name": "number_low_temperature_limit",
+                    "name": "number_minimum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 300.0,
@@ -109,7 +109,7 @@ class TestBeokTR9BThermostat(
                 },
                 {
                     "dps": MAXTEMP_DPS,
-                    "name": "number_high_temperature_limit",
+                    "name": "number_maximum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 300.0,

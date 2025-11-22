@@ -98,7 +98,7 @@ class TestInkbirdITC308Thermostat(
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
-                    "name": "number_high_temperature_limit",
+                    "name": "number_maximum_temperature",
                     "dps": HIGH_THRES_DPS,
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
@@ -108,7 +108,7 @@ class TestInkbirdITC308Thermostat(
                     "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
-                    "name": "number_low_temperature_limit",
+                    "name": "number_minimum_temperature",
                     "dps": LOW_THRES_DPS,
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
