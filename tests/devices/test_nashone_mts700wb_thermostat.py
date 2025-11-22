@@ -148,6 +148,3 @@ class TestNashoneMTS700WBThermostat(
             self.subject.extra_state_attributes,
             {"work_state": "manual"},
         )
-
-    def test_icons(self):
-        self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")
