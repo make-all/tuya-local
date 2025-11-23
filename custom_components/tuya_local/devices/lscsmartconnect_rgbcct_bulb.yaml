@@ -17,6 +17,8 @@ entities:
             value: color_temp
           - dps_val: colour
             value: hs
+          - dps_val: scene
+            value: Scene
       - id: 3
         name: brightness
         type: integer
@@ -87,7 +89,8 @@ entities:
             value: Scene 4
 
   - entity: select
-    name: Work Mode
+    name: Work mode
+    deprecated: light.effect  # 2025-11-08
     icon: "mdi:lightbulb"
     category: config
     dps:
@@ -104,7 +107,8 @@ entities:
             value: Scene
 
   - entity: sensor
-    name: Current Work Mode
+    name: Current work mode
+    deprecated: light.scene  # 2025-11-08
     icon: "mdi:lightbulb"
     category: diagnostic
     dps:

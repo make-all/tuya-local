@@ -124,17 +124,12 @@ entities:
         optional: true
         name: value
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
-    icon: "mdi:sleep"
     dps:
       - id: 34
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-            icon_priority: 1
   - entity: text
     name: Fading
     category: config

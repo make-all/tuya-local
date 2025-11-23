@@ -1,0 +1,267 @@
+name: Water purifier
+products:
+  - id: ec5sxvlithvjckbn
+    manufacturer: EASTtime
+    model: D401
+entities:
+  - entity: sensor
+    name: TDS out
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    name: TDS in
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    name: PP filter
+    icon: "mdi:percent"
+    dps:
+      - id: 3
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: CTO filter
+    icon: "mdi:percent"
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: RO filter
+    icon: "mdi:percent"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: UDF filter
+    icon: "mdi:percent"
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        optional: true
+        unit: "%"
+        class: measurement
+
+  - entity: switch
+    translation_key: uv_sterilization
+    dps:
+      - id: 11
+        name: switch
+        type: boolean
+
+  - entity: sensor
+    class: enum
+    translation_key: status
+    dps:
+      - id: 16
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: wash
+            value: washing
+          - dps_val: water_production
+            value: working
+          - dps_val: full_water
+            value: full
+          - dps_val: lack_water
+            value: no_water
+          - dps_val: overhaul
+            value: maintenance_required
+
+  - entity: button
+    name: RO filter reset
+    category: config
+    dps:
+      - id: 17
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: button
+    name: CTO filter reset
+    category: config
+    dps:
+      - id: 18
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: button
+    name: PP filter reset
+    category: config
+    dps:
+      - id: 19
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: button
+    name: UDF filter reset
+    category: config
+    dps:
+      - id: 20
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: valve
+    dps:
+      - id: 21
+        name: valve
+        type: boolean
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 23
+        type: bitfield
+        name: fault_code
+
+  - entity: button
+    name: Filter clean
+    category: config
+    dps:
+      - id: 30
+        name: button
+        type: boolean
+
+  - entity: sensor
+    name: Running time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: d
+        class: measurement
+
+  - entity: sensor
+    name: Filter count
+    category: diagnostic
+    icon: "mdi:counter"
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: three
+            value: 3
+          - dps_val: four
+            value: 4
+          - dps_val: five
+            value: 5
+          - dps_val: six
+            value: 6
+
+  - entity: button
+    name: T33 filter reset
+    category: config
+    dps:
+      - id: 103
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: button
+    name: MFS filter reset
+    category: config
+    dps:
+      - id: 104
+        name: button
+        type: boolean
+        optional: true
+
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: d
+        class: measurement
+
+  - entity: sensor
+    class: enum
+    translation_key: air_quality
+    name: Water quality
+    dps:
+      - id: 107
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: bad
+            value: poor
+          - dps_val: general
+            value: moderate
+          - dps_val: good
+            value: good
+          - dps_val: excellent
+            value: excellent
+
+  - entity: select
+    name: Rinse mode
+    category: config
+    dps:
+      - id: 108
+        name: option
+        type: string
+        mapping:
+          - dps_val: mode1
+            value: Low
+          - dps_val: mode2
+            value: High
+          - dps_val: mode3
+            value: Pure water recirculation
+
+  - entity: sensor
+    name: T33 filter
+    icon: "mdi:percent"
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: MFS filter
+    icon: "mdi:percent"
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        optional: true
+        unit: "%"
+        class: measurement

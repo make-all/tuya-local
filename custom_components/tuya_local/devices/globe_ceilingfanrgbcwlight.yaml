@@ -80,17 +80,12 @@ entities:
               min: 0
               max: 1000
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:sleep"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-            icon_priority: 1
   - entity: switch
     translation_key: nightlight
     dps:
@@ -98,7 +93,7 @@ entities:
         type: boolean
         name: switch
   - entity: time
-    name: Light Timer
+    name: Light timer
     translation_key: timer
     category: config
     dps:
@@ -110,7 +105,7 @@ entities:
           min: 0
           max: 86400
   - entity: time
-    name: Fan Timer
+    name: Fan timer
     translation_key: timer
     category: config
     dps:

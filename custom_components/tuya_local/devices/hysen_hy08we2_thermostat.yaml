@@ -142,23 +142,16 @@ entities:
         type: integer
         name: minimum
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 109
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9
-      - id: 101
-        type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
   - entity: number
     name: Calibration swing internal
     category: config
@@ -252,7 +245,7 @@ entities:
           - dps_val: true
             value: F
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
     dps:
@@ -278,7 +271,7 @@ entities:
           - dps_val: true
             value: F
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:

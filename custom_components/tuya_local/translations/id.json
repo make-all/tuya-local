@@ -1,3 +1,4 @@
+
 {
     "title": "Tuya Local",
     "config": {
@@ -423,14 +424,23 @@
             }
         },
         "number": {
+            "maximum_temperature": {
+                "name": "Suhu maksimum"
+            },
+            "minimum_temperature": {
+                "name": "Suhu minimum"
+            },
+            "sensor_threshold": {
+                "name": "Ambang {sensor}"
+            },
+            "temperature_calibration": {
+                "name": "Kalibrasi suhu"
+            },
             "timer": {
                 "name": "Pengatur waktu"
             },
             "timer_x": {
                 "name": "Pengatur waktu {x}"
-            },
-            "sensor_threshold": {
-                "name": "Ambang {sensor}"
             }
         },
         "select": {
@@ -581,11 +591,27 @@
                     "2m": "2 menit",
                     "5m": "5 menit",
                     "10m": "10 menit",
+                    "15m": "15 menit",
                     "20m": "20 menit",
+                    "25m": "25 menit",
                     "30m": "30 menit",
+                    "35m": "35 menit",
                     "40m": "40 menit",
+                    "45m": "45 menit",
+                    "50m": "50 menit",
+                    "55m": "55 menit",
                     "1h": "1 jam",
+                    "1h5m": "1 jam 5 menit",
+                    "1h10m": "1 jam 10 menit",
+                    "1h15m": "1 jam 15 menit",
+                    "1h20m": "1 jam 20 menit",
+                    "1h25m": "1 jam 25 menit",
                     "1h30m": "1 jam 30 menit",
+                    "1h35m": "1 jam 35 menit",
+                    "1h40m": "1 jam 40 menit",
+                    "1h45m": "1 jam 45 menit",
+                    "1h50m": "1 jam 50 menit",
+                    "1h55m": "1 jam 55 menit",
                     "2h": "2 jam",
                     "2h30m": "2 jam 30 menit",
                     "3h": "3 jam",
@@ -770,7 +796,11 @@
                     "empty": "Kosong",
                     "missing": "Hilang",
                     "formatting": "Memformat",
-                    "unformatted": "Belum diformat"
+                    "unformatted": "Belum diformat",
+                    "maintenance_required": "Perawatan diperlukan",
+                    "dry": "Kering",
+                    "comfortable": "Nyaman",
+                    "damp": "Lembab"
                 }
             },
             "time_remaining": {
@@ -832,6 +862,9 @@
                     "on": "Tutup",
                     "off": "Buka"
                 }
+            },
+            "do_not_disturb": {
+                "name": "Jangan ganggu"
             },
             "evaporator_cleaning": {
                 "name": "Pembersihan evaporator"

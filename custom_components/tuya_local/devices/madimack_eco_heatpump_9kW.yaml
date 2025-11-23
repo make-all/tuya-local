@@ -98,6 +98,7 @@ entities:
   # Temperature diagnostics (read-only telemetry)
   - entity: sensor
     name: Maximum temperature
+    class: temperature
     category: diagnostic
     dps:
       - id: 21
@@ -107,6 +108,7 @@ entities:
 
   - entity: sensor
     name: Minimum temperature
+    class: temperature
     category: diagnostic
     dps:
       - id: 22

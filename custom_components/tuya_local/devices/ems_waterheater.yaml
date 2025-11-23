@@ -22,18 +22,23 @@ entities:
                 value: high_demand
               - dps_val: electric
                 value: electric
+      - id: 3
+        type: integer
+        name: current_temperature
       - id: 2
         type: integer
         name: temperature
+        unit: C
         range:
           min: 10
           max: 60
-        unit: C
       - id: 4
         type: string
         name: mode
         hidden: true
   - entity: sensor
+    # 2025-11-05
+    deprecated: water_heater.current_temperature
     class: temperature
     dps:
       - id: 3
@@ -55,3 +60,37 @@ entities:
       - id: 9
         type: bitfield
         name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: P01 Lower water tank temperature sensor fault
+          - dps_val: 2
+            value: P02 Upper water tank temperature sensor fault
+          - dps_val: 4
+            value: P03 Coil temperature sensor fault
+          - dps_val: 8
+            value: P04 Return gas temperature sensor fault
+          - dps_val: 16
+            value: P05 Ambient temperature sensor fault
+          - dps_val: 32
+            value: P06 Winter antifreeze protection
+          - dps_val: 64
+            value: E01 High pressure protection
+          - dps_val: 128
+            value: E02 Low pressure protection
+          - dps_val: 256
+            value: E03 Overheat protection
+          - dps_val: 512
+            value: PA Compressor limit or water tank temperature protection
+          - dps_val: 1024
+            value: E08 Communication fault
+          - dps_val: 2048
+            value: EA8 Microcontroller RAM fault
+          - dps_val: 4096
+            value: EA9 Microcontroller ROM fault
+          - dps_val: 8192
+            value: CS Defrosting/Refrigerant recovery

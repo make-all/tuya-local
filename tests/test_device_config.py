@@ -234,6 +234,7 @@ KNOWN_DPS = {
         "optional": [
             "lock",
             "lock_state",
+            "code_unlock",
             {"and": ["request_unlock", "approve_unlock"]},
             {"and": ["request_intercom", "approve_intercom"]},
             "unlock_fingerprint",

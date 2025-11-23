@@ -140,6 +140,18 @@
             }
         },
         "number": {
+            "maximum_temperature": {
+                "default": "mdi:thermometer-chevron-up"
+            },
+            "minimum_temperature": {
+                "default": "mdi:thermometer-chevron-down"
+            },
+            "sensor_threshold": {
+                "default": "mdi:arrow-collapse-up"
+            },
+            "temperature_calibration": {
+                "default": "mdi:thermometer-check"
+            },
             "timer": {
                 "default": "mdi:timer",
                 "state": {
@@ -151,9 +163,6 @@
                 "state": {
                     "0": "mdi:timer-cancel"
                 }
-            },
-            "sensor_threshold": {
-                "default": "mdi:arrow-collapse-up"
             }
         },
         "select": {
@@ -269,7 +278,8 @@
                     "good": "mdi:emoticon-happy",
                     "moderate": "mdi:emoticon-neutral",
                     "poor": "mdi:emoticon-sad",
-                    "severe": "mdi:emoticon-dead"
+                    "severe": "mdi:emoticon-sick",
+                    "danger": "mdi:emoticon-dead"
                 }
             },
             "cooking_status": {
@@ -360,6 +370,12 @@
         "switch": {
             "anti_frost": {
                 "default": "mdi:snowflake-melt"
+            },
+            "do_not_disturb": {
+                "default": "mdi:bell-sleep",
+                "state": {
+                    "off": "mdi:bell-ring"
+                }
             },
             "evaporator_cleaning": {
                 "default": "mdi:shimmer"

@@ -48,14 +48,13 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: C
+        unit: °
         mapping:
           - scale: 10
             step: 5

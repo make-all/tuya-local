@@ -151,7 +151,7 @@ entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
     dps:
@@ -166,7 +166,7 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:
@@ -181,14 +181,13 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    class: temperature
     dps:
       - id: 109
         name: value
         type: integer
-        unit: C
+        unit: °
         range:
           min: -99
           max: 99

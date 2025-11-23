@@ -353,9 +353,9 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "normal": "Naladowana",
+                            "normal": "Normalny",
                             "nature": "Naturalny",
-                            "sleep": "Uśpiony",
+                            "sleep": "Tryb snu",
                             "baby": "Dziecko",
                             "fresh": "Świeży",
                             "smart": "Inteligentny",
@@ -364,7 +364,7 @@
                             "high": "Wysoki",
                             "medium": "Średni",
                             "low": "Niski",
-                            "displayoff": "Wyświetlacz wyłączony",
+                            "displayoff": "Wyłączone podświetlanie",
                             "off": "Wyłączony"
                         }
                     }
@@ -423,14 +423,23 @@
             }
         },
         "number": {
+            "maximum_temperature": {
+                "name": "Maksymalna temperatura"
+            },
+            "minimum_temperature": {
+                "name": "Minimalna temperatura"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} próg"
+            },
+            "temperature_calibration": {
+                "name": "Kalibracja temperatury"
+            },
             "timer": {
                 "name": "Regulator czasowy"
             },
             "timer_x": {
                 "name": "Regulator czasowy {x}"
-            },
-            "sensor_threshold": {
-                "name": "{sensor} próg"
             }
         },
         "select": {
@@ -581,11 +590,27 @@
                     "2m": "2 minuty",
                     "5m": "5 minut",
                     "10m": "10 minut",
+                    "15m": "15 minut",
                     "20m": "20 minut",
+                    "25m": "25 minut",
                     "30m": "30 minut",
+                    "35m": "35 minut",
                     "40m": "40 minut",
+                    "45m": "45 minut",
+                    "50m": "50 minut",
+                    "55m": "55 minut",
                     "1h": "1 godzina",
+                    "1h5m": "1 godzina 5 minut",
+                    "1h10m": "1 godzina 10 minut",
+                    "1h15m": "1 godzina 15 minut",
+                    "1h20m": "1 godzina 20 minut",
+                    "1h25m": "1 godzina 25 minut",
                     "1h30m": "1 godzina 30 minut",
+                    "1h35m": "1 godzina 35 minut",
+                    "1h40m": "1 godzina 40 minut",
+                    "1h45m": "1 godzina 45 minut",
+                    "1h50m": "1 godzina 50 minut",
+                    "1h55m": "1 godzina 55 minut",
                     "2h": "2 godziny",
                     "2h30m": "2 godziny 30 minut",
                     "3h": "3 godziny",
@@ -771,7 +796,11 @@
                     "empty": "Puste",
                     "missing": "Brakujące",
                     "formatting": "Formatowanie",
-                    "unformatted": "Niezformatowane"
+                    "unformatted": "Niesformatowane",
+                    "maintenance_required": "Wymagana konserwacja",
+                    "dry": "Suchy",
+                    "comfortable": "Wygodny",
+                    "damp": "Wilgotny"
                 }
             },
             "time_remaining": {
@@ -833,6 +862,9 @@
                     "off": "Otwarty",
                     "on": "Zamknięty"
                 }
+            },
+            "do_not_disturb": {
+                "name": "Nie przeszkadzać"
             },
             "evaporator_cleaning": {
                 "name": "Czyszczenie parownika"

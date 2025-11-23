@@ -29,12 +29,20 @@ entities:
         mapping:
           - dps_val: 8
             value: 100
+          - dps_val: 7
+            value: 88
           - dps_val: 6
             value: 75
+          - dps_val: 5
+            value: 63
           - dps_val: 4
             value: 50
+          - dps_val: 3
+            value: 38
           - dps_val: 2
             value: 25
+          - dps_val: 1
+            value: 13
   - entity: sensor
     class: pm25
     dps:
@@ -99,9 +107,23 @@ entities:
         mapping:
           - dps_val: great
             value: excellent
-          - dps_val: Good
+          - dps_val: good
             value: good
           - dps_val: mild
             value: moderate
-          - dps_val: Poor
+          - dps_val: poor
             value: poor
+  - entity: select
+    name: Auto mode
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: normal
+            value: Normal
+          - dps_val: turbo
+            value: Turbo

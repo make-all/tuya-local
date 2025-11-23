@@ -1,0 +1,56 @@
+name: Curtain motor
+products:
+  - id: 4D47uCTGNqKBSdHm
+    manufacturer: HHC
+    model: AM68
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 101
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 102
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+  - entity: select
+    name: Direction
+    icon: "mdi:swap-horizontal"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: forward
+          - dps_val: true
+            value: reverse
+  - entity: switch
+    name: Manual override
+    icon: "mdi:hand-back-left"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Schedule
+    class: running
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor

@@ -1,4 +1,4 @@
-name: IR heatpump
+name: IR heat pump
 products:
   - id: hwktwkq
     manufacturer: Moes
@@ -108,7 +108,7 @@ entities:
         unit: h
         optional: true
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
     dps:
@@ -120,9 +120,9 @@ entities:
           min: 16
           max: 30
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:"
+    class: temperature
     dps:
       - id: 10
         type: integer

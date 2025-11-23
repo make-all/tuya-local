@@ -1,4 +1,4 @@
-name: Beok TOL47 thermostat
+name: Thermostat
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -82,9 +82,8 @@ entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 20
         type: integer
@@ -96,10 +95,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 21
         type: integer

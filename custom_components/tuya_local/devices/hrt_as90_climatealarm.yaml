@@ -53,10 +53,9 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 10
         type: integer
@@ -68,9 +67,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer^chevron-down"
+    class: temperature
     dps:
       - id: 11
         type: integer
@@ -182,15 +181,13 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    class: temperature
-    icon: "mdi:thermometer-check"
     dps:
       - id: 23
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -80
           max: 80

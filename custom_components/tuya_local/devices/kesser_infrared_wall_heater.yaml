@@ -41,9 +41,8 @@ entities:
         type: boolean
         name: lock
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 102
         type: integer
@@ -52,10 +51,8 @@ entities:
         range:
           min: -9
           max: 9
-        mapping:
-          - scale: 1
   - entity: switch
-    name: Window Check
+    name: Window check
     category: config
     icon: "mdi:window-open-variant"
     dps:

@@ -1,4 +1,4 @@
-name: TH213 thermostat
+name: Thermostat
 entities:
   - entity: climate
     dps:
@@ -75,14 +75,13 @@ entities:
           - dps_val: 2
             value: Both
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 103
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -9
           max: 9

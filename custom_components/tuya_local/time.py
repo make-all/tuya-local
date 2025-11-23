@@ -104,17 +104,23 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
         minutes = value.minute
         seconds = value.second
         if self._hour_dps:
-            settings.update(self._hour_dps.get_values_to_set(self._device, hours))
+            settings.update(
+                self._hour_dps.get_values_to_set(self._device, hours, settings)
+            )
         else:
             minutes = minutes + hours * 60
 
         if self._minute_dps:
-            settings.update(self._minute_dps.get_values_to_set(self._device, minutes))
+            settings.update(
+                self._minute_dps.get_values_to_set(self._device, minutes, settings)
+            )
         else:
             seconds = seconds + minutes * 60
 
         if self._second_dps:
-            settings.update(self._second_dps.get_values_to_set(self._device, seconds))
+            settings.update(
+                self._second_dps.get_values_to_set(self._device, seconds, settings)
+            )
         else:
             _LOGGER.debug(
                 "%s: Discarding unused precision: %d seconds",

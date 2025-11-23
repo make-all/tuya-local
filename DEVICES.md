@@ -14,7 +14,7 @@
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
-- Cecotec ReadyWarm 8400 fan heater
+- Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cleverio AR10/AR20 panel heaters
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
@@ -24,6 +24,7 @@
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
 - Essentials Smart Home electric bathroom heater
+- eTowel Mini04 plus towel rail thermostat
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
@@ -31,7 +32,7 @@
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 and Wall Designheat 2000 heaters
 - Eurom Sani 400,600,800 heaters
-- Goldair GPPH, GCPV, GECO and PH-ET heaters
+- Goldair GPPH, GCPV, GECO, GPOC and PH-ET heaters
 - Hama radiator controller
 - Heatstorm DH-100-TWI, HS-1500 and HS-6000-GC heaters
 - Herschel Select XLS heated bathroom mirror with lights
@@ -73,6 +74,7 @@
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
+- WarmeHaus AFD-02-TJ thermostatic towel rain element
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heat pumps
@@ -169,10 +171,11 @@
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Fisher air to water heat pump
-- Geyserwise TSE1 Geyser controller kit
+- Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
+- Intaflo Intabloc DC Inverter air-water heat pump
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
@@ -227,6 +230,7 @@
 - KKMoon knob thermostat
 - Ledlux thermostat
 - ME80 touchscreen thermostat
+- Mi-Heat TH11-WF thermostat
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
@@ -284,6 +288,7 @@
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
 - Djive ARC humidifying fan
+- dLuft Smart Flow ventilator fan
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
@@ -333,6 +338,7 @@
 - Princess DC pedestal fan
 - Princess Smart air cooler
 - Princess Smart Tower fan
+- Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Reiga ceiling fans with and without light
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
@@ -389,7 +395,7 @@
 
 ### Dehumidifiers
 
-- Aktobis WDH-310EK dehumidifier
+- Aktobis WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
@@ -420,6 +426,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - Pro Breeze 30L dehumidifier
+- Pro Breeze D-23 dehumidifier
 - Qlima D720, D812 and D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
@@ -427,7 +434,7 @@
 - Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
-- VacPlus dehumidifier
+- VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
@@ -439,6 +446,7 @@
 - Clean Air Optima CA-604B, CA-605B humidifiers
 - Clofte Duo 400 humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
@@ -469,7 +477,9 @@
 
 - Aeno EK1S and EK7S kettles
 - Aeno KS1S kitchen scale
+- Amenzo dishwasher
 - Anko 1.7L smart kettle
+- BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
@@ -547,7 +557,8 @@
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
-- Zemismart SMD02T-TZ 2phase 120A bidirectional energy meter
+- Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
+- Zemismart SPM02-D2TW 3-phase energy meter
 - Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
@@ -648,6 +659,7 @@ the best option.
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
+- TY-12W 12 switch relay board
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
@@ -730,6 +742,7 @@ of device.
   optional minimum brightness and bulb type)
 - Feit OneSync Smart Bridge lighting controller
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
+  - FlinQ Smart multicolor string lights
 - Galaxy Projector
 - Gosund SW2 dimmer switch
 - HDMI sync light
@@ -806,6 +819,7 @@ of device.
 - FS-03W curtain switch with backlight control
 - Graywind window shades
 - GW Motor roller blinds
+- HHC AM68 curtain motor
 - Kimex motorized cinema screen
 - Kogan garage door with tilt sensor
 - KY motor 35W-10 shutter controller
@@ -914,6 +928,7 @@ port and password.
 - BCom Majic IPBox intercom camera
 - Camnsmart E27-TY camera
 - Door peephole camera
+- EMOS IP-300 camera with floodlight
 - Garage door opener camera combo
 - HomeMate PTZ indoor camera
 - Kerui 200W camera
@@ -923,6 +938,7 @@ port and password.
 - LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera (WCM-P52 v1 and v2)
 - Nedis outdoor camera
+- Nexsmart Watch 2, Air 2, Air 3 cameraa
 - Pinelake BF02 birdfeeder camera
 - RH-PD10 3MP peephole doorbell camera
 - RL video intercom (reported unable to connect)
@@ -953,12 +969,13 @@ port and password.
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
-- Ceres Plus pet feeder with camera
+- Ceres Plus camera pet feeder
 - Cleverio PF100 pet feeder
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
 - Els Pet Spaceship pet litter box
 - Faroro PF50 pet feeder
+- FeelNeedy P-LFP01 camera pet feeder
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - HoneyGuardian S56 pet feeder
@@ -970,13 +987,15 @@ port and password.
 - LSC Smart Connect pet feeder
 - Meegeem cat litter box
 - Meowmatic pet feeder
+- Mini-B Public litter box
 - MolyPet F02W pet feeder
-- Mypin 6L Video pet feeder
+- Mypin 6L camera pet feeder
 - Nedis pet feeder
+- Ningbo BF314A camera pet feeder
 - Papifeed pet feeder
 - Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
-- Petlibro PLAF203 pet feeder with camera
+- Petlibro PLAF203 camera pet feeder
 - Petoneer Fresco EzGo pet fountain
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
@@ -984,7 +1003,7 @@ port and password.
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
-- PetsPride OO15 pet feeder with camera
+- PetsPride OO15 camera pet feeder
 - Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
@@ -1046,10 +1065,12 @@ port and password.
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
+- CO2v1 carbon dioxide sensor
 - C30W gas leak detector
 - CT20W PIR motion detector
 - Dienmern DM165A noise meter
 - Digma DiSense G1 gas leak detector
+- EASTtime D401 water purifier
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
@@ -1059,6 +1080,7 @@ port and password.
 - GZAIR radon gas detector
 - Haier Nayun NY-GS-04 combustible gas alarm
 - Haoliyuen EWC02 air quality monitor
+- Haozee explosive gas leak and carbon monoxide alarm
 - Haozee PS10 mmWave presence sensing light switch
 - Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
@@ -1192,9 +1214,10 @@ entity types as sub devices.
 - LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
-- Moes BRT-100-TRV radiator valve
+- Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb
+- Moes TRV601/605/606 thermostat radiator valve
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBRC10WT 4 button remote control

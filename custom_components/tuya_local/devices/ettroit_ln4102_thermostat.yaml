@@ -58,9 +58,8 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     category: config
     dps:
       - id: 19
@@ -73,9 +72,8 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     category: config
     dps:
       - id: 26
@@ -86,9 +84,8 @@ entities:
           min: 50
           max: 150
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer

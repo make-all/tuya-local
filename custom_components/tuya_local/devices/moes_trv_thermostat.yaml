@@ -182,8 +182,7 @@ entities:
         name: valve
         readonly: true
   - entity: number
-    name: Temperature calibration
-    icon: "mdi: thermometer-check"
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 105
@@ -195,9 +194,9 @@ entities:
           min: -9
           max: 9
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
+    class: temperature
     dps:
       - id: 108
         type: integer
@@ -208,9 +207,9 @@ entities:
           min: 15
           max: 45
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 109
         type: integer
