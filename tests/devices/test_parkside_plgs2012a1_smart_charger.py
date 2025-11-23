@@ -2,7 +2,7 @@
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import (
     PERCENTAGE,
     UnitOfElectricCurrent,
@@ -119,7 +119,7 @@ class TestParksidePLGS2012A1Charger(
                     "dps": TEMPERATURE_DPS,
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
                 {
                     "name": "sensor_max_current",
@@ -173,8 +173,14 @@ class TestParksidePLGS2012A1Charger(
         temp = self.multiSwitch.get("switch_temperature_limiter")
         self.assertEqual(storage.extra_state_attributes, {})
         self.assertEqual(temp.extra_state_attributes, {})
-        self.dps[FAULT_DPS] = 32
         self.dps[NAME_DPS] = "test"
-        self.assertDictEqual(
-            switch.extra_state_attributes, {"model": "test", "fault_code": 32}
-        )
+        self.assertDictEqual(switch.extra_state_attributes, {"model": "test"})
+
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[FAULT_DPS] = 2
+        problem = self.multiBSensor.get("binary_sensor_problem")
+        almost = self.multiBSensor.get("binary_sensor_almost_charged")
+        fully = self.multiBSensor.get("binary_sensor_fully_charged")
+        self.assertEqual(almost.extra_state_attributes, {})
+        self.assertEqual(fully.extra_state_attributes, {})
+        self.assertCountEqual(problem.extra_state_attributes, {"fault_code": 2})

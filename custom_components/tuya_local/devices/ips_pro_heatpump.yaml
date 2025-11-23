@@ -1,74 +1,64 @@
-name: IPS heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: smart
-              value: heat_cool
-            - dps_val: cool
-              value: cool
-            - dps_val: warm
-              value: heat
-    - id: 105
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "silence"
-          value: sleep
-        - dps_val: "smart"
-          value: comfort
-        - dps_val: "booster"
-          value: boost
-    - id: 102
-      name: current_temperature
-      type: integer
-    - id: 103
-      name: temperature_unit
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: F
-        - dps_val: true
-          value: C
-    - id: 106
-      name: temperature
-      type: integer
-    - id: 107
-      type: integer
-      name: min_temperature
-    - id: 108
-      type: integer
-      name: max_temperature
-    - id: 115
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 4
-          value: Water Flow Protection
-          icon: "mdi:water-pump-off"
-          icon_priority: 2
-    - id: 116
-      type: bitfield
-      name: error_2
-    - id: 143
-      type: boolean
-      name: unknown_43
-      optional: true
-secondary_entities:
+name: Heat pump
+products:
+  - id: faa9salrwxdph6hh
+    manufacturer: PoolSystems
+    model: IPS Pro
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: smart
+                value: heat_cool
+              - dps_val: cool
+                value: cool
+              - dps_val: warm
+                value: heat
+      - id: 105
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "silence"
+            value: sleep
+          - dps_val: "smart"
+            value: comfort
+          - dps_val: "booster"
+            value: boost
+      - id: 102
+        name: current_temperature
+        type: integer
+      - id: 103
+        name: temperature_unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+      - id: 106
+        name: temperature
+        type: integer
+      - id: 107
+        type: integer
+        name: min_temperature
+      - id: 108
+        type: integer
+        name: max_temperature
+      - id: 143
+        type: boolean
+        name: unknown_43
+        optional: true
   - entity: sensor
     name: Power level
     class: power_factor
@@ -100,3 +90,24 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code
+            conditions:
+              - dps_val: [0, 4]
+                value: false
+          - value: true
+      - id: 115
+        type: bitfield
+        name: fault_code
+      - id: 116
+        type: bitfield
+        name: fault_code_2

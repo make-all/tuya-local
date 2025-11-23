@@ -627,23 +627,6 @@ SASWELL_C16_THERMOSTAT_PAYLOAD = {
     "26": 50,
 }
 
-FERSK_VIND2_PAYLOAD = {
-    "1": True,
-    "2": 22,
-    "3": 23,
-    "4": "COOL",
-    "5": 1,
-    "19": "C",
-    "101": False,
-    "102": False,
-    "103": 0,
-    "104": False,
-    "105": 0,
-    "106": 0,
-    "109": False,
-    "110": 0,
-}
-
 KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "1": False,
     "5": 99,
@@ -878,17 +861,6 @@ WOOX_R4028_SOCKET_PAYLOAD = {
     "105": 0,
 }
 
-ES01_POWERSTRIP_PAYLOAD = {
-    "1": True,
-    "2": True,
-    "3": True,
-    "4": True,
-    "5": 0,
-    "6": 0,
-    "7": 0,
-    "8": 0,
-}
-
 OWON_PCT513_THERMOSTAT_PAYLOAD = {
     "2": "cool",
     "16": 2150,
@@ -947,14 +919,6 @@ POIEMA_ONE_PURIFIER_PAYLOAD = {
     "11": False,
     "18": "cancel",
     "19": 0,
-}
-
-ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
-    "1": True,
-    "2": 200,
-    "3": 195,
-    "10": 0,
-    "101": True,
 }
 
 ECOSTRAD_IQCERAMIC_RADIATOR_PAYLOAD = {
@@ -1646,4 +1610,100 @@ BLE_WATERVALVE_PAYLOAD = {
     "10": "cancel",
     "12": "unknown",
     "15": 60,
+}
+
+AM25_ROLLERBLIND_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "104": True,
+    "105": True,
+    "109": 4,
+}
+
+DUUX_BLIZZARD_PAYLOAD = {
+    "1": False,
+    "2": "fan",
+    "3": "high",
+    "4": 0,
+    "6": False,
+    "7": False,
+    "8": 22,
+    "9": 0,
+    "11": 72,
+    "12": True,
+    "13": False,
+    "14": False,
+    "15": 0,
+}
+
+BLE_SMARTPLANT_PAYLOAD = {
+    "3": 50,
+    "5": 25,
+    "9": "c",
+    "14": "Low",
+    "15": 20,
+}
+
+GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 30,
+    "4": "cold",
+    "5": "low",
+    "11": False,
+    "15": "off",
+    "20": 0,
+    "103": False,
+    "104": 0,
+    "105": 0,
+    "107": 72,
+    "108": 80,
+    "109": 26,
+    "110": False,
+}
+
+LEDVANCE_PANEL_PAYLOAD = {
+    "20": True,
+    "22": 670,
+    "23": 200,
+    "24": "003903e803e8",
+    "26": 0,
+    "51": "AAcAOQPoA+gCngDI",
+}
+
+MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
+    "1": "level_1",
+    "2": 26,
+    "3": 53,
+    "4": 814,
+    "5": 4,
+    "7": 3,
+    "8": 2,
+    "9": 3,
+    "22": 100,
+    "23": True,
+    "28": "middle",
+    "101": 20,
+    "102": 0,
+    "104": 1500,
+    "105": 10,
+    "106": True,
+    "107": 2,
+    "109": 0,
+    "110": 0,
+    "111": 0,
+    "112": "c",
+    "113": 200,
+    "114": 100,
+    "115": 61,
+    "116": True,
+    "117": True,
+    "118": True,
+    # last 3 must be true for the time entities to be enabled
+}
+
+AILRINNI_FINGERPRINTLOCK_PAYLOAD = {
+    "8": 86,
+    "31": "mute",
+    "64": "1712614183",
 }

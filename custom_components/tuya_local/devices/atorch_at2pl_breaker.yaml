@@ -1,20 +1,24 @@
 name: Energy meter
 products:
   - id: seqzqh45b0ggn9so
-    name: Atorch AT2PL
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      optional: true
-      name: add_ele
-secondary_entities:
+    manufacturer: Atorch
+    model: AT2PL
+  - id: sq1ahfxhgove4kgo
+    manufacturer: Atorch
+    model: GR2PWS
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        optional: true
+        name: add_ele
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -75,7 +79,6 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     name: Cost
-    class: monetary
     category: diagnostic
     dps:
       - id: 102
@@ -125,8 +128,7 @@ secondary_entities:
           min: 1
           max: 27500
   - entity: select
-    name: Language
-    icon: "mdi:translate"
+    translation_key: language
     category: config
     dps:
       - id: 107
@@ -134,9 +136,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: chinese
-            value: 中文
+            value: chinese
           - dps_val: english
-            value: English
+            value: english
   - entity: light
     name: Display active
     category: config
@@ -159,6 +161,7 @@ secondary_entities:
           max: 9
   - entity: number
     name: Standby delay
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -209,8 +212,7 @@ secondary_entities:
         name: button
         optional: true
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
     dps:
       - id: 115
@@ -324,6 +326,29 @@ secondary_entities:
         range:
           min: 0
           max: 120000
+  - entity: number
+    name: Data refresh interval
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 125
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 90
+  - entity: switch
+    name: Real time data refresh
+    icon: "mdi:restart"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: switch
   - entity: select
     name: Alarm
     icon: "mdi:alert"
@@ -395,6 +420,7 @@ secondary_entities:
   - entity: number
     name: Overvoltage recovery delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 137
@@ -405,8 +431,7 @@ secondary_entities:
           min: 0
           max: 99
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 138
@@ -414,9 +439,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: open
-            value: "Off"
+            value: "off"
           - dps_val: close
-            value: "On"
+            value: "on"
   - entity: switch
     name: Prepaid
     icon: "mdi:hand-coin"

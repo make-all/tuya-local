@@ -1,12 +1,12 @@
-name: MoesHouse RGB socket
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-secondary_entities:
+name: RGB socket
+# products: MoesHouse
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
   - entity: light
     translation_key: nightlight
     dps:
@@ -74,9 +74,23 @@ secondary_entities:
       - id: 10
         name: flash_scene_4
         type: hex
-  - entity: number
+  - entity: time
     category: config
     translation_key: timer
+    dps:
+      - id: 102
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
     dps:
       - id: 102
         type: integer

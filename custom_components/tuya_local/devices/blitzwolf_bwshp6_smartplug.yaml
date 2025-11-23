@@ -1,32 +1,33 @@
 name: Smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -78,8 +79,21 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -93,8 +107,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -102,14 +115,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: Last state
+            value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -117,11 +129,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

@@ -1,53 +1,42 @@
 name: Water heater
 products:
   - id: lci0ebsz7ftaruaf
-    name: Ferroli Titano Twin DT EWH
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      name: operation_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: manual
-              value: electric
-            - dps_val: eco
-              value: eco
-              icon: "mdi:leaf"
-    - id: 2
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 9
-      type: integer
-      name: temperature
-      range:
-        min: 40
-        max: 80
-      mapping:
-        - step: 5
-      unit: C
-    - id: 10
-      type: integer
-      name: current_temperature
-    - id: 101
-      type: bitfield
-      name: fault_code
-      mapping:
-        - dps_val: 1
-          value: E2 Operating without water
-        - dps_val: 2
-          value: E3 NTC temperature sensor
-        - dps_val: 4
-          value: E4 Water overheating
-        - dps_val: 16
-          value: E6 clock RTC failure
-secondary_entities:
+    manufacturer: Ferroli
+    model: Titano Twin
+    model_id: DT EWH
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        name: operation_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: manual
+                value: electric
+              - dps_val: eco
+                value: eco
+                icon: "mdi:leaf"
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 9
+        type: integer
+        name: temperature
+        range:
+          min: 40
+          max: 80
+        mapping:
+          - step: 5
+        unit: C
+      - id: 10
+        type: integer
+        name: current_temperature
   - entity: switch
     name: Anti-legionella
     category: config
@@ -71,6 +60,23 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 101
+        type: bitfield
+        name: fault_code
+      - id: 101
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: E2 Operating without water
+          - dps_val: 2
+            value: E3 NTC temperature sensor
+          - dps_val: 4
+            value: E4 Water overheating
+          - dps_val: 16
+            value: E6 clock RTC failure
   - entity: binary_sensor
     name: Heating status
     class: running

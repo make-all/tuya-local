@@ -1,0 +1,193 @@
+name: Air conditioner
+products:
+  - id: nn2ooaacswz6uyi0
+    manufacturer: Kaisai
+    model: Pro Heat+ AC
+entities:
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: heat_cool
+              - dps_val: "1"
+                value: cool
+              - dps_val: "2"
+                value: dry
+              - dps_val: "3"
+                value: fan_only
+              - dps_val: "4"
+                value: heat
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 1600
+          max: 3100
+        mapping:
+          - scale: 100
+            step: 50
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 100
+      - id: 5
+        type: string
+        name: manual_fan_mode
+        hidden: true
+      - id: 7
+        name: fan_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            constraint: manual_fan_mode
+            conditions:
+              - dps_val: "0"
+                value: "off"
+                hidden: true
+              - dps_val: "1"
+                value: quiet
+              - dps_val: "2"
+                value: low
+              - dps_val: "3"
+                value: medlow
+              - dps_val: "4"
+                value: medium
+              - dps_val: "5"
+                value: medhigh
+              - dps_val: "6"
+                value: high
+              - dps_val: "7"
+                value: strong
+      - id: 31
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: "8"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: upper_half
+          - dps_val: "3"
+            value: lower_half
+          - dps_val: "6"
+            value: surround
+          - dps_val: "9"
+            value: topmost
+          - dps_val: "10"
+            value: top
+          - dps_val: "11"
+            value: middle
+          - dps_val: "12"
+            value: down
+          - dps_val: "13"
+            value: downmost
+      - id: 34
+        name: swing_horizontal_mode
+        type: string
+        mapping:
+          - dps_val: "8"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: left_swing
+          - dps_val: "3"
+            value: center_swing
+          - dps_val: "4"
+            value: right_swing
+          - dps_val: "5"
+            value: direct
+          - dps_val: "9"
+            value: leftmost
+          - dps_val: "10"
+            value: left
+          - dps_val: "11"
+            value: center
+          - dps_val: "12"
+            value: right
+          - dps_val: "13"
+            value: rightmost
+          - dps_val: "17"
+            value: surround
+      - id: 8
+        name: preset_mode
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: none
+          - dps_val: true
+            value: eco
+          - dps_val: null
+            value: none
+            hidden: true
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: C
+        optional: true
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        optional: true
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: External fan speed
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: rpm
+        optional: true
+
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        unit: Hz
+        optional: true
+
+  - entity: binary_sensor
+    name: Filter blockage
+    class: problem
+    dps:
+      - id: 110
+        name: sensor
+        type: boolean
+        optional: true

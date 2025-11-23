@@ -37,17 +37,20 @@ class TestMoebot(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")
+        self.start_button = self.entities.get("button_start_fixed_mowing")
         self.mark_secondary(
             [
                 "binary_sensor_cover",
                 "binary_sensor_problem",
                 "select_mowing_mode",
                 "sensor_problem",
+                "switch_backward_blade_stop",
                 "switch_rain_mode",
                 "number_running_time",
                 "button_clear_schedule",
                 "button_query_schedule",
                 "button_query_zones",
+                "switch_hedgehog_protection",
             ]
         )
 
@@ -61,6 +64,10 @@ class TestMoebot(TuyaDeviceTestCase):
             ),
         )
 
+    def test_available(self):
+        """Skip available tests as this device has disabled entities."""
+        pass
+
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
         self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
@@ -69,7 +76,7 @@ class TestMoebot(TuyaDeviceTestCase):
         self.dps[STATUS_DP] = "PAUSED"
         self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "PARK"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.RETURNING)
         self.dps[STATUS_DP] = "MOWING"
         self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "FIXED_MOWING"
@@ -89,6 +96,13 @@ class TestMoebot(TuyaDeviceTestCase):
             {COMMAND_DP: "StartMowing"},
         ):
             await self.mower.async_start_mowing()
+
+    async def test_async_start_fixed_mowing(self):
+        async with assert_device_properties_set(
+            self.start_button._device,
+            {COMMAND_DP: "StartFixedMowing"},
+        ):
+            await self.start_button.async_press()
 
     async def test_async_pause(self):
         async with assert_device_properties_set(

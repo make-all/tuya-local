@@ -1,5 +1,6 @@
 """Tests for the switch entity."""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
@@ -27,22 +28,10 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440.0,
             unit=UnitOfTime.MINUTES,
+            device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
-        self.mark_secondary(["number_timer"])
+        self.mark_secondary(["number_timer", "time_timer"])
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
-
-    def test_extra_state_attributes_set(self):
-        self.dps[RANDOM_DPS] = "101"
-        self.dps[CIRCULATE_DPS] = "102"
-        self.dps[SCHEDULE_DPS] = "103"
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "random": "101",
-                "circulate": "102",
-                "schedule": "103",
-            },
-        )

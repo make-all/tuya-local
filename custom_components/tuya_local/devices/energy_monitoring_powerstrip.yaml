@@ -1,46 +1,54 @@
 name: Energy monitoring powerstrip
 products:
   - id: 7hBwPPNdDP1xHrWv
-primary_entity:
-  entity: switch
-  name: Switch 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 105
-      type: integer
-      name: unknown_105
-    - id: 106
-      type: integer
-      name: unknown_106
-    - id: 107
-      type: integer
-      name: unknown_107
-    - id: 108
-      type: integer
-      name: unknown_108
-    - id: 109
-      type: integer
-      name: unknown_109
-secondary_entities:
+    model: WP30
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: unknown_105
+      - id: 106
+        type: integer
+        name: unknown_106
+      - id: 107
+        type: integer
+        name: unknown_107
+      - id: 108
+        type: integer
+        name: unknown_108
+      - id: 109
+        type: integer
+        name: unknown_109
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 4
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4

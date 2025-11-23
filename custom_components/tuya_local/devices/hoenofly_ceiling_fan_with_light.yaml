@@ -1,0 +1,71 @@
+name: Ceiling fan
+products:
+  - id: iue9ugpzag3bbnsu
+    manufacturer: Hoenofly
+    model: Smart Wood Low Profile
+entities:
+  - entity: fan
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+      - id: 104
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: level_1
+            value: "1"
+          - dps_val: level_2
+            value: "2"
+          - dps_val: level_3
+            value: "3"
+          - dps_val: level_4
+            value: "4"
+          - dps_val: level_5
+            value: "5"
+          - dps_val: level_6
+            value: "6"
+      - id: 101
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 106
+        type: string
+        name: fan_mode
+        optional: true
+      - id: 103
+        type: string
+        name: countdown_set
+        optional: true
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 5000
+            step: 500

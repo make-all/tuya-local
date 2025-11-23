@@ -1,0 +1,183 @@
+name: Gas and CO detector
+products:
+  - id: piuvzdlag3zsiqjk
+    manufacturer: Haozee
+entities:
+  - entity: switch
+    name: Self check
+    icon: "mdi:check-circle"
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Self check result
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 19
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: checking
+            value: Checking
+          - dps_val: check_success
+            value: Success
+          - dps_val: check_failure
+            value: Failure
+          - dps_val: others
+            value: Uncertain
+  - entity: binary_sensor
+    name: Preheating
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 20
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: button
+    name: Mute alarm
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 25
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    name: Gas
+    icon: "mdi:gas-burner"
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Alarm state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 29
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm_sound
+            value: Sound
+          - dps_val: alarm_light
+            value: Light
+          - dps_val: alarm_sound_light
+            value: Sound + Light
+          - dps_val: normal
+            value: Not active
+  - entity: binary_sensor
+    name: Carbon monoxide
+    class: gas
+    dps:
+      - id: 34
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 35
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Early warning target
+    category: config
+    class: duration
+    icon: "mdi:clock-alert"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Early warnings
+    category: config
+    icon: "mdi:clock-alert"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 1
+          max: 5
+  - entity: event
+    name: Carbon monoxide pre-warning
+    dps:
+      - id: 103
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: warning
+          - dps_val: false
+            value: clear
+  - entity: event
+    name: Test
+    dps:
+      - id: 103
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: testing
+          - dps_val: false
+            value: test_done
+  - entity: event
+    name: Gas leak pre-warning
+    dps:
+      - id: 105
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: warning
+          - dps_val: false
+            value: clear

@@ -1,0 +1,305 @@
+name: EV charger
+products:
+  - id: bktb3jskdic1ar2t
+    manufacturer: Nine
+    model: 32A
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23  # system_version
+        type: string
+        name: system_version
+  - entity: number
+    name: Charging current
+    category: config
+    class: current
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4  # charge_cur_set
+        type: integer
+        name: value
+        unit: A
+        optional: true
+        range:
+          min: 6
+          max: 80
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10  # fault sensor
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10  # fault code
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 10  # fault desc
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: "Ok"
+          - dps_val: 1
+            value: "Ov2 Cr Fault"
+          - dps_val: 2
+            value: "Overvoltage alarm"
+          - dps_val: 4
+            value: "Undervoltage alarm"
+          - dps_val: 8
+            value: "Contactor adhesion"
+          - dps_val: 16
+            value: "Contactor fault"
+          - dps_val: 32
+            value: "Earth fault"
+          - dps_val: 64
+            value: "Meter Hardware alarm"
+          - dps_val: 128
+            value: "Scram fault"
+          - dps_val: 256
+            value: "CP fault"
+          - dps_val: 512
+            value: "Meter Commu fault"
+          - dps_val: 1024
+            value: "Card reader fault"
+          - dps_val: 2048
+            value: "Cir short fault"
+          - dps_val: 4096
+            value: "Adhesion fault"
+          - dps_val: 8192
+            value: "Self test alarm"
+          - dps_val: 16384
+            value: "Leakage current fault"
+  - entity: select
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14  # work_mode
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Always on
+          - dps_val: charge_energy
+            value: Charge energy limit
+          - dps_val: charge_schedule
+            value: Scheduled charge
+          - dps_val: charge_pct
+            value: Charge percent limt
+          - dps_val: charge_delay
+            value: Delayed charge
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF0000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: time
+    name: Charge time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 1
+          max: 1440
+  - entity: number
+    name: Charge time
+    # 2025-07-20
+    deprecated: time.charge_time
+    class: duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 1440
+  - entity: sensor
+    name: Last session energy
+    class: energy_storage
+    dps:
+      - id: 25  # charge_energy_once
+        type: integer
+        name: sensor
+        optional: true
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18  # switch
+        type: boolean
+        name: switch

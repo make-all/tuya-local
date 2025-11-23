@@ -50,6 +50,7 @@ class TestPoolexQlineHeatpump(
             [
                 "binary_sensor_water_flow",
                 "binary_sensor_defrost",
+                "binary_sensor_problem",
             ]
         )
 
@@ -60,19 +61,6 @@ class TestPoolexQlineHeatpump(
             | ClimateEntityFeature.TURN_OFF
             | ClimateEntityFeature.TURN_ON,
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.dps[MODE_DPS] = "heating"
-        self.assertEqual(self.subject.icon, "mdi:hot-tub")
-        self.dps[MODE_DPS] = "cold"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[MODE_DPS] = "mute"
-        self.assertEqual(self.subject.icon, "mdi:hot-tub")
-        self.dps[ERROR_DPS] = 1
-        self.assertEqual(self.subject.icon, "mdi:water-pump-off")
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
@@ -124,23 +112,3 @@ class TestPoolexQlineHeatpump(
             self.subject._device, {HVACMODE_DPS: False}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
-
-    def test_error_state(self):
-        self.dps[ERROR_DPS] = 0
-        self.assertEqual(self.subject.extra_state_attributes, {"error": "OK"})
-
-        self.dps[ERROR_DPS] = 1
-        self.assertEqual(
-            self.subject.extra_state_attributes,
-            {"error": "Water flow protection"},
-        )
-        self.dps[ERROR_DPS] = 2
-        self.assertEqual(
-            self.subject.extra_state_attributes,
-            {"error": "Anti-freeze protection"},
-        )
-        self.dps[ERROR_DPS] = 4
-        self.assertEqual(
-            self.subject.extra_state_attributes,
-            {"error": 4},
-        )

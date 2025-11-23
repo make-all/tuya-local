@@ -1,32 +1,31 @@
 name: Dehumidifier
 products:
   - id: 4w2fzgr62c1oyjsx
-    name: Luko dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 8
-      name: current_humidity
-      type: integer
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: "dehumidity"
-          value: normal
-    - id: 46
-      name: humidity
-      type: integer
-      range:
-        min: 40
-        max: 80
-      mapping:
-        - step: 5
-secondary_entities:
+    manufacturer: Luko
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 8
+        name: current_humidity
+        type: integer
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "dehumidity"
+            value: normal
+      - id: 46
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 80
+        mapping:
+          - step: 5
   - entity: fan
     dps:
       - id: 1

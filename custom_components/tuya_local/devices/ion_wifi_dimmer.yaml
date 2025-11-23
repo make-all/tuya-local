@@ -1,0 +1,66 @@
+name: Dimmer
+products:
+  - id: ceikasvm5p5ymcax
+    manufacturer: Ion
+    model: LED WiFi 200W NF
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

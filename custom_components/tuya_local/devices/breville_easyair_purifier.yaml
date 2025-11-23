@@ -1,26 +1,27 @@
-name: Breville Easy Air
+name: Air purifier
 products:
   - id: k2mlahbu9v4xxdlb
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      type: string
-      name: speed
-      mapping:
-        - dps_val: low
-          value: 25
-        - dps_val: mid
-          value: 50
-        - dps_val: high
-          value: 75
-        - dps_val: turbo
-          value: 100
-secondary_entities:
+    manufacturer: Breville
+    model: Easy Air
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 25
+          - dps_val: mid
+            value: 50
+          - dps_val: high
+            value: 75
+          - dps_val: turbo
+            value: 100
   - entity: switch
     name: Night mode
     category: config
@@ -56,13 +57,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "cancle"
-            value: "Cancel"
+            value: cancel
           - dps_val: "2"
-            value: "2 hour"
+            value: "2h"
           - dps_val: "4"
-            value: "4 hours"
+            value: "4h"
           - dps_val: "8"
-            value: "8 hours"
+            value: "8h"
   - entity: sensor
     translation_key: time_remaining
     category: diagnostic

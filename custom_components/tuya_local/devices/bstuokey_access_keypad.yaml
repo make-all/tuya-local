@@ -1,49 +1,48 @@
 name: Access control keypad
 products:
   - id: 5k8h97qska6pf5cm
-    name: BSTUOKEY keypad
-primary_entity:
-  entity: lock
-  dps:
-    - id: 104
-      type: boolean
-      name: lock
-      optional: true
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-    - id: 10
-      type: string
-      optional: true
-      persist: false
-      name: unlock_fingerprint
-    - id: 11
-      type: string
-      optional: true
-      persist: false
-      name: unlock_password
-    - id: 12
-      type: string
-      optional: true
-      persist: false
-      name: unlock_card
-    - id: 16
-      type: string
-      optional: true
-      persist: false
-      name: unlock_temp_pwd
-    - id: 17
-      type: string
-      optional: true
-      persist: false
-      name: unlock_offline_pwd
-    - id: 23
-      type: string
-      optional: true
-      name: alarm_record
-secondary_entities:
+    manufacturer: BSTUOKEY
+entities:
+  - entity: lock
+    dps:
+      - id: 104
+        type: boolean
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 10
+        type: string
+        optional: true
+        persist: false
+        name: unlock_fingerprint
+      - id: 11
+        type: string
+        optional: true
+        persist: false
+        name: unlock_password
+      - id: 12
+        type: string
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 16
+        type: string
+        optional: true
+        persist: false
+        name: unlock_temp_pwd
+      - id: 17
+        type: string
+        optional: true
+        persist: false
+        name: unlock_offline_pwd
+      - id: 23
+        type: string
+        optional: true
+        name: alarm_record
   - entity: number
     name: Doorbell volume
     icon: "mdi:bell"

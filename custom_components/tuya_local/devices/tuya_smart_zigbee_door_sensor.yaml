@@ -1,15 +1,16 @@
-name: Tuya Smart Zigbee Door Sensor
+name: Door sensor
 products:
+  - id: iqoy7jgeosgbgk9i
+    manufacturer: Mirabella Genio
   - id: 7jIGJAymiH8OsFFb
-    name: Tuya Smart Zigbee Door Sensor
-primary_entity:
-  entity: binary_sensor
-  class: door
-  dps:
-    - id: 101
-      type: boolean
-      name: sensor
-secondary_entities:
+    name: Zigbee door sensor
+entities:
+  - entity: binary_sensor
+    class: door
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
   - entity: sensor
     class: battery
     category: diagnostic
@@ -20,3 +21,11 @@ secondary_entities:
         optional: true
         unit: "%"
         class: measurement
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: sensor

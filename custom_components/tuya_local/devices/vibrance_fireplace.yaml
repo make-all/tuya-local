@@ -1,0 +1,149 @@
+name: Fireplace
+products:
+  - id: nabdubjo2qqnrxs6
+    manufacturer: Modern Ember
+    model: Vibrance
+    model_id: XH-BG-15W/30WZKWIFI-10
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 5
+          max: 35
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: temp_set_f
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 13
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        name: temp_set_f
+        type: integer
+        range:
+          min: 41
+          max: 95
+      - id: 15
+        name: current_temp_f
+        type: integer
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: H0
+            value: "off"
+          - dps_val: H1
+            value: low
+          - dps_val: H2
+            value: medium
+          - dps_val: H3
+            value: high
+      - id: 103
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: heat
+          - dps_val: true
+            value: "off"
+  - entity: light
+    translation_key: flame
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "1"
+            value: orange
+          - dps_val: "2"
+            value: red
+          - dps_val: "3"
+            value: green
+          - dps_val: "4"
+            value: blue
+          - dps_val: "5"
+            value: orangered
+          - dps_val: "6"
+            value: yellow
+          - dps_val: "7"
+            value: violet
+      - id: 102
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: F1
+            value: 51
+          - dps_val: F2
+            value: 102
+          - dps_val: F3
+            value: 153
+          - dps_val: F4
+            value: 204
+          - dps_val: F5
+            value: 255
+      - id: 108
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "1"
+            value: slow
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: fast
+  - entity: number
+    name: Volume
+    dps:
+      - id: 109
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: S0
+            value: 0
+          - dps_val: S1
+            value: 33
+          - dps_val: S2
+            value: 66
+          - dps_val: S3
+            value: 100
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "30m"
+            value: "30m"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"

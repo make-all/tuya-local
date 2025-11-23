@@ -29,6 +29,8 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
                 FanEntityFeature.OSCILLATE
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_OFF
+                | FanEntityFeature.TURN_ON
             ),
         )
 
@@ -118,37 +120,37 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
         self.assertCountEqual(
             self.timer.options,
             [
-                "Off",
-                "30 minutes",
-                "1 hour",
-                "1.5 hours",
-                "2 hours",
-                "2.5 hours",
-                "3 hours",
-                "3.5 hours",
-                "4 hours",
-                "4.5 hours",
-                "5 hours",
-                "5.5 hours",
-                "6 hours",
-                "6.5 hours",
-                "7 hours",
-                "7.5 hours",
-                "8 hours",
-                "8.5 hours",
-                "9 hours",
-                "9.5 hours",
-                "10 hours",
+                "cancel",
+                "30m",
+                "1h",
+                "1h30m",
+                "2h",
+                "2h30m",
+                "3h",
+                "3h30m",
+                "4h",
+                "4h30m",
+                "5h",
+                "5h30m",
+                "6h",
+                "6h30m",
+                "7h",
+                "7h30m",
+                "8h",
+                "8h30m",
+                "9h",
+                "9h30m",
+                "10h",
             ],
         )
 
     def test_timer_current_option(self):
         self.dps[TIMER_DPS] = "0_5"
-        self.assertEqual(self.timer.current_option, "30 minutes")
+        self.assertEqual(self.timer.current_option, "30m")
 
     async def test_select_option(self):
         async with assert_device_properties_set(
             self.timer._device,
             {TIMER_DPS: "4_0"},
         ):
-            await self.timer.async_select_option("4 hours")
+            await self.timer.async_select_option("4h")

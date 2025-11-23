@@ -1,0 +1,56 @@
+name: Gas alarm
+products:
+  - id: bnfiludpq3myldf9
+    manufacturer: Boundless Brothers
+    model: PA-210W
+entities:
+  - entity: binary_sensor
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    name: Gas
+    icon: "mdi:fire-circle"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: LEL
+        class: measurement
+      - id: 11
+        type: boolean
+        name: lifecycle
+  - entity: button
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        optional: true
+        name: button
+      - id: 101
+        type: string
+        name: language
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code

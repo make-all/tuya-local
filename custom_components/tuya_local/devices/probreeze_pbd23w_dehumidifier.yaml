@@ -1,0 +1,119 @@
+name: Dehumidifier
+products:
+  - id: nb4b1dtoa3ljpstn
+    manufacturer: Pro Breeze
+    model: PB-D-23W-W
+  - id: jsrcliohsha5y9kg
+    manufacturer: Rohnson
+    model: Genius 20
+    model_id: R-9920
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: Continuous
+          - dps_val: "2"
+            value: boost
+          - dps_val: "3"
+            value: laundry
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+      - id: 104
+        type: integer
+        name: current_humidity
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+  - entity: select
+    name: Fan speed
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "Low"
+          - dps_val: "3"
+            value: "High"
+  - entity: switch
+    name: Ventilation mode
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 8
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code

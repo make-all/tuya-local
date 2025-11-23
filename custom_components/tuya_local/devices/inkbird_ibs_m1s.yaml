@@ -1,41 +1,40 @@
-name: Inkbird IBS-M1S hub
+name: Temperature probe hub
 products:
   - id: ojlc1dnjbrybk7di
-    name: IBS-M1S
-primary_entity:
-  entity: sensor
-  name: Temperature probe 1
-  class: temperature
-  dps:
-    - id: 110
-      type: integer
-      name: dummy
-    - id: 111
-      type: boolean
-      name: dummy2
-    - id: 114
-      optional: true
-      type: base64
-      name: type
-      persist: false
-      mapping:
-        - endianness: little
-          mask: "FF"
-    - id: 114
-      optional: true
-      type: base64
-      name: sensor
-      unit: C
-      class: measurement
-      mapping:
-        - scale: 10
-          endianness: little
-          mask: "FFFF00"
-          constraint: type
-          conditions:
-            - dps_val: 0
-              invalid: true
-secondary_entities:
+    manufacturer: Inkbird
+    model: IBS-M1S
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: dummy
+      - id: 111
+        type: boolean
+        name: dummy2
+      - id: 114
+        optional: true
+        type: base64
+        name: type
+        persist: false
+        endianness: little
+        mask: "FF"
+      - id: 114
+        optional: true
+        type: base64
+        name: sensor
+        unit: C
+        class: measurement
+        endianness: little
+        mask: "FFFF00"
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
   - entity: sensor
     name: Battery 1
     class: battery
@@ -46,18 +45,17 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF"
+        endianness: little
+        mask: "FF"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
@@ -70,19 +68,18 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF00000000000000000000"
+        endianness: little
+        mask: "FF00000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: C
         class: measurement
+        endianness: little
+        mask: "FFFF0000000000000000000000"
         mapping:
           - scale: 10
-            endianness: little
-            mask: "FFFF0000000000000000000000"
             constraint: type
             conditions:
               - dps_val: 0
@@ -97,18 +94,17 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF00000000000000000000"
+        endianness: little
+        mask: "FF00000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF00000000000000000000000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF00000000000000000000000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
@@ -121,19 +117,18 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF0000000000000000000000000000000000000000"
+        endianness: little
+        mask: "FF0000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: C
         class: measurement
+        endianness: little
+        mask: "FFFF000000000000000000000000000000000000000000"
         mapping:
           - scale: 10
-            endianness: little
-            mask: "FFFF000000000000000000000000000000000000000000"
             constraint: type
             conditions:
               - dps_val: 0
@@ -148,18 +143,17 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF0000000000000000000000000000000000000000"
+        endianness: little
+        mask: "FF0000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF0000000000000000000000000000000000000000000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF0000000000000000000000000000000000000000000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
@@ -172,21 +166,19 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: >-
-              FF000000000000000000000000000000000000000000000000000000000000
+        endianness: little
+        mask: FF000000000000000000000000000000000000000000000000000000000000
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: C
         class: measurement
+        endianness: little
+        mask: >-
+          FFFF00000000000000000000000000000000000000000000000000000000000000
         mapping:
           - scale: 10
-            endianness: little
-            mask: >-
-              FFFF00000000000000000000000000000000000000000000000000000000000000
             constraint: type
             conditions:
               - dps_val: 0
@@ -201,20 +193,18 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: >-
-              FF000000000000000000000000000000000000000000000000000000000000
+        endianness: little
+        mask: FF000000000000000000000000000000000000000000000000000000000000
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF000000000000000000000000000000000000000\
+          000000000000000000000000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF000000000000000000000000000000000000000\
-              000000000000000000000000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
@@ -227,21 +217,20 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000\
-              000000000000000000000000000000000000"
+        endianness: little
+        mask: "FF00000000000000000000000000000000000000000000\
+          000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: C
         class: measurement
+        endianness: little
+        mask: "FFFF00000000000000000000000000000000000000\
+          00000000000000000000000000000000000000000000"
         mapping:
           - scale: 10
-            endianness: little
-            mask: "FFFF00000000000000000000000000000000000000\
-              00000000000000000000000000000000000000000000"
             constraint: type
             conditions:
               - dps_val: 0
@@ -256,20 +245,19 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000000"
+        endianness: little
+        mask: "FF000000000000000000000000000000000000000000000\
+          00000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF000000000000000000000000000000000000000000000\
+          00000000000000000000000000000000000000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000000000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
@@ -282,21 +270,20 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF000000000000000000000000000000000000000000\
-              0000000000000000000000000000000000000000000000000000000000"
+        endianness: little
+        mask: "FF000000000000000000000000000000000000000000\
+          0000000000000000000000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: C
         class: measurement
+        endianness: little
+        mask: "FFFF00000000000000000000000000000000000000000000000\
+          0000000000000000000000000000000000000000000000000000000"
         mapping:
           - scale: 10
-            endianness: little
-            mask: "FFFF00000000000000000000000000000000000000000000000\
-              0000000000000000000000000000000000000000000000000000000"
             constraint: type
             conditions:
               - dps_val: 0
@@ -311,20 +298,19 @@ secondary_entities:
         type: base64
         name: type
         persist: false
-        mapping:
-          - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000000000000000000000000"
+        endianness: little
+        mask: "FF00000000000000000000000000000000000000000000000\
+          00000000000000000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
         name: sensor
         unit: "%"
+        endianness: little
+        mask: "FF00000000000000000000000000000000000000000000000000000000\
+          00000000000000000000000000000000000000000000000000000000000000"
         mapping:
-          - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000000000000000\
-              00000000000000000000000000000000000000000000000000000000000000"
-            constraint: type
+          - constraint: type
             conditions:
               - dps_val: 0
                 invalid: true

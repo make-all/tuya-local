@@ -1,20 +1,19 @@
 name: mmWave presence sensor
 products:
   - id: n3bow00a2vpwgtvx
-    name: ZY-M201-WIFI24G
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: exist
-          value: true
-        - dps_val: nobody
-          value: false
-secondary_entities:
+    model: ZY-M201-WIFI24G
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: exist
+            value: true
+          - dps_val: nobody
+            value: false
   - entity: sensor
     name: Presence state
     class: enum
@@ -74,6 +73,7 @@ secondary_entities:
   - entity: number
     name: Fading time
     category: config
+    class: duration
     icon: "mdi:timer-sand-complete"
     dps:
       - id: 102

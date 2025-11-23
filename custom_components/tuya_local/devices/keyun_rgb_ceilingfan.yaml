@@ -1,35 +1,35 @@
 name: Ceiling fan
 products:
   - id: lonfamz9k72cpjgq
-    name: Keyun MKCFE002
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 62
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 100
-    - id: 63
-      type: string
-      name: direction
-    - id: 106
-      type: boolean
-      name: oscillate
-secondary_entities:
+    manufacturer: Keyun
+    model: MKCFE002
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        name: direction
+      - id: 106
+        type: boolean
+        name: oscillate
   - entity: light
     dps:
       - id: 20
@@ -106,7 +106,7 @@ secondary_entities:
         optional: true
         name: music_data
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34
@@ -143,8 +143,22 @@ secondary_entities:
       - id: 108
         type: boolean
         name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
     category: config
     dps:
       - id: 112

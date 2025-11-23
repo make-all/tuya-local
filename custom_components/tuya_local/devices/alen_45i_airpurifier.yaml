@@ -1,0 +1,114 @@
+name: Air purifier
+products:
+  - id: Ng7UnT2dUDgIyJL9
+    manufacturer: Alen
+    model: BreatheSmart 45i
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 25
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 75
+          - dps_val: "4"
+            value: 100
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Manual
+            value: custom
+          - dps_val: Auto
+            value: smart
+          - dps_val: Sleep
+            value: sleep
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "2h"
+          - dps_val: "2"
+            value: "4h"
+          - dps_val: "3"
+            value: "12h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

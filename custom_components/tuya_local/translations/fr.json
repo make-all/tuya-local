@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Configurer votre appareil Tuya Local",
-                "description": "Les appareils peuvent être ajoutés manuellement ou assistés par le cloud à l'aide de l'application Smart Life.",
+                "description": "Les appareils peuvent être ajoutés manuellement ou assistés par le cloud à l'aide de l'application SmartLife.",
                 "data": {
                     "setup_mode": "Choix de configuration :"
                 }
             },
             "cloud": {
                 "title": "Connectez-vous à Tuya",
-                "description": "Saisissez votre code utilisateur Smart Life ou Tuya Smart.\n\nVous pouvez trouver ce code dans l'application Smart Life ou Tuya Smart dans l'écran **Paramètres** > **Compte et sécurité**",
+                "description": "Saisissez votre code utilisateur SmartLife ou Tuya.\n\nVous pouvez trouver ce code dans l'application SmartLife ou Tuya dans l'écran **Paramètres** > **Compte et sécurité**",
                 "data": {
                     "user_code": "Code d'utilisateur:"
                 }
             },
             "scan": {
                 "title": "Complétez la connexion",
-                "description": "Utilisez l'application Smart Life ou l'application Tuya Smart pour scanner le code QR suivant afin de terminer la connexion.\n\nContinuez à l'étape suivante une fois que vous avez terminé cette étape dans l'application."
+                "description": "Utilisez l'application SmartLife ou l'application Tuya pour scanner le code QR suivant afin de terminer la connexion.\n\nContinuez à l'étape suivante une fois que vous avez terminé cette étape dans l'application."
             },
             "choose_device": {
                 "title": "Choisissez l'appareil à ajouter",
@@ -37,11 +37,11 @@
                 "description": "[Suivre ces instructions pour trouver le 'device id' et la 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adresse IP ou Nom d'hote",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (ou device_id de la passerelle pour les appareils connectés via une passerelle)",
                     "local_key": "Local key",
                     "protocol_version": "Version du Protocole (Auto si inconnu)",
                     "poll_only": "Poll only (Essayez ceci si votre appareil ne fonctionne pas complètement)",
-                    "device_cid": "ID de sous-appareil (Pour les appareils connectés via une passerelle)"
+                    "device_cid": "node_id ou uuid de sous-appareil (Pour les appareils connectés via une passerelle)"
                 }
             },
             "select_type": {
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Configuration de l'appareil assistée par le cloud Smart Life.",
-                "manual": "Fournissez manuellement les informations de connexion de l’appareil."
+                "cloud": "Configuration de l'appareil assistée par le cloud SmartLife.",
+                "manual": "Fournissez manuellement les informations de connexion de l’appareil.",
+                "cloud_fresh_login": "Configuration de l'appareil assistée par le cloud SmartLife (nouvelle connexion)."
             }
         }
     },
@@ -87,8 +88,7 @@
                     "host": "Adresse IP ou Nom d'hote",
                     "local_key": "Local key",
                     "protocol_version": "Version du Protocole (Auto si inconnu)",
-                    "poll_only": "Poll only (essayez ceci si votre appareil ne fonctionne pas complètement)",
-                    "device_cid": "ID de sous-appareil (pour les appareils connectés via une passerelle)"
+                    "poll_only": "Poll only (essayez ceci si votre appareil ne fonctionne pas complètement)"
                 }
             }
         },
@@ -101,6 +101,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direction",
+                "state": {
+                    "off": "Entrant",
+                    "on": "Sortant"
+                }
+            },
             "defrost": {
                 "name": "Dégivrer",
                 "state": {
@@ -121,10 +128,42 @@
                     "off": "OK",
                     "on": "Pleine"
                 }
+            },
+            "wake": {
+                "name": "Réveil",
+                "state": {
+                    "off": "Endormi",
+                    "on": "Réveillé"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Protection contre la surchauffe de la chambre (dépasse 290°C)",
+                            "e2": "E2: Protection contre la surchauffe du bac d'évaporation (dépasse 200°C)",
+                            "e3": "E3: Protection contre la basse température de la chambre (inférieure à 35°C)",
+                            "e4": "E4: Protection contre la basse température du bac d'évaporation (inférieure à 35°C)",
+                            "e5": "E5: Erreur de connexion du capteur (Circuit ouvert)",
+                            "e6": "E6: Erreur de connexion du capteur (Court-circuit)",
+                            "e7": "E7: Erreur de communication de la carte d'affichage",
+                            "e8": "E8: Réservoir d'eau ouvert (CN7) ou Bac d'évaporation sec (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Réinitialisation d'usine"
+            },
+            "filter_reset": {
+                "name": "Réinitialisation du filtre"
             }
         },
         "climate": {
             "aircon_extra": {
+                "name": "Climatiseur",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -143,12 +182,30 @@
                             "top": "Haut",
                             "middle": "Milieu",
                             "down": "Bas",
-                            "downmost": "Très bas"
+                            "downmost": "Très bas",
+                            "upper_half": "Moitié supérieure",
+                            "lower_half": "Moitié inférieure",
+                            "surround": "Environnant"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Très à gauche",
+                            "left": "Gauche",
+                            "center": "Centre",
+                            "right": "Droite",
+                            "rightmost": "Très à droite",
+                            "left_swing": "Oscillation gauche",
+                            "right_swing": "Oscillation droite",
+                            "center_swing": "Oscillation centrale",
+                            "surround": "Environnant",
+                            "direct": "Direct"
                         }
                     }
                 }
             },
             "thermostat": {
+                "name": "Thermostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -179,6 +236,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Chauffage",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Niveau de chauffage",
@@ -199,7 +257,10 @@
                             "smart_cool": "Froid Intelligent",
                             "quick_cool": "Froid Boost",
                             "quiet_cool": "Froid Eco",
-                            "auto": "Auto"
+                            "auto": "Auto",
+                            "smart": "Intelligent",
+                            "quick": "Boost",
+                            "quiet": "Eco"
                         }
                     }
                 }
@@ -212,6 +273,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapeur saine",
+                            "fresh_steam": "Vapeur fraîche",
+                            "high_temp_steam": "Vapeur haute température",
+                            "stew": "Ragoût",
+                            "bake_up_and_down": "Cuisson haut et bas",
+                            "bbq": "Barbecue",
+                            "bottom_hot_air": "Air chaud bas",
+                            "on_strong_roast": "Rôtissage fort",
+                            "3d_hot_air": "Air chaud 3D",
+                            "air_fry": "Friture à l'air",
+                            "steam_frying": "Friture à la vapeur",
+                            "one_click_bread": "Pain en un clic",
+                            "quick_heat": "Chauffage rapide",
+                            "keep_warm": "Garder au chaud",
+                            "unfreeze": "Décongeler",
+                            "fermentation": "Fermentation",
+                            "descale": "Détartrage",
+                            "local_recipes": "Recettes locales",
+                            "drying": "Séchage",
+                            "custom": "Personnalisé",
+                            "low_steaming": "Faible vapeur",
+                            "medium_steaming": "Vapeur moyenne",
+                            "high_steaming": "Haute vapeur"
                         }
                     }
                 }
@@ -230,7 +322,34 @@
             }
         },
         "fan": {
+            "aroma_diffuser": {
+                "name": "Diffuseur d'arômes",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Faible",
+                            "medium": "Moyen",
+                            "high": "Fort",
+                            "continuous": "Continu",
+                            "intermittent": "Intermittent",
+                            "timer": "Minuteur"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "Déshumidificateur",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Purifier",
+                            "dehumidify": "Déshumidifier"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Ventilateur",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -241,6 +360,10 @@
                             "fresh": "Frais",
                             "smart": "Intelligent",
                             "strong": "Fort",
+                            "custom": "Personnalisé",
+                            "high": "Haut",
+                            "medium": "Moyen",
+                            "low": "Bas",
                             "displayoff": "Affichage désactivé",
                             "off": "Désactivé"
                         }
@@ -248,6 +371,7 @@
                 }
             },
             "ventilation": {
+                "name": "Ventilation",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -256,7 +380,12 @@
                             "sleep": "Dormir",
                             "auto": "Auto",
                             "eco": "Écologique",
-                            "anti-condensation": "Anti-condensation"
+                            "anti-condensation": "Anti-condensation",
+                            "extractor": "Extracteur",
+                            "heat_recovery": "Récupération de chaleur",
+                            "timer": "Minuteur",
+                            "on": "Allumé",
+                            "off": "Éteint"
                         }
                     }
                 }
@@ -294,13 +423,236 @@
             }
         },
         "number": {
+            "maximum_temperature": {
+                "name": "Température maximale"
+            },
+            "minimum_temperature": {
+                "name": "Température minimale"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} seuil"
+            },
+            "temperature_calibration": {
+                "name": "Étalonnage de la température"
+            },
             "timer": {
                 "name": "Minuteur"
+            },
+            "timer_x": {
+                "name": "Minuteur {x}"
             }
         },
         "select": {
+            "currency": {
+                "name": "Devise",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Mode de pompe à chaleur",
+                "state": {
+                    "heat": "Chauffage",
+                    "cool": "Refroidissement",
+                    "auto": "Auto",
+                    "floor_heat": "Chauffage de sol",
+                    "off": "Éteint",
+                    "hotwater": "Eau chaude",
+                    "hotwater_cool": "Eau chaude et refroidissement",
+                    "hotwater_heat": "Eau chaude et chauffage",
+                    "hotwater_auto": "Eau chaude et auto",
+                    "hotwater_floor_heat": "Eau chaude et chauffage de sol"
+                }
+            },
+            "initial_state": {
+                "name": "État initial",
+                "state": {
+                    "off": "Désactivé",
+                    "on": "Activé",
+                    "memory": "Mémoire"
+                }
+            },
+            "kettle_mode": {
+                "name": "Mode Bouilloire",
+                "state": {
+                    "off": "Éteint",
+                    "heat": "Chauffage",
+                    "boil": "Ébullition",
+                    "quick_heat": "Chauffage rapide",
+                    "quick_boil": "Ébullition rapide",
+                    "keep_warm": "Garder au chaud",
+                    "custom": "Personnalisé",
+                    "dechlorinate": "Déschlorination",
+                    "black_tea": "Thé noir",
+                    "green_tea": "Thé vert",
+                    "coffee": "Café",
+                    "honey_water": "Eau au miel",
+                    "infant_formula": "Lait infantile",
+                    "white_tea": "Thé blanc",
+                    "oolong_tea": "Thé Oolong"
+                }
+            },
+            "language": {
+                "name": "Langue",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Mode d'éclairage",
+                "state": {
+                    "off": "Éteint",
+                    "on": "Allumé",
+                    "state": "État",
+                    "locator": "Localisateur"
+                }
+            },
+            "mopping": {
+                "name": "Nettoyage",
+                "state": {
+                    "off": "Désactivé",
+                    "auto": "Automatique",
+                    "low": "Bas",
+                    "medium": "Moyen",
+                    "high": "Haut",
+                    "very_high": "Très haut"
+                }
+            },
+            "recipe": {
+                "name": "Recette",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Frites",
+                    "chicken": "Poulet",
+                    "shrimp": "Crevettes",
+                    "fish": "Poisson",
+                    "chicken_drumsticks": "Cuisses de poulet",
+                    "vegetables": "Légumes",
+                    "desserts": "Desserts",
+                    "none": "Aucun",
+                    "chicken_wings": "Ailes de poulet",
+                    "steak": "Steak",
+                    "onion_rings": "Rondelles d'oignon",
+                    "bacon": "Bacon",
+                    "cake": "Gâteau",
+                    "bread": "Pain",
+                    "toast": "Toast",
+                    "sausage": "Saucisse",
+                    "dry_fruit": "Fruits secs",
+                    "custom": "Personnalisé",
+                    "cloud_recipe": "Recette Cloud",
+                    "default": "Défaut",
+                    "keep_warm": "Garder au chaud",
+                    "preheat": "Préchauffer"
+                }
+            },
+            "scene": {
+                "name": "Scène",
+                "state": {
+                    "relax": "Détente",
+                    "movie": "Film",
+                    "party": "Fête",
+                    "romantic": "Romantique",
+                    "night": "Nuit",
+                    "morning": "Matin",
+                    "working": "Travail",
+                    "leisure": "Loisir",
+                    "vacation": "Vacances",
+                    "reading": "Lecture",
+                    "twinkle": "Scintillement",
+                    "gaming": "Jeu",
+                    "none": "Aucun"
+                }
+            },
             "timer": {
-                "name": "Minuteur"
+                "name": "Minuteur",
+                "state": {
+                    "cancel": "Annuler",
+                    "continuous": "Continu",
+                    "30s": "30 secondes",
+                    "1m": "1 minute",
+                    "2m": "2 minutes",
+                    "5m": "5 minutes",
+                    "10m": "10 minutes",
+                    "15m": "15 minutes",
+                    "20m": "20 minutes",
+                    "25m": "25 minutes",
+                    "30m": "30 minutes",
+                    "35m": "35 minutes",
+                    "40m": "40 minutes",
+                    "45m": "45 minutes",
+                    "50m": "50 minutes",
+                    "55m": "55 minutes",
+                    "1h": "1 heure",
+                    "1h5m": "1 heure 5 minutes",
+                    "1h10m": "1 heure 10 minutes",
+                    "1h15m": "1 heure 15 minutes",
+                    "1h20m": "1 heure 20 minutes",
+                    "1h25m": "1 heure 25 minutes",
+                    "1h30m": "1 heure 30 minutes",
+                    "1h35m": "1 heure 35 minutes",
+                    "1h40m": "1 heure 40 minutes",
+                    "1h45m": "1 heure 45 minutes",
+                    "1h50m": "1 heure 50 minutes",
+                    "1h55m": "1 heure 55 minutes",
+                    "2h": "2 heures",
+                    "2h30m": "2 heures 30 minutes",
+                    "3h": "3 heures",
+                    "3h30m": "3 heures 30 minutes",
+                    "4h": "4 heures",
+                    "4h30m": "4 heures 30 minutes",
+                    "5h": "5 heures",
+                    "5h30m": "5 heures 30 minutes",
+                    "6h": "6 heures",
+                    "6h30m": "6 heures 30 minutes",
+                    "7h": "7 heures",
+                    "7h30m": "7 heures 30 minutes",
+                    "8h": "8 heures",
+                    "8h30m": "8 heures 30 minutes",
+                    "9h": "9 heures",
+                    "9h30m": "9 heures 30 minutes",
+                    "10h": "10 heures",
+                    "11h": "11 heures",
+                    "12h": "12 heures",
+                    "13h": "13 heures",
+                    "14h": "14 heures",
+                    "15h": "15 heures",
+                    "16h": "16 heures",
+                    "17h": "17 heures",
+                    "18h": "18 heures",
+                    "19h": "19 heures",
+                    "20h": "20 heures",
+                    "21h": "21 heures",
+                    "22h": "22 heures",
+                    "23h": "23 heures",
+                    "24h": "24 heures",
+                    "36h": "36 heures",
+                    "48h": "48 heures",
+                    "72h": "72 heures",
+                    "1d": "1 jour",
+                    "2d": "2 jours",
+                    "3d": "3 jours",
+                    "4d": "4 jours",
+                    "5d": "5 jours",
+                    "6d": "6 jours",
+                    "7d": "7 jours"
+                }
             },
             "temperature_unit": {
                 "name": "Unité de température",
@@ -308,16 +660,210 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} Action",
+                "state": {
+                    "ignore": "Ignorer",
+                    "alarm": "Alarme",
+                    "trip_breaker": "Disjoncteur"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Recette intégrée",
+                "state": {
+                    "none": "Aucun",
+                    "steamed_egg_with_okra": "Oeuf cuit à la vapeur avec okra",
+                    "steamed_sea_bass": "Bar cuit à la vapeur",
+                    "steamed_prawns": "Crevettes cuites à la vapeur",
+                    "handmade_steamed_bread": "Pain cuit à la vapeur fait main",
+                    "fan_steamed_baby_vegetables": "Légumes pour bébé cuits à la vapeur avec ventilateur",
+                    "braised_pork": "Porc braisé",
+                    "snow_fungus_and_bird_s_nest": "Fungus des neiges et nid d'oiseau",
+                    "crab_pot": "Crabe",
+                    "potato_ribs": "Côtes de porc aux pommes de terre",
+                    "coconut_chicken_soup": "Soupe de poulet à la noix de coco",
+                    "snack_platter": "Assiette de collations",
+                    "chicken_skewers": "Brochettes de poulet",
+                    "roasted_pork_knuckle": "Jarret de porc rôti",
+                    "dried_lemon": "Citron séché",
+                    "pork_jerky": "Viande de porc séchée",
+                    "crispy_hairtail": "Hairtail croustillant",
+                    "spicy_grilled_fish": "Poisson grillé épicé",
+                    "roasted_sweet_potatoes": "Patates douces rôties",
+                    "roasted_chicken_wings": "Ailes de poulet rôties",
+                    "cumin_lamb_chops": "Côtelettes d'agneau au cumin",
+                    "honey_grilled_chicken": "Poulet grillé au miel",
+                    "garlic_eggplant": "Aubergine à l'ail",
+                    "portuguese_egg_tart": "Tarte aux oeufs portugaise",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Chips de cacao",
+                    "butter_cookies": "Biscuits au beurre",
+                    "chiffon_cake": "Gâteau chiffon",
+                    "puff_pastry": "Pâte feuilletée",
+                    "red_bean_bread": "Pain aux haricots rouges",
+                    "milk_toast": "Pain au lait"
+                }
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "Qualité de l'air",
+                "state": {
+                    "excellent": "Excellent",
+                    "good": "Bon",
+                    "moderate": "Modéré",
+                    "poor": "Mauvais",
+                    "severe": "Grave",
+                    "danger": "Danger"
+                }
+            },
+            "status": {
+                "name": "État",
+                "state": {
+                    "available": "Disponible",
+                    "plugged_in": "Branché",
+                    "fault_unplugged": "Défaut (débranché)",
+                    "charging": "En charge",
+                    "discharging": "En décharge",
+                    "waiting": "En attente",
+                    "charged": "Chargé",
+                    "fault": "Défaut",
+                    "paused": "En pause",
+                    "waiting_for_authorization": "En attente d'autorisation",
+                    "standby": "Veille",
+                    "heating": "Chauffage",
+                    "cooling": "Refroidissement",
+                    "keeping_warm": "Garder au chaud",
+                    "no_water": "Pas d'eau",
+                    "boiling": "Ébullition",
+                    "reserve_only": "Réserve uniquement",
+                    "unknown": "Inconnu",
+                    "idle": "Inactif",
+                    "auto": "Auto",
+                    "manual": "Manuel",
+                    "rain_delay": "Retard de pluie",
+                    "off": "Éteint",
+                    "on": "Allumé",
+                    "cooking": "Cuisine",
+                    "done": "Fait",
+                    "door_open": "Porte ouverte",
+                    "setting": "Mise en place",
+                    "pre_heating": "Préchauffage",
+                    "scheduled": "Programmé",
+                    "at_temperature": "À température",
+                    "done_stage_1": "Étape 1 terminée",
+                    "done_stage_2": "Étape 2 terminée",
+                    "done_stage_3": "Étape 3 terminée",
+                    "done_stage_4": "Étape 4 terminée",
+                    "done_stage_5": "Étape 5 terminée",
+                    "done_stage_6": "Étape 6 terminée",
+                    "done_stage_7": "Étape 7 terminée",
+                    "done_stage_8": "Étape 8 terminée",
+                    "done_stage_9": "Étape 9 terminée",
+                    "done_stage_10": "Étape 10 terminée",
+                    "no_food": "Pas de nourriture",
+                    "jammed": "Coincé",
+                    "blocked": "Bloqué",
+                    "feeding": "Alimentation",
+                    "feeding_complete": "Alimentation complète",
+                    "caking": "Agglomération",
+                    "cleaning": "Nettoyage",
+                    "sleep": "Veille",
+                    "sterilizing": "Stérilisation",
+                    "deodorizing": "Désodorisation",
+                    "occupied": "Occupé",
+                    "normal": "Normal",
+                    "low": "Faible",
+                    "high": "Haut",
+                    "unwashed": "Non lavé",
+                    "pre_washing": "Pré-lavage",
+                    "washing": "Lavage",
+                    "rinsing": "Rinçage",
+                    "drying": "Séchage",
+                    "air_purging": "Purification de l'air",
+                    "anti_freeze": "Antigel",
+                    "close": "Fermé",
+                    "monitor": "Surveillance",
+                    "working": "Travail",
+                    "warning": "Avertissement",
+                    "starting": "Démarrage",
+                    "emptying": "Vidange",
+                    "resetting": "Réinitialisation",
+                    "reverse": "Inverser",
+                    "full": "Plein",
+                    "empty": "Vide",
+                    "missing": "Manquant",
+                    "formatting": "Formatage",
+                    "unformatted": "Non formaté",
+                    "maintenance_required": "Entretien requis",
+                    "dry": "Sec",
+                    "comfortable": "Confortable",
+                    "damp": "Humide"
+                }
+            },
             "time_remaining": {
                 "name": "Temps restant"
+            },
+            "time_remaining_x": {
+                "name": "Temps restant {x}"
+            },
+            "cooking_status": {
+                "name": "État de la cuisson",
+                "state": {
+                    "wait": "En attente de cuisson",
+                    "reservation": "En réservation",
+                    "cooking": "En cours",
+                    "cancel": "Annulation de la cuisson",
+                    "done": "Cuisson terminée",
+                    "pause": "Cuisson en pause"
+                }
+            },
+            "water_level": {
+                "name": "Niveau d'eau",
+                "state": {
+                    "full": "Plein",
+                    "high": "Haut",
+                    "medium": "Milieu",
+                    "low": "Bas",
+                    "empty": "Vide"
+                }
+            },
+            "energy_produced": {
+                "name": "Énergie produite"
+            },
+            "energy_consumed": {
+                "name": "Énergie consommée"
+            },
+            "energy_produced_x": {
+                "name": "Énergie produite {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Énergie consommée {x}"
+            },
+            "current_x": {
+                "name": "Courant {x}"
+            },
+            "voltage_x": {
+                "name": "Tension {x}"
+            },
+            "power_x": {
+                "name": "Puissance {x}"
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "Anti-gel"
+            },
+            "breaker": {
+                "name": "Disjoncteur",
+                "state": {
+                    "off": "Ouvert",
+                    "on": "Fermé"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Ne pas déranger"
             },
             "evaporator_cleaning": {
                 "name": "Nettoyage évaporateur"
@@ -328,8 +874,46 @@
             "keytone": {
                 "name": "Tonalité des touches"
             },
+            "outlet_x": {
+                "name": "Prise {x}"
+            },
+            "sleep": {
+                "name": "Veille"
+            },
+            "switch_x": {
+                "name": "Interrupteur {x}"
+            },
+            "electrolytic_sterilization": {
+                "name": "Stérilisation électrolytique"
+            },
             "uv_sterilization": {
                 "name": "Stérilisation UV"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Scène"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Minuteur"
+            },
+            "timer_x": {
+                "name": "Minuteur {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Vanne {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Chauffe-eau"
+            },
+            "kettle": {
+                "name": "Bouilloire"
             }
         }
     }

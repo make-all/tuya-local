@@ -59,6 +59,8 @@ class TestAspenASP200Fan(
                 FanEntityFeature.DIRECTION
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_OFF
+                | FanEntityFeature.TURN_ON
             ),
         )
         self.assertEqual(

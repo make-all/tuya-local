@@ -5,7 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
 from ..mixins.switch import BasicSwitchTests, SwitchableTests
@@ -23,10 +23,10 @@ SWITCH_DPS = "22"
 
 
 class TestEanonsHumidifier(
-    BasicBinarySensorTests,
     BasicSelectTests,
     BasicSensorTests,
     BasicSwitchTests,
+    MultiBinarySensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
@@ -42,19 +42,19 @@ class TestEanonsHumidifier(
             TIMERHR_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "Off",
-                "1": "1 hour",
-                "2": "2 hours",
-                "3": "3 hours",
-                "4": "4 hours",
-                "5": "5 hours",
-                "6": "6 hours",
-                "7": "7 hours",
-                "8": "8 hours",
-                "9": "9 hours",
-                "10": "10 hours",
-                "11": "11 hours",
-                "12": "12 hours",
+                "cancel": "cancel",
+                "1": "1h",
+                "2": "2h",
+                "3": "3h",
+                "4": "4h",
+                "5": "5h",
+                "6": "6h",
+                "7": "7h",
+                "8": "8h",
+                "9": "9h",
+                "10": "10h",
+                "11": "11h",
+                "12": "12h",
             },
         )
         self.setUpBasicSensor(
@@ -63,22 +63,41 @@ class TestEanonsHumidifier(
             unit="min",
             device_class=SensorDeviceClass.DURATION,
         )
-        self.setUpBasicBinarySensor(
-            ERROR_DPS,
-            self.entities.get("binary_sensor_tank_empty"),
-            testdata=(1, 0),
+        self.setUpMultiBinarySensors(
+            [
+                {
+                    "name": "binary_sensor_tank_empty",
+                    "dps": ERROR_DPS,
+                    "testdata": (1, 0),
+                },
+                {
+                    "name": "binary_sensor_problem",
+                    "dps": ERROR_DPS,
+                    "device_class": "problem",
+                    "testdata": (2, 0),
+                },
+            ],
         )
         self.mark_secondary(
             [
                 "select_timer",
                 "sensor_time_remaining",
+                "binary_sensor_problem",
                 "binary_sensor_tank_empty",
             ]
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
-        self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
+        self.assertEqual(
+            self.subject.supported_features,
+            HumidifierEntityFeature.MODES,
+        )
+        self.assertEqual(
+            self.fan.supported_features,
+            FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
+        )
 
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 75
@@ -156,7 +175,6 @@ class TestEanonsHumidifier(
             self.subject._device.anticipate_property_value.assert_not_called()
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
         self.dps[FANMODE_DPS] = "middle"
@@ -164,7 +182,6 @@ class TestEanonsHumidifier(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "error": "OK",
                 "timer_hr": "cancel",
                 "timer_min": 0,
             },
@@ -199,3 +216,13 @@ class TestEanonsHumidifier(
             {FANMODE_DPS: "middle"},
         ):
             await self.fan.async_set_percentage(60)
+
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertEqual(
+            self.multiBSensor["binary_sensor_tank_empty"].extra_state_attributes, {}
+        )
+        self.assertEqual(
+            self.multiBSensor["binary_sensor_problem"].extra_state_attributes,
+            {"fault_code": 2},
+        )

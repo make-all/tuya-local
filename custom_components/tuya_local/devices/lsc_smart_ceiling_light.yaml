@@ -1,0 +1,236 @@
+name: CCT + RGB ceiling light
+products:
+  - id: bwyutsrcsnwf3p5o
+    manufacturer: LSC Smart Connect
+entities:
+  - entity: light
+    icon: mdi:circle
+    dps:
+      - id: 63
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  - entity: light
+    name: Halo
+    icon: "mdi:circle-outline"
+    dps:
+      - id: 54
+        type: boolean
+        name: switch
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 24
+        type: hex
+        name: brightness
+        range:
+          min: 0
+          max: 1000
+        mask: "00000000FFFF"
+
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: "off"
+          - dps_val: false
+            value: "on"
+
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 56
+        name: value
+        type: base64
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 56
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ARUKUlLgAABkAMFhALQwALVSAMRj"
+            value: Iceland blue
+          - dps_val: "ARYKZGRgAABkAJJfAMZg"
+            value: Glacier express
+          - dps_val: "ARcDXl5gAABkADgvAB5cANVFARpk"
+            value: Sea of clouds
+          - dps_val: "ARgDZGTgAABkALI5AQpkAS1kAT9k"
+            value: Fireworks at sea
+          - dps_val: "ARkKVFRgAABkALEsAMBk"
+            value: Hut in the snow
+          - dps_val: "ARoDS0vgAABkAOA5AQlT"
+            value: Firefly night
+          - dps_val: "ARsDX19gAABkAK45AMRdAPlk"
+            value: Northland
+          - dps_val: "ARwKWlrgAABSAJ1kAI5k"
+            value: Grassland
+          - dps_val: "AR0DUlLgAABkAK5kAKZkAMFkAMxk"
+            value: Northern lights
+          - dps_val: "AR4KUlLgAABkABlkACJeACxbABRkAAxk"
+            value: Late autumn
+          - dps_val: "AUcFTU0AAABkAQNFAMFD"
+            value: Dream meteor
+          - dps_val: "AUgGMjIAAABkAU5BAB9J"
+            value: Early spring
+          - dps_val: "AUkHDg4AAABkANo3AVJBAFw3"
+            value: Spring outing
+          - dps_val: "AUoIMjIAAABkAPdQAClPAQ04AKMn"
+            value: Night service
+          - dps_val: "AUsJMjIAAABkAQNFAEE6ACVLAF5C"
+            value: Wind chime
+          - dps_val: "AUwMMjIAAABkANhNAMFDAQNFAFw3"
+            value: City lights
+          - dps_val: "AU0NMjIAAABkAChkAF5CAMFkAP9Q"
+            value: Color marbles
+          - dps_val: "AU4OMjIAAABkAD5fAL5c"
+            value: Summer train
+          - dps_val: "AU8PGRkAAABkALxkAC1OAABkAGQ8"
+            value: Christmas eve
+          - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
+            value: Dream sea
+          - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
+            value: gaming
+          - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
+            value: vacation
+          - dps_val: "ASEDPDxgAABkAL8YAQQX"
+            value: working
+          - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
+            value: party
+          - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
+            value: Trend
+          - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
+            value: Sport
+          - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
+            value: relax
+          - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
+            value: romantic
+          - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
+            value: Christmas
+          - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"
+            value: Valentine's day
+          - dps_val: "ASsDWlrgAABkAABXARZkANpkALNkAJVk"
+            value: Halloween
+          - dps_val: "ASwKSEhgAABkAD1kAQxbALpJABdh"
+            value: Thanksgiving day
+          - dps_val: "AS0CWVlgAABkAJxjALxiAHtg"
+            value: Forest day
+          - dps_val: "AS4DWlpgAABkAT42AQxWAR8j"
+            value: Mother's day
+          - dps_val: "AS8CZGTgAABkANxCALZKAOFN"
+            value: Father's day
+          - dps_val: "ATACXl5gAABkAABkAHhkALtk"
+            value: Football day
+          - dps_val: "ATMDUlJgAABkAIhQANI5APsn"
+            value: Summer idyll
+          - dps_val: "ATQDXV1gAABkAPc2ATUrAMY0AJEp"
+            value: Dream of the sea
+          - dps_val: "ATUDUlJgAABNARJiATBd"
+            value: Love and dream
+          - dps_val: "ATYCSUlgAABkAGY8ADxJAB5k"
+            value: Spring fishing
+          - dps_val: "ATcKWlpgAABkADNYABhkAQBFAONeAKww"
+            value: Neon world
+          - dps_val: "ATgCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: Dreamland
+          - dps_val: "ATkCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: Summer wind
+          - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
+            value: Planet journey
+
+  - entity: select
+    name: Combination color
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 61
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAMAFAABUwFIA70BUgKLA+gBUgNrA+gBUwPQA9g="
+            value: Combination 1
+          - dps_val: "AAMAFAABHAGpA+QBHAGpA+QA2wFZA+gAwgGhA9w="
+            value: Combination 2
+          - dps_val: "AAMAFAAA2QPoA+ABAgMpAroBUwPQA9gAOwLoA+Q="
+            value: Combination 3
+          - dps_val: "AAMAFAAABgKtA+QAJQLwA+QAQQJBA6kAwQPkA9w="
+            value: Combination 4
+          - dps_val: "AAMAFAAAxQDMA+gAwgGhA9wAwQKjA9wAwQPkA9w="
+            value: Combination 5
+          - dps_val: "AAMAFAAAXgKSAt0AXAImAzsAXAFzA2MAQgEDA8k="
+            value: Combination 6
+          - dps_val: "AAMAFAAAXgKSAt0AQgL/A50AKAPkA+gAGQPoA+g="
+            value: Combination 7
+          - dps_val: "AAMAFAAACwOWA+gAGQPoA+gAKAPkA+gAXgKSAt0="
+            value: Combination 8
+          - dps_val: "AAMAFAABAgMpAroA2QPoA+ABGwMCA7kAOQJEA+g="
+            value: Combination 9
+          - dps_val: "AAMAFAABAwHBA+QBAwKwA+AA/wMcA5oBAgMpAro="
+            value: Combination 10
+          - dps_val: "AAMAFAAAKAPkA+gAJQLwA+QAJAITA+QAIgFTA+Q="
+            value: Combination 11
+          - dps_val: "AAMAFAAAKAPkA+gAwQPkA9wA/wMcA5oACwOWA+g="
+            value: Combination 12
+          - dps_val: "AAMAFAAAXAFzA2MAwQKjA9wAwQPkA9wBAwKwA+A="
+            value: Combination 13
+          - dps_val: "AAMAFAABHQMJAuEBUgKLA+gBUwPQA9gAGQPoA+gAOwLoA+Q="
+            value: Combination 14
+          - dps_val: "AAMAFAABAgMpAroA/wMcA5oBAwKwA+ABAwHBA+QBAQDRA+Q="
+            value: Combination 15
+          - dps_val: "AAMAFAAAAAItA+gAAAKtA+QAAAMEA+QAAANLA+gAAAPoA+g="
+            value: Combination 16
+          - dps_val: "AAMAFAAA2QPoA+AA2gIhA+gAJAITA+QAKAPkA+gAGQPoA+g="
+            value: Combination 17
+          - dps_val: "AAMAFAABHAGpA+QAOQJEA+gAXAImAzsAwQKjA9wBAwHBA+Q="
+            value: Combination 18
+          - dps_val: "AAMAFAAA2AMDA+AA/wMcA5oBYgPQA9gAGQPoA+gAKAPkA+g="
+            value: Combination 19
+          - dps_val: "AAMAFAAAXgKSAt0AXAImAzsAXAFzA2MAQgL/A50AQQGZA7U="
+            value: Combination 20
+          - dps_val: "AAMAFAAAwQKjA9wAJQLwA+QAGQPoA+gBHQKRA+QBHQMJAuE="
+            value: Combination 21
+          - dps_val: "AAMAFAABVgEvA9gBTwHEA9QBUgKbA9ABXgJ3A9ABaALDA9AAAQPkA80="
+            value: Combination 22

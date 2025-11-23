@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Налаштуйте свій пристрій Tuya Local",
-                "description": "Пристрої можна додавати вручну або за допомогою хмари за допомогою програми Smart Life.",
+                "description": "Пристрої можна додавати вручну або за допомогою хмари за допомогою програми SmartLife.",
                 "data": {
                     "setup_mode": "Вибір налаштування:"
                 }
             },
             "cloud": {
                 "title": "Увійти в Tuya",
-                "description": "Введіть свій код користувача Smart Life або Tuya Smart.\n\nЦей код можна знайти в програмі Smart Life або Tuya Smart у меню **Налаштування** > екран **Обліковий запис і безпека** та введіть код",
+                "description": "Введіть свій код користувача SmartLife або Tuya.\n\nЦей код можна знайти в програмі SmartLife або Tuya у меню **Налаштування** > екран **Обліковий запис і безпека** та введіть код",
                 "data": {
                     "user_code": "Код користувача:"
                 }
             },
             "scan": {
                 "title": "Завершіть вхід",
-                "description": "Скористайтеся додатком Smart Life або Tuya Smart"
+                "description": "Скористайтеся додатком SmartLife або Tuya"
             },
             "choose_device": {
                 "title": "Виберіть пристрій для додавання",
@@ -37,11 +37,11 @@
                 "description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP-адреса або ім'я хоста",
-                    "device_id": "Ідентифікатор пристрою",
+                    "device_id": "Ідентифікатор пристрою (device_id, або device_id шлюзу для пристроїв, підключених через шлюз)",
                     "local_key": "Локальний ключ (local_key)",
                     "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
                     "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device node_id або uuid (для пристроїв, підключених через шлюз)"
                 }
             },
             "select_type": {
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Хмарне налаштування пристрою Smart Life.",
-                "manual": "Вручну надайте інформацію про підключення пристрою."
+                "cloud": "Хмарне налаштування пристрою SmartLife.",
+                "manual": "Вручну надайте інформацію про підключення пристрою.",
+                "cloud_fresh_login": "Хмарне налаштування пристрою SmartLife з новим входом."
             }
         }
     },
@@ -87,8 +88,7 @@
                     "host": "IP-адреса або ім'я хоста",
                     "local_key": "Локальний ключ (local_key)",
                     "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-                    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)"
                 }
             }
         },
@@ -101,6 +101,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Напрямок",
+                "state": {
+                    "off": "Вхідний",
+                    "on": "Вихідний"
+                }
+            },
             "defrost": {
                 "name": "Розморожування",
                 "state": {
@@ -121,10 +128,42 @@
                     "off": "OK",
                     "on": "Повний"
                 }
+            },
+            "wake": {
+                "name": "Пробудження",
+                "state": {
+                    "off": "Сон",
+                    "on": "Будильник"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Захист від перегріву камери (перевищує 290°C)",
+                            "e2": "E2: Захист від перегріву випарника (перевищує 200°C)",
+                            "e3": "E3: Захист від низької температури камери (нижче 35°C)",
+                            "e4": "E4: Захист від низької температури випарника (нижче 35°C)",
+                            "e5": "E5: Помилка підключення датчика (відкритий коло)",
+                            "e6": "E6: Помилка датчика (коротке замикання)",
+                            "e7": "E7: Помилка зв'язку з платою дисплею",
+                            "e8": "E8: Відкритий бак з водою (CN7) або суха піддон для випарника (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Скидання до заводських налаштувань"
+            },
+            "filter_reset": {
+                "name": "Скидання фільтра"
             }
         },
         "climate": {
             "aircon_extra": {
+                "name": "Кондиціонер",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -143,12 +182,30 @@
                             "top": "Верхній",
                             "middle": "Середній",
                             "down": "Низький",
-                            "downmost": "Самий низький"
+                            "downmost": "Самий низький",
+                            "upper_half": "Верхня половина",
+                            "lower_half": "Нижня половина",
+                            "surround": "Навколо"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Самий лівий",
+                            "left": "Лівий",
+                            "center": "Центр",
+                            "right": "Правий",
+                            "rightmost": "Самий правий",
+                            "left_swing": "Лівий гойдалка",
+                            "right_swing": "Правий гойдалка",
+                            "center_swing": "Центр гойдалка",
+                            "surround": "Навколо",
+                            "direct": "Прямий"
                         }
                     }
                 }
             },
             "thermostat": {
+                "name": "Термостат",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -179,6 +236,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Обігрівач",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Рівень нагріву",
@@ -199,7 +257,10 @@
                             "smart_cool": "Розумне холонути",
                             "quick_cool": "Швидке холонути",
                             "quiet_cool": "Тихе холонути",
-                            "auto": "Авто"
+                            "auto": "Авто",
+                            "smart": "Розумний",
+                            "quick": "Швидкий",
+                            "quiet": "Тихий"
                         }
                     }
                 }
@@ -212,6 +273,38 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Пауза"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "off": "Вимк",
+                            "healthy_steam": "Здоровий пар",
+                            "fresh_steam": "Свіжий пар",
+                            "high_temp_steam": "Висока температура пару",
+                            "stew": "Тушення",
+                            "bake_up_and_down": "Випікання зверху і знизу",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Нижній гарячий повітря",
+                            "on_strong_roast": "На сильному смаженні",
+                            "3d_hot_air": "3D гарячий повітря",
+                            "air_fry": "Повітряна фритюрниця",
+                            "steam_frying": "Парове смаження",
+                            "one_click_bread": "Один клік хліб",
+                            "quick_heat": "Швидке нагрівання",
+                            "keep_warm": "Підтримувати тепло",
+                            "unfreeze": "Розморожування",
+                            "fermentation": "Ферментація",
+                            "descale": "Відкальцювання",
+                            "local_recipes": "Місцеві рецепти",
+                            "drying": "Сушіння",
+                            "custom": "Користувацький",
+                            "low_steaming": "Низьке парування",
+                            "medium_steaming": "Середнє парування",
+                            "high_steaming": "Високе парування"
                         }
                     }
                 }
@@ -230,7 +323,34 @@
             }
         },
         "fan": {
+            "aroma_diffuser": {
+                "name": "Ароматизатор",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Низький",
+                            "medium": "Середній",
+                            "high": "Високий",
+                            "continuous": "Постійний",
+                            "intermittent": "Інтермітентний",
+                            "timer": "Таймер"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "Осушувач",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Очистити",
+                            "dehumidify": "Осушити"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
+                "name": "Вентилятор",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -241,6 +361,10 @@
                             "fresh": "Свіжий",
                             "smart": "Розумний",
                             "strong": "Сильний",
+                            "custom": "Користувацький",
+                            "high": "Високий",
+                            "medium": "Середній",
+                            "low": "Низький",
                             "displayoff": "Дисплей вимк",
                             "off": "Вимк"
                         }
@@ -248,6 +372,7 @@
                 }
             },
             "ventilation": {
+                "name": "Вентиляція",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -256,7 +381,12 @@
                             "sleep": "Сон",
                             "auto": "Авто",
                             "eco": "Еко",
-                            "anti-condensation": "Антиконденсат"
+                            "anti-condensation": "Антиконденсат",
+                            "extractor": "Екстрактор",
+                            "heat_recovery": "Відновлення тепла",
+                            "timer": "Таймер",
+                            "on": "Увімк",
+                            "off": "Вимк"
                         }
                     }
                 }
@@ -294,13 +424,236 @@
             }
         },
         "number": {
+            "maximum_temperature": {
+                "name": "Максимальна температура"
+            },
+            "minimum_temperature": {
+                "name": "Мінімальна температура"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} поріг"
+            },
+            "temperature_calibration": {
+                "name": "Калібрування температури"
+            },
             "timer": {
                 "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
             }
         },
         "select": {
+            "currency": {
+                "name": "Валюта",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Режим теплового насоса",
+                "state": {
+                    "heat": "Нагрівання",
+                    "cool": "Охолодження",
+                    "auto": "Авто",
+                    "floor_heat": "Тепла підлога",
+                    "off": "Вимк",
+                    "hotwater": "Гаряча вода",
+                    "hotwater_cool": "Гаряча вода та охолодження",
+                    "hotwater_heat": "Гаряча вода та нагрівання",
+                    "hotwater_auto": "Гаряча вода та авто",
+                    "hotwater_floor_heat": "Гаряча вода та тепла підлога"
+                }
+            },
+            "initial_state": {
+                "name": "Початковий стан",
+                "state": {
+                    "off": "Вимк",
+                    "on": "Увімк",
+                    "memory": "Пам'ять"
+                }
+            },
+            "kettle_mode": {
+                "name": "Режим чайника",
+                "state": {
+                    "off": "Вимк",
+                    "heat": "Нагрівання",
+                    "boil": "Кип'ятіння",
+                    "quick_heat": "Швидке нагрівання",
+                    "quick_boil": "Швидке кип'ятіння",
+                    "keep_warm": "Підтримувати тепло",
+                    "custom": "Користувацький",
+                    "dechlorinate": "Дехлорування",
+                    "black_tea": "Чорний чай",
+                    "green_tea": "Зелений чай",
+                    "coffee": "Кава",
+                    "honey_water": "Медова вода",
+                    "infant_formula": "Дитяча суміш",
+                    "white_tea": "Білий чай",
+                    "oolong_tea": "Улун"
+                }
+            },
+            "language": {
+                "name": "Мова",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "light_mode": {
+                "name": "Режим світла",
+                "state": {
+                    "off": "Вимк",
+                    "on": "Увімк",
+                    "state": "Стан",
+                    "locator": "Локатор"
+                }
+            },
+            "mopping": {
+                "name": "Прибирання",
+                "state": {
+                    "off": "Вимк",
+                    "auto": "Авто",
+                    "low": "Низький",
+                    "medium": "Середній",
+                    "high": "Високий",
+                    "very_high": "Дуже високий"
+                }
+            },
+            "recipe": {
+                "name": "Рецепт",
+                "state": {
+                    "pizza": "Піца",
+                    "fries": "Картопля фрі",
+                    "chicken": "Курка",
+                    "shrimp": "Креветки",
+                    "fish": "Риба",
+                    "chicken_drumsticks": "Курячі гомілки",
+                    "vegetables": "Овочі",
+                    "desserts": "Десерти",
+                    "none": "Нічого",
+                    "chicken_wings": "Курячі крильця",
+                    "steak": "Стейк",
+                    "onion_rings": "Цибуляні кільця",
+                    "bacon": "Бекон",
+                    "cake": "Торт",
+                    "bread": "Хліб",
+                    "toast": "Тост",
+                    "sausage": "Ковбаса",
+                    "dry_fruit": "Сухофрукти",
+                    "custom": "Користувацький",
+                    "cloud_recipe": "Хмарний рецепт",
+                    "default": "За замовчуванням",
+                    "keep_warm": "Підтримувати тепло",
+                    "preheat": "Попередній нагрів"
+                }
+            },
+            "scene": {
+                "name": "Сцена",
+                "state": {
+                    "relax": "Релакс",
+                    "movie": "Фільм",
+                    "party": "Вечірка",
+                    "romantic": "Романтика",
+                    "night": "Ніч",
+                    "morning": "Ранок",
+                    "working": "Робота",
+                    "leisure": "Дозвілля",
+                    "vacation": "Відпустка",
+                    "reading": "Читання",
+                    "twinkle": "Мерехтіння",
+                    "gaming": "Ігри",
+                    "none": "Нічого"
+                }
+            },
             "timer": {
-                "name": "Таймер"
+                "name": "Таймер",
+                "state": {
+                    "cancel": "Скасувати",
+                    "continuous": "Постійний",
+                    "30s": "30 секунд",
+                    "1m": "1 хвилина",
+                    "2m": "2 хвилини",
+                    "5m": "5 хвилин",
+                    "10m": "10 хвилин",
+                    "15m": "15 хвилин",
+                    "20m": "20 хвилин",
+                    "25m": "25 хвилин",
+                    "30m": "30 хвилин",
+                    "35m": "35 хвилин",
+                    "40m": "40 хвилин",
+                    "45m": "45 хвилин",
+                    "50m": "50 хвилин",
+                    "55m": "55 хвилин",
+                    "1h": "1 година",
+                    "1h5m": "1 година 5 хвилин",
+                    "1h10m": "1 година 10 хвилин",
+                    "1h15m": "1 година 15 хвилин",
+                    "1h20m": "1 година 20 хвилин",
+                    "1h25m": "1 година 25 хвилин",
+                    "1h30m": "1 година 30 хвилин",
+                    "1h35m": "1 година 35 хвилин",
+                    "1h40m": "1 година 40 хвилин",
+                    "1h45m": "1 година 45 хвилин",
+                    "1h50m": "1 година 50 хвилин",
+                    "1h55m": "1 година 55 хвилин",
+                    "2h": "2 години",
+                    "2h30m": "2 години 30 хвилин",
+                    "3h": "3 години",
+                    "3h30m": "3 години 30 хвилин",
+                    "4h": "4 години",
+                    "4h30m": "4 години 30 хвилин",
+                    "5h": "5 годин",
+                    "5h30m": "5 годин 30 хвилин",
+                    "6h": "6 годин",
+                    "6h30m": "6 годин 30 хвилин",
+                    "7h": "7 годин",
+                    "7h30m": "7 годин 30 хвилин",
+                    "8h": "8 годин",
+                    "8h30m": "8 годин 30 хвилин",
+                    "9h": "9 годин",
+                    "9h30m": "9 годин 30 хвилин",
+                    "10h": "10 годин",
+                    "11h": "11 годин",
+                    "12h": "12 годин",
+                    "13h": "13 годин",
+                    "14h": "14 годин",
+                    "15h": "15 годин",
+                    "16h": "16 годин",
+                    "17h": "17 годин",
+                    "18h": "18 годин",
+                    "19h": "19 годин",
+                    "20h": "20 годин",
+                    "21h": "21 годин",
+                    "22h": "22 годин",
+                    "23h": "23 годин",
+                    "24h": "24 години",
+                    "36h": "36 годин",
+                    "48h": "48 годин",
+                    "72h": "72 години",
+                    "1d": "1 день",
+                    "2d": "2 дні",
+                    "3d": "3 дні",
+                    "4d": "4 дні",
+                    "5d": "5 днів",
+                    "6d": "6 днів",
+                    "7d": "7 днів"
+                }
             },
             "temperature_unit": {
                 "name": "Температурна одиниця",
@@ -308,16 +661,210 @@
                     "celsius": "Цельсія",
                     "fahrenheit": "Фаренгейт"
                 }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} дія",
+                "state": {
+                    "ignore": "Ігнорувати",
+                    "alarm": "Тривога",
+                    "trip_breaker": "Відключення автоматичного вимикача"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Вбудований рецепт",
+                "state": {
+                    "none": "Нічого",
+                    "steamed_egg_with_okra": "Парове яйце з окрою",
+                    "steamed_sea_bass": "Паровий морський окунь",
+                    "steamed_prawns": "Парові креветки",
+                    "handmade_steamed_bread": "Ручний паровий хліб",
+                    "fan_steamed_baby_vegetables": "Вентилятор парових дитячих овочів",
+                    "braised_pork": "Тушкована свинина",
+                    "snow_fungus_and_bird_s_nest": "Снігова гриби та гнізда птахів",
+                    "crab_pot": "Крабовий горщик",
+                    "potato_ribs": "Картопляні ребра",
+                    "coconut_chicken_soup": "Кокосовий курячий суп",
+                    "snack_platter": "Снек-платтер",
+                    "chicken_skewers": "Курячі шашлики",
+                    "roasted_pork_knuckle": "Смажена свиняча копита",
+                    "dried_lemon": "Сушений лимон",
+                    "pork_jerky": "Свинячий джерки",
+                    "crispy_hairtail": "Хрустка косатка",
+                    "spicy_grilled_fish": "Гостре смажена риба",
+                    "roasted_sweet_potatoes": "Смажені солодкі картоплі",
+                    "roasted_chicken_wings": "Смажені курячі крильця",
+                    "cumin_lamb_chops": "Кумін ламб чопс",
+                    "honey_grilled_chicken": "Медовий смажений курча",
+                    "garlic_eggplant": "Часник баклажан",
+                    "portuguese_egg_tart": "Португальський яєчний тарт",
+                    "creme_brulee": "Крем-брюле",
+                    "cocoa_chips": "Какао-чіпси",
+                    "butter_cookies": "Масляні печиво",
+                    "chiffon_cake": "Шифоновий торт",
+                    "puff_pastry": "Відкритий пиріг",
+                    "red_bean_bread": "Червоний бобовий хліб",
+                    "milk_toast": "Молочний тост"
+                }
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "Якість повітря",
+                "state": {
+                    "excellent": "Відмінно",
+                    "good": "Добре",
+                    "moderate": "Помірно",
+                    "poor": "Погано",
+                    "severe": "Важко",
+                    "danger": "Небезпечно"
+                }
+            },
+            "status": {
+                "name": "Статус",
+                "state": {
+                    "available": "Доступний",
+                    "plugged_in": "Підключений",
+                    "fault_unplugged": "Помилка (відключено)",
+                    "charging": "Заряджається",
+                    "discharging": "Розряджається",
+                    "waiting": "Очікування",
+                    "charged": "Заряджено",
+                    "fault": "Помилка",
+                    "paused": "Призупинено",
+                    "waiting_for_authorization": "Очікування авторизації",
+                    "standby": "Очікування",
+                    "heating": "Нагрівання",
+                    "cooling": "Охолодження",
+                    "keeping_warm": "Тримати тепло",
+                    "no_water": "Немає води",
+                    "boiling": "Кип'ятіння",
+                    "reserve_only": "Тільки резерв",
+                    "unknown": "Невідомо",
+                    "idle": "Вільний",
+                    "auto": "Авто",
+                    "manual": "Ручний",
+                    "rain_delay": "Затримка дощу",
+                    "off": "Вимк",
+                    "on": "Увімк",
+                    "cooking": "Приготування",
+                    "done": "Готово",
+                    "door_open": "Двері відкриті",
+                    "setting": "Налаштування",
+                    "pre_heating": "Попередній нагрів",
+                    "scheduled": "Заплановано",
+                    "at_temperature": "При температурі",
+                    "done_stage_1": "Готово стадія 1",
+                    "done_stage_2": "Готово стадія 2",
+                    "done_stage_3": "Готово стадія 3",
+                    "done_stage_4": "Готово стадія 4",
+                    "done_stage_5": "Готово стадія 5",
+                    "done_stage_6": "Готово стадія 6",
+                    "done_stage_7": "Готово стадія 7",
+                    "done_stage_8": "Готово стадія 8",
+                    "done_stage_9": "Готово стадія 9",
+                    "done_stage_10": "Готово стадія 10",
+                    "no_food": "Немає їжі",
+                    "jammed": "Заклинило",
+                    "blocked": "Заблоковано",
+                    "feeding": "Годування",
+                    "feeding_complete": "Годування завершено",
+                    "caking": "Тортування",
+                    "cleaning": "Чищення",
+                    "sleep": "Сон",
+                    "sterilizing": "Стерилізація",
+                    "deodorizing": "Дезодорація",
+                    "occupied": "Зайнято",
+                    "normal": "Нормально",
+                    "low": "Низький",
+                    "high": "Високий",
+                    "unwashed": "Не вимито",
+                    "pre_washing": "Попереднє миття",
+                    "washing": "Миття",
+                    "rinsing": "Промивання",
+                    "drying": "Сушіння",
+                    "air_purging": "Очищення повітря",
+                    "anti_freeze": "Антизамерзання",
+                    "close": "Закрито",
+                    "monitor": "Монітор",
+                    "working": "Працює",
+                    "warning": "Попередження",
+                    "starting": "Початок",
+                    "emptying": "Опорожнення",
+                    "resetting": "Скидання",
+                    "reverse": "Реверс",
+                    "full": "Повний",
+                    "empty": "Порожній",
+                    "missing": "Відсутній",
+                    "formatting": "Форматування",
+                    "unformatted": "Неформатований",
+                    "maintenance_required": "Потрібне обслуговування",
+                    "dry": "Сухий",
+                    "comfortable": "Комфортний",
+                    "damp": "Вогкий"
+                }
+            },
             "time_remaining": {
                 "name": "Залишився час"
+            },
+            "time_remaining_x": {
+                "name": "Залишився час {x}"
+            },
+            "cooking_status": {
+                "name": "Статус",
+                "state": {
+                    "wait": "Очікування на приготування",
+                    "reservation": "В резерві",
+                    "cooking": "В процесі",
+                    "cancel": "Скасувати",
+                    "done": "Готово",
+                    "pause": "Приготування призупинено"
+                }
+            },
+            "water_level": {
+                "name": "Рівень води",
+                "state": {
+                    "full": "Повний",
+                    "high": "Високий",
+                    "medium": "Середній",
+                    "low": "Низький",
+                    "empty": "Порожній"
+                }
+            },
+            "energy_produced": {
+                "name": "Вироблена енергія"
+            },
+            "energy_consumed": {
+                "name": "Спожита енергія"
+            },
+            "energy_produced_x": {
+                "name": "Вироблена енергія {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Спожита енергія {x}"
+            },
+            "current_x": {
+                "name": "Поточний {x}"
+            },
+            "voltage_x": {
+                "name": "Напруга {x}"
+            },
+            "power_x": {
+                "name": "Потужність {x}"
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "Протиморозний"
+            },
+            "breaker": {
+                "name": "Автоматичний вимикач",
+                "state": {
+                    "off": "Відкрито",
+                    "on": "Закрито"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Не турбувати"
             },
             "evaporator_cleaning": {
                 "name": "Очищення випарника"
@@ -328,8 +875,46 @@
             "keytone": {
                 "name": "Тон клавіш"
             },
+            "outlet_x": {
+                "name": "Розетка {x}"
+            },
+            "sleep": {
+                "name": "Сон"
+            },
+            "switch_x": {
+                "name": "Вимикач {x}"
+            },
+            "electrolytic_sterilization": {
+                "name": "Електролітична стерилізація"
+            },
             "uv_sterilization": {
                 "name": "УФ стерилізація"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Сцена"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Клапан {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Водонагрівач"
+            },
+            "kettle": {
+                "name": "Чайник"
             }
         }
     }

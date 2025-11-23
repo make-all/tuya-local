@@ -1,61 +1,59 @@
 name: Sound machine nightlight
+legacy_type: momcozy_white_noise_machine
 products:
   - id: woqiobw0jfafgmar
-    name: Momland nightlight with white noise
-primary_entity:
-  entity: light
-  translation_key: nightlight
-  dps:
-    - id: 3
-      type: boolean
-      name: switch
-    - id: 2
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: customize_scene
-          value: Custom Scene
-        - dps_val: null
-          value: white
-          hidden: true
-      optional: true
-    - id: 6
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 5
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 1
-      type: boolean
-      name: power
-      optional: true
-secondary_entities:
+    manufacturer: Momland
+    name: Nightlight with white noise
+entities:
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: change
+            value: Rainbow
+          - dps_val: breath
+            value: Breath
+          - dps_val: light_off
+            value: hs
+          - dps_val: light_on
+            value: white
+      - id: 6
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 5
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 1
+        type: boolean
+        name: power
+        optional: true
   - entity: select
     name: Light mode
     icon: "mdi:lightbulb-question"
@@ -181,8 +179,7 @@ secondary_entities:
           - dps_val: ringtone_4
             value: Sleep
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 12
@@ -191,21 +188,21 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: wake_up
-            value: Wake up
+            value: morning
           - dps_val: help_sleep
             value: Help sleep
           - dps_val: breath
             value: Breathing
           - dps_val: colourful
-            value: Colourful
+            value: party
           - dps_val: play
-            value: Play
+            value: leisure
           - dps_val: reading
-            value: Reading
+            value: reading
           - dps_val: night
-            value: Nightlight
+            value: night
           - dps_val: null
-            value: None
+            value: none
             hidden: true
   - entity: select
     name: Custom scene

@@ -1,0 +1,80 @@
+name: Thermostat
+products:
+  - id: k2vv9hr0yumh0vo8
+    manufacturer: Polytherm
+    model: Polyalpha
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: cool_heat
+            conditions:
+              - dps_val: false
+                value: cool
+              - dps_val: true
+                value: heat
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: program
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - step: 5
+            scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: open
+            constraint: cool_heat
+            conditions:
+              - dps_val: false
+                value: cooling
+              - dps_val: true
+                value: heating
+          - dps_val: close
+            value: idle
+      - id: 104
+        type: boolean
+        name: cool_heat
+        hidden: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 105
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 255

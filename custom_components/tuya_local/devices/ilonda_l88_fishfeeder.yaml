@@ -1,0 +1,39 @@
+name: Fish feeder
+products:
+  - id: 3jskpz3pwqn9oojn
+    manufacturer: iLonda
+    model: L88
+entities:
+  - entity: switch
+    icon: "mdi:fish"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

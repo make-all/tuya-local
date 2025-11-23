@@ -1,0 +1,66 @@
+name: Ceiling fan
+products:
+  - id: 9wk4nujruztpwi5f
+    manufacturer: Yijingkc
+    model: "284-8"
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: fan
+    dps:
+      - id: 101
+        type: string
+        name: direction
+      - id: 102
+        type: string
+        name: speed_enum
+      - id: 104
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 105
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"

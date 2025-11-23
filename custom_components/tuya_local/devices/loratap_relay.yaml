@@ -1,29 +1,41 @@
 name: Relay switch
 products:
   - id: owzofmjyg7foteb6
-    name: Loratap RR500W
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 42
-      type: string
-      name: cycle_time
-      optional: true
-    - id: 43
-      type: string
-      name: random_time
-      optional: true
-    - id: 44
-      type: string
-      name: inching
-      optional: true
-secondary_entities:
-  - entity: number
-    name: Countdown
+    manufacturer: Loratap
+    model: RR500W
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cycle_time
+        optional: true
+      - id: 43
+        type: string
+        name: random_time
+        optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
+  - entity: time
     translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -34,41 +46,33 @@ secondary_entities:
           max: 86400
         unit: s
   - entity: select
-    name: Restart Status
+    translation_key: initial_state
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 39
         type: string
         name: option
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: "off"
           - dps_val: 1
-            value: "On"
+            value: "on"
           - dps_val: 2
-            value: Keep state
-      - id: 42
-        type: string
-        name: cycle_time
-      - id: 43
-        type: string
-        name: random_time
+            value: memory
   - entity: select
-    name: Light Mode
+    translation_key: light_mode
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 40
         type: string
         name: option
         mapping:
           - dps_val: relay
-            value: "Indicate switch on/off"
+            value: state
           - dps_val: pos
-            value: "Indicate switch location"
+            value: locator
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

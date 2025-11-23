@@ -1,15 +1,19 @@
-name: DIGOO DG-SP202
-primary_entity:
-  entity: switch
-  class: outlet
-  name: Outlet 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+name: Dual switch
+# products: DIGOO DG-SP202
+entities:
   - entity: switch
-    name: Outlet 2
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
@@ -49,10 +53,38 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer_1
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     dps:
       - id: 9
         name: value
@@ -66,8 +98,12 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer_2
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 10
         name: value

@@ -1,28 +1,31 @@
 name: Solar inverter
 products:
   - id: 0kllybtbzftaee7y
-    name: Avidsen Soria Karst-400
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 15
-      name: inverter_type
-      type: string
-    - id: 16
-      name: inverter_id
-      type: string
-    - id: 17
-      name: imei_imsi
-      type: string
-secondary_entities:
+    manufacturer: Avidsen
+    model: Soria Karst-400
+  - id: 7bqwya0ydtz4q3ss
+    manufacturer: Kaideng Energy
+    model: WVC-1600
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 15
+        name: inverter_type
+        type: string
+      - id: 16
+        name: inverter_id
+        type: string
+      - id: 17
+        name: imei_imsi
+        type: string
   - entity: switch
     name: Inverter switch
     category: config
@@ -31,7 +34,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Power Adjustement
+    name: Power adjustement
     category: config
     class: power_factor
     dps:
@@ -55,7 +58,7 @@ secondary_entities:
           - dps_val: "1"
             value: true
   - entity: sensor
-    name: AC Power
+    name: AC power
     class: power
     dps:
       - id: 103
@@ -67,7 +70,7 @@ secondary_entities:
           - scale: 10
   - entity: sensor
     class: power
-    name: Total Power
+    name: Total power
     category: diagnostic
     dps:
       - id: 10
@@ -78,7 +81,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: PV Power
+    name: PV power
     category: diagnostic
     class: power
     dps:
@@ -90,7 +93,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: PV DC Voltage
+    name: PV DC voltage
     class: voltage
     category: diagnostic
     dps:
@@ -98,12 +101,12 @@ secondary_entities:
         type: base64
         name: sensor
         unit: V
+        mask: "FFFF00000000"
         optional: true
         mapping:
-          - mask: "FFFF00000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: PV DC Current
+    name: PV DC current
     class: current
     category: diagnostic
     dps:
@@ -112,11 +115,11 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
+        mask: "0000FFFF0000"
         mapping:
-          - mask: "0000FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: PV DC Power
+    name: PV DC power
     class: power
     category: diagnostic
     dps:
@@ -125,11 +128,11 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
+        mask: "00000000FFFF"
         mapping:
-          - mask: "00000000FFFF"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: AC Voltage
+    name: AC voltage
     class: voltage
     category: diagnostic
     dps:
@@ -138,11 +141,11 @@ secondary_entities:
         name: sensor
         unit: V
         optional: true
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF0000000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: AC Current
+    name: AC current
     class: current
     category: diagnostic
     dps:
@@ -151,9 +154,9 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF0000000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: AC active power
     class: power
@@ -164,9 +167,9 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
+        mask: "0000000000FFFFFF0000"
         mapping:
-          - mask: "0000000000FFFFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic

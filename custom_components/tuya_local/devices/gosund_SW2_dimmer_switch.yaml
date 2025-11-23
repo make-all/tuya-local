@@ -1,0 +1,26 @@
+name: Dimmer switch
+products:
+  - id: qcgkaqmaivuwfwz4
+    manufacturer: Gosund
+    model: SW2-AR
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: brightness
+        range:
+          min: 25
+          max: 255
+  - entity: binary_sensor
+    name: Temperature alarm
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+        optional: true

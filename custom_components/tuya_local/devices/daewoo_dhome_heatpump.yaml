@@ -1,61 +1,58 @@
 name: Air conditioner
 products:
   - id: 4aeadm1xijnxjsu6
-    name: Daewoo DHome OL-A011
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: Cool
-              value: cool
-            - dps_val: Dry
-              value: dry
-            - dps_val: Fan
-              value: fan_only
-            - dps_val: Heat
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 32
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: Low
-          value: low
-        - dps_val: Hig
-          value: high
-    - id: 22
-      type: bitfield
-      name: fault_code
-    - id: 101
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: sleep
-        - dps_val: false
-          value: comfort
-secondary_entities:
+    manufacturer: Daewoo
+    model: DHome OL-A011
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cool
+              - dps_val: Dry
+                value: dry
+              - dps_val: Fan
+                value: fan_only
+              - dps_val: Heat
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: Hig
+            value: high
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -67,3 +64,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

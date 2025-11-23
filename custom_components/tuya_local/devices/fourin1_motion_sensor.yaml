@@ -1,0 +1,141 @@
+name: Motion sensor
+products:
+  - id: e1mwwvns
+    model: 10GHz 4in1
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 19
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 28800
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: °
+        mapping:
+          - scale: 10
+        class: measurement
+      - id: 109
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -30
+          max: 30
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Humidity calibration
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+  - entity: sensor
+    translation_key: illuminance
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Light sampling interval
+    category: config
+    class: duration
+    icon: "mdi:brightness-5"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 480
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

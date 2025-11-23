@@ -31,6 +31,8 @@ class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
                 FanEntityFeature.OSCILLATE
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_ON
+                | FanEntityFeature.TURN_OFF
             ),
         )
 

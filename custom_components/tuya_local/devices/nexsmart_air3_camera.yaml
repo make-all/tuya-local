@@ -1,0 +1,311 @@
+name: Camera
+products:
+  # The product ID (or product_id) from your device information
+  - id: vjjoayeljqpxz2oe
+    manufacturer: Nexsmart
+    model: AIR 3
+entities:
+  # ------------------------------------
+  # 1. Main Camera & Snapshot
+  # ------------------------------------
+  - entity: event
+    name: Camera
+    category: diagnostic
+    icon: "mdi:camera-burst"
+    # Snapshot trigger (matches movement_detect_pic: 115)
+    dps:
+      - id: 115
+        name: event
+        type: base64
+        optional: true
+        sensitive: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: captured
+      - id: 115
+        name: snapshot_data
+        type: base64
+        optional: true
+        sensitive: true
+  # ------------------------------------
+  # 2. Battery and Power
+  # ------------------------------------
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    # Battery Level Sensor (matches wireless_electricity: 145)
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+
+  - entity: binary_sensor
+    class: battery_charging
+    # Power Mode Sensor (matches wireless_powermode: 146)
+    dps:
+      - id: 146
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    # Awake/Sleep Status (matches wireless_awake: 149)
+    dps:
+      - id: 149
+        type: boolean
+        name: sensor
+
+  - entity: number
+    name: Low battery threshold
+    icon: "mdi:battery-alert-variant-outline"
+    category: config
+    # Low Battery Threshold (matches wireless_lowpower: 147)
+    dps:
+      - id: 147
+        type: integer
+        name: value
+        unit: "%"
+        # Range is 10-50 based on device dump
+        range:
+          min: 10
+          max: 50
+
+  # ------------------------------------
+  # 3. Basic Configuration
+  # ------------------------------------
+  - entity: light
+    translation_key: indicator
+    category: config
+    # Indicator LED (matches basic_indicator: 101)
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    # Flip Image Switch (matches basic_flip: 103)
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Watermark
+    category: config
+    icon: "mdi:watermark"
+    # Watermark/OSD Switch (matches basic_osd: 104)
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    # Night Vision Mode Selector (matches nightvision_mode: 124)
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "auto"
+            value: Auto
+          - dps_val: "color_mode"
+            value: Color Night Vision
+          - dps_val: "ir_mode"
+            value: Infrared Night Vision
+
+  # ------------------------------------
+  # 4. Detection & Alarm
+  # ------------------------------------
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    # PIR Switch (matches ipc_pir_switch: 240)
+    dps:
+      - id: 240
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Motion sensitivity
+    icon: "mdi:ruler-square"
+    category: config
+    # PIR Sensitivity (matches ipc_pir_sensitivity: 241)
+    dps:
+      - id: 241
+        type: integer
+        name: value
+        # Range is 1-10 based on device dump
+        range:
+          min: 1
+          max: 10
+
+  - entity: switch
+    name: Humanoid filter
+    icon: "mdi:account-alert"
+    category: config
+    # Humanoid Filter (matches humanoid_filter: 170)
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+
+  # ------------------------------------
+  # 5. Alarm Mode & Linkage
+  # ------------------------------------
+  - entity: select
+    name: Alarm mode
+    icon: "mdi:bell-ring-outline"
+    category: config
+    # Alarm Mode (matches alarm_mode: 243)
+    dps:
+      - id: 243
+        type: string
+        name: option
+        mapping:
+          # Mapping based on typical Tuya IPC modes
+          - dps_val: "0"
+            value: Disabled
+          - dps_val: "1"
+            value: All Day
+          - dps_val: "2"
+            value: Custom Schedule
+
+  - entity: select
+    name: Device linkage
+    icon: "mdi:link-variant"
+    category: config
+    # Device Linkage (matches linkage: 245)
+    dps:
+      - id: 245
+        type: string
+        name: option
+        mapping:
+          # Mapping based on typical Tuya IPC linkage/pre-record settings
+          - dps_val: "0"
+            value: Pre-Record Disabled
+          - dps_val: "1"
+            value: Short Pre-Record
+          - dps_val: "3"
+            value: Full Linkage/Record
+
+  # ------------------------------------
+  # 6. Lights & Sirens
+  # ------------------------------------
+  - entity: light
+    name: Floodlight
+    icon: "mdi:light-flood-down"
+    category: config
+    # Floodlight Light (matches floodlight_switch: 138)
+    dps:
+      - id: 138
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Audible alarm
+    icon: "mdi:bell-alert"
+    category: config
+    # Audible Alarm Switch (matches ipc_audible_alarm: 242)
+    dps:
+      - id: 242
+        type: boolean
+        name: switch
+
+  - entity: siren
+    category: config
+    # Siren Switch (matches siren_switch: 159)
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+      - id: 195
+        type: integer
+        name: volume_level
+        # Range is 0-100 based on device dump
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 100
+  # ------------------------------------
+  # 7. SD Card and Storage
+  # ------------------------------------
+  - entity: sensor
+    name: SD capacity
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    # SD Capacity Sensor (matches sd_storge: 109)
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    # SD Status Sensor (matches sd_status: 110)
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    # SD Format Button (matches sd_format: 111) and Status (117)
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+      - id: 117
+        type: integer
+        name: state
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: -20000
+            value: Unknown
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted

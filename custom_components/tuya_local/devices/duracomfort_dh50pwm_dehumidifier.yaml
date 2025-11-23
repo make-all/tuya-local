@@ -1,0 +1,79 @@
+name: Dehumidifier
+products:
+  - id: keyfa7qemdvvux5c
+    manufacturer: Dura Comfort
+    model: DH50PWM
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 5
+        name: mode
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: normal
+          - dps_val: 1
+            value: boost
+          - dps_val: 2
+            value: comfort
+          - dps_val: 3
+            value: continuous
+      - id: 6
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 18
+        name: current_humidity
+        type: integer
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 8
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 50
+          - dps_val: "2"
+            value: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 32
+            value: false
+          - value: true
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: switch
+    name: Pump
+    icon: "mdi:water-pump"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch

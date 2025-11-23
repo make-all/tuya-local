@@ -1,42 +1,65 @@
-name: Galaxy Light
+name: Star projector
 products:
   - id: okyhahmixunjmbca
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 52
-      type: boolean
-      name: color_mode
-      mapping:
-        - dps_val: false
-          value: white
-        - dps_val: true
-          value: hs
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 10
-            max: 1000
-secondary_entities:
+    model: Galaxy
+  - id: jteg9ktrhbxtiicz
+    manufacturer: BlissLights
+    model: Sky Lite Evolve
+    model_id: SKY-EVOLVE-B-RCW8
+  - id: l8xe7jasktrwjd7a
+    model: Aurora Galaxy Star Projector
+  - id: shz7blrfcpfccvo3
+    manufacturer: Mirabella Genio
+    model: Genio Galaxy Starship Projector I004545
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 52
+        type: boolean
+        name: color_mode
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 10
+              max: 1000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    category: config
+    class: duration
     dps:
       - id: 26
         type: integer
@@ -64,18 +87,15 @@ secondary_entities:
         name: effect
         type: string
         mapping:
-          - dps_val: manual
-            value: Manual
           - dps_val: scene
             value: Scene
+          - dps_val: manual
+            value: Manual
           - dps_val: music
             value: Music
-      - id: 58
-        name: star_scene
-        type: string
-        optional: true
   - entity: fan
     name: Laser movement
+    icon: "mdi:rotate-3d-variant"
     dps:
       - id: 60
         type: boolean
@@ -86,3 +106,39 @@ secondary_entities:
         range:
           min: 0
           max: 100
+  - entity: text
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    hidden: true
+    dps:
+      - id: 58
+        type: base64
+        name: value
+  - entity: select
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        name: option
+        mapping:
+          - dps_val: "AAA="
+            value: Cosmos
+          - dps_val: "AAE="
+            value: Sky
+          - dps_val: "AAI="
+            value: Space
+          - dps_val: "AAM="
+            value: Ocean
+  - entity: text
+    name: Music sync
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
+      - id: 42
+        type: hex
+        optional: true
+        name: value

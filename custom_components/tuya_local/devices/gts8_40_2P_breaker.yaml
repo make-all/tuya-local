@@ -1,0 +1,53 @@
+name: Circuit breaker
+products:
+  - id: kooaoam3tyfqanva
+    model: GTS8-40 2P
+entities:
+  - entity: switch
+    name: Breaker
+    icon: "mdi:fuse"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    category: config
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory

@@ -1,56 +1,57 @@
-name: Beca BHP-6000 thermostat F
+name: Thermostat
 products:
   - id: drwezxukumr9ohuh
+    manufacturer: Beca
+    model: BHP-6000 (°F)
 legacy_type: beca_bhp6000_thermostat
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 2
-      name: temperature
-      type: integer
-      unit: F
-      range:
-        min: 40
-        max: 95
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: program
-        - dps_val: 2
-          value: temp_override
-        - dps_val: 3
-          value: perm_override
-        - dps_val: 4
-          value: away
-    - id: 5
-      name: hvac_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: cool
-        - dps_val: 2
-          value: heat
-        - dps_val: 3
-          value: "off"
-        - dps_val: 4
-          value: heat_cool
-        - dps_val: 5
-          value: auto
-    - id: 6
-      name: fan_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: auto
-        - dps_val: true
-          value: "on"
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 40
+          max: 95
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: program
+          - dps_val: 2
+            value: temp_override
+          - dps_val: 3
+            value: perm_override
+          - dps_val: 4
+            value: away
+      - id: 5
+        name: hvac_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: cool
+          - dps_val: 2
+            value: heat
+          - dps_val: 3
+            value: "off"
+          - dps_val: 4
+            value: heat_cool
+          - dps_val: 5
+            value: auto
+      - id: 6
+        name: fan_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: auto
+          - dps_val: true
+            value: "on"
   - entity: lock
     translation_key: child_lock
     category: config

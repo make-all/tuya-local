@@ -1,24 +1,56 @@
 name: Dual switch with timers
 products:
   - id: 7c35xxu0foeqpdka
-    name: BlitzWolf BW-SS5
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: BlitzWolf
+    model: BW-SS5
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
     category: config
     dps:
       - id: 9
@@ -32,8 +64,12 @@ secondary_entities:
             step: 60
         unit: min
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
     category: config
     dps:
       - id: 10

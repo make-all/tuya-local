@@ -1,31 +1,35 @@
 # Example DPS Status
 # {'dps': {'1': False, '14': 'memory', '15': 'relay', '106': '3way_switch'}}
-name: GE Jasco Ultra Pro Toggle Switch
+name: Toggle switch
 products:
   - id: 7kvomtxxfqcrbiqq
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Jasco
+    model: UltraPro Toggle Switch
+  - id: nobhkdmuof1zhgle
+    manufacturer: Loratap
+    model: QCRR400W-WB2S
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: select
     category: config
-    name: Restore power state
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Remember Last Status
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: select
-    name: Indicator Light
+    translation_key: light_mode
     category: config
     dps:
       - id: 15
@@ -33,8 +37,37 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
           - dps_val: pos
-            value: Indicate switch location
+            value: locator
           - dps_val: relay
-            value: Indicate switch on/off
+            value: state
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

@@ -1,18 +1,17 @@
 name: Dual dimmer
-primary_entity:
-  entity: light
-  name: Dimmer 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    name: Dimmer 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: light
     name: Dimmer 2
     dps:

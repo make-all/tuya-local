@@ -76,7 +76,7 @@ def redact_dps(device: TuyaLocalDevice, dps: dict[str, Any]) -> dict[str, Any]:
     for entity in device._children:
         for dp in entity._config.dps():
             if dp.sensitive:
-                sensitive += dp.id
+                sensitive.append(dp.id)
     return {k: (REDACTED if k in sensitive else v) for (k, v) in dps.items()}
 
 
@@ -90,7 +90,7 @@ def redact_entity(
         if entity._config.config_id == entity_id:
             for dp in entity._config.dps():
                 if dp.sensitive:
-                    sensitive += dp.name
+                    sensitive.append(dp.name)
     return {k: (REDACTED if k in sensitive else v) for (k, v) in state_dict.items()}
 
 

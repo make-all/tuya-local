@@ -1,0 +1,148 @@
+name: Pet feeder
+products:
+  - id: aehfntztbgk0nf8e
+    manufacturer: BNETA
+    model: F1-D
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:clock-time-eight"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: switch
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    icon: "mdi:motion-sensor"
+    name: Motion record
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: string
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: number
+    name: Manual feed
+    category: config
+    icon: "mdi:paw"
+    dps:
+      - id: 201
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 20
+      # Following are not well enough documented to do anything useful
+      - id: 203
+        type: integer
+        optional: true
+        name: control
+      - id: 204
+        type: integer
+        optional: true
+        name: realtime_data
+      - id: 205
+        type: integer
+        optional: true
+        name: remote_dispensing
+      - id: 206
+        type: integer
+        optional: true
+        name: history_data
+      - id: 207
+        type: string
+        optional: true
+        name: schedule
+      - id: 208
+        type: string
+        optional: true
+        name: feed_voice_record
+  - entity: sensor
+    name: Portion size
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 202
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        class: measurement
+        mapping:
+          - scale: 10

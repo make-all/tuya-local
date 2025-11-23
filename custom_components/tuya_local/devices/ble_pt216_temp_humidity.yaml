@@ -1,19 +1,18 @@
 name: Temperature and humidity sensor
 products:
   - id: 04nb6kdt
-    name: PT216 / PT19DB-2
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: C
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+    model: PT216 / PT19DB-2
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     class: humidity
     dps:

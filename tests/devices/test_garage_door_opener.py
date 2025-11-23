@@ -41,14 +41,14 @@ class TestSimpleGarageOpener(TuyaDeviceTestCase):
         self.dps[SWITCH_DPS] = True
         self.assertFalse(self.subject.is_opening)
         self.dps[OPEN_DPS] = False
-        self.assertTrue(self.subject.is_opening)
+        self.assertFalse(self.subject.is_opening)
 
     def test_is_closing(self):
         self.dps[SWITCH_DPS] = False
         self.dps[OPEN_DPS] = False
         self.assertFalse(self.subject.is_closing)
         self.dps[OPEN_DPS] = True
-        self.assertTrue(self.subject.is_closing)
+        self.assertFalse(self.subject.is_closing)
         self.dps[SWITCH_DPS] = True
         self.assertFalse(self.subject.is_closing)
         self.dps[OPEN_DPS] = False

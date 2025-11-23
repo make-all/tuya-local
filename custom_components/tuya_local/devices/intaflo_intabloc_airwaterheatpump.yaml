@@ -1,0 +1,387 @@
+name: Air water heat pump
+products:
+  - id: 6qoy5faayss9nnxj
+    manufacturer: Intaflo
+    model: Intabloc
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: air_only
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: water
+                value: "off"
+                available: dhw_active
+              - dps_val: heat
+                value: heat
+                available: air_only
+              - dps_val: cool
+                value: cool
+                available: air_only
+              - dps_val: water_heat
+                value: heat
+                available: dhw_active
+              - dps_val: water_cool
+                value: cool
+                available: dhw_active
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: string
+        name: air_only
+        hidden: true
+        mapping:
+          - dps_val: heat
+            value: true
+          - dps_val: cool
+            value: true
+          - value: false
+      - id: 2
+        type: string
+        name: dhw_active
+        hidden: true
+        mapping:
+          - dps_val: water
+            value: true
+          - dps_val: water_cool
+            value: true
+          - dps_val: water_heat
+            value: true
+          - value: false
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 60
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: [cool, cool_water]
+                range:
+                  min: 10
+                  max: 30
+      - id: 17
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heat
+            value: heating
+          - dps_val: cool
+            value: cooling
+          - dps_val: autoheat
+            value: heating
+          - dps_val: autocool
+            value: cooling
+          - value: idle
+      - id: 103
+        type: integer
+        name: heating_temperature
+      - id: 104
+        type: integer
+        name: cooling_temperature
+      - id: 122
+        type: integer
+        name: current_temperature
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: air_off
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: "off"
+                available: air_cool
+              - dps_val: heat
+                value: "off"
+                available: air_heat
+              - dps_val: water
+                value: heat_pump
+                available: air_off
+              - dps_val: water_cool
+                value: heat_pump
+                available: air_cool
+              - dps_val: water_heat
+                value: heat_pump
+                available: air_heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: string
+        name: air_off
+        hidden: true
+        mapping:
+          - dps_val: water
+            value: true
+          - value: false
+      - id: 2
+        type: string
+        name: air_cool
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: true
+          - dps_val: water_cool
+            value: true
+          - value: false
+      - id: 2
+        type: string
+        name: air_heat
+        hidden: true
+        mapping:
+          - dps_val: heat
+            value: true
+          - dps_val: water_heat
+            value: true
+          - value: false
+      - id: 101
+        type: integer
+        name: temperature
+        range:
+          min: 10
+          max: 60
+      - id: 102
+        type: integer
+        name: current_temperature
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Coil defrost start
+    class: temperature
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -8
+          max: 5
+  - entity: number
+    name: Coil defrost stop
+    class: temperature
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 30
+  - entity: number
+    name: Defrost frequency
+    class: frequency
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: Hz
+        range:
+          min: 30
+          max: 90
+  - entity: number
+    name: T1
+    class: temperature
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 20
+  - entity: number
+    name: T2
+    class: temperature
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 20
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Refrigerant temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: High pressure
+    class: pressure
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: MPa
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Low pressure
+    class: pressure
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: MPa
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Fan 1 speed
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: sensor
+    name: Fan 2 speed
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: sensor
+    name: EEV steps
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Compressor input
+    class: current
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+  - entity: sensor
+    name: T6
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

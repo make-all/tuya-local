@@ -102,7 +102,6 @@ class TestWeauPoolHeatpumpV2(
             await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     def test_extra_state_attributes(self):
-        self.dps[FAULT_DPS] = 4
         self.dps[UNKNOWN101_DPS] = 101
         self.dps[UNKNOWN102_DPS] = 102
         self.dps[UNKNOWN103_DPS] = 103
@@ -110,10 +109,16 @@ class TestWeauPoolHeatpumpV2(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "fault": "flow_fault",
                 "unknown_101": 101,
                 "unknown_102": 102,
                 "unknown_103": 103,
                 "unknown_104": True,
             },
+        )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[FAULT_DPS] = 4
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 4, "description": "flow_fault"},
         )

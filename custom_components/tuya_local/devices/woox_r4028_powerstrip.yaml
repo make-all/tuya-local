@@ -1,22 +1,28 @@
-name: 3 outlet + USB powerstrip
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+name: USB+3 outlet powerstrip
+legacy_type: tellur_usb_power_strip
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
@@ -29,10 +35,62 @@ secondary_entities:
       - id: 7
         type: boolean
         name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 101
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 102
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 103
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    dps:
+      - id: 105
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    # 2025-07-20
+    deprecated: time.timer_1
     dps:
       - id: 101
         name: value
@@ -46,8 +104,12 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    # 2025-07-20
+    deprecated: time.timer_2
     dps:
       - id: 102
         name: value
@@ -61,8 +123,12 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 3
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    # 2025-07-20
+    deprecated: time.timer_3
     dps:
       - id: 103
         name: value
@@ -77,6 +143,9 @@ secondary_entities:
   - entity: number
     category: config
     name: USB timer
+    # 2025-07-20
+    deprecated: time.timer_usb
+    class: duration
     translation_key: timer
     dps:
       - id: 105

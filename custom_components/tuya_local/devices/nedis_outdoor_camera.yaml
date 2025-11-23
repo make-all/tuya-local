@@ -1,32 +1,32 @@
 name: Outdoor camera
 products:
   - id: irt8xftriwhxbzsn
-    name: Nedis WIFICO11CWT
-primary_entity:
-  entity: camera
-  dps:
-    - id: 115
-      name: snapshot
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 134
-      name: motion_enable
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-    - id: 150
-      name: record
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-secondary_entities:
+    manufacturer: Nedis
+    model: WIFICO11CWT
+entities:
+  - entity: camera
+    dps:
+      - id: 115
+        name: snapshot
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 134
+        name: motion_enable
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: light
     translation_key: indicator
     category: config
@@ -110,6 +110,7 @@ secondary_entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     icon: "mdi:micro-sd"
     dps:
@@ -119,17 +120,17 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: 1
-            value: Normal
+            value: normal
           - dps_val: 2
-            value: Corrupt
+            value: fault
           - dps_val: 3
-            value: Full
+            value: full
           - dps_val: 4
-            value: Formatting
+            value: formatting
           - dps_val: 5
-            value: Missing
+            value: missing
           - dps_val: null
-            value: Normal
+            value: normal
   - entity: button
     name: SD format
     category: config

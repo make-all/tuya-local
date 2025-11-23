@@ -1,31 +1,31 @@
 name: Smartplug
 products:
   - id: zmql6aexy8ua5rox
-    name: Gosund SP112-RTL
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-    - id: 101
-      name: unknown_101
-      type: boolean
-      optional: true
-secondary_entities:
+    manufacturer: Gosund
+    model: SP112-RTL
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
+      - id: 101
+        name: unknown_101
+        type: boolean
+        optional: true
   - entity: switch
     name: USB
     dps:
@@ -35,11 +35,13 @@ secondary_entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -91,8 +93,33 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    dps:
+      - id: 15
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
   - entity: number
     translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -107,7 +134,10 @@ secondary_entities:
             step: 60
   - entity: number
     name: USB timer
+    # 2025-07-20
+    deprecated: time.timer_usb
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 15
@@ -121,8 +151,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -130,14 +159,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: "On"
+            value: "on"
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: Last state
+            value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -145,11 +173,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

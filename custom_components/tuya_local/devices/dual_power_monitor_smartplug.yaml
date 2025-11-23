@@ -1,19 +1,22 @@
 name: Dual power monitoring smartplug
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 6
-      type: integer
-      name: add_ele
-      optional: true
-secondary_entities:
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 6
+        type: integer
+        name: add_ele
+        optional: true
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
@@ -55,10 +58,38 @@ secondary_entities:
         force: true
         mapping:
           - scale: 10
-  - entity: number
-    name: Timer 1
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    category: config
+    # 2025-07-20
+    deprecated: time.timer_1
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     dps:
       - id: 10
         type: integer
@@ -71,9 +102,13 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    # 2025-07-20
+    deprecated: time.timer_2
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 11
         type: integer

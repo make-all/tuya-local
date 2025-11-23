@@ -1,12 +1,12 @@
-name: Digoo DG-SP01
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+name: Switch with nightlight
+# product: Digoo DG-SP01
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: light
     translation_key: nightlight
     dps:

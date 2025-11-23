@@ -1,0 +1,634 @@
+name: Pet feeder
+products:
+  - id: arkhavgf1j2q9mm3
+    manufacturer: FeelNeedy
+    model: P-LFP01
+entities:
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 117
+        type: integer
+        name: sd_format_state
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 240
+        type: string
+        name: status
+      - id: 243
+        type: string
+        name: info
+      - id: 248
+        type: string
+        name: storage
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+  - entity: event
+    name: Camera
+    icon: "mdi:image-multiple"
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: snapshot
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: button
+    name: PTZ stop
+    icon: "mdi:stop-circle"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: PTZ up
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ up-right
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down-right
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down-left
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ up-left
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "7"
+            value: true
+          - value: false
+  - entity: siren
+    name: Alarm
+    dps:
+      - id: 125
+        type: string
+        optional: true
+        name: tone
+        mapping:
+          - dps_val: item_1
+            value: "Tone 1"
+          - dps_val: item_2
+            value: "Tone 2"
+          - dps_val: item_3
+            value: "Tone 3"
+          - dps_val: item_4
+            value: "Tone 4"
+          - dps_val: item_5
+            value: "Tone 5"
+          - dps_val: item_6
+            value: "Tone 6"
+          - dps_val: item_7
+            value: "Tone 7"
+          - dps_val: item_8
+            value: "Tone 8"
+          - dps_val: item_9
+            value: "Tone 9"
+          - dps_val: item_10
+            value: "Tone 10"
+      - id: 160
+        type: integer
+        name: volume_level
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 149
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: select
+    name: Recording mode
+    icon: "mdi:cctv"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: switch
+    name: Motion tracking
+    icon: "mdi:motion"
+    category: config
+    dps:
+      - id: 161
+        type: boolean
+        name: switch
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Motion limit area
+    icon: "mdi:picture-in-picture-bottom-right"
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+  - entity: text
+    name: Motion area
+    category: config
+    icon: "mdi:picture-in-picture-bottom-right"
+    hidden: true
+    dps:
+      - id: 169
+        type: string
+        name: value
+  - entity: switch
+    name: Auto brightness
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 171
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: text
+    name: PTZ memory
+    category: config
+    icon: "mdi:camera-control"
+    hidden: true
+    dps:
+      - id: 178
+        type: string
+        optional: true
+        name: value
+  - entity: event
+    name: Alarm
+    icon: "mdi:alarm-bell"
+    dps:
+      - id: 185
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: triggered
+      - id: 185
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: event
+    name: Pet
+    icon: "mdi:cat"
+    dps:
+      - id: 187
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: detected
+          - dps_val: false
+            value: gone
+  - entity: event
+    name: Notification
+    icon: "mdi:bell"
+    dps:
+      - id: 212
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: binary_sensor
+    name: Food
+    translation_key: tank_empty
+    icon: "mdi:food-drumstick"
+    category: diagnostic
+    dps:
+      - id: 231
+        type: boolean
+        name: sensor
+  - entity: event
+    name: Log
+    category: diagnostic
+    dps:
+      - id: 232
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: event
+      - id: 232
+        type: string
+        optional: true
+        name: entry
+      - id: 245
+        type: string
+        optional: true
+        name: description
+  - entity: text
+    name: Call pet to play
+    category: config
+    icon: "mdi:play-circle"
+    hidden: true
+    dps:
+      - id: 233
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Camera schedule
+    category: config
+    icon: "mdi:cctv"
+    hidden: true
+    dps:
+      - id: 234
+        type: string
+        optional: true
+        name: value
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 235
+        type: boolean
+        optional: true
+        name: lock
+  - entity: text
+    name: Do not disturb schedule
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 236
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Feed schedule
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 237
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 238
+        type: string
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - dps_val: "0"
+            value: 100
+          - dps_val: "1"
+            value: 75
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 25
+          - dps_val: "4"
+            value: 0
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 239
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value: true
+      - id: 239
+        type: string
+        name: fault_code
+      - id: 239
+        type: string
+        name: description
+        mapping:
+          - dps_val: "0"
+            value: ok
+          - dps_val: "1"
+            value: blocked
+          - dps_val: "2"
+            value: jammed
+  - entity: text
+    name: PTZ caligration
+    category: config
+    icon: "mdi:camera-control"
+    hidden: true
+    dps:
+      - id: 241
+        type: string
+        optional: true
+        name: value
+  - entity: event
+    name: Video
+    dps:
+      - id: 242
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 242
+        type: string
+        optional: true
+        name: details
+  - entity: text
+    name: PTZ bowl
+    category: config
+    icon: "mdi:camera-control"
+    hidden: true
+    dps:
+      - id: 244
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 246
+        type: string
+        name: value
+  - entity: select
+    name: Laser play mode
+    icon: "mdi:laser-pointer"
+    category: config
+    dps:
+      - id: 247
+        type: integer
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: Square
+          - dps_val: 2
+            value: Circle
+          - dps_val: 3
+            value: Semi-circle
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 249
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: battery
+            value: false
+          - dps_val: power
+            value: true
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 250
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Call pet
+    category: config
+    icon: "mdi:cat"
+    hidden: true
+    dps:
+      - id: 251
+        type: string
+        optional: true
+        name: value
+  - entity: number
+    name: Feed
+    category: config
+    icon: "mdi:chicken-drumstick"
+    dps:
+      - id: 252
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 10100
+  - entity: event
+    name: Bowl check
+    dps:
+      - id: 253
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: check
+      - id: 253
+        type: string
+        optional: true
+        name: snapshot
+  - entity: number
+    name: Feed amount
+    category: config
+    icon: "mdi:chicken-drumstick"
+    dps:
+      - id: 254
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: event
+    name: Feeding
+    dps:
+      - id: 255
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 255
+        type: string
+        optional: true
+        name: record
