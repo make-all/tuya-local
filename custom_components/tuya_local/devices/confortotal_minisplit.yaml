@@ -180,39 +180,39 @@ entities:
       - id: 22
         type: bitfield
         name: fault_code
-  - entity: select
-    name: Vertical swing
-    deprecated: climate.swing_mode  # 2025-11-08
-    icon: "mdi:angle-acute"
-    category: config
-    dps:
-      - id: 31
-        type: string
-        name: option
-        mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: same
-            value: Swing
-          - dps_val: vane_1
-            value: Position 1
-          - dps_val: vane_2
-            value: Position 2
-          - dps_val: vane_3
-            value: Position 3
-          - dps_val: vane_4
-            value: Position 4
-          - dps_val: vane_5
-            value: Position 5
-  - entity: switch
-    name: Swing horizontal
-    icon: "mdi:arrow-left-right"
-    deprecated: climate.swing_horizontal_mode  # 2025-11-08
-    category: config
-    dps:
-      - id: 33
-        type: boolean
-        name: switch
+#  - entity: select
+#    name: Vertical swing
+#    deprecated: climate.swing_mode  # 2025-11-08
+#    icon: "mdi:angle-acute"
+#    category: config
+#    dps:
+#      - id: 31
+#        type: string
+#        name: option
+#        mapping:
+#          - dps_val: "off"
+#            value: "Off"
+#          - dps_val: same
+#            value: Swing
+#          - dps_val: vane_1
+#            value: Position 1
+#          - dps_val: vane_2
+#            value: Position 2
+#          - dps_val: vane_3
+#            value: Position 3
+#          - dps_val: vane_4
+#            value: Position 4
+#          - dps_val: vane_5
+#            value: Position 5
+#  - entity: switch
+#    name: Swing horizontal
+#    icon: "mdi:arrow-left-right"
+#    deprecated: climate.swing_horizontal_mode  # 2025-11-08
+#    category: config
+#    dps:
+#      - id: 33
+#        type: boolean
+#        name: switch
   - entity: light
     translation_key: display
     category: config
