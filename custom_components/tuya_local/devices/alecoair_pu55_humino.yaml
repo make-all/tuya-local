@@ -3,10 +3,11 @@ products:
   - id: rjhsz1vaxpp4gih3
     manufacturer: AlecoAir
     model: PU55 HUMINO
+
 entities:
   - entity: humidifier
     class: humidifier
-    translate_only_key: humidifier_with_presets
+    translation_key: humidifier_with_presets
     dps:
       - id: 105
         name: switch
@@ -23,14 +24,14 @@ entities:
         type: integer
 
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: fan_with_presets
     dps:
       - id: 1
-        type: boolean
         name: switch
+        type: boolean
       - id: 4
-        type: string
         name: speed
+        type: string
         mapping:
           - dps_val: low
             value: 25
@@ -41,8 +42,8 @@ entities:
           - dps_val: max
             value: 100
       - id: 3
-        type: string
         name: preset_mode
+        type: string
         mapping:
           - dps_val: normal
             value: normal
@@ -53,37 +54,37 @@ entities:
 
   - entity: sensor
     name: Filter Life
-    dps: 
+    dps:
       - id: 5
-        type: integer
         name: sensor
+        type: integer
         unit: "%"
         class: measurement
-        icon: "mdi:air-filter"
+        icon: mdi:air-filter
 
   - entity: sensor
     name: Humidity
     class: humidity
     dps:
       - id: 13
-        type: integer
         name: sensor
+        type: integer
         unit: "%"
         class: measurement
 
   - entity: sensor
     name: Air Quality
-    dps: 
+    dps:
       - id: 21
-        type: string
         name: sensor
+        type: string
 
   - entity: sensor
     name: Clean Water Tank
-    dps: 
+    dps:
       - id: 106
-        type: integer
         name: sensor
+        type: integer
         unit: "%"
         class: measurement
 
@@ -92,8 +93,8 @@ entities:
     category: config
     dps:
       - id: 6
-        type: boolean
         name: switch
+        type: boolean
 
   - entity: switch
     name: UV Lamp
@@ -101,43 +102,43 @@ entities:
     category: config
     dps:
       - id: 9
-        type: boolean
         name: switch
+        type: boolean
 
   - entity: switch
     name: Mute
     category: config
-    dps: 
+    dps:
       - id: 28
-        type: boolean
         name: switch
+        type: boolean
         mapping:
           - dps_val: true
-            icon: "mdi:volume-variant-off"
+            icon: mdi:volume-variant-off
           - dps_val: false
-            icon: "mdi:volume-medium"
+            icon: mdi:volume-medium
 
   - entity: switch
     name: Display
     translation_key: display
     category: config
-    dps: 
+    dps:
       - id: 103
-        type: boolean
         name: switch
+        type: boolean
         mapping:
           - dps_val: true
-            icon: "mdi:fit-to-screen-outline"
+            icon: mdi:fit-to-screen-outline
           - dps_val: false
-            icon: "mdi:fit-to-screen"
+            icon: mdi:fit-to-screen
 
   - entity: switch
     name: Dry Fan
     category: config
-    dps: 
+    dps:
       - id: 104
-        type: boolean
         name: switch
+        type: boolean
 
   - entity: number
     name: Auto OFF
@@ -145,8 +146,8 @@ entities:
     class: duration
     dps:
       - id: 102
-        type: integer
         name: value
+        type: integer
         unit: h
         range:
           min: 1
@@ -155,23 +156,23 @@ entities:
   - entity: switch
     name: Humidify
     dps:
-    - id: 10
-      type: boolean
-      name: switch
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-  
+      - id: 10
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: mdi:air-humidifier
+          - dps_val: false
+            icon: mdi:air-humidifier-off
+
   - entity: switch
     name: Humidify Controlled
     dps:
-    - id: 105
-      type: boolean
-      name: switch
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
+      - id: 105
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: mdi:air-humidifier
+          - dps_val: false
+            icon: mdi:air-humidifier-off
