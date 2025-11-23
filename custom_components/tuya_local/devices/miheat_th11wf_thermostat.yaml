@@ -130,6 +130,21 @@ entities:
       - id: 123
         type: boolean
         name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: min
+        mapping:
+          - dps_val: 0
+            constraint: Boost
+            conditions:
+              - dps_val: "cancel"
+                value: 0
   - entity: select
     name: Boost
     translation_key: timer
