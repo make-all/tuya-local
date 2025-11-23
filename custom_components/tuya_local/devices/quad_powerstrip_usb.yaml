@@ -1,4 +1,6 @@
 name: Quad powerstrip with USB
+products:
+  - id: keyjup78v54myhan
 entities:
   - entity: switch
     translation_key: outlet_x
@@ -13,6 +15,10 @@ entities:
         type: integer
         name: add_ele
         optional: true
+      - id: 21
+        type: integer
+        optional: true
+        name: test_flags
       - id: 25
         type: integer
         name: ele_calibration
@@ -306,3 +312,33 @@ entities:
         type: bitfield
         name: fault_code
         optional: true
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 42
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 43
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:cog-refresh"
+    hidden: true
+    dps:
+      - id: 44
+        type: string
+        optional: true
+        name: value
