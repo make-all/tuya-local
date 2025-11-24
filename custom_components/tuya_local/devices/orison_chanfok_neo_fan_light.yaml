@@ -27,32 +27,49 @@ entities:
       - id: 104
         type: string
         name: direction
-  - entity: light
+  - entity: switch
+    name: Lights
+    icon: "mdi:lightbulb-multiple"
     dps:
       - id: 20
         type: boolean
         name: switch
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 51
+        type: base64
+        mask: "000100000000000000000000"
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: available
       - id: 21
         type: string
-        name: color_mode
-        mapping:
-          - dps_val: white
-            value: color_temp
-          - dps_val: colour
-            value: hs
-          - dps_val: scene
-            value: Scene
-          - dps_val: music
-            value: Music
+        name: work_mode
       - id: 22
         type: integer
-        name: brightness
+        name: std_brightness
         range:
           min: 10
           max: 1000
+      - id: 51
+        type: base64
+        mask: "0000000000000000FFFF0000"
+        optional: true
+        name: brightness
+        mapping:
+          - dps_val: null
+            value_mirror: std_brightness
+        range:
+          min: 0
+          max: 1000
       - id: 23
         type: integer
-        name: color_temp
+        name: std_color_temp
         range:
           min: 0
           max: 1000
@@ -62,8 +79,36 @@ entities:
             target_range:
               min: 2700
               max: 6500
+      - id: 51
+        type: base64
+        mask: "00000000000000000000FFFF"
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - dps_val: null
+            value_mirror: std_color_temp
+          - target_range:
+              min: 3000
+              max: 6500
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 51
+        type: base64
+        mask: "000200000000000000000000"
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
       - id: 24
-        name: rgbhsv
+        name: std_rgbhsv
         type: hex
         format:
           - name: h
@@ -82,9 +127,31 @@ entities:
               min: 0
               max: 1000
       - id: 51
-        type: string
+        type: base64
         optional: true
-        name: mix_rgbcw
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: wc
+            bytes: 2
   - entity: time
     name: Light timer
     translation_key: timer
