@@ -4,6 +4,14 @@ products:
     manufacturer: Plikc
     model: Ario Wifi
     model_id: PLKARW100
+
+# DPs that are not yet implemented:
+# -  45 "Fault Alarm": {"id": 45, "name": "fault", "type": "Bitmap", "format": "{\"label\":[\"e1\",\"e2\",\"e3\"]}", "enumMap": {}}
+# - 110: "schedule_7day" "valueRange": "{}", "valueType": "Raw"
+# - 111: "schedule_52" "valueRange": "{}", "valueType": "Raw"
+# - 112: "schedule_24h" "valueRange": "{}", "valueType": "Raw"
+# - 116: "led" ?
+
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -15,10 +23,18 @@ entities:
         name: current_humidity
         type: integer
         unit: "%"
+        range:
+          min: 0
+          max: 100
+          step: 1
       - id: 102 # Humidity set point
         name: humidity
         type: integer
         unit: "%"
+        range:
+          min: 22
+          max: 99
+          step: 1
   - entity: sensor
     class: temperature
     name: Current temperature
@@ -29,6 +45,10 @@ entities:
         unit: "C"
         mapping:
           - scale: 10
+        range:
+          min: 0
+          max: 400
+          step: 1
   - entity: button
     translation_key: factory_reset
     category: config
@@ -73,18 +93,19 @@ entities:
       - id: 106
         name: switch
         type: boolean
-  - entity: switch
-    name: Fan
+  - entity: binary_sensor
+    name: Fan Status
+    icon: mdi:fan
     dps:
       - id: 107
-        name: switch
+        name: sensor
         type: boolean
-  - entity: switch
-    name: LED
-    hidden: true
+  - entity: binary_sensor
+    name: LED Status
+    icon: mdi:lightbulb
     dps:
-      - id: 108 # Might be an LED status DP, but it does not change its value
-        name: switch
+      - id: 108
+        name: sensor
         type: boolean
   - entity: select
     name: LED
@@ -99,11 +120,6 @@ entities:
             value: "off"
           - dps_val: "using_on"
             value: "using_on"
-
-  #     {
-  #       "dpId": 45,
-  #       "dpName": "Fault alarm"
-  #     },
   - entity: number
     name: Timer time
     class: duration
@@ -116,22 +132,6 @@ entities:
           min: 1
           max: 30
           step: 1
-  #     {
-  #       "dpId": 110,
-  #       "dpName": "schedule_7day"
-  #     },
-  #     {
-  #       "dpId": 111,
-  #       "dpName": "schedule_52"
-  #     },
-  #     {
-  #       "dpId": 112,
-  #       "dpName": "schedule_24h"
-  #     },
-  #     {
-  #       "dpId": 114,
-  #       "dpName": "schedule mode"
-  #     },
   - entity: select
     name: Schedule mode
     dps:
@@ -158,11 +158,6 @@ entities:
           min: -10
           max: 10
           step: 1
-
-  #     {
-  #       "dpId": 116,
-  #       "dpName": "led"
-  #     },
   - entity: number
     name: Swing
     dps:
