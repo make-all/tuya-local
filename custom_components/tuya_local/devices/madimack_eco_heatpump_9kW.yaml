@@ -1,0 +1,157 @@
+name: Pool heat pump
+products:
+  - id: 3z98f9dmfwtieuc7
+    manufacturer: Madimack
+    model: Eco 9kW
+
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      # Power / overall HVAC mode (uses DP2 "mode" as a constraint)
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: heating
+                value: heat
+
+      # Underlying device "mode" (hidden helper for mapping above)
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+
+      # Target temperature with unit-aware range
+      - id: 4
+        type: integer
+        name: temperature
+        range:
+          min: 18
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 60
+                  max: 104
+
+      # Temperature unit and its mapping
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+
+      # Current temperature (this model reports on DP 102)
+      - id: 102
+        type: integer
+        name: current_temperature
+
+      # Preset modes (as observed)
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: silence
+            value: sleep
+          - dps_val: boost
+            value: boost
+          - dps_val: power
+            value: boost
+
+  # Fault as a binary sensor with code attribute (project convention)
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+
+  # Compressor strength (%), plain sensor (no device class)
+  - entity: sensor
+    name: Compressor strength
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "%"
+
+  # Temperature diagnostics (read-only telemetry)
+  - entity: sensor
+    name: Maximum temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Minimum temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Vent temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: "°C"

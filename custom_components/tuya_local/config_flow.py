@@ -47,7 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 9
+    MINOR_VERSION = 10
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}

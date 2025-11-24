@@ -4,6 +4,10 @@ products:
     manufacturer: Ledvance
     model: Smart+ Planon plus backlight
     model_id: BL100x25B
+  - id: 2zjsc9dxfxlr7yf3
+    manufacturer: Annaror
+    model: Dual ceiling light
+    model_id: "5LRGB"
 entities:
   - entity: switch
     icon: "mdi:lightbulb-multiple"
@@ -17,18 +21,6 @@ entities:
       - id: 20
         type: boolean
         name: available
-        mapping:
-          - dps_val: true
-            value: true
-            constraint: raw_switch
-            conditions:
-              - dps_val: null
-                value: false
-      - id: 51
-        type: base64
-        optional: true
-        name: raw_switch
-        hidden: true
       - id: 51
         type: base64
         mask: "000100000000000000000000"
@@ -45,6 +37,7 @@ entities:
       - id: 22
         name: std_brightness
         type: integer
+        optional: true
         range:
           min: 0
           max: 1000
@@ -63,6 +56,7 @@ entities:
       - id: 23
         name: std_color_temp
         type: integer
+        optional: true
         range:
           min: 0
           max: 500
@@ -91,18 +85,6 @@ entities:
       - id: 20
         type: boolean
         name: available
-        mapping:
-          - dps_val: true
-            value: true
-            constraint: raw_switch
-            conditions:
-              - dps_val: null
-                value: false
-      - id: 51
-        type: base64
-        optional: true
-        name: raw_switch
-        hidden: true
       - id: 51
         type: base64
         mask: "000200000000000000000000"

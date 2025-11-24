@@ -1,0 +1,81 @@
+name: Ceiling fan
+products:
+  - id: h2xswd4oyce7bikh
+    manufacturer: Ledvance
+    model: Ceiling fan with light
+entities:
+  - entity: fan
+    dps:
+      - id: 51
+        type: boolean
+        name: switch
+      - id: 53
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        name: value
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: time
+    name: Fan timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 55
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399

@@ -30,13 +30,28 @@ entities:
       - id: 106
         type: boolean
         name: oscillate
-  - entity: light
+  - entity: switch
+    name: Lights
+    icon: "mdi:lightbulb-multiple"
     dps:
       - id: 20
         type: boolean
         name: switch
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 51
+        type: base64
+        optional: true
+        mask: "000100000000000000000000"
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: available
       - id: 21
-        name: color_mode
+        name: work_mode
         type: string
         mapping:
           - dps_val: white
@@ -48,13 +63,24 @@ entities:
           - dps_val: music
             value: Music
       - id: 22
-        name: brightness
+        name: std_brightness
         type: integer
         range:
           min: 10
           max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF0000"
+        name: brightness
+        mapping:
+          - dps_val: null
+            value_mirror: std_brightness
+        range:
+          min: 10
+          max: 1000
       - id: 23
-        name: color_temp
+        name: std_color_temp
         type: integer
         range:
           min: 0
@@ -63,8 +89,38 @@ entities:
           - target_range:
               min: 3000
               max: 6000
+      - id: 51
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFF"
+        name: color_temp
+        mapping:
+          - dps_val: null
+            value_mirror: std_color_temp
+          - target_range:
+              min: 3000
+              max: 6000
+        range:
+          min: 0
+          max: 1000
+
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 51
+        type: base64
+        optional: true
+        mask: "000200000000000000000000"
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
       - id: 24
-        name: rgbhsv
+        name: std_rgbhsv
         type: hex
         format:
           - name: h
@@ -82,31 +138,94 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
+      - id: 51
+        type: base64
+        optional: true
+        force: true
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: wc
+            bytes: 2
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 35
         type: hex
-        name: scene_data
+        name: value
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
       - id: 28
         type: string
+        name: value
         optional: true
-        name: control_data
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-settings"
+    hidden: true
+    dps:
       - id: 33
         type: string
         optional: true
-        name: power_memory
+        name: value
+  - entity: text
+    name: Switch gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
       - id: 35
         type: string
         optional: true
-        name: switch_gradient
+        name: value
+  - entity: text
+    name: Mix RGBCW
+    category: config
+    icon: "mdi:lightbulb"
+    hidden: true
+    dps:
       - id: 51
-        type: string
+        type: base64
         optional: true
-        name: mix_rgbcw
+        name: value
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
       - id: 121
         type: string
         optional: true
-        name: music_data
+        name: value
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34

@@ -1,4 +1,4 @@
-name: Ecostrad iQ heating element
+name: Heating element
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -94,12 +94,13 @@ entities:
           min: 0
           max: 7
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -5
           max: 5

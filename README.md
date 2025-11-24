@@ -37,9 +37,12 @@ versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
 Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
+etc which do not use a hub are not possible to support locally, due
 to the power management that they need to do to get acceptable battery
-life.
+life. In some cases that may also apply when a device that can be
+either battery or USB powered is plugged into USB. If you cannot gather
+Warning level logs with dps listed when attempting to set it up, then it
+will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
@@ -83,7 +86,7 @@ Documentation on building a device configuration file is in [/custom_components/
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
-2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp id in addition to range information that is needed for integer and enum data types.
 
 If you file an issue to request support for a new device, please include the following information:
 
@@ -203,7 +206,7 @@ Many Tuya devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
 others will go offline for 30s to a few minutes if you overload them.
 There is some rate limiting to try to avoid this, but it is not
-sufficient for many devices, and may not work across entities where
+sufficient for some devices, and may not work across entities where
 you are sending commands to multiple entities on the same device.  The
 rate limiting also combines commands, which not all devices can
 handle. If you are sending commands from an automation, it is best to
@@ -214,7 +217,7 @@ may still need a delay after that.  The exact timing depends on the
 device, so you may need to experiment to find the minimum delay that
 gives reliable results.
 
-Some devices can handle multiple commands in a single message, so for
+Most devices can handle multiple commands in a single message, so for
 entity platforms that support it (eg climate `set_temperature` can
 include presets, lights pretty much everything is set through
 `turn_on`) multiple settings are sent at once.  But some devices do
@@ -235,6 +238,26 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 - IP address or hostname: the **hub's** IP address or hostname
 - Local key: the **hub's** local key
 - Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
+
+## Secure locks
+
+Many locks are designed with basic security controls to make remote unlocking
+more difficult. This integration supports the standard BLE lock model from Tuya
+which uses a pair of dps (60: `remote_no_pd_seykey`, 61: `remote_no_dp_key`)
+to share a key between the app and the lock during the pairing phase.
+If you have access to the Tuya developer portal, you can eavesdrop on the
+second of these messages when the app is used to unlock the lock remotely.
+If you capture the value sent by the app, then you can decode it using a base64
+decoder such as https://base64decode.org.
+The format has 4 bytes of binary data, followed by an 8 digit ASCII numeric
+code, followed by 3 or 4 more bytes of binary data.
+
+The 8 digit numeric code from the first app that was paired should work for
+unlocking the lock.
+
+Although this is documented in the BLE lock documentation from Tuya, Zigbee
+and WiFi locks often use the same naming for datapoints, which may be
+compatible with this scheme.
 
 ## Contributing
 

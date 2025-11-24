@@ -1701,3 +1701,9 @@ MUSTOOL_MT15MT29_AIRBOX_PAYLOAD = {
     "118": True,
     # last 3 must be true for the time entities to be enabled
 }
+
+AILRINNI_FINGERPRINTLOCK_PAYLOAD = {
+    "8": 86,
+    "31": "mute",
+    "64": "1712614183",
+}

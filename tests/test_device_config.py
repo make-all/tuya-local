@@ -234,6 +234,7 @@ KNOWN_DPS = {
         "optional": [
             "lock",
             "lock_state",
+            "code_unlock",
             {"and": ["request_unlock", "approve_unlock"]},
             {"and": ["request_intercom", "approve_intercom"]},
             "unlock_fingerprint",
@@ -264,7 +265,7 @@ KNOWN_DPS = {
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "text": {"required": ["value"], "optional": []},
-    "time": {"required": [{"or": ["hour", "minute", "second"]}], "optional": []},
+    "time": {"required": [{"or": ["hour", "minute", "second", "hms"]}], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [

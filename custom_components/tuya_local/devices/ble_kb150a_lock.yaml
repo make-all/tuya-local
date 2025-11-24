@@ -7,20 +7,6 @@ products:
 entities:
   - entity: lock
     dps:
-      - id: 1
-        type: string
-        name: unlock_method_create
-        optional: true
-        sensitive: true
-      - id: 2
-        type: string
-        name: unlock_method_delete
-        optional: true
-      - id: 3
-        type: string
-        name: unlock_method_modify
-        optional: true
-        sensitive: true
       - id: 12
         type: integer
         name: unlock_fingerprint
@@ -60,10 +46,9 @@ entities:
         optional: true
         persist: false
       - id: 61
-        type: string
-        name: remote_no_dp_key
+        type: base64
+        name: code_unlock
         optional: true
-        persist: false
         sensitive: true
       - id: 62
         type: integer
@@ -134,9 +119,8 @@ entities:
           min: 1
           max: 1800
   - entity: switch
-    name: Do not disturb
+    name: do_not_disturb
     category: config
-    icon: "mdi:sleep"
     dps:
       - id: 76
         type: boolean
@@ -164,3 +148,36 @@ entities:
             value: chinese
           - dps_val: english
             value: english
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        name: value
+        optional: true
+        sensitive: true

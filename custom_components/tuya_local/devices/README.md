@@ -713,6 +713,7 @@ no information will be available about which specific credential was used to unl
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
 - **approve_intercom** (optional, boolean): a dp to unlock the lock in response to an intercom request.
+- **code_unlock** (optional, base64): a dp to unlock the lock by giving an 8 digit code. This corresponds in the Tuya info to `remote_no_dp_key` and has a specific format. The 8 digit key assigned to user 1 must be sent to unlock (and optionally lock) the lock.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### `number`
@@ -766,6 +767,7 @@ to use it for other length timers.
 - **hour** (optional, integer in range 0-24) - the hours component
 - **minute** (optional, integer in range 0-60 or 0-1440 if the only dp) - the minute component
 - **second** (optional, integer in range 0-60 or 0-84600 if the only dp) - the second component
+- **hms** (optional, string in format "hh:mm", "hh:mm:ss", "hhmm" or "hhmmss" - all components as a string
 
 ### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.

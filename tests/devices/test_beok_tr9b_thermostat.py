@@ -99,7 +99,7 @@ class TestBeokTR9BThermostat(
             [
                 {
                     "dps": MINTEMP_DPS,
-                    "name": "number_low_temperature_limit",
+                    "name": "number_minimum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 300.0,
@@ -109,7 +109,7 @@ class TestBeokTR9BThermostat(
                 },
                 {
                     "dps": MAXTEMP_DPS,
-                    "name": "number_high_temperature_limit",
+                    "name": "number_maximum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 300.0,
@@ -124,8 +124,8 @@ class TestBeokTR9BThermostat(
                 "binary_sensor_problem",
                 "binary_sensor_valve",
                 "lock_child_lock",
-                "number_low_temperature_limit",
-                "number_high_temperature_limit",
+                "number_minimum_temperature",
+                "number_maximum_temperature",
                 "select_schedule",
                 "select_temperature_unit",
                 "switch_anti_frost",

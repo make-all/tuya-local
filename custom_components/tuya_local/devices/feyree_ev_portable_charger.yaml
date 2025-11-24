@@ -340,6 +340,7 @@ entities:
     dps:
       - id: 124
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: CloseCharging
@@ -354,6 +355,7 @@ entities:
     dps:
       - id: 102
         type: integer
+        optional: true
         name: sensor
         unit: V
         class: measurement
@@ -412,6 +414,7 @@ entities:
     dps:
       - id: 105
         type: integer
+        optional: true
         name: sensor
         unit: A
         class: measurement
@@ -426,6 +429,7 @@ entities:
     dps:
       - id: 106
         type: integer
+        optional: true
         name: sensor
         unit: A
         class: measurement
@@ -448,6 +452,7 @@ entities:
     dps:
       - id: 107
         type: integer
+        optional: true
         name: sensor
         unit: A
         class: measurement
@@ -493,6 +498,7 @@ entities:
     dps:
       - id: 120
         type: string
+        optional: true
         name: sensor
   - entity: text
     name: Alarm set 1
@@ -514,11 +520,3 @@ entities:
         type: base64
         optional: true
         name: value
-  - entity: switch
-    name: RFID
-    category: config
-    dps:
-      - id: 123
-        type: boolean
-        optional: true
-        name: switch

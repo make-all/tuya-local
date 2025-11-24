@@ -1,0 +1,315 @@
+name: Camera
+products:
+  # The product ID (or product_id) from your device information
+  - id: j0gmpjxe9pvqnsqx
+    manufacturer: Nexsmart
+    model: WATCH 2
+entities:
+  # ------------------------------------
+  # 1. Main Camera & Snapshot
+  # ------------------------------------
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    # Motion Detection Switch (matches motion_switch: 134)
+    dps:
+      - id: 134
+        name: switch
+        type: boolean
+        optional: true
+
+  - entity: switch
+    name: SD card recording
+    icon: "mdi:video-outline"
+    category: config
+    # Recording Switch (matches record_switch: 150)
+    dps:
+      - id: 150
+        name: switch
+        type: boolean
+        optional: true
+  - entity: event
+    name: Camera
+    category: diagnostic
+    icon: "mdi:camera-burst"
+    # Snapshot trigger (matches movement_detect_pic: 115)
+    dps:
+      - id: 115
+        name: event
+        type: base64
+        optional: true
+        sensitive: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: captured
+      - id: 115
+        name: snapshot_data
+        type: base64
+        optional: true
+        sensitive: true
+  # ------------------------------------
+  # 2. Battery and Power
+  # ------------------------------------
+  # WIRED Camera so no "battery" sensors are present!
+
+  # ------------------------------------
+  # 3. Basic Configuration
+  # ------------------------------------
+
+  - entity: light
+    translation_key: indicator
+    category: config
+    # Basic Indicator (matches basic_indicator: 101)
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    # Flip Image Switch (matches basic_flip: 103)
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    # Watermark/OSD Switch (matches basic_osd: 104)
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    # Night Vision Mode Selector (matches basic_nightvision: 108)
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+
+  # ------------------------------------
+  # 4. Detection & Alarm
+  # ------------------------------------
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    # Motion Sensitivity Selector (matches motion_sensitivity: 106)
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+
+  - entity: switch
+    name: Motion alarm area
+    icon: "mdi:crop"
+    category: config
+    # Motion Area Switch (matches motion_area_switch: 168)
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: text
+    name: Motion alarm area
+    icon: "mdi:crop"
+    category: config
+    hidden: true
+    # Motion Area String Data (matches motion_area: 169)
+    dps:
+      - id: 169
+        type: base64
+        name: value
+        optional: true
+
+  - entity: switch
+    name: Sound detection
+    category: config
+    icon: "mdi:ear-hearing"
+    # Decibel Switch (matches decibel_switch: 139)
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+        optional: true
+      # Decibel Upload Data (matches decibel_upload: 141)
+      - id: 141
+        type: string
+        name: upload_timestamp
+        optional: true
+
+  - entity: select
+    name: Sound sensitivity
+    icon: "mdi:ear-hearing"
+    category: config
+    # Decibel Sensitivity Selector (matches decibel_sensitivity: 140)
+    dps:
+      - id: 140
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: High
+
+  # ------------------------------------
+  # 5. Alarm Mode & Linkage
+  # ------------------------------------
+  # Does not exist in V2
+
+  # ------------------------------------
+  # 6. Lights & Sirens
+  # ------------------------------------
+  # Does not exist in V2
+
+  # ------------------------------------
+  # 7. SD Card and Storage
+  # ------------------------------------
+  - entity: sensor
+    name: SD capacity
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    # SD Capacity Sensor (matches sd_storge: 109)
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: SD status
+    class: enum
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    # SD Status Sensor (matches sd_status: 110)
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    # SD Format Button (matches sd_format: 111) and Status (117)
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+      - id: 117
+        type: integer
+        name: state
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 0
+            value: Ready
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted
+
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    # Recording Mode Selector (matches record_mode: 151)
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+
+  # ------------------------------------
+  # 8. Advanced / ONVIF
+  # ------------------------------------
+  - entity: switch
+    name: ONVIF stream
+    category: config
+    # ONVIF Switch (matches onvif_switch: 255)
+    dps:
+      - id: 255
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: sensor
+    name: ONVIF IP address
+    category: diagnostic
+    icon: "mdi:ip-network"
+    # ONVIF IP Address (matches onvif_ip_addr: 254)
+    dps:
+      - id: 254
+        type: string
+        name: sensor
+        sensitive: true
+        optional: true
+
+  - entity: text
+    name: ONVIF password change
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    # ONVIF Password Change (matches onvif_change_pwd: 253)
+    dps:
+      - id: 253
+        type: string
+        name: value
+        sensitive: true
+        optional: true

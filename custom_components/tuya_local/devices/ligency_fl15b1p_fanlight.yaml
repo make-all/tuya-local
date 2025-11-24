@@ -1,0 +1,275 @@
+name: Ceiling fan
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Ligency
+#     model: LI-FL15B1PUS2502
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+  - entity: time
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:tune"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:spider-thread"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep settings
+    category: config
+    icon: "mdi:lightbulb-night"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wake settings
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Initial settings
+    category: config
+    icon: "mdi:lightbulb-question"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Light switch gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mix light scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 36
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mix RGBCW
+    category: config
+    icon: "mdi:lightbulb-on-outline"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Segment dimming
+    category: config
+    icon: "mdi:led-strip"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 53
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Fan beep
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 102
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 105
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 104
+        type: string
+        name: direction
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 209
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 210
+        type: base64
+        optional: true
+        name: value

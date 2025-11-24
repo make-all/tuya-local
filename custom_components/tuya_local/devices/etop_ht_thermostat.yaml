@@ -134,15 +134,13 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:wrench-clock"
-    mode: slider
     dps:
       - id: 27
         name: value
         type: integer
-        unit: C
+        unit: °
         range:
           min: -100
           max: 100

@@ -53,9 +53,10 @@ class TestNashoneMTS700WBThermostat(
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
-            self.entities.get("number_calibration_offset"),
+            self.entities.get("number_temperature_calibration"),
             min=-5,
             max=5,
+            unit="°",
         )
         self.setUpBasicSelect(
             TIMER_DPS,
@@ -74,7 +75,7 @@ class TestNashoneMTS700WBThermostat(
         self.mark_secondary(
             [
                 "button_factory_reset",
-                "number_calibration_offset",
+                "number_temperature_calibration",
                 "select_timer",
                 "sensor_time_remaining",
             ],
@@ -147,6 +148,3 @@ class TestNashoneMTS700WBThermostat(
             self.subject.extra_state_attributes,
             {"work_state": "manual"},
         )
-
-    def test_icons(self):
-        self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")

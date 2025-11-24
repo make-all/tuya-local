@@ -1,0 +1,416 @@
+name: Camera with light
+products:
+  - id: wauxpj9p977uxhvb
+    manufacturer: EMOS
+    model: IP-300
+entities:
+  - entity: camera
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 115
+        type: base64
+        optional: true
+        sensitive: true
+        name: snapshot
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    icon: "mdi:rotate-180"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:clock-outline"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+          - dps_val: null
+            value: Unknown
+            hidden: true
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+          - dps_val: null
+            value: Unknown
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
+  - entity: button
+    name: Format SD card
+    icon: "mdi:sd"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: -2000
+            value: Formatting
+          - dps_val: -2001
+            value: Format error
+          - dps_val: -2002
+            value: "No SD card"
+          - dps_val: -2003
+            value: Card error
+  - entity: switch
+    name: SD card recording
+    icon: "mdi:record"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+        optional: true
+  - entity: button
+    name: PTZ stop
+    icon: "mdi:pan"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: PTZ right
+    icon: "mdi:pan-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:pan-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: light
+    name: Floodlight
+    icon: "mdi:light-flood-down"
+    dps:
+      - id: 138
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 158
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 20
+          max: 100
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+          - dps_val: null
+            value: null
+  - entity: siren
+    category: config
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+      - id: 194
+        type: integer
+        name: duration
+        optional: true
+        unit: s
+        range:
+          min: 10
+          max: 600
+        mapping:
+          - step: 10
+      - id: 195
+        type: integer
+        name: volume_level
+        optional: true
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Motion tracking
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 161
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: false
+            icon: "mdi:motion-sensor-off"
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Motion area limit
+    icon: "mdi:picture-in-picture-top-right-outline"
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 169
+        type: json
+        name: area
+        optional: true
+  - entity: switch
+    name: Light warning
+    icon: "mdi:lightbulb-alert"
+    category: config
+    dps:
+      - id: 172
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: number
+    name: Light warning duration
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 173
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 5
+          max: 600
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 185
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 185
+        type: utf16b64
+        name: alarm_message
+        optional: true
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: switch
+    name: PIR sensor
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 240
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+  - entity: number
+    name: PIR sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 241
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 10
+  - entity: select
+    name: Scene linkage
+    icon: "mdi:link-variant"
+    category: config
+    dps:
+      - id: 244
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: None
+          - dps_val: "1"
+            value: Scene 1
+          - dps_val: "2"
+            value: Scene 2
+          - dps_val: "3"
+            value: Scene 3
+          - dps_val: "4"
+            value: Scene 4
+          - dps_val: "5"
+            value: Scene 5
+          - dps_val: "6"
+            value: Scene 6
+          - dps_val: null
+            value: None
+            hidden: true
+  - entity: switch
+    name: ONVIF
+    icon: "mdi:protocol"
+    category: config
+    dps:
+      - id: 255
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 254
+        type: string
+        name: ip_address
+        optional: true
+        sensitive: true
+      - id: 253
+        type: string
+        name: password_change
+        optional: true
+        sensitive: true

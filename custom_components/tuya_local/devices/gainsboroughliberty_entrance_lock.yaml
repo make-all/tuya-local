@@ -6,20 +6,6 @@ products:
 entities:
   - entity: lock
     dps:
-      - id: 1
-        type: string
-        name: create_unlock_method
-        optional: true
-        sensitive: true
-      - id: 2
-        type: string
-        name: delete_unlock_method
-        optional: true
-      - id: 3
-        type: string
-        name: modify_unlock_method
-        optional: true
-        sensitive: true
       - id: 12
         type: integer
         name: unlock_fingerprint
@@ -72,35 +58,16 @@ entities:
             value: false
           - dps_val: false  # Locked
             value: true
-      - id: 51
-        type: string
-        optional: true
-        sensitive: true
-        name: temp_pwd_create
-      - id: 52
-        type: string
-        optional: true
-        name: temp_pwd_delete
-      - id: 53
-        type: string
-        optional: true
-        sensitive: true
-        name: temp_pwd_modify
-      - id: 54
-        type: string
-        optional: true
-        sensitive: true
-        name: sync_method
       - id: 55
         type: integer
         name: unlock_temp_pwd
         optional: true
         persist: false
       - id: 61
-        type: string
+        type: base64
         optional: true
         sensitive: true
-        name: remote_no_dp_key
+        name: code_unlock
       - id: 62
         type: integer
         name: unlock_app
@@ -111,18 +78,6 @@ entities:
         type: integer
         optional: true
         persist: false
-      - id: 64
-        type: string
-        optional: true
-        name: pwd_offline_time
-      - id: 65
-        type: string
-        optional: true
-        name: offline_pwd_cleared
-      - id: 66
-        type: string
-        optional: true
-        name: offline_pwd_clear_all
       - id: 67
         type: string
         optional: true
@@ -151,11 +106,6 @@ entities:
         optional: true
         sensitive: true
         name: ble_unlock_check
-      - id: 72
-        type: string
-        optional: true
-        sensitive: true
-        name: remote_pd_setkey_check
   - entity: sensor
     class: battery
     dps:
@@ -337,3 +287,122 @@ entities:
         type: boolean
         name: lock
         optional: true
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        name: value
+        optional: true
+        sensitive: true
+  - entity: text
+    name: New temp password
+    category: config
+    icon: "mdi:lock-open-plus"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Delete temp password
+    category: config
+    icon: "mdi:lock-open-minus"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Modify temp password
+    category: config
+    icon: "mdi:pencil-lock"
+    hidden: true
+    dps:
+      - id: 53
+        type: string
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Offline password timestamp
+    category: config
+    icon: "mdi:clock-digital"
+    hidden: true
+    dps:
+      - id: 64
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    name: Used offline password
+    category: diagnostic
+    icon: "mdi:lock-open-minus"
+    dps:
+      - id: 65
+        type: string
+        optional: true
+        sensitive: true
+        name: sensor
+  - entity: sensor
+    name: Clear offline passwords
+    icon: "mdi:lock-open-remove"
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 66
+        type: string
+        optional: true
+        sensitive: true
+        name: sensor
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 72
+        type: string
+        optional: true
+        sensitive: true
+        name: value

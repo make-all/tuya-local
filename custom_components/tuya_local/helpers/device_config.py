@@ -494,6 +494,9 @@ class TuyaDpsConfig:
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
+        return self.decode_value(v, device)
+
+    def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
                 return bytes.fromhex(v)
@@ -922,13 +925,25 @@ class TuyaDpsConfig:
 
         return c_match
 
-    def get_values_to_set(self, device, value):
+    def get_values_to_set(self, device, value, pending_map={}):
         """Return the dps values that would be set when setting to value"""
         result = value
         dps_map = {}
         if self.readonly:
             return dps_map
 
+        # Special case: if the current value has a redirect mapping,
+        # follow that.
+        current_value = device.get_property(self.id)
+        current_mapping = self._find_map_for_dps(current_value, device)
+        if current_mapping:
+            redirect = current_mapping.get("value_redirect")
+            if redirect:
+                return self._entity.find_dps(redirect).get_values_to_set(
+                    device,
+                    value,
+                )
+        # If no redirect, we need to check for mapped values in reverse
         mapping = self._find_map_for_value(value, device)
         scale = self.scale(device)
         mask = self.mask
@@ -965,7 +980,9 @@ class TuyaDpsConfig:
                             cond.get("dps_val", device.get_property(c_dps.id)),
                             device,
                         )
-                        dps_map.update(c_dps.get_values_to_set(device, c_val))
+                        dps_map.update(
+                            c_dps.get_values_to_set(device, c_val, pending_map)
+                        )
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
@@ -1055,7 +1072,12 @@ class TuyaDpsConfig:
             # Convert to int
             endianness = self.endianness
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), endianness)
+            decoded_value = self.decoded_value(device)
+            # if we have already updated it as part of this update,
+            # use it to preserve bits
+            if self.id in pending_map:
+                decoded_value = self.decode_value(pending_map[self.id], device)
+            current_value = int.from_bytes(decoded_value, endianness)
             result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
 

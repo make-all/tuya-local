@@ -4,6 +4,9 @@ products:
   - id: wynvjn0ztufzrd0p
     manufacturer: Inkbird
     model: ITC-306A V3.0
+  - id: ziqtatr15jcbblem
+    manufacturer: Inkbird
+    model: ITC-306A V4
 entities:
   - entity: climate
     translation_only_key: thermo_switch
@@ -112,23 +115,27 @@ entities:
             icon_priority: 4
   - entity: number
     category: config
-    name: Calibration offset
-    icon: "mdi:arrow-collapse-up"
+    translation_key: temperature_calibration
     dps:
       - id: 102
         name: value
         type: integer
+        unit: °
         range:
           min: -99
           max: 99
         mapping:
           - scale: 10
-            constraint: unit
+            constraint: temp_unit
             conditions:
               - dps_val: F
                 range:
                   min: -150
                   max: 150
+      - id: 101
+        type: string
+        name: temp_unit
+        hidden: true
   - entity: number
     name: Continuous heat hours
     icon: "mdi:clock"
@@ -142,10 +149,9 @@ entities:
           min: 0
           max: 96
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-alert"
     dps:
       - id: 109
         name: value
@@ -166,8 +172,7 @@ entities:
         type: string
         hidden: true
   - entity: number
-    name: Low temperature limit
-    icon: "mdi:snowflake-alert"
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:

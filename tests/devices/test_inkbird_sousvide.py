@@ -70,6 +70,7 @@ class TestInkbirdSousVideCooker(
                     "max": 9.9,
                     "scale": 10,
                     "step": 0.1,
+                    "unit": "°",
                 },
             ]
         )

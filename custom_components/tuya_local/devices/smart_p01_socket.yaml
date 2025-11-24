@@ -1,0 +1,111 @@
+name: Smartplug
+products:
+  - id: ocazi2dacnofqidn
+    model: P01
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 20
+        type: integer
+        name: add_ele
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 29
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 29
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: '0'
+            value: 'off'
+          - dps_val: '1'
+            value: 'on'
+          - dps_val: '2'
+            value: memory
+          - dps_val: null
+            invalid: true
+  - entity: text
+    name: Random schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 42
+        type: base64
+        name: value
+        optional: true
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 43
+        type: base64
+        name: value
+        optional: true

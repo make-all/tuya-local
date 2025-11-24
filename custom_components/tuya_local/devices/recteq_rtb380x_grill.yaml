@@ -1,0 +1,81 @@
+name: Grill
+products:
+  - id: fasfaumc9mykaws3
+    manufacturer: RecTeq
+    model: Bullseye Deluxe
+    model_id: RT-B380X
+entities:
+  - entity: climate
+    icon: "mdi:grill"
+    dps:
+      - id: 2
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 101
+        type: integer
+        name: temperature
+        range:
+          min: 180
+          max: 1000
+        unit: F
+        mapping:
+          - step: 5
+      - id: 102
+        type: integer
+        name: current_temperature
+  - entity: number
+    name: Minimum feed rate
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 255
+        mapping:
+          - step: 5
+  - entity: sensor
+    name: Probe A temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: F
+  - entity: number
+    name: Temperature compensation
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -127
+          max: 128
+  - entity: binary_sensor
+    name: Power failure
+    class: problem
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Ignition failure
+    class: problem
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Probe fault
+    class: problem
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor

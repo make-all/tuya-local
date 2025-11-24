@@ -71,18 +71,6 @@ entities:
             value: heat
           - dps_val: temp_boiling
             value: boil
-  - entity: switch
-    # 2025-06-07
-    deprecated: water_heater_kettle.operation_mode
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:kettle-off"
-          - dps_val: true
-            icon: "mdi:kettle-steam"
   - entity: select
     translation_key: temperature_unit
     category: config
