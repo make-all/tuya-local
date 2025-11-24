@@ -139,12 +139,6 @@ entities:
         type: integer
         name: sensor
         unit: min
-        mapping:
-          - dps_val: 0
-            constraint: Boost
-            conditions:
-              - dps_val: "cancel"
-                value: 0
   - entity: select
     name: Boost
     translation_key: timer
