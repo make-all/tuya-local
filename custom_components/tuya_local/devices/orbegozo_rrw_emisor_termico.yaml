@@ -1,0 +1,95 @@
+name: Heater
+products:
+  - id: xnljzcjrdqus2tka
+    manufacturer: Orbegozo
+    model: RRW Emisor Termico
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 7
+          max: 35
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: ANTIFROST
+                range:
+                  min: 7
+                  max: 28
+          - constraint: preset_mode
+            conditions:
+              - dps_val: ECONOMY
+                range:
+                  min: 4
+                  max: 32
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: COMFORT
+            value: comfort
+          - dps_val: ECONOMY
+            value: eco
+          - dps_val: ANTIFROST
+            value: away
+          - dps_val: PROGRAMME
+            value: home
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Open window detection
+    category: config
+    icon: "mdi:window-closed-variant"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: -7
+          max: 7
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        optional: true
+        name: fault_code
