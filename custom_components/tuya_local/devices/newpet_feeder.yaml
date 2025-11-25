@@ -60,10 +60,10 @@ entities:
           - dps_val: 8
             value: false
           - value: true
-      - id: 14
+      - id: 13
         type: bitfield
         name: fault_code
-      - id: 14
+      - id: 13
         type: bitfield
         name: description
         mapping:
@@ -83,12 +83,11 @@ entities:
             value: pet_food_stuck
   - entity: sensor
     icon: "mdi:paw"
-    name: Last feed
+    name: Feed Report
     dps:
-      - id: 15
-        type: integer
+      - id: 14
+        type: value
         name: sensor
-        unit: portions
         optional: true
   - entity: button
     translation_key: factory_reset
