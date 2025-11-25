@@ -32,7 +32,6 @@ entities:
         range:
           min: 0
           max: 100
-          step: 1
       # Humidity set point
       - id: 102
         name: humidity
@@ -41,7 +40,6 @@ entities:
         range:
           min: 22
           max: 99
-          step: 1
   - entity: sensor
     class: temperature
     name: Current temperature
@@ -55,7 +53,6 @@ entities:
         range:
           min: 0
           max: 400
-          step: 1
   - entity: button
     translation_key: factory_reset
     category: config
@@ -138,7 +135,6 @@ entities:
         range:
           min: 1
           max: 30
-          step: 1
   - entity: select
     name: Schedule mode
     dps:
@@ -164,7 +160,6 @@ entities:
         range:
           min: -10
           max: 10
-          step: 1
   - entity: number
     name: Swing
     dps:
@@ -176,4 +171,3 @@ entities:
         range:
           min: 1
           max: 5
-          step: 1
