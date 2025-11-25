@@ -1,6 +1,6 @@
 name: Heater
 products:
-  - id: bf49669b1da42ca7f34faa
+  - id: xnljzcjrdqus2tka
     manufacturer: Orbegozo
     model: RRW Emisor Termico
 entities:
@@ -43,13 +43,13 @@ entities:
         type: string
         mapping:
           - dps_val: COMFORT
-            value: Comfort
+            value: comfort
           - dps_val: ECONOMY
-            value: Economy
+            value: eco
           - dps_val: ANTIFROST
-            value: Antifrost
+            value: away
           - dps_val: PROGRAMME
-            value: Programming
+            value: home
   - entity: lock
     translation_key: child_lock
     category: config
@@ -66,9 +66,8 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:pan-vertical"
     dps:
       - id: 102
         type: integer
