@@ -4,84 +4,93 @@ products:
     name: Pilot Thermostat RP5
 legacy_type: climate
 
-primary_entity:
-  entity: climate
-  name: Bathroom Thermostat
   icon: "mdi:radiator"
-  dps:
-    # --- HVAC mode (off / heating / auto) ---
-    - id: 101
-      type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: "Standby"
-          value: "off"
-        - dps_val: "Programming"
-          value: "auto"
-        # All heating modes -> heat (the exact mode is selected via preset_mode)
-        - dps_val: "Comfort"
-          value: "heat"
-        - dps_val: "Comfort_1"
-          value: "heat"
-        - dps_val: "Comfort_2"
-          value: "heat"
-        - dps_val: "Thermostat"
-          value: "heat"
-        - dps_val: "ECO"
-          value: "heat"
-        - dps_val: "Anti_forst"
-          value: "heat"
-      alternatives: ["off","heat","auto"]
+entities:
+  - entity: climate
+    name: Bathroom Thermostat
+    icon: "mdi:radiator"
+    dps:
+      # --- HVAC mode (off / heating / auto) ---
+      - id: 101
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "Standby"
+            value: "off"
+          - dps_val: "Programming"
+            value: "auto"
+          # All heating modes -> heat (the exact mode is selected via preset_mode)
+          - dps_val: "Comfort"
+            value: "heat"
+          - dps_val: "Comfort_1"
+            value: "heat"
+          - dps_val: "Comfort_2"
+            value: "heat"
+          - dps_val: "Thermostat"
+            value: "heat"
+          - dps_val: "ECO"
+            value: "heat"
+          - dps_val: "Anti_forst"
+            value: "heat"
+        alternatives: ["off", "heat", "auto"]
 
-    # --- Target temperature (°C) ---
-    # Device provides whole degrees (raw 15 = 15 °C), so do NOT apply scaling.
-    - id: 125
-      type: integer
-      name: temperature
-      range:
-        # Display in HA: 5..30 °C (adjust as desired)
-        min: 50
-        max: 300
-      mapping:
-        - scale: 10
-      unit: "°C"
+      # --- Target temperature (°C) ---
+      # Device provides whole degrees (raw 15 = 15 °C), so do NOT apply scaling.
+      - id: 125
+        type: integer
+        name: temperature
+        range:
+          # Display in HA: 5..30 °C (adjust as desired)
+          min: 50
+          max: 300
+        mapping:
+          - scale: 10
+        unit: "°C"
 
-    # --- Current temperature (°C) ---
-    - id: 116
-      type: integer
-      name: current_temperature
-      range:
-        # Realistic sensing range in °C
-        min: -300
-        max: 900
-      mapping:
-        - scale: 10
-      unit: "°C"
+      # --- Current temperature (°C) ---
+      - id: 116
+        type: integer
+        name: current_temperature
+        range:
+          # Realistic sensing range in °C
+          min: -300
+          max: 900
+        mapping:
+          - scale: 10
+        unit: "°C"
 
-    # --- Preset modes (select specific heating modes) ---
-    # Same DP 101, exposed as preset_mode so you can select ECO/Anti-frost/Comfort(1/2)
-    - id: 101
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "ECO"
-          value: "eco"
-        - dps_val: "Anti_forst"
-          value: "away"       # Anti-frost mapped as 'away' preset
-        - dps_val: "Comfort"
-          value: "comfort"
-        - dps_val: "Comfort_1"
-          value: "comfort_1"
-        - dps_val: "Comfort_2"
-          value: "comfort_2"
-        - dps_val: "Thermostat"
-          value: "manual"
-        - dps_val: "Programming"
-          value: "program"
-      alternatives: ["none","eco","away","comfort","comfort_1","comfort_2","manual","program"]
+      # --- Preset modes (select specific heating modes) ---
+      # Same DP 101, exposed as preset_mode so you can select
+      # ECO/Anti-frost/Comfort(1/2)
+      - id: 101
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "ECO"
+            value: "eco"
+          - dps_val: "Anti_forst"
+            value: "away"       # Anti-frost mapped as 'away' preset
+          - dps_val: "Comfort"
+            value: "comfort"
+          - dps_val: "Comfort_1"
+            value: "comfort_1"
+          - dps_val: "Comfort_2"
+            value: "comfort_2"
+          - dps_val: "Thermostat"
+            value: "manual"
+          - dps_val: "Programming"
+            value: "program"
+        alternatives:
+          - "none"
+          - "eco"
+          - "away"
+          - "comfort"
+          - "comfort_1"
+          - "comfort_2"
+          - "manual"
+          - "program"
 
-secondary_entities:
-  # Child safety lock
+  # Child safety lock (was secondary_entities)
   - entity: lock
     name: Child Lock
     icon: "mdi:lock"
