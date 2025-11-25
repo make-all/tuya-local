@@ -2,8 +2,6 @@ name: Pilot RP5 Thermostat (minimal+presets)
 products:
   - id: c03zek9b5daz7omr
     name: Pilot Thermostat RP5
-legacy_type: climate
-icon: "mdi:radiator"
 
 entities:
   - entity: climate
@@ -19,7 +17,7 @@ entities:
             value: "off"
           - dps_val: "Programming"
             value: "auto"
-          # All heating modes -> heat (the exact mode is selected via preset_mode)
+          # All heating modes -> heat
           - dps_val: "Comfort"
             value: "heat"
           - dps_val: "Comfort_1"
@@ -35,12 +33,10 @@ entities:
         alternatives: ["off", "heat", "auto"]
 
       # --- Target temperature (°C) ---
-      # Device provides whole degrees (raw 15 = 15 °C), so do NOT apply scaling.
       - id: 125
         type: integer
         name: temperature
         range:
-          # Display in HA: 5..30 °C (adjust as desired)
           min: 50
           max: 300
         mapping:
@@ -52,16 +48,13 @@ entities:
         type: integer
         name: current_temperature
         range:
-          # Realistic sensing range in °C
           min: -300
           max: 900
         mapping:
           - scale: 10
         unit: "°C"
 
-      # --- Preset modes (select specific heating modes) ---
-      # Same DP 101, exposed as preset_mode so you can select
-      # ECO/Anti-frost/Comfort(1/2)
+      # --- Preset modes (via same DP 101) ---
       - id: 101
         type: string
         name: preset_mode
@@ -69,7 +62,7 @@ entities:
           - dps_val: "ECO"
             value: "eco"
           - dps_val: "Anti_forst"
-            value: "away"       # Anti-frost mapped as 'away' preset
+            value: "away"
           - dps_val: "Comfort"
             value: "comfort"
           - dps_val: "Comfort_1"
@@ -90,7 +83,6 @@ entities:
           - "manual"
           - "program"
 
-  # Child safety lock (was secondary_entities)
   - entity: lock
     name: Child Lock
     icon: "mdi:lock"
