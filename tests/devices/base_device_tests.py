@@ -124,6 +124,12 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
                         EntityCategory.DIAGNOSTIC,
                         msg=f"{k} is {e.entity_category.value}, expected diagnostic",
                     )
+                elif type(e) is TuyaLocalButton:
+                    self.assertIn(
+                        e.entity_category,
+                        [EntityCategory.CONFIG, EntityCategory.DIAGNOSTIC],
+                        msg=f"{k} is unsupported {e.entity_category.value}",
+                    )
                 else:
                     self.assertEqual(
                         e.entity_category,
