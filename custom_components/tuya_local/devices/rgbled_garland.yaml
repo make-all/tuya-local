@@ -1,6 +1,11 @@
 name: Fairy lights
 products:
   - id: dpfvez4c2ui18yef
+  - id: kkeofybrzdqrg53p
+    manufacturer: Lampoteka
+  - id: myyutxuyqg6jz0mp
+    manufacturer: Moes
+    model: Smart Eaves
 entities:
   - entity: light
     icon: "mdi:led-strip"
@@ -40,14 +45,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 52
-        type: string
-        optional: true
-        name: dreamlightmic_music_data
-      - id: 61
-        type: string
-        optional: true
-        name: paint_color_data
   - entity: time
     translation_key: timer
     category: config
@@ -120,3 +117,23 @@ entities:
             value: BRG
           - dps_val: BGR
             value: BGR
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Painting control
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 61
+        type: base64
+        optional: true
+        name: value
