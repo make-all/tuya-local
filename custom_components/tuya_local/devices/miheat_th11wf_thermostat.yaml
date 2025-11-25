@@ -40,6 +40,10 @@ entities:
         name: mode
         type: string
         hidden: true
+      - id: 111
+        type: string
+        name: p_mode
+        hidden: true
       - id: 113
         type: boolean
         name: preset_mode
@@ -53,18 +57,14 @@ entities:
                 value: manual
               - dps_val: program
                 value: program
-      - id: 111
-        type: string
-        name: p_mode
-        hidden: true
-  - entity: sensor
-    class: humidity
+  - entity: switch
+    name: Eco
+    icon: "mdi:leaf"
+    category: config
     dps:
-      - id: 121
-        name: sensor
-        type: integer
-        unit: "%"
-        class: measurement
+      - id: 8
+        type: boolean
+        name: switch
   - entity: lock
     translation_key: child_lock
     category: config
@@ -105,6 +105,8 @@ entities:
         precision: 0
         unit: kWh
         class: total_increasing
+        mapping:
+          - scale: 100
   - entity: binary_sensor
     class: window
     dps:
@@ -115,21 +117,15 @@ entities:
           - dps_val: open
             value: true
           - value: false
-  - entity: switch
-    name: Eco
-    icon: "mdi:leaf"
-    category: config
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
     dps:
-      - id: 8
-        type: boolean
-        name: switch
-  - entity: switch
-    translation_key: anti_frost
-    category: config
-    dps:
-      - id: 123
-        type: boolean
-        name: switch
+      - id: 119
+        type: integer
+        name: sensor
+        unit: min
   - entity: select
     name: Boost
     translation_key: timer
@@ -189,3 +185,18 @@ entities:
             value: "1h55m"
           - dps_val: "120min"
             value: "2h"
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 121
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
