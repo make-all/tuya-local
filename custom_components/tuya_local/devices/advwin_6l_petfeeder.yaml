@@ -3,6 +3,9 @@ products:
   - id: cwoaxapwqubwkg6o
     manufacturer: Advwin
     model: 6L camera
+  - id: vd6bt2zlpmjmm02o
+    manufacturer: Papifeed
+    model: 7L camera 202301
 entities:
   - entity: camera
     dps:
@@ -21,6 +24,7 @@ entities:
     dps:
       - id: 101
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     name: Flip image
@@ -37,6 +41,7 @@ entities:
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
   - entity: select
     name: Motion sensitivity
