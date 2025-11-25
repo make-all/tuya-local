@@ -6,7 +6,12 @@ products:
     model_id: PLKARW100
 
 # DPs that are not yet implemented:
-# -  45 "Fault Alarm": {"id": 45, "name": "fault", "type": "Bitmap", "format": "{\"label\":[\"e1\",\"e2\",\"e3\"]}", "enumMap": {}}
+# -  45 "Fault Alarm":
+#          {
+#            "id": 45, "name": "fault", "type": "Bitmap",
+#            "format": "{\"label\":[\"e1\",\"e2\",\"e3\"]}",
+#            "enumMap": {}
+#          }
 # - 110: "schedule_7day" "valueRange": "{}", "valueType": "Raw"
 # - 111: "schedule_52" "valueRange": "{}", "valueType": "Raw"
 # - 112: "schedule_24h" "valueRange": "{}", "valueType": "Raw"
@@ -16,7 +21,8 @@ entities:
   - entity: humidifier
     class: dehumidifier
     dps:
-      - id: 1 # Global on/off
+      # Global on/off
+      - id: 1
         name: switch
         type: boolean
       - id: 101
@@ -27,7 +33,8 @@ entities:
           min: 0
           max: 100
           step: 1
-      - id: 102 # Humidity set point
+      # Humidity set point
+      - id: 102
         name: humidity
         type: integer
         unit: "%"
