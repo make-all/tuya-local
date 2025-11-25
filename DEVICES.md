@@ -57,6 +57,7 @@
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
 - Nybro heater
+- Orbegozo RRW heater
 - Orion OWH-PTC2000 heater
 - Point POPANW600 panel heater
 - Princess 350 panel heater

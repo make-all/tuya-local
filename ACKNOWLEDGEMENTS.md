@@ -1130,3 +1130,4 @@ Further device support has been made with the assistance of users. Please consid
 - [felixfx2](https://github.com/felixfx2) for assisting with support for Prism+ Oasis Pro ceiling fan with RGBCCT light.
 - [toby121](https://github.com/toby121) for assisting with support for TY-12W 12 switch relay board.
 - [Junikiewicz](https://github.com/Junikiewicz) for contributing improvements to Advwin 6L pet feeder.
+- [H4irBear](https://github.com/H4irBear) for contributing support for Orbegozo RRW heater.
