@@ -63,23 +63,34 @@ entities:
               min: 0
               max: 1000
 
-  - entity: siren
+  - entity: switch
     name: Sound
     icon: "mdi:music"
     dps:
       - id: 8
         name: switch
         type: boolean
+
+  - entity: number
+    name: Volume
+    icon: "mdi:volume-high"
+    dps:
       - id: 9
-        name: volume_level
+        name: value
         type: integer
+        unit: "%"
         range:
           min: 0
           max: 100
         mapping:
           - scale: 100
+
+  - entity: select
+    name: Sounds
+    icon: "mdi:waveform"
+    dps:
       - id: 10
-        name: tone
+        name: option
         type: string
         mapping:
           - dps_val: "1"
@@ -150,13 +161,6 @@ entities:
             value: Mozart
           - dps_val: "34"
             value: Morning
-      - id: 20
-        name: duration
-        type: integer
-        unit: min
-        range:
-          min: 0
-          max: 1440
 
   - entity: select
     translation_key: scene
@@ -182,6 +186,18 @@ entities:
             value: Scene 7
           - dps_val: mode_8
             value: Scene 8
+
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 1440
 
   - entity: light
     translation_key: display
