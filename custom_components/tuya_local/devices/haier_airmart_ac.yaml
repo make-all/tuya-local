@@ -1,0 +1,100 @@
+name: Haier / Airmart AC (Tuya 3.5)
+products: []
+primary_entity:
+  entity: climate
+  name: climate
+  translation_key: climate
+  dps:
+    # Power + hvac_mode logic
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
+            - dps_val: auto
+              value: heat_cool
+            - dps_val: wet
+              value: dry
+
+    # Mode string (used by hvac_mode)
+    - id: 4
+      type: string
+      name: mode
+
+    # Target temperature
+    - id: 2
+      type: integer
+      name: temperature
+      unit: "°C"
+      range:
+        min: 16
+        max: 30
+      mapping:
+        - step: 1
+
+    # Current temperature (raw / 2)
+    - id: 3
+      type: integer
+      name: current_temperature
+      unit: "°C"
+      readonly: true
+      mapping:
+        - scale: 2
+
+    # Fan mode
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+
+    # Vertical swing (basic on/off)
+    - id: 117
+      type: string
+      name: swing_mode
+      mapping:
+        - dps_val: ud_00
+          value: "off"
+        - dps_val: ud_0c
+          value: "vertical"
+
+    # Horizontal swing (currently fixed)
+    - id: 118
+      type: string
+      name: swing_horizontal
+      readonly: true
+
+secondary_entities:
+  # Quiet / Turbo performance selector
+  - entity: select
+    name: performance_mode
+    icon: mdi:run-fast
+    dps:
+      - id: 107
+        name: quiet
+        type: boolean
+      - id: 108
+        name: turbo
+        type: boolean
+    mapping:
+      - dps_val: {quiet: true}
+        value: "quiet"
+      - dps_val: {turbo: true}
+        value: "turbo"
+      - dps_val: {quiet: false, turbo: false}
+        value: "normal"
