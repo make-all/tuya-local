@@ -1,0 +1,71 @@
+name: Thermostat
+products:
+  - id: c03zek9b5daz7omr
+    manufacturer: "Pilot"
+    model: "RP5"
+
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      # --- HVAC mode (off / heating / auto) ---
+      - id: 101
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "Standby"
+            value: "off"
+          - dps_val: "Programming"
+            value: "auto"
+          - dps_val: "Comfort"
+            value: "heat"
+          - value: "heat"
+            hidden: true
+
+      # --- Target temperature (°C) ---
+      - id: 125
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 300
+        mapping:
+          - scale: 10
+        unit: "°C"
+
+      # --- Current temperature (°C) ---
+      - id: 116
+        type: integer
+        name: current_temperature
+        range:
+          min: -300
+          max: 900
+        mapping:
+          - scale: 10
+
+      # --- Preset modes (via same DP 101) ---
+      - id: 101
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "ECO"
+            value: "eco"
+          - dps_val: "Anti_forst"
+            value: "away"
+          - dps_val: "Comfort"
+            value: "comfort"
+          - dps_val: "Comfort_1"
+            value: "comfort_1"
+          - dps_val: "Comfort_2"
+            value: "comfort_2"
+          - dps_val: "Thermostat"
+            value: "manual"
+          - dps_val: "Programming"
+            value: "program"
+
+  - entity: lock
+    translation_key: child_lock
+    dps:
+      - id: 102
+        type: boolean
+        name: lock
