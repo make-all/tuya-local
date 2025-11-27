@@ -75,7 +75,7 @@
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
-- WarmeHaus AFD-02-TJ thermostatic towel rain element
+- WarmeHaus AFD-02-TJ thermostatic towel rail element
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heat pumps
@@ -241,8 +241,9 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
-- Polytherm Polyalpha thermostat
+- Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
+- Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
