@@ -46,9 +46,8 @@ entities:
             value: standby
           - dps_val: feeding
             value: feeding
-  - entity: sensor
-    icon: "mdi:paw"
-    name: Fault code
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 13
@@ -81,7 +80,7 @@ entities:
             value: battery_low
           - dps_val: 64
             value: pet_food_stuck
-  - entity: sensor
+  - entity: event
     icon: "mdi:paw"
     name: Feed Report
     dps:
