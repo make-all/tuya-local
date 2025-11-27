@@ -1,12 +1,12 @@
-name: Pilot RP5 Thermostat (minimal+presets)
+name: Thermostat
 products:
   - id: c03zek9b5daz7omr
-    name: Pilot Thermostat RP5
+    manufacturer: "Pilot"
+    model: "RP5"
 
 entities:
   - entity: climate
-    name: Bathroom Thermostat
-    icon: "mdi:radiator"
+    translation_key: thermostat
     dps:
       # --- HVAC mode (off / heating / auto) ---
       - id: 101
@@ -17,19 +17,10 @@ entities:
             value: "off"
           - dps_val: "Programming"
             value: "auto"
-          # All heating modes -> heat
           - dps_val: "Comfort"
             value: "heat"
-          - dps_val: "Comfort_1"
-            value: "heat"
-          - dps_val: "Comfort_2"
-            value: "heat"
-          - dps_val: "Thermostat"
-            value: "heat"
-          - dps_val: "ECO"
-            value: "heat"
-          - dps_val: "Anti_forst"
-            value: "heat"
+          - value: "heat"
+            hidden: true
 
       # --- Target temperature (°C) ---
       - id: 125
@@ -51,7 +42,6 @@ entities:
           max: 900
         mapping:
           - scale: 10
-        unit: "°C"
 
       # --- Preset modes (via same DP 101) ---
       - id: 101
@@ -74,8 +64,7 @@ entities:
             value: "program"
 
   - entity: lock
-    name: Child Lock
-    icon: "mdi:lock"
+    translation_key: child_lock
     dps:
       - id: 102
         type: boolean
