@@ -72,7 +72,6 @@ entities:
         type: boolean
         name: button
   - entity: light
-    name: Light
     dps:
       - id: 16
         type: boolean
@@ -159,23 +158,23 @@ entities:
         name: sensor
         mapping:
           - dps_val: cat_in
-            value: Cat enters
+            value: occupied
           - dps_val: cat_near
-            value: Cat approaching
+            value: monitor
           - dps_val: cat_out
-            value: Cat is out
+            value: available
           - dps_val: clean
-            value: Cleaning
+            value: cleaning
           - dps_val: clear_sand
-            value: Empty cat litter
+            value: emptying
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: smooth
             value: Smooth cat litter
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: uv
-            value: UV
+            value: sterilizing
   - entity: switch
     name: Pour sand
     icon: "mdi:wave-arrow-down"
@@ -190,14 +189,13 @@ entities:
       - id: 102
         type: boolean
         name: switch
-  - entity: switch
-    name: Child lock
-    icon: "mdi:lock"
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 103
         type: boolean
-        name: switch
+        name: lock
   - entity: button
     name: Deodorant reset
     category: config
