@@ -6,13 +6,31 @@ products:
     name: Airmart AC
 
 entities:
+
+  #####################################################
+  # MAIN CLIMATE ENTITY
+  #####################################################
   - entity: climate
-    name: Air conditioner
+    name: climate
     icon: mdi:air-conditioner
     dps:
       - id: 1
-        name: switch
         type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: wet
+                value: dry
 
       - id: 2
         name: temperature
@@ -25,26 +43,15 @@ entities:
       - id: 3
         name: current_temperature
         type: integer
-        range:
-          min: 0
-          max: 600
         mapping:
-          - scale: 0.5
+          - scale: 2 
         unit: C
         readonly: true
 
       - id: 4
         name: hvac_mode
         type: string
-        mapping:
-          - dps_val: auto
-            value: auto
-          - dps_val: cold
-            value: cool
-          - dps_val: hot
-            value: heat
-          - dps_val: wet
-            value: dry
+        name: mode
 
       - id: 5
         name: fan_mode
@@ -58,12 +65,6 @@ entities:
             value: medium
           - dps_val: high
             value: high
-
-      - id: 13
-        name: online
-        type: boolean
-        readonly: true
-        optional: true
 
       - id: 117
         name: swing_mode
@@ -81,36 +82,19 @@ entities:
         optional: true
         readonly: true
 
-      - id: 102
-        name: aux_102
-        type: integer
-        optional: true
-        readonly: true
-
-      - id: 106
-        name: aux_106
-        type: boolean
-        optional: true
-        readonly: true
-
-      - id: 107
-        name: quiet
-        type: boolean
-        optional: true
-
-      - id: 108
-        name: turbo
-        type: boolean
-        optional: true
-
-      - id: 114
-        name: aux_114
-        type: boolean
-        optional: true
-        readonly: true
-
-      - id: 116
-        name: aux_116
-        type: integer
-        optional: true
-        readonly: true
+  #####################################################
+  # INDEPENDENT CURRENT TEMPERATURE SENSOR
+  #####################################################
+  - entity: sensor
+    name: current_temperature
+    icon: mdi:thermometer
+    class: temperature
+    dps:
+        - id: 3
+          name: sensor
+          class: temperature
+          type: integer
+          mapping:
+            - scale: 2
+          unit: C
+          readonly: true
