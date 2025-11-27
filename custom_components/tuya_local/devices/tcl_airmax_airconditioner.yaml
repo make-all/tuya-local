@@ -109,21 +109,27 @@ entities:
         name: swing_mode
         mapping:
           - dps_val: "0"
-            value: "off"
+            value: "Off"
           - dps_val: "1"
-            value: "on"
-          - hidden: true
-            value: "on"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
       - id: 114
         type: string
         name: swing_horizontal_mode
         mapping:
           - dps_val: "0"
-            value: "off"
+            value: "Off"
           - dps_val: "1"
-            value: "on"
-          - value: "on"
-            hidden: true
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
       - id: 123
         type: hex
         name: flags_2
@@ -152,23 +158,6 @@ entities:
           - dps_val: "child"
             value: Child
   - entity: select
-    name: Vertical swing
-    category: config
-    icon: "mdi:arrow-up-down-bold"
-    dps:
-      - id: 113
-        type: string
-        name: option
-        mapping:
-          - dps_val: "0"
-            value: "Off"
-          - dps_val: "1"
-            value: Full
-          - dps_val: "2"
-            value: Upper
-          - dps_val: "3"
-            value: Lower
-  - entity: select
     name: Vertical position
     category: config
     icon: "mdi:unfold-more-horizontal"
@@ -189,25 +178,6 @@ entities:
             value: Slightly down
           - dps_val: "5"
             value: Bottom
-  - entity: select
-    name: Horizontal swing
-    category: config
-    icon: "mdi:arrow-left-right-bold"
-    dps:
-      - id: 114
-        type: string
-        name: option
-        mapping:
-          - dps_val: "0"
-            value: "Off"
-          - dps_val: "1"
-            value: Full
-          - dps_val: "2"
-            value: Left
-          - dps_val: "3"
-            value: Center
-          - dps_val: "4"
-            value: Right
   - entity: select
     name: Horizontal position
     category: config
