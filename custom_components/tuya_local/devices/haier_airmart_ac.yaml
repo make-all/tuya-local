@@ -1,99 +1,116 @@
-name: Haier / Airmart AC (Tuya 3.5)
-products: []
-primary_entity:
-  entity: climate
-  translation_key: climate
-  dps:
-    # Power + hvac_mode logic
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: wet
-              value: dry
+name: AirMart / Haier Air Conditioner
+products:
+  - id: keycnvksyhjcrg8t
+    manufacturer: Haier
+    model: Airmart wall AC
+    name: Airmart AC
 
-    # Mode string (used by hvac_mode)
-    - id: 4
-      type: string
-      name: mode
-
-    # Target temperature
-    - id: 2
-      type: integer
-      name: temperature
-      unit: "°C"
-      range:
-        min: 16
-        max: 30
-      mapping:
-        - step: 1
-
-    # Current temperature (raw / 2)
-    - id: 3
-      type: integer
-      name: current_temperature
-      unit: "°C"
-      readonly: true
-      mapping:
-        - scale: 2
-
-    # Fan mode
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: mid
-          value: medium
-        - dps_val: high
-          value: high
-
-    # Vertical swing (basic on/off)
-    - id: 117
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: ud_00
-          value: "off"
-        - dps_val: ud_0c
-          value: "vertical"
-
-    # Horizontal swing (currently fixed)
-    - id: 118
-      type: string
-      name: swing_horizontal
-      readonly: true
-
-secondary_entities:
-  # Quiet / Turbo performance selector
-  - entity: select
-    name: performance_mode
-    icon: mdi:run-fast
+entities:
+  - entity: climate
+    name: Air conditioner
+    icon: mdi:air-conditioner
     dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 30
+        unit: C
+
+      - id: 3
+        name: current_temperature
+        type: integer
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - scale: 0.5
+        unit: C
+        readonly: true
+
+      - id: 4
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: cold
+            value: cool
+          - dps_val: hot
+            value: heat
+          - dps_val: wet
+            value: dry
+
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+
+      - id: 13
+        name: online
+        type: boolean
+        readonly: true
+        optional: true
+
+      - id: 117
+        name: swing_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: ud_0c
+            value: vertical
+          - dps_val: ud_00
+            value: off
+
+      - id: 118
+        name: swing_horizontal
+        type: string
+        optional: true
+        readonly: true
+
+      - id: 102
+        name: aux_102
+        type: integer
+        optional: true
+        readonly: true
+
+      - id: 106
+        name: aux_106
+        type: boolean
+        optional: true
+        readonly: true
+
       - id: 107
         name: quiet
         type: boolean
+        optional: true
+
       - id: 108
         name: turbo
         type: boolean
-    mapping:
-      - dps_val: {quiet: true}
-        value: "quiet"
-      - dps_val: {turbo: true}
-        value: "turbo"
-      - dps_val: {quiet: false, turbo: false}
-        value: "normal"
+        optional: true
+
+      - id: 114
+        name: aux_114
+        type: boolean
+        optional: true
+        readonly: true
+
+      - id: 116
+        name: aux_116
+        type: integer
+        optional: true
+        readonly: true
