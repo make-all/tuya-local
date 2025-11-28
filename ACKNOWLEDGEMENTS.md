@@ -1134,3 +1134,4 @@ Further device support has been made with the assistance of users. Please consid
 - [steaura](https://github.com/steaura) for contributing improvements to Electriq CD12 Pro dehumidifier.
 - [rickbergmans](https://github.com/rickbergmans) for contributing support for Pilot Wire RP5 bath thermostat.
 - [baracici](https://github.com/baracici) for assisting with support for ElectriQ CD20PRO-LE-V4 dehumidifier.
+- [christianglodt](https://github.com/christianglodt) for contributing support for Plikc Ario WiFi air vent.
