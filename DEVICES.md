@@ -444,6 +444,7 @@
 ### Humidifiers
 
 - airx H8 humidifier
+- AlecoAir PU55 Humino humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B humidifiers
