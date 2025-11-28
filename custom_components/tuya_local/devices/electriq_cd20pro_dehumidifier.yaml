@@ -10,6 +10,9 @@ products:
   - id: m0wtqltrepknlpdj
     manufacturer: Morris
     model: Premier Plus
+  - id: lovfhvt2xkrexf8z
+    manufacturer: Electriq
+    model: CD12PRO-LE
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -17,13 +20,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 3
       - id: 2
         name: mode
         type: string
@@ -34,13 +30,9 @@ entities:
           - dps_val: low
             value: eco
           - dps_val: high
-            value: boost
-            icon: "mdi:tshirt-crew-outline"
-            icon_priority: 2
+            value: laundry
           - dps_val: fan
             value: purify
-            icon: "mdi:air-purifier"
-            icon_priority: 2
       - id: 3
         type: integer
         name: current_humidity

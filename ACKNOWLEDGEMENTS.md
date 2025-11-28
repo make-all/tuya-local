@@ -1133,3 +1133,6 @@ Further device support has been made with the assistance of users. Please consid
 - [H4irBear](https://github.com/H4irBear) for contributing support for Orbegozo RRW heater.
 - [steaura](https://github.com/steaura) for contributing improvements to Electriq CD12 Pro dehumidifier.
 - [rickbergmans](https://github.com/rickbergmans) for contributing support for Pilot Wire RP5 bath thermostat.
+- [baracici](https://github.com/baracici) for assisting with support for ElectriQ CD20PRO-LE-V4 dehumidifier.
+- [christianglodt](https://github.com/christianglodt) for contributing support for Plikc Ario WiFi air vent.
+- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifer.
