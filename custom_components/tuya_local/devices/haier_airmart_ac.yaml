@@ -44,14 +44,12 @@ entities:
         name: current_temperature
         type: integer
         mapping:
-          - scale: 2 
+          - scale: 2
         unit: C
-        readonly: true
 
       - id: 4
         name: hvac_mode
         type: string
-        name: mode
 
       - id: 5
         name: fan_mode
@@ -72,9 +70,9 @@ entities:
         optional: true
         mapping:
           - dps_val: ud_0c
-            value: vertical
+            value: true
           - dps_val: ud_00
-            value: off
+            value: false
 
       - id: 118
         name: swing_horizontal
@@ -90,11 +88,10 @@ entities:
     icon: mdi:thermometer
     class: temperature
     dps:
-        - id: 3
-          name: sensor
-          class: temperature
-          type: integer
-          mapping:
-            - scale: 2
-          unit: C
-          readonly: true
+      - id: 3
+        name: sensor
+        class: temperature
+        type: integer
+        mapping:
+          - scale: 2
+        unit: C
