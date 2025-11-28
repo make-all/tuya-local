@@ -1,14 +1,12 @@
-name: PU55 Humino
+name: Humidifier
 products:
   - id: rjhsz1vaxpp4gih3
     manufacturer: AlecoAir
-    model: PU55 HUMINO
+    model: PU55 Humino
 
 entities:
   - entity: humidifier
     class: humidifier
-    translation_key: humidifier_with_presets
-    name: Humidifier
     dps:
       - id: 105
         name: switch
@@ -65,7 +63,6 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 13
@@ -75,14 +72,14 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Air Quality
+    translation_key: air_quality
     dps:
       - id: 21
         name: sensor
         type: string
 
   - entity: sensor
-    name: Clean Water Tank
+    name: Clean water tank
     dps:
       - id: 106
         name: sensor
@@ -99,7 +96,6 @@ entities:
         type: boolean
 
   - entity: switch
-    name: UV Lamp
     translation_key: uv_sterilization
     category: config
     dps:
@@ -120,19 +116,13 @@ entities:
           - dps_val: false
             icon: mdi:volume-medium
 
-  - entity: switch
-    name: Display
+  - entity: light
     translation_key: display
     category: config
     dps:
       - id: 103
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: mdi:fit-to-screen-outline
-          - dps_val: false
-            icon: mdi:fit-to-screen
 
   - entity: switch
     name: Dry Fan
@@ -143,7 +133,6 @@ entities:
         type: boolean
 
   - entity: number
-    name: Auto OFF
     translation_key: timer
     class: duration
     dps:
@@ -156,7 +145,7 @@ entities:
           max: 24
 
   - entity: switch
-    name: Humidify
+    name: Constant mist
     dps:
       - id: 10
         name: switch
@@ -167,14 +156,3 @@ entities:
           - dps_val: false
             icon: mdi:air-humidifier-off
 
-  - entity: switch
-    name: Humidify Controlled
-    dps:
-      - id: 105
-        name: switch
-        type: boolean
-        mapping:
-          - dps_val: true
-            icon: mdi:air-humidifier
-          - dps_val: false
-            icon: mdi:air-humidifier-off
