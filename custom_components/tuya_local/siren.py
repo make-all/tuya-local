@@ -87,10 +87,11 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
                 if tone == "off":
                     tone = self._default_tone
 
-            set_dps = {
-                **set_dps,
-                **self._tone_dp.get_values_to_set(self._device, tone, set_dps),
-            }
+            if tone is not None:
+                set_dps = {
+                    **set_dps,
+                    **self._tone_dp.get_values_to_set(self._device, tone, set_dps),
+                }
 
         if duration is not None and self._duration_dp:
             set_dps = {
