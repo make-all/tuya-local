@@ -229,5 +229,5 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         msg += member_id.to_bytes(2, "big")
         msg += code.encode("ascii")
         msg += source.to_bytes(2, "big")
-        msg += b"\x00"  # ordinary user (0x01 is admin)
+        # msg += b"\x00"  # ordinary user (0x01 is admin)
         return b64encode(msg).decode("utf-8")
