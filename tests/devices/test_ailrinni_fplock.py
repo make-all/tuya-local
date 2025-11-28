@@ -51,9 +51,9 @@ class TestAilrinniFingerprintLock(TuyaDeviceTestCase):
 
     async def test_lock(self):
         """Test locking the lock."""
-        expected = b64encode(b"\x00" + b"\x00\x01" + b"12345678" + b"\x00\x00").decode(
-            "utf-8"
-        )
+        expected = b64encode(
+            b"\x00" + b"\x00\x01" + b"12345678" + b"\x00\x00
+        ).decode("utf-8")
         async with assert_device_properties_set(
             self.subject._device,
             {CODE_UNLOCK_DP: expected},
