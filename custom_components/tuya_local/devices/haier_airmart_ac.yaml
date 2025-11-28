@@ -48,7 +48,7 @@ entities:
         unit: C
 
       - id: 4
-        name: hvac_mode
+        name: mode
         type: string
 
       - id: 5
@@ -79,19 +79,3 @@ entities:
         type: string
         optional: true
         readonly: true
-
-  #####################################################
-  # INDEPENDENT CURRENT TEMPERATURE SENSOR
-  #####################################################
-  - entity: sensor
-    name: current_temperature
-    icon: mdi:thermometer
-    class: temperature
-    dps:
-      - id: 3
-        name: sensor
-        class: temperature
-        type: integer
-        mapping:
-          - scale: 2
-        unit: C
