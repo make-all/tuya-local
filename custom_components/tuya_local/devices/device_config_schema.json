@@ -314,7 +314,7 @@
                                             },
                                             "default": {
                                                 "type": "boolean",
-                                                "description": "true if this mapping should be used as the default when no value was specified. Currently used only for a siren entity tone dp when there is no switch dp and the turn_on action is called without arguments."
+                                                "description": "true if this mapping should be used as the default when no value was specified. Currently used only for a siren entity tone dp when there is no switch dp and the turn_on action is called without arguments, or for a water_heater entity when switching out of away mode and away is implemented as a normal mode in the device."
                                             },
                                             "hidden": {
                                                 "type": "boolean",
@@ -374,6 +374,10 @@
                                                             },
                                                             "required": ["min", "max"],
                                                             "additionalProperties": false
+                                                        },
+                                                        "default": {
+                                                            "type": "boolean",
+                                                            "description": "true if this mapping should be used as the default when no value was specified. Currently used only for a siren entity tone dp when there is no switch dp and the turn_on action is called without arguments, or for a water_heater entity when switching out of away mode and away is implemented as a normal mode in the device."
                                                         },
                                                         "scale": {
                                                             "type": "number",
