@@ -1135,4 +1135,5 @@ Further device support has been made with the assistance of users. Please consid
 - [rickbergmans](https://github.com/rickbergmans) for contributing support for Pilot Wire RP5 bath thermostat.
 - [baracici](https://github.com/baracici) for assisting with support for ElectriQ CD20PRO-LE-V4 dehumidifier.
 - [christianglodt](https://github.com/christianglodt) for contributing support for Plikc Ario WiFi air vent.
-- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifer.
+- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifier.
+- [yurgh](https://github.com/yurgh) for contributing improvements to Eeese Carl dehumidifier.
