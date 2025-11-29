@@ -86,11 +86,20 @@ entities:
     dps:
       - id: 14
         type: integer
-        name: sensor
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 14
+        type: integer
+        name: portions
         optional: true
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 24
         type: boolean
