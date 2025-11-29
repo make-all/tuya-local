@@ -956,6 +956,7 @@ port and password.
 - Digoo DG-HAMB GSM security alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
+- Kerui 120dB siren alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
 - Tolviviov DP-W2.1 security alarm panel

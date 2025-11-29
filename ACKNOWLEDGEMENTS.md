@@ -1138,3 +1138,4 @@ Further device support has been made with the assistance of users. Please consid
 - [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifier.
 - [yurgh](https://github.com/yurgh) for contributing improvements to Eeese Carl dehumidifier.
 - [fredppm](https://github.com/fredppm) for contributing support for Newpet pet feeder.
+- [politician](https://github.com/politician) for assisting with support for Kerui 120dB siren alarm.

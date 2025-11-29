@@ -1,0 +1,168 @@
+name: Alarm siren
+products:
+  - id: nzopxptg7wxjnnan
+    manufacturer: Kerui
+    model: 120dB siren alarm
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 40
+        type: string
+        name: unknown_40
+  - entity: number
+    name: Exit delay
+    icon: "mdi:clock-out"
+    class: duration
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 99
+  - entity: number
+    name: Siren duration
+    class: duration
+    category: config
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 5
+  - entity: switch
+    name: Alarm sound
+    icon: "mdi:alarm-bell"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm light
+    icon: "mdi:alarm-light"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: button
+    name: Mute
+    icon: "mdi:volume-mute"
+    dps:
+      - id: 25
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 26
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 26
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: switch
+    name: Notifications
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    icon: "mdi:clock-in"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 200
+  - entity: switch
+    name: Delay sound
+    icon: "mdi:progress-alert"
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: sound
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+      - id: 33
+        type: string
+        optional: true
+        name: info
+  - entity: button
+    translation_key: factory_reset
+    hidden: true
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Subdevice admin
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 38
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    name: SOS
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 44
+        type: boolean
+        name: sensor
