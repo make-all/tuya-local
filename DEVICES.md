@@ -995,6 +995,7 @@ port and password.
 - MolyPet F02W pet feeder
 - Mypin 6L camera pet feeder
 - Nedis pet feeder
+- Newpet pet feeder
 - Ningbo BF314A camera pet feeder
 - Papifeed pet feeder
 - Petempo PAF-02 pet feeder
