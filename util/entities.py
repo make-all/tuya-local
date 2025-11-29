@@ -1,6 +1,7 @@
 """Find matching entities in config files."""
 
 import sys
+
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
