@@ -4,8 +4,8 @@ products:
     manufacturer: Immax
     model: Neo Lite Smart professional 7-in-1
   - id: 6cwineqz1ndjmuee
-    manufacturer: Immax
-    model: Neo Lite Smart professional 7-in-1
+    manufacturer: Emax
+    model: EM3395TY-2
   - id: pj4qomlesttsisgi
     manufacturer: Horisont
     model: Pro-5 WIFI Weather Station
@@ -127,6 +127,7 @@ entities:
       - id: 38
         type: integer
         name: sensor
+        optional: true
         unit: C
         class: measurement
         mapping:
@@ -136,6 +137,7 @@ entities:
     dps:
       - id: 39
         type: integer
+        optional: true
         name: sensor
         unit: "%"
         class: measurement
@@ -275,6 +277,7 @@ entities:
     dps:
       - id: 56
         type: integer
+        optional: true
         name: sensor
         unit: km/h
         class: measurement
@@ -286,6 +289,7 @@ entities:
     dps:
       - id: 57
         type: integer
+        optional: true
         name: sensor
         unit: km/h
         class: measurement
@@ -296,6 +300,7 @@ entities:
     dps:
       - id: 60
         type: integer
+        optional: true
         name: sensor
         unit: mm
         class: measurement
@@ -303,6 +308,7 @@ entities:
           - scale: 10
       - id: 59
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 10
@@ -311,6 +317,7 @@ entities:
     dps:
       - id: 61
         type: integer
+        optional: true
         name: sensor
         unit: mm/h
         class: measurement
@@ -322,6 +329,7 @@ entities:
     dps:
       - id: 62
         type: integer
+        optional: true
         name: sensor
         class: measurement
   - entity: sensor
@@ -330,6 +338,7 @@ entities:
     dps:
       - id: 64
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -341,6 +350,7 @@ entities:
     dps:
       - id: 65
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -352,6 +362,7 @@ entities:
     dps:
       - id: 66
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -436,11 +447,13 @@ entities:
     dps:
       - id: 113
         type: base64
+        optional: true
         mask: "00FF000000000000000000000000000000000000000000000000000000000000"
         unit: "%"
         name: sensor
       - id: 113
         type: base64
+        optional: true
         name: raw_data
   - entity: text
     name: Backlight
@@ -467,6 +480,7 @@ entities:
     dps:
       - id: 127
         type: integer
+        optional: true
         name: sensor
         unit: mm
         class: measurement
@@ -478,6 +492,7 @@ entities:
     dps:
       - id: 131
         type: integer
+        optional: true
         name: sensor
         unit: km/h
         class: measurement
@@ -488,17 +503,20 @@ entities:
     dps:
       - id: 134
         type: base64
+        optional: true
         name: sensor
         mask: "0000000000FFFF0000"
         unit: °
       - id: 134
         type: base64
+        optional: true
         name: raw_data
   - entity: sensor
     class: illuminance
     dps:
       - id: 135
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
@@ -510,6 +528,7 @@ entities:
     dps:
       - id: 137
         type: integer
+        optional: true
         name: sensor
         unit: min
         class: measurement
