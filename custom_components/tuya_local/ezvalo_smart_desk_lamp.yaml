@@ -1,0 +1,49 @@
+name: Ezvalo Smart Desk Lamp
+legacy_type: smart lamp
+products:
+  - id: eb8b877f027a017980djai
+    manufacturer: Ezvalo
+    model: Smart Desk Lamp  
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 5
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700 
+              max: 6500
+              
+  - entity: switch
+    name: Auto Mode
+    dps:
+      - id: 102
+        type: boolean
+        name: Auto Brightness and Color Mode
+
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 240
