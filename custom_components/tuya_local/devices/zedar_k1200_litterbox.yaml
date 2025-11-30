@@ -1,4 +1,4 @@
-name: Litter Box
+name: Litter box
 products:
   - id: pkv5fgzrh4joaces
     manufacturer: Zedar
@@ -44,26 +44,20 @@ entities:
           min: 0
           max: 10000
   - entity: sensor
-    name: Excretion times day
+    name: Daily excretions
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: times
-        range:
-          min: 0
-          max: 2
   - entity: sensor
-    name: Excretion time day
+    name: Daily excretion time
     class: duration
     dps:
       - id: 8
         type: integer
         name: sensor
         unit: s
-        range:
-          min: 0
-          max: 600
   - entity: button
     name: Manual clean
     icon: "mdi:autorenew"
@@ -204,7 +198,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Remaining deodorant days
+    name: Remaining deodorant
     class: duration
     dps:
       - id: 109
