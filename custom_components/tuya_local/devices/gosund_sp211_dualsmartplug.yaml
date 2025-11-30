@@ -74,15 +74,20 @@ entities:
         type: integer
         name: calibration
         optional: true
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    hidden: true
+    dps:
       - id: 17
         type: integer
-        name: add_ele
+        name: sensor
+        unit: Wh
+        class: measurement
         optional: true
-        mapping:
-          - scale: 1000
       - id: 25
         type: integer
-        name: ele_calibration
+        name: calibration
         optional: true
   - entity: sensor
     class: voltage
