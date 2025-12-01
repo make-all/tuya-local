@@ -15,17 +15,16 @@ entities:
         optional: true
         name: schedule
   - entity: select
-    name: Mode
-    icon: "mdi:auto-mode"
+    translation_key: mode
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: number
     class: duration
     translation_key: timer

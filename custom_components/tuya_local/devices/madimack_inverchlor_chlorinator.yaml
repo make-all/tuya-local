@@ -361,8 +361,7 @@ entities:
         mapping:
           - scale: 10
   - entity: select
-    name: Mode
-    icon: "mdi:pool"
+    translation_key: chlorination_mode
     category: config
     dps:
       - id: 132
@@ -370,13 +369,13 @@ entities:
         name: option
         mapping:
           - dps_val: inverter
-            value: Inverter
+            value: inverter
           - dps_val: auto_ph
-            value: Auto pH
+            value: auto_ph
           - dps_val: smart
-            value: Smart
+            value: smart
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: select
     name: Salt type
     icon: "mdi:shaker-outline"

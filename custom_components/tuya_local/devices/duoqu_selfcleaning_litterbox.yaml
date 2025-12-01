@@ -11,8 +11,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    icon: "mdi:broom"
+    translation_key: mode
     category: config
     dps:
       - id: 2
@@ -20,9 +19,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto_clean
-            value: Auto
+            value: auto
           - dps_val: manual_clean
-            value: Manual
+            value: manual
   - entity: button
     name: Empty
     icon: "mdi:play"
