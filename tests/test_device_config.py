@@ -523,7 +523,9 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             except vol.MultipleInvalid as e:
                 messages = []
                 for err in e.errors:
-                    messages.append(err.msg)
+                    path = ".".join([str(p) for p in err.path])
+                    messages.append(f"{path}: {err.msg}")
+                messages = "; ".join(messages)
                 self.fail(
                     f"\n::error file={fname},line=1::Validation error in {messages}"
                 )
