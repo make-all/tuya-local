@@ -527,7 +527,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                     messages.append(f"{path}: {err.msg}")
                 messages = "; ".join(messages)
                 self.fail(
-                    f"\n::error file={fname},line=1::Validation error in {messages}"
+                    f"\n::error file={fname},line=1::Validation error: {messages}"
                 )
 
             self.assertIsNotNone(
