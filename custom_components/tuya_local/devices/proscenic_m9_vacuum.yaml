@@ -447,22 +447,18 @@ entities:
           - dps_val: "none"
             value: false
   - entity: select
-    name: Working mode
-    icon: "mdi:vacuum"
+    translation_key: cleaning_mode
     dps:
       - id: 41
         name: option
         type: string
         mapping:
           - dps_val: both_work
-            value: Vacuum and mop
-            icon: "mdi:robot-vacuum-variant"
+            value: sweep_and_mop
           - dps_val: only_sweep
-            value: Vacuum only
-            icon: "mdi:broom"
+            value: sweep
           - dps_val: only_mop
-            value: Mopping only
-            icon: "mdi:liquid-spot"
+            value: mop
   - entity: switch
     name: LED lights
     category: config

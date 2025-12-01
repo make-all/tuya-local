@@ -26,8 +26,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Operating mode
-    icon: "mdi:thermometer-auto"
+    translation_key: mode
     category: config
     dps:
       - id: 4
@@ -35,10 +34,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
-            icon: "mdi:thermometer-off"
+            value: manual
   - entity: climate
     translation_key: thermostat
     dps:

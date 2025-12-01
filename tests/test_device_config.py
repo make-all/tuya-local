@@ -404,11 +404,12 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         line = entity._config.__line__
         self.assertIsNotNone(
             entity._config.get("entity"),
-            f"{fname}:{line}: entity type missing in {cfg}",
+            f"\n::error file={fname},line={line}::entity type missing in {cfg}",
         )
         e = entity.config_id
         self.assertIsNotNone(
-            entity._config.get("dps"), f"{fname}:{line}: dps missing from {e} in {cfg}"
+            entity._config.get("dps"),
+            f"\n::error file={fname},line={line}::dps missing from {e} in {cfg}",
         )
         functions = set()
         extra = set()
@@ -420,22 +421,23 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         for dp in entity.dps():
             line = dp._config.__line__
             self.assertIsNotNone(
-                dp._config.get("id"), f"{fname}:{line}: dp id missing from {e} in {cfg}"
+                dp._config.get("id"),
+                f"\n::error file={fname},line={line}::dp id missing from {e} in {cfg}",
             )
             self.assertIsNotNone(
                 dp._config.get("type"),
-                f"{fname}:{line}: dp type missing from {e} in {cfg}",
+                f"\n::error file={fname},line~{line}::dp type missing from {e} in {cfg}",
             )
             self.assertIsNotNone(
                 dp._config.get("name"),
-                f"{fname}:{line}: dp name missing from {e} in {cfg}",
+                f"\n::error file={fname},line={line}::dp name missing from {e} in {cfg}",
             )
             extra.add(dp.name)
             mappings = dp._config.get("mapping", [])
             self.assertIsInstance(
                 mappings,
                 list,
-                f"{fname}:{line}: mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
+                f"\n::error file={fname},line={line}::mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
             )
             for m in mappings:
                 line = m.__line__
@@ -443,7 +445,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 self.assertIsInstance(
                     conditions,
                     list,
-                    f"{fname}:{line}: conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
+                    f"\n::error file={fname},line={line}::conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
                 )
                 for c in conditions:
                     if c.get("value_redirect"):
@@ -461,7 +463,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             self.assertIn(
                 redirect,
                 extra,
-                f"{fname}:{line}: dp {redirect} missing from {e} in {cfg}",
+                f"\n::error file={fname},line={line}::dp {redirect} missing from {e} in {cfg}",
             )
 
         # Check dps that are required for this entity type all exist
@@ -469,13 +471,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         for rule in expected["required"]:
             self.assertTrue(
                 self.dp_match(rule, functions, extra, known, True),
-                f"{fname}:{line}: {cfg} missing required {self.rule_broken_msg(rule)} in {e}",
+                f"\n::error file={fname},line={line}::{cfg} missing required {self.rule_broken_msg(rule)} in {e}",
             )
 
         for rule in expected["optional"]:
             self.assertTrue(
                 self.dp_match(rule, functions, extra, known, False),
-                f"{fname}:{line}: {cfg} expecting {self.rule_broken_msg(rule)} in {e}",
+                f"\n::error file={fname},line={line}::{cfg} expecting {self.rule_broken_msg(rule)} in {e}",
             )
 
         # Check for potential typos in extra attributes
@@ -485,7 +487,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 self.assertLess(
                     fuzz.ratio(attr, dp),
                     85,
-                    f"{fname}:{line}: Probable typo {attr} is too similar to {dp} in {cfg} {e}",
+                    f"\n::error file={fname},line={line}::Probable typo {attr} is too similar to {dp} in {cfg} {e}",
                 )
 
         # Check that sensors with mapped values are of class enum and vice versa
@@ -496,12 +498,12 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 self.assertEqual(
                     entity.device_class,
                     SensorDeviceClass.ENUM,
-                    f"{fname}:{line}: {cfg} {e} has mapped values but does not have a device class of enum",
+                    f"\n::error file={fname},line={line}::{cfg} {e} has mapped values but does not have a device class of enum",
                 )
             if entity.device_class == SensorDeviceClass.ENUM:
                 self.assertIsNotNone(
                     sensor.options,
-                    f"{fname}:{line}: {cfg} {e} has a device class of enum, but has no mapped values",
+                    f"\n::error file={fname},line={line}::{cfg} {e} has a device class of enum, but has no mapped values",
                 )
 
     def test_config_files_parse(self):
@@ -519,24 +521,31 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             try:
                 YAML_SCHEMA(parsed._config)
             except vol.MultipleInvalid as e:
-                self.fail(f"{fname}:0: Validation error in {cfg}: {e}")
+                messages = []
+                for err in e.errors:
+                    messages.append(err.msg)
+                self.fail(
+                    f"\n::error file={fname},line=1::Validation error in {messages}"
+                )
 
             self.assertIsNotNone(
                 parsed._config.get("name"),
-                f"{fname}:0: name missing from {cfg}",
+                f"\n::error file={fname},line=1::name missing from {cfg}",
             )
             count = 0
             for entity in parsed.all_entities():
                 self.check_entity(entity, cfg)
                 entities.append(entity.config_id)
                 count += 1
-            assert count > 0, f"{fname}:0: No entities found in {cfg}"
+            assert count > 0, (
+                f"\n::error file={fname},line=1::No entities found in {cfg}"
+            )
 
             # check entities are unique
             self.assertCountEqual(
                 entities,
                 set(entities),
-                f"{fname}:0: Duplicate entities in {cfg}",
+                f"\n::error file={fname},line=1::Duplicate entities in {cfg}",
             )
 
     def test_configs_can_be_matched(self):
@@ -566,14 +575,14 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             self.assertGreater(
                 len(required),
                 0,
-                msg=f"{fname}:0: No required dps found in {cfg}",
+                msg=f"\n::error file={fname},line=1::No required dps found in {cfg}",
             )
 
             for dp in required:
                 self.assertNotIn(
                     dp,
                     optional,
-                    msg=f"{fname}:0: Optional dp {dp} is required in {cfg}",
+                    msg=f"\n::error file={fname},line=1::Optional dp {dp} is required in {cfg}",
                 )
 
     # Most of the device_config functionality is exercised during testing of
