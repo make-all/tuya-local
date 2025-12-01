@@ -1,0 +1,119 @@
+name: EARU 3-Phase Breaker Meter
+products:
+  - id: nopfbtfxnwqcrg5y
+    name: Smart 3-Phase Breaker Meter
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 16
+      type: boolean
+      name: switch
+secondary_entities:
+  # --- Energy Counters ---
+  - entity: sensor
+    name: Total energy
+    class: energy
+    state_class: total_increasing
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: "kWh"
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Energy today
+    class: energy
+    state_class: total_increasing
+    dps:
+      - id: 10000
+        type: integer
+        name: sensor
+        unit: "kWh"
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Energy this month
+    class: energy
+    state_class: total_increasing
+    dps:
+      - id: 10001
+        type: integer
+        name: sensor
+        unit: "kWh"
+        mapping:
+          - scale: 100
+
+  # --- Raw Phase Data (Base64 Encoded) ---
+  # Contains Voltage, Current, Power in a struct.
+  - entity: sensor
+    name: Phase A raw
+    icon: "mdi:alpha-a-box-outline"
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Phase B raw
+    icon: "mdi:alpha-b-box-outline"
+    category: diagnostic
+    dps:
+      - id: 7
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Phase C raw
+    icon: "mdi:alpha-c-box-outline"
+    category: diagnostic
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+
+  # --- Protection Settings ---
+  - entity: number
+    name: Over voltage protection
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: "V"
+        range:
+          min: 220
+          max: 300
+  - entity: number
+    name: Under voltage protection
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "V"
+        range:
+          min: 140
+          max: 210
+  - entity: number
+    name: Over current protection
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "A"
+        range:
+          min: 1
+          max: 63
+  - entity: number
+    name: Leakage current protection
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "mA"
+        range:
+          min: 10
+          max: 100
