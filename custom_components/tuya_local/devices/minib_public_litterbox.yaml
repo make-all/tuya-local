@@ -14,17 +14,16 @@ entities:
         name: switch
 
   - entity: select
-    name: Mode
-    icon: "mdi:robot-vacuum"
+    translation_key: mode
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: auto_clean
-            value: Auto clean
+            value: auto
           - dps_val: manual_clean
-            value: Manual clean
+            value: manual
 
   - entity: button
     name: Empty

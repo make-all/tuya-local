@@ -343,8 +343,7 @@ entities:
         unit: s
         mask: "0000FFFF"
   - entity: select
-    name: Mode
-    icon: "mdi:cogs"
+    translation_key: menu
     category: config
     dps:
       - id: 102
@@ -353,13 +352,13 @@ entities:
         name: option
         mapping:
           - dps_val: home
-            value: Home
+            value: home
           - dps_val: mode
-            value: Mode
+            value: mode
           - dps_val: recode
             value: recode
           - dps_val: setting
-            value: setting
+            value: settings
   - entity: sensor
     name: Minimum current
     class: current

@@ -1,0 +1,212 @@
+name: Air vent
+products:
+  - id: lc29ihcc61xcyhyj
+    manufacturer: Plikc
+    model: Ario Wifi
+    model_id: PLKARW100
+
+entities:
+  - entity: switch
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      # Global on/off
+      - id: 1
+        type: boolean
+        name: available
+      - id: 104
+        name: switch
+        type: boolean
+      - id: 101
+        name: current_humidity
+        type: integer
+      # Humidity set point
+      - id: 102
+        name: humidity
+        type: integer
+        range:
+          min: 22
+          max: 99
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 39
+        type: boolean
+        name: button
+        optional: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Schedule mode
+    category: config
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Manual mode
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+  - entity: binary_sensor
+    name: Fan
+    class: running
+    icon: "mdi:fan"
+    category: diagnostic
+    dps:
+      - id: 107
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: LED status
+    icon: "mdi:lightbulb"
+    category: diagnostic
+    dps:
+      - id: 108
+        name: sensor
+        type: boolean
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "using_on"
+            value: "state"
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        unit: "min"
+        name: value
+        range:
+          min: 1
+          max: 30
+  - entity: select
+    name: Schedule type
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: day_7
+            value: Daily
+          - dps_val: day_52
+            value: Working week
+          - dps_val: hour_24
+            value: Day
+  - entity: number
+    name: Humidity calibration
+    class: humidity
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+  - entity: number
+    name: Swing
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: text
+    name: Daily schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Working week schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Day schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+# DPs that are not yet implemented:
+# - 116: "led" ?

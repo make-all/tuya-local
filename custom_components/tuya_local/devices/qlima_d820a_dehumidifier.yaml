@@ -100,21 +100,18 @@ entities:
           - dps_val: "3"
             value: "All on"
   - entity: select
-    name: Operating mode
+    translation_key: air_mode
     dps:
       - id: 105
         type: string
         name: option
         mapping:
           - dps_val: dehum_air
-            value: Dehumidify only
-            icon: "mdi:water-percent"
+            value: dehumidify
           - dps_val: airpurify
-            value: Purify only
-            icon: "mdi:air-filter"
+            value: purify
           - dps_val: dehum30_air
-            value: Both
-            icon: "mdi:air-humidifier"
+            value: dehumidify_and_purify
   - entity: switch
     name: Internal dry
     category: config

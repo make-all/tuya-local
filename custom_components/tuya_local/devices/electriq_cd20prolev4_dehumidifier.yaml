@@ -1,0 +1,116 @@
+name: Dehumidifier
+products:
+  - id: qdxoacewdnbqrgeh
+    manufacturer: ElectriQ
+    model: CD20PRO-LE-V4
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: Smart
+            value: auto
+          - dps_val: Dry
+            value: normal
+          - dps_val: Fan
+            value: purify
+          - dps_val: Laundry
+            value: laundry
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: F1
+            value: 16
+          - dps_val: F2
+            value: 33
+          - dps_val: F3
+            value: 50
+          - dps_val: F4
+            value: 66
+          - dps_val: F5
+            value: 83
+          - dps_val: F6
+            value: 100
+      - id: 102
+        type: boolean
+        name: oscillate
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch

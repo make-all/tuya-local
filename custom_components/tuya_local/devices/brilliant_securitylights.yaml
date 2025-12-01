@@ -51,7 +51,7 @@ entities:
           min: 10
           max: 600
   - entity: select
-    name: Operation mode
+    translation_key: light_mode
     category: config
     dps:
       - id: 104
@@ -60,13 +60,10 @@ entities:
         mapping:
           - dps_val: "0"
             value: auto
-            icon: "mdi:motion-sensor"
           - dps_val: "1"
             value: "on"
-            icon: "mdi:motion-sensor-off"
           - dps_val: "2"
             value: flash
-            icon: "mdi:flash"
   - entity: select
     name: Sensitivity
     icon: "mdi:motion-sensor"

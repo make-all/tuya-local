@@ -4,8 +4,7 @@ products:
     manufacturer: Kanchou
 entities:
   - entity: select
-    name: Mode
-    icon: "mdi:paw"
+    translation_key: activation_mode
     category: config
     dps:
       - id: 2
@@ -13,9 +12,9 @@ entities:
         name: option
         mapping:
           - dps_val: normal
-            value: Normal
+            value: normal
           - dps_val: night
-            value: Night
+            value: night
   - entity: sensor
     name: Filter remaining
     icon: "mdi:air-filter"

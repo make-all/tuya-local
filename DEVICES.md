@@ -75,7 +75,7 @@
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
-- WarmeHaus AFD-02-TJ thermostatic towel rain element
+- WarmeHaus AFD-02-TJ thermostatic towel rail element
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heat pumps
@@ -184,6 +184,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
+- Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermex IF series V pro and Lima 80V hot water systems
@@ -241,8 +242,9 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
-- Polytherm Polyalpha thermostat
+- Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
+- Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
@@ -334,6 +336,7 @@
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
+- Plikc Ario WiFi air vent
 - Point One Technology Storm VSPEC-IV dual axis corner fan
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
@@ -408,7 +411,7 @@
 - Dura Comfort DH50PWM dehumidifier
 - Ebac DJ4000 dehumidifier
 - Eberg Rico R12E2 dehumidifier
-- ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2, CD25PRO-LE-V2 dehumidifiers
+- ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2/V4, CD25PRO-LE-V2 dehumidifiers
 - ElectriQ DESD9LW dehumidifier (two variants)
 - Electriq PD45E dehumidifier
 - Eeese Adam, Anna, Carl, Emil, Otto dehumidifiers
@@ -442,6 +445,7 @@
 ### Humidifiers
 
 - airx H8 humidifier
+- AlecoAir PU55 Humino humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B humidifiers
@@ -953,6 +957,7 @@ port and password.
 - Digoo DG-HAMB GSM security alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
+- Kerui 120dB siren alarm
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
 - Tolviviov DP-W2.1 security alarm panel
@@ -992,6 +997,7 @@ port and password.
 - MolyPet F02W pet feeder
 - Mypin 6L camera pet feeder
 - Nedis pet feeder
+- Newpet pet feeder
 - Ningbo BF314A camera pet feeder
 - Papifeed pet feeder
 - Petempo PAF-02 pet feeder

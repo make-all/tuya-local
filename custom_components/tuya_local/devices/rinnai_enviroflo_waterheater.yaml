@@ -1,0 +1,258 @@
+name: Water heater
+products:
+  - id: svhcpdyj8gvgagyg
+    manufacturer: Rinnai
+    model: Enviroflo
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: STANDARD
+                value: heat_pump
+              - dps_val: ECO
+                value: eco
+              - dps_val: HYBRID
+                value: high_demand
+              - dps_val: ELECTRIC
+                value: electric
+              - dps_val: VACATION
+                value: away
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 70
+  - entity: sensor
+    class: enum
+    translation_key: status
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: keeping_warm
+      - id: 120
+        type: string
+        name: software_version
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: lock
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Evaporator temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: High pressure
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+  - entity: sensor
+    name: EEV
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: binary_sensor
+    name: Fan
+    class: running
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Four-way valve
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Element
+    class: running
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Disinfection
+    class: running
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: binary_sensor
+    name: PV
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: "Off peak"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Boost
+    class: running
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Compressor runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement

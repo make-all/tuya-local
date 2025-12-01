@@ -436,8 +436,7 @@ entities:
             value: true
           - value: false
   - entity: select
-    name: Operation mode
-    icon: "mdi:robot-vacuum"
+    translation_key: cleaning_mode
     category: config
     dps:
       - id: 41
@@ -446,11 +445,11 @@ entities:
         name: option
         mapping:
           - dps_val: only_sweep
-            value: Sweep
+            value: sweep
           - dps_val: only_mop
-            value: Mop
+            value: mop
           - dps_val: both_work
-            value: Both
+            value: sweep_and_mop
   - entity: switch
     name: Auto boost
     icon: "mdi:car-turbocharger"
