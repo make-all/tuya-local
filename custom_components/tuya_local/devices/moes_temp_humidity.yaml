@@ -43,7 +43,7 @@ entities:
         type: hex
         name: auto_rules
   - entity: select
-    name: Mode
+    translation_key: mode
     category: config
     dps:
       - id: 4
@@ -51,9 +51,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: sensor
     class: temperature
     dps:

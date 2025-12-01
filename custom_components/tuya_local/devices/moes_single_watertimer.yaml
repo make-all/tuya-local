@@ -4,8 +4,7 @@ products:
     manufacturer: Moes
 entities:
   - entity: select
-    name: Mode
-    icon: "mdi:sprinkler"
+    translation_key: mode
     category: config
     dps:
       - id: 2
@@ -13,9 +12,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: number
     name: Watering time
     class: duration

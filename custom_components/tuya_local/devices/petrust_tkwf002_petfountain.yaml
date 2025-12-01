@@ -11,18 +11,16 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    class: enum
-    icon: "mdi:auto-mode"
+    translation_key: activation_mode
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: "normal"
-            value: "Normal"
+            value: "normal"
           - dps_val: "smart"
-            value: "Smart"
+            value: "smart"
   - entity: valve
     class: water
     dps:
