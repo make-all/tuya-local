@@ -521,8 +521,11 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             try:
                 YAML_SCHEMA(parsed._config)
             except vol.MultipleInvalid as e:
+                messages = []
+                for err in e.errors:
+                    messages.append(err.msg)
                 self.fail(
-                    f"\n::error file={fname},line=1::Validation error in {cfg}: {e}"
+                    f"\n::error file={fname},line=1::Validation error in {messages}"
                 )
 
             self.assertIsNotNone(
