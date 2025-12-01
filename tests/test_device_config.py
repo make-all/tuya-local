@@ -521,24 +521,33 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             try:
                 YAML_SCHEMA(parsed._config)
             except vol.MultipleInvalid as e:
-                self.fail(f"\n::error file={fname}::Validation error in {cfg}: {e}")
+                messages = []
+                for err in e.errors:
+                    path = ".".join([str(p) for p in err.path])
+                    messages.append(f"{path}: {err.msg}")
+                messages = "; ".join(messages)
+                self.fail(
+                    f"\n::error file={fname},line=1::Validation error in {messages}"
+                )
 
             self.assertIsNotNone(
                 parsed._config.get("name"),
-                f"\n::error file={fname}::name missing from {cfg}",
+                f"\n::error file={fname},line=1::name missing from {cfg}",
             )
             count = 0
             for entity in parsed.all_entities():
                 self.check_entity(entity, cfg)
                 entities.append(entity.config_id)
                 count += 1
-            assert count > 0, f"\n::error file={fname}::No entities found in {cfg}"
+            assert count > 0, (
+                f"\n::error file={fname},line=1::No entities found in {cfg}"
+            )
 
             # check entities are unique
             self.assertCountEqual(
                 entities,
                 set(entities),
-                f"\n::error file={fname}::Duplicate entities in {cfg}",
+                f"\n::error file={fname},line=1::Duplicate entities in {cfg}",
             )
 
     def test_configs_can_be_matched(self):
@@ -568,14 +577,14 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             self.assertGreater(
                 len(required),
                 0,
-                msg=f"\n::error file={fname}::No required dps found in {cfg}",
+                msg=f"\n::error file={fname},line=1::No required dps found in {cfg}",
             )
 
             for dp in required:
                 self.assertNotIn(
                     dp,
                     optional,
-                    msg=f"\n::error file={fname}::Optional dp {dp} is required in {cfg}",
+                    msg=f"\n::error file={fname},line=1::Optional dp {dp} is required in {cfg}",
                 )
 
     # Most of the device_config functionality is exercised during testing of
