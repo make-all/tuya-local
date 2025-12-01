@@ -1,0 +1,166 @@
+name: Funai Fuji ERW-150 Ultimate
+products:
+  - id: 9xaunhonta8om3zr
+    name: Funai Fuji ERW-150
+primary_entity:
+  entity: fan
+  class: ventilator
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: sleep
+          value: sleep
+        - dps_val: manual
+          value: manual
+    - id: 101
+      type: integer
+      name: speed
+      mapping:
+        - dps_val: 1
+          value: 11
+        - dps_val: 2
+          value: 22
+        - dps_val: 3
+          value: 33
+        - dps_val: 4
+          value: 44
+        - dps_val: 5
+          value: 55
+        - dps_val: 6
+          value: 66
+        - dps_val: 7
+          value: 77
+        - dps_val: 8
+          value: 88
+        - dps_val: 9
+          value: 100
+secondary_entities:
+  - entity: select
+    name: Damper control
+    icon: "mdi:valve"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Manual"
+            value: "Manual"
+          - dps_val: "Auto_1"
+            value: "Auto 1"
+          - dps_val: "Auto_2"
+            value: "Auto 2"
+  - entity: number
+    name: Fan speed level
+    icon: "mdi:fan-plus"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    name: Damper position
+    icon: "mdi:valve-open"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: switch
+    name: UV light
+    icon: "mdi:lightbulb-on-outline"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: switch
+    name: Anion
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: button
+    name: Filter reset
+    icon: "mdi:filter-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "µg/m³"
+  - entity: sensor
+    name: CO2
+    class: carbon_dioxide
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "ppm"
+  - entity: sensor
+    name: TVOC
+    class: volatile_organic_compounds
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "ppb"
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "C"
+  - entity: sensor
+    name: Air quality text
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    name: Cleaning reminder
+    class: problem
+    icon: "mdi:broom"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Fault code
+    icon: "mdi:alert-circle"
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
