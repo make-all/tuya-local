@@ -2,14 +2,14 @@ name: EARU 3-Phase Breaker Meter
 products:
   - id: nopfbtfxnwqcrg5y
     name: Smart 3-Phase Breaker Meter
-primary_entity:
-  entity: switch
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-secondary_entities:
-  # --- Energy Counters ---
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
   - entity: sensor
     name: Total energy
     class: energy
@@ -21,6 +21,7 @@ secondary_entities:
         unit: "kWh"
         mapping:
           - scale: 100
+
   - entity: sensor
     name: Energy today
     class: energy
@@ -32,6 +33,7 @@ secondary_entities:
         unit: "kWh"
         mapping:
           - scale: 100
+
   - entity: sensor
     name: Energy this month
     class: energy
@@ -44,8 +46,7 @@ secondary_entities:
         mapping:
           - scale: 100
 
-  # --- Raw Phase Data (Base64 Encoded) ---
-  # Contains Voltage, Current, Power in a struct.
+  # --- Raw Phase Data ---
   - entity: sensor
     name: Phase A raw
     icon: "mdi:alpha-a-box-outline"
@@ -54,6 +55,7 @@ secondary_entities:
       - id: 6
         type: string
         name: sensor
+
   - entity: sensor
     name: Phase B raw
     icon: "mdi:alpha-b-box-outline"
@@ -62,6 +64,7 @@ secondary_entities:
       - id: 7
         type: string
         name: sensor
+
   - entity: sensor
     name: Phase C raw
     icon: "mdi:alpha-c-box-outline"
@@ -71,7 +74,7 @@ secondary_entities:
         type: string
         name: sensor
 
-  # --- Protection Settings ---
+  # --- Settings ---
   - entity: number
     name: Over voltage protection
     icon: "mdi:lightning-bolt"
@@ -84,6 +87,7 @@ secondary_entities:
         range:
           min: 220
           max: 300
+
   - entity: number
     name: Under voltage protection
     icon: "mdi:lightning-bolt-outline"
@@ -96,6 +100,7 @@ secondary_entities:
         range:
           min: 140
           max: 210
+
   - entity: number
     name: Over current protection
     icon: "mdi:current-ac"
@@ -108,6 +113,7 @@ secondary_entities:
         range:
           min: 1
           max: 63
+
   - entity: number
     name: Leakage current protection
     icon: "mdi:flash-triangle-outline"
