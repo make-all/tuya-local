@@ -1,18 +1,15 @@
-name: AirMart / Haier Air Conditioner
+name: Air conditioner
 products:
   - id: keycnvksyhjcrg8t
     manufacturer: Haier
     model: Airmart wall AC
-    name: Airmart AC
 
 entities:
-
   #####################################################
   # MAIN CLIMATE ENTITY
   #####################################################
   - entity: climate
-    name: climate
-    icon: mdi:air-conditioner
+    translation_key: aircon_extra
     dps:
       - id: 1
         type: boolean
