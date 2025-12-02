@@ -738,6 +738,7 @@ of device.
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dream of You dual dimmable lamp
+- Dreamegg Nite 1 baby sound machine
 - Dual-mode magic light string controller
 - Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
