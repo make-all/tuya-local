@@ -1,9 +1,10 @@
-name: Funai Fuji ERW-150 Ultimate
+name: Ventilation Breezer
 products:
   - id: 9xaunhonta8om3zr
-    name: Funai Fuji ERW-150
+    name: Funai Fuji ERW-150 Ventilation
 entities:
   - entity: fan
+    translation_key: ventilation
     dps:
       - id: 1
         type: boolean
@@ -21,25 +22,9 @@ entities:
       - id: 101
         type: integer
         name: speed
-        mapping:
-          - dps_val: 1
-            value: 11
-          - dps_val: 2
-            value: 22
-          - dps_val: 3
-            value: 33
-          - dps_val: 4
-            value: 44
-          - dps_val: 5
-            value: 55
-          - dps_val: 6
-            value: 66
-          - dps_val: 7
-            value: 77
-          - dps_val: 8
-            value: 88
-          - dps_val: 9
-            value: 100
+        range:
+          min: 1
+          max: 9
 
   - entity: select
     name: Damper control
@@ -58,18 +43,6 @@ entities:
             value: "Auto 2"
 
   - entity: number
-    name: Fan speed level
-    icon: "mdi:fan-plus"
-    category: config
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        range:
-          min: 1
-          max: 9
-
-  - entity: number
     name: Damper position
     icon: "mdi:valve-open"
     category: config
@@ -82,7 +55,7 @@ entities:
           max: 5
 
   - entity: switch
-    name: UV light
+    name: Display light
     icon: "mdi:lightbulb-on-outline"
     category: config
     dps:
@@ -96,8 +69,7 @@ entities:
             value: true
 
   - entity: switch
-    name: Anion
-    icon: "mdi:air-filter"
+    translation_key: ionizer
     category: config
     dps:
       - id: 5
@@ -105,8 +77,7 @@ entities:
         name: switch
 
   - entity: button
-    name: Filter reset
-    icon: "mdi:filter-remove"
+    translation_key: filter_reset
     category: config
     dps:
       - id: 13
@@ -114,7 +85,6 @@ entities:
         name: button
 
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 3
@@ -123,7 +93,6 @@ entities:
         unit: "µg/m³"
 
   - entity: sensor
-    name: CO2
     class: carbon_dioxide
     dps:
       - id: 6
@@ -132,7 +101,6 @@ entities:
         unit: "ppm"
 
   - entity: sensor
-    name: TVOC
     class: volatile_organic_compounds
     dps:
       - id: 7
@@ -141,7 +109,6 @@ entities:
         unit: "ppb"
 
   - entity: sensor
-    name: Indoor temperature
     class: temperature
     dps:
       - id: 9
@@ -150,12 +117,23 @@ entities:
         unit: "C"
 
   - entity: sensor
-    name: Air quality text
-    icon: "mdi:air-purifier"
+    translation_key: air_quality
+    class: enum
+    category: diagnostic
+    hidden: unavailable
     dps:
       - id: 23
         type: string
         name: sensor
+        mapping:
+          - dps_val: "great"
+            value: excellent
+          - dps_val: "good"
+            value: good
+          - dps_val: "medium"
+            value: moderate
+          - dps_val: "bad"
+            value: poor
 
   - entity: binary_sensor
     name: Cleaning reminder
@@ -167,11 +145,17 @@ entities:
         type: boolean
         name: sensor
 
-  - entity: sensor
-    name: Fault code
-    icon: "mdi:alert-circle"
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 18
-        type: integer
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
