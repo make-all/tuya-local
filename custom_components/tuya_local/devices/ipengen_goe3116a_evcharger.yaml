@@ -7,12 +7,18 @@ entities:
   - entity: sensor
     class: energy
     dps:
-      - id: 1
+      - id: 17
         type: integer
         optional: true
         name: sensor
         unit: kWh
         class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 1
+        type: integer
+        optional: true
+        name: total_forward_energy
         mapping:
           - scale: 100
   - entity: number
@@ -294,6 +300,12 @@ entities:
     name: Fixed charge
     category: config
     class: energy_storage
+    # Hidden, because there is confusion over the purpose of this dp.
+    # In Query Things Data Model it is shown as read-write and based on
+    # other EV chargers, should be for setting the amount of energy for
+    # a fixed charge, but user feedback is that the total_forward_energy
+    # on dp 1 does not ever appear, and this dp should be used instead.
+    hidden: true
     dps:
       - id: 17
         type: integer
