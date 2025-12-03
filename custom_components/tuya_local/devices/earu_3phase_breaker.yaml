@@ -163,8 +163,10 @@ entities:
           - scale: 1
 
   - entity: number
-    name: Over voltage protection
-    icon: "mdi:lightning-bolt"
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overvoltage
+    class: voltage
     category: config
     dps:
       - id: 101
@@ -176,8 +178,10 @@ entities:
           max: 300
 
   - entity: number
-    name: Under voltage protection
-    icon: "mdi:lightning-bolt-outline"
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Undervoltage
+    class: voltage
     category: config
     dps:
       - id: 102
@@ -191,8 +195,8 @@ entities:
   - entity: number
     translation_key: sensor_threshold
     translation_placeholders:
-      sensor: Over voltage
-    icon: "mdi:current-ac"
+      sensor: Overcurrent
+    class: current
     category: config
     dps:
       - id: 103
@@ -204,8 +208,10 @@ entities:
           max: 63
 
   - entity: number
-    name: Leakage current protection
-    icon: "mdi:flash-triangle-outline"
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Leakage
+    class: current
     category: config
     dps:
       - id: 104
