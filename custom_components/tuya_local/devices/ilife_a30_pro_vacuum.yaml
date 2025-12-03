@@ -8,10 +8,10 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: activate
+        name: power
       - id: 2
         type: boolean
-        name: pause
+        name: activate
       - id: 4
         type: string
         name: command
@@ -51,7 +51,7 @@ entities:
           - dps_val: goto_pos
             value: seeking_spot
           - dps_val: pos_arrived
-            value: located spot
+            value: located_spot
           - dps_val: pos_unarrive
             value: left_spot
           - dps_val: goto_charge
@@ -69,15 +69,15 @@ entities:
           - dps_val: explore_clean
             value: explore_clean
           - dps_val: base_charging
-            value: base_charging
+            value: charging
           - dps_val: adapter_charging
-            value: adapter_charging
+            value: charging
           - dps_val: base_sleeping
-            value: base_sleeping
+            value: docked
           - dps_val: adapter_sleeping
-            value: adapter_sleeping
+            value: sleep
           - dps_val: continuation_charging
-            value: continuation_charging
+            value: charging
           - dps_val: in_positioning
             value: in_positioning
       - id: 9
