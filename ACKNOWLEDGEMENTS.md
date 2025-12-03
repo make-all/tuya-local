@@ -1146,3 +1146,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MarcoKaldenbach](https://github.com/MarcoKaldenbach) for contributing support for Zedar K1200 cat litter box.
 - [jaredhobbs](https://github.com/jaredhobbs) for contributing support for TCL AirMax that was merged with Daizuki heatpump.
 - [o-mega](https://github.com/o-mega) for contributing support for EARU EAMPDW-TY-63 3-phase energy monitoring breaker, Funai Fuji ERW-150 Ultimate ventilation fan.
+- [soonbolee](https://github.com/soonbolee) for assisting with support for Miro Q-Tower humidifier.
