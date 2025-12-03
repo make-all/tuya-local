@@ -1028,6 +1028,7 @@ port and password.
 - WellToBe Automatic Pet Feeder (WB S36D)
 - YP pet feeder
 - Yuposl dual-band pet feeder
+- Zedar K1200 cat litter box
 
 ### Remote controllers
 

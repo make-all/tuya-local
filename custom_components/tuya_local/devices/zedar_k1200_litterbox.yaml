@@ -1,0 +1,204 @@
+name: Litter box
+products:
+  - id: pkv5fgzrh4joaces
+    manufacturer: Zedar
+    model: K1200
+entities:
+  - entity: switch
+    name: Disinfect
+    icon: "mdi:bacteria"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Auto clean
+    category: config
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Delay clean time
+    category: config
+    class: duration
+    icon: "mdi:timer-refresh-outline"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: sensor
+    name: Daily excretions
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+  - entity: sensor
+    name: Daily excretion time
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+  - entity: button
+    name: Manual clean
+    icon: "mdi:autorenew"
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: light
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Motor fault
+    icon: "mdi:engine"
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: G-Sensor fault
+    icon: "mdi:alpha-g-circle"
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Bag full
+    icon: "mdi:trash-can"
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Box open
+    icon: "mdi:tray-arrow-up"
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Filter fault
+    icon: "mdi:filter-settings-outline"
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        name: button
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: cat_in
+            value: occupied
+          - dps_val: cat_near
+            value: monitor
+          - dps_val: cat_out
+            value: available
+          - dps_val: clean
+            value: cleaning
+          - dps_val: clear_sand
+            value: emptying
+          - dps_val: sleep
+            value: sleep
+          - dps_val: smooth
+            value: smoothing
+          - dps_val: standby
+            value: standby
+          - dps_val: uv
+            value: sterilizing
+  - entity: switch
+    name: Pour sand
+    icon: "mdi:wave-arrow-down"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Smooth sand
+    icon: "mdi:auto-fix"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: lock
+  - entity: button
+    name: Deodorant reset
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Remaining deodorant
+    class: duration
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: d
