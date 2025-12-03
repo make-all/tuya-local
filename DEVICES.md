@@ -303,6 +303,7 @@
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
+- Funai Fuji ERW-150 Ultimate ventilation fan
 - GHome SW19 ceiling fan and light switch
 - Globe ceiling fans with RGBCW lights (with and without presets)
 - Goldair GCPF315 fan
