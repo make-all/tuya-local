@@ -529,6 +529,7 @@
 - DTS238-7 3 phase smart meter
 - Dual CT clamp bidirectional meter
 - EARU EAEMP3C-100-TY-W 3 phase bidirectional energy monitoring breaker
+- EARU EAMPDW-TY-63 3-phase energy monitoring breaker
 - EARU EASEM-D 3-phase multi circuit power meter
 - EARU SW RCB, DBN breakers
 - eMylo EAI-90 smart meter
