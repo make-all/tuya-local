@@ -21,133 +21,130 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Energy today
-    class: energy
-    dps:
-      - id: 10000
-        type: integer
-        name: sensor
-        unit: "kWh"
-        class: total_increasing
-        mapping:
-          - scale: 100
-
-  - entity: sensor
-    name: Energy this month
-    class: energy
-    dps:
-      - id: 10001
-        type: integer
-        name: sensor
-        unit: "kWh"
-        class: total_increasing
-        mapping:
-          - scale: 100
-
-  - entity: sensor
     name: Phase A voltage
     class: voltage
+    hidden: unavailable
     dps:
       - id: 6
         type: base64
         name: sensor
-        unit: "V"
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
 
   - entity: sensor
     name: Phase A current
     class: current
+    hidden: unavailable
     dps:
       - id: 6
         type: base64
         name: sensor
-        unit: "A"
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
 
   - entity: sensor
     name: Phase A power
     class: power
+    hidden: unavailable
     dps:
       - id: 6
         type: base64
         name: sensor
-        unit: "W"
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
         mapping:
-          - mask: "0000000000FFFFFF"
+          - scale: 1
 
   - entity: sensor
     name: Phase B voltage
     class: voltage
+    hidden: true
     dps:
       - id: 7
         type: base64
         name: sensor
-        unit: "V"
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
 
   - entity: sensor
     name: Phase B current
     class: current
+    hidden: true
     dps:
       - id: 7
         type: base64
         name: sensor
-        unit: "A"
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
 
   - entity: sensor
     name: Phase B power
     class: power
+    hidden: true
     dps:
       - id: 7
         type: base64
         name: sensor
-        unit: "W"
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
         mapping:
-          - mask: "0000000000FFFFFF"
+          - scale: 1
 
   - entity: sensor
     name: Phase C voltage
     class: voltage
+    hidden: true
     dps:
       - id: 8
         type: base64
         name: sensor
-        unit: "V"
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
 
   - entity: sensor
     name: Phase C current
     class: current
+    hidden: true
     dps:
       - id: 8
         type: base64
         name: sensor
-        unit: "A"
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
 
   - entity: sensor
     name: Phase C power
     class: power
+    hidden: true
     dps:
       - id: 8
         type: base64
         name: sensor
-        unit: "W"
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
         mapping:
-          - mask: "0000000000FFFFFF"
+          - scale: 1
 
   - entity: number
     name: Over voltage protection
