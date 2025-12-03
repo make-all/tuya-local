@@ -1144,3 +1144,4 @@ Further device support has been made with the assistance of users. Please consid
 - [aniemoeller](https://github.com/aniemoeller) for assisting with support for Jafanda JF260S air purifier.
 - [jlopez77](https://github.com/jlopez77) for contributing support for Haier Airmart air conditioner.
 - [MarcoKaldenbach](https://github.com/MarcoKaldenbach) for contributing support for Zedar K1200 cat litter box.
+- [jaredhobbs](https://github.com/jaredhobbs) for contributing support for TCL AirMax that was merged with Daizuki heatpump.
