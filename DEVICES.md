@@ -77,6 +77,7 @@
 - Wärme Designer wall panel heater
 - WarmeHaus AFD-02-TJ thermostatic towel rail element
 - Wetair WCH-750 heater
+- Zephir ZMW4000V wall heater
 
 ### Air Conditioners / Heat pumps
 
