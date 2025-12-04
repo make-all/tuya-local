@@ -759,6 +759,7 @@ of device.
 - Gosund SW2 dimmer switch
 - HDMI sync light
 - HDMI TV ambient lighting 65
+- Hombli CCT 2024 Christmas lights
 - iHD001 LED controller
 - Ion LED WiFi dimmer
 - iSparkle Curtain Micro Lights
