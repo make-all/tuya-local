@@ -1150,3 +1150,4 @@ Further device support has been made with the assistance of users. Please consid
 - [leoogermenia](https://github.com/leoogermenia) for assisting with support for Zephir ZMW4000V wall heater.
 - [momeedees](https://github.com/momeedees) for assisting with support for Hombli CCT 2024 Christmas lights.
 - [progfou](https://github.com/progfou) for assisting with support for Oneisall PFD-002 Pro IR pet feeder.
+- [TjappieW](https://github.com/TjappieW) for assisting with support for FrankEver BV05 water valve.
