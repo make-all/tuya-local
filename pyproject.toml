@@ -1,2 +1,5 @@
 [tool.black]
 target-version = ["py313"]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "session"

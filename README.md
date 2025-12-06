@@ -263,7 +263,7 @@ compatible with this scheme.
 
 Beyond contributing device configs, here are some areas that could benefit from more hands:
 
-1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Focus on unit tests is on python code, the current coverage is summarised in reports on github, but to get full coverage details you can run the tests yourself.
 2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
 3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
 
