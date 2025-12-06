@@ -1152,3 +1152,4 @@ Further device support has been made with the assistance of users. Please consid
 - [progfou](https://github.com/progfou) for assisting with support for Oneisall PFD-002 Pro IR pet feeder.
 - [TjappieW](https://github.com/TjappieW) for assisting with support for FrankEver BV05 water valve.
 - [danyrd92](https://github.com/danyrd92) for contributing improvements to Vonroc WiFi heater.
+- [aminorjourney](https://github.com/aminorjourney) for contributing support for EZValo Smart desk lamp.
