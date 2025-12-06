@@ -376,6 +376,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.receive_loop = AsyncMock()
         self.subject.receive_loop.return_value = "LOOP"
         self.hass().bus.async_listen_once.return_value = "LISTENER"
+        self.hass().async_create_task = Mock()
         self.subject._running = False
 
         # run the function under test
