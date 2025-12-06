@@ -48,6 +48,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
+- Lebenlang LBL0380 heater
 - Lehmann LHOHC-2013C electric radiator
 - Livn Arosa electric fireplace
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
