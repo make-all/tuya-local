@@ -1154,3 +1154,4 @@ Further device support has been made with the assistance of users. Please consid
 - [danyrd92](https://github.com/danyrd92) for contributing improvements to Vonroc WiFi heater.
 - [aminorjourney](https://github.com/aminorjourney) for contributing support for EZValo Smart desk lamp.
 - [PurpleFries](https://github.com/PurpleFries) for contributing improvements to Petree Cube litter box.
+- [maxhamilius](https://github.com/maxhamilius) for contributing support for Lebenlang LBL0380 heater.
