@@ -19,7 +19,7 @@ entities:
         range:
           min: 1
           max: 60
-  - entity: switch
+  - entity: light
     name: LED
     translation_key: indicator
     category: config
@@ -153,6 +153,7 @@ entities:
         name: button
   - entity: binary_sensor
     name: Cleaning
+    class: running
     category: diagnostic
     dps:
       - id: 124
