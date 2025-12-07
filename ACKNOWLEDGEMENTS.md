@@ -1153,3 +1153,4 @@ Further device support has been made with the assistance of users. Please consid
 - [TjappieW](https://github.com/TjappieW) for assisting with support for FrankEver BV05 water valve.
 - [danyrd92](https://github.com/danyrd92) for contributing improvements to Vonroc WiFi heater.
 - [aminorjourney](https://github.com/aminorjourney) for contributing support for EZValo Smart desk lamp.
+- [PurpleFries](https://github.com/PurpleFries) for contributing improvements to Petree Cube litter box.
