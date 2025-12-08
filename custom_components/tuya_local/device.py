@@ -24,6 +24,7 @@ from .const import (
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
+    CONF_TYPE,
     DOMAIN,
 )
 from .helpers.config import get_device_id
@@ -42,6 +43,7 @@ class TuyaLocalDevice(object):
     def __init__(
         self,
         name,
+        model,
         dev_id,
         address,
         local_key,
@@ -55,6 +57,7 @@ class TuyaLocalDevice(object):
 
         Args:
             name (str): The device name.
+            model (str): The device model.
             dev_id (str): The device id.
             address (str): The network address.
             local_key (str): The encryption key.
@@ -64,6 +67,7 @@ class TuyaLocalDevice(object):
             poll_only (bool): True if the device should be polled only
         """
         self._name = name
+        self._model = model
         self._children = []
         self._force_dps = []
         self._product_ids = []
@@ -139,6 +143,10 @@ class TuyaLocalDevice(object):
         return self._name
 
     @property
+    def model(self):
+        return self._model
+
+    @property
     def unique_id(self):
         """Return the unique id for this device (the dev_id or dev_cid)."""
         return self.dev_cid or self._api.id
@@ -149,6 +157,7 @@ class TuyaLocalDevice(object):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
+            "model": self.model,
             "manufacturer": "Tuya",
         }
 
@@ -718,6 +727,7 @@ def setup_device(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
     device = TuyaLocalDevice(
         config[CONF_NAME],
+        config[CONF_TYPE],
         config[CONF_DEVICE_ID],
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
