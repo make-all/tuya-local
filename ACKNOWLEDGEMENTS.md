@@ -1156,3 +1156,4 @@ Further device support has been made with the assistance of users. Please consid
 - [PurpleFries](https://github.com/PurpleFries) for contributing improvements to Petree Cube litter box.
 - [maxhamilius](https://github.com/maxhamilius) for contributing support for Lebenlang LBL0380 heater.
 - [ncosta24](https://github.com/ncosta24) for assisting with support for Cecotec Conga X70 vacuum.
+- [charlesomer](https://github.com/charlesomer) for contributing improvements to Electriq PD45E dehumidifier.
