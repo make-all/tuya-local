@@ -77,9 +77,7 @@ entities:
         unit: C
         class: measurement
   - entity: binary_sensor
-    class: problem
-    name: Tank full
-    icon: "mdi:cup-outline"
+    translation_key: tank_full
     dps:
       - id: 11
         type: bitfield
@@ -87,20 +85,10 @@ entities:
         mapping:
           - dps_val: 2
             value: true
-            icon: "mdi:cup-water"
           - value: false
   - entity: binary_sensor
-    name: Defrost
-    class: cold
-    icon: "mdi:snowflake-melt"
+    translation_key: defrost
     dps:
       - id: 108
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            icon: "mdi:snowflake"
-            value: false
-          - dps_val: true
-            icon: "mdi:snowflake-melt"
-            value: true
