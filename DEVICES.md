@@ -865,7 +865,7 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
-- Cecotec Conga 1970 vacuum cleaner
+- Cecotec Conga 1970 and X70 vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE V20 and A30 pro vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
