@@ -17,9 +17,9 @@ entities:
           - dps_val: "1"
             value: normal
           - dps_val: "2"
-            value: purify
-          - dps_val: "3"
             value: laundry
+          - dps_val: "3"
+            value: purify
       - id: 3
         name: current_humidity
         type: integer
@@ -70,10 +70,25 @@ entities:
         name: lock
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 110
         type: integer
         name: sensor
         unit: C
         class: measurement
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
