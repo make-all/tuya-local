@@ -1,0 +1,310 @@
+name: LiFP battery
+products:
+  - id: l2ak4zqufuarm0j3
+    manufacturer : SRNE
+    model: SR-SE05B
+entities:
+  - entity: sensor
+    class: battery
+    translation_key: Charge
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: voltage
+    translation_key: Battery voltage
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 2
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: current
+    name: Charge current
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Cycle number
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: cyc
+        class: total
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Battery temperature
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: MOS temperature
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Environment temperature
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: sensor
+        translation_key: Environment temperature
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 1
+    dps:
+      - id: 120
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 2
+    dps:
+      - id: 121
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 3
+    dps:
+      - id: 122
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 4
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 5
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 6
+    dps:
+      - id: 125
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 7
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 8
+    dps:
+      - id: 127
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 9
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 10
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 11
+    dps:
+      - id: 130
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 12
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 13
+    dps:
+      - id: 132
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 14
+    dps:
+      - id: 133
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 15
+    dps:
+      - id: 134
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Cell voltage 16
+    dps:
+      - id: 135
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        precision: 3
+        mapping:
+          - scale: 1000
