@@ -4,31 +4,31 @@ products:
     manufacturer: SIME
     model: ECOMAXI VB 200 WiFi
 entities:
-  - entity: climate
+  - entity: water_heater
     dps:
       - id: 1
-        name: hvac_mode
+        name: operation_mode
         type: boolean
         mapping:
           - dps_val: false
             value: "off"
             icon: "mdi:water-boiler-off"
           - dps_val: true
-            value: heat
-            icon: "mdi:water-boiler"
+            constraint: mode
+            conditions:
+              - dps_val: "0x00"
+                value: heat_pump
+                icon: "mdi:water-boiler"
+              - dps_val: "0x02"
+                value: eco
+                icon: "mdi:leaf"
+              - dps_val: "0x03"
+                value: performance
+                icon: "mdi:rocket-launch"
       - id: 2
-        name: preset_mode
+        name: mode
         type: string
-        mapping:
-          - dps_val: "0x00"
-            value: auto
-            icon: "mdi:autorenew"
-          - dps_val: "0x02"
-            value: eco
-            icon: "mdi:leaf"
-          - dps_val: "0x03"
-            value: turbo
-            icon: "mdi:rocket-launch"
+        hidden: true
       - id: 4
         name: temperature
         type: integer
@@ -40,13 +40,6 @@ entities:
         name: current_temperature
         type: integer
         unit: C
-  - entity: switch
-    name: Power
-    icon: "mdi:power"
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
   - entity: switch
     name: Anti-legionella
     icon: "mdi:bacteria"
@@ -153,9 +146,7 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Defrost
-    icon: "mdi:snowflake-melt"
-    class: running
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 32
@@ -170,11 +161,17 @@ entities:
       - id: 33
         type: boolean
         name: sensor
-  - entity: sensor
-    name: Error code
-    icon: "mdi:alert-circle"
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 15
-        type: integer
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
