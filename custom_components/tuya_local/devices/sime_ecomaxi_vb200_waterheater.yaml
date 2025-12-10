@@ -14,21 +14,8 @@ entities:
             value: "off"
             icon: "mdi:water-boiler-off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: "0x00"
-                value: heat_pump
-                icon: "mdi:water-boiler"
-              - dps_val: "0x02"
-                value: eco
-                icon: "mdi:leaf"
-              - dps_val: "0x03"
-                value: performance
-                icon: "mdi:rocket-launch"
-      - id: 2
-        name: mode
-        type: string
-        hidden: true
+            value: heat_pump
+            icon: "mdi:water-boiler"
       - id: 4
         name: temperature
         type: integer
@@ -40,6 +27,23 @@ entities:
         name: current_temperature
         type: integer
         unit: C
+  - entity: select
+    name: Operating mode
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0x00"
+            value: auto
+            icon: "mdi:autorenew"
+          - dps_val: "0x02"
+            value: "heat pump"
+            icon: "mdi:water-boiler"
+          - dps_val: "0x03"
+            value: performance
+            icon: "mdi:rocket-launch"
   - entity: switch
     name: Anti-legionella
     icon: "mdi:bacteria"
