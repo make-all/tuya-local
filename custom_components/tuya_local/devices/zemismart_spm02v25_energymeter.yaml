@@ -1,0 +1,196 @@
+name: Energy meter
+products:
+  - id: iwn0gpzz
+    manufacturer: Zemismart
+    model: "SPM02 Zigbee V2.5"
+entities:
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    state_class: total_increasing
+    icon: mdi:home-import-outline
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Phase A Raw Data
+    category: diagnostic
+    icon: mdi:code-json
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Fault Status
+    class: enum
+    category: diagnostic
+    icon: mdi:alert-box-outline
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - mask: 0x1
+            value: Short Circuit
+          - mask: 0x2
+            value: Surge
+          - mask: 0x4
+            value: Overload
+          - mask: 0x8
+            value: Leakage Current
+          - mask: 0x10
+            value: Temp Diff Fault
+          - mask: 0x20
+            value: Fire Alarm
+          - mask: 0x40
+            value: High Power
+          - mask: 0x80
+            value: Self Test Fail
+          - mask: 0x100
+            value: Over Current
+          - mask: 0x200
+            value: Unbalance
+          - mask: 0x400
+            value: Over Voltage
+          - mask: 0x800
+            value: Under Voltage
+          - mask: 0x1000
+            value: Missing Phase
+          - mask: 0x2000
+            value: Power Outage
+          - mask: 0x4000
+            value: Magnetic Interference
+          - mask: 0x8000
+            value: Credit Alarm
+          - mask: 0x10000
+            value: No Balance
+
+  - entity: switch
+    name: Reset Energy
+    class: switch
+    icon: mdi:database-refresh
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Alarm Set 1 Raw
+    category: diagnostic
+    icon: mdi:tune-variant
+    dps:
+      - id: 17
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Alarm Set 2 Raw
+    category: diagnostic
+    icon: mdi:tune-vertical
+    dps:
+      - id: 18
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Reverse Energy
+    class: energy
+    state_class: total_increasing
+    icon: mdi:home-export-outline
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Frequency
+    class: frequency
+    state_class: measurement
+    icon: mdi:sine-wave
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Panel Status
+    class: enum
+    category: diagnostic
+    icon: mdi:check-network
+    dps:
+      - id: 35
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "online"
+            value: "Online"
+          - dps_val: "offline"
+            value: "Offline"
+
+  - entity: sensor
+    name: Power Factor
+    class: power_factor
+    state_class: measurement
+    icon: mdi:angle-acute
+    dps:
+      - id: 50
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    state_class: measurement
+    icon: mdi:alpha-v-circle-outline
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Current
+    class: current
+    state_class: measurement
+    icon: mdi:alpha-a-circle-outline
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Active Power
+    class: power
+    state_class: measurement
+    icon: mdi:flash
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 1000
