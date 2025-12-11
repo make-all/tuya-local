@@ -104,7 +104,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             return VacuumActivity.IDLE
         elif status == "paused":
             return VacuumActivity.PAUSED
-        elif status in ["charging", "charged"]:
+        elif status in ["charging", "charged", "docked"]:
             return VacuumActivity.DOCKED
         elif self._power_dps and self._power_dps.get_value(self._device) is False:
             return VacuumActivity.IDLE
