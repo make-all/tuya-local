@@ -1,7 +1,7 @@
 name: LiFP battery
 products:
   - id: l2ak4zqufuarm0j3
-    manufacturer : SRNE
+    manufacturer: SRNE
     model: SR-SE05B
 entities:
   - entity: sensor
@@ -15,7 +15,6 @@ entities:
         class: measurement
   - entity: sensor
     class: voltage
-    translation_key: Battery voltage
     dps:
       - id: 102
         type: integer
@@ -42,7 +41,7 @@ entities:
       - id: 108
         type: integer
         name: sensor
-        unit: cyc
+        unit: cycles
         class: total
   - entity: sensor
     category: diagnostic
@@ -79,7 +78,6 @@ entities:
         type: integer
         optional: true
         name: sensor
-        translation_key: Environment temperature
         unit: C
         class: measurement
         mapping:
@@ -87,7 +85,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 1
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 1
     dps:
       - id: 120
         type: integer
@@ -101,7 +101,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 2
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 2
     dps:
       - id: 121
         type: integer
@@ -115,7 +117,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 3
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 3
     dps:
       - id: 122
         type: integer
@@ -129,7 +133,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 4
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 4
     dps:
       - id: 123
         type: integer
@@ -143,7 +149,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 5
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 5
     dps:
       - id: 124
         type: integer
@@ -157,7 +165,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 6
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 6
     dps:
       - id: 125
         type: integer
@@ -171,7 +181,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 7
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 7
     dps:
       - id: 126
         type: integer
@@ -185,7 +197,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 8
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 8
     dps:
       - id: 127
         type: integer
@@ -199,7 +213,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 9
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 9
     dps:
       - id: 128
         type: integer
@@ -213,7 +229,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 10
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 10
     dps:
       - id: 129
         type: integer
@@ -227,7 +245,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 11
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 11
     dps:
       - id: 130
         type: integer
@@ -241,7 +261,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 12
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 12
     dps:
       - id: 131
         type: integer
@@ -255,7 +277,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 13
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 13
     dps:
       - id: 132
         type: integer
@@ -269,7 +293,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 14
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 14
     dps:
       - id: 133
         type: integer
@@ -283,7 +309,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 15
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 15
     dps:
       - id: 134
         type: integer
@@ -297,7 +325,9 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Cell voltage 16
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Cell 16
     dps:
       - id: 135
         type: integer
