@@ -1,0 +1,225 @@
+name: Ceiling fan
+products:
+  - id: hjlasxqdlb95c4gi
+    manufacturer: Lumary
+    model: B2
+    model_id: L-CFL20B2
+entities:
+  - entity: switch
+    name: Lights
+    icon: "mdi:lightbulb-multiple"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: colour
+            value: Color
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: light
+    name: RGB
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 108
+        type: boolean
+        name: switch
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-settings"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 104
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 105
+        type: string
+        name: direction
+  - entity: switch
+    name: Beep
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: LED sequence
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5
+  - entity: number
+    name: LED pixels
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 300
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Segment dimming
+    category: config
+    icon: "mdi:gradient-vertical"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Main
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 143
+        type: boolean
+        name: switch
