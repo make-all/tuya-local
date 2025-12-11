@@ -1,0 +1,1064 @@
+name: Robot vacuum
+products:
+  - id: j9a3cjk1xuzjakgp
+    manufacturer: Cecotec
+    model: Conga X70
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: Smart
+          - dps_val: zone
+            value: Zone
+          - dps_val: pose
+            value: Go to position
+          - dps_val: part
+            value: Partial
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: Wall follow
+          - dps_val: selectroom
+            value: Select room
+          - dps_val: creatingmap
+            value: Create map
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart cleaning
+          - dps_val: zone_clean
+            value: zone cleaning
+          - dps_val: part_clean
+            value: partial cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: going to location
+          - dps_val: pos_arrived
+            value: arrived at location
+          - dps_val: pos_unarrive
+            value: left location
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: docked
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: wall following
+          - dps_val: direction_control
+            value: manual control
+          - dps_val: select_room
+            value: room selection
+          - dps_val: repositing
+            value: repositioning
+          - dps_val: amicro_collect_dust
+            value: emptying
+          - dps_val: create_map
+            value: creating map
+          - dps_val: mapping
+            value: mapping
+          - dps_val: goto_bs
+            value: returning
+          - dps_val: cleaning_mop
+            value: mopping
+          - dps_val: drying_mop
+            value: drying
+          - dps_val: water_injection
+            value: filling_tank
+          - dps_val: staion_selfclean
+            value: self_cleaning
+          - dps_val: goto_dust
+            value: returning
+          - dps_val: winding_mop
+            value: winding mop
+          - dps_val: paused_back
+            value: paused
+          - dps_val: paused_mopping
+            value: paused
+          - dps_val: resume_charge
+            value: returning
+      - id: 9
+        type: string
+        name: suction
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: gentle
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+          - dps_val: max
+            value: maximum
+      - id: 11
+        type: boolean
+        optional: true
+        name: locate
+      - id: 12
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+          - dps_val: exit
+            value: exit
+      - id: 34
+        type: base64
+        optional: true
+        name: device_info
+      - id: 192
+        type: string
+        name: serial_number
+  - entity: switch
+    name: Charge
+    icon: "mdi:battery_charging"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Cleaning time
+    class: duration
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaned area
+    class: area
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+      - id: 42
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: square_foot
+            value: ft²
+          - value: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: mopping
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: button
+    name: Map reset
+    icon: "mdi:map"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Path
+    category: config
+    icon: "mdi:map-marker-path"
+    hidden: true
+    dps:
+      - id: 14
+        type: base64
+        optional: true
+        name: value
+      - id: 110
+        type: string
+        optional: true
+        name: map_id
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Request
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 16
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Edge brush remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Edge brush reset
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Roll brush remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Roll brush reset
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Filter remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Mop remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: button
+    name: Mop reset
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      - id: 108
+        type: integer
+        name: error_report
+      - id: 123
+        type: string
+        optional: true
+        name: test_bits
+      - id: 152
+        type: string
+        optional: true
+        name: base_software_version
+      - id: 184
+        type: string
+        optional: true
+        name: dormant_keep_unseen
+      - id: 186
+        type: integer
+        optional: true
+        name: base_fault_code
+      - id: 199
+        type: integer
+        optional: true
+        name: notification
+  - entity: sensor
+    name: Total cleaned area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+      - id: 42
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: square_foot
+            value: ft²
+          - value: m2
+  - entity: sensor
+    name: Total clean count
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+        unit: times
+  - entity: sensor
+    name: Total clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Do not disturb schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Voice data
+    category: config
+    icon: "mdi:account-voice"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        name: option
+        mapping:
+          - dps_val: None
+            value: "off"
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+          - dps_val: russian
+            value: russian
+          - dps_val: gemman
+            value: german
+          - dps_val: italian
+            value: italian
+          - dps_val: french
+            value: french
+          - dps_val: polish
+            value: polish
+          - dps_val: spanish
+            value: spanish
+          - dps_val: korean
+            value: korean
+          - dps_val: chinese_traditional
+            value: chinese_traditional
+          - dps_val: vietnamese
+            value: vietnamese
+  - entity: number
+    name: Dust collection interval
+    category: config
+    icon: "mdi:trash-can"
+    dps:
+      - id: 37
+        type: integer
+        name: value
+        unit: cleans
+        range:
+          min: 0
+          max: 3
+  - entity: button
+    name: Dust collect
+    category: config
+    dps:
+      - id: 38
+        type: boolean
+        name: button
+  - entity: switch
+    name: Custom room modes
+    category: config
+    hidden: true  # not obvious how this is useful
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: cleaning_mode
+    dps:
+      - id: 41
+        type: string
+        name: option
+        mapping:
+          - dps_val: both_work
+            value: sweep_and_mop
+            available: mop_fitted
+          - dps_val: only_sweep
+            value: sweep
+          - dps_val: only_mop
+            value: mop
+            available: mop_fitted
+          - dps_val: intensive
+            value: intensive
+          - dps_val: quiet
+            value: quiet
+          - dps_val: first_sweep_last_mop
+            value: sweep_before_mopping
+            available: mop_fitted
+      - id: 40
+        type: string
+        name: mop_fitted
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: select
+    name: Area units
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 42
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: square_foot
+            value: ft²
+          - dps_val: square_meter
+            value: m²
+          - value: m²
+            hidden: true
+  - entity: sensor
+    name: Estimated floor space
+    class: area
+    category: diagnostic
+    dps:
+      - id: 43
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+      - id: 42
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: square_foot
+            value: ft²
+          - value: m2
+  - entity: select
+    name: Carpet treatment
+    icon: "mdi:rug"
+    category: config
+    dps:
+      - id: 44
+        type: string
+        name: option
+        mapping:
+          - dps_val: adaptive
+            value: Adaptive
+          - dps_val: evade
+            value: Avoid carpets
+          - dps_val: ignore
+            value: Standard mode
+          - dps_val: only
+            value: Carpet mode
+  - entity: switch
+    name: Auto boost
+    category: config
+    dps:
+      - id: 45
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Cruise
+    category: config
+    dps:
+      - id: 46
+        type: boolean
+        optional: true
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 47
+        type: boolean
+        name: lock
+  - entity: button
+    name: Mop self clean
+    category: config
+    dps:
+      - id: 49
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Dry
+    category: config
+    dps:
+      - id: 50
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Self clean frequency
+    category: config
+    class: area
+    icon: "mdi:silverware-clean"
+    dps:
+      - id: 51
+        type: integer
+        optional: true
+        name: value
+        unit: m2
+        range:
+          min: 1
+          max: 10
+  - entity: select
+    name: Self clean strength
+    category: config
+    icon: "mdi:silverware-clean"
+    dps:
+      - id: 52
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: fast
+            value: quick
+          - dps_val: daily
+            value: normal
+          - dps_val: depth
+            value: deep_clean
+  - entity: select
+    name: Cleaning speed
+    icon: "mdi:broom"
+    category: config
+    dps:
+      - id: 53
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: slow
+            value: slow
+          - dps_val: normal
+            value: normal
+          - dps_val: fast
+            value: fast
+  - entity: button
+    name: Skip room
+    icon: "mdi:skip-next"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Skip
+    dps:
+      - id: 102
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: skipping
+            value: skipping
+          - dps_val: skip_end
+            value: skipped
+  - entity: select
+    name: Cleaning passes
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+  - entity: select
+    name: Mapping mode
+    icon: "mdi:map"
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: true
+            value: Quick map
+          - dps_val: false
+            value: Map while cleaning
+  - entity: switch
+    name: Custom modes
+    category: config
+    hidden: true
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Map then clean
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Mop extension
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: select
+    name: Drying
+    icon: "mdi:hair-dryer"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: hoton
+            value: Hot auto dry
+          - dps_val: hotoff
+            value: Hot manual dry
+          - dps_val: airon
+            value: Cool auto dry
+          - dps_val: airoff
+            value: Cool manual dry
+  - entity: select
+    name: Do not disturb behavior
+    icon: "mdi:sleep"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0_0"
+            value: "No dust emptying, no drying"
+          - dps_val: "0_1"
+            value: "No dust emptying, drying allowed"
+          - dps_val: "1_0"
+            value: "Dust emptying allowed, no drying"
+          - dps_val: "1_1"
+            value: "Dust emptying and drying allowed"
+  - entity: switch
+    name: Manual drying
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+      - id: 174
+        type: string
+        optional: true
+        name: status
+  - entity: event
+    name: Maintenance
+    dps:
+      - id: 130
+        type: bitfield
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: 1
+            value: Replace side brush
+          - dps_val: 2
+            value: Replace roller brush
+          - dps_val: 4
+            value: Replace dust filter
+          - dps_val: 8
+            value: Replace mop
+          - dps_val: 16
+            value: Replace dust bag
+          - dps_val: 32
+            value: Clean mopping tank
+          - dps_val: 64
+            value: Replace tank filter
+          - dps_val: 128
+            value: Clean main unit sensor
+      - id: 195
+        type: string
+        name: base_consumables
+  - entity: button
+    name: Get base software version
+    category: config
+    hidden: true
+    dps:
+      - id: 131
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Exit remote control
+    category: config
+    hidden: true
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: button
+  - entity: binary_sensor
+    name: Dust bag
+    translation_key: tank_full
+    icon: "mdi:trash-can"
+    dps:
+      - id: 136
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Sensor cleaning
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 137
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: select
+    name: Drying time
+    translation_key: timer
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 156
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: cancel
+          - dps_val: low
+            value: "2h"
+          - dps_val: middle
+            value: "3h"
+          - dps_val: high
+            value: "4h"
+  - entity: switch
+    name: Device logging
+    hidden: true
+    category: config
+    dps:
+      - id: 160
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Log upload
+    category: config
+    hidden: true
+    dps:
+      - id: 161
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Success
+          - dps_val: "1"
+            value: Failure
+  - entity: switch
+    name: Base station self cleaning
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fresh water tank
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 171
+        type: hex
+        mask: "01000000"
+        name: sensor
+      - id: 171
+        type: hex
+        mask: "02000000"
+        name: available
+  - entity: binary_sensor
+    name: Waste water tank
+    class: tank_full
+    category: diagnostic
+    dps:
+      - id: 171
+        type: hex
+        mask: "00010000"
+        name: sensor
+      - id: 171
+        type: hex
+        mask: "00020000"
+        name: available
+  - entity: binary_sensor
+    name: Base dust bag
+    class: tank_full
+    category: diagnostic
+    dps:
+      - id: 171
+        type: hex
+        mask: "00000100"
+        name: sensor
+      - id: 171
+        type: hex
+        mask: "00000200"
+        name: available
+  - entity: binary_sensor
+    name: Washing tank
+    class: tank_full
+    category: diagnostic
+    dps:
+      - id: 171
+        type: hex
+        mask: "00000001"
+        name: sensor
+      - id: 171
+        type: hex
+        mask: "00000002"
+        name: available
+  - entity: switch
+    name: Self clean
+    category: config
+    dps:
+      - id: 172
+        type: boolean
+        name: switch
+      - id: 173
+        type: hex
+        mask: "100"
+        optional: true
+        name: drying_status
+      - id: 173
+        type: hex
+        mask: "010"
+        optional: true
+        name: dust_collection_status
+      - id: 173
+        type: hex
+        mask: "001"
+        optional: true
+        name: mop_washing_status
+  - entity: select
+    name: Auto clean time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 175
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "5m"
+          - dps_val: "1"
+            value: "10m"
+          - dps_val: "2"
+            value: "15m"
+  - entity: select
+    name: Map expansion
+    icon: "mdi:map"
+    category: config
+    hidden: true  # seems app related
+    dps:
+      - id: 191
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "No prompt"
+          - dps_val: 1
+            value: "Require confirmation"
+          - dps_val: 2
+            value: "Save"
+          - dps_val: 3
+            value: "Discard"
+  - entity: number
+    name: Time zone
+    category: config
+    class: duration
+    hidden: true  # Not sure the purpose
+    dps:
+      - id: 193
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: -840
+          max: 840
+        mapping:
+          - step: 15
+  - entity: button
+    name: Sensor clean reset
+    category: config
+    dps:
+      - id: 197
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Dusty reset
+    category: config
+    dps:
+      - id: 198
+        type: boolean
+        optional: true
+        name: button
