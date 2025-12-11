@@ -11,7 +11,7 @@ entities:
       - id: 1
         type: integer
         name: sensor
-        state_class: total_increasing
+        class: total_increasing
         unit: kWh
         mapping:
           - scale: 100
@@ -29,7 +29,7 @@ entities:
           - value: true
       - id: 9
         type: bitfield
-        name: fault_code1
+        name: fault_code
       - id: 9
         type: bitfield
         name: sensor
@@ -69,15 +69,15 @@ entities:
           - mask: 0x10000
             value: No Balance
 
-  - entity: switch
-    class: switch
+  - entity: button
+    class: restart
     category: config
     dps:
       - id: 12
         type: boolean
-        name: switch
+        name: button
 
-  - entity: sensor
+  - entity: text
     category: diagnostic
     hidden: true
     dps:
@@ -86,7 +86,7 @@ entities:
         name: sensor
         optional: true
 
-  - entity: sensor
+  - entity: text
     category: diagnostic
     hidden: true
     dps:
@@ -126,6 +126,7 @@ entities:
         type: string
         name: sensor
         optional: true
+        forced: true
         mapping:
           - dps_val: "online"
             value: true
