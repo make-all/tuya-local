@@ -1158,3 +1158,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ncosta24](https://github.com/ncosta24) for assisting with support for Cecotec Conga X70 vacuum.
 - [charlesomer](https://github.com/charlesomer) for contributing improvements to Electriq PD45E dehumidifier.
 - [lethargus](https://github.com/lethargus) for assisting with support for Lumary B2 ceiling fan with RGB+CW light.
+- [MIKOLAJW197](https://github.com/MIKOLAJW197) for contributing improvements to the vacuum entity.
