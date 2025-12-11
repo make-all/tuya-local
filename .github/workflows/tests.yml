@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libjpeg-turbo8
+          sudo apt-get install libturbojpeg
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Full test with pytest
