@@ -6,7 +6,6 @@ products:
 entities:
   - entity: sensor
     class: battery
-    translation_key: Charge
     dps:
       - id: 103
         type: integer
@@ -21,12 +20,11 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 2
         mapping:
           - scale: 100
   - entity: sensor
     class: current
-    name: Charge current
+    name: Charging current
     dps:
       - id: 101
         type: integer
@@ -36,7 +34,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Cycle number
+    name: Discharge cycles
     dps:
       - id: 108
         type: integer
@@ -72,7 +70,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: temperature
-    name: Environment temperature
+    name: Ambient temperature
     dps:
       - id: 119
         type: integer
@@ -95,7 +93,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -111,7 +108,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -127,7 +123,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -143,7 +138,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -159,7 +153,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -175,7 +168,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -191,7 +183,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -207,7 +198,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -223,7 +213,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -239,7 +228,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -255,7 +243,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -271,7 +258,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -287,7 +273,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -303,7 +288,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -319,7 +303,6 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
   - entity: sensor
@@ -335,6 +318,5 @@ entities:
         name: sensor
         unit: V
         class: measurement
-        precision: 3
         mapping:
           - scale: 1000
