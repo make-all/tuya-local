@@ -533,6 +533,7 @@ def create_test_device(hass: HomeAssistant, config: dict):
     subdevice_id = config.get(CONF_DEVICE_CID)
     device = TuyaLocalDevice(
         "Test",
+        "Test Model",
         config[CONF_DEVICE_ID],
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],

@@ -40,6 +40,7 @@ class TestDevice(IsolatedAsyncioTestCase):
 
         self.subject = TuyaLocalDevice(
             "Some name",
+            "some_model",
             "some_dev_id",
             "some.ip.address",
             "some_local_key",
@@ -73,6 +74,7 @@ class TestDevice(IsolatedAsyncioTestCase):
             {
                 "identifiers": {("tuya_local", self.mock_api().id)},
                 "name": "Some name",
+                "model": "some_model",
                 "manufacturer": "Tuya",
             },
         )
