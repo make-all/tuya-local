@@ -1,0 +1,199 @@
+name: Pipeline machine
+products:
+  - id: szx3eawxigxumxi5
+    name: KG1
+    manufacturer: Casdon
+    model: Y-GX1200-KG1
+
+entities:
+  - entity: switch
+    name: 出水开关
+    icon: mdi:water
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: mdi:cup-water
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: 待机
+          - dps_val: refrigerating
+            value: 制冷中
+          - dps_val: drain_water
+            value: 出热水
+          - dps_val: drain_normal_water
+            value: 出常温水
+          - dps_val: drain_boiling_water
+            value: 出沸水
+          - dps_val: job_done
+            value: 出水完成
+          - dps_val: coldwater_prohibited
+            value: 禁止制冷
+          - dps_val: reset
+            value: 重置中
+          - dps_val: cleaning
+            value: 清洗中
+          - dps_val: cleaned
+            value: 清洗等待排水
+          - dps_val: empty_device
+            value: 排空中
+          - dps_val: emptied
+            value: 排空完成
+          - dps_val: drain_cool_water
+            value: 出冷水
+          - dps_val: high_temp_emptying
+            value: 高温排水中
+          - dps_val: high_temp_emptyed
+            value: 高温排水完成
+          - dps_val: water_shortage
+            value: 缺水
+
+  - entity: lock
+    name: 童锁
+    icon: mdi:lock
+    dps:
+      - id: 9
+        type: boolean
+        name: lock
+
+  - entity: switch
+    name: 自动冲洗
+    icon: mdi:autorenew
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: 制冷开关
+    icon: mdi:snowflake
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: 照明开关
+    icon: mdi:lightbulb
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: 制冷温度
+    icon: mdi:thermometer
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "°C"
+        range:
+          min: 8
+          max: 15
+        step: 1
+
+  - entity: number
+    name: 出水量设置
+    icon: mdi:water
+    class: volume
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: ml
+        range:
+          min: 150
+          max: 2500
+        step: 50
+
+  - entity: number
+    name: 出水温度
+    icon: mdi:thermometer
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: "°C"
+        range:
+          min: 10
+          max: 100
+        step: 5
+
+  - entity: sensor
+    name: 当前温度
+    category: diagnostic
+    icon: mdi:thermometer
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+
+  - entity: sensor
+    name: 单次用水量
+    category: diagnostic
+    icon: mdi:water
+    class: volume
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: ml
+        class: measurement
+
+  - entity: binary_sensor
+    name: 故障状态
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+
+
+
+
+
+#   - entity: number
+#     name: 推荐温度设置
+#     mode: slider
+#     class: temperature
+#     dps:
+#       - id: 110
+#         type: integer
+#         name: 温度
+#         unit: "°C"
+#         range:
+#           min: 5
+#           max: 100
+#         step: 5
+
+#   - entity: number
+#     name: 推荐出水量设置
+#     mode: slider
+#     class: measurement
+#     dps:
+#       - id: 111
+#         type: integer
+#         name: 出水量
+#         unit: "ml"
+#         range:
+#           min: 50
+#           max: 1000
+#         step: 50
