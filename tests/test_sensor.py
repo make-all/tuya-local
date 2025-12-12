@@ -114,4 +114,20 @@ def test_sensor_suggested_display_precision():
         },
     )
     sensor = TuyaLocalSensor(mock_device, config)
-    assert sensor.suggested_display_precision is None
+    assert sensor.suggested_display_precision == 0
+    config = TuyaEntityConfig(
+        mock_device,
+        {
+            "entity": "sensor",
+            "dps": [
+                {
+                    "id": 1,
+                    "name": "sensor",
+                    "type": "integer",
+                    "mapping": [{"scale: 10"}],
+                },
+            ],
+        },
+    )
+    sensor = TuyaLocalSensor(mock_device, config)
+    assert sensor.suggested_display_precision == 1
