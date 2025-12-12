@@ -124,7 +124,11 @@ def test_sensor_suggested_display_precision():
                     "id": 1,
                     "name": "sensor",
                     "type": "integer",
-                    "mapping": [{"scale: 10"}],
+                    "mapping": [
+                        {
+                            "scale": 10,
+                        }
+                    ],
                 },
             ],
         },
