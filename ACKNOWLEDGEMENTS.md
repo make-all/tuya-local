@@ -1160,3 +1160,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lethargus](https://github.com/lethargus) for assisting with support for Lumary B2 ceiling fan with RGB+CW light.
 - [MIKOLAJW197](https://github.com/MIKOLAJW197) for contributing improvements to the vacuum entity.
 - [barijaona](https://github.com/barijaona) for contributing support for SRNE SE Series lithium battery.
+- [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
