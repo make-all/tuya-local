@@ -1,0 +1,140 @@
+name: Dehumidifier
+products:
+  - id: z6iig4fopkrzyej9
+    manufacturer: HTW
+    model: HTWD020A4
+
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: integer
+      name: humidity
+      range:
+        min: 25
+        max: 90
+        step: 5
+    - id: 3
+      type: integer
+      name: current_humidity
+      readonly: true
+    - id: 2
+      type: string
+      name: mode
+      mapping:
+        - dps_val: "1"
+          value: "Dehumidify"
+        - dps_val: "2"
+          value: "Laundry"
+        - dps_val: "3"
+          value: "Silence"
+        - dps_val: "4"
+          value: "Wind"
+
+secondary_entities:
+  # FAN ENTITY
+  - entity: fan
+    name: Fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 6
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: "High"
+          - dps_val: "2"
+            value: "Low"
+      - id: 8
+        type: boolean
+        name: oscillate
+
+  # ERROR SENSOR
+  # Shows text status of the error bitmap
+  - entity: sensor
+    name: Error Status
+    class: enum
+    icon: "mdi:alert-circle"
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 1
+            value: "Sensor Fault"
+          - dps_val: 2
+            value: "Tank Full"
+          - dps_val: 4
+            value: "Pump Fault"
+
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "C"
+
+  - entity: switch
+    name: Child Lock
+    icon: "mdi:lock"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:shimmer"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Filter Reset
+    icon: "mdi:air-filter"
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+
+  - entity: binary_sensor
+    name: Defrosting
+    class: cold
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 24
+          step: 1
+        unit: "h"
+
+  - entity: sensor
+    name: Time Remaining
+    class: duration
+    icon: "mdi:progress-clock"
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: "min"
