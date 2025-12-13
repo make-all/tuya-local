@@ -32,41 +32,41 @@ entities:
         name: fault_code
       - id: 9
         type: bitfield
-        name: sensor
+        name: description
         mapping:
-          - mask: 0x1
+          - dps_val: 1
             value: Short Circuit
-          - mask: 0x2
+          - dps_val: 2
             value: Surge
-          - mask: 0x4
+          - dps_val: 4
             value: Overload
-          - mask: 0x8
+          - dps_val: 8
             value: Leakage Current
-          - mask: 0x10
+          - dps_val: 16
             value: Temp Diff Fault
-          - mask: 0x20
+          - dps_val: 32
             value: Fire Alarm
-          - mask: 0x40
+          - dps_val: 64
             value: High Power
-          - mask: 0x80
+          - dps_val: 128
             value: Self Test Fail
-          - mask: 0x100
+          - dps_val: 256
             value: Over Current
-          - mask: 0x200
+          - dps_val: 512
             value: Unbalance
-          - mask: 0x400
+          - dps_val: 1024
             value: Over Voltage
-          - mask: 0x800
+          - dps_val: 2048
             value: Under Voltage
-          - mask: 0x1000
+          - dps_val: 4096
             value: Missing Phase
-          - mask: 0x2000
+          - dps_val: 8192
             value: Power Outage
-          - mask: 0x4000
+          - dps_val: 16384
             value: Magnetic Interference
-          - mask: 0x8000
+          - dps_val: 32768
             value: Credit Alarm
-          - mask: 0x10000
+          - dps_val: 65536
             value: No Balance
 
   - entity: button
@@ -78,21 +78,23 @@ entities:
         name: button
 
   - entity: text
-    category: diagnostic
+    category: config
     hidden: true
+    name: Alarm Set 1 Raw
     dps:
       - id: 17
-        type: string
-        name: sensor
+        type: base64
+        name: value
         optional: true
 
   - entity: text
-    category: diagnostic
+    category: config
     hidden: true
+    name: Alarm Set 2 Raw
     dps:
       - id: 18
-        type: string
-        name: sensor
+        type: base64
+        name: value
         optional: true
 
   - entity: sensor
@@ -123,7 +125,7 @@ entities:
     category: diagnostic
     dps:
       - id: 35
-        type: string
+        type: boolean
         name: sensor
         optional: true
         forced: true
@@ -135,20 +137,20 @@ entities:
 
   - entity: sensor
     class: power_factor
-    state_class: measurement
     dps:
       - id: 50
         type: integer
+        class: measurement
         name: sensor
         mapping:
           - scale: 100
 
   - entity: sensor
     class: voltage
-    state_class: measurement
     dps:
       - id: 102
         type: integer
+        class: measurement
         name: sensor
         unit: V
         mapping:
@@ -156,10 +158,10 @@ entities:
 
   - entity: sensor
     class: current
-    state_class: measurement
     dps:
       - id: 103
         type: integer
+        class: measurement
         name: sensor
         unit: A
         mapping:
@@ -167,10 +169,10 @@ entities:
 
   - entity: sensor
     class: power
-    state_class: measurement
     dps:
       - id: 104
         type: integer
+        class: measurement
         name: sensor
         unit: kW
         mapping:
