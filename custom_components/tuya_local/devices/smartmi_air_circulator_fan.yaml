@@ -1,0 +1,145 @@
+# Smartmi Air Circulator Fan
+# Category: fs
+# Product ID (PID): ld6lwruyddlfx7a2
+# Tested with Tuya Local
+
+name: Smartmi Air Circulator Fan
+
+products:
+  - id: ld6lwruyddlfx7a2
+
+entities:
+  # -------------------------------------------------------
+  # Fan
+  # -------------------------------------------------------
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: natural
+          - dps_val: smart
+            value: smart
+
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 4
+
+  # -------------------------------------------------------
+  # Timer
+  # -------------------------------------------------------
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: 1 hour
+          - dps_val: "2h"
+            value: 2 hours
+          - dps_val: "3h"
+            value: 3 hours
+          - dps_val: "4h"
+            value: 4 hours
+          - dps_val: "5h"
+            value: 5 hours
+          - dps_val: "6h"
+            value: 6 hours
+          - dps_val: "7h"
+            value: 7 hours
+          - dps_val: "8h"
+            value: 8 hours
+
+  # -------------------------------------------------------
+  # Oscillation
+  # -------------------------------------------------------
+  - entity: switch
+    name: Vertical oscillation
+    dps:
+      - id: 4
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Horizontal oscillation
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+
+  # -------------------------------------------------------
+  # Angle
+  # -------------------------------------------------------
+  - entity: select
+    name: Vertical angle
+    dps:
+      - id: 6
+        name: option
+        type: string
+        mapping:
+          - dps_val: "30"
+            value: 30°
+          - dps_val: "60"
+            value: 60°
+          - dps_val: "90"
+            value: 90°
+
+  - entity: select
+    name: Horizontal angle
+    dps:
+      - id: 7
+        name: option
+        type: string
+        mapping:
+          - dps_val: "30"
+            value: 30°
+          - dps_val: "60"
+            value: 60°
+          - dps_val: "90"
+            value: 90°
+          - dps_val: "120"
+            value: 120°
+
+  # -------------------------------------------------------
+  # Misc
+  # -------------------------------------------------------
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Child lock
+    category: config
+    dps:
+      - id: 14
+        name: switch
+        type: boolean
+
+  - entity: light
+    name: Indicator light
+    category: config
+    dps:
+      - id: 15
+        name: switch
+        type: boolean
