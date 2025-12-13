@@ -1,0 +1,66 @@
+name: Ceiling Fan Light
+products:
+  - id: bf2fe9cbbc9f1d78b6bhau
+    manufacturer: Faro Barcelona
+    model: FARO 33829WT-1TW PUNT TUB M LED
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        type: string
+        optional: true
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep # speed 5
+            value: sleep
+          - dps_val: natural # speed 6
+            value: natural
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 2
+          max: 100
+  - entity: select
+    translation_key: timer
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: off
+            value: off
+          - dps_val: "1hour"
+            value: "1h"
+          - dps_val: "2hour"
+            value: "2h"
+          - dps_val: "4hour"
+            value: "4h"
+          - dps_val: "8hour"
+            value: "8h"
