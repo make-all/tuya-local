@@ -3,6 +3,10 @@ products:
   - id: 78m2fjtcj26yab5a
     manufacturer: Calibo
     model: Cloudfan DC
+  - id: bczathc5udcd58ec
+    manufacturer: Faro Barcelona
+    model: Punt Tub
+    model_id: "33829WT-1TW"
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -23,12 +27,18 @@ entities:
       - id: 3
         name: speed
         type: integer
+        optional: true
         range:
           min: 1
           max: 6
       - id: 8
         name: direction
         type: string
+        optional: true
+        mapping:
+          - dps_val: null
+            value: forward
+            hidden: true
   - entity: light
     dps:
       - id: 15

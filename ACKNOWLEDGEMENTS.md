@@ -1135,7 +1135,7 @@ Further device support has been made with the assistance of users. Please consid
 - [rickbergmans](https://github.com/rickbergmans) for contributing support for Pilot Wire RP5 bath thermostat.
 - [baracici](https://github.com/baracici) for assisting with support for ElectriQ CD20PRO-LE-V4 dehumidifier.
 - [christianglodt](https://github.com/christianglodt) for contributing support for Plikc Ario WiFi air vent.
-- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifier.
+- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifier, Faro Barcelona Punt Tub fan (merged to calibo).
 - [yurgh](https://github.com/yurgh) for contributing improvements to Eeese Carl dehumidifier.
 - [fredppm](https://github.com/fredppm) for contributing support for Newpet pet feeder.
 - [politician](https://github.com/politician) for assisting with support for Kerui 120dB siren alarm.
