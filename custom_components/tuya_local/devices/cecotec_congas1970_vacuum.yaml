@@ -55,22 +55,36 @@ entities:
         type: string
         name: status
         mapping:
+          - dps_val: sleep
+            value: Sleep
           - dps_val: Standby
             value: Standby
-          - dps_val: paused
-            value: Pause
+          - dps_val: Cleaning
+            value: Cleaning
+          - dps_val: Cleaning_Auto
+            value: Cleaning_Auto
+          - dps_val: Cleaning_Random
+            value: Cleaning_Random
+          - dps_val: Cleaning_Sroom
+            value: Cleaning_Sroom
+          - dps_val: Cleaning_Edge
+            value: Cleaning_Edge
+          - dps_val: Cleaning_Spot
+            value: Cleaning_Spot
+          - dps_val: Clean_Comp
+            value: Clean_Comp
+          - dps_val: Docking
+            value: Docking
           - dps_val: ChargeGo
             value: Returning
           - dps_val: Charging_Base
             value: Charging
+          - dps_val: Charging_DC
+            value: Charging
           - dps_val: Charge_Comp
             value: Docked
-          - dps_val: sleep
-            value: Sleep
-          - dps_val: fault
+          - dps_val: Fault
             value: Error
-          - dps_val: direction_control
-            value: direction_control
       - id: 13
         type: boolean
         optional: true
@@ -82,6 +96,10 @@ entities:
         type: bitfield
         name: error
         hidden: true
+      - id: 19
+        type: string
+        optional: true
+        name: map_config
       - id: 14
         type: string
         name: fan_speed
@@ -170,6 +188,15 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
+  - entity: sensor
+    name: Mop life
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: switch
     name: Carpet adaptive
     category: config
@@ -200,6 +227,15 @@ entities:
     category: config
     dps:
       - id: 12
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    name: Reset Mop
+    class: restart
+    category: config
+    dps:
+      - id: 109
         name: button
         type: boolean
         optional: true

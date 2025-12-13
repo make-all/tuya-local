@@ -3,6 +3,9 @@ products:
   - id: 4x198rybhwtzirm7
     manufacturer: EARU
     model: EAEMP3C-100-TY-W
+  - id: d8a5rbtiaa5c1csc
+    manufacturer: EARU
+    model: EASEM-G
 entities:
   - entity: sensor
     translation_key: energy_consumed
@@ -373,6 +376,10 @@ entities:
       - id: 16
         type: boolean
         name: switch
+      - id: 145
+        type: bitfield
+        optional: true
+        name: feature_flags
   - entity: text
     name: Alarm 1
     category: config
@@ -534,6 +541,7 @@ entities:
     dps:
       - id: 112
         type: integer
+        optional: true
         name: sensor
         unit: kvar
         class: measurement
@@ -886,3 +894,12 @@ entities:
         range:
           min: 0
           max: 9999
+  - entity: text
+    name: Temporary overcurrent
+    category: config
+    hidden: true
+    dps:
+      - id: 138
+        type: base64
+        optional: true
+        name: value

@@ -149,6 +149,7 @@
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
+- Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
@@ -328,7 +329,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Ledkia fan and light controller
-^ Ledvance Ceiling fan with light
+- Ledvance Ceiling fan with light
 - Lexy F501 fan
 - Ligency E26 socket ceiling fan with RGBCW light
 - Living Comfort LC310S twin window fan
@@ -465,6 +466,7 @@
 - RZTK Aqua Pro humidifier
 - Stadler Form Eva, Karl, Karl Big humidifiers
 - Tesla Smart humidifier
+- Venta AH510 Original Connect humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
@@ -594,6 +596,7 @@
 - Oscal PowerMax 6000 portable power station
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
+- SRNE SE Series lithium battery
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
@@ -727,7 +730,7 @@ of device.
 - Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
-^ Unbranded 4-in-1 10GHz motion sensor 
+- Unbranded 4-in-1 10GHz motion sensor 
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
 - Arknoah Aquarium lights

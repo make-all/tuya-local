@@ -1,0 +1,146 @@
+name: Pool heat pump
+products:
+  - id: 4t4vo1voussnybbd
+    manufacturer: Henden
+    model: Essential Inverter Heat Pump
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 101
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:hvac-off"
+            icon_priority: 1
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "warm"
+                value: heat
+              - dps_val: "cool"
+                value: cool
+                available: cool_available
+              - dps_val: "smart"
+                value: auto
+      - id: 102
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "smart"
+            value: auto
+          - dps_val: "silence"
+            value: quiet
+            icon: "mdi:fan-minus"
+          - dps_val: "booster"
+            value: Boost
+            icon: "mdi:fan-plus"
+            available: boost_available
+      - id: 103
+        name: current_temperature
+        type: integer
+      - id: 106
+        name: mode
+        type: string
+        hidden: true
+      - id: 107
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 18
+          max: 40
+      - id: 108
+        type: integer
+        name: min_temperature
+      - id: 109
+        type: integer
+        name: max_temperature
+      - id: 114
+        type: string
+        optional: true
+        name: cool_available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+      - id: 115
+        type: string
+        optional: true
+        name: boost_available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
+      - id: 111
+        type: bitfield
+        optional: true
+        name: fault_code_2
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: W
+        optional: true
+        # DPS 113 value is False, but
+        # power _is_ correctly reported on DPS 112
+        # - id: 113
+        #   name: available
+        #   type: boolean
+        #   optional: true

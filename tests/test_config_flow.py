@@ -11,6 +11,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from custom_components.tuya_local import (
     async_migrate_entry,
     config_flow,
+    get_device_unique_id,
 )
 from custom_components.tuya_local.const import (
     CONF_DEVICE_CID,
@@ -695,3 +696,20 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     result = await hass.config_entries.options.async_init(config_entry.entry_id)
     assert result["type"] == "abort"
     assert result["reason"] == "not_supported"
+
+
+def test_migration_gets_correct_device_id():
+    """Test that migration gets the correct device id."""
+    # Normal device
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=1,
+        title="test",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_TYPE: "auto",
+        },
+    )
+    assert get_device_unique_id(entry) == "deviceid"
