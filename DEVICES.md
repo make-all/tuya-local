@@ -730,7 +730,7 @@ of device.
 - Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
-- Unbranded 4-in-1 10GHz motion sensor
+- Unbranded 4-in-1 10GHz motion sensor 
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
 - Arknoah Aquarium lights
