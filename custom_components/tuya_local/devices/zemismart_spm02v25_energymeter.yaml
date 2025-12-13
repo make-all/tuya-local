@@ -100,10 +100,10 @@ entities:
   - entity: sensor
     class: energy
     translation_key: energy_produced
-    state_class: sensor
     dps:
       - id: 23
         type: integer
+        class: measurement
         name: sensor
         unit: kWh
         mapping:
@@ -111,28 +111,26 @@ entities:
 
   - entity: sensor
     class: frequency
-    state_class: measurement
     dps:
       - id: 32
         type: integer
+        class: measurement
         name: sensor
         unit: Hz
         mapping:
           - scale: 100
 
-  - entity: binary_sensor
-    class: connectivity
-    category: diagnostic
+  - entity: button
+    name: Realtime updates
     dps:
       - id: 35
         type: boolean
-        name: sensor
         optional: true
-        forced: true
+        name: button
         mapping:
-          - dps_val: "online"
+          - dps_val: online
             value: true
-          - dps_val: "offline"
+          - dps_val: offline
             value: false
 
   - entity: sensor
