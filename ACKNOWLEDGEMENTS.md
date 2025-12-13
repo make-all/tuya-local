@@ -1161,3 +1161,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MIKOLAJW197](https://github.com/MIKOLAJW197) for contributing improvements to the vacuum entity.
 - [barijaona](https://github.com/barijaona) for contributing support for SRNE SE Series lithium battery.
 - [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
+- [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.

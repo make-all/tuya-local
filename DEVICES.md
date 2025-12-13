@@ -466,6 +466,7 @@
 - RZTK Aqua Pro humidifier
 - Stadler Form Eva, Karl, Karl Big humidifiers
 - Tesla Smart humidifier
+- Venta AH510 Original Connect humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
