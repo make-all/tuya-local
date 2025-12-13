@@ -19,15 +19,13 @@ entities:
       - id: 12
         type: integer
         name: sensor
-        unit: °F
+        unit: °C
         class: measurement
         mapping:
           - scale: 10.0
-            invert: false
-            transform: value * 9/5 + 32
         range:
-          min: 32 # 0C
-          max: 428 # 212C
+          min: 0
+          max: 220
 
   # Protection Enabled Switch
   - entity: switch
