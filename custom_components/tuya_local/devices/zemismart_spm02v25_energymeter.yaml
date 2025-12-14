@@ -35,39 +35,39 @@ entities:
         name: description
         mapping:
           - dps_val: 1
-            value: Short Circuit
+            value: Short circuit
           - dps_val: 2
             value: Surge
           - dps_val: 4
             value: Overload
           - dps_val: 8
-            value: Leakage Current
+            value: Current leak
           - dps_val: 16
-            value: Temp Diff Fault
+            value: Tempurature difference
           - dps_val: 32
-            value: Fire Alarm
+            value: Fire alarm
           - dps_val: 64
-            value: High Power
+            value: High power
           - dps_val: 128
-            value: Self Test Fail
+            value: Self test fail
           - dps_val: 256
-            value: Over Current
+            value: Over current
           - dps_val: 512
             value: Unbalance
           - dps_val: 1024
-            value: Over Voltage
+            value: Over voltage
           - dps_val: 2048
-            value: Under Voltage
+            value: Under voltage
           - dps_val: 4096
-            value: Missing Phase
+            value: Missing phase
           - dps_val: 8192
-            value: Power Outage
+            value: Power outage
           - dps_val: 16384
-            value: Magnetic Interference
+            value: Magnetic interference
           - dps_val: 32768
-            value: Credit Alarm
+            value: Credit low
           - dps_val: 65536
-            value: No Balance
+            value: No balance
 
   - entity: button
     class: restart
@@ -80,7 +80,7 @@ entities:
   - entity: text
     category: config
     hidden: true
-    name: Alarm Set 1 Raw
+    name: Alarm 1
     dps:
       - id: 17
         type: base64
@@ -90,7 +90,7 @@ entities:
   - entity: text
     category: config
     hidden: true
-    name: Alarm Set 2 Raw
+    name: Alarm 2
     dps:
       - id: 18
         type: base64
