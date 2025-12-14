@@ -1,0 +1,237 @@
+name: Tion Breezer Bio X
+products:
+  - id: 9mqdhwklpvnnvb7t
+entities:
+  # Main entities
+  - entity: switch
+    name: "Power"
+    icon: "mdi:power"
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: number
+    name: "Speed"
+    icon: "mdi:fan"
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 7
+  - entity: number
+    name: "Heater"
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 114
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 30
+  - entity: sensor
+    name: "Indoor Temperature"
+    class: temperature
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: "°C"
+  - entity: sensor
+    name: "Outdoor Temperature"
+    class: temperature
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: "°C"
+  - entity: sensor
+    name: "Filter Life"
+    icon: "mdi:air-filter"
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    name: "CO2"
+    class: carbon_dioxide
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: "ppm"
+  - entity: sensor
+    name: "PM2.5"
+    class: pm25
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: "µg/m³"
+  - entity: sensor
+    name: "Humidity"
+    class: "humidity"
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        unit: "%"
+
+  # Configuration entities
+  - entity: switch
+    name: "Night Mode"
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 132
+        name: switch
+        type: boolean
+  - entity: switch
+    name: "Child Lock"
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 111
+        name: switch
+        type: boolean
+  - entity: select
+    name: "Light Mode"
+    category: config
+    icon: "mdi:lightbulb-on-outline"
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "50"
+            value: "Dim"
+          - dps_val: "100"
+            value: "On"
+  - entity: switch
+    name: "Sound"
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: switch
+    name: "Filter Reset"
+    category: config
+    icon: "mdi:sync"
+    dps:
+      - id: 110
+        name: switch
+        type: boolean
+  - entity: switch
+    name: "Auto Mode"
+    category: config
+    icon: "mdi:fan-auto"
+    dps:
+      - id: 131
+        name: switch
+        type: boolean
+  - entity: number
+    name: "CO2 Threshold"
+    category: config
+    icon: "mdi:molecule-co2"
+    dps:
+      - id: 130
+        name: value
+        type: integer
+        unit: "ppm"
+        range:
+          min: 400
+          max: 1500
+        mapping:
+          - step: 50.0
+  - entity: number
+    name: "Max Auto Speed"
+    category: config
+    icon: "mdi:fan-chevron-up"
+    dps:
+      - id: 128
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 7
+  - entity: number
+    name: "Min Auto Speed"
+    category: config
+    icon: "mdi:fan-chevron-down"
+    dps:
+      - id: 129
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 1
+  - entity: number
+    name: "Target Filter Life"
+    category: config
+    icon: "mdi:calendar-check"
+    dps:
+      - id: 134
+        name: value
+        type: integer
+        unit: "days"
+        range:
+          min: 30
+          max: 365
+        mapping:
+          - step: 1.0
+
+  # Diagnostic entities
+  - entity: sensor
+    name: "Heater Type"
+    category: diagnostic
+    icon: "mdi:information-outline"
+    dps:
+      - id: 118
+        name: sensor
+        type: string
+  - entity: sensor
+    name: "Total Work Time"
+    category: diagnostic
+    class: duration
+    disabled: true
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+        unit: "s"
+  - entity: sensor
+    name: "Error Code"
+    category: diagnostic
+    icon: "mdi:alert-circle-outline"
+    dps:
+      - id: 127
+        name: sensor
+        type: string
+  - entity: sensor
+    name: "CO2 Sensor Status"
+    category: diagnostic
+    dps:
+      - id: 122
+        name: sensor
+        type: string
+  - entity: sensor
+    name: "PM2.5 Sensor Status"
+    category: diagnostic
+    dps:
+      - id: 123
+        name: sensor
+        type: string
+  - entity: sensor
+    name: "Humidity Sensor Status"
+    category: diagnostic
+    dps:
+      - id: 124
+        name: sensor
+        type: string
