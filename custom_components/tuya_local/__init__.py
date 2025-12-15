@@ -14,9 +14,9 @@ from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import (
-    async_migrate_entries,
     async_get as async_get_entity_registry,
 )
+from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
 from .const import (
