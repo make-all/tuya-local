@@ -1,0 +1,23 @@
+name: ZEISSLER
+products:
+  - id: "8uvfzbkbecxep069"
+    model: ZSw.1312 Water Leak Detector
+    manufacturer: ZEISSLER
+entities:
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
