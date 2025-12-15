@@ -47,7 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 10
+    MINOR_VERSION = 11
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -354,7 +354,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                         self.device.set_detected_product_id(
                             self.__cloud_device.get("local_product_id")
                         )
-
+                await self.async_set_unique_id(
+                    user_input.get(CONF_DEVICE_CID, user_input[CONF_DEVICE_ID])
+                )
+                self._abort_if_unique_id_configured()
                 return await self.async_step_select_type()
             else:
                 errors["base"] = "connection"

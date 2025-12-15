@@ -1,0 +1,177 @@
+name: Energy meter
+products:
+  - id: iwn0gpzz
+    manufacturer: Zemismart
+    model: "SPM02 Zigbee V2.5"
+entities:
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 1
+            value: Short circuit
+          - dps_val: 2
+            value: Surge
+          - dps_val: 4
+            value: Overload
+          - dps_val: 8
+            value: Current leak
+          - dps_val: 16
+            value: Tempurature difference
+          - dps_val: 32
+            value: Fire alarm
+          - dps_val: 64
+            value: High power
+          - dps_val: 128
+            value: Self test fail
+          - dps_val: 256
+            value: Over current
+          - dps_val: 512
+            value: Unbalance
+          - dps_val: 1024
+            value: Over voltage
+          - dps_val: 2048
+            value: Under voltage
+          - dps_val: 4096
+            value: Missing phase
+          - dps_val: 8192
+            value: Power outage
+          - dps_val: 16384
+            value: Magnetic interference
+          - dps_val: 32768
+            value: Credit low
+          - dps_val: 65536
+            value: No balance
+
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+
+  - entity: text
+    category: config
+    hidden: true
+    name: Alarm 1
+    dps:
+      - id: 17
+        type: base64
+        name: value
+        optional: true
+
+  - entity: text
+    category: config
+    hidden: true
+    name: Alarm 2
+    dps:
+      - id: 18
+        type: base64
+        name: value
+        optional: true
+
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced
+    dps:
+      - id: 23
+        type: integer
+        class: measurement
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 32
+        type: integer
+        class: measurement
+        name: sensor
+        unit: Hz
+        mapping:
+          - scale: 100
+
+  - entity: button
+    name: Realtime updates
+    dps:
+      - id: 35
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+
+  - entity: sensor
+    class: power_factor
+    dps:
+      - id: 50
+        type: integer
+        class: measurement
+        name: sensor
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 102
+        type: integer
+        class: measurement
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: current
+    dps:
+      - id: 103
+        type: integer
+        class: measurement
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    class: power
+    dps:
+      - id: 104
+        type: integer
+        class: measurement
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 1000
