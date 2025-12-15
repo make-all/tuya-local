@@ -1162,3 +1162,4 @@ Further device support has been made with the assistance of users. Please consid
 - [barijaona](https://github.com/barijaona) for contributing support for SRNE SE Series lithium battery.
 - [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
 - [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
+- [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.

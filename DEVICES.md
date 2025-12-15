@@ -190,6 +190,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
+- Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermex IF series V pro and Lima 80V hot water systems
 - Thermoval Aqua TI water heater
