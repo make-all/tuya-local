@@ -1,8 +1,8 @@
-name: Heat pump water heater
+name: Water heater
 products:
   - id: ukqqxsk7vfz8co9z
-    manufacturer: SIME
-    model: ECOMAXI VB 200 WiFi
+    manufacturer: Sime
+    model: EcoMaxi VB 200 WiFi
 entities:
   - entity: water_heater
     dps:
@@ -125,7 +125,7 @@ entities:
   - entity: binary_sensor
     name: Water pump
     icon: "mdi:pump"
-    class: power
+    class: running
     category: diagnostic
     dps:
       - id: 28
@@ -134,7 +134,7 @@ entities:
   - entity: binary_sensor
     name: Compressor
     icon: "mdi:engine"
-    class: power
+    class: running
     category: diagnostic
     dps:
       - id: 29
@@ -143,7 +143,7 @@ entities:
   - entity: binary_sensor
     name: Fan
     icon: "mdi:fan"
-    class: power
+    class: running
     category: diagnostic
     dps:
       - id: 27
@@ -159,7 +159,6 @@ entities:
   - entity: binary_sensor
     name: Electric heater
     icon: "mdi:lightning-bolt"
-    class: power
     category: diagnostic
     dps:
       - id: 33
