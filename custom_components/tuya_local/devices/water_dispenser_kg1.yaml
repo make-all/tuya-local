@@ -1,199 +1,185 @@
 name: Inline Water Dispenser
 products:
-  - id: szx3eawxigxumxi5
-    name: KG1
-    manufacturer: Casdon
-    model: Y-GX1200-KG1
+- id: szx3eawxigxumxi5
+  name: KG1
+  manufacturer: Casdon
+  model: Y-GX1200-KG1
 
 entities:
-  - entity: switch
-    name: 出水开关
-    icon: mdi:water
-    dps:
-      - id: 8
-        type: boolean
-        name: switch
+- entity: valve
+  class: water
+  translation_key: water_valve
+  dps:
+  - id: 8
+    type: boolean
+    name: valve
 
-  - entity: sensor
-    translation_key: status
-    class: enum
-    icon: mdi:cup-water
-    dps:
-      - id: 5
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: standby
-            value: 待机
-          - dps_val: refrigerating
-            value: 制冷中
-          - dps_val: drain_water
-            value: 出热水
-          - dps_val: drain_normal_water
-            value: 出常温水
-          - dps_val: drain_boiling_water
-            value: 出沸水
-          - dps_val: job_done
-            value: 出水完成
-          - dps_val: coldwater_prohibited
-            value: 禁止制冷
-          - dps_val: reset
-            value: 重置中
-          - dps_val: cleaning
-            value: 清洗中
-          - dps_val: cleaned
-            value: 清洗等待排水
-          - dps_val: empty_device
-            value: 排空中
-          - dps_val: emptied
-            value: 排空完成
-          - dps_val: drain_cool_water
-            value: 出冷水
-          - dps_val: high_temp_emptying
-            value: 高温排水中
-          - dps_val: high_temp_emptyed
-            value: 高温排水完成
-          - dps_val: water_shortage
-            value: 缺水
+- entity: sensor
+  translation_key: status
+  class: enum
+  icon: mdi:cup-water
+  dps:
+  - id: 5
+    type: string
+    name: sensor
+    mapping:
+    - dps_val: standby
+      value: standby
+    - dps_val: refrigerating
+      value: refrigerating
+    - dps_val: drain_water
+      value: drain_water
+    - dps_val: drain_normal_water
+      value: drain_normal_water
+    - dps_val: drain_boiling_water
+      value: drain_boiling_water
+    - dps_val: job_done
+      value: job_done
+    - dps_val: coldwater_prohibited
+      value: coldwater_prohibited
+    - dps_val: reset
+      value: reset
+    - dps_val: cleaning
+      value: cleaning
+    - dps_val: cleaned
+      value: cleaned
+    - dps_val: empty_device
+      value: empty_device
+    - dps_val: emptied
+      value: emptied
+    - dps_val: drain_cool_water
+      value: drain_cool_water
+    - dps_val: high_temp_emptying
+      value: high_temp_emptying
+    - dps_val: high_temp_emptyed
+      value: high_temp_emptyed
+    - dps_val: water_shortage
+      value: water_shortage
 
-  - entity: lock
-    name: 童锁
-    icon: mdi:lock
-    dps:
-      - id: 9
-        type: boolean
-        name: lock
+- entity: lock
+  translation_key: child_lock
+  dps:
+  - id: 9
+    type: boolean
+    name: lock
 
-  - entity: switch
-    name: 自动冲洗
-    icon: mdi:autorenew
-    dps:
-      - id: 11
-        type: boolean
-        name: switch
+- entity: switch
+  translation_key: auto_clean
+  icon: mdi:autorenew
+  dps:
+  - id: 11
+    type: boolean
+    name: switch
 
-  - entity: switch
-    name: 制冷开关
-    icon: mdi:snowflake
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
+- entity: switch
+  icon: mdi:snowflake
+  translation_key: cool
+  dps:
+  - id: 102
+    type: boolean
+    name: switch
 
-  - entity: switch
-    name: 照明开关
-    icon: mdi:lightbulb
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
+- entity: switch
+  translation_key: auto_light
+  icon: mdi:lightbulb
+  dps:
+  - id: 103
+    type: boolean
+    name: switch
 
-  - entity: number
-    name: 制冷温度
-    icon: mdi:thermometer
-    class: temperature
-    dps:
-      - id: 107
-        type: integer
-        name: value
-        unit: "°C"
-        range:
-          min: 8
-          max: 15
-        step: 1
+- entity: number
+  translation_key: cool_temperature
+  icon: mdi:thermometer
+  class: temperature
+  dps:
+  - id: 107
+    type: integer
+    name: value
+    unit: "°C"
+    range:
+      min: 8
+      max: 15
+    step: 1
 
-  - entity: number
-    name: 出水量设置
-    icon: mdi:water
-    class: volume
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        unit: ml
-        range:
-          min: 150
-          max: 2500
-        step: 50
+- entity: number
+  translation_key: water_output_setting
+  icon: mdi:water
+  class: volume
+  dps:
+  - id: 101
+    type: integer
+    name: value
+    unit: mL
+    range:
+      min: 150
+      max: 2500
+    step: 50
 
-  - entity: number
-    name: 出水温度
-    icon: mdi:thermometer
-    class: temperature
-    dps:
-      - id: 12
-        type: integer
-        name: value
-        unit: "°C"
-        range:
-          min: 10
-          max: 100
-        step: 5
+- entity: number
+  translation_key: water_outlet_temperature
+  icon: mdi:thermometer
+  class: temperature
+  dps:
+  - id: 12
+    type: integer
+    name: value
+    unit: "°C"
+    range:
+      min: 10
+      max: 100
+    step: 5
 
-  - entity: sensor
-    name: 当前温度
-    category: diagnostic
-    icon: mdi:thermometer
-    dps:
-      - id: 4
-        type: integer
-        name: sensor
-        unit: "°C"
-        class: measurement
+- entity: sensor
+  translation_key: now_temperature
+  category: diagnostic
+  icon: mdi:thermometer
+  dps:
+  - id: 4
+    type: integer
+    name: sensor
+    unit: "°C"
+    class: measurement
 
-  - entity: sensor
-    name: 单次用水量
-    category: diagnostic
-    icon: mdi:water
-    class: volume
-    dps:
-      - id: 26
-        type: integer
-        name: sensor
-        unit: ml
-        class: measurement
+- entity: sensor
+  translation_key: last_output
+  category: diagnostic
+  icon: mdi:water
+  class: volume
+  dps:
+  - id: 26
+    type: integer
+    name: sensor
+    unit: ml
+    class: measurement
 
-  - entity: binary_sensor
-    name: 故障状态
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 6
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-
-
-
-
-
-#   - entity: number
-#     name: 推荐温度设置
-#     mode: slider
-#     class: temperature
-#     dps:
-#       - id: 110
-#         type: integer
-#         name: 温度
-#         unit: "°C"
-#         range:
-#           min: 5
-#           max: 100
-#         step: 5
-
-#   - entity: number
-#     name: 推荐出水量设置
-#     mode: slider
-#     class: measurement
-#     dps:
-#       - id: 111
-#         type: integer
-#         name: 出水量
-#         unit: "ml"
-#         range:
-#           min: 50
-#           max: 1000
-#         step: 50
+- entity: binary_sensor
+  class: problem
+  category: diagnostic
+  dps:
+  - id: 6
+    type: bitfield
+    name: sensor
+    mapping:
+      - value: 0
+        name: Normal
+      - bit: 0
+        name: E01:Water_leakage_fault
+      - bit: 1
+        name: E02:None
+      - bit: 2
+        name: E03:Water_shortage_fault
+      - bit: 3
+        name: E04:Dry_burn_protection
+      - bit: 4
+        name: E05:Inlet_water_temperature_sensor_fault
+      - bit: 5
+        name: E06:None
+      - bit: 6
+        name: E07:Outlet_water_temperature_sensor_fault
+      - bit: 7
+        name: E08:Communication_fault
+      - bit: 8
+        name: E09:High_temperature_alarm
+      - bit: 9
+        name: E10:Cooling_fault
+      - name: Normal
