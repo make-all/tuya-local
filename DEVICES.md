@@ -998,6 +998,7 @@ port and password.
 - FeelNeedy P-LFP01 camera pet feeder
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
+- Happy Llama Tech SoCool pet feeder
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
 - iPettie W5 pet feeder

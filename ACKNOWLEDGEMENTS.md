@@ -1163,3 +1163,4 @@ Further device support has been made with the assistance of users. Please consid
 - [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
 - [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
 - [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.
+- [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
