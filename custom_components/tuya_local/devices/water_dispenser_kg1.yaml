@@ -1,185 +1,185 @@
 name: Inline Water Dispenser
 products:
-- id: szx3eawxigxumxi5
-  name: KG1
-  manufacturer: Casdon
-  model: Y-GX1200-KG1
+  - id: szx3eawxigxumxi5
+    name: KG1
+    manufacturer: Casdon
+    model: Y-GX1200-KG1
 
 entities:
-- entity: valve
-  class: water
-  translation_key: water_valve
-  dps:
-  - id: 8
-    type: boolean
-    name: valve
+  - entity: valve
+    class: water
+    translation_key: water_valve
+    dps:
+      - id: 8
+        type: boolean
+        name: valve
 
-- entity: sensor
-  translation_key: status
-  class: enum
-  icon: mdi:cup-water
-  dps:
-  - id: 5
-    type: string
-    name: sensor
-    mapping:
-    - dps_val: standby
-      value: standby
-    - dps_val: refrigerating
-      value: refrigerating
-    - dps_val: drain_water
-      value: drain_water
-    - dps_val: drain_normal_water
-      value: drain_normal_water
-    - dps_val: drain_boiling_water
-      value: drain_boiling_water
-    - dps_val: job_done
-      value: job_done
-    - dps_val: coldwater_prohibited
-      value: coldwater_prohibited
-    - dps_val: reset
-      value: reset
-    - dps_val: cleaning
-      value: cleaning
-    - dps_val: cleaned
-      value: cleaned
-    - dps_val: empty_device
-      value: empty_device
-    - dps_val: emptied
-      value: emptied
-    - dps_val: drain_cool_water
-      value: drain_cool_water
-    - dps_val: high_temp_emptying
-      value: high_temp_emptying
-    - dps_val: high_temp_emptyed
-      value: high_temp_emptyed
-    - dps_val: water_shortage
-      value: water_shortage
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: mdi:cup-water
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: refrigerating
+            value: refrigerating
+          - dps_val: drain_water
+            value: drain_water
+          - dps_val: drain_normal_water
+            value: drain_normal_water
+          - dps_val: drain_boiling_water
+            value: drain_boiling_water
+          - dps_val: job_done
+            value: job_done
+          - dps_val: coldwater_prohibited
+            value: coldwater_prohibited
+          - dps_val: reset
+            value: reset
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: cleaned
+            value: cleaned
+          - dps_val: empty_device
+            value: empty_device
+          - dps_val: emptied
+            value: emptied
+          - dps_val: drain_cool_water
+            value: drain_cool_water
+          - dps_val: high_temp_emptying
+            value: high_temp_emptying
+          - dps_val: high_temp_emptyed
+            value: high_temp_emptyed
+          - dps_val: water_shortage
+            value: water_shortage
 
-- entity: lock
-  translation_key: child_lock
-  dps:
-  - id: 9
-    type: boolean
-    name: lock
+  - entity: lock
+    translation_key: child_lock
+    dps:
+      - id: 9
+        type: boolean
+        name: lock
 
-- entity: switch
-  translation_key: auto_clean
-  icon: mdi:autorenew
-  dps:
-  - id: 11
-    type: boolean
-    name: switch
+  - entity: switch
+    translation_key: auto_clean
+    icon: mdi:autorenew
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
 
-- entity: switch
-  icon: mdi:snowflake
-  translation_key: cool
-  dps:
-  - id: 102
-    type: boolean
-    name: switch
+  - entity: switch
+    icon: mdi:snowflake
+    translation_key: cool
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
 
-- entity: switch
-  translation_key: auto_light
-  icon: mdi:lightbulb
-  dps:
-  - id: 103
-    type: boolean
-    name: switch
+  - entity: switch
+    translation_key: auto_light
+    icon: mdi:lightbulb
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
 
-- entity: number
-  translation_key: cool_temperature
-  icon: mdi:thermometer
-  class: temperature
-  dps:
-  - id: 107
-    type: integer
-    name: value
-    unit: "°C"
-    range:
-      min: 8
-      max: 15
-    step: 1
+  - entity: number
+    translation_key: cool_temperature
+    icon: mdi:thermometer
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "°C"
+        range:
+          min: 8
+          max: 15
+        step: 1
 
-- entity: number
-  translation_key: water_output_setting
-  icon: mdi:water
-  class: volume
-  dps:
-  - id: 101
-    type: integer
-    name: value
-    unit: mL
-    range:
-      min: 150
-      max: 2500
-    step: 50
+  - entity: number
+    translation_key: water_output_setting
+    icon: mdi:water
+    class: volume
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: mL
+        range:
+          min: 150
+          max: 2500
+        step: 50
 
-- entity: number
-  translation_key: water_outlet_temperature
-  icon: mdi:thermometer
-  class: temperature
-  dps:
-  - id: 12
-    type: integer
-    name: value
-    unit: "°C"
-    range:
-      min: 10
-      max: 100
-    step: 5
+  - entity: number
+    translation_key: water_outlet_temperature
+    icon: mdi:thermometer
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: "°C"
+        range:
+          min: 10
+          max: 100
+        step: 5
 
-- entity: sensor
-  translation_key: now_temperature
-  category: diagnostic
-  icon: mdi:thermometer
-  dps:
-  - id: 4
-    type: integer
-    name: sensor
-    unit: "°C"
-    class: measurement
+  - entity: sensor
+    translation_key: now_temperature
+    category: diagnostic
+    icon: mdi:thermometer
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
 
-- entity: sensor
-  translation_key: last_output
-  category: diagnostic
-  icon: mdi:water
-  class: volume
-  dps:
-  - id: 26
-    type: integer
-    name: sensor
-    unit: ml
-    class: measurement
+  - entity: sensor
+    translation_key: last_output
+    category: diagnostic
+    icon: mdi:water
+    class: volume
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: ml
+        class: measurement
 
-- entity: binary_sensor
-  class: problem
-  category: diagnostic
-  dps:
-  - id: 6
-    type: bitfield
-    name: sensor
-    mapping:
-      - value: 0
-        name: Normal
-      - bit: 0
-        name: E01:Water_leakage_fault
-      - bit: 1
-        name: E02:None
-      - bit: 2
-        name: E03:Water_shortage_fault
-      - bit: 3
-        name: E04:Dry_burn_protection
-      - bit: 4
-        name: E05:Inlet_water_temperature_sensor_fault
-      - bit: 5
-        name: E06:None
-      - bit: 6
-        name: E07:Outlet_water_temperature_sensor_fault
-      - bit: 7
-        name: E08:Communication_fault
-      - bit: 8
-        name: E09:High_temperature_alarm
-      - bit: 9
-        name: E10:Cooling_fault
-      - name: Normal
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: 0
+            name: Normal
+          - bit: 0
+            name: E01:Water_leakage_fault
+          - bit: 1
+            name: E02:None
+          - bit: 2
+            name: E03:Water_shortage_fault
+          - bit: 3
+            name: E04:Dry_burn_protection
+          - bit: 4
+            name: E05:Inlet_water_temperature_sensor_fault
+          - bit: 5
+            name: E06:None
+          - bit: 6
+            name: E07:Outlet_water_temperature_sensor_fault
+          - bit: 7
+            name: E08:Communication_fault
+          - bit: 8
+            name: E09:High_temperature_alarm
+          - bit: 9
+            name: E10:Cooling_fault
+          - name: Normal
