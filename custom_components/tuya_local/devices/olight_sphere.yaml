@@ -1,0 +1,168 @@
+name: oLight Sphere
+products:
+  - id: d0dpga0h
+    manufacturer: oLight
+    model: Sphere C
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: color_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: scene
+          - dps_val: music
+            value: music
+          - dps_val: null
+            value: color_temp
+            hidden: true
+      - id: 3
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 4
+        name: color_temp
+        optional: true
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 5
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: colour_1
+            value: Colorato
+          - dps_val: colour_2
+            value: Aurora
+          - dps_val: colour_3
+            value: Fuochi d'artificio
+          - dps_val: colour_4
+            value: Fontana
+          - dps_val: colour_5
+            value: colour_5
+          - dps_val: colour_6
+            value: Spirale
+          - dps_val: colour_7
+            value: colour_7
+          - dps_val: colour_8
+            value: Lampo rosso
+          - dps_val: colour_9
+            value: Coriandoli
+          - dps_val: colour_10
+            value: Farfalle
+          - dps_val: colour_11
+            value: Flusso
+          - dps_val: colour_12
+            value: Gradiente
+          - dps_val: colour_13
+            value: Carosello
+          - dps_val: colour_14
+            value: colour_14
+          - dps_val: colour_15
+            value: Palla magica
+          - dps_val: colour_16
+            value: Lilla
+          - dps_val: colour_17
+            value: Tramonto
+          - dps_val: colour_18
+            value: Vibrante
+          - dps_val: colour_19
+            value: colour_19
+          - dps_val: colour_20
+            value: Luce rossa
+          - dps_val: colour_21
+            value: Cielo blu
+          - dps_val: colour_22
+            value: colour_22
+          - dps_val: colour_23
+            value: colour_23
+          - dps_val: colour_24
+            value: Raccolto
+          - dps_val: colour_25
+            value: Fuoco fantasma
+          - dps_val: colour_26
+            value: Zombie
+          - dps_val: colour_27
+            value: colour_27
+          - dps_val: colour_28
+            value: Viola fantasma
+          - dps_val: colour_29
+            value: Natale
+          - dps_val: colour_30
+            value: Bastoncino di zucchero
+          - dps_val: colour_31
+            value: Neve
+  - entity: time
+    translation_key: timer
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 43200
+      - id: 7
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    dps:
+      - id: 104
+        type: boolean
+        name: sleep
