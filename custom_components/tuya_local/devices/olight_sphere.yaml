@@ -145,7 +145,7 @@ entities:
         name: second
         range:
           min: 0
-          max: 43200
+          max: 86400
       - id: 7
         type: integer
         optional: true
@@ -162,7 +162,20 @@ entities:
         name: sensor
         unit: "%"
   - entity: switch
+    translation_key: sleep
+    category: config
+    hidden: unavailable
     dps:
       - id: 104
         type: boolean
-        name: sleep
+        optional: true
+        name: switch
+      - id: 104
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+
