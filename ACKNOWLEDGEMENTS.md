@@ -1166,3 +1166,4 @@ Further device support has been made with the assistance of users. Please consid
 - [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
 - [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan.
 - [flemmingkok](https://github.com/flemmingkok) for assisting with support for InTec ceiling fan with light.
+- [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
