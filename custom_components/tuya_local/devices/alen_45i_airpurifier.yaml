@@ -3,6 +3,9 @@ products:
   - id: Ng7UnT2dUDgIyJL9
     manufacturer: Alen
     model: BreatheSmart 45i
+  - id: 1fe3sdugltp4nocc
+    manufacturer: Alen
+    model: BreatheSmart 45i V1.5
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -112,3 +115,25 @@ entities:
       - id: 21
         type: bitfield
         name: fault_code
+  - entity: light
+    hidden: unavailable
+    dps:
+      - id: 101
+        name: brightness
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "Off"
+            value: 0
+          - dps_val: "Half"
+            value: 128
+          - dps_val: "Full"
+            value: 255
+      - id: 101
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
