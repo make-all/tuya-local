@@ -4,41 +4,38 @@ products:
     manufacturer: HTW
     model: HTWD020A4
 
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 25
-        max: 90
-        step: 5
-    - id: 3
-      type: integer
-      name: current_humidity
-      readonly: true
-    - id: 2
-      type: string
-      name: mode
-      mapping:
-        - dps_val: "1"
-          value: "Dehumidify"
-        - dps_val: "2"
-          value: "Laundry"
-        - dps_val: "3"
-          value: "Silence"
-        - dps_val: "4"
-          value: "Wind"
-
-secondary_entities:
-  # FAN ENTITY
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 25
+          max: 90
+        mapping:
+          - step: 5
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "1"
+            value: normal
+          - dps_val: "2"
+            value: laundry
+          - dps_val: "3"
+            value: sleep
+          - dps_val: "4"
+            value: purify
   - entity: fan
-    name: Fan
+    translation_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -48,23 +45,32 @@ secondary_entities:
         name: preset_mode
         mapping:
           - dps_val: "1"
-            value: "High"
+            value: high
           - dps_val: "2"
-            value: "Low"
+            value: low
       - id: 8
         type: boolean
         name: oscillate
 
-  # ERROR SENSOR
-  # Shows text status of the error bitmap
-  - entity: sensor
-    name: Error Status
-    class: enum
-    icon: "mdi:alert-circle"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
     dps:
       - id: 11
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 2
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+      - id: 11
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
             value: "OK"
@@ -74,9 +80,17 @@ secondary_entities:
             value: "Tank Full"
           - dps_val: 4
             value: "Pump Fault"
-
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 110
@@ -84,41 +98,40 @@ secondary_entities:
         name: sensor
         unit: "C"
 
-  - entity: switch
-    name: Child Lock
-    icon: "mdi:lock"
+  - entity: lock
+    translation_key: child_lock
+    category: config
     dps:
       - id: 16
         type: boolean
-        name: switch
+        name: lock
 
   - entity: switch
-    name: Ionizer
-    icon: "mdi:shimmer"
+    translation_key: ionizer
+    category: config
     dps:
       - id: 10
         type: boolean
         name: switch
 
   - entity: button
-    name: Filter Reset
-    icon: "mdi:air-filter"
+    translation_key: filter_reset
+    category: config
     dps:
       - id: 20
         type: boolean
         name: button
 
   - entity: binary_sensor
-    name: Defrosting
-    class: cold
+    translation_key: defrost
+    category: diagnostic
     dps:
       - id: 108
         type: boolean
         name: sensor
 
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 106
         type: integer
@@ -126,15 +139,13 @@ secondary_entities:
         range:
           min: 0
           max: 24
-          step: 1
-        unit: "h"
+        unit: h
 
   - entity: sensor
-    name: Time Remaining
+    translation_key: time_remaining
     class: duration
-    icon: "mdi:progress-clock"
     dps:
       - id: 18
         type: integer
         name: sensor
-        unit: "min"
+        unit: min
