@@ -9,7 +9,6 @@ entities:
       - id: 1
         type: boolean
         name: Power
-        icon: "mdi:power-standby"
         mapping:
           - dps_val: false
             value: "off"
@@ -18,7 +17,6 @@ entities:
       - id: 4
         type: string
         name: Operation mode
-        icon: "mdi:sun-snowflake-variant"
         mapping:
           - dps_val: water
             value: heat_pump
@@ -31,7 +29,6 @@ entities:
       - id: 2
         type: integer
         name: Set temperature
-        icon: "mdi:thermometer"
         unit: C
         range:
           min: 10
@@ -39,7 +36,6 @@ entities:
       - id: 3
         type: integer
         name: Current temperature
-        icon: "mdi:thermometer"
         unit: C
   - entity: binary_sensor
     class: problem
