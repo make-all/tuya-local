@@ -33,6 +33,13 @@ entities:
         range:
           min: 0
           max: 30
+  - entity: switch
+    name: "Recirculation mode"
+    icon: "mdi:air-conditioner"
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
   - entity: sensor
     name: "Indoor temperature"
     class: temperature
@@ -168,7 +175,7 @@ entities:
             value: false
           - value: true
   - entity: number
-    name: "CO2 threshold"
+    name: "Target CO2"
     category: config
     icon: "mdi:molecule-co2"
     dps:
@@ -244,6 +251,33 @@ entities:
           max: 365
         mapping:
           - step: 1.0
+  - entity: select
+    name: "Panel color"
+    category: config
+    icon: "mdi:palette"
+    dps:
+      - id: 133
+        name: option
+        type: string
+        mapping:
+          - dps_val: "color0"
+            value: "Turquoise"
+          - dps_val: "color1"
+            value: "Purple"
+          - dps_val: "color2"
+            value: "Green"
+          - dps_val: "color3"
+            value: "White"
+          - dps_val: "color4"
+            value: "Yellow"
+  - entity: button
+    name: "Calibrate CO2"
+    category: config
+    icon: "mdi:camera-metering-matrix"
+    dps:
+      - id: 136
+        name: button
+        type: boolean
 
   # Diagnostic entities
   - entity: sensor
