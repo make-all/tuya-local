@@ -16,7 +16,7 @@ entities:
             value: "on"
       - id: 4
         type: string
-        name: Operation mode
+        name: operation_mode
         mapping:
           - dps_val: water
             value: heat_pump
@@ -28,14 +28,14 @@ entities:
             value: electric
       - id: 2
         type: integer
-        name: Set temperature
+        name: temperature
         unit: C
         range:
           min: 10
           max: 65
       - id: 3
         type: integer
-        name: Current temperature
+        name: current_temperature
         unit: C
   - entity: binary_sensor
     class: problem
