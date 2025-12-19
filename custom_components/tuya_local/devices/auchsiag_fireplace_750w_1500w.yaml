@@ -1,0 +1,163 @@
+name: AUCHSIAG Fireplace
+products:
+  - id: "00000442xl"
+    manufacturer: AUCHSIAG
+    model: "750W & 1500W"
+
+entities:
+  - entity: switch
+    name: Power
+    icon: mdi:power
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+  - entity: number
+    name: Brightness
+    icon: mdi:brightness-6
+    dps:
+      - id: 18
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+        step: 1
+
+  - entity: select
+    name: Flame Color
+    icon: mdi:fire
+    dps:
+      - id: 17
+        name: option
+        type: string
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "light_red"
+            value: "Red"
+          - dps_val: "light_yellow"
+            value: "Yellow"
+          - dps_val: "light_blue"
+            value: "Blue"
+          - dps_val: "light_orange"
+            value: "Orange"
+          - dps_val: "light_red_yellow"
+            value: "Red + Yellow"
+          - dps_val: "light_red_blue"
+            value: "Red + Blue"
+          - dps_val: "light_red_white"
+            value: "Red + White"
+          - dps_val: "light_yellow_blue"
+            value: "Yellow + Blue"
+          - dps_val: "light_yellow_white"
+            value: "Yellow + White"
+          - dps_val: "light_blue_white"
+            value: "Blue + White"
+          - dps_val: "light_red_yellow_blue"
+            value: "Red + Yellow + Blue"
+          - dps_val: "light_multicolor"
+            value: "Multicolor"
+
+  - entity: select
+    name: Ember Bed Color
+    icon: mdi:campfire
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "light_13"
+            value: "Auto"
+          - dps_val: "light_1"
+            value: "Red"
+          - dps_val: "light_2"
+            value: "Gentian Blue"
+          - dps_val: "light_3"
+            value: "Green"
+          - dps_val: "light_4"
+            value: "Pink"
+          - dps_val: "light_5"
+            value: "Yellow"
+          - dps_val: "light_6"
+            value: "Cyan"
+          - dps_val: "light_7"
+            value: "Purple"
+          - dps_val: "light_8"
+            value: "White"
+          - dps_val: "light_9"
+            value: "Saffron"
+          - dps_val: "light_10"
+            value: "Sky Blue"
+          - dps_val: "light_11"
+            value: "Viridity"
+          - dps_val: "light_12"
+            value: "Capri Blue"
+
+  - entity: select
+    name: Flame Speed
+    icon: mdi:speedometer
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: "Level 1"
+          - dps_val: "level_2"
+            value: "Level 2"
+          - dps_val: "level_3"
+            value: "Level 3"
+          - dps_val: "level_4"
+            value: "Level 4"
+          - dps_val: "level_5"
+            value: "Level 5"
+
+  - entity: select
+    name: Heat Level
+    icon: mdi:fireplace
+    dps:
+      - id: 5
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "low"
+            value: "Low (750W)"
+          - dps_val: "high"
+            value: "High (1500W)"
+
+  - entity: select
+    name: Timer
+    icon: mdi:timer-cog-outline
+    dps:
+      - id: 13
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "Cancel"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+
+  - entity: sensor
+    name: Time Remaining
+    icon: mdi:timer-sand
+    dps:
+      - id: 14
+        name: sensor
+        type: integer
+        readonly: true
+        unit_of_measurement: s
