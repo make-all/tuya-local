@@ -99,7 +99,7 @@ entities:
         range:
           min: 8
           max: 15
-        step: 1
+
 
   - entity: number
     translation_key: water_output_setting
@@ -113,7 +113,6 @@ entities:
         range:
           min: 150
           max: 2500
-        step: 50
 
   - entity: number
     translation_key: water_outlet_temperature
@@ -127,7 +126,6 @@ entities:
         range:
           min: 10
           max: 100
-        step: 5
 
   - entity: sensor
     translation_key: now_temperature
@@ -152,7 +150,7 @@ entities:
         unit: ml
         class: measurement
 
-  - entity: binary_sensor
+  - entity: sensor
     class: problem
     category: diagnostic
     dps:
