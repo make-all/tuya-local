@@ -1,0 +1,117 @@
+name: Martec Viper Ceiling Fan with Light
+products:
+  - id: lb9da3os0ihifq7u
+    name: Martec Viper DC WiFi Ceiling Fan with Light
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: smart
+            value: smart
+          - dps_val: custom
+            value: custom
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        name: direction
+        type: string
+        mapping:
+          - dps_val: "forward"
+            value: forward
+          - dps_val: "reverse"
+            value: reverse
+  - entity: light
+    dps:
+      - id: 15
+        name: switch
+        type: boolean
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 100
+      - id: 17
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6000
+          - dps_val: null
+            value_redirect: fixed_color_temp
+      - id: 19
+        type: string
+        name: fixed_color_temp
+        mapping:
+          - dps_val: night
+            value: 2700
+          - dps_val: warm
+            value: 4000
+          - dps_val: white
+            value: 5000
+          - dps_val: cold
+            value: 6000
+  - entity: select
+    name: Fixed color temperature
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: night
+            value: Night
+          - dps_val: warm
+            value: Warm
+          - dps_val: white
+            value: White
+          - dps_val: cold
+            value: Cool
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
