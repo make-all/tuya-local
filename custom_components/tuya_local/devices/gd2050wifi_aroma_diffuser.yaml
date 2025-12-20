@@ -1,0 +1,114 @@
+name: Aroma diffuser
+products:
+  - id: sf6rbebwtwdsk0za
+    model: GD2050WIFI
+entities:
+  - entity: switch
+    name: Power
+    translation_key: power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: fan
+    name: Fan
+    translation_key: fan
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: large
+            value: 100
+          - dps_val: middle
+            value: 50
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2h"
+            value: ""
+          - dps_val: "4"
+            value: "10s on - 10s off"
+          - dps_val: "Long"
+            value: "2h"
+          - dps_val: "intermittence"
+            value: "4h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: min
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 255
+      - id: 9
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: colourful1
+            value: Fade colors
+      - id: 10
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
