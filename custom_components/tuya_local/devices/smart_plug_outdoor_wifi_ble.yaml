@@ -1,0 +1,95 @@
+name: Outdoor Smart Plug
+products:
+  - id: as9lf4slujgvu5tm
+    name: Outdoor Smart plug_Wi-Fi_BLE
+    model: ZhiYun-P01
+
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Energy added
+    class: energy
+    hidden: true 
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        force: true
+        mapping:
+          - scale: 1000          
+
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        class: measurement
+        unit: mA
+        optional: true
+        force: true
+
+  - entity: sensor
+    name: Power
+    class: power
+    state_class: measurement
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        class: measurement
+        unit: W
+        optional: true
+        force: true
+        mapping:
+          - scale: 10
+            constraint: switch
+            conditions:
+              - dps_val: false
+                value: 0
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        class: measurement
+        unit: V
+        optional: true
+        force: true
+        mapping:
+          - scale: 10
+
+  - entity: select
+    name: Power-on state
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: power_on
+            value: "ON"
+          - dps_val: power_off
+            value: "OFF"
+          - dps_val: last
+            value: "Maintain last status"
