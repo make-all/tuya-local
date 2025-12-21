@@ -3,7 +3,9 @@ products:
   - id: 84iv5eqjgvvpzyma
     manufacturer: Tuya
     model: WF72TT/WF96TT
+
 entities:
+  # ----------- Main Switches -----------
   - entity: switch
     name: Channel 1 switch
     dps:
@@ -18,6 +20,15 @@ entities:
         type: boolean
         name: switch
 
+  - entity: switch
+    name: Remote alarm enable
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+
+  # ----------- Temperatures (channel 1) -----------
   - entity: sensor
     name: Channel 1 temperature
     class: temperature
@@ -31,11 +42,250 @@ entities:
         mapping:
           - scale: 10
 
+  - entity: number
+    name: Channel 1 stop temperature
+    class: temperature
+    mode: box
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Channel 1 start temperature
+    class: temperature
+    mode: box
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  # ----------- Temperatures (channel 2) -----------
   - entity: sensor
     name: Channel 2 temperature
     class: temperature
     dps:
       - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Channel 2 upper limit
+    class: temperature
+    mode: box
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Channel 2 lower limit
+    class: temperature
+    mode: box
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  # ----------- Tresholds and alarms -----------
+  - entity: number
+    name: High alarm threshold
+    class: temperature
+    mode: box
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Low alarm threshold
+    class: temperature
+    mode: box
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        precision: 1
+        mapping:
+          - scale: 10
+
+  # ----------- Statuses, modes, difference -----------
+  - entity: sensor
+    name: Channel 1 probe status
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: NORMAL
+            value: normal
+          - dps_val: OPEN
+            value: open_circuit
+          - dps_val: SHORT
+            value: short_circuit
+          - dps_val: UP
+            value: above_limit
+          - dps_val: DOWN
+            value: below_limit
+
+  - entity: sensor
+    name: Channel 2 probe status
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: NORMAL
+            value: normal
+          - dps_val: OPEN
+            value: open_circuit
+          - dps_val: SHORT
+            value: short_circuit
+          - dps_val: UP
+            value: above_limit
+          - dps_val: DOWN
+            value: below_limit
+
+  - entity: select
+    name: Channel 2 control mode
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: HOT2
+            value: heating
+          - dps_val: COLD2
+            value: cooling
+          - dps_val: ALARM2
+            value: alarm
+          - dps_val: DIFF2
+            value: temperature_difference
+
+  - entity: sensor
+    name: Channel 1 control mode
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: HOT1
+            value: heating
+          - dps_val: COLD2
+            value: cooling
+
+  - entity: sensor
+    name: Temperature difference
+    class: temperature
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
+
+  # ----------- Calibrations -----------
+  - entity: number
+    name: Channel 1 offset
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -150
+          max: 150
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Channel 2 offset
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -150
+          max: 150
+        precision: 1
+        mapping:
+          - scale: 10
+
+  # ----------- Additional "real" temperatures -----------
+  - entity: sensor
+    name: Channel 1 real temperature
+    class: temperature
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Channel 2 real temperature
+    class: temperature
+    dps:
+      - id: 117
         type: integer
         name: sensor
         unit: C
