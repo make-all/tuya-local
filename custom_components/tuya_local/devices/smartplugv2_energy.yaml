@@ -15,6 +15,9 @@ products:
   - id: uqehhcrmk5depvtl
     manufacturer: Smatrul / Beston
     model: 16A/20A / BDS01
+  - id: as9lf4slujgvu5tm
+    manufacturer: ZhiYun
+    model: P01
 entities:
   - entity: switch
     class: outlet
@@ -29,6 +32,7 @@ entities:
   - entity: time
     category: config
     translation_key: timer
+    hidden: unavailable
     dps:
       - id: 9
         type: integer
@@ -45,6 +49,14 @@ entities:
         type: string
         name: random_timer
         optional: true
+      - id: 9
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     category: config
     class: duration
@@ -158,12 +170,40 @@ entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "on"
-            value: "on"
-          - dps_val: "off"
-            value: "off"
-          - dps_val: memory
-            value: memory
+          - conditions:
+              - dps_val: ["memory", "off", "on"]
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+              - dps_val: ["power_off", "power_on", "last"]
+                mapping:
+                  - dps_val: power_off
+                    value: "off"
+                  - dps_val: power_on
+                    value: "on"
+                  - dps_val: last
+                    value: memory
+              - dps_val: ["0", "1", "2"]
+                mapping:
+                  - dps_val: "0"
+                    value: "off"
+                  - dps_val: "1"
+                    value: "on"
+                  - dps_val: "2"
+                    value: memory
+              # during startup there may be no value, but we need the options
+              - dps_val: null
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
   - entity: switch
     name: Overcharge cutoff
     category: config
