@@ -1,0 +1,45 @@
+name: Dual temperature controller
+products:
+  - id: 84iv5eqjgvvpzyma
+    manufacturer: Tuya
+    model: WF72TT/WF96TT
+entities:
+  - entity: switch
+    name: Channel 1 switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Channel 2 switch
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Channel 1 temperature
+    class: temperature
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Channel 2 temperature
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
