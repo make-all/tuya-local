@@ -1,0 +1,72 @@
+name: PRISM+ Oasis Smart Ceiling Fan
+products:
+  - id: xhjltrftwebemxrq
+    manufacturer: Prism+
+    name: Oasis
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: nature
+            value: Nature
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        type: string
+        name: direction
+  - entity: light
+    name: Light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+      - id: 17
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 1
+            invert: true
+            target_range:
+              min: 2200
+              max: 6500
+  - entity: select
+    name: Timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: off
+            value: "Off"
+          - dps_val: 1hour
+            value: "1 hour"
+          - dps_val: 2hour
+            value: "2 hours"
+          - dps_val: 4hour
+            value: "4 hours"
+          - dps_val: 8hour
+            value: "8 hours"
