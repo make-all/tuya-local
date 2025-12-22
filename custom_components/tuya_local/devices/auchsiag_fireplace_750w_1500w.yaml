@@ -6,30 +6,28 @@ products:
 
 entities:
   - entity: switch
-    name: Power
+    translation_key: power
     icon: mdi:power
     dps:
       - id: 1
         name: switch
         type: boolean
 
-  - entity: number
-    name: Brightness
-    icon: mdi:brightness-6
+  - entity: light
+    name: Flame
+    icon: mdi:fire
     dps:
+      - id: 1
+        name: switch
+        type: boolean
       - id: 18
-        name: value
+        name: brightness
         type: integer
         range:
           min: 1
           max: 5
-
-  - entity: select
-    name: Flame Color
-    icon: mdi:fire
-    dps:
       - id: 17
-        name: option
+        name: effect
         type: string
         mapping:
           - dps_val: "auto"
@@ -59,12 +57,15 @@ entities:
           - dps_val: "light_multicolor"
             value: "Multicolor"
 
-  - entity: select
-    name: Ember Bed Color
+  - entity: light
+    name: Ember Bed
     icon: mdi:campfire
     dps:
+      - id: 1
+        name: switch
+        type: boolean
       - id: 101
-        name: option
+        name: effect
         type: string
         mapping:
           - dps_val: "light_13"
@@ -129,7 +130,7 @@ entities:
             value: "High (1500W)"
 
   - entity: select
-    name: Timer
+    translation_key: timer
     icon: mdi:timer-cog-outline
     dps:
       - id: 13
@@ -152,7 +153,7 @@ entities:
             value: "6h"
 
   - entity: sensor
-    name: Time Remaining
+    translation_key: time_remaining
     icon: mdi:timer-sand
     dps:
       - id: 14
