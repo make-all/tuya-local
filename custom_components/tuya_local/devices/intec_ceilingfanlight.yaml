@@ -1,0 +1,37 @@
+name: Ceiling fan
+entities:
+  - entity: fan
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 53
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
+      - id: 54
+        type: string
+        name: direction
+  - entity: light
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500

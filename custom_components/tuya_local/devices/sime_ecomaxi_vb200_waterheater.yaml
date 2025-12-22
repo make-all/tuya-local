@@ -1,0 +1,180 @@
+name: Water heater
+products:
+  - id: ukqqxsk7vfz8co9z
+    manufacturer: Sime
+    model: EcoMaxi VB 200 WiFi
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        name: operation_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: "mdi:water-boiler-off"
+          - dps_val: true
+            value: heat_pump
+            icon: "mdi:water-boiler"
+      - id: 4
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 35
+          max: 65
+      - id: 16
+        name: current_temperature
+        type: integer
+        unit: C
+  - entity: select
+    name: Operating mode
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0x00"
+            value: auto
+            icon: "mdi:autorenew"
+          - dps_val: "0x02"
+            value: "heat pump"
+            icon: "mdi:water-boiler"
+          - dps_val: "0x03"
+            value: turbo
+            icon: "mdi:rocket-launch"
+  - entity: switch
+    name: Anti-legionella
+    icon: "mdi:bacteria"
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Electric anode
+    icon: "mdi:heat-wave"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Evaporator temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Air outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Solar collector temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: EEV valve opening
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Main board temperature
+    icon: "mdi:chip"
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Display board temperature
+    icon: "mdi:monitor"
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: C
+  - entity: binary_sensor
+    name: Water pump
+    icon: "mdi:pump"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 28
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor
+    icon: "mdi:engine"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 29
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan
+    icon: "mdi:fan"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 27
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Electric heater
+    icon: "mdi:lightning-bolt"
+    category: diagnostic
+    dps:
+      - id: 33
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code

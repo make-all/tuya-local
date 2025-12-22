@@ -1162,3 +1162,11 @@ Further device support has been made with the assistance of users. Please consid
 - [barijaona](https://github.com/barijaona) for contributing support for SRNE SE Series lithium battery.
 - [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
 - [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
+- [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.
+- [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
+- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan.
+- [flemmingkok](https://github.com/flemmingkok) for assisting with support for InTec ceiling fan with light.
+- [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
+- [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
+- [a774969](https://github.com/a774969) for assisting with support for NWT WDH-02EM dehumidifier.
+- [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve.

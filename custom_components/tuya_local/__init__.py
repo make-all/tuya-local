@@ -13,6 +13,9 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers.entity_registry import (
+    async_get as async_get_entity_registry,
+)
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
@@ -677,7 +680,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_10)
         hass.config_entries.async_update_entry(entry, minor_version=10)
 
-    if entry.version == 13 and entry.minor_version < 11:
+    if entry.version == 13 and entry.minor_version < 12:
         # at some point HA stopped populating unique_id for device entries,
         # and our migrations have been using the wrong value. Migration
         # to correct that
@@ -690,17 +693,22 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             )
 
         @callback
-        def update_unique_id3_11(entity_entry):
+        def update_unique_id3_12(entity_entry):
             """Update the unique id of badly migrated entities."""
             old_id = entity_entry.unique_id
             if old_id.startswith("None-"):
-                new_id = f"{device_id}-{old_id[5:]}"
-                return {
-                    "new_unique_id": new_id,
-                }
+                # new_id = f"{device_id}-{old_id[5:]}"
+                # return {
+                #     "new_unique_id": new_id,
+                # }
+                # Rather than update, delete the bogus entities, as HA will
+                # recreate them correctly, and maybe already has so duplicates
+                # could result if they are migrated.
+                registry = async_get_entity_registry(hass)
+                registry.async_remove(entity_entry.entity_id)
 
-        await async_migrate_entries(hass, entry.entry_id, update_unique_id3_11)
-        hass.config_entries.async_update_entry(entry, minor_version=11)
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id3_12)
+        hass.config_entries.async_update_entry(entry, minor_version=12)
 
     return True
 
