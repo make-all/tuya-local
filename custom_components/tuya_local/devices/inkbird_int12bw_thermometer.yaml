@@ -1,0 +1,1216 @@
+name: INT-12-BW BBQ thermometer
+products:
+  - id: lkrzzdaex96syshadps
+    name: INT-12-BW
+
+# Probe1 is the black probe
+# Probe2 is the white probe
+
+entities:
+  # Base unit
+
+  - entity: sensor
+    name: Base battery
+    class: battery
+    dps:
+      - id: 103
+        type: base64
+        name: sensor
+        mask: "000000FF"
+        endianness: little
+        unit: "%"
+
+  - entity: select
+    name: Temperature unit
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: Celsius
+          - dps_val: F
+            value: Fahrenheit
+
+  # r/w in query things but doesn't turn off the base
+  # - entity: binary_sensor
+  #   name: Base Power
+  #   class: power
+  #   category: diagnostic
+  #   dps:
+  #     - id: 102
+  #       type: boolean
+  #       name: sensor
+
+  - entity: number
+    name: Screen brightness
+    category: config
+    force: true
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+
+  - entity: select
+    name: Alarm volume
+    category: config
+    force: true
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "EQJM"
+            value: "Mute"
+          - dps_val: "WgGJ"
+            value: "Low"
+          - dps_val: "WgKA"
+            value: "Medium"
+          - dps_val: "WgOH"
+            value: "High"
+
+  - entity: select
+    name: Automatic sleep
+    category: config
+    force: true
+    dps:
+      - id: 137
+        type: string
+        name: option
+        mapping:
+          - dps_val: "ASwBPg=="
+            value: "5m"
+          - dps_val: "AVgCwQ=="
+            value: "10m"
+          - dps_val: "AYQDgA=="
+            value: "15m"
+          - dps_val: "AbAEOA=="
+            value: "20m"
+          - dps_val: "AQgH1g=="
+            value: "30m"
+          - dps_val: "ARAOFg=="
+            value: "60m"
+
+  # Probe1
+
+  - entity: sensor
+    name: 1A temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        mask: "00000000000000FFFF0000" # [7],[8]
+        endianness: little
+        mapping:
+          - scale: 10
+        unit: C
+      - id: 131 # device_state_flag1
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 2 # bit1 -> "1InBox"
+            value: false
+          - value: true
+
+  - entity: sensor
+    name: 1F temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        mask: "000000000000000000FFFF" # [9],[10
+        endianness: little
+        mapping:
+          - scale: 10
+        unit: C
+      - id: 131 # device_state_flag1
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 2 # bit1 -> "1InBox"
+            value: false
+          - value: true
+
+  # Writes full base64 payloads back to DPS 122 (no masking)
+  - entity: select
+    name: 1 preset # (full payload) Beef
+    category: config
+    force: true
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: "EOgDAAAAApU="
+            value: "38°C / 100 °F"
+          - dps_val: "EEwEAAAAAs8="
+            value: "43°C / 110 °F"
+          - dps_val: "ELAEAAABAg4="
+            value: "49°C / 120 °F"
+          - dps_val: "EBQFAAADAjU="
+            value: "54°C / 130 °F"
+          - dps_val: "EHgFAAAFAu0="
+            value: "60°C / 140 °F"
+          - dps_val: "ENwFAAAHArQ="
+            value: "66°C / 150 °F"
+          - dps_val: "EEAGAAAKAmI="
+            value: "71°C / 160 °F"
+          - dps_val: "EKQGAAAKAmc="
+            value: "77°C / 170 °F"
+          - dps_val: "EAgHAAAKAjk="
+            value: "82°C / 180 °F"
+          - dps_val: "EGwHAAAKAtA="
+            value: "88°C / 190 °F"
+          - dps_val: "ENAHAAAKAnI="
+            value: "93°C / 200 °F"
+
+  - entity: button
+    name: 1 alarm
+    category: config
+    dps:
+      - id: 126
+        type: base64
+        name: button
+        mapping:
+          - dps_val: "Ap1cMmmeXDJpEw" # Any "old" value triggers as this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high).
+            value: true
+
+  - entity: button
+    name: 1 alarm dismiss
+    category: config
+    dps:
+      - id: 136
+        type: base64
+        name: button
+        mapping:
+          - dps_val: "MVVua25vd24" # Base64 for ASCII "1Unknown"
+            value: true
+
+  # Probe2
+
+  # No ambient sensor
+  # - entity: sensor
+  #   name: 2A temperature
+  #   class: temperature
+  #   hidden: unavailable
+  #   dps:
+  #     - id: 109
+  #       type: base64
+  #       name: sensor
+  #       class: measurement
+  #       optional: true
+  #       mask: "0000FFFF00000000000000" # [2],[3]
+  #       endianness: little
+  #       unit: C
+  #     - id: 131 # device_state_flag1
+  #       type: bitfield
+  #       name: available
+  #       mapping:
+  #         - dps_val: 131072 # bit17 -> "2InBox"
+  #           value: false
+  #         - value: true
+
+  - entity: sensor
+    name: 2F temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        mask: "00000000FFFF0000000000" # [4],[5]
+        endianness: little
+        mapping:
+          - scale: 10
+        unit: C
+      - id: 131 # device_state_flag1
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 131072 # bit17 -> "2InBox"
+            value: false
+          - value: true
+
+  # Writes full base64 payloads back to DPS 123 (no masking)
+  - entity: select
+    name: 2 preset # (full payload) Beef
+    category: config
+    dps:
+      - id: 123
+        type: string
+        name: option
+        mapping:
+          - dps_val: "EOgDAAAAApU="
+            value: "38°C / 100 °F"
+          - dps_val: "EEwEAAAAAs8="
+            value: "43°C / 110 °F"
+          - dps_val: "ELAEAAABAg4="
+            value: "49°C / 120 °F"
+          - dps_val: "EBQFAAADAjU="
+            value: "54°C / 130 °F"
+          - dps_val: "EHgFAAAFAu0="
+            value: "60°C / 140 °F"
+          - dps_val: "ENwFAAAHArQ="
+            value: "66°C / 150 °F"
+          - dps_val: "EEAGAAAKAmI="
+            value: "71°C / 160 °F"
+          - dps_val: "EKQGAAAKAmc="
+            value: "77°C / 170 °F"
+          - dps_val: "EAgHAAAKAjk="
+            value: "82°C / 180 °F"
+          - dps_val: "EGwHAAAKAtA="
+            value: "88°C / 190 °F"
+          - dps_val: "ENAHAAAKAnI="
+            value: "93°C / 200 °F"
+      - id: 131
+        type: bitfield
+        name: available
+
+  - entity: button
+    name: 2 alarm
+    category: config
+    dps:
+      - id: 127
+        type: base64
+        name: button
+        mapping:
+          - dps_val: "Ap1cMmmeXDJpEw" # Any "old" value triggers as this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high).
+            value: true
+
+  - entity: button
+    name: 2 alarm dismiss
+    category: config
+    dps:
+      - id: 136
+        type: base64
+        name: button
+        mapping:
+          - dps_val: "MlVua25vd24" # Base64 for ASCII "2Unknown"
+            value: true
+
+  - entity: select
+    name: Probe pre-alerts (1 / 2)
+    category: config
+    dps:
+      # Write exact token to DPS 116
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          # --- No alerts ---
+          - dps_val: "AwAAAACm"
+            value: "Probe1 0 °C / 2 0 °C"
+
+          # --- Probe1 only ---
+          - dps_val: "AwkAAAAA"
+            value: "Probe1 5 °C / Probe2 0 °C"
+          - dps_val: "AxIAAADt"
+            value: "Probe1 10 °C / Probe2 0 °C"
+          - dps_val: "AyQAAAAw"
+            value: "Probe1 20 °C / Probe2 0 °C"
+          - dps_val: "AzYAAAB7"
+            value: "Probe1 30 °C / Probe2 0 °C"
+
+          # --- Probe2 only ---
+          - dps_val: "AwkJAAA6"
+            value: "Probe1 0 °C / Probe2 5 °C"
+          - dps_val: "AxIJAADX"
+            value: "Probe1 0 °C / Probe2 10 °C"
+          - dps_val: "AyQJAAAK"
+            value: "Probe1 0 °C / Probe2 20 °C"
+          - dps_val: "AzYJAABB"
+            value: "Probe1 0 °C / Probe2 30 °C"
+
+          # --- Both probes: Probe1 prefix + Probe2 suffix ---
+          # Probe1 5 °C + Probe2 X
+          - dps_val: "AwkJAAA6"
+            value: "Probe1 5 °C / Probe2 5 °C"
+          - dps_val: "AwkJAADX"
+            value: "Probe1 5 °C / Probe2 10 °C"
+          - dps_val: "AwkJAAAK"
+            value: "Probe1 5 °C / Probe2 20 °C"
+          - dps_val: "AwkJAABB"
+            value: "Probe1 5 °C / Probe2 30 °C"
+
+          # Probe1 10 °C + Probe2 X
+          - dps_val: "AxIJAAA6"
+            value: "Probe1 10 °C / Probe2 5 °C"
+          - dps_val: "AxIJAADX"
+            value: "Probe1 10 °C / Probe2 10 °C"
+          - dps_val: "AxIJAAAK"
+            value: "Probe1 10 °C / Probe2 20 °C"
+          - dps_val: "AxIJAABB"
+            value: "Probe1 10 °C / Probe2 30 °C"
+
+          # Probe1 20 °C + Probe2 X
+          - dps_val: "AyQJAAA6"
+            value: "Probe1 20 °C / Probe2 5 °C"
+          - dps_val: "AyQJAADX"
+            value: "Probe1 20 °C / Probe2 10 °C"
+          - dps_val: "AyQJAAAK"
+            value: "Probe1 20 °C / Probe2 20 °C"
+          - dps_val: "AyQJAABB"
+            value: "Probe1 20 °C / Probe2 30 °C"
+
+          # Probe1 30 °C + Probe2 X
+          - dps_val: "AzYJAAA6"
+            value: "Probe1 30 °C / Probe2 5 °C"
+          - dps_val: "AzYJAADX"
+            value: "Probe1 30 °C / Probe2 10 °C"
+          - dps_val: "AzYJAAAK"
+            value: "Probe1 30 °C / Probe2 20 °C"
+          - dps_val: "AzYJAABB"
+            value: "Probe1 30 °C / Probe2 30 °C"
+
+  # Diagnostics
+
+  - entity: sensor
+    name: ProbeTemps
+    category: diagnostic
+    dps:
+      - id: 109
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: TemperatureCompensation
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: DismissLowBatteryAlert
+    category: diagnostic
+    dps:
+      - id: 111
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: DeviceInternalTemperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: F # set to F but is actually C
+
+  - entity: sensor
+    name: PrealertValue # for temp preset pre-alert
+    category: diagnostic
+    dps:
+      - id: 116
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: PresetAlertState
+    category: diagnostic
+    dps:
+      - id: 107
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: 1Timer
+    category: diagnostic
+    dps:
+      - id: 126
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: 2Timer
+    category: diagnostic
+    dps:
+      - id: 127
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: TimerRunningState
+    category: diagnostic
+    dps:
+      - id: 130
+        type: base64
+        name: sensor
+
+  - entity: binary_sensor
+    name: 1Conn
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1InBox
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1Charge
+    class: power
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FLoTempAlert
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FHiTempAlert
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FLoTempAlertPending
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FHiTempAlertPending
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FTempExceedMax
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 128
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FTempExceedMin
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1FPrealertState
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 512
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1AExceedMax
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1024
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1AExceedMin
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2048
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1Paired
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4096
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1RequestPaired
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8192
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1LoBatAlert
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16384
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit15
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32768
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2Conn
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 65536
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2InBox
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 131072
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2Charge
+    class: power
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 262144
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FLoTempAlert
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 524288
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FHiTempAlert
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1048576
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FLoTempAlertPending
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2097152
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FHiTempAlertPending
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4194304
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FTempExceedMax
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8388608
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FTempExceedMin
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16777216
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2FPrealertState
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 33554432
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2AExceedMax
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 67108864
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2AExceedMin
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 134217728
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2Paired
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 268435456
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2RequestPaired
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 131
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 536870912
+            value: true
+          - default: true
+
+  - entity: sensor
+    name: Alert Status
+    category: diagnostic
+    dps:
+      - id: 132
+        type: base64
+        name: sensor
+
+  - entity: binary_sensor
+    name: 2LoBatAlert
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit31
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: USB
+    class: power
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: BasePower # Bit33 urns off when base is turned off vs 102 that does not
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit34
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit35
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit36
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: Bit37
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 128
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: BLEConn
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: BLERequestPair
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 512
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: BLEAuthorize
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1024
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: WiFiReset
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2048
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: TimestampService
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4096
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1TimerAlert
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8192
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2TimerAlert
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16384
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 3TimerAlert
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32768
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 4TimerAlert
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 65536
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 1TimerState
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 131072
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 2TimerState
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 262144
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 3TimerState
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 524288
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: 4TimerState
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1048576
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: DeviceBodyHiTempAlert
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2097152
+            value: true
+          - default: true
+            value: false
+
+  - entity: binary_sensor
+    name: DeviceBodyLoTempAlert
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 133
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4194304
+            value: true
+          - default: true
+            value: false
+
+  - entity: sensor
+    name: DeviceName
+    category: diagnostic
+    dps:
+      - id: 134
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: DeviceOtherInfo # Only set when base is turned off (likely saved state).
+    category: diagnostic
+    dps:
+      - id: 135
+        type: base64
+        name: sensor
+
+  - entity: sensor
+    name: DismissPauseAlerts
+    category: diagnostic
+    dps:
+      - id: 136
+        type: base64
+        name: sensor
