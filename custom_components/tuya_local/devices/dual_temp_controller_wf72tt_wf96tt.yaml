@@ -5,7 +5,7 @@ products:
     model: WF72TT/WF96TT
 
 entities:
-  # ----------- Main Switches -----------
+  # ------------- Power switches -------------
   - entity: switch
     name: Channel 1 switch
     dps:
@@ -28,7 +28,7 @@ entities:
         type: boolean
         name: switch
 
-  # ----------- Temperatures (channel 1) -----------
+  # ------------- Channel 1 temperatures -------------
   - entity: sensor
     name: Channel 1 temperature
     class: temperature
@@ -74,7 +74,7 @@ entities:
         mapping:
           - scale: 10
 
-  # ----------- Temperatures (channel 2) -----------
+  # ------------- Channel 2 temperatures -------------
   - entity: sensor
     name: Channel 2 temperature
     class: temperature
@@ -120,7 +120,7 @@ entities:
         mapping:
           - scale: 10
 
-  # ----------- Tresholds and alarms -----------
+  # ------------- Alarm thresholds -------------
   - entity: number
     name: High alarm threshold
     class: temperature
@@ -153,9 +153,10 @@ entities:
         mapping:
           - scale: 10
 
-  # ----------- Statuses, modes, difference -----------
+  # ------------- Status, mode, difference -------------
   - entity: sensor
     name: Channel 1 probe status
+    class: enum
     dps:
       - id: 109
         type: string
@@ -174,6 +175,7 @@ entities:
 
   - entity: sensor
     name: Channel 2 probe status
+    class: enum
     dps:
       - id: 110
         type: string
@@ -209,6 +211,7 @@ entities:
 
   - entity: sensor
     name: Channel 1 control mode
+    class: enum
     dps:
       - id: 112
         type: string
@@ -232,7 +235,7 @@ entities:
         mapping:
           - scale: 10
 
-  # ----------- Calibrations -----------
+  # ------------- Calibration offsets -------------
   - entity: number
     name: Channel 1 offset
     class: temperature
@@ -267,7 +270,7 @@ entities:
         mapping:
           - scale: 10
 
-  # ----------- Additional "real" temperatures -----------
+  # ------------- Additional “real” temperatures -------------
   - entity: sensor
     name: Channel 1 real temperature
     class: temperature
