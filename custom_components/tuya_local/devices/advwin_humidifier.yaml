@@ -15,9 +15,9 @@ entities:
         type: string
         mapping:
           - dps_val: AUTO
-            value: Automatic
+            value: Auto
           - dps_val: MANUAL
-            value: Manual
+            value: Normal
       - id: 13
         name: humidity
         type: integer
@@ -25,8 +25,6 @@ entities:
         range:
           min: 30
           max: 95
-        mapping:
-          - step: 1
       - id: 14
         name: current_humidity
         type: integer
@@ -37,9 +35,10 @@ entities:
       - id: 21
         name: switch
         type: boolean
+        optional: true
   - entity: switch
     name: Warm mist
-    icon: "mdi:fire"
+    icon: mdi:fire
     category: config
     dps:
       - id: 25
@@ -53,9 +52,10 @@ entities:
       - id: 5
         name: switch
         type: boolean
+        optional: true
   - entity: select
     name: Spray level
-    icon: "mdi:heat-wave"
+    icon: mdi:heat-wave
     category: config
     dps:
       - id: 23
@@ -66,7 +66,7 @@ entities:
           max: 6
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: Off
           - dps_val: 1
             value: "1"
           - dps_val: 2
@@ -98,24 +98,24 @@ entities:
         mapping:
           - dps_val: cancel
             value: cancel
-          - dps_val: "1h"
-            value: "1h"
-          - dps_val: "2h"
-            value: "2h"
-          - dps_val: "3h"
-            value: "3h"
-          - dps_val: "4h"
-            value: "4h"
-          - dps_val: "5h"
-            value: "5h"
-          - dps_val: "6h"
-            value: "6h"
-          - dps_val: "7h"
-            value: "7h"
-          - dps_val: "8h"
-            value: "8h"
-          - dps_val: "9h"
-            value: "9h"
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 5h
+            value: 5h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 7h
+            value: 7h
+          - dps_val: 8h
+            value: 8h
+          - dps_val: 9h
+            value: 9h
   - entity: binary_sensor
     translation_key: tank_empty
     category: diagnostic
@@ -126,10 +126,27 @@ entities:
         name: sensor
         mapping:
           - dps_val: 2
-            value: true     # Tank is empty
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
           - dps_val: 0
-            value: false    # Tank is OK
-          - dps_val: 1
-            value: false    # Other status
-          - dps_val: null
-            value: false    # Fallback
+            value: false
+          - dps_val: 2
+            value: false
+          - value: true
+  - entity: sensor
+    name: fault_code
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        optional: true
+        name: sensor
