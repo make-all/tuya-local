@@ -13,21 +13,23 @@ entities:
         name: switch
         type: boolean
 
-  - entity: light
-    name: Flame
-    icon: mdi:fire
+  - entity: number
+    name: Brightness
+    icon: mdi:brightness-6
     dps:
-      - id: 1
-        name: switch
-        type: boolean
       - id: 18
-        name: brightness
+        name: value
         type: integer
         range:
           min: 1
           max: 5
+
+  - entity: select
+    name: Flame Color
+    icon: mdi:fire
+    dps:
       - id: 17
-        name: effect
+        name: option
         type: string
         mapping:
           - dps_val: "auto"
@@ -57,15 +59,12 @@ entities:
           - dps_val: "light_multicolor"
             value: "Multicolor"
 
-  - entity: light
-    name: Ember Bed
+  - entity: select
+    name: Ember Bed Color
     icon: mdi:campfire
     dps:
-      - id: 1
-        name: switch
-        type: boolean
       - id: 101
-        name: effect
+        name: option
         type: string
         mapping:
           - dps_val: "light_13"
