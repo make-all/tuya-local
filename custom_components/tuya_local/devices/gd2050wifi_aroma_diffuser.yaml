@@ -77,27 +77,21 @@ entities:
         name: rgbhsv
         optional: true
         format:
-          - name: r
-            bytes: 1
-          - name: g
-            bytes: 1
-          - name: b
-            bytes: 1
           - name: h
-            bytes: 1
+            bytes: 2
             range:
               min: 0
-              max: 255
+              max: 360
           - name: s
-            bytes: 1
+            bytes: 2
             range:
               min: 0
-              max: 255
+              max: 1000
           - name: v
-            bytes: 1
+            bytes: 2
             range:
               min: 0
-              max: 255
+              max: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
