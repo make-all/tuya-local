@@ -46,7 +46,6 @@ entities:
   - entity: number
     name: Screen brightness
     category: config
-    force: true
     dps:
       - id: 104
         type: integer
@@ -59,7 +58,6 @@ entities:
   - entity: select
     name: Alarm volume
     category: config
-    force: true
     dps:
       - id: 106
         type: string
@@ -77,7 +75,6 @@ entities:
   - entity: select
     name: Automatic sleep
     category: config
-    force: true
     dps:
       - id: 137
         type: string
@@ -108,16 +105,16 @@ entities:
         name: sensor
         class: measurement
         optional: true
-        mask: "00000000000000FFFF0000" # [7],[8]
+        mask: "00000000000000FFFF0000"  # [7],[8]
         endianness: little
         mapping:
           - scale: 10
         unit: C
-      - id: 131 # device_state_flag1
+      - id: 131  # device_state_flag1
         type: bitfield
         name: available
         mapping:
-          - dps_val: 2 # bit1 -> "1InBox"
+          - dps_val: 2  # bit1 -> "1InBox"
             value: false
           - value: true
 
@@ -131,24 +128,23 @@ entities:
         name: sensor
         class: measurement
         optional: true
-        mask: "000000000000000000FFFF" # [9],[10
+        mask: "000000000000000000FFFF"  # [9],[10
         endianness: little
         mapping:
           - scale: 10
         unit: C
-      - id: 131 # device_state_flag1
+      - id: 131  # device_state_flag1
         type: bitfield
         name: available
         mapping:
-          - dps_val: 2 # bit1 -> "1InBox"
+          - dps_val: 2  # bit1 -> "1InBox"
             value: false
           - value: true
 
   # Writes full base64 payloads back to DPS 122 (no masking)
   - entity: select
-    name: 1 preset # (full payload) Beef
+    name: 1 preset  # (full payload) Beef
     category: config
-    force: true
     dps:
       - id: 122
         type: string
@@ -177,6 +173,8 @@ entities:
           - dps_val: "ENAHAAAKAnI="
             value: "93°C / 200 °F"
 
+  # Any "old" value triggers
+  # this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high)
   - entity: button
     name: 1 alarm
     category: config
@@ -185,7 +183,7 @@ entities:
         type: base64
         name: button
         mapping:
-          - dps_val: "Ap1cMmmeXDJpEw" # Any "old" value triggers as this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high).
+          - dps_val: "Ap1cMmmeXDJpEw"
             value: true
 
   - entity: button
@@ -196,7 +194,7 @@ entities:
         type: base64
         name: button
         mapping:
-          - dps_val: "MVVua25vd24" # Base64 for ASCII "1Unknown"
+          - dps_val: "MVVua25vd24"  # Base64 for ASCII "1Unknown"
             value: true
 
   # Probe2
@@ -233,22 +231,22 @@ entities:
         name: sensor
         class: measurement
         optional: true
-        mask: "00000000FFFF0000000000" # [4],[5]
+        mask: "00000000FFFF0000000000"  # [4],[5]
         endianness: little
         mapping:
           - scale: 10
         unit: C
-      - id: 131 # device_state_flag1
+      - id: 131  # device_state_flag1
         type: bitfield
         name: available
         mapping:
-          - dps_val: 131072 # bit17 -> "2InBox"
+          - dps_val: 131072  # bit17 -> "2InBox"
             value: false
           - value: true
 
   # Writes full base64 payloads back to DPS 123 (no masking)
   - entity: select
-    name: 2 preset # (full payload) Beef
+    name: 2 preset  # (full payload) Beef
     category: config
     dps:
       - id: 123
@@ -281,6 +279,8 @@ entities:
         type: bitfield
         name: available
 
+  # Any "old" value triggers
+  # this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high)
   - entity: button
     name: 2 alarm
     category: config
@@ -289,7 +289,7 @@ entities:
         type: base64
         name: button
         mapping:
-          - dps_val: "Ap1cMmmeXDJpEw" # Any "old" value triggers as this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high).
+          - dps_val: "Ap1cMmmeXDJpEw"
             value: true
 
   - entity: button
@@ -300,7 +300,7 @@ entities:
         type: base64
         name: button
         mapping:
-          - dps_val: "MlVua25vd24" # Base64 for ASCII "2Unknown"
+          - dps_val: "MlVua25vd24"  # Base64 for ASCII "2Unknown"
             value: true
 
   - entity: select
@@ -312,11 +312,11 @@ entities:
         type: string
         name: option
         mapping:
-          # --- No alerts ---
+          #  No alerts
           - dps_val: "AwAAAACm"
             value: "Probe1 0 °C / 2 0 °C"
 
-          # --- Probe1 only ---
+          #  Probe1 only
           - dps_val: "AwkAAAAA"
             value: "Probe1 5 °C / Probe2 0 °C"
           - dps_val: "AxIAAADt"
@@ -326,7 +326,7 @@ entities:
           - dps_val: "AzYAAAB7"
             value: "Probe1 30 °C / Probe2 0 °C"
 
-          # --- Probe2 only ---
+          #  Probe2 only
           - dps_val: "AwkJAAA6"
             value: "Probe1 0 °C / Probe2 5 °C"
           - dps_val: "AxIJAADX"
@@ -336,7 +336,7 @@ entities:
           - dps_val: "AzYJAABB"
             value: "Probe1 0 °C / Probe2 30 °C"
 
-          # --- Both probes: Probe1 prefix + Probe2 suffix ---
+          #  Both probes: Probe1 prefix + Probe2 suffix
           # Probe1 5 °C + Probe2 X
           - dps_val: "AwkJAAA6"
             value: "Probe1 5 °C / Probe2 5 °C"
@@ -414,10 +414,10 @@ entities:
         class: measurement
         mapping:
           - scale: 10
-        unit: F # set to F but is actually C
+        unit: F  # set to F but is actually C
 
   - entity: sensor
-    name: PrealertValue # for temp preset pre-alert
+    name: PrealertValue  # for temp preset pre-alert
     category: diagnostic
     dps:
       - id: 116
@@ -922,7 +922,7 @@ entities:
             value: false
 
   - entity: binary_sensor
-    name: BasePower # Bit33 urns off when base is turned off vs 102 that does not
+    name: BasePower  # Bit33 turns off when base is off vs 102 that doesn't
     category: diagnostic
     dps:
       - id: 133
@@ -1200,7 +1200,7 @@ entities:
         name: sensor
 
   - entity: sensor
-    name: DeviceOtherInfo # Only set when base is turned off (likely saved state).
+    name: DeviceOtherInfo  # Only set when base is off (likely saved state)
     category: diagnostic
     dps:
       - id: 135
