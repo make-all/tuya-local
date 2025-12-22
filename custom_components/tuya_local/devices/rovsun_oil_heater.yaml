@@ -1,0 +1,67 @@
+name: Oil-Filled Radiator
+products:
+  - id: 9vsptcjqb7ofdplr
+    manufacturer: ROVSUN
+    model: NSC-150-7A2R
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 40
+          max: 95
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: level_1
+            value: low
+          - dps_val: level_2
+            value: medium
+          - dps_val: level_3
+            value: high
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: hour
+        range:
+          min: 0
+          max: 24
