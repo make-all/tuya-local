@@ -1,8 +1,8 @@
-name: CREATE WARM CLEAR Heater
+name: Vertical Heater
 products:
   - id: ggz9d3bputnvntlx
     manufacturer: Create
-    model: CREATE - WARM CLEAR
+    model: Warm Clear
 entities:
   - entity: climate
     translation_only_key: heater
@@ -34,7 +34,7 @@ entities:
           - dps_val: EC
             value: eco
           - dps_val: AF
-            value: antifrost
+            value: away
           - dps_val: P1
             value: program1
           - dps_val: P2
@@ -52,7 +52,7 @@ entities:
           - dps_val: working
             value: heating
       - id: 26
-        type: string
+        type: text
         optional: true
         name: custom_program
   - entity: select
@@ -123,7 +123,7 @@ entities:
         name: sensor
         unit: min
   - entity: switch
-    name: Night mode
+    translation_key: sleep
     icon: "mdi:weather-night"
     category: config
     dps:
