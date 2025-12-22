@@ -1169,3 +1169,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
 - [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
 - [a774969](https://github.com/a774969) for assisting with support for NWT WDH-02EM dehumidifier.
+- [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve.
