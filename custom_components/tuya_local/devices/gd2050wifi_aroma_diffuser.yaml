@@ -3,16 +3,10 @@ products:
   - id: sf6rbebwtwdsk0za
     model: GD2050WIFI
 entities:
-  - entity: switch
-    name: Power
-    translation_key: power
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
+  # dps=1 is a power switch that doesn't actually do anything so we ignore it
+
   - entity: fan
-    name: Fan
-    translation_key: fan
+    translation_key: aroma_diffuser
     dps:
       - id: 2
         type: boolean
@@ -25,6 +19,7 @@ entities:
             value: 100
           - dps_val: middle
             value: 50
+
   - entity: select
     translation_key: timer
     category: config
@@ -34,13 +29,14 @@ entities:
         name: option
         mapping:
           - dps_val: "2h"
-            value: "Continous"
+            value: continuous
           - dps_val: "4"
             value: "10s on - 10s off"
           - dps_val: "Long"
             value: "2h"
           - dps_val: "intermittence"
             value: "4h"
+
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -50,6 +46,7 @@ entities:
         type: integer
         name: sensor
         unit: min
+
   - entity: light
     translation_key: nightlight
     dps:
@@ -61,7 +58,7 @@ entities:
         name: brightness
         range:
           min: 0
-          max: 255
+          max: 100
       - id: 9
         type: string
         name: color_mode
@@ -92,17 +89,19 @@ entities:
             range:
               min: 0
               max: 1000
+
   - entity: binary_sensor
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 11
         type: bitfield
         name: sensor
+        optional: true
         mapping:
-          - dps_val: 0
-            value: false
-          - value: true
+          - dps_val: 1
+            value: true
+          - value: false
       - id: 11
         type: bitfield
         name: fault_code
