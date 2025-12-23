@@ -455,6 +455,7 @@
 
 ### Humidifiers
 
+- Advwin 13L humidifier
 - airx H8 humidifier
 - AlecoAir PU55 Humino humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
