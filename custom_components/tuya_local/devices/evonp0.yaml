@@ -1,0 +1,57 @@
+name: EVONP0 Pool Controller
+products:
+  - id: evonp0
+    name: EVONP0 Pool Controller
+
+primary_entity:
+  entity: switch
+  name: Pool System Power
+  icon: mdi:pool
+  dps:
+    - id: 101
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: sensor
+    name: Salt Level
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "g/L"
+        class: measurement
+
+  - entity: sensor
+    name: Water Temperature
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: temperature
+
+  - entity: sensor
+    name: ORP
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: "mV"
+
+
+  - entity: sensor
+    name: pH
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: ""
+
+  - entity: sensor
+    name: Power Consumption
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "W"
