@@ -1,0 +1,65 @@
+name: Kogan 1.7L Double Wall Glass Smart Kettle
+products:
+  - id: GXoLAzy1gQUbckKe
+    manufacturer: Kogan
+    model: KASMCDSKTLA
+entities:
+  - entity: switch
+    name: Power
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: °C
+  - entity: number
+    name: Target Temperature
+    category: config
+    dps:
+      - id: 4
+        name: value
+        type: integer
+        unit: °C
+        range:
+          min: 40
+          max: 100
+  - entity: select
+    name: Status
+    category: diagnostic
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: heating
+            value: Heating
+          - dps_val: cooling
+            value: Cooling
+  - entity: select
+    name: Preset
+    category: config
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: boiled_water
+            value: Boiled Water
+          - dps_val: diy
+            value: Custom
+          - dps_val: coffee
+            value: Coffee
+          - dps_val: green_tea
+            value: Green Tea
+          - dps_val: honey_water
+            value: Honey Water
+          - dps_val: milk_powder
+            value: Milk Powder
