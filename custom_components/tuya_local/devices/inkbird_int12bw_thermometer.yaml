@@ -1,7 +1,8 @@
-name: INT-12-BW BBQ thermometer
+name: BBQ thermometer
 products:
   - id: lkrzzdaex96syshadps
-    name: INT-12-BW
+    model: INT-12-BW
+    manufacturer: Inkbird
 
 # Probe1 is the black probe
 # Probe2 is the white probe
@@ -10,7 +11,6 @@ entities:
   # Base unit
 
   - entity: sensor
-    name: Base battery
     class: battery
     dps:
       - id: 103
@@ -21,7 +21,7 @@ entities:
         unit: "%"
 
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 101
@@ -29,9 +29,9 @@ entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
 
   # r/w in query things but doesn't turn off the base
   # - entity: binary_sensor
@@ -44,7 +44,7 @@ entities:
   #       name: sensor
 
   - entity: number
-    name: Screen brightness
+    name: Screem brightness
     category: config
     dps:
       - id: 104
@@ -64,13 +64,13 @@ entities:
         name: option
         mapping:
           - dps_val: "EQJM"
-            value: "Mute"
+            value: "mute"
           - dps_val: "WgGJ"
-            value: "Low"
+            value: "low"
           - dps_val: "WgKA"
-            value: "Medium"
+            value: "medium"
           - dps_val: "WgOH"
-            value: "High"
+            value: "high"
 
   - entity: select
     name: Automatic sleep
@@ -91,12 +91,12 @@ entities:
           - dps_val: "AQgH1g=="
             value: "30m"
           - dps_val: "ARAOFg=="
-            value: "60m"
+            value: "1h"
 
   # Probe1
 
   - entity: sensor
-    name: 1A temperature
+    name: Probe 1A temperature
     class: temperature
     hidden: unavailable
     dps:
@@ -119,7 +119,7 @@ entities:
           - value: true
 
   - entity: sensor
-    name: 1F temperature
+    name: Probe 1F temperature
     class: temperature
     hidden: unavailable
     dps:
@@ -143,7 +143,7 @@ entities:
 
   # Writes full base64 payloads back to DPS 122 (no masking)
   - entity: select
-    name: 1 preset  # (full payload) Beef
+    name: Probe 1F preset  # (full payload) Beef
     category: config
     dps:
       - id: 122
@@ -176,7 +176,7 @@ entities:
   # Any "old" value triggers
   # this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high)
   - entity: button
-    name: 1 alarm
+    name: Probe 1 alarm
     category: config
     dps:
       - id: 126
@@ -187,7 +187,7 @@ entities:
             value: true
 
   - entity: button
-    name: 1 alarm dismiss
+    name: Probe 1 alarm dismiss
     category: config
     dps:
       - id: 136
@@ -201,7 +201,7 @@ entities:
 
   # No ambient sensor
   # - entity: sensor
-  #   name: 2A temperature
+  #   name: Probe 2A temperature
   #   class: temperature
   #   hidden: unavailable
   #   dps:
@@ -222,7 +222,7 @@ entities:
   #         - value: true
 
   - entity: sensor
-    name: 2F temperature
+    name: Probe 2F temperature
     class: temperature
     hidden: unavailable
     dps:
@@ -246,7 +246,7 @@ entities:
 
   # Writes full base64 payloads back to DPS 123 (no masking)
   - entity: select
-    name: 2 preset  # (full payload) Beef
+    name: Probe 2F preset  # (full payload) Beef
     category: config
     dps:
       - id: 123
@@ -282,7 +282,7 @@ entities:
   # Any "old" value triggers
   # this is a monotonic seconds counter in little‑endian (byte1=low, byte2=high)
   - entity: button
-    name: 2 alarm
+    name: Probe 2 alarm
     category: config
     dps:
       - id: 127
@@ -293,7 +293,7 @@ entities:
             value: true
 
   - entity: button
-    name: 2 alarm dismiss
+    name: Probe 2 alarm dismiss
     category: config
     dps:
       - id: 136
@@ -380,33 +380,37 @@ entities:
   # Diagnostics
 
   - entity: sensor
-    name: ProbeTemps
+    name: Probe temps
     category: diagnostic
+    hidden: true
     dps:
       - id: 109
         type: base64
         name: sensor
 
   - entity: sensor
-    name: TemperatureCompensation
+    name: Temperature compensation
     category: diagnostic
+    hidden: true
     dps:
       - id: 110
         type: base64
         name: sensor
 
   - entity: sensor
-    name: DismissLowBatteryAlert
+    name: Dismiss low battery alert
     category: diagnostic
+    hidden: true
     dps:
       - id: 111
         type: base64
         name: sensor
 
   - entity: sensor
-    name: DeviceInternalTemperature
+    name: Device internal temperature
     class: temperature
     category: diagnostic
+    hidden: true
     dps:
       - id: 114
         type: integer
@@ -417,49 +421,55 @@ entities:
         unit: F  # set to F but is actually C
 
   - entity: sensor
-    name: PrealertValue  # for temp preset pre-alert
+    name: Pre alert value  # for temp preset pre-alert
     category: diagnostic
+    hidden: true
     dps:
       - id: 116
         type: base64
         name: sensor
 
   - entity: sensor
-    name: PresetAlertState
+    name: Preset alert state
     category: diagnostic
+    hidden: true
     dps:
       - id: 107
         type: base64
         name: sensor
 
   - entity: sensor
-    name: 1Timer
+    name: Probe 1 timer
     category: diagnostic
+    hidden: true
     dps:
       - id: 126
         type: base64
         name: sensor
 
   - entity: sensor
-    name: 2Timer
+    name: Probe 2 timer
     category: diagnostic
+    hidden: true
     dps:
       - id: 127
         type: base64
         name: sensor
 
   - entity: sensor
-    name: TimerRunningState
+    name: Timer running state
     category: diagnostic
+    hidden: true
     dps:
       - id: 130
         type: base64
         name: sensor
 
   - entity: binary_sensor
-    name: 1Conn
+    name: Probe 1 connection
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -467,12 +477,12 @@ entities:
         mapping:
           - dps_val: 1
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1InBox
+    name: Probe 1 in box
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -480,13 +490,13 @@ entities:
         mapping:
           - dps_val: 2
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1Charge
+    name: Probe 1 charge
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -494,13 +504,13 @@ entities:
         mapping:
           - dps_val: 4
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FLoTempAlert
+    name: Probe 1F low temp alert
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -508,13 +518,13 @@ entities:
         mapping:
           - dps_val: 8
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FHiTempAlert
+    name: Probe 1F high temp alert
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -522,13 +532,13 @@ entities:
         mapping:
           - dps_val: 16
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FLoTempAlertPending
+    name: Probe 1F low temp alert pending
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -536,13 +546,13 @@ entities:
         mapping:
           - dps_val: 32
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FHiTempAlertPending
+    name: Probe 1F high temp alert pending
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -550,13 +560,13 @@ entities:
         mapping:
           - dps_val: 64
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FTempExceedMax
+    name: Probe 1F temp exceed max
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -564,13 +574,13 @@ entities:
         mapping:
           - dps_val: 128
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FTempExceedMin
+    name: Probe 1F temp exceed min
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -578,13 +588,13 @@ entities:
         mapping:
           - dps_val: 256
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1FPrealertState
+    name: Probe 1F pre alert state
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -592,13 +602,13 @@ entities:
         mapping:
           - dps_val: 512
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1AExceedMax
+    name: Probe 1A temp exceed max
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -606,13 +616,13 @@ entities:
         mapping:
           - dps_val: 1024
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1AExceedMin
+    name: Probe 1A temp exceed min
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -620,13 +630,13 @@ entities:
         mapping:
           - dps_val: 2048
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1Paired
+    name: Probe 1 paired
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -634,13 +644,13 @@ entities:
         mapping:
           - dps_val: 4096
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1RequestPaired
+    name: Probe 1 request paired
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -648,13 +658,13 @@ entities:
         mapping:
           - dps_val: 8192
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1LoBatAlert
+    name: Probe 1 low battery alert
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -662,12 +672,12 @@ entities:
         mapping:
           - dps_val: 16384
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
     name: Bit15
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -675,13 +685,13 @@ entities:
         mapping:
           - dps_val: 32768
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2Conn
+    name: Probe 2 connected
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -689,12 +699,12 @@ entities:
         mapping:
           - dps_val: 65536
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2InBox
+    name: Probe 2 in box
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -702,13 +712,13 @@ entities:
         mapping:
           - dps_val: 131072
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2Charge
+    name: Probe 2 charge
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -716,13 +726,13 @@ entities:
         mapping:
           - dps_val: 262144
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FLoTempAlert
+    name: Probe 2 low temp alert
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -730,13 +740,13 @@ entities:
         mapping:
           - dps_val: 524288
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FHiTempAlert
+    name: Probe 2 high temp alert
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -744,13 +754,13 @@ entities:
         mapping:
           - dps_val: 1048576
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FLoTempAlertPending
+    name: Probe 2 low temp alert pending
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -758,13 +768,13 @@ entities:
         mapping:
           - dps_val: 2097152
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FHiTempAlertPending
+    name: Probe 2 high temp alert pending
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -772,13 +782,13 @@ entities:
         mapping:
           - dps_val: 4194304
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FTempExceedMax
+    name: Probe 2F temp exceed max
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -786,13 +796,13 @@ entities:
         mapping:
           - dps_val: 8388608
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FTempExceedMin
+    name: Probe 2F temp exceed min
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -800,13 +810,13 @@ entities:
         mapping:
           - dps_val: 16777216
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2FPrealertState
+    name: Probe 2F prealert state
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -814,13 +824,13 @@ entities:
         mapping:
           - dps_val: 33554432
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2AExceedMax
+    name: Probe 2A temp exceed max
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -828,13 +838,13 @@ entities:
         mapping:
           - dps_val: 67108864
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2AExceedMin
+    name: Probe 2A temp exceed min
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -842,13 +852,13 @@ entities:
         mapping:
           - dps_val: 134217728
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2Paired
+    name: Probe 2 paired
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -856,13 +866,13 @@ entities:
         mapping:
           - dps_val: 268435456
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2RequestPaired
+    name: Probe 2 request paired
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: bitfield
@@ -873,17 +883,19 @@ entities:
           - default: true
 
   - entity: sensor
-    name: Alert Status
+    name: Alert status
     category: diagnostic
+    hidden: true
     dps:
       - id: 132
         type: base64
         name: sensor
 
   - entity: binary_sensor
-    name: 2LoBatAlert
+    name: Probe 2 low battery alert
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -891,12 +903,12 @@ entities:
         mapping:
           - dps_val: 1
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: Bit31
+    name: Bit 31
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -904,13 +916,13 @@ entities:
         mapping:
           - dps_val: 2
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
     name: USB
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -918,12 +930,12 @@ entities:
         mapping:
           - dps_val: 4
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: BasePower  # Bit33 turns off when base is off vs 102 that doesn't
+    name: Base power  # Bit33 turns off when base is off vs 102 that doesn't
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -931,12 +943,12 @@ entities:
         mapping:
           - dps_val: 8
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: Bit34
+    name: Bit 34
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -944,12 +956,12 @@ entities:
         mapping:
           - dps_val: 16
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: Bit35
+    name: Bit 35
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -957,12 +969,12 @@ entities:
         mapping:
           - dps_val: 32
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: Bit36
+    name: Bit 36
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -970,12 +982,12 @@ entities:
         mapping:
           - dps_val: 64
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: Bit37
+    name: Bit 37
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -983,13 +995,13 @@ entities:
         mapping:
           - dps_val: 128
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: BLEConn
+    name: BLE connection
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -997,13 +1009,13 @@ entities:
         mapping:
           - dps_val: 256
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: BLERequestPair
+    name: BLE request pairing
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1011,13 +1023,13 @@ entities:
         mapping:
           - dps_val: 512
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: BLEAuthorize
+    name: BLE authorize
     class: connectivity
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1025,13 +1037,13 @@ entities:
         mapping:
           - dps_val: 1024
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: WiFiReset
+    name: WiFi reset
     class: problem
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1039,12 +1051,12 @@ entities:
         mapping:
           - dps_val: 2048
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: TimestampService
+    name: Timestamp service
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1052,13 +1064,13 @@ entities:
         mapping:
           - dps_val: 4096
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1TimerAlert
+    name: Probe 1 timer alert
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1066,13 +1078,13 @@ entities:
         mapping:
           - dps_val: 8192
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2TimerAlert
+    name: Probe 2 timer alert
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1080,13 +1092,13 @@ entities:
         mapping:
           - dps_val: 16384
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 3TimerAlert
+    name: Probe 3 timer alert
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1094,13 +1106,13 @@ entities:
         mapping:
           - dps_val: 32768
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 4TimerAlert
+    name: Probe 4 timer alert
     class: safety
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1108,12 +1120,12 @@ entities:
         mapping:
           - dps_val: 65536
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 1TimerState
+    name: Probe 1 timer state
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1121,12 +1133,12 @@ entities:
         mapping:
           - dps_val: 131072
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 2TimerState
+    name: Probe 2 timer state
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1134,12 +1146,12 @@ entities:
         mapping:
           - dps_val: 262144
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 3TimerState
+    name: Probe 3 timer state
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1147,12 +1159,12 @@ entities:
         mapping:
           - dps_val: 524288
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: 4TimerState
+    name: Probe 4 timer state
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1160,13 +1172,13 @@ entities:
         mapping:
           - dps_val: 1048576
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: DeviceBodyHiTempAlert
+    name: Device body high temp alert
     class: heat
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1174,13 +1186,13 @@ entities:
         mapping:
           - dps_val: 2097152
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: binary_sensor
-    name: DeviceBodyLoTempAlert
+    name: Device body low temp alert
     class: cold
     category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: bitfield
@@ -1188,28 +1200,30 @@ entities:
         mapping:
           - dps_val: 4194304
             value: true
-          - default: true
-            value: false
+          - value: false
 
   - entity: sensor
-    name: DeviceName
+    name: Device name
     category: diagnostic
+    hidden: true
     dps:
       - id: 134
         type: base64
         name: sensor
 
   - entity: sensor
-    name: DeviceOtherInfo  # Only set when base is off (likely saved state)
+    name: Device other info  # Only set when base is off (likely saved state)
     category: diagnostic
+    hidden: true
     dps:
       - id: 135
         type: base64
         name: sensor
 
   - entity: sensor
-    name: DismissPauseAlerts
+    name: Dismiss pause alerts
     category: diagnostic
+    hidden: true
     dps:
       - id: 136
         type: base64
