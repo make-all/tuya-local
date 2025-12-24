@@ -51,6 +51,14 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
             ):
                 self._attr_supported_features |= ValveEntityFeature.SET_POSITION
 
+    # HA defines translated names for valve classes, but does not use them
+    def _default_to_device_class_name(self) -> bool:
+        """Return True if an unnamed entity should be named by its device class.
+
+        For valves we make this True if the entity has a device class.
+        """
+        return self.device_class is not None
+
     @property
     def device_class(self):
         """Return the class of this device"""
