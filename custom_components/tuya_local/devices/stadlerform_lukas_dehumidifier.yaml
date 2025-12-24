@@ -1,0 +1,114 @@
+name: Stadler Form Lukas
+products:
+  - id: bf4b1d3329427223dczfve
+    manufacturer: Stadler Form
+    model: Lukas
+
+entities:
+  # Main control
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "DRY"
+            value: DRY
+          - dps_val: "LAUNDRY"
+            value: LAUNDRY
+
+      - id: 3
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+
+      - id: 6
+        type: integer
+        name: current_humidity
+        
+  # Fan speed (1–4)
+  - entity: select
+    name: "Fan Speed"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+
+
+  # Swing
+  - entity: switch
+    name: Swing
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+
+  # Sleep-Mode
+  - entity: switch
+    name: "Night Mode"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+
+  # Child lock
+  - entity: lock
+    name: "Child Lock"
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+
+  # Error handling
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          # No error
+          - dps_val: null
+            value: false
+          # Default: some bit is set → error
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault
+      - id: 19
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "C8 – Refrigerant Leak"
+          - dps_val: 2
+            value: "Water Tank Full or Removed"
+          - dps_val: 4
+            value: "P1 – Defrost Mode"
+          - dps_val: 8
+            value: "C1 – Defrost NTC Sensor Fault"
+          - dps_val: 16
+            value: "C2 – Room Temperature NTC Sensor Fault"
