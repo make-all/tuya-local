@@ -26,7 +26,7 @@ entities:
         type: integer
         range:
           min: 50
-          max: 350
+          max: 400
         unit: C
         mapping:
           - scale: 10
@@ -96,6 +96,38 @@ entities:
       - id: 11
         type: bitfield
         name: fault_code
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+            range:
+              min: -100
+              max: 100
+        unit: C
+  - entity: number
+    name: "Anti-frost temperature"
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+            range:
+              min: 50
+              max: 100
+        unit: C
   - entity: sensor
     class: energy
     dps:
@@ -117,6 +149,22 @@ entities:
           - dps_val: open
             value: true
           - value: false
+  - entity: number
+    name: "Away temperature"
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+            range:
+              min: 50
+              max: 400
+        unit: C
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -200,3 +248,35 @@ entities:
       - id: 123
         type: boolean
         name: switch
+  - entity: number
+    translation_key: maximum_temperature
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 166
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+            range:
+              min: 150
+              max: 350
+        unit: C
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    mode: box
+    dps:
+      - id: 170
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+            range:
+              min: 100
+              max: 300
+        unit: C
