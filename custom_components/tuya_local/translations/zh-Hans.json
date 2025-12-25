@@ -204,6 +204,9 @@
                     }
                 }
             },
+            "cold_water": {
+                "name": "冷水机"
+            },
             "thermostat": {
                 "name": "恒温器",
                 "state_attributes": {
@@ -932,7 +935,15 @@
                     "dry": "干燥",
                     "comfortable": "舒适",
                     "damp": "潮湿",
-                    "smoothing": "平滑处理"
+                    "smoothing": "平滑处理",
+                    "cleaned": "已清洁",
+                    "cold_water_unavailable": "冷水不可用",
+                    "drain": "排水中",
+                    "drain_cold_water": "排冷水",
+                    "drain_hot_water": "排热水",
+                    "drain_normal_water": "排正常水",
+                    "high_temperature_emptying": "高温排空中",
+                    "high_temperature_emptied": "高温已排空"
                 }
             },
             "time_remaining": {
@@ -985,17 +996,14 @@
             }
         },
         "switch": {
+            "anti_frost": {
+                "name": "防冻"
+            },
             "auto_clean": {
                 "name": "自动清洗"
             },
-            "cool": {
-                "name": "制冷"
-            },
             "auto_light": {
                 "name": "自动灯光"
-            },
-            "anti_frost": {
-                "name": "防冻"
             },
             "breaker": {
                 "name": "断路器",

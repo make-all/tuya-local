@@ -27,15 +27,15 @@ entities:
           - dps_val: refrigerating
             value: cooling
           - dps_val: drain_water
-            value: drain_water
+            value: drain
           - dps_val: drain_normal_water
             value: drain_normal_water
           - dps_val: drain_boiling_water
-            value: drain_boiling_water
+            value: drain_hot_water
           - dps_val: job_done
             value: done
           - dps_val: coldwater_prohibited
-            value: coldwater_prohibited
+            value: cold_water_unavailable
           - dps_val: reset
             value: resetting
           - dps_val: cleaning
@@ -43,15 +43,15 @@ entities:
           - dps_val: cleaned
             value: cleaned
           - dps_val: empty_device
-            value: empty_device
+            value: empty
           - dps_val: emptied
             value: emptied
           - dps_val: drain_cool_water
-            value: drain_cool_water
+            value: drain_cold_water
           - dps_val: high_temp_emptying
-            value: high_temp_emptying
+            value: high_temperature_emptying
           - dps_val: high_temp_emptyed
-            value: high_temp_emptyed
+            value: high_temperature_emptied
           - dps_val: water_shortage
             value: no_water
 
@@ -64,22 +64,15 @@ entities:
 
   - entity: switch
     translation_key: auto_clean
-    icon: mdi:autorenew
+    category: config
     dps:
       - id: 11
         type: boolean
         name: switch
 
   - entity: switch
-    translation_key: cool
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
-
-  - entity: switch
     translation_key: auto_light
-    icon: mdi:lightbulb
+    category: config
     dps:
       - id: 103
         type: boolean
@@ -98,43 +91,41 @@ entities:
         mapping:
           - step: 50
 
-  - entity: number
-    class: temperature
+  - entity: climate
+    translation_key: cold_water
+    dps:
+      - id: 102
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: cool
+      - id: 107
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 8
+          max: 15
+      - id: 4
+        type: integer
+        name: current_temperature
+
+  - entity: water_heater
     dps:
       - id: 12
         type: integer
-        name: value
+        name: temperature
         range:
           min: 10
           max: 100
         mapping:
           - step: 5
-            constraint: cool
-            conditions:
-              - dps_val: true
-                step: 1
-                range:
-                  min: 8
-                  max: 15
-                value_redirect: cool_temperature
-      - id: 107
-        type: integer
-        name: cool_temperature
-        range:
-          min: 8
-          max: 15
-      - id: 102
-        type: boolean
-        name: cool
-  - entity: sensor
-    class: temperature
-    category: diagnostic
-    dps:
       - id: 4
         type: integer
-        name: sensor
-        unit: C
-        class: measurement
+        name: current_temperature
 
   - entity: sensor
     category: diagnostic
