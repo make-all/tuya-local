@@ -1173,3 +1173,5 @@ Further device support has been made with the assistance of users. Please consid
 - [baronorder](https://github.com/baronorder) for contributing support for Advwin 13L humidifier.
 - [pegasusvelata](https://github.com/pegasusvelata) for contributing support for GD2050WIFI aroma diffuser.
 - [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
+- [GavinIves](https://github.com/GavinIves) for contributing support for Casdon KG1 water dispenser.
+
