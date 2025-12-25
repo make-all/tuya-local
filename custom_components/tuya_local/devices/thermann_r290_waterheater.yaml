@@ -4,16 +4,13 @@ products:
     manufacturer: Thermann
     model: R290
 entities:
-  - entity: water_heater
+  - entity: switch
     dps:
       - id: 1
         type: boolean
-        name: Power
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
+        name: switch
+  - entity: water_heater
+    dps:
       - id: 4
         type: string
         name: operation_mode
@@ -23,7 +20,7 @@ entities:
           - dps_val: boost
             value: performance
           - dps_val: holiday
-            value: vacation
+            value: away
           - dps_val: rescue
             value: electric
       - id: 2
@@ -36,7 +33,6 @@ entities:
       - id: 3
         type: integer
         name: current_temperature
-        unit: C
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -60,14 +56,15 @@ entities:
         type: boolean
         name: sensor
   - entity: sensor
-    name: Remaining holiday days
+    name: Remaining holiday
+    class: duration
     icon: "mdi:counter"
     category: diagnostic
     dps:
       - id: 102
         type: integer
         name: sensor
-        unit: days
+        unit: d
   - entity: binary_sensor
     name: Compressor
     icon: "mdi:hvac"
@@ -154,9 +151,7 @@ entities:
         name: sensor
         unit: C
   - entity: binary_sensor
-    name: Defrost valve
-    icon: "mdi:snowflake-melt"
-    class: opening
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 112
