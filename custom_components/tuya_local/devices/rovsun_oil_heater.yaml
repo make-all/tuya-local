@@ -1,11 +1,11 @@
-name: Oil-Filled Radiator
+name: Oil column heater
 products:
   - id: 9vsptcjqb7ofdplr
-    manufacturer: ROVSUN
+    manufacturer: Rovsun
     model: NSC-150-7A2R
 entities:
   - entity: climate
-    translation_only_key: heater
+    translation_key: heater
     dps:
       - id: 1
         type: boolean
@@ -61,7 +61,7 @@ entities:
       - id: 102
         type: integer
         name: value
-        unit: hour
+        unit: h
         range:
           min: 0
           max: 24
