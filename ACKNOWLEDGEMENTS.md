@@ -1174,4 +1174,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pegasusvelata](https://github.com/pegasusvelata) for contributing support for GD2050WIFI aroma diffuser.
 - [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
 - [GavinIves](https://github.com/GavinIves) for contributing support for Casdon KG1 water dispenser.
-
+- [declan-wade](https://github.com/declan-wade) for contributing support for Thermann R290 water heat pump.
