@@ -1,32 +1,54 @@
-name: AUCHSIAG Fireplace
+name: Fireplace
 products:
-  - id: "cokyjkkw8gqwteww"
-    manufacturer: AUCHSIAG
-    model: "750W & 1500W"
-
+  - id: cokyjkkw8gqwteww
+    manufacturer: Auchsiag
 entities:
-  - entity: switch
-    translation_key: power
-    icon: mdi:power
+  - entity: light
+    translation_key: embers
     dps:
       - id: 1
-        name: switch
         type: boolean
-
-  - entity: number
-    name: Brightness
-    icon: mdi:brightness-6
-    dps:
+        name: switch
       - id: 18
-        name: value
+        name: brightness
         type: integer
         range:
           min: 1
           max: 5
+      - id: 101
+        name: named_color
+        type: string
+        mapping:
+          - dps_val: "light_1"
+            value: "red"
+          - dps_val: "light_2"
+            value: "steelblue"
+          - dps_val: "light_3"
+            value: "green"
+          - dps_val: "light_4"
+            value: "pink"
+          - dps_val: "light_5"
+            value: "yellow"
+          - dps_val: "light_6"
+            value: "cyan"
+          - dps_val: "light_7"
+            value: "purple"
+          - dps_val: "light_8"
+            value: "white"
+          - dps_val: "light_9"
+            value: "goldenrod"
+          - dps_val: "light_10"
+            value: "skyblue"
+          - dps_val: "light_11"
+            value: "seagreen"
+          - dps_val: "light_12"
+            value: "cornflowerblue"
+          - dps_val: "light_13"
+            value: "black"  # auto
 
   - entity: select
     name: Flame Color
-    icon: mdi:fire
+    icon: "mdi:fire"
     dps:
       - id: 17
         name: option
@@ -58,45 +80,13 @@ entities:
             value: "Red + Yellow + Blue"
           - dps_val: "light_multicolor"
             value: "Multicolor"
-
-  - entity: select
-    name: Ember Bed Color
-    icon: mdi:campfire
-    dps:
-      - id: 101
-        name: option
-        type: string
-        mapping:
-          - dps_val: "light_13"
-            value: "Auto"
-          - dps_val: "light_1"
-            value: "Red"
-          - dps_val: "light_2"
-            value: "Gentian Blue"
-          - dps_val: "light_3"
-            value: "Green"
-          - dps_val: "light_4"
-            value: "Pink"
-          - dps_val: "light_5"
-            value: "Yellow"
-          - dps_val: "light_6"
-            value: "Cyan"
-          - dps_val: "light_7"
-            value: "Purple"
-          - dps_val: "light_8"
-            value: "White"
-          - dps_val: "light_9"
-            value: "Saffron"
-          - dps_val: "light_10"
-            value: "Sky Blue"
-          - dps_val: "light_11"
-            value: "Viridity"
-          - dps_val: "light_12"
-            value: "Capri Blue"
+      - id: 1
+        type: boolean
+        name: available
 
   - entity: select
     name: Flame Speed
-    icon: mdi:speedometer
+    icon: "mdi:speedometer"
     dps:
       - id: 19
         name: option
@@ -112,32 +102,38 @@ entities:
             value: "Level 4"
           - dps_val: "level_5"
             value: "Level 5"
+      - id: 1
+        type: boolean
+        name: available
 
   - entity: select
+    translation_key: mode
     name: Heat Level
-    icon: mdi:fireplace
+    icon: "mdi:fireplace"
     dps:
       - id: 5
         name: option
         type: string
         mapping:
           - dps_val: "off"
-            value: "Off"
-          - dps_val: "low"
-            value: "Low (750W)"
-          - dps_val: "high"
-            value: "High (1500W)"
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+      - id: 1
+        type: boolean
+        name: available
 
   - entity: select
     translation_key: timer
-    icon: mdi:timer-cog-outline
     dps:
       - id: 13
         name: option
         type: string
         mapping:
-          - dps_val: "cancel"
-            value: "Cancel"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1h"
             value: "1h"
           - dps_val: "2h"
@@ -152,10 +148,11 @@ entities:
             value: "6h"
 
   - entity: sensor
+    class: duration
     translation_key: time_remaining
-    icon: mdi:timer-sand
     dps:
       - id: 14
         type: integer
         name: sensor
-        readonly: true
+        unit: min
+
