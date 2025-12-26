@@ -1,11 +1,12 @@
-name: Double Wall Glass Kettle
+name: Kettle
 products:
   - id: 7occ66lr74vfznwt
     manufacturer: Kogan
-    model: KASMCDSKTLA
+    model: Double wall 1.7L glass kettle
+    model_id: KASMCDSKTLA
 entities:
   - entity: water_heater
-    name: Kettle
+    translation_key: kettle
     dps:
       - id: 1
         name: operation_mode
@@ -14,20 +15,24 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: "electric"
+            value: electric
       - id: 2
         name: current_temperature
         type: integer
-        unit: °C
       - id: 4
         name: target_temperature
         type: integer
-        unit: °C
+        unit: C
         range:
           min: 40
           max: 100
+
+ - entity: sensor
+   translation_key: status
+   class: enum
+   dps:
       - id: 8
-        name: operation_status
+        name: sensor
         type: string
         mapping:
           - dps_val: standby
@@ -36,39 +41,9 @@ entities:
             value: heating
           - dps_val: cooling
             value: cooling
-      - id: 11
-        name: preset_mode
-        type: string
-        mapping:
-          - dps_val: boiled_water
-            value: water
-          - dps_val: diy
-            value: custom
-          - dps_val: coffee
-            value: coffee
-          - dps_val: green_tea
-            value: green_tea
-          - dps_val: honey_water
-            value: honey_water
-          - dps_val: milk_powder
-            value: infant_formula
-  - entity: number
-    name: Kettle Target Temp
-    category: config
-    icon: mdi:thermometer
-    dps:
-      - id: 4
-        name: value
-        type: integer
-        unit: °C
-        range:
-          min: 40
-          max: 100
+
   - entity: select
-    name: Kettle Preset
     translation_key: kettle_mode
-    icon: mdi:coffee
-    category: config
     dps:
       - id: 11
         name: option
