@@ -461,7 +461,7 @@
 - AlecoAir PU55 Humino humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
 - Carro VES1011 humidifier
-- Clean Air Optima CA-604B, CA-605B humidifiers
+- Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
 - Clofte Duo 400 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Homvana H111S humidifier

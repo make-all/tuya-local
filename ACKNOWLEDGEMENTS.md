@@ -1175,3 +1175,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
 - [GavinIves](https://github.com/GavinIves) for contributing support for Casdon KG1 water dispenser.
 - [declan-wade](https://github.com/declan-wade) for contributing support for Thermann R290 water heat pump.
+- [lordp1](https://github.com/lordp1) for assisting with support for Clean Air Optima CA-607B humidifier.
