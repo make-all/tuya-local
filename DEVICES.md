@@ -66,6 +66,7 @@
 - Prosto PTC 2000 heater
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
+- Rovsun NSC-150-7A2R oil column heater
 - Rumba bathroom heater
 - Semptec ZX7007 infrared heater
 - Sichler ZX-7655/ZX-7656 hybrid infrared convection heater

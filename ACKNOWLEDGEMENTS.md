@@ -1177,3 +1177,4 @@ Further device support has been made with the assistance of users. Please consid
 - [declan-wade](https://github.com/declan-wade) for contributing support for Thermann R290 water heat pump.
 - [lordp1](https://github.com/lordp1) for assisting with support for Clean Air Optima CA-607B humidifier.
 - [aureli169](https://github.com/aureli169) for contributing support for Auchsiag fireplace.
+- [zhen-zen](https://github.com/zhen-zen) for contributing support for Rovsun oil column heater.
