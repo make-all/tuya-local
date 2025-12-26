@@ -1,4 +1,4 @@
-name: 1.7L Double Wall Glass Kettle
+name: Double Wall Glass Kettle
 products:
   - id: 7occ66lr74vfznwt
     manufacturer: Kogan
@@ -12,9 +12,9 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: off
+            value: "off"
           - dps_val: true
-            value: on
+            value: "electric"
       - id: 2
         name: current_temperature
         type: integer
@@ -28,7 +28,6 @@ entities:
           max: 100
       - id: 8
         name: operation_status
-        translation_key: status
         type: string
         mapping:
           - dps_val: standby
@@ -39,7 +38,6 @@ entities:
             value: cooling
       - id: 11
         name: preset_mode
-        translation_key: kettle_mode
         type: string
         mapping:
           - dps_val: boiled_water
@@ -56,7 +54,6 @@ entities:
             value: infant_formula
   - entity: number
     name: Kettle Target Temp
-    translation_key: kettle_mode
     category: config
     icon: mdi:thermometer
     dps:
