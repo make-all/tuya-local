@@ -17,21 +17,24 @@ entities:
       - id: 102
         type: string
         name: hvac_action
-        icon_priority: 2
         optional: true
         mapping:
           - dps_val: stop
             value: "off"
             icon: "mdi:pot-outline"
+            icon_priority: 2
           - dps_val: working
             value: heating
             icon: "mdi:pot-steam"
+            icon_priority: 2
           - dps_val: complete
             value: idle
             icon: "mdi:pot"
+            icon_priority: 2
           - dps_val: null
             value: "off"
             icon: "mdi:pot-outline"
+            icon_priority: 2
       - id: 103
         type: integer
         name: temperature

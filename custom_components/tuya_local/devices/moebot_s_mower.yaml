@@ -150,7 +150,6 @@ entities:
       - id: 103
         name: sensor
         type: string
-        icon_priority: 1
         optional: true
         persist: false
         mapping:
@@ -159,75 +158,99 @@ entities:
           - dps_val: MOWER_LEAN
             value: Tilted
             icon: "mdi:angle-acute"
+            icon_priority: 1
           - dps_val: MOWER_STEEP
             value: Steep
             icon: "mdi:slope-uphill"
+            icon_priority: 1
           - dps_val: RAIN_PARK
             value: Raining
             icon: "mdi:weather-pouring"
+            icon_priority: 1
           - dps_val: BATTERY_NOT_ENOUGH
             value: Low battery
             icon: "mdi:battery-low"
+            icon_priority: 1
           - dps_val: NO_LOOP_SIGNAL
             value: Weak signal
             icon: "mdi:signal-cellular-1"
+            icon_priority: 1
           - dps_val: CLOSE_TOPCOVER
             value: Close top cover
             icon: "mdi:door-open"
+            icon_priority: 1
           - dps_val: MOWER_IN_STATION
             value: Docked
             icon: "mdi:mower"
+            icon_priority: 1
           - dps_val: MOWER_OUT_STATION
             value: Undocked
             icon: "mdi:mower-on"
+            icon_priority: 1
           - dps_val: PLACE_INSIDE_STATION
             value: Manually dock
             icon: "mdi:home-alert"
+            icon_priority: 1
           - dps_val: FIXED_END
             value: Finished fixed mowing
             icon: "mdi:mower"
+            icon_priority: 1
           - dps_val: CHARGING_DISCONNECT
             value: Disconnected
             icon: "mdi:power-plug-battery"
+            icon_priority: 1
           - dps_val: CHARGING_PAUSE
             value: Paused charging
             icon: "mdi:battery-clock"
+            icon_priority: 1
           - dps_val: WORK_INTERRUPT
             value: Interrupted
             icon: "mdi:alert-octogon"
+            icon_priority: 1
           - dps_val: FIXED_MOWING_INTERRUPT
             value: Interrupted fixed mowing
             icon: "mdi:alert-octogon"
+            icon_priority: 1
           - dps_val: TURN_ON_BUTTON
             value: Turn on button
             icon: "mdi:button-pointer"
+            icon_priority: 1
           - dps_val: PRESS_START_KEY
             value: Press start
             icon: "mdi:play"
+            icon_priority: 1
           - dps_val: TIMESET_30MIN
             value: Set 30 minute timer
             icon: "mdi:fast-forward-30"
+            icon_priority: 1
           - dps_val: TIMESET_UNLEGAL
             value: Invalid timer
             icon: "mdi:timer-alert"
+            icon_priority: 1
           - dps_val: CHARGR_CURRENT_LOW
             value: Charging current low
             icon: "mdi:flash-alert"
+            icon_priority: 1
           - dps_val: RAIN_OUT_STATION
             value: Caught in rain
             icon: "mdi:weather-pouring"
+            icon_priority: 1
           - dps_val: UPDATA_FAIL
             value: Data upload failure
             icon: "mdi:cloud-alert"
+            icon_priority: 1
           - dps_val: CONTINUE_TOOLTIP
             value: Continue
             icon: "mdi:step-forward"
+            icon_priority: 1
           - dps_val: MOWER_EMERGENCY
             value: Stopped
             icon: "mdi:octagon"
+            icon_priority: 1
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
+            icon_priority: 1
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"

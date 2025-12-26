@@ -8,6 +8,7 @@ products:
     #   model InverterPlus
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -15,8 +16,6 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
-            icon_priority: 1
           - dps_val: true
             constraint: mode
             conditions:
@@ -40,14 +39,7 @@ entities:
       - id: 105
         name: mode
         type: string
-        icon_priority: 4
-        mapping:
-          - dps_val: warm
-            icon: "mdi:hot-tub"
-          - dps_val: cool
-            icon: "mdi:snowflake"
-          - dps_val: smart
-            icon: "mdi:refresh-auto"
+        hidden: true
       - id: 106
         name: temperature
         type: integer
@@ -79,7 +71,6 @@ entities:
     category: diagnostic
     name: Power level
     icon: "mdi:signal"
-    class: power_factor
     dps:
       - id: 104
         type: integer
