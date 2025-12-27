@@ -1179,3 +1179,4 @@ Further device support has been made with the assistance of users. Please consid
 - [aureli169](https://github.com/aureli169) for contributing support for Auchsiag fireplace.
 - [zhen-zen](https://github.com/zhen-zen) for contributing support for Rovsun oil column heater.
 - [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
+- [met67](https://github.com/met67) for contributing support for oLight Sphere ambient light.
