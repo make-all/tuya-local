@@ -1180,3 +1180,4 @@ Further device support has been made with the assistance of users. Please consid
 - [zhen-zen](https://github.com/zhen-zen) for contributing support for Rovsun oil column heater.
 - [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
 - [met67](https://github.com/met67) for contributing support for oLight Sphere ambient light.
+- [KSVl](https://github.com/KSVl) for contributing support for Konlen WF72TT/WF96TT dual temperature controller.

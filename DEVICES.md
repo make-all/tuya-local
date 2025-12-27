@@ -238,6 +238,7 @@
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
+- Konlen WF72TT/WF96TT dual temperature controller
 - Ledlux thermostat
 - ME80 touchscreen thermostat
 - Mi-Heat TH11-WF thermostat
