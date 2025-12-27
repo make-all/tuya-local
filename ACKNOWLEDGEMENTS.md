@@ -1178,3 +1178,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lordp1](https://github.com/lordp1) for assisting with support for Clean Air Optima CA-607B humidifier.
 - [aureli169](https://github.com/aureli169) for contributing support for Auchsiag fireplace.
 - [zhen-zen](https://github.com/zhen-zen) for contributing support for Rovsun oil column heater.
+- [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
