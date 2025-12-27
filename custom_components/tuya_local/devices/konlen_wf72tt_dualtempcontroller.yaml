@@ -1,0 +1,246 @@
+name: Dual temperature controller
+products:
+  - id: 84iv5eqjgvvpzyma
+    manufacturer: Konlen
+    model: WF72TT/WF96TT
+
+entities:
+  # ------------- Thermostats -------------
+  - entity: climate
+    translation_key: thermostat
+    name: Channel 1
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HOT1
+                value: heat
+              - dps_val: COOL2
+                value: cool
+      - id: 2
+        type: integer
+        name: target_temp_high
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+        mapping:
+          - scale: 10
+      - id: 101
+        type: integer
+        name: target_temp_low
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+      - id: 112
+        type: string
+        name: mode
+        hidden: true
+
+  - entity: climate
+    translation_key: thermostat
+    name: Channel 2
+    dps:
+      - id: 105
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: HOT2
+                value: heat
+              - dps_val: COLD2
+                value: cool
+              - dps_val: ALARM2
+                value: fan_only  # alarm
+              - dps_val: DIFF2
+                value: heat_cool  # temperature difference
+      - id: 102
+        type: integer
+        name: current_temperature
+        unit: C
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        name: target_temp_high
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+      - id: 104
+        type: integer
+        name: target_temp_low
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+      - id: 111
+        type: string
+        name: mode
+        hidden: true
+  - entity: climate
+    name: Alarm thresholds
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: available
+        mapping:
+          - dps_val: ALARM2
+            value: true
+          - value_redirect: remote_alarm
+      - id: 108
+        type: boolean
+        name: remote_alarm
+        hidden: true
+      - id: 106
+        type: integer
+        name: target_temp_high
+        unit: C
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+      - id: 107
+        type: integer
+        name: target_temp_low
+        range:
+          min: -400
+          max: 1400
+        mapping:
+          - scale: 10
+
+  - entity: switch
+    name: Remote alarm enable
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+
+  # ------------- Status, mode, difference -------------
+  - entity: sensor
+    name: Channel 1 probe status
+    class: enum
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: NORMAL
+            value: normal
+          - dps_val: OPEN
+            value: open_circuit
+          - dps_val: SHORT
+            value: short_circuit
+          - dps_val: UP
+            value: above_limit
+          - dps_val: DOWN
+            value: below_limit
+
+  - entity: sensor
+    name: Channel 2 probe status
+    class: enum
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: NORMAL
+            value: normal
+          - dps_val: OPEN
+            value: open_circuit
+          - dps_val: SHORT
+            value: short_circuit
+          - dps_val: UP
+            value: above_limit
+          - dps_val: DOWN
+            value: below_limit
+
+  - entity: sensor
+    name: Temperature difference
+    class: temperature
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: °
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # ------------- Calibration offsets -------------
+  - entity: number
+    name: Channel 1 calibration
+    class: temperature
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -150
+          max: 150
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Channel 2 calibration
+    class: temperature
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -150
+          max: 150
+        mapping:
+          - scale: 10
+
+  # ------------- Additional “real” temperatures -------------
+  - entity: sensor
+    name: Channel 1 real temperature
+    class: temperature
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Channel 2 real temperature
+    class: temperature
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
