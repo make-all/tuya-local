@@ -1,4 +1,4 @@
-name: oLight Sphere
+name: Ambient light
 products:
   - id: d0dpga0h
     manufacturer: oLight
@@ -73,71 +73,70 @@ entities:
         optional: true
         mapping:
           - dps_val: colour_1
-            value: Colorato
+            value: Colorful
           - dps_val: colour_2
             value: Aurora
           - dps_val: colour_3
-            value: Fuochi d'artificio
+            value: Fireworks
           - dps_val: colour_4
-            value: Fontana
+            value: Fountain
           - dps_val: colour_5
             value: colour_5
           - dps_val: colour_6
-            value: Spirale
+            value: Spiral
           - dps_val: colour_7
             value: colour_7
           - dps_val: colour_8
-            value: Lampo rosso
+            value: Red lightning
           - dps_val: colour_9
-            value: Coriandoli
+            value: Confetti
           - dps_val: colour_10
-            value: Farfalle
+            value: Butterflies
           - dps_val: colour_11
-            value: Flusso
+            value: Flow
           - dps_val: colour_12
-            value: Gradiente
+            value: Gradient
           - dps_val: colour_13
-            value: Carosello
+            value: Carousel
           - dps_val: colour_14
             value: colour_14
           - dps_val: colour_15
-            value: Palla magica
+            value: Magic ball
           - dps_val: colour_16
-            value: Lilla
+            value: Lilac
           - dps_val: colour_17
-            value: Tramonto
+            value: Sunset
           - dps_val: colour_18
-            value: Vibrante
+            value: Vibrant
           - dps_val: colour_19
             value: colour_19
           - dps_val: colour_20
-            value: Luce rossa
+            value: Red light
           - dps_val: colour_21
-            value: Cielo blu
+            value: Blue sky
           - dps_val: colour_22
             value: colour_22
           - dps_val: colour_23
             value: colour_23
           - dps_val: colour_24
-            value: Raccolto
+            value: Harvest
           - dps_val: colour_25
-            value: Fuoco fantasma
+            value: Ghost fire
           - dps_val: colour_26
             value: Zombie
           - dps_val: colour_27
             value: colour_27
           - dps_val: colour_28
-            value: Viola fantasma
+            value: Purple ghost
           - dps_val: colour_29
-            value: Natale
+            value: Christmas
           - dps_val: colour_30
-            value: Bastoncino di zucchero
+            value: Candy cane
           - dps_val: colour_31
-            value: Neve
+            value: Snow
   - entity: time
     translation_key: timer
     category: config
-    hidden: unavailable
     dps:
       - id: 7
         type: integer
@@ -146,14 +145,6 @@ entities:
         range:
           min: 0
           max: 86400
-      - id: 7
-        type: integer
-        optional: true
-        name: available
-        mapping:
-          - dps_val: null
-            value: false
-          - value: true
   - entity: sensor
     class: battery
     dps:
@@ -171,11 +162,3 @@ entities:
         type: boolean
         optional: true
         name: switch
-      - id: 104
-        type: boolean
-        optional: true
-        name: available
-        mapping:
-          - dps_val: null
-            value: false
-          - value: true
