@@ -1,0 +1,111 @@
+name: InkBird Fan Controller
+products:
+  - id: 1oat7zv3bd9ylx2q
+    manufacturer: Inkbird
+    model: IVC-001W
+entities:
+  - entity: fan
+    name: Fan
+    translation_key: fan
+    dps:
+      - id: 1
+        #Yes it is backwards and yes its just as dumb as you are thinking it is
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: off
+          - dps_val: false
+            value: on
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: hand
+            value: manual
+          - dps_val: timing
+            value: smart
+      - id: 103
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 10
+      - id: 132
+        name: raw_status
+        type: string
+        optional: true
+        # DP 132: Base64 Encoded Status String
+        # To decode: Decode Base64 > Read bytes as Big Endian Integers (16-bit)
+        # Byte 0    : Header/Padding (Skip)
+        # Bytes 1-2 : Current Temp °C (x10)
+        # Bytes 3-4 : Current Temp °F (x10)
+        # Bytes 5-6 : Current Humidity % (x10)
+        # Bytes 7-8 : Fan Speed (RPM)
+        # Bytes 9-10: High Temp Alarm Setting °C (x10)
+        # Bytes 11-12: Low Temp Alarm Setting °C (x10)
+  - entity: number
+    name: Target Temperature
+    device_class: temperature
+    category: config
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 16
+        name: value
+        type: integer
+        unit: "°C"
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Temperature Unit
+    translation_key: temperature_unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 23
+        name: option
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: "c"
+          - dps_val: "f"
+            value: "f"
+  - entity: number
+    name: Screen Backlight
+    category: config
+    icon: "mdi:brightness-6"
+    dps:
+      - id: 44
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Temperature Calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 113
+        name: value
+        type: integer
+        unit: "°C"
+        range:
+          min: -100
+          max: 100
+  - entity: number
+    name: Humidity Calibration
+    category: config
+    icon: "mdi:water-check"
+    dps:
+      - id: 114
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: -100
+          max: 100
