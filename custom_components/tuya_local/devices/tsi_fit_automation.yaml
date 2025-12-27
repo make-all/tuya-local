@@ -1,0 +1,20 @@
+name: TSI FIT Automation
+products:
+  - id: c1tdykjhzgasntuz
+    model: TSI FIT
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        name: open
+        type: boolean
