@@ -848,6 +848,7 @@ of device.
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+- Garen TSI Fit garage door opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
