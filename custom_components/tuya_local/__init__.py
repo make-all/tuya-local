@@ -731,6 +731,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             # Standardistion of entity naming to use translation_key
             replacements = {
                 "switch_flip": "switch_flip_image",
+                "number_feed": "number_manual_feed",
+                "number_feed_portions": "number_manual_feed",
+                "number_manual_amount": "number_manual_feed",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
