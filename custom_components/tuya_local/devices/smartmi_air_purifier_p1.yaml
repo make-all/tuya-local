@@ -11,7 +11,7 @@ products:
 
 entities:
   # -------------------------------------------------------
-  # Fan (On/Off + Preset modes)
+  # Fan (On/Off + Preset modes + Speed)
   # -------------------------------------------------------
   - entity: fan
     translation_key: fan_with_presets
@@ -20,33 +20,30 @@ entities:
       - id: 1
         name: switch
         type: boolean
+
+      # Manual fan level -> fan speed (DP109)
+      - id: 109
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 1
+
       - id: 3
         name: preset_mode
         type: string
         mapping:
+          # keep device-side DP values, but map HA-facing values to defined presets
           - dps_val: auto
-            value: auto
+            value: smart
           - dps_val: sleep
             value: sleep
           - dps_val: strong
             value: strong
           - dps_val: manual
-            value: manual
-
-  # -------------------------------------------------------
-  # Manual fan level (manual mode only)
-  # -------------------------------------------------------
-  - entity: number
-    name: Manual fan level
-    category: config
-    icon: mdi:fan-chevron-up
-    dps:
-      - id: 109
-        name: value
-        type: integer
-        range:
-          min: 1
-          max: 100
+            value: normal
 
   # -------------------------------------------------------
   # Sensors
@@ -114,6 +111,7 @@ entities:
 
   - entity: select
     name: Display brightness
+    translation_key: mode
     category: config
     dps:
       - id: 110
@@ -125,6 +123,6 @@ entities:
           - dps_val: BRIGHTNESS_LOW
             value: low
           - dps_val: BRIGHTNESS_OFF
-            value: off
+            value: "off"
           - dps_val: BRIGHTNESS_AUTO
             value: auto
