@@ -1,10 +1,163 @@
-name: Combo heat pump
+name: Arçelik heat pump
 products:
   - id: l01fseshej0xmz8x
-    manufacturer: Arcelik
+    manufacturer: Arçelik
     model: AHPH-MM
 
 entities:
+  # CLIMATE ENTİTELERİ
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 102
+        type: integer
+        name: cool_temperature
+        range:
+          min: 70
+          max: 250
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 250
+          max: 650
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: ["cool", "cool_hot_water"]
+                value_redirect: cool_temperature
+                range:
+                  min: 70
+                  max: 250
+              - dps_val: ["auto", "auto_dhw"]
+                value_redirect: auto_temperature
+                range:
+                  min: 70
+                  max: 600
+      - id: 105
+        type: integer
+        optional: true
+        name: auto_temperature
+        range:
+          min: 70
+          max: 600
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 109
+        type: string
+        name: water_off
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: true
+          - dps_val: heat
+            value: true
+          - dps_val: auto
+            value: true
+          - value: false
+      - id: 109
+        type: string
+        name: water_on
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: false
+          - dps_val: heat
+            value: false
+          - dps_val: auto
+            value: false
+          - value: true
+      - id: 109
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: cool
+            value: cool
+            available: water_off
+          - dps_val: heat
+            value: heat
+            available: water_off
+          - dps_val: auto
+            value: heat_cool
+            available: water_off
+          - dps_val: hot_water
+            value: "off"
+            available: water_on
+          - dps_val: cool_hot_water
+            value: cool
+            available: water_on
+          - dps_val: heat_hot_water
+            value: heat
+            available: water_on
+          - dps_val: auto_dhw
+            value: heat_cool
+            available: water_on
+      - id: 117
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            constraint: hvac_mode
+            conditions:
+              - dps_val: ["cool", "cool_hot_water"]
+                value: cooling
+              - dps_val: ["heat", "heat_hot_water"]
+                value: heating
+              - dps_val: "hot_water"
+                value: idle
+              - dps_val: ["auto", "auto_dhw"]
+                value: null
+      - id: 106
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+  # HOTWATER ENTİTELERİ          
+  - entity: water_heater
+    translation_only_key: water_air
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 104
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 250
+          max: 600
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 108
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 165
+        type: boolean
+        optional: true
+        name: away_mode
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true  
   # SWITCH ENTİTELERİ
   - entity: switch
     name: Power
@@ -174,26 +327,27 @@ entities:
   - entity: select
     name: Work Mode
     icon: "mdi:air-conditioner"
+    translation_key: heat_pump_mode
     category: config
     dps:
       - id: 109
         type: string
         name: option
         mapping:
-          - dps_val: "cool"
-            value: "cool"
-          - dps_val: "heat"
-            value: "heat"
-          - dps_val: "auto"
-            value: "auto"
-          - dps_val: "hot_water"
-            value: "hot_water"
-          - dps_val: "cool_hot_water"
-            value: "cool_hot_water"
-          - dps_val: "heat_hot_water"
-            value: "heat_hot_water"
-          - dps_val: "auto_dhw"
-            value: "auto_dhw"
+          - dps_val: cool
+            value: cool
+          - dps_val: heat
+            value: heat
+          - dps_val: auto
+            value: auto
+          - dps_val: hot_water
+            value: hotwater
+          - dps_val: cool_hot_water
+            value: hotwater_cool
+          - dps_val: heat_hot_water
+            value: hotwater_heat
+          - dps_val: auto_dhw
+            value: hotwater_auto
 
   # SICAKLIK SENSÖRLERI
   - entity: sensor
