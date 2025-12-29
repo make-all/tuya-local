@@ -153,12 +153,15 @@ entities:
         name: operation_mode
         mapping:
           - dps_val: hot_water
-            value_redirect: power
             available: air_off
             # dummy conditions to make the values known to HA
             conditions:
-              - value: "off"
-              - value: heat_pump
+              - dps_val: hot_water
+                value_redirect: power
+                value: "off"
+              - dps_val: hot_water
+                value_redirect: power
+                value: heat_pump
           - dps_val: cool
             value: "off"
             available: air_cool
