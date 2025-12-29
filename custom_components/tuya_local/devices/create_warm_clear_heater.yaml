@@ -1,4 +1,4 @@
-name: Vertical Heater
+name: Heater
 products:
   - id: ggz9d3bputnvntlx
     manufacturer: Create
@@ -51,10 +51,16 @@ entities:
             value: idle
           - dps_val: working
             value: heating
+  - entity: text
+    name: Custom program
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
       - id: 26
         type: string
         optional: true
-        name: custom_program
+        name: value
   - entity: select
     translation_key: timer
     category: config
@@ -124,7 +130,6 @@ entities:
         unit: min
   - entity: switch
     translation_key: sleep
-    icon: "mdi:weather-night"
     category: config
     dps:
       - id: 103
