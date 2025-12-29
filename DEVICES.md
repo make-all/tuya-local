@@ -238,6 +238,7 @@
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
+- Konlen WF72TT/WF96TT dual temperature controller
 - Ledlux thermostat
 - ME80 touchscreen thermostat
 - Mi-Heat TH11-WF thermostat
@@ -805,6 +806,7 @@ of device.
 - NemoLight Extreme Series aquarium light
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
+- oLight Sphere ambient light
 - Outon Smart Lamp
 - Peteme recessed lighting
 - PowerAsia RGB 6-inch recessed lighting
@@ -846,6 +848,7 @@ of device.
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+- Garen TSI Fit garage door opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
@@ -1082,6 +1085,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
+- Sunlary indoor plant watering system
 - Wasserstein AquaPal water monitor
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
 

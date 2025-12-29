@@ -22,7 +22,7 @@ entities:
         sensitive: true
         name: snapshot
   - entity: switch
-    name: Flip image
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -131,9 +131,7 @@ entities:
           - dps_val: "2"
             value: Continuous
   - entity: number
-    name: Feed portions
-    category: config
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 231
         type: integer
