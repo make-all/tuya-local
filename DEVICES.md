@@ -17,6 +17,7 @@
 - Calex Smart Convector heater
 - Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cleverio AR10/AR20 panel heaters
+- Create Warm Clear vertical heater
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
