@@ -101,6 +101,17 @@ entities:
           - dps_val: auto_dhw
             value: heat_cool
             available: water_on
+          - value: "off"
+            available: water_off
+            value_redirect: power
+      - id: 1
+        type: boolean
+        name: power
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
       - id: 115
         type: boolean
         name: hvac_action
@@ -142,8 +153,12 @@ entities:
         name: operation_mode
         mapping:
           - dps_val: hot_water
-            value_redirect: actual_power
+            value_redirect: power
             available: air_off
+            # dummy conditions to make the values known to HA
+            conditions:
+              - value: "off"
+              - value: heat_pump
           - dps_val: cool
             value: "off"
             available: air_cool
@@ -164,7 +179,7 @@ entities:
             available: air_auto
       - id: 1
         type: boolean
-        name: actual_power
+        name: power
         hidden: true
         mapping:
           - dps_val: false
