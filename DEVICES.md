@@ -17,6 +17,7 @@
 - Calex Smart Convector heater
 - Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cleverio AR10/AR20 panel heaters
+- Create Warm Clear vertical heater
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
@@ -173,6 +174,7 @@
 
 - Apricus heat pump water heater
 - Aquatech Rapid/X6 heat pump water heater
+- Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system

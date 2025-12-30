@@ -1181,3 +1181,5 @@ Further device support has been made with the assistance of users. Please consid
 - [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
 - [met67](https://github.com/met67) for contributing support for oLight Sphere ambient light.
 - [KSVl](https://github.com/KSVl) for contributing support for Konlen WF72TT/WF96TT dual temperature controller.
+- [carpabg](https://github.com/carpabg) for contributing support for Create Warm Clear heater.
+- [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
