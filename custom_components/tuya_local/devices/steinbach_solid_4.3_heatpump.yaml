@@ -72,3 +72,14 @@ entities:
       - id: 21
         type: bitfield
         name: fault_code
+  - entity: sensor
+    name: Ventilation RPM
+    class: speed
+    category: diagnostic
+    icon: mdi:fan
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: "rpm"
