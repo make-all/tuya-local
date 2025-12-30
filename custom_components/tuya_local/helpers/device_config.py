@@ -476,10 +476,8 @@ class TuyaDpsConfig:
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask
-        
         # Get raw value directly avoiding accidental scaling by decoded_value()
         raw_from_device = device.get_property(self.id)
-        
         # Decode only if strictly required (hex/base64) otherwise assume it's the raw int
         if self.rawtype in ["hex", "base64", "utf16b64"]:
             bytevalue = self.decode_value(raw_from_device, device)
@@ -496,15 +494,15 @@ class TuyaDpsConfig:
                 # Count how many bits are set in the mask
                 bit_count = mask.bit_count()
                 raw_result = to_signed(raw_result, bit_count)
-            
+
             return self._map_from_dps(raw_result, device)
-            
+
         elif mask and isinstance(bytevalue, int):
             # Handle masking for integer DPs
             scale = mask & (1 + ~mask)
             raw_result = (bytevalue & mask) // scale
             return self._map_from_dps(raw_result, device)
-            
+
         else:
             return self._map_from_dps(raw_from_device, device)
 
