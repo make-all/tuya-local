@@ -1,6 +1,6 @@
 name: Stadler Form Lukas
 products:
-  - id: bf4b1d3329427223dczfve
+  - id: 6ny5ejcir57trwao
     manufacturer: Stadler Form
     model: Lukas
 
@@ -12,15 +12,15 @@ entities:
       - id: 1
         type: boolean
         name: switch
-
+        
       - id: 5
         name: mode
         type: string
         mapping:
           - dps_val: "DRY"
-            value: DRY
+            value: normal
           - dps_val: "LAUNDRY"
-            value: LAUNDRY
+            value: laundry
 
       - id: 3
         name: humidity
@@ -52,7 +52,6 @@ entities:
           - dps_val: "4"
             value: "4"
 
-
   # Swing
   - entity: switch
     name: Swing
@@ -61,9 +60,9 @@ entities:
         type: boolean
         name: switch
 
-  # Sleep-Mode
+  # Night mode
   - entity: switch
-    name: "Night Mode"
+    translation_key: sleep
     dps:
       - id: 14
         type: boolean
@@ -77,7 +76,7 @@ entities:
         type: boolean
         name: lock
 
-  # Error handling
+  # Error bitfield
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -88,27 +87,35 @@ entities:
         mapping:
           - dps_val: 0
             value: false
-          # No error
-          - dps_val: null
+          - dps_val: 2
             value: false
-          # Default: some bit is set → error
+          - dps_val: 4
+            value: false
           - value: true
       - id: 19
         type: bitfield
-        name: fault
+        name: fault_code
+
+  # Tank full
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
       - id: 19
-        name: description
         type: bitfield
+        name: sensor
         mapping:
-          - dps_val: 0
-            value: OK
-          - dps_val: 1
-            value: "C8 – Refrigerant Leak"
           - dps_val: 2
-            value: "Water Tank Full or Removed"
+            value: true
+          - value: false
+
+  # Defrost mode
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 4
-            value: "P1 – Defrost Mode"
-          - dps_val: 8
-            value: "C1 – Defrost NTC Sensor Fault"
-          - dps_val: 16
-            value: "C2 – Room Temperature NTC Sensor Fault"
+            value: true
+          - value: false
