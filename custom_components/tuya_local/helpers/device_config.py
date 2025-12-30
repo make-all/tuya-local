@@ -477,14 +477,14 @@ class TuyaDpsConfig:
         """Return the value of the dps from the given device."""
         mask = self.mask
         
-        # Get raw value directly, avoiding accidental scaling by decoded_value()
+        # Get raw value directly avoiding accidental scaling by decoded_value()
         raw_from_device = device.get_property(self.id)
         
-        # Decode only if strictly required (hex/base64), otherwise assume it's the raw int
+        # Decode only if strictly required (hex/base64) otherwise assume it's the raw int
         if self.rawtype in ["hex", "base64", "utf16b64"]:
-             bytevalue = self.decode_value(raw_from_device, device)
+            bytevalue = self.decode_value(raw_from_device, device)
         else:
-             bytevalue = raw_from_device
+            bytevalue = raw_from_device
 
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness)
@@ -1092,19 +1092,19 @@ class TuyaDpsConfig:
             # Get raw current value directly (avoids scaling being auto applied as it causes issues)
             raw_current = device.get_property(self.id)
             if self.id in pending_map:
-				decoded_value = self.decode_value(pending_map[self.id], device)
+                decoded_value = self.decode_value(pending_map[self.id], device)
             else:
-                 if self.rawtype in ["hex", "base64", "utf16b64"]:
-                      decoded_value = self.decode_value(raw_current, device)
-                 else:
-                      decoded_value = raw_current
+                if self.rawtype in ["hex", "base64", "utf16b64"]:
+                    decoded_value = self.decode_value(raw_current, device)
+                else:
+                    decoded_value = raw_current
 
             if isinstance(decoded_value, int):
                 current_value = decoded_value
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
                 # Only convert back to bytes if the DP is actually hex/base64
                 if self.rawtype in ["hex", "base64", "utf16b64"]:
-                     result = self.encode_value(result.to_bytes(length, endianness))
+                    result = self.encode_value(result.to_bytes(length, endianness))
             else:
                 # Bytes path (original logic)
                 current_value = int.from_bytes(decoded_value, endianness)
