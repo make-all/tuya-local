@@ -1184,3 +1184,4 @@ Further device support has been made with the assistance of users. Please consid
 - [carpabg](https://github.com/carpabg) for contributing support for Create Warm Clear heater.
 - [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
 - [Rigoweb](https://github.com/Rigoweb) for contributing support for Stadler Form Lukas dehumidifier.
+- [kelemenlajos](https://github.com/kelemenlajos) for assisting with support for Klarstein Airfold Smart ceiling fan with light.
