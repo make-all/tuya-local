@@ -798,7 +798,7 @@ Further device support has been made with the assistance of users. Please consid
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
 - [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier and improved Italian translations.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
-- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter, Sibrape CBC-Pool BP heat pump.
+- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter, Sibrape CBC-Pool BP heat pump, Garen TSI Fit garage opener.
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
@@ -1181,3 +1181,6 @@ Further device support has been made with the assistance of users. Please consid
 - [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
 - [met67](https://github.com/met67) for contributing support for oLight Sphere ambient light.
 - [KSVl](https://github.com/KSVl) for contributing support for Konlen WF72TT/WF96TT dual temperature controller.
+- [carpabg](https://github.com/carpabg) for contributing support for Create Warm Clear heater.
+- [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
+- [Rigoweb](https://github.com/Rigoweb) for contributing support for Stadler Form Lukas dehumidifier.

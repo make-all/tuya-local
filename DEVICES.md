@@ -17,6 +17,7 @@
 - Calex Smart Convector heater
 - Cecotec ReadyWarm 8400 Fan and 2000 Max Box Ceramic heaters
 - Cleverio AR10/AR20 panel heaters
+- Create Warm Clear vertical heater
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
@@ -173,6 +174,7 @@
 
 - Apricus heat pump water heater
 - Aquatech Rapid/X6 heat pump water heater
+- Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
@@ -451,6 +453,7 @@
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
 - Siguro SGR DH-F300W dehumidifier
+- Stadler Form Lukas dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
@@ -848,6 +851,7 @@ of device.
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+- Garen TSI Fit garage door opener
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
