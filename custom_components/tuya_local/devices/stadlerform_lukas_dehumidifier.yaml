@@ -1,4 +1,4 @@
-name: Stadler Form Lukas
+name: Dehumidifier
 products:
   - id: 6ny5ejcir57trwao
     manufacturer: Stadler Form
@@ -36,29 +36,26 @@ entities:
         name: current_humidity
 
   # Fan speed (1–4)
-  - entity: select
-    name: "Fan Speed"
+  - entity: fan
     dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: "1"
-            value: "1"
-          - dps_val: "2"
-            value: "2"
-          - dps_val: "3"
-            value: "3"
-          - dps_val: "4"
-            value: "4"
-
-  # Swing
-  - entity: switch
-    name: Swing
-    dps:
-      - id: 8
+      - id: 1
         type: boolean
         name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 25"
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 75
+          - dps_val: "4"
+            value: 100
+      - id: 8
+        type: boolean
+        name: oscillate
 
   # Night mode
   - entity: switch
@@ -70,7 +67,7 @@ entities:
 
   # Child lock
   - entity: lock
-    name: "Child Lock"
+    translation_key: child_lock
     dps:
       - id: 16
         type: boolean
