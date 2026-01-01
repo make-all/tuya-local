@@ -1185,3 +1185,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
 - [Rigoweb](https://github.com/Rigoweb) for contributing support for Stadler Form Lukas dehumidifier.
 - [kelemenlajos](https://github.com/kelemenlajos) for assisting with support for Klarstein Airfold Smart ceiling fan with light.
+- [Permanently](https://github.com/Permanently) for contributing support for Migou Mini-F litter box, which was merged with Mini-B.
