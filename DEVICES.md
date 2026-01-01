@@ -1011,6 +1011,7 @@ port and password.
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
 - Els Pet Spaceship pet litter box
+- Evergreen Solar bird feeder camera
 - Faroro PF50 pet feeder
 - FeelNeedy P-LFP01 camera pet feeder
 - Fukumaru AF01-W pet feeder
