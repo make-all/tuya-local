@@ -1164,7 +1164,7 @@ Further device support has been made with the assistance of users. Please consid
 - [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
 - [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.
 - [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
-- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan.
+- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan, SmartMi P1 air purifier.
 - [flemmingkok](https://github.com/flemmingkok) for assisting with support for InTec ceiling fan with light.
 - [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
 - [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.

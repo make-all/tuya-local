@@ -403,8 +403,7 @@
 - Proscenic A8 and A9 air purifiers
 - Renpho RP-AP001S air purifier
 - Siguro Air Master AP-K50 air purifier
-- Smartmi E1 air purifier
-- Smartmi Air Purifier P1 air purifier
+- Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
