@@ -1,8 +1,9 @@
-name: Solar smart bird feeder camera
+name: Bird feeder
 products:
   - id: fxjotzm0dpphywnu
     manufacturer: Evergreen
-    model: ZCT2BF25510
+    model: Solar Smart Bird Feeder Camera
+    model_id: ZCT2BF25510
 entities:
   - entity: camera
     dps:
@@ -24,7 +25,7 @@ entities:
         type: boolean
         name: switch
   - entity: light
-    name: Green LED indicator
+    translation_key: indicator
     category: config
     icon: "mdi:led-on"
     dps:
@@ -62,7 +63,7 @@ entities:
         optional: true
         force: true
   - entity: switch
-    name: Flip image
+    translation_key: flip_image
     category: config
     icon: "mdi:flip-horizontal"
     dps:
@@ -72,7 +73,7 @@ entities:
         optional: true
         force: true
   - entity: switch
-    name: OSD watermark
+    name: Watermark
     category: config
     icon: "mdi:watermark"
     dps:
@@ -83,6 +84,7 @@ entities:
         force: true
   - entity: select
     name: Night vision
+    translation_key: mode
     category: config
     icon: "mdi:theme-light-dark"
     dps:
@@ -91,16 +93,17 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Auto"
+            value: "auto"
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
         optional: true
         force: true
   - entity: select
     name: Motion sensitivity
     category: config
+    translation_key: mode
     icon: "mdi:motion-sensor"
     dps:
       - id: 106
@@ -108,11 +111,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Low"
+            value: "low"
           - dps_val: "1"
-            value: "Medium"
+            value: "medium"
           - dps_val: "2"
-            value: "High"
+            value: "high"
         optional: true
         force: true
   - entity: switch
@@ -160,7 +163,7 @@ entities:
             value: normal
             hidden: true
   - entity: select
-    name: Bird detection mode
+    translation_key: activation_mode
     category: config
     icon: "mdi:Bird"
     dps:
@@ -169,11 +172,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Motion Detection"
+            value: motion
           - dps_val: "1"
-            value: "Bird Detection"
+            value: smart
           - dps_val: "2"
-            value: "Detection Off"
+            value: "off"
         optional: true
         force: true
   - entity: switch
@@ -211,7 +214,7 @@ entities:
   - entity: select
     name: Recording duration setting
     class: enum
-    translation_key: status
+    translation_key: timer
     category: config
     icon: "mdi:micro-sd"
     dps:
@@ -228,4 +231,4 @@ entities:
           - dps_val: 3
             value: 45s
           - dps_val: 4
-            value: 60s
+            value: 1m
