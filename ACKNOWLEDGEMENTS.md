@@ -1187,3 +1187,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kelemenlajos](https://github.com/kelemenlajos) for assisting with support for Klarstein Airfold Smart ceiling fan with light.
 - [Permanently](https://github.com/Permanently) for contributing support for Migou Mini-F litter box, which was merged with Mini-B.
 - [deadman96385](https://github.com/deadman96385) for contributing support for Evergreen Solar bird feeder camera.
+- [domwrap](https://github.com/domwrap) for contributing support for Jafanda JF500 air purifier.
