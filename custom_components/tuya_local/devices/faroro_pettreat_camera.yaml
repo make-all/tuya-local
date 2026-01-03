@@ -1,4 +1,4 @@
-name: Faroro Pet Treat Camera
+name: Pet Treat Camera
 products:
   - id: m6xa97cporn9eqzy
     manufacturer: Faroro
@@ -13,42 +13,43 @@ entities:
         name: button
         optional: true
   - entity: switch
-    name: Flip Video
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
         type: boolean
         name: switch
   - entity: select
-    name: Night Vision
+    name: Night vision mode
+    translation_key: light_mode
     category: config
     dps:
       - id: 108
         type: string
         name: option
         mapping:
-          - dps_val: "0"
-            value: "Auto"
-          - dps_val: "1"
-            value: "On"
-          - dps_val: "2"
-            value: "Off"
+          - dps_val: 0
+            value: auto
+          - dps_val: 1
+            value: "on"
+          - dps_val: 2
+            value: "off"
   - entity: switch
-    name: Motion Sensing
+    name: Motion sensing
     category: config
     dps:
       - id: 134
         type: boolean
         name: switch
   - entity: switch
-    name: Use Motion Area Map
+    name: Use motion area map
     category: config
     dps:
       - id: 168
         type: boolean
         name: switch
   - entity: text
-    name: Motion Area Map
+    name: Motion area map
     category: config
     hidden: true
     dps:
@@ -57,6 +58,7 @@ entities:
         name: value
   - entity: sensor
     name: Feed status
+    translation_key: status
     icon: "mdi:paw"
     category: diagnostic
     class: enum
@@ -67,6 +69,6 @@ entities:
         optional: true
         mapping:
           - dps_val: 0
-            value: Feeding Failed
+            value: fault
           - dps_val: 1
-            value: Feeding Successful
+            value: feeding_complete
