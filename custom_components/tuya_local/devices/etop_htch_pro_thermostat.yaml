@@ -116,9 +116,8 @@ entities:
         type: boolean
         name: lock
   - entity: number
-    name: "Setpoint min"
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-low"
     class: temperature
     mode: slider
     dps:
@@ -133,8 +132,7 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: "Setpoint max"
-    icon: "mdi:thermometer-high"
+    translation_key: maximum_temperature
     category: config
     class: temperature
     mode: slider
@@ -178,7 +176,8 @@ entities:
         type: bitfield
         name: fault_code
   - entity: select
-    name: "Heat/Cold"
+    name: "Control mode"
+    translation_key: heat_pump_mode
     category: config
     dps:
       - id: 102
@@ -188,4 +187,4 @@ entities:
           - dps_val: heat
             value: heat
           - dps_val: cold
-            value: cold
+            value: cool
