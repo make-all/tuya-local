@@ -13,16 +13,15 @@ entities:
           - dps_val: true
             value: "off"
           - dps_val: false
-            constraint: 140
-            conditions:
-              - dps_val: Manual
-                value: heat
-              - dps_val: Schedule
-                value: auto
-              - dps_val: Override
-                value: heat
-              - dps_val: Off
-                value: "off"
+            value: heat
+      - id: 152
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
       - id: 107
         name: temperature
         type: integer
@@ -49,6 +48,8 @@ entities:
             value: program
           - dps_val: Override
             value: boost
+          - dps_val: Off
+            value: off
       - id: 152
         name: hvac_action
         type: boolean
@@ -65,6 +66,7 @@ entities:
       - id: 105
         name: sensor
         type: integer
+        unit: C
         mapping:
           - scale: 100
   - entity: sensor
@@ -74,6 +76,7 @@ entities:
     dps:
       - id: 150
         name: sensor
+        type: integer
         unit: W
   - entity: sensor
     name: Energy
@@ -82,4 +85,5 @@ entities:
     dps:
       - id: 151
         name: sensor
+        type: integer
         unit: Wh
