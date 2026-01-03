@@ -114,10 +114,12 @@ entities:
         name: current_temperature
 
   - entity: water_heater
+    translation_only_key: hot_water
     dps:
       - id: 12
         type: integer
         name: temperature
+        unit: C
         range:
           min: 10
           max: 100

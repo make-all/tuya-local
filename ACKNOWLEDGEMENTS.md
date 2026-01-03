@@ -438,7 +438,7 @@ Further device support has been made with the assistance of users. Please consid
 - [sevimuelli](https://github.com/sevimuelli) for contributing support for Eeese Anna dehumidifiers.
 - [tataihono](https://github.com/tataihono) for contributing support for Arlec portable air conditioners.
 - [longer83](https://github.com/longer83) for assisting with support for Cleverio AD100 dehumidifiers.
-- [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meters.
+- [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meter, Neo NAS-WV02W water valve.
 - [fireheadman](https://github.com/fireheadman) for assisting with support for WF39M dimmer smartplugs.
 - [yousaf465](https://github.com/yousaf465) for contributing Urdu translations.
 - [wisemanny](https://github.com/wisemanny) for contributing support for Zigbee Door/Window sensors and Loratap QCSC400ZB Zigbee curtain switches.
@@ -1164,7 +1164,7 @@ Further device support has been made with the assistance of users. Please consid
 - [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
 - [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.
 - [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
-- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan.
+- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan, SmartMi P1 air purifier.
 - [flemmingkok](https://github.com/flemmingkok) for assisting with support for InTec ceiling fan with light.
 - [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
 - [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
@@ -1183,3 +1183,10 @@ Further device support has been made with the assistance of users. Please consid
 - [KSVl](https://github.com/KSVl) for contributing support for Konlen WF72TT/WF96TT dual temperature controller.
 - [carpabg](https://github.com/carpabg) for contributing support for Create Warm Clear heater.
 - [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
+- [Rigoweb](https://github.com/Rigoweb) for contributing support for Stadler Form Lukas dehumidifier.
+- [kelemenlajos](https://github.com/kelemenlajos) for assisting with support for Klarstein Airfold Smart ceiling fan with light.
+- [Permanently](https://github.com/Permanently) for contributing support for Migou Mini-F litter box, which was merged with Mini-B.
+- [deadman96385](https://github.com/deadman96385) for contributing support for Evergreen Solar bird feeder camera.
+- [domwrap](https://github.com/domwrap) for contributing support for Jafanda JF500 air purifier.
+- [jarivanb](https://github.com/jarivanb) for contributing improvements to Steinbach Solid 4.3 heat pump.
+- [10-p](https://github.com/10-p) for assisting with support for Garza Aspen boiler thermostat.

@@ -231,7 +231,7 @@
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
-- Garza thermostat
+- Garza Aspen and (unknown model) thermostats
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
@@ -332,6 +332,7 @@
 - InTec ceiling fan with light
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
+- Klarstein Airfold Smart ceiling fan with light
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
@@ -390,7 +391,7 @@
 - Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
-- Jafanda JF260S air purifier
+- Jafanda JF260S and JF500 air purifiers
 - Kilo Plus air purifier
 - Klarta Stor 2 and Forste 4 air purifiers
 - Kogan 2S and 5 pro air purifiers
@@ -402,7 +403,7 @@
 - Proscenic A8 and A9 air purifiers
 - Renpho RP-AP001S air purifier
 - Siguro Air Master AP-K50 air purifier
-- Smartmi E1 air purifier
+- Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
@@ -453,6 +454,7 @@
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
 - Siguro SGR DH-F300W dehumidifier
+- Stadler Form Lukas dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
@@ -1009,6 +1011,7 @@ port and password.
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
 - Els Pet Spaceship pet litter box
+- Evergreen Solar bird feeder camera
 - Faroro PF50 pet feeder
 - Faroro TD20 pet treat camera
 - FeelNeedy P-LFP01 camera pet feeder
@@ -1084,6 +1087,7 @@ port and password.
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
 - KRain KRX8 irrigation controller
+- Neo NAS-WV02W water use monitoring valve
 - Neptun Smart water leak control system
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller

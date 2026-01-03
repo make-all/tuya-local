@@ -33,7 +33,7 @@
             },
             "local": {
                 "title": "Configureu el vostre dispositiu Tuya Local",
-                "description": "[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.](https://github.com/make-all/tuya-local)finding-your-device-id-and-local-key)",
+                "description": "[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adreça IP o nom d'amfitrió",
                     "device_id": "ID del dispositiu (o ID del dispositiu del centre per a dispositius connectats a través de la passarel·la)",
@@ -89,7 +89,7 @@
                     "protocol_version": "Versió del protocol (intenteu-ho automàticament si no es coneix)",
                     "poll_only": "Només enquestes (proveu això si el vostre dispositiu no funciona completament)"
                 },
-                "description": "[Seguiu aquestes instruccions per a trobar la vostra clau local.](https://github.com/make-all/tuya-local)finding-your-device-id-and-local-key)"
+                "description": "[Seguiu aquestes instruccions per a trobar la vostra clau local.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)"
             }
         },
         "abort": {
@@ -766,7 +766,10 @@
                 "state": {
                     "cancel": "Cancel·la",
                     "continuous": "Continu",
+                    "15s": "15 segons",
+                    "20s": "20 segons",
                     "30s": "30 segons",
+                    "45s": "45 segons",
                     "1m": "1 minut",
                     "2m": "2 minuts",
                     "5m": "5 minuts",
@@ -869,7 +872,8 @@
                     "normal": "Normal",
                     "smart": "Intel·ligent",
                     "night": "Nit",
-                    "motion": "Moviment"
+                    "motion": "Moviment",
+                    "off": "Apagat"
                 }
             },
             "bidet_mode": {
@@ -1070,6 +1074,9 @@
             },
             "kettle": {
                 "name": "Bullidor d'aigua"
+            },
+            "hot_water": {
+                "name": "Aigua calenta"
             }
         }
     }
