@@ -2,7 +2,11 @@ name: Litter box
 
 products:
   - id: "93at0k76rfvteseb"
+    manufacturer: Migou
     model: MINI-B-Public
+  - id: "y3xefowizhyexugf"
+    manufacturer: Migou
+    model: MINI-F-Public
 
 entities:
   - entity: switch
@@ -88,8 +92,9 @@ entities:
         name: button
 
   - entity: button
-    name: Reset
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 23
         type: boolean
