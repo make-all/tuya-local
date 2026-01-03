@@ -1,0 +1,264 @@
+name: Meaco DD8L Pro Dehumidifier
+products:
+  - id: meaco_dd8l_pro
+    name: Meaco DD8L Pro
+
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - scale: 1
+            step: 5
+      - id: 6
+        name: current_humidity
+        type: integer
+        class: measurement
+      # --- FIX START: Added Mode Control on DPS 5 ---
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: dehumidify
+            value: "Smart Humidity"
+          - dps_val: drying
+            value: "Laundry"
+          - dps_val: Sleep
+            value: "Sleep"
+      # --- FIX END ---
+
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Operating status
+    category: diagnostic
+    class: enum
+    icon: "mdi:state-machine"
+    dps:
+      - id: 5
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: drying
+            value: Drying
+          - dps_val: dehumidify
+            value: Dehumidifying
+          - dps_val: Sleep
+            value: Sleep
+          - dps_val: standby
+            value: Standby
+          - dps_val: fault
+            value: Fault
+          - dps_val: filter_c1
+            value: Clean Filter C1
+          - dps_val: filter_c2
+            value: Clean Filter C2
+          - dps_val: cable_tidy
+            value: Connect Cable Tidy
+          - dps_val: room_temp
+            value: Room Temperature Issue
+
+  - entity: select
+    name: Off timer
+    icon: "mdi:timer-off"
+    category: config
+    dps:
+      - id: 17
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 1h
+            value: 1 hour
+          - dps_val: 2h
+            value: 2 hours
+          - dps_val: 3h
+            value: 3 hours
+          - dps_val: 4h
+            value: 4 hours
+          - dps_val: 5h
+            value: 5 hours
+          - dps_val: 6h
+            value: 6 hours
+          - dps_val: 7h
+            value: 7 hours
+          - dps_val: 8h
+            value: 8 hours
+          - dps_val: 9h
+            value: 9 hours
+          - dps_val: 10h
+            value: 10 hours
+          - dps_val: 11h
+            value: 11 hours
+          - dps_val: 12h
+            value: 12 hours
+          - dps_val: 13h
+            value: 13 hours
+          - dps_val: 14h
+            value: 14 hours
+          - dps_val: 15h
+            value: 15 hours
+          - dps_val: 16h
+            value: 16 hours
+          - dps_val: 17h
+            value: 17 hours
+          - dps_val: 18h
+            value: 18 hours
+          - dps_val: 19h
+            value: 19 hours
+          - dps_val: 20h
+            value: 20 hours
+          - dps_val: 21h
+            value: 21 hours
+          - dps_val: 22h
+            value: 22 hours
+          - dps_val: 23h
+            value: 23 hours
+          - dps_val: 24h
+            value: 24 hours
+
+  - entity: sensor
+    name: Timer remaining
+    category: diagnostic
+    class: enum
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 17
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 5h
+            value: 5h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 7h
+            value: 7h
+          - dps_val: 8h
+            value: 8h
+          - dps_val: 9h
+            value: 9h
+          - dps_val: 10h
+            value: 10h
+          - dps_val: 11h
+            value: 11h
+          - dps_val: 12h
+            value: 12h
+          - dps_val: 13h
+            value: 13h
+          - dps_val: 14h
+            value: 14h
+          - dps_val: 15h
+            value: 15h
+          - dps_val: 16h
+            value: 16h
+          - dps_val: 17h
+            value: 17h
+          - dps_val: 18h
+            value: 18h
+          - dps_val: 19h
+            value: 19h
+          - dps_val: 20h
+            value: 20h
+          - dps_val: 21h
+            value: 21h
+          - dps_val: 22h
+            value: 22h
+          - dps_val: 23h
+            value: 23h
+          - dps_val: 24h
+            value: 24h
+
+  - entity: select
+    name: Fan mode
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: 200w
+            value: 200W (Lowest)
+          - dps_val: 400w
+            value: 400W
+          - dps_val: 600w
+            value: 600W (Highest)
+          - dps_val: auto
+            value: Auto
+
+  - entity: select
+    name: Swing mode
+    icon: "mdi:swap-vertical"
+    category: config
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: b_swing
+            value: Big (Wide swing)
+          - dps_val: m_swing
+            value: Medium
+          - dps_val: s_swing
+            value: Small
+          - dps_val: n_swing
+            value: Static (Fixed)
+
+  - entity: binary_sensor
+    name: Tank full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 16
+        name: lock
+        type: boolean
+
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
