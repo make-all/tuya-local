@@ -1,0 +1,191 @@
+name: Thermostat
+products:
+  - id: qgrid1yqzkhmi7ua
+    manufacturer: PNI
+    model: CT-36 PRO
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: eco
+            value: eco
+          - dps_val: auto
+            value: auto
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - value: idle
+      - id: 24
+        type: integer
+        name: current_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 26
+        type: integer
+        name: min_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        range:
+          min: 50
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 101
+        type: integer
+        optional: true
+        name: dead_zone
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: window_opened
+            value: true
+          - value: false
+  - entity: switch
+    name: Window detection
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+      - id: 8
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: number
+    name: "Setpoint min"
+    category: config
+    icon: "mdi:thermometer-low"
+    class: temperature
+    mode: slider
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: "Setpoint max"
+    icon: "mdi:thermometer-high"
+    category: config
+    class: temperature
+    mode: slider
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        unit: °
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: "Heat/Cold"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: heat
+            value: heat
+          - dps_val: cold
+            value: cold
