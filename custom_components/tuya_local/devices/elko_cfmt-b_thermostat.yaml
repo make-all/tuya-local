@@ -5,6 +5,7 @@ products:
     model: EKO07262
 entities:
   - entity: climate
+    translation_key: thermostat
     dps:
       - id: 116
         name: hvac_mode
@@ -48,16 +49,8 @@ entities:
             value: program
           - dps_val: Override
             value: boost
-          - dps_val: Off
-            value: off
-      - id: 152
-        name: hvac_action
-        type: boolean
-        mapping:
-          - dps_val: true
-            value: heating
-          - dps_val: false
-            value: idle
+          - dps_val: "Off"
+            value: none
   - entity: sensor
     name: Floor Temperature
     class: temperature
@@ -67,10 +60,10 @@ entities:
         name: sensor
         type: integer
         unit: C
+        state_class: measurement
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -78,8 +71,8 @@ entities:
         name: sensor
         type: integer
         unit: W
+        state_class: measurement
   - entity: sensor
-    name: Energy
     class: energy
     category: diagnostic
     dps:
@@ -87,3 +80,4 @@ entities:
         name: sensor
         type: integer
         unit: Wh
+        state_class: total_increasing
