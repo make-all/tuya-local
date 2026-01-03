@@ -1,0 +1,444 @@
+name: Boiler thermostat
+products:
+  - id: bmhaqlm7wc2trxfg
+    manufacturer: Garza
+    model: Aspen
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 3
+        type: string
+        name: work_state
+        hidden: true
+      - id: 4
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 500
+        unit: C
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 131
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "1"
+            value: defrosting
+          - value: idle
+            constraint: work_state
+            conditions:
+              - dps_val: heating
+                value: heating
+  - entity: switch
+    name: Window open detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: -60
+          max: 60
+        mapping:
+          - scale: 10
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor mode
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 43
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: t1
+            value: Room temperature
+          - dps_val: t2
+            value: Floor temperature
+          - dps_val: t3
+            value: Dual temperature, dual control
+            available: dual_control
+          - dps_val: t4
+            value: Climate compensation
+          - dps_val: null
+            value: Room temperature
+            hidden: true
+      - id: 136
+        type: string
+        optional: true
+        name: dual_control
+        hidden: true
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: switch
+    name: Optimal start
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Boost timer
+    category: config
+    icon: "mdi:fire"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 9
+  - entity: event
+    name: Pairing
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: p0
+            value: failed
+          - dps_val: p1
+            value: paired
+          - dps_val: p2
+            value: started
+      - id: 103
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: r1
+            value: true
+          - value: false
+  - entity: button
+    name: Pair
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: q1
+            value: true
+      - id: 103
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: r1
+            value: true
+          - value: false
+  - entity: button
+    name: Unpair
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: q0
+            value: true
+      - id: 103
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: r1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+      - id: 107
+        type: string
+        optional: true
+        name: receiver_status
+      - id: 135
+        type: string
+        optional: true
+        name: control_box_status
+      - id: 103
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: r1
+            value: true
+          - value: false
+  - entity: switch
+    name: Auto time
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: 5
+          max: 30
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: High temperature protection
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 27
+          max: 70
+  - entity: switch
+    name: Program
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: text
+    name: Program 1
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 2
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 3
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 4
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 5
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 6
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 117
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 7
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 132
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Furnace type
+    icon: "mdi:electric-switch"
+    category: config
+    dps:
+      - id: 133
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: Normally closed
+          - dps_val: true
+            value: Normally open
+          - dps_val: null
+            value: Normally closed
+            hidden: true
+  - entity: text
+    name: Time set
+    category: config
+    icon: "mdi:clock-edit"
+    hidden: true
+    dps:
+      - id: 134
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Remove device
+    category: config
+    hidden: true
+    dps:
+      - id: 137
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Optimal stop
+    category: config
+    dps:
+      - id: 138
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: switch
+    name: Boost timer sync
+    category: config
+    dps:
+      - id: 140
+        type: boolean
+        optional: true
+        name: switch
