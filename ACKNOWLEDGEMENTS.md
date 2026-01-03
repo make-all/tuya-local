@@ -1188,3 +1188,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Permanently](https://github.com/Permanently) for contributing support for Migou Mini-F litter box, which was merged with Mini-B.
 - [deadman96385](https://github.com/deadman96385) for contributing support for Evergreen Solar bird feeder camera.
 - [domwrap](https://github.com/domwrap) for contributing support for Jafanda JF500 air purifier.
+- [jarivanb](https://github.com/jarivanb) for contributing improvements to Steinbach Solid 4.3 heat pump.
