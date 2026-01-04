@@ -1,7 +1,5 @@
 """Tests for a simple switch with timer"""
 
-from homeassistant.const import UnitOfTime
-
 from ..const import TIMED_SOCKETV2_PAYLOAD
 from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase

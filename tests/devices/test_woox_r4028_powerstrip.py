@@ -1,7 +1,6 @@
 """Tests for the Woox R4028 powerstrip."""
 
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import UnitOfTime
 
 from ..const import WOOX_R4028_SOCKET_PAYLOAD
 from ..mixins.switch import MultiSwitchTests

@@ -1,7 +1,6 @@
 """Tests for the Logicom Strippy 4-way+USB powerstrip."""
 
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import UnitOfTime
 
 from ..const import LOGICOM_STRIPPY_PAYLOAD
 from ..mixins.switch import MultiSwitchTests

@@ -1,7 +1,6 @@
 """Tests for the switch entity."""
 
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import UnitOfTime
 
 from ..const import SMARTPLUG_ENCODED_PAYLOAD
 from ..mixins.switch import SwitchableTests

@@ -7,7 +7,6 @@ from homeassistant.const import (
     UnitOfElectricPotential,
     UnitOfEnergy,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD

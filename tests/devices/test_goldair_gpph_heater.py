@@ -5,7 +5,6 @@ from homeassistant.const import (
     PERCENTAGE,
     PRECISION_WHOLE,
     UnitOfTemperature,
-    UnitOfTime,
 )
 
 from ..const import GPPH_HEATER_PAYLOAD

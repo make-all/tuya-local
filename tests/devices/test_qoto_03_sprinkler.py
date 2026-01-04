@@ -2,7 +2,6 @@
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
-from homeassistant.const import UnitOfTime
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..helpers import assert_device_properties_set

@@ -1,5 +1,4 @@
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.const import UnitOfTime
 
 from ..const import TMWF02_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set

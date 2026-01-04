@@ -6,7 +6,6 @@ from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD

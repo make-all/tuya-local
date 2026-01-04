@@ -8,7 +8,6 @@ from homeassistant.const import (
     UnitOfElectricPotential,
     UnitOfEnergy,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD
