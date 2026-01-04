@@ -226,6 +226,7 @@
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - ETOP-HT-CH thermostat (branded as Ferco GN1)
+- ETOP-HT=CH Pro thermostat (branded as PNI CT36 Pro)
 - Ettroit LN4102 thermostat
 - Eurom WiFi thermostat
 - Euroster 4040 Smart thermostat
@@ -405,7 +406,7 @@
 - Siguro Air Master AP-K50 air purifier
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
-- Soleusair A02 and A10 air purifiers
+- Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
