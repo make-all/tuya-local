@@ -605,6 +605,7 @@
 - EcoPoint EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
+- Immax Neo Lite 3-phase 22kW EV charger
 - Ipengen GO-E31-16A EV charger
 - Kolanky 3.6kW EV charger
 - MakeSkyBlue MPPT solar battery charger
