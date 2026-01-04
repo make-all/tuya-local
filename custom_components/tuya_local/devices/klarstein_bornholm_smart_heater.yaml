@@ -1,55 +1,55 @@
-name: Klarstein Bornholm Smart Heater
+name: Heater
 products:
   - id: dcxerfhhzu2x1bei
-    name: Klarstein Bornholm (1kW, based on WBR3)
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 5
-        max: 45
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              range:
-                min: 41
-                max: 113
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-    - id: 101
-      name: hvac_action
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: idle
-        - dps_val: true
-          value: heating
-    - id: 103
-      name: temperature_unit
-      type: string
-secondary_entities:
+    manufacturer: Klarstein
+    model: Bornholm (1kW, based on WBR3)
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 5
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: 41
+                  max: 113
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+      - id: 101
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+      - id: 103
+        name: temperature_unit
+        type: string
   - entity: light
     translation_key: display
     category: config
