@@ -87,12 +87,6 @@ class TestBeokTR9BThermostat(
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
-                {
-                    "dps": VALVE_DPS,
-                    "name": "binary_sensor_valve",
-                    "device_class": BinarySensorDeviceClass.OPENING,
-                    "testdata": ("open", "close"),
-                },
             ],
         )
         self.setUpMultiNumber(
@@ -122,7 +116,6 @@ class TestBeokTR9BThermostat(
         self.mark_secondary(
             [
                 "binary_sensor_problem",
-                "binary_sensor_valve",
                 "lock_child_lock",
                 "number_minimum_temperature",
                 "number_maximum_temperature",

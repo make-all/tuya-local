@@ -1,14 +1,12 @@
 """Tests for the Quto 03 Sprinkler."""
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
 from homeassistant.const import UnitOfTime
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
-from ..mixins.number import MultiNumberTests
 from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -21,7 +19,6 @@ ERROR_DPS = "108"
 
 class TestQotoSprinkler(
     BasicBinarySensorTests,
-    MultiNumberTests,
     MultiSensorTests,
     TuyaDeviceTestCase,
 ):
@@ -35,17 +32,6 @@ class TestQotoSprinkler(
             self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
-        )
-        self.setUpMultiNumber(
-            [
-                {
-                    "name": "number_timer",
-                    "dps": TIMER_DPS,
-                    "max": 86399,
-                    "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.SECONDS,
-                },
-            ]
         )
         self.setUpMultiSensors(
             [
@@ -64,9 +50,7 @@ class TestQotoSprinkler(
         )
         self.mark_secondary(
             [
-                "number",
                 "binary_sensor_problem",
-                "number_timer",
                 "sensor_open",
                 "sensor_time_remaining",
                 "time_timer",

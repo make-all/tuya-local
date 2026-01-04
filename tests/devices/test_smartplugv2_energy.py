@@ -1,7 +1,6 @@
 """Tests for the switch entity."""
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -15,7 +14,6 @@ from homeassistant.const import (
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
-from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
@@ -44,7 +42,6 @@ ALT_OVERCHARGE_DPS = "51"
 
 class TestSwitchV2Energy(
     BasicBinarySensorTests,
-    BasicNumberTests,
     BasicSelectTests,
     MultiSensorTests,
     MultiSwitchTests,
@@ -72,14 +69,6 @@ class TestSwitchV2Energy(
             self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
-        )
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440.0,
-            unit=UnitOfTime.MINUTES,
-            device_class=NumberDeviceClass.DURATION,
-            scale=60,
         )
         self.setUpBasicSelect(
             INITIAL_DPS,
@@ -127,7 +116,6 @@ class TestSwitchV2Energy(
             [
                 "binary_sensor_problem",
                 "lock_child_lock",
-                "number_timer",
                 "select_initial_state",
                 "select_light_mode",
                 "sensor_current",

@@ -1,6 +1,5 @@
 """Tests for the switch entity."""
 
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -13,7 +12,6 @@ from homeassistant.const import (
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD
 from ..mixins.lock import BasicLockTests
-from ..mixins.number import MultiNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
@@ -40,7 +38,6 @@ MASTER_DPS = "101"
 class TestGridConnectDoubleSwitch(
     BasicLockTests,
     BasicSelectTests,
-    MultiNumberTests,
     MultiSensorTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
@@ -117,29 +114,9 @@ class TestGridConnectDoubleSwitch(
                 },
             ]
         )
-        self.setUpMultiNumber(
-            [
-                {
-                    "name": "number_timer_1",
-                    "dps": COUNTDOWN1_DPS,
-                    "max": 86400,
-                    "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.SECONDS,
-                },
-                {
-                    "name": "number_timer_2",
-                    "dps": COUNTDOWN2_DPS,
-                    "max": 86400,
-                    "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.SECONDS,
-                },
-            ]
-        )
         self.mark_secondary(
             [
                 "lock_child_lock",
-                "number_timer_1",
-                "number_timer_2",
                 "select_initial_state",
                 "switch_master",
                 "sensor_energy",

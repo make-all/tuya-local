@@ -3,12 +3,10 @@ from homeassistant.components.light import (
     ColorMode,
     LightEntityFeature,
 )
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.number import BasicNumberTests
 from ..mixins.text import TEXT_PATTERN_HEX, BasicTextTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -21,21 +19,13 @@ SCENE_DPS = "25"
 TIMER_DPS = "26"
 
 
-class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
+class TestRGBCWLightbulb(BasicTextTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("rgbcw_lightbulb.yaml", RGBCW_LIGHTBULB_PAYLOAD)
         self.subject = self.entities.get("light")
 
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440.0,
-            unit=UnitOfTime.MINUTES,
-            device_class=NumberDeviceClass.DURATION,
-            scale=60,
-        )
         self.setUpBasicText(
             SCENE_DPS,
             self.entities.get("text_scene"),
@@ -43,7 +33,6 @@ class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
         )
         self.mark_secondary(
             [
-                "number_timer",
                 "select_scene",
                 "text_scene",
                 "time_timer",
