@@ -15,6 +15,10 @@ entities:
             value: "off"
           - dps_val: true
             value: heat
+            available: heating_set
+          - dps_val: true
+            value: cool
+            available: cooling_set
       - id: 2
         type: string
         name: preset_mode
@@ -31,6 +35,10 @@ entities:
         mapping:
           - dps_val: heating
             value: heating
+            constraint: heating_set
+            conditions:
+              - dps_val: cold
+                value: cooling
           - value: idle
       - id: 24
         type: integer
@@ -73,6 +81,20 @@ entities:
         type: integer
         optional: true
         name: dead_zone
+      - id: 102
+        type: string
+        name: heating_set
+        mapping:
+          - dps_val: heat
+            value: true
+          - value: false
+      - id: 102
+        type: string
+        name: cooling_set
+        mapping:
+          - dps_val: cold
+            value: true
+          - value: false
   - entity: switch
     translation_key: anti_frost
     category: config
