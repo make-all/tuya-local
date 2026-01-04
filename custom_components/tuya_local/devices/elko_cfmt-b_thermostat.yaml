@@ -1,0 +1,83 @@
+name: Thermostat
+products:
+  - id: fy012zc3l51doakx
+    manufacturer: ELKO
+    model: EKO07262
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 116
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "off"
+          - dps_val: false
+            value: heat
+      - id: 152
+        name: hvac_action
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+      - id: 107
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 104
+        name: current_temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 100
+      - id: 140
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Manual
+            value: manual
+          - dps_val: Schedule
+            value: program
+          - dps_val: Override
+            value: boost
+          - dps_val: "Off"
+            value: none
+  - entity: sensor
+    name: Floor Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: C
+        state_class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 150
+        name: sensor
+        type: integer
+        unit: W
+        state_class: measurement
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 151
+        name: sensor
+        type: integer
+        unit: Wh
+        state_class: total_increasing
