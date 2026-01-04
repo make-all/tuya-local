@@ -22,7 +22,6 @@ entities:
         name: current_humidity
         type: integer
         class: measurement
-      # --- FIX START: Added Mode Control on DPS 5 ---
       - id: 5
         name: mode
         type: string
@@ -33,7 +32,6 @@ entities:
             value: "Laundry"
           - dps_val: Sleep
             value: "Sleep"
-      # --- FIX END ---
 
   - entity: sensor
     name: Humidity
@@ -237,14 +235,14 @@ entities:
     class: problem
     category: diagnostic
     dps:
-      - id: 18
+      - id: 19
         name: sensor
         type: integer
         mapping:
-          - dps_val: 0
-            value: false
           - dps_val: 1
             value: true
+          - dps_val: 8 # This is what my device reports when no lights/problems are shown in the control panel or Tuya app
+            value: false
 
   - entity: lock
     name: Child lock
