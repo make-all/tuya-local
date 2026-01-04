@@ -1,8 +1,9 @@
-name: Pet Treat Camera
+name: Camera pet feeder
 products:
   - id: m6xa97cporn9eqzy
     manufacturer: Faroro
-    model: TD20
+    model: Pet Treat Camera
+    model_id: TD20
 entities:
   - entity: button
     name: Feed
@@ -20,7 +21,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Night vision mode
+    name: Night vision
     translation_key: light_mode
     category: config
     dps:
@@ -36,20 +37,23 @@ entities:
             value: "off"
   - entity: switch
     name: Motion sensing
+    icon: "mdi:motion-sensor"
     category: config
     dps:
       - id: 134
         type: boolean
         name: switch
   - entity: switch
-    name: Use motion area map
+    name: Limit motion area
+    icon: "mdi:picture-in-picture-bottom-right"
     category: config
     dps:
       - id: 168
         type: boolean
         name: switch
   - entity: text
-    name: Motion area map
+    name: Motion area
+    icon: "mdi:picture-in-picture-bottom-right"
     category: config
     hidden: true
     dps:
@@ -57,7 +61,6 @@ entities:
         type: string
         name: value
   - entity: sensor
-    name: Feed status
     translation_key: status
     icon: "mdi:paw"
     category: diagnostic
