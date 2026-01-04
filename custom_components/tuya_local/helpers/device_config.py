@@ -478,11 +478,7 @@ class TuyaDpsConfig:
         mask = self.mask
         # Get raw value directly avoiding accidental scaling by decoded_value()
         raw_from_device = device.get_property(self.id)
-        # Decode only if strictly required (hex/base64) otherwise assume it's the raw int
-        if self.rawtype in ["hex", "base64", "utf16b64"]:
-            bytevalue = self.decode_value(raw_from_device, device)
-        else:
-            bytevalue = raw_from_device
+        bytevalue = self.decode_value(raw_from_device, device)
 
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness)
@@ -1092,10 +1088,7 @@ class TuyaDpsConfig:
             if self.id in pending_map:
                 decoded_value = self.decode_value(pending_map[self.id], device)
             else:
-                if self.rawtype in ["hex", "base64", "utf16b64"]:
-                    decoded_value = self.decode_value(raw_current, device)
-                else:
-                    decoded_value = raw_current
+                decoded_value = self.decode_value(raw_current, device)
 
             if isinstance(decoded_value, int):
                 current_value = decoded_value
