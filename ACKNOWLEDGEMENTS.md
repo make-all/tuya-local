@@ -1190,3 +1190,4 @@ Further device support has been made with the assistance of users. Please consid
 - [domwrap](https://github.com/domwrap) for contributing support for Jafanda JF500 air purifier.
 - [jarivanb](https://github.com/jarivanb) for contributing improvements to Steinbach Solid 4.3 heat pump.
 - [10-p](https://github.com/10-p) for assisting with support for Garza Aspen boiler thermostat.
+- [augs](https://github.com/augs) for contributing support for Faroro TD20 Pet Treat Camera.
