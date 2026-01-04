@@ -115,20 +115,6 @@ entities:
             value: "Mon-Sat+Sun"
           - dps_val: "7"
             value: "Daily"
-  - entity: binary_sensor
-    name: Valve
-    deprecated: climate.hvac_action
-    class: opening
-    category: diagnostic
-    dps:
-      - id: 36
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: open
-            value: true
-          - dps_val: close
-            value: false
   - entity: lock
     translation_key: "child_lock"
     category: config
