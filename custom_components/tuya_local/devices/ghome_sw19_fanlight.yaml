@@ -32,24 +32,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: Fan timer
-    # 2025-07-20
-    deprecated: time.fan_timer
-    class: duration
-    category: config
-    translation_key: timer
-    dps:
-      - id: 2
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: light
     dps:
       - id: 5
@@ -72,24 +54,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: Light timer
-    # 2025-07-20
-    deprecated: time.light_timer
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 7
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

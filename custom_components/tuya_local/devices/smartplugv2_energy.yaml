@@ -57,24 +57,6 @@ entities:
           - dps_val: null
             value: false
           - value: true
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    dps:
-      - id: 9
-        type: integer
-        optional: true
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     category: diagnostic
     hidden: true

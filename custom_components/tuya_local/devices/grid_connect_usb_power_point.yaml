@@ -34,42 +34,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: Outlet timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    translation_key: timer
-    category: config
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min
-  - entity: number
-    name: USB timer
-    # 2025-07-20
-    deprecated: time.timer_usb
-    class: duration
-    translation_key: timer
-    category: config
-    dps:
-      - id: 10
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min
   - entity: select
     translation_key: initial_state
     category: config

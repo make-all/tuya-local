@@ -52,23 +52,6 @@ entities:
           min: 0
           max: 86400
   - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer_1
-    class: duration
-    category: config
-    dps:
-      - id: 6
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
     name: Minimum brightness 2
     category: config
     icon: "mdi:lightbulb-on-40"
@@ -91,25 +74,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    class: duration
-    # 2025-07-20
-    deprecated: time.timer_2
-    translation_key: timer_x
-    translation_placeholders:
-      x: "2"
-    category: config
-    dps:
-      - id: 12
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

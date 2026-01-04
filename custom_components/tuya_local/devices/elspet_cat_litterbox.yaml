@@ -108,40 +108,6 @@ entities:
       - id: 109
         type: boolean
         name: switch
-  - entity: number
-    name: Sleep start
-    # 2025-07-20
-    deprecated: time.sleep_start
-    class: duration
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 110
-        type: integer
-        name: value
-        unit: h
-        range:
-          min: 0
-          max: 1440
-        mapping:
-          - scale: 60
-  - entity: number
-    name: Sleep end
-    # 2025-07-20
-    deprecated: time.sleep_end
-    class: duration
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 111
-        type: integer
-        name: value
-        unit: h
-        range:
-          min: 0
-          max: 1440
-        mapping:
-          - scale: 60
   - entity: time
     name: Sleep start
     category: config

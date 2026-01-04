@@ -101,25 +101,6 @@ entities:
             value: "48h"
           - dps_val: "72h"
             value: "72h"
-  - entity: number
-    name: Irrigation time
-    # 2025-07-20
-    deprecated: time.irrigation_time
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 11
-        type: integer
-        name: value
-        unit: min
-        optional: true
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: time
     name: Irrigation time
     category: config

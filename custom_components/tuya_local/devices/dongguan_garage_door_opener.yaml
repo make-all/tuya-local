@@ -35,20 +35,6 @@ entities:
           min: 0
           max: 86400
   - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 2
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
-  - entity: number
     name: Run times
     icon: mdi:timer
     category: config
@@ -68,21 +54,6 @@ entities:
       - id: 5
         type: integer
         name: second
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    name: Timeout alarm
-    # 2025-07-20
-    deprecated: time.alarm_timeout
-    icon: mdi:timer-alert
-    class: duration
-    category: config
-    dps:
-      - id: 5
-        type: integer
-        name: value
-        unit: s
         range:
           min: 0
           max: 86400

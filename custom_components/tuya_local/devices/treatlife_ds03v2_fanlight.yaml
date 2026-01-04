@@ -71,38 +71,6 @@ entities:
           min: 0
           max: 1440
   - entity: number
-    name: Fan timer
-    # 2025-07-20
-    deprecated: time.fan_timer
-    translation_key: timer
-    class: duration
-    category: config
-    dps:
-      - id: 102
-        type: integer
-        optional: true
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 1440
-  - entity: number
-    name: Light timer
-    # 2025-07-20
-    deprecated: time.light_timer
-    translation_key: timer
-    class: duration
-    category: config
-    dps:
-      - id: 103
-        type: integer
-        optional: true
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 1440
-  - entity: number
     name: Minimum brightness
     category: config
     icon: "mdi:lightbulb-on-60"

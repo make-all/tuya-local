@@ -245,39 +245,3 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: "On timer"
-    # 2025-07-20
-    deprecated: time.on_timer
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 104
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: "Off timer"
-    # 2025-07-20
-    deprecated: time.off_timer
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 105
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60

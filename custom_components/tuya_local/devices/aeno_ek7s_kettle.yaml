@@ -125,23 +125,6 @@ entities:
           max: 1440
         mapping:
           - step: 5
-  - entity: number
-    name: Keep warm time
-    # 2025-07-20
-    deprecated: time.keep_warm_time
-    translation_key: timer
-    class: duration
-    category: config
-    dps:
-      - id: 14
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 1440
-        mapping:
-          - step: 5
   - entity: sensor
     translation_key: status
     class: enum

@@ -79,38 +79,6 @@ entities:
         name: sensor
         unit: s
         optional: true
-  - entity: number
-    name: Irrigation time 1
-    # 2025-07-20
-    deprecated: time.irrigation_time_1
-    category: config
-    class: duration
-    icon: "mdi:timer"
-    dps:
-      - id: 106
-        type: integer
-        name: value
-        unit: min
-        optional: true
-        range:
-          min: 0
-          max: 1440
-  - entity: number
-    name: Irrigation time 2
-    # 2025-07-20
-    deprecated: time.irrigation_time_2
-    category: config
-    class: duration
-    icon: "mdi:timer"
-    dps:
-      - id: 103
-        type: integer
-        name: value
-        unit: min
-        optional: true
-        range:
-          min: 0
-          max: 1440
   - entity: time
     name: Irrigation time 1
     category: config
