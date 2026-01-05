@@ -445,6 +445,7 @@
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Luko dehumidifier
+- Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - NWT WDH-02EM dehumidifier

@@ -1193,3 +1193,4 @@ Further device support has been made with the assistance of users. Please consid
 - [augs](https://github.com/augs) for contributing support for Faroro TD20 Pet Treat Camera.
 - [jonathanm3](https://github.com/jonathanm3) for contributing support for PNI CT-36 Pro thermostat.
 - [J1mooo](https://github.com/J1mooo) for assisting with support for Immax Neo Lite 3-phase 22kW EV charger.
+- [anthonws](https://github.com/anthonws) for contributing support for Maeco DD8L Pro dehumidifier.
