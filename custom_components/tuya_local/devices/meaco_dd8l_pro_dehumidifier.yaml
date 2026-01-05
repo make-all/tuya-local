@@ -17,7 +17,8 @@ entities:
         range:
           min: 35
           max: 80
-        step: 5
+        mapping:
+          - step: 5
       - id: 6
         name: current_humidity
         type: integer
@@ -26,11 +27,11 @@ entities:
         type: string
         mapping:
           - dps_val: dehumidify
-            value: "Smart Humidity"
+            value: normal
           - dps_val: drying
-            value: "Laundry"
+            value: laundry
           - dps_val: Sleep
-            value: "Sleep"
+            value: sleep
 
   - entity: select
     translation_key: timer
@@ -90,13 +91,14 @@ entities:
             value: 23h
           - dps_val: 24h
             value: 24h
-        # device published a time remaining, which is also visible in its control panel/screen. Adding this as an attribute instead of creating a new sensor.
+        # Added as an attribute instead of sensor since it is a string.
       - id: 102
         name: timer_remaining
         type: string
 
   - entity: select
     name: Fan mode
+    translation_key: mode
     icon: "mdi:fan"
     category: config
     dps:
@@ -105,16 +107,17 @@ entities:
         type: string
         mapping:
           - dps_val: 200w
-            value: 200W (Lowest)
+            value: low
           - dps_val: 400w
-            value: 400W
+            value: medium
           - dps_val: 600w
-            value: 600W (Highest)
+            value: high
           - dps_val: auto
-            value: Auto
+            value: auto
 
   - entity: select
     name: Swing mode
+    translation_key: mode
     icon: "mdi:swap-vertical"
     category: config
     dps:
@@ -123,35 +126,41 @@ entities:
         type: string
         mapping:
           - dps_val: b_swing
-            value: Big (Wide swing)
+            value: high
           - dps_val: m_swing
-            value: Medium
+            value: medium
           - dps_val: s_swing
-            value: Small
+            value: low
           - dps_val: n_swing
-            value: Static (Fixed)
+            value: "off"
 
   - entity: binary_sensor
     translation_key: tank_full
-    category: diagnostic
     dps:
       - id: 19
         name: sensor
-        type: integer
+        type: bitfield
         mapping:
-            # Captured when tank was full
+          # Captured when tank was full
           - dps_val: 1
             value: true
-            # Safety code for fallback
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
             value: false
-            # captured when tank was empty and device was on
-          - dps_val: 8
+          - dps_val: 1
             value: false
-            # captured when tank was empty and device was off
-          - dps_val: 24
-            value: false
-
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: lock
     translation_key: child_lock
     category: config
