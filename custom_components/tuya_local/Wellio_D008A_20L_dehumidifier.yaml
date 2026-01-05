@@ -1,34 +1,38 @@
 name: Wellio Dehumidifier
+
+# Tuya product identifiers this definition applies to
 products:
   - id: i3il8w2rhtn90s33
-    name: Wellio Dehumidifier 
+    name: Wellio Dehumidifier
 
 primary_entity:
+# Main dehumidifier entity exposed to Home Assistant
   entity: humidifier
   dps:
+# Power on/off
     - id: 1
       name: switch
       type: boolean
 
-    # Mode (enum string)
+# Operating mode reported as enum string
     - id: 2
       name: mode
       type: string
       mapping:
         - dps_val: "1"
-          value: Dehumidify
+          value: dehumidify
         - dps_val: "2"
-          value: Laundry
+          value: laundry
         - dps_val: "3"
-          value: Fan
+          value: fan
 
-    # Current humidity (%)
+# Current ambient humidity reported by the device
     - id: 3
       name: current_humidity
       type: integer
       unit: "%"
 
-    # Target humidity (%)
+# Target humidity setpoint controlled by the dehumidifier
     - id: 4
       name: humidity
       type: integer
@@ -37,10 +41,9 @@ primary_entity:
         min: 29
         max: 91
       step: 1
-        
 
 secondary_entities:
-  # Fan speed (enum string)
+# Fan speed selector
   - entity: select
     name: Fan speed
     icon: "mdi:fan"
@@ -49,12 +52,12 @@ secondary_entities:
         name: option
         type: string
         mapping:
-        - dps_val: "1"
-          value: Low
-        - dps_val: "2"
-          value: High
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: high
 
-  # Temperature sensor
+# Internal temperature sensor
   - entity: sensor
     name: Temperature
     class: temperature
@@ -64,7 +67,7 @@ secondary_entities:
         type: integer
         unit: "°C"
 
-  # Timer (hours)
+# Countdown timer in hours
   - entity: number
     name: Timer
     category: config
@@ -78,16 +81,16 @@ secondary_entities:
         step: 1
         unit: "h"
 
-  # Fault code
+# Fault or status code reported by the device
   - entity: sensor
-    name: StatusMessage
+    name: Fault code
     category: diagnostic
     dps:
       - id: 11
         name: sensor
         type: integer
 
-  # Extra toggles
+# Child lock control
   - entity: switch
     name: Lock
     category: config
@@ -96,6 +99,7 @@ secondary_entities:
         name: switch
         type: boolean
 
+# Air swing / louver control
   - entity: switch
     name: Swing
     category: config
@@ -103,14 +107,3 @@ secondary_entities:
       - id: 8
         name: switch
         type: boolean
-
-  - entity: number
-    name: Target Humidity
-    dps:
-      - id: 4
-        name: value
-        type: integer
-        unit: "%"
-        range:
-          min: 0
-          max: 100
