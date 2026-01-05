@@ -50,13 +50,6 @@ primary_entity:
       name: temperature_unit
       type: string
 secondary_entities:
-  - entity: lock
-    translation_key: child_lock
-    category: config
-    dps:
-      - id: 6
-        type: boolean
-        name: lock
   - entity: light
     translation_key: display
     category: config
@@ -64,6 +57,13 @@ secondary_entities:
       - id: 5
         type: boolean
         name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
   - entity: select
     translation_key: timer
     category: config
