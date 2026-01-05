@@ -1,30 +1,19 @@
-
 name: MiBoxer WL-Box2 2.4GHz Gateway
-
 products:
   - id: "2vc0xj19d766eq0k"
-
 entities:
-  ###########################################################################
-  # LIGHT (RGB + Color temperature)
-  ###########################################################################
   - entity: light
     name: Light
     dps:
-      # on/off switch
       - id: 20
         type: boolean
         name: switch
-
-      # Brightness value (10..1000)
       - id: 22
         type: integer
         name: brightness
         range:
           min: 10
           max: 1000
-
-      # Work mode determines whether device is in white / colour
       - id: 21
         type: string
         name: color_mode
@@ -33,8 +22,6 @@ entities:
             value: color_temp
           - dps_val: colour
             value: hs
-
-      # Color temperature (0..1000) -> remap to Kelvin-like range
       - id: 23
         name: color_temp
         type: integer
@@ -46,8 +33,6 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-
-      # Colour data - treat as hex encoded colour payload (common Tuya scheme)
       - id: 24
         name: rgbhsv
         type: hex
@@ -67,10 +52,6 @@ entities:
             range:
               min: 0
               max: 1000
-
-  ###########################################################################
-  # ZONE selection (stored switching group): DP 107 "choose_zone"
-  ###########################################################################
   - entity: number
     name: Zone
     mode: box
@@ -81,11 +62,6 @@ entities:
         range:
           min: 0
           max: 100
-        step: 1
-
-  ###########################################################################
-  # Countdown seconds: DP 26
-  ###########################################################################
   - entity: time
     translation_key: timer
     dps:
