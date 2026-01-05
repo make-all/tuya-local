@@ -1,0 +1,116 @@
+name: Wellio Dehumidifier
+products:
+  - id: i3il8w2rhtn90s33
+    name: Wellio Dehumidifier 
+
+primary_entity:
+  entity: humidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+
+    # Mode (enum string)
+    - id: 2
+      name: mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: Dehumidify
+        - dps_val: "2"
+          value: Laundry
+        - dps_val: "3"
+          value: Fan
+
+    # Current humidity (%)
+    - id: 3
+      name: current_humidity
+      type: integer
+      unit: "%"
+
+    # Target humidity (%)
+    - id: 4
+      name: humidity
+      type: integer
+      unit: "%"
+      range:
+        min: 29
+        max: 91
+      step: 1
+        
+
+secondary_entities:
+  # Fan speed (enum string)
+  - entity: select
+    name: Fan speed
+    icon: "mdi:fan"
+    dps:
+      - id: 6
+        name: option
+        type: string
+        mapping:
+        - dps_val: "1"
+          value: Low
+        - dps_val: "2"
+          value: High
+
+  # Temperature sensor
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: "°C"
+
+  # Timer (hours)
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 24
+        step: 1
+        unit: "h"
+
+  # Fault code
+  - entity: sensor
+    name: StatusMessage
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+
+  # Extra toggles
+  - entity: switch
+    name: Lock
+    category: config
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Swing
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+
+  - entity: number
+    name: Target Humidity
+    dps:
+      - id: 4
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
