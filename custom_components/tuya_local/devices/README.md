@@ -304,6 +304,12 @@ For base64 and hex types, this specifies how to extract a single numeric value f
 
 For base64 and hex types, this specifies the endianess of the data and mask. Could be "big" or "little".
 
+### `mask_signed`
+
+*Optional, default=false*
+
+For base64 and hex types, set this to true if you need to extract a signed integer from the masked field.
+
 ## Mapping Rules
 
 Mapping rules can change the behavior of attributes beyond simple
