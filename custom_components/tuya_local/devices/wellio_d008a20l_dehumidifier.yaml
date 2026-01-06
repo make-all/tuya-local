@@ -1,48 +1,46 @@
 name: Wellio Dehumidifier
 
-# Tuya product identifiers this definition applies to
 products:
   - id: i3il8w2rhtn90s33
     name: Wellio Dehumidifier
 
-primary_entity:
+entities:
   # Main dehumidifier entity exposed to Home Assistant
-  entity: humidifier
-  dps:
-    # Power on/off
-    - id: 1
-      name: switch
-      type: boolean
+  - entity: humidifier
+    dps:
+      # Power on/off
+      - id: 1
+        name: switch
+        type: boolean
 
-    # Operating mode reported as enum string
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: dehumidify
-        - dps_val: "2"
-          value: laundry
-        - dps_val: "3"
-          value: fan
+      # Operating mode reported as enum string
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: dehumidify
+          - dps_val: "2"
+            value: laundry
+          - dps_val: "3"
+            value: fan
 
-    # Current ambient humidity reported by the device
-    - id: 3
-      name: current_humidity
-      type: integer
-      unit: "%"
+      # Current ambient humidity reported by the device
+      - id: 3
+        name: current_humidity
+        type: integer
+        unit: "%"
 
-    # Target humidity setpoint controlled by the dehumidifier
-    - id: 4
-      name: humidity
-      type: integer
-      unit: "%"
-      range:
-        min: 29
-        max: 91
-      step: 1
+      # Target humidity setpoint controlled by the dehumidifier
+      - id: 4
+        name: humidity
+        type: integer
+        unit: "%"
+        range:
+          min: 29
+          max: 91
+        step: 1
 
-secondary_entities:
   # Fan speed selector
   - entity: select
     name: Fan speed
