@@ -6,15 +6,15 @@ products:
     name: Wellio Dehumidifier
 
 primary_entity:
-# Main dehumidifier entity exposed to Home Assistant
+  # Main dehumidifier entity exposed to Home Assistant
   entity: humidifier
   dps:
-# Power on/off
+    # Power on/off
     - id: 1
       name: switch
       type: boolean
 
-# Operating mode reported as enum string
+    # Operating mode reported as enum string
     - id: 2
       name: mode
       type: string
@@ -26,13 +26,13 @@ primary_entity:
         - dps_val: "3"
           value: fan
 
-# Current ambient humidity reported by the device
+    # Current ambient humidity reported by the device
     - id: 3
       name: current_humidity
       type: integer
       unit: "%"
 
-# Target humidity setpoint controlled by the dehumidifier
+    # Target humidity setpoint controlled by the dehumidifier
     - id: 4
       name: humidity
       type: integer
@@ -43,7 +43,7 @@ primary_entity:
       step: 1
 
 secondary_entities:
-# Fan speed selector
+  # Fan speed selector
   - entity: select
     name: Fan speed
     icon: "mdi:fan"
@@ -57,7 +57,7 @@ secondary_entities:
           - dps_val: "2"
             value: high
 
-# Internal temperature sensor
+  # Internal temperature sensor
   - entity: sensor
     name: Temperature
     class: temperature
@@ -67,7 +67,7 @@ secondary_entities:
         type: integer
         unit: "°C"
 
-# Countdown timer in hours
+  # Countdown timer in hours
   - entity: number
     name: Timer
     category: config
@@ -81,7 +81,7 @@ secondary_entities:
         step: 1
         unit: "h"
 
-# Fault or status code reported by the device
+  # Fault or status code reported by the device
   - entity: sensor
     name: Fault code
     category: diagnostic
@@ -90,7 +90,7 @@ secondary_entities:
         name: sensor
         type: integer
 
-# Child lock control
+  # Child lock control
   - entity: switch
     name: Lock
     category: config
@@ -99,7 +99,7 @@ secondary_entities:
         name: switch
         type: boolean
 
-# Air swing / louver control
+  # Air swing / louver control
   - entity: switch
     name: Swing
     category: config
