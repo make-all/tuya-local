@@ -1,9 +1,8 @@
-name: Noah Humidifier
+name: Humidifier
 products:
   - id: bf27abad144ae931b76ypd
     manufacturer: Stadler Form
     model: Noah Pro
-
 entities:
   - entity: humidifier
     dps:
@@ -28,7 +27,6 @@ entities:
             value: auto
           - dps_val: false
             value: manual
-
   - entity: number
     name: Fan Speed
     icon: mdi:fan
@@ -41,7 +39,6 @@ entities:
           min: 1
           max: 5
         step: 1
-
   - entity: lock
     translation_key: child_lock
     category: config
@@ -49,7 +46,6 @@ entities:
       - id: 29
         type: boolean
         name: lock
-
   - entity: sensor
     name: Filter Usage
     icon: mdi:filter
@@ -59,7 +55,6 @@ entities:
         type: integer
         name: sensor
         unit: "%"
-
   - entity: sensor
     name: Water Level
     icon: mdi:cup-water
@@ -69,7 +64,6 @@ entities:
         name: sensor
         type: integer
         unit: "%"
-
   - entity: select
     translation_key: display
     category: config
@@ -85,7 +79,6 @@ entities:
             value: "Dimmer"
           - dps_val: "Light_off"
             value: "Light off"
-
   - entity: binary_sensor
     name: Filter Change Required
     class: problem
@@ -99,7 +92,6 @@ entities:
             value: false
           - dps_val: true
             value: true
-
   - entity: binary_sensor
     translation_key: tank_empty
     category: diagnostic
