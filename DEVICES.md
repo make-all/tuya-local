@@ -223,6 +223,7 @@
 - EARU Electronic K6H-3A-W thermostat
 - EleChico CCST6001 thermostat
 - Emmeti Zona thermostat
+- Essentials Wall thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
