@@ -1,0 +1,113 @@
+name: Noah Humidifier
+products:
+  - id: bf27abad144ae931b76ypd
+    manufacturer: Stadler Form
+    model: Noah Pro
+
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: current_humidity
+        type: integer
+      - id: 101
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 80
+        step: 1
+      - id: 103
+        name: mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: manual
+
+  - entity: number
+    name: Fan Speed
+    icon: mdi:fan
+    category: config
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+        step: 1
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock
+
+  - entity: sensor
+    name: Filter Usage
+    icon: mdi:filter
+    category: diagnostic
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    name: Water Level
+    icon: mdi:cup-water
+    category: diagnostic
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: "%"
+
+  - entity: select
+    translation_key: display
+    category: config
+    icon: mdi:clock-digital
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: "Normal"
+            value: "Normal"
+          - dps_val: "Dimmer"
+            value: "Dimmer"
+          - dps_val: "Light_off"
+            value: "Light off"
+
+  - entity: binary_sensor
+    name: Filter Change Required
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: false
+            value: false
+          - dps_val: true
+            value: true
+
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
