@@ -1,0 +1,163 @@
+name: Fan controller
+products:
+  - id: 1oat7zv3bd9ylx2q
+    manufacturer: Inkbird
+    model: IVC-001W
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        # Yes it is backwards and yes its just as dumb as you are thinking it is
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: hand
+            value: manual
+          - dps_val: timing
+            value: program
+      - id: 103
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 10
+      - id: 132
+        name: raw_status
+        type: string
+        optional: true
+        # DP 132: Base64 Encoded Status String
+        # To decode: Decode Base64 > Read bytes as Big Endian Integers (16-bit)
+        # Byte 0    : Header/Padding (Skip)
+        # Bytes 1-2 : Current Temp °C (x10)
+        # Bytes 3-4 : Current Temp °F (x10)
+        # Bytes 5-6 : Current Humidity % (x10)
+        # Bytes 7-8 : Fan Speed (RPM)
+        # Bytes 9-10: High Temp Alarm Setting °C (x10)
+        # Bytes 11-12: Low Temp Alarm Setting °C (x10)
+  - entity: climate
+    dps:
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 100
+      - id: 132
+        type: base64
+        optional: true
+        mask: "00FFFF00000000000000000000"
+        mask_signed: true
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 132
+        type: base64
+        optional: true
+        mask: "0000000000FFFF000000000000"
+        name: current_humidity
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        name: option
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: celsius
+          - dps_val: "f"
+            value: fahrenheit
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 44
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 113
+        name: value
+        type: integer
+        unit: "°"
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    icon: "mdi:water-check"
+    dps:
+      - id: 114
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: -100
+          max: 100
+  - entity: number
+    name: High temperature alarm threshold
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "000000000000000000FFFF0000"
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low temperature alarm threshold
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "0000000000000000000000FFFF"
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    icon: "mdi:fan"
+    dps:
+      - id: 132
+        type: base64
+        optional: true
+        mask: "00000000000000FFFF00000000"
+        name: sensor
+        unit: rpm
