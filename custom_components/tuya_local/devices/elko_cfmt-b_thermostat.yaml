@@ -39,6 +39,19 @@ entities:
         unit: C
         mapping:
           - scale: 100
+            constraint: device_preset
+            conditions:
+              - dps_val: [7, 8]
+                value_redirect: floor_temperature
+      - id: 118
+        name: device_preset
+        type: integer
+      - id: 105
+        type: integer
+        name: floor_temperature
+        unit: C
+        mapping:
+          - scale: 100
       - id: 140
         name: preset_mode
         type: string
@@ -51,18 +64,104 @@ entities:
             value: boost
           - dps_val: "Off"
             value: none
-  - entity: sensor
-    name: Floor Temperature
-    class: temperature
-    category: diagnostic
+  - entity: number
+    name: Power Rating
+    category: config
+    class: power
     dps:
-      - id: 105
-        name: sensor
+      - id: 103
+        name: value
         type: integer
-        unit: C
-        state_class: measurement
+        unit: W
+        range:
+          min: 0
+          max: 3600
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 131
+        name: lock
+        type: boolean
+  - entity: number
+    name: Screen Brightness (Wake)
+    icon: "mdi:brightness-6"
+    category: config
+    dps:
+      - id: 132
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 10
+          max: 100
+  - entity: number
+    name: Screen Brightness (Standby)
+    icon: "mdi:brightness-4"
+    category: config
+    dps:
+      - id: 133
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+
+  - entity: sensor
+    name: Sensor type
+    icon: "mdi:thermometer-probe"
+    available: floor_sensor
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 129
+        type: string
+        name: sensor
         mapping:
-          - scale: 100
+          - dps_val: "Not_Fitted"
+            value: "Not Fitted"
+          - dps_val: "2K"
+            value: "2K Ohm"
+          - dps_val: "10K"
+            value: "10K Ohm"
+          - dps_val: "12K"
+            value: "12K Ohm"
+          - dps_val: "15K"
+            value: "15K Ohm"
+          - dps_val: "33K"
+            value: "33K Ohm"
+          - dps_val: "47K"
+            value: "47K Ohm"
+  - entity: sensor
+    name: Device presetting
+    icon: "mdi:cog"
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        readonly: true
+        mapping:
+          - dps_val: 1
+            value: "Heat Pump/Oil Boiler"
+          - dps_val: 2
+            value: "Hydronic Radiator/Gas Boiler"
+          - dps_val: 3
+            value: "Hydronic Underfloor"
+          - dps_val: 4
+            value: "Electrical Radiator"
+          - dps_val: 5
+            value: "Electrical Underfloor (Without floor limits)"
+          - dps_val: 6
+            value: "Electrical Underfloor (With floor limits)"
+          - dps_val: 7
+            value: "Hydronic Underfloor"
+          - dps_val: 8
+            value: "Electrical Underfloor"
+          - dps_val: 9
+            value: "Regulator Mode (output displayed is based on percentage)"
   - entity: sensor
     class: power
     category: diagnostic
@@ -71,7 +170,7 @@ entities:
         name: sensor
         type: integer
         unit: W
-        state_class: measurement
+        class: measurement
   - entity: sensor
     class: energy
     category: diagnostic
@@ -80,4 +179,4 @@ entities:
         name: sensor
         type: integer
         unit: Wh
-        state_class: total_increasing
+        class: total_increasing
