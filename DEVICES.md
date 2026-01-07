@@ -807,6 +807,7 @@ of device.
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
 - Malmbergs NV-SWQ triple dimmer module
 - Marpou RGBCW ceiling light
+- MiBoxer WL-Box2 zone control gateway
 - Mirabella Genio Pixel LED oval light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
