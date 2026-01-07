@@ -54,10 +54,10 @@
 - Lebenlang LBL0380 heater
 - Lehmann LHOHC-2013C electric radiator
 - Livn Arosa electric fireplace
+- Magnum MRC floor heating (2 variants)
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Ember Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Modern Flames Orion electric fireplace
-- MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
 - Nybro heater
