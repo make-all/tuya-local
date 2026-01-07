@@ -59,7 +59,6 @@ entities:
         optional: true
         mask: "00FFFF00000000000000000000"
         mask_signed: true
-        endianness: big
         name: current_temperature
         mapping:
           - scale: 10
@@ -67,7 +66,6 @@ entities:
         type: base64
         optional: true
         mask: "0000000000FFFF000000000000"
-        endianness: big
         name: current_humidity
         mapping:
           - scale: 10
@@ -128,7 +126,6 @@ entities:
         type: base64
         optional: true
         mask: "000000000000000000FFFF0000"
-        endianness: big
         name: value
         unit: C
         range:
@@ -146,7 +143,6 @@ entities:
         type: base64
         optional: true
         mask: "0000000000000000000000FFFF"
-        endianness: big
         name: value
         unit: C
         range:
@@ -163,6 +159,5 @@ entities:
         type: base64
         optional: true
         mask: "00000000000000FFFF00000000"
-        endianness: big
         name: sensor
         unit: rpm
