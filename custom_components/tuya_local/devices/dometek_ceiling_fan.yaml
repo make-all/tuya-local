@@ -1,0 +1,61 @@
+name: Ceiling fan with light
+products:
+  - id: glwdjlng89qo95it
+    manufacturer: Dometek
+    model: Diamond
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - step: 25
+      - id: 63
+        type: string
+        name: direction
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: number
+    name: Light timer
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
