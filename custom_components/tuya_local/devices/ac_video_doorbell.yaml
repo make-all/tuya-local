@@ -1,0 +1,283 @@
+name: AC Doorbell Pro
+products:
+  - id: asw99ynhd4dgwi37
+    manufacturer: CHAMOUS
+    model: DDV207-Pro
+
+entities:
+  # Doorbell press event
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 212
+        type: base64
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: ""
+            value: null
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 212
+        type: base64
+        name: raw_event
+        optional: true
+        persist: false
+        
+  # Indicator and video settings
+  - entity: switch
+    name: Status indicator
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: switch
+    name: Image flip
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: switch
+    name: Time watermark
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: select
+    name: Night vision mode
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: infrared
+          - dps_val: "2"
+            value: color
+
+  - entity: select
+    name: Motion sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+
+  # Motion detection mask / filtering
+  - entity: switch
+    name: Motion area enabled
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: text
+    name: Motion area mask
+    category: config
+    dps:
+      - id: 169
+        type: string
+        name: value
+        range:
+          min: 0
+          max: 255
+        optional: true
+
+  - entity: switch
+    name: Human detection filter
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+        optional: true
+
+  # Recording & audio options
+  - entity: switch
+    name: SD recording
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: select
+    name: Recording mode
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: continuous
+          - dps_val: "2"
+            value: events
+
+  - entity: switch
+    name: Mute SD recordings
+    dps:
+      - id: 197
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: Doorbell volume
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+        optional: true
+
+  # Siren / anti-tamper
+  - entity: switch
+    name: Siren
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: switch
+    name: Anti-dismantle alarm
+    dps:
+      - id: 231
+        type: boolean
+        name: switch
+        optional: true
+
+  # SD card management
+  - entity: button
+    name: Format SD card
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
+      - id: 110
+        type: integer
+        name: status
+        optional: true
+      - id: 117
+        type: integer
+        name: formatting_status
+        optional: true
+
+  # Camera snapshots and motion enable
+  - entity: camera
+    dps:
+      - id: 115
+        type: base64
+        name: motion_snapshot
+        optional: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 154
+        type: base64
+        name: snapshot
+        optional: true
+        mapping:
+          - dps_val: null
+            value_redirect: motion_snapshot
+
+  # Diagnostic sensors
+  - entity: sensor
+    name: Doorbell snapshot (raw)
+    category: diagnostic
+    dps:
+      - id: 154
+        type: base64
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: Motion snapshot (raw)
+    category: diagnostic
+    dps:
+      - id: 115
+        type: base64
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: SD storage info
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: SD card status
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: SD formatting state
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: Alarm message payload
+    category: diagnostic
+    dps:
+      - id: 185
+        type: base64
+        name: sensor
+        optional: true
+        readonly: true
+
+  - entity: sensor
+    name: Doorbell legacy event
+    category: diagnostic
+    dps:
+      - id: 136
+        type: string
+        name: sensor
+        optional: true
+        readonly: true
