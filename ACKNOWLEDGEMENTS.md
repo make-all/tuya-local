@@ -1199,3 +1199,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Dunky13](https://github.com/Dunky13) for assisting with support for a new variant of Magnum MRC floor heating.
 - [benediktley](https://github.com/benediktley) for contributing support for MiBoxer WL-Box2 lighting zone control gateway.
 - [maricn](https://github.com/maricn) for contributing support for Karstein Bornholm 1kW WBR3 based heater.
+- [SimKaiLong](https://github.com/SimKaiLong) for contributing support for Efenz Kith ceiling fan with light.
