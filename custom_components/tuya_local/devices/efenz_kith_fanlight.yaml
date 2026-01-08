@@ -1,4 +1,3 @@
----
 name: Ceiling Fan
 products:
   - id: knhfgnbpneqras2y
@@ -37,6 +36,9 @@ entities:
         type: string
         optional: true
         name: direction
+      - id: 1
+        type: boolean
+        name: available
   - entity: light
     dps:
       - id: 15
@@ -58,3 +60,13 @@ entities:
           - target_range:
               min: 2700
               max: 6500
+      - id: 1
+        type: boolean
+        name: available
+  - entity: switch
+    name: Power
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
