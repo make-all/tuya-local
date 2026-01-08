@@ -307,6 +307,7 @@
 - Deta fan controllers (6914HA Series 2 and 3)
 - Djive ARC humidifying fan
 - dLuft Smart Flow ventilator fan
+- Dometek Diamond ceiling fan with light
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
