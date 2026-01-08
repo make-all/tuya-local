@@ -5,6 +5,7 @@ products:
     model: Diamond
 entities:
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 60
         type: boolean
@@ -33,19 +34,14 @@ entities:
       - id: 20
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     name: Light timer
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
+        name: second
   - entity: number
     name: Fan timer
     translation_key: timer
