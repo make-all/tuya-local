@@ -410,7 +410,8 @@
 - Siguro Air Master AP-K50 air purifier
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
-- Soleusair A02 and A10 air purifiers
+- Soleusair A02 and A10 air purifiers
+
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
@@ -917,6 +918,7 @@ of device.
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
 - Zedar R600 vacuum cleaner
+- Realme TechLife Robot Vacuum cleaner
 
 ### Lawnmowers
 
