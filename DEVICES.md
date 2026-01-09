@@ -413,7 +413,8 @@
 - Siguro Air Master AP-K50 air purifier
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
-- Soleusair A02 and A10 air purifiers
+- Soleusair A02 and A10 air purifiers
+
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
@@ -788,6 +789,7 @@ of device.
   - FlinQ Smart multicolor string lights
 - Galaxy Projector
 - Gosund SW2 dimmer switch
+- Govee smart RGB strip light
 - HDMI sync light
 - HDMI TV ambient lighting 65
 - Hombli CCT 2024 Christmas lights
