@@ -16,8 +16,10 @@ entities:
         name: humidity
         type: integer
         range:
-          min: 40
+          min: 30
           max: 80
+        mapping:
+          - step: 5
       - id: 103
         name: mode
         type: boolean
@@ -25,18 +27,26 @@ entities:
           - dps_val: true
             value: auto
           - dps_val: false
-            value: manual
-  - entity: number
-    name: Fan Speed
-    icon: mdi:fan
-    category: config
+            value: normal
+  - entity: fan
     dps:
+      - id: 1
+        name: switch
+        type: boolean
       - id: 102
-        name: value
-        type: integer
-        range:
-          min: 1
-          max: 5
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: 20
+          - dps_val: "level_2"
+            value: 40
+          - dps_val: "level_3"
+            value: 60
+          - dps_val: "level_4"
+            value: 80
+          - dps_val: "level_5"
+            value: 100
   - entity: lock
     translation_key: child_lock
     category: config
@@ -62,21 +72,20 @@ entities:
         name: sensor
         type: integer
         unit: "%"
-  - entity: select
+  - entity: light
     translation_key: display
     category: config
-    icon: mdi:clock-digital
     dps:
       - id: 105
-        name: option
+        name: brightness
         type: string
         mapping:
-          - dps_val: "Normal"
-            value: "Normal"
-          - dps_val: "Dimmer"
-            value: "Dimmer"
-          - dps_val: "Light_off"
-            value: "Light off"
+          - dps_val: Normal
+            value: 255
+          - dps_val: Dimmer
+            value: 128
+          - dps_val: Light_off
+            value: 0
   - entity: binary_sensor
     name: Filter Change Required
     class: problem
