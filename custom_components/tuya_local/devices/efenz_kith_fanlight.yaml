@@ -1,0 +1,72 @@
+name: Ceiling Fan
+products:
+  - id: knhfgnbpneqras2y
+    manufacturer: Efenz
+    model: Kith
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      # Use id 101 instead of "1" for fan control.
+      # "1" will turn off the entire unit, fan and light included.
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+      - id: 2
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: "other"
+            value: normal
+          - dps_val: "nature"
+            value: nature
+          - dps_val: "sleep"
+            value: sleep
+          - value: normal
+            hidden: true
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+      - id: 8
+        type: string
+        optional: true
+        name: direction
+      - id: 1
+        type: boolean
+        name: available
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 17
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 1
+        type: boolean
+        name: available
+  - entity: switch
+    name: Power
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch

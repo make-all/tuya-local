@@ -798,7 +798,7 @@ Further device support has been made with the assistance of users. Please consid
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
 - [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier and improved Italian translations.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
-- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter, Sibrape CBC-Pool BP heat pump, Garen TSI Fit garage opener.
+- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter, Sibrape CBC-Pool BP heat pump, Garen TSI Fit garage opener, Dometek Diamond ceiling fan with light.
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
@@ -1170,7 +1170,7 @@ Further device support has been made with the assistance of users. Please consid
 - [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
 - [a774969](https://github.com/a774969) for assisting with support for NWT WDH-02EM dehumidifier.
 - [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve.
-- [baronorder](https://github.com/baronorder) for contributing support for Advwin 13L humidifier, Kogan KASMCDSKTLA kettle and improvements to masked dps handling.
+- [baronorder](https://github.com/baronorder) for contributing support for Advwin 13L humidifier, Kogan KASMCDSKTLA kettle, Inkbird IVC001W fan controller, and improvements to masked dps handling.
 - [pegasusvelata](https://github.com/pegasusvelata) for contributing support for GD2050WIFI aroma diffuser.
 - [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
 - [GavinIves](https://github.com/GavinIves) for contributing support for Casdon KG1 water dispenser.
@@ -1196,3 +1196,9 @@ Further device support has been made with the assistance of users. Please consid
 - [anthonws](https://github.com/anthonws) for contributing support for Maeco DD8L Pro dehumidifier.
 - [22cms](https://github.com/22cms) for assisting with support for Cixi Jemell PTC-1919 heater.
 - [cream68](https://github.com/cream68) for assisting with support for essentials Wall thermostat.
+- [Dunky13](https://github.com/Dunky13) for assisting with support for a new variant of Magnum MRC floor heating.
+- [benediktley](https://github.com/benediktley) for contributing support for MiBoxer WL-Box2 lighting zone control gateway.
+- [maricn](https://github.com/maricn) for contributing support for Karstein Bornholm 1kW WBR3 based heater.
+- [SimKaiLong](https://github.com/SimKaiLong) for contributing support for Efenz Kith ceiling fan with light.
+- [kabous1](https://github.com/kabous1) for contributing support for GMC AP-300 air purifier (merged with Truelife P3).
+- [IngmarStein](https://github.com/IngmarStein) for contributing support for Oekoboiler RS series heat pump water heater.
