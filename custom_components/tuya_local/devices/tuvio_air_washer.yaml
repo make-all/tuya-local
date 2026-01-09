@@ -1,0 +1,186 @@
+name: "Tuvio Air Washer"
+products:
+  - id: "cdtata05klpwbyu9"
+    manufacturer: "Tuvio"
+    model: "TAO01DE"
+entities:
+  - entity: humidifier
+    class: "humidifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 13
+        type: integer
+        name: humidity
+        range:
+          min: 40
+          max: 70
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: true
+              - dps_val: false
+                invalid: true
+      - id: 14
+        type: integer
+        name: current_humidity
+      - id: 108
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: false
+            value: "auto"
+          - dps_val: true
+            value: "normal"
+      - id: 104
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: true
+            value: "humidifying"
+          - dps_val: false
+            value: "idle"
+
+  - entity: select
+    translation_key: "fanspeed"
+    icon: "mdi:fan"
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "A"
+            value: "auto"
+          - dps_val: "1"
+            value: "low"
+          - dps_val: "2"
+            value: "medium"
+          - dps_val: "3"
+            value: "high"
+          - dps_val: "4"
+            value: "turbo"
+
+  - entity: switch
+    translation_key: "uv_sterilization"
+    icon: "mdi:sun-wireless-outline"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: "wet"
+    icon: "mdi:water"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: "drying"
+    icon: "mdi:hair-dryer"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: "vertical"
+    icon: "mdi:arrow-up-down"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: light
+    translation_key: "backlight"
+    category: "config"
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+      - id: 106
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 100
+
+  - entity: switch
+    translation_key: "sleep"
+    icon: "mdi:sleep"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: "beep"
+    icon: "mdi:volume-high"
+    category: "config"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    translation_key: "filter_life"
+    icon: "mdi:air-filter"
+    class: "duration"
+    category: "diagnostic"
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: sensor
+    translation_key: "time_remaining"
+    icon: "mdi:timer"
+    class: "duration"
+    category: "diagnostic"
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: sensor
+    name: "Fault"
+    icon: "mdi:alert"
+    class: "problem"
+    category: "diagnostic"
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+
+  - entity: select
+    translation_key: "timer"
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "cancel"
+          - dps_val: "1H"
+            value: "1h"
+          - dps_val: "2H"
+            value: "2h"
+          - dps_val: "3H"
+            value: "3h"
+          - dps_val: "4H"
+            value: "4h"
+          - dps_val: "5H"
+            value: "5h"
+          - dps_val: "6H"
+            value: "6h"
+          - dps_val: "7H"
+            value: "7h"
+          - dps_val: "8H"
+            value: "8h"
+          - dps_val: "9H"
+            value: "9h"
