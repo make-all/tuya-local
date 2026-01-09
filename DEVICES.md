@@ -47,6 +47,7 @@
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
 - Klarstein Bornholm Smart 1500 convection heater
+- Klarstein Bornholm Electric heater (1kW, based on WBR3)
 - Klarstein Wonderwall IR heaters (including Air Art, Bornholm, 600 models)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
@@ -54,10 +55,10 @@
 - Lebenlang LBL0380 heater
 - Lehmann LHOHC-2013C electric radiator
 - Livn Arosa electric fireplace
+- Magnum MRC floor heating (2 variants)
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Ember Vibrance XH-BG-15W/30WZKWIFI-10 electric fireplace
 - Modern Flames Orion electric fireplace
-- MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
 - Nybro heater
@@ -192,6 +193,7 @@
 - Modena ES-15-SKY water heater
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
+- Oekoboiler RS series heat pump water heater
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -306,11 +308,13 @@
 - Deta fan controllers (6914HA Series 2 and 3)
 - Djive ARC humidifying fan
 - dLuft Smart Flow ventilator fan
+- Dometek Diamond ceiling fan with light
 - Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
 - Dyras TF-16WIFI tower fan
 - Eberg Fyn tower fan
+- Efenz Kith ceiling fan with light
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
@@ -332,6 +336,7 @@
 - Hunter Pacific 9 speed ceiling fan with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
+- Inkbird IVC001W fan controller
 - InTec ceiling fan with light
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
@@ -806,6 +811,7 @@ of device.
 - Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
 - Malmbergs NV-SWQ triple dimmer module
 - Marpou RGBCW ceiling light
+- MiBoxer WL-Box2 zone control gateway
 - Mirabella Genio Pixel LED oval light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
