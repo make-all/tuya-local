@@ -109,6 +109,13 @@ entities:
       - id: 102
         type: string
         name: sensor
+        mapping:
+          - dps_val: "Water_enough"
+            value: "ok"
+          - dps_val: "Lack_of_water"
+            value: "empty"
+          - dps_val: "Tank_removed"
+            value: "removed"
   - entity: sensor
     name: Filter life
     icon: "mdi:air-filter"
