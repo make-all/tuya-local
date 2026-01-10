@@ -46,8 +46,10 @@ entities:
             available: off_mode
             value_redirect: power
             conditions:
-              - value: heat_pump
-              - value: "off"
+              - dps_val: hot
+                value: heat_pump
+              - dps_val: cool
+                value: "off"
           - dps_val: heat_hot
             value: heat_pump
             available: heat_mode
