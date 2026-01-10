@@ -341,6 +341,7 @@
 - InTec ceiling fan with light
 - Kavunion C1 100 ventilation fan
 - KCvents VT501-W heat recovery ventilation
+- Kendal KVT-Touchtower pedestal fan
 - Klarstein Airfold Smart ceiling fan with light
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan

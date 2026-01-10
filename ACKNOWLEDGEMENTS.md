@@ -1204,3 +1204,4 @@ Further device support has been made with the assistance of users. Please consid
 - [IngmarStein](https://github.com/IngmarStein) for contributing support for Oekoboiler RS series heat pump water heater.
 - [hally0](https://github.com/hally0) for contributing support for Elko EKO07262 thermostat.
 - [Smalle007](https://github.com/Smalle007) for contributing support for Stadler Form Noah humidifier.
+- [pmchAR](https://github.com/pmchAR) for contributing support for Kendal KVT-Touchtower pedestal fan.
