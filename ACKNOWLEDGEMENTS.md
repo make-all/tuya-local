@@ -941,7 +941,7 @@ Further device support has been made with the assistance of users. Please consid
 - [alexeytm82](https://github.com/alexeytm82) for contributing support for MakeSkyBlue MPPT solar charger.
 - [com6056](https://github.com/com6056) for assisting with support for Treatlife DS03 (v2) ceiling fan and light.
 - [georgekucher](https://github.com/georgekucher) for contributing improvements to Feyree portable EV charger.
-- [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan.
+- [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan, EcoNour 42" tower fan.
 - [dwd1](https://github.com/dwd1) for assisting with support for RH-PD10 peehole doorbell camera.
 - [thd6n75](https://github.com/thd6n75) for contributing support for Korex AX-WF306N kettle.
 - [1B9-MasterChief](https://github.com/1B9-MasterChief) for contributing support for Sonnenkönig Fresco 140/180 air conditioner.
