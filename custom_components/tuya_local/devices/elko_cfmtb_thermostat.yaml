@@ -65,7 +65,7 @@ entities:
           - dps_val: "Off"
             value: none
   - entity: number
-    name: Power Rating
+    name: Power rating
     category: config
     class: power
     dps:
@@ -84,7 +84,7 @@ entities:
         name: lock
         type: boolean
   - entity: number
-    name: Screen Brightness (Wake)
+    name: Active screen brightness
     icon: "mdi:brightness-6"
     category: config
     dps:
@@ -96,7 +96,7 @@ entities:
           min: 10
           max: 100
   - entity: number
-    name: Screen Brightness (Standby)
+    name: Standby screen brightness
     icon: "mdi:brightness-4"
     category: config
     dps:
@@ -132,7 +132,7 @@ entities:
           - dps_val: "47K"
             value: "47K Ohm"
   - entity: sensor
-    name: Device presetting
+    name: Device type
     icon: "mdi:cog"
     category: diagnostic
     class: enum
@@ -140,7 +140,6 @@ entities:
       - id: 118
         type: integer
         name: sensor
-        readonly: true
         mapping:
           - dps_val: 1
             value: "Heat Pump/Oil Boiler"
@@ -161,7 +160,7 @@ entities:
           - dps_val: 9
             value: "Regulator Mode (output displayed is based on percentage)"
   - entity: sensor
-    name: Floor Temperature
+    name: Floor temperature
     category: diagnostic
     hidden: unavailable
     dps:
@@ -180,7 +179,7 @@ entities:
             value: false
           - value: true
   - entity: sensor
-    name: Air Temperature
+    name: Air temperature
     category: diagnostic
     dps:
       - id: 104
