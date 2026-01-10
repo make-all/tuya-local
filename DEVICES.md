@@ -223,6 +223,7 @@
 - Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
+- Elko EKO07262 thermostat
 - EleChico CCST6001 thermostat
 - Emmeti Zona thermostat
 - Essentials Wall thermostat
