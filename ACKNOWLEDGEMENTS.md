@@ -1203,3 +1203,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kabous1](https://github.com/kabous1) for contributing support for GMC AP-300 air purifier (merged with Truelife P3).
 - [IngmarStein](https://github.com/IngmarStein) for contributing support for Oekoboiler RS series heat pump water heater.
 - [hally0](https://github.com/hally0) for contributing support for Elko EKO07262 thermostat.
+- [Smalle007](https://github.com/Smalle007) for contributing support for Stadler Form Noah humidifier.
