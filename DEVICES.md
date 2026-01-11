@@ -472,6 +472,7 @@
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
+- Wellio D008A 20L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
