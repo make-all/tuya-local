@@ -81,44 +81,51 @@ entities:
       - id: 29
         type: boolean
         name: lock
-  - entity: number
+  - entity: fan
     name: Spray level
-    icon: "mdi:fan"
+    icon: "mdi:spray"
     category: config
     dps:
+      - id: 1
+        type: boolean
+        name: switch
       - id: 103
         type: string
-        name: value
+        name: speed
         mapping:
           - dps_val: "Low_speed"
-            value: 1
+            value: 25
           - dps_val: "Medium_speed"
-            value: 2
+            value: 50
           - dps_val: "High_speed"
-            value: 3
+            value: 75
           - dps_val: "Turbo_speed"
-            value: 4
-        range:
-          min: 1
-          max: 4
-  - entity: sensor
-    translation_key: water_level
-    class: enum
+            value: 100
+  - entity: binary_sensor
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 102
         type: string
         name: sensor
         mapping:
-          - dps_val: "Water_enough"
-            value: "ok"
           - dps_val: "Lack_of_water"
-            value: "empty"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Tank removed
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
           - dps_val: "Tank_removed"
-            value: "removed"
+            value: true
+          - value: false
   - entity: sensor
-    name: Filter life
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 104
