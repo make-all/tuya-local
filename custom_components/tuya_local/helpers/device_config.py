@@ -106,7 +106,6 @@ class TuyaDeviceConfig:
         self._fname = fname
         filename = join(_CONFIG_DIR, fname)
         self._config = load_yaml(filename)
-        self._reported_deprecated_primary = False
         _LOGGER.debug("Loaded device config %s", fname)
 
     @property
@@ -129,31 +128,9 @@ class TuyaDeviceConfig:
         """Return the legacy conf_type associated with this device."""
         return self._config.get("legacy_type", self.config_type)
 
-    @property
-    def primary_entity(self):
-        """Return the primary type of entity for this device."""
-        if "primary_entity" not in self._config:
-            # primary entity is a deprecated fallback, so if it is
-            # missing, we need to log a warning about the missing entities
-            # list.
-            _LOGGER.error(f"{self.config_type}.yaml does not define an entities list.")
-            return TuyaEntityConfig(self, self._config["entities"][0])
-        if not self._reported_deprecated_primary:
-            _LOGGER.warning(
-                f"{self.config_type}.yaml distinguishes between primary"
-                " and secondary_entities. This is deprecated, please"
-                " modify it to use a single list."
-            )
-            self._reported_deprecated_primary = True
-
-        return TuyaEntityConfig(self, self._config["primary_entity"])
-
     def all_entities(self):
         """Iterate through all entities for this device."""
         entities = self._config.get("entities")
-        if not entities:
-            yield self.primary_entity
-            entities = self._config.get("secondary_entities", {})
 
         for e in entities:
             yield TuyaEntityConfig(self, e)
