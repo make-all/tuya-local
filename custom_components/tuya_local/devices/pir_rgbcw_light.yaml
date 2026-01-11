@@ -229,7 +229,7 @@ entities:
           - dps_val: "none"
             value: false
   - entity: select
-    name: Motion distance
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 54
@@ -237,11 +237,11 @@ entities:
         name: option
         mapping:
           - dps_val: "high"
-            value: "Far"
-          - dps_val: "low"
-            value: "Near"
+            value: high
           - dps_val: "middle"
-            value: "Medium"
+            value: medium
+          - dps_val: "low"
+            value: low
   - entity: number
     name: PIR delay
     category: config

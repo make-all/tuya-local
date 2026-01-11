@@ -15,20 +15,19 @@ entities:
             value: true
           - value: false
   - entity: select
-    name: Motion sensitivity
+    translation_key: motion_sensitivity
     category: config
-    icon: "mdi:motion-sensor"
     dps:
       - id: 9
         type: string
         name: option
         mapping:
           - dps_val: low
-            value: Low
+            value: low
           - dps_val: middle
-            value: Medium
+            value: medium
           - dps_val: high
-            value: High
+            value: high
   - entity: sensor
     class: illuminance
     dps:

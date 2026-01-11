@@ -158,8 +158,7 @@ entities:
         optional: true
         name: sensor
   - entity: select
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 152
@@ -168,13 +167,13 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "1"
-            value: Low sensitivity
+            value: low
           - dps_val: "2"
-            value: Medium sensitivity
+            value: medium
           - dps_val: "3"
-            value: High sensitivity
+            value: high
   - entity: siren
     dps:
       - id: 159

@@ -740,6 +740,52 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_13)
         hass.config_entries.async_update_entry(entry, minor_version=13)
 
+    if entry.version == 13 and entry.minor_version < 14:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_14(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_filter_lifetime": "sensor_filter_life",
+                "sensor_filter": "sensor_filter_life",
+                "sensor_filter_days": "sensor_filter_life",
+                "sensor_filter_remaining": "sensor_filter_life",
+                "sensor_filter_remain": "sensor_filter_life",
+                "sensor_filter_replacement": "sensor_filter_life",
+                "sensor_filter_days_left": "sensor_filter_life",
+                "sensor_filter_left_days": "sensor_filter_life",
+                "sensor_filter_left": "sensor_filter_life",
+                "sensor_filter_hours_left": "sensor_filter_life",
+                "sensor_replace_filter_in": "sensor_filter_life",
+                "sensor_filter_change_due": "sensor_filter_life",
+                "sensor_filter_usage": "sensor_filter_life",
+                "sensor_filter_used": "sensor_filter_life",
+                "sensor_filter_time": "sensor_filter_life",
+                "button_reset_filter": "button_filter_reset",
+                "button_replace_filter": "button_filter_reset",
+                "button_filter_changed": "button_filter_reset",
+                "button_filter_replaced": "button_filter_reset",
+                "select_motion_detection": "select_motion_sensitivity",
+                "select_motion_distance": "select_motion_sensitivity",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_13)
+        hass.config_entries.async_update_entry(entry, minor_version=14)
     return True
 
 

@@ -64,8 +64,7 @@ entities:
         optional: true
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -74,11 +73,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: button
     name: SD format
     icon: "mdi:sd"

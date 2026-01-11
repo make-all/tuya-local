@@ -59,18 +59,13 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter left
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
       - id: 3
         type: integer
         name: sensor
-        precision: 0
-        range:
-          min: 0
-          max: 90
         unit: d
   - entity: sensor
     name: Clean left

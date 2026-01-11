@@ -81,21 +81,21 @@ entities:
           - dps_val: none
             value: clear
   - entity: select
-    name: Motion distance
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 54
         type: string
         name: option
-        mapping:
-          - dps_val: "high"
-            value: "Far"
-          - dps_val: "low"
-            value: "Near"
-          - dps_val: "middle"
-            value: "Medium"
         optional: true
         force: true
+        mapping:
+          - dps_val: "high"
+            value: high
+          - dps_val: "middle"
+            value: medium
+          - dps_val: "low"
+            value: low
   - entity: number
     name: Full light duration
     category: config

@@ -229,9 +229,8 @@ entities:
           - dps_val: resetmainbrush
             value: true
   - entity: button
-    name: Reset filter
+    translation_key: filter_reset
     category: config
-    icon: "mdi:clock-outline"
     dps:
       - id: 115
         type: string
@@ -293,10 +292,9 @@ entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Filter time
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 121
         name: sensor

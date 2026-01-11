@@ -109,8 +109,7 @@ entities:
   # 4. Detection & Alarm
   # ------------------------------------
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     # Motion Sensitivity Selector (matches motion_sensitivity: 106)
     dps:
@@ -120,11 +119,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
 
   - entity: switch
     name: Motion alarm area
