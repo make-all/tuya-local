@@ -486,7 +486,7 @@
 - Eanons QT-JS2014 purifying humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
-- Klarta Humea humidifier
+- Klarta Humea and Humea Grande humidifiers
 - Kyvol EA200 humidifier
 - Miro Q-Tower humidifier
 - OGACFO LFHM055 humidifier
