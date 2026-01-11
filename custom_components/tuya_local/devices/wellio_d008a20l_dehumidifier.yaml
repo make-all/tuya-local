@@ -1,0 +1,110 @@
+name: Dehumidifier
+
+products:
+  - id: i3il8w2rhtn90s33
+    manufacturer: Wellio
+    model: D008A 20L
+
+entities:
+  # Main dehumidifier entity exposed to Home Assistant
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      # Power on/off
+      - id: 1
+        name: switch
+        type: boolean
+
+      # Operating mode reported as enum string
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: normal
+          - dps_val: "2"
+            value: laundry
+          - dps_val: "3"
+            value: purify
+
+      # Current ambient humidity reported by the device
+      - id: 3
+        name: current_humidity
+        type: integer
+        unit: "%"
+
+      # Target humidity setpoint controlled by the dehumidifier
+      - id: 4
+        name: humidity
+        type: integer
+        unit: "%"
+        range:
+          min: 29
+          max: 91
+
+  # Fan speed selector
+  - entity: fan
+    dps:
+      # Power on/off
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 6
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: 50
+          - dps_val: "2"
+            value: 100
+      - id: 8
+        name: oscillate
+        type: boolean
+
+  # Internal temperature sensor
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: C
+
+  # Countdown timer in hours
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 24
+        unit: "h"
+
+  # Fault or status code reported by the device
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        name: fault_code
+        type: bitfield
+
+  # Child lock control
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
