@@ -1207,3 +1207,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pmchAR](https://github.com/pmchAR) for contributing support for Kendal KVT-Touchtower pedestal fan.
 - [kensru](https://github.com/kensru) for assisting with support for Aquaviva AVH15S combo heat pump.
 - [square-spade](https://github.com/square-spade) for contributing improvements for BLE Pulido P13 lock.
+- [bartowl](https://github.com/bartowl) for contributing support for Junsun 32A EV charger.
