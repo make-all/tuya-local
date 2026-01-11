@@ -39,7 +39,6 @@ entities:
         name: mode_set
   - entity: sensor
     class: energy
-    category: diagnostic
     dps:
       - id: 1
         type: integer
@@ -128,8 +127,8 @@ entities:
           - dps_val: 16384
             value: "Leakage current fault"
   - entity: select
-    name: Working mode
-    icon: "mdi:list-box-outline"
+    name: Charging mode
+    icon: "mdi:ev-station"
     dps:
       - id: 14
         type: string
@@ -168,7 +167,7 @@ entities:
         name: sensor
         unit: kWh
         class: measurement
-        # optional: true
+        optional: true
         mapping:
           - scale: 100
   - entity: binary_sensor
@@ -177,7 +176,7 @@ entities:
     dps:
       - id: 27
         type: string
-        # optional: true
+        optional: true
         name: sensor
         mapping:
           - dps_val: offline
@@ -197,7 +196,6 @@ entities:
   #         min: 0
   #         max: 15
   - entity: sensor
-    name: Phase A voltage
     class: voltage
     dps:
       - id: 6
@@ -209,7 +207,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Phase A current
     class: current
     dps:
       - id: 6
@@ -221,7 +218,6 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Phase A power
     class: power
     dps:
       - id: 6
