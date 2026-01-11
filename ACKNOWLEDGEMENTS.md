@@ -1208,3 +1208,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kensru](https://github.com/kensru) for assisting with support for Aquaviva AVH15S combo heat pump.
 - [square-spade](https://github.com/square-spade) for contributing improvements for BLE Pulido P13 lock.
 - [bartowl](https://github.com/bartowl) for contributing support for Junsun 32A EV charger.
+- [bitcoin1192](https://github.com/bitcoin1192) for assisting with support for Taffware 1P-J-63 circuit breaker.
