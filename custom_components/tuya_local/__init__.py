@@ -740,7 +740,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_13)
         hass.config_entries.async_update_entry(entry, minor_version=13)
 
-    if entry.version == 13 and entry.minor_version < 14:
+    # 13.14 was botched, so repeat as 13.15
+    if entry.version == 13 and entry.minor_version < 15:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
         device_id = get_device_unique_id(entry)
@@ -756,7 +757,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             return False
 
         @callback
-        def update_unique_id13_14(entity_entry):
+        def update_unique_id13_15(entity_entry):
             """Update the unique id of an entity entry."""
             # Standardistion of entity naming to use translation_key
             replacements = {
@@ -784,8 +785,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
-        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_13)
-        hass.config_entries.async_update_entry(entry, minor_version=14)
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_15)
+        hass.config_entries.async_update_entry(entry, minor_version=15)
     return True
 
 
