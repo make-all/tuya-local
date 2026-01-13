@@ -1,0 +1,102 @@
+name: Engo E901WIFI Thermostat
+products:
+  - id: bowuem6d9ihzwymj
+    name: Engo E901WIFI Thermostat
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: hot
+            value: heat
+          - dps_val: cold
+            value: cool
+      - id: 109
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: heating_on
+            value: heating
+          - dps_val: heating_off
+            value: idle
+      - id: 16
+        name: temperature
+        type: integer
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 32
+        name: holiday_temperature
+        type: integer
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Temperature Correction
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        range:
+          min: -35
+          max: 35
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: switch
+    name: Child Lock
+    category: config
+    dps:
+      - id: 40
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 35
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 45
+        name: sensor
+        type: bitfield
+  - entity: sensor
+    name: Heating Ratio
+    category: diagnostic
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: "%"
+        optional: true
+  - entity: select
+    name: Relay Control
+    category: config
+    dps:
+      - id: 113
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "cycle"
+            value: "Cycle"
