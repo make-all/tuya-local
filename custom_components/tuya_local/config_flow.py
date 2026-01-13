@@ -47,7 +47,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 15
+    MINOR_VERSION = 12
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -74,16 +74,25 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             mode = user_input.get("setup_mode")
-            if mode == "cloud" or mode == "cloud_fresh_login":
+            if mode == "cloud" or mode == "cloud_fresh_login" or mode == "cloud_clear_cache":
                 self.init_cloud()
                 try:
                     if mode == "cloud_fresh_login":
                         # Force a fresh login
                         self.cloud.logout()
+                    elif mode == "cloud_clear_cache":
+                        # Clear device cache
+                        await self.cloud.async_clear_device_cache()
+                        self.cloud.logout()
 
                     if self.cloud.is_authenticated:
+                        _LOGGER.debug("Already authenticated, skipping to device selection")
                         self.__cloud_devices = await self.cloud.async_get_devices()
+                        if len(self.__cloud_devices) == 0:
+                            _LOGGER.warning("No devices found from cloud")
                         return await self.async_step_choose_device()
+                    else:
+                        _LOGGER.debug("Not authenticated, proceeding to cloud login")
                 except Exception as e:
                     # Re-authentication is needed.
                     _LOGGER.warning("Connection test failed with %s %s", type(e), e)
@@ -96,7 +105,12 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
         fields[vol.Required("setup_mode")] = SelectSelector(
             SelectSelectorConfig(
-                options=["cloud", "manual", "cloud_fresh_login"],
+                options=[
+                    SelectOptionDict(value="cloud", label="Cloud (use saved credentials)"),
+                    SelectOptionDict(value="manual", label="Manual setup"),
+                    SelectOptionDict(value="cloud_fresh_login", label="Cloud (force new login)"),
+                    SelectOptionDict(value="cloud_clear_cache", label="Cloud (clear cache & new login)"),
+                ],
                 mode=SelectSelectorMode.LIST,
                 translation_key="setup_mode",
             )
@@ -116,6 +130,16 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         errors = {}
         placeholders = {}
         self.init_cloud()
+
+        if self.cloud.has_user_code and not user_input:
+            user_code = self.cloud._Cloud__user_code
+            _LOGGER.debug("Using saved user_code: %s", user_code)
+            response = await self.cloud.async_get_qr_code(user_code)
+            if response:
+                self.__qr_code = response
+                return await self.async_step_scan()
+            else:
+                _LOGGER.warning("Failed to get QR with saved user_code")
 
         if user_input is not None:
             response = await self.cloud.async_get_qr_code(user_input[CONF_USER_CODE])
@@ -161,34 +185,38 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     }
                 ),
             )
-        self.init_cloud()
-        if not await self.cloud.async_login():
-            # Try to get a new QR code on failure
-            response = await self.cloud.async_get_qr_code()
-            errors = {"base": "login_error"}
-            placeholders = self.cloud.last_error
-            if response:
-                self.__qr_code = response
 
-            return self.async_show_form(
-                step_id="scan",
-                errors=errors,
-                data_schema=vol.Schema(
-                    {
-                        vol.Optional("QR"): QrCodeSelector(
-                            config=QrCodeSelectorConfig(
-                                data=f"tuyaSmart--qrLogin?token={self.__qr_code}",
-                                scale=5,
-                                error_correction_level=QrErrorCorrectionLevel.QUARTILE,
-                            )
-                        )
-                    }
-                ),
-                description_placeholders=placeholders,
-            )
+        self.init_cloud()
+
+        success = await self.cloud.async_login()
+
+        if not success:
+            if self.cloud.has_user_code:
+                response = await self.cloud.async_get_qr_code()
+                errors = {"base": "login_error"}
+                placeholders = self.cloud.last_error
+                if response:
+                    self.__qr_code = response
+                    return self.async_show_form(
+                        step_id="scan",
+                        errors=errors,
+                        data_schema=vol.Schema(
+                            {
+                                vol.Optional("QR"): QrCodeSelector(
+                                    config=QrCodeSelectorConfig(
+                                        data=f"tuyaSmart--qrLogin?token={self.__qr_code}",
+                                        scale=5,
+                                        error_correction_level=QrErrorCorrectionLevel.QUARTILE,
+                                    )
+                                )
+                            }
+                        ),
+                        description_placeholders=placeholders,
+                    )
+            else:
+                return await self.async_step_cloud()
 
         self.__cloud_devices = await self.cloud.async_get_devices()
-
         return await self.async_step_choose_device()
 
     async def async_step_choose_device(self, user_input=None):
@@ -231,26 +259,46 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         device_list = []
         for key in self.__cloud_devices.keys():
             device_entry = self.__cloud_devices[key]
+
+            _LOGGER.debug("Processing device: %s, exists: %s, local_key: %s, online: %s",
+                         device_entry.get('name', 'Unknown'),
+                         device_entry.get('exists', False),
+                         device_entry.get(CONF_LOCAL_KEY, ''),
+                         device_entry.get('online', False))
+
             if device_entry.get("exists"):
+                _LOGGER.debug("Skipping device %s - already exists in HA", device_entry.get('name', 'Unknown'))
                 continue
-            if device_entry[CONF_LOCAL_KEY] != "":
-                if device_entry["online"]:
+
+            if device_entry.get(CONF_LOCAL_KEY, "") != "":
+                if device_entry.get("online", False):
                     device_list.append(
                         SelectOptionDict(
                             value=key,
-                            label=f"{device_entry['name']} ({device_entry['product_name']})",
+                            label=f"{device_entry.get('name', 'Unknown')} ({device_entry.get('product_name', 'Unknown')})",
                         )
                     )
                 else:
                     device_list.append(
                         SelectOptionDict(
                             value=key,
-                            label=f"{device_entry['name']} ({device_entry['product_name']}) OFFLINE",
+                            label=f"{device_entry.get('name', 'Unknown')} ({device_entry.get('product_name', 'Unknown')}) OFFLINE",
                         )
                     )
+            else:
+                _LOGGER.debug("Skipping device %s - no local key", device_entry.get('name', 'Unknown'))
 
-        _LOGGER.debug(f"Device count: {len(device_list)}")
+        _LOGGER.info(f"Available devices for adding: {len(device_list)}")
+
         if len(device_list) == 0:
+            for key in self.__cloud_devices.keys():
+                device_entry = self.__cloud_devices[key]
+                _LOGGER.warning("Device details - Name: %s, ID: %s, Exists: %s, Local Key: %s, Online: %s",
+                              device_entry.get('name', 'Unknown'),
+                              device_entry.get('id', 'Unknown'),
+                              device_entry.get('exists', False),
+                              device_entry.get(CONF_LOCAL_KEY, 'None'),
+                              device_entry.get('online', False))
             return self.async_abort(reason="no_devices")
 
         device_selector = SelectSelector(
@@ -261,11 +309,11 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         hub_list.append(SelectOptionDict(value="None", label="None"))
         for key in self.__cloud_devices.keys():
             hub_entry = self.__cloud_devices[key]
-            if hub_entry["is_hub"]:
+            if hub_entry.get("is_hub", False):
                 hub_list.append(
                     SelectOptionDict(
                         value=key,
-                        label=f"{hub_entry['name']} ({hub_entry['product_name']})",
+                        label=f"{hub_entry.get('name', 'Unknown')} ({hub_entry.get('product_name', 'Unknown')})",
                     )
                 )
 
