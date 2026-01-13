@@ -117,9 +117,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._last_poll_success = False
         self._last_data_refresh = None
 
-        # Флаг для устройств через шлюз
         self._is_gateway_device = False
-        # Проверяем, есть ли device_cid (для устройств через шлюз)
         if hasattr(self._device, 'device_cid') and self._device.device_cid:
             self._is_gateway_device = True
             _LOGGER.info("Climate device %s is connected via gateway (device_cid: %s)",
@@ -151,10 +149,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             self._attr_supported_features |= ClimateEntityFeature.TURN_ON
 
     async def async_added_to_hass(self):
-        """Вызывается при добавлении entity в Home Assistant."""
         await super().async_added_to_hass()
 
-        # Для устройств через шлюз используем более агрессивный опрос
         if self._is_gateway_device:
             _LOGGER.info("Starting enhanced polling for gateway climate device: %s", self.name)
             self._start_polling(enhanced=True)
@@ -162,18 +158,15 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             self._start_polling()
 
     async def async_will_remove_from_hass(self):
-        """Вызывается при удалении entity из Home Assistant."""7
         self._stop_polling()
         await super().async_will_remove_from_hass()
 
     def _start_polling(self, enhanced=False):
-        """Запустить периодический опрос устройства."""
         if self._polling_unsub is not None:
             self._stop_polling()
 
         interval = CLIMATE_POLL_INTERVAL
 
-        # Для устройств через шлюз используем более частый опрос
         if enhanced:
             interval = timedelta(seconds=20)
             _LOGGER.info("Using enhanced polling (30s) for gateway device %s", self.name)
@@ -188,7 +181,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                     self.name, interval.total_seconds())
 
     def _stop_polling(self):
-        """Остановить периодический опрос устройства."""
         if self._polling_unsub is not None:
             self._polling_unsub()
             self._polling_unsub = None
@@ -244,14 +236,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             if hasattr(self._device, '_device'):
                 try:
                     if hasattr(self._device._device, 'status'):
-                        # Пытаемся вызвать status() для получения актуальных данных
                         await self.hass.async_add_executor_job(
                             self._device._device.status
                         )
                 except Exception as api_error:
                     _LOGGER.debug("Device API status call failed: %s", api_error)
 
-            # Попытка 3: Попробуем обновить конкретные DPS точки
             if self._current_temperature_dps or self._current_humidity_dps:
                 dps_to_refresh = []
                 if self._current_temperature_dps:
@@ -262,10 +252,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 if dps_to_refresh:
                     _LOGGER.debug("Refreshing specific DPS for gateway device: %s", dps_to_refresh)
                     try:
-                        # Попробуем запросить конкретные DPS
                         await self._device.async_refresh_dps(dps_to_refresh)
                     except AttributeError:
-                        # Метод не существует, игнорируем
                         pass
 
             _LOGGER.debug("Gateway device refresh completed for: %s", self.name)
@@ -286,7 +274,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         attrs["polling_interval_seconds"] = CLIMATE_POLL_INTERVAL.total_seconds()
         attrs["is_gateway_device"] = self._is_gateway_device
 
-        # Добавляем информацию о состоянии DPS
         if self._current_temperature_dps:
             attrs["temperature_dps_id"] = self._current_temperature_dps.id
             attrs["temperature_value"] = self.current_temperature
@@ -297,7 +284,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         return attrs
 
     async def async_update(self):
-        """Обновление состояния при ручном вызове."""
         _LOGGER.debug("Manual update requested for climate device: %s", self.name)
         await self._async_poll_device()
 

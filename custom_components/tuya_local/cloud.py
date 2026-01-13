@@ -204,7 +204,6 @@ class Cloud:
         # Register known device IDs
         cloud_devices = {}
 
-        # Получаем список уже зарегистрированных устройств из config_entries
         existing_entries = self.__hass.config_entries.async_entries(DOMAIN)
         existing_device_ids = set()
 
