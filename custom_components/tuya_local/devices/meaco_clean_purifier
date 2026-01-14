@@ -1,9 +1,9 @@
-name: Meaco Air Purifier
+name: Air Purifier
 products:
   - id: 4kqsufvuurljmryl
     manufacturer: Meaco
-    model: Meaco76x5WiFi
-    name: Meaco Clean CA-HEPA 76x5 Air Purifier
+    model_id: Meaco76x5WiFi
+    model: Clean CA-HEPA 76x5
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -34,7 +34,6 @@ entities:
         unit: ugm3
   - entity: sensor
     translation_key: filter_life
-    name: Filter Remaining
     category: diagnostic
     dps:
       - id: 5
@@ -65,9 +64,10 @@ entities:
           - dps_val: "8h"
             value: "8h"
   - entity: sensor
+    translation_key: time_remaining
     name: Timer remaining
     category: diagnostic
-    icon: "mdi:timer-sand"
+    class: duration
     dps:      
       - id: 19
         name: sensor
@@ -101,10 +101,10 @@ entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: 1
-            value: true
-          - dps_val: 2
-            value: true
+          - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield
   - entity: lock
     translation_key: child_lock
     category: config
