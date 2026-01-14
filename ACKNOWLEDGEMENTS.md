@@ -1211,3 +1211,4 @@ Further device support has been made with the assistance of users. Please consid
 - [bitcoin1192](https://github.com/bitcoin1192) for assisting with support for Taffware 1P-J-63 circuit breaker.
 - [PawelSwaczyna](https://github.com/PawelSwaczyna) for contributing support for Klarta Humea Grande humidifier.
 - [laskas-p](https://github.com/laskas-p) for contributing support for Wellio D008A 20L dehumidifier.
+- [akritikos](https://github.com/akritikos) for assisting with support for Eureka ERK-S62 adjustable desk.
