@@ -16,14 +16,14 @@ entities:
     dps:
       - id: 2
         type: boolean
-        name: start
+        name: button
   - entity: button
     name: Stop
     icon: "mdi:stop"
     dps:
       - id: 3
         type: boolean
-        name: stop
+        name: button
         mapping:
           - dps_val: true
             value: false
@@ -37,7 +37,7 @@ entities:
     dps:
       - id: 6
         type: string
-        name: work_mode
+        name: option
         mapping:
           - dps_val: strong
             value: strong
@@ -70,7 +70,7 @@ entities:
     dps:
       - id: 7
         type: string
-        name: appointment_time
+        name: sensor
         mapping:
           - dps_val: standby
             value: standby
@@ -88,13 +88,13 @@ entities:
             value: saving
           - dps_val: smartwash_detecting
             value: smartwash_detecting
-  - entity: time
+  - entity: number
     translation_key: timer
     category: config
     dps:
       - id: 8
         type: integer
-        name: appointment_time
+        name: value
         range:
           min: 0
           max: 1440
@@ -105,7 +105,7 @@ entities:
     dps:
       - id: 9
         type: integer
-        name: remain_time
+        name: sensor
         unit: min
         class: measurement
   - entity: sensor
@@ -114,7 +114,7 @@ entities:
     dps:
       - id: 11
         type: integer
-        name: temp_current
+        name: sensor
         unit: C
         class: measurement
   - entity: sensor
@@ -144,39 +144,34 @@ entities:
             value: e8
           - dps_val: e9
             value: e9
-
-  - entity: lock
+  - entity: switch
     translation_key: child_lock
     category: config
     dps:
       - id: 19
         type: boolean
         optional: true
-        name: child_lock
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
+        name: switch
   - entity: binary_sensor
     class: door
     category: diagnostic
     dps:
       - id: 101
         type: boolean
-        name: doorcontact_state
+        name: sensor
         mapping:
           - dps_val: true
             value: false
           - dps_val: false
             value: true
   - entity: select
-    name: Water hardness
+    translation_key: water_hardness
     icon: "mdi:water-opacity"
     category: config
     dps:
       - id: 102
-        type: string
-        name: salt_lv
+        type: integer
+        name: option
         mapping:
           - dps_val: "1"
             value: "1"
@@ -193,13 +188,13 @@ entities:
           - dps_val: "7"
             value: "7"
   - entity: select
-    name: Rinse aid level
+    translation_key: rinse_aid_level
     icon: "mdi:water-opacity"
     category: config
     dps:
       - id: 103
-        type: string
-        name: liangdie_lv
+        type: integer
+        name: option
         mapping:
           - dps_val: "1"
             value: "1"
@@ -216,13 +211,13 @@ entities:
           - dps_val: "7"
             value: "7"
   - entity: binary_sensor
-    name: Salt
+    translation_key: salt
     class: problem
     category: diagnostic
     dps:
       - id: 104
         type: boolean
-        name: salt_less
+        name: sensor
   - entity: switch
     translation_key: auto_drt
     icon: "mdi:clock"
@@ -230,7 +225,7 @@ entities:
     dps:
       - id: 105
         type: boolean
-        name: auto_drt
+        name: switch
   - entity: switch
     translation_key: auto_chucun
     icon: "mdi:clock"
@@ -238,7 +233,7 @@ entities:
     dps:
       - id: 106
         type: boolean
-        name: auto_chucun
+        name: switch
   - entity: sensor
     class: duration
     translation_key: chucun_day
@@ -246,14 +241,29 @@ entities:
     dps:
       - id: 107
         type: integer
-        name: chucun_day
+        name: sensor
         unit: d
         class: measurement
   - entity: binary_sensor
-    name: Rinse aid
+    translation_key: rinse_aid
     class: problem
     category: diagnostic
     dps:
       - id: 108
         type: boolean
-        name: ldj_less
+        name: sensor
+  - entity: select
+    translation_key: multi_level
+    icon: "mdi:water-opacity"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: all
+            value: all
+          - dps_val: up
+            value: up
+          - dps_val: down
+            value: down
