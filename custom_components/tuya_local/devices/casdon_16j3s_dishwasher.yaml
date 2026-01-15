@@ -88,13 +88,13 @@ entities:
             value: saving
           - dps_val: smartwash_detecting
             value: smartwash_detecting
-  - entity: number
+  - entity: time
     translation_key: appointment_time
     category: config
     dps:
       - id: 8
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1440
@@ -152,6 +152,11 @@ entities:
         type: boolean
         optional: true
         name: switch
+        mapping:
+          - dps_val: true
+            value: off
+          - dps_val: false
+            value: on
   - entity: binary_sensor
     class: door
     category: diagnostic
@@ -267,3 +272,23 @@ entities:
             value: up
           - dps_val: down
             value: down
+  - entity: sensor
+    class: duration
+    translation_key: water_once
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: L
+        class: measurement
+  - entity: sensor
+    class: duration
+    translation_key: consumption_once
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement

@@ -334,7 +334,11 @@
                             "custom": "Custom",
                             "low_steaming": "Low Steaming",
                             "medium_steaming": "Medium Steaming",
-                            "high_steaming": "High Steaming"
+                            "high_steaming": "High Steaming",
+                            "steaming": "Pure Steaming",
+                            "high_temperature_steaming": "High Temperature Steaming",
+                            "hot_air_baking": "Hot Air Baking",
+                            "disinfect": "Disinfect"
                         }
                     }
                 }
@@ -450,6 +454,12 @@
             },
             "nightlight": {
                 "name": "Nightlight"
+            },
+            "oven_light": {
+                "name": "Oven light"
+            },
+            "rangehood_light": {
+                "name": "Rangehood light"
             }
         },
         "lock": {
@@ -484,6 +494,12 @@
             },
             "appointment_time": {
                 "name": "Appointment time"
+            },
+            "down_temperature": {
+                "name": "Down temperature"
+            },
+            "up_temperature": {
+                "name": "Up temperature"
             }
         },
         "select": {
@@ -838,7 +854,7 @@
             "water_hardness": {
                 "name": "Water hardness"
             },
-            "Rinse_aid_level": {
+            "rinse_aid_level": {
                 "name": "Rinse aid level"
             },
             "multi_level": {
@@ -847,6 +863,40 @@
                     "all": "All Level",
                     "up": "Up Level",
                     "down": "Down Level"
+                }
+            },
+            "rangehood_boot_speed": {
+                "name": "Default fan speed",
+                "state": {
+                    "1": "Steaming (1)",
+                    "2": "Regular (2)",
+                    "3": "Strong (3)"
+                }
+            },
+            "rangehood_fun_speed": {
+                "name": "rangehod fun speed",
+                "state": {
+                    "close": "Closed",
+                    "low": "Low",
+                    "middle": "Middle",
+                    "high": "High",
+                    "QuickFry": "Quick Fry"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Delayed shutdown",
+                "state": {
+                    "0": "disabled",
+                    "1": "1 minute",
+                    "2": "2 minutes",
+                    "3": "3 minutes",
+                    "4": "4 minutes",
+                    "5": "5 minutes",
+                    "6": "6 minutes",
+                    "7": "7 minutes",
+                    "8": "8 minutes",
+                    "9": "9 minutes",
+                    "10": "10 minutes"
                 }
             },
             "caston_dishwasher_err": {
@@ -861,6 +911,24 @@
                     "e7": "E7 Variable frequency fault",
                     "e8": "E8 Water valve fault",
                     "e9": "E9 Washing motor fault"
+                }
+            },
+            "caston_t2e_err": {
+                "name": "Fault code",
+                "state": {
+                    "e01": "Chamber temperature probe temperature below 260℃",
+                    "e02": "Evaporation tray temperature probe temperature above 260℃",
+                    "e03": "After starting work, there is no change for 5 minutes and the chamber temperature is low 35℃",
+                    "e04": "After starting work, there is no change for 5 minutes and the evaporation tray temperature is low 35℃",
+                    "e05": "Sensor open circuit",
+                    "e06": "Sensor short circuit",
+                    "e07": "Display board communication error",
+                    "e08": "Display board serial port receive error",
+                    "e09": "Display board serial port send error",
+                    "e10": "Gas leakage",
+                    "e11": "Fire in the intake of the rangehood",
+                    "e12": "Firewall sensor fault",
+                    "e13": "Valve fault, the thermocouple temperature is high after the valve is closed"
                 }
             },
             "menu": {
@@ -920,6 +988,21 @@
             }
         },
         "sensor": {
+            "clearing_status": {
+                "name": "Clearing status",
+                "state": {
+                    "poor": "Poor",
+                    "good": "Good",
+                    "great": "Great"
+                }
+            },
+            "delayed_fan_operation": {
+                "name": "delayed fan operation",
+                "state": {
+                    "off": "Closed",
+                    "on": "Delayed operation"
+                }
+            },
             "air_quality": {
                 "name": "Air quality",
                 "state": {
@@ -1079,6 +1162,12 @@
             "filter_life": {
                 "name": "Filter life"
             },
+            "water_once": {
+                "name": "Water once"
+            },
+            "consumption_once": {
+                "name": "Consumption once"
+            },
             "chucun_day": {
                 "name": "Days stored"
             },
@@ -1152,6 +1241,12 @@
             },
             "auto_drt": {
                 "name": "Auto drt"
+            },
+            "oven": {
+                "name": "Oven"
+            },
+            "rangehood": {
+                "name": "Rangehood"
             }
         },
         "text": {
@@ -1160,6 +1255,12 @@
             }
         },
         "time": {
+            "appointment_time": {
+                "name": "Appointment time"
+            },
+            "cooking_time": {
+                "name": "Cooking time"
+            },
             "timer": {
                 "name": "Timer"
             },

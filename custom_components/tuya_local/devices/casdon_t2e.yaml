@@ -1,0 +1,306 @@
+name: Integrated Stove
+products:
+  - id: 4u0apcmexg8vx91l
+    manufacturer: Casdon
+    model: JJZT-B2S8-T2E
+entities:
+  - entity: switch
+    translation_key: oven
+    icon: "mdi:stove"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Oven Start
+    icon: "mdi:play"
+    dps:
+      - id: 19
+        type: boolean
+        name: button
+  - entity: climate
+    translation_only_key: oven
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 26
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - step: 5
+      - id: 27
+        name: current_temperature
+        type: integer
+      - id: 101
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: steaming
+          - dps_val: "2"
+            value: high_temperature_steaming
+          - dps_val: "3"
+            value: bake_up_and_down
+          - dps_val: "4"
+            value: hot_air_baking
+          - dps_val: "6"
+            value: bbq
+          - dps_val: "7"
+            value: low_steaming
+          - dps_val: "8"
+            value: medium_steaming
+          - dps_val: "10"
+            value: air_fry
+          - dps_val: "11"
+            value: one_click_bread
+          - dps_val: "12"
+            value: quick_heat
+          - dps_val: "13"
+            value: keep_warm
+          - dps_val: "14"
+            value: unfreeze
+          - dps_val: "15"
+            value: fermentation
+          - dps_val: "16"
+            value: descale
+          - dps_val: "17"
+            value: disinfect
+          - dps_val: "18"
+            value: local_recipes
+          - dps_val: "19"
+            value: drying
+          - dps_val: "20"
+            value: custom
+      - id: 104
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: cooking
+            value: heating
+          - dps_val: reservation
+            value: idle
+          - dps_val: cancel
+            value: idle
+          - dps_val: done
+            value: idle
+          - dps_val: pause
+            value: idle
+          - dps_val: "wait"
+            value: idle
+  - entity: light
+    translation_key: oven_light
+    category: config
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: rangehood
+    icon: "mdi:turbine"
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: time
+    icon: "mdi:timer-edit"
+    translation_key: appointment_time
+    category: config
+    dps:
+      - id: 23
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    icon: "mdi:timer-edit"
+    translation_key: cooking_time
+    category: config
+    dps:
+      - id: 24
+        name: minute
+        type: integer
+        range:
+          min: 1
+          max: 1440
+  - entity: number
+    translation_key: down_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 500
+  - entity: number
+    translation_key: up_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 500
+  - entity: switch
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: light
+    translation_key: rangehood_light
+    category: config
+    dps:
+      - id: 4
+        name: switch
+        type: boolean
+  - entity: select
+    class: enum
+    translation_key: rangehood_fun_speed
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: close
+            value: close
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: middle
+          - dps_val: high
+            value: high
+          - dps_val: QuickFry
+            value: QuickFry
+  - entity: select
+    class: enum
+    translation_key: rangehood_boot_speed
+    category: config
+    dps:
+      - id: 120
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+  - entity: select
+    class: enum
+    translation_key: rangehood_delayed_shutdown
+    category: config
+    dps:
+      - id: 123
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "0"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+          - dps_val: "10"
+            value: "10"
+  - entity: binary_sensor
+    translation_key: delayed_fan_operation
+    category: diagnostic
+    dps:
+      - id: 124
+        type: boolean
+        name: sensor
+  - entity: sensor
+    translation_key: clearing_status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: poor
+            value: poor
+          - dps_val: good
+            value: good
+          - dps_val: great
+            value: great
+  - entity: sensor
+    translation_key: casdon_t2e_fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 31
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: e01
+            value: e01
+          - dps_val: e02
+            value: e02
+          - dps_val: e03
+            value: e03
+          - dps_val: e04
+            value: e04
+          - dps_val: e05
+            value: e05
+          - dps_val: e06
+            value: e06
+          - dps_val: e07
+            value: e07
+          - dps_val: e08
+            value: e08
+          - dps_val: e09
+            value: e09
+          - dps_val: e10
+            value: e10
+          - dps_val: e11
+            value: e11
+          - dps_val: e12
+            value: e12
+          - dps_val: e13
+            value: e13
+
