@@ -3,6 +3,9 @@ products:
   - id: witok7vhhjohtr02
     manufacturer: dé
     model: Wall charger
+  - id: gxrtu5vljdthtd3g
+    manufacturer: dé
+    model: GD 3kW portable charger
 entities:
   - entity: sensor
     translation_key: status
@@ -11,6 +14,7 @@ entities:
     dps:
       - id: 109
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: SLEEP
