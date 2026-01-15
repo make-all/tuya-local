@@ -1,0 +1,32 @@
+name: Temperature and humidity
+products:
+  - id: vtA4pDd6PLUZzXgZ
+    model: TH02 Z3-P3Z
+entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
