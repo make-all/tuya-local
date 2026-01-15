@@ -1,0 +1,133 @@
+name: Desk
+products:
+  - id: dqjkmn7gja7qil06
+    manufacturer: Eureka
+    model: ERK-S62
+entities:
+  - entity: button
+    name: Up
+    icon: "mdi:arrow-up-bold"
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: up
+            value: true
+  - entity: button
+    name: Down
+    icon: "mdi:arrow-down-bold"
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: down
+            value: true
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: stop
+            value: true
+  - entity: button
+    name: Continue
+    icon: "mdi:play"
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: continue
+            value: true
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: up
+            value: ascending
+          - dps_val: down
+            value: descending
+          - dps_val: stop
+            value: idle
+  - entity: button
+    name: Preset 1
+    icon: "mdi:numeric-1-box"
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: level_1
+            value: true
+  - entity: button
+    name: Preset 2
+    icon: "mdi:numeric-2-box"
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: level_2
+            value: true
+  - entity: button
+    name: Preset 3
+    icon: "mdi:numeric-3-box"
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: level_3
+            value: true
+  - entity: button
+    name: Preset 4
+    icon: "mdi:numeric-4-box"
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: level_4
+            value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 5
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 5
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Height
+    class: distance
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: mm
+        class: measurement
