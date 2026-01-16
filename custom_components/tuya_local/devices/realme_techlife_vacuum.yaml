@@ -1,8 +1,9 @@
-name: Realme Techlife vacuum
+name: Robot vacuum
 products:
   - id: aayuntqnrmc7jnq9
     manufacturer: Realme
-    model: P058-T3
+    model: TechLife
+    model_id: P058-T3
 entities:
   - entity: vacuum
     dps:
@@ -85,18 +86,6 @@ entities:
             value: turbo
           - dps_val: max
             value: max
-      - id: 110
-        name: water_mode
-        type: string
-        mapping:
-          - dps_val: close
-            value: close
-          - dps_val: low
-            value: low
-          - dps_val: mid
-            value: mid
-          - dps_val: high
-            value: high
       - id: 111
         name: direction_control
         optional: true
@@ -164,7 +153,7 @@ entities:
         optional: true
         hidden: true
   - entity: select
-    name: Mode
+    translation_key: mode
     category: config
     dps:
       - id: 3
@@ -182,6 +171,7 @@ entities:
             value: cleaning
           - dps_val: mop
             value: mop
+            available: mop_available
           - dps_val: spiral
             value: spiral
           - dps_val: left_spiral
@@ -196,6 +186,27 @@ entities:
             value: partial_bow
           - dps_val: chargego
             value: chargego
+      - id: 138
+        type: boolean
+        name: mop_available
+  - entity: select
+    translation_key: mopping
+    dps:
+      - id: 110
+        name: water_mode
+        type: string
+        mapping:
+          - dps_val: close
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 138
+        type: boolean
+        name: available
   - entity: switch
     name: Charge switch
     category: config
@@ -287,7 +298,7 @@ entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Main brush time
+    name: Main brush life
     category: diagnostic
     class: duration
     icon: "mdi:clock-outline"
@@ -297,10 +308,9 @@ entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Filter time
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 121
         name: sensor
@@ -309,7 +319,6 @@ entities:
         unit: s
   - entity: select
     translation_key: language
-    icon: "mdi:translate"
     category: config
     dps:
       - id: 133
@@ -319,9 +328,9 @@ entities:
           - dps_val: 0
             value: chinese
           - dps_val: 1
-            value: english female
+            value: english
           - dps_val: 2
-            value: english children
+            value: english_child
   - entity: binary_sensor
     name: Mop attached
     category: diagnostic
