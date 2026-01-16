@@ -1218,3 +1218,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MrJinxed55](https://github.com/MrJinxed55) for improvements to Zigbee ZN373186 temperature and humidity sensor.
 - [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
 - [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
+- [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
