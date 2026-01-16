@@ -1,4 +1,4 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: 4kqsufvuurljmryl
     manufacturer: Meaco
@@ -118,18 +118,17 @@ entities:
       - id: 6
         name: switch
         type: boolean
-  - entity: select
-    name: Indicator Light
+  - entity: light
     translation_key: indicator
     category: config
     dps:
       - id: 101
-        name: option
+        name: brightness
         type: string
         mapping:
           - dps_val: Close
-            value: "Off"
-          - dps_val: Standard
-            value: "Standard"
+            value: 0
           - dps_val: Soft
-            value: "Soft"
+            value: 128
+          - dps_val: Standard
+            value: 255
