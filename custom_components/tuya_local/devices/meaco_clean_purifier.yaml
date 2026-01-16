@@ -67,7 +67,7 @@ entities:
     translation_key: time_remaining
     category: diagnostic
     class: duration
-    dps:      
+    dps:
       - id: 19
         name: sensor
         type: integer
@@ -132,3 +132,10 @@ entities:
             value: 128
           - dps_val: Standard
             value: 255
+      - id: 3
+        type: string
+        name: available
+        mapping:
+          - dps_val: sleep
+            value: false
+          - value: true
