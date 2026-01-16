@@ -1215,3 +1215,5 @@ Further device support has been made with the assistance of users. Please consid
 - [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
 - [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
 - [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
+- [MrJinxed55](https://github.com/MrJinxed55) for improvements to Zigbee ZN373186 temperature and humidity sensor.
+- [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
