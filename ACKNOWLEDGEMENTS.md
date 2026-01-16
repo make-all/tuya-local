@@ -1217,3 +1217,4 @@ Further device support has been made with the assistance of users. Please consid
 - [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
 - [MrJinxed55](https://github.com/MrJinxed55) for improvements to Zigbee ZN373186 temperature and humidity sensor.
 - [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
+- [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
