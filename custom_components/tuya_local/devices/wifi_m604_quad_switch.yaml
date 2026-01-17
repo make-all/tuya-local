@@ -42,6 +42,7 @@ entities:
 
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -50,13 +51,13 @@ entities:
         name: value
         type: integer
         unit: s
-        class: duration
         range:
           min: 0
           max: 86400
 
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -65,13 +66,13 @@ entities:
         name: value
         type: integer
         unit: s
-        class: duration
         range:
           min: 0
           max: 86400
 
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"
@@ -80,13 +81,13 @@ entities:
         name: value
         type: integer
         unit: s
-        class: duration
         range:
           min: 0
           max: 86400
 
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "4"
@@ -95,7 +96,6 @@ entities:
         name: value
         type: integer
         unit: s
-        class: duration
         range:
           min: 0
           max: 86400
@@ -128,16 +128,21 @@ entities:
   # DP17 (cycle_time) is a base64-encoded schedule payload.
   # Observed from Tuya app:
   # - Payload is a sequence of records; each record is 10 bytes:
-  #   [ctrl, weekday_mask, on_hi, on_lo, off_hi, off_lo, start_dur_hi, start_dur_lo, end_dur_hi, end_dur_lo]
-  # - Times are minutes since midnight, big-endian (e.g. 12:00 -> 720 -> 0x02D0).
-  # - Durations are minutes, big-endian (e.g. 01:00 -> 60 -> 0x003C).
-  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6 (e.g. Sun+Tue+Thu+Sat = 0x55).
+  #   [ctrl, weekday_mask, on_hi, on_lo, off_hi, off_lo, start_dur_hi,
+  #    start_dur_lo, end_dur_hi, end_dur_lo]
+  # - Times are minutes since midnight, big-endian
+  #   (e.g. 12:00 -> 720 -> 0x02D0).
+  # - Durations are minutes, big-endian
+  #   (e.g. 01:00 -> 60 -> 0x003C).
+  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6
+  #   (e.g. Sun+Tue+Thu+Sat = 0x55).
   # - ctrl encodes switch and enable:
   #     sw1 enabled=0x01 disabled=0x00
   #     sw2 enabled=0x03 disabled=0x02
   #     sw3 enabled=0x05 disabled=0x04
   #     sw4 enabled=0x07 disabled=0x06
-  # Example observed: sw1 enabled Sun/Tue/Thu/Sat 12:00-20:30, start 01:00, end 00:30 => AVUC0ATOADwAHg==
+  # Example observed: sw1 enabled Sun/Tue/Thu/Sat 12:00-20:30,
+  #                   start 01:00, end 00:30 => AVUC0ATOADwAHg==
   - entity: text
     name: Cycle schedule
     category: config
@@ -151,8 +156,10 @@ entities:
   # Observed from Tuya app:
   # - Payload is a sequence of 6-byte records (one per schedule entry).
   # - Each record: [ctrl, weekday_mask, on_hi, on_lo, off_hi, off_lo]
-  # - Times are minutes since midnight, big-endian (e.g. 12:00 -> 720 -> 0x02D0).
-  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6 (e.g. Sun+Tue+Thu+Sat = 0x55).
+  # - Times are minutes since midnight, big-endian
+  #   (e.g. 12:00 -> 720 -> 0x02D0).
+  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6
+  #   (e.g. Sun+Tue+Thu+Sat = 0x55).
   # - ctrl encodes switch and enable:
   #     sw1 enabled=0x01 disabled=0x00
   #     sw2 enabled=0x03 disabled=0x02
@@ -170,7 +177,8 @@ entities:
 
   # DP19 (switch_inching) is a base64-encoded inching configuration blob.
   # Observed from Tuya app writes:
-  # - Decoded payload is a sequence of 3-byte records, only for configured channels
+  # - Decoded payload is a sequence of 3-byte records,
+  #   only for configured channels
   #   (i.e. not always 4 records).
   # - Each record: [ctrl, seconds_hi, seconds_lo] where seconds is big-endian.
   # - ctrl byte encodes switch channel and enable:
@@ -178,9 +186,12 @@ entities:
   #     sw2 enabled=0x03 disabled=0x02
   #     sw3 enabled=0x05 disabled=0x04
   #     sw4 enabled=0x07 disabled=0x06
-  # - Record order is not guaranteed; it may follow the order the app saves/updates values.
-  # Example observed payload (enabled):  sw1=10s sw2=20s sw3=30s sw4=40s => BwAoAwAUBQAeAQAK
-  # Example observed payload (disabled): sw1=10s sw2=20s sw3=30s sw4=40s => BgAoAgAUBAAeAAAK
+  # - Record order is not guaranteed;
+  #   it may follow the order the app saves/updates values.
+  # Example observed payload (enabled):
+  #         sw1=10s sw2=20s sw3=30s sw4=40s => BwAoAwAUBQAeAQAK
+  # Example observed payload (disabled):
+  #         sw1=10s sw2=20s sw3=30s sw4=40s => BgAoAgAUBAAeAAAK
   - entity: text
     name: Inching config
     category: config
