@@ -1220,3 +1220,4 @@ Further device support has been made with the assistance of users. Please consid
 - [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
 - [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
 - [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
+- [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
