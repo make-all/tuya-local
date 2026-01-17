@@ -1,9 +1,11 @@
-name: Engo E901WIFI Thermostat
+name: Thermostat
 products:
   - id: bowuem6d9ihzwymj
-    name: Engo E901WIFI Thermostat
+    manufacturer: Engo
+    model: E901WIFI
 entities:
   - entity: climate
+    translation_key: thermostat
     dps:
       - id: 2
         name: hvac_mode
@@ -17,13 +19,18 @@ entities:
         name: hvac_action
         type: string
         mapping:
-          - dps_val: heating_on
+          - dps_val: heating_on            
             value: heating
+            constraint: hvac_mode
+            conditions:
+              - dps_val: cold
+                value: cooling
           - dps_val: heating_off
             value: idle
       - id: 16
         name: temperature
         type: integer
+        unit: C
         range:
           min: 50
           max: 350
@@ -41,27 +48,27 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Temperature Correction
+    ntranslation_key: temperature_calibration
     category: config
     dps:
       - id: 27
         name: value
         type: integer
+        unit: "°"
         range:
           min: -35
           max: 35
         mapping:
           - scale: 10
             step: 5
-  - entity: switch
-    name: Child Lock
+  - entity: lock
+    translation_key: child_Lock
     category: config
     dps:
       - id: 40
-        name: switch
+        name: lock
         type: boolean
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -69,15 +76,22 @@ entities:
         name: sensor
         type: integer
         unit: "%"
-  - entity: sensor
-    name: Fault
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 45
         name: sensor
         type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        name: fault_code
+        type: bitfield
   - entity: sensor
-    name: Heating Ratio
+    name: Heating ratio
     category: diagnostic
     dps:
       - id: 114
@@ -86,7 +100,7 @@ entities:
         unit: "%"
         optional: true
   - entity: select
-    name: Relay Control
+    name: Relay control
     category: config
     dps:
       - id: 113
