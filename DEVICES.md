@@ -1104,6 +1104,7 @@ port and password.
 - FrankEver BV05 water valve
 - Frizzlife LP365P water monitor shut-off valve
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- Gidrolock Standard water leak detection valve
 - Haozee water valve
 - Hoenyzy DN15 / DN20 / DN25 gas and water valve timers
 - Holman WX1 tap timer (sprinkler controller)
