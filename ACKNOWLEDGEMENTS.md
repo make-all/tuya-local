@@ -1219,3 +1219,4 @@ Further device support has been made with the assistance of users. Please consid
 - [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
 - [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
 - [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
+- [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
