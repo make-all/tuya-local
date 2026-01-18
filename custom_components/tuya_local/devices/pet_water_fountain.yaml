@@ -1,0 +1,234 @@
+name: Pet Water Fountain
+products:
+  - id: cafirr70niv1hj2x
+    name: 宠乐园 猫脸饮水机
+  # Fontanna Smart FONT7-SMART-B 2.5L Water Fountain
+  # All DPs verified from Tuya API - matches existing configuration perfectly
+  # Note: This device shares the same product_id as the 宠乐园 device above,
+  # indicating they are the same underlying Tuya product sold under
+  # different brands
+  - id: cafirr70niv1hj2x
+    manufacturer: Fontanna Smart
+    model: FONT7-SMART-B
+    name: Fontanna Smart 2.5L Water Fountain
+
+entities:
+  # Main pump switch, not working for my device
+  - entity: switch
+    name: Fountain Pump
+    icon: mdi:fountain
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  # Work mode selection
+  - entity: select
+    name: Work Mode
+    icon: mdi:cog
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: night
+            value: Night
+
+  # Filter days remaining
+  - entity: sensor
+    name: Filter Days Remaining
+    icon: mdi:filter
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: day
+        class: measurement
+
+  # Cleaning days remaining
+  - entity: sensor
+    name: Cleaning Days Remaining
+    icon: mdi:calendar-refresh
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: day
+        class: measurement
+
+  # Reset filter
+  - entity: button
+    name: Reset Filter
+    icon: mdi:filter-remove
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: button
+
+  # Reset cleaning
+  - entity: button
+    name: Reset Cleaning
+    icon: mdi:broom
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: button
+
+  # Filter reminder interval
+  - entity: number
+    name: Filter Reminder Interval
+    icon: mdi:filter-cog
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: day
+        range:
+          min: 0
+          max: 30
+
+  # Cleaning reminder interval
+  - entity: number
+    name: Cleaning Reminder Interval
+    icon: mdi:calendar-clock
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: day
+        range:
+          min: 0
+          max: 15
+
+  # Water level enum, not working for my device
+  - entity: sensor
+    name: Water Level
+    icon: mdi:cup-water
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Middle
+          - dps_val: high
+            value: High
+
+  # Water remaining %
+  - entity: sensor
+    name: Water Remaining (%)
+    icon: mdi:waves
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  # Water remaining in ml (writable - can be set to calibrate)
+  - entity: number
+    name: Water Remaining (ml)
+    icon: mdi:cup-water
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: ml
+        range:
+          min: 0
+          max: 4500
+
+  # Last water intake
+  - entity: sensor
+    name: Last Water Intake
+    icon: mdi:cat
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: ml
+        class: measurement
+
+  # Faults as binary sensors
+  - entity: binary_sensor
+    name: Low Water
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Filter Replacement Required
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Cleaning Required
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Battery Power Warning
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Pump Blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
