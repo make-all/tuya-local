@@ -1,0 +1,279 @@
+name: Energy Recovery Ventilator
+products:
+  - id: ics2husbxx7n6wz5
+    manufacturer: Royal Clima
+    model: RCS-1000-P 3.0
+    name: Supply and exhaust ventilation system
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "0"
+            value: heat_recovery
+          - dps_val: "1"
+            value: fresh
+          - dps_val: "2"
+            value: auto
+          - dps_val: "3"
+            value: sleep
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: Recuperation
+            icon: "mdi:shuffle-variant"
+          - dps_val: "1"
+            value: Bypass
+            icon: "mdi:weather-windy"
+          - dps_val: "2"
+            value: auto
+            icon: "mdi:arrow-decision-auto"
+          - dps_val: "3"
+            value: sleep
+            icon: "mdi:power-sleep"
+  - entity: number
+    name: Supply fan
+    icon: "mdi:tray-arrow-down"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Exhaust fan
+    icon: "mdi:tray-arrow-up"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: sensor
+    name: CO2
+    icon: "mdi:molecule-co2"
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    name: Humidity
+    icon: "mdi:water-percent"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    icon: "mdi:home-thermometer"
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    icon: "mdi:air-filter"
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "Days"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: false
+            icon: "mdi:lock-open-variant"
+          - dps_val: true
+            icon: "mdi:lock"
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    icon: "mdi:home-thermometer-outline"
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Humidity threshold to turn on
+    icon: "mdi:water-percent"
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 50
+          max: 99
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+  - entity: number
+    name: CO2 threshold to turn on
+    icon: "mdi:molecule-co2"
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: ppm
+        range:
+          min: 800
+          max: 2000
+        mapping:
+          - scale: 1
+            step: 100
+  - entity: number
+    name: Defrosting threshold
+    icon: "mdi:snowflake-melt"
+    category: config
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        range:
+          min: -9
+          max: 5
+  - entity: sensor
+    name: Heater configured
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Bypass auto open
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:hand-pointing-up"
+          - dps_val: true
+            icon: "mdi:auto-mode"
+  - entity: sensor
+    name: Bypass
+    translation_key: status
+    class: enum
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: false
+            value: close
+            icon: "mdi:valve-closed"
+          - dps_val: true
+            value: working
+            icon: "mdi:valve-open"
+  - entity: number
+    name: Bypass open threshold
+    icon: "mdi:thermometer-chevron-up"
+    category: config
+    class: temperature
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        range:
+          min: 5
+          max: 30
+  - entity: number
+    name: Post heater threshold
+    icon: "mdi:heating-coil"
+    category: config
+    class: temperature
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        range:
+          min: 16
+          max: 30
+  - entity: number
+    name: Bypass open range
+    icon: "mdi:thermometer-lines"
+    category: config
+    class: temperature
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        range:
+          min: 2
+          max: 15
+  - entity: sensor
+    name: Status text
+    category: diagnostic
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+
+# unknown entities for future integration:
+
+#  - entity: sensor
+#    name: Unknown 18
+#    category: diagnostic
+#    dps:
+#      - id: 18
+#        type: integer
+#        name: sensor
+#        class: measurement
+
+#  - entity: sensor
+#    name: Unknown 101
+#    category: diagnostic
+#    dps:
+#      - id: 101
+#        type: boolean
+#        name: sensor
