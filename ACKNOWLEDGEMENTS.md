@@ -1222,3 +1222,4 @@ Further device support has been made with the assistance of users. Please consid
 - [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
 - [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
 - [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve.
+- [cm-mojo](https://github.com/cm-mojo) for assisting with support for Pro Breeze AirFlo 43" pedestal fan.
