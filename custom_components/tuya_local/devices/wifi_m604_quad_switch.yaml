@@ -1,7 +1,6 @@
-name: Quad switch (M604)
+name: Quad switch
 products:
   - id: iv8nm7yimgfz2kmx
-    manufacturer: Tuya
     model: M604
 entities:
   - entity: switch
@@ -40,62 +39,54 @@ entities:
         name: switch
         type: boolean
 
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
     dps:
       - id: 7
-        name: value
         type: integer
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
 
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
     dps:
       - id: 8
-        name: value
         type: integer
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
 
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"
     dps:
       - id: 9
-        name: value
         type: integer
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
 
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "4"
     dps:
       - id: 10
-        name: value
         type: integer
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
@@ -114,8 +105,6 @@ entities:
             value: "on"
           - dps_val: last
             value: memory
-        optional: true
-        force: true
 
   - entity: light
     translation_key: backlight
@@ -146,10 +135,11 @@ entities:
   - entity: text
     name: Cycle schedule
     category: config
+    hidden: true
     dps:
       - id: 17
         name: value
-        type: string
+        type: base64
         optional: true
 
   # DP18 (random_time) is a base64-encoded schedule payload.
@@ -169,10 +159,11 @@ entities:
   - entity: text
     name: Random schedule
     category: config
+    hidden: true
     dps:
       - id: 18
         name: value
-        type: string
+        type: base64
         optional: true
 
   # DP19 (switch_inching) is a base64-encoded inching configuration blob.
@@ -195,8 +186,9 @@ entities:
   - entity: text
     name: Inching config
     category: config
+    hidden: true
     dps:
       - id: 19
         name: value
-        type: string
+        type: base64
         optional: true
