@@ -1,0 +1,20 @@
+name: Indoor Single Outlet
+products:
+  - id: ueblwhshebssfpll
+    manufacturer: Treatlife
+    model: SK50
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: lock
+    category: config
+    name: Child Lock
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+        optional: true
+

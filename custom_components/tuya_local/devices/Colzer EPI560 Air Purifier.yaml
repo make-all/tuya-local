@@ -1,0 +1,64 @@
+name: Colzer EPI-560 Air Purifier
+products:
+  - id: lj5xdiqj9tytobtq
+    manufacturer: Colzer
+    model: EPI-560
+    model_id: ColzerEPI560
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
+  - entity: sensor
+    name: Filter remaining
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    translation_key: air_quality
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+  - entity: button
+    category: config
+    name: Reset Filter
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+        icon: "mdi:air-filter"
+        optional: true
+  - entity: lock
+    category: config
+    name: Child Lock
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        optional: true

@@ -1,0 +1,58 @@
+name: 3-Way Dimmer Switch
+products:
+  - id: frncwuklsraxh8nd
+    manufacturer: Treatlife
+    model: DS02
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    category: config
+    name: Minimum Brightness
+    dps:
+      - id: 3
+        type: integer
+        icon: mdi:brightness-5
+        name: value
+        range:
+          min: 0
+          max: 1000
+  - entity: select
+    category: config
+    name: Bulb Type
+    icon: mdi:lightbulb-variant
+    dps:
+      - id: 4
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: LED
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: select
+    category: config
+    name: Switch Indicator Light
+    icon: mdi:alarm-light-outline
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Indicator On When Light Off
+          - dps_val: 1
+            value: Indicator On When Light On

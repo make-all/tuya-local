@@ -1,0 +1,17 @@
+name: Wifi Door Sensor
+products:
+  - id: visd3k5eqlg4epya
+    manufacturer: Treatlife
+    model: WCS-10
+entities:
+  - entity: binary_sensor
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: number
+        name: brightness
+        range:
+          min: 0
+          max: 100
