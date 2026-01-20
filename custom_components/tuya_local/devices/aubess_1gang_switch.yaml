@@ -22,8 +22,19 @@ entities:
       - id: 44
         name: switch_inching
         type: string
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
   - entity: number
     translation_key: timer
+    deprecated: time.timer  # 2026-01-20
     class: duration
     category: config
     dps:
