@@ -103,7 +103,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -112,14 +112,11 @@ entities:
         type: string
         mapping:
           - dps_val: "low"
-            icon: "mdi:cup-outline"
-            value: "Low"
+            value: "low"
           - dps_val: "middle"
-            icon: "mdi:cup-water"
-            value: "Middle"
+            value: "medium"
           - dps_val: "high"
-            icon: "mdi:cup"
-            value: "High"
+            value: "high"
   - entity: sensor
     name: Water age
     class: duration

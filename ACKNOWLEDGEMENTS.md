@@ -1212,3 +1212,16 @@ Further device support has been made with the assistance of users. Please consid
 - [PawelSwaczyna](https://github.com/PawelSwaczyna) for contributing support for Klarta Humea Grande humidifier.
 - [laskas-p](https://github.com/laskas-p) for contributing support for Wellio D008A 20L dehumidifier.
 - [akritikos](https://github.com/akritikos) for assisting with support for Eureka ERK-S62 adjustable desk.
+- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
+- [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
+- [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
+- [MrJinxed55](https://github.com/MrJinxed55) for improvements to Zigbee ZN373186 temperature and humidity sensor.
+- [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
+- [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
+- [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
+- [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
+- [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
+- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve.
+- [cm-mojo](https://github.com/cm-mojo) for assisting with support for Pro Breeze AirFlo 43" pedestal fan.
+- [wfsyd](https://github.com/wfsyd) for contributing support for Mercator ceiling fan with lights, which was merged with Ovlaim ceiling fan with lights.
+- [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.

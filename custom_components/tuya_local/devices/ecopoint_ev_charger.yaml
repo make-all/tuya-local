@@ -124,8 +124,7 @@ entities:
           - dps_val: controlpi_error
             value: Error
   - entity: select
-    name: Charging mode
-    icon: "mdi:ev-station"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14  # work_mode
@@ -134,11 +133,11 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:

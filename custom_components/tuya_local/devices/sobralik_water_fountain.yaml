@@ -108,7 +108,7 @@ entities:
           max: 31
         unit: d
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -117,8 +117,6 @@ entities:
         type: string
         mapping:
           - dps_val: level_1
-            icon: "mdi:cup-outline"
             value: low
           - dps_val: level_2
-            icon: "mdi:cup"
             value: high
