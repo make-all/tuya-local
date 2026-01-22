@@ -55,7 +55,6 @@ class TestGoldairHeater(
             POWERLEVEL_DPS,
             self.entities.get("sensor_power_level"),
             unit=PERCENTAGE,
-            device_class=SensorDeviceClass.POWER_FACTOR,
             testdata=("2", 40),
         )
         self.setUpBasicBinarySensor(

@@ -2,11 +2,13 @@
 
 import json
 import sys
+
+from homeassistant.util import slugify
+
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
 )
-from homeassistant.util import slugify
 
 
 def main() -> int:
