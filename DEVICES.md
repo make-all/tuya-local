@@ -166,6 +166,7 @@ devices # Supported
 - Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
+- Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
 - these seem to use a small number of common controllers with minor variations, and many other Pool heat pumps will work using the above configurations.
