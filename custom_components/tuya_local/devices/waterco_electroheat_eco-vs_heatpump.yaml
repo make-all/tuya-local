@@ -1,0 +1,227 @@
+name: Pool heat pump
+products:
+  - id: 5xe6dkfmdafvrasa
+    manufacturer: Waterco
+    model: Electroheat ECO-VS 11-40kW
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 101
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: heating
+                value: heat
+      - id: 102
+        name: mode
+        type: string
+        hidden: true
+      - id: 104
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 54
+                  max: 104
+        range:
+          min: 12
+          max: 40
+      - id: 105
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: silence
+            value: sleep
+          - dps_val: perfect
+            value: comfort
+          - dps_val: power
+            value: boost
+      - id: 106
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 110
+        type: integer
+        name: max_temperature
+      - id: 111
+        type: integer
+        name: min_temperature
+      - id: 117
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    name: Power level
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    name: External coil temperature
+    class: temperature
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Exhaust temperature
+    class: temperature
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Outlet water temperature
+    class: temperature
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Return air temperature
+    class: temperature
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Inner coil temperature
+    class: temperature
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Cooling plate temperature
+    class: temperature
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+      - id: 106
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: EEV opening
+    dps:
+      - id: 121
+        name: sensor
+        type: integer
+        unit: P
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 107
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000

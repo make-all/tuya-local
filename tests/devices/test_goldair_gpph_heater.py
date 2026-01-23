@@ -1,6 +1,5 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
-from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
     PRECISION_WHOLE,
@@ -55,7 +54,6 @@ class TestGoldairHeater(
             POWERLEVEL_DPS,
             self.entities.get("sensor_power_level"),
             unit=PERCENTAGE,
-            device_class=SensorDeviceClass.POWER_FACTOR,
             testdata=("2", 40),
         )
         self.setUpBasicBinarySensor(

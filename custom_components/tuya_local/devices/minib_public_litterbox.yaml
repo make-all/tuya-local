@@ -9,13 +9,13 @@ products:
     model: MINI-F-Public
 
 entities:
-  - entity: switch
-    name: Power
-    icon: "mdi:power"
+  - entity: button
+    name: Reset
+    icon: "mdi:restart"
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: button
 
   - entity: select
     translation_key: mode
@@ -70,6 +70,7 @@ entities:
       - id: 7
         type: integer
         name: sensor
+        unit: times
         optional: true
 
   - entity: sensor
@@ -107,6 +108,7 @@ entities:
       - id: 103
         type: integer
         name: sensor
+        unit: times
 
   - entity: light
     translation_key: backlight
@@ -130,7 +132,7 @@ entities:
           - dps_val: "Standby"
             value: Standby
           - dps_val: "Wait_Cluster"
-            value: Waiting for clustering
+            value: Waiting for clumping
           - dps_val: "Clean_Pause"
             value: Cleaning paused
           - dps_val: "Clean_Start"

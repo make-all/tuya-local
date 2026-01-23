@@ -63,7 +63,7 @@ entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -72,14 +72,11 @@ entities:
         type: string
         mapping:
           - dps_val: level_1
-            icon: "mdi:cup-outline"
-            value: Low
+            value: low
           - dps_val: level_2
-            icon: "mdi:cup-water"
-            value: Medium
+            value: medium
           - dps_val: level_3
-            icon: "mdi:cup"
-            value: Full
+            value: full
   - entity: sensor
     name: UV runtime
     class: duration

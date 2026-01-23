@@ -130,7 +130,7 @@ entities:
           - dps_val: 16384
             value: "Leakage current fault"
   - entity: select
-    name: Charging mode
+    translation_key: charging_mode
     icon: "mdi:ev-station"
     dps:
       - id: 14
@@ -138,15 +138,15 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Charge now
+            value: immediate
           - dps_val: charge_pct
-            value: Charge PCT
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Charge energy
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Charge schedule
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Charge delay
+            value: delayed_charge
   - entity: switch
     icon: "mdi:ev-station"
     dps:
