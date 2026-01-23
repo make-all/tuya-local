@@ -142,30 +142,30 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
                 self._day_dps.get_values_to_set(self._device, day, settings)
             )
         else:
-            hours = hours + day * 24
+            hour = hour + day * 24
         if self._hour_dps:
             settings.update(
-                self._hour_dps.get_values_to_set(self._device, hours, settings)
+                self._hour_dps.get_values_to_set(self._device, hour, settings)
             )
         else:
-            minutes = minutes + hours * 60
+            minute = minute + hour * 60
 
         if self._minute_dps:
             settings.update(
-                self._minute_dps.get_values_to_set(self._device, minutes, settings)
+                self._minute_dps.get_values_to_set(self._device, minute, settings)
             )
         else:
-            seconds = seconds + minutes * 60
+            second = second + minute * 60
 
         if self._second_dps:
             settings.update(
-                self._second_dps.get_values_to_set(self._device, seconds, settings)
+                self._second_dps.get_values_to_set(self._device, second, settings)
             )
         else:
             _LOGGER.debug(
                 "%s: Discarding unused precision: %d seconds",
                 self.name,
-                seconds,
+                second,
             )
 
         await self._device.async_set_properties(settings)
