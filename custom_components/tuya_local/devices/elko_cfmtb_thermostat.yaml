@@ -15,12 +15,46 @@ entities:
             value: "off"
           - dps_val: false
             value: heat
+            available: not_connected
+            constraint: mode_control
+            conditions:
+              - dps_val: ActiveHeat
+                value: heat
+                available: connected
+              - dps_val: ActiveCool
+                value: cool
+                available: connected
+      - id: 121
+        type: string
+        name: mode
+        hidden: true
+      - id: 139
+        type: string
+        name: mode_control
+      - id: 139
+        type: string
+        name: not_connected
+        mapping:
+          - dps_val: NotConnected
+            value: true
+          - value: false
+      - id: 139
+        type: string
+        name: connected
+        mapping:
+          - dps_val: NotConnected
+            value: false
+          - value: true
       - id: 152
         name: hvac_action
         type: boolean
         mapping:
           - dps_val: true
             value: heating
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cooling
           - dps_val: false
             value: idle
       - id: 107
@@ -61,9 +95,18 @@ entities:
           - dps_val: Schedule
             value: program
           - dps_val: Override
-            value: boost
+            value: temp_override
           - dps_val: "Off"
             value: none
+      - id: 101
+        type: string
+        name: firmware_version
+      - id: 102
+        type: string
+        name: hardware_version
+      - id: 145
+        type: string
+        name: product_info
   - entity: number
     name: Power rating
     category: config
@@ -76,6 +119,8 @@ entities:
         range:
           min: 0
           max: 3600
+        mapping:
+          - step: 100
   - entity: lock
     translation_key: child_lock
     category: config
@@ -108,7 +153,7 @@ entities:
           min: 0
           max: 100
   - entity: sensor
-    name: Sensor type
+    name: External sensor type
     icon: "mdi:thermometer-probe"
     category: diagnostic
     class: enum
@@ -207,3 +252,218 @@ entities:
         type: integer
         unit: Wh
         class: total_increasing
+  - entity: datetime
+    name: Override end
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 2147483647
+        mapping:
+          # device uses 1/1/2000 epoch, so shift it
+          - target_range:
+              min: 1577750400
+              max: 3725234047
+  - entity: number
+    name: Heating temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Cooling temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Away heating reduction
+    category: config
+    icon: "mdi:thermometer-minus"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 50
+  - entity: number
+    name: Away cooling reduction
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 50
+  - entity: number
+    name: Away minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Away maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: switch
+    name: Away
+    icon: "mdi:home-export-outline"
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Occupied
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Open
+            value: true
+          - value: false
+  - entity: number
+    name: Room temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -900
+          max: 900
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: External temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -900
+          max: 900
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Screen timeout
+    category: config
+    class: duration
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 3600
+      - id: 134
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 65535
+            value: false
+          - value: true
+  - entity: switch
+    name: Screen timeout
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 134
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 65535
+            value: false
+          - dps_val: 3600
+            value: true
+          - value: true
+            hidden: true
+  - entity: switch
+    name: Regulator mode
+    category: config
+    dps:
+      - id: 146
+        type: boolean
+        name: switch
