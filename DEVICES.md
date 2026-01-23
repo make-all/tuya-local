@@ -1302,6 +1302,7 @@ entity types as sub devices.
 - Nedis ZBSC10WT temperature and humidity sensor
 - Neo Siren Alarm 2
 - PY321-Z-TY energy meter
+- RTI-Tek T5Z thermostat
 - Smart air box BR V2
 - Temperature and humidity sensor with alarm feature
 - TH02 Z3-P3Z temperature and humidity sensor
