@@ -1226,3 +1226,4 @@ Further device support has been made with the assistance of users. Please consid
 - [wfsyd](https://github.com/wfsyd) for contributing support for Mercator ceiling fan with lights, which was merged with Ovlaim ceiling fan with lights.
 - [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.
 - [ben-h-a](https://github.com/ben-h-a) for contributing support for Xtuos dual pet feeder.
+- [drkn](https://github.com/drkn) for contributing support for Eberg HUMI humidifier.
