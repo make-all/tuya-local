@@ -132,6 +132,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "camera",
                 "climate",
                 "cover",
+                "datetime",
                 "event",
                 "fan",
                 "humidifier",
@@ -214,6 +215,10 @@ KNOWN_DPS = {
             "open",
             "reversed",
         ],
+    },
+    "datetime": {
+        "required": [{"or": ["year", "month", "day", "hour", "minute", "second"]}],
+        "optional": [],
     },
     "event": {"required": ["event"], "optional": []},
     "fan": {
