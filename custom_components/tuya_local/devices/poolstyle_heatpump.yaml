@@ -1,8 +1,8 @@
-name: Poolstyle heat pump
+name: Pool heat pump
 products:
   - id: jzansoxokgvqotyw
     manufacturer: Poolstyle
-    model: Swimming Pool Heat Pump
+    model: PSL-150-00xx
 entities:
   - entity: climate
     translation_only_key: pool_heatpump
@@ -14,7 +14,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: "auto"
+            value: heat_cool
       - id: 2
         name: temperature
         type: integer
@@ -54,7 +54,6 @@ entities:
           - dps_val: strong
             value: high
   - entity: binary_sensor
-    name: Status
     class: problem
     category: diagnostic
     dps:
