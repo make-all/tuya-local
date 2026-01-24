@@ -1117,7 +1117,7 @@ port and password.
 - Holman WX8 8 sprinkler irrigation controller
 - KRain KRX8 irrigation controller
 - Neo NAS-WV02W water use monitoring valve
-- Neptun Smart water leak control system
+- Neptun Smart and Smart+ water leak control systems
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
