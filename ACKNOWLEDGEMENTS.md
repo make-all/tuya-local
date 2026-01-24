@@ -1076,7 +1076,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Veuchez](https://github.com/Veuchez) for assisting with support for Ryakka 7-in-1 pool monitor.
 - [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
 - [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
-- [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat.
+- [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat, Kishin BS-DW002 motion sensor.
 - [norb-HB](https://github.com/norb-HB) for assisting with support for Boundless Brothers PA-210W gas alarm.
 - [arsenicks](https://github.com/arsenicks) for contributing support for iHseno human presence sensor.
 - [diegaccio](https://github.com/diegaccio) for contributing improvements for Beok TGM50-WPB-WF / M5-G2 variants.
