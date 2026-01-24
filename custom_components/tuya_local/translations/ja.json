@@ -326,6 +326,29 @@
                 }
             }
         },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "洗濯乾燥",
+                            "purify": "浄化",
+                            "continuous": "連続"
+                        }
+                    }
+                }
+            },
+            "humidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "purify": "浄化",
+                            "continuous": "連続"
+                        }
+                    }
+                }
+            }
+        },
         "fan": {
             "aroma_diffuser": {
                 "name": "アロマディフューザー",
@@ -1083,31 +1106,6 @@
             },
             "hot_water": {
                 "name": "温水機"
-            }
-        }
-    },
-    "entity_component": {
-        "humidifier": {
-            "dehumidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "laundry": "洗濯乾燥",
-                            "purify": "浄化",
-                            "continuous": "連続"
-                        }
-                    }
-                }
-            },
-            "humidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "purify": "浄化",
-                            "continuous": "連続"
-                        }
-                    }
-                }
             }
         }
     }

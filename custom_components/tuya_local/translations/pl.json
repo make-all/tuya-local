@@ -326,6 +326,29 @@
                 }
             }
         },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Suszenie ubrania",
+                            "purify": "Oczyszczanie",
+                            "continuous": "Ciągły"
+                        }
+                    }
+                }
+            },
+            "humidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "purify": "Oczyszczanie",
+                            "continuous": "Ciągły"
+                        }
+                    }
+                }
+            }
+        },
         "fan": {
             "aroma_diffuser": {
                 "name": "Rozpylacz zapachów",
@@ -1084,31 +1107,6 @@
             },
             "hot_water": {
                 "name": "Gorąca woda"
-            }
-        }
-    },
-    "entity_component": {
-        "humidifier": {
-            "dehumidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "laundry": "Suszenie ubrania",
-                            "purify": "Oczyszczanie",
-                            "continuous": "Ciągły"
-                        }
-                    }
-                }
-            },
-            "humidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "purify": "Oczyszczanie",
-                            "continuous": "Ciągły"
-                        }
-                    }
-                }
             }
         }
     }

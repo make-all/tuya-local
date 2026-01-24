@@ -326,6 +326,29 @@
                 }
             }
         },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Сухо пране",
+                            "purify": "Пречистете",
+                            "continuous": "Непрекъснато"
+                        }
+                    }
+                }
+            },
+            "humidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "purify": "Пречистете",
+                            "continuous": "Непрекъснато"
+                        }
+                    }
+                }
+            }
+        },
         "fan": {
             "aroma_diffuser": {
                 "name": "Ароматизатор",
@@ -1086,31 +1109,5 @@
                 "name": "Гореща вода"
             }
         }
-    },
-    "entity_component": {
-        "humidifier": {
-            "dehumidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "laundry": "Сухо пране",
-                            "purify": "Пречистете",
-                            "continuous": "Непрекъснато"
-                        }
-                    }
-                }
-            },
-            "humidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "purify": "Пречистете",
-                            "continuous": "Непрекъснато"
-                        }
-                    }
-                }
-            }
-        }
     }
 }
-

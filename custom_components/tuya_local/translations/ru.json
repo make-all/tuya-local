@@ -326,6 +326,29 @@
                 }
             }
         },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Сушка одежды",
+                            "purify": "Очистка",
+                            "continuous": "Непрерывный"
+                        }
+                    }
+                }
+            },
+            "humidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "purify": "Очистка",
+                            "continuous": "Непрерывный"
+                        }
+                    }
+                }
+            }
+        },
         "fan": {
             "aroma_diffuser": {
                 "name": "Аромадиффузор",
@@ -1083,31 +1106,6 @@
             },
             "hot_water": {
                 "name": "Горячая вода"
-            }
-        }
-    },
-    "entity_component": {
-        "humidifier": {
-            "dehumidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "laundry": "Сушка одежды",
-                            "purify": "Очистка",
-                            "continuous": "Непрерывный"
-                        }
-                    }
-                }
-            },
-            "humidifier": {
-                "state_attributes": {
-                    "mode": {
-                        "state": {
-                            "purify": "Очистка",
-                            "continuous": "Непрерывный"
-                        }
-                    }
-                }
             }
         }
     }
