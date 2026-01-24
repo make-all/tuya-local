@@ -4,22 +4,25 @@ products:
     manufacturer: Polytherm
     model: Polyalpha
 entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: climate
     translation_key: thermostat
     dps:
       - id: 1
+        name: available
+        type: boolean
+      - id: 104
         name: hvac_mode
         type: boolean
         mapping:
           - dps_val: false
-            value: "off"
+            value: cool
           - dps_val: true
-            constraint: cool_heat
-            conditions:
-              - dps_val: false
-                value: cool
-              - dps_val: true
-                value: heat
+            value: heat
       - id: 2
         name: preset_mode
         type: string
@@ -48,7 +51,7 @@ entities:
         type: string
         mapping:
           - dps_val: open
-            constraint: cool_heat
+            constraint: hvac_mode
             conditions:
               - dps_val: false
                 value: cooling
@@ -56,10 +59,23 @@ entities:
                 value: heating
           - dps_val: close
             value: idle
-      - id: 104
+  - entity: humidifier
+    name: Humidity override
+    dps:
+      - id: 1
         type: boolean
-        name: cool_heat
-        hidden: true
+        name: available
+      - id: 106
+        type: integer
+        optional: true
+        name: humidity
+        range:
+          min: 50
+          max: 80
+      - id: 107
+        type: integer
+        optional: true
+        name: current_humidity
   - entity: lock
     translation_key: child_lock
     category: config
@@ -78,3 +94,14 @@ entities:
         range:
           min: 0
           max: 255
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
