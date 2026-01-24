@@ -1227,5 +1227,5 @@ Further device support has been made with the assistance of users. Please consid
 - [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.
 - [ben-h-a](https://github.com/ben-h-a) for contributing support for Xtuos dual pet feeder.
 - [drkn](https://github.com/drkn) for contributing support for Eberg HUMI humidifier.
-- [pacopaues](https://github.com/pacopaues) for assisting with support for RTI-Tek T5Z thermostat.
+- [pacopaues](https://github.com/pacopaues) for assisting with support for RTI-Tek T5Z and Avatto ZWT198 thermostats.
 - [ivan-mendez](https://github.com/ivan-mendez) for assisting with support for Brokton BRST12 air conditioner.

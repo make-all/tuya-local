@@ -1,0 +1,188 @@
+name: Thermostat
+products:
+  - id: viy9ihs7
+    manufacturer: Avatto
+    model: ZWT198
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: home
+            value: home
+          - dps_val: temporary
+            value: temp_override
+      - id: 15
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 16
+        type: integer
+        optional: true
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 101
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: number
+    translation_key: maximum_temperature
+    category: config
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 150
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    translation_key: minximum_temperature
+    category: config
+    dps:
+      - id: 16
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 150
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+  - entity: select
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Disabled
+          - dps_val: "1"
+            value: Weekday+Weekend
+          - dps_val: "2"
+            value: Mon-Sat+Sun
+          - dps_val: "3"
+            value: Daily
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 5
+          max: 100
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 110
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: 0
+          - dps_val: "1"
+            value: 85
+          - dps_val: "2"
+            value: 170
+          - dps_val: "3"
+            value: 255
