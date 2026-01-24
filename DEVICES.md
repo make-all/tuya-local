@@ -91,6 +91,7 @@ devices # Supported
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
+- Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
 - Confortotal CICON242 mini split air conditioner
