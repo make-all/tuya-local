@@ -6,17 +6,11 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 2
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 4
       - id: 2
         name: mode
         type: string
@@ -29,8 +23,6 @@ entities:
             value: boost
           - dps_val: quickdry
             value: laundry
-            icon: "mdi:tshirt-crew-outline"
-            icon_priority: 3
       - id: 3
         name: current_humidity
         type: integer

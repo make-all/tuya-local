@@ -5,6 +5,7 @@ products:
     model: CA-605B Smart
 entities:
   - entity: humidifier
+    class: humidifier
     dps:
       - id: 1
         name: switch
@@ -27,11 +28,11 @@ entities:
           - dps_val: auto
             value: auto
           - dps_val: level1
-            value: "1"
+            value: eco
           - dps_val: level2
-            value: "2"
+            value: comfort
           - dps_val: level3
-            value: "3"
+            value: boost
   - entity: sensor
     name: Current temperature
     class: temperature

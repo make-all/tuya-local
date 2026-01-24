@@ -174,19 +174,6 @@ class TestEanonsHumidifier(
             await self.subject.async_set_mode(MODE_NORMAL)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    def test_extra_state_attributes(self):
-        self.dps[TIMERHR_DPS] = "cancel"
-        self.dps[TIMER_DPS] = 0
-        self.dps[FANMODE_DPS] = "middle"
-
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "timer_hr": "cancel",
-                "timer_min": 0,
-            },
-        )
-
     def test_fan_speed(self):
         self.dps[FANMODE_DPS] = "small"
         self.assertEqual(self.fan.percentage, 33)

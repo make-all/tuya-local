@@ -6,6 +6,7 @@ name: Dehumidifier
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         type: boolean
@@ -25,7 +26,7 @@ entities:
           - dps_val: dehumidify
             value: auto
           - dps_val: continuous
-            value: boost
+            value: continuous
           - dps_val: dry
             value: laundry
       - id: 6

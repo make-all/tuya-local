@@ -5,6 +5,7 @@ products:
     model: CA-604B Smart
 entities:
   - entity: humidifier
+    class: humidifier
     dps:
       - id: 1
         name: switch
@@ -25,11 +26,11 @@ entities:
           - dps_val: auto
             value: auto
           - dps_val: level1
-            value: low
+            value: eco
           - dps_val: level2
-            value: middle
+            value: comfort
           - dps_val: level3
-            value: high
+            value: boost
           - dps_val: sleep
             value: sleep
   - entity: switch
