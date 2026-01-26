@@ -1,0 +1,273 @@
+name: Elegrp Smart Sensor Switch (SSS10/SSS30)
+products:
+  - id: wru4e9feq5839ysf
+    manufacturer: ELEGRP
+    model: SSS10/SSS30
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+#  - entity: number
+#    name: Timer
+#    translation_key: timer
+#    class: duration
+#    category: config
+#    hidden: true
+#    dps:
+#      - id: 6
+#        type: integer
+#        name: value
+#        unit: min
+#        range:
+#          min: 0
+#          max: 86399
+#        mapping:
+#          - scale: 60
+#          - step: 60
+  - entity: select
+    name: Motion Sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 48
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: medium
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: number
+    name: Motion Trigger Time
+    category: config
+    translation_key: timer
+    icon: "mdi:timer-stop-outline"
+    dps:
+      - id: 50
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 5
+          max: 60
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: switch
+    name: Indicator Brightness Auto Ajdust
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+  - entity: number
+    name: Indicator Brightness (Auto Mode)
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: Indicator Brightness (Manual Mode)
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: select
+    name: Fade On Speed
+    icon: "mdi:speedometer"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: 1Second
+            value: Fast
+          - dps_val: 5Seconds
+            value: Medium
+          - dps_val: 15Seconds
+            value: Slow
+          - dps_val: Immediate
+            value: Disable
+  - entity: select
+    name: Fade Off Speed
+    icon: "mdi:speedometer-slow"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: 1Second
+            value: Fast
+          - dps_val: 5Seconds
+            value: Medium
+          - dps_val: 15Seconds
+            value: Slow
+          - dps_val: Immediate
+            value: Disable
+  - entity: number
+    name: Indicator Brightness (Wifi Disconnected)
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: Sound Sensitivity
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 20
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: Ambient Light Sensitivity Dark
+    category: config
+    icon: "mdi:lightbulb-on-outline"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          -  step: 1
+  - entity: number
+    name: Ambient Light Sensitivity Dim
+    category: config
+    icon: "mdi:lightbulb-on-50"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: Ambient Light Sensitivity Bright
+    category: config
+    icon: "mdi:lightbulb-on"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: sensor
+    name: Hardware Version
+    category: diagnostic
+    icon: "mdi:chip"
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+#  - entity: light
+#   name: Timer Action
+#    category: config
+#   hidden: true
+#    dps:
+#      - id: 110
+#        type: boolean
+#        name: switch
+  - entity: sensor
+    name: Firmware Version
+    category: diagnostic
+    icon: "mdi:chip"
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+  - entity: select
+    name: Sensor Configuration
+    icon: "mdi:cog-play-outline"
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal Operation
+          - dps_val: motion
+            value: Motion Configuration
+          - dps_val: motion_test
+            value: Motion Test
+          - dps_val: sound
+            value: Sound Configuration
+          - dps_val: sound_test
+            value: Sound Test          
+          - dps_val: light
+            value: Ambient Light Configuration
+          - dps_val: buffer_time
+            value: Manual Off Buffer Time
+  - entity: sensor
+    name: Current Sound Level
+    category: diagnostic
+    icon: "mdi:volume-high"
+    readonly: true
+    mode: box
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Current Ambient Light
+    category: diagnostic
+    icon: "mdi:lightbulb-on-outline"
+    readonly: true
+    mode: box
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
