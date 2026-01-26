@@ -1,42 +1,31 @@
 name: Andalung EV Charger
-product: e1kw2auo
+products:
+  - id: e1kw2auo
+    manufacturer: Andalung
+    model: "Portable EV Charger"
 
-primary_entity:
-  entity: switch
-  name: Charger Switch
-  icon: "mdi:ev-station"
-  dps:
-    - id: 18
-      type: boolean
-      name: switch
+entities:
+  - entity: switch
+    name: Charger Switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
 
-secondary_entities:
-  - entity: select
+  - entity: number
     name: Charging Current
     icon: "mdi:current-ac"
     category: config
+    class: current
     dps:
       - id: 4
         type: integer
-        name: option
+        name: value
         unit: A
-        mapping:
-          - value: 6
-            label: "6A"
-          - value: 8
-            label: "8A"
-          - value: 10
-            label: "10A"
-          - value: 13
-            label: "13A"
-          - value: 16
-            label: "16A"
-          - value: 20
-            label: "20A"
-          - value: 25
-            label: "25A"
-          - value: 32
-            label: "32A"
+        range:
+          min: 6
+          max: 32
 
   - entity: select
     name: Charging Mode
@@ -48,28 +37,29 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate Charge
+            value: immediate
           - dps_val: charge_pct
-            value: Charge to Percentage
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Fixed Energy Amount
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Delayed Start
+            value: delayed_charge
 
   - entity: number
     name: Delay Start
     icon: "mdi:timer-outline"
     category: config
+    class: duration
     dps:
       - id: 28
         type: integer
         name: value
-        unit: hours
-        min: 1
-        max: 12
-        step: 1
+        unit: h
+        range:
+          min: 1
+          max: 12
 
   - entity: number
     name: Energy Recharge (Prepaid)
@@ -80,15 +70,17 @@ secondary_entities:
         type: integer
         name: value
         unit: kWh
-        min: 0.01
-        max: 200
-        step: 0.01
-        scaling: 0.01
+        range:
+          min: 1
+          max: 20000
+        mapping:
+          - scale: 100
 
   - entity: button
     name: Clear Total Energy
     icon: "mdi:restart"
     category: config
+    class: restart
     dps:
       - id: 16
         type: boolean
@@ -97,108 +89,115 @@ secondary_entities:
   - entity: sensor
     name: Total Power
     icon: "mdi:flash"
-    device_class: power
-    state_class: measurement
-    unit: W
+    class: power
     dps:
       - id: 9
         type: integer
         name: sensor
+        unit: W
+        class: measurement
 
   - entity: sensor
     name: Total Energy Consumed
     icon: "mdi:lightning-bolt"
-    device_class: energy
-    state_class: total_increasing
-    unit: kWh
+    class: energy
     dps:
       - id: 1
         type: integer
         name: sensor
-        scaling: 0.01
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
 
   - entity: sensor
     name: Session Energy
     icon: "mdi:lightning-bolt-outline"
-    device_class: energy
-    state_class: measurement
-    unit: kWh
+    class: energy
     dps:
       - id: 25
         type: integer
         name: sensor
-        scaling: 0.01
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
 
   - entity: sensor
     name: Remaining Energy (Prepaid Balance)
     icon: "mdi:battery-charging-outline"
-    device_class: energy
-    state_class: measurement
-    unit: kWh
+    class: energy_storage
+    category: diagnostic
     dps:
       - id: 15
         type: integer
         name: sensor
-        scaling: 0.01
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
 
   - entity: sensor
     name: Temperature
     icon: "mdi:thermometer"
-    device_class: temperature
-    state_class: measurement
-    unit: °C
+    class: temperature
+    category: diagnostic
     dps:
       - id: 24
         type: integer
         name: sensor
+        unit: C
+        class: measurement
 
   - entity: sensor
-    name: Charging Status
+    translation_key: status
     icon: "mdi:ev-station"
+    class: enum
     dps:
       - id: 3
         type: string
         name: sensor
         mapping:
           - dps_val: charger_free
-            value: Idle (No Car)
+            value: available
           - dps_val: charger_insert
-            value: Plugged In
+            value: plugged_in
           - dps_val: charger_free_fault
-            value: Idle (Fault)
+            value: fault_unplugged
           - dps_val: charger_wait
-            value: Waiting
+            value: waiting
           - dps_val: charger_charging
-            value: Charging
+            value: charging
           - dps_val: charger_pause
-            value: Paused
+            value: paused
           - dps_val: charger_end
-            value: Finished
+            value: charged
           - dps_val: charger_fault
-            value: Fault
+            value: fault
 
   - entity: sensor
     name: Connection State (CP Signal)
     icon: "mdi:ev-plug-type2"
+    class: enum
     dps:
       - id: 13
         type: string
         name: sensor
         mapping:
           - dps_val: controlpi_12v
-            value: Not Connected (12V)
+            value: not_connected_12v
           - dps_val: controlpi_12v_pwm
-            value: Not Connected (PWM)
+            value: not_connected_pwm
           - dps_val: controlpi_9v
-            value: Connected, No Ventilation (9V)
+            value: connected_9v
           - dps_val: controlpi_9v_pwm
-            value: Connected, No Ventilation (PWM)
+            value: connected_9v_pwm
           - dps_val: controlpi_6v
-            value: Charging (6V)
+            value: charging_6v
           - dps_val: controlpi_6v_pwm
-            value: Charging (PWM)
+            value: charging_pwm
           - dps_val: controlpi_error
-            value: Error
+            value: error
 
   - entity: sensor
     name: System Version
@@ -215,7 +214,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 6
-        type: raw
+        type: base64
         name: sensor
 
   - entity: sensor
@@ -224,22 +223,22 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 19
-        type: raw
+        type: base64
         name: sensor
 
-  - entity: select
-    name: Online State
-    icon: "mdi:cloud-outline"
+  - entity: binary_sensor
+    name: Online
     category: diagnostic
+    class: connectivity
     dps:
       - id: 27
         type: string
-        name: option
+        name: sensor
         mapping:
           - dps_val: offline
-            value: Offline
+            value: false
           - dps_val: online
-            value: Online
+            value: true
 
   - entity: sensor
     name: Alarm Settings 1 (Raw)
@@ -247,7 +246,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 11
-        type: raw
+        type: base64
         name: sensor
 
   - entity: sensor
@@ -256,49 +255,56 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 33
-        type: raw
+        type: base64
         name: sensor
 
-  - entity: sensor
-    name: Active Faults
-    icon: "mdi:alert-octagon-outline"
+  - entity: binary_sensor
+    name: Fault
     category: diagnostic
+    class: problem
     dps:
       - id: 10
-        type: integer
+        type: bitfield
         name: sensor
         mapping:
-          - value: 0
-            label: "None"
-          - value: 1
-            label: "Overcurrent"
-          - value: 2
-            label: "Secondary Overcurrent Fault"
-          - value: 4
-            label: "Overvoltage"
-          - value: 8
-            label: "Undervoltage Alarm"
-          - value: 16
-            label: "Contactor Adhesion"
-          - value: 32
-            label: "Contactor Fault"
-          - value: 64
-            label: "Earth Fault"
-          - value: 128
-            label: "Meter Hardware Alarm"
-          - value: 256
-            label: "Emergency Stop Fault"
-          - value: 512
-            label: "CP Fault"
-          - value: 1024
-            label: "Meter Communication Fault"
-          - value: 2048
-            label: "Card Reader Fault" # likely not possible
-          - value: 4096
-            label: "Circuit Short Fault"
-          - value: 8192
-            label: "Adhesion Fault"
-          - value: 16384
-            label: "Self-Test Alarm"
-          - value: 32768
-            label: "Leakage Current Alarm"
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: Overcurrent
+          - dps_val: 2
+            value: Secondary overcurrent fault
+          - dps_val: 4
+            value: Overvoltage
+          - dps_val: 8
+            value: Undervoltage alarm
+          - dps_val: 16
+            value: Contactor adhesion
+          - dps_val: 32
+            value: Contactor fault
+          - dps_val: 64
+            value: Earth fault
+          - dps_val: 128
+            value: Meter hardware alarm
+          - dps_val: 256
+            value: Emergency stop fault
+          - dps_val: 512
+            value: CP fault
+          - dps_val: 1024
+            value: Meter communication fault
+          - dps_val: 2048
+            value: Card reader fault
+          - dps_val: 4096
+            value: Circuit short fault
+          - dps_val: 8192
+            value: Adhesion fault
+          - dps_val: 16384
+            value: Self-test alarm
+          - dps_val: 32768
+            value: Leakage current alarm
