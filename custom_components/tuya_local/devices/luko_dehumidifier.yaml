@@ -45,18 +45,15 @@ entities:
             value: 80
           - dps_val: "5speed"
             value: 100
-  - entity: select
-    name: Circulation
-    category: config
-    dps:
       - id: 115
-        name: option
+        name: preset_mode
         type: string
+        translation_only_key: ventilation
         mapping:
           - dps_val: "0"
-            value: "Fresh Air"
+            value: "fresh"
           - dps_val: "1"
-            value: "Internal Circulation"
+            value: "circulate"
   - entity: number
     name: Temperature Set
     category: config
@@ -69,20 +66,18 @@ entities:
           max: 350
         mapping:
           - scale: 10
-  - entity: number
+  - entity: valve
     name: Fresh Air Valve
     category: config
     dps:
       - id: 109
-        name: value
+        name: valve
         type: integer
         range:
           min: 1
           max: 99
   - entity: sensor
-    name: Temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 9
         name: sensor
@@ -92,7 +87,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Absolute Humidity
     class: absolute_humidity
     category: diagnostic
     dps:
@@ -100,6 +94,7 @@ entities:
         name: sensor
         type: integer
         class: measurement
+        unit: "g/m³"
         mapping:
           - scale: 10
   - entity: sensor
