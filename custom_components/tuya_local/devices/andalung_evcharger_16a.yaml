@@ -1,0 +1,173 @@
+name: Andalung EV Charger
+product: e1kw2auo  # 
+
+primary_entity:
+  entity: switch
+  name: Charger Switch
+  icon: "mdi:ev-station"
+  dps:
+    - id: 18
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: select
+    name: Charging Current
+    icon: "mdi:current-ac"
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: option
+        mapping:
+          - value: 6
+            label: "6A"
+          - value: 8
+            label: "8A"
+          - value: 10
+            label: "10A"
+          - value: 13
+            label: "13A"
+          - value: 16
+            label: "16A"
+          - value: 20
+            label: "20A"
+          - value: 25
+            label: "25A"
+          - value: 32
+            label: "32A"
+
+  - entity: sensor
+    name: Power
+    icon: "mdi:flash"
+    class: power
+    state_class: measurement
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: sensor
+    name: Total Energy
+    icon: "mdi:lightning-bolt"
+    class: energy
+    state_class: total_increasing
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        scaling: 0.01
+
+  - entity: sensor
+    name: Session Energy
+    icon: "mdi:lightning-bolt-outline"
+    class: energy
+    state_class: measurement
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        scaling: 0.01
+
+  - entity: sensor
+    name: Temperature
+    icon: "mdi:thermometer"
+    class: temperature
+    state_class: measurement
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: °C
+
+  - entity: sensor
+    name: Charging Status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: Idle
+          - dps_val: charger_insert
+            value: Plugged In
+          - dps_val: charger_free_fault
+            value: Idle (Fault)
+          - dps_val: charger_wait
+            value: Waiting
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Paused
+          - dps_val: charger_end
+            value: Finished
+          - dps_val: charger_fault
+            value: Fault
+
+  - entity: sensor
+    name: Connection State
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Not Connected (12V)
+          - dps_val: controlpi_12v_pwm
+            value: Not Connected (PWM)
+          - dps_val: controlpi_9v
+            value: Connected (9V)
+          - dps_val: controlpi_9v_pwm
+            value: Connected (PWM)
+          - dps_val: controlpi_6v
+            value: Charging (6V)
+          - dps_val: controlpi_6v_pwm
+            value: Charging (PWM)
+          - dps_val: controlpi_error
+            value: Error
+
+  - entity: button
+    name: Clear Total Energy
+    icon: "mdi:restart"
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+
+  - entity: number
+    name: Delay Start
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: hours
+        min: 1
+        max: 12
+        step: 1
+
+  - entity: select
+    name: Charging Mode
+    icon: "mdi:cog-outline"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_pct
+            value: To Percentage
+          - dps_val: charge_energy
+            value: Fixed Amount
+          - dps_val: charge_schedule
+            value: Scheduled
+          - dps_val: charge_delay
+            value: Delayed
