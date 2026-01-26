@@ -1,0 +1,304 @@
+name: Andalung EV Charger
+product: e1kw2auo
+
+primary_entity:
+  entity: switch
+  name: Charger Switch
+  icon: "mdi:ev-station"
+  dps:
+    - id: 18
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: select
+    name: Charging Current
+    icon: "mdi:current-ac"
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: option
+        unit: A
+        mapping:
+          - value: 6
+            label: "6A"
+          - value: 8
+            label: "8A"
+          - value: 10
+            label: "10A"
+          - value: 13
+            label: "13A"
+          - value: 16
+            label: "16A"
+          - value: 20
+            label: "20A"
+          - value: 25
+            label: "25A"
+          - value: 32
+            label: "32A"
+
+  - entity: select
+    name: Charging Mode
+    icon: "mdi:cog-outline"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate Charge
+          - dps_val: charge_pct
+            value: Charge to Percentage
+          - dps_val: charge_energy
+            value: Fixed Energy Amount
+          - dps_val: charge_schedule
+            value: Scheduled
+          - dps_val: charge_delay
+            value: Delayed Start
+
+  - entity: number
+    name: Delay Start
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: hours
+        min: 1
+        max: 12
+        step: 1
+
+  - entity: number
+    name: Energy Recharge (Prepaid)
+    icon: "mdi:cash-plus"
+    category: config
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: kWh
+        min: 0.01
+        max: 200
+        step: 0.01
+        scaling: 0.01
+
+  - entity: button
+    name: Clear Total Energy
+    icon: "mdi:restart"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+
+  - entity: sensor
+    name: Total Power
+    icon: "mdi:flash"
+    device_class: power
+    state_class: measurement
+    unit: W
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Total Energy Consumed
+    icon: "mdi:lightning-bolt"
+    device_class: energy
+    state_class: total_increasing
+    unit: kWh
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        scaling: 0.01
+
+  - entity: sensor
+    name: Session Energy
+    icon: "mdi:lightning-bolt-outline"
+    device_class: energy
+    state_class: measurement
+    unit: kWh
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        scaling: 0.01
+
+  - entity: sensor
+    name: Remaining Energy (Prepaid Balance)
+    icon: "mdi:battery-charging-outline"
+    device_class: energy
+    state_class: measurement
+    unit: kWh
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        scaling: 0.01
+
+  - entity: sensor
+    name: Temperature
+    icon: "mdi:thermometer"
+    device_class: temperature
+    state_class: measurement
+    unit: °C
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Charging Status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: Idle (No Car)
+          - dps_val: charger_insert
+            value: Plugged In
+          - dps_val: charger_free_fault
+            value: Idle (Fault)
+          - dps_val: charger_wait
+            value: Waiting
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Paused
+          - dps_val: charger_end
+            value: Finished
+          - dps_val: charger_fault
+            value: Fault
+
+  - entity: sensor
+    name: Connection State (CP Signal)
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Not Connected (12V)
+          - dps_val: controlpi_12v_pwm
+            value: Not Connected (PWM)
+          - dps_val: controlpi_9v
+            value: Connected, No Ventilation (9V)
+          - dps_val: controlpi_9v_pwm
+            value: Connected, No Ventilation (PWM)
+          - dps_val: controlpi_6v
+            value: Charging (6V)
+          - dps_val: controlpi_6v_pwm
+            value: Charging (PWM)
+          - dps_val: controlpi_error
+            value: Error
+
+  - entity: sensor
+    name: System Version
+    icon: "mdi:information-outline"
+    category: diagnostic
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Phase A Raw Data
+    icon: "mdi:waveform"
+    category: diagnostic
+    dps:
+      - id: 6
+        type: raw
+        name: sensor
+
+  - entity: sensor
+    name: Scheduled Charging Time Slot (Raw)
+    icon: "mdi:clock-outline"
+    category: diagnostic
+    dps:
+      - id: 19
+        type: raw
+        name: sensor
+
+  - entity: select
+    name: Online State
+    icon: "mdi:cloud-outline"
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        name: option
+        mapping:
+          - dps_val: offline
+            value: Offline
+          - dps_val: online
+            value: Online
+
+  - entity: sensor
+    name: Alarm Settings 1 (Raw)
+    icon: "mdi:wrench"
+    category: diagnostic
+    dps:
+      - id: 11
+        type: raw
+        name: sensor
+
+  - entity: sensor
+    name: Charging Mode Configuration (Raw)
+    icon: "mdi:wrench"
+    category: diagnostic
+    dps:
+      - id: 33
+        type: raw
+        name: sensor
+
+  - entity: sensor
+    name: Active Faults
+    icon: "mdi:alert-octagon-outline"
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        mapping:
+          - value: 0
+            label: "None"
+          - value: 1
+            label: "Overcurrent"
+          - value: 2
+            label: "Secondary Overcurrent Fault"
+          - value: 4
+            label: "Overvoltage"
+          - value: 8
+            label: "Undervoltage Alarm"
+          - value: 16
+            label: "Contactor Adhesion"
+          - value: 32
+            label: "Contactor Fault"
+          - value: 64
+            label: "Earth Fault"
+          - value: 128
+            label: "Meter Hardware Alarm"
+          - value: 256
+            label: "Emergency Stop Fault"
+          - value: 512
+            label: "CP Fault"
+          - value: 1024
+            label: "Meter Communication Fault"
+          - value: 2048
+            label: "Card Reader Fault" # likely not possible
+          - value: 4096
+            label: "Circuit Short Fault"
+          - value: 8192
+            label: "Adhesion Fault"
+          - value: 16384
+            label: "Self-Test Alarm"
+          - value: 32768
+            label: "Leakage Current Alarm"
