@@ -1,8 +1,8 @@
-name: Thor Dehumidifier
+name: Dehumidifier
 products:
   - id: kga5rstkass0sroi
-    manufacturer: eeese air care
-    model: thor
+    manufacturer: Eeese Air Care
+    model: Thor
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -21,13 +21,13 @@ entities:
         type: string
         mapping:
           - dps_val: Low
-            value: Low
+            value: eco
           - dps_val: Mid
-            value: Mid
+            value: normal
           - dps_val: High
-            value: High
+            value: boost
           - dps_val: Auto
-            value: Auto
+            value: auto
       - id: 6
         type: integer
         name: current_humidity
@@ -120,17 +120,15 @@ entities:
             value: 23h
           - dps_val: 24h
             value: 24h
-  - entity: number
+  - entity: sensor
+    translation_key: time_remaining
     category: config
-    name: Countdown Left
+    class: duration
     dps:
       - id: 18
         type: integer
-        name: value
-        unit: "min"
-        range:
-          min: 0
-          max: 480
+        name: sensor
+        unit: min
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -164,7 +162,7 @@ entities:
             value: true
           - value: false
   - entity: switch
-    name: Beep Switch
+    name: Beep
     category: config
     dps:
       - id: 101
