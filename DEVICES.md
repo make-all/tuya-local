@@ -161,6 +161,7 @@ devices # Supported
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
 - Poolsana InverPower Next pool heat pump
+- Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
 - Remora pool heat pump

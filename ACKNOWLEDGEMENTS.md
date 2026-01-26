@@ -1231,3 +1231,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ivan-mendez](https://github.com/ivan-mendez) for assisting with support for Brokton BRST12 air conditioner.
 - [sanglyb](https://github.com/sanglyb) for assisting with support for Neptun Smart+ water leak control system.
 - [J14111](https://github.com/J14111) for assisting with support for Palicy EC Pro 4 chlorine generator.
+- [chrisproud](https://github.com/chrisproud) for contributing support for Poolstyle pool heat pump.
