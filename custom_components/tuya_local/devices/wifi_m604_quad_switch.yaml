@@ -1,0 +1,194 @@
+name: Quad switch
+products:
+  - id: iv8nm7yimgfz2kmx
+    model: M604
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 4
+        name: switch
+        type: boolean
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 7
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 8
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 14
+        name: option
+        type: string
+        mapping:
+          - dps_val: power_off
+            value: "off"
+          - dps_val: power_on
+            value: "on"
+          - dps_val: last
+            value: memory
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+
+  # DP17 (cycle_time) is a base64-encoded schedule payload.
+  # Observed from Tuya app:
+  # - Payload is a sequence of records; each record is 10 bytes:
+  #   [ctrl, weekday_mask, on_hi, on_lo, off_hi, off_lo, start_dur_hi,
+  #    start_dur_lo, end_dur_hi, end_dur_lo]
+  # - Times are minutes since midnight, big-endian
+  #   (e.g. 12:00 -> 720 -> 0x02D0).
+  # - Durations are minutes, big-endian
+  #   (e.g. 01:00 -> 60 -> 0x003C).
+  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6
+  #   (e.g. Sun+Tue+Thu+Sat = 0x55).
+  # - ctrl encodes switch and enable:
+  #     sw1 enabled=0x01 disabled=0x00
+  #     sw2 enabled=0x03 disabled=0x02
+  #     sw3 enabled=0x05 disabled=0x04
+  #     sw4 enabled=0x07 disabled=0x06
+  # Example observed: sw1 enabled Sun/Tue/Thu/Sat 12:00-20:30,
+  #                   start 01:00, end 00:30 => AVUC0ATOADwAHg==
+  - entity: text
+    name: Cycle schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 17
+        name: value
+        type: base64
+        optional: true
+
+  # DP18 (random_time) is a base64-encoded schedule payload.
+  # Observed from Tuya app:
+  # - Payload is a sequence of 6-byte records (one per schedule entry).
+  # - Each record: [ctrl, weekday_mask, on_hi, on_lo, off_hi, off_lo]
+  # - Times are minutes since midnight, big-endian
+  #   (e.g. 12:00 -> 720 -> 0x02D0).
+  # - weekday_mask bitfield: Sun=bit0 ... Sat=bit6
+  #   (e.g. Sun+Tue+Thu+Sat = 0x55).
+  # - ctrl encodes switch and enable:
+  #     sw1 enabled=0x01 disabled=0x00
+  #     sw2 enabled=0x03 disabled=0x02
+  #     sw3 enabled=0x05 disabled=0x04
+  #     sw4 enabled=0x07 disabled=0x06
+  # Example observed: sw1 enabled Sun/Tue/Thu/Sat 12:00-20:30 => AVUC0ATO
+  - entity: text
+    name: Random schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 18
+        name: value
+        type: base64
+        optional: true
+
+  # DP19 (switch_inching) is a base64-encoded inching configuration blob.
+  # Observed from Tuya app writes:
+  # - Decoded payload is a sequence of 3-byte records,
+  #   only for configured channels
+  #   (i.e. not always 4 records).
+  # - Each record: [ctrl, seconds_hi, seconds_lo] where seconds is big-endian.
+  # - ctrl byte encodes switch channel and enable:
+  #     sw1 enabled=0x01 disabled=0x00
+  #     sw2 enabled=0x03 disabled=0x02
+  #     sw3 enabled=0x05 disabled=0x04
+  #     sw4 enabled=0x07 disabled=0x06
+  # - Record order is not guaranteed;
+  #   it may follow the order the app saves/updates values.
+  # Example observed payload (enabled):
+  #         sw1=10s sw2=20s sw3=30s sw4=40s => BwAoAwAUBQAeAQAK
+  # Example observed payload (disabled):
+  #         sw1=10s sw2=20s sw3=30s sw4=40s => BgAoAgAUBAAeAAAK
+  - entity: text
+    name: Inching config
+    category: config
+    hidden: true
+    dps:
+      - id: 19
+        name: value
+        type: base64
+        optional: true
