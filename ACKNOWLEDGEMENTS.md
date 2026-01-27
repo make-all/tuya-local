@@ -1233,3 +1233,4 @@ Further device support has been made with the assistance of users. Please consid
 - [J14111](https://github.com/J14111) for assisting with support for Palicy EC Pro 4 chlorine generator.
 - [chrisproud](https://github.com/chrisproud) for contributing support for Poolstyle pool heat pump.
 - [elsterglanz](https://github.com/elsterglanz) for assisting with support for a new variant of Beok TOL47 thermostat.
+- [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
