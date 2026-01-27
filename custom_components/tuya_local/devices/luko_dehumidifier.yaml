@@ -27,6 +27,7 @@ entities:
         mapping:
           - step: 5
   - entity: fan
+    translation_only_key: ventilation
     dps:
       - id: 1
         name: switch
@@ -48,7 +49,6 @@ entities:
       - id: 115
         name: preset_mode
         type: string
-        translation_only_key: ventilation
         mapping:
           - dps_val: "0"
             value: "fresh"
