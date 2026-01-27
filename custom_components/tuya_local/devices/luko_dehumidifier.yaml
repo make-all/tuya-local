@@ -55,19 +55,20 @@ entities:
           - dps_val: "1"
             value: "circulate"
   - entity: number
-    name: Temperature Set
+    class: temperature
     category: config
     dps:
       - id: 45
         name: value
         type: integer
+        unit: C
         range:
           min: 50
           max: 350
         mapping:
           - scale: 10
   - entity: valve
-    name: Fresh Air Valve
+    name: Fresh air
     category: config
     dps:
       - id: 109
