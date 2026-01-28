@@ -449,7 +449,7 @@ devices # Supported
 - ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2/V4, CD25PRO-LE-V2 dehumidifiers
 - ElectriQ DESD9LW dehumidifier (two variants)
 - Electriq PD45E dehumidifier
-- Eeese Adam, Anna, Carl, Emil, Otto dehumidifiers
+- Eeese Adam, Anna, Carl, Emil, Otto, Thor dehumidifiers
 - Emerio DH-129238.1 dehumidifier
 - Goldair GPDH340, GPDH420 dehumidifiers
 - Gologi GO021 dehumidifier
