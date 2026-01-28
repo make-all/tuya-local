@@ -1,0 +1,84 @@
+name: Elegrp Smart Switch (SPN10/SPN30)
+products:
+  - id: ngimwhcckkasc2ky
+    manufacturer: ELEGRP
+    model: SPN10 & SPN30
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+#  - entity: number
+#    name: Timer
+#    translation_key: timer
+#    class: duration
+#    category: config
+#    hidden: true
+#   dps:
+#      - id: 7
+#        type: integer
+#        name: value
+#        unit: min
+#        range:
+#          min: 0
+#          max: 86399
+#        mapping:
+#          - scale: 60
+#            step: 60
+  - entity: select
+    name: Power On State
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: off
+            value: Stay Off
+          - dps_val: on
+            value: Turn On
+          - dps_val: memory
+            value: Memory
+  - entity: select
+    name: Indicator Behavior
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: Always Off
+          - dps_val: relay
+            value: On When Light On
+          - dps_val: pos
+            value: On When Light Off
+          - dps_val: on
+            value: Always On
+  - entity: sensor
+    name: Hardware Version
+    category: diagnostic
+    icon: "mdi:chip"
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+#  - entity: light
+#    name: Timer Action
+#    category: config
+#    hidden: true
+#    dps:
+#      - id: 110
+#       type: boolean
+#       name: switch
+  - entity: sensor
+    name: Firmware Version
+    category: diagnostic
+    icon: "mdi:chip"
+    dps:
+      - id: 113
+        type: string
+        name: sensor
