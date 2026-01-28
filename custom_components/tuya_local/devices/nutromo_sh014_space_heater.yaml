@@ -1,0 +1,166 @@
+name: NUTROMO SH014 Space Heater
+products:
+  # https://www.amazon.com/dp/B0FX9K8Q7B
+  # basic research on the DPS for this device:
+  #   1 - bool - heat status
+  #   4 - mode - eco, low, high, sleep, fan
+  #   6 - unknown
+  #   7 - child lock switch
+  #   8 - oscillate switch
+  #   11 - matches DPS 4 but with a slight delay?
+  #   14 - target temperature in F
+  #   15 - current temperature in F
+  #   19 - manual timer in hours values 1-24, or cancel
+  #   20 - remaining minutes to shut down if DPS 19 is NOT 'cancel'
+  #   21 - unknown
+  #   102 - do not disturb switch (disables sound)
+  #   103 - countdown in minutes until autoshutoff (only when DPS 19 is 'cancel')
+  - id: 2b8tuuczxpiwdrlb
+    manufacturer: NUTROMO
+    model: "SH014 Space Heater"
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: eco
+            value: eco
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fan
+            value: fan
+
+      - id: 14
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 40
+          max: 95
+
+      - id: 15
+        name: current_temperature
+        type: integer
+        unit: F
+
+      - id: 8
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+
+  - entity: switch
+    name: Child lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+          - dps_val: "10"
+            value: "10h"
+          - dps_val: "11"
+            value: "11h"
+          - dps_val: "12"
+            value: "12h"
+          - dps_val: "13"
+            value: "13h"
+          - dps_val: "14"
+            value: "14h"
+          - dps_val: "15"
+            value: "15h"
+          - dps_val: "16"
+            value: "16h"
+          - dps_val: "17"
+            value: "17h"
+          - dps_val: "18"
+            value: "18h"
+          - dps_val: "19"
+            value: "19h"
+          - dps_val: "20"
+            value: "20h"
+          - dps_val: "21"
+            value: "21h"
+          - dps_val: "22"
+            value: "22h"
+          - dps_val: "23"
+            value: "23h"
+          - dps_val: "24"
+            value: "24h"
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: sensor
+    name: Auto shutoff countdown
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
