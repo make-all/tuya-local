@@ -1,4 +1,4 @@
-name: Chiltrix CX-Line Heat Pumps
+name: Combo heat pump
 products:
   - id: kjf6gjn1kaawfyjk
     manufacturer: Chiltrix
@@ -7,7 +7,7 @@ products:
 entities:
   # PRIMARY HVAC (CLIMATE)
   - entity: climate
-    name: HVAC
+    name: Air
     dps:
       # Power control
       - id: 126
@@ -72,16 +72,15 @@ entities:
       - id: 101
         type: integer
         name: temperature
-        unit: °C
+        unit: C
         range:
           min: 0
           max: 80
 
-      # Current temperature (outlet water as proxy)
-      - id: 112
+      # Current temperature (return water as proxy)
+      - id: 111
         type: integer
         name: current_temperature
-        unit: °C
 
   # DHW WATER HEATER
   - entity: water_heater
@@ -158,7 +157,7 @@ entities:
       - id: 102
         type: integer
         name: temperature
-        unit: °C
+        unit: C
         range:
           min: 10
           max: 70
@@ -167,13 +166,12 @@ entities:
       - id: 113
         type: integer
         name: current_temperature
-        unit: °C
 
   # EXTRA CONFIG NUMBERS
   - entity: number
     name: Minimum water flow
     category: config
-    icon: "mdi:water-pump"
+    class: volume_flow_rate
     dps:
       - id: 103
         type: integer
@@ -185,12 +183,12 @@ entities:
 
   # TEMPERATURE & FLOW SENSORS
   - entity: sensor
-    name: Return water temp
+    name: Output temperature
     class: temperature
     category: diagnostic
     icon: "mdi:thermometer-chevron-down"
     dps:
-      - id: 111
+      - id: 112
         type: integer
         name: sensor
         unit: °C
@@ -199,33 +197,9 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Out water temp
-    class: temperature
+    name: Air conditioning water flow
     category: diagnostic
-    icon: "mdi:thermometer-chevron-up"
-    dps:
-      - id: 112
-        type: integer
-        name: sensor
-        unit: °C
-        class: measurement
-
-  - entity: sensor
-    name: DHW temperature
-    class: temperature
-    category: diagnostic
-    icon: "mdi:thermometer-water"
-    dps:
-      - id: 113
-        type: integer
-        name: sensor
-        unit: °C
-        class: measurement
-
-  - entity: sensor
-    name: AC water flow
-    category: diagnostic
-    icon: "mdi:water"
+    class: volume_flow_rate
     dps:
       - id: 114
         type: integer
@@ -234,7 +208,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Comp temp
+    name: Compressor temperature
     class: temperature
     category: diagnostic
     icon: "mdi:fire"
@@ -246,7 +220,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Coli temp
+    name: Coil temperature
     class: temperature
     category: diagnostic
     icon: "mdi:pipe"
@@ -258,7 +232,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Ambient temp
+    name: Ambient temperature
     class: temperature
     category: diagnostic
     icon: "mdi:thermometer-lines"
@@ -270,7 +244,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Comp return temp
+    name: Compressor return temperature
     class: temperature
     category: diagnostic
     icon: "mdi:fan"
@@ -282,7 +256,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Plate change temp
+    name: Exchange plate temperature
     class: temperature
     category: diagnostic
     icon: "mdi:pipe-wrench"
@@ -295,7 +269,7 @@ entities:
 
   # ELECTRICAL / SPEED
   - entity: sensor
-    name: Comp
+    name: Compressor frequency
     class: frequency
     category: diagnostic
     icon: "mdi:engine"
@@ -318,10 +292,8 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
-    icon: "mdi:current-ac"
     dps:
       - id: 108
         type: integer
@@ -336,6 +308,7 @@ entities:
     name: Status bits
     category: diagnostic
     icon: "mdi:information-outline"
+    hidden: true
     dps:
       - id: 120
         type: integer
