@@ -184,6 +184,7 @@ devices # Supported
 - Aquaviva AVH15S combo air-water heat pump
 - Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
+- Chiltrix CX50 combo heat pump
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater

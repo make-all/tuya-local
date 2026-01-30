@@ -1235,3 +1235,4 @@ Further device support has been made with the assistance of users. Please consid
 - [elsterglanz](https://github.com/elsterglanz) for assisting with support for a new variant of Beok TOL47 thermostat.
 - [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
 - [burned89](https://github.com/burned89) for contributing support for Eeese Thor dehumidifier.
+- [cb2206](https://github.com/cb2206) for contributing support for Chiltrix CX50 heat pump.
