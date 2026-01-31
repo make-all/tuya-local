@@ -29,6 +29,25 @@ entities:
         class: measurement
         endianness: little
         mask: "FFFF00"
+        mask_signed: true
+        mapping:
+          - scale: 10
+            constraint: type
+            conditions:
+              - dps_val: 0
+                invalid: true
+  - entity: sensor
+    name: Humidity probe 1
+    class: humidity
+    dps:
+      - id: 114
+        optional: true
+        type: base64
+        name: sensor
+        unit: "%"
+        class: measurement
+        endianness: little
+        mask: "FFFF000000"
         mapping:
           - scale: 10
             constraint: type
@@ -78,12 +97,14 @@ entities:
         class: measurement
         endianness: little
         mask: "FFFF0000000000000000000000"
+        mask_signed: true
         mapping:
           - scale: 10
             constraint: type
             conditions:
               - dps_val: 0
                 invalid: true
+
   - entity: sensor
     name: Battery 2
     class: battery
@@ -127,6 +148,7 @@ entities:
         class: measurement
         endianness: little
         mask: "FFFF000000000000000000000000000000000000000000"
+        mask_signed: true
         mapping:
           - scale: 10
             constraint: type
@@ -177,6 +199,7 @@ entities:
         endianness: little
         mask: >-
           FFFF00000000000000000000000000000000000000000000000000000000000000
+        mask_signed: true
         mapping:
           - scale: 10
             constraint: type
@@ -229,6 +252,7 @@ entities:
         endianness: little
         mask: "FFFF00000000000000000000000000000000000000\
           00000000000000000000000000000000000000000000"
+        mask_signed: true
         mapping:
           - scale: 10
             constraint: type
@@ -280,6 +304,7 @@ entities:
         unit: C
         class: measurement
         endianness: little
+        mask_signed: true
         mask: "FFFF00000000000000000000000000000000000000000000000\
           0000000000000000000000000000000000000000000000000000000"
         mapping:
