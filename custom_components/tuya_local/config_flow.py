@@ -43,6 +43,10 @@ from .helpers.device_config import get_config
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
+DEVICE_DETAILS_URL = (
+    "https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md"
+    "#finding-your-device-id-and-local-key"
+)
 
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -384,6 +388,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 
@@ -527,6 +532,7 @@ class OptionsFlowHandler(OptionsFlow):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(schema),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 
