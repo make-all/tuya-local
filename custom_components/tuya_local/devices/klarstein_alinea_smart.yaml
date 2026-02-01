@@ -1,6 +1,6 @@
 name: Klarstein Alinea Smart
 products:
-  - id:zggqz0s1atd9qce4
+  - id: zggqz0s1atd9qce4
     manufacturer: Klarstein
     model: FJ6
 entities:
@@ -13,16 +13,16 @@ entities:
     dps:
       - id: 4
         type: boolean
-        name: Light
-	  - id: 102
+        name: switch
+      - id: 102
         type: integer
-        name: colour
-		range:
+        name: effect
+        range:
           min: 0
           max: 6
-	  - id: 103
+      - id: 103
         type: integer
-        name: luminance
+        name: brightness
         range:
           min: 1
           max: 3
@@ -32,16 +32,19 @@ entities:
       - id: 10
         type: string
         name: preset_mode
-  - entity: time
-    name: countdown
-    dps:
-      - id: 12
-        type: integer
-        name: total_runtime
-		class: measurement
-      - id: 13
-        type: integer
-        name: countdown
-		range:
-          min: 0
-          max: 100
+- entity: number
+  name: Countdown
+  dps:
+    - id: 13
+      type: integer
+      name: value
+      range:
+        min: 0
+        max: 100
+- entity: sensor
+  name: Total Runtime
+  dps:
+    - id: 12
+      type: integer
+      name: sensor
+      class: measurement
