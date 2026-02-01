@@ -3,30 +3,54 @@ products:
   - id: wfnmgiqqch80sg1w
     manufacturer: YP
     model: PAF-40PCS-WBR3
+
 entities:
+  # Manual feed (sets DP 3)
   - entity: number
-    translation_key: manual_feed
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    category: config
     dps:
       - id: 3
         name: value
         type: integer
+        unit: portions
         range:
           min: 1
           max: 40
-  - entity: text
-    name: Meal plan
-    category: config
-    hidden: true
+        mapping:
+          - step: 1
+
+  # Optional: quick feed buttons (also DP 3, but as “press once” actions)
+  - entity: button
+    name: Quick feed (1 portion)
+    icon: "mdi:gesture-tap-button"
     dps:
-      - id: 1
-        type: base64
-        name: value
-        optional: true
+      - id: 3
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+
+  - entity: button
+    name: Quick feed (5 portions)
+    icon: "mdi:gesture-tap-button"
+    dps:
+      - id: 3
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 5
+            value: true
+          - value: false
+
+  # Feed state (DP 4)
   - entity: sensor
-    translation_key: status
+    name: Feed state
+    icon: "mdi:progress-clock"
     class: enum
-    icon: "mdi:paw"
-    category: diagnostic
     dps:
       - id: 4
         type: string
@@ -37,49 +61,73 @@ entities:
           - dps_val: feeding
             value: feeding
           - dps_val: done
-            value: feeding_complete
+            value: done
+
+  # Feed report (DP 15)
   - entity: sensor
-    icon: "mdi:paw"
     name: Feed report
+    icon: "mdi:counter"
     category: diagnostic
     dps:
       - id: 15
         name: sensor
         type: integer
-  - entity: button
-    translation_key: factory_reset
+        unit: portions
+
+  - entity: text
+    name: Meal plan
+    icon: "mdi:calendar-clock"
     category: config
-    hidden: true
     dps:
-      - id: 9
-        type: boolean
+      - id: 1
+        type: base64      # IMPORTANT: keep it as raw/base64 string
+        name: value
         optional: true
-        name: button
+
+  # Fault bitmap (DP 14)
   - entity: binary_sensor
+    name: Fault
     class: problem
     category: diagnostic
     dps:
       - id: 14
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
             value: false
           - value: true
+
       - id: 14
         type: bitfield
         name: fault_code
+        optional: true
+
       - id: 14
         type: bitfield
         name: description
+        optional: true
         mapping:
           - dps_val: 1
-            value: pet_food_jammed
+            value: pet_food_jam
           - dps_val: 2
-            value: pet_food_low
+            value: pet_food_shortages
           - dps_val: 4
-            value: pet_food_empty
+            value: pet_food_run_out
           - dps_val: 8
             value: desiccant_exhausted
           - dps_val: 16
             value: battery_low
+
+  # Factory reset (DP 9) – keep hidden unless you really want it exposed
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+        optional: true

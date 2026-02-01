@@ -1,0 +1,166 @@
+name: Smart Litter Box
+products:
+  - id: uzwdwonukfc4falp
+    name: iPet Litter Box
+
+entities:
+  - entity: switch
+    name: Clean
+    icon: mdi:paw
+    dps:
+      - id: 124
+        type: integer
+        name: switch
+        optional: true
+
+  - entity: switch
+    name: Factory reset
+    icon: mdi:lock-reset
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: Delay clean
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 5
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 60
+        optional: true
+
+  - entity: binary_sensor
+    name: Power
+    icon: mdi:power
+    category: diagnostic
+    dps:
+      - id: 119
+        name: sensor
+        type: boolean
+        optional: true
+
+  - entity: switch
+    name: Indicator light
+    icon: mdi:lightbulb-on
+    category: config
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+        optional: true
+
+  - entity: switch
+    name: Beep
+    icon: mdi:bell
+    category: config
+    dps:
+      - id: 108
+        name: switch
+        type: boolean
+        optional: true
+
+  - entity: switch
+    name: DND
+    icon: mdi:minus-circle
+    category: config
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+        optional: true
+
+  - entity: binary_sensor
+    name: DND status
+    icon: mdi:minus-circle
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: boolean
+        optional: true
+
+  - entity: binary_sensor
+    name: Trash full
+    icon: mdi:trash-can
+    category: diagnostic
+    dps:
+      - id: 112
+        name: sensor
+        type: boolean
+        optional: true
+
+  - entity: sensor
+    name: Pedal angle
+    icon: mdi:angle-acute
+    category: diagnostic
+    dps:
+      - id: 113
+        name: sensor
+        type: number
+        unit: degrees
+        optional: true
+
+  - entity: sensor
+    name: PIR Radar
+    icon: mdi:radar
+    category: diagnostic
+    dps:
+      - id: 115
+        name: sensor
+        type: number
+        optional: true
+
+  - entity: switch
+    name: Empty
+    icon: mdi:dump-truck
+    category: config
+    dps:
+      - id: 118
+        name: switch
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+
+  - entity: sensor
+    name: Temperature
+    icon: mdi:temperature-celsius
+    category: diagnostic
+    dps:
+      - id: 121
+        name: sensor
+        type: number
+        unit: C
+        mapping:
+          - scale: 10
+        optional: true
+
+  - entity: binary_sensor
+    name: Cleaning
+    icon: mdi:spray-bottle
+    category: diagnostic
+    dps:
+      - id: 126
+        name: sensor
+        type: boolean
+        optional: true
+
+  - entity: sensor
+    name: Notification status
+    icon: mdi:bell-badge
+    category: diagnostic
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        optional: true
