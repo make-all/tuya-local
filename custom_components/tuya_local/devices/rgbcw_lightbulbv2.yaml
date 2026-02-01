@@ -19,6 +19,16 @@ entities:
             value: color_temp
           - dps_val: colour
             value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: scene_1
+            value: Flash scene 1
+          - dps_val: scene_2
+            value: Flash scene 2
+          - dps_val: scene_3
+            value: Flash scene 3
+          - dps_val: scene_4
+            value: Flash scene 4
       - id: 3
         name: brightness
         type: integer
@@ -60,18 +70,48 @@ entities:
             range:
               min: 0
               max: 255
+  - entity: text
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
       - id: 6
-        name: scene
         type: hex
+        name: value
+  - entity: text
+    name: Flash scene 1
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
       - id: 7
-        name: flash_scene1
         type: hex
+        name: value
+  - entity: text
+    name: Flash scene 2
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
       - id: 8
-        name: flash_scene2
         type: hex
+        name: value
+  - entity: text
+    name: Flash scene 3
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
       - id: 9
-        name: flash_scene3
         type: hex
+        name: value
+  - entity: text
+    name: Flash scene 4
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
       - id: 10
-        name: flash_scene4
         type: hex
+        name: value
