@@ -1233,3 +1233,8 @@ Further device support has been made with the assistance of users. Please consid
 - [J14111](https://github.com/J14111) for assisting with support for Palicy EC Pro 4 chlorine generator.
 - [chrisproud](https://github.com/chrisproud) for contributing support for Poolstyle pool heat pump.
 - [elsterglanz](https://github.com/elsterglanz) for assisting with support for a new variant of Beok TOL47 thermostat.
+- [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
+- [burned89](https://github.com/burned89) for contributing support for Eeese Thor dehumidifier.
+- [cb2206](https://github.com/cb2206) for contributing support for Chiltrix CX50 heat pump.
+- [eriverosr](https://github.com/eriverosr) for contributing improvements to Catit Pixi Smart Fountain.
+- [RedstoneGithub](https://github.com/RedstoneGithub) for contributing improvements to Petlibro PLAF103 pet feeder.
