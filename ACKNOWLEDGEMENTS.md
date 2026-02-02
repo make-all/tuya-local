@@ -1236,3 +1236,5 @@ Further device support has been made with the assistance of users. Please consid
 - [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
 - [burned89](https://github.com/burned89) for contributing support for Eeese Thor dehumidifier.
 - [cb2206](https://github.com/cb2206) for contributing support for Chiltrix CX50 heat pump.
+- [eriverosr](https://github.com/eriverosr) for contributing improvements to Catit Pixi Smart Fountain.
+- [RedstoneGithub](https://github.com/RedstoneGithub) for contributing improvements to Petlibro PLAF103 pet feeder.
