@@ -1,0 +1,93 @@
+name: Air conditioner
+products:
+  - id: bfdf834ce2c22ee564veez
+    manufacturer: Tadiran
+    model: Inverter
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: cooling
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: heating
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 32
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: silent
+            value: mute
+          - dps_val: low
+            value: low
+          - dps_val: low_med
+            value: medlow
+          - dps_val: middle
+            value: medium
+          - dps_val: med_high
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: turbo
+            value: turbo
+          - dps_val: auto
+            value: auto
+      - id: 30
+        name: swing_mode
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
