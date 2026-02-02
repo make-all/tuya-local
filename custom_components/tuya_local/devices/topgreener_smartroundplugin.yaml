@@ -1,0 +1,39 @@
+name: Smart Round Plug-In
+products:
+  - id: bWBb4e6BTZGie0Lv
+    manufacturer: TOPGREENER
+    model: TGWF115PRM
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: countdown
+  - entity: sensor
+    class: current
+    dps:
+      - id: 4
+        name: cur_current
+        type: integer
+        unit: mA
+        class: measurement
+  - entity: sensor
+    class: power
+    dps:
+      - id: 5
+        name: cur_power
+        type: integer
+        unit: W
+        class: measurement
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6
+        name: cur_voltage
+        type: integer
+        unit: V
+        class: measurement
