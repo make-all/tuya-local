@@ -32,19 +32,19 @@ entities:
       - id: 10
         type: string
         name: preset_mode
-- entity: number
-  name: Countdown
-  dps:
-    - id: 13
-      type: integer
-      name: value
-      range:
-        min: 0
-        max: 100
-- entity: sensor
-  name: Total Runtime
-  dps:
-    - id: 12
-      type: integer
-      name: sensor
-      class: measurement
+  - entity: number
+    name: Countdown
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Total Runtime
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        class: measurement
