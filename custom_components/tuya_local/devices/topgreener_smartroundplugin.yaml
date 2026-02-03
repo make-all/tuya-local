@@ -15,25 +15,40 @@ entities:
         name: countdown
   - entity: sensor
     class: current
+    category: diagnostic
     dps:
       - id: 4
-        name: cur_current
+        name: sensor
         type: integer
-        unit: mA
         class: measurement
+        optional: true
+        force: true
+        unit: mA
   - entity: sensor
     class: power
+    category: diagnostic
     dps:
       - id: 5
-        name: cur_power
+        name: sensor
         type: integer
-        unit: W
         class: measurement
+        optional: true
+        force: true
+        unit: W
+        # scale https://github.com/home-assistant/core/issues/152295
+        mapping:
+          - scale: 10
   - entity: sensor
     class: voltage
+    category: diagnostic
     dps:
       - id: 6
-        name: cur_voltage
+        name: sensor
         type: integer
-        unit: V
         class: measurement
+        optional: true
+        force: true
+        unit: V
+        # scale https://github.com/home-assistant/core/issues/152295
+        mapping:
+          - scale: 10
