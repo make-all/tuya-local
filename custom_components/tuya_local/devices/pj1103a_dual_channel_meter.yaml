@@ -1,0 +1,190 @@
+name: Dual channel energy meter
+products:
+  - id: qqb5tzcb1qarf0s3
+    manufacturer: PJ
+    model: PJ-1103A
+    name: Dual channel smart meter
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power_factor
+    name: Power factor A
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    name: Power factor B
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: A
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: B
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Alarm A
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Alarm B
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
