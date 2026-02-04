@@ -1,0 +1,73 @@
+name: Tuvio Humidifier
+products:
+  - id: qzihhrhvvlntg87p
+    name: Tuvio TUH02DE
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 10
+        type: integer
+        name: humidity
+        range:
+          min: 0
+          max: 100
+      - id: 14
+        type: integer
+        name: current_humidity
+        range:
+          min: 0
+          max: 100
+      - id: 23
+        type: string
+        name: mode
+        mapping:
+          - dps_val: level_1
+            value: low
+          - dps_val: level_2
+            value: medium
+          - dps_val: level_3
+            value: high
+  - entity: switch
+    name: Child lock
+    icon: "mdi:lock"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep mode
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Timer
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 19
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Water level
+    icon: "mdi:water-percent"
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "%"

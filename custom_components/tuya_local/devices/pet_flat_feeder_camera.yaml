@@ -1,0 +1,99 @@
+name: Pet Flat Feeder Camera
+products:
+  - id: m2rnvyr7hzjq5ab4
+    name: Security Camera Pet Flat
+entities:
+  - entity: number
+    name: Feed portions
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 201
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+        persist: false
+  - entity: button
+    name: Quick feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 201
+        type: integer
+        name: button
+        optional: true
+  - entity: sensor
+    name: Total food dispensed
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 206
+        type: integer
+        name: sensor
+        unit: g
+        optional: true
+  - entity: number
+    name: Timer duration
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 202
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 60
+        unit: min
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: light
+    name: LED indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
