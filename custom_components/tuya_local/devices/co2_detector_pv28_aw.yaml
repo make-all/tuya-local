@@ -1,0 +1,128 @@
+name: CO2 Detector
+entities:
+  - entity: binary_sensor
+    name: CO2 levels
+    class: safety
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "alarm"
+            value: true
+          - dps_val: "normal"
+            value: false
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: number
+    name: CO2 Alarm Value
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        optional: true
+        unit: ppm
+        range:
+          min: 800
+          max: 2000
+        mapping:
+          - step: 100
+  - entity: switch
+    name: Alarm switch
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:bell"
+          - dps_val: false
+            icon: "mdi:bell-off"
+  - entity: sensor
+    name: Power state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: battery
+          - dps_val: charge
+            value: charging
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 1
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 1
+  - entity: select
+    name: Unit displayed
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: "°C"
+          - dps_val: f
+            value: "°F"
+  - entity: switch
+    name: Screen sleep
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:sleep"
+          - dps_val: false
+            icon: "mdi:sleep-off"
+  - entity: number
+    name: Screen sleep time
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 10
+          max: 300
+        mapping:
+          - step: 10
