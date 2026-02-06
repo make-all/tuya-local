@@ -1,0 +1,113 @@
+name: Smart 3D Oscillating DC Fan
+products:
+  - id: udqi9qir8xu7fxmb
+    manufacturer: Kogan
+    model: Smart 3D Oscillating DC Fan
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 10
+      - id: 2
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "3Dmode"
+            value: true
+          - dps_val: normal
+            value: false
+
+  - entity: select
+    name: Mode
+    icon: "mdi:fan-cog"
+    category: config
+    hidden: true 
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: nature
+            value: Nature
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: auto
+            value: Auto
+          - dps_val: "3Dmode"
+            value: 3D Mode
+
+  - entity: select
+    name: Vertical Oscillation
+    icon: "mdi:arrow-up-down-bold-outline"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: Run
+            value: "On"
+          - dps_val: Stop
+            value: "Off"
+
+  - entity: select
+    name: Horizontal Swing
+    icon: "mdi:arrow-left-right-bold-outline"
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: Cancel
+            value: "Off"
+          - dps_val: "0"
+            value: "0°"
+          - dps_val: "60"
+            value: "60°"
+          - dps_val: "90"
+            value: "90°"
+          - dps_val: "120"
+            value: "120°"
+          - dps_val: "150"
+            value: "150°"
+
+  - entity: select
+    name: Timer
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: "1h"
+            value: 1 hour
+          - dps_val: "2h"
+            value: 2 hours
+          - dps_val: "4h"
+            value: 4 hours
+          - dps_val: "8h"
+            value: 8 hours
+          - dps_val: "12h"
+            value: 12 hours
+
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
