@@ -3,6 +3,8 @@ Setup for different kinds of Tuya cover devices
 """
 
 import logging
+import asyncio
+from datetime import datetime, timedelta
 
 from homeassistant.components.cover import (
     CoverDeviceClass,
@@ -52,6 +54,12 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         self._action_dp = dps_map.pop("action", None)
         self._open_dp = dps_map.pop("open", None)
         self._init_end(dps_map)
+        # Variabili per tracciare comandi e posizione target
+        self._last_command = None
+        self._target_position = None
+        self._last_position = None  # Aggiungi per tracciare cambiamenti
+        self._command_time = None   # Aggiungi per timeout
+        self._position_stable_count = 0  # Conta quante volte la posizione è rimasta stabile
 
         self._support_flags = CoverEntityFeature(0)
         if self._position_dp:
@@ -129,6 +137,13 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 return ranged_value_to_percentage(r, val)
             return val
 
+    def _reset_movement_state(self):
+        """Reset movement tracking variables."""
+        self._last_command = None
+        self._target_position = None
+        self._command_time = None
+        self._position_stable_count = 0
+
     @property
     def _current_state(self):
         """Return the current state of the cover if it can be determined,
@@ -141,7 +156,59 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         pos = self.current_cover_position
         if pos is None:
+            if self._last_command == "opening":
+                return "opening"
+            elif self._last_command == "closing":
+                return "closing"
             return None
+
+        # Controlla timeout (30 secondi massimo per qualsiasi movimento)
+        if self._command_time is not None:
+            elapsed = datetime.now().timestamp() - self._command_time
+            if elapsed > 30:  # Timeout dopo 30 secondi
+                _LOGGER.debug(f"Cover movement timeout after {elapsed} seconds, resetting state")
+                self._reset_movement_state()
+                if pos < 5:
+                    return "closed"
+                else:
+                    return "opened"
+
+        # Controlla se la posizione è stabile (non cambia più)
+        if self._last_command:
+            if self._last_position is not None:
+                if abs(pos - self._last_position) < 1:
+                    # Posizione non è cambiata
+                    self._position_stable_count += 1
+                    # Se la posizione è stabile per 3 controlli consecutivi, il movimento è finito
+                    if self._position_stable_count >= 3:
+                        _LOGGER.debug(f"Position stable at {pos}, movement complete")
+                        self._reset_movement_state()
+                        if pos < 5:
+                            return "closed"
+                        else:
+                            return "opened"
+                else:
+                    # Posizione sta cambiando, resetta il contatore
+                    self._position_stable_count = 0
+                    _LOGGER.debug(f"Position changed from {self._last_position} to {pos}")
+
+            # Aggiorna ultima posizione
+            self._last_position = pos
+
+            # Controlla se abbiamo raggiunto il target
+            if self._target_position is not None:
+                if abs(pos - self._target_position) < 3:
+                    _LOGGER.debug(f"Target position {self._target_position} reached at {pos}")
+                    self._reset_movement_state()
+                    if pos < 5:
+                        return "closed"
+                    else:
+                        return "opened"
+
+            # Ancora in movimento
+            return self._last_command
+
+        # Controlla gli estremi
         if pos < 5:
             return "closed"
         elif pos > 95:
@@ -149,10 +216,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._currentpos_dp and self._position_dp:
             setpos = self._position_dp.get_value(self._device)
-            if setpos == pos:
-                # if the current position is around the set position,
-                # which is not closed, then we want is_closed to return
-                # false, so HA gets the full state from position.
+            if setpos is not None and abs(setpos - pos) < 5:
                 return "opened"
 
             if self._control_dp:
@@ -162,6 +226,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 elif cmd == "close":
                     return "closing"
 
+        return "opened"
     @property
     def is_opening(self):
         """Return if the cover is opening or not."""
@@ -197,21 +262,35 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
+        self._last_command = "opening"
+        self._target_position = 100
+        self._last_position = self.current_cover_position
+        self._command_time = datetime.now().timestamp()
+        self._position_stable_count = 0
+
         if self._control_dp and "open" in self._control_dp.values(self._device):
             await self._control_dp.async_set_value(self._device, "open")
         elif self._position_dp:
-            pos = 100
-            await self._position_dp.async_set_value(self._device, pos)
+            await self._position_dp.async_set_value(self._device, 100)
+        elif self._currentpos_dp:
+            await self._currentpos_dp.async_set_value(self._device, 100)
         else:
             raise NotImplementedError()
 
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
+        self._last_command = "closing"
+        self._target_position = 0
+        self._last_position = self.current_cover_position
+        self._command_time = datetime.now().timestamp()
+        self._position_stable_count = 0
+
         if self._control_dp and "close" in self._control_dp.values(self._device):
             await self._control_dp.async_set_value(self._device, "close")
         elif self._position_dp:
-            pos = 0
-            await self._position_dp.async_set_value(self._device, pos)
+            await self._position_dp.async_set_value(self._device, 0)
+        elif self._currentpos_dp:
+            await self._currentpos_dp.async_set_value(self._device, 0)
         else:
             raise NotImplementedError()
 
@@ -219,15 +298,37 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """Set the cover to a specific position."""
         if position is None:
             raise AttributeError()
+
+        current_pos = self.current_cover_position
+
+        # Determina la direzione del movimento
+        if current_pos is not None:
+            if position > current_pos + 2:
+                self._last_command = "opening"
+                self._target_position = position
+                self._last_position = current_pos
+                self._command_time = datetime.now().timestamp()
+                self._position_stable_count = 0
+            elif position < current_pos - 2:
+                self._last_command = "closing"
+                self._target_position = position
+                self._last_position = current_pos
+                self._command_time = datetime.now().timestamp()
+                self._position_stable_count = 0
+            else:
+                # Già nella posizione corretta
+                self._reset_movement_state()
+
         if self._position_dp:
             await self._position_dp.async_set_value(self._device, position)
+        elif self._currentpos_dp:
+            await self._currentpos_dp.async_set_value(self._device, position)
         else:
             raise NotImplementedError()
 
     async def async_set_cover_tilt_position(self, tilt_position, **kwargs):
         """Set the cover tilt position."""
         if self._tiltpos_dp:
-            # If there is a fixed list of values, snap to the closest one
             if self._tiltpos_dp.values(self._device):
                 tilt_position = min(
                     self._tiltpos_dp.values(self._device),
@@ -243,6 +344,8 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
+        self._reset_movement_state()
+
         if self._control_dp and "stop" in self._control_dp.values(self._device):
             await self._control_dp.async_set_value(self._device, "stop")
         else:

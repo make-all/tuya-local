@@ -140,13 +140,13 @@ class TuyaLocalDevice(object):
         # we can overlay onto the state while we wait for the board to update
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
-        self._CACHE_TIMEOUT = 30
+        self._CACHE_TIMEOUT = 15
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
         self._SINGLE_PROTO_CONNECTION_ATTEMPTS = 3
         # The number of failures from a working protocol before retrying other protocols.
-        self._AUTO_FAILURE_RESET_COUNT = 10
+        self._AUTO_FAILURE_RESET_COUNT = 1
         self._lock = Lock()
 
     @property
@@ -400,7 +400,7 @@ class TuyaLocalDevice(object):
                     self._api_lock.release()
             if not self.has_returned_state:
                 force_backoff = True
-            await asyncio.sleep(5 if force_backoff else 0.1)
+            await asyncio.sleep(1 if force_backoff else 0.1)
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
@@ -618,7 +618,6 @@ class TuyaLocalDevice(object):
             if auto
             else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
         )
-
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
@@ -637,21 +636,69 @@ class TuyaLocalDevice(object):
                     connections,
                 )
 
+                # Se siamo all'ultimo tentativo fallito
                 if i + 1 == connections:
-                    self._reset_cached_state()
                     self._api_working_protocol_failures += 1
-                    if (
-                        self._api_working_protocol_failures
-                        > self._AUTO_FAILURE_RESET_COUNT
-                    ):
-                        self._api_protocol_working = False
+
+                    # --- RILEVAMENTO TIPO DISPOSITIVO ---
+                    is_light_device = False
+                    device_type_log = "UNKNOWN/COVER"
+                    dev_name = str(self.name).lower()
+                    _LOGGER.warning(f"[LocalTuya FIX] dev_name ({dev_name})")
+                    # 1. Controllo primario sul nome del dispositivo (funziona anche se children è vuoto)
+                    if any(word in dev_name for word in ["lamp", "light", "luce"]):
+                        is_light_device = True
+                        device_type_log = "LIGHT (by name)"
+
+                    # 2. Controllo secondario sulle entità (se presenti)
+                    if not is_light_device and self._children:
                         for entity in self._children:
-                            entity.async_schedule_update_ha_state()
+                            eid = str(getattr(entity, "entity_id", "")).lower()
+                            platform = str(getattr(entity, "platform", "")).lower()
+
+                            # Controllo su ID entità, piattaforma o configurazione
+                            if "light" in eid or "light" in platform:
+                                is_light_device = True
+                                device_type_log = "LIGHT (by entity)"
+                                break
+
+                            if hasattr(entity, "_config"):
+                                conf_type = str(getattr(entity._config, "entity_type", "")).lower()
+                                if "light" in conf_type:
+                                    is_light_device = True
+                                    device_type_log = "LIGHT (by config)"
+                                    break
+
+                    # --- LOGICA DIFFERENZIATA ---
+                    if is_light_device:
+                        # CASO LUCI: Forziamo OFF ma manteniamo Online
+                        _LOGGER.warning(f"[LocalTuya FIX] {self.name} ({device_type_log}) -> Forzo stato OFF.")
+
+                        self._cached_state.update({
+                            "1": False,
+                            "20": False,
+                            "updated_at": time()
+                        })
+                        # NOTA: Non resettiamo la cache e non mettiamo _api_protocol_working = False
+
+                    else:
+                        # CASO TAPPARELLE / ALTRO: Segniamo come UNAVAILABLE
+                        _LOGGER.warning(f"[LocalTuya FIX] {self.name} ({device_type_log}) -> Imposto UNAVAILABLE.")
+
+                        self._reset_cached_state()
+                        self._api_protocol_working = False
+
+                    # --- AGGIORNAMENTO IMMEDIATO ---
+                    for entity in self._children:
+                        entity.async_schedule_update_ha_state()
+
+                    # Gestione errori standard
                     if self._api_working_protocol_failures == 1:
                         _LOGGER.error(error_message)
                     else:
                         _LOGGER.debug(error_message)
 
+                # Rotazione protocollo se necessario
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
 
