@@ -1,0 +1,61 @@
+name: Sync with Upstream
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync with upstream
+        id: sync
+        continue-on-error: true
+        run: |
+          git remote add upstream https://github.com/make-all/tuya-local.git
+          git fetch upstream
+          if git merge upstream/main --no-edit; then
+            echo "merge_status=success" >> $GITHUB_OUTPUT
+          else
+            echo "merge_status=conflict" >> $GITHUB_OUTPUT
+            git merge --abort
+            exit 1
+          fi
+          
+      - name: Push changes
+        if: steps.sync.outputs.merge_status == 'success'
+        run: git push origin main
+
+      - name: Sync custom branch
+        if: steps.sync.outputs.merge_status == 'success'
+        continue-on-error: true
+        run: |
+          git checkout custom-cover-state-fix
+          git merge main --no-edit
+          git push origin custom-cover-state-fix
+
+      - name: Create Issue on Conflict
+        if: steps.sync.outputs.merge_status == 'conflict'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '⚠️ Upstream Sync Conflict Detected',
+              body: 'The automatic sync with upstream encountered merge conflicts. Please resolve manually.\n\n```bash\ngit checkout main\ngit fetch upstream\ngit merge upstream/main\n# Resolve conflicts\ngit push origin main\n```',
+              labels: ['sync', 'needs-attention']
+            })
