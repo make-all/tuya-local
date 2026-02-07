@@ -1,0 +1,133 @@
+name: Air conditioner
+products:
+  - id: keyquxnsj75xc8se
+    name: Reversible Air Conditioner 2500W (409730)
+    manufacturer: Airton
+entities:
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: hvac_mode_switch
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: heat
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: fan
+                value: fan_only
+      - id: 4
+        name: hvac_mode_switch
+        type: string
+        hidden: true
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 160
+          max: 300
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: hvac_mode_switch
+            conditions:
+              - dps_val: fan
+                invalid: true
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: mute
+            value: Silence
+          - dps_val: low
+            value: low
+          - dps_val: low_mid
+            value: low-mid
+          - dps_val: mid
+            value: medium
+          - dps_val: mid_high
+            value: mid-high
+          - dps_val: high
+            value: high
+          - dps_val: turbo
+            value: Turbo
+      - id: 15
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: un_down
+            value: "on"
+      - id: 8
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            constraint: preset_mode_sleep
+            conditions:
+              - dps_val: false
+                value: none
+              - dps_val: true
+                value: sleep
+          - dps_val: true
+            value: eco
+            constraint: hvac_mode_switch
+            conditions:
+              - dps_val: cold
+                value: eco
+              - dps_val: auto
+                invalid: true
+              - dps_val: heat
+                invalid: true
+              - dps_val: wet
+                invalid: true
+              - dps_val: fan
+                invalid: true
+      - id: 109
+        name: preset_mode_sleep
+        type: boolean
+        hidden: true
+      - id: 105
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 114
+        name: active_mode
+        type: string
+        hidden: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 110
+        name: switch
+        type: boolean
