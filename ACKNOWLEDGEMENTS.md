@@ -1241,3 +1241,4 @@ Further device support has been made with the assistance of users. Please consid
 - [cinek193](https://github.com/cinek193) for assisting with improvements to Clofte 400 Duo humidifier.
 - [nathan-gs](https://github.com/nathan-gs) for contributing support for Andalung EV charger, which was merged into EV Sun. EV charger config.
 - [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
+- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
