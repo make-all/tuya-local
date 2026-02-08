@@ -1,11 +1,10 @@
 name: Weather Station
 products:
   - id: 1roznvzhxv5kqyg1
-  - manufacturer: Vevor
-  - model: YT60307
+    manufacturer: Vevor
+    model: YT60307
 entities: 
   - entity: sensor
-    name: Outdoor temperature
     class: temperature
     dps:
       - id: 118
@@ -16,7 +15,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Outdoor humidity
     class: humidity
     dps:
       - id: 120
@@ -37,7 +35,6 @@ entities:
           - scale: 10
   - entity: sensor
     name: Atmospheric pressure
-    class: atmospheric_pressure
     dps:
       - id: 121
         type: integer
@@ -47,7 +44,6 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Wind speed
     class: wind_speed
     dps:
       - id: 112
@@ -58,7 +54,6 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Wind gust
     class: wind_speed
     dps:
       - id: 132
@@ -70,26 +65,22 @@ entities:
           - scale: 10
   - entity: sensor
     name: Light intensity
-    class: light_intensity
+    class: illuminance
     dps:
       - id: 115
         type: integer
         name: sensor
-        unit: klux
+        unit: lx
         class: measurement
         mapping:
-          - scale: 100
+          - scale: 0.1
   - entity: sensor
     name: UV index
-    class: uv_index
     dps:
       - id: 116
         type: integer
         name: sensor
-        unit: uvi
         class: measurement
-        mapping:
-          - scale: 1
   - entity: sensor
     name: Indoor temperature
     class: temperature
@@ -117,7 +108,20 @@ entities:
         type: base64
         optional: true
         name: sensor
-        mask: "000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        mask: "00000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00FFFF00000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            00000000000000000\
+            000000000000"
         unit: °
       - id: 113
         type: base64
