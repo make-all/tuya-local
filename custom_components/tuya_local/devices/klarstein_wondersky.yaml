@@ -1,4 +1,4 @@
-name: Klarstein Wondersky IR Heater with Ambient Light
+name: Infrared Heater with Ambient Light
 products:
   - id: canayin50j2qfgml
     manufacturer: Klarstein
@@ -6,7 +6,7 @@ products:
     model_id: ACO14
 entities:
   - entity: climate
-    translation_key: radiator
+    translation_key: heater
     dps:
       - id: 1
         type: boolean
@@ -45,7 +45,6 @@ entities:
           - dps_val: "timer"
             value: "heating"
   - entity: light
-    translation_key: light
     dps:
       - id: 102
         type: string
@@ -57,6 +56,7 @@ entities:
             value: true
           - dps_val: "2"
             value: true
+            hidden: true
       - id: 101
         type: string
         name: brightness
@@ -96,7 +96,7 @@ entities:
         name: option
         mapping:
           - dps_val: cancel
-            value: "off"
+            value: "cancel"
           - dps_val: "1h"
             value: "1h"
           - dps_val: "2h"
@@ -145,20 +145,6 @@ entities:
             value: "23h"
           - dps_val: "24h"
             value: "24h"
-  - entity: select
-    translation_key: light_mode
-    hidden: true
-    dps:
-      - id: 102
-        type: string
-        name: option
-        mapping:
-          - dps_val: "0"
-            value: "off"
-          - dps_val: "1"
-            value: "cold"
-          - dps_val: "2"
-            value: "warm"
   - entity: sensor
     translation_key: time_remaining
     class: duration
