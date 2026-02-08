@@ -1215,7 +1215,7 @@ Further device support has been made with the assistance of users. Please consid
 - [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
 - [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
 - [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
-- [MrJinxed55](https://github.com/MrJinxed55) for improvements to Zigbee ZN373186 temperature and humidity sensor.
+- [MrJinxed55](https://github.com/MrJinxed55) for contributing improvements to Zigbee ZN373186 temperature and humidity sensor, and support for M604 quad wall switch.
 - [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
 - [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
 - [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
@@ -1231,3 +1231,14 @@ Further device support has been made with the assistance of users. Please consid
 - [ivan-mendez](https://github.com/ivan-mendez) for assisting with support for Brokton BRST12 air conditioner.
 - [sanglyb](https://github.com/sanglyb) for assisting with support for Neptun Smart+ water leak control system.
 - [J14111](https://github.com/J14111) for assisting with support for Palicy EC Pro 4 chlorine generator.
+- [chrisproud](https://github.com/chrisproud) for contributing support for Poolstyle pool heat pump.
+- [elsterglanz](https://github.com/elsterglanz) for assisting with support for a new variant of Beok TOL47 thermostat.
+- [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
+- [burned89](https://github.com/burned89) for contributing support for Eeese Thor dehumidifier.
+- [cb2206](https://github.com/cb2206) for contributing support for Chiltrix CX50 heat pump.
+- [eriverosr](https://github.com/eriverosr) for contributing improvements to Catit Pixi Smart Fountain.
+- [RedstoneGithub](https://github.com/RedstoneGithub) for contributing improvements to Petlibro PLAF103 pet feeder.
+- [cinek193](https://github.com/cinek193) for assisting with improvements to Clofte 400 Duo humidifier.
+- [nathan-gs](https://github.com/nathan-gs) for contributing support for Andalung EV charger, which was merged into EV Sun. EV charger config.
+- [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
+- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.

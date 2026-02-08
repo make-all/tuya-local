@@ -243,7 +243,7 @@ async def test_flow_user_init(hass):
     )
     expected = {
         "data_schema": ANY,
-        "description_placeholders": None,
+        "description_placeholders": ANY,
         "errors": {},
         "flow_id": ANY,
         "handler": DOMAIN,

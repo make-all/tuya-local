@@ -94,6 +94,7 @@ devices # Supported
 - Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
+- Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
 - Costway portable air conditioner
@@ -161,6 +162,7 @@ devices # Supported
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
 - Poolsana InverPower Next pool heat pump
+- Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
 - Remora pool heat pump
@@ -182,6 +184,7 @@ devices # Supported
 - Aquaviva AVH15S combo air-water heat pump
 - Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
+- Chiltrix CX50 combo heat pump
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
@@ -423,7 +426,8 @@ devices # Supported
 - Siguro Air Master AP-K50 air purifier
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
-- Soleusair A02 and A10 air purifiers
+- Soleusair A02 and A10 air purifiers
+
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - TrueLife P3 and P7 air purifiers
@@ -448,7 +452,7 @@ devices # Supported
 - ElectriQ CD12PRO-LE, CD12PW, CD20PRO-LE-V2/V4, CD25PRO-LE-V2 dehumidifiers
 - ElectriQ DESD9LW dehumidifier (two variants)
 - Electriq PD45E dehumidifier
-- Eeese Adam, Anna, Carl, Emil, Otto dehumidifiers
+- Eeese Adam, Anna, Carl, Emil, Otto, Thor dehumidifiers
 - Emerio DH-129238.1 dehumidifier
 - Goldair GPDH340, GPDH420 dehumidifiers
 - Gologi GO021 dehumidifier
@@ -693,6 +697,7 @@ the best option.
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
 - Loratap RR620W-JL dual relay switch
+- M604 quad wall switch
 - Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
 - MakeGood double switch with timers and power monitoring on whole device
 - Minoston 6 preset timer switch
@@ -1217,6 +1222,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- TX-E gas sensor/alarm
 - Valehaus SYZN119 towel warmer
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
