@@ -1,0 +1,257 @@
+name: Ketotek Thermostat
+products:
+  - id: hlbr5y67unkyfpfs
+    manufacturer: Ketotek
+    model: KTF017802
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 3
+        type: float
+        name: temperature
+        precision: 2
+        unit: C
+        range:
+          min: 5
+          max: 1220
+        mapping:
+          - scale: 10
+            step: 5
+
+      # - id: 101
+      #   type: boolean
+      #   name: temperature_unit
+      #   optional: true
+      #   mapping:
+      #     - dps_val: false
+      #       value: C
+      #     - dps_val: true
+      #       value: F
+
+      - id: 115
+        type: integer
+        name: min_temperature
+        unit: C
+        range:
+          min: 1
+          max: 10
+
+      - id: 114
+        type: integer
+        name: max_temperature
+        unit: C
+        range:
+          min: 20
+          max: 70
+
+      - id: 24
+        type: float
+        name: current_temperature
+        unit: C
+        range:
+          min: 0
+          max: 1580
+        mapping:
+          - scale: 10
+            step: 1
+
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Manual
+            value: manual
+          - dps_val: Program
+            value: program
+          - dps_val: Holiday
+            value: away
+          - dps_val: TempProg
+            value: temp_override
+
+      - id: 28
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "cool"
+            value: cool
+          - dps_val: "heat"
+            value: heat
+
+      - id: 102
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+            constraint: hvac_mode
+            conditions:
+              - dps_val: "cool"
+                value: cooling
+          - dps_val: false
+            value: idle
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+
+  - entity: number
+    name: Holiday Days
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 30
+
+  - entity: number
+    name: Holiday Temperature
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 122
+
+  - entity: switch
+    name: High Temp. Protection
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Low Temp. Protection
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Temp. Compensation
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+            step: 10
+
+  - entity: number
+    name: Temp. Hysteresis
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 25
+        mapping:
+          - scale: 10
+            step: 5
+
+  - entity: number
+    name: Low Temp. Limit
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+
+  - entity: number
+    name: Max Set Temperature
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 20
+          max: 70
+
+  - entity: number
+    name: Min Set Temperature
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+
+  - entity: select
+    name: Power-on Behaviour
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: "keep"
+            value: "Keep Last State"
+          - dps_val: "off"
+            value: "Power-off"
+          - dps_val: "on"
+            value: "Power-on"
+
+  - entity: select
+    name: Weekly Program
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2days"
+            value: "5+2"
+          - dps_val: "1days"
+            value: "6+1"
+          - dps_val: "0days"
+            value: "7"
+
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
+        readonly: true
+        mapping:
+          - dps_val: true
+            value: true
+          - dps_val: false
+            value: false
+
+  - entity: switch
+    name: Power
+    category: diagnostic
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
