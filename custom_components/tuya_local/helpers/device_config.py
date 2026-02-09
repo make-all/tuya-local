@@ -1068,7 +1068,7 @@ class TuyaDpsConfig:
                 decoded_value = self.decode_value(raw_current, device)
 
             if decoded_value is None:
-                raise ValueError(f"Cannot mask unknown current value")
+                raise ValueError("Cannot mask unknown current value")
             elif isinstance(decoded_value, int):
                 current_value = decoded_value
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
