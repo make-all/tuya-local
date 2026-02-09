@@ -404,7 +404,7 @@ devices # Supported
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
-- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus purifiers
+- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier

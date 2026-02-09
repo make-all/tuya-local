@@ -1243,3 +1243,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
 - [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
 - [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
+- [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
