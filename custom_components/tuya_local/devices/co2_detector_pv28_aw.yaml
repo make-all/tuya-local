@@ -1,7 +1,7 @@
-name: CO2 Detector
+name: CO2 detector
 entities:
   - entity: binary_sensor
-    name: CO2 levels
+    name: CO2 level
     class: safety
     dps:
       - id: 1
@@ -21,7 +21,8 @@ entities:
         unit: ppm
         class: measurement
   - entity: number
-    name: CO2 Alarm Value
+    name: CO2 alarm level
+    class: carbon_dioxide
     category: config
     dps:
       - id: 7
@@ -35,7 +36,7 @@ entities:
         mapping:
           - step: 100
   - entity: switch
-    name: Alarm switch
+    name: Alarm enable
     category: config
     dps:
       - id: 13
@@ -46,9 +47,9 @@ entities:
             icon: "mdi:bell"
           - dps_val: false
             icon: "mdi:bell-off"
-  - entity: sensor
+  - entity: binary_sensor
     name: Power state
-    class: enum
+    class: battery_charging
     category: diagnostic
     dps:
       - id: 14
@@ -56,9 +57,9 @@ entities:
         name: sensor
         mapping:
           - dps_val: normal
-            value: battery
+            value: false
           - dps_val: charge
-            value: charging
+            value: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -76,8 +77,6 @@ entities:
         name: sensor
         unit: C
         class: measurement
-        mapping:
-          - scale: 1
   - entity: sensor
     class: humidity
     dps:
@@ -86,10 +85,8 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-        mapping:
-          - scale: 1
   - entity: select
-    name: Unit displayed
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 31
@@ -97,9 +94,9 @@ entities:
         name: option
         mapping:
           - dps_val: c
-            value: "°C"
+            value: celsius
           - dps_val: f
-            value: "°F"
+            value: fahrenheit
   - entity: switch
     name: Screen sleep
     category: config
