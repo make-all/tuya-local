@@ -270,6 +270,7 @@ devices # Supported
 - Owon PCT513 thermostat
 - Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
+- PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring

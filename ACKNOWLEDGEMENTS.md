@@ -1245,3 +1245,4 @@ Further device support has been made with the assistance of users. Please consid
 - [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
 - [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
 - [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.
+- [hofvanta](https://github.com/hofvanta) for assisting with support for PNI CT45 thermostat.
