@@ -1244,3 +1244,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
 - [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
 - [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
+- [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.

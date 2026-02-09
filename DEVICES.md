@@ -1199,6 +1199,7 @@ port and password.
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
+- PV28-AW 3-in-1 CO2 monitor
 - PV28-CW 8 in 1 air quality monitor
 - Raddy PT-5 pool thermometer
 - RainPoint TTV103FRF water timer
