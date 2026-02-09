@@ -49,6 +49,7 @@ devices # Supported
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
 - Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Bornholm Electric heater (1kW, based on WBR3)
+- Klarstein WnoderSky IR heater (360W ACO14)
 - Klarstein Wonderwall IR heaters (including Air Art, Bornholm, 600 models)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
