@@ -49,6 +49,7 @@ devices # Supported
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
 - Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Bornholm Electric heater (1kW, based on WBR3)
+- Klarstein WnoderSky IR heater (360W ACO14)
 - Klarstein Wonderwall IR heaters (including Air Art, Bornholm, 600 models)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
@@ -269,6 +270,7 @@ devices # Supported
 - Owon PCT513 thermostat
 - Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
+- PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
@@ -403,7 +405,7 @@ devices # Supported
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
-- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus purifiers
+- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
@@ -1198,6 +1200,7 @@ port and password.
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
+- PV28-AW 3-in-1 CO2 monitor
 - PV28-CW 8 in 1 air quality monitor
 - Raddy PT-5 pool thermometer
 - RainPoint TTV103FRF water timer
@@ -1222,6 +1225,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- TX-E gas sensor/alarm
 - Valehaus SYZN119 towel warmer
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
