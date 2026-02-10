@@ -33,3 +33,13 @@ entities:
             value: eco
           - dps_val: false
             value: comfort
+  - entity: sensor
+    name: Room temperature
+    class: temperature
+    category: diagnostic
+    icon: "mdi:home-thermometer-outline"
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C
