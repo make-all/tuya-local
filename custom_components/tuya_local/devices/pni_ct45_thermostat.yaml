@@ -130,6 +130,7 @@ entities:
         optional: true
         name: min_temperature
   - entity: select
+    name: Output
     translation_key: mode
     category: config
     dps:
@@ -150,6 +151,17 @@ entities:
         type: boolean
         optional: true
         name: switch
+      - id: 28
+        name: brightness
+        type: string
+        optional: true
+        mapping:
+          - dps_val: low
+            value: 85
+          - dps_val: middle
+            value: 170
+          - dps_val: high
+            value: 255
   - entity: valve
     dps:
       - id: 7
@@ -267,20 +279,6 @@ entities:
         range:
           min: 0
           max: 400
-  - entity: light
-    translation_key: display
-    dps:
-      - id: 28
-        name: brightness
-        type: string
-        optional: true
-        mapping:
-          - dps_val: low
-            value: 85
-          - dps_val: middle
-            value: 170
-          - dps_val: high
-            value: 255
   - entity: switch
     name: Override
     category: config
