@@ -39,10 +39,12 @@ entities:
         mapping:
           - scale: 10
             step: 10
-            constraint: hvac_mode_switch
+            constraint: temperature_unit
             conditions:
-              - dps_val: fan
-                invalid: true
+              - dps_val: f
+                range:
+                  min: 600
+                  max: 860
       - id: 3
         name: current_temperature
         type: integer
