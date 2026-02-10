@@ -1,7 +1,7 @@
 name: Air conditioner
 products:
   - id: keyquxnsj75xc8se
-    name: Reversible Air Conditioner 2500W (409730)
+    model: Reversible 2500W (409730)
     manufacturer: Airton
 entities:
   - entity: climate
@@ -56,19 +56,19 @@ entities:
           - dps_val: auto
             value: auto
           - dps_val: mute
-            value: Silence
+            value: quiet
           - dps_val: low
             value: low
           - dps_val: low_mid
-            value: low-mid
+            value: medlow
           - dps_val: mid
             value: medium
           - dps_val: mid_high
-            value: mid-high
+            value: medhigh
           - dps_val: high
             value: high
           - dps_val: turbo
-            value: Turbo
+            value: strong
       - id: 15
         name: swing_mode
         type: string
@@ -94,13 +94,7 @@ entities:
             conditions:
               - dps_val: cold
                 value: eco
-              - dps_val: auto
-                invalid: true
-              - dps_val: heat
-                invalid: true
-              - dps_val: wet
-                invalid: true
-              - dps_val: fan
+              - dps_val: [auto, heat, wet, fan]
                 invalid: true
       - id: 109
         name: preset_mode_sleep
@@ -117,7 +111,6 @@ entities:
       - id: 114
         name: active_mode
         type: string
-        hidden: true
         optional: true
       - id: 9
         name: unknown_9
