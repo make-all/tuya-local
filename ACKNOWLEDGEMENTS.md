@@ -1246,3 +1246,4 @@ Further device support has been made with the assistance of users. Please consid
 - [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
 - [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.
 - [hofvanta](https://github.com/hofvanta) for assisting with support for PNI CT45 thermostat.
+- [marco-calautti](https://github.com/marco-calautti) for contributing support for Kekotek KTF017802 thermostat which was merged with Hysen HY101RF.
