@@ -41,7 +41,8 @@ entities:
         name: speed
         type: string
         optional: true
-        mapping: # this mapping appears weird, as the "large" is the lowest device's fan speed.
+        mapping:
+          #  "large" is the lowest device's fan speed.
           - dps_val: large
             value: 33
           - dps_val: middle
@@ -99,7 +100,7 @@ entities:
         type: boolean
         optional: true
   - entity: switch
-    category: diagnostic # the switch does turn off/on the device, but it's impossible to change its value in the Tuya app. Use id 1 instead.
+    category: diagnostic
     dps:
       - id: 10
         type: boolean
