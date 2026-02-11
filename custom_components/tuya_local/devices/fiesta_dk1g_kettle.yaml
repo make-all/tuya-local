@@ -115,13 +115,14 @@ entities:
         range:
           min: 0
           max: 100
-        constraint: unit
-        conditions:
-          - dps_val: f
-            value_redirect: boil_temp_f
-            range:
-              min: 32
-              max: 212
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: boil_temp_f
+                range:
+                  min: 32
+                  max: 212
       - id: 11
         type: integer
         optional: true
