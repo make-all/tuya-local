@@ -21,7 +21,7 @@ entities:
         type: integer
         range:
           min: 30
-          max: 90 # 95 is "Co"
+          max: 90  # 95 is "Co"
         mapping:
           - step: 5
       - id: 14
@@ -29,7 +29,7 @@ entities:
         type: integer
 
   - entity: switch
-    name: Continuous Mode # The 95 "Co" humidity setting
+    name: Continuous Mode  # The 95 "Co" humidity setting
     category: config
     icon: "mdi:infinity"
     dps:
@@ -37,10 +37,10 @@ entities:
         name: switch
         type: integer
         mapping:
-          - dps_val: 95 # If device is 95, Switch is ON
+          - dps_val: 95  # If device is 95, Switch is ON
             value: true
           - value: false  # If device is anything else (30-90), Switch is OFF
-            dps_val: 40   # Default value to send when turning OFF (back to normal)
+            dps_val: 40   # Default value when turning OFF (back to normal)
 
   - entity: fan
     name: Mist Level
