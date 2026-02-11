@@ -1,0 +1,322 @@
+name: Kettle
+# products:
+#   - id: unknown
+#     manufacturer: Fiesta
+#     model: DK-1G
+entities:
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: button
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 2
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: cur_temp_f
+      - id: 3
+        type: integer
+        optional: true
+        name: cur_temp_f
+      - id: 8
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 212
+      - id: 9
+        type: integer
+        optional: true
+        name: temp_set_f
+        hidden: true
+        range:
+          min: 32
+          max: 212
+      - id: 12
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: V
+  - entity: select
+    name: Quick temperature
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "45"
+            value: "45"
+          - dps_val: "60"
+            value: "60"
+          - dps_val: "85"
+            value: "85"
+          - dps_val: "90"
+            value: "90"
+          - dps_val: "100"
+            value: "100"
+      - id: 5
+        type: string
+        optional: true
+        name: fahrenheit
+  - entity: select
+    name: Quick boil temperature
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "45"
+            value: "45"
+          - dps_val: "60"
+            value: "60"
+          - dps_val: "85"
+            value: "85"
+          - dps_val: "90"
+            value: "90"
+          - dps_val: "100"
+            value: "100"
+      - id: 7
+        type: string
+        optional: true
+        name: fahrenheit
+  - entity: number
+    name: Boil temperature
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 100
+        constraint: unit
+        conditions:
+          - dps_val: f
+            value_redirect: boil_temp_f
+            range:
+              min: 32
+              max: 212
+      - id: 11
+        type: integer
+        optional: true
+        name: boil_temp_f
+        range:
+          min: 32
+          max: 212
+      - id: 12
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:kettle"
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Keep warm time
+    class: duration
+    category: config
+    icon: "mdi:kettle"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 360
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: heating_temp
+            value: done
+          - dps_val: boiling_temp
+            value: boiling
+          - dps_val: reserve_1
+            value: Reserved
+          - dps_val: reserve_2
+            value: Reserved
+          - dps_val: reserve_3
+            value: Reserved
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: setting_quick
+            value: quick_heat
+          - dps_val: boiling_quick
+            value: quick_boil
+          - dps_val: temp_setting
+            value: heat
+          - dps_val: temp_boiling
+            value: boil
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+          - dps_val: "13h"
+            value: "13h"
+          - dps_val: "14h"
+            value: "14h"
+          - dps_val: "15h"
+            value: "15h"
+          - dps_val: "16h"
+            value: "16h"
+          - dps_val: "17h"
+            value: "17h"
+          - dps_val: "18h"
+            value: "18h"
+          - dps_val: "19h"
+            value: "19h"
+          - dps_val: "20h"
+            value: "20h"
+          - dps_val: "21h"
+            value: "21h"
+          - dps_val: "22h"
+            value: "22h"
+          - dps_val: "23h"
+            value: "23h"
+          - dps_val: "24h"
+            value: "24h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: switch
+    name: Dechlorination
+    icon: "mdi:chemical-weapon"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: switch

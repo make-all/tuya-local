@@ -1248,3 +1248,4 @@ Further device support has been made with the assistance of users. Please consid
 - [hofvanta](https://github.com/hofvanta) for assisting with support for PNI CT45 thermostat.
 - [marco-calautti](https://github.com/marco-calautti) for contributing support for Kekotek KTF017802 thermostat which was merged with Hysen HY101RF.
 - [thepkc](https://github.com/thepkc) for contributing support for PJ-1103A dual channel energy meter.
+- [Takosan4ik](https://github.com/Takosan4ik) for assisting with support for Fiesta DK-1G kettle.

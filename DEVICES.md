@@ -540,6 +540,7 @@ devices # Supported
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
+- Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
 - Homend Royaltea kettle
