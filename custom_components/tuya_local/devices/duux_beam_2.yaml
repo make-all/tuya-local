@@ -68,7 +68,6 @@ entities:
         unit: C
   - entity: select
     translation_key: timer
-    icon: "mdi:timer-outline"
     category: config
     dps:
       - id: 3
@@ -91,7 +90,7 @@ entities:
           - dps_val: "6"
             value: 6h
   - entity: switch
-    name: Night mode
+    translation_key: sleep
     icon: "mdi:weather-night"
     category: config
     dps:
@@ -100,7 +99,6 @@ entities:
         type: boolean
         optional: true
   - entity: switch
-    category: diagnostic
     dps:
       - id: 10
         type: boolean
