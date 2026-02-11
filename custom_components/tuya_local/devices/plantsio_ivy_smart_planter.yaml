@@ -8,7 +8,7 @@ products:
     model: Ivy
 entities:
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: volume_storage
     dps:
       - id: 108
@@ -16,10 +16,6 @@ entities:
         name: sensor
         unit: mL
         class: measurement
-        mapping:
-          - dps_val: 0
-            icon: "mdi:cup-outline"
-          - icon: "mdi:cup"
       - id: 107
         type: string
         name: version
@@ -141,6 +137,59 @@ entities:
           - dps_val: 2
             value: "Too Dry"
           - value: "Unknown state"
+  # Button entities
+  - entity: event
+    name: Left touch
+    icon: "mdi:hand-pointing-right"
+    class: button
+    dps:
+      - id: 127
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Right touch
+    icon: "mdi:hand-pointing-left"
+    class: button
+    dps:
+      - id: 128
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Plant touch
+    icon: "mdi:hand-pointing-down"
+    class: button
+    dps:
+      - id: 129
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Hug
+    class: button
+    icon: "mdi:human-handsup"
+    dps:
+      - id: 111
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "hug"
+            value: pressed
+          - value: null
   # Diagnostic entities
   - entity: sensor
     class: battery

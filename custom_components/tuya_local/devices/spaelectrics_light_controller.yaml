@@ -61,6 +61,7 @@ entities:
             value: Spring
       - id: 103
         type: string
+        optional: true
         name: zone_name
   - entity: light
     name: Zone 2
@@ -119,6 +120,7 @@ entities:
             value: Spring
       - id: 104
         type: string
+        optional: true
         name: zone_name
   - entity: switch
     name: Zone 1
@@ -558,9 +560,9 @@ entities:
         optional: true
         name: button
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 162
         type: boolean

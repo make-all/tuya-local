@@ -44,20 +44,16 @@ entities:
             range:
               min: 10
               max: 1000
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
+    category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
   - entity: light
     translation_key: laser
     dps:

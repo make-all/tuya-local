@@ -70,14 +70,18 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
     @property
     def native_min_value(self):
         if self._min_dps is not None:
-            return self._min_dps.get_value(self._device)
+            minimum = self._min_dps.get_value(self._device)
+            if minimum is not None:
+                return minimum
         r = self._value_dps.range(self._device)
         return DEFAULT_MIN_VALUE if r is None else r[0]
 
     @property
     def native_max_value(self):
         if self._max_dps is not None:
-            return self._max_dps.get_value(self._device)
+            maximum = self._max_dps.get_value(self._device)
+            if maximum is not None:
+                return maximum
         r = self._value_dps.range(self._device)
         return DEFAULT_MAX_VALUE if r is None else r[1]
 

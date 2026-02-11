@@ -10,14 +10,17 @@ entities:
       - id: 2
         type: string
         name: hvac_mode
+        optional: true
         mapping:
           - dps_val: AUTO
             value: auto
           - dps_val: MANUAL
             value: heat
           - value: heat
+            hidden: true
       - id: 2
         type: string
+        optional: true
         name: preset_mode
         mapping:
           - dps_val: AUTO

@@ -91,9 +91,8 @@ entities:
         name: switch
         optional: true
   - entity: select
-    name: Alarm mode
+    translation_key: alarm_mode
     class: enum
-    icon: mdi:shield-home
     category: config
     dps:
       - id: 104
@@ -256,6 +255,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 115
         type: boolean

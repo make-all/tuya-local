@@ -124,8 +124,7 @@ entities:
           - dps_val: controlpi_error
             value: Error
   - entity: select
-    name: Charging mode
-    icon: "mdi:ev-station"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14  # work_mode
@@ -134,11 +133,11 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -289,17 +288,15 @@ entities:
           max: 20000000
         mapping:
           - scale: 1000
-  - entity: number
-    name: Charge time
+  - entity: time
+    name: Charging time
     category: config
-    class: duration
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 19
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: minute
         range:
           min: 1
           max: 1440
@@ -329,8 +326,7 @@ entities:
         unit: s
         mask: "0000FFFF"
   - entity: select
-    name: Mode
-    icon: "mdi:cogs"
+    translation_key: menu
     category: config
     dps:
       - id: 102
@@ -339,13 +335,13 @@ entities:
         name: option
         mapping:
           - dps_val: home
-            value: Home
+            value: home
           - dps_val: mode
-            value: Mode
+            value: mode
           - dps_val: recode
             value: recode
           - dps_val: setting
-            value: setting
+            value: settings
   - entity: sensor
     name: Minimum current
     class: current

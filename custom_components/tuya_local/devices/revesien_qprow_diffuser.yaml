@@ -1,0 +1,156 @@
+name: Aroma diffuser
+products:
+  - id: istgdkmlsv3nwnbn
+    manufacturer: Revesien
+    model: Q-Pro-W
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 103
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: EconoMode
+            value: low
+          - dps_val: ComfortMode
+            value: medium
+          - dps_val: MaximumPerformance
+            value: high
+          - dps_val: fanMode
+            value: fan
+  - entity: fan
+    name: Continuous output
+    dps:
+      - id: 111
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: true
+          - dps_val: "1"
+            value: false
+      - id: 107
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 5
+          max: 300
+        mapping:
+          - step: 5
+      - id: 1
+        type: boolean
+        name: available
+  - entity: switch
+    name: Fan
+    icon: "mdi:fan"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: number
+    name: "On cycle"
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 300
+        mapping:
+          - step: 5
+      - id: 111
+        type: string
+        name: available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value_redirect: powered
+      - id: 1
+        type: boolean
+        name: powered
+        hidden: true
+  - entity: number
+    name: "Off cycle"
+    class: duration
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 300
+        mapping:
+          - step: 5
+      - id: 111
+        type: string
+        name: available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value_redirect: powered
+      - id: 1
+        type: boolean
+        name: powered
+        hidden: true
+  - entity: text
+    name: Schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Device life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        mask: "FFFFFFFF00000000"
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Working time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        mask: "00000000FFFFFFFF"
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: select
+    name: Reset capacity
+    icon: "mdi:reload"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "25%"
+          - dps_val: "1"
+            value: "50%"
+          - dps_val: "2"
+            value: "75%"
+          - dps_val: "3"
+            value: "100%"

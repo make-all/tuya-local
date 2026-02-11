@@ -1,4 +1,5 @@
-name: T5E-WF thermostat
+name: Thermostat
+# products: T5E-WF
 entities:
   - entity: climate
     dps:
@@ -176,10 +177,9 @@ entities:
         type: boolean
         name: unknown_43
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 18
         type: integer
@@ -214,10 +214,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 20
         type: integer
@@ -310,13 +309,13 @@ entities:
           - dps_val: open
             value: true
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -10
           max: 10
@@ -336,6 +335,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

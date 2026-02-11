@@ -9,18 +9,13 @@ entities:
       - id: 101
         name: switch
         type: boolean
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 102
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

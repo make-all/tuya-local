@@ -5,14 +5,12 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.components.number import NumberDeviceClass
-from homeassistant.const import UnitOfTemperature, UnitOfTime
+from homeassistant.const import UnitOfTemperature
 
 from ..const import NEDIS_HTPL20F_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
-from ..mixins.number import BasicNumberTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -26,7 +24,9 @@ UNKNOWN101_DPS = "101"
 
 
 class TestNedisHtpl20fHeater(
-    BasicLockTests, BasicNumberTests, TargetTemperatureTests, TuyaDeviceTestCase
+    BasicLockTests,
+    TargetTemperatureTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
@@ -43,14 +43,7 @@ class TestNedisHtpl20fHeater(
             LOCK_DPS,
             self.entities.get("lock_child_lock"),
         )
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440,
-            device_class=NumberDeviceClass.DURATION,
-            unit=UnitOfTime.MINUTES,
-        )
-        self.mark_secondary(["lock_child_lock", "number_timer"])
+        self.mark_secondary(["lock_child_lock", "time_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

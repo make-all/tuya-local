@@ -8,18 +8,16 @@ entities:
       - id: 1
         type: boolean
         name: valve
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 7
-        name: value
+        name: second
         type: integer
         range:
           min: 0
           max: 86400
-        unit: s
   - entity: select
     translation_key: initial_state
     category: config

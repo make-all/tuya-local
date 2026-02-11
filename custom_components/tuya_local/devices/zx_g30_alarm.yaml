@@ -3,6 +3,9 @@ products:
   - id: mw27s3tus4bb7nz3
     model: ZX-G30
     name: Dual-network security system
+  - id: wifech3utowiyknu
+    manufacturer: Tugard
+    model: G30
 entities:
   - entity: alarm_control_panel
     dps:
@@ -27,6 +30,7 @@ entities:
         name: zone_attribute
       - id: 35
         type: boolean
+        optional: true
         name: sub_add
       - id: 36
         type: string
@@ -99,6 +103,7 @@ entities:
     dps:
       - id: 10
         type: boolean
+        optional: true
         name: switch
   - entity: binary_sensor
     class: plug
@@ -166,6 +171,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 34
         type: boolean

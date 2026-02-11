@@ -10,7 +10,7 @@ entities:
         name: serial_number
       - id: 118
         type: integer
-        name: RkWh
+        name: rkwh
       - id: 119
         type: base64
         name: historical_voltage
@@ -19,21 +19,16 @@ entities:
         type: base64
         name: historical_current
         optional: true
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic

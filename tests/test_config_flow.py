@@ -11,6 +11,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from custom_components.tuya_local import (
     async_migrate_entry,
     config_flow,
+    get_device_unique_id,
 )
 from custom_components.tuya_local.const import (
     CONF_DEVICE_CID,
@@ -22,7 +23,8 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 
-TESTKEY = ")<jO<@)'P1dkR$Kd"
+# Designed to contain "special" characters that users constantly suspect.
+TESTKEY = ")<jO<@)'P1|kR$Kd"
 
 
 @pytest.fixture(autouse=True)
@@ -48,8 +50,18 @@ def bypass_setup():
         yield
 
 
+@pytest.fixture
+def bypass_data_fetch():
+    """Prevent actual data fetching from the device."""
+    with patch(
+        "tinytuya.Device.status",
+        return_value={"1": True},
+    ):
+        yield
+
+
 @pytest.mark.asyncio
-async def test_init_entry(hass):
+async def test_init_entry(hass, bypass_data_fetch):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -231,7 +243,7 @@ async def test_flow_user_init(hass):
     )
     expected = {
         "data_schema": ANY,
-        "description_placeholders": None,
+        "description_placeholders": ANY,
         "errors": {},
         "flow_id": ANY,
         "handler": DOMAIN,
@@ -531,7 +543,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
 
 
 @pytest.mark.asyncio
-async def test_options_flow_init(hass):
+async def test_options_flow_init(hass, bypass_data_fetch):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
@@ -617,7 +629,9 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
 
 @pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_fails_when_connection_fails(mock_test, hass):
+async def test_options_flow_fails_when_connection_fails(
+    mock_test, hass, bypass_data_fetch
+):
     mock_test.return_value = None
 
     config_entry = MockConfigEntry(
@@ -682,3 +696,20 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     result = await hass.config_entries.options.async_init(config_entry.entry_id)
     assert result["type"] == "abort"
     assert result["reason"] == "not_supported"
+
+
+def test_migration_gets_correct_device_id():
+    """Test that migration gets the correct device id."""
+    # Normal device
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=1,
+        title="test",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_TYPE: "auto",
+        },
+    )
+    assert get_device_unique_id(entry) == "deviceid"

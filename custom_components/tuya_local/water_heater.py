@@ -123,6 +123,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     @property
     def current_operation(self):
         """Return current operation ie. eco, electric, performance, ..."""
+        if self._operation_mode_dps is None:
+            return None
         return self._operation_mode_dps.get_value(self._device)
 
     @property

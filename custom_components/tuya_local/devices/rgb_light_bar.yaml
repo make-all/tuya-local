@@ -53,18 +53,13 @@ entities:
         type: string
         name: dreeamscene_data
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

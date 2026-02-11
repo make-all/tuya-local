@@ -1,4 +1,4 @@
-name: ME80 thermostat
+name: Thermostat
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -105,10 +105,9 @@ entities:
         type: string
         name: program
   - entity: number
-    name: Maximum Temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 18
         type: integer
@@ -141,10 +140,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 20
         type: integer
@@ -189,13 +187,13 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:format-vertical-align-center"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9
@@ -322,6 +320,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

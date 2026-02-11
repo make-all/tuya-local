@@ -84,12 +84,13 @@ class TestInkbirdITC308Thermostat(
         self.setUpMultiNumber(
             [
                 {
-                    "name": "number_calibration_offset",
+                    "name": "number_temperature_calibration",
                     "dps": CALIBRATE_DPS,
                     "scale": 10,
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
+                    "unit": "°",
                 },
                 {
                     "name": "number_compressor_delay",
@@ -98,7 +99,7 @@ class TestInkbirdITC308Thermostat(
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
-                    "name": "number_high_temperature_limit",
+                    "name": "number_maximum_temperature",
                     "dps": HIGH_THRES_DPS,
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
@@ -108,7 +109,7 @@ class TestInkbirdITC308Thermostat(
                     "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
-                    "name": "number_low_temperature_limit",
+                    "name": "number_minimum_temperature",
                     "dps": LOW_THRES_DPS,
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
@@ -144,10 +145,10 @@ class TestInkbirdITC308Thermostat(
                 "binary_sensor_low_temperature",
                 "binary_sensor_sensor_fault",
                 "binary_sensor_problem",
-                "number_calibration_offset",
+                "number_temperature_calibration",
                 "number_compressor_delay",
-                "number_high_temperature_limit",
-                "number_low_temperature_limit",
+                "number_maximum_temperature",
+                "number_minimum_temperature",
                 "number_cooling_hysteresis",
                 "number_heating_hysteresis",
             ]

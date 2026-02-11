@@ -36,18 +36,13 @@ entities:
       - id: 2
         type: boolean
         name: lock
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 5
         type: integer
-        name: value
-        unit: h
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - step: 60
-            scale: 60

@@ -104,14 +104,15 @@ entities:
         mapping:
           - scale: 100
   - entity: switch
-    name: Breaker
-    icon: "mdi:fuse"
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
         name: switch
   - entity: select
-    name: Prepay shortage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Prepay shortage
     icon: "mdi:cash"
     category: config
     dps:
@@ -120,12 +121,13 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
   - entity: select
-    name: Over voltage action
-    icon: "mdi:flash-triangle"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over voltage
     category: config
     dps:
       - id: 102
@@ -133,14 +135,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Undervoltage action
-    icon: "mdi:flash-triangle"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 103
@@ -148,14 +151,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Over current action
-    icon: "mdi:flash-triangle"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over current
     category: config
     dps:
       - id: 104
@@ -163,14 +167,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Over power action
-    icon: "mdi:flash-triangle"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over power
     category: config
     dps:
       - id: 105
@@ -178,14 +183,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: High temperature action
-    icon: "mdi:fire"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: High temperature
     category: config
     dps:
       - id: 107
@@ -193,11 +199,11 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: binary_sensor
     class: connectivity
     category: diagnostic
@@ -210,6 +216,17 @@ entities:
             value: true
           - dps_val: offline
             value: false
+  - entity: button
+    name: Live updates
+    category: config
+    icon: "mdi:wifi"
+    dps:
+      - id: 109
+        type: string
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
   - entity: sensor
     translation_key: status
     class: enum

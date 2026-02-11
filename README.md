@@ -37,9 +37,12 @@ versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
 Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
+etc which do not use a hub are not possible to support locally, due
 to the power management that they need to do to get acceptable battery
-life.
+life. In some cases that may also apply when a device that can be
+either battery or USB powered is plugged into USB. If you cannot gather
+Warning level logs with dps listed when attempting to set it up, then it
+will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
@@ -58,7 +61,7 @@ supported Zigbee USB stick or Wifi hub with
 [ZHA](https://www.home-assistant.io/integrations/zha/#compatible-hardware)
 or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
 
-Tuya Bluetooth devices can be supported directly by the
+Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
 Tuya IR hubs that expose general IR remotes as sub devices usually
@@ -83,7 +86,7 @@ Documentation on building a device configuration file is in [/custom_components/
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
-2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/) to get your local key, you should also have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp id in addition to range information that is needed for integer and enum data types.
 
 If you file an issue to request support for a new device, please include the following information:
 
@@ -118,22 +121,20 @@ instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://m
 ### Choose your configuration path
 
 There are two options for configuring a device:
-- You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
-- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+- You can login to Tuya cloud with the Tuya or SmartLife app and retrieve a list of devices and the necessary local connection data.
+- You can provide all the necessary information manually [as per the instructions in DEVICES_DETAILS.md](DEVICE_DETAILS.md#finding-your-device-id-and-local-key).
 
 The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
 
-The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Smart Life account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Tuya account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
 
-Then Smart Life authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+The Tuya authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
 
 ### Stage One
 
 The first stage of configuration is to provide the information needed to connect to the device.
 
-You will need to provide your device's IP address or hostname, device
-ID and local key; the last two can be found using [the instructions
-below](#finding-your-device-id-and-local-key).
+When using the cloud assisted config, the device id and local key will be pre-filled from the cloud, and the IP address will also be filled if local discovery is not blocked by other integrations or a complex network setup. Otherwise, see [DEVICE_DETAILS.md](DEVICE_DETAILS.md) for instructions on how to find the info.
 
 #### host
 
@@ -142,13 +143,12 @@ below](#finding-your-device-id-and-local-key).
 #### device_id
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Device ID retrieved
-[as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### local_key
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Local key retrieved
-[as per the instructions below](#finding-your-device-id-and-local-key).
 
+Note that each time you pair the device, the local key changes, so if you obtained the local key using the instructions below, then re-paired with your manufacturer's app, then the key will have changed already.
 
 #### protocol_version
 
@@ -160,10 +160,7 @@ only used for sending commands to the device, so if your local key is
 incorrect the setup will appear to work, and you will not see any problems
 until you try to control your device.  For more recent Tuya protocol versions,
 the local key is used to decrypt received data as well, so an incorrect key
-will be detected at this step and cause an immediate failure.  Note that each
-time you pair the device, the local key changes, so if you obtained the
-local key using the instructions below, then re-paired with your
-manufacturer's app, then the key will have changed already.
+will be detected at this step and cause an immediate failure.
 
 
 ### Stage Two
@@ -177,10 +174,12 @@ at least a partial match to the data returned by the device.
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device.
 Select from the available options.
 
+The list presented is filtered to exclude devices that definitely do not match among the 1000+ supported devices. If a device config you expected is not shown, you may have a different firmware version, so the best way to report this is as a new device.
+
 If you pick the wrong type, you will need to delete the device and set
 it up again. This is because different types of devices create different
 entities, so changing the device type without deleting everything is
-not easy.
+not advisable.
 
 ### Stage Three
 
@@ -193,9 +192,7 @@ the name to make it easier to distinguish them.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
 device.  This will be used as the base for the entity names in Home
-Assistant.  Although Home Assistant allows you to change the name
-later, it will only change the name used in the UI, not the name of
-the entities.
+Assistant.
 
 ## Offline operation issues
 
@@ -209,7 +206,7 @@ Many Tuya devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
 others will go offline for 30s to a few minutes if you overload them.
 There is some rate limiting to try to avoid this, but it is not
-sufficient for many devices, and may not work across entities where
+sufficient for some devices, and may not work across entities where
 you are sending commands to multiple entities on the same device.  The
 rate limiting also combines commands, which not all devices can
 handle. If you are sending commands from an automation, it is best to
@@ -220,7 +217,7 @@ may still need a delay after that.  The exact timing depends on the
 device, so you may need to experiment to find the minimum delay that
 gives reliable results.
 
-Some devices can handle multiple commands in a single message, so for
+Most devices can handle multiple commands in a single message, so for
 entity platforms that support it (eg climate `set_temperature` can
 include presets, lights pretty much everything is set through
 `turn_on`) multiple settings are sent at once.  But some devices do
@@ -233,71 +230,6 @@ When adding devices, some devices that are detected as protocol version
 3.3 at first require version 3.2 to work correctly. Either they cannot be
 detected, or work as read-only if the pprotocol is set to 3.3.
 
-## Finding your device ID and local key
-
-### Tuya IoT developer portal
-
-The easiest way to find your local key is with the Tuya Developer portal.
-If you have previously configured the built in Tuya cloud integration, or
-localtuya, you probably already have a developer account with the Tuya app
-linked.  Note that you need to use Tuya's own branded "Tuya Smart" or
-"SmartLife" apps to access devices through the developer portal.  For most
-devices, your device will work identically with those apps as it does with
-your manufacturer's branded app, but there are a few devices where that is
-not the case and you will need to decide whether you are willing to potentially
-lose access to some functionality (such as mapping for some vacuum cleaners).
-
-If you log on to your Developer Portal account, under Cloud you should
-be able to get a list of your devices, which contains the "Device ID".
-If you don't see them, check your server is set correctly at the top
-of the page.  Make a note of the Device IDs for all your devices, then
-select Cloud on the side bar again and go to the API Explorer.
-
-Under "Devices Management", select the "Query Device Details in Bulk"
-function, and enter your Device IDs, separated by commas.
-In the results you should see your local_key.
-
-The IP address you should be able to get from your router.  Using a
-command line Tuya client like tuyaapi/cli or
-[tinytuya](https://github.com/jasonacox/tinytuya) you may also be able
-to scan your network for Tuya devices to find the IP address and also automate
-the above process of connecting to the portal and getting the local key.
-
-### Finding device ids and local keys with tinytuya
-
-You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.
-
-Before running tinytuya's wizard you need to gather your API credentials so head to [Tuya's Developer Portal](https://iot.tuya.com) -> Cloud -> Development -> Open project and make a note of:
-
-- Access ID/Client ID
-- Access Secret/Client Secret
-
-Next, go to the "Devices" tab and note your device id (any of them will work). Also note your region (eg. "Central Europe Data Center") in the combobox at the top right of the page.
-
-Then, open a terminal in your HA machine and run:
-
-```sh
-python -m tinytuya wizard
-```
-
-Answer the following:
-
-- Enter API Key from tuya.com: your "Access ID/Client ID"
-- Enter API Secret from tuya.com: your "Access Secret/Client Secret"
-- Enter any Device ID currently registered in Tuya App (used to pull full list) or 'scan' to scan for one: your device id
-- Enter Your Region: your datacenter's region
-- Download DP Name mappings? (Y/n): Y
-- Poll local devices? (Y/n): Y
-
-If your device supports local connections and is in the same network as your HA instance this should find it and report its IP address.
-
-In the `devices.json` file you will everything you need to add your device:
-
-- "id": the device id
-- "key": the local key
-- "node_id": the sub-device id. You need this for hub-dependent devices
-- "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
-
 ## Connecting to devices via hubs
 
 If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
@@ -307,8 +239,31 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 - Local key: the **hub's** local key
 - Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
 
-## Next steps
+## Secure locks
 
-1. This component is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-2. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
-3. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
+Many locks are designed with basic security controls to make remote unlocking
+more difficult. This integration supports the standard BLE lock model from Tuya
+which uses a pair of dps (60: `remote_no_pd_seykey`, 61: `remote_no_dp_key`)
+to share a key between the app and the lock during the pairing phase.
+If you have access to the Tuya developer portal, you can eavesdrop on the
+second of these messages when the app is used to unlock the lock remotely.
+If you capture the value sent by the app, then you can decode it using a base64
+decoder such as https://base64decode.org.
+The format has 4 bytes of binary data, followed by an 8 digit ASCII numeric
+code, followed by 3 or 4 more bytes of binary data.
+
+The 8 digit numeric code from the first app that was paired should work for
+unlocking the lock.
+
+Although this is documented in the BLE lock documentation from Tuya, Zigbee
+and WiFi locks often use the same naming for datapoints, which may be
+compatible with this scheme.
+
+## Contributing
+
+Beyond contributing device configs, here are some areas that could benefit from more hands:
+
+1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Focus on unit tests is on python code, the current coverage is summarised in reports on github, but to get full coverage details you can run the tests yourself.
+2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
+3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
+

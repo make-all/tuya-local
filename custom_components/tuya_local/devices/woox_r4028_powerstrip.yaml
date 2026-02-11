@@ -1,4 +1,4 @@
-name: 3 outlet + USB powerstrip
+name: USB+3 outlet powerstrip
 legacy_type: tellur_usb_power_strip
 entities:
   - entity: switch
@@ -35,70 +35,51 @@ entities:
       - id: 7
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
     dps:
       - id: 101
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
     dps:
       - id: 102
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"
     dps:
       - id: 103
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: USB timer
-    class: duration
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 105
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

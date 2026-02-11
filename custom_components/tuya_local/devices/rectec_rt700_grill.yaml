@@ -42,3 +42,46 @@ entities:
         type: integer
         name: sensor
         unit: F
+  - entity: number
+    name: Minimum feed rate
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 255
+        mapping:
+          - step: 5
+  - entity: number
+    name: Temperature compensation
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -127
+          max: 128
+  - entity: binary_sensor
+    name: Power failure
+    class: problem
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Ignition failure
+    class: problem
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Probe fault
+    class: problem
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor

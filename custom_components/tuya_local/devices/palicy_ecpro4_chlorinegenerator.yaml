@@ -1,0 +1,175 @@
+name: Chlorine generator
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Palicy
+#     model: EC Pro 4
+entities:
+  - entity: sensor
+    name: Output
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    class: volume_storage
+    name: Pool size
+    category: config
+    icon: "mdi:pool"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: m³
+        range:
+          min: 5
+          max: 200
+  - entity: number
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 24
+  - entity: number
+    name: Reverse interval
+    class: duration
+    category: config
+    icon: "mdi:swap-vertical"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 2
+          max: 8
+        mapping:
+          - step: 2
+  - entity: switch
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    icon: "mdi:car-turbocharger"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: number
+    name: Level
+    category: config
+    icon: "mdi:signal"
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 20
+          max: 100
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: g/L
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Salt dosage
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 117
+        type: base64
+        optional: true
+        name: version
+  - entity: sensor
+    class: temperature
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
+  - entity: event
+    name: Plate status
+    dps:
+      - id: 115
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: Health
+            value: ok
+          - dps_val: Warning
+            value: warning
+  - entity: button
+    name: Plate reset
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: button
+  - entity: binary_sensor
+    name: Salt
+    class: problem
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch

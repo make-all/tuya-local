@@ -1,4 +1,8 @@
-name: Fersk Vind 2 heatpump
+name: Air conditioner
+products:
+  - id: wzdakypl6ca1jr7m
+    manufacturer: Pro Breeze
+    model: Portable 4-in-1 12000BTU
 entities:
   - entity: climate
     dps:
@@ -19,20 +23,24 @@ entities:
                 value: dry
               - dps_val: HEAT
                 value: heat
+                available: heating_supported
       - id: 2
         name: temperature
         type: integer
+        range:
+          min: 16
+          max: 86
         mapping:
           - constraint: temperature_unit
             conditions:
               - dps_val: "C"
                 range:
                   min: 16
-                  max: 32
+                  max: 30
               - dps_val: "F"
                 range:
                   min: 60
-                  max: 90
+                  max: 86
       - id: 3
         name: current_temperature
         type: integer
@@ -42,6 +50,7 @@ entities:
         hidden: true
       - id: 5
         name: fan_mode
+        # string in Pro Breeze info, but left as int for compatibility
         type: integer
         mapping:
           - dps_val: 1
@@ -53,32 +62,115 @@ entities:
       - id: 19
         name: temperature_unit
         type: string
-      - id: 101
-        name: unknown_101
-        type: boolean
       - id: 102
-        name: unknown_102
+        name: hvac_action
         type: boolean
-      - id: 103
-        name: timer
-        type: integer
+        mapping:
+          - dps_val: true
+            value: defrosting
+          - value: null
       - id: 104
         name: swing_mode
         type: boolean
         mapping:
           - dps_val: true
-            value: "vertical"
+            value: "on"
           - dps_val: false
             value: "off"
-      - id: 105
-        name: countdown
-        type: integer
-      - id: 106
-        name: unknown_106
-        type: integer
-      - id: 109
-        name: unknown_109
-        type: boolean
       - id: 110
-        name: unknown_110
+        name: heating_supported
+        # string in Pro Breeze info, but left as int for compatibility
         type: integer
+        mapping:
+          - dps_val: 1
+            value: false
+          - value: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 16
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: switch
+    name: Anti mould
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch

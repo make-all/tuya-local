@@ -57,7 +57,7 @@ entities:
           min: 8
           max: 32
   - entity: sensor
-    name: L1 Voltage
+    name: L1 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -70,7 +70,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L1 Current
+    name: L1 current
     class: current
     category: diagnostic
     dps:
@@ -83,7 +83,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L1 Power
+    name: L1 power
     class: power
     category: diagnostic
     dps:
@@ -96,7 +96,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L2 Voltage
+    name: L2 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -109,7 +109,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L2 Current
+    name: L2 current
     class: current
     category: diagnostic
     dps:
@@ -122,7 +122,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L2 Power
+    name: L2 power
     class: power
     category: diagnostic
     dps:
@@ -135,7 +135,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L3 Voltage
+    name: L3 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -148,7 +148,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: L3 Current
+    name: L3 current
     class: current
     category: diagnostic
     dps:
@@ -161,7 +161,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: L3 Power
+    name: L3 power
     class: power
     category: diagnostic
     dps:
@@ -221,9 +221,8 @@ entities:
           - dps_val: controlpi_error
             value: Error
   - entity: select
-    name: Mode
+    translation_key: charging_mode
     category: config
-    icon: "mdi:ev-station"
     dps:
       - id: 14  # work_mode
         type: string
@@ -231,15 +230,15 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Delayed charge
+            value: delayed_charge
           - dps_val: charge_pct
-            value: Percentage charge
+            value: charge_to_percent
   - entity: switch
     icon: "mdi:ev-station"
     dps:

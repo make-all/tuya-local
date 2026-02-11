@@ -30,6 +30,7 @@ async def test_init_entry(hass):
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
     m_device = AsyncMock()
+    m_device.get_property = Mock(return_value=None)
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}

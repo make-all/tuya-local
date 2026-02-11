@@ -1,0 +1,233 @@
+name: EV charger
+products:
+  - id: cppmeupn3lnyleif
+    manufacturer: Junsun
+    model: "32A"
+  - id: 6yb7bdqiiapigxpq
+    manufacturer: MrCarTool
+    model: S311 32A
+entities:
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+          - dps_val: charger_pause
+            value: paused
+      - id: 23
+        type: string
+        optional: true
+        name: system_version
+      - id: 33
+        type: string
+        optional: true
+        name: mode_set
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Set current
+    category: config
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+  # - entity: sensor
+  #   name: Single phase power
+  #   class: power
+  #   category: diagnostic
+  #   dps:
+  #     - id: 9
+  #       type: integer
+  #       name: sensor
+  #       unit: kW
+  #       class: measurement
+  #       mapping:
+  #         - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: null
+            value: "No data"
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Ov2 Cr Fault"
+          - dps_val: 2
+            value: "OV Vol"
+          - dps_val: 4
+            value: "Undervoltage alarm"
+          - dps_val: 8
+            value: "Contactor adhesion"
+          - dps_val: 16
+            value: "Contactor fault"
+          - dps_val: 32
+            value: "Earth fault"
+          - dps_val: 64
+            value: "Meter Hardware alarm"
+          - dps_val: 128
+            value: "Scram fault"
+          - dps_val: 256
+            value: "CP fault"
+          - dps_val: 512
+            value: "Meter Commu fault"
+          - dps_val: 1024
+            value: "Card reader fault"
+          - dps_val: 2048
+            value: "Cir short fault"
+          - dps_val: 4096
+            value: "Adhesion fault"
+          - dps_val: 8192
+            value: "Self test alarm"
+          - dps_val: 16384
+            value: "Leakage current fault"
+  - entity: select
+    translation_key: charging_mode
+    icon: "mdi:ev-station"
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_pct
+            value: charge_to_percent
+          - dps_val: charge_energy
+            value: fixed_charge
+          - dps_val: charge_schedule
+            value: scheduled_charge
+          - dps_val: charge_delay
+            value: delayed_charge
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Last charge
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+  # - entity: number
+  #   translation_key: timer
+  #   class: duration
+  #   dps:
+  #     - id: 28
+  #       type: integer
+  #       name: value
+  #       unit: h
+  #       optional: true
+  #       range:
+  #         min: 0
+  #         max: 15
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "000000FFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "000000000000FFFF"
+        mapping:
+          - scale: 1000

@@ -113,18 +113,13 @@ entities:
             value: party
           - dps_val: "053232020078000003e800000000323202007803e8000a03e80000"
             value: relax
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

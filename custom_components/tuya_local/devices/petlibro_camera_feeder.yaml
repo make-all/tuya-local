@@ -31,8 +31,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -100,8 +99,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -109,11 +107,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: switch
     name: Sound notification
     icon: "mdi:ear-hearing"
@@ -158,9 +156,7 @@ entities:
           - dps_val: "2"
             value: Continuous
   - entity: number
-    name: Manual feed
-    category: config
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 232
         type: integer

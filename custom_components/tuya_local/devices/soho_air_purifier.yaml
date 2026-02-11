@@ -1,4 +1,4 @@
-name: Air Purifier
+name: Air purifier
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -115,12 +115,11 @@ entities:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
   - entity: sensor
-    name: Filter days left
+    translation_key: filter_life
     class: duration
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 16
         name: sensor

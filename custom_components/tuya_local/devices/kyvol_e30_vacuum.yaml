@@ -1,4 +1,5 @@
-name: Kyvol E30 vacuum
+name: Robot vacuum
+# products: Kyvol E30
 entities:
   - entity: vacuum
     dps:
@@ -173,9 +174,8 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 9
         type: integer

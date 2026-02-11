@@ -1,10 +1,7 @@
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.number import NumberDeviceClass
-from homeassistant.const import UnitOfTime
 
 from ..const import TMWF02_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.number import BasicNumberTests
 from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -14,22 +11,14 @@ LEVEL_DPS = "3"
 SPEED_DPS = "4"
 
 
-class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
+class TestTMWF02Fan(SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("tmwf02_fan.yaml", TMWF02_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440,
-            scale=60,
-            device_class=NumberDeviceClass.DURATION,
-            unit=UnitOfTime.MINUTES,
-        )
-        self.mark_secondary(["number_timer"])
+        self.mark_secondary(["time_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -22,10 +22,19 @@ entities:
         range:
           min: 0
           max: 100
+        mapping:
+          - invert: true
+      - id: 2
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
       - id: 7
-        name: action
+        name: work_state
         type: string
-        persist: false
         optional: true
         mapping:
           - dps_val: opening

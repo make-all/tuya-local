@@ -190,12 +190,12 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         dps = {}
         if self._control_dp:
             # control and code are sent in seperate dps.
-            dps = dps | self._control_dp.get_values_to_set(self._device, CMD_SEND)
-            dps = dps | self._send_dp.get_values_to_set(self._device, code)
+            dps = dps | self._control_dp.get_values_to_set(self._device, CMD_SEND, dps)
+            dps = dps | self._send_dp.get_values_to_set(self._device, code, dps)
             if self._delay_dp:
-                dps = dps | self._delay_dp.get_values_to_set(self._device, delay)
+                dps = dps | self._delay_dp.get_values_to_set(self._device, delay, dps)
             if self._type_dp:
-                dps = dps | self._type_dp.get_values_to_set(self._device, 0)
+                dps = dps | self._type_dp.get_values_to_set(self._device, 0, dps)
         else:
             dps = dps | self._send_dp.get_values_to_set(
                 self._device,
@@ -207,8 +207,9 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                         "key1": "1" + code,
                         "type": 0,
                         "delay": int(delay),
-                    }
+                    },
                 ),
+                dps,
             )
 
         return dps

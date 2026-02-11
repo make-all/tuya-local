@@ -86,7 +86,7 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                 },
                 {
                     "dps": FILTER_DPS,
-                    "name": "sensor_filter",
+                    "name": "sensor_filter_life",
                     "unit": PERCENTAGE,
                 },
                 {
@@ -113,7 +113,7 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                 "sensor_clean_time",
                 "sensor_edge_brush",
                 "sensor_roll_brush",
-                "sensor_filter",
+                "sensor_filter_life",
                 "sensor_status",
             ]
         )

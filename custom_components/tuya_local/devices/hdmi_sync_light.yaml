@@ -96,22 +96,17 @@ entities:
             value: Color Scene - Breath
           - dps_val: 97000000000000000000000000000000
             value: Color Scene - Pure
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
         optional: true
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
 
   - entity: select
     name: Installation side

@@ -100,33 +100,27 @@ entities:
       - id: 2
         name: switch
         type: boolean
-  - entity: number
+  - entity: time
     name: Start time
     translation_key: timer
-    class: duration
     dps:
       - id: 9
-        name: value
+        name: minute
         type: integer
         optional: true
         range:
           min: 1
           max: 1440
-        unit: min
-        class: measurement
-  - entity: number
+  - entity: time
     icon: "mdi:timer-edit"
-    class: duration
     name: Cooking time
     dps:
       - id: 10
-        name: value
+        name: minute
         type: integer
         range:
           min: 1
           max: 1440
-        unit: min
-        class: measurement
   - entity: sensor
     translation_key: time_remaining
     class: duration

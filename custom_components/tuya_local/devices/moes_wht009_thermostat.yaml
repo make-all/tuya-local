@@ -64,10 +64,9 @@ entities:
         optional: true
         name: week_program
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -81,10 +80,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         type: integer
@@ -98,14 +96,14 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         optional: true
         name: value
+        unit: °
         range:
           min: -9
           max: 9

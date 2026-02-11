@@ -78,7 +78,6 @@ entities:
   - entity: sensor
     name: Power level
     category: diagnostic
-    class: power_factor
     dps:
       - id: 5
         type: string
@@ -100,15 +99,13 @@ entities:
       - id: 4
         type: string
         name: sensor
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 12
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1440
-        unit: min

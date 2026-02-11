@@ -1,0 +1,93 @@
+name: Christmas lights
+products:
+  - id: bcaam4fg2vjxvwup
+    manufacturer: Hombli
+    model: HBCL-0225 CCT 2024
+entities:
+  - entity: light
+    icon: "mdi:string-lights"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: white
+            value: "off"
+          - dps_val: colour
+            value: "off"
+            hidden: true  # color not supported, but listed in dps info
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Microphone
+    category: config
+    icon: "mdi:microphone"
+    hidden: true
+    dps:
+      - id: 42
+        type: string
+        name: value
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 52
+        type: base64
+        optional: true
+        name: value
+      - id: 51
+        type: base64
+        optional: true
+        name: list
+  - entity: text
+    name: Scene combination
+    category: config
+    icon: "mdi:filmstrip-box-multiple"
+    hidden: true
+    dps:
+      - id: 53
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Scene reset
+    category: config
+    icon: "mdi:image-sync"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        optional: true
+        name: value

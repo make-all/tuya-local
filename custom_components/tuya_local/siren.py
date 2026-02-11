@@ -61,6 +61,9 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             support |= SirenEntityFeature.VOLUME_SET
         if self._duration_dp:
             support |= SirenEntityFeature.DURATION
+        if self._switch_dp:
+            support |= SirenEntityFeature.TURN_ON | SirenEntityFeature.TURN_OFF
+
         self._attr_supported_features = support
 
     @property
@@ -84,15 +87,16 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
                 if tone == "off":
                     tone = self._default_tone
 
-            set_dps = {
-                **set_dps,
-                **self._tone_dp.get_values_to_set(self._device, tone),
-            }
+            if tone is not None:
+                set_dps = {
+                    **set_dps,
+                    **self._tone_dp.get_values_to_set(self._device, tone, set_dps),
+                }
 
         if duration is not None and self._duration_dp:
             set_dps = {
                 **set_dps,
-                **self._duration_dp.get_values_to_set(self._device, duration),
+                **self._duration_dp.get_values_to_set(self._device, duration, set_dps),
             }
 
         if volume is not None and self._volume_dp:
@@ -108,13 +112,13 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
 
             set_dps = {
                 **set_dps,
-                **self._volume_dp.get_values_to_set(self._device, volume),
+                **self._volume_dp.get_values_to_set(self._device, volume, set_dps),
             }
 
         if self._switch_dp and not self.is_on:
             set_dps = {
                 **set_dps,
-                **self._switch_dp.get_values_to_set(self._device, True),
+                **self._switch_dp.get_values_to_set(self._device, True, set_dps),
             }
 
         await self._device.async_set_properties(set_dps)

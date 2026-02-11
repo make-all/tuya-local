@@ -23,7 +23,7 @@ entities:
           max: 10
 
   - entity: button
-    name: Reset Water
+    name: Reset water
     icon: "mdi:water-circle"
     category: config
     dps:
@@ -45,7 +45,7 @@ entities:
         unit: min
 
   - entity: button
-    name: Reset Filter
+    name: Reset filter
     icon: "mdi:air-filter"
     category: config
     dps:
@@ -57,8 +57,7 @@ entities:
             value: true
 
   - entity: sensor
-    name: Filter life
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     class: duration
     dps:
@@ -71,7 +70,7 @@ entities:
         unit: min
 
   - entity: button
-    name: Reset Pump
+    name: Reset pump
     icon: "mdi:pump"
     category: config
     dps:
@@ -116,8 +115,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Water level
-    icon: "mdi:water"
+    translation_key: water_level
     category: diagnostic
     dps:
       - id: 108

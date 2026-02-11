@@ -1,4 +1,8 @@
-name: Simple Six Switch
+name: Simple six switch
+products:
+  - id: ZHI2sekG9ilaW0Bx
+    manufacturer: Geeni
+    model: GN-SW003
 entities:
   - entity: switch
     translation_key: switch_x
@@ -48,3 +52,201 @@ entities:
       - id: 6
         name: switch
         type: boolean
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 101
+        type: integer
+        optional: true
+        name: alt
+      - id: 9
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 102
+        type: integer
+        optional: true
+        name: alt
+      - id: 10
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 103
+        type: integer
+        optional: true
+        name: alt
+      - id: 11
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 104
+        type: integer
+        optional: true
+        name: alt
+      - id: 12
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "5"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 13
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 105
+        type: integer
+        optional: true
+        name: alt
+      - id: 13
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "6"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 106
+        type: integer
+        optional: true
+        name: alt
+      - id: 14
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true

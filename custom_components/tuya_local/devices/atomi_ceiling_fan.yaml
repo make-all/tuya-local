@@ -54,24 +54,18 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-  - entity: number
-    name: Light timer
-    class: duration
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34

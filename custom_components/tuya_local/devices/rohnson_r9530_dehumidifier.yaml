@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         type: boolean
@@ -159,16 +160,14 @@ entities:
       - id: 104
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     name: "Off timer"
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 105
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440

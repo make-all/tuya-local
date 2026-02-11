@@ -23,7 +23,7 @@ class TestLedvanceLight(TuyaDeviceTestCase):
         self.white = self.entities.get("light")
         self.color = self.entities.get("light_backlight")
 
-        self.mark_secondary(["number_timer"])
+        self.mark_secondary(["number_timer", "time_timer"])
 
     async def test_color_combined_bright(self):
         self.dps[COMBO_DP] = "AAcAOQPoA+gCngDI"

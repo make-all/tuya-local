@@ -28,7 +28,7 @@ entities:
         unit: mA
         class: measurement
   - entity: switch
-    name: Breaker
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
@@ -152,8 +152,9 @@ entities:
           min: -400
           max: 1000
   - entity: select
-    name: Overvoltage action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
     category: config
     dps:
       - id: 111
@@ -161,14 +162,15 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Undervoltage action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 112
@@ -176,14 +178,15 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Over current action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over current
     category: config
     dps:
       - id: 113
@@ -191,14 +194,15 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Over power action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over power
     category: config
     dps:
       - id: 114
@@ -206,14 +210,15 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Over temperature action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Over temperature
     category: config
     dps:
       - id: 115
@@ -221,14 +226,15 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: select
-    name: Earth leakage action
-    icon: "mdi:fuse-alert"
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Earth leakage
     category: config
     dps:
       - id: 116
@@ -236,11 +242,11 @@ entities:
         name: option
         mapping:
           - dps_val: Close
-            value: Ignore
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
+            value: alarm
           - dps_val: Trip
-            value: Trip
+            value: trip_breaker
   - entity: sensor
     class: power
     category: diagnostic
@@ -318,6 +324,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 126
         type: boolean

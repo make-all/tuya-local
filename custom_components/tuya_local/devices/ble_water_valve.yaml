@@ -1,4 +1,4 @@
-name: Water Timer Valve
+name: Water timer valve
 legacy_type: ble_johgee_water_valve
 products:
   - id: c8800fd30884068f
@@ -7,6 +7,7 @@ products:
     manufacturer: Diivoo
     model: WT-03
   - id: nxquc5lb
+    manufacturer: Insoma
     model: SOP10
   - id: so5ybnw9
     manufacturer: Royal Gardineer
@@ -100,29 +101,32 @@ entities:
             value: "48h"
           - dps_val: "72h"
             value: "72h"
-  - entity: number
+  - entity: time
     name: Irrigation time
     category: config
-    class: duration
-    translation_key: timer
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         optional: true
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
     name: Smart weather switch
     icon: "mdi:sun-wireless"
+    hidden: unavailable
     category: config
     dps:
       - id: 14
         type: boolean
         name: switch
         optional: true
+      - id: 14
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

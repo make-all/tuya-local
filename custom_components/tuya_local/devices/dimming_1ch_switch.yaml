@@ -36,21 +36,16 @@ entities:
             value: Seesaw toggle
           - dps_val: seesaw_sync
             value: Seesaw sync
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

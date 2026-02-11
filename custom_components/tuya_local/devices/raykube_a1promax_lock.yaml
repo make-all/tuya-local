@@ -3,21 +3,12 @@ products:
   - id: rlyxv7pe
     manufacturer: Raykube
     model: A1 Pro Max
+  - id: hc7n0urm
+    manufacturer: Raykube
+    model: A1 Ultra
 entities:
   - entity: lock
     dps:
-      - id: 1
-        type: string
-        optional: true
-        name: unlock_method_create
-      - id: 2
-        type: string
-        optional: true
-        name: unlock_method_delete
-      - id: 3
-        type: string
-        optional: true
-        name: unlock_method_modify
       - id: 16
         type: integer
         optional: true
@@ -34,19 +25,16 @@ entities:
         name: lock_record
       - id: 46
         type: boolean
+        optional: true
         name: lock
       - id: 47
         type: boolean
         name: open
         readonly: true
-      - id: 54
-        type: string
-        optional: true
-        name: sync_method
       - id: 61
-        type: string
+        type: base64
         optional: true
-        name: remote_no_dp_key
+        name: code_unlock
       - id: 62
         type: integer
         optional: true
@@ -73,10 +61,6 @@ entities:
         type: string
         optional: true
         name: unlock_record_check
-      - id: 73
-        type: string
-        optional: true
-        name: remote_pd_setkey_check
   - entity: sensor
     class: battery
     category: diagnostic
@@ -175,3 +159,58 @@ entities:
       - id: 78
         type: boolean
         name: switch
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 73
+        type: string
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        optional: true
+        sensitive: true
+        name: value

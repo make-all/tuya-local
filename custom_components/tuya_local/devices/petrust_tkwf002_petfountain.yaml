@@ -11,18 +11,16 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    class: enum
-    icon: "mdi:auto-mode"
+    translation_key: activation_mode
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: "normal"
-            value: "Normal"
+            value: "normal"
           - dps_val: "smart"
-            value: "Smart"
+            value: "smart"
   - entity: valve
     class: water
     dps:
@@ -60,8 +58,7 @@ entities:
           min: 0
           max: 30
   - entity: sensor
-    name: Replace filter in
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
@@ -70,8 +67,7 @@ entities:
         name: sensor
         unit: d
   - entity: button
-    name: Replace filter
-    icon: "mdi:air-filter"
+    translation_key: filter_reset
     category: config
     dps:
       - id: 5
@@ -107,7 +103,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -116,14 +112,11 @@ entities:
         type: string
         mapping:
           - dps_val: "low"
-            icon: "mdi:cup-outline"
-            value: "Low"
+            value: "low"
           - dps_val: "middle"
-            icon: "mdi:cup-water"
-            value: "Middle"
+            value: "medium"
           - dps_val: "high"
-            icon: "mdi:cup"
-            value: "High"
+            value: "high"
   - entity: sensor
     name: Water age
     class: duration

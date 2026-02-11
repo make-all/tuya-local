@@ -118,3 +118,90 @@ entities:
           min: 0
           max: 100
         unit: s
+
+  - entity: number
+    category: config
+    name: Record tag ID
+    icon: "mdi:nfc-variant"
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 2000
+  - entity: number
+    category: config
+    name: Delete tag ID
+    icon: "mdi:nfc-variant-off"
+    dps:
+      - id: 110
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100000
+
+  - entity: switch
+    category: config
+    name: Open door notification
+    icon: "mdi:bell-alert"
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Close door notification
+    icon: "mdi:bell-check"
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - entity: select
+    category: config
+    name: Backup options
+    icon: "mdi:backup-restore"
+    dps:
+      - id: 114
+        name: option
+        type: string
+        mapping:
+          - dps_val: Selecionar
+            value: Select
+          - dps_val: Upload
+            value: Upload
+          - dps_val: Download
+            value: Download
+
+  - entity: binary_sensor
+    name: App status
+    icon: "mdi:cellphone"
+    dps:
+      - id: 122
+        name: sensor
+        type: boolean
+
+  - entity: binary_sensor
+    name: Digital unlock
+    class: door
+    dps:
+      - id: 124
+        name: sensor
+        type: boolean
+  - entity: switch
+    category: config
+    name: Open door beep
+    icon: "mdi:volume-high"
+    dps:
+      - id: 125
+        name: switch
+        type: boolean
+
+  - entity: binary_sensor
+    name: Mechanical key unlock
+    class: door
+    dps:
+      - id: 129
+        name: sensor
+        type: boolean

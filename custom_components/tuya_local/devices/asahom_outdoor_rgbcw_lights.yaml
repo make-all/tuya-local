@@ -103,21 +103,16 @@ entities:
         type: string
         optional: true
         name: color_sync
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: light
     translation_key: indicator
     category: config
@@ -151,8 +146,7 @@ entities:
         optional: true
         name: information
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb-question"
+    translation_key: light_mode
     category: config
     dps:
       - id: 117

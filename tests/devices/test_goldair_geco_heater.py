@@ -96,15 +96,6 @@ class TestGoldairGECOHeater(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = 10
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"timer": 10},
-        )
-        self.dps[TIMER_DPS] = 0
-        self.assertDictEqual(self.subject.extra_state_attributes, {"timer": 0})
-
     def test_basic_bsensor_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 2
         self.assertDictEqual(

@@ -19,22 +19,17 @@ entities:
         type: string
         optional: true
         name: mode
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     name: Number of lights
     icon: "mdi:led-strip-variant"

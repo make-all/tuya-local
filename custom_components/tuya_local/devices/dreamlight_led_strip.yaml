@@ -87,23 +87,17 @@ entities:
         name: paint_colour_data
         type: string
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
         optional: true
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
   - entity: number
     name: Pixels
     category: config
@@ -132,8 +126,7 @@ entities:
           - dps_val: "music"
             value: "Music"
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 51

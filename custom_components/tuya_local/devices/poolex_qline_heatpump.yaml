@@ -1,6 +1,8 @@
-name: Poolex Q-Line heatpump
+name: Pool heat pump
+# products: Poolex Q-Line
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -8,8 +10,6 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
-            icon_priority: 1
           - dps_val: true
             constraint: heating_mode
             conditions:
@@ -23,14 +23,6 @@ entities:
         name: heating_mode
         hidden: true
         type: string
-        icon_priority: 3
-        mapping:
-          - dps_val: heating
-            icon: "mdi:hot-tub"
-          - dps_val: cold
-            icon: "mdi:snowflake"
-          - dps_val: mute
-            icon: "mdi:hot-tub"
       - id: 4
         name: temperature
         type: integer

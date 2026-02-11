@@ -5,19 +5,16 @@ from homeassistant.components.light import (
     ColorMode,
     LightEntityFeature,
 )
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import MOES_RGB_SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.number import BasicNumberTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import BasicSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -40,7 +37,6 @@ VOLTAGE_DPS = "106"
 
 
 class TestMoesRGBSocket(
-    BasicNumberTests,
     MultiSensorTests,
     BasicSwitchTests,
     TuyaDeviceTestCase,
@@ -57,14 +53,6 @@ class TestMoesRGBSocket(
             device_class=SwitchDeviceClass.OUTLET,
             power_dps=POWER_DPS,
             power_scale=10,
-        )
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440.0,
-            unit=UnitOfTime.MINUTES,
-            device_class=NumberDeviceClass.DURATION,
-            scale=60,
         )
         self.setUpMultiSensors(
             [
@@ -95,10 +83,10 @@ class TestMoesRGBSocket(
         )
         self.mark_secondary(
             [
-                "number_timer",
                 "sensor_current",
                 "sensor_power",
                 "sensor_voltage",
+                "time_timer",
             ]
         )
 

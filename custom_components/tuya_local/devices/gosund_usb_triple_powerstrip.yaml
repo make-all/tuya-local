@@ -38,73 +38,54 @@ entities:
       - id: 7
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
     dps:
       - id: 10
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB Timer
+  - entity: time
     category: config
-    class: duration
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 15
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     class: current
     category: diagnostic
@@ -148,7 +129,7 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: USB Overload
+    name: USB overload
     class: problem
     category: diagnostic
     dps:

@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
-                "description": "Devices can either be added manually or cloud-assisted with the help of the Smart Life app.",
+                "description": "Devices can either be added manually or cloud-assisted with the help of the SmartLife app.",
                 "data": {
                     "setup_mode": "Setup choice:"
                 }
             },
             "cloud": {
                 "title": "Login to Tuya",
-                "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+                "description": "Enter your SmartLife or Tuya user code.\n\nYou can find this code in the SmartLife app or Tuya app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
                 "data": {
                     "user_code": "User code:"
                 }
             },
             "scan": {
                 "title": "Complete the login",
-                "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+                "description": "Use SmartLife app or Tuya app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
             },
             "choose_device": {
                 "title": "Choose the device to add",
@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[Follow these instructions to find your device id and local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "device_id": "Device ID (or the hub's Device ID for devices connected via gateway)",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life cloud-assisted device setup.",
-                "manual": "Manually provide device connection information."
+                "cloud": "SmartLife cloud-assisted device setup.",
+                "manual": "Manually provide device connection information.",
+                "cloud_fresh_login": "SmartLife cloud-assisted device setup with fresh login."
             }
         }
     },
@@ -82,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[Follow these instructions to find your local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "local_key": "Local key",
@@ -162,6 +163,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "Air conditioner",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -180,10 +182,30 @@
                             "top": "Top",
                             "middle": "Middle",
                             "down": "Down",
-                            "downmost": "Downmost"
+                            "downmost": "Downmost",
+                            "upper_half": "Upper half",
+                            "lower_half": "Lower half",
+                            "surround": "Surround"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Leftmost",
+                            "left": "Left",
+                            "center": "Center",
+                            "right": "Right",
+                            "rightmost": "Rightmost",
+                            "left_swing": "Left swing",
+                            "right_swing": "Right swing",
+                            "center_swing": "Center swing",
+                            "surround": "Surround",
+                            "direct": "Direct"
                         }
                     }
                 }
+            },
+            "cold_water": {
+                "name": "Cold water dispenser"
             },
             "thermostat": {
                 "name": "Thermostat",
@@ -217,6 +239,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Heater",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Heating level",
@@ -246,7 +269,21 @@
                 }
             },
             "heater": {
-                "name": "Heater"
+                "name": "Heater",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Low",
+                            "medium": "Medium",
+                            "high": "High",
+                            "program_1": "Program 1",
+                            "program_2": "Program 2",
+                            "program_3": "Program 3",
+                            "standby": "Standby",
+                            "fan_only": "Fan only"
+                        }
+                    }
+                }
             },
             "thermo_switch": {
                 "state_attributes": {
@@ -290,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Dry clothes",
-                            "purify": "Purify"
+                            "purify": "Purify",
+                            "continuous": "Continuous"
                         }
                     }
                 }
@@ -340,6 +378,10 @@
                             "sleep": "Sleep",
                             "smart": "Smart",
                             "strong": "Strong",
+                            "custom": "Custom",
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "program": "Program",
                             "high": "High",
                             "medium": "Medium",
                             "low": "Low",
@@ -358,10 +400,14 @@
                             "circulate": "Circulate",
                             "sleep": "Sleep",
                             "auto": "Auto",
+                            "manual": "Manual",
                             "eco": "Eco",
                             "anti-condensation": "Anti-condensation",
                             "extractor": "Extractor",
-                            "heat_recovery": "Heat recovery"
+                            "heat_recovery": "Heat recovery",
+                            "timer": "Timer",
+                            "on": "On",
+                            "off": "Off"
                         }
                     }
                 }
@@ -399,11 +445,29 @@
             }
         },
         "number": {
+            "manual_feed": {
+                "name": "Manual feed"
+            },
+            "maximum_temperature": {
+                "name": "Maximum temperature"
+            },
+            "minimum_temperature": {
+                "name": "Minimum temperature"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} threshold"
+            },
+            "temperature_calibration": {
+                "name": "Temperature calibration"
+            },
             "timer": {
                 "name": "Timer"
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "volume": {
+                "name": "Volume"
             }
         },
         "select": {
@@ -417,6 +481,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Heat pump mode",
+                "state": {
+                    "off": "Off",
+                    "heat": "Heat",
+                    "cool": "Cool",
+                    "floor_heat": "Floor heat",
+                    "auto": "Auto",
+                    "hotwater": "Hot water",
+                    "hotwater_cool": "Hot water & Cool",
+                    "hotwater_heat": "Hot water & Heat",
+                    "hotwater_auto": "Hot water & Auto",
+                    "hotwater_floor_heat": "Hot water & Floor heat"
+                }
+            },
             "initial_state": {
                 "name": "Initial state",
                 "state": {
@@ -425,12 +504,34 @@
                     "memory": "Memory"
                 }
             },
+            "kettle_mode": {
+                "name": "Kettle mode",
+                "state": {
+                    "off": "Off",
+                    "heat": "Heat",
+                    "boil": "Boil",
+                    "quick_heat": "Quick heat",
+                    "quick_boil": "Quick boil",
+                    "keep_warm": "Keep warm",
+                    "custom": "Custom",
+                    "dechlorinate": "Dechlorinate",
+                    "black_tea": "Black tea",
+                    "green_tea": "Green tea",
+                    "coffee": "Coffee",
+                    "honey_water": "Honey water",
+                    "infant_formula": "Infant formula",
+                    "white_tea": "White tea",
+                    "oolong_tea": "Oolong tea",
+                    "water": "Water"
+                }
+            },
             "language": {
                 "name": "Language",
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -440,7 +541,20 @@
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
-                    "turkish": "Türkçe"
+                    "turkish": "Türkçe",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "Light mode",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "state": "State",
+                    "locator": "Locator",
+                    "auto": "Auto",
+                    "flash": "Flash"
                 }
             },
             "mopping": {
@@ -448,6 +562,16 @@
                 "state": {
                     "off": "Off",
                     "auto": "Auto",
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High",
+                    "very_high": "Very High"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "Motion sensitivity",
+                "state": {
+                    "off": "Off",
                     "low": "Low",
                     "medium": "Medium",
                     "high": "High"
@@ -504,13 +628,36 @@
                 "state": {
                     "cancel": "Cancel",
                     "continuous": "Continuous",
+                    "15s": "15 seconds",
+                    "20s": "20 seconds",
+                    "30s": "30 seconds",
+                    "45s": "45 seconds",
+                    "1m": "1 minute",
+                    "2m": "2 minutes",
+                    "3m": "3 minutes",
                     "5m": "5 minutes",
                     "10m": "10 minutes",
+                    "15m": "15 minutes",
                     "20m": "20 minutes",
+                    "25m": "25 minutes",
                     "30m": "30 minutes",
+                    "35m": "35 minutes",
                     "40m": "40 minutes",
+                    "45m": "45 minutes",
+                    "50m": "50 minutes",
+                    "55m": "55 minutes",
                     "1h": "1 hour",
+                    "1h5m": "1 hour 5 minutes",
+                    "1h10m": "1 hour 10 minutes",
+                    "1h15m": "1 hour 15 minutes",
+                    "1h20m": "1 hour 20 minutes",
+                    "1h25m": "1 hour 25 minutes",
                     "1h30m": "1 hour 30 minutes",
+                    "1h35m": "1 hour 35 minutes",
+                    "1h40m": "1 hour 40 minutes",
+                    "1h45m": "1 hour 45 minutes",
+                    "1h50m": "1 hour 50 minutes",
+                    "1h55m": "1 hour 55 minutes",
                     "2h": "2 hours",
                     "2h30m": "2 hours 30 minutes",
                     "3h": "3 hours",
@@ -544,7 +691,14 @@
                     "24h": "24 hours",
                     "36h": "36 hours",
                     "48h": "48 hours",
-                    "72h": "72 hours"
+                    "72h": "72 hours",
+                    "1d": "1 day",
+                    "2d": "2 days",
+                    "3d": "3 days",
+                    "4d": "4 days",
+                    "5d": "5 days",
+                    "6d": "6 days",
+                    "7d": "7 days"
                 }
             },
             "temperature_unit": {
@@ -552,6 +706,126 @@
                 "state": {
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} action",
+                "state": {
+                    "ignore": "Ignore",
+                    "alarm": "Alarm",
+                    "trip_breaker": "Trip breaker"
+                }
+            },
+            "mode": {
+                "name": "Mode",
+                "state": {
+                    "auto": "Auto",
+                    "manual": "Manual",
+                    "off": "Off",
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High",
+                    "rapid_clean": "Rapid clean",
+                    "schedule": "Schedule"
+                }
+            },
+            "activation_mode": {
+                "name": "Activation mode",
+                "state": {
+                    "normal": "Normal",
+                    "smart": "Smart",
+                    "night": "Night",
+                    "motion": "Motion",
+                    "off": "Off"
+                }
+            },
+            "bidet_mode": {
+                "name": "Bidet mode",
+                "state": {
+                    "normal": "Normal",
+                    "dry": "Dry",
+                    "child": "Child"
+                }
+            },
+            "curtain_mode": {
+                "name": "Curtain mode",
+                "state": {
+                    "morning": "Morning",
+                    "night": "Night"
+                }
+            },
+            "chlorination_mode": {
+                "name": "Chlorination mode",
+                "state": {
+                    "inverter": "Inverter",
+                    "auto_ph": "Auto pH",
+                    "smart": "Smart",
+                    "manual": "Manual"
+                }
+            },
+            "alarm_mode": {
+                "name": "Alarm mode",
+                "state": {
+                    "sound": "Sound",
+                    "light": "Light",
+                    "sound_and_light": "Sound and Light"
+                }
+            },
+            "air_mode": {
+                "name": "Air mode",
+                "state": {
+                    "dehumidify": "Dehumidify",
+                    "purify": "Purify",
+                    "dehumidify_and_purify": "Dehumidify and purify"
+                }
+            },
+            "cleaning_mode": {
+                "name": "Cleaning mode",
+                "state": {
+                    "sweep": "Sweep",
+                    "mop": "Mop",
+                    "sweep_and_mop": "Sweep and mop",
+                    "intensive": "Intensive",
+                    "quiet": "Quiet",
+                    "sweep_before_mopping": "Sweep before mopping"
+                }
+            },
+            "washing_mode": {
+                "name": "Washing mode",
+                "state": {
+                    "fruit": "Fruit",
+                    "intensive": "Intensive",
+                    "rapid": "Rapid",
+                    "eco": "Eco",
+                    "standard": "Standard",
+                    "neutral": "Neutral",
+                    "90_minute": "90 Minute",
+                    "glass": "Glass",
+                    "auto": "Auto",
+                    "soak": "Soak",
+                    "self_clean": "Self Clean",
+                    "hygiene": "Hygiene",
+                    "party": "Party",
+                    "baby_care": "Baby Care"
+                }
+            },
+            "menu": {
+                "name": "Menu",
+                "state": {
+                    "home": "Home",
+                    "mode": "Mode",
+                    "recode": "Recode",
+                    "settings": "Settings"
+                }
+            },
+            "charging_mode": {
+                "name": "Charging mode",
+                "state": {
+                    "immediate": "Immediate",
+                    "charge_to_percent": "Charge to percent",
+                    "fixed_charge": "Fixed charge",
+                    "scheduled_charge": "Scheduled charge",
+                    "delayed_charge": "Delayed charge"
                 }
             },
             "oven_built_in_recipe": {
@@ -599,7 +873,8 @@
                     "good": "Good",
                     "moderate": "Moderate",
                     "poor": "Poor",
-                    "severe": "Severe"
+                    "severe": "Severe",
+                    "danger": "Danger"
                 }
             },
             "status": {
@@ -609,6 +884,7 @@
                     "plugged_in": "Plugged in",
                     "fault_unplugged": "Fault (unplugged)",
                     "charging": "Charging",
+                    "discharging": "Discharging",
                     "waiting": "Waiting",
                     "charged": "Charged",
                     "fault": "Fault",
@@ -627,6 +903,7 @@
                     "manual": "Manual",
                     "rain_delay": "Rain delay",
                     "off": "Off",
+                    "on": "On",
                     "cooking": "Cooking",
                     "done": "Done",
                     "door_open": "Door open",
@@ -672,11 +949,35 @@
                     "starting": "Starting",
                     "emptying": "Emptying",
                     "resetting": "Resetting",
-                    "reverse": "Reverse"
+                    "reverse": "Reverse",
+                    "full": "Full",
+                    "empty": "Empty",
+                    "missing": "Missing",
+                    "formatting": "Formatting",
+                    "unformatted": "Unformatted",
+                    "failed": "Failed",
+                    "replying": "Replying",
+                    "playback": "Playback",
+                    "maintenance_required": "Maintenance required",
+                    "dry": "Dry",
+                    "comfortable": "Comfortable",
+                    "damp": "Damp",
+                    "smoothing": "Smoothing",
+                    "cleaned": "Cleaned",
+                    "cold_water_unavailable": "Cold water unavailable",
+                    "drain": "Drain",
+                    "drain_cold_water": "Drain cold water",
+                    "drain_hot_water": "Drain hot water",
+                    "drain_normal_water": "Drain normal water",
+                    "high_temperature_emptying": "High temperature emptying",
+                    "high_temperature_emptied": "High temperature emptied"
                 }
             },
             "time_remaining": {
                 "name": "Time remaining"
+            },
+            "time_remaining_x": {
+                "name": "Time remaining {x}"
             },
             "cooking_status": {
                 "name": "Status",
@@ -719,14 +1020,36 @@
             },
             "power_x": {
                 "name": "Power {x}"
+            },
+            "filter_life": {
+                "name": "Filter life"
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "Anti-frost"
             },
+            "auto_clean": {
+                "name": "Auto clean"
+            },
+            "auto_light": {
+                "name": "Auto light"
+            },
+            "breaker": {
+                "name": "Breaker",
+                "state": {
+                    "off": "Open",
+                    "on": "Closed"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Do not disturb"
+            },
             "evaporator_cleaning": {
                 "name": "Evaporator cleaning"
+            },
+            "flip_image": {
+                "name": "Flip image"
             },
             "ionizer": {
                 "name": "Ionizer"
@@ -753,6 +1076,30 @@
         "text": {
             "scene": {
                 "name": "Scene"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Valve {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Water heater"
+            },
+            "kettle": {
+                "name": "Kettle"
+            },
+            "hot_water": {
+                "name": "Hot water dispenser"
             }
         }
     }

@@ -33,11 +33,10 @@ entities:
         class: measurement
         name: sensor
         type: integer
-        unit: μg/m³
+        unit: ugm3
   - entity: sensor
-    name: Filter remaining
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         name: sensor
@@ -99,7 +98,7 @@ entities:
         class: measurement
         name: sensor
         type: integer
-        unit: μg/m³
+        unit: ugm3
   - entity: sensor
     class: pm1
     dps:
@@ -107,7 +106,7 @@ entities:
         class: measurement
         name: sensor
         type: integer
-        unit: μg/m³
+        unit: ugm3
   - entity: select
     category: config
     name: Display

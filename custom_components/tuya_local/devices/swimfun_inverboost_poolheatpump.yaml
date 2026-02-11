@@ -197,9 +197,8 @@ entities:
         unit: C
         class: measurement
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 102
         type: integer
@@ -226,6 +225,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 107
         type: boolean

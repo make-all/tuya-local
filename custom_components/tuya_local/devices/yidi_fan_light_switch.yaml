@@ -20,22 +20,16 @@ entities:
       - id: 5
         type: boolean
         name: switch
-  - entity: number
-    name: Fan timer
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

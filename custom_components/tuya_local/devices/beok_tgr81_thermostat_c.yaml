@@ -64,15 +64,14 @@ entities:
           - dps_val: open
             value: heating
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         optional: true
         name: value
-        unit: C
+        unit: °
         range:
           min: -9
           max: 9
@@ -129,10 +128,9 @@ entities:
         optional: true
         type: bitfield
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -143,10 +141,9 @@ entities:
           min: 30
           max: 90
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         optional: true
@@ -159,6 +156,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         name: button

@@ -1,0 +1,540 @@
+name: Robot vacuum
+products:
+  - id: mphbe14dfodk8cz2
+    manufacturer: ILIFE
+    model: V20
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: false
+                value: false
+                hidden: true
+              - dps_val: null
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: false
+                value: true
+              - dps_val: true
+                value: true
+                hidden: true
+              - dps_val: null
+                value: true
+                hidden: true
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        type: boolean
+        optional: true
+        name: pause
+        hidden: true
+
+      - id: 4
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: goto_charge
+            value: return_to_base
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: select_room
+            value: select_room
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: select_room
+            value: selecting_room
+          - dps_val: seek_dust_bucket
+            value: seek_dust_bucket
+          - dps_val: collecting_dust
+            value: collecting_dust
+          - dps_val: in_trouble
+            value: in_trouble
+          - dps_val: shutdown
+            value: shutdown
+          - dps_val: self_clean
+            value: self_clean
+          - dps_val: mapping
+            value: mapping
+          - dps_val: mapping_done
+            value: mapping_done
+          - dps_val: in_positioning
+            value: in_positioning
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: closed
+            value: "Off"
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Medium
+          - dps_val: strong
+            value: High
+          - dps_val: max
+            value: Max
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: not_use
+            value: not use
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+          - dps_val: exit
+            value: exit
+      - id: 14
+        type: string
+        optional: true
+        name: path_data
+      - id: 15
+        type: string
+        optional: true
+        name: command_trans
+      - id: 28
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 32
+        type: string
+        optional: true
+        name: device_timer
+      - id: 33
+        type: string
+        optional: true
+        name: disturb_time_set
+      - id: 34
+        type: string
+        optional: true
+        name: device_info
+      - id: 35
+        type: string
+        optional: true
+        name: voice_data
+
+  - entity: switch
+    name: Charge
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: select
+    name: Fetch request
+    icon: "mdi:message-question"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: sensor
+    name: Edge brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rolling brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rag lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Total cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Total cleaning times
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset rag life
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Intermittent cleaning
+    icon: "mdi:clock-star-four-points"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: chinese_traditional
+            value: chinese_traditional
+          - dps_val: english
+            value: english
+          - dps_val: german
+            value: german
+          - dps_val: french
+            value: french
+          - dps_val: russian
+            value: russian
+          - dps_val: spanish
+            value: spanish
+          - dps_val: korean
+            value: korean
+          - dps_val: latin
+            value: latin
+          - dps_val: portuguese
+            value: portuguese
+          - dps_val: japanese
+            value: japanese
+          - dps_val: italian
+            value: italian
+          - dps_val: polish
+            value: polish
+  - entity: switch
+    name: Custom room
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    name: Mop installed
+    icon: "mdi:water-plus"
+    category: diagnostic
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
+  - entity: select
+    translation_key: cleaning_mode
+    category: config
+    dps:
+      - id: 41
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: only_sweep
+            value: sweep
+          - dps_val: only_mop
+            value: mop
+          - dps_val: both_work
+            value: sweep_and_mop
+  - entity: switch
+    name: Auto boost
+    icon: "mdi:car-turbocharger"
+    category: config
+    dps:
+      - id: 45
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      - id: 28
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: low_power
+          - dps_val: 2
+            value: poweroff
+          - dps_val: 4
+            value: wheel_trap
+          - dps_val: 8
+            value: cannot_upgrade
+          - dps_val: 16
+            value: collision_stuck
+          - dps_val: 32
+            value: dust_station_full
+          - dps_val: 64
+            value: tile_error
+          - dps_val: 128
+            value: lidar_speed_err
+          - dps_val: 256
+            value: lidar_cover
+          - dps_val: 512
+            value: lidar_point_err
+          - dps_val: 1024
+            value: front_wall_dirty
+          - dps_val: 2048
+            value: psd_dirty
+          - dps_val: 4096
+            value: middle_sweep
+          - dps_val: 8192
+            value: side_sweep
+          - dps_val: 16384
+            value: fan_speed
+          - dps_val: 32768
+            value: dustbox_out
+          - dps_val: 65536
+            value: dustbox_full
+          - dps_val: 131072
+            value: no_dust_box
+          - dps_val: 262144
+            value: dustbox_fullout
+          - dps_val: 524288
+            value: trapped
+          - dps_val: 1048576
+            value: pick_up
+          - dps_val: 2097152
+            value: no_dust_water_box
+          - dps_val: 84194304
+            value: water_box_empty
+          - dps_val: 18388608
+            value: forbid_area
+          - dps_val: 16777216
+            value: land_check
+          - dps_val: 33554432
+            value: findcharge_fail
+          - dps_val: 67108864
+            value: battery_err
+          - dps_val: 134217728
+            value: kit_wheel
+          - dps_val: 268435456
+            value: kit_lidar
+          - dps_val: 53687091
+            value: kit_water_pump

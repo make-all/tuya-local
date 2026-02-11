@@ -20,8 +20,7 @@ entities:
       - id: 2
         type: boolean
         name: switch
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -29,16 +28,11 @@ entities:
     dps:
       - id: 7
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -46,14 +40,10 @@ entities:
     dps:
       - id: 8
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min
   - entity: sensor
     class: current
     category: diagnostic

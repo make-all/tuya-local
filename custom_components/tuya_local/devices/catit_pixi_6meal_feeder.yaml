@@ -5,24 +5,29 @@ products:
     model: Pixi 6-Meal
 entities:
   - entity: button
-    name: Quick Feed
+    name: Quick feed
     icon: "mdi:food-drumstick"
     dps:
       - id: 2
         type: boolean
         name: button
         optional: true
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
+      # Meal plan is the following binary blob (1 byte per line), encoded
+      # in base64:
+      # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
+      #    Ex: Monday, Wednesday, Sunday -> 0b01010001
+      # - Hour
+      # - Minute
+      # - Feed number
+      # - Enable/Disabled
       - id: 1
-        type: string
-        # Meal plan is the following binary blob (1 byte per line), encoded
-        # in base64:
-        # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB).
-        #    Ex: Monday, Wednesday, Sunday -> 0b01010001
-        # - Hour
-        # - Minute
-        # - Feed number
-        # - Enable/Disabled
-        name: meal_plan
+        type: base64
+        name: value
         optional: true
   - entity: sensor
     icon: "mdi:paw"
@@ -59,6 +64,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

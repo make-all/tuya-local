@@ -1,0 +1,1106 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Konfigurera din Tuya Local-enhet",
+                "description": "Enheter kan antingen läggas till manuellt eller cloud-assisterat med hjälp av SmartLife-appen.",
+                "data": {
+                    "setup_mode": "Installationsval:"
+                }
+            },
+            "cloud": {
+                "title": "Logga in på Tuya",
+                "description": "Ange din SmartLife- eller Tuya-användarkod.\n\nDu hittar denna kod i SmartLife-appen eller Tuya-appen under **Inställningar** > **Konto och säkerhet**, och ange koden som visas i fältet **Användarkod**. Användarkoden är skiftlägeskänslig, se till att ange den exakt som den visas i appen.",
+                "data": {
+                    "user_code": "Användarkod:"
+                }
+            },
+            "scan": {
+                "title": "Slutför inloggningen",
+                "description": "Använd SmartLife-appen eller Tuya-appen för att skanna följande QR-kod för att slutföra inloggningen.\n\nFortsätt till nästa steg när du har slutfört detta steg i appen."
+            },
+            "choose_device": {
+                "title": "Välj enhet att lägga till",
+                "description": "Välj enheten att lägga till från den första rullgardinsmenyn. Redan tillagda enheter visas inte.\n\nOm enheten ansluter via en gateway, välj den från gateway-listan, annars välj Ingen.",
+                "data": {
+                    "device_id": "Välj enhet:",
+                    "hub_id": "Välj gateway:"
+                }
+            },
+            "search": {
+                "title": "Leta upp enhetens IP-adress",
+                "description": "Tuya cloud tillhandahåller inte lokala IP-adresser så vi måste nu söka i ditt lokala nätverk för att hitta enheten. Detta tar upp till 20 sekunder.\n\nOm det misslyckas måste du själv tillhandahålla IP-adressen på något annat sätt, till exempel från routerns DHCP-tilldelning.\n\nFör att detta steg och den följande enhetsläggningen ska lyckas måste du stänga mobilappen eller dess anslutningar till enheten kommer ofta blockera Tuya Local-kommunikation med dem."
+            },
+            "local": {
+                "title": "Konfigurera din Tuya Local-enhet",
+                "description": "[Följ dessa instruktioner för att hitta ditt enhets-ID och lokala nyckel.]({device_details_url})",
+                "data": {
+                    "host": "IP-adress eller värdnamn",
+                    "device_id": "Enhets-ID (eller hubbens enhets-ID för enheter anslutna via gateway)",
+                    "local_key": "Lokal nyckel",
+                    "protocol_version": "Protokoll version (prova auto om okänd)",
+                    "poll_only": "Endast polling (prova detta om din enhet inte fungerar helt)",
+                    "device_cid": "Sub-enhet node_id eller uuid (för enheter anslutna via gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Välj enhetstyp",
+                "description": "Välj den typ som matchar din enhet",
+                "data": {
+                    "type": "Enhetstyp"
+                }
+            },
+            "choose_entities": {
+                "title": "Enhetsdetaljer",
+                "description": "Välj ett namn för enheten",
+                "data": {
+                    "name": "Namn"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "En enhet med det ID:t har redan lagts till.",
+            "not_supported": "Tyvärr finns det inget stöd för denna enhet.",
+            "no_devices": "Kan inte hitta några oregistrerade enheter för kontot."
+        },
+        "error": {
+            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga.",
+            "does_not_need_hub": "Enheten behöver ingen gateway och en valdes. Vänligen granska dina val.",
+            "needs_hub": "Enheten behöver en gateway och ingen valdes."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "SmartLife cloud-assisterad enhetskonfiguration.",
+                "manual": "Ange enhetsanslutningsinformation manuellt.",
+                "cloud_fresh_login": "SmartLife cloud-assisterad enhetskonfiguration med ny inloggning."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Konfigurera din Tuya Local-enhet",
+                "description": "[Följ dessa instruktioner för att hitta din lokala nyckel.]({device_details_url})",
+                "data": {
+                    "host": "IP-adress eller värdnamn",
+                    "local_key": "Lokal nyckel",
+                    "protocol_version": "Protokollversion (prova auto om okänd)",
+                    "poll_only": "Endast polling (prova detta om din enhet inte fungerar helt)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga."
+        },
+        "abort": {
+            "not_supported": "Tyvärr finns det inget stöd för denna enhet."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "direction": {
+                "name": "Riktning",
+                "state": {
+                    "off": "In",
+                    "on": "Ut"
+                }
+            },
+            "defrost": {
+                "name": "Avfrostning",
+                "state": {
+                    "off": "Normal",
+                    "on": "Avfrostar"
+                }
+            },
+            "tank_empty": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Låg"
+                }
+            },
+            "tank_full": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Full"
+                }
+            },
+            "wake": {
+                "name": "Vaken",
+                "state": {
+                    "off": "Sover",
+                    "on": "Vaken"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Överhettningsskydd för kammare (överstiger 290°C)",
+                            "e2": "E2: Överhettningsskydd för förångningsbricka (överstiger 200°C)",
+                            "e3": "E3: Lågtemperaturskydd för kammare (under 35°C)",
+                            "e4": "E4: Lågtemperaturskydd för förångningsbricka (under 35°C)",
+                            "e5": "E5: Sensoranslutningsfel (Öppen krets)",
+                            "e6": "E6: Sensorfel (Kortslutning)",
+                            "e7": "E7: Kommunikationsfel på displaykortet",
+                            "e8": "E8: Vattentank öppen (CN7) eller förångningsbricka torr (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Fabriksåterställning"
+            },
+            "filter_reset": {
+                "name": "Filteråterställning"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "name": "Luftkonditionering",
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Hälsosam",
+                            "medhigh": "Medel Hög",
+                            "medlow": "Medel Låg",
+                            "natural": "Naturlig",
+                            "quiet": "Tyst",
+                            "sleep": "Sömn",
+                            "strong": "Stark"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Överst",
+                            "top": "Topp",
+                            "middle": "Mitten",
+                            "down": "Ner",
+                            "downmost": "Nederst",
+                            "upper_half": "Övre halvan",
+                            "lower_half": "Nedre halvan",
+                            "surround": "Runt"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Längst till vänster",
+                            "left": "Vänster",
+                            "center": "Centrum",
+                            "right": "Höger",
+                            "rightmost": "Längst till höger",
+                            "left_swing": "Vänster sväng",
+                            "right_swing": "Höger sväng",
+                            "center_swing": "Centrum sväng",
+                            "surround": "Runt",
+                            "direct": "Direkt"
+                        }
+                    }
+                }
+            },
+            "cold_water": {
+                "name": "Kallvattenberedare"
+            },
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Cykel"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuell",
+                            "program": "Program",
+                            "temp_override": "Tillfällig åsidosättning",
+                            "perm_override": "Permanent åsidosättning"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Kylluft",
+                            "fan_only": "Fläkt",
+                            "heat": "Värmeluft",
+                            "floor_cool": "Kylgolv",
+                            "floor_heat": "Värmegolv"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "name": "Värmare",
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Värmenivå",
+                        "state": {
+                            "stop": "Stopp",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Smart värmning",
+                            "quick_heat": "Snabbvärmning",
+                            "quiet_heat": "Tyst värmning",
+                            "smart_cool": "Smart kylning",
+                            "quick_cool": "Snabbkylning",
+                            "quiet_cool": "Tyst kylning",
+                            "auto": "Auto",
+                            "smart": "Smart",
+                            "quick": "Snabb",
+                            "quiet": "Tyst"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Värmare",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Låg",
+                            "medium": "Medel",
+                            "high": "Hög",
+                            "program_1": "Program 1",
+                            "program_2": "Program 2",
+                            "program_3": "Program 3",
+                            "standby": "Standby",
+                            "fan_only": "Endast fläkt"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Paus"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Hälsosam ånga",
+                            "fresh_steam": "Färsk ånga",
+                            "high_temp_steam": "Högtemperaturånga",
+                            "stew": "Gryta",
+                            "bake_up_and_down": "Baka upp och ner",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Nedre varmluft",
+                            "on_strong_roast": "Kraftig stekning",
+                            "3d_hot_air": "3D varmluft",
+                            "air_fry": "Luftfritering",
+                            "steam_frying": "Ångfritering",
+                            "one_click_bread": "Ettklicksbröd",
+                            "quick_heat": "Snabbvärme",
+                            "keep_warm": "Håll varm",
+                            "unfreeze": "Upptina",
+                            "fermentation": "Jäsning",
+                            "descale": "Avkalka",
+                            "local_recipes": "Lokala recept",
+                            "drying": "Torkning",
+                            "custom": "Anpassad",
+                            "low_steaming": "Låg ångning",
+                            "medium_steaming": "Medel ångning",
+                            "high_steaming": "Hög ångning"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "extended": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Torka kläder",
+                            "purify": "Rena",
+                            "continuous": "Kontinuerlig"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Aromadiffusor",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Låg",
+                            "medium": "Medel",
+                            "high": "Hög",
+                            "continuous": "Kontinuerlig",
+                            "intermittent": "Intermittent",
+                            "timer": "Timer"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "Avfuktare",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Rena",
+                            "dehumidify": "Avfukta"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "name": "Fläkt",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "Baby",
+                            "fresh": "Fräsch",
+                            "nature": "Naturlig",
+                            "normal": "Normal",
+                            "sleep": "Sömn",
+                            "smart": "Smart",
+                            "strong": "Stark",
+                            "custom": "Anpassad",
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "program": "Program",
+                            "high": "Hög",
+                            "medium": "Medel",
+                            "low": "Låg",
+                            "displayoff": "Display av",
+                            "off": "Av"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Ventilation",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Friskluft",
+                            "circulate": "Cirkulera",
+                            "sleep": "Sömn",
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "eco": "Eko",
+                            "anti-condensation": "Anti-kondens",
+                            "extractor": "Fläkt",
+                            "heat_recovery": "Värmeåtervinning",
+                            "timer": "Timer",
+                            "on": "På",
+                            "off": "Av"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Bakgrundsbelysning"
+            },
+            "display": {
+                "name": "Display"
+            },
+            "embers": {
+                "name": "Glöd"
+            },
+            "flame": {
+                "name": "Låga"
+            },
+            "indicator": {
+                "name": "Indikator"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Stockar"
+            },
+            "nightlight": {
+                "name": "Nattlampa"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Barnlås"
+            }
+        },
+        "number": {
+            "manual_feed": {
+                "name": "Manuell matning"
+            },
+            "maximum_temperature": {
+                "name": "Maximal temperatur"
+            },
+            "minimum_temperature": {
+                "name": "Minimal temperatur"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} tröskel"
+            },
+            "temperature_calibration": {
+                "name": "Temperaturkalibrering"
+            },
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            },
+            "volume": {
+                "name": "Volym"
+            }
+        },
+        "select": {
+            "currency": {
+                "name": "Valuta",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Värmepumpsläge",
+                "state": {
+                    "off": "Av",
+                    "heat": "Värme",
+                    "cool": "Kyla",
+                    "floor_heat": "Golvvärme",
+                    "auto": "Auto",
+                    "hotwater": "Varmvatten",
+                    "hotwater_cool": "Varmvatten & Kyla",
+                    "hotwater_heat": "Varmvatten & Värme",
+                    "hotwater_auto": "Varmvatten & Auto",
+                    "hotwater_floor_heat": "Varmvatten & Golvvärme"
+                }
+            },
+            "initial_state": {
+                "name": "Initialläge",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "memory": "Minne"
+                }
+            },
+            "kettle_mode": {
+                "name": "Vattenkokare läge",
+                "state": {
+                    "off": "Av",
+                    "heat": "Värme",
+                    "boil": "Koka",
+                    "quick_heat": "Snabbvärme",
+                    "quick_boil": "Snabbkok",
+                    "keep_warm": "Håll varm",
+                    "custom": "Anpassad",
+                    "dechlorinate": "Avklorinera",
+                    "black_tea": "Svart te",
+                    "green_tea": "Grönt te",
+                    "coffee": "Kaffe",
+                    "honey_water": "Honungsvatten",
+                    "infant_formula": "Välling",
+                    "white_tea": "Vitt te",
+                    "oolong_tea": "Oolongte",
+                    "water": "Vatten"
+                }
+            },
+            "language": {
+                "name": "Språk",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "english_child": "English (Child)",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "Ljusläge",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "state": "Läge",
+                    "locator": "Lokaliserare",
+                    "auto": "Auto",
+                    "flash": "Blinka"
+                }
+            },
+            "mopping": {
+                "name": "Moppning",
+                "state": {
+                    "off": "Av",
+                    "auto": "Auto",
+                    "low": "Låg",
+                    "medium": "Medel",
+                    "high": "Hög",
+                    "very_high": "Mycket hög"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "Rörelsekänslighet",
+                "state": {
+                    "off": "Av",
+                    "low": "Låg",
+                    "medium": "Medel",
+                    "high": "Hög"
+                }
+            },
+            "recipe": {
+                "name": "Recept",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Pommes",
+                    "chicken": "Kyckling",
+                    "shrimp": "Räkor",
+                    "fish": "Fisk",
+                    "chicken_drumsticks": "Kycklingklubbor",
+                    "vegetables": "Grönsaker",
+                    "desserts": "Desserter",
+                    "none": "Ingen",
+                    "chicken_wings": "Kycklingvingar",
+                    "steak": "Biff",
+                    "onion_rings": "Lökrengir",
+                    "bacon": "Bacon",
+                    "cake": "Tårta",
+                    "bread": "Bröd",
+                    "toast": "Rostat bröd",
+                    "sausage": "Korv",
+                    "dry_fruit": "Torkad frukt",
+                    "custom": "Anpassad",
+                    "cloud_recipe": "Cloud-recept",
+                    "default": "Standard",
+                    "keep_warm": "Håll varm",
+                    "preheat": "Förvärm"
+                }
+            },
+            "scene": {
+                "name": "Scen",
+                "state": {
+                    "relax": "Koppla av",
+                    "movie": "Film",
+                    "party": "Fest",
+                    "romantic": "Romantisk",
+                    "night": "Natt",
+                    "morning": "Morgon",
+                    "working": "Arbete",
+                    "leisure": "Fritid",
+                    "vacation": "Semester",
+                    "reading": "Läsning",
+                    "twinkle": "Glittra",
+                    "gaming": "Spel",
+                    "none": "Ingen"
+                }
+            },
+            "timer": {
+                "name": "Timer",
+                "state": {
+                    "cancel": "Avbryt",
+                    "continuous": "Kontinuerlig",
+                    "15s": "15 sekunder",
+                    "20s": "20 sekunder",
+                    "30s": "30 sekunder",
+                    "45s": "45 sekunder",
+                    "1m": "1 minut",
+                    "2m": "2 minuter",
+                    "3m": "3 minuter",
+                    "5m": "5 minuter",
+                    "10m": "10 minuter",
+                    "15m": "15 minuter",
+                    "20m": "20 minuter",
+                    "25m": "25 minuter",
+                    "30m": "30 minuter",
+                    "35m": "35 minuter",
+                    "40m": "40 minuter",
+                    "45m": "45 minuter",
+                    "50m": "50 minuter",
+                    "55m": "55 minuter",
+                    "1h": "1 timme",
+                    "1h5m": "1 timme 5 minuter",
+                    "1h10m": "1 timme 10 minuter",
+                    "1h15m": "1 timme 15 minuter",
+                    "1h20m": "1 timme 20 minuter",
+                    "1h25m": "1 timme 25 minuter",
+                    "1h30m": "1 timme 30 minuter",
+                    "1h35m": "1 timme 35 minuter",
+                    "1h40m": "1 timme 40 minuter",
+                    "1h45m": "1 timme 45 minuter",
+                    "1h50m": "1 timme 50 minuter",
+                    "1h55m": "1 timme 55 minuter",
+                    "2h": "2 timmar",
+                    "2h30m": "2 timmar 30 minuter",
+                    "3h": "3 timmar",
+                    "3h30m": "3 timmar 30 minuter",
+                    "4h": "4 timmar",
+                    "4h30m": "4 timmar 30 minuter",
+                    "5h": "5 timmar",
+                    "5h30m": "5 timmar 30 minuter",
+                    "6h": "6 timmar",
+                    "6h30m": "6 timmar 30 minuter",
+                    "7h": "7 timmar",
+                    "7h30m": "7 timmar 30 minuter",
+                    "8h": "8 timmar",
+                    "8h30m": "8 timmar 30 minuter",
+                    "9h": "9 timmar",
+                    "9h30m": "9 timmar 30 minuter",
+                    "10h": "10 timmar",
+                    "11h": "11 timmar",
+                    "12h": "12 timmar",
+                    "13h": "13 timmar",
+                    "14h": "14 timmar",
+                    "15h": "15 timmar",
+                    "16h": "16 timmar",
+                    "17h": "17 timmar",
+                    "18h": "18 timmar",
+                    "19h": "19 timmar",
+                    "20h": "20 timmar",
+                    "21h": "21 timmar",
+                    "22h": "22 timmar",
+                    "23h": "23 timmar",
+                    "24h": "24 timmar",
+                    "36h": "36 timmar",
+                    "48h": "48 timmar",
+                    "72h": "72 timmar",
+                    "1d": "1 dag",
+                    "2d": "2 dagar",
+                    "3d": "3 dagar",
+                    "4d": "4 dagar",
+                    "5d": "5 dagar",
+                    "6d": "6 dagar",
+                    "7d": "7 dagar"
+                }
+            },
+            "temperature_unit": {
+                "name": "Temperaturenhet",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} åtgärd",
+                "state": {
+                    "ignore": "Ignorera",
+                    "alarm": "Larm",
+                    "trip_breaker": "Utlös brytare"
+                }
+            },
+            "mode": {
+                "name": "Läge",
+                "state": {
+                    "auto": "Auto",
+                    "manual": "Manuell",
+                    "off": "Av",
+                    "low": "Låg",
+                    "medium": "Medel",
+                    "high": "Hög",
+                    "rapid_clean": "Snabbrengöring",
+                    "schedule": "Schema"
+                }
+            },
+            "activation_mode": {
+                "name": "Aktiveringsläge",
+                "state": {
+                    "normal": "Normal",
+                    "smart": "Smart",
+                    "night": "Natt",
+                    "motion": "Rörelse",
+                    "off": "Av"
+                }
+            },
+            "bidet_mode": {
+                "name": "Bidét läge",
+                "state": {
+                    "normal": "Normal",
+                    "dry": "Torr",
+                    "child": "Barn"
+                }
+            },
+            "curtain_mode": {
+                "name": "Gardintyp",
+                "state": {
+                    "morning": "Morgon",
+                    "night": "Natt"
+                }
+            },
+            "chlorination_mode": {
+                "name": "Klorinering läge",
+                "state": {
+                    "inverter": "Inverter",
+                    "auto_ph": "Auto pH",
+                    "smart": "Smart",
+                    "manual": "Manuell"
+                }
+            },
+            "alarm_mode": {
+                "name": "Larmläge",
+                "state": {
+                    "sound": "Ljud",
+                    "light": "Ljus",
+                    "sound_and_light": "Ljud och ljus"
+                }
+            },
+            "air_mode": {
+                "name": "Luftläge",
+                "state": {
+                    "dehumidify": "Avfukta",
+                    "purify": "Rena",
+                    "dehumidify_and_purify": "Avfukta och rena"
+                }
+            },
+            "cleaning_mode": {
+                "name": "Rengöringsläge",
+                "state": {
+                    "sweep": "Sopa",
+                    "mop": "Moppa",
+                    "sweep_and_mop": "Sopa och moppa",
+                    "intensive": "Intensiv",
+                    "quiet": "Tyst",
+                    "sweep_before_mopping": "Sopa före moppning"
+                }
+            },
+            "washing_mode": {
+                "name": "Tvättläge",
+                "state": {
+                    "fruit": "Frukt",
+                    "intensive": "Intensiv",
+                    "rapid": "Snabb",
+                    "eco": "Eko",
+                    "standard": "Standard",
+                    "neutral": "Neutral",
+                    "90_minute": "90 minuter",
+                    "glass": "Glas",
+                    "auto": "Auto",
+                    "soak": "Blötlägg",
+                    "self_clean": "Självrengöring",
+                    "hygiene": "Hygien",
+                    "party": "Fest",
+                    "baby_care": "Barnomsorg"
+                }
+            },
+            "menu": {
+                "name": "Meny",
+                "state": {
+                    "home": "Hem",
+                    "mode": "Läge",
+                    "recode": "Recept",
+                    "settings": "Inställningar"
+                }
+            },
+            "charging_mode": {
+                "name": "Laddningsläge",
+                "state": {
+                    "immediate": "Omedelbar",
+                    "charge_to_percent": "Ladda till procent",
+                    "fixed_charge": "Fast laddning",
+                    "scheduled_charge": "Schemalagd laddning",
+                    "delayed_charge": "Fördröjd laddning"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Inbyggt recept",
+                "state": {
+                    "none": "Ingen",
+                    "steamed_egg_with_okra": "Ångat ägg med okra",
+                    "steamed_sea_bass": "Ångad havsabborre",
+                    "steamed_prawns": "Ångade räkor",
+                    "handmade_steamed_bread": "Handgjort ångat bröd",
+                    "fan_steamed_baby_vegetables": "Fläktångade babygrönsaker",
+                    "braised_pork": "Braserad fläsk",
+                    "snow_fungus_and_bird_s_nest": "Snösvamp och fågelbo",
+                    "crab_pot": "Krabbgryta",
+                    "potato_ribs": "Potatis revben",
+                    "coconut_chicken_soup": "Kokosnöt kycklingssoppa",
+                    "snack_platter": "Snacksfat",
+                    "chicken_skewers": "Kycklingspett",
+                    "roasted_pork_knuckle": "Rostade fläsklägg",
+                    "dried_lemon": "Torkad citron",
+                    "pork_jerky": "Fläskjärky",
+                    "crispy_hairtail": "Krispig bandstjärtsfisk",
+                    "spicy_grilled_fish": "Kryddad grillad fisk",
+                    "roasted_sweet_potatoes": "Rostade sötpotatis",
+                    "roasted_chicken_wings": "Rostade kycklingvingar",
+                    "cumin_lamb_chops": "Spiskummin lammkotletter",
+                    "honey_grilled_chicken": "Honung grillad kyckling",
+                    "garlic_eggplant": "Vitlök aubergine",
+                    "portuguese_egg_tart": "Portugisisk äggtårta",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakaochips",
+                    "butter_cookies": "Smörkakor",
+                    "chiffon_cake": "Chiffontårta",
+                    "puff_pastry": "Smördeg",
+                    "red_bean_bread": "Röda bönor bröd",
+                    "milk_toast": "Mjölkrostat"
+                }
+            }
+        },
+        "sensor": {
+            "air_quality": {
+                "name": "Luftkvalitet",
+                "state": {
+                    "excellent": "Utmärkt",
+                    "good": "Bra",
+                    "moderate": "Måttlig",
+                    "poor": "Dålig",
+                    "severe": "Allvarlig",
+                    "danger": "Fara"
+                }
+            },
+            "status": {
+                "name": "Status",
+                "state": {
+                    "available": "Tillgänglig",
+                    "plugged_in": "Inkopplad",
+                    "fault_unplugged": "Fel (urkopplad)",
+                    "charging": "Laddar",
+                    "discharging": "Urladdar",
+                    "waiting": "Väntar",
+                    "charged": "Laddad",
+                    "fault": "Fel",
+                    "paused": "Pausad",
+                    "waiting_for_authorization": "Väntar på auktorisering",
+                    "standby": "Standby",
+                    "heating": "Värmer",
+                    "cooling": "Kyler",
+                    "keeping_warm": "Håller varm",
+                    "no_water": "Inget vatten",
+                    "boiling": "Kokar",
+                    "reserve_only": "Endast reserv",
+                    "unknown": "Okänd",
+                    "idle": "Inaktiv",
+                    "auto": "Auto",
+                    "manual": "Manuell",
+                    "rain_delay": "Regnfördröjning",
+                    "off": "Av",
+                    "on": "På",
+                    "cooking": "Lagar mat",
+                    "done": "Klar",
+                    "door_open": "Dörr öppen",
+                    "setting": "Inställning",
+                    "pre_heating": "Förvärmning",
+                    "scheduled": "Schemalagd",
+                    "at_temperature": "Vid temperatur",
+                    "done_stage_1": "Klar steg 1",
+                    "done_stage_2": "Klar steg 2",
+                    "done_stage_3": "Klar steg 3",
+                    "done_stage_4": "Klar steg 4",
+                    "done_stage_5": "Klar steg 5",
+                    "done_stage_6": "Klar steg 6",
+                    "done_stage_7": "Klar steg 7",
+                    "done_stage_8": "Klar steg 8",
+                    "done_stage_9": "Klar steg 9",
+                    "done_stage_10": "Klar steg 10",
+                    "no_food": "Ingen mat",
+                    "jammed": "Fastnad",
+                    "blocked": "Blockerad",
+                    "feeding": "Matar",
+                    "feeding_complete": "Matning klar",
+                    "caking": "Klumpbildning",
+                    "cleaning": "Rengör",
+                    "sleep": "Sömn",
+                    "sterilizing": "Steriliserar",
+                    "deodorizing": "Avluktning",
+                    "occupied": "Upptagen",
+                    "normal": "Normal",
+                    "low": "Låg",
+                    "high": "Hög",
+                    "unwashed": "Otvättad",
+                    "pre_washing": "Förtvätt",
+                    "washing": "Tvättar",
+                    "rinsing": "Sköljer",
+                    "drying": "Torkar",
+                    "air_purging": "Luftrening",
+                    "anti_freeze": "Frostskydd",
+                    "close": "Stäng",
+                    "monitor": "Monitor",
+                    "working": "Arbetar",
+                    "warning": "Varning",
+                    "starting": "Startar",
+                    "emptying": "Tömmer",
+                    "resetting": "Återställer",
+                    "reverse": "Omvänd",
+                    "full": "Full",
+                    "empty": "Tom",
+                    "missing": "Saknas",
+                    "formatting": "Formaterar",
+                    "unformatted": "Oformaterad",
+                    "failed": "Misslyckades",
+                    "replying": "Svarar",
+                    "playback": "Uppspelning",
+                    "maintenance_required": "Underhåll krävs",
+                    "dry": "Torr",
+                    "comfortable": "Bekväm",
+                    "damp": "Fuktig",
+                    "smoothing": "Utjämning",
+                    "cleaned": "Rengjord",
+                    "cold_water_unavailable": "Kallt vatten otillgängligt",
+                    "drain": "Tömning",
+                    "drain_cold_water": "Töm kallt vatten",
+                    "drain_hot_water": "Töm varmt vatten",
+                    "drain_normal_water": "Töm normalt vatten",
+                    "high_temperature_emptying": "Hög temperatur tömning",
+                    "high_temperature_emptied": "Hög temperatur tömd"
+                }
+            },
+            "time_remaining": {
+                "name": "Tid kvar"
+            },
+            "time_remaining_x": {
+                "name": "Tid kvar {x}"
+            },
+            "cooking_status": {
+                "name": "Status",
+                "state": {
+                    "wait": "Väntar på matlagning",
+                    "reservation": "I reservation",
+                    "cooking": "Pågår",
+                    "cancel": "Matlagning avbruten",
+                    "done": "Matlagning klar",
+                    "pause": "Matlagning pausad"
+                }
+            },
+            "water_level": {
+                "name": "Vattennivå",
+                "state": {
+                    "empty": "Tom",
+                    "low": "Låg",
+                    "medium": "Medel",
+                    "high": "Hög",
+                    "full": "Full"
+                }
+            },
+            "energy_produced": {
+                "name": "Energi producerad"
+            },
+            "energy_consumed": {
+                "name": "Energi förbrukad"
+            },
+            "energy_produced_x": {
+                "name": "Energi producerad {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energi förbrukad {x}"
+            },
+            "current_x": {
+                "name": "Ström {x}"
+            },
+            "voltage_x": {
+                "name": "Spänning {x}"
+            },
+            "power_x": {
+                "name": "Effekt {x}"
+            },
+            "filter_life": {
+                "name": "Filterlivslängd"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Frostskydd"
+            },
+            "auto_clean": {
+                "name": "Autorening"
+            },
+            "auto_light": {
+                "name": "Autoljus"
+            },
+            "breaker": {
+                "name": "Brytare",
+                "state": {
+                    "off": "Öppen",
+                    "on": "Stängd"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Stör ej"
+            },
+            "evaporator_cleaning": {
+                "name": "Förångarrengöring"
+            },
+            "flip_image": {
+                "name": "Vänd bild"
+            },
+            "ionizer": {
+                "name": "Jonisering"
+            },
+            "keytone": {
+                "name": "Knappton"
+            },
+            "outlet_x": {
+                "name": "Uttag {x}"
+            },
+            "sleep": {
+                "name": "Sömn"
+            },
+            "switch_x": {
+                "name": "Brytare {x}"
+            },
+            "uv_sterilization": {
+                "name": "UV-sterilisering"
+            },
+            "electrolytic_sterilization": {
+                "name": "Elektrolytisk sterilisering"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Scen"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Ventil {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Varmvattenberedare"
+            },
+            "kettle": {
+                "name": "Vattenkokare"
+            },
+            "hot_water": {
+                "name": "Varmvattenberedare"
+            }
+        }
+    }
+}

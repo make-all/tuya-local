@@ -25,18 +25,13 @@ entities:
           - dps_val: level_4
             value: 100
             step: 25
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

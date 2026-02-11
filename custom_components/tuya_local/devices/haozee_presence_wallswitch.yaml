@@ -1,0 +1,205 @@
+name: Presence dual lightswitch
+products:
+  - id: s7rsrtbg
+    manufacturer: Haozee
+    model: ZG-302ZM 2-gang
+entities:
+  - entity: light
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+  - entity: number
+    name: Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 19
+  - entity: number
+    name: Detection distance
+    category: config
+    class: distance
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 43200
+  - entity: button
+    name: All on
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Toggle 1
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: ch1
+            value: true
+  - entity: button
+    name: Toggle 2
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: ch2
+            value: true
+  - entity: button
+    name: All off
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Light sensitivity
+    category: config
+    icon: "mdi:theme-light-dark"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Occupied turn on
+    icon: "mdi:lightbulb-multiple"
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: Disabled
+          - dps_val: all
+            value: Both
+          - dps_val: ch1
+            value: Light 1
+          - dps_val: ch2
+            value: Light 2
+  - entity: number
+    name: Unoccupied delay
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 28800
+  - entity: select
+    name: Unoccupied turn off
+    icon: "mdi:lightbulb-multiple"
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: Disabled
+          - dps_val: all
+            value: Both
+          - dps_val: ch1
+            value: Light 1
+          - dps_val: ch2
+            value: Light 2

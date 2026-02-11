@@ -45,7 +45,7 @@ entities:
         optional: true
         range:
           min: 6
-          max: 80
+          max: 32
   - entity: sensor
     class: power
     category: diagnostic
@@ -112,8 +112,7 @@ entities:
           - dps_val: 16384
             value: "Leakage current fault"
   - entity: select
-    name: Charging mode
-    icon: "mdi:ev-station"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14  # work_mode
@@ -122,15 +121,15 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Always on
+            value: immediate
           - dps_val: charge_energy
-            value: Charge energy limit
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
           - dps_val: charge_pct
-            value: Charge percent limt
+            value: charge_to_percent
           - dps_val: charge_delay
-            value: Delayed charge
+            value: delayed_charge
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -257,17 +256,15 @@ entities:
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-  - entity: number
+  - entity: time
     name: Charge time
-    class: duration
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 19
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: minute
         range:
           min: 1
           max: 1440

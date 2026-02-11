@@ -1,4 +1,9 @@
-name: Daizuki Heatpump (F)
+name: Heat pump
+products:
+  - id: hw50w7qvxluhslkk
+    manufacturer: TCL
+    model: AirMax
+    model_id: AWTLSE18-C2
 entities:
   - entity: climate
     translation_only_key: aircon_extra
@@ -12,26 +17,37 @@ entities:
           - dps_val: true
             constraint: mode
             conditions:
+              - dps_val: auto
+                value: heat_cool
               - dps_val: cold
                 value: cool
               - dps_val: hot
                 value: heat
-              - dps_val: wet
-                value: dry
               - dps_val: wind
                 value: fan_only
-              - dps_val: auto
-                value: heat_cool
+              - dps_val: wet
+                value: dry
       - id: 2
         type: integer
         name: temperature
+        unit: F
         range:
           min: 610
           max: 880
         mapping:
           - scale: 10
             step: 10
-        unit: F
+      - id: 3
+        type: integer
+        name: current_temperature
+        precision: 0
+        range:
+          min: -20
+          max: 100
+        mapping:
+          - target_range:
+              min: -4
+              max: 212
       - id: 4
         type: string
         name: mode
@@ -56,6 +72,12 @@ entities:
             value: high
           - dps_val: strong
             value: strong
+      - id: 18
+        type: integer
+        name: current_humidity
+        mapping:
+          - dps_val: 0
+            value: null
       - id: 105
         type: string
         name: sleep_mode
@@ -69,9 +91,11 @@ entities:
           - dps_val: "0"
             value: "off"
           - dps_val: "1"
-            value: "on"
-          - value: "on"
-            hidden: true
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
       - id: 114
         type: string
         name: swing_horizontal_mode
@@ -79,14 +103,20 @@ entities:
           - dps_val: "0"
             value: "off"
           - dps_val: "1"
-            value: "on"
-          - value: "on"
-            hidden: true
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
       - id: 119
         type: string
+        optional: true
         name: electricity_management
       - id: 120
         type: string
+        optional: true
         name: gen_mode
       - id: 123
         type: hex
@@ -97,24 +127,30 @@ entities:
         optional: true
       - id: 128
         type: string
+        optional: true
         name: model_code
       - id: 129
         type: string
+        optional: true
         name: energy
       - id: 130
         type: integer
+        optional: true
         name: eco_temp
       - id: 132
         type: boolean
         name: hot_cool
       - id: 133
         type: string
+        optional: true
         name: swing_action
       - id: 134
         type: json
+        optional: true
         name: statistics
   - entity: sensor
     class: temperature
+    deprecated: climate.current_temperature  # 2025-12-03
     dps:
       - id: 3
         name: sensor
@@ -124,6 +160,7 @@ entities:
   - entity: sensor
     class: humidity
     category: diagnostic
+    deprecated: climate.current_humidity  # 2025-12-03
     dps:
       - id: 18
         type: integer
@@ -132,6 +169,7 @@ entities:
         class: measurement
   - entity: select
     name: Vertical swing
+    deprecated: climate.swing_mode  # 2025-12-03
     category: config
     icon: "mdi:arrow-up-down-bold"
     dps:
@@ -170,6 +208,7 @@ entities:
             value: Bottom
   - entity: select
     name: Horizontal swing
+    deprecated: climate.swing_horizontal_mode  # 2025-12-03
     category: config
     icon: "mdi:arrow-left-right-bold"
     dps:
@@ -208,6 +247,23 @@ entities:
             value: Slight Right
           - dps_val: "5"
             value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
   - entity: light
     translation_key: display
     category: config
@@ -224,6 +280,50 @@ entities:
         type: hex
         name: switch
         mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0020"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0001"
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -241,6 +341,7 @@ entities:
   - entity: sensor
     class: pm25
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 101
         type: integer
@@ -248,6 +349,14 @@ entities:
         unit: ugm3
         optional: true
         class: measurement
+      - id: 101
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     name: Filter
     class: problem

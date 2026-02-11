@@ -1,0 +1,244 @@
+name: Radon detector
+products:
+  - id: wgaxdhly7e9irlze
+    manufacturer: GZAIR
+    model: PT07
+entities:
+  - entity: sensor
+    name: Radon
+    dps:
+      - id: 2
+        type: integer
+        class: measurement
+        name: sensor
+        unit: pCi/L
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 4
+        type: boolean
+        name: sensor
+  - entity: siren
+    name: Alarm
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.3
+          - dps_val: middle
+            value: 0.6
+          - dps_val: high
+            value: 1.0
+      - id: 6
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+      - id: 13
+        type: boolean
+        name: switch
+      - id: 111
+        type: integer
+        name: duration
+        range:
+          min: 0
+          max: 60
+        unit: s
+  - entity: number
+    class: duration
+    name: Serious warning duration
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 60
+        unit: s
+  - entity: button
+    name: Self test
+    icon: "mdi:wrench-check-outline"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Self test result
+    class: enum
+    icon: "mdi:wrench-check-outline"
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: checking
+            value: Checking ...
+          - dps_val: check_success
+            value: Success
+          - dps_val: check_failure
+            value: Failure
+          - dps_val: other
+            value: Other
+  - entity: binary_sensor
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 10
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Muffling
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Detection value
+    dps:
+      - id: 101
+        type: integer
+        class: measurement
+        name: sensor
+        unit: pCi/L
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Severe threshold
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Bad threshold
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Daily average
+    dps:
+      - id: 104
+        type: integer
+        class: measurement
+        name: sensor
+        unit: pCi/L
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Weekly average
+    dps:
+      - id: 105
+        type: integer
+        class: measurement
+        name: sensor
+        unit: pCi/L
+        mapping:
+          - scale: 100
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Yellow warning
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: mormal
+            value: false
+          - dps_val: alarm
+            value: true
+  - entity: number
+    name: Yellow warning threshold
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Alarm threshold
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum threshold
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum threshold
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: pCi/L
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 10

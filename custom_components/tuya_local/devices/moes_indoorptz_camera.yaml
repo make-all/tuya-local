@@ -29,8 +29,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -45,8 +44,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -86,6 +84,7 @@ entities:
     name: SD card
     icon: "mdi:micro-sd"
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
@@ -93,9 +92,9 @@ entities:
         name: sensor
         mapping:
           - dps_val: 1
-            value: ok
+            value: normal
           - dps_val: 2
-            value: error
+            value: fault
           - dps_val: 3
             value: full
           - dps_val: 4
@@ -363,9 +362,8 @@ entities:
           - dps_val: "2"
             value: Continuous
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 160
         type: integer

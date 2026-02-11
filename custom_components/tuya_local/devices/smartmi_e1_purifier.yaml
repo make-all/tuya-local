@@ -1,4 +1,4 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: pwrmggdhwkz1lnvh
     manufacturer: Smartmi
@@ -29,10 +29,9 @@ entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter usage
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:shield-bug"
     dps:
       - id: 101
         name: sensor

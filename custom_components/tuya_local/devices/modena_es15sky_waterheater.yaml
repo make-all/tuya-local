@@ -5,6 +5,7 @@ products:
     model: ES-15-SKY
 entities:
   - entity: water_heater
+    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -57,6 +58,7 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 10
         type: integer

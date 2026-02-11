@@ -165,16 +165,14 @@ entities:
       - id: 102
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     name: Temporary hold time
-    icon: "mdi:timer"
-    class: duration
+    translation_key: timer
     category: config
     dps:
       - id: 103
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440

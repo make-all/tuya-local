@@ -92,7 +92,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         if self._switch_dps:
             settings = {
                 **settings,
-                **self._switch_dps.get_values_to_set(self._device, True),
+                **self._switch_dps.get_values_to_set(self._device, True, settings),
             }
 
         if percentage is not None and self._speed_dps:
@@ -104,12 +104,14 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
             settings = {
                 **settings,
-                **self._speed_dps.get_values_to_set(self._device, percentage),
+                **self._speed_dps.get_values_to_set(self._device, percentage, settings),
             }
         if preset_mode and self._preset_dps:
             settings = {
                 **settings,
-                **self._preset_dps.get_values_to_set(self._device, preset_mode),
+                **self._preset_dps.get_values_to_set(
+                    self._device, preset_mode, settings
+                ),
             }
         # TODO: potentially handle other kwargs.
         if settings:
@@ -183,7 +185,9 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
         values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
         if not self.is_on and self._switch_dps:
-            values_to_set.update(self._switch_dps.get_values_to_set(self._device, True))
+            values_to_set.update(
+                self._switch_dps.get_values_to_set(self._device, True, values_to_set)
+            )
 
         await self._device.async_set_properties(values_to_set)
 

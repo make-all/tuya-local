@@ -1,75 +1,69 @@
 {
-	"name": "Tuya Local Dev",
-	"image": "mcr.microsoft.com/devcontainers/python:1-3.13",
-	"postCreateCommand": "pip3 install --user -r requirements.txt",
-	"containerEnv": {
-		"DEVCONTAINER": "1"
-	},
-	"appPort": [
-		"8123:8123"
-	],
-	"forwardPorts": [
-		8123
-	],
-	"portsAttributes": {
-		"8123": {
-			"label": "Home Assistant"
-		},
-		"0-8122": {
-			"label": "Auto-Forwarded - Other",
-			"onAutoForward": "ignore"
-		},
-		"8124-999999": {
-			"label": "Auto-Forwarded - Other",
-			"onAutoForward": "ignore"
-		}
-	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-python.vscode-pylance",
-				"visualstudioexptteam.vscodeintellicode",
-				"redhat.vscode-yaml",
-				"esbenp.prettier-vscode",
-				"GitHub.vscode-pull-request-github",
-				"ms-python.pylint",
-				"ms-python.black-formatter",
-				"ms-python.isort",
-				"ms-python.python",
-				"ryanluker.vscode-coverage-gutters"
-			],
-			"settings": {
-				"python.linting.enabled": true,
-				"python.linting.pylintEnabled": true,
-				"python.formatting.provider": "black",
-				"python.testing.pytestArgs": [
-					"--no-cov"
-				],
-				"editor.formatOnPaste": false,
-				"editor.formatOnSave": true,
-				"editor.formatOnType": true,
-				"files.eol": "\n",
-				"editor.tabSize": 4,
-				"files.trimTrailingWhitespace": true,
-				"terminal.integrated.profiles.linux": {
-					"zsh": {
-						"path": "/usr/bin/zsh"
-					}
-				},
-				"terminal.integrated.defaultProfile.linux": "zsh",
-				"yaml.customTags": [
-					"!input scalar",
-					"!secret scalar",
-					"!include_dir_named scalar",
-					"!include_dir_list scalar",
-					"!include_dir_merge_list scalar",
-					"!include_dir_merge_named scalar"
-				]
-			}
-		}
-	},
-	"remoteUser": "vscode",
-	"features": {
-		"rust": "latest"
-	}
+  "name": "Tuya Local Dev",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.13",
+  "postCreateCommand": "pip3 install --user -r requirements.txt && pip3 install --user pre-commit && pre-commit install",
+  "containerEnv": {
+    "DEVCONTAINER": "1"
+  },
+  "appPort": ["8123:8123"],
+  "forwardPorts": [8123],
+  "portsAttributes": {
+    "8123": {
+      "label": "Home Assistant"
+    },
+    "0-8122": {
+      "label": "Auto-Forwarded - Other",
+      "onAutoForward": "ignore"
+    },
+    "8124-999999": {
+      "label": "Auto-Forwarded - Other",
+      "onAutoForward": "ignore"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.vscode-pylance",
+        "visualstudioexptteam.vscodeintellicode",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "GitHub.vscode-pull-request-github",
+        "ms-python.pylint",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.python",
+        "ryanluker.vscode-coverage-gutters"
+      ],
+      "settings": {
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "python.testing.pytestArgs": ["--no-cov"],
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "files.eol": "\n",
+        "editor.tabSize": 4,
+        "files.trimTrailingWhitespace": true,
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/usr/bin/zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "yaml.customTags": [
+          "!input scalar",
+          "!secret scalar",
+          "!include_dir_named scalar",
+          "!include_dir_list scalar",
+          "!include_dir_merge_list scalar",
+          "!include_dir_merge_named scalar"
+        ]
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "features": {
+    "rust": "latest"
+  }
 }

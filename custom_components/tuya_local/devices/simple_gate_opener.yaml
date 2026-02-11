@@ -18,20 +18,14 @@ entities:
       - id: 101
         name: open
         type: boolean
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 7
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null

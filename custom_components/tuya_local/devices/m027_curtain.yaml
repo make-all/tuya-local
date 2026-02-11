@@ -1,4 +1,4 @@
-name: M027 curtain
+name: Curtain
 entities:
   - entity: cover
     class: curtain
@@ -51,8 +51,7 @@ entities:
         name: unknown_101
         type: boolean
   - entity: select
-    name: Mode
-    icon: "mdi:theme-light-dark"
+    translation_key: curtain_mode
     category: config
     dps:
       - id: 4
@@ -60,9 +59,9 @@ entities:
         type: string
         mapping:
           - dps_val: morning
-            value: Morning
+            value: morning
           - dps_val: night
-            value: Night
+            value: night
   - entity: sensor
     translation_key: time_remaining
     class: duration

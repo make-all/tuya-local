@@ -107,20 +107,14 @@ entities:
           - dps_val: "0003e801f40000000"
             value: "Steady On"
             default: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
         optional: true
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null

@@ -6,9 +6,6 @@ products:
   - id: w7lvyyxyevpwf20e
     manufacturer: Vevor
     model: SS US 7kW
-  - id: ypdfdnwauasb8rje
-    manufacturer: Vevor
-    model: SS EU Mode2 3.7kW
 entities:
   - entity: sensor
     translation_key: status
@@ -68,6 +65,7 @@ entities:
     name: Single phase power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 5
         type: integer
@@ -81,6 +79,7 @@ entities:
     name: Phase A power
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 6
         type: base64
@@ -152,7 +151,7 @@ entities:
         mapping:
           - dps_val: controlpi_12v
             value: Standby
-          - dps_val: controlpi_12v_pwn
+          - dps_val: controlpi_12v_pwm
             value: Communication initialising
           - dps_val: controlpi_9v
             value: Vehicle detected
@@ -165,8 +164,7 @@ entities:
           - dps_val: controlpi_error
             value: Error
   - entity: select
-    name: Mode
-    icon: "mdi:ev-station"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14
@@ -175,15 +173,15 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_pct
-            value: Charge to percent
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Delayed charge
+            value: delayed_charge
   - entity: button
     name: Clear energy
     class: restart
@@ -237,9 +235,9 @@ entities:
           - value: false
             hidden: true
   - entity: number
-    name: Delay time
+    name: Delay
+    class: duration
     category: config
-    icon: "mdi:clock"
     dps:
       - id: 28
         type: integer

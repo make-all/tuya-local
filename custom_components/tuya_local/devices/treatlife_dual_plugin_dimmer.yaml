@@ -77,43 +77,32 @@ entities:
             value: Incandescent
           - dps_val: halogen
             value: Halogen
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
     dps:
       - id: 12
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -121,8 +110,8 @@ entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: Status
+            value: state
           - dps_val: pos
-            value: "On"
+            value: locator

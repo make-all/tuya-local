@@ -48,16 +48,16 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         )
         self.setUpBasicSelect(
             MODE_DPS,
-            self.entities.get("select_mode"),
+            self.entities.get("select_curtain_mode"),
             {
-                "morning": "Morning",
-                "night": "Night",
+                "morning": "morning",
+                "night": "night",
             },
         )
         self.mark_secondary(
             [
                 "binary_sensor_problem",
-                "select_mode",
+                "select_curtain_mode",
                 "sensor_time_remaining",
                 "sensor_travel_time",
             ]

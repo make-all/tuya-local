@@ -1,0 +1,107 @@
+name: Thermostat
+products:
+  - id: k2vv9hr0yumh0vo8
+    manufacturer: Polytherm
+    model: Polyalpha
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        name: available
+        type: boolean
+      - id: 104
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: cool
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: program
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - step: 5
+            scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: open
+            constraint: hvac_mode
+            conditions:
+              - dps_val: false
+                value: cooling
+              - dps_val: true
+                value: heating
+          - dps_val: close
+            value: idle
+  - entity: humidifier
+    name: Humidity override
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 106
+        type: integer
+        optional: true
+        name: humidity
+        range:
+          min: 50
+          max: 80
+      - id: 107
+        type: integer
+        optional: true
+        name: current_humidity
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 105
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 255
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10

@@ -10,20 +10,17 @@ products:
   - id: m0wtqltrepknlpdj
     manufacturer: Morris
     model: Premier Plus
+  - id: lovfhvt2xkrexf8z
+    manufacturer: Electriq
+    model: CD12PRO-LE
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 3
       - id: 2
         name: mode
         type: string
@@ -34,13 +31,9 @@ entities:
           - dps_val: low
             value: eco
           - dps_val: high
-            value: boost
-            icon: "mdi:tshirt-crew-outline"
-            icon_priority: 2
+            value: laundry
           - dps_val: fan
             value: purify
-            icon: "mdi:air-purifier"
-            icon_priority: 2
       - id: 3
         type: integer
         name: current_humidity
@@ -68,35 +61,6 @@ entities:
             value: "45°"
           - dps_val: "90"
             value: "90°"
-  - entity: fan
-    translation_only_key: fan_with_presets
-    # 2024-12-22
-    deprecated: select_direction
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-      - id: 102
-        name: preset_mode
-        type: string
-        optional: true
-        mapping:
-          - dps_val: "45"
-            value: sleep
-          - dps_val: "90"
-            value: fresh
-          - dps_val: "0_90"
-            value: nature
-      - id: 102
-        name: oscillate
-        type: string
-        optional: true
-        mapping:
-          - dps_val: "0_90"
-            value: true
-          - dps_val: "90"
-            value: false
-          - value: false
   - entity: switch
     translation_key: uv_sterilization
     dps:

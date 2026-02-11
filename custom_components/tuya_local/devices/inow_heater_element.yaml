@@ -1,4 +1,5 @@
-name: INOW heating element
+name: Heating element
+# products: INOW
 entities:
   - entity: climate
     dps:
@@ -30,9 +31,13 @@ entities:
             value: comfort
           - dps_val: antifreezing
             value: away
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
       - id: 19
         type: string
-        name: timer
+        name: option
         optional: true
         mapping:
           - dps_val: "0h"

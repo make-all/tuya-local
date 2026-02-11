@@ -6,17 +6,11 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 2
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 4
       - id: 2
         name: mode
         type: string
@@ -29,16 +23,8 @@ entities:
             value: boost
           - dps_val: quickdry
             value: laundry
-            icon: "mdi:tshirt-crew-outline"
-            icon_priority: 3
       - id: 3
         name: current_humidity
-        type: integer
-      - id: 12
-        name: timer_hr
-        type: integer
-      - id: 13
-        name: timer
         type: integer
       - id: 101
         name: humidity
@@ -94,3 +80,13 @@ entities:
       - id: 11
         type: bitfield
         name: fault_code
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        name: hour
+        type: integer
+      - id: 13
+        name: minute
+        type: integer

@@ -5,25 +5,16 @@ products:
     model: LD-K3068
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 1
         type: boolean
         name: operation_mode
         mapping:
           - dps_val: false
-            value: "Off"
+            value: "off"
           - dps_val: true
-            constraint: work_type
-            conditions:
-              - dps_val: boiling_quick
-                value: Quick boil
-              - dps_val: setting_quick
-                value: Quick heat
-              - dps_val: temp_boiling
-                value: Boil
-              - dps_val: temp_setting
-                value: Heat
+            value: electric
       - id: 2
         type: integer
         name: current_temperature
@@ -36,10 +27,21 @@ entities:
           max: 90
         mapping:
           - step: 5
+  - entity: select
+    translation_key: kettle_mode
+    dps:
       - id: 16
         type: string
-        name: work_type
-        hidden: true
+        name: option
+        mapping:
+          - dps_val: boiling_quick
+            value: quick_boil
+          - dps_val: setting_quick
+            value: quick_heat
+          - dps_val: temp_boiling
+            value: boil
+          - dps_val: temp_setting
+            value: heat
   - entity: switch
     name: Keep warm
     icon: "mdi:kettle-outline"

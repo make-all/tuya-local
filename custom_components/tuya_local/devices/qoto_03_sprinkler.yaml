@@ -1,4 +1,5 @@
-name: QOTO 03 sprinkler controller
+name: Sprinkler controller
+# products: QOTO 03
 entities:
   - entity: valve
     class: water
@@ -26,15 +27,13 @@ entities:
         name: sensor
         type: integer
         unit: s
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 105
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86399

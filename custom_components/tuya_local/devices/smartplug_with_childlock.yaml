@@ -10,30 +10,25 @@ entities:
       - id: 1
         type: boolean
         name: switch
+      - id: 44
+        type: string
+        name: inching
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 42
         type: string
         name: cyclic_schedule
       - id: 43
         type: string
         name: random_schedule
-      - id: 44
-        type: string
-        name: inching
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -49,8 +44,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
     dps:
       - id: 40
@@ -58,11 +52,11 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

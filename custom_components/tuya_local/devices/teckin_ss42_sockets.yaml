@@ -18,37 +18,27 @@ entities:
       - id: 2
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
     dps:
       - id: 101
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
     dps:
       - id: 102
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

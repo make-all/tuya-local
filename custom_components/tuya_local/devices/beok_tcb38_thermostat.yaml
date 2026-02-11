@@ -72,9 +72,8 @@ entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 20
         type: integer
@@ -87,9 +86,9 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:themometer-chevron-up"
+    class: temperature
     dps:
       - id: 21
         type: integer
@@ -99,9 +98,9 @@ entities:
           min: 5
           max: 99
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 22
         type: integer
@@ -135,6 +134,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 31
         type: boolean

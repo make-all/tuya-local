@@ -29,7 +29,7 @@ entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator Light
+    translation_key: light_mode
     category: config
     dps:
       - id: 15
@@ -37,25 +37,19 @@ entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
           - dps_val: pos
-            value: Indicate switch location
+            value: locator
           - dps_val: relay
-            value: Indicate switch on/off
-  - entity: number
+            value: state
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 7
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - dps_val: null
-          - scale: 60
-            step: 60

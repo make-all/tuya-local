@@ -54,7 +54,7 @@ Further device support has been made with the assistance of users. Please consid
 - [novisys](https://github.com/novisys) for clarifications about BHT-6000 thermostat functionality.
 - [nzcodarnoc](https://github.com/nzcodarnoc) for contributing support for Kogan KASHMFP heaters.
 - [pascaltippelt](https://github.com/pascaltippelt) for contributing support for Morris MDB-12160HIW dehumidifier, Avatto WS20R thermostat and assistance supporting Minco MH-1823 thermostat.
-- [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, based on CBE smart switch but seeming to follow a Tuya Standard Template, so probably applicable to others.
+- [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, Atorch S1BW display smartplug.
 - [myevit](https://github.com/myevit) for assistance in supporting simple garage doors.
 - [maartendamen](https://github.com/maartendamen) for assistance in supporting Eurom Mon Soleil 601 heaters.
 - [TeddyLafrite](https://github.com/TeddyLafrite) for assistance in supporting Nedis HTPL20F heaters.
@@ -68,7 +68,7 @@ Further device support has been made with the assistance of users. Please consid
 - [PaulJoosten](https://github.com/PaulJoosten) for assistance in figuring out the similarities and capabilities of different Eurom heaters.
 - [jdavidr17](https://github.com/jdavidr17) for assistance with discovering timer parameters for switches.
 - [miannelli516](https://github.com/miannelli516) for assistance with TR9B thermostats.
-- [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 and JPD02 dehumidifiers and assistance with Poiema One purifiers.
+- [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 and JPD02 dehumidifiers, EASTtime D401 water purifier and assistance with Poiema One purifiers.
 - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermostats.
 - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters and contributing support for iQ Ceramic radiators and INOW heating elements.
 - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs, SmartMCB Energy meter, BlitzWolf BW-IS6 alarm panels.
@@ -146,7 +146,7 @@ Further device support has been made with the assistance of users. Please consid
 - [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.
 - [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
 - [iDontWantAUsername](https://github.com/iDontWantAUsername) for assistance supporting Grid Connect USB charger with power socket.
-- [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
+- [engusz](https://github.com/engusz) for assistance supporting Avatto CL02 curtain switches and dual switch with timers.
 - [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
 - [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiator, and contributing Benexmart blinds support.
@@ -172,7 +172,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
-- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, support for THB2 temp and humidity sensor and assistance supporting Elivco smartplugs and helping support others.
+- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, support for THB2 temp and humidity sensor and assistance supporting Elivco smartplug, Aeno kitchen scale and helping support others.
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
 - [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
@@ -228,7 +228,7 @@ Further device support has been made with the assistance of users. Please consid
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, GratKit filament dryers, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell, ME201W level sensor, Thermoval Aqua TI water heater.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config, and Blitzwolf LED strips.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -312,7 +312,7 @@ Further device support has been made with the assistance of users. Please consid
 - [jrotenstein](https://github.com/jrotenstein) for contributing support for Aquatech Rapid X6 water heaters.
 - [hanzwo](https://github.com/hanzwo) for contributing support for Windcalm ceiling fans.
 - [stikonas](https://github.com/stikonas) for contributing support for Monzana Klimaanlage air conditioners.
-- [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans, and Arlec APR005HA air purifier.
+- [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans and GPPH900 heaters, and Arlec APR005HA air purifier.
 - [xpavli44](https://github.com/xpavli44) for contributing Czech translations.
 - [kondi](https://github.com/kondi) for contributing improvements to masked values and Starlight heatpumps.
 - [scotttimmins](https://github.com/scotttimmins) for contributing support for 4 outlet + USB smart powerstrip and Depauley ceiling fan.
@@ -438,7 +438,7 @@ Further device support has been made with the assistance of users. Please consid
 - [sevimuelli](https://github.com/sevimuelli) for contributing support for Eeese Anna dehumidifiers.
 - [tataihono](https://github.com/tataihono) for contributing support for Arlec portable air conditioners.
 - [longer83](https://github.com/longer83) for assisting with support for Cleverio AD100 dehumidifiers.
-- [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meters.
+- [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meter, Neo NAS-WV02W water valve.
 - [fireheadman](https://github.com/fireheadman) for assisting with support for WF39M dimmer smartplugs.
 - [yousaf465](https://github.com/yousaf465) for contributing Urdu translations.
 - [wisemanny](https://github.com/wisemanny) for contributing support for Zigbee Door/Window sensors and Loratap QCSC400ZB Zigbee curtain switches.
@@ -499,7 +499,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Pel1can111](https://github.com/Pel1can111) for assisting with support for Timeguard WFPIR motion light controller.
 - [ShiGhost](https://github.com/ShiGhost) for assisting with support for Keyun RGB chandelier fans and LS830-TY curtains.
 - [knowc](https://github.com/knowc) for assisting with support for Hydrotherm Dynamic/X8 Gen 6 water heaters.
-- [Waz-Cpt](https://github.com/Waz-Cpt) for contributing support for a dual dimmer module and improvements to EMS water heater.
+- [Waz-Cpt](https://github.com/Waz-Cpt) for contributing support for a dual dimmer module, Geyserwise MWs geyser controller, and improvements to EMS water heater.
 - [wizu](https://gitub.com/wizu) for contributing improvements to NAC AP470 purifier.
 - [MatthewBCooke](https://github.com/MatthewBCooke) for contributing support for Dynasty BTX fireplace.
 - [xlemassacre](https://github.com/xlemassacre) for contributing support for Kesser infrared 400W wall and 3000W heaters.
@@ -508,8 +508,8 @@ Further device support has been made with the assistance of users. Please consid
 - [dakker78](https://github.com/dakker78) for contributing support for Herschel IR heaters.
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
-- [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
-- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers and contributing support for SNT957W-DE temperature and humidity sensors.
+- [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breaker and Svensson Smart06C kettle.
+- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breaker and contributing support for SNT957W-DE temperature and humidity sensors.
 - [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3 and Madimack Inverflow Pro pump.
 - [halmaizsolt92](https://github.com/halmaizsolt92) for assisting with support for SNT857W-TDE temperature sensors.
 - [nk00li](https://github.com/nk00li) for assisting with support for BHT-002 GBLW thermometers that differ slightly from GALW in how they report the heating state.
@@ -566,7 +566,7 @@ Further device support has been made with the assistance of users. Please consid
 - [chris-garbas](https://github.com/chris-garbas) for contributing improvements to IPS pro heatpump.
 - [Nyotee](https://github.com/Nyotee) for assisting with support for Tesla Smart AUX series air conditioner.
 - [psuet](https://github.com/psuet) for assisting with support for XCase lock boxes.
-- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer and contributing support for Nybro heater.
+- [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timer, iGET HOME video doorbell, Immax Neo Lite weather station and contributing support for Nybro heater.
 - [Zelaf](https://github.com/Zelaf) for contributing improvements to Nedis portable air conditioner.
 - [hwhesselink](https://github.com/hwhesselink) for contributing support for Amico ceiling fans.
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
@@ -577,7 +577,7 @@ Further device support has been made with the assistance of users. Please consid
 - [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
 - [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers, Fisher air to water heat pump and Tesla Smart pet feeder.
 - [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
-- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeders.
+- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeder, RQ400A gas alarm, Klarstein Skytower Grand Smart fan.
 - [contactnat](https://github.com/contactnat) for assistance with Goldair PH-ET07EA heaters.
 - [JackJackattack4](https://github.com/JackJackattack4) for assistance with Deakon EVI air to water heatpumps.
 - [dimasibs92](https://github.com/dimasibs92) for assistance with WL-898WZ water leak sensors.
@@ -655,7 +655,7 @@ Further device support has been made with the assistance of users. Please consid
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
 - [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.
 - [flocke](https://github.com/flocke) for assisting with support for MeacoDry Arete Two dehumidifier.
-- [FrederikM97](https://github.com/FrederickM97) for assisting with Cleverio PF100 pet feeder.
+- [FredrikM97](https://github.com/FredrikM97) for assisting with and contributing improvements to Cleverio PF100, Honeyguardian S56 and many other pet feeders, Catit Pixi pet fountain, Swedish translations and improvements to the development environment.
 - [chadtheriault](https://github.com/chadtheriault) for assisting with Zemismart AM25 roller blinds.
 - [fmonday](https://github.com/fmonday) for assisting with Enlighten Café string lights.
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
@@ -694,7 +694,7 @@ Further device support has been made with the assistance of users. Please consid
 - [sorrison](https://github.com/sorrison) for contributing improvements to Sanden heat pump.
 - [OsaedYahya](https://github.com/OsaedYahya) for contributing support for MyQ TD8 vide doorbell.
 - [holgergrote](https://github.com/holgergrote) for contributing support for Sygonix Smarter dehumidifier.
-- [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater and assisting with support for Sai Me Tei towel rail.
+- [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater and assisting with support for Sai Me Tei towel rail and Cecotec ReadyWarm 2000 Max Box ceramic heater.
 - [murch1](https://github.com/murch1) for contributing support for Brilliant ceiling fan with light.
 - [NashHome](https://github.com/NashHome) for contributing support for Avatto curtain with double light switch.
 - [ciscolyon69](https://github.com/ciscolyon69) for assisting with support for Avatto TRV06 radiator valve and another variant of MatSee Plus 2ch bidirectional clamp meter.
@@ -705,7 +705,7 @@ Further device support has been made with the assistance of users. Please consid
 - [ianjsikes](https://github.com/ianjsikes) for contributing support for Windmill window air conditioner.
 - [luis-lain](https://github.com/luis-lain) for contributing support for S11+ RF+IR remote and Sulion Cadillac Fan via RF remote.
 - [gaspuas](https://github.com/gaspuas) for assisting with support for Linda Smart 7S video doorbell.
-- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.
+- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat, Ampbolt level 1/2 portable EV charger.
 - [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
 - [drbartek](https://github.com/drbartek) for assisting with support for Psmart T436 thermostat.
 - [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
@@ -731,7 +731,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Thommav](https://github.com/Thommav) for assisting with support for ZPmeter 214C water meter.
 - [Esp32-zapper](https://github.com/Esp32-zapper) for assisting with support for HunterTBK video doorbell.
 - [masfernandez](https://github.com/masfernandez) for assisting with support for Create Warm Towel Advance bathroom heater.
-- [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher and Weaja gas alarm.
+- [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher, Weaja gas alarm, Airwoods AV-EW8/DF HRV.
 - [ChrisDes](https://github.com/ChrisDes) for assisting with support for Raykube A1 Pro Max clip-over door lock.
 - [pimpalaputty](https://github.com/pimpalaputty) for contributing support for AFYEEV 16A EV charger.
 - [SimonAnnetts](https://github.com/SimonAnnetts) for contributing support for Solar Grid/Smart GTB series solar inverters.
@@ -798,11 +798,11 @@ Further device support has been made with the assistance of users. Please consid
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
 - [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier and improved Italian translations.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
-- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter.
+- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter, Sibrape CBC-Pool BP heat pump, Garen TSI Fit garage opener, Dometek Diamond ceiling fan with light.
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
-- [theqz](https://github.com/theqz) for assisting with support for A03 siren.
+- [theqz](https://github.com/theqz) for assisting with support for A03 siren, LSC Smart Connect Party string lights.
 - [luisolavea](https://github.com/luisolavea) for assisting with support for Zemismart ZMAi-90 energy meter smart switch.
 - [City-Zero](https://github.com/City-Zero) for contributing support for airx H8 humidifier.
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
@@ -822,7 +822,7 @@ Further device support has been made with the assistance of users. Please consid
 - [tal6203](https://github.com/tal6203) for assisting with support for Delixing aroma diffuser.
 - [rclarkmorrow](https://github.com/rclarkmorrow) for contributing support for Powersav AHR-083 powerstrip (which was merged to generic quad powerstrip with timer), Gosund WP9 powerstrip with USB, child lock and initial state, and Feit garage light (merged with RGBW lightbulb V2).
 - [ralsinn](https://github.com/ralsinn) for contributing support for Absina Wallbox EV charger.
-- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier, Morento MR7566-WF air purifier and improvements to TYTE-D1 thermostat switch.
+- [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier, Morento MR7566-WF air purifier, Dura Comfort DH50PWM dehumidifier, and improvements to TYTE-D1 thermostat switch.
 - [gurtjun](https://github.com/gurtjun) for contributing support for Sunred Triangle patio heater.
 - [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
 - [JackM-521](https://github.com/JackM-521) for assisting with support for Rohnson R-9530 dehumidifier.
@@ -831,7 +831,7 @@ Further device support has been made with the assistance of users. Please consid
 - [yaro24](https://github.com/yaro24) for contributing support for Jiahong ET-44W thermostat.
 - [point2start](https://github.com/point2start) for assisting with support for Atorch AT4PTW thermostat.
 - [maLLoud86](https://github.com/maLLoud86) for assisting with support for iSparkle Curtain Micro Lights.
-- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker.
+- [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker, Varin RGBCW ceiling fan, 3-way power monitoring strip (LSC).
 - [Karlsons88](https://github.com/Karlsons88) for assisting with support for Nulite monobloc heat pump.
 - [Watanuki-kun](https://github.com/Watanuki-kun) for assisting with support for Smart Amari ceiling fan with light.
 - [aherbjornsen](https://github.com/aherbjornsen) for assisting with support for Arida Venti 160 ventilation fan.
@@ -853,7 +853,7 @@ Further device support has been made with the assistance of users. Please consid
 - [nickmcgill](https://github.com/nickmcgill) for contributing support for Devola Intelligent heater.
 - [Kappa71](https://github.com/Kappa71) for contributing support for Emerio DH-129238.1 dehumidifier.
 - [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch
-- [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve.
+- [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve and Aktobis DHW-870FW dehumidifier.
 - [istenik](https://github.com/istenik) for assisting with support for Klarstein Bornholm Smart 1500 convection heater and TH05Z temperature humidity sensor.
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
@@ -861,7 +861,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
-- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat.
+- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat and Kimex cinema screen.
 - [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
@@ -869,7 +869,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Codeh4ck](https://github.com/Codeh4ck) for contributing improvements for Della air conditioner (supporting Sendo Hermes Gold).
 - [comcowo](https://github.com/comcowo) for contributing improvements to Powerworld PW58330 water heater.
 - [shyfxshadow](https://github.com/shyfxshadow) for assisting with support for EleChico CCST6001 thermostat.
-- [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier.
+- [Lemckert](https://github.com/Lemckert) for assisting with support for Gologi dehumidifier and InLine ultrasonic aroma diffuser.
 - [Antoni950425](https://github.com/Antoni950425) for assisting with support for Zigbee smart air box BR V2.
 - [skylarhays](https://github.com/skylarhays) for assisting with support for Arknoah Aquarium lights.
 - [MichalSieciechowicz](https://github.com/MichalSieciechowicz) for contributing support for Manta Windy weather station.
@@ -889,3 +889,364 @@ Further device support has been made with the assistance of users. Please consid
 - [vvv2542](https://github.com/vvv2542) for contributing support for Atorch S1TW thermostat switch.
 - [kliutchenia](https://github.com/kliutchenia) for contributing support for QS-WIFI-C02 dual curtain module.
 - [JanOstrowka](https://github.com/JanOstrowka) for contributing support for Tonepie T1 Pro Max cat litter box.
+- [KillDozerX2](https://github.com/KillDozerX2) for contributing support for Honeywell Air Touch P2 air purifier.
+- [Sapd](https://github.com/Sapd) for contributing support for Teknopoint Idra Skiv air conditioner.
+- [wuhgit](https://github.com/wuhgit) for contributing support for SC116-WZ3A camera.
+- [Airey001](https://github.com/Airey001) for contributing support for Neo-A Duoqu cat litter box, ComfortZone Powr Curve fan.
+- [Akira97One](https://github.com/Akira97One) for assisting with support for SMCM DDV-207 Doorbell Pro camera.
+- [hemersonfds](https://github.com/hemersonfds) for assisting with support for EARU EAEMP3C energy monitoring breaker.
+- [jldg](https://github.com/jldg) for assisting with support for Lumary A1 ceiling fan with light.
+- [julianguinard](https://github.com/julianguinard) for contributing support for Feyree portable EV charger.
+- [lemeshovich](https://github.com/lemeshovich) for contributing support for Haozee ZG-302ZM presence dual light switch.
+- [emmanuel-ferdman](https://github.com/emmanuel-ferdman) for contributing logging improvements.
+- [r3m0x](https://github.com/r3m0x) for contributing support for PTH9BW air quality monitor, Riyue Box 3 fan with light.
+- [JabeBRD](https://github.com/JabeBRD) for assisting with support for Avatto WHS20S climate IR remote.
+- [guruprasadah](https://github.com/guruprasadah) for contributing support for generic 5-speed fan controller.
+- [Zensonize](https://github.com/Zensonize) for contributing support for EWC02 air quality meter.
+- [Otte-S](https://github.com/Otte-S) for assisting with support for LSC Smart Connect Neon LED strip.
+- [Wob76](https://github.com/Wob76) for assisting with support for Sailesi litter box.
+- [Zycrannny](https://github.com/Zycrannny) for assisting with support for Prestige M3 ceiling fan with light.
+- [hcanIngo](https://github.com/hcanIngo) for contributing support for Powerworld PW040 water+air heat pump.
+- [amantia](https://github.com/amantia) for contributing improvements to Axen water+air heat pump.
+- [gmudrets](https://github.com/gmudrets) for assisting with support for Avatto CLS02 curtain with dual lights.
+- [ddave666](https://github.com/ddave666) for contributing support for TG Electro motion sensor, Safe CON09 barrier controller.
+- [ladalochness](https://github.com/ladalochness) for contributing support for Tellur thermostat.
+- [Garthcz](https://github.com/Garthcz) for contributing support for TrueLife P3 and P7 air purifiers.
+- [devlucasc](https://github.com/devlucasc) for contributing support for Positivo keypad and voice locks.
+- [farpudo](https://github.com/farpudo) for contributing support for Vevor 3.7kW EV charger.
+- [peng1can](https://github.com/peng1can) for contributing support for Sefaul Q9 dehumidifier.
+- [fernac03](https://github.com/fernac03) for assisting with support for Primebras Athenas BLE lock.
+- [drak202](https://github.com/drak202) for assisting with support for 4-TH quad temperature/humidity switch.
+- [duckati](https://github.com/duckati) for assisting with support for BBCoin AT5299 PCIe computer switch.
+- [webkaktuspl](https://github.com/webkaktuspl) for assisting with support for Vidos M13-XT video doorbell.
+- [rybe](https://github.com/rybe) for assisting with support for Haozee PS10 presence sensing light switch.
+- [BeriBGood](https://github.com/BeriBGood) for assisting with support for SR208C solar water heating controller.
+- [deracloust](https://github.com/deracloust) for assisting with support for LSC Smart Connect RGBIC+CCTIC LED strip.
+- [bputtick](https://github.com/bputtick) for contributing support for ElectriQ SupremeCool SC16HPW air conditioner.
+- [EmilianoMorello](https://github.com/EmilianoMorello) for contributing support for generic PIR alarm, Staniot alarm panel.
+- [LordGuenni](https://github.com/LordGuenni) for contributing support for Inkbird IBS-M2 temperature probe hub.
+- [arni077r](https://github.com/arni077r) for contributing support for Euroster 4040 Smart thermostat.
+- [maksim-petukhov](https://github.com/maksim-petukhov) for assisting with support for Fral Super Cool FSC14.2 DH portable air conditioner.
+- [MchlLyn](https://github.com/MchlLyn) for assisting with support for dé Wall Charger (3-phase 22Kw).
+- [diegoschefer](https://github.com/diegoschefer) for assisting with support for Zemismart ZM85EL-1x roller blind motor.
+- [sangphan12](https://github.com/sangphan12) for assisting with support for Neo Siren Alarm 2.
+- [orzeu](https://github.com/orzeu) for assisting with support for Parkside PPWD 30 A1 workshop vacuum.
+- [RudikHotValliant](https://github.com/RudikHotValliant) for assisting with support for Aeno EK7S kettle.
+- [sidkipper1](https://github.com/sidkipper1) for assisting with support for V-WIFI-DL01-ES energy meter.
+- [ruygargar](https://github.com/ruygargar) for contributing support for Polytherm Polyalpha thermostat.
+- [TomMichalkevic](https://github.com/TomMichalkevic) for assisting with support for garage door opener with camera.
+- [ald0001](https://github.com/ald0001) for assisting with support for NemoLight Extreme Series aquarium light.
+- [teichmaj](https://github.com/teichmaj) for assisting with support for Emmeti Zona thermostat.
+- [VulpesFurvus](https://github.com/VulpesFurvus) for contributing Portuguese translations and support for Dowell iOneAIO EV charger.
+- [alexeytm82](https://github.com/alexeytm82) for contributing support for MakeSkyBlue MPPT solar charger.
+- [com6056](https://github.com/com6056) for assisting with support for Treatlife DS03 (v2) ceiling fan and light.
+- [georgekucher](https://github.com/georgekucher) for contributing improvements to Feyree portable EV charger.
+- [shopsD](https://github.com/shopsD) for assisting with support for Dienmern DM165A noise meter, Chameleon TCG tower fan, EcoNour 42" tower fan.
+- [dwd1](https://github.com/dwd1) for assisting with support for RH-PD10 peehole doorbell camera.
+- [thd6n75](https://github.com/thd6n75) for contributing support for Korex AX-WF306N kettle.
+- [1B9-MasterChief](https://github.com/1B9-MasterChief) for contributing support for Sonnenkönig Fresco 140/180 air conditioner.
+- [fribse](https://github.com/fribse) for assisting with support for Denver SHP-200mk2 dual smartplug.
+- [DroidFreak32](https://github.com/DroidFreak32) for assisting with support for HomeMate PTZ indoor camera.
+- [danvit58](https://github.com/danvit58) for assisting with support for Konlen SNT957W-TDE E3S temperature alarm.
+- [Gotanius](https://github.com/Gotanius) for contributing support for PetsPride OO15 pet feeder.
+- [eliel-elie](https://github.com/eliel-elie) for contributing support for Zemismart SMD02T-TZ energy meter.
+- [justme871](https://github.com/justme871) for assisting with support for Garza thermostat.
+- [jaso1000](https://github.com/jaso1000) for contributing support for Temple and Webster Alina ceiling fan.
+- [hprombex](https://github.com/hprombex) for contributing support for Götze and Jensen KT975K kettle.
+- [Anzic23](https://github.com/Anzic23) for contributing support for Tary TA-AC380/22 EV charger.
+- [FragMenthor](https://github.com/FragMenthor) for assisting with support for Fuers video doorbell.
+- [netforceatg](https://github.com/netforceatg) for assisting with support for Arida S7L-2 dehumidifier.
+- [Dungeonkeaper](https://github.com/Dungeonkeaper) for assisting with support for CPVAN CP2W alarm system.
+- [danps1](https://github.com/danps1) for assisting with support for Arlec 10 path lights and contributing support for Dream of You dual lamp.
+- [GianlucaUlivi](https://github.com/GianlucaUlivi) for contributing improvements to Airrobo P20 vacuum.
+- [BevDan](https://github.com/BevDan) for contributing support for EARU EASEM-D multi-circuit power meter.
+- [Felwat](https://github.com/Felwat) for contributing support for TruCool TC1150 air conditioner, Princess Smart Tower fan.
+- [TrustyTristan](https://github.com/TrustyTristan) for assisting with support for Yuposl pet feeder.
+- [ryannewington](https://github.com/ryannewington) for assisting with support for SEVR X1 EV charger.
+- [ErsinErce](https://github.com/ErsinErce) for assisting with support for Homend Royaltea kettle.
+- [anssih](https://github.com/anssih) for contributing improvements to Vevor 3.7kW EV charger.
+- [fayezvip](https://github.com/fayezvip) for assisting with support for Malmbergs NV-SWQ triple dimmer module.
+- [hugglesfox](https://github.com/hugglesfox) for contributing support for Arlec CEH243HA ceramic heater.
+- [Pive-94](https://github.com/Pive-94) for assisting with support for Airam S1WFAA siren.
+- [liaujianjie](https://github.com/liaujianjie) for contributing support for Point One Technology Storm VSPEC-IV fan.
+- [theqz](https://github.com/theqz) for assisting with support for Nedis WIFIPD10WT pill dispenser.
+- [LunarEclipse363](https://github.com/LunarEclipse363) for contributing support for Fral FSC08 air conditioner.
+- [UsefulVid](https://github.com/UsefulVid) for assisting with support for Brandson A307362x3 fan.
+- [ZorkaTheDog](https://github.com/ZorkaTheDog) for assisting with support for Hombli Ceiling fan.
+- [ThatStella7922](https://github.com/ThatStella7922) for assisting with support for 5 speed model of OmniBreeze tower fan.
+- [anuram2k](https://github.com/anuram2k) for contributing support for HomeMate multi switches and fan regulator, Tomzn energy meter.
+- [paulklinkenberg](https://github.com/paulklinkenberg) for contributing support for SolarEast water/air heat pump.
+- [dlee1j1](https://github.com/dlee1j1) for contributing support for Howeall register booster fan.
+- [l2jalbe](https://github.com/l2jalbe) for assisting with support for Blitzwill ceiling fan with light.
+- [rigibe](https://github.com/rigibe) for contributing support for Aubess 3-gang switch.
+- [camillePernoud](https://github.com/camillePernoud) for contributing support for Moray level sensor, which was merged with EPT level sensor.
+- [Keith-H-T](https://github.com/Keith-H-T) for contributing support for Herschel XLS T-PL plugin thermostat.
+- [DJBenson](https://github.com/DJBenson) for contributing support for Igenix IG9901WIFI portable air conditioner.
+- [ptenderenda](https://github.com/ptenderenda) for contributing support for SmartDGM PAC-W11C01 portable air conditioner.
+- [orbitalellie](https://github.com/orbitalellie) for contributing support for Alen BreatheSmart 35i air purifier.
+- [mmaridev](https://github.com/mmaridev) for contributing improved support for Immax Neolite weather station.
+- [gaggi](https://github.com/gaggi) for contributing support for Steinbach Solid 4.3 pool heat pump.
+- [sportchucks](https://github.com/sportchucks) for contributing support for Raddy PT-5 pool thermometer.
+- [kfussmann](https://github.com/kfussmann) for assisting with support for Sundream LC-Series salt pool chlorinator.
+- [stepheninuk](https://github.com/stepheninuk) for assisting with support for MeacoCool MC Series Pro portable air conditioners.
+- [damru](https://github.com/damru) for contributing improvements to Windcalm fans.
+- [sam7567](https://github.com/sam7567) for assisting with support for Roomratv ceiling fan with light.
+- [mikeblackk](https://github.com/mikeblackk) for assisting with support for Madimack Elite V4 pool heat pump.
+- [vincedarley](https://github.com/vincedarley) for assisting with support for a second variant of Chanfok ceiling fan and light.
+- [happy-daisy](https://github.com/happy-daisy) for assisting with support for Beca BHT-12 thermostat smartplug.
+- [nhadpck](https://github.com/nhadpck) for assisting with support for Moes human presence sensor.
+- [demartinoaj](https://github.com/demartinoaj) for contributing support for Holmes tower fan.
+- [larduino](https://github.com/larduino) for assisting with support for EG4 solar heat pump.
+- [simotomaton](https://github.com/simotomaton) for assisting with support for Arlec 160 ball lights.
+- [jpbede](https://github.com/jpbede) for contributing support for Poolex Mag FI pool heat pump.
+- [kane-tix](https://github.com/kane-tix) for assisting with support for ADPOW EV charger.
+- [psiberfunk](https://github.com/psiberfunk) for assisting with support for Bcetasy 18-in-1 air quality monitor.
+- [Raggaboi](https://github.com/Raggaboi) for assisting with support for LerLink high power switch.
+- [bdelima](https://github.com/bdelima) for contributing support for Recteq RT-1250 grill.
+- [AUTFail](https://github.com/AUTFail) for contributing support for Aquark Mr Pure salt pool chlorinator.
+- [joelTXW](https://github.com/joelTXW) for assisting with support for imitOS BLE square downlight.
+- [tmeuze](https://github.com/tmeuze) for assisting with support for Hapaw pet fountain.
+- [rimmiaciej](https://github.com/rimmiaciej) for contributing support for Klarta Forste 4 air purifier.
+- [dmostert](https://github.com/dmostert) for contributing improvements to ITS 45HD heat pump.
+- [infestonn](https://github.com/infestonn) for contributing support for Aeno EK1S kettle.
+- [stepsolar](https://github.com/stepsolar) for contributing improvements to KW02 video doorbell and support for RCU16 relay module.
+- [saberraz](https://github.com/saberraz) for contributing support for Prodotec PT02 air quality monitor, GZAIR radon gas detector.
+- [fender4645](https://github.com/fender4645) for contributing support for Heonofly Smart Wood ceiling fan with lights and Modern Ember Vibrance fireplace.
+- [JakubMadro](https://github.com/JakubMadro) for contributing support for EARU PC473 3-phase energy monitor.
+- [jlg78fr](https://github.com/jlg78fr) for assisting with support for Unistyle WT-04W water timer.
+- [KoenVanduffel](https://github.com/KoenVanduffel) for assisting with support for Oscal PowerMax 6000 portable power station.
+- [pranjal-joshi](https://github.com/pranjal-joshi) for contributing support for Aziot 7 and 8 gang multi-switches and assisting with support for Aziot 4 gang switches and Aziot fan modular switch.
+- [AFumi39](https://github.com/AFumi39) for contributing support for Puppy Kitty F14-W pet feeder.
+- [hussainaljamri](https://github.com/hussainaljamri) for contributing support for Moes Star Feather series switches.
+- [FritzeF](https://github.com/FritzeF) for assisting with support for Kavunion C1 100 ventilation fan.
+- [StaRipper](https://github.com/StaRipper) for assisting with support for Pinjia PJ3101A human presence sensor.
+- [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock and support for Komeco QC60 pool heat pump.
+- [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.
+- [tobias-b-gmx](https://github.com/tobias-b-gmx) for assisting with support for Dewin KWS-306WF energy monitoring circuit breaker, Sichler ZX-7655 heater.
+- [chrkov](https://github.com/chrkov) for assisting with support for Revesien Q-Pro-W aroma diffuser.
+- [lilYozik](https://github.com/lilYozik) for assisting with support for Eberg Fyn tower fan.
+- [malkavi](https://github.com/malkavi) for contributing support for Cecotec Conga 1970 robot vacuum.
+- [LuckyG3000](https://github.com/LuckyG3000) for assisting with support for Klarstein Wonderwall 600 IR heater, and contributing improvements for Dewin KWS-306WF energy meter.
+- [Gillstrap](https://github.com/Gillstrap) for assisting with support for Living Comfort LC310S Series twin window fan.
+- [tribut](https://github.com/tribut) for contributing improvements for Moebot/Parkside mowers.
+- [duchu-net](https://github.com/duchu-net) for assisting with support for Moes WCM-P52 v2 PTZ indoor camera.
+- [lenard-a](https://github.com/lenard-a) for assisting with support for Dyras TF-16WIFI tower fan.
+- [Kevin6872](https://github.com/Kevin6872) for assisting with support for Petwant F13-W pet feeder.
+- [stevene1919](https://github.com/stevene1919) for assisting with support for Breville AirRounder Plus Connect purifier heater.
+- [Dead96](https://github.com/Dead96) for contributing support for Tongou SA1 energy meter.
+- [dustball62](https://github.com/dustball62) for assisting with support for Tolviviov DP-W2.1 alarm panel.
+- [jkfromk](https://github.com/jkfromk) for assisting with support for Yijingkc 284-8 ceiling fan.
+- [dysphasi](https://github.com/dysphasi) for assisting with support for Herschel Select XLS bathroom mirror.
+- [ashabala](https://github.com/ashabala) for contributing support for Goldair GGK1000 kettle.
+- [Wakinyan](https://github.com/Wakinyan) for contributing support for Steinback Silent Mini pool heat pump.
+- [angus-thompson](https://github.com/angus-thompson) for assisting with support for Advwin 6L camera pet feeder.
+- [aleks31031992](https://github.com/aleks31031992) for assisting with support for Moes single outlet water timer.
+- [robosphinx](https://github.com/robosphinx) for contributing support for Meegeem cat litter box.
+- [OriginalArkus](https://github.com/OriginalArkus) for contributing support for Princess Smart air cooler.
+- [k0ff33](https://github.com/k0ff33) for contributing support for Kaisai Pro Heat+ air conditioner.
+- [uspass](https://github.com/uspass) for contributing support for Tongou TOWSMR1 20 circuit breaker.
+- [Epictek](https://github.com/Epictek) for contributing support for Fukumaru AF01-W, Petempo PAF-02 pet feeders.
+- [RichardL64](https://github.com/RichardL64) for contributing support for Herschel XLS T-MT thermostat.
+- [blackscreener](https://github.com/blackscreener) for contributing support for ILIFE V20 and A30 pro robot vacuums.
+- [IshanAPatel](https://github.com/IshanAPatel) for contributing support for two models of Globe ceiling fans with RGBCW lights.
+- [swarshah](https://github.com/swarshah) for contributing support for 4-in-1 10GHz motion sensor.
+- [fragpic](https://github.com/fragpic) for assisting with support for AM24 venetian blinds motor.
+- [rachinibop](https://github.com/rachinibop) for assisting with support for SunnyBot plant light.
+- [chucknorris101](https://github.com/chucknorris101) for assisting with support for Alen Breathesmart 45i air purifier.
+- [ffonte](https://github.com/ffonte) for assisting with support for Proscenic 850T robot vacuum.
+- [Shmob1](https://github.com/Shmob1) for assisting with support for Brilliant Smart PIR outdoor sensor.
+- [siobhanellis](https://github.com/siobhanellis) for assisting with support for Weeket KES5211TE-CE kettle.
+- [saappleg](https://github.com/saappleg) for assisting with support for MolyPet F02W pet feeder.
+- [trebic](https://github.com/trebic) for assisting with support for Deta 6914HA Series 3 fan controller.
+- [millerim](https://github.com/millerim) for assisting with support for Feit OneSync Smart Bridge lighting controller.
+- [ip1464](https://github.com/ip1464) for contributing compatible products to Dual power monitor smartplug.
+- [admackin](https://github.com/admackin) for contributing support for Apricus heat pump water heater.
+- [pmaene](https://github.com/pmaene) for contributing support for Eurom Mon Soleil DSP and Sani heaters.
+- [hsuchengchih](https://github.com/hsuchengchih) for assisting with support for Vephos True air purifier.
+- [nmaitland](https://github.com/nmaitland) for contributing support for Beok SH-TGM50 WP thermostat.
+- [patriiiiiiiiiick](https://github.com/patriiiiiiiiiick) for assisting with support for Meowmatic pet feeder.
+- [sjeffrey101](https://github.com/sjeffrey101) for contributing support for BKZO and Yunlong ceiling fans.
+- [acheronfail](https://github.com/acheronfail) for assisting with support for Madimack InverChlor salt and mineral chlorinator.
+- [controller999](https://github.com/controller999) for assisting with support for Lubluelu A901 vacuum cleaner.
+- [mjens118](https://github.com/mjens118) for contributing support for Madimack Eco 9kW heat pump.
+- [TheDarkPreacher](https://github.com/TheDarkPreacher) for assisting with support for Ligency E26 socket ceiling fan with RGBCW light.
+- [3ek](https://github.com/3ek) for contributing support for Motorized pop-up smart sockets.
+- [den4ikmega](https://github.com/den4ikmega) for assisting with support for Digma DiSense G1 gas leak detector.
+- [StodgyWaif](https://github.com/StodgyWaif) for assisting with support for idoo Smart Bloom 8 hydroponic system.
+- [Veuchez](https://github.com/Veuchez) for assisting with support for Ryakka 7-in-1 pool monitor.
+- [banemonster](https://github.com/banemonster) for contributing support for Neopower Black Diamond all-in-one heat pump water heater.
+- [ajpohv](https://github.com/ajpohv) for contributing support for Qlima D720 dehumidifier.
+- [sport80](https://github.com/sport80) for assisting with support for Ettroit LN4102 thermostat, Kishin BS-DW002 motion sensor.
+- [norb-HB](https://github.com/norb-HB) for assisting with support for Boundless Brothers PA-210W gas alarm.
+- [arsenicks](https://github.com/arsenicks) for contributing support for iHseno human presence sensor.
+- [diegaccio](https://github.com/diegaccio) for contributing improvements for Beok TGM50-WPB-WF / M5-G2 variants.
+- [Kriseh1337](https://github.com/Kriseh1337) for assisting with support for Livn Arosa electric fireplace.
+- [AD8-sven](https://github.com/AD8-sven) for assisting with support for ZMP71SH variable speed pool pump.
+- [f3peter](https://github.com/f3peter) for assisting with support for Moes smart wake up light alarm clock.
+- [jeppesens](https://github.com/jeppesens) for contributing support for Woods MRD25GW.
+- [slowrie23](https://github.com/slowrie23) for assisting with support for RecTeq RT-B380X Bullseye Deluxe grill and improvements for RT-700.
+- [cihancelikkk](https://github.com/cihancelikkk) for assisting with support for Moes WHT-S01 thermostat.
+- [Macrisu](https://github.com/Macrisu) for assisting with support for Ipengen GO-E31-15A EV charger.
+- [davidmurdoch](https://github.com/davidmurdoch) for contributing support for Elegrp DTR10 dimmer light switch.
+- [nitedani](https://github.com/nitedani) for contributing support for Fisher F-ERVQ-B150CO2-I heat recovery ventilator.
+- [kbeanio](https://github.com/kbeanio) for assisting with support for Atorch DT20HBW battery monitor.
+- [pbambr](https://github.com/pbambr) for assisting with support for Ledvance ceiling fan with light.
+- [luckyTamme](https://github.com/luckyTamme) for contributing support for Smart P01 smartplug.
+- [justinwyq](https://github.com/justinwyq) for contributing support for Outdoor Inc zip blind.
+- [tr1ckz](https://github.com/tr1ckz) for contributing support for Vivo FD55 TV mount.
+- [smeegoan](https://github.com/smeegoan) for contributing support for GoSund SP211 power monitoring dual smartplug.
+- [colin-nolan](https://github.com/colin-nolan) for contributing improvements to Catit Pixi smart feeder.
+- [flow-c](https://github.com/flow-c) for contributing support for Mi-Heat TH11 thermostat.
+- [kjpg99](https://github.com/kjpg99) for contributing improvements to Klarta Stor 2 and Forste 4 purifiers, and Polish translations.
+- [MiguelDomingues](https://github.com/MiguelDomingues) for contributing support for EARU K6RH-3A thermostat.
+- [barneybastelt](https://github.com/barneybastelt) for contributing support for BlitzHome BH-CDW1 dishwasher.
+- [bobek212141-wq](https://github.com/bobek212141-wq) for assisting with support for Moes TRV601 thermostat radiator valve.
+- [1stDeadeye](https://github.com/1stDeadeye) for assisting with support for Haozee gas leak and carbon monoxide alarm.
+- [jkolo](https://github.com/jkolo) for contributing support for EMOS IP-300 camera with floodlight.
+- [tomvansambeek](https://github.com/tomvansambeek) for contributing support for FlinQ Smart multicolor string lights.
+- [8none1](https://github.com/8none1) for contributing support for Pro Breeze D-23 dehumidifier.
+- [darchons](https://github.com/darchons) for contributing improvements to subdevice support.
+- [creoludifico](https://github.com/creoludifico) for contributing support for Nexsmart Watch 2, Air 2 and Air 3 cameras.
+- [PMKA](https://github.com/PMKA) for contributing support for Goldair GPOC2415 oil heater.
+- [fbesserp](https://github.com/fbesserp) for contributing improvements to Catit Pixi smart feeder.
+- [amotruk](https://github.com/amotruk) for contributing support for Mini-B Public litter box.
+- [p1x3lmx](https://github.com/p1x3lmx) for assisting with support for Ningbo BF314A camera pet feeder.
+- [sajtdavid](https://github.com/sajtdavid) for contributing support for CO2v1 carbon dioxide sensor.
+- [dermocles9308](https://github.com/dermocles9308) for assisting with support for Tongou QCB2-100 3 phase circuit breaker.
+- [bvweerd](https://github.com/bvweerd) for contributing improvements to Fararo pet feeder.
+- [dtaylor7](https://github.com/dtaylor7) for contributing support for eTowel Mini04 plus towel rail thermostat and WarmeHaus thermostatic towel rail element.
+- [StrandmonYellow](https://github.com/StrandmonYellow) for assisting with support for Amenzo dishwasher.
+- [rbswift](https://github.com/rbswift) for assisting with support for Intaflo Intabloc air-water heat pump.
+- [evilpig](https://github.com/evilpig) for assisting with support for Homvana H111S humidifier.
+- [veista](https://github.com/veista) for contributing improvements to Immax Neo Lite weather station.
+- [DavidRomao](https://github.com/DavidRomao) for contributing support for Jocel JCT007452 heater, merged into compatible Lehmann config.
+- [phiten](https://github.com/phiten) for assisting with support for FeelNeedy P-LFP01 camera pet feeder.
+- [dbeinder](https://github.com/dbeinder) for contributing improvements to dé EV charger.
+- [johndparker](https://github.com/johndparker) for assisting with support for HHC AM24 curtain motor.
+- [emcyaman](https://github.com/emcyaman) for contributing support for Zemismart SPM02-D2TW energy meter.
+- [gec75](https://github.com/gec75) for contributing support for Afyeev 11kW 3x15A EV charger, which was merged with the existing Afyeev 16A config.
+- [brendanlees](https://github.com/brendanlees) for contributing support for Fanco Infinity, which was merged with existing Fanco Eco Silent.
+- [widegaint](https://github.com/widegaint) for assisting with support for dLuft Smart Flow ventilation fan.
+- [felixfx2](https://github.com/felixfx2) for assisting with support for Prism+ Oasis Pro ceiling fan with RGBCCT light.
+- [toby121](https://github.com/toby121) for assisting with support for TY-12W 12 switch relay board.
+- [Junikiewicz](https://github.com/Junikiewicz) for contributing improvements to Advwin 6L pet feeder.
+- [H4irBear](https://github.com/H4irBear) for contributing support for Orbegozo RRW heater.
+- [steaura](https://github.com/steaura) for contributing improvements to Electriq CD12 Pro dehumidifier.
+- [rickbergmans](https://github.com/rickbergmans) for contributing support for Pilot Wire RP5 bath thermostat.
+- [baracici](https://github.com/baracici) for assisting with support for ElectriQ CD20PRO-LE-V4 dehumidifier.
+- [christianglodt](https://github.com/christianglodt) for contributing support for Plikc Ario WiFi air vent.
+- [george-oniceag](https://github.com/george-oniceag) for contributing support for AlecoAir PU55 Humino humidifier, Faro Barcelona Punt Tub fan (merged to calibo).
+- [yurgh](https://github.com/yurgh) for contributing improvements to Eeese Carl dehumidifier.
+- [fredppm](https://github.com/fredppm) for contributing support for Newpet pet feeder and Zemismart SPM02 V2.5 energy meter.
+- [politician](https://github.com/politician) for assisting with support for Kerui 120dB siren alarm.
+- [gooner1990](https://github.com/gooner1990) for assisting with support for Rinnai Enviroflo heat pump water heater.
+- [grantland](https://github.com/grantland) for contributing support for Dreamegg Nite 1 baby sound machine.
+- [aniemoeller](https://github.com/aniemoeller) for assisting with support for Jafanda JF260S air purifier.
+- [jlopez77](https://github.com/jlopez77) for contributing support for Haier Airmart air conditioner.
+- [MarcoKaldenbach](https://github.com/MarcoKaldenbach) for contributing support for Zedar K1200 cat litter box.
+- [jaredhobbs](https://github.com/jaredhobbs) for contributing support for TCL AirMax that was merged with Daizuki heatpump.
+- [o-mega](https://github.com/o-mega) for contributing support for EARU EAMPDW-TY-63 3-phase energy monitoring breaker, Funai Fuji ERW-150 Ultimate ventilation fan.
+- [soonbolee](https://github.com/soonbolee) for assisting with support for Miro Q-Tower humidifier.
+- [leoogermenia](https://github.com/leoogermenia) for assisting with support for Zephir ZMW4000V wall heater.
+- [momeedees](https://github.com/momeedees) for assisting with support for Hombli CCT 2024 Christmas lights.
+- [progfou](https://github.com/progfou) for assisting with support for Oneisall PFD-002 Pro IR pet feeder.
+- [TjappieW](https://github.com/TjappieW) for assisting with support for FrankEver BV05 water valve.
+- [danyrd92](https://github.com/danyrd92) for contributing improvements to Vonroc WiFi heater.
+- [aminorjourney](https://github.com/aminorjourney) for contributing support for EZValo Smart desk lamp.
+- [PurpleFries](https://github.com/PurpleFries) for contributing improvements to Petree Cube litter box.
+- [maxhamilius](https://github.com/maxhamilius) for contributing support for Lebenlang LBL0380 heater.
+- [ncosta24](https://github.com/ncosta24) for assisting with support for Cecotec Conga X70 vacuum.
+- [charlesomer](https://github.com/charlesomer) for contributing improvements to Electriq PD45E dehumidifier.
+- [lethargus](https://github.com/lethargus) for assisting with support for Lumary B2 ceiling fan with RGB+CW light.
+- [MIKOLAJW197](https://github.com/MIKOLAJW197) for contributing improvements to the vacuum entity.
+- [barijaona](https://github.com/barijaona) for contributing support for SRNE SE Series lithium battery.
+- [marcins](https://github.com/marcins) for contributing support for Henden Essential pool heat pump.
+- [adrienkohlbecker](https://github.com/adrienkohlbecker) for assisting with support for Venta AH510 Original Connect humidifier.
+- [m4rt0s](https://github.com/m4rt0s) for contributing support for Sime EcoMaxi VB200 heat pump water heater.
+- [chumbazoid](https://github.com/chumbazoid) for assisting with support for Happy Llama Tech SoCool pet feeder.
+- [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan, SmartMi P1 air purifier.
+- [flemmingkok](https://github.com/flemmingkok) for assisting with support for InTec ceiling fan with light.
+- [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
+- [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
+- [a774969](https://github.com/a774969) for assisting with support for NWT WDH-02EM dehumidifier.
+- [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve.
+- [baronorder](https://github.com/baronorder) for contributing support for Advwin 13L humidifier, Kogan KASMCDSKTLA kettle, Inkbird IVC001W fan controller, and improvements to masked dps handling.
+- [pegasusvelata](https://github.com/pegasusvelata) for contributing support for GD2050WIFI aroma diffuser.
+- [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
+- [GavinIves](https://github.com/GavinIves) for contributing support for Casdon KG1 water dispenser.
+- [declan-wade](https://github.com/declan-wade) for contributing support for Thermann R290 water heat pump.
+- [lordp1](https://github.com/lordp1) for assisting with support for Clean Air Optima CA-607B humidifier.
+- [aureli169](https://github.com/aureli169) for contributing support for Auchsiag fireplace.
+- [zhen-zen](https://github.com/zhen-zen) for contributing support for Rovsun oil column heater.
+- [notz](https://github.com/notz) for assisting with support for Sunlary indoor plant watering system.
+- [met67](https://github.com/met67) for contributing support for oLight Sphere ambient light.
+- [KSVl](https://github.com/KSVl) for contributing support for Konlen WF72TT/WF96TT dual temperature controller.
+- [carpabg](https://github.com/carpabg) for contributing support for Create Warm Clear heater.
+- [Korkuttum](https://github.com/Korkuttum) for contributing support for Arçelik AHPH-MM combo heat pump.
+- [Rigoweb](https://github.com/Rigoweb) for contributing support for Stadler Form Lukas dehumidifier.
+- [kelemenlajos](https://github.com/kelemenlajos) for assisting with support for Klarstein Airfold Smart ceiling fan with light.
+- [Permanently](https://github.com/Permanently) for contributing support for Migou Mini-F litter box, which was merged with Mini-B.
+- [deadman96385](https://github.com/deadman96385) for contributing support for Evergreen Solar bird feeder camera.
+- [domwrap](https://github.com/domwrap) for contributing support for Jafanda JF500 air purifier.
+- [jarivanb](https://github.com/jarivanb) for contributing improvements to Steinbach Solid 4.3 heat pump.
+- [10-p](https://github.com/10-p) for assisting with support for Garza Aspen boiler thermostat.
+- [augs](https://github.com/augs) for contributing support for Faroro TD20 Pet Treat Camera.
+- [jonathanm3](https://github.com/jonathanm3) for contributing support for PNI CT-36 Pro thermostat.
+- [J1mooo](https://github.com/J1mooo) for assisting with support for Immax Neo Lite 3-phase 22kW EV charger.
+- [anthonws](https://github.com/anthonws) for contributing support for Maeco DD8L Pro dehumidifier.
+- [22cms](https://github.com/22cms) for assisting with support for Cixi Jemell PTC-1919 heater.
+- [cream68](https://github.com/cream68) for assisting with support for essentials Wall thermostat.
+- [Dunky13](https://github.com/Dunky13) for assisting with support for a new variant of Magnum MRC floor heating.
+- [benediktley](https://github.com/benediktley) for contributing support for MiBoxer WL-Box2 lighting zone control gateway.
+- [maricn](https://github.com/maricn) for contributing support for Karstein Bornholm 1kW WBR3 based heater.
+- [SimKaiLong](https://github.com/SimKaiLong) for contributing support for Efenz Kith ceiling fan with light.
+- [kabous1](https://github.com/kabous1) for contributing support for GMC AP-300 air purifier (merged with Truelife P3).
+- [IngmarStein](https://github.com/IngmarStein) for contributing support for Oekoboiler RS series heat pump water heater.
+- [hally0](https://github.com/hally0) for contributing support for Elko EKO07262 thermostat.
+- [Smalle007](https://github.com/Smalle007) for contributing support for Stadler Form Noah humidifier.
+- [pmchAR](https://github.com/pmchAR) for contributing support for Kendal KVT-Touchtower pedestal fan.
+- [kensru](https://github.com/kensru) for assisting with support for Aquaviva AVH15S combo heat pump.
+- [square-spade](https://github.com/square-spade) for contributing improvements for BLE Pulido P13 lock.
+- [bartowl](https://github.com/bartowl) for contributing support for Junsun 32A EV charger.
+- [bitcoin1192](https://github.com/bitcoin1192) for assisting with support for Taffware 1P-J-63 circuit breaker.
+- [PawelSwaczyna](https://github.com/PawelSwaczyna) for contributing support for Klarta Humea Grande humidifier.
+- [laskas-p](https://github.com/laskas-p) for contributing support for Wellio D008A 20L dehumidifier.
+- [akritikos](https://github.com/akritikos) for assisting with support for Eureka ERK-S62 adjustable desk.
+- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
+- [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
+- [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
+- [MrJinxed55](https://github.com/MrJinxed55) for contributing improvements to Zigbee ZN373186 temperature and humidity sensor, and support for M604 quad wall switch.
+- [malrogers7](https://github.com/malrogers7) for contributing support for Meaco Clean air purifier.
+- [exileed](https://github.com/exileed) for contributing support for Realme TechLife vacuum cleaner.
+- [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
+- [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
+- [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
+- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve.
+- [cm-mojo](https://github.com/cm-mojo) for assisting with support for Pro Breeze AirFlo 43" pedestal fan.
+- [wfsyd](https://github.com/wfsyd) for contributing support for Mercator ceiling fan with lights, which was merged with Ovlaim ceiling fan with lights.
+- [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.
+- [ben-h-a](https://github.com/ben-h-a) for contributing support for Xtuos dual pet feeder.
+- [drkn](https://github.com/drkn) for contributing support for Eberg HUMI humidifier.
+- [pacopaues](https://github.com/pacopaues) for assisting with support for RTI-Tek T5Z and Avatto ZWT198 thermostats.
+- [ivan-mendez](https://github.com/ivan-mendez) for assisting with support for Brokton BRST12 air conditioner.
+- [sanglyb](https://github.com/sanglyb) for assisting with support for Neptun Smart+ water leak control system.
+- [J14111](https://github.com/J14111) for assisting with support for Palicy EC Pro 4 chlorine generator.
+- [chrisproud](https://github.com/chrisproud) for contributing support for Poolstyle pool heat pump.
+- [elsterglanz](https://github.com/elsterglanz) for assisting with support for a new variant of Beok TOL47 thermostat.
+- [ps-jay](https://github.com/ps-jay) for contributing improvements to Henden Essential heat pump.
+- [burned89](https://github.com/burned89) for contributing support for Eeese Thor dehumidifier.
+- [cb2206](https://github.com/cb2206) for contributing support for Chiltrix CX50 heat pump.
+- [eriverosr](https://github.com/eriverosr) for contributing improvements to Catit Pixi Smart Fountain.
+- [RedstoneGithub](https://github.com/RedstoneGithub) for contributing improvements to Petlibro PLAF103 pet feeder.
+- [cinek193](https://github.com/cinek193) for assisting with improvements to Clofte 400 Duo humidifier.
+- [nathan-gs](https://github.com/nathan-gs) for contributing support for Andalung EV charger, which was merged into EV Sun. EV charger config.
+- [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
+- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
+- [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
+- [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
+- [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.
+- [hofvanta](https://github.com/hofvanta) for assisting with support for PNI CT45 thermostat.
+- [marco-calautti](https://github.com/marco-calautti) for contributing support for Kekotek KTF017802 thermostat which was merged with Hysen HY101RF.
+- [thepkc](https://github.com/thepkc) for contributing support for PJ-1103A dual channel energy meter.
+- [Takosan4ik](https://github.com/Takosan4ik) for assisting with support for Fiesta DK-1G kettle.
+- [kamui](https://github.com/kamui) for assisting with support for Tecxerllon 1500W panel heater.

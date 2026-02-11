@@ -1,0 +1,525 @@
+name: EV charger
+products:
+  - id: 8yxnucwmjpt9jr16
+    manufacturer: Ipengen
+    model: GO-E31-16A
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 1
+        type: integer
+        optional: true
+        name: total_forward_energy
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Charging current
+    class: current
+    dps:
+      - id: 4
+        type: integer
+        optional: true
+        name: value
+        unit: A
+        range:
+          min: 8
+          max: 16
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: phase_data
+        mapping:
+          - scale: 10
+      - id: 109
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: phase_data
+        mapping:
+          - scale: 1000
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: phase_data
+        mapping:
+          - scale: 10
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: phase_data
+        mapping:
+          - scale: 1000
+      - id: 106
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: phase_data
+        mapping:
+          - scale: 10
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: phase_data
+        mapping:
+          - scale: 1000
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 9
+        type: integer
+        optional: true
+        name: std
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:ev-plug-ccs2"
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        optional: true
+        name: control_status
+        mapping:
+          - dps_val: controlpi_12v
+            value: available
+          - dps_val: controlpi_12v_pwm
+            value: monitor
+          - dps_val: controlpi_9v
+            value: starting
+          - dps_val: controlpi_9v_pwm
+            value: plugged_in
+          - dps_val: controlpi_6v
+            value: waiting
+          - dps_val: controlpi_6v_pwm
+            value: charging
+          - dps_val: controlpi_error
+            value: fault
+      - id: 3
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: available
+          - dps_val: "1"
+            value: waiting_for_authorization
+          - dps_val: "2"
+            value: plugged_in
+          - dps_val: "3"
+            value: unknown_3
+          - dps_val: "4"
+            value: charging
+          - dps_val: "5"
+            value: charged
+          - dps_val: "6"
+            value: scheduled
+          - dps_val: "7"
+            value: unknown_7
+          - dps_val: "8"
+            value: unknown_8
+      - id: 118
+        # another candidate that has undocumented numeric 0-8 values
+        type: string
+        optional: true
+        name: status
+  - entity: number
+    name: Fixed charge
+    category: config
+    class: energy_storage
+    # Hidden, because there is confusion over the purpose of this dp.
+    # In Query Things Data Model it is shown as read-write and based on
+    # other EV chargers, should be for setting the amount of energy for
+    # a fixed charge, but user feedback is that the total_forward_energy
+    # on dp 1 does not ever appear, and this dp should be used instead.
+    hidden: true
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 2000000
+        mapping:
+          - scale: 100
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: switch
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Last charge
+    icon: "mdi:car-electric"
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Delayed charge
+    class: duration
+    translation_key: timer
+    category: config
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: text
+    name: Preset settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Preset
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: Mode 1
+          - dps_val: mode_2
+            value: Mode 2
+          - dps_val: mode_3
+            value: Mode 3
+          - dps_val: mode_4
+            value: Mode 4
+          - dps_val: mode_5
+            value: Mode 5
+          - dps_val: mode_6
+            value: Mode 6
+          - dps_val: mode_7
+            value: Mode 7
+          - dps_val: mode_8
+            value: Mode 8
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: number
+    name: Charging duration
+    category: config
+    class: duration
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12
+  - entity: number
+    name: Connection duration
+    category: config
+    class: duration
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: text
+    name: Timer synchronization
+    category: config
+    icon: "mdi:wrench-clock"
+    hidden: true
+    dps:
+      - id: 113
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: number
+    name: Ready time
+    category: config
+    class: duration
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9999
+  - entity: switch
+    name: Charge
+    category: config
+    dps:
+      - id: 116
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: number
+    name: Appointment
+    category: config
+    class: duration
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: switch
+    name: Swipe enable
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        optional: true
+        name: switch

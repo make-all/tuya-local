@@ -195,29 +195,19 @@ entities:
       - id: 110
         type: boolean
         name: switch
-  - entity: number
-    name: Timer hours
-    category: config
-    class: duration
+  - entity: time
     translation_key: timer
+    category: config
     dps:
       - id: 111
         type: integer
-        name: value
-        unit: h
+        name: hour
         range:
           min: 0
           max: 23
-  - entity: number
-    name: Timer minutes
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
       - id: 112
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 59

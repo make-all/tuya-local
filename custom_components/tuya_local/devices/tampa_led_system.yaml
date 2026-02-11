@@ -34,23 +34,18 @@ entities:
       - id: 33
         type: string
         name: power_off_memory
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 7
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34

@@ -99,19 +99,14 @@ entities:
             value: Spectrum
           - dps_val: 46401bb1006e03e801f4
             value: Rolling
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         optional: true
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min

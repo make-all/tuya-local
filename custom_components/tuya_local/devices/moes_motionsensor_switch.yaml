@@ -50,7 +50,7 @@ entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator light
+    translation_key: light_mode
     category: config
     dps:
       - id: 15
@@ -58,9 +58,9 @@ entities:
         type: string
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: "Status"
+            value: state
   - entity: switch
     name: Illuminance enable
     dps:
@@ -86,7 +86,7 @@ entities:
         name: switch
         type: boolean
   - entity: select
-    name: Motion sensitivity
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 48
@@ -94,11 +94,11 @@ entities:
         type: string
         mapping:
           - dps_val: "low"
-            value: "Low"
+            value: "low"
           - dps_val: "middle"
-            value: "Medium"
+            value: "medium"
           - dps_val: "high"
-            value: "High"
+            value: "high"
   - entity: number
     name: Motion auto-off delay
     category: config

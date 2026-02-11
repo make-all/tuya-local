@@ -1,4 +1,4 @@
-name: TMWF02 fan controller
+name: Fan controller
 entities:
   - entity: fan
     dps:
@@ -14,18 +14,13 @@ entities:
         range:
           min: 1
           max: 100
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 2
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

@@ -35,8 +35,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -61,8 +60,7 @@ entities:
             value: false
             hidden: true
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -71,14 +69,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
-          - dps_val: null
-            value: Unknown
-            hidden: true
+            value: high
   - entity: select
     name: Night vision
     icon: "mdi:weather-night"
@@ -110,6 +105,7 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     icon: "mdi:micro-sd"
     dps:
@@ -119,17 +115,17 @@ entities:
         optional: true
         mapping:
           - dps_val: 1
-            value: Normal
+            value: normal
           - dps_val: 2
-            value: Corrupt
+            value: fault
           - dps_val: 3
-            value: Full
+            value: full
           - dps_val: 4
-            value: Formatting
+            value: formatting
           - dps_val: 5
-            value: Missing
+            value: missing
           - dps_val: null
-            value: Normal
+            value: normal
   - entity: button
     name: SD format
     category: config

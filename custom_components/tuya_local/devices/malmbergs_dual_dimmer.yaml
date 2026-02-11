@@ -37,23 +37,20 @@ entities:
         type: integer
         name: value
         range:
-          min: 25
-          max: 255
-  - entity: number
-    translation_key: timer
-    class: duration
+          min: 10
+          max: 1000
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: number
     name: Minimum brightness 2
     category: config
@@ -63,10 +60,9 @@ entities:
         type: integer
         name: value
         range:
-          min: 25
-          max: 255
-  - entity: number
-    class: duration
+          min: 10
+          max: 1000
+  - entity: time
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -74,14 +70,10 @@ entities:
     dps:
       - id: 12
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

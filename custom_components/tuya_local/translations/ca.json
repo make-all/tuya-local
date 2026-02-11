@@ -6,18 +6,18 @@
                 "data": {
                     "setup_mode": "Opció de configuració:"
                 },
-                "description": "Els dispositius es poden afegir manualment o amb l'ajuda del núvol i de l'aplicació Smart Life."
+                "description": "Els dispositius es poden afegir manualment o amb l'ajuda del núvol i de l'aplicació SmartLife."
             },
             "cloud": {
                 "title": "Inicia la sessió a Tuya",
                 "data": {
                     "user_code": "Codi d'usuari:"
                 },
-                "description": "Introduïu el vostre codi d'usuari Smart Life o Tuya Smart.\n\nPodeu trobar aquest codi a l'aplicació Smart Life o a l'aplicació Tuya Smart a la pantalla **Configuració** > **Compte i seguretat**, i introduÏu el codi que es mostra al camp **Codi d'usuari**. El codi d'usuari distingeix entre majúscules i minúscules, assegureu-vos d'introduir-lo exactament com es mostra a l'aplicació."
+                "description": "Introduïu el vostre codi d'usuari SmartLife o Tuya.\n\nPodeu trobar aquest codi a l'aplicació SmartLife o a l'aplicació Tuya a la pantalla **Configuració** > **Compte i seguretat**, i introduÏu el codi que es mostra al camp **Codi d'usuari**. El codi d'usuari distingeix entre majúscules i minúscules, assegureu-vos d'introduir-lo exactament com es mostra a l'aplicació."
             },
             "scan": {
                 "title": "Completa l'inici de sessió",
-                "description": "Useu l'aplicació Smart Life o l'aplicació Tuya Smart per a escanejar el codi QR següent i completar l'inici de sessió.\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
+                "description": "Useu l'aplicació SmartLife o l'aplicació Tuya per a escanejar el codi QR següent i completar l'inici de sessió.\n\nContinueu al següent pas un cop hàgiu completat aquest pas a l'aplicació."
             },
             "choose_device": {
                 "title": "Trieu el dispositiu a afegir",
@@ -33,7 +33,7 @@
             },
             "local": {
                 "title": "Configureu el vostre dispositiu Tuya Local",
-                "description": "[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.](https://github.com/make-all/tuya-local)finding-your-device-id-and-local-key)",
+                "description": "[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.]({device_details_url})",
                 "data": {
                     "host": "Adreça IP o nom d'amfitrió",
                     "device_id": "ID del dispositiu (o ID del dispositiu del centre per a dispositius connectats a través de la passarel·la)",
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Configuració del dispositiu assistida amb el núvol Smart Life.",
-                "manual": "Proporciona manualment la informació de connexió al dispositiu."
+                "cloud": "Configuració del dispositiu assistida amb el núvol SmartLife.",
+                "manual": "Proporciona manualment la informació de connexió al dispositiu.",
+                "cloud_fresh_login": "Inicia la sessió en un altre compte de núvol de SmartLife."
             }
         }
     },
@@ -88,7 +89,7 @@
                     "protocol_version": "Versió del protocol (intenteu-ho automàticament si no es coneix)",
                     "poll_only": "Només enquestes (proveu això si el vostre dispositiu no funciona completament)"
                 },
-                "description": "[Seguiu aquestes instruccions per a trobar la vostra clau local.](https://github.com/make-all/tuya-local)finding-your-device-id-and-local-key)"
+                "description": "[Seguiu aquestes instruccions per a trobar la vostra clau local.]({device_details_url})"
             }
         },
         "abort": {
@@ -162,6 +163,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "Aire condicionat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -180,10 +182,30 @@
                             "downmost": "Més avall",
                             "topmost": "Més amunt",
                             "top": "Amunt",
-                            "middle": "Mitjà"
+                            "middle": "Mitjà",
+                            "upper_half": "Meitat superior",
+                            "lower_half": "Meitat inferior",
+                            "surround": "Al voltant"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "left": "Esquerra",
+                            "leftmost": "Més a l'esquerra",
+                            "rightmost": "Més a la dreta",
+                            "right": "Dreta",
+                            "center": "Centre",
+                            "left_swing": "Balanceig a l'esquerra",
+                            "right_swing": "Balanceig a la dreta",
+                            "center_swing": "Balanceig al centre",
+                            "surround": "Al voltant",
+                            "direct": "Directe"
                         }
                     }
                 }
+            },
+            "cold_water": {
+                "name": "Aigua freda"
             },
             "thermostat": {
                 "name": "Termòstat",
@@ -217,6 +239,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Escalfador",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Nivell de calefacció",
@@ -246,7 +269,21 @@
                 }
             },
             "heater": {
-                "name": "Escalfador"
+                "name": "Escalfador",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Baix",
+                            "medium": "Mitjà",
+                            "high": "Alt",
+                            "program_1": "Programa 1",
+                            "program_2": "Programa 2",
+                            "program_3": "Programa 3",
+                            "standby": "En espera",
+                            "fan_only": "Només ventilador"
+                        }
+                    }
+                }
             },
             "thermo_switch": {
                 "state_attributes": {
@@ -356,7 +393,8 @@
                     "good": "Bo",
                     "moderate": "Moderat",
                     "poor": "Dolent",
-                    "severe": "Molt dolent"
+                    "severe": "Molt dolent",
+                    "danger": "Perill"
                 }
             },
             "status": {
@@ -366,6 +404,7 @@
                     "plugged_in": "Connectat",
                     "fault_unplugged": "Errada (desconnectat)",
                     "charging": "Carregant",
+                    "discharging": "Descàrrega",
                     "waiting": "Esperant",
                     "charged": "Carregat",
                     "fault": "Fallada",
@@ -384,6 +423,7 @@
                     "manual": "Manual",
                     "rain_delay": "Retard per pluja",
                     "off": "Desactivat",
+                    "on": "Activat",
                     "cooking": "Cuina",
                     "done": "Fet",
                     "door_open": "Porta oberta",
@@ -429,11 +469,35 @@
                     "starting": "Inici",
                     "emptying": "Buidat",
                     "resetting": "Reinicialització",
-                    "reverse": "Inversió"
+                    "reverse": "Inversió",
+                    "full": "Ple",
+                    "empty": "Buit",
+                    "missing": "Falta",
+                    "formatting": "Formatant",
+                    "unformatted": "No formatat",
+                    "failed": "Ha fallat",
+                    "replying": "Responent",
+                    "playback": "Reproducció",
+                    "maintenance_required": "Manteniment necessari",
+                    "dry": "Sec",
+                    "comfortable": "Còmode",
+                    "damp": "Humit",
+                    "smoothing": "Allisant",
+                    "cleaned": "Netejat",
+                    "cold_water_unavailable": "Aigua freda no disponible",
+                    "drain": "Desguàs",
+                    "drain_cold_water": "Desguàs d'aigua freda",
+                    "drain_hot_water": "Desguàs d'aigua calenta",
+                    "drain_normal_water": "Desguàs d'aigua normal",
+                    "high_temperature_emptying": "Buidatge a alta temperatura",
+                    "high_temperature_emptied": "Buidatge a alta temperatura completat"
                 }
             },
             "time_remaining": {
                 "name": "Temps restant"
+            },
+            "time_remaining_x": {
+                "name": "Temps restant {x}"
             },
             "current_x": {
                 "name": "Corrent {x}"
@@ -443,15 +507,19 @@
             },
             "power_x": {
                 "name": "Potència {x}"
+            },
+            "filter_life": {
+                "name": "Vida útil del filtre"
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Roba eixuta",
-                            "purify": "Purifica"
+                            "purify": "Purifica",
+                            "continuous": "Continu"
                         }
                     }
                 }
@@ -473,7 +541,7 @@
                     }
                 }
             },
-            "dehumidifier":{
+            "dehumidifier": {
                 "name": "Deshumidificador",
                 "state_attributes": {
                     "preset_mode": {
@@ -496,6 +564,10 @@
                             "sleep": "Dorm",
                             "smart": "Intel·ligent",
                             "strong": "Fort",
+                            "custom": "Personalitzat",
+                            "auto": "Automàtic",
+                            "manual": "Manual",
+                            "program": "Programa",
                             "high": "Alt",
                             "medium": "Mitjà",
                             "low": "Baix",
@@ -514,10 +586,14 @@
                             "circulate": "Circula",
                             "sleep": "Dorm",
                             "auto": "Automàtic",
+                            "manual": "Manual",
                             "eco": "Ecològic",
                             "anti-condensation": "Anticondensació",
                             "extractor": "Extractor",
-                            "heat_recovery": "Recuperació de calor"
+                            "heat_recovery": "Recuperació de calor",
+                            "timer": "Temporitzador",
+                            "on": "Activat",
+                            "off": "Desactivat"
                         }
                     }
                 }
@@ -529,11 +605,29 @@
             }
         },
         "number": {
+            "manual_feed": {
+                "name": "Alimentació manual"
+            },
+            "maximum_temperature": {
+                "name": "Temperatura màxima"
+            },
+            "minimum_temperature": {
+                "name": "Temperatura mínima"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} llindar"
+            },
+            "temperature_calibration": {
+                "name": "Calibració de temperatura"
+            },
             "timer": {
                 "name": "Temporitzador"
             },
             "timer_x": {
                 "name": "Temporitzador {x}"
+            },
+            "volume": {
+                "name": "Volum"
             }
         },
         "select": {
@@ -547,6 +641,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Mode de bomba de calor",
+                "state": {
+                    "heat": "Escalfament",
+                    "cool": "Refredament",
+                    "auto": "Automàtic",
+                    "floor_heat": "Escalfament de terra",
+                    "off": "Apagat",
+                    "hotwater": "Aigua calenta",
+                    "hotwater_cool": "Aigua calenta i refredament",
+                    "hotwater_heat": "Aigua calenta i escalfament",
+                    "hotwater_auto": "Aigua calenta i automàtic",
+                    "hotwater_floor_heat": "Aigua calenta i escalfament de terra"
+                }
+            },
             "initial_state": {
                 "name": "Estat inicial",
                 "state": {
@@ -555,11 +664,33 @@
                     "memory": "Memòria"
                 }
             },
+            "kettle_mode": {
+                "name": "Mode de bullidor",
+                "state": {
+                    "off": "Apagat",
+                    "heat": "Escalfament",
+                    "boil": "Ebullició",
+                    "quick_heat": "Calor ràpida",
+                    "quick_boil": "Ebullició ràpida",
+                    "keep_warm": "Conserva l'escalfor",
+                    "custom": "Personalitzat",
+                    "dechlorinate": "Descloració",
+                    "black_tea": "Te negre",
+                    "green_tea": "Te verd",
+                    "coffee": "Cafè",
+                    "honey_water": "Aigua amb mel",
+                    "infant_formula": "Fórmula infantil",
+                    "white_tea": "Te blanc",
+                    "oolong_tea": "Te oolong",
+                    "water": "Aigua"
+                }
+            },
             "language": {
                 "name": "Llengua",
                 "state": {
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -570,7 +701,20 @@
                     "chinese": "中文",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "russian": "Русский"
+                    "russian": "Русский",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "Mode de llum",
+                "state": {
+                    "off": "Apagat",
+                    "on": "Activat",
+                    "state": "Estat",
+                    "locator": "Localitzador",
+                    "auto": "Automàtic",
+                    "flash": "Destell"
                 }
             },
             "mopping": {
@@ -578,6 +722,16 @@
                 "state": {
                     "off": "Desactivat",
                     "auto": "Automàtic",
+                    "low": "Baix",
+                    "medium": "Mitjà",
+                    "high": "Alt",
+                    "very_high": "Molt alt"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "Sensibilitat de moviment",
+                "state": {
+                    "off": "Desactivat",
                     "low": "Baix",
                     "medium": "Mitjà",
                     "high": "Alt"
@@ -634,13 +788,36 @@
                 "state": {
                     "cancel": "Cancel·la",
                     "continuous": "Continu",
+                    "15s": "15 segons",
+                    "20s": "20 segons",
+                    "30s": "30 segons",
+                    "45s": "45 segons",
+                    "1m": "1 minut",
+                    "2m": "2 minuts",
+                    "3m": "3 minuts",
                     "5m": "5 minuts",
                     "10m": "10 minuts",
+                    "15m": "15 minuts",
                     "20m": "20 minuts",
+                    "25m": "25 minuts",
                     "30m": "30 minuts",
+                    "35m": "35 minuts",
                     "40m": "40 minuts",
+                    "45m": "45 minuts",
+                    "50m": "50 minuts",
+                    "55m": "55 minuts",
                     "1h": "1 hora",
+                    "1h5m": "1 hora 5 minuts",
+                    "1h10m": "1 hora 10 minuts",
+                    "1h15m": "1 hora 15 minuts",
+                    "1h20m": "1 hora 20 minuts",
+                    "1h25m": "1 hora 25 minuts",
                     "1h30m": "1 hora 30 minuts",
+                    "1h35m": "1 hora 35 minuts",
+                    "1h40m": "1 hora 40 minuts",
+                    "1h45m": "1 hora 45 minuts",
+                    "1h50m": "1 hora 50 minuts",
+                    "1h55m": "1 hora 55 minuts",
                     "2h": "2 hores",
                     "2h30m": "2 hores 30 minuts",
                     "3h": "3 hores",
@@ -674,7 +851,14 @@
                     "24h": "24 hores",
                     "36h": "36 hores",
                     "48h": "48 hores",
-                    "72h": "72 hores"
+                    "72h": "72 hores",
+                    "1d": "1 dia",
+                    "2d": "2 dies",
+                    "3d": "3 dies",
+                    "4d": "4 dies",
+                    "5d": "5 dies",
+                    "6d": "6 dies",
+                    "7d": "7 dies"
                 }
             },
             "temperature_unit": {
@@ -682,6 +866,126 @@
                 "state": {
                     "celsius": "Centígrads",
                     "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} acció",
+                "state": {
+                    "ignore": "Ignora",
+                    "alarm": "Alarma",
+                    "trip_breaker": "Trenca-circuit"
+                }
+            },
+            "mode": {
+                "name": "Mode",
+                "state": {
+                    "auto": "Automàtic",
+                    "manual": "Manual",
+                    "off": "Apagat",
+                    "low": "Baix",
+                    "medium": "Mitjà",
+                    "high": "Alt",
+                    "rapid_clean": "Neteja ràpida",
+                    "schedule": "Programa"
+                }
+            },
+            "activation_mode": {
+                "name": "Mode d'activació",
+                "state": {
+                    "normal": "Normal",
+                    "smart": "Intel·ligent",
+                    "night": "Nit",
+                    "motion": "Moviment",
+                    "off": "Apagat"
+                }
+            },
+            "bidet_mode": {
+                "name": "Mode de bidet",
+                "state": {
+                    "normal": "Normal",
+                    "dry": "Assecat",
+                    "child": "Infantil"
+                }
+            },
+            "curtain_mode": {
+                "name": "Mode de cortina",
+                "state": {
+                    "morning": "Matí",
+                    "night": "Nit"
+                }
+            },
+            "chlorination_mode": {
+                "name": "Mode de cloració",
+                "state": {
+                    "inverter": "Inversor",
+                    "auto_ph": "pH automàtic",
+                    "smart": "Intel·ligent",
+                    "manual": "Manual"
+                }
+            },
+            "alarm_mode": {
+                "name": "Mode d'alarma",
+                "state": {
+                    "sound": "So",
+                    "light": "Llum",
+                    "sound_and_light": "So i llum"
+                }
+            },
+            "air_mode": {
+                "name": "Mode d'aire",
+                "state": {
+                    "dehumidify": "Deshumidifica",
+                    "purify": "Purifica",
+                    "dehumidify_and_purify": "Deshumidifica i purifica"
+                }
+            },
+            "cleaning_mode": {
+                "name": "Mode de neteja",
+                "state": {
+                    "sweep": "Escombrat",
+                    "mop": "Fregat",
+                    "sweep_and_mop": "Escombrat i fregat",
+                    "intensive": "Intensiu",
+                    "quiet": "Silenciós",
+                    "sweep_before_mopping": "Escombrat abans de fregar"
+                }
+            },
+            "washing_mode": {
+                "name": "Mode de rentat",
+                "state": {
+                    "fruit": "Fruita",
+                    "intensive": "Intensiu",
+                    "rapid": "Ràpid",
+                    "eco": "Ecològic",
+                    "standard": "Estàndard",
+                    "neutral": "Neutral",
+                    "90_minute": "90 minuts",
+                    "glass": "Vidre",
+                    "auto": "Automàtic",
+                    "soak": "Remull",
+                    "self_clean": "Autoneteja",
+                    "hygiene": "Higiene",
+                    "party": "Festa",
+                    "baby_care": "Cura del nadó"
+                }
+            },
+            "menu": {
+                "name": "Menú",
+                "state": {
+                    "home": "Inici",
+                    "mode": "Mode",
+                    "recode": "Recepta",
+                    "settings": "Configuració"
+                }
+            },
+            "charging_mode": {
+                "name": "Mode de càrrega",
+                "state": {
+                    "immediate": "Immediat",
+                    "charge_to_percent": "Carrega fins al percentatge",
+                    "fixed_charge": "Càrrega fixa",
+                    "scheduled_charge": "Càrrega programada",
+                    "delayed_charge": "Càrrega retardada"
                 }
             },
             "oven_built_in_recipe": {
@@ -725,6 +1029,25 @@
             "anti_frost": {
                 "name": "Antigel"
             },
+            "auto_clean": {
+                "name": "Neteja automàtica"
+            },
+            "auto_light": {
+                "name": "Llum automàtica"
+            },
+            "breaker": {
+                "name": "Trenca-circuit",
+                "state": {
+                    "on": "Trencat",
+                    "off": "Normal"
+                }
+            },
+            "do_not_disturb": {
+                "name": "No molestar"
+            },
+            "flip_image": {
+                "name": "Gira la imatge"
+            },
             "evaporator_cleaning": {
                 "name": "Neteja de l'evaporador"
             },
@@ -753,6 +1076,30 @@
         "text": {
             "scene": {
                 "name": "Escena"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Temporitzador"
+            },
+            "timer_x": {
+                "name": "Temporitzador {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Vàlvula {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Escalfador d'aigua"
+            },
+            "kettle": {
+                "name": "Bullidor d'aigua"
+            },
+            "hot_water": {
+                "name": "Aigua calenta"
             }
         }
     }

@@ -20,7 +20,7 @@ entities:
           min: 10
           max: 1000
   - entity: select
-    name: Bulb Type
+    name: Bulb type
     category: config
     dps:
       - id: 4
@@ -33,21 +33,16 @@ entities:
             value: Incandescent
           - dps_val: led
             value: LED
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 6
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     category: config
     translation_key: initial_state
@@ -63,7 +58,7 @@ entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator Light
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -71,8 +66,8 @@ entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
           - dps_val: pos
-            value: Indicate switch location
+            value: locator
           - dps_val: relay
-            value: Indicate switch on/off
+            value: state

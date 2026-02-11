@@ -96,9 +96,8 @@ entities:
         name: holiday_duration
         hidden: true
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
@@ -126,6 +125,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean
@@ -227,10 +227,10 @@ entities:
           - scale: 10
   # Pro only entities
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
+    class: temperature
     category: config
     hidden: unavailable
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -251,10 +251,10 @@ entities:
             value: false
           - value: true
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     hidden: unavailable
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 26
         type: integer

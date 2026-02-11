@@ -1,8 +1,8 @@
 name: Robot vacuum
-# products:
-#  - id: UNKNOWN
-#    manufacturer: Airrobo
-#    model: P20
+products:
+  - id: fptshnsx98tak0zo
+    manufacturer: Airrobo
+    model: P20
 entities:
   - entity: vacuum
     dps:
@@ -15,7 +15,7 @@ entities:
         name: command
         mapping:
           - dps_val: standby
-            value: standby
+            value: stop
           - dps_val: smart
             value: smart
           - dps_val: wall_follow
@@ -45,13 +45,13 @@ entities:
           - dps_val: standby
             value: idle
           - dps_val: smart_clean
-            value: cleaning
+            value: auto
           - dps_val: wall_clean
-            value: cleaning
+            value: edge
           - dps_val: spot_clean
-            value: cleaning
+            value: spot
           - dps_val: mop_clean
-            value: cleaning
+            value: mopping
           - dps_val: goto_charge
             value: returning
           - dps_val: charging
@@ -82,6 +82,7 @@ entities:
         type: bitfield
         name: error
         optional: true
+        hidden: true
       - id: 104
         type: string
         name: serial_number
@@ -113,9 +114,8 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 9
         type: integer
@@ -170,9 +170,8 @@ entities:
         unit: min
         class: measurement
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 28
         type: integer
@@ -195,7 +194,7 @@ entities:
           - value: true
       - id: 18
         type: bitfield
-        name: error
+        name: fault_code
         optional: true
       - id: 18
         type: bitfield
@@ -213,7 +212,7 @@ entities:
           - dps_val: 8
             value: Right wheel
           - dps_val: 16
-            value: Garage box
+            value: Dustbin Removed
           - dps_val: 32
             value: Land check
           - dps_val: 64
@@ -225,7 +224,7 @@ entities:
           - dps_val: 512
             value: Safe place
           - dps_val: 1024
-            value: Empty place
+            value: Can't go through
           - dps_val: 2048
             value: Fan error
           - dps_val: 4096

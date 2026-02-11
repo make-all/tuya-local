@@ -3,6 +3,9 @@ products:
   - id: tyjxq8vanjxpn7kb
     manufacturer: Petlibro
     model: PLAF103
+  - id: e6x31cbr0cwhavv1
+    manufacturer: Petlibro
+    model: PLAF103
 entities:
   - entity: sensor
     translation_key: status
@@ -25,13 +28,17 @@ entities:
             value: feeding
           - dps_val: feed_end
             value: feeding_complete
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        name: meal_plan
-        type: string
+        type: base64
+        name: value
         optional: true
   - entity: number
-    name: Manual feed
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 3
         type: integer
@@ -42,6 +49,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

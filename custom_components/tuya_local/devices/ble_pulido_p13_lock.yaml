@@ -1,4 +1,4 @@
-name: Smart Lock
+name: Smart lock
 products:
   - id: kdq0tdbz
     manufacturer: Pulido
@@ -41,9 +41,8 @@ entities:
         optional: true
         persist: false
       - id: 47  # Lock motor state
-        name: lock
+        name: lock_state
         type: boolean
-        readonly: true
         mapping:
           - dps_val: true  # Unlocked
             value: false
@@ -125,7 +124,7 @@ entities:
     icon: "mdi:lock-clock"
     category: config
     dps:
-      - id: 26
+      - id: 36
         type: string
         name: option
         optional: true

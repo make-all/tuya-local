@@ -87,22 +87,17 @@ entities:
       - id: 25
         type: hex
         name: scene_data
-  - entity: number
+  - entity: time
     name: Light timer
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-        unit: min
   - entity: number
     name: Fan timer
     translation_key: timer

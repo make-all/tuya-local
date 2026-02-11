@@ -29,21 +29,18 @@ entities:
             value: false
           - dps_val: false
             value: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440
   - entity: select
-    name: Mode
-    icon: "mdi:dishwasher"
+    translation_key: washing_mode
     category: config
     dps:
       - id: 7
@@ -61,9 +58,9 @@ entities:
           - dps_val: intensive
             value: intensive
           - dps_val: universal
-            value: universal
+            value: standard
           - dps_val: babycare
-            value: babycare
+            value: baby_care
   - entity: sensor
     translation_key: time_remaining
     class: duration

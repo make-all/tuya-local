@@ -5,8 +5,7 @@ products:
     model: W5 / PLAF101
 entities:
   - entity: number
-    name: Manual feed
-    icon: "mdi:paw"
+    translation_key: manual_feed
     dps:
       - id: 3
         type: integer
@@ -16,10 +15,15 @@ entities:
         range:
           min: 1
           max: 12
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
       - id: 1
-        type: string
+        type: base64
+        name: value
         optional: true
-        name: meal_plan
   - entity: sensor
     translation_key: status
     class: enum
@@ -43,6 +47,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

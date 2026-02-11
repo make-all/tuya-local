@@ -1,4 +1,5 @@
-name: Goldair GPPH heater
+name: Heater
+# products: Goldair GPPH
 legacy_type: heater
 entities:
   - entity: climate
@@ -72,9 +73,6 @@ entities:
           - dps_val: "5"
             value: "5"
         name: power_level
-      - id: 102
-        type: integer
-        name: timer
       - id: 103
         type: boolean
         name: timer_mode
@@ -133,23 +131,18 @@ entities:
       - id: 6
         type: boolean
         name: lock
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 102
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - step: 60
   - entity: sensor
     name: Power level
-    class: power_factor
     icon: "mdi:signal"
     category: diagnostic
     dps:

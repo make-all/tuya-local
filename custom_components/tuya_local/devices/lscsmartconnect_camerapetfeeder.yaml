@@ -22,7 +22,7 @@ entities:
         sensitive: true
         name: snapshot
   - entity: switch
-    name: Flip image
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -33,8 +33,7 @@ entities:
             value: false
             hidden: true
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -43,11 +42,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: select
     name: Nightvision
     icon: "mdi:weather-night"
@@ -70,6 +69,7 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
@@ -80,7 +80,7 @@ entities:
           - dps_val: 1
             value: normal
           - dps_val: 2
-            value: error
+            value: fault
           - dps_val: 3
             value: full
           - dps_val: 4
@@ -130,9 +130,7 @@ entities:
           - dps_val: "2"
             value: Continuous
   - entity: number
-    name: Feed portions
-    category: config
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 231
         type: integer
@@ -149,10 +147,6 @@ entities:
         type: boolean
         optional: true
         name: history_data
-      - id: 236
-        type: string
-        optional: true
-        name: schedule
   - entity: number
     name: Portion weight
     class: weight
@@ -206,3 +200,13 @@ entities:
         mapping:
           - dps_val: "0"
             value: true
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 236
+        type: hex
+        optional: true
+        name: value

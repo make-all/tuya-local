@@ -1,17 +1,14 @@
 """Tests for Digoo DSSP202 dual switch with timers and energy monitoring"""
 
-from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD
-from ..mixins.number import MultiNumberTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -26,7 +23,9 @@ VOLTAGE_DPS = "20"
 
 
 class TestDigooDGSP202Switch(
-    MultiNumberTests, MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase
+    MultiSensorTests,
+    MultiSwitchTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
@@ -45,26 +44,6 @@ class TestDigooDGSP202Switch(
                     "dps": SWITCH2_DPS,
                     "name": "switch_outlet_2",
                     "device_class": SwitchDeviceClass.OUTLET,
-                },
-            ]
-        )
-        self.setUpMultiNumber(
-            [
-                {
-                    "dps": TIMER1_DPS,
-                    "name": "number_timer_1",
-                    "max": 1440,
-                    "scale": 60,
-                    "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.MINUTES,
-                },
-                {
-                    "dps": TIMER2_DPS,
-                    "name": "number_timer_2",
-                    "max": 1440,
-                    "scale": 60,
-                    "device_class": NumberDeviceClass.DURATION,
-                    "unit": UnitOfTime.MINUTES,
                 },
             ]
         )
@@ -97,10 +76,10 @@ class TestDigooDGSP202Switch(
         )
         self.mark_secondary(
             [
-                "number_timer_1",
-                "number_timer_2",
                 "sensor_voltage",
                 "sensor_current",
                 "sensor_power",
+                "time_timer_1",
+                "time_timer_2",
             ]
         )

@@ -1,10 +1,11 @@
-name: Pool heatpump
+name: Pool heat pump
 products:
   - id: kwrvh8zwvbbyp086
     manufacturer: Madimack
     model: Elite V3 11-40kW
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 101
         name: hvac_mode
@@ -16,7 +17,7 @@ entities:
             constraint: mode
             conditions:
               - dps_val: auto
-                value: auto
+                value: heat_cool
               - dps_val: cold
                 value: cool
               - dps_val: heating
@@ -68,7 +69,6 @@ entities:
   - entity: sensor
     category: diagnostic
     name: Power level
-    class: power_factor
     dps:
       - id: 109
         type: integer
@@ -195,13 +195,20 @@ entities:
         type: integer
         unit: P
         class: measurement
-  - entity: sensor
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    name: Fault code
     dps:
       - id: 107
-        name: sensor
         type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: power
     category: diagnostic

@@ -67,7 +67,7 @@ entities:
       - id: 110
         type: integer
         name: sensor
-        unit: µS/cm
+        unit: μS/cm
         class: measurement
       - id: 136
         type: integer
@@ -197,7 +197,7 @@ entities:
           - dps_val: null
             value: false
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     class: temperature
     category: config
     hidden: unavailable
@@ -221,7 +221,7 @@ entities:
           - dps_val: null
             value: false
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     class: temperature
     category: config
     hidden: unavailable
@@ -296,7 +296,7 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: µS/cm
+        unit: μS/cm
         range:
           min: 0
           max: 199999
@@ -318,7 +318,7 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: µS/cm
+        unit: μS/cm
         range:
           min: 0
           max: 199999

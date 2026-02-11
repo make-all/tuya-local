@@ -157,7 +157,7 @@ entities:
         optional: true
         hidden: true
   - entity: select
-    name: Mode
+    translation_key: mode
     category: config
     dps:
       - id: 3
@@ -224,7 +224,7 @@ entities:
         type: integer
         unit: m2
   - entity: switch
-    name: Disturb switch
+    translation_key: do_not_disturb
     category: config
     icon: "mdi:bell-ring"
     dps:
@@ -280,10 +280,9 @@ entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Filter time
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 121
         name: sensor

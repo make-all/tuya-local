@@ -66,20 +66,16 @@ entities:
             value: "48h"
           - dps_val: "72h"
             value: "72h"
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
       - id: 16
         type: string
         name: cycle_timer

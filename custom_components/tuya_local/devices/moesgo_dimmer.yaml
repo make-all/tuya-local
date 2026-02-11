@@ -1,7 +1,7 @@
 name: Dimmer switch
-products:
-  - id: bf450789b46e8ff48f9n6r
-    manufacturer: MoesGo
+# products:
+#   - id: UNKNOWN
+#     manufacturer: MoesGo
 entities:
   - entity: light
     dps:
@@ -43,21 +43,16 @@ entities:
             value: Incandescent
           - dps_val: halogen
             value: Halogen
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

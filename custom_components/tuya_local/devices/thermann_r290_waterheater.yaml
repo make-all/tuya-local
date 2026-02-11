@@ -1,0 +1,160 @@
+name: Water heat pump
+products:
+  - id: yyyonqkhysbmr2ov
+    manufacturer: Thermann
+    model: R290
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: water_heater
+    translation_only_key: hot_water
+    dps:
+      - id: 4
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: water
+            value: heat_pump
+          - dps_val: boost
+            value: performance
+          - dps_val: holiday
+            value: away
+          - dps_val: rescue
+            value: electric
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 65
+      - id: 3
+        type: integer
+        name: current_temperature
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    name: Holiday mode
+    icon: "mdi:palm-tree"
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Remaining holiday
+    class: duration
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: d
+  - entity: binary_sensor
+    name: Compressor
+    icon: "mdi:hvac"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan
+    icon: "mdi:fan"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Heating element
+    class: running
+    category: diagnostic
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Expansion valve position
+    icon: "mdi:pipe-valve"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Inlet water temperature
+    class: temperature
+    icon: "mdi:water-thermometer"
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Ambient temperature
+    icon: "mdi:thermometer"
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Discharge temperature
+    icon: "mdi:coolant-temperature"
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Coil temperature
+    icon: "mdi:thermometer-lines"
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Suction temperature
+    icon: "mdi:hydraulic-oil-temperature"
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: C
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor

@@ -1,0 +1,1106 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configurează dispozitivul Tuya Local",
+                "description": "Dispozitivele pot fi adăugate manual sau prin cloud cu ajutorul aplicației SmartLife.",
+                "data": {
+                    "setup_mode": "Mod de configurare:"
+                }
+            },
+            "cloud": {
+                "title": "Autentificare în Tuya",
+                "description": "Introduceți codul de utilizator SmartLife sau Tuya.\n\nPuteți găsi acest cod în aplicația SmartLife sau Tuya în **Settings** > **Account and Security**, în câmpul **User Code**. Codul este sensibil la majuscule și litere mici, asigurați-vă că îl introduceți exact cum apare în aplicație.",
+                "data": {
+                    "user_code": "Cod utilizator:"
+                }
+            },
+            "scan": {
+                "title": "Finalizați autentificarea",
+                "description": "Folosiți aplicația SmartLife sau Tuya pentru a scana următorul cod QR pentru a finaliza autentificarea.\n\nContinuați la pasul următor după ce ați finalizat acest pas în aplicație."
+            },
+            "choose_device": {
+                "title": "Alegeți dispozitivul de adăugat",
+                "description": "Vă rugăm să selectați dispozitivul de adăugat din prima listă derulantă. Dispozitivele deja adăugate nu sunt afișate.\n\nDacă dispozitivul se conectează printr-un gateway, selectați-l din lista de gateway-uri, altfel alegeți Niciunul.",
+                "data": {
+                    "device_id": "Alegeți dispozitivul:",
+                    "hub_id": "Alegeți gateway-ul:"
+                }
+            },
+            "search": {
+                "title": "Localizați adresa IP a dispozitivului",
+                "description": "Cloud-ul Tuya nu oferă adrese IP locale, așa că trebuie căutat dispozitivul în rețeaua locală. Aceasta poate dura până la 20 de secunde.\n\nDacă nu reușește, va trebui să furnizați adresa IP prin alte metode, cum ar fi din atribuirea DHCP a routerului.\n\nPentru ca acest pas și următoarea adăugare a dispozitivului să reușească, trebuie să închideți aplicația mobilă, altfel conexiunile acesteia pot bloca comunicarea Tuya Local."
+            },
+            "local": {
+                "title": "Configurează dispozitivul Tuya Local",
+                "description": "[Urmați aceste instrucțiuni pentru a găsi device id și local key.]({device_details_url})",
+                "data": {
+                    "host": "Adresă IP sau hostname",
+                    "device_id": "Device ID (sau Device ID al hub-ului pentru dispozitive conectate prin gateway)",
+                    "local_key": "Cheie locală",
+                    "protocol_version": "Versiunea protocolului (încercați auto dacă nu este cunoscută)",
+                    "poll_only": "Doar interogare (încercați dacă dispozitivul nu funcționează complet)",
+                    "device_cid": "Sub-device node_id sau uuid (pentru dispozitive conectate prin gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Alege tipul dispozitivului",
+                "description": "Alegeți tipul care corespunde dispozitivului dvs.",
+                "data": {
+                    "type": "Tip dispozitiv"
+                }
+            },
+            "choose_entities": {
+                "title": "Detalii dispozitiv",
+                "description": "Alegeți un nume pentru acest dispozitiv",
+                "data": {
+                    "name": "Nume"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Un dispozitiv cu acest ID a fost deja adăugat.",
+            "not_supported": "Ne pare rău, acest dispozitiv nu este suportat.",
+            "no_devices": "Nu a fost posibilă găsirea niciunui dispozitiv neînregistrat pentru cont."
+        },
+        "error": {
+            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele sunt incorecte.",
+            "does_not_need_hub": "Dispozitivul nu necesită gateway și unul a fost selectat. Vă rugăm să revizuiți alegerea.",
+            "needs_hub": "Dispozitivul necesită gateway și nu a fost selectat niciunul."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configurare dispozitiv asistată de cloud SmartLife.",
+                "manual": "Furnizați manual informațiile de conectare ale dispozitivului.",
+                "cloud_fresh_login": "Configurare dispozitiv asistată de cloud SmartLife cu autentificare nouă."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Configurează dispozitivul Tuya Local",
+                "description": "[Urmați aceste instrucțiuni pentru a găsi cheia locală.]({device_details_url})",
+                "data": {
+                    "host": "Adresă IP sau hostname",
+                    "local_key": "Cheie locală",
+                    "protocol_version": "Versiunea protocolului (încercați auto dacă nu este cunoscută)",
+                    "poll_only": "Doar interogare (încercați dacă dispozitivul nu funcționează complet)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele sunt incorecte."
+        },
+        "abort": {
+            "not_supported": "Ne pare rău, acest dispozitiv nu este suportat."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "direction": {
+                "name": "Direcție",
+                "state": {
+                    "off": "Intrare",
+                    "on": "Ieșire"
+                }
+            },
+            "defrost": {
+                "name": "Dezghețare",
+                "state": {
+                    "off": "Normal",
+                    "on": "Dezghețare"
+                }
+            },
+            "tank_empty": {
+                "name": "Rezervor",
+                "state": {
+                    "off": "OK",
+                    "on": "Gol"
+                }
+            },
+            "tank_full": {
+                "name": "Rezervor",
+                "state": {
+                    "off": "OK",
+                    "on": "Plin"
+                }
+            },
+            "wake": {
+                "name": "Trezire",
+                "state": {
+                    "off": "În repaus",
+                    "on": "Activ"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Protecție supraîncălzire cameră (peste 290°C)",
+                            "e2": "E2: Protecție supraîncălzire tavă de evaporare (peste 200°C)",
+                            "e3": "E3: Protecție temperatură scăzută cameră (sub 35°C)",
+                            "e4": "E4: Protecție temperatură scăzută tavă evaporare (sub 35°C)",
+                            "e5": "E5: Eroare conexiune senzor (circuit deschis)",
+                            "e6": "E6: Defecțiune senzor (scurtcircuit)",
+                            "e7": "E7: Eroare comunicare placă afișaj",
+                            "e8": "E8: Rezervor apă deschis (CN7) sau tavă evaporare uscată (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Resetare fabrică"
+            },
+            "filter_reset": {
+                "name": "Resetare filtru"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "name": "Aer condiționat",
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Sănătos",
+                            "medhigh": "Mediu-Înalt",
+                            "medlow": "Mediu-Jos",
+                            "natural": "Natural",
+                            "quiet": "Silențios",
+                            "sleep": "Somn",
+                            "strong": "Puternic"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Foarte sus",
+                            "top": "Sus",
+                            "middle": "Mijloc",
+                            "down": "Jos",
+                            "downmost": "Foarte jos",
+                            "upper_half": "Jumătatea superioară",
+                            "lower_half": "Jumătatea inferioară",
+                            "surround": "În jur"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Foarte stânga",
+                            "left": "Stânga",
+                            "center": "Centru",
+                            "right": "Dreapta",
+                            "rightmost": "Foarte dreapta",
+                            "left_swing": "Oscilație stânga",
+                            "right_swing": "Oscilație dreapta",
+                            "center_swing": "Oscilație centru",
+                            "surround": "În jur",
+                            "direct": "Direct"
+                        }
+                    }
+                }
+            },
+            "cold_water": {
+                "name": "Apă rece"
+            },
+            "thermostat": {
+                "name": "Termostat",
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Ciclu"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manual",
+                            "program": "Program",
+                            "temp_override": "Suprascriere temporară",
+                            "perm_override": "Suprascriere permanentă"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Aer rece",
+                            "fan_only": "Ventilator",
+                            "heat": "Aer cald",
+                            "floor_cool": "Răcire podea",
+                            "floor_heat": "Încălzire podea"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "name": "Încălzitor",
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Nivel încălzire",
+                        "state": {
+                            "stop": "Stop",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Încălzire inteligentă",
+                            "quick_heat": "Încălzire rapidă",
+                            "quiet_heat": "Încălzire silențioasă",
+                            "smart_cool": "Răcire inteligentă",
+                            "quick_cool": "Răcire rapidă",
+                            "quiet_cool": "Răcire silențioasă",
+                            "auto": "Auto",
+                            "smart": "Inteligent",
+                            "quick": "Rapid",
+                            "quiet": "Silențios"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Încălzitor",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Scăzut",
+                            "medium": "Mediu",
+                            "high": "Ridicat",
+                            "program_1": "Program 1",
+                            "program_2": "Program 2",
+                            "program_3": "Program 3",
+                            "standby": "În așteptare",
+                            "fan_only": "Doar ventilator"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pauză"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Abur sănătos",
+                            "fresh_steam": "Abur proaspăt",
+                            "high_temp_steam": "Abur la temperatură înaltă",
+                            "stew": "Tocană",
+                            "bake_up_and_down": "Copt sus-jos",
+                            "bbq": "Grătar",
+                            "bottom_hot_air": "Aer cald inferior",
+                            "on_strong_roast": "Prăjire puternică",
+                            "3d_hot_air": "3D Aer cald",
+                            "air_fry": "Prăjire cu aer",
+                            "steam_frying": "Prăjire cu abur",
+                            "one_click_bread": "Pâine într-un click",
+                            "quick_heat": "Încălzire rapidă",
+                            "keep_warm": "Menține cald",
+                            "unfreeze": "Dezghețare",
+                            "fermentation": "Fermentare",
+                            "descale": "Decalcifiere",
+                            "local_recipes": "Rețete locale",
+                            "drying": "Uscare",
+                            "custom": "Personalizat",
+                            "low_steaming": "Aburire redusă",
+                            "medium_steaming": "Aburire medie",
+                            "high_steaming": "Aburire intensă"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "extended": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Uscare rufe",
+                            "purify": "Purificare",
+                            "continuous": "Continuu"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Difuzor aromă",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Scăzut",
+                            "medium": "Mediu",
+                            "high": "Ridicat",
+                            "continuous": "Continuu",
+                            "intermittent": "Intermitent",
+                            "timer": "Temporizator"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "Dezumidificator",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "Purificare",
+                            "dehumidify": "Dezumidificare"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "name": "Ventilator",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "Pentru bebeluși",
+                            "fresh": "Proaspăt",
+                            "nature": "Natural",
+                            "normal": "Normal",
+                            "sleep": "Somn",
+                            "smart": "Inteligent",
+                            "strong": "Puternic",
+                            "custom": "Personalizat",
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "program": "Program",
+                            "high": "Ridicat",
+                            "medium": "Mediu",
+                            "low": "Scăzut",
+                            "displayoff": "Afișaj oprit",
+                            "off": "Oprit"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Ventilație",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Aer proaspăt",
+                            "circulate": "Circulare",
+                            "sleep": "Somn",
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "eco": "Eco",
+                            "anti-condensation": "Anti-condens",
+                            "extractor": "Extractor",
+                            "heat_recovery": "Recuperare căldură",
+                            "timer": "Temporizator",
+                            "on": "Pornit",
+                            "off": "Oprit"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Iluminare de fundal"
+            },
+            "display": {
+                "name": "Afișaj"
+            },
+            "embers": {
+                "name": "Jar"
+            },
+            "flame": {
+                "name": "Flacără"
+            },
+            "indicator": {
+                "name": "Indicator"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Jurnale"
+            },
+            "nightlight": {
+                "name": "Lumină de noapte"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Blocare copii"
+            }
+        },
+        "number": {
+            "manual_feed": {
+                "name": "Hrănire manuală"
+            },
+            "maximum_temperature": {
+                "name": "Temperatură maximă"
+            },
+            "minimum_temperature": {
+                "name": "Temperatură minimă"
+            },
+            "sensor_threshold": {
+                "name": "Prag {sensor}"
+            },
+            "temperature_calibration": {
+                "name": "Calibrare temperatură"
+            },
+            "timer": {
+                "name": "Temporizator"
+            },
+            "timer_x": {
+                "name": "Temporizator {x}"
+            },
+            "volume": {
+                "name": "Volum"
+            }
+        },
+        "select": {
+            "currency": {
+                "name": "Monedă",
+                "state": {
+                    "usd": "USD",
+                    "eur": "EUR",
+                    "cny": "CNY",
+                    "cad": "CAD",
+                    "gbp": "GBP"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "Mod pompă de căldură",
+                "state": {
+                    "off": "Oprit",
+                    "heat": "Încălzire",
+                    "cool": "Răcire",
+                    "floor_heat": "Încălzire pardoseală",
+                    "auto": "Auto",
+                    "hotwater": "Apă caldă",
+                    "hotwater_cool": "Apă caldă & Răcire",
+                    "hotwater_heat": "Apă caldă & Încălzire",
+                    "hotwater_auto": "Apă caldă & Auto",
+                    "hotwater_floor_heat": "Apă caldă & Încălzire pardoseală"
+                }
+            },
+            "initial_state": {
+                "name": "Stare inițială",
+                "state": {
+                    "off": "Oprit",
+                    "on": "Pornit",
+                    "memory": "Memorie"
+                }
+            },
+            "kettle_mode": {
+                "name": "Mod fierbător",
+                "state": {
+                    "off": "Oprit",
+                    "heat": "Încălzire",
+                    "boil": "Fierbere",
+                    "quick_heat": "Încălzire rapidă",
+                    "quick_boil": "Fierbere rapidă",
+                    "keep_warm": "Menține cald",
+                    "custom": "Personalizat",
+                    "dechlorinate": "Declorinare",
+                    "black_tea": "Ceai negru",
+                    "green_tea": "Ceai verde",
+                    "coffee": "Cafea",
+                    "honey_water": "Apă cu miere",
+                    "infant_formula": "Formula sugari",
+                    "white_tea": "Ceai alb",
+                    "oolong_tea": "Ceai oolong",
+                    "water": "Apă"
+                }
+            },
+            "language": {
+                "name": "Limbă",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "english_child": "English (Child)",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "Mod lumină",
+                "state": {
+                    "off": "Oprit",
+                    "on": "Pornit",
+                    "state": "Stare",
+                    "locator": "Locator",
+                    "auto": "Auto",
+                    "flash": "Flash"
+                }
+            },
+            "mopping": {
+                "name": "Mop",
+                "state": {
+                    "off": "Oprit",
+                    "auto": "Auto",
+                    "low": "Scăzut",
+                    "medium": "Mediu",
+                    "high": "Ridicat",
+                    "very_high": "Foarte ridicat"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "Sensibilitate mișcare",
+                "state": {
+                    "off": "Oprit",
+                    "low": "Scăzut",
+                    "medium": "Mediu",
+                    "high": "Ridicat"
+                }
+            },
+            "recipe": {
+                "name": "Rețetă",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Cartofi prăjiți",
+                    "chicken": "Pui",
+                    "shrimp": "Creveți",
+                    "fish": "Pește",
+                    "chicken_drumsticks": "Pulpe de pui",
+                    "vegetables": "Legume",
+                    "desserts": "Deserturi",
+                    "none": "Niciuna",
+                    "chicken_wings": "Aripioare de pui",
+                    "steak": "Friptură",
+                    "onion_rings": "Inele de ceapă",
+                    "bacon": "Şuncă",
+                    "cake": "Prăjitură",
+                    "bread": "Pâine",
+                    "toast": "Pâine prăjită",
+                    "sausage": "Cârnat",
+                    "dry_fruit": "Fructe uscate",
+                    "custom": "Personalizat",
+                    "cloud_recipe": "Rețetă cloud",
+                    "default": "Implicit",
+                    "keep_warm": "Menține cald",
+                    "preheat": "Preîncălzire"
+                }
+            },
+            "scene": {
+                "name": "Scenă",
+                "state": {
+                    "relax": "Relaxare",
+                    "movie": "Film",
+                    "party": "Petrecere",
+                    "romantic": "Romantic",
+                    "night": "Noapte",
+                    "morning": "Dimineață",
+                    "working": "Serviciu",
+                    "leisure": "Timp liber",
+                    "vacation": "Vacanță",
+                    "reading": "Citit",
+                    "twinkle": "Sclipire",
+                    "gaming": "Joacă",
+                    "none": "Niciuna"
+                }
+            },
+            "timer": {
+                "name": "Temporizator",
+                "state": {
+                    "cancel": "Anulează",
+                    "continuous": "Continuu",
+                    "15s": "15 secunde",
+                    "20s": "20 secunde",
+                    "30s": "30 secunde",
+                    "45s": "45 secunde",
+                    "1m": "1 minut",
+                    "2m": "2 minute",
+                    "3m": "3 minute",
+                    "5m": "5 minute",
+                    "10m": "10 minute",
+                    "15m": "15 minute",
+                    "20m": "20 minute",
+                    "25m": "25 minute",
+                    "30m": "30 minute",
+                    "35m": "35 minute",
+                    "40m": "40 minute",
+                    "45m": "45 minute",
+                    "50m": "50 minute",
+                    "55m": "55 minute",
+                    "1h": "1 oră",
+                    "1h5m": "1 oră 5 minute",
+                    "1h10m": "1 oră 10 minute",
+                    "1h15m": "1 oră 15 minute",
+                    "1h20m": "1 oră 20 minute",
+                    "1h25m": "1 oră 25 minute",
+                    "1h30m": "1 oră 30 minute",
+                    "1h35m": "1 oră 35 minute",
+                    "1h40m": "1 oră 40 minute",
+                    "1h45m": "1 oră 45 minute",
+                    "1h50m": "1 oră 50 minute",
+                    "1h55m": "1 oră 55 minute",
+                    "2h": "2 ore",
+                    "2h30m": "2 ore 30 minute",
+                    "3h": "3 ore",
+                    "3h30m": "3 ore 30 minute",
+                    "4h": "4 ore",
+                    "4h30m": "4 ore 30 minute",
+                    "5h": "5 ore",
+                    "5h30m": "5 ore 30 minute",
+                    "6h": "6 ore",
+                    "6h30m": "6 ore 30 minute",
+                    "7h": "7 ore",
+                    "7h30m": "7 ore 30 minute",
+                    "8h": "8 ore",
+                    "8h30m": "8 ore 30 minute",
+                    "9h": "9 ore",
+                    "9h30m": "9 ore 30 minute",
+                    "10h": "10 ore",
+                    "11h": "11 ore",
+                    "12h": "12 ore",
+                    "13h": "13 ore",
+                    "14h": "14 ore",
+                    "15h": "15 ore",
+                    "16h": "16 ore",
+                    "17h": "17 ore",
+                    "18h": "18 ore",
+                    "19h": "19 ore",
+                    "20h": "20 ore",
+                    "21h": "21 ore",
+                    "22h": "22 ore",
+                    "23h": "23 ore",
+                    "24h": "24 ore",
+                    "36h": "36 ore",
+                    "48h": "48 ore",
+                    "72h": "72 ore",
+                    "1d": "1 zi",
+                    "2d": "2 zile",
+                    "3d": "3 zile",
+                    "4d": "4 zile",
+                    "5d": "5 zile",
+                    "6d": "6 zile",
+                    "7d": "7 zile"
+                }
+            },
+            "temperature_unit": {
+                "name": "Unitate temperatură",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "Acțiune {trigger}",
+                "state": {
+                    "ignore": "Ignoră",
+                    "alarm": "Alarmă",
+                    "trip_breaker": "Declanșare"
+                }
+            },
+            "mode": {
+                "name": "Mod",
+                "state": {
+                    "auto": "Auto",
+                    "manual": "Manual",
+                    "off": "Oprit",
+                    "low": "Scăzut",
+                    "medium": "Mediu",
+                    "high": "Ridicat",
+                    "rapid_clean": "Curățare rapidă",
+                    "schedule": "Program"
+                }
+            },
+            "activation_mode": {
+                "name": "Mod activare",
+                "state": {
+                    "normal": "Normal",
+                    "smart": "Inteligent",
+                    "night": "Noapte",
+                    "motion": "Mișcare",
+                    "off": "Oprit"
+                }
+            },
+            "bidet_mode": {
+                "name": "Mod bideu",
+                "state": {
+                    "normal": "Normal",
+                    "dry": "Uscare",
+                    "child": "Pentru copii"
+                }
+            },
+            "curtain_mode": {
+                "name": "Mod draperie",
+                "state": {
+                    "morning": "Dimineață",
+                    "night": "Noapte"
+                }
+            },
+            "chlorination_mode": {
+                "name": "Mod clorinare",
+                "state": {
+                    "inverter": "Invertor",
+                    "auto_ph": "pH automat",
+                    "smart": "Inteligent",
+                    "manual": "Manual"
+                }
+            },
+            "alarm_mode": {
+                "name": "Mod alarmă",
+                "state": {
+                    "sound": "Sunet",
+                    "light": "Lumină",
+                    "sound_and_light": "Sunet și lumină"
+                }
+            },
+            "air_mode": {
+                "name": "Mod aer",
+                "state": {
+                    "dehumidify": "Dezumidificare",
+                    "purify": "Purificare",
+                    "dehumidify_and_purify": "Dezumidificare și purificare"
+                }
+            },
+            "cleaning_mode": {
+                "name": "Mod curățare",
+                "state": {
+                    "sweep": "Măturare",
+                    "mop": "Mop",
+                    "sweep_and_mop": "Măturare și mop",
+                    "intensive": "Intensiv",
+                    "quiet": "Silențios",
+                    "sweep_before_mopping": "Măturare înainte de mop"
+                }
+            },
+            "washing_mode": {
+                "name": "Mod spălare",
+                "state": {
+                    "fruit": "Fructe",
+                    "intensive": "Intensiv",
+                    "rapid": "Rapid",
+                    "eco": "Eco",
+                    "standard": "Standard",
+                    "neutral": "Neutru",
+                    "90_minute": "90 minute",
+                    "glass": "Sticlă",
+                    "auto": "Auto",
+                    "soak": "Înmuiere",
+                    "self_clean": "Auto-curățare",
+                    "hygiene": "Igienă",
+                    "party": "Petrecere",
+                    "baby_care": "Îngrijire bebeluși"                    
+                }
+            },
+            "menu": {
+                "name": "Meniu",
+                "state": {
+                    "home": "Acasă",
+                    "mode": "Mod",
+                    "recode": "Rețetă",
+                    "settings": "Setări"
+                }
+            },
+            "charging_mode": {
+                "name": "Mod încărcare",
+                "state": {
+                    "immediate": "Imediat",
+                    "charge_to_percent": "Încarcă până la procent",
+                    "fixed_charge": "Încărcare fixă",
+                    "scheduled_charge": "Încărcare programată",
+                    "delayed_charge": "Încărcare întârziată"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Rețetă încorporată",
+                "state": {
+                    "none": "Niciuna",
+                    "steamed_egg_with_okra": "Ou aburit cu okra",
+                    "steamed_sea_bass": "Biban de mare la abur",
+                    "steamed_prawns": "Creveți la abur",
+                    "handmade_steamed_bread": "Pâine făcută manual la abur",
+                    "fan_steamed_baby_vegetables": "Legume tinere la abur (cu ventilator)",
+                    "braised_pork": "Porc înăbușit",
+                    "snow_fungus_and_bird_s_nest": "Ciupercă de zăpadă și cuib de pasăre",
+                    "crab_pot": "Crab în oală",
+                    "potato_ribs": "Coaste cu cartofi",
+                    "coconut_chicken_soup": "Supă de pui cu cocos",
+                    "snack_platter": "Platou gustări",
+                    "chicken_skewers": "Frigărui de pui",
+                    "roasted_pork_knuckle": "Ciolan de porc prăjit",
+                    "dried_lemon": "Lămâie uscată",
+                    "pork_jerky": "Bucăți uscate de porc",
+                    "crispy_hairtail": "Pește crocant",
+                    "spicy_grilled_fish": "Pește picant la grătar",
+                    "roasted_sweet_potatoes": "Cartofi dulci copți",
+                    "roasted_chicken_wings": "Aripioare de pui prăjite",
+                    "cumin_lamb_chops": "Cotlete de miel cu chimen",
+                    "honey_grilled_chicken": "Pui la grătar cu miere",
+                    "garlic_eggplant": "Vinete cu usturoi",
+                    "portuguese_egg_tart": "Tartă portugheză cu ou",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Fulgi de cacao",
+                    "butter_cookies": "Biscuiți cu unt",
+                    "chiffon_cake": "Prăjitură chiffon",
+                    "puff_pastry": "Foietaj",
+                    "red_bean_bread": "Pâine cu fasole roșie",
+                    "milk_toast": "Toast cu lapte"
+                }
+            }
+        },
+        "sensor": {
+            "air_quality": {
+                "name": "Calitatea aerului",
+                "state": {
+                    "excellent": "Excelent",
+                    "good": "Bun",
+                    "moderate": "Mediu",
+                    "poor": "Slab",
+                    "severe": "Sever",
+                    "danger": "Periculos"
+                }
+            },
+            "status": {
+                "name": "Stare",
+                "state": {
+                    "available": "Disponibil",
+                    "plugged_in": "Conectat",
+                    "fault_unplugged": "Defecțiune (deconectat)",
+                    "charging": "Se încarcă",
+                    "discharging": "Se descarcă",
+                    "waiting": "În așteptare",
+                    "charged": "Încărcat",
+                    "fault": "Defecțiune",
+                    "paused": "Pauză",
+                    "waiting_for_authorization": "Așteaptă autorizare",
+                    "standby": "În așteptare",
+                    "heating": "Încălzește",
+                    "cooling": "Răcește",
+                    "keeping_warm": "Menține cald",
+                    "no_water": "Fără apă",
+                    "boiling": "Fierbere",
+                    "reserve_only": "Doar rezervă",
+                    "unknown": "Necunoscut",
+                    "idle": "Inactiv",
+                    "auto": "Auto",
+                    "manual": "Manual",
+                    "rain_delay": "Întârziere ploaie",
+                    "off": "Oprit",
+                    "on": "Pornit",
+                    "cooking": "Gătire",
+                    "done": "Finalizat",
+                    "door_open": "Ușă deschisă",
+                    "setting": "Setare",
+                    "pre_heating": "Preîncălzire",
+                    "scheduled": "Programat",
+                    "at_temperature": "La temperatură",
+                    "done_stage_1": "Etapa 1 terminată",
+                    "done_stage_2": "Etapa 2 terminată",
+                    "done_stage_3": "Etapa 3 terminată",
+                    "done_stage_4": "Etapa 4 terminată",
+                    "done_stage_5": "Etapa 5 terminată",
+                    "done_stage_6": "Etapa 6 terminată",
+                    "done_stage_7": "Etapa 7 terminată",
+                    "done_stage_8": "Etapa 8 terminată",
+                    "done_stage_9": "Etapa 9 terminată",
+                    "done_stage_10": "Etapa 10 terminată",
+                    "no_food": "Fără mâncare",
+                    "jammed": "Blocat",
+                    "blocked": "Blocat",
+                    "feeding": "Alimentare",
+                    "feeding_complete": "Alimentare completă",
+                    "caking": "Formare coajă",
+                    "cleaning": "Curățare",
+                    "sleep": "Somn",
+                    "sterilizing": "Sterilizare",
+                    "deodorizing": "Deodorizare",
+                    "occupied": "Ocupat",
+                    "normal": "Normal",
+                    "low": "Scăzut",
+                    "high": "Ridicat",
+                    "unwashed": "Nespălat",
+                    "pre_washing": "Pre-spălare",
+                    "washing": "Spălare",
+                    "rinsing": "Clătire",
+                    "drying": "Uscare",
+                    "air_purging": "Purificare aer",
+                    "anti_freeze": "Antigel",
+                    "close": "Închis",
+                    "monitor": "Monitor",
+                    "working": "Lucrează",
+                    "warning": "Avertizare",
+                    "starting": "Pornire",
+                    "emptying": "Golire",
+                    "resetting": "Resetare",
+                    "reverse": "Inversare",
+                    "full": "Plin",
+                    "empty": "Gol",
+                    "missing": "Lipsă",
+                    "formatting": "Formatare",
+                    "unformatted": "Neformatat",
+                    "failed": "Eșuat",
+                    "replying": "Răspuns",
+                    "playback": "Redare",
+                    "maintenance_required": "Necesită întreținere",
+                    "dry": "Uscat",
+                    "comfortable": "Confortabil",
+                    "damp": "Umed",
+                    "smoothing": "Netezire",
+                    "cleaned": "Curățat",
+                    "cold_water_unavailable": "Apă rece indisponibilă",
+                    "drain": "Drenaj",
+                    "drain_cold_water": "Drenare apă rece",
+                    "drain_hot_water": "Drenare apă caldă",
+                    "drain_normal_water": "Drenare apă normală",
+                    "high_temperature_emptying": "Golire la temperatură înaltă",
+                    "high_temperature_emptied": "Golire la temperatură înaltă finalizată"
+                }
+            },
+            "time_remaining": {
+                "name": "Timp rămas"
+            },
+            "time_remaining_x": {
+                "name": "Timp rămas {x}"
+            },
+            "cooking_status": {
+                "name": "Stare",
+                "state": {
+                    "wait": "În așteptare",
+                    "reservation": "În rezervare",
+                    "cooking": "În curs",
+                    "cancel": "Gătire anulată",
+                    "done": "Gătire finalizată",
+                    "pause": "Gătire întreruptă"
+                }
+            },
+            "water_level": {
+                "name": "Nivel apă",
+                "state": {
+                    "empty": "Gol",
+                    "low": "Scăzut",
+                    "medium": "Mediu",
+                    "high": "Ridicat",
+                    "full": "Plin"
+                }
+            },
+            "energy_produced": {
+                "name": "Energie produsă"
+            },
+            "energy_consumed": {
+                "name": "Energie consumată"
+            },
+            "energy_produced_x": {
+                "name": "Energie produsă {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energie consumată {x}"
+            },
+            "current_x": {
+                "name": "Curent {x}"
+            },
+            "voltage_x": {
+                "name": "Tensiune {x}"
+            },
+            "power_x": {
+                "name": "Putere {x}"
+            },
+            "filter_life": {
+                "name": "Durata de viață a filtrului"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Antigel"
+            },
+            "auto_clean": {
+                "name": "Curățare automată"
+            },
+            "auto_light": {
+                "name": "Lumină automată"
+            },
+            "breaker": {
+                "name": "Siguranță",
+                "state": {
+                    "off": "Deschis",
+                    "on": "Închis"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Nu deranjați"
+            },
+            "evaporator_cleaning": {
+                "name": "Curățare evaporator"
+            },
+            "flip_image": {
+                "name": "Răsucire imagine"
+            },
+            "ionizer": {
+                "name": "Ionizator"
+            },
+            "keytone": {
+                "name": "Sunet tastă"
+            },
+            "outlet_x": {
+                "name": "Priză {x}"
+            },
+            "sleep": {
+                "name": "Somn"
+            },
+            "switch_x": {
+                "name": "Comutator {x}"
+            },
+            "uv_sterilization": {
+                "name": "Sterilizare UV"
+            },
+            "electrolytic_sterilization": {
+                "name": "Sterilizare electrolitică"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "Scenă"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Temporizator"
+            },
+            "timer_x": {
+                "name": "Temporizator {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Supapă {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Încălzitor apă"
+            },
+            "kettle": {
+                "name": "Fierbător"
+            },
+            "hot_water": {
+                "name": "Apă caldă"
+            }
+        }
+    }
+}

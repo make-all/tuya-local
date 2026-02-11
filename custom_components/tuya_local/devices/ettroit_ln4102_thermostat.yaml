@@ -1,0 +1,144 @@
+name: Thermostat
+products:
+  - id: rfhbvecszj0m3ixe
+    manufacturer: Ettroit
+    model: LN4102
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 450
+        mapping:
+          - scale: 10
+      - id: 18
+        type: integer
+        name: max_temp_f
+        mapping:
+          - scale: 10
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 20
+        type: integer
+        name: min_temp_f
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: maximum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 159
+          max: 450
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 150
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+  - entity: binary_sensor
+    name: Output
+    category: diagnostic
+    dps:
+      - id: 36
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: close
+            value: false
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 44
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 8
+  - entity: select
+    name: Sensor
+    icon: "mdi:thermometer-probe"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: IN
+            value: internal
+          - dps_val: OU
+            value: external
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 5

@@ -37,10 +37,9 @@ entities:
             value: celsius
         optional: true
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 10
         type: integer
@@ -52,10 +51,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 11
         type: integer
@@ -125,9 +123,8 @@ entities:
           - dps_val: cancel
             value: Not set
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 23
         type: integer

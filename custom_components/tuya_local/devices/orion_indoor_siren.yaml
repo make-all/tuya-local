@@ -1,4 +1,4 @@
-name: Indoor Siren
+name: Indoor siren
 products:
   - id: yytgthb3nxt1zp0e
     manufacturer: Orion
@@ -43,15 +43,15 @@ entities:
           - dps_val: false
             value: disarmed
   - entity: select
-    name: Mode
+    translation_key: alarm_mode
     dps:
       - id: 19
         type: string
         name: option
         mapping:
-          - dps_val: "SOUND"
-            value: "Sound"
-          - dps_val: "Sound_Light"
-            value: "Sound+light"
-          - dps_val: "LINGHT"
-            value: "Light"
+          - dps_val: SOUND
+            value: sound
+          - dps_val: Sound_Light
+            value: sound_and_light
+          - dps_val: LINGHT
+            value: light

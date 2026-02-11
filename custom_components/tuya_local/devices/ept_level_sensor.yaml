@@ -29,6 +29,28 @@ entities:
         class: measurement
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 5
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 5
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: High level
     category: config

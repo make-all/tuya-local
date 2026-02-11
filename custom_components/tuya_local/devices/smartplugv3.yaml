@@ -9,27 +9,22 @@ entities:
       - id: 21
         type: integer
         name: test_bit
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 41
         type: string
         name: cycle_timer
       - id: 42
         type: string
         name: random_timer
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     category: diagnostic
     class: current

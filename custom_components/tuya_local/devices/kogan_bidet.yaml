@@ -26,8 +26,7 @@ entities:
         name: drying_time
         optional: true
   - entity: select
-    name: Mode
-    icon: "mdi:toilet"
+    translation_key: bidet_mode
     category: config
     dps:
       - id: 50
@@ -35,11 +34,11 @@ entities:
         name: option
         mapping:
           - dps_val: dry
-            value: Dry
+            value: dry
           - dps_val: normal
-            value: Normal
+            value: normal
           - dps_val: child
-            value: Child
+            value: child
   - entity: number
     name: Water temperature
     icon: "mdi:coolant-temperature"

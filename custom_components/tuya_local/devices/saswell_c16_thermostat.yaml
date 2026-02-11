@@ -232,7 +232,7 @@ entities:
           min: 0
           max: 3500
   - entity: sensor
-    name: Power Consumption Duration
+    name: Power consumption duration
     category: diagnostic
     icon: "mdi:clock"
     dps:
@@ -244,6 +244,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 21
         type: boolean

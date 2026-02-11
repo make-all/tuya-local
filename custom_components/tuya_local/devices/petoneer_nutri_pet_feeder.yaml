@@ -18,8 +18,7 @@ entities:
         name: button
         optional: true
   - entity: number
-    name: Manual feed
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     category: config
     dps:
       - id: 3
@@ -31,6 +30,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

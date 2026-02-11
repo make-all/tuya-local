@@ -3,6 +3,10 @@ products:
   - id: 78m2fjtcj26yab5a
     manufacturer: Calibo
     model: Cloudfan DC
+  - id: bczathc5udcd58ec
+    manufacturer: Faro Barcelona
+    model: Punt Tub
+    model_id: "33829WT-1TW"
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -23,12 +27,18 @@ entities:
       - id: 3
         name: speed
         type: integer
+        optional: true
         range:
           min: 1
           max: 6
       - id: 8
         name: direction
         type: string
+        optional: true
+        mapping:
+          - dps_val: null
+            value: forward
+            hidden: true
   - entity: light
     dps:
       - id: 15
@@ -51,11 +61,47 @@ entities:
         mapping:
           - dps_val: cancel
             value: cancel
+            available: std
           - dps_val: "1h"
             value: "1h"
+            available: std
           - dps_val: "2h"
             value: "2h"
+            available: std
           - dps_val: "4h"
             value: "4h"
+            available: std
           - dps_val: "8h"
             value: "8h"
+            available: std
+          - dps_val: "off"
+            value: cancel
+            available: hour
+          - dps_val: "1hour"
+            value: "1h"
+            available: hour
+          - dps_val: "2hour"
+            value: "2h"
+            available: hour
+          - dps_val: "4hour"
+            value: "4h"
+            available: hour
+          - dps_val: "8hour"
+            value: "8h"
+            available: hour
+      - id: 22
+        type: string
+        name: hour
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: ["off", "1hour", "2hour", "4hour", "8hour"]
+                value: true
+      - id: 22
+        type: string
+        name: std
+        mapping:
+          - value: true
+            conditions:
+              - dps_val: ["off", "1hour", "2hour", "4hour", "8hour"]
+                value: false

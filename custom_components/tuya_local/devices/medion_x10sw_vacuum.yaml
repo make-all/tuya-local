@@ -172,8 +172,7 @@ entities:
         unit: "%"
         class: measurement
   - entity: select
-    name: Mopping
-    icon: "mdi:water"
+    translation_key: mopping
     dps:
       - id: 10
         type: string
@@ -249,7 +248,7 @@ entities:
         optional: true
         name: button
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
@@ -284,7 +283,7 @@ entities:
         optional: true
         name: button
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 25
@@ -295,9 +294,8 @@ entities:
         optional: true
         name: schedule
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 26
         type: integer

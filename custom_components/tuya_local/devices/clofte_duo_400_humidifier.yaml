@@ -17,6 +17,38 @@ entities:
         range:
           min: 0
           max: 4
+  - entity: humidifier
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: current_humidity
+      - id: 106
+        type: string
+        name: humidity
+        range:
+          min: 40
+          max: 60
+        mapping:
+          - dps_val: "40"
+            value: 40
+          - dps_val: "50"
+            value: 50
+          - dps_val: "60"
+            value: 60
+          - dps_val: "null"
+            value: null
+            hidden: true
+      - id: 110
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: false
+            value: normal
+          - dps_val: true
+            value: auto
   - entity: switch
     translation_key: sleep
     dps:
@@ -41,8 +73,9 @@ entities:
     dps:
       - id: 2
         type: integer
+        optional: true
         name: sensor
-        unit: µg/m³
+        unit: ugm3
   - entity: sensor
     translation_key: water_level
     class: enum
@@ -62,10 +95,10 @@ entities:
     dps:
       - id: 11
         type: boolean
+        optional: true
         name: button
   - entity: sensor
-    name: Filter life
-    icon: mdi:air-filter
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 16
@@ -74,7 +107,89 @@ entities:
         unit: "%"
   - entity: switch
     translation_key: uv_sterilization
+    category: config
     dps:
       - id: 9
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 104
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: mon_err
+            value: Monitoring fault
+          - dps_val: door_open
+            value: Door open
+          - dps_val: ht_sensor_err
+            value: Temperature sensor fault
+          - dps_val: pm25_sensor_err
+            value: Air quality sensor fault
+          - dps_val: water_sensor_err
+            value: Water sensor fault
+          - dps_val: water_high
+            value: Tank overflow
+          - dps_val: water_low
+            value: Tank empty
+          - dps_val: no_bucket
+            value: Tank removed
+          - dps_val: filter_alert
+            value: Filter change due
+          - dps_val: show_off_app
+            value: Demo mode
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 8
+  - entity: select
+    name: Auto level
+    icon: "mdi:fan-auto"
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: A0
+            value: "off"
+          - dps_val: A1
+            value: low
+          - dps_val: A2
+            value: medium
+          - dps_val: A3
+            value: high
+          - dps_val: A4
+            value: very_high
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 115
         type: boolean
         name: switch

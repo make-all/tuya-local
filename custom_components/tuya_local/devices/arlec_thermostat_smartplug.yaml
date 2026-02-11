@@ -96,26 +96,21 @@ entities:
         name: current_humidity
   - entity: switch
     class: switch
-    name: Manual Switch
+    name: Manual switch
     dps:
       - id: 2
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 4
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     class: current
     category: diagnostic
@@ -207,24 +202,16 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:pan-vertical"
     dps:
       - id: 30
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9
-      - id: 20
-        type: string
-        name: unit
-        mapping:
-          - dps_val: c
-            value: C
-          - dps_val: f
-            value: F
   - entity: number
     name: Humidity hysteresis
     category: config

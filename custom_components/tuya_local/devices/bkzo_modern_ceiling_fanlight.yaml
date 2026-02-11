@@ -1,0 +1,234 @@
+name: Ceiling fan
+products:
+  - id: c9viutias6icmmnq
+    manufacturer: BKZO
+    model: Modern LED
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 5000
+            step: 500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+  - entity: time
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Natural
+            value: nature
+          - dps_val: Normal
+            value: normal
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: WakeUp
+            value: fresh
+      - id: 62
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        optional: true
+        name: direction
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    category: config
+    icon: "mdi:fan-clock"
+    dps:
+      - id: 64
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: switch
+    class: switch
+    name: Main switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: text
+    translation_key: scene
+    hidden: true
+    category: config
+    dps:
+      - id: 102
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ARUKUlLgAABkAMFhALQwALVSAMRj"
+            value: "Iceland Blue"
+          - dps_val: "ARYKZGRgAABkAJJfAMZg"
+            value: "Glacier express"
+          - dps_val: "ARcDXl5gAABkADgvAB5cANVFARpk"
+            value: "Sea of clouds"
+          - dps_val: "ARgCZGTgAABkALI5AQpkAS1kAT9k"
+            value: "Fireworks at sea"
+          - dps_val: "ARkKVFRgAABkALEsAMBk"
+            value: "Hut in the snow"
+          - dps_val: "ARoDS0vgAABkAOA5AQlT"
+            value: "Firefly night"
+          - dps_val: "ARsDX19gAABkAK45AMRdAPlk"
+            value: "Northland"
+          - dps_val: "ARwKWlrgAABSAJ1kAI5k"
+            value: "Grassland"
+          - dps_val: "AR0DUlLgAABkAK5kAKZkAMFkAMxk"
+            value: "Northern lights"
+          - dps_val: "AR4KUlLgAABkABlkACJeACxbABRkAAxk"
+            value: "Late autumn"
+          - dps_val: "AUcFTU0AAABkAQNFAMFD"
+            value: "Dream meteor"
+          - dps_val: "AUgGMjIAAABkAU5BAB9J"
+            value: "Early spring"
+          - dps_val: "AUkHDg4AAABkANo3AVJBAFw3"
+            value: "Spring outing"
+          - dps_val: "AUoIMjIAAABkAPdQAClPAQ04AKMn"
+            value: "Night service"
+          - dps_val: "AUsJMjIAAABkAQNFAEE6ACVLAF5C"
+            value: "Wind chime"
+          - dps_val: "AUwMMjIAAABkANhNAMFDAQNFAFw3"
+            value: "City lights"
+          - dps_val: "AU0NMjIAAABkAChkAF5CAMFkAP9Q"
+            value: "Color marbles"
+          - dps_val: "AU4OMjIAAABkAD5fAL5c"
+            value: "Summer train"
+          - dps_val: "AU8PGRkAAABkALxkAC1OAABkAGQ8"
+            value: "Christmas Eve"
+          - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
+            value: "Dream Sea"
+          - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
+            value: gaming
+          - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
+            value: vacation
+          - dps_val: "ASEDPDxgAABkAL8YAQQX"
+            value: working
+          - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
+            value: party
+          - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
+            value: "Trend"
+          - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
+            value: "Sports"
+          - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
+            value: relax
+          - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
+            value: romantic
+          - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
+            value: "Christmas"
+          - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"
+            value: "Valentine's Day"
+          - dps_val: "ASsDWlrgAABkAABXARZkANpkALNkAJVk"
+            value: "Halloween"
+          - dps_val: "ASwKSEhgAABkAD1kAQxbALpJABdh"
+            value: "Thanksgiving Day"
+          - dps_val: "AS0CWVlgAABkAJxjALxiAHtg"
+            value: "Forest Day"
+          - dps_val: "AS4DWlpgAABkAT42AQxWAR8j"
+            value: "Mother's Day"
+          - dps_val: "AS8CZGTgAABkANxCALZKAOFN"
+            value: "Father's Day"
+          - dps_val: "ATACXl5gAABkAABkAHhkALtk"
+            value: "Football Day"
+          - dps_val: "ATMDUlJgAABkAIhQANI5APsn"
+            value: "Summer idyll"
+          - dps_val: "ATQDXV1gAABkAPc2ATUrAMY0AJEp"
+            value: "Dream of the sea"
+          - dps_val: "ATUDUlJgAABNARJiATBd"
+            value: "Love and dream"
+          - dps_val: "ATYCSUlgAABkAGY8ADxJAB5k"
+            value: "Spring fishing"
+          - dps_val: "ATcKWlpgAABkADNYABhkAQBFAONeAKww"
+            value: "Neon world"
+          - dps_val: "ATgCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: "Dreamland"
+          - dps_val: "ATkDSEjgAABkAFlkALNH"
+            value: "Summer wind"
+          - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
+            value: "Planet journey"
+          - dps_val: "AcjIAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            value: "Rainbow Flowing Water"

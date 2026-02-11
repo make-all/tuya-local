@@ -5,9 +5,8 @@ products:
     model: Snow+
 entities:
   - entity: switch
-    name: Auto clean
+    translation_key: auto_clean
     category: config
-    icon: "mdi:flower"
     dps:
       - id: 4
         type: boolean
@@ -45,8 +44,7 @@ entities:
         type: boolean
         name: button
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:power-sleep"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 10
@@ -158,7 +156,7 @@ entities:
             value: Trouble removal
           - value: Unknown
   - entity: sensor
-    name: Status
+    translation_key: status
     category: diagnostic
     dps:
       - id: 24
@@ -172,7 +170,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     category: diagnostic
     class: duration
     dps:

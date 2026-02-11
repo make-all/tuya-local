@@ -10,12 +10,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 42
-        type: string
-        name: random_time
-      - id: 43
-        type: string
-        name: cycle_time
       - id: 49
         name: add_remote
         type: string
@@ -24,21 +18,22 @@ entities:
         name: list_remote
         type: string
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+      - id: 42
+        type: string
+        name: random_time
+      - id: 43
+        type: string
+        name: cycle_time
   - entity: select
     translation_key: initial_state
     category: config

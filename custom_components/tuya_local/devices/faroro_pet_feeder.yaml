@@ -3,11 +3,12 @@ products:
   - id: vglnuveujzyrpku9
     manufacturer: Faroro
     model: PF50
+  - id: g4coy3ffpt7nzchu
+    manufacturer: Faroro
+    model: PF50
 entities:
   - entity: number
-    name: Manual feed
-    icon: "mdi:food-drumstick"
-    mode: "box"
+    translation_key: manual_feed
     dps:
       - id: 3
         name: value
@@ -33,6 +34,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean
@@ -45,6 +47,7 @@ entities:
       - id: 15
         name: sensor
         type: integer
+        optional: true
   - entity: sensor
     name: Voice times
     icon: "mdi:account-voice"
@@ -71,6 +74,7 @@ entities:
       - id: 101
         name: sensor
         type: string
+        unit: "%"
         mapping:
           - dps_val: "no"
             value: 10
@@ -126,7 +130,6 @@ entities:
     name: Button portion size
     icon: "mdi:food-drumstick"
     category: config
-    mode: "box"
     dps:
       - id: 106
         name: value

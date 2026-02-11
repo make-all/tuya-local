@@ -49,23 +49,17 @@ entities:
             range:
               min: 0
               max: 1000
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
-        unit: min
         optional: true
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
   - entity: text
     translation_key: scene
     category: config

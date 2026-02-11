@@ -142,24 +142,22 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 102
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 103
         type: integer
@@ -169,10 +167,9 @@ entities:
           min: 16
           max: 50
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 104
         type: integer
@@ -182,7 +179,7 @@ entities:
           min: 5
           max: 15
   - entity: switch
-    name: Fan ECO
+    name: Fan eco
     category: config
     icon: "mdi:fan"
     dps:

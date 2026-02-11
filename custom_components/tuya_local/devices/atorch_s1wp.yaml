@@ -73,7 +73,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Cost
+    name: Total cost
     dps:
       - id: 102
         name: sensor
@@ -206,6 +206,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 115
         type: boolean
@@ -323,6 +324,7 @@ entities:
       - id: 124
         name: sensor
         type: integer
+        optional: true
         unit: s
   - entity: number
     category: config
@@ -486,7 +488,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: CPU Temperature
+    name: CPU temperature
     category: diagnostic
     class: temperature
     dps:

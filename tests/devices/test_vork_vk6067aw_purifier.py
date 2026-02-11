@@ -76,7 +76,7 @@ class TestVorkVK6267AWPurifier(
                 },
                 {
                     "dps": FILTER_DPS,
-                    "name": "sensor_filter",
+                    "name": "sensor_filter_life",
                     "unit": PERCENTAGE,
                 },
             ]
@@ -88,7 +88,7 @@ class TestVorkVK6267AWPurifier(
                 "light",
                 "select_timer",
                 "sensor_air_quality",
-                "sensor_filter",
+                "sensor_filter_life",
                 "sensor_time_remaining",
             ]
         )

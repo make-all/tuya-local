@@ -49,8 +49,7 @@ entities:
         optional: true
         name: switch
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
     dps:
       - id: 37
@@ -58,11 +57,11 @@ entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
   - entity: select
     translation_key: initial_state
     category: config

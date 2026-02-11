@@ -70,14 +70,13 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -9
           max: 9

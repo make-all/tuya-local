@@ -70,38 +70,28 @@ entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+  - entity: time
     category: config
-    name: Outlet timer
-    class: duration
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB timer
+  - entity: time
     category: config
-    class: duration
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 15
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -118,8 +108,7 @@ entities:
           - dps_val: last
             value: memory
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -128,11 +117,11 @@ entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: binary_sensor
     class: problem
     category: diagnostic

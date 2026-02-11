@@ -1,4 +1,4 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: jiiagi6aamtgbffk
     manufacturer: Proscenic
@@ -45,25 +45,24 @@ entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter usage
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:shield-bug"
     dps:
       - id: 5
         name: sensor
         type: integer
         unit: "%"
-  - entity: switch
-    name: Reset Filter
+  - entity: button
+    translation_key: filter_reset
     category: config
-    icon: "mdi:lightbulb-night"
     dps:
       - id: 11
-        name: switch
+        name: button
         type: boolean
   - entity: sensor
-    name: Filter days left
+    name: Filter remaining
     category: diagnostic
+    class: duration
     icon: "mdi:air-filter"
     dps:
       - id: 16

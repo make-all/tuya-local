@@ -21,22 +21,17 @@ entities:
             value: 75
           - dps_val: level_4
             value: 100
-  - entity: number
+  - entity: time
     name: Fan timer
-    class: duration
     category: config
     translation_key: timer
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: light
     dps:
       - id: 5
@@ -48,22 +43,17 @@ entities:
         range:
           min: 10
           max: 1000
-  - entity: number
+  - entity: time
     name: Light timer
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 7
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -79,8 +69,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Backlight
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     category: config
     dps:
       - id: 12
@@ -92,7 +81,7 @@ entities:
           - dps_val: relay
             value: state
           - dps_val: pos
-            value: position
+            value: locator
   - entity: binary_sensor
     class: problem
     category: diagnostic

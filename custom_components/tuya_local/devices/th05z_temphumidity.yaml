@@ -1,4 +1,4 @@
-name: Temperature and humidity Sensor
+name: Temperature and humidity sensor
 products:
   - id: vvmbj46n
     model: TH05Z
@@ -43,9 +43,9 @@ entities:
         name: sensor
         unit: "%"
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
+    class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 10
         type: integer
@@ -57,9 +57,9 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 11
         type: integer

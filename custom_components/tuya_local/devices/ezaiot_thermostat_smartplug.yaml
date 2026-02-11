@@ -226,10 +226,8 @@ entities:
 
   # Temperature correction
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer"
-    mode: "box"
     dps:
       - id: 18
         type: integer
@@ -237,7 +235,7 @@ entities:
         optional: true
         mapping:
           - scale: 10
-        unit: C
+        unit: °
         range:
           min: -150
           max: 150

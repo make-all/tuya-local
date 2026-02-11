@@ -1,0 +1,375 @@
+name: Camera pet feeder
+products:
+  - id: czjyrcfdgbxmta5m
+    manufacturer: Ningbo
+    model: BF314A
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+        sensitive: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 150
+        type: boolean
+        name: record
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+      - id: 109
+        type: string
+        name: capacity
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+      - id: 117
+        type: integer
+        name: state
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted
+          - dps_val: 0
+            value: Formatted
+  - entity: button
+    name: SD unmount
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: ir_mode
+            value: Infrared
+          - dps_val: color_mode
+            value: Color
+  - entity: select
+    name: Motion detect minimum interval
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 133
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1 minute"
+          - dps_val: "3"
+            value: "3 minutes"
+          - dps_val: "5"
+            value: "5 minutes"
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+      # Seems to be the same thing, and missing from log
+      - id: 113
+        type: boolean
+        optional: true
+        name: motion_recording
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Motion area
+    icon: "mdi:picture-in-picture-top-right"
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+  - entity: text
+    name: Motion area
+    category: config
+    icon: "mdi:picture-in-picture-top-right"
+    hidden: true
+    dps:
+      - id: 169
+        type: string
+        name: value
+  - entity: switch
+    name: Humanoid filter
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 185
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: alarm
+      - id: 185
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: select
+    name: Anti-flicker
+    icon: "mdi:waves"
+    category: config
+    dps:
+      - id: 188
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Disabled
+          - dps_val: "1"
+            value: "50Hz"
+          - dps_val: "2"
+            value: "60Hz"
+  - entity: switch
+    name: Smart object frame
+    category: config
+    dps:
+      - id: 198
+        type: boolean
+        name: switch
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: notify
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: button
+    name: Voice record
+    icon: "mdi:record-rec"
+    category: config
+    dps:
+      - id: 232
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Voice stop recording
+    icon: "mdi:stop-circle-outline"
+    category: config
+    dps:
+      - id: 232
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 233
+        type: string
+        optional: true
+        name: value
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 234
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 234
+        type: string
+        optional: true
+        name: description
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: "0"
+            value: Low food
+          - dps_val: "1"
+            value: Food dispensing anomaly
+  - entity: sensor
+    name: Portion size
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 235
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 236
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 20
+  - entity: event
+    name: Feeding
+    dps:
+      - id: 237
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: null
+          - value: fed
+      - id: 237
+        type: integer
+        optional: true
+        name: portions
+  - entity: switch
+    name: Log feeding
+    icon: "mdi:receipt-text-clock"
+    category: config
+    dps:
+      - id: 238
+        type: boolean
+        name: switch

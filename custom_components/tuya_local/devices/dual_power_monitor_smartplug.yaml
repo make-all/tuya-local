@@ -58,37 +58,27 @@ entities:
         force: true
         mapping:
           - scale: 10
-  - entity: number
+  - entity: time
     category: config
     translation_key: timer_x
     translation_placeholders:
       x: "1"
-    class: duration
     dps:
       - id: 10
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
     translation_key: timer_x
     translation_placeholders:
       x: "2"
-    class: duration
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

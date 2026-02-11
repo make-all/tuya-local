@@ -1,0 +1,110 @@
+name: Towel warmer
+products:
+  - id: fgzmbjxhgkuwgrav
+    manufacturer: WarmeHaus
+    model: AFD-02-TJ
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: hot
+            value: manual
+          - dps_val: cold
+            value: comfort
+          - dps_val: eco
+            value: boost
+          - dps_val: auto
+            value: program
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        optional: true
+        range:
+          min: 300
+          max: 700
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: preset_mode
+            conditions:
+              - dps_val: [cold, eco, auto]
+                invalid: true
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 1
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 5
+          max: 80
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: h
+        mapping:
+          - scale: 10
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        name: lock
+        type: boolean
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -5
+          max: 5
+  - entity: text
+    name: Program
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value

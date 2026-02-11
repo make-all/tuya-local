@@ -21,6 +21,9 @@ entities:
                 value: heat
               - dps_val: "wind"
                 value: fan_only
+              - dps_val: null
+                value: null
+                hidden: true
       - id: 2
         type: string
         name: mode
@@ -74,6 +77,8 @@ entities:
                 value: cooling
               - dps_val: wind
                 value: fan
+              - dps_val: null
+                value: null
       - id: 28
         type: string
         name: fan_mode
@@ -94,13 +99,13 @@ entities:
         type: boolean
         name: lock
   - entity: number
-    name: Temperature calibration
-    icon: "mdi:thermometer-check"
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 27
         name: value
         type: integer
+        unit: °
         range:
           min: -9
           max: 9

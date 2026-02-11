@@ -6,6 +6,9 @@ products:
   - id: zhfbsam03cs0ge5n
     manufacturer: PNI
     model: CT-400
+  - id: np9tyrarxphw5b6m
+    manufacturer: BVF
+    model: BVF-801
 entities:
   - entity: climate
     translation_key: thermostat
@@ -32,10 +35,9 @@ entities:
         type: string
         name: hvac_action
         mapping:
-          - dps_val: no_heating
-            value: idle
           - dps_val: heating
             value: heating
+          - value: idle
       - id: 24
         type: integer
         name: current_temperature
@@ -84,14 +86,34 @@ entities:
       - id: 10
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: window_opened
+            value: true
+          - value: false
   - entity: switch
     name: Window detection
     category: config
+    hidden: unavailable
     dps:
       - id: 8
         type: boolean
         optional: true
         name: switch
+      - id: 8
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: lock
     translation_key: child_lock
     category: config
@@ -134,15 +156,13 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:wrench-clock"
-    mode: slider
     dps:
       - id: 27
         name: value
         type: integer
-        unit: C
+        unit: °
         range:
           min: -100
           max: 100

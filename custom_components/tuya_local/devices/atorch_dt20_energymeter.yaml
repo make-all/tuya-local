@@ -1,0 +1,349 @@
+name: Energy meter
+products:
+  - id: 1xgihnuztyo12pqv
+    manufacturer: Atorch
+    model: DT20HBW
+entities:
+  - entity: sensor
+    class: current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 100
+  - entity: switch
+    category: config
+    name: Relay control
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        class: measurement
+        unit: "%"
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Overvoltage threshold
+    class: voltage
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 42000
+        mapping:
+          - scale: 100
+  - entity: number
+    category: config
+    name: Over temperature threshold
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 1500
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Overpower threshold
+    class: power
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 1
+          max: 252000
+  - entity: select
+    category: config
+    translation_key: language
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese
+            value: chinese
+          - dps_val: english
+            value: english
+  - entity: light
+    category: config
+    translation_key: display
+    dps:
+      - id: 108
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 9
+  - entity: light
+    category: config
+    name: Standby display
+    translation_key: display
+    dps:
+      - id: 109
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 9
+  - entity: number
+    category: config
+    class: duration
+    name: Display timeout
+    icon: "mdi:sun-clock"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 99
+  - entity: switch
+    name: Real-time data
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset data
+    category: config
+    class: restart
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset Wi-Fi
+    category: config
+    class: restart
+    hidden: true
+    dps:
+      - id: 114
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Exit settings
+    category: config
+    icon: "mdi:exit-run"
+    dps:
+      - id: 116
+        type: boolean
+        name: button
+        optional: true
+  - entity: select
+    name: Display control
+    icon: "mdi:menu"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: front
+            value: Measurement
+          - dps_val: back
+            value: Settings
+          - dps_val: display_off
+            value: "Off"
+  - entity: number
+    name: Undervoltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 42000
+        mapping:
+          - scale: 100
+  - entity: number
+    category: config
+    name: Mini measure amp
+    icon: "mdi:resize-bottom-right"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: mA
+        range:
+          min: 2
+          max: 99
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 1000
+  - entity: number
+    category: config
+    name: Data refresh interval
+    class: duration
+    icon: "mdi:timer-refresh-outline"
+    dps:
+      - id: 125
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 90
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 132
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: ""
+            value: false
+          - value: true
+      - id: 132
+        type: string
+        optional: true
+        name: description
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: ""
+            value: ok
+          - dps_val: "off"
+            value: "off"
+          - dps_val: ovp
+            value: Over voltage
+          - dps_val: opp
+            value: Over power
+          - dps_val: lvp
+            value: Under voltage
+          - dps_val: otp
+            value: Over temperature
+  - entity: sensor
+    name: Total charge
+    dps:
+      - id: 133
+        name: sensor
+        type: integer
+        class: total
+        unit: Ah
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Resistance
+    icon: "mdi:omega"
+    dps:
+      - id: 134
+        name: sensor
+        type: integer
+        class: measurement
+        unit: Ω
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 122
+        name: sensor
+        type: integer
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: CPU temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 135
+        name: sensor
+        type: integer
+        class: measurement
+        unit: C
+  - entity: select
+    name: Shunt size
+    category: config
+    icon: "mdi:resize"
+    dps:
+      - id: 136
+        type: string
+        name: option
+        mapping:
+          - dps_val: 30A
+            value: "30 amp"
+          - dps_val: 100A
+            value: "100 amp"
+          - dps_val: 200A
+            value: "200 amp"
+          - dps_val: 300A
+            value: "300 amp"
+          - dps_val: 400A
+            value: "400 amp"
+          - dps_val: 500A
+            value: "500 amp"
+          - dps_val: 600A
+            value: "600 amp"
+          - dps_val: 1000A
+            value: "1000 amp"

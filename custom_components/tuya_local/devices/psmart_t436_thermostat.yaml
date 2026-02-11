@@ -74,10 +74,9 @@ entities:
           - dps_val: high
             value: high
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -91,10 +90,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         type: integer
@@ -108,9 +106,8 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
@@ -123,6 +120,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

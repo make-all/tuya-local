@@ -112,9 +112,8 @@ entities:
         range:
           min: 0
           max: 999999999
-  - entity: number
+  - entity: time
     name: Cooking time
-    class: duration
     translation_key: timer
     dps:
       - id: 1
@@ -122,8 +121,7 @@ entities:
         name: available
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440

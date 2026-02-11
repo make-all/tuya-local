@@ -1,11 +1,16 @@
 name: Energy monitoring smartplug
 legacy_type: kogan_switch
 products:
-  - id: 370053454855194e5607
+  - id: "370053454855194e5607"
     manufacturer: Gosund
     model: EP2
   - id: 37mnhia3pojleqfh
     model: SP111-A
+  - id: kOKEJBFoF9VNB5FR
+    model: HYS-U1S-13A
+  - id: bWBb4e6BTZGie0Lv
+    manufacturer: TopGreener
+    model: TGWF115PRM
 entities:
   - entity: switch
     class: outlet
@@ -65,18 +70,13 @@ entities:
         mapping:
           - dps_val: null
             value: false
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

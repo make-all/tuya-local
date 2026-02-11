@@ -164,9 +164,8 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 104
         type: integer
@@ -192,6 +191,7 @@ entities:
       - id: 13
         type: string
         name: temp_unit
+        hidden: true
   - entity: select
     name: Thermometer
     icon: "mdi:thermometer"

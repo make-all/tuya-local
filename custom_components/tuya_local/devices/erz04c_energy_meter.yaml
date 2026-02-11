@@ -15,7 +15,7 @@ entities:
         mapping:
           - scale: 1000
       - id: 103
-        name: Device state A
+        name: device_state_a
         type: string
         mapping:
           - dps_val: close
@@ -28,7 +28,7 @@ entities:
           - dps_val: warning
             value: Warning
       - id: 113
-        name: Device state B
+        name: device_state_b
         type: string
         mapping:
           - dps_val: close
@@ -41,7 +41,7 @@ entities:
           - dps_val: warning
             value: Warning
       - id: 110
-        name: Power Type A
+        name: power_type_a
         type: string
         mapping:
           - dps_val: normal
@@ -50,7 +50,7 @@ entities:
           - dps_val: warn
             value: Warn
       - id: 120
-        name: Power Type B
+        name: power_type_b
         type: string
         mapping:
           - dps_val: normal
@@ -59,7 +59,7 @@ entities:
           - dps_val: warn
             value: Warn
       - id: 101
-        name: Sync request
+        name: sync_request
         type: string
         mapping:
           - dps_val: idle
@@ -68,7 +68,7 @@ entities:
           - dps_val: request
             value: Request
       - id: 124
-        name: Net state
+        name: net_state
         type: string
         mapping:
           - dps_val: cloud_net
@@ -136,7 +136,7 @@ entities:
         mapping:
           - scale: 1000
       - id: 104
-        name: Power statistics A
+        name: power_statistics
         type: integer
         unit: kWh
         class: measurement
@@ -144,7 +144,7 @@ entities:
         mapping:
           - scale: 100
       - id: 109
-        name: Today's electricity consumption A
+        name: energy_today
         type: integer
         unit: kWh
         class: measurement
@@ -152,7 +152,7 @@ entities:
         mapping:
           - scale: 1000
       - id: 112
-        name: Increased power consumption A
+        name: energy_increase
         type: integer
         unit: kWh
         class: measurement
@@ -219,7 +219,7 @@ entities:
         mapping:
           - scale: 1000
       - id: 114
-        name: Power statistics B
+        name: power_statistics
         type: integer
         unit: kWh
         class: total_increasing
@@ -227,7 +227,7 @@ entities:
         mapping:
           - scale: 100
       - id: 119
-        name: Today's electricity consumption B
+        name: energy_today
         type: integer
         unit: kWh
         class: measurement
@@ -235,7 +235,7 @@ entities:
         mapping:
           - scale: 1000
       - id: 122
-        name: Increased power consumption B
+        name: emergy_increase
         type: integer
         unit: kWh
         class: measurement

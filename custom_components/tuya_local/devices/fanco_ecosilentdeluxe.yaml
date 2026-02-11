@@ -6,10 +6,19 @@ products:
     model_id: MZ-DCFAN
 entities:
   - entity: fan
+    translation_only_key: fan_with_presets
     dps:
       - id: 1
         name: switch
         type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
       - id: 3
         name: speed
         type: integer
@@ -37,8 +46,7 @@ entities:
           min: 0
           max: 1000
         mapping:
-          - invert: true
-            target_range:
+          - target_range:
               min: 3000
               max: 5000
   - entity: select
@@ -59,12 +67,27 @@ entities:
             value: "3h"
           - dps_val: "4"
             value: "4h"
-  - entity: sensor
-    translation_key: time_remaining
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    class: duration
     dps:
       - id: 24
-        type: integer
+        type: bitfield
         name: sensor
-        unit: s
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code

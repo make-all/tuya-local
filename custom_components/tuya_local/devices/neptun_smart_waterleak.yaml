@@ -128,6 +128,10 @@ entities:
         type: boolean
         name: available
         optional: true
+        mapping:
+          # Since the device does not always send this, default to available
+          - dps_val: null
+            value: true
   - entity: switch
     name: Multi zone
     icon: "mdi:select-group"

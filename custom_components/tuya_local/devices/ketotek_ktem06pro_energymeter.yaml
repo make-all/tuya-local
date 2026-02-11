@@ -450,15 +450,13 @@ entities:
         class: measurement
         mapping:
           - scale: 100
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 107
         type: integer
-        name: value
-        unit: min
+        name: minute
         range:
           min: 0
           max: 1440

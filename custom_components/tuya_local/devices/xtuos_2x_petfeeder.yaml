@@ -1,0 +1,170 @@
+name: Pet feeder
+products:
+  - id: kaycs2s3r7xqmxrr
+    manufacturer: Xtuos
+    model: 2&PFA0004
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 20
+  - entity: number
+    name: Manual feed 2
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 20
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+      - id: 14
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: food_shortages
+          - dps_val: 2
+            value: food_jam
+          - dps_val: 4
+            value: battery_low
+          - dps_val: 8
+            value: ac_power_off
+  - entity: sensor
+    name: Feed report
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: Feed report 2
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: Power state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: ac_power_on1
+            value: ac_power_on1
+          - dps_val: ac_power_off
+            value: ac_power_off
+          - dps_val: ac_power_on
+            value: ac_power_on
+          - dps_val: ac_power_on2
+            value: ac_power_on2
+          - dps_val: ac_power_on3
+            value: ac_power_on3
+          - dps_val: ac_power_off1
+            value: ac_power_off1
+          - dps_val: ac_power_off2
+            value: ac_power_off2
+          - dps_val: ac_power_off3
+            value: ac_power_off3
+
+  - entity: sensor
+    name: Mode
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: eco_mode
+            value: eco_mode
+          - dps_val: real_time_mode
+            value: real_time_mode
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 3
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Help email
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 138
+        type: string
+        name: sensor

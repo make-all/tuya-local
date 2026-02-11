@@ -79,21 +79,16 @@ entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -109,8 +104,7 @@ entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -118,11 +112,11 @@ entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

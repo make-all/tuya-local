@@ -108,36 +108,26 @@ entities:
       - id: 109
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     name: Sleep start
-    class: duration
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 110
         type: integer
-        name: value
-        unit: h
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
-  - entity: number
+  - entity: time
     name: Sleep end
-    class: duration
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 111
         type: integer
-        name: value
-        unit: h
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic

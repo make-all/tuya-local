@@ -105,7 +105,7 @@ entities:
     category: diagnostic
     dps:
       - id: 32
-        type: boolean
+        type: string
         optional: true
         name: sensor
         mapping:
@@ -115,6 +115,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

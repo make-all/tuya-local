@@ -125,6 +125,32 @@ entities:
             value: sleep
           - dps_val: false
             value: comfort
+      - id: 31
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: same
+            value: "on"
+          - dps_val: vane_1
+            value: Position 1
+          - dps_val: vane_2
+            value: Position 2
+          - dps_val: vane_3
+            value: Position 3
+          - dps_val: vane_4
+            value: Position 4
+          - dps_val: vane_5
+            value: Position 5
+      - id: 33
+        type: boolean
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: switch
     translation_key: ionizer
     category: config
@@ -156,6 +182,7 @@ entities:
         name: fault_code
   - entity: select
     name: Vertical swing
+    deprecated: climate.swing_mode  # 2025-11-08
     icon: "mdi:angle-acute"
     category: config
     dps:
@@ -178,8 +205,9 @@ entities:
           - dps_val: vane_5
             value: Position 5
   - entity: switch
-    name: Swing Horizontal
+    name: Swing horizontal
     icon: "mdi:arrow-left-right"
+    deprecated: climate.swing_horizontal_mode  # 2025-11-08
     category: config
     dps:
       - id: 33
@@ -193,7 +221,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: On Timer
+    name: On timer
     icon: "mdi:timer"
     category: config
     dps:
@@ -201,7 +229,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Off Timer
+    name: Off timer
     icon: "mdi:timer"
     category: config
     dps:
@@ -209,7 +237,8 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: On Timer time
+    name: On timer time
+    class: duration
     category: config
     dps:
       - id: 103
@@ -219,7 +248,8 @@ entities:
           min: 0
           max: 2359
   - entity: number
-    name: Off Timer Time
+    name: Off timer time
+    class: duration
     category: config
     dps:
       - id: 104

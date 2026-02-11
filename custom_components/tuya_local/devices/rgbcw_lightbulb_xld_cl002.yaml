@@ -1,4 +1,4 @@
-name: RGBCW Lightbulb
+name: RGBCW lightbulb
 products:
   - id: bfde31c920bcaa323azft2
     manufacturer: Xinled
@@ -86,25 +86,19 @@ entities:
         name: wakeup_mode
         type: base64
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
         optional: true
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
   - entity: text
-    name: scene
+    translation_key: scene
     category: config
     hidden: true
     dps:
@@ -113,7 +107,7 @@ entities:
         type: base64
         optional: true
   - entity: select
-    name: scene
+    translation_key: scene
     category: config
     dps:
       - id: 51

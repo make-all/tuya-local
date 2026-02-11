@@ -43,7 +43,7 @@ entities:
         type: hex
         name: auto_rules
   - entity: select
-    name: Mode
+    translation_key: mode
     category: config
     dps:
       - id: 4
@@ -51,9 +51,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: sensor
     class: temperature
     dps:
@@ -65,7 +65,7 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 18
@@ -114,8 +114,7 @@ entities:
           max: 1000
         mapping:
           - scale: 10
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -123,13 +122,11 @@ entities:
     dps:
       - id: 103
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -137,8 +134,7 @@ entities:
     dps:
       - id: 104
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400

@@ -1,4 +1,4 @@
-name: Litter Box
+name: Litter box
 products:
   - id: 1kufldu6g6l53rsy
     manufacturer: Petree
@@ -19,7 +19,7 @@ entities:
         range:
           min: 1
           max: 60
-  - entity: switch
+  - entity: light
     translation_key: indicator
     category: config
     dps:
@@ -41,7 +41,7 @@ entities:
         type: boolean
         name: button
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 105
@@ -143,3 +143,22 @@ entities:
       - id: 126
         type: boolean
         name: button
+  - entity: button
+    name: Dump Sand
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    name: Cleaning
+    class: running
+    category: diagnostic
+    dps:
+      - id: 124
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

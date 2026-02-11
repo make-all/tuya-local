@@ -59,6 +59,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean
@@ -100,9 +101,9 @@ entities:
           - dps_val: out
             value: External
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
+    class: temperature
     dps:
       - id: 19
         type: integer
@@ -127,13 +128,13 @@ entities:
           - dps_val: "open"
             value: true
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9

@@ -34,8 +34,7 @@ entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Filter usage
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 5
@@ -50,8 +49,7 @@ entities:
         type: boolean
         name: switch
   - entity: button
-    name: Replace filter
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11

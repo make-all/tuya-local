@@ -42,21 +42,16 @@ entities:
             range:
               min: 0
               max: 1000
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 33
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     class: current
     category: diagnostic

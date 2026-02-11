@@ -1,0 +1,410 @@
+name: EV charger
+products:
+  - id: ksuysv9kv7m1cgwv
+    manufacturer: Immax
+    model: Neo Lite 3-phase 22kW
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+  - entity: number
+    class: current
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 32
+      - id: 107
+        type: string
+        name: current_list
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    class: power
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: true
+            constraint: fault_alarm
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 155
+        type: bitfield
+        name: fault_alarm
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value_redirect: controlpi_status
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 13
+        type: string
+        name: controlpi_status
+        mapping:
+          - dps_val: controlpi_12v
+            value: standby
+          - dps_val: controlpi_12v_pwm
+            value: monitor
+          - dps_val: controlpi_9v
+            value: starting
+          - dps_val: controlpi_9v_pwm
+            value: plugged_in
+          - dps_val: controlpi_6v
+            value: waiting
+          - dps_val: controlpi_6v_pwm
+            value: charging
+          - dps_val: controlpi_error
+            value: fault
+      - id: 23
+        type: string
+        name: system_version
+      - id: 106
+        type: string
+        name: device_info
+  - entity: select
+    translation_key: charging_mode
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_pct
+            value: charge_to_percent
+          - dps_val: charge_energy
+            value: fixed_charge
+          - dps_val: charge_schedule
+            value: scheduled_charge
+          - dps_val: charge_delay
+            value: delayed_charge
+  - entity: switch
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Last charge
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Online state
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: switch
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: number
+    name: Delay timer
+    category: config
+    class: duration
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 8
+  - entity: text
+    name: Configuration
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Realtime data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Charge mode
+    category: config
+    icon: "mdi:ev-station"
+    hidden: true
+    dps:
+      - id: 151
+        type: string
+        name: value
+  - entity: switch
+    name: Require earth
+    category: config
+    dps:
+      - id: 154
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: sensor
+    name: History
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 160
+        type: string
+        name: sensor
+      - id: 161
+        type: string
+        name: monthly
+      - id: 162
+        type: string
+        name: alarms
+      - id: 163
+        type: string
+        name: offline
+      - id: 164
+        type: string
+        optional: true
+        name: sync

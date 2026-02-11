@@ -4,6 +4,14 @@ products:
     model: KW02
     name: IP video doorbell
 entities:
+  - entity: button
+    icon: "mdi:gate"
+    name: Door
+    dps:
+      - id: 148
+        type: boolean
+        optional: true
+        name: button
   - entity: siren
     name: Doorbell
     dps:
@@ -48,8 +56,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -57,8 +64,7 @@ entities:
         optional: true
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -67,11 +73,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: button
     name: SD format
     icon: "mdi:sd"
@@ -128,9 +134,8 @@ entities:
         optional: true
         name: raw_event
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 160
         type: integer

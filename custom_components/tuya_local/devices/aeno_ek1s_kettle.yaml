@@ -1,0 +1,72 @@
+name: Kettle
+products:
+  - id: rxkvkkh8g9ubsmav
+    manufacturer: Aeno
+    model: EK1S
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 10
+        type: integer
+        name: current_temperature
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: mzj_black
+            value: black_tea
+          - dps_val: mzj_white
+            value: white_tea
+          - dps_val: mzj_green
+            value: green_tea
+          - dps_val: mzj_water
+            value: boil
+          - dps_val: mzj_boby
+            value: infant_formula
+          - dps_val: mzj_oolong
+            value: oolong_tea
+          - dps_val: mzj_warm
+            value: keep_warm
+  - entity: switch
+    icon: "mdi:kettle-steam"
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: pause
+            value: done
+          - dps_val: cooking
+            value: heating

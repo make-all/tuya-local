@@ -13,6 +13,9 @@ products:
   - id: azpywu5zfg5wyzpn
     manufacturer: EARU
     model: 1P Breaker
+  - id: mkdejkrgvhsfwfrd
+    manufacturer: Antela
+    model: F1s302-UK
 entities:
   - entity: switch
     class: outlet
@@ -24,6 +27,20 @@ entities:
         type: integer
         optional: true
         name: test_bit
+      - id: 44
+        type: base64
+        name: inching
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
       - id: 42
         type: base64
         name: cycle_timer
@@ -32,25 +49,6 @@ entities:
         type: base64
         name: random_timer
         optional: true
-      - id: 44
-        type: base64
-        name: inching
-        optional: true
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     category: diagnostic
     hidden: true
@@ -166,22 +164,31 @@ entities:
         name: lock
         optional: true
   - entity: select
-    name: Light mode
+    translation_key: light_mode
     category: config
-    icon: "mdi:lightbulb"
+    hidden: unavailable
     dps:
       - id: 40
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Overcharge protection
     category: config

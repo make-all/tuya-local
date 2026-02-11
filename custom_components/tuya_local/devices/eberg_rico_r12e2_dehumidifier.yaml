@@ -7,6 +7,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
@@ -24,7 +25,7 @@ entities:
         type: string
         mapping:
           - dps_val: Continuities
-            value: boost
+            value: continuous
           - dps_val: Auto
             value: auto
           - dps_val: Sleep

@@ -3,9 +3,12 @@ products:
   - id: 01rtpfyd3amxdsps
     manufacturer: Weekett
     model: KE4071TF
+  - id: n9c9gxaavafz3fii
+    manufacturer: Weekett
+    model: KR4071TB
 entities:
   - entity: water_heater
-    icon: "mdi:kettle"
+    translation_key: kettle
     dps:
       - id: 2
         type: integer
@@ -48,29 +51,30 @@ entities:
             value: F
           - dps_val: c
             value: C
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+  - entity: select
+    translation_key: kettle_mode
+    dps:
       - id: 16
         type: string
         optional: true
-        name: operation_mode
+        name: option
         mapping:
           - dps_val: setting_quick
-            value: Quick heat
+            value: quick_heat
           - dps_val: boiling_quick
-            value: Quick boil
+            value: quick_boil
           - dps_val: temp_setting
-            value: Heat
+            value: heat
           - dps_val: temp_boiling
-            value: Boil
-  - entity: switch
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:kettle-off"
-          - dps_val: true
-            icon: "mdi:kettle-steam"
+            value: boil
   - entity: select
     translation_key: temperature_unit
     category: config

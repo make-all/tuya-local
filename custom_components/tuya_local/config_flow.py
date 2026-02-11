@@ -43,11 +43,15 @@ from .helpers.device_config import get_config
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
+DEVICE_DETAILS_URL = (
+    "https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md"
+    "#finding-your-device-id-and-local-key"
+)
 
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 7
+    MINOR_VERSION = 15
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -73,9 +77,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             self.hass.data[DOMAIN][DATA_STORE] = {}
 
         if user_input is not None:
-            if user_input["setup_mode"] == "cloud":
+            mode = user_input.get("setup_mode")
+            if mode == "cloud" or mode == "cloud_fresh_login":
                 self.init_cloud()
                 try:
+                    if mode == "cloud_fresh_login":
+                        # Force a fresh login
+                        self.cloud.logout()
+
                     if self.cloud.is_authenticated:
                         self.__cloud_devices = await self.cloud.async_get_devices()
                         return await self.async_step_choose_device()
@@ -84,14 +93,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     _LOGGER.warning("Connection test failed with %s %s", type(e), e)
                     _LOGGER.warning("Re-authentication is required.")
                 return await self.async_step_cloud()
-            if user_input["setup_mode"] == "manual":
+            if mode == "manual":
                 return await self.async_step_local()
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
         fields[vol.Required("setup_mode")] = SelectSelector(
             SelectSelectorConfig(
-                options=["cloud", "manual"],
+                options=["cloud", "manual", "cloud_fresh_login"],
                 mode=SelectSelectorMode.LIST,
                 translation_key="setup_mode",
             )
@@ -211,7 +220,11 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     hub_choice[CONF_DEVICE_CID] = (
                         device_choice["node_id"] or device_choice["uuid"]
                     )
-                    hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
+                    if device_choice.get(CONF_LOCAL_KEY):
+                        hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
+                    # Communicate the sub device product id to help match the
+                    # correect device config in the next step.
+                    hub_choice["product_id"] = device_choice["product_id"]
                     self.__cloud_device = hub_choice
                     return await self.async_step_search()
                 else:
@@ -299,7 +312,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 _LOGGER.debug(f"Found: {local_device}")
                 self.__cloud_device["ip"] = local_device.get("ip")
                 self.__cloud_device["version"] = local_device.get("version")
-                self.__cloud_device["local_product_id"] = local_device.get("productKey")
+                if not self.__cloud_device.get(CONF_DEVICE_CID):
+                    self.__cloud_device["local_product_id"] = local_device.get(
+                        "productKey"
+                    )
             else:
                 _LOGGER.warning(
                     f"Could not find device: {self.__cloud_device.get('id', 'DEVICE_KEY_UNAVAILABLE')}"
@@ -342,7 +358,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                         self.device.set_detected_product_id(
                             self.__cloud_device.get("local_product_id")
                         )
-
+                await self.async_set_unique_id(
+                    user_input.get(CONF_DEVICE_CID, user_input[CONF_DEVICE_ID])
+                )
+                self._abort_if_unique_id_configured()
                 return await self.async_step_select_type()
             else:
                 errors["base"] = "connection"
@@ -369,6 +388,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 
@@ -413,7 +433,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 if model:
                     _LOGGER.warning(
-                        "Device specification:\n%s",
+                        "Cloud device spec:\n%s",
                         log_json(model),
                     )
             except Exception as e:
@@ -512,6 +532,7 @@ class OptionsFlowHandler(OptionsFlow):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(schema),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 

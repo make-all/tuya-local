@@ -69,24 +69,18 @@ entities:
         type: string
         optional: true
         name: power_memory
-  - entity: number
-    class: duration
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:minus-circle"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34

@@ -3,6 +3,9 @@ products:
   - id: ipyqwvhvzzjezv35
     manufacturer: Treatlife
     model: DS03
+  - id: gvfmw8c8n92umpax
+    manufacturer: Treatlife
+    model: DS03
 entities:
   - entity: fan
     dps:
@@ -21,22 +24,6 @@ entities:
             value: 75
           - dps_val: "4"
             value: 100
-      - id: 101
-        type: integer
-        name: unknown_101
-        optional: true
-      - id: 103
-        type: integer
-        name: unknown_103
-        optional: true
-      - id: 105
-        type: integer
-        name: unknown_105
-        optional: true
-      - id: 106
-        type: string
-        name: unknown_106
-        optional: true
   - entity: light
     dps:
       - id: 9
@@ -48,3 +35,19 @@ entities:
         range:
           min: 10
           max: 1000
+      - id: 101
+        type: integer
+        name: brightness_step
+        optional: true
+      - id: 103
+        type: integer
+        name: maximum_brightness
+        optional: true
+      - id: 105
+        type: integer
+        name: minimum_brightness
+        optional: true
+      - id: 106
+        type: string
+        name: brightness_mode
+        optional: true

@@ -3,6 +3,9 @@ products:
   - id: i3olzxc2chxmlz9l
     manufacturer: LSC Smart Connect
     model: "3208999"
+  - id: qi0vjgvbtzun2bbr
+    manufacturer: LSC Smart Connect
+    model: "1296P BT"
 entities:
   - entity: switch
     name: Watermark
@@ -11,6 +14,7 @@ entities:
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
   - entity: select
     name: Nightvision
@@ -31,6 +35,7 @@ entities:
   - entity: sensor
     name: SD status
     class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
@@ -41,7 +46,7 @@ entities:
           - dps_val: 1
             value: normal
           - dps_val: 2
-            value: error
+            value: fault
           - dps_val: 3
             value: full
           - dps_val: 4
@@ -153,8 +158,7 @@ entities:
         optional: true
         name: sensor
   - entity: select
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 152
@@ -163,13 +167,13 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "1"
-            value: Low sensitivity
+            value: low
           - dps_val: "2"
-            value: Medium sensitivity
+            value: medium
           - dps_val: "3"
-            value: High sensitivity
+            value: high
   - entity: siren
     dps:
       - id: 159
@@ -216,6 +220,7 @@ entities:
     dps:
       - id: 188
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"

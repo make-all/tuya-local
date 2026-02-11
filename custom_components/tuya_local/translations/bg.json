@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "Устройствата могат да се добавят ръчно или с помощта на облак с помощта на приложението Smart Life.",
+                "description": "Устройствата могат да се добавят ръчно или с помощта на облак с помощта на приложението SmartLife.",
                 "data": {
                     "setup_mode": "Избор на настройка:"
                 }
             },
             "cloud": {
                 "title": "Влезте в Tuya",
-                "description": "Въведете своя потребителски код за Smart Life или Tuya Smart.\n\nМожете да намерите този код в приложението Smart Life или приложението Tuya Smart в **Настройки** > екран **Акаунт и сигурност** и въведете кода",
+                "description": "Въведете своя потребителски код за SmartLife или Tuya.\n\nМожете да намерите този код в приложението SmartLife или приложението Tuya в **Настройки** > екран **Акаунт и сигурност** и въведете кода",
                 "data": {
                     "user_code": "Потребителски код:"
                 }
             },
             "scan": {
                 "title": "Завършете влизането",
-                "description": "Използвайте приложението Smart Life или приложението Tuya Smart"
+                "description": "Използвайте приложението SmartLife или приложението Tuya"
             },
             "choose_device": {
                 "title": "Изберете устройството за добавяне",
@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ] (https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ]({device_details_url}).",
                 "data": {
                     "host": "IP адрес или име на хост",
                     "device_id": "Device ID (или Device ID шлюза, за устройства свързани чрез шлюз)",
@@ -74,7 +74,8 @@
         "setup_mode": {
             "options": {
                 "cloud": "Настройка на устройство",
-                "manual": "Предоставете ръчно информация за връзката на устройството."
+                "manual": "Предоставете ръчно информация за връзката на устройството.",
+                "cloud_fresh_login": "Влезте в Tuya с нов акаунт"
             }
         }
     },
@@ -82,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "[Следвайте тези инструкции, за да откриете своя локален ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[Следвайте тези инструкции, за да откриете своя локален ключ.]({device_details_url})",
                 "data": {
                     "host": "IP адрес или име на хост",
                     "local_key": "Локален ключ",
@@ -162,6 +163,7 @@
         },
         "climate": {
             "aircon_extra": {
+                "name": "Климатик",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -180,10 +182,30 @@
                             "top": "Връх",
                             "middle": "Среден",
                             "down": "Надолу",
-                            "downmost": "Най-долу"
+                            "downmost": "Най-долу",
+                            "upper_half": "Горна половина",
+                            "lower_half": "Долна половина",
+                            "surround": "Около"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "Най-вляво",
+                            "left": "Ляво",
+                            "center": "Среден",
+                            "right": "Право",
+                            "rightmost": "Най-вдясно",
+                            "left_swing": "Ляв люлеене",
+                            "right_swing": "Дясно люлеене",
+                            "center_swing": "Център люлеене",
+                            "surround": "Около",
+                            "direct": "Директно"
                         }
                     }
                 }
+            },
+            "cold_water": {
+                "name": "Студена вода"
             },
             "thermostat": {
                 "name": "Термостат",
@@ -217,6 +239,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "Нагревател",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "Ниво на отопление",
@@ -246,7 +269,21 @@
                 }
             },
             "heater": {
-                "name": "Нагревател"
+                "name": "Нагревател",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Ниско",
+                            "medium": "Средно",
+                            "high": "Високо",
+                            "program_1": "Програма 1",
+                            "program_2": "Програма 2",
+                            "program_3": "Програма 3",
+                            "standby": "Готовност",
+                            "fan_only": "Само вентилатор"
+                        }
+                    }
+                }
             },
             "thermo_switch": {
                 "state_attributes": {
@@ -290,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Сухо пране",
-                            "purify": "Пречистете"
+                            "purify": "Пречистете",
+                            "continuous": "Непрекъснато"
                         }
                     }
                 }
@@ -340,8 +378,12 @@
                             "fresh": "Свежо",
                             "smart": "Умен",
                             "strong": "Силен",
+                            "custom": "Потребителски",
                             "high": "Високо",
                             "medium": "Средно",
+                            "auto": "Автоматичен",
+                            "manual": "Ръководство",
+                            "program": "Програма",
                             "low": "Ниско",
                             "displayoff": "Дисплеят е изключен",
                             "off": "Изключете дисплея"
@@ -358,10 +400,14 @@
                             "circulate": "Циркулирайте",
                             "sleep": "Сън",
                             "auto": "Автоматичен",
+                            "manual": "Ръководство",
                             "eco": "Еко",
                             "anti-condensation": "Антиконденз",
                             "extractor": "Екстрактор",
-                            "heat_recovery": "Възстановяване на топлината"
+                            "heat_recovery": "Възстановяване на топлината",
+                            "timer": "Таймер",
+                            "on": "Включено",
+                            "off": "Изключено"
                         }
                     }
                 }
@@ -399,11 +445,29 @@
             }
         },
         "number": {
+            "manual_feed": {
+                "name": "Ръчно подаване"
+            },
+            "maximum_temperature": {
+                "name": "Максимална температура"
+            },
+            "minimum_temperature": {
+                "name": "Минимална температура"
+            },
+            "sensor_threshold": {
+                "name": "{sensor} праг"
+            },
+            "temperature_calibration": {
+                "name": "Калибриране на температурата"
+            },
             "timer": {
                 "name": "Таймер"
             },
             "timer_x": {
                 "name": "Таймер {x}"
+            },
+            "volume": {
+                "name": "Обем"
             }
         },
         "select": {
@@ -417,6 +481,21 @@
                     "gbp": "GBP"
                 }
             },
+            "heat_pump_mode": {
+                "name": "Режим на топлинна помпа",
+                "state": {
+                    "heat": "Нагряване",
+                    "cool": "Охлаждане",
+                    "auto": "Автоматично",
+                    "floor_heat": "Подово отопление",
+                    "off": "Изключено",
+                    "hotwater": "Гореща вода",
+                    "hotwater_cool": "Гореща вода и охлаждане",
+                    "hotwater_heat": "Гореща вода и отопление",
+                    "hotwater_auto": "Гореща вода и автоматично",
+                    "hotwater_floor_heat": "Гореща вода и подово отопление"
+                }
+            },
             "initial_state": {
                 "name": "Начално състояние",
                 "state": {
@@ -425,12 +504,34 @@
                     "memory": "Памет"
                 }
             },
+            "kettle_mode": {
+                "name": "Режим на чайник",
+                "state": {
+                    "off": "Изключено",
+                    "heat": "Нагряване",
+                    "boil": "Кипене",
+                    "quick_heat": "Бързо загряване",
+                    "quick_boil": "Бързо кипене",
+                    "keep_warm": "Поддържайте топло",
+                    "custom": "Потребителски",
+                    "dechlorinate": "Дехлориране",
+                    "black_tea": "Черно чай",
+                    "green_tea": "Зелен чай",
+                    "coffee": "Кафе",
+                    "honey_water": "Меден вода",
+                    "infant_formula": "Бебешка формула",
+                    "white_tea": "Бял чай",
+                    "oolong_tea": "Улун чай",
+                    "water": "Вода"
+                }
+            },
             "language": {
                 "name": "Език",
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -440,7 +541,20 @@
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
-                    "turkish": "Türkçe"
+                    "turkish": "Türkçe",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "Режим на светлина",
+                "state": {
+                    "off": "Изключено",
+                    "on": "Включено",
+                    "state": "Състояние",
+                    "locator": "Локатор",
+                    "auto": "Автоматично",
+                    "flash": "Флаш"
                 }
             },
             "mopping": {
@@ -448,6 +562,16 @@
                 "state": {
                     "off": "Изключено",
                     "auto": "Автоматично",
+                    "low": "Ниско",
+                    "medium": "Средно",
+                    "high": "Високо",
+                    "very_high": "Много високо"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "Чувствителност на движението",
+                "state": {
+                    "off": "Изключено",
                     "low": "Ниско",
                     "medium": "Средно",
                     "high": "Високо"
@@ -504,13 +628,36 @@
                 "state": {
                     "cancel": "Отказ",
                     "continuous": "Непрекъснато",
+                    "15s": "15 секунди",
+                    "20s": "20 секунди",
+                    "30s": "30 секунди",
+                    "45s": "45 секунди",
+                    "1m": "1 минута",
+                    "2m": "2 минути",
+                    "3m": "3 минути",
                     "5m": "5 минути",
                     "10m": "10 минути",
+                    "15m": "15 минути",
                     "20m": "20 минути",
+                    "25m": "25 минути",
                     "30m": "30 минути",
+                    "35m": "35 минути",
                     "40m": "40 минути",
+                    "45m": "45 минути",
+                    "50m": "50 минути",
+                    "55m": "55 минути",
                     "1h": "1 час",
+                    "1h5m": "1 час 5 минути",
+                    "1h10m": "1 час 10 минути",
+                    "1h15m": "1 час 15 минути",
+                    "1h20m": "1 час 20 минути",
+                    "1h25m": "1 час 25 минути",
                     "1h30m": "1 час 30 минути",
+                    "1h35m": "1 час 35 минути",
+                    "1h40m": "1 час 40 минути",
+                    "1h45m": "1 час 45 минути",
+                    "1h50m": "1 час 50 минути",
+                    "1h55m": "1 час 55 минути",
                     "2h": "2 часа",
                     "2h30m": "2 часа 30 минути",
                     "3h": "3 часа",
@@ -544,7 +691,14 @@
                     "24h": "24 часа",
                     "36h": "36 часа",
                     "48h": "48 часа",
-                    "72h": "72 часа"
+                    "72h": "72 часа",
+                    "1d": "1 ден",
+                    "2d": "2 дни",
+                    "3d": "3 дни",
+                    "4d": "4 дни",
+                    "5d": "5 дни",
+                    "6d": "6 дни",
+                    "7d": "7 дни"
                 }
 
             },
@@ -553,6 +707,126 @@
                 "state": {
                     "celsius": "Целзий",
                     "fahrenheit": "Фаренхайт"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "{trigger} действие",
+                "state": {
+                    "ignore": "Игнориране",
+                    "alarm": "Аларма",
+                    "trip_breaker": "Прекъсвач"
+                }
+            },
+            "mode": {
+                "name": "Режим",
+                "state": {
+                    "auto": "Автоматично",
+                    "manual": "Ръководство",
+                    "off": "Изключено",
+                    "low": "Ниско",
+                    "medium": "Средно",
+                    "high": "Високо",
+                    "rapid_clean": "Бързо почистване",
+                    "schedule": "График"
+                }
+            },
+            "activation_mode": {
+                "name": "Режим на активиране",
+                "state": {
+                    "normal": "Нормално",
+                    "smart": "Умен",
+                    "night": "Нощ",
+                    "motion": "Движение",
+                    "off": "Изключено"
+                }
+            },
+            "bidet_mode": {
+                "name": "Режим биде",
+                "state": {
+                    "normal": "Нормално",
+                    "child": "Дете",
+                    "dry": "Сушене"
+                }
+            },
+            "curtain_mode": {
+                "name": "Режим на завеса",
+                "state": {
+                    "morning": "Сутрин",
+                    "night": "Нощ"
+                }
+            },
+            "chlorination_mode": {
+                "name": "Режим на хлориране",
+                "state": {
+                    "inverter": "Инвертор",
+                    "auto_ph": "Авто pH",
+                    "smart": "Умен",
+                    "manual": "Ръководство"
+                }
+            },
+            "alarm_mode": {
+                "name": "Режим на аларма",
+                "state": {
+                    "sound": "Само звук",
+                    "light": "Само светлина",
+                    "sound_and_light": "Звук и светлина"
+                }
+            },
+            "air_mode": {
+                "name": "Режим на въздуха",
+                "state": {
+                    "dehumidify": "Обезвлажняване",
+                    "purify": "Пречистване",
+                    "dehumidify_and_purify": "Обезвлажняване и пречистване"
+                }
+            },
+            "cleaning_mode": {
+                "name": "Режим на почистване",
+                "state": {
+                    "sweep": "Метене",
+                    "mop": "Моп",
+                    "sweep_and_mop": "Метене и моп",
+                    "intensive": "Интензивно",
+                    "quiet": "Тихо",
+                    "sweep_before_mopping": "Метене преди мопиране"
+                }
+            },
+            "washing_mode": {
+                "name": "Режим на пране",
+                "state": {
+                    "fruit": "Плодове",
+                    "intensive": "Интензивно",
+                    "rapid": "Бързо",
+                    "eco": "Еко",
+                    "standard": "Стандартен",
+                    "neutral": "Неутрален",
+                    "90_minute": "90 минути",
+                    "glass": "Стъкло",
+                    "auto": "Автоматично",
+                    "soak": "Накисване",
+                    "self_clean": "Самопочистване",
+                    "hygiene": "Хигиена",
+                    "party": "Парти",
+                    "baby_care": "Бебешка грижа"
+                }
+            },
+            "menu": {
+                "name": "Меню",
+                "state": {
+                    "home": "Начало",
+                    "mode": "Режим",
+                    "recode": "Запис",
+                    "settings": "Настройки"
+                }
+            },
+            "charging_mode": {
+                "name": "Режим на зареждане",
+                "state": {
+                    "immediate": "Незабавно",
+                    "charge_to_percent": "Зареждане до процент",
+                    "fixed_charge": "Фиксирано зареждане",
+                    "scheduled_charge": "Планирано зареждане",
+                    "delayed_charge": "Забавено зареждане"
                 }
             },
             "oven_built_in_recipe": {
@@ -600,7 +874,8 @@
                     "good": "Добро",
                     "moderate": "Умерен",
                     "poor": "Лошо",
-                    "severe": "Тежко"
+                    "severe": "Тежко",
+                    "danger": "Опасност"
                 }
             },
             "status": {
@@ -610,6 +885,7 @@
                     "plugged_in": "Включен",
                     "fault_unplugged": "Неизправен (изключен)",
                     "charging": "Зарежда се",
+                    "discharging": "Разреждане",
                     "waiting": "Изчакване",
                     "charged": "Зареден",
                     "fault": "Неизправен",
@@ -628,6 +904,7 @@
                     "manual": "Ръчен",
                     "rain_delay": "Забавяне на дъжда",
                     "off": "Изключено",
+                    "on": "Включено",
                     "cooking": "Готвене",
                     "done": "Готово",
                     "door_open": "Вратата е отворена",
@@ -673,11 +950,35 @@
                     "starting": "Стартиране",
                     "emptying": "Изтощаване",
                     "resetting": "Нулиране",
-                    "reverse": "Обратно"
+                    "reverse": "Обратно",
+                    "full": "Пълен",
+                    "empty": "Празен",
+                    "missing": "Липсва",
+                    "formatting": "Форматиране",
+                    "unformatted": "Неформатиран",
+                    "failed": "Неуспешен",
+                    "replying": "Отговаряне",
+                    "playback": "Възпроизвеждане",
+                    "maintenance_required": "Изисква се поддръжка",
+                    "dry": "Сухо",
+                    "comfortable": "Удобно",
+                    "damp": "Влажно",
+                    "smoothing": "Изглаждане",
+                    "cleaned": "Почистено",
+                    "cold_water_unavailable": "Студената вода не е налична",
+                    "drain": "Отводняване",
+                    "drain_cold_water": "Отводняване на студена вода",
+                    "drain_hot_water": "Отводняване на гореща вода",
+                    "drain_normal_water": "Отводняване на нормална вода",
+                    "high_temperature_emptying": "Източване на висока температура",
+                    "high_temperature_emptied": "Източване на висока температура"
                 }
             },
             "time_remaining": {
                 "name": "Оставащо време"
+            },
+            "time_remaining_x": {
+                "name": "Оставащо време {x}"
             },
             "cooking_status": {
                 "name": "Състояние",
@@ -720,14 +1021,36 @@
             },
             "power_x": {
                 "name": "Мощност {x}"
+            },
+            "filter_life": {
+                "name": "Живот на филтъра"
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "Анти-замръзване"
             },
+            "auto_clean": {
+                "name": "Автоматично почистване"
+            },
+            "auto_light": {
+                "name": "Автоматична светлина"
+            },
+            "breaker": {
+                "name": "Прекъсвач",
+                "state": {
+                    "off": "Отворен",
+                    "on": "Затворен"
+                }
+            },
+            "do_not_disturb": {
+                "name": "Не безпокойте"
+            },
             "evaporator_cleaning": {
                 "name": "Почистване изпарител"
+            },
+            "flip_image": {
+                "name": "Обръщане на изображението"
             },
             "ionizer": {
                 "name": "Йонизатор"
@@ -754,6 +1077,30 @@
         "text": {
             "scene": {
                 "name": "Сцена"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "Клапан {x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "Нагревател на вода"
+            },
+            "kettle": {
+                "name": "Кана"
+            },
+            "hot_water": {
+                "name": "Гореща вода"
             }
         }
     }

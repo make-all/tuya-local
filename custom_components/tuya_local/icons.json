@@ -42,7 +42,19 @@
             }
         },
         "climate": {
+            "cold_water": {
+                "default": "mdi:snowflake",
+                "state": {
+                    "off": "mdi:snowflake-off"
+                }
+            },
             "heater": {
+                "default": "mdi:radiator",
+                "state": {
+                    "off": "mdi:radiator-off"
+                }
+            },
+            "swing_as_powerlevel": {
                 "default": "mdi:radiator",
                 "state": {
                     "off": "mdi:radiator-off"
@@ -96,6 +108,18 @@
                 }
             }
         },
+        "humidifier": {
+            "extended": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "mdi:tshirt-crew",
+                            "purify": "mdi:air-filter"
+                        }
+                    }
+                }
+            }
+        },
         "light": {
             "backlight": {
                 "default": "mdi:television-ambient-light"
@@ -134,11 +158,43 @@
             }
         },
         "number": {
+            "manual_feed": {
+                "default": "mdi:food-drumstick"
+            },
+            "maximum_temperature": {
+                "default": "mdi:thermometer-chevron-up"
+            },
+            "minimum_temperature": {
+                "default": "mdi:thermometer-chevron-down"
+            },
+            "sensor_threshold": {
+                "default": "mdi:arrow-collapse-up"
+            },
+            "temperature_calibration": {
+                "default": "mdi:thermometer-check"
+            },
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "range": {
+                    "0": "mdi:timer-cancel",
+                    "1": "mdi:timer"
+                }
             },
             "timer_x": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "range": {
+                    "0": "mdi:timer-cancel",
+                    "1": "mdi:timer"
+                }
+            },
+            "volume": {
+                "default": "mdi:volume-high",
+                "range": {
+                    "0": "mdi:volume-mute",
+                    "1": "mdi:volume-low",
+                    "34": "mdi:volume-medium",
+                    "67": "mdi:volume-high"
+                }
             }
         },
         "select": {
@@ -152,14 +208,47 @@
                     "gbp": "mdi:currency-gbp"
                 }
             },
+            "heat_pump_mode": {
+                "default": "mdi:heat-pump",
+                "state": {
+                    "heat": "mdi:fire",
+                    "cool": "mdi:snowflake",
+                    "auto": "mdi:auto-mode",
+                    "hotwater": "mdi:water-boiler",
+                    "hotwater_heat": "mdi:fire-circle",
+                    "hotwater_cool": "mdi:snowflake-melt",
+                    "hotwater_auto": "mdi:water-boiler"
+                }
+            },
             "initial_state": {
                 "default": "mdi:toggle-switch"
             },
             "language": {
                 "default": "mdi:translate"
             },
+            "kettle_mode": {
+                "default": "mdi:kettle",
+                "state": {
+                    "keep_warm": "mdi:heat-wave",
+                    "boil": "mdi:kettle-steam",
+                    "quick_boil": "mdi:kettle-steam",
+                    "black_tea": "mdi:tea",
+                    "green_tea": "mdi:tea",
+                    "white_tea": "mdi:tea",
+                    "oolong_tea": "mdi:tea",
+                    "coffee": "mdi:coffee",
+                    "infant_formula": "mdi:baby-bottle",
+                    "water": "mdi:water"
+                }
+            },
+            "light_mode": {
+                "default": "mdi:circle-double"
+            },
             "mopping": {
                 "default": "mdi:water"
+            },
+            "motion_sensitivity": {
+                "default": "mdi:motion-sensor"
             },
             "recipe": {
                 "default": "mdi:nutrition",
@@ -203,12 +292,131 @@
                 }
             },
             "timer": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "cancel": "mdi:timer-cancel"
+                }
             },
             "temperature_unit": {
                 "default": "mdi:temperature-celsius",
                 "state": {
                     "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            },
+            "breaker_trigger_action": {
+                "default": "mdi:electric-switch-closed",
+                "state": {
+                    "ignore": "mdi:electric-switch-closed",
+                    "alarm": "mdi:bell-alert",
+                    "trip_breaker": "mdi:electric-switch"
+                }
+            },
+            "mode": {
+                "default": "mdi:shape",
+                "state": {
+                    "auto": "mdi:auto-mode",
+                    "manual": "mdi:hand",
+                    "off": "mdi:power-off",
+                    "low": "mdi:signal-cellular-1",
+                    "medium": "mdi:signal-cellular-2",
+                    "high": "mdi:signal-cellular-3",
+                    "rapid_clean": "mdi:broom",
+                    "schedule": "mdi:calendar-clock"
+                }
+            },
+            "activation_mode": {
+                "default": "mdi:play-circle",
+                "state": {
+                    "normal": "mdi:play-circle",
+                    "smart": "mdi:auto-mode",
+                    "night": "mdi:weather-night",
+                    "motion": "mdi:run"
+                }
+            },
+            "bidet_mode": {
+                "default": "mdi:toilet",
+                "state": {
+                    "normal": "mdi:human-handsdown",
+                    "child": "mdi:human-child",
+                    "dry": "mdi:hair-dryer"
+                }
+            },
+            "curtain_mode": {
+                "default": "mdi:curtains",
+                "state": {
+                    "morning": "mdi:weather-sunny",
+                    "night": "mdi:weather-night"
+                }
+            },
+            "chlorination_mode": {
+                "default": "mdi:chemical-weapon",
+                "state": {
+                    "inverter": "mdi:chemical-weapon",
+                    "auto_ph": "mdi:ph",
+                    "smart": "mdi:auto-mode",
+                    "manual": "mdi:hand"
+                }
+            },
+            "alarm_mode": {
+                "default": "mdi:alarm",
+                "state": {
+                    "sound": "mdi:alarm-bell",
+                    "light": "mdi:alarm-light-outline",
+                    "sound_and_light": "mdi:alarm-light"
+                }
+            },
+            "air_mode": {
+                "default": "mdi:air-filter",
+                "state": {
+                    "dehumidify": "mdi:water-percent",
+                    "purify": "mdi:air-filter",
+                    "dehumidify_and_purify": "mdi:air-humidifier"
+                }
+            },
+            "cleaning_mode": {
+                "default": "mdi:broom",
+                "state": {
+                    "sweep": "mdi:broom",
+                    "mop": "mdi:brush-outline",
+                    "sweep_and_mop": "mdi:brush"
+                }
+            },
+            "washing_mode": {
+                "default": "mdi:dishwasher",
+                "state": {
+                    "fruit": "mdi:apple",
+                    "intensive": "mdi:water-boiler",
+                    "rapid": "mdi:timer-sand",
+                    "eco": "mdi:leaf",
+                    "standard": "mdi:dishwasher",
+                    "neutral": "mdi:water-percent",
+                    "90_minute": "mdi:timer-sand",
+                    "glass": "mdi:glass-fragile",
+                    "auto": "mdi:refresh-auto",
+                    "soak": "mdi:cup-water",
+                    "self_clean": "mdi:broom",
+                    "hygiene": "mdi:shield-check",
+                    "party": "mdi:party-popper",
+                    "baby_care": "mdi:baby-bottle"
+                }
+            },
+            "menu": {
+                "default": "mdi:menu",
+                "state": {
+                    "home": "mdi:home-outline",
+                    "mode": "mdi:shape",
+                    "recode": "mdi:history",
+                    "settings": "mdi:cogs"
+                }
+            },
+            "charging_mode": {
+                "default": "mdi:ev-station",
+                "state": {
+                    "immediate": "mdi:flash",
+                    "charge_to_percent": "mdi:battery-charging-80",
+                    "fixed_charge": "mdi:ev-station",
+                    "scheduled_charge": "mdi:calendar-clock",
+                    "delayed_charge": "mdi:timer-sand"
                 }
             }
         },
@@ -220,11 +428,15 @@
                     "good": "mdi:emoticon-happy",
                     "moderate": "mdi:emoticon-neutral",
                     "poor": "mdi:emoticon-sad",
-                    "severe": "mdi:emoticon-dead"
+                    "severe": "mdi:emoticon-sick",
+                    "danger": "mdi:emoticon-dead"
                 }
             },
             "cooking_status": {
                 "default": "mdi:information-variant-circle"
+            },
+            "filter_life": {
+                "default": "mdi:air-filter"
             },
             "water_level": {
                 "default": "mdi:gauge",
@@ -253,11 +465,13 @@
                     "no_water": "mdi:water-off",
                     "boiling": "mdi:kettle-steam",
                     "reserve_only": "mdi:car-coolant-level",
+                    "unknown": "mdi:help-circle",
                     "idle": "mdi:power-sleep",
                     "auto": "mdi:auto-mode",
                     "manual": "mdi:hand",
                     "rain_delay": "mdi:weather-rainy",
                     "off": "mdi:power-off",
+                    "on": "mdi:power-on",
                     "cooking": "mdi:toaster-oven",
                     "done": "mdi:check-circle",
                     "door_open": "mdi:door-open",
@@ -286,11 +500,49 @@
                     "sterilizing": "mdi:sun-wireless",
                     "deodorizing": "mdi:spray",
                     "occupied": "mdi:toilet",
-                    "warning": "mdi:alert-circle"
+                    "normal": "mdi:check-circle",
+                    "low": "mdi:alert-outline",
+                    "high": "mdi:alert",
+                    "unwashed": "mdi:close-circle",
+                    "pre_washing": "mdi:water-polo",
+                    "washing": "mdi:dishwasher",
+                    "rinsing": "mdi:water",
+                    "drying": "mdi:tumble-dryer",
+                    "air_purging": "mdi:air-filter",
+                    "anti-freeze": "mdi:snowflake-melt",
+                    "close": "mdi:close-circle",
+                    "monitor": "mdi:eye-check",
+                    "working": "mdi:hammer-wrench",
+                    "warning": "mdi:alert-circle",
+                    "starting": "mdi:play-circle",
+                    "emptying": "mdi:arrow-down-bold-circle-outline",
+                    "restting": "mdi:restart",
+                    "reverse": "mdi:swap-horizontal",
+                    "full": "mdi:tray-full",
+                    "empty": "mdi:tray",
+                    "missing": "mdi:alert-circle-outline",
+                    "formatting": "mdi:database-refresh",
+                    "unformatted": "mdi:database-alert",
+                    "maintenance_required": "mdi:tools",
+                    "dry": "mdi:hair-dryer",
+                    "comfortable": "mdi:emoticon-happy-outline",
+                    "damp": "mdi:water-percent",
+                    "smoothing": "mdi:iron",
+                    "cleaned": "mdi:silverware-clean",
+                    "cold_water_unavailable": "mdi:water-off",
+                    "drain": "mdi:pipe-valve",
+                    "drain_cold_water": "mdi:pipe-valve",
+                    "drain_hot_water": "mdi:pipe-valve",
+                    "drain_normal_water": "mdi:pipe-valve",
+                    "high_temperature_emptying": "mdi:thermometer-high",
+                    "high_temperature_emptied": "mdi:thermometer-check"   
                 }
             },
             "time_remaining": {
-                "default": "mdi:timer"
+                "default": "mdi:timer",
+                "state": {
+                    "0": "mdi:timer-stop"
+                }
             },
             "energy_consumed": {
                 "default": "mdi:flash"
@@ -309,8 +561,36 @@
             "anti_frost": {
                 "default": "mdi:snowflake-melt"
             },
+            "auto_clean": {
+                "default": "mdi:autorenew"
+            },
+            "auto_light": {
+                "default": "mdi:lightbulb-auto",
+                "state": {
+                    "off": "mdi:lightbulb-off"
+                }
+            },
+            "breaker": {
+                "default": "mdi:fuse",
+                "state": {
+                    "on": "mdi:fuse",
+                    "off": "mdi:fuse-off"
+                }
+            },
+            "do_not_disturb": {
+                "default": "mdi:bell-sleep",
+                "state": {
+                    "off": "mdi:bell-ring"
+                }
+            },
+            "electrolytic_sterilization": {
+                "default": "mdi:flash"
+            },
             "evaporator_cleaning": {
                 "default": "mdi:shimmer"
+            },
+            "flip_image": {
+                "default": "mdi:flip-horizontal"
             },
             "ionizer": {
                 "default": "mdi:creation"
@@ -323,14 +603,27 @@
             },
             "uv_sterilization": {
                 "default": "mdi:sun-wireless"
-            },
-            "electrolytic_sterilization": {
-                "default": "mdi:flash"
             }
         },
         "text": {
             "scene": {
                 "default": "mdi:palette"
+            }
+        },
+        "time": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "timer_x": {
+                "default": "mdi:timer"
+            }
+        },
+        "water_heater": {
+            "kettle": {
+                "default": "mdi:kettle",
+                "state": {
+                    "off": "mdi:kettle-off"
+                }
             }
         }
     }

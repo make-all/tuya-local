@@ -188,22 +188,16 @@ entities:
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000\
               666602011702b2023a00000000"
             value: "Aquarium deepwater"
-  - entity: number
+  - entity: time
     translation_key: timer
-    class: duration
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null
   - entity: switch
     name: Manual mode
     category: config
@@ -235,7 +229,7 @@ entities:
           - dps_val: "none"
             value: false
   - entity: select
-    name: Motion distance
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 54
@@ -243,11 +237,11 @@ entities:
         name: option
         mapping:
           - dps_val: "high"
-            value: "Far"
-          - dps_val: "low"
-            value: "Near"
+            value: high
           - dps_val: "middle"
-            value: "Medium"
+            value: medium
+          - dps_val: "low"
+            value: low
   - entity: number
     name: PIR delay
     category: config

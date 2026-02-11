@@ -1,5 +1,9 @@
 name: Energy monitoring smartplug
 legacy_type: kogan_switch2
+products:
+  - id: 3o0vwq7nfd8keuwp
+    manufacturer: Mercator Ikuü
+    model: SPLUG02
 entities:
   - entity: switch
     class: outlet
@@ -54,21 +58,16 @@ entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+  - entity: time
     category: config
-    class: duration
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic

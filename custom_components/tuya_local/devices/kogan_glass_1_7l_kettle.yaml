@@ -1,4 +1,7 @@
-name: Kogan smart kettle
+name: Kettle
+products:
+  - id: GXoLAzy1gQUbckKe
+    manufacturer: Kogan
 entities:
   - entity: climate
     dps:
@@ -16,3 +19,8 @@ entities:
         type: integer
         name: current_temperature
         unit: C
+      - id: 102
+        type: string
+        optional: true
+        # May be a target temperature, as enum seems strange for a reading
+        name: current_temp_enum

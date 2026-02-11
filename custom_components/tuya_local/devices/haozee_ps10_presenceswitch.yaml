@@ -1,0 +1,144 @@
+name: Presence lightswitch
+products:
+  - id: o9a6at9cyfchb47y
+    manufacturer: Haozee
+    model: PS10
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+  - entity: select
+    name: Light switching
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: Auto
+            value: Auto
+            icon: "mdi:lightbulb-auto"
+            icon_priority: 1
+          - dps_val: Manual
+            value: Manual
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - value: true
+      - id: 102
+        type: string
+        name: movement_type
+  - entity: number
+    name: Presence delay
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 10
+  - entity: number
+    name: Maximum distance
+    class: distance
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 150
+          max: 600
+        mapping:
+          - step: 75
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 7
+  - entity: number
+    name: Breathing sensitivity
+    category: config
+    icon: "mdi:sofa-single"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 7
+  - entity: sensor
+    class: distance
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: cm
+        class: measurement
+  - entity: select
+    name: Light threshold
+    icon: "mdi:lightbulb-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "10Lux"
+            value: "10 lux"
+          - dps_val: "20Lux"
+            value: "20 lux"
+          - dps_val: "50Lux"
+            value: "50 lux"
+          - dps_val: "24H"
+            value: Always
+  - entity: number
+    class: duration
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 1800
+        mapping:
+          - step: 10
+  - entity: light
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch

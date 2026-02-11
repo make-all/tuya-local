@@ -1,7 +1,7 @@
 name: Multifunction heat pump
-# products:
-#   - id: UNKNOWN
-#     model: HY V1.2
+products:
+  - id: 60todr4yfe2mrcib
+    model: HY V1.2
 entities:
   - entity: climate
     dps:
@@ -30,27 +30,37 @@ entities:
               - dps_val: Hot_Cooling
                 value: cool
                 available: water_on
+              - dps_val: null
+                value: "off"
+                hidden: true
       - id: 2
         type: string
+        optional: true
         name: mode
       - id: 2
         type: string
         name: water_on
+        optional: true
         hidden: true
         mapping:
           - dps_val: Cooling
             value: false
           - dps_val: Heating
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 2
         type: string
+        optional: true
         name: water_off
         hidden: true
         mapping:
           - dps_val: Cooling
             value: true
           - dps_val: Heating
+            value: true
+          - dps_val: null
             value: true
           - value: false
       - id: 21
@@ -75,11 +85,13 @@ entities:
                   max: 25
       - id: 118
         type: integer
+        optional: true
         name: cool_temperature
         range:
           min: 7
           max: 25
   - entity: water_heater
+    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -88,24 +100,10 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: Hot
-                value: hot_water
-              - dps_val: Heating
-                value: air_heating
-              - dps_val: Cooling
-                value: air_cooling
-              - dps_val: Hot_Heating
-                value: hot_water_and_heating
-              - dps_val: Hot_Cooling
-                value: hot_water_and_cooling
-      - id: 2
-        type: string
-        name: mode
-        hidden: true
+            value: heat_pump
       - id: 119
         type: integer
+        optional: true
         name: temperature
         unit: C
         range:
@@ -116,6 +114,25 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+  - entity: select
+    translation_key: heat_pump_mode
+    category: config
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Hot
+            value: hotwater
+          - dps_val: Heating
+            value: heat
+          - dps_val: Cooling
+            value: cool
+          - dps_val: Hot_Heating
+            value: hotwater_heat
+          - dps_val: Hot_Cooling
+            value: hotwater_cool
   - entity: switch
     name: Night mode
     icon: "mdi:weather-night"
@@ -123,23 +140,33 @@ entities:
     dps:
       - id: 3
         type: boolean
+        optional: true
         name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
       - id: 15
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value_redirect: fault_2
+          - dps_val: null
+            value_redirect: fault_2
           - value: true
       - id: 15
         type: bitfield
+        optional: true
         name: fault_code
       - id: 35
         type: integer
+        optional: true
         name: fault_7
         hidden: true
         mapping:
@@ -148,61 +175,82 @@ entities:
           - value: true
       - id: 35
         type: integer
+        optional: true
         name: fault_code_7
       - id: 109
         type: bitfield
+        optional: true
         name: fault_2
         hidden: true
         mapping:
           - dps_val: 0
             value_redirect: fault_3
+          - dps_val: null
+            value_redirect: fault_3
           - value: true
       - id: 109
         type: bitfield
+        optional: true
         name: fault_code_2
       - id: 120
         type: bitfield
+        optional: true
         name: fault_3
         hidden: true
         mapping:
           - dps_val: 0
             value_redirect: fault_4
+          - dps_val: null
+            value_redirect: fault_4
           - value: true
       - id: 120
         type: bitfield
+        optional: true
         name: fault_code_3
       - id: 121
         type: bitfield
+        optional: true
         name: fault_4
         hidden: true
         mapping:
           - dps_val: 0
             value_redirect: fault_5
+          - dps_val: null
+            value_redirect: fault_5
           - value: true
       - id: 121
         type: bitfield
+        optional: true
         name: fault_code_4
       - id: 122
         type: bitfield
+        optional: true
         name: fault_5
         hidden: true
         mapping:
           - dps_val: 0
             value_redirect: fault_6
+          - dps_val: null
+            value_redirect: fault_6
           - value: true
       - id: 122
         type: bitfield
+        optional: true
         name: fault_code_5
       - id: 123
         type: bitfield
+        optional: true
         name: fault_6
         hidden: true
         mapping:
           - dps_val: 0
             value_redirect: fault_7
+          - dps_val: null
+            value_redirect: fault_7
           - value: true
       - id: 123
         type: bitfield
+        optional: true
         name: fault_code_6
   - entity: number
     name: Night start
@@ -211,6 +259,7 @@ entities:
     dps:
       - id: 4
         type: integer
+        optional: true
         name: value
         unit: h
         range:
@@ -223,6 +272,7 @@ entities:
     dps:
       - id: 10
         type: integer
+        optional: true
         name: value
         unit: h
         range:
