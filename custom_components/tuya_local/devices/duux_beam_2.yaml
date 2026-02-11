@@ -1,0 +1,138 @@
+name: Humidifier
+products:
+  - id: bff78a6a0fdce51f2fssdk
+    manufacturer: Duux
+    model: Beam 2
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 15
+        name: humidity
+        type: integer
+        optional: true
+        range:
+          min: 40
+          max: 90
+        mapping:
+          - step: 5
+      - id: 16
+        name: current_humidity
+        type: integer
+      - id: 12
+        name: mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: "auto"
+          - dps_val: general
+            value: "Continuous"
+  - entity: fan
+    icon: "mdi:spray"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: speed
+        type: string
+        optional: true
+        mapping: # this mapping appears weird, as the "large" is the lowest device's fan speed.
+          - dps_val: large
+            value: 33
+          - dps_val: middle
+            value: 50
+          - dps_val: small
+            value: 100
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+        optional: true
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: select
+    translation_key: timer
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 3
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1"
+            value: 1h
+          - dps_val: "2"
+            value: 2h
+          - dps_val: "3"
+            value: 3h
+          - dps_val: "4"
+            value: 4h
+          - dps_val: "5"
+            value: 5h
+          - dps_val: "6"
+            value: 6h
+  - entity: switch
+    name: Night mode
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 21
+        name: switch
+        type: boolean
+        optional: true
+  - entity: switch
+    category: diagnostic # the switch does turn off/on the device, but it's impossible to change its value in the Tuya app. Use id 1 instead.
+    dps:
+      - id: 10
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 9
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
