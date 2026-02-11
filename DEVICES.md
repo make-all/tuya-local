@@ -79,6 +79,7 @@ devices # Supported
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
+- Tecxerllon 1500W panel heater
 - Touchstone Sideline electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
