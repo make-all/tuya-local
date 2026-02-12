@@ -77,7 +77,10 @@ entities:
       - id: 22
         name: sensor
         type: bitfield
-        bit: 0
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
 
   - entity: switch
     name: UV Sterilization
