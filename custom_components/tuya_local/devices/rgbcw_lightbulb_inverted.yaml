@@ -1,0 +1,192 @@
+name: RGBCW lightbulb (Inverted color temp)
+products:
+  - id: aok3caeleulg1neh
+    manufacturer: Lijun
+  - id: keytg5kq8gvkv9dh
+    manufacturer: Lijun
+  - id: nh2i3k5q5aenhdq3
+    manufacturer: Aubess
+    model: E14 RGBCW
+  - id: ei0cjv7ogxdgcekq
+    manufacturer: Brilliant Smart
+    name: RGB garden lights
+  - id: ivxfweclfhvra3ym
+    manufacturer: Lampux
+    name: Bedside lamp
+  - id: wufw0loegkb1y3u3
+    manufacturer: Mirabella Genio
+    model: A60 RGB+CCT
+  - id: gshkqhi4fx9qqwrr
+    manufacturer: ANWIO
+    model: BR30 RGB+CCT 13W
+  - id: 1wyg8eca64whbtcd
+    manufacturer: Arlec
+    model: Grid Connect 6W RGB+CCT downlight
+    name: RGBCW downlight
+    model_id: ALD275HA
+  - id: kw2oclsjnfal3mfv
+    manufacturer: Beamlux
+    name: BLX501
+  - id: csmd08jaltoa4n15
+    manufacturer: Mirabella Genio
+    model: CLXRGB60
+    name: RGBW downlight
+  - id: iucfl5wpdk4w0cjm
+    manufacturer: Laser Smart Home
+    model: LSH-E14RGB5W
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 1000
+        mapping:
+          - dps_val: 1
+            value: 6500
+          - dps_val: 1000
+            value: 2700
+
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
+      - id: 30
+        name: rhythm_mode
+        type: base64
+        optional: true
+      - id: 31
+        name: sleep_mode
+        type: base64
+        optional: true
+      - id: 32
+        name: wakeup_mode
+        type: base64
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    translation_key: do_not_disturb
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "000c0d0000000000000000c80000"
+            # color: brown, static
+            value: night
+          - dps_val: "010e0d0000840000000003e801f4"
+            # color: white, static
+            value: reading
+          - dps_val: "020e0d0000e80383000003e803e8"
+            # color: lt cyan, static
+            value: working
+          - dps_val: "030e0d00001403e8000001f401f4"
+            # color: grey, static
+            value: leisure
+          - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
+            # color: G+DkG, Breath, Mid speed
+            value: Soft
+          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
+              03e803e800000000464601011303e803e800000000"
+            # color* R+G+B+Y+C+V, Flash, Mid speed
+            value: Colorful
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
+            # color* R+G+B, Flash, Mid speed
+            value: Dazzling
+          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
+              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
+              03e803e800000000464602011303e803e800000000"
+            # color* R+G+B+Y+C+V, Breath, Mid speed
+            value: Gorgeous
