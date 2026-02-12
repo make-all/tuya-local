@@ -36,6 +36,7 @@ entities:
         range:
           min: 160
           max: 310
+        unit: C
         mapping:
           - scale: 10
             step: 10
@@ -69,18 +70,6 @@ entities:
             value: high
           - dps_val: turbo
             value: strong
-      - id: 15
-        name: swing_mode
-        type: string
-        mapping:
-          - dps_val: "off"
-            value: "off"
-          - dps_val: un_down
-            value: vertical
-          - dps_val: left_right
-            value: horizontal
-          - dps_val: all
-            value: both
       - id: 8
         name: preset_mode
         type: boolean
@@ -101,10 +90,6 @@ entities:
       - id: 109
         name: preset_mode_sleep
         type: boolean
-        hidden: true
-      - id: 105
-        name: temperature_unit
-        type: string
         hidden: true
       - id: 114
         name: active_mode
@@ -128,6 +113,28 @@ entities:
         name: unit_type
         type: string
         hidden: true
+      - id: 106
+        name: horizontal_swing
+        type: string
+        hidden: true
+      - id: 107
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "15"
+            value: Swing
+          - dps_val: "1"
+            value: Position 1
+          - dps_val: "2"
+            value: Position 2
+          - dps_val: "3"
+            value: Position 3
+          - dps_val: "4"
+            value: Position 4
+          - dps_val: "5"
+            value: Position 5
       - id: 108
         name: swing3d
         type: boolean
@@ -180,44 +187,6 @@ entities:
       - id: 12
         name: switch
         type: boolean
-  - entity: select
-    name: Horizontal swing
-    icon: "mdi:arrow-left-right"
-    category: config
-    dps:
-      - id: 106
-        type: string
-        name: option
-        mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: same
-            value: Focus
-          - dps_val: opposite
-            value: Diffuse
-  - entity: select
-    name: Vertical swing
-    icon: "mdi:arrow-up-down"
-    category: config
-    dps:
-      - id: 107
-        type: string
-        name: option
-        mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: "15"
-            value: Swing
-          - dps_val: "1"
-            value: Position 1
-          - dps_val: "2"
-            value: Position 2
-          - dps_val: "3"
-            value: Position 3
-          - dps_val: "4"
-            value: Position 4
-          - dps_val: "5"
-            value: Position 5
   - entity: binary_sensor
     class: problem
     category: diagnostic
