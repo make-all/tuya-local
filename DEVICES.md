@@ -90,6 +90,7 @@ devices # Supported
 
 ### Air Conditioners / Heat pumps
 
+- Airton air conditioner
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
