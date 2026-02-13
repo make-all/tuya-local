@@ -98,25 +98,23 @@ entities:
       - id: 101
         name: use_number
         type: integer
-        hidden: true
+        optional: true
       - id: 103
         name: electricity
         type: integer
-        hidden: true
         optional: true
       - id: 104
         name: electricity_number
         type: integer
-        hidden: true
         optional: true
       - id: 112
         name: unit_type
         type: string
-        hidden: true
+        optional: true
       - id: 106
         name: horizontal_swing
         type: string
-        hidden: true
+        optional: true
       - id: 107
         name: swing_mode
         type: string
@@ -138,25 +136,23 @@ entities:
       - id: 108
         name: swing3d
         type: boolean
-        hidden: true
+        optional: true
       - id: 111
         name: clean
         type: boolean
-        hidden: true
+        optional: true
       - id: 115
         name: heat8
         type: boolean
-        hidden: true
         optional: true
       - id: 21
         name: countdown
         type: string
-        hidden: true
         optional: true
       - id: 22
         name: countdown_left
         type: integer
-        hidden: true
+        optional: true
   - entity: light
     translation_key: display
     category: config
@@ -196,26 +192,18 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
           - value: true
       - id: 20
         type: bitfield
         name: fault_code
-  - entity: binary_sensor
-    name: Problem 2
-    class: problem
-    category: diagnostic
-    dps:
       - id: 113
         type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-      - id: 113
-        type: bitfield
-        name: fault_code
+        name: fault_code_2
   - entity: sensor
     name: Total usage time
     icon: "mdi:clock-outline"
