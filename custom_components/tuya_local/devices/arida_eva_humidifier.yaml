@@ -1,6 +1,6 @@
 name: Humidifier
 products:
-  - id: fv30bc
+  - id: gsn2b1cgyeivpjka
     manufacturer: Arida
     model: Eva
 entities:
@@ -42,8 +42,8 @@ entities:
         name: current_humidity
         type: integer
       - id: 103
-        type: boolean
         name: mode
+        type: boolean
         mapping:
           - dps_val: true
             value: auto
@@ -51,20 +51,19 @@ entities:
             value: normal
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 10
-        type: integer
         name: sensor
+        type: integer
         unit: C
   - entity: select
     name: Mist level
-    icon: "mdi:water-percent"
+    icon: mdi:water-percent
     category: config
     dps:
       - id: 23
-        type: string
         name: option
+        type: string
         mapping:
           - dps_val: level_1
             value: Low
@@ -77,8 +76,8 @@ entities:
     category: config
     dps:
       - id: 19
-        type: string
         name: option
+        type: string
         mapping:
           - dps_val: cancel
             value: cancel
@@ -109,71 +108,83 @@ entities:
   - entity: sensor
     translation_key: time_remaining
     class: duration
-    category: diagnostic
     dps:
       - id: 20
-        type: integer
         name: sensor
+        type: integer
         unit: min
   - entity: binary_sensor
     translation_key: tank_empty
-    category: diagnostic
-    dps:
-      - id: 22
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 1
-            value: true
-          - value: false
-  - entity: binary_sensor
-    name: Communication error
     class: problem
     category: diagnostic
     dps:
       - id: 22
-        type: bitfield
         name: sensor
+        type: bitfield
+        optional: true
         mapping:
-          - dps_val: 4
+          - dps_val: 2
             value: true
           - value: false
+  - entity: binary_sensor
+    name: Device fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 2
+            value: false
+          - value: true
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        optional: true
   - entity: lock
     translation_key: child_lock
     category: config
     dps:
       - id: 29
-        type: boolean
         name: lock
+        type: boolean
   - entity: switch
     name: Warm mist
-    icon: "mdi:fire"
+    icon: mdi:fire
     category: config
     dps:
       - id: 101
-        type: boolean
         name: switch
+        type: boolean
   - entity: switch
     translation_key: uv_sterilization
     category: config
     dps:
       - id: 104
-        type: boolean
         name: switch
+        type: boolean
   - entity: light
     translation_key: display
     category: config
     dps:
       - id: 105
-        type: boolean
         name: switch
+        type: boolean
   - entity: switch
     translation_key: sleep
     category: config
     dps:
       - id: 106
-        type: boolean
         name: switch
+        type: boolean
   - entity: switch
     name: Cleaning mode
     icon: "mdi:spray-bottle"
