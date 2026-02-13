@@ -322,9 +322,7 @@ class TuyaLocalDevice(object):
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
 
-                needs_full_poll = (
-                    now - self._last_full_poll > self._CACHE_TIMEOUT
-                )
+                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
                 if now - last_cache > self._CACHE_TIMEOUT or (
                     persist and needs_full_poll
                 ):
@@ -332,7 +330,6 @@ class TuyaLocalDevice(object):
                         self._force_dps
                         and not dps_updated
                         and self._api_protocol_working
-                        and not needs_full_poll
                     ):
                         poll = await self._retry_on_failed_connection(
                             lambda: self._api.updatedps(self._force_dps),
@@ -346,7 +343,7 @@ class TuyaLocalDevice(object):
                         )
                         dps_updated = False
                         full_poll = True
-                        self._last_full_poll = now
+                    self._last_full_poll = now
                 elif persist:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,
