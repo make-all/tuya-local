@@ -1252,4 +1252,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kamui](https://github.com/kamui) for assisting with support for Tecxerllon 1500W panel heater.
 - [FinweVI](https://github.com/FinweVI) for contributing support for Airton air conditioner
 - [leah-potato](https://github.com/leah-potato) for contributing improvements to device polling.
-
+- [figaw](https://github.com/figaw) for contributing support for Wilfa Moist C (HU-430CW) humidifier.
