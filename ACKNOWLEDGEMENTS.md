@@ -1253,3 +1253,4 @@ Further device support has been made with the assistance of users. Please consid
 - [FinweVI](https://github.com/FinweVI) for contributing support for Airton air conditioner
 - [leah-potato](https://github.com/leah-potato) for contributing improvements to device polling.
 - [figaw](https://github.com/figaw) for contributing support for Wilfa Moist C (HU-430CW) humidifier.
+- [rplinzner](https://github.com/rplinzner) for contributing support for Duux Beam 2 humidifier.
