@@ -494,6 +494,7 @@ devices # Supported
 - Advwin 13L humidifier
 - airx H8 humidifier
 - AlecoAir PU55 Humino humidifier
+- Arida Eva humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
