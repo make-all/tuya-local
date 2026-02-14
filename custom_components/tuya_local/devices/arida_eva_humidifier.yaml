@@ -126,7 +126,6 @@ entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Device fault
     class: problem
     category: diagnostic
     dps:
@@ -140,13 +139,9 @@ entities:
           - dps_val: 2
             value: false
           - value: true
-  - entity: sensor
-    name: Fault code
-    category: diagnostic
-    dps:
       - id: 22
-        name: sensor
-        type: integer
+        name: fault_code
+        type: bitfield
         optional: true
   - entity: lock
     translation_key: child_lock
