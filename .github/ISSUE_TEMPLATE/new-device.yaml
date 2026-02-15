@@ -13,7 +13,7 @@ body:
         Thank you for reporting your unsupported device. Please provide as much information as you can. Because the developers are busy, new device requests will be prioritised as follows:
 
           1. Well written pull requests
-          2. Well written issues with warning level logs from when adding the device and QueryThingsDataModel API results or equivalent
+          2. Well written issues with warning level logs containing local dps from when adding the device and QueryThingsDataModel API results or equivalent
           3. AI generated pull requests where the submitter is not responsive in fixing auto-detected issues and making requested changes
           4. Issues with logs and enough dps info to make a useful config.
           5. Issues with logs and a tested config
@@ -23,7 +23,7 @@ body:
     attributes:
       label: Log message
       description: |
-        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a **dps** list which is output when you attempt to add the device and are presented with a list of non-matching devices.
+        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a **LOCAL DPS** list which is output when you attempt to add the device and are presented with a list of non-matching devices.
         Providing logs shows that you have tried this integration, the device is able to connect, and existing configs are not adequate. They also show exactly what the device is sending, which helps avoid some back and forward steps to get the config working.
       placeholder: Reports without local logs from this integration will be immediately closed
       render: text

@@ -89,19 +89,17 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
             return None
         year = year or 1970
         month = month or 1
-        day = day or 1
+        days = (day or 1) - 1
         hours = hours or 0
         minutes = minutes or 0
         seconds = seconds or 0
         delta = timedelta(
-            years=int(year) - 1970,
-            months=int(month) - 1,
-            days=int(day) - 1,
+            days=int(days),
             hours=int(hours),
             minutes=int(minutes),
             seconds=int(seconds),
         )
-        return (EPOCH.astimezone(tz) + delta).datetime()
+        return datetime(year=year, month=month, day=1, tzinfo=tz) + delta
 
     async def async_set_value(self, value: datetime):
         """Set the datetime."""
