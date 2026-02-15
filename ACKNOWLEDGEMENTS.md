@@ -1257,3 +1257,4 @@ Further device support has been made with the assistance of users. Please consid
 - [benjamin-lyon](https://github.com/benjamin-lyon) for contributing support for Arida Eva humidifier.
 - [Ramon-Balaguer](https://github.com/Ramon-Balaguer) for assisting with support for Cecotec Conga Z100 vacuum.
 - [zombielinux](https://github.com/zombielinux) for assisting with support for Dxophiex fish feeder.
+- [Derek6711](https://github.com/Derek6711) for assisting with support for Yakry camera pet feeder.
