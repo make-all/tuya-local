@@ -28,7 +28,7 @@ def main() -> int:
             slug = slugify(entity.name)
             if slug in translations:
                 print(
-                    f"::warning file={config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
+                    f"::warning file=custom_components/tuya_local/devices/{config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
                 )
                 detected += 1
     return detected
