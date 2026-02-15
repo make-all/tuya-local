@@ -433,13 +433,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 if model:
                     _LOGGER.warning(
-                        "Cloud device spec:\n%s",
+                        "Partial cloud device spec:\n%s",
                         log_json(model),
                     )
             except Exception as e:
-                _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
+                _LOGGER.warning(
+                    "Unable to fetch data model from cloud: %s %s",
+                    type(e).__name__,
+                    e,
+                )
         _LOGGER.warning(
-            "Device matches %s with quality of %d%%. DPS: %s",
+            "Device matches %s with quality of %d%%. LOCAL DPS: %s",
             best_matching_type,
             best_match,
             log_json(dps),

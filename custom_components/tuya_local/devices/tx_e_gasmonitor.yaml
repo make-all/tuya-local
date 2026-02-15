@@ -1,26 +1,30 @@
 name: Gas leak detector
 products:
-  - id: ozcdjaqrxauonq1f
-    model: ZX-GS21
+  - id: 6jq20w6wnn4faw29
+    model: TX-E
 entities:
+  - entity: binary_sensor
+    class: gas
+    icon: "mdi:gas-cylinder"
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "normal"
+            value: false
+          - value: true
   - entity: sensor
-    name: Gas leak
+    name: Gas
+    icon: "mdi:gas-cylinder"
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: "% LEL"
         class: measurement
-  - entity: binary_sensor
-    class: gas
-    dps:
-      - id: 1
-        type: string
-        name: sensor
         mapping:
-          - dps_val: alarm
-            value: true
-          - value: false
+          - scale: 10
   - entity: number
     name: Alarm duration
     category: config
@@ -53,6 +57,20 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
     name: Lifecycle
     category: diagnostic
     dps:
@@ -66,9 +84,16 @@ entities:
       - id: 16
         type: boolean
         name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
   - entity: binary_sensor
-    name: Carbon monoxide alarm
-    class: gas
+    class: heat
     dps:
       - id: 18
         type: string
@@ -77,14 +102,14 @@ entities:
           - dps_val: alarm
             value: true
           - value: false
-  - entity: sensor
-    class: carbon_monoxide
+  - entity: number
+    name: Temperature alarm threshold
+    category: config
     dps:
-      - id: 19
+      - id: 101
         type: integer
-        name: sensor
-        unit: ppm
-        class: measurement
-      - id: 18
-        type: string
-        name: alarm_state
+        name: value
+        range:
+          min: 0
+          max: 100
+        unit: C

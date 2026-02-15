@@ -1,0 +1,118 @@
+name: Air purifier
+products:
+  - id: emh1sylyfw7n2b50
+    manufacturer: Breville
+    model: Smart Air Viral Protect Night Glow
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 33
+          - dps_val: "mid"
+            value: 67
+          - dps_val: "high"
+            value: 100
+  - entity: light
+    translation_key: nightlight
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+      - id: 102
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        name: button
+        type: boolean
+        optional: true
+  - entity: sensor
+    name: Filter days left
+    category: diagnostic
+    icon: "mdi:air-filter"
+    class: duration
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: d
+        optional: true
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        name: button
+        type: boolean
