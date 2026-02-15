@@ -322,7 +322,10 @@ class TuyaLocalDevice(object):
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
 
-                if now - last_cache > self._CACHE_TIMEOUT:
+                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
+                if now - last_cache > self._CACHE_TIMEOUT or (
+                    persist and needs_full_poll
+                ):
                     if (
                         self._force_dps
                         and not dps_updated
@@ -340,6 +343,7 @@ class TuyaLocalDevice(object):
                         )
                         dps_updated = False
                         full_poll = True
+                    self._last_full_poll = now
                 elif persist:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,
@@ -496,6 +500,7 @@ class TuyaLocalDevice(object):
         self._cached_state = {"updated_at": 0}
         self._pending_updates = {}
         self._last_connection = 0
+        self._last_full_poll = 0
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
