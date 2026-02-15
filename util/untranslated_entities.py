@@ -14,6 +14,7 @@ from custom_components.tuya_local.helpers.device_config import (
 def main() -> int:
     with open("custom_components/tuya_local/translations/en.json", "r") as f:
         english = json.load(f)
+    detected = 0
     for config in available_configs():
         device = TuyaDeviceConfig(config)
         for entity in device.all_entities():
@@ -27,9 +28,10 @@ def main() -> int:
             slug = slugify(entity.name)
             if slug in translations:
                 print(
-                    f"::error file={config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
+                    f"::warning file={config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
                 )
-    return 0
+                detected += 1
+    return detected
 
 
 if __name__ == "__main__":
