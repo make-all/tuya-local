@@ -1049,6 +1049,7 @@ port and password.
 - Cleverio PF100 pet feeder
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
+- Dxophiex fish feeder
 - Els Pet Spaceship pet litter box
 - Evergreen Solar bird feeder camera
 - Faroro PF50 pet feeder
