@@ -27,7 +27,7 @@ def main() -> int:
             slug = slugify(entity.name)
             if slug in translations:
                 print(
-                    f"::warning file={config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
+                    f"::error file={config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
                 )
     return 0
 
