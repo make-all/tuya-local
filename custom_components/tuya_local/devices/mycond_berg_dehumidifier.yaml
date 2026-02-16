@@ -1,4 +1,4 @@
-name: MyCond Berg
+name: Dehumidifier
 products:
   - id: x16hab3bgmahaibm
     manufacturer: MyCond
@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_key: extended
     dps:
       - id: 1
         name: switch
@@ -23,11 +24,11 @@ entities:
         type: string
         mapping:
           - dps_val: dehumidify
-            value: Dehumidify
+            value: normal
           - dps_val: drying
-            value: Clothes Drying
+            value: laundry
           - dps_val: winding
-            value: Winding
+            value: purify
       - id: 6
         name: current_humidity
         type: integer
