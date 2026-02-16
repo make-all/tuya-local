@@ -2,7 +2,7 @@ name: Air conditioner
 products:
   - id: nnlr9l5ipq5jfoxp
     manufacturer: Hokkaido
-    model: HOKKAIDO Air Conditioner
+    model: HKEDM 263 ZL
 entities:
   - entity: climate
     dps:
@@ -186,7 +186,7 @@ entities:
         name: sensor
         optional: true
   - entity: switch
-    name: Countdown on
+    name: Timer on
     icon: "mdi:timer"
     category: config
     dps:
@@ -194,7 +194,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Countdown off
+    name: Timer off
     icon: "mdi:timer-off"
     category: config
     dps:
@@ -202,8 +202,7 @@ entities:
         type: boolean
         name: switch
   - entity: time
-    name: Countdown
-    icon: "mdi:timer-outline"
+    translation_key: timer
     category: config
     dps:
       - id: 111
