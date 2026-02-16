@@ -1181,6 +1181,7 @@ port and password.
 - iHseno ZTU human presence sensor
 - idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
+- Inkbird IAQM-129-W air quality monitor
 - Inkbird PTH-9CW air quality monitor
 - Kishin BS-DW002 motion sensor (sold under various brands)
 - KKMoon 7in1 air quality monitor

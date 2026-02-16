@@ -1259,3 +1259,4 @@ Further device support has been made with the assistance of users. Please consid
 - [zombielinux](https://github.com/zombielinux) for assisting with support for Dxophiex fish feeder.
 - [Derek6711](https://github.com/Derek6711) for assisting with support for Yakry camera pet feeder.
 - [tarasifua](https://github.com/tarasifua) for contributing support for MyCond Berg air conditioner.
+- [AdamTReineke](https://github.com/AdamTReineke) for assisting with support for Inkbird IAQM-129-W air quality monitor.
