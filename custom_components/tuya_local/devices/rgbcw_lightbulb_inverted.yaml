@@ -35,14 +35,13 @@ entities:
         type: integer
         optional: true
         range:
-          min: 1
+          min: 0
           max: 1000
         mapping:
-          - dps_val: 1
-            value: 6500
-          - dps_val: 1000
-            value: 2700
-
+          - target_range:
+              min: 2700
+              max: 6500
+        invert: true
       - id: 24
         name: rgbhsv
         type: hex
