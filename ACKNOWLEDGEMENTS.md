@@ -1249,7 +1249,7 @@ Further device support has been made with the assistance of users. Please consid
 - [marco-calautti](https://github.com/marco-calautti) for contributing support for Kekotek KTF017802 thermostat which was merged with Hysen HY101RF.
 - [thepkc](https://github.com/thepkc) for contributing support for PJ-1103A dual channel energy meter.
 - [Takosan4ik](https://github.com/Takosan4ik) for assisting with support for Fiesta DK-1G kettle.
-- [kamui](https://github.com/kamui) for assisting with support for Tecxerllon 1500W panel heater.
+- [kamui](https://github.com/kamui) for assisting with support for Tecxerllon 1500W panel heater and contributing improvements.
 - [FinweVI](https://github.com/FinweVI) for contributing support for Airton air conditioner
 - [leah-potato](https://github.com/leah-potato) for contributing improvements to device polling.
 - [figaw](https://github.com/figaw) for contributing support for Wilfa Moist C (HU-430CW) humidifier.
