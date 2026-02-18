@@ -1,0 +1,251 @@
+name: Weather station
+products:
+  - id: 6cwineqz1ndjmuee
+    manufacturer: Tuya
+    model: EM3395TY-2
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 1
+        <<: &temperature
+          type: integer
+          name: sensor
+          unit: C
+          mapping:
+            - scale: 10
+          class: measurement
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 2
+        <<: &humidity
+          type: integer
+          name: sensor
+          unit: "%"
+          class: measurement
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Wind speed unit
+    icon: mdi:weather-windy
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: mps
+            value: m/s
+          - dps_val: kmph
+            value: km/h
+          - dps_val: mph
+            value: mph
+  - entity: select
+    name: Pressure unit
+    icon: mdi:gauge
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: hpa
+            value: hPa
+          - dps_val: inhg
+            value: inHg
+          - dps_val: mmhg
+            value: mmHg
+  - entity: select
+    name: Rain unit
+    icon: mdi:weather-rainy
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: mm
+            value: mm
+          - dps_val: inch
+            value: inch
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 38
+        <<: *temperature
+  - entity: sensor
+    name: Outdoor humidity
+    class: humidity
+    dps:
+      - id: 39
+        <<: *humidity
+  - entity: sensor
+    name: Temperature ch1
+    class: temperature
+    dps:
+      - id: 40
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity ch1
+    class: humidity
+    dps:
+      - id: 41
+        optional: true
+        <<: *humidity
+  - entity: sensor
+    name: Temperature ch2
+    class: temperature
+    dps:
+      - id: 42
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity ch2
+    class: humidity
+    dps:
+      - id: 43
+        optional: true
+        <<: *humidity
+  - entity: sensor
+    name: Temperature ch3
+    class: temperature
+    dps:
+      - id: 44
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity ch3
+    class: humidity
+    dps:
+      - id: 45
+        optional: true
+        <<: *humidity
+  - entity: sensor
+    class: pressure
+    dps:
+      - id: 54
+        type: integer
+        name: sensor
+        unit: hPa
+        class: measurement
+  - entity: sensor
+    name: Pressure drop
+    class: pressure
+    dps:
+      - id: 55
+        type: integer
+        name: sensor
+        unit: hPa
+        class: measurement
+  - entity: sensor
+    name: Wind speed
+    icon: mdi:weather-windy
+    dps:
+      - id: 56
+        optional: true
+        <<: &wind_speed
+          type: integer
+          name: sensor
+          unit: m/s
+          mapping:
+            - scale: 10
+          class: measurement
+  - entity: sensor
+    name: Wind gust
+    icon: mdi:weather-windy
+    dps:
+      - id: 57
+        optional: true
+        <<: *wind_speed
+  - entity: sensor
+    name: Rain 1h
+    icon: mdi:weather-rainy
+    dps:
+      - id: 59
+        <<: &rain
+          type: integer
+          name: sensor
+          mapping:
+            - scale: 10
+          class: measurement
+        unit: mm
+  - entity: sensor
+    name: Rain 24h
+    icon: mdi:weather-rainy
+    dps:
+      - id: 60
+        <<: *rain
+        unit: mm
+  - entity: sensor
+    name: Rainfall rate
+    icon: mdi:weather-pouring
+    dps:
+      - id: 61
+        optional: true
+        <<: *rain
+        unit: mm/h
+  - entity: sensor
+    name: UV index
+    icon: mdi:weather-sunny
+    dps:
+      - id: 62
+        type: integer
+        optional: true
+        name: sensor
+        unit: UV Index
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Dew point
+    class: temperature
+    dps:
+      - id: 64
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Feels like temperature
+    class: temperature
+    dps:
+      - id: 65
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Heat index
+    class: temperature
+    dps:
+      - id: 66
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Wind chill index
+    class: temperature
+    dps:
+      - id: 67
+        optional: true
+        <<: *temperature
