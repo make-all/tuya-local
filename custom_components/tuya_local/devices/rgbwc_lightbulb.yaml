@@ -1,42 +1,8 @@
 name: RGBCW lightbulb
 products:
-  - id: aok3caeleulg1neh
-    manufacturer: Lijun
-  - id: keytg5kq8gvkv9dh
-    manufacturer: Lijun
-  - id: nh2i3k5q5aenhdq3
-    manufacturer: Aubess
-    model: E14 RGBCW
-  - id: ei0cjv7ogxdgcekq
-    manufacturer: Brilliant Smart
-    name: RGB garden lights
-  - id: ivxfweclfhvra3ym
-    manufacturer: Lampux
-    name: Bedside lamp
-  - id: wufw0loegkb1y3u3
-    manufacturer: Mirabella Genio
-    model: A60 RGB+CCT
-  - id: gshkqhi4fx9qqwrr
-    manufacturer: ANWIO
-    model: BR30 RGB+CCT 13W
-  - id: 1wyg8eca64whbtcd
-    manufacturer: Arlec
-    model: Grid Connect 6W RGB+CCT downlight
-    name: RGBCW downlight
-    model_id: ALD275HA
-  - id: kw2oclsjnfal3mfv
-    manufacturer: Beamlux
-    name: BLX501
-  - id: csmd08jaltoa4n15
-    manufacturer: Mirabella Genio
-    model: CLXRGB60
-    name: RGBW downlight
-  - id: iucfl5wpdk4w0cjm
-    manufacturer: Laser Smart Home
-    model: LSH-E14RGB5W
-  - id: e8dhekwuvrdogter
-    manufacturer: Cree
-    model: CMA21-100W-AL-9ACK
+  - id: leirmht5udei1xzw
+    manufacturer: YSRSAI
+    model: YSR-CGD-RGB
 entities:
   - entity: light
     dps:
@@ -76,6 +42,7 @@ entities:
           - target_range:
               min: 2700
               max: 6500
+            invert: true
       - id: 24
         name: rgbhsv
         type: hex
@@ -162,32 +129,28 @@ entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "000c0d0000000000000000c80000"
-            # color: brown, static
+          - dps_val: "000e0d0000000000000000c80000"
             value: night
           - dps_val: "010e0d0000840000000003e801f4"
-            # color: white, static
             value: reading
           - dps_val: "020e0d0000e80383000003e803e8"
-            # color: lt cyan, static
             value: working
           - dps_val: "030e0d00001403e8000001f401f4"
-            # color: grey, static
             value: leisure
-          - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
-            # color: G+DkG, Breath, Mid speed
-            value: Soft
-          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
-              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
-              03e803e800000000464601011303e803e800000000"
-            # color* R+G+B+Y+C+V, Flash, Mid speed
-            value: Colorful
-          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
-              46460100f003e803e800000000"
-            # color* R+G+B, Flash, Mid speed
-            value: Dazzling
-          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
-              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
-              03e803e800000000464602011303e803e800000000"
-            # color* R+G+B+Y+C+V, Breath, Mid speed
-            value: Gorgeous
+          - dps_val: >-
+              04464602007803e803e800000000464602007803e8000a00000000
+            value: soft
+          - dps_val: >-
+              05464601000003e803e800000000464601007803e803e800000000
+              46460100f003e803e800000000464601003d03e803e800000000
+              46460100ae03e803e800000000464601011303e803e800000000
+            value: colorful
+          - dps_val: >-
+              06464601000003e803e800000000464601007803e803e800000000
+              46460100f003e803e800000000
+            value: dazzling
+          - dps_val: >-
+              07464602000003e803e800000000464602007803e803e800000000
+              46460200f003e803e800000000464602003d03e803e800000000
+              46460200ae03e803e800000000464602011303e803e800000000
+            value: gorgeous

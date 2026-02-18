@@ -47,15 +47,16 @@ entities:
         type: string
         name: level
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     dps:
       - id: 16
         type: boolean
         name: switch
         mapping:
+          - dps_val: true
+            value: false
           - dps_val: false
-            icon: "mdi:volume-high"
+            value: true
   - entity: button
     name: Test
     category: config

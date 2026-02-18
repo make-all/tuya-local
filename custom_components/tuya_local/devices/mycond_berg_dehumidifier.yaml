@@ -1,11 +1,12 @@
 name: Dehumidifier
 products:
-  - id: kga5rstkass0sroi
-    manufacturer: Eeese Air Care
-    model: Thor
+  - id: x16hab3bgmahaibm
+    manufacturer: MyCond
+    model: Berg
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_key: extended
     dps:
       - id: 1
         name: switch
@@ -14,39 +15,31 @@ entities:
         name: humidity
         type: integer
         range:
-          min: 35
+          min: 30
           max: 80
+        mapping:
+          - step: 5
       - id: 5
         name: mode
         type: string
         mapping:
-          - dps_val: Low
-            value: eco
-          - dps_val: Mid
+          - dps_val: dehumidify
             value: normal
-          - dps_val: High
-            value: boost
-          - dps_val: Auto
-            value: auto
+          - dps_val: drying
+            value: laundry
+          - dps_val: winding
+            value: purify
       - id: 6
-        type: integer
         name: current_humidity
+        type: integer
   - entity: sensor
     class: temperature
     dps:
       - id: 7
         type: integer
         name: sensor
-        unit: C
         class: measurement
-  - entity: switch
-    name: Swing
-    icon: "mdi:cached"
-    category: config
-    dps:
-      - id: 8
-        type: boolean
-        name: switch
+        unit: C
   - entity: switch
     translation_key: ionizer
     category: config
@@ -62,6 +55,19 @@ entities:
         type: boolean
         name: lock
         optional: true
+  - entity: select
+    name: Fan speed
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: high
+            value: High
   - entity: select
     translation_key: timer
     category: config
@@ -120,50 +126,3 @@ entities:
             value: 23h
           - dps_val: 24h
             value: 24h
-  - entity: sensor
-    translation_key: time_remaining
-    class: duration
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: min
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: 0
-            value: false
-          - dps_val: null
-            value: false
-          - dps_val: 1
-            value: false
-          - value: true
-      - id: 19
-        type: bitfield
-        optional: true
-        name: fault_code
-  - entity: binary_sensor
-    translation_key: tank_full
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: 1
-            value: true
-          - value: false
-  - entity: switch
-    translation_key: sound
-    category: config
-    dps:
-      - id: 101
-        type: boolean
-        name: switch
