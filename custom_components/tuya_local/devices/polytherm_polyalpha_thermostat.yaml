@@ -59,23 +59,6 @@ entities:
                 value: heating
           - dps_val: close
             value: idle
-  - entity: humidifier
-    name: Humidity override
-    dps:
-      - id: 1
-        type: boolean
-        name: available
-      - id: 106
-        type: integer
-        optional: true
-        name: humidity
-        range:
-          min: 50
-          max: 80
-      - id: 107
-        type: integer
-        optional: true
-        name: current_humidity
   - entity: lock
     translation_key: child_lock
     category: config
