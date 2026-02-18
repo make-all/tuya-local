@@ -4,25 +4,22 @@ products:
     manufacturer: Polytherm
     model: Polyalpha
 entities:
-  - entity: switch
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
   - entity: climate
     translation_key: thermostat
     dps:
       - id: 1
-        name: available
-        type: boolean
-      - id: 104
         name: hvac_mode
         type: boolean
         mapping:
           - dps_val: false
-            value: cool
+            value: "off"
           - dps_val: true
-            value: heat
+            constraint: cool_heat
+            conditions:
+              - dps_val: false
+                value: cool
+              - dps_val: true
+                value: heat
       - id: 2
         name: preset_mode
         type: string
@@ -51,7 +48,7 @@ entities:
         type: string
         mapping:
           - dps_val: open
-            constraint: hvac_mode
+            constraint: cool_heat
             conditions:
               - dps_val: false
                 value: cooling
@@ -59,6 +56,10 @@ entities:
                 value: heating
           - dps_val: close
             value: idle
+      - id: 104
+        type: boolean
+        name: cool_heat
+        hidden: true
   - entity: lock
     translation_key: child_lock
     category: config
