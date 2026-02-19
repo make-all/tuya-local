@@ -254,14 +254,17 @@ entities:
         name: switch
 
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-off"
+    translation_key: sound
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   # BINARY SENSOR ENTİTELERİ
   - entity: binary_sensor
     class: problem

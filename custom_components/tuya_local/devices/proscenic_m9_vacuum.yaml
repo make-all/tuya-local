@@ -467,13 +467,17 @@ entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Mute sound
+    translation_key: sound
     category: config
-    icon: "mdi:volume-mute"
     dps:
       - id: 131
         name: switch
         type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Mop rotation
     icon: "mdi:rotate-360"
