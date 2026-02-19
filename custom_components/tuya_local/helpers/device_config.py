@@ -1067,7 +1067,9 @@ class TuyaDpsConfig:
             else:
                 decoded_value = self.decode_value(raw_current, device)
 
-            if isinstance(decoded_value, int):
+            if decoded_value is None:
+                raise ValueError("Cannot mask unknown current value")
+            elif isinstance(decoded_value, int):
                 current_value = decoded_value
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
                 # Only convert back to bytes if the DP is actually hex/base64

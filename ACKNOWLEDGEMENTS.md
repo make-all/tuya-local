@@ -861,7 +861,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
 - [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
-- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat and Kimex cinema screen.
+- [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat, Kimex cinema screen, RGBWC lightbulbs (YSR-CGD-RGB).
 - [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
 - [jakealake18](https://github.com/jakealake18) for contributing improvements to Galaxy projector light.
 - [jmontane](https://github.com/jmontane) for contributing Catalan translations.
@@ -1240,3 +1240,23 @@ Further device support has been made with the assistance of users. Please consid
 - [RedstoneGithub](https://github.com/RedstoneGithub) for contributing improvements to Petlibro PLAF103 pet feeder.
 - [cinek193](https://github.com/cinek193) for assisting with improvements to Clofte 400 Duo humidifier.
 - [nathan-gs](https://github.com/nathan-gs) for contributing support for Andalung EV charger, which was merged into EV Sun. EV charger config.
+- [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
+- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
+- [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
+- [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
+- [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.
+- [hofvanta](https://github.com/hofvanta) for assisting with support for PNI CT45 thermostat.
+- [marco-calautti](https://github.com/marco-calautti) for contributing support for Kekotek KTF017802 thermostat which was merged with Hysen HY101RF.
+- [thepkc](https://github.com/thepkc) for contributing support for PJ-1103A dual channel energy meter.
+- [Takosan4ik](https://github.com/Takosan4ik) for assisting with support for Fiesta DK-1G kettle.
+- [kamui](https://github.com/kamui) for assisting with support for Tecxerllon 1500W panel heater and contributing improvements.
+- [FinweVI](https://github.com/FinweVI) for contributing support for Airton air conditioner
+- [leah-potato](https://github.com/leah-potato) for contributing improvements to device polling.
+- [figaw](https://github.com/figaw) for contributing support for Wilfa Moist C (HU-430CW) humidifier.
+- [rplinzner](https://github.com/rplinzner) for contributing support for Duux Beam 2 humidifier.
+- [benjamin-lyon](https://github.com/benjamin-lyon) for contributing support for Arida Eva humidifier.
+- [Ramon-Balaguer](https://github.com/Ramon-Balaguer) for assisting with support for Cecotec Conga Z100 vacuum.
+- [zombielinux](https://github.com/zombielinux) for assisting with support for Dxophiex fish feeder.
+- [Derek6711](https://github.com/Derek6711) for assisting with support for Yakry camera pet feeder.
+- [tarasifua](https://github.com/tarasifua) for contributing support for MyCond Berg air conditioner.
+- [AdamTReineke](https://github.com/AdamTReineke) for assisting with support for Inkbird IAQM-129-W air quality monitor.
