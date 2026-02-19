@@ -1,0 +1,100 @@
+name: TermoPlaza heater
+products:
+  - id: xlln3q6hczrp31df
+    manufacturer: TermoPlaza
+    model: TermoPlaza900
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 0
+            step: 1
+        range:
+          min: 5
+          max: 30
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 4
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: ECO
+            value: eco
+          - dps_val: Comfort
+            value: comfort
+          - dps_val: Night
+            value: away
+          - dps_val: Off
+            value: off
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    translation_key: work_state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+  - entity: sensor
+    class: power
+    dps:
+      - id: 12 # work_power
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: countdown_set
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: 1h
+          - dps_val: 2
+            value: 2h
+          - dps_val: 3
+            value: 3h
+          - dps_val: 4
+            value: 4h
+          - dps_val: 5
+            value: 5h
+          - dps_val: 6
+            value: 6h
+          - dps_val: 7
+            value: 7h
+          - dps_val: 8
+            value: 8h
+          - dps_val: 9
+            value: 9h
+          - dps_val: 10
+            value: 10h
+          - dps_val: 11
+            value: 11h
+          - dps_val: 12
+            value: 12h
