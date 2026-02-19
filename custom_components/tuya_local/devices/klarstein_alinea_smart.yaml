@@ -1,14 +1,9 @@
-name: Klarstein Alinea Smart
+name: Klarstein extractor hood
 products:
   - id: zggqz0s1atd9qce4
     manufacturer: Klarstein
-    model: FJ6
+    model: Alinea
 entities:
-  - entity: switch
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
   - entity: light
     dps:
       - id: 4
@@ -16,7 +11,7 @@ entities:
         name: switch
       - id: 102
         type: integer
-        name: effect
+        name: color_temp
         range:
           min: 0
           max: 6
@@ -27,17 +22,34 @@ entities:
           min: 1
           max: 3
   - entity: fan
-    name: fan_speed_enum
     dps:
+      - id: 1
+        type: boolean
+        name: switch
       - id: 10
         type: string
         name: preset_mode
+        mapping:
+          - dps_val: Off
+            value: Off
+          - dps_val: Low
+            value: Low
+          - dps_val: Medium
+            value: Medium
+          - dps_val: High
+            value: High
+          - dps_val: Strong
+            value: Strong
   - entity: number
     name: Countdown
+    translation_key: timer
+    class: duration
+    category: config
     dps:
       - id: 13
         type: integer
         name: value
+        unit: min
         range:
           min: 0
           max: 100
