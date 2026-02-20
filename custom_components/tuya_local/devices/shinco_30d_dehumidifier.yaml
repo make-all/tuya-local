@@ -1,34 +1,39 @@
 name: Dehumidifier
+legacy_type: alecoair_d12_home_dehumidifier
 products:
+  - id: hp1sjssyokokbrsg
+    manufacturer: AlecoAir
+    model: D12/D16 Home
   - id: to4nyl9qxvkqmcmk
-    name: Klarstein DryFy Connect
+    manufacturer: Klarstein
+    model: DryFy Connect
   - id: fvxjwu2oggajswbx
-    name: Shinco SDZ/YDZ-series
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: mode
-      mapping:
-        - dps_val: "0"
-          value: auto
-        - dps_val: "1"
-          value: boost
-    - id: 3
-      type: integer
-      name: current_humidity
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 25
-        max: 80
-secondary_entities:
+    manufacturer: Shinco
+    model: SDZ/YDZ-series
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: boost
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 25
+          max: 80
   - entity: fan
     dps:
       - id: 1
@@ -44,7 +49,11 @@ secondary_entities:
             value: 50
       - id: 8
         type: boolean
+        optional: true
         name: oscillate
+        mapping:
+          - dps_val: null
+            invalid: true
   - entity: switch
     translation_key: ionizer
     category: config
@@ -190,4 +199,5 @@ secondary_entities:
     dps:
       - id: 102
         type: boolean
+        optional: true
         name: switch

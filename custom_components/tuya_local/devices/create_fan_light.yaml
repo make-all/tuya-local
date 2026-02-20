@@ -1,25 +1,25 @@
 name: Ceiling fan with light
 products:
   - id: p8z27dfdwc4riyp9
-    name: Create XW-FAN-215-D
-primary_entity:
-  entity: fan
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 62
-      type: integer
-      optional: true
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 63
-      type: string
-      optional: true
-      name: direction
-secondary_entities:
+    manufacturer: Create
+    model: XW-FAN-215-D
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        optional: true
+        name: direction
   - entity: light
     dps:
       - id: 20
@@ -47,6 +47,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 64

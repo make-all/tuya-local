@@ -8,12 +8,11 @@ from homeassistant.const import (
     UnitOfElectricPotential,
     UnitOfEnergy,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD
+from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
-from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
@@ -37,11 +36,11 @@ LOCK_DPS = "40"
 CYCLE_DPS = "41"
 RANDOM_DPS = "42"
 OVERCHARGE_DPS = "46"
+ALT_OVERCHARGE_DPS = "51"
 
 
 class TestSwitchV2Energy(
     BasicBinarySensorTests,
-    BasicNumberTests,
     BasicSelectTests,
     MultiSensorTests,
     MultiSwitchTests,
@@ -70,13 +69,6 @@ class TestSwitchV2Energy(
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
-        self.setUpBasicNumber(
-            TIMER_DPS,
-            self.entities.get("number_timer"),
-            max=1440.0,
-            unit=UnitOfTime.MINUTES,
-            scale=60,
-        )
         self.setUpBasicSelect(
             INITIAL_DPS,
             self.entities.get("select_initial_state"),
@@ -92,6 +84,7 @@ class TestSwitchV2Energy(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "unit": UnitOfEnergy.WATT_HOUR,
+                    "state_class": "measurement",
                 },
                 {
                     "name": "sensor_voltage",
@@ -122,30 +115,24 @@ class TestSwitchV2Energy(
             [
                 "binary_sensor_problem",
                 "lock_child_lock",
-                "number_timer",
                 "select_initial_state",
-                "select_light",
+                "select_light_mode",
                 "sensor_current",
                 "sensor_energy",
                 "sensor_power",
                 "sensor_voltage",
                 "switch_overcharge_cutoff",
+                "time_timer",
             ]
         )
 
     def test_multi_switch_state_attributes(self):
         self.dps[TEST_DPS] = 21
-        self.dps[ERROR_DPS] = 26
-        self.dps[CYCLE_DPS] = "1A2B"
-        self.dps[RANDOM_DPS] = "3C4D"
 
         self.assertDictEqual(
             self.multiSwitch["switch_outlet"].extra_state_attributes,
             {
                 "test_bit": 21,
-                "fault_code": 26,
-                "cycle_timer": "1A2B",
-                "random_timer": "3C4D",
             },
         )
 
@@ -171,3 +158,35 @@ class TestSwitchV2Energy(
             self.multiSensor["sensor_voltage"].extra_state_attributes,
             {"calibration": 22},
         )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )
+
+    async def test_redirected_switch(self):
+        overcharge_switch = self.multiSwitch["switch_overcharge_cutoff"]
+        self.dps[OVERCHARGE_DPS] = None
+        self.dps[ALT_OVERCHARGE_DPS] = False
+        async with assert_device_properties_set(
+            overcharge_switch._device,
+            {ALT_OVERCHARGE_DPS: True},
+        ):
+            await overcharge_switch.async_turn_on()
+
+    def test_available(self):
+        self.dps[INITIAL_DPS] = None
+        self.assertFalse(self.basicSelect.available)
+        self.dps[INITIAL_DPS] = "on"
+        self.assertTrue(self.basicSelect.available)
+        self.dps[OVERCHARGE_DPS] = None
+        self.dps[ALT_OVERCHARGE_DPS] = None
+        overcharge_switch = self.multiSwitch["switch_overcharge_cutoff"]
+        self.assertFalse(overcharge_switch.available)
+        self.dps[ALT_OVERCHARGE_DPS] = False
+        self.assertTrue(overcharge_switch.available)
+        self.dps[ALT_OVERCHARGE_DPS] = None
+        self.dps[OVERCHARGE_DPS] = True
+        self.assertTrue(overcharge_switch.available)

@@ -1,49 +1,45 @@
 name: Humidifier
 products:
   - id: lqzme7o0kzhumdxr
-    name: BlitzWolf BWSH5
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: health
-          value: comfort
-        - dps_val: baby
-          value: baby
-        - dps_val: sleep
-          value: sleep
-        - dps_val: humidity
-          value: eco
-        - dps_val: work
-          value: boost
-        - dps_val: manual
-          value: normal
-    - id: 13
-      name: humidity
-      type: integer
-      optional: true
-      range:
-        min: 35
-        max: 75
-      mapping:
-        - step: 5
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 22
-      name: fault_code
-      type: integer
-      optional: true
-secondary_entities:
+    manufacturer: BlitzWolf
+    model: BWSH5
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: health
+            value: comfort
+          - dps_val: baby
+            value: baby
+          - dps_val: sleep
+            value: sleep
+          - dps_val: humidity
+            value: eco
+          - dps_val: work
+            value: boost
+          - dps_val: manual
+            value: normal
+      - id: 13
+        name: humidity
+        type: integer
+        optional: true
+        range:
+          min: 35
+          max: 75
+        mapping:
+          - step: 5
+      - id: 14
+        name: current_humidity
+        type: integer
   - entity: switch
     translation_key: uv_sterilization
     category: config
@@ -174,7 +170,29 @@ secondary_entities:
     dps:
       - id: 22
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 1
             value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code

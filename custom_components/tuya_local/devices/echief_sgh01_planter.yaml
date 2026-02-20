@@ -1,0 +1,69 @@
+name: Hydroponic grower
+products:
+  - id: key8cpvp7wxgptce
+    manufacturer: Dongguan E Chief
+    model: SGH01
+entities:
+  - entity: switch
+    icon: "mdi:sprout"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Pump
+    icon: "mdi:water-pump"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  # - entity: switch
+  #   name: pumptimer
+  #   dps:
+  #     - id: 103
+  #       optional: true
+  #       type: integer
+  #       name: switch
+  - entity: light
+    icon: "mdi:ceiling-light-multiple-outline"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Nutrient timer
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 106
+        unit: d
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 30
+  - entity: sensor
+    name: Nutrient time remaining
+    category: config
+    class: duration
+    translation_key: time_remaining
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+  - entity: select
+    category: config
+    name: LED mode
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: GROW
+            value: Seeding
+          - dps_val: VEG
+            value: Vegetable
+          - dps_val: BLOOM
+            value: Bloom

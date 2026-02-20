@@ -12,9 +12,18 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.13']
+
+    env:
+      PYTHONPATH: .
 
     steps:
       - uses: actions/checkout@v4
@@ -29,4 +38,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Device configs check with pytest
-        run: pytest tests/test_device_config.py
+        run: |
+          pytest tests/test_device_config.py
+          python util/untranslated_entities.py

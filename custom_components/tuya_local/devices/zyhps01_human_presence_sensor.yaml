@@ -1,34 +1,36 @@
 name: Human presence sensor
 products:
   - id: wzp9yjsobanavsut
-    name: ZY-HPS01-5.8G
+    model: ZY-HPS01-5.8G
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
 
-primary_entity:
-  entity: binary_sensor
-  class: motion
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - dps_val: none
-          value: false
-
-secondary_entities:
   - entity: sensor
     class: illuminance
     dps:
       - id: 103
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
-        range:
-          min: 0
-          max: 3000
-
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 11
+        type: integer
+        optional: true
+        name: alt
   - entity: number
     name: Presence delay
     category: config

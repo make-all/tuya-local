@@ -1,82 +1,162 @@
 name: Ceiling fan light
 products:
   - id: czvfkmtazfs0ohaq
-    name: Depuley WS-FPZ37-18I-EU
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      name: switch
-      type: boolean
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: Color
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 24
-      name: ignored_rgbhsv
-      type: string
-      optional: true
-    - id: 36
-      name: mix_light_scene
-      type: base64
-      optional: true
-    - id: 51
-      name: mix_rgbcw
-      type: base64
-      optional: true
-    - id: 58
-      type: integer
-      name: brightness_min_1
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 59
-      name: led_type_1
-      type: string
-      optional: true
-      mapping:
-        - dps_val: led
-          value: led
-        - dps_val: incandescent
-          value: incandescent
-        - dps_val: halogen
-          value: halogen
-    - id: 28
-      name: control_data
-      type: hex
-      optional: true
+    manufacturer: Depuley
+    model: WS-FPZ37-18I-EU
+entities:
+  - entity: switch
+    name: Lights
+    icon: "mdi:lightbulb-multiple"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 20
+        name: available
+        type: boolean
+      - id: 51
+        type: base64
+        optional: true
+        mask: "000100000000000000000000"
+        name: switch
+        mapping:
+          - dps_val: null
+            value_mirror: available
+      - id: 21
+        name: work_mode
+        type: string
+      - id: 22
+        name: std_brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF0000"
+        name: brightness
+        mapping:
+          - dps_val: null
+            value_mirror: std_brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: std_color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 51
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFF"
+        name: color_temp
+        mapping:
+          - dps_val: null
+            value_mirror: std_color_temp
+          - target_range:
+              min: 2700
+              max: 6500
+        range:
+          min: 0
+          max: 1000
+      - id: 58
+        type: integer
+        name: brightness_min_1
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
 
-secondary_entities:
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 51
+        name: switch
+        type: base64
+        optional: true
+        mask: "000200000000000000000000"
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 24
+        name: std_rgbhsv
+        type: string
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 51
+        type: base64
+        optional: true
+        force: true
+        name: rgbhsv
+        format:
+          - name: sw
+            bytes: 2
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: wb
+            bytes: 2
+          - name: wc
+            bytes: 2
+
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -127,6 +207,43 @@ secondary_entities:
             value: Mediterranean Style
           - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
             value: Ocean
+  - entity: text
+    name: Mix Scene
+    category: config
+    icon: "mdi:palette"
+    hidden: true
+    dps:
+      - id: 36
+        name: value
+        type: base64
+        optional: true
+  - entity: text
+    name: Mix RGBCW
+    category: config
+    icon: "mdi:lightbulb"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Light type
+    icon: "mdi:lilghtbulb"
+    category: config
+    dps:
+      - id: 59
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: led
+            value: led
+          - dps_val: incandescent
+            value: incandescent
+          - dps_val: halogen
+            value: halogen
+
   - entity: fan
     translation_key: fan_with_presets
     dps:
@@ -172,25 +289,22 @@ secondary_entities:
         mapping:
           - dps_val: null
             value: 0
-  - entity: number
+  - entity: time
     translation_key: timer
     name: Light timer
     category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         optional: true
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: number
     translation_key: timer
-    name: Fan Timer
+    class: duration
+    name: Fan timer
     category: config
     dps:
       - id: 64
@@ -217,9 +331,13 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 56
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: switch
     category: config
-    name: Beep
+    translation_key: sound
     dps:
       - id: 57
         name: switch

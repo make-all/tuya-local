@@ -1,30 +1,30 @@
 name: Air purifier
 products:
   - id: bff126249136f505
-    name: Stadler Form Roger
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      name: speed
-      type: string
-      mapping:
-        # According to original reporter these are all progressivly faster
-        # speeds, even though auto suggests something else.
-        - dps_val: sleep
-          value: 20
-        - dps_val: low
-          value: 40
-        - dps_val: mid
-          value: 60
-        - dps_val: high
-          value: 80
-        - dps_val: auto
-          value: 100
-secondary_entities:
+    manufacturer: Stadler Form
+    model: Roger
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          # According to original reporter these are all progressivly faster
+          # speeds, even though auto suggests something else.
+          - dps_val: sleep
+            value: 20
+          - dps_val: low
+            value: 40
+          - dps_val: mid
+            value: 60
+          - dps_val: high
+            value: 80
+          - dps_val: auto
+            value: 100
   - entity: lock
     translation_key: child_lock
     dps:
@@ -38,16 +38,15 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         type: integer
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Filter (days)
+    name: Filter remaining
     category: diagnostic
     class: duration
     dps:
@@ -70,8 +69,7 @@ secondary_entities:
         type: integer
         name: sensor
   - entity: sensor
-    name: Air quality
-    icon: "mdi:air-filter"
+    translation_key: air_quality
     dps:
       - id: 21
         type: string

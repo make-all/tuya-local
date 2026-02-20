@@ -1,21 +1,28 @@
 name: Dual dimmer
 products:
   - id: bxoo2swd
-    name: Moes ZM-105B-M-MS
-primary_entity:
-  entity: light
-  name: Light 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Moes
+    model: ZM-105B-M-MS
+  - id: 9cfxqryaoqwwjkyy
+    manufacturer: Totebox
+    model: "2"
+    name: Dimmer plug
+  - id: qfqqrzlzgkhdln97
+    manufacturer: Avatto
+    model: DMS16-W2
+entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: light
     name: Light 2
     dps:
@@ -94,6 +101,15 @@ secondary_entities:
           - dps_val: halogen
             value: Halogen
             icon: "mdi:lightbulb-spot"
+          - conditions:
+              - dps_val: [flip, sync, button]
+                mapping:
+                  - dps_val: flip
+                    value: Toggle
+                  - dps_val: sync
+                    value: Sync
+                  - dps_val: button
+                    value: Button
   - entity: select
     name: Light type 2
     category: config
@@ -112,36 +128,39 @@ secondary_entities:
           - dps_val: halogen
             value: Halogen
             icon: "mdi:lightbulb-spot"
-  - entity: number
-    translation_key: timer
-    name: Timer 1
+          - conditions:
+              - dps_val: [flip, sync, button]
+                mapping:
+                  - dps_val: flip
+                    value: Toggle
+                  - dps_val: sync
+                    value: Sync
+                  - dps_val: button
+                    value: Button
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    translation_key: timer
-    name: Timer 2
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 12
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

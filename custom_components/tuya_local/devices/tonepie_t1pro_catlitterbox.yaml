@@ -1,25 +1,25 @@
 name: Cat litter box
 products:
   - id: 5t7esmqqh92ssbe5
-    name: Tonepie T1Pro
-primary_entity:
-  entity: sensor
-  name: Cat weight
-  icon: "mdi:cat"
-  class: weight
-  dps:
-    - id: 6
-      type: integer
-      name: sensor
-      unit: kg
-      class: measurement
-      mapping:
-        - scale: 1000
-    - id: 128
-      type: integer
-      name: number
-      optional: true
-secondary_entities:
+    manufacturer: Tonepie
+    model: T1Pro
+entities:
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 128
+        type: integer
+        name: number
+        optional: true
   - entity: sensor
     name: Times per day
     icon: "mdi:emoticon-poop"
@@ -95,9 +95,8 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: switch
-    name: Auto clean
+    translation_key: auto_clean
     category: config
-    icon: "mdi:shimmer"
     dps:
       - id: 105
         type: boolean
@@ -143,6 +142,7 @@ secondary_entities:
   - entity: number
     name: Clean wait time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 117
@@ -189,8 +189,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:power-sleep"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 122

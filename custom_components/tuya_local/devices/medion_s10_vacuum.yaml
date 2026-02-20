@@ -1,82 +1,83 @@
 name: Robot vacuum
 products:
   - id: dxzaldz77vzlxauh
-    name: Medion S10 SW (MD19601)
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-      optional: true
-    - id: 2
-      type: boolean
-      name: activate
-      optional: true
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: standby
-          value: stop
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: smart
-          value: smart
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: wall_follow
-          value: wall_follow
-    - id: 4
-      type: string
-      name: direction_control
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: "0"
-          value: standby
-        - dps_val: "1"
-          value: smart
-        - dps_val: "3"
-          value: wall_follow
-        - dps_val: "4"
-          value: returning_to_base
-        - dps_val: "5"
-          value: charging
-        - dps_val: "6"
-          value: clean_spot
-    - id: 13
-      type: boolean
-      name: locate
-      optional: true
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: quiet
-          value: quiet
-        - dps_val: normal
-          value: normal
-        - dps_val: strong
-          value: strong
-    - id: 18
-      type: bitfield
-      name: error
-      optional: true
-
-secondary_entities:
+    manufacturer: Medion
+    model: S10 SW
+    model_id: MD19601
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+        optional: true
+      - id: 2
+        type: boolean
+        name: activate
+        optional: true
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: smart
+            value: smart
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wall_follow
+            value: wall_follow
+      - id: 4
+        type: string
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "0"
+            value: standby
+          - dps_val: "1"
+            value: smart
+          - dps_val: "3"
+            value: wall_follow
+          - dps_val: "4"
+            value: returning_to_base
+          - dps_val: "5"
+            value: charging
+          - dps_val: "6"
+            value: clean_spot
+      - id: 13
+        type: boolean
+        name: locate
+        optional: true
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: quiet
+            value: quiet
+          - dps_val: normal
+            value: normal
+          - dps_val: strong
+            value: strong
+      - id: 18
+        type: bitfield
+        optional: true
+        name: error
+        hidden: true
   - entity: sensor
     class: battery
     dps:
@@ -87,7 +88,7 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Clean area
-    icon: "mdi:floor-plan"
+    class: area
     category: diagnostic
     dps:
       - id: 16
@@ -109,3 +110,19 @@ secondary_entities:
         name: sensor
         unit: min
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        optional: true
+        name: fault_code

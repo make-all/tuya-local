@@ -1,21 +1,67 @@
-name: Taxnele meter
+name: Energy meter
 products:
   - id: 3xhdofmeo6lgpvd5
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 9
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Taxnele
+  - id: ob3yxwxoeslczzlq
+    manufacturer: Taxnele
+    model: V3 2P 63A bidirectional
+  - id: z3jngbyubvwgfrcv
+    manufacturer: Taxnele
+    model: V3 2P 63A
+entities:
+  - entity: sensor
+    class: energy
+    # renaming this now will mess up users' long term statistics
+    # translation_key: energy_consumed
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        class: measurement
+        mask: "0000000000FFFFFF"
+      - id: 111
+        type: integer
+        optional: true
+        name: total
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -27,6 +73,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Prepay
     category: config
@@ -54,6 +103,21 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
+  - entity: number
+    name: Charge energy
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 999999
+        mapping:
+          - scale: 100
   - entity: sensor
     name: Leakage current
     class: current
@@ -74,6 +138,53 @@ secondary_entities:
       - id: 16
         type: boolean
         name: switch
+  - entity: text
+    name: Alarm 1
+    icon: "mdi:flash-alert"
+    category: config
+    hidden: true
+    dps:
+      - id: 17
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm 2
+    icon: "mdi:flash-alert"
+    category: config
+    hidden: true
+    dps:
+      - id: 18
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Recovery delay
+    category: config
+    class: duration
+    icon: "mdi:update"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+  - entity: number
+    name: Recovery limit
+    category: config
+    icon: "mdi:fuse-alert"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        unit: times
+        range:
+          min: 1
+          max: 30
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -83,3 +194,119 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
+  - entity: switch
+    name: Auto recovery
+    icon: "mdi:update"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    translation_key: timer
+    deprecated: time.timer  # 2026-01-20
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    icon: "mdi:island"
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: value
+  - entity: number
+    name: Leak delay
+    category: config
+    icon: "mdi:clock-alert"
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+  - entity: text
+    name: Inching
+    category: config
+    hidden: true
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: energy
+    translation_key: energy_produced
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: text
+    name: Alarm 3
+    icon: "mdi:flash-alert"
+    category: config
+    hidden: true
+    dps:
+      - id: 126
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 134
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory

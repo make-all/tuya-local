@@ -1,34 +1,35 @@
 name: Double curtain switch
 products:
   - id: zqypumy8ot4clzyi
-    name: Loratap QCSC420W
-primary_entity:
-  entity: cover
-  name: Curtain 1
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        max: 100
-        min: 0
-    - id: 2
-      name: current_position
-      type: integer
-secondary_entities:
+    manufacturer: Loratap
+    model: QCSC420W
+entities:
+  - entity: cover
+    name: Curtain 1
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          max: 100
+          min: 0
+      - id: 2
+        name: current_position
+        type: integer
   - entity: cover
     name: Curtain 2
+    class: curtain
     dps:
       - id: 4
         name: control
@@ -50,26 +51,30 @@ secondary_entities:
         name: current_position
         type: integer
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 10
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 11
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2
@@ -100,20 +105,19 @@ secondary_entities:
           - dps_val: "back"
             value: back
   - entity: select
-    name: Backlight
+    translation_key: light_mode
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: "relay"
-            value: Mode 1
+            value: state
           - dps_val: "pos"
-            value: Mode 2
+            value: locator
           - dps_val: "none"
-            value: None
+            value: "off"
   - entity: select
     name: Calibration 1
     category: config

@@ -2,82 +2,75 @@ name: Air conditioner
 products:
   # original product id unknown: Carson CB PA280
   - id: 2tgd3qnobb1mcgd9
-    name: Shinco Yoau YWD1
+    manufacturer: Shinco Yoau
+    model: YWD1
     # also sold as Axelair Tempero CMM3000, Domair Callisto
     # (product id may be same or different?)
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: COOL
-              value: cool
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: DRY
-              value: dry
-            - dps_val: HEAT
-              value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 16
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: "F"
-              range:
-                min: 60
-                max: 86
-      optional: true
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: low
-        - dps_val: 2
-          value: medium
-        - dps_val: 3
-          value: high
-    - id: 19
-      name: temperature_unit
-      type: string
-    - id: 104
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "vertical"
-        - dps_val: false
-          value: "off"
-    - id: 106
-      name: fault_code
-      type: bitfield
-    - id: 110
-      name: model_code
-      type: integer
-    - id: 111
-      name: fault_code2
-      type: bitfield
-      optional: true
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: DRY
+                value: dry
+              - dps_val: HEAT
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: "F"
+                range:
+                  min: 60
+                  max: 86
+        optional: true
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: low
+          - dps_val: 2
+            value: medium
+          - dps_val: 3
+            value: high
+      - id: 19
+        name: temperature_unit
+        type: string
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "vertical"
+          - dps_val: false
+            value: "off"
+      - id: 110
+        name: model_code
+        type: integer
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -106,6 +99,7 @@ secondary_entities:
         name: sensor
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 103
@@ -134,7 +128,7 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            constraint: fault_code2
+            constraint: fault_code_2
             conditions:
               - dps_val: 0
                 value: false
@@ -142,8 +136,10 @@ secondary_entities:
                 value: false
             value: true
           - value: true
+      - id: 106
+        name: fault_code
+        type: bitfield
       - id: 111
         type: bitfield
-        name: fault_code2
+        name: fault_code_2
         optional: true
-        hidden: true

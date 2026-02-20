@@ -1,56 +1,57 @@
 name: Fan heater
 products:
   - id: gzmby6hypv4daebf
-    name: Nedis Ceramic PTC HTFA22WTW
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: level_1
-              value: fan_only
-            - dps_val: level_2
-              value: heat
-            - dps_val: level_3
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 49
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "level_1"
-          value: none
-          hidden: true
-        - dps_val: "level_2"
-          value: comfort
-        - dps_val: "level_3"
-          value: boost
-    - id: 8
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Nedis
+    model: Ceramic PTC
+    model_id: HTFA22WTW
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: level_1
+                value: fan_only
+              - dps_val: level_2
+                value: heat
+              - dps_val: level_3
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 49
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: none
+            hidden: true
+          - dps_val: "level_2"
+            value: comfort
+          - dps_val: "level_3"
+            value: boost
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: light
     translation_key: indicator
     category: config

@@ -1,4 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import ANKO_FAN_PAYLOAD
@@ -25,6 +26,7 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=9,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])

@@ -1,45 +1,49 @@
-name: ZX-G30 alarm
+name: Alarm system
 products:
   - id: mw27s3tus4bb7nz3
+    model: ZX-G30
     name: Dual-network security system
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: armed_away
-        - dps_val: home
-          value: armed_home
-    - id: 22
-      type: integer
-      name: call_looptimes
-    - id: 23
-      type: string
-      name: telnet_state
-    - id: 24
-      type: string
-      name: zone_attribute
-    - id: 35
-      type: boolean
-      name: sub_add
-    - id: 36
-      type: string
-      name: sub_class
-    - id: 37
-      type: string
-      name: sub_type
-    - id: 39
-      type: string
-      name: sub_state
-    - id: 40
-      type: string
-      name: master_language
-secondary_entities:
+  - id: wifech3utowiyknu
+    manufacturer: Tugard
+    model: G30
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+      - id: 22
+        type: integer
+        name: call_looptimes
+      - id: 23
+        type: string
+        name: telnet_state
+      - id: 24
+        type: string
+        name: zone_attribute
+      - id: 35
+        type: boolean
+        optional: true
+        name: sub_add
+      - id: 36
+        type: string
+        name: sub_class
+      - id: 37
+        type: string
+        name: sub_type
+      - id: 39
+        type: string
+        name: sub_state
+      - id: 40
+        type: string
+        name: master_language
   - entity: binary_sensor
     name: Alarm
     class: sound
@@ -56,12 +60,13 @@ secondary_entities:
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 2
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 0
           max: 300
@@ -98,6 +103,7 @@ secondary_entities:
     dps:
       - id: 10
         type: boolean
+        optional: true
         name: switch
   - entity: binary_sensor
     class: plug
@@ -147,12 +153,13 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 28
         type: integer
         name: value
-        unit: sec
+        unit: s
   - entity: switch
     name: Tick down
     category: config
@@ -162,9 +169,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 34
         type: boolean

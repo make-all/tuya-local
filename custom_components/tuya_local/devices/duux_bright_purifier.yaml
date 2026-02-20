@@ -1,30 +1,30 @@
 name: Air purifier
 products:
   - id: go2ndjijilncwuf7
-    name: Duux Bright
-primary_entity:
-  entity: fan
-  translation_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "3"
-          value: high
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+    manufacturer: Duux
+    model: Bright
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: sleep
+            value: sleep
   - entity: sensor
     class: pm25
     dps:
@@ -34,8 +34,7 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Filter usage
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 5
@@ -50,8 +49,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Replace filter
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
@@ -76,8 +74,7 @@ secondary_entities:
           - dps_val: "8h"
             value: "8h"
   - entity: sensor
-    name: Air quality
-    icon: "mdi:air-filter"
+    translation_key: air_quality
     class: enum
     category: diagnostic
     dps:
@@ -85,9 +82,9 @@ secondary_entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "great"
-            value: "Great"
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "poor"
-            value: "Poor"
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: poor
+            value: poor

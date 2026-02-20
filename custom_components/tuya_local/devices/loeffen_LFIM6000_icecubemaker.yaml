@@ -1,15 +1,15 @@
 name: Ice cube maker
 products:
   - id: 2y44i6euwk9eeiz8
-    name: Loeffen LFIM6000
-primary_entity:
-  entity: switch
-  icon: "mdi:delete-variant"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Loeffen
+    model: LFIM6000
+entities:
+  - entity: switch
+    icon: "mdi:delete-variant"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Ice cube size
     icon: "mdi:cube-scan"

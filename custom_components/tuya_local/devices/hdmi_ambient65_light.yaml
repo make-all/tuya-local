@@ -1,50 +1,49 @@
 name: Ambient light strip
 products:
   - id: wwcrxa8jl4mj0jib
-    name: HDMI TV Lighting/65
-primary_entity:
-  entity: light
-  icon: "mdi:led-strip-variant"
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 27
-      name: music_data
-      type: hex
-      optional: true
+    model: HDMI TV Lighting/65
+entities:
+  - entity: light
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
 
-secondary_entities:
   - entity: light
     name: Screen sync
     icon: "mdi:television-ambient-light"
@@ -53,18 +52,17 @@ secondary_entities:
         type: boolean
         name: switch
 
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 26
-        name: value
+        name: second
         type: integer
         optional: true
         range:
           min: 0
           max: 86400
-        unit: s
 
   - entity: number
     name: Upper lights
@@ -112,7 +110,7 @@ secondary_entities:
         optional: true
         range:
           min: 9
-          max: 14
+          max: 16
 
   - entity: select
     name: Screen brightness sync
@@ -344,9 +342,18 @@ secondary_entities:
           - dps_val: "AAMAFAABVgEvA9gBTwHEA9QBUgKbA9ABXgJ3A9ABaALDA9AAAQPkA80="
             value: Combination Color 22
 
-  - entity: select
-    name: Dreamlight scene
+  - entity: text
+    translation_key: scene
     icon: "mdi:palette"
+    category: config
+    hidden: true
+    dps:
+      - id: 51
+        name: value
+        type: base64
+        optional: true
+  - entity: select
+    translation_key: scene
     category: config
     dps:
       - id: 51
@@ -395,13 +402,13 @@ secondary_entities:
           - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
             value: Dream sea
           - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
-            value: Game
+            value: gaming
           - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
-            value: Holiday
+            value: vacation
           - dps_val: "ASEDPDxgAABkAL8YAQQX"
-            value: Work
+            value: working
           - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
-            value: Party
+            value: party
           - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
             value: Trend
           - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
@@ -409,7 +416,7 @@ secondary_entities:
           - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
             value: Meditation
           - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
-            value: Dating
+            value: romantic
           - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
             value: Christmas
           - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"

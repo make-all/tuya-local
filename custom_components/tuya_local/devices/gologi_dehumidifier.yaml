@@ -1,0 +1,76 @@
+name: Dehumidifier
+products:
+  - id: lsaqajsvhpjq0mmp
+    manufacturer: Gologi
+    model: GO021
+entities:
+  - entity: fan
+    translation_key: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        optional: true
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
+          - value: 0
+            hidden: true
+      - id: 5
+        type: string
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: v
+            value: purify
+          - dps_val: n
+            value: dehumidify
+          - value: purify
+            hidden: true
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "2H"
+            value: "2h"
+          - dps_val: "4H"
+            value: "4h"
+          - value: cancel
+            hidden: true
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

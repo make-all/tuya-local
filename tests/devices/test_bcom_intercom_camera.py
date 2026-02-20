@@ -13,7 +13,7 @@ SDSTATUS_DPS = "110"
 SDFORMAT_DPS = "111"
 SNAPSHOT_DPS = "115"
 SDFMTSTATE_DPS = "117"
-DOORBELL_DPS = "136"
+DOORBELL_DPS = "154"
 RECORD_DPS = "150"
 RECMODE_DPS = "151"
 REBOOT_DPS = "162"
@@ -33,7 +33,7 @@ class TestBcomIntercomCamera(TuyaDeviceTestCase):
                 "light_indicator",
                 "switch_flip_image",
                 "switch_watermark",
-                "select_motion_detection",
+                "select_motion_sensitivity",
                 "select_night_vision",
                 "sensor_sd_capacity",
                 "sensor_sd_status",

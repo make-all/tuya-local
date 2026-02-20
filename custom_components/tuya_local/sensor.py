@@ -11,9 +11,9 @@ from homeassistant.components.sensor import (
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity, unit_from_ascii
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -93,7 +93,14 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     @property
     def suggested_display_precision(self):
         """Return the suggested display precision for the sensor"""
-        return self._sensor_dps.suggested_display_precision
+        precision = self._sensor_dps.suggested_display_precision
+        # if not explicitly defined, get based on scale
+        # this is in line with older HA default behavior, and avoids
+        # having to override the precision for every scaled sensor.
+        if precision is None:
+            precision = self._sensor_dps.precision(self._device)
+
+        return precision
 
     @property
     def options(self):

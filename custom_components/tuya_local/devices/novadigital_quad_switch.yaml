@@ -1,96 +1,91 @@
 # Example DPS Status
 # {'dps': {'1': True, '2': True, '3': True, '4': True, '7': 0, '8': 0, '9': 0,
 #  '10': 0, '14': '0', '16': True}}
-name: Novadigital Quad Switch
+name: Quad switch
 products:
   - id: 6u3rzfddlfajqvn5
-    name: Novadigital quad switch
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Novadigital
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         name: switch
         type: boolean
   - entity: switch
-    name: Switch 4
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 4
         name: switch
         type: boolean
-  - entity: number
+  - entity: time
     category: config
-    name: Timer Switch 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 7
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer Switch 2
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 8
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer Switch 3
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 9
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer Switch 4
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 10
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     category: config
     translation_key: initial_state
@@ -99,11 +94,11 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: "off"
-          - dps_val: 1
+          - dps_val: "1"
             value: "on"
-          - dps_val: 2
+          - dps_val: "2"
             value: memory
         optional: true
         force: true

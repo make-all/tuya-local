@@ -1,19 +1,19 @@
 name: Temperature and humidity sensor
 products:
   - id: rocfghml4gy1vvr8
-    name: HRT AS90
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: C
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: HRT
+    model: AS90
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     class: humidity
     dps:
@@ -53,10 +53,9 @@ secondary_entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 10
         type: integer
@@ -68,9 +67,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer^chevron-down"
+    class: temperature
     dps:
       - id: 11
         type: integer
@@ -182,15 +181,13 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    class: temperature
-    icon: "mdi:thermometer-check"
     dps:
       - id: 23
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -80
           max: 80

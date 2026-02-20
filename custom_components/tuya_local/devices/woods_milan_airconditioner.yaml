@@ -1,56 +1,57 @@
-name: Woods Milan Air Conditioner
+name: Air conditioner
 products:
   - id: i5rv3ykmtfcagw1t
-    name: Wood's Milan 7K
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-            - dps_val: hot
-              value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 15
-        max: 31
-      unit: C
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "0"
-          value: low
-        - dps_val: "1"
-          value: high
-    - id: 104
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "on"
-        - dps_val: false
-          value: "off"
+    manufacturer: Woods
+    model: Milan 7K
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 15
+          max: 31
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: high
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"

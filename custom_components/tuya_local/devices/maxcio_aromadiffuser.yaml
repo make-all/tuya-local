@@ -1,27 +1,26 @@
 name: Aroma diffuser
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 103
-      type: string
-      name: speed
-      mapping:
-        - dps_val: small
-          value: 50
-        - dps_val: big
-          value: 100
-        - dps_val: "off"
-          value: 0
-          hidden: true
-    - id: 12
-      type: bitfield
-      name: fault_code
-      optional: true
-secondary_entities:
+products:
+  - id: 7x87ndiyat1sv6os
+    manufacturer: Asakuki
+    model: Cube WiFi
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 103
+        type: string
+        name: speed
+        mapping:
+          - dps_val: small
+            value: 50
+          - dps_val: big
+            value: 100
+          - dps_val: "off"
+            value: 0
+            hidden: true
   - entity: light
     category: config
     dps:
@@ -55,12 +54,13 @@ secondary_entities:
               max: 255
       - id: 109
         type: string
-        name: color_mode
+        name: effect
         mapping:
           - dps_val: white
             value: white
+            hidden: true
           - dps_val: colour
-            value: rgb
+            value: "off"
           - dps_val: scene
             value: Scene
           - dps_val: scene1
@@ -107,6 +107,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: timer
     category: config

@@ -1,53 +1,45 @@
-name: NYBRO heater
+name: Heater
 products:
   - id: ahzyjjcfbe1ehrbt
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 5
-        max: 35
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-        - dps_val: af
-          value: away
-    - id: 1
-      type: boolean
-      name: hvac_action
-      mapping:
-        - dps_val: false
-          value: "off"
-        - constraint: heating
-          conditions:
-            - dps_val: false
-              value: idle
-            - dps_val: true
-              value: heating
-    - id: 101
-      type: boolean
-      name: heating
-      hidden: true
-secondary_entities:
+    manufacturer: NYBRO
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 5
+          max: 35
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+          - dps_val: af
+            value: away
+      - id: 101
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
   - entity: binary_sensor
     class: problem
     category: diagnostic

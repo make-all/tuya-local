@@ -1,18 +1,18 @@
 # Based on info on the web, this is a common subset of Garage door opener dps.
 name: Simple garage door
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      name: control
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: true
-          value: "open"
-        - dps_val: false
-          value: "close"
-    - id: 101
-      name: open
-      type: boolean
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: "open"
+          - dps_val: false
+            value: "close"
+      - id: 101
+        name: open
+        type: boolean

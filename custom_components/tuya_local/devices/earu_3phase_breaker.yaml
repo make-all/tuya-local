@@ -1,0 +1,217 @@
+name: Breaker meter
+products:
+  - id: nopfbtfxnwqcrg5y
+    manufacturer: EARU
+    model: EAMPDW-TY-63
+entities:
+  - entity: switch
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: "kWh"
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    hidden: true
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    hidden: true
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    hidden: true
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    hidden: true
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF0000000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    hidden: true
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF0000000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    hidden: true
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        mask: "0000000000FFFFFF0000"
+
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overvoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: "V"
+        range:
+          min: 220
+          max: 300
+
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Undervoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "V"
+        range:
+          min: 140
+          max: 210
+
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overcurrent
+    class: current
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "A"
+        range:
+          min: 1
+          max: 63
+
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Leakage
+    class: current
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "mA"
+        range:
+          min: 10
+          max: 100

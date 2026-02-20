@@ -1,83 +1,89 @@
 name: RGB warm white light
+legacy_type: feit_light_rgb_bulb
 products:
   - id: hpaeslvkx4znwzae
-    name: A60 RGB 1800-2700K light
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: color_mode
-      optional: true
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-    - id: 3
-      type: integer
-      name: brightness
-      optional: true
-      range:
-        min: 25
-        max: 255
-    - id: 4
-      type: integer
-      optional: true
-      name: color_temp
-      range:
-        min: 0
-        max: 255
-      mapping:
-        - target_range:
-            min: 1800
-            max: 2700
-    - id: 5
-      type: hex
-      name: rgbhsv
-      optional: true
-      format:
-        - name: r
-          bytes: 1
-        - name: g
-          bytes: 1
-        - name: b
-          bytes: 1
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 1
-          range:
-            min: 0
-            max: 255
-        - name: v
-          bytes: 1
-          range:
-            min: 0
-            max: 255
-    - id: 6
-      type: string
-      name: scene_data
-      optional: true
-    - id: 7
-      type: string
-      name: flash_scene_1
-      optional: true
-    - id: 8
-      type: string
-      name: flash_scene_2
-      optional: true
-    - id: 9
-      type: string
-      name: flash_scene_3
-      optional: true
-    - id: 10
-      type: string
-      name: flash_scene_4
-      optional: true
+    model: A60 RGB 1800-2700K
+  - id: 8cr0olwf9sphi0u4
+    manufacturer: Feit
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: color_mode
+        optional: true
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: null
+            value: color_temp
+            hidden: true
+      - id: 3
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 25
+          max: 255
+      - id: 4
+        type: integer
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - target_range:
+              min: 1800
+              max: 2700
+      - id: 5
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+      - id: 6
+        type: string
+        name: scene_data
+        optional: true
+      - id: 7
+        type: string
+        name: flash_scene_1
+        optional: true
+      - id: 8
+        type: string
+        name: flash_scene_2
+        optional: true
+      - id: 9
+        type: string
+        name: flash_scene_3
+        optional: true
+      - id: 10
+        type: string
+        name: flash_scene_4
+        optional: true

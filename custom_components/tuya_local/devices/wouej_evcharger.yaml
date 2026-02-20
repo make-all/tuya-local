@@ -1,52 +1,52 @@
 name: EV charger
 # products:
 #   - id: UNKNOWN
-#     name: WOUEJ 22kW wallbox
-primary_entity:
-  entity: sensor
-  name: State
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_free
-          value: Available
-        - dps_val: charger_insert
-          value: Plugged in
-        - dps_val: charger_free_fault
-          value: Fault (unplugged)
-        - dps_val: charger_wait
-          value: Waiting
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_pause
-          value: Paused
-        - dps_val: charger_end
-          value: Finished
-        - dps_val: charger_fault
-          value: Fault
-    - id: 22
-      type: string
-      name: charger_id
-    - id: 23
-      type: string
-      name: firmware_version
-    - id: 101
-      type: string
-      name: available_options
-    - id: 119
-      type: string
-      name: charger_status
-      # A slightly different list than above:
-      #  available, charging, reserved, unavailable, faulted, preparing,
-      #  finishing
-    - id: 127
-      type: boolean
-      name: schedule_tx
-secondary_entities:
+#     manufacturer: WOUEJ
+#     model: 22kW wallbox
+entities:
+  - entity: sensor
+    name: State
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: Available
+          - dps_val: charger_insert
+            value: Plugged in
+          - dps_val: charger_free_fault
+            value: Fault (unplugged)
+          - dps_val: charger_wait
+            value: Waiting
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Paused
+          - dps_val: charger_end
+            value: Finished
+          - dps_val: charger_fault
+            value: Fault
+      - id: 22
+        type: string
+        name: charger_id
+      - id: 23
+        type: string
+        name: firmware_version
+      - id: 101
+        type: string
+        name: available_options
+      - id: 119
+        type: string
+        name: charger_status
+        # A slightly different list than above:
+        #  available, charging, reserved, unavailable, faulted, preparing,
+        #  finishing
+      - id: 127
+        type: boolean
+        name: schedule_tx
   - entity: sensor
     class: energy
     dps:
@@ -72,8 +72,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: select
-    name: Mode
-    icon: "mdi:evstation"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14
@@ -81,13 +80,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_pct
-            value: Charge to percent
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charage_schedule
-            value: Scheduled charge
+            value: scheduled_charge
   - entity: switch
     name: Power
     icon: "mdi:ev-station"
@@ -213,7 +212,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: select
-    name: Currency
+    translation_key: currency
     category: config
     dps:
       - id: 116
@@ -221,20 +220,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: USD
-            value: USD
-            icon: "mdi:currency-usd"
+            value: usd
           - dps_val: CAD
-            value: CAD
-            icon: "mdi:currency-usd"
+            value: cad
           - dps_val: EUR
-            value: EUR
-            icon: "mdi:currency-eur"
+            value: eur
           - dps_val: GBP
-            value: GBP
-            icon: "mdi:currency-gbp"
+            value: gbp
           - dps_val: CNY
-            value: CNY
-            icon: "mdi:currency-cny"
+            value: cny
   - entity: number
     name: Unit cost
     category: config

@@ -1,53 +1,52 @@
 name: White noise machine
 products:
   - id: dymvl7axplliptxx
-    name: Mom Cozy white noise machine
-primary_entity:
-  entity: light
-  dps:
-    - id: 3
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: change
-          value: Rainbow
-        - dps_val: breath
-          value: Breath
-        - dps_val: light_off
-          value: hs
-        - dps_val: light_on
-          value: white
-    - id: 6
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 5
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+    manufacturer: Mom Cozy
+entities:
+  - entity: light
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: change
+            value: Rainbow
+          - dps_val: breath
+            value: Breath
+          - dps_val: light_off
+            value: hs
+          - dps_val: light_on
+            value: white
+      - id: 6
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 5
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: siren
     name: Sound
     icon: "mdi:music"

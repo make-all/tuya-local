@@ -1,119 +1,129 @@
-name: Genio Smart Power Board 2Gnd
+name: Power board
 products:
   - id: 5dvqb3eeuhhnjnlr
-    name: Genio Smart Power Board 2Gnd
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Mirabella Genio
+    model: Smart 2Gnd
+  - id: ttqj20kc2bbbpbld
+    manufacturer: Cerebro
+    model: SPS1
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        optional: true
+        name: cycle_schedule
+      - id: 43
+        type: string
+        optional: true
+        name: random_schedule
+      - id: 44
+        type: string
+        optional: true
+        name: inching
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 5
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "5"
     class: outlet
     dps:
       - id: 5
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     category: config
-    name: Timer switch 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer switch 2
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer switch 3
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 11
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer switch 4
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 12
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
+  - entity: time
     category: config
-    name: Timer switch 5
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "5"
     dps:
       - id: 13
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     category: config
     translation_key: initial_state
@@ -128,6 +138,30 @@ secondary_entities:
             value: "on"
           - dps_val: "off"
             value: "off"
+  - entity: select
+    translation_key: light_mode
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: lock
     category: config
     translation_key: child_lock

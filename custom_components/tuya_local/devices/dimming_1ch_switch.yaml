@@ -1,26 +1,25 @@
 name: Dimmer
 products:
   - id: 5zsarybcltypoeaa
-    name: Single channel module
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 3
-      type: integer
-      name: min_brightness
-    - id: 5
-      type: integer
-      name: max_brightness
-secondary_entities:
+    model: Single channel module
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 3
+        type: integer
+        name: min_brightness
+      - id: 5
+        type: integer
+        name: max_brightness
   - entity: select
     name: LED type
     icon: "mdi:led-on"
@@ -37,20 +36,16 @@ secondary_entities:
             value: Seesaw toggle
           - dps_val: seesaw_sync
             value: Seesaw sync
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 6
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

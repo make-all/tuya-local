@@ -1,37 +1,37 @@
-name: Pedestal Fan
+name: Pedestal fan
 products:
   - id: lf3n6whotmyd1d1q
-    name: Dream Maker Feel Fan DM01
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "Straight"
-          value: normal
-        - dps_val: "Natural"
-          value: nature
-        - dps_val: "AI"
-          value: smart
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 0
-        max: 100
-    - id: 5
-      type: boolean
-      name: oscillate
-
-secondary_entities:
+    manufacturer: Dream Maker
+    model: Feel Fan
+    model_id: DM01
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "Straight"
+            value: normal
+          - dps_val: "Natural"
+            value: nature
+          - dps_val: "AI"
+            value: smart
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 100
+      - id: 5
+        type: boolean
+        name: oscillate
   - entity: select
-    name: Oscillation Angle
+    name: Oscillation angle
     icon: mdi:arrow-oscillating
     category: config
     dps:
@@ -98,6 +98,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 102

@@ -1,20 +1,19 @@
-name: Moes dimmer
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 13
-      name: work_mode
-      type: string
-secondary_entities:
+name: Dimmer
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 13
+        name: work_mode
+        type: string
   - entity: number
     name: Minimum brightness
     category: config
@@ -45,8 +44,7 @@ secondary_entities:
           - dps_val: halogen
             value: Halogen
   - entity: select
-    name: Backlight mode
-    icon: "mdi:circle-outline"
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -54,8 +52,8 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: relay
-            value: Status
+            value: state
           - dps_val: pos
-            value: Locator
+            value: locator

@@ -1,43 +1,38 @@
 name: Infrared wall heater
 products:
   - id: ajlnotpa7oymbbte
-    name: Kesser 400W
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 10
-        max: 30
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: "heating"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-        - dps_val: "standby"
-          value: heating
-secondary_entities:
+    manufacturer: Kesser
+    model: "400W"
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 7
+          max: 30
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "heating"
+            value: idle
+          - dps_val: "standby"
+            value: heating
   - entity: lock
     translation_key: child_lock
     category: config
@@ -46,9 +41,8 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 102
         type: integer
@@ -57,10 +51,8 @@ secondary_entities:
         range:
           min: -9
           max: 9
-        mapping:
-          - scale: 1
   - entity: switch
-    name: Window Check
+    name: Window check
     category: config
     icon: "mdi:window-open-variant"
     dps:
@@ -68,9 +60,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
-    icon: "mdi:music-note"
     dps:
       - id: 103
         type: boolean

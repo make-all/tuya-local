@@ -1,0 +1,95 @@
+name: Weather station
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Manta
+#     model: Windy Smart
+#     model_id: MT0200B
+entities:
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Internal humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 1 temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 1 humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 2 temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 2 humidity
+    class: humidity
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Sensor 3 temperature
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Sensor 3 humidity
+    class: humidity
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10

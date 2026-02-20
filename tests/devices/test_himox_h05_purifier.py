@@ -1,6 +1,5 @@
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
@@ -39,7 +38,6 @@ class TestHimoxH05Purifier(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(
@@ -60,7 +58,7 @@ class TestHimoxH05Purifier(
                     "name": "sensor_temperature",
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
                 {
                     "dps": FILTER_DPS,

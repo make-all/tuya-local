@@ -1,20 +1,20 @@
 name: BBQ thermometer
 products:
   - id: h8qbni4ouwn5gjh0
-    name: Inkbird IBT-26S
-primary_entity:
-  entity: sensor
-  name: Temperature probe 1
-  class: temperature
-  dps:
-    - id: 107
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 100
-      unit: F
-secondary_entities:
+    manufacturer: Inkbird
+    model: IBT-26S
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+        unit: F
   - entity: sensor
     name: Temperature probe 2
     class: temperature

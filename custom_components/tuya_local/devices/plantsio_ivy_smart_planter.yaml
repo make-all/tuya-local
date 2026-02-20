@@ -1,28 +1,24 @@
 # Datapoints documented at:
 # https://gist.github.com/thewade/ef9f6014f13932bd2e77d43331e2027d
 
-name: Smart Planter
+name: Smart planter
 products:
   - id: 8n3q0y4cwov8ifxt
-    name: PlantsIO Ivy Smart Planter
-primary_entity:
-  entity: sensor
-  name: Water level
-  class: volume_storage
-  dps:
-    - id: 108
-      type: integer
-      name: sensor
-      unit: mL
-      class: measurement
-      mapping:
-        - dps_val: 0
-          icon: "mdi:cup-outline"
-        - icon: "mdi:cup"
-    - id: 107
-      type: string
-      name: version
-secondary_entities:
+    manufacturer: PlantsIO
+    model: Ivy
+entities:
+  - entity: sensor
+    translation_key: water_level
+    class: volume_storage
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: mL
+        class: measurement
+      - id: 107
+        type: string
+        name: version
   # Sensor entities raw
   - entity: sensor
     class: illuminance
@@ -141,6 +137,59 @@ secondary_entities:
           - dps_val: 2
             value: "Too Dry"
           - value: "Unknown state"
+  # Button entities
+  - entity: event
+    name: Left touch
+    icon: "mdi:hand-pointing-right"
+    class: button
+    dps:
+      - id: 127
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Right touch
+    icon: "mdi:hand-pointing-left"
+    class: button
+    dps:
+      - id: 128
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Plant touch
+    icon: "mdi:hand-pointing-down"
+    class: button
+    dps:
+      - id: 129
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - value: null
+  - entity: event
+    name: Hug
+    class: button
+    icon: "mdi:human-handsup"
+    dps:
+      - id: 111
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "hug"
+            value: pressed
+          - value: null
   # Diagnostic entities
   - entity: sensor
     class: battery
@@ -327,6 +376,14 @@ secondary_entities:
         range:
           min: 0
           max: 100
+      - id: 135
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: switch
     name: Sound perception
     category: config
@@ -440,6 +497,7 @@ secondary_entities:
     dps:
       - id: 143
         type: integer
+        sensitive: true
         name: value
         range:
           min: -900000
@@ -453,6 +511,7 @@ secondary_entities:
     dps:
       - id: 142
         type: integer
+        sensitive: true
         name: value
         range:
           min: -1800000

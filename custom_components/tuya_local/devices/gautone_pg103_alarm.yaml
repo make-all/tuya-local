@@ -1,36 +1,38 @@
 name: Alarm security system
 products:
-  - id: eb26b0818666ecd284o4qe
-    name: GauTone PG-103
+  - id: z75vinnyhtgxhaxw
+    manufacturer: GauTone
+    model: PG-103
   - id: gyitctrjj1kefxp2
-    name: "PG103/PG105/PG106/PG107/PG109"
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: armed_away
-        - dps_val: home
-          value: armed_home
-        - dps_val: sos
-          value: triggered
-    - id: 36
-      type: string
-      name: sub_class
-      optional: true
-    - id: 101
-      type: string
-      name: power_state
-secondary_entities:
+    manufacturer: PGST
+    model: "PG103/PG105/PG106/PG107/PG109"
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 36
+        type: string
+        name: sub_class
+        optional: true
+      - id: 101
+        type: string
+        name: power_state
   - entity: number
     name: Exit delay
     category: config
     icon: "mdi:timer"
+    class: duration
     dps:
       - id: 2
         type: integer
@@ -42,6 +44,7 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 28
@@ -55,6 +58,7 @@ secondary_entities:
     name: Siren duration
     category: config
     icon: "mdi:timer"
+    class: duration
     dps:
       - id: 3
         type: integer
@@ -93,6 +97,14 @@ secondary_entities:
         name: switch
         optional: true
   - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
     name: Alarm notification
     category: config
     dps:
@@ -108,12 +120,52 @@ secondary_entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: normal
-            value: false
           - dps_val: alarm
             value: true
+          - value: false
+  - entity: event
+    name: Alarm
+    dps:
       - id: 26
-        type: base64
+        type: string
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 26
+        type: utf16b64
         name: message
         optional: true
-        persist: false
+      - id: 37
+        type: string
+        optional: true
+        name: sub_type
+      - id: 39
+        type: string
+        optional: true
+        name: sub_state
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: powerDisconnect
+            value: false
+          - value: true

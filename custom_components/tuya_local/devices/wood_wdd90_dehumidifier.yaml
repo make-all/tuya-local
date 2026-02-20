@@ -1,55 +1,55 @@
 name: Dehumidifier
 products:
   - id: kiiuovcdvvgxnj0n
-    name: Woods WDD90
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - dps_val: "35"
-          value: 35
-          step: 5
-        - dps_val: "40"
-          value: 40
-          step: 5
-        - dps_val: "45"
-          value: 45
-          step: 5
-        - dps_val: "50"
-          value: 50
-          step: 5
-        - dps_val: "55"
-          value: 55
-          step: 5
-        - dps_val: "60"
-          value: 60
-          step: 5
-        - dps_val: "65"
-          value: 65
-          step: 5
-        - dps_val: "70"
-          value: 70
-          step: 5
-        - dps_val: "75"
-          value: 75
-          step: 5
-        - dps_val: "80"
-          value: 80
-          step: 5
-    - id: 6
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: Woods
+    model: WDD90
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - dps_val: "35"
+            value: 35
+            step: 5
+          - dps_val: "40"
+            value: 40
+            step: 5
+          - dps_val: "45"
+            value: 45
+            step: 5
+          - dps_val: "50"
+            value: 50
+            step: 5
+          - dps_val: "55"
+            value: 55
+            step: 5
+          - dps_val: "60"
+            value: 60
+            step: 5
+          - dps_val: "65"
+            value: 65
+            step: 5
+          - dps_val: "70"
+            value: 70
+            step: 5
+          - dps_val: "75"
+            value: 75
+            step: 5
+          - dps_val: "80"
+            value: 80
+            step: 5
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: fan
     translation_key: fan_with_presets
     dps:

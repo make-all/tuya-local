@@ -1,20 +1,20 @@
 name: Range hood
 products:
   - id: aiwq2zdatwjllekd
-    name: Ciarra CBCS4850
-primary_entity:
-  entity: fan
-  dps:
-    - id: 2
-      type: integer
-      name: speed
-      range:
-        min: 0
-        max: 4
-    - id: 12
-      type: string
-      name: status
-secondary_entities:
+    manufacturer: Ciarra
+    model: CBCS4850
+entities:
+  - entity: fan
+    dps:
+      - id: 2
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 4
+      - id: 12
+        type: string
+        name: status
   - entity: switch
     dps:
       - id: 1
@@ -30,6 +30,7 @@ secondary_entities:
         name: button
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 5

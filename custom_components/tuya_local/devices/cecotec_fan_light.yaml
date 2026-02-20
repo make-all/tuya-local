@@ -1,38 +1,38 @@
 name: Fan with light
 products:
   - id: 9uydeea5iojq3msy
-    name: Cecotec AQUA CONNECTED
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fresh
-          value: fresh
-        - dps_val: smart
-          value: smart
-        - dps_val: custom
-          value: custom
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 6
-    - id: 8
-      name: direction
-      type: string
-secondary_entities:
+    manufacturer: Cecotec
+    model: Aqua Connected
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: smart
+            value: smart
+          - dps_val: custom
+            value: custom
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        name: direction
+        type: string
   - entity: light
     dps:
       - id: 15

@@ -1,58 +1,37 @@
-name: Kogan dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 2
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: eco
-        - dps_val: middle
-          value: normal
-        - dps_val: high
-          value: boost
-        - dps_val: quickdry
-          value: laundry
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 3
-    - id: 3
-      name: current_humidity
-      type: integer
-    - id: 11
-      name: error
-      type: integer
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: "Tank full"
-          icon: "mdi:cup-water"
-          icon_priority: 1
-    - id: 12
-      name: timer_hr
-      type: integer
-    - id: 13
-      name: timer
-      type: integer
-    - id: 101
-      name: humidity
-      type: integer
-      range:
-        min: 0
-        max: 80
-secondary_entities:
+name: Dehumidifier
+products:
+  - id: ulyg4agor5ftpfku
+    manufacturer: Kogan
+    model: Desiccant
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: middle
+            value: normal
+          - dps_val: high
+            value: boost
+          - dps_val: quickdry
+            value: laundry
+      - id: 3
+        name: current_humidity
+        type: integer
+      - id: 101
+        name: humidity
+        type: integer
+        range:
+          min: 0
+          max: 80
   - entity: fan
     dps:
       - id: 1
@@ -82,6 +61,32 @@ secondary_entities:
         name: sensor
         type: integer
         mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
             value: false
+          - dps_val: 1
+            value: false
           - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        name: hour
+        type: integer
+      - id: 13
+        name: minute
+        type: integer

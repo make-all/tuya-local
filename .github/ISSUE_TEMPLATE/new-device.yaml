@@ -8,24 +8,39 @@ body:
       value: |
         This form is for reporting a **New Device**.  If you are looking for general help, including cases where you do not see anything in the log, see [Discussions](https://github.com/make-all/tuya-local/discussions).
 
+        **Battery powered Wi-fi devices are not compatible with local use, so please do not request support for them even if you are able to use some trick to gather logs.** Long term, any tricks to get them to stay connected will only drain the battery extremely rapidly.
+
         Thank you for reporting your unsupported device. Please provide as much information as you can. Because the developers are busy, new device requests will be prioritised as follows:
 
-          1. Pull requests
-          2. Issues with logs and QueryThingsDataModel API results or equivalent
-          3. Issues with logs and enough dps info to make a useful config.
-          4. Issues with logs and a tested config
+          1. Well written pull requests
+          2. Well written issues with warning level logs containing local dps from when adding the device and QueryThingsDataModel API results or equivalent
+          3. AI generated pull requests where the submitter is not responsive in fixing auto-detected issues and making requested changes
+          4. Issues with logs and enough dps info to make a useful config.
+          5. Issues with logs and a tested config
 
   - type: textarea
     id: log
     attributes:
       label: Log message
       description: |
-        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a dps list which is output when you attempt to add the device and are presented with a list of non-matching devices.
-        Alternatively, if you already added the device, you can turn on debug logging for a minute or so, and find a message in the log from your device which has `full_poll: true` as part of the message.
-      placeholder: Reports without logs will be immediately closed
+        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a **LOCAL DPS** list which is output when you attempt to add the device and are presented with a list of non-matching devices.
+        Providing logs shows that you have tried this integration, the device is able to connect, and existing configs are not adequate. They also show exactly what the device is sending, which helps avoid some back and forward steps to get the config working.
+      placeholder: Reports without local logs from this integration will be immediately closed
       render: text
     validations:
       required: true
+  - type: input
+    id: productid
+    attributes:
+      label: Product ID
+      description: |
+        The product ID or productKey for the device.
+        You can get this from the HA log when using cloud assisted setup with tuya-local 2024.11.0 and later. Otherwise the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery. **Do not provide your device id here, that is private info unique to your personal device.**
+  - type: input
+    id: productname
+    attributes:
+      label: Product Name
+      description: The product name (usually brand and model name/number)
   - type: textarea
     id: data_model
     attributes:
@@ -36,18 +51,6 @@ body:
       render: text
     validations:
       required: true
-  - type: input
-    id: productid
-    attributes:
-      label: Product ID
-      description: |
-        The product ID or productKey for the device.
-        You can get this from the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery
-  - type: input
-    id: productname
-    attributes:
-      label: Product Name
-      description: The product name (usually brand and model name/number)
   - type: textarea
     id: info
     attributes:

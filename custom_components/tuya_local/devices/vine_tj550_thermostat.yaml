@@ -1,163 +1,163 @@
 name: Thermostat
 products:
   - id: 3glq4enbzoahd41t
-    name: Vine TJ550
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 2
-      type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: "off"
-          value: "off"
-        - dps_val: cool
-          value: cool
-        - dps_val: heat
-          value: heat
-        - dps_val: auto
-          value: heat_cool
-        - dps_val: emheat
-          value: heat
-          hidden: true
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: aux_heating
-          value: heating
-        - dps_val: em_heating
-          value: heating
-        - dps_val: dehumidifier
-          value: drying
-    - id: 16
-      type: integer
-      optional: true
-      name: temperature
-      range:
-        min: 50
-        max: 370
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 420
-                max: 1000
-    - id: 17
-      type: integer
-      optional: true
-      name: temp_set_f
-      range:
-        min: 420
-        max: 1000
-      mapping:
-        - scale: 10
-    - id: 18
-      type: integer
-      optional: true
-      name: max_temp_f
-    - id: 19
-      type: integer
-      optional: true
-      name: max_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: max_temp_f
-    - id: 20
-      type: integer
-      optional: true
-      name: min_temp_f
-    - id: 26
-      type: integer
-      optional: true
-      name: min_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: min_temp_f
-    - id: 23
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      type: integer
-      optional: true
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 29
-      type: integer
-      optional: true
-      name: temp_current_f
-    - id: 28
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: low
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 34
-      type: integer
-      name: current_humidity
-    - id: 67
-      type: string
-      optional: true
-      name: week_program
-    - id: 102
-      type: string
-      optional: true
-      name: circulation_set
-    - id: 103
-      type: string
-      optional: true
-      name: change_week_program
-    - id: 104
-      type: string
-      optional: true
-      name: vacation
-    - id: 105
-      type: string
-      optional: true
-      name: run_time
-    - id: 106
-      type: string
-      optional: true
-      name: energy_data
-    - id: 114
-      type: string
-      optional: true
-      name: dehumidifier
-    - id: 115
-      type: string
-      optional: true
-      name: datetime
-    - id: 116
-      type: string
-      optional: true
-      name: auto_control
-    - id: 117
-      type: string
-      optional: true
-      name: geo_location
-      sensitive: true
-secondary_entities:
+    manufacturer: Vine
+    model: TJ550
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 2
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: cool
+            value: cool
+          - dps_val: heat
+            value: heat
+          - dps_val: auto
+            value: heat_cool
+          - dps_val: emheat
+            value: heat
+            hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: aux_heating
+            value: preheating
+          - dps_val: em_heating
+            value: heating
+          - dps_val: dehumidifier
+            value: drying
+      - id: 16
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 50
+          max: 370
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 420
+                  max: 1000
+      - id: 17
+        type: integer
+        optional: true
+        name: temp_set_f
+        range:
+          min: 420
+          max: 1000
+        mapping:
+          - scale: 10
+      - id: 18
+        type: integer
+        optional: true
+        name: max_temp_f
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+      - id: 20
+        type: integer
+        optional: true
+        name: min_temp_f
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: min_temp_f
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 29
+        type: integer
+        optional: true
+        name: temp_current_f
+      - id: 28
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 34
+        type: integer
+        name: current_humidity
+      - id: 67
+        type: string
+        optional: true
+        name: week_program
+      - id: 102
+        type: string
+        optional: true
+        name: circulation_set
+      - id: 103
+        type: string
+        optional: true
+        name: change_week_program
+      - id: 104
+        type: string
+        optional: true
+        name: vacation
+      - id: 105
+        type: string
+        optional: true
+        name: run_time
+      - id: 106
+        type: string
+        optional: true
+        name: energy_data
+      - id: 114
+        type: string
+        optional: true
+        name: dehumidifier
+      - id: 115
+        type: string
+        optional: true
+        name: datetime
+      - id: 116
+        type: string
+        optional: true
+        name: auto_control
+      - id: 117
+        type: string
+        optional: true
+        name: geo_location
+        sensitive: true
   - entity: switch
     dps:
       - id: 1
@@ -215,6 +215,7 @@ secondary_entities:
     dps:
       - id: 9
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     translation_key: anti_frost
@@ -231,10 +232,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -267,10 +267,9 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         type: integer
@@ -328,9 +327,9 @@ secondary_entities:
           - dps_val: f
             value: fahrenheit
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean
@@ -419,6 +418,7 @@ secondary_entities:
   - entity: number
     name: Filter lifetime
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 56

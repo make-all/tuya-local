@@ -1,41 +1,39 @@
 name: Dehumidifier
 products:
   - id: bfba28a17b4fe4e87aljv2
-    name: Qlima D820A
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      type: string
-      name: mode
-      mapping:
-        - dps_val: dry_clothes
-          value: laundry
-        - dps_val: sleep_mode
-          value: sleep
-        - dps_val: manual_dehumidify
-          value: normal
-        - dps_val: auto
-          value: auto
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Qlima
+    model: D820A
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: dry_clothes
+            value: laundry
+          - dps_val: sleep_mode
+            value: sleep
+          - dps_val: manual_dehumidify
+            value: normal
+          - dps_val: auto
+            value: auto
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: fan
     dps:
       - id: 1
@@ -84,6 +82,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: select
     name: Indicators
     icon: "mdi:led-on"
@@ -100,21 +101,18 @@ secondary_entities:
           - dps_val: "3"
             value: "All on"
   - entity: select
-    name: Operating mode
+    translation_key: air_mode
     dps:
       - id: 105
         type: string
         name: option
         mapping:
           - dps_val: dehum_air
-            value: Dehumidify only
-            icon: "mdi:water-percent"
+            value: dehumidify
           - dps_val: airpurify
-            value: Purify only
-            icon: "mdi:air-filter"
+            value: purify
           - dps_val: dehum30_air
-            value: Both
-            icon: "mdi:air-humidifier"
+            value: dehumidify_and_purify
   - entity: switch
     name: Internal dry
     category: config

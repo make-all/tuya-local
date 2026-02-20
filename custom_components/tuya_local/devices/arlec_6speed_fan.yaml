@@ -1,58 +1,55 @@
-name: Arlec floor fan
+name: Fan
 products:
   - id: tsgf7ywzeit2d90b
-    name: Arlec 45cm black floor fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fresh
-          value: fresh
-        - dps_val: smart
-          value: smart
-        - dps_val: strong
-          value: strong
-        - dps_val: closed
-          value: "off"
-        - dps_val: ordinary
-          value: normal
-        - dps_val: null
-          value: "off"
-    - id: 3
-      name: speed
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: 17
-        - dps_val: "2"
-          value: 33
-        - dps_val: "3"
-          value: 50
-        - dps_val: "4"
-          value: 67
-        - dps_val: "5"
-          value: 83
-        - dps_val: "6"
-          value: 100
-    - id: 101
-      type: boolean
-      name: oscillate
-    - id: 8
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Arlec
+    name: "45cm black floor fan"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: smart
+            value: smart
+          - dps_val: strong
+            value: strong
+          - dps_val: closed
+            value: "off"
+          - dps_val: ordinary
+            value: normal
+          - dps_val: null
+            value: "off"
+      - id: 3
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: 17
+          - dps_val: "2"
+            value: 33
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 67
+          - dps_val: "5"
+            value: 83
+          - dps_val: "6"
+            value: 100
+      - id: 101
+        type: boolean
+        name: oscillate
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -64,6 +61,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 8
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: timer
     category: config

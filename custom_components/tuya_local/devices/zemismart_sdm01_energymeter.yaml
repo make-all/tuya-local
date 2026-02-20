@@ -1,0 +1,403 @@
+name: Energy meter
+products:
+  - id: fzxonzodwjiugioz
+    manufacturer: Zemismart
+    model: SDM01-TW0/TZ0-12
+entities:
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      # Standard phase dps do not appear in log, and data appears to be covered
+      # as X/Y/Z below, so not decoded
+      - id: 6
+        type: string
+        optional: true
+        name: phase_a
+      - id: 7
+        type: string
+        optional: true
+        name: phase_b
+      - id: 8
+        type: string
+        optional: true
+        name: phase_c
+      # Alarms are binary encoded and do not appear in logs, so not decoded
+      - id: 17
+        type: string
+        optional: true
+        name: alarm_set_1
+      - id: 18
+        type: string
+        optional: true
+        name: alarm_set_2
+      - id: 19
+        type: string
+        name: breaker_id
+      - id: 131
+        type: integer
+        name: r485_address
+      - id: 132
+        type: string
+        name: r485_baud_rate
+      - id: 133
+        type: string
+        name: r485_data_format
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+  - entity: button
+    name: Clear energy
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 35
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 50
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Locator
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Reporting interval
+    class: duration
+    category: config
+    icon: "mdi:autorenew"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 3600
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: X
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: X
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: X
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor X
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: X
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: X
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Y
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Y
+    class: current
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Y
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor Y
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Y
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: Y
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Z
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Z
+    class: current
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Z
+    class: power
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor Z
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Z
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: Z
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Current imbalance
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

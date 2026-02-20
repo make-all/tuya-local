@@ -1,0 +1,108 @@
+name: Air purifier
+products:
+  - id: vpb3fd5rhtgd7b4t
+    manufacturer: Jafanda
+    model: JF500
+
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+      - id: 101
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: excellent
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: average
+            value: moderate
+          - dps_val: poor
+            value: poor
+
+  - entity: light
+    name: Dial lighting
+    icon: "mdi:knob"
+    category: config
+    dps:
+      - id: 103
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: lightoff
+            value: 0
+          - dps_val: fifty_percent
+            value: 128
+          - dps_val: a_hundred_percent
+            value: 255
+
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12

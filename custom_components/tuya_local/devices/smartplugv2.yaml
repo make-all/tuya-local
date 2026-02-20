@@ -1,21 +1,20 @@
 name: Energy monitoring smartplug
 legacy_type: kogan_switch2
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
-secondary_entities:
+products:
+  - id: 3o0vwq7nfd8keuwp
+    manufacturer: Mercator Ikuü
+    model: SPLUG02
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -59,17 +58,31 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
         mapping:
-          - scale: 60
-            step: 60
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

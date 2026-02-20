@@ -1,21 +1,22 @@
 name: Weather station
 products:
   - id: amluiug6se4zdz1t
-    name: Helios WS5095W2
-primary_entity:
-  entity: sensor
-  class: temperature
-  name: Indoor Temperature
-  category: diagnostic
-  dps:
-    - id: 101
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    manufacturer: Holman
+    model: Helios
+    model_id: WS5095W2
+entities:
+  - entity: sensor
+    class: temperature
+    name: Indoor temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     name: Indoor humidity
     class: humidity
@@ -181,7 +182,7 @@ secondary_entities:
           - scale: 100
         class: measurement
   - entity: sensor
-    name: Tablet Battery
+    name: Tablet battery
     icon: mdi:battery
     category: diagnostic
     dps:
@@ -189,7 +190,7 @@ secondary_entities:
         type: string
         name: sensor
   - entity: sensor
-    name: Outdoor Battery
+    name: Outdoor battery
     icon: mdi:battery
     category: diagnostic
     dps:

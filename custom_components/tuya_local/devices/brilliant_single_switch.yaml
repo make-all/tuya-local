@@ -1,37 +1,35 @@
 name: Wall switch
 products:
   - id: me0f991hyvz5uaew
-    name: Briliiant Smart glass wall switch 1-gang
-primary_entity:
-  entity: switch
-  class: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
-  - entity: number
+    manufacturer: Briliiant Smart
+    name: Glass wall switch 1-gang
+entities:
+  - entity: switch
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 7
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 101
         type: integer
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor

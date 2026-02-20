@@ -1,23 +1,23 @@
 name: Air fryer
 products:
   - id: rmywxak3angdgh0d
-    name: SilverCrest HF-6602T
-primary_entity:
-  entity: switch
-  icon: "mdi:toaster-oven"
-  category: config
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 11
-      type: string
-      optional: true
-      name: multistep
-    - id: 17
-      type: integer
-      name: cooking_history
-secondary_entities:
+    manufacturer: SilverCrest
+    model: HF-6602T
+entities:
+  - entity: switch
+    icon: "mdi:toaster-oven"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 11
+        type: string
+        optional: true
+        name: multistep
+      - id: 17
+        type: integer
+        name: cooking_history
   - entity: button
     name: Start
     icon: "mdi:play"
@@ -33,7 +33,6 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Mode
     translation_key: recipe
     dps:
       - id: 3
@@ -74,7 +73,7 @@ secondary_entities:
           min: 0
           max: 999999
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     dps:
       - id: 5
@@ -82,23 +81,23 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: setting
-            value: Setting
+            value: setting
           - dps_val: pre_heating
-            value: Pre-heating
+            value: pre_heating
           - dps_val: keep_warm
-            value: Keeping warm
+            value: keeping_warm
           - dps_val: cooking
-            value: Cooking
+            value: cooking
           - dps_val: scheduled
-            value: Scheduled
+            value: scheduled
           - dps_val: pausing
-            value: Paused
+            value: paused
           - dps_val: completed
-            value: Done
+            value: done
           - dps_val: preheat_done
-            value: At temperature
+            value: at_temperature
   - entity: number
     class: temperature
     dps:
@@ -122,6 +121,7 @@ secondary_entities:
         class: measurement
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 8
@@ -133,6 +133,7 @@ secondary_entities:
           max: 180
   - entity: number
     name: Cooking time
+    class: duration
     translation_key: timer
     dps:
       - id: 9

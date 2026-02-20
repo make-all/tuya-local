@@ -1,22 +1,24 @@
 name: Energy meter
 products:
   - id: seqzqh45b0ggn9so
-    name: Atorch AT2PL
+    manufacturer: Atorch
+    model: AT2PL
   - id: sq1ahfxhgove4kgo
-    name: Atorch GR2PWS
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      optional: true
-      name: add_ele
-secondary_entities:
+    manufacturer: Atorch
+    model: GR2PWS
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        optional: true
+        name: add_ele
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -159,6 +161,7 @@ secondary_entities:
           max: 9
   - entity: number
     name: Standby delay
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -170,8 +173,7 @@ secondary_entities:
           min: 3
           max: 99
   - entity: switch
-    name: Beep
-    icon: "mdi:bell"
+    translation_key: sound
     category: config
     dps:
       - id: 111
@@ -209,9 +211,9 @@ secondary_entities:
         name: button
         optional: true
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 115
         type: boolean
@@ -327,6 +329,7 @@ secondary_entities:
   - entity: number
     name: Data refresh interval
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 125
@@ -417,6 +420,7 @@ secondary_entities:
   - entity: number
     name: Overvoltage recovery delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 137

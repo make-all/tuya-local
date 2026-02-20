@@ -2,34 +2,29 @@ name: Smartplug with encoded info
 products:
   - id: A6bBfm2fmKKRfIxU
     name: スマートプラグ
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 101
-      type: base64
-      name: random
-    - id: 102
-      type: base64
-      name: circulate
-    - id: 103
-      type: base64
-      name: schedule
-secondary_entities:
-  - entity: number
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+      - id: 101
+        type: base64
+        name: random
+      - id: 102
+        type: base64
+        name: circulate
+      - id: 103
+        type: base64
+        name: schedule

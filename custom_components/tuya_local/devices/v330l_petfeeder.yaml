@@ -1,51 +1,58 @@
 name: Pet feeder
 products:
   - id: ibnk6keua0zzc2gr
-    name: V330 Petfeeder
+    model: V330L
+    model_id: V330L_AF3V_223A
   - id: cjrm04np59ut4pwb
-    name: V330L-DU4L-VS Petfeeder
     # Needs to be added using the 3.2 protocol
-primary_entity:
-  entity: number
-  name: Manual feed
-  icon: "mdi:food-drumstick"
-  dps:
-    - id: 201
-      type: integer
-      name: value
-      unit: portions
-      optional: true
-      persist: false
-      range:
-        min: 0
-        max: 10
-    - id: 202
-      type: integer
-      name: food_weight
-      optional: true
-      mapping:
-        - scale: 10
-    - id: 203
-      type: integer
-      name: control
-      optional: true
-    - id: 204
-      type: integer
-      name: realtime_data
-      optional: true
-    - id: 205
-      type: integer
-      name: weight
-      optional: true
-    - id: 207
-      type: string
-      name: schedule
-      optional: true
-    - id: 208
-      type: string
-      name: voice_record
-      optional: true
-secondary_entities:
+    model: V330L
+    model_id: V330L-DU4L-VS
+  - id: 7bkqbfbpv7qbfskr
+    manufacturer: iGET Home
+    model: 9LC
+entities:
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 201
+        type: integer
+        name: value
+        unit: portions
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 10
+        mapping:
+          - dps_val: null
+            value: 0
+            hidden: true
+      - id: 202
+        type: integer
+        name: food_weight
+        optional: true
+        mapping:
+          - scale: 10
+      - id: 203
+        type: integer
+        name: control
+        optional: true
+      - id: 204
+        type: integer
+        name: realtime_data
+        optional: true
+      - id: 205
+        type: integer
+        name: weight
+        optional: true
+      - id: 207
+        type: string
+        name: schedule
+        optional: true
+      - id: 208
+        type: string
+        name: voice_record
+        optional: true
   - entity: light
     translation_key: indicator
     category: config
@@ -54,8 +61,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -81,8 +87,7 @@ secondary_entities:
         name: switch
         optional: true
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -91,11 +96,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: select
     name: Nightvision
     icon: "mdi:weather-night"
@@ -121,10 +126,15 @@ secondary_entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 1
+          - dps_val: 16777216
             value: true
           - value: false
+      - id: 206
+        type: bitfield
+        name: raw
+        optional: true
   - entity: binary_sensor
     name: Not enough food
     class: problem
@@ -134,8 +144,9 @@ secondary_entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 2
+          - dps_val: 33554432
             value: true
           - value: false
   - entity: binary_sensor
@@ -147,8 +158,9 @@ secondary_entities:
         type: bitfield
         name: sensor
         optional: true
+        persist: false
         mapping:
-          - dps_val: 4
+          - dps_val: 67108864
             value: true
           - value: false
   - entity: switch

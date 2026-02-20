@@ -5,11 +5,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        This form is for reporting bugs with the integration or existing devices. Bug reports should be detailed with log messages or device diagnostics to help developers determine what is going wrong.
+        This form is for reporting bugs with the integration or existing devices. Bug reports should be detailed **with log messages or device diagnostics** to help developers determine what is going wrong.
+
+        **If you are reporting a deprecation message from the log, please check that the message is for an HA deprecation (telling you to report the issue here), and that there is not already [a bug](https://github.com/make-all/tuya-local/issues?q=is%3Aissue+is%3Aopen+label%3Amaintenance) for the issue.** Most likely the deprecation is new in the latest HA release, and will not be "fixed" in the integration until late in the month or the next month, as fixes generally are not backwards compatible with older HA versions.  Other deprecation messages can be aimed at you, the end user, to prompt you to update automations etc. If the message is telling you an entity is deprecated, then you can disable the entity in Settings / Devices once you have adapted to use the replacement.
 
         If you have a question, or are unsure if what you observe is really a bug, consider using [Discussions](https://github.com/make-all/tuya-local/discussions) instead.
 
         If you are reporting an unsupported device, please use the **New Device** reporting template instead, which will guide you on the information required to make sure your request is not put into the "too hard" pile.
+
+        If you are reporting a device which is listed as supported, but cannot be added, please include the WARNING log message that contains a dps list, which is output during the detection stage. If you are not getting such a message, please see discussion \#522 for hints on resolving connection issues.
 
         If you are intending to create a pull request, an issue is not required, but please clearly describe the reason for your PR in the description of the PR.
 
@@ -58,12 +62,17 @@ body:
       description: |
         Please select if the following are applicable
       options:
-        - label: I am sure this is a bug, or improvement that is well enough described that it can be implemented
+        - label: I am sure this is a bug or improvement, that is well enough described that it can be implemented.
+          required: true
+        - label: This report is for tuya-local, **not** for localtuya.
           required: true
         - label: |
-            If this is for a specific device, the device config is mentioned above, or diagnostics are included.
-          required: true
-        - label: This is not requesting addition of a new device
+            If this is for a specific device, the device config filename is mentioned above, or diagnostics are included.
+          required: false
+        - label: |
+            Log messages or diagnostics relevant to the issue are included.
+          required: false
+        - label: This is not requesting addition of a new device.
           required: true
     validations:
       required: true

@@ -1,0 +1,63 @@
+name: Heater
+products:
+  - id: laagtqcj40q1uwg8
+    manufacturer: Devola
+    model: Intelligent
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 7
+          max: 30
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: antifrost
+                value: 7
+                range:
+                  min: 7
+                  max: 7
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+          - dps_val: antifrost
+            value: away
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        optional: true
+        name: fault_code

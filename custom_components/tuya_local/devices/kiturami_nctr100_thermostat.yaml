@@ -1,59 +1,60 @@
 name: Thermostat
 products:
   - id: 7vjtrn5888247ol8
-    name: Kiturami NCTR100WR
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 2
-      type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: Reservation
-          value: auto
-        - dps_val: OnDol
-          value: heat
-          hidden: true
-        - dps_val: Interior
-          value: heat
-        - dps_val: Bath
-          value: "off"
-          hidden: true
-        - dps_val: Summer
-          value: "off"
-        - dps_val: OutGoing
-          value: "off"
-          hidden: true
-    - id: 103
-      type: integer
-      name: temperature
-      range:
-        min: 45
-        max: 85
-      unit: C
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: Interior
-              value_redirect: room_temperature
-              range:
-                min: 10
-                max: 45
-    - id: 6
-      type: integer
-      name: current_temperature
-    - id: 103
-      type: integer
-      name: water_temperature
-      range:
-        min: 45
-        max: 85
-    - id: 5
-      type: integer
-      name: room_temperature
-secondary_entities:
+    manufacturer: Kiturami
+    model: NCTR100WR
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 2
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: Reservation
+            value: auto
+          - dps_val: OnDol
+            value: heat
+            hidden: true
+          - dps_val: Interior
+            value: heat
+          - dps_val: Bath
+            value: "off"
+            hidden: true
+          - dps_val: Summer
+            value: "off"
+          - dps_val: OutGoing
+            value: "off"
+            hidden: true
+      - id: 103
+        type: integer
+        name: temperature
+        range:
+          min: 45
+          max: 85
+        unit: C
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: Interior
+                value_redirect: room_temperature
+                range:
+                  min: 10
+                  max: 45
+      - id: 6
+        type: integer
+        name: current_temperature
+      - id: 103
+        type: integer
+        name: water_temperature
+        range:
+          min: 45
+          max: 85
+      - id: 5
+        type: integer
+        name: room_temperature
   - entity: water_heater
+    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -107,6 +108,7 @@ secondary_entities:
   - entity: number
     name: Scheduled runtime
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 101
@@ -119,6 +121,7 @@ secondary_entities:
   - entity: number
     name: Scheduled idle time
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 102

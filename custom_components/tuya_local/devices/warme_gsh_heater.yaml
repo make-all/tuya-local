@@ -1,43 +1,42 @@
 name: Heater
 products:
   - id: 8UGflCDtNYJw1dZs
-    name: Warme GSH heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      precision: 0
-      unit: "C"
-      range:
-        min: 12
-        max: 50
-    - id: 3
-      name: current_temperature
-      type: integer
-      readonly: true
-      unit: "C"
-    - id: 102
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Comfort
-          value: Comfort
-        - dps_val: ECO
-          value: ECO
-        - dps_val: Frost
-          value: Frost
-secondary_entities:
+    manufacturer: Warme
+    model: GSH
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        precision: 0
+        unit: "C"
+        range:
+          min: 12
+          max: 50
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: "C"
+      - id: 102
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Comfort
+            value: Comfort
+          - dps_val: ECO
+            value: ECO
+          - dps_val: Frost
+            value: Frost
   - entity: light
     translation_key: display
     dps:

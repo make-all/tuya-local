@@ -3,16 +3,17 @@
 name: Toggle switch
 products:
   - id: 7kvomtxxfqcrbiqq
-    name: GE Jasco Ultra Pro
+    manufacturer: Jasco
+    model: UltraPro Toggle Switch
   - id: nobhkdmuof1zhgle
-    name: Loratap QCRR400W-WB2S
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Loratap
+    model: QCRR400W-WB2S
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: select
     category: config
     translation_key: initial_state
@@ -28,7 +29,7 @@ secondary_entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator Light
+    translation_key: light_mode
     category: config
     dps:
       - id: 15
@@ -36,24 +37,19 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
           - dps_val: pos
-            value: Indicate switch location
+            value: locator
           - dps_val: relay
-            value: Indicate switch on/off
-  - entity: number
+            value: state
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 7
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - dps_val: null
-          - scale: 60
-            step: 60

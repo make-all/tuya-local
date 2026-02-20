@@ -1,151 +1,142 @@
 name: Air conditioner
 products:
   - id: gvraxduhxaxalell
-    name: Inventor Leon LEUVI-09WIFI
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: hot
-              value: heat
-            - dps_val: pre_dehumidify
-              value: dry
-              hidden: true
-            - dps_val: null
-              value: "off"
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      optional: true
-      range:
-        min: 160
-        max: 300
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-      optional: true
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-      optional: true
-    - id: 18
-      type: integer
-      optional: true
-      name: current_humidity
-    - id: 23
-      type: integer
-      optional: true
-      name: temp_current_f
-    - id: 24
-      type: integer
-      optional: true
-      name: temp_set_f
-      range:
-        min: 60
-        max: 86
-    - id: 30
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: horizontal
-            - dps_val: null
-              value: "off"
-              hidden: true
-        - dps_val: true
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: vertical
-            - dps_val: true
-              value: both
-            - dps_val: null
-              value: vertical
-              hidden: true
-    - id: 33
-      type: boolean
-      name: swing_horiz
-      hidden: true
-      optional: true
-    - id: 101
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: away
-        - dps_val: false
-          constraint: strong
-          conditions:
-            - dps_val: false
-              value: comfort
-            - dps_val: true
-              value: boost
-    - id: 109
-      type: boolean
-      name: strong
-      hidden: true
-    - id: 107
-      type: string
-      name: humidity
-      range:
-        min: 35
-        max: 85
-      mapping:
-        - dps_val: cancel
-          value: null
-          hidden: true
-        - dps_val: "35"
-          value: 35
-        - dps_val: "40"
-          value: 40
-        - dps_val: "45"
-          value: 45
-        - dps_val: "50"
-          value: 50
-        - dps_val: "55"
-          value: 55
-        - dps_val: "60"
-          value: 60
-        - dps_val: "65"
-          value: 65
-        - dps_val: "70"
-          value: 70
-        - dps_val: "75"
-          value: 75
-        - dps_val: "80"
-          value: 80
-        - dps_val: "85"
-          value: 85
-secondary_entities:
+    manufacturer: Inventor
+    model: Leon
+    model_id: LEUVI-09WIFI
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: hot
+                value: heat
+              - dps_val: pre_dehumidify
+                value: dry
+                hidden: true
+              - dps_val: null
+                value: "off"
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        optional: true
+        range:
+          min: 160
+          max: 300
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        optional: true
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+        optional: true
+      - id: 18
+        type: integer
+        optional: true
+        name: current_humidity
+      - id: 23
+        type: integer
+        optional: true
+        name: temp_current_f
+      - id: 24
+        type: integer
+        optional: true
+        name: temp_set_f
+        range:
+          min: 60
+          max: 86
+      - id: 30
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 33
+        type: boolean
+        name: swing_horizontal_mode
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+          - value: "off"
+            hidden: true
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: away
+          - dps_val: false
+            constraint: strong
+            conditions:
+              - dps_val: false
+                value: comfort
+              - dps_val: true
+                value: boost
+      - id: 109
+        type: boolean
+        name: strong
+        hidden: true
+      - id: 107
+        type: string
+        name: humidity
+        range:
+          min: 35
+          max: 85
+        mapping:
+          - dps_val: cancel
+            value: null
+            hidden: true
+          - dps_val: "35"
+            value: 35
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+          - dps_val: "85"
+            value: 85
   - entity: fan
     dps:
       - id: 1

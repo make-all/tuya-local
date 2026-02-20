@@ -1,0 +1,347 @@
+name: Pool pump
+# products:
+#   - id: UNKNOWN
+#     model: ZMP71SH
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 4
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 4
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 8
+        type: string
+        optional: true
+        name: level
+  - entity: sensor
+    name: Use time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+      - id: 111
+        type: integer
+        name: current_minutes
+      - id: 112
+        type: integer
+        name: total_minutes
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 16
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 17
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: clear
+            value: rapid_clean
+          - dps_val: plan
+            value: schedule
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: number
+    name: Maximum speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+  - entity: number
+    name: Set speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: rpm
+                step: 50
+              - dps_val: percent
+                value_redirect: percent
+                range:
+                  min: 16
+                  max: 100
+      - id: 105
+        type: integer
+        name: percent
+        hidden: true
+        range:
+          min: 16
+          max: 100
+      - id: 116
+        type: string
+        name: unit
+        mapping:
+          - dps_val: rpm
+            value: rpm
+          - dps_val: percent
+            value: "%"
+  - entity: sensor
+    name: Running speed
+    icon: "mdi:pump"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: percent
+                value_redirect: percent
+      - id: 107
+        type: integer
+        name: percent
+        hidden: true
+      - id: 116
+        type: string
+        name: unit
+        mapping:
+          - dps_val: rpm
+            value: rpm
+          - dps_val: percent
+            value: "%"
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Speed type
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: rpm
+            value: rpm
+          - dps_val: percent
+            value: percent
+  - entity: number
+    name: Low speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+  - entity: number
+    name: Medium speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+  - entity: number
+    name: High speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+  - entity: number
+    name: Rapid clean speed
+    category: config
+    icon: "mdi:pump"
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+  - entity: number
+    name: Rapid clean time
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 999
+  - entity: switch
+    name: Prime
+    icon: "mdi:location-enter"
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: number
+    name: Priming speed
+    category: config
+    icon: "mdi:location-enter"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+  - entity: number
+    name: Priming time
+    category: config
+    class: duration
+    icon: "mdi:location-enter"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9999
+  - entity: number
+    name: Priming delay
+    category: config
+    class: duration
+    icon: "mdi:location-enter"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 9999
+  - entity: text
+    name: Fetch data
+    category: config
+    icon: "mdi:data-matrix-plus"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        name: value

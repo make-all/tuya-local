@@ -2,40 +2,35 @@
 # Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
 # 110V 240V Voice Control with Alexa Google Home
 # https://www.aliexpress.com/item/1005003913566298.html
-name: Garage opener
+name: Gate opener
 products:
   - id: 1wwbzczt9hrtwqjr
-    name: Dongguan PJ-WGDOOR01
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      type: boolean
-      name: control
-      optional: true  # Sometimes this DP doesn't report state
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 3
-      type: boolean
-      name: action
-      mapping:
-        - dps_val: true
-          value: opened
-        - dps_val: false
-          value: closed
-secondary_entities:
-  - entity: number
+    manufacturer: Dongguan Pinjia
+    model: PJ-WGDOOR01
+  - id: deyeioifmyvdalnc
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true  # Sometimes this DP doesn't report state
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        type: boolean
+        name: open
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
@@ -51,15 +46,14 @@ secondary_entities:
         range:
           min: 10
           max: 120
-  - entity: number
-    name: Timeout alarm
+  - entity: time
+    name: Alarm timeout
     icon: mdi:timer-alert
     category: config
     dps:
       - id: 5
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400

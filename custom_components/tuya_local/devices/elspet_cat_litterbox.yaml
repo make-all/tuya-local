@@ -1,19 +1,19 @@
 name: Cat litter box
 products:
   - id: asx54fyagpyhxtej
-    name: Elspet Spaceship
-primary_entity:
-  entity: switch
-  name: Power
-  category: config
-  icon: "mdi:power"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Elspet
+    model: Spaceship
+entities:
+  - entity: switch
+    name: Power
+    category: config
+    icon: "mdi:power"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
   - entity: sensor
-    name: Status
+    translation_key: status
     category: diagnostic
     class: enum
     dps:
@@ -22,23 +22,17 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: power_off
-            icon: "mdi:power-off"
-            value: "Off"
+            value: "off"
           - dps_val: standby
-            icon: "mdi:power-standby"
-            value: Standby
+            value: standby
           - dps_val: caking
-            icon: "mdi:biohazard"
-            value: Caking
+            value: caking
           - dps_val: cleaning
-            icon: "mdi:spray-bottle"
-            value: Cleaning
+            value: cleaning
           - dps_val: sleeping
-            icon: "mdi:sleep"
-            value: Sleeping
+            value: sleep
           - dps_val: UV
-            icon: "mdi:sun-wireless"
-            value: UV Light On
+            value: sterilizing
   - entity: button
     name: Manual clean
     category: config
@@ -51,6 +45,7 @@ secondary_entities:
     name: Clean wait time
     category: config
     translation_key: timer
+    class: duration
     dps:
       - id: 103
         type: integer
@@ -69,6 +64,7 @@ secondary_entities:
   - entity: number
     name: UV time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 105
@@ -89,6 +85,7 @@ secondary_entities:
   - entity: number
     name: Deodorize time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 107
@@ -111,34 +108,26 @@ secondary_entities:
       - id: 109
         type: boolean
         name: switch
-  - entity: number
+  - entity: time
     name: Sleep start
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 110
         type: integer
-        name: value
-        unit: h
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
-  - entity: number
+  - entity: time
     name: Sleep end
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 111
         type: integer
-        name: value
-        unit: h
+        name: minute
         range:
           min: 0
           max: 1440
-        mapping:
-          - scale: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -151,21 +140,18 @@ secondary_entities:
             value: false
           - value: true
       - id: 118
-        type: integer
+        type: bitfield
         name: fault_code
+      - id: 118
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
-            value: "None"
-            icon: "mdi:check-circle"
+            value: ok
           - dps_val: 1
-            value: "Stuck"
-            icon: "mdi:alert"
+            value: stuck
           - dps_val: 2
-            value: "Dislocation"
-            icon: "mdi:alert"
-          - dps_val: 3
-            value: "Both"
-            icon: "mdi:alert"
+            value: dislocation
   - entity: sensor
     name: Clean count
     icon: "mdi:counter"

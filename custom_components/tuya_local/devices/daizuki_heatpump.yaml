@@ -1,133 +1,156 @@
-name: Daizuki Heatpump (F)
-primary_entity:
-  entity: climate
-  translation_only_key: aircon_extra
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 610
-        max: 880
-      mapping:
-        - scale: 10
-          step: 10
-      unit: F
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: mute
-          value: quiet
-        - dps_val: low
-          value: low
-        - dps_val: mid_low
-          value: medlow
-        - dps_val: mid
-          value: medium
-        - dps_val: mid_high
-          value: medhigh
-        - dps_val: high
-          value: high
-        - dps_val: strong
-          value: strong
-    - id: 20
-      type: bitfield
-      name: fault_code
-    - id: 105
-      type: string
-      name: sleep_mode
-    - id: 110
-      type: bitfield
-      name: flags
-    - id: 113
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: "0"
-          value: horizontal
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
-              value: horizontal
-        - dps_val: "1"
-          value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - dps_val: "1"
-              value: both
-        - value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-    - id: 114
-      type: string
-      name: horizontal_swing
-      hidden: true
-    - id: 119
-      type: string
-      name: electricity_management
-    - id: 120
-      type: string
-      name: gen_mode
-    - id: 123
-      type: hex
-      name: flags_2
-    - id: 125
-      type: string
-      name: air_quality
-      optional: true
-    - id: 128
-      type: string
-      name: model_code
-    - id: 129
-      type: string
-      name: energy
-    - id: 130
-      type: integer
-      name: eco_temp
-    - id: 132
-      type: boolean
-      name: hot_cool
-    - id: 133
-      type: string
-      name: swing_action
-    - id: 134
-      type: json
-      name: statistics
-secondary_entities:
+name: Heat pump
+products:
+  - id: hw50w7qvxluhslkk
+    manufacturer: TCL
+    model: AirMax
+    model_id: AWTLSE18-C2
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+      - id: 2
+        type: integer
+        name: temperature
+        unit: F
+        range:
+          min: 610
+          max: 880
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+        precision: 0
+        range:
+          min: -20
+          max: 100
+        mapping:
+          - target_range:
+              min: -4
+              max: 212
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: mute
+            value: quiet
+          - dps_val: low
+            value: low
+          - dps_val: mid_low
+            value: medlow
+          - dps_val: mid
+            value: medium
+          - dps_val: mid_high
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: strong
+            value: strong
+      - id: 18
+        type: integer
+        name: current_humidity
+        mapping:
+          - dps_val: 0
+            value: null
+      - id: 105
+        type: string
+        name: sleep_mode
+      - id: 110
+        type: bitfield
+        name: flags
+      - id: 113
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+      - id: 114
+        type: string
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+      - id: 119
+        type: string
+        optional: true
+        name: electricity_management
+      - id: 120
+        type: string
+        optional: true
+        name: gen_mode
+      - id: 123
+        type: hex
+        name: flags_2
+      - id: 125
+        type: string
+        name: air_quality
+        optional: true
+      - id: 128
+        type: string
+        optional: true
+        name: model_code
+      - id: 129
+        type: string
+        optional: true
+        name: energy
+      - id: 130
+        type: integer
+        optional: true
+        name: eco_temp
+      - id: 132
+        type: boolean
+        name: hot_cool
+      - id: 133
+        type: string
+        optional: true
+        name: swing_action
+      - id: 134
+        type: json
+        optional: true
+        name: statistics
   - entity: sensor
     class: temperature
+    deprecated: climate.current_temperature  # 2025-12-03
     dps:
       - id: 3
         name: sensor
@@ -137,6 +160,7 @@ secondary_entities:
   - entity: sensor
     class: humidity
     category: diagnostic
+    deprecated: climate.current_humidity  # 2025-12-03
     dps:
       - id: 18
         type: integer
@@ -145,6 +169,7 @@ secondary_entities:
         class: measurement
   - entity: select
     name: Vertical swing
+    deprecated: climate.swing_mode  # 2025-12-03
     category: config
     icon: "mdi:arrow-up-down-bold"
     dps:
@@ -183,6 +208,7 @@ secondary_entities:
             value: Bottom
   - entity: select
     name: Horizontal swing
+    deprecated: climate.swing_horizontal_mode  # 2025-12-03
     category: config
     icon: "mdi:arrow-left-right-bold"
     dps:
@@ -221,6 +247,23 @@ secondary_entities:
             value: Slight Right
           - dps_val: "5"
             value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
   - entity: light
     translation_key: display
     category: config
@@ -228,17 +271,59 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0008"
+        mask: "0008"
   - entity: switch
-    name: Beep
+    translation_key: sound
     category: config
     dps:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0010"
+        mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0020"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0001"
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -250,9 +335,13 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: pm25
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 101
         type: integer
@@ -260,6 +349,14 @@ secondary_entities:
         unit: ugm3
         optional: true
         class: measurement
+      - id: 101
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     name: Filter
     class: problem

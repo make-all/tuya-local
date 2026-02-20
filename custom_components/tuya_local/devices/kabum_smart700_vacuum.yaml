@@ -1,130 +1,100 @@
 name: Robot vacuum
 products:
   - id: pu5cpxucdrdrr21a
-    name: Kabum Smart 700
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: smart
-          value: smart
-        - dps_val: zone
-          value: zone
-        - dps_val: pose
-          value: go_to_position
-        - dps_val: part
-          value: clean_spot
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: wallfollow
-          value: wall_follow
-        - dps_val: selectroom
-          value: select_room
-    - id: 4
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: smart_clean
-          value: cleaning
-        - dps_val: zone_clean
-          value: cleaning
-        - dps_val: part_clean
-          value: cleaning
-        - dps_val: paused
-          value: pause
-        - dps_val: goto_pos
-          value: going_to_location
-        - dps_val: pos_arrived
-          value: on_location
-        - dps_val: pos_unarrive
-          value: cannot_find_location
-        - dps_val: to_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: charged
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fault
-          value: error
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: direction_control
-          value: direction_control
-        - dps_val: selectroom
-          value: select_room
-    - id: 13
-      type: boolean
-      name: locate
-      optional: true
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: strong
-          value: High
-        - dps_val: normal
-          value: Medium
-        - dps_val: quiet
-          value: Low
-    - id: 18
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 2
-          value: left_wheel_hang
-        - dps_val: 4
-          value: main_brush_stuck
-        - dps_val: 8
-          value: right_wheel_hang
-        - dps_val: 16
-          value: left_wheel_stuck
-        - dps_val: 32
-          value: right_wheel_stuck
-        - dps_val: 64
-          value: cliff
-        - dps_val: 128
-          value: side_brush_stuck
-        - dps_val: 512
-          value: collision
-        - dps_val: 1024
-          value: dust_box_stuck
-        - dps_val: 4096
-          value: ground_check_failure
-        - dps_val: 32768
-          value: vacuum_motor_stuck
-        - dps_val: 65536
-          value: high_current
-        - dps_val: 131072
-          value: charge_port_closed
-    - id: 101
-      type: boolean
-      name: pause
-secondary_entities:
+    manufacturer: KaBuM! Smart
+    model: "700"
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: go_to_position
+          - dps_val: part
+            value: clean_spot
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: wall_follow
+          - dps_val: selectroom
+            value: select_room
+      - id: 4
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart_clean
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: paused
+            value: pause
+          - dps_val: goto_pos
+            value: going_to_location
+          - dps_val: pos_arrived
+            value: on_location
+          - dps_val: pos_unarrive
+            value: cannot_find_location
+          - dps_val: to_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: direction_control
+            value: direction_control
+          - dps_val: selectroom
+            value: select_room
+      - id: 13
+        type: boolean
+        name: locate
+        optional: true
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
+          - dps_val: quiet
+            value: Low
+      - id: 101
+        type: boolean
+        name: pause
   - entity: sensor
     class: battery
     dps:
@@ -135,8 +105,8 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Cleaned area
+    class: area
     category: diagnostic
-    icon: "mdi:floor-plan"
     dps:
       - id: 16
         type: integer
@@ -152,6 +122,52 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 2
+            value: left_wheel_hang
+          - dps_val: 4
+            value: main_brush_stuck
+          - dps_val: 8
+            value: right_wheel_hang
+          - dps_val: 16
+            value: left_wheel_stuck
+          - dps_val: 32
+            value: right_wheel_stuck
+          - dps_val: 64
+            value: cliff
+          - dps_val: 128
+            value: side_brush_stuck
+          - dps_val: 512
+            value: collision
+          - dps_val: 1024
+            value: dust_box_stuck
+          - dps_val: 4096
+            value: ground_check_failure
+          - dps_val: 32768
+            value: vacuum_motor_stuck
+          - dps_val: 65536
+            value: high_current
+          - dps_val: 131072
+            value: charge_port_closed
   - entity: select
     translation_key: mopping
     category: config
@@ -226,7 +242,7 @@ secondary_entities:
           - dps_val: 2048
             value: choice_set_ok
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 107
@@ -254,9 +270,8 @@ secondary_entities:
           - dps_val: en
             value: english
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 112
         type: integer

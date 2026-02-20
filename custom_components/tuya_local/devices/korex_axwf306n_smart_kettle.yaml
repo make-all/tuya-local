@@ -1,0 +1,206 @@
+name: Kettle
+products:
+  - id: 2vuvtw0cj8wmjrpc
+    manufacturer: Korex
+    model: AX-WF306N
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 5
+        type: integer
+        name: current_temperature
+      - id: 101
+        type: string
+        name: temperature
+        range:
+          min: 50
+          max: 221
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                value_redirect: temperature_c
+                step: 5
+                range:
+                  min: 50
+                  max: 105
+              - dps_val: f
+                value_redirect: temperature_f
+                step: 9
+                range:
+                  min: 122
+                  max: 221
+      - id: 101
+        type: string
+        name: temperature_f
+        hidden: true
+        range:
+          min: 122
+          max: 221
+        mapping:
+          - dps_val: "11"
+            value: 122
+          - dps_val: "10"
+            value: 131
+          - dps_val: "9"
+            value: 140
+          - dps_val: "8"
+            value: 149
+          - dps_val: "7"
+            value: 158
+          - dps_val: "6"
+            value: 167
+          - dps_val: "5"
+            value: 176
+          - dps_val: "4"
+            value: 185
+          - dps_val: "3"
+            value: 194
+          - dps_val: "2"
+            value: 203
+          - dps_val: "1"
+            value: 212
+          - dps_val: "0"
+            value: 221  # "cancel" means boil
+      - id: 101
+        type: string
+        name: temperature_c
+        hidden: true
+        range:
+          min: 45
+          max: 100
+        mapping:
+          - dps_val: "11"
+            value: 50
+          - dps_val: "10"
+            value: 55
+          - dps_val: "9"
+            value: 60
+          - dps_val: "8"
+            value: 65
+          - dps_val: "7"
+            value: 70
+          - dps_val: "6"
+            value: 75
+          - dps_val: "5"
+            value: 80
+          - dps_val: "4"
+            value: 85
+          - dps_val: "3"
+            value: 90
+          - dps_val: "2"
+            value: 95
+          - dps_val: "1"
+            value: 100
+          - dps_val: "0"
+            value: 105  # "cancel" means boil
+      - id: 105
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+          - dps_val: "2"
+            value: at_temperature
+          - dps_val: "3"
+            value: cooling
+          - dps_val: "4"
+            value: keeping_warm
+          - dps_val: "5"
+            value: done
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: off_base
+          - dps_val: 2
+            value: no_water
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:kettle-steam"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: select
+    name: Keep warm temperature
+    icon: "mdi:kettle-steam"
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "95 C / 203 F"
+          - dps_val: "2"
+            value: "90 C / 194 F"
+          - dps_val: "3"
+            value: "85 C / 185 F"
+          - dps_val: "4"
+            value: "80 C / 176 F"
+          - dps_val: "5"
+            value: "75 C / 167 F"
+          - dps_val: "6"
+            value: "70 C / 158 F"
+          - dps_val: "7"
+            value: "65 C / 149 F"
+          - dps_val: "8"
+            value: "60 C / 140 F"
+          - dps_val: "9"
+            value: "55 C / 131 F"
+          - dps_val: "10"
+            value: "50 C / 122 F"
+      - id: 101
+        type: string
+        name: available
+        mapping:
+          - dps_val: "0"
+            value_redirect: keep_warm
+          - value: false
+      - id: 103
+        type: boolean
+        name: keep_warm

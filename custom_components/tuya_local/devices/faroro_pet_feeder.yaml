@@ -1,22 +1,23 @@
 name: Pet feeder
 products:
   - id: vglnuveujzyrpku9
-    name: Faroro PF50
-primary_entity:
-  entity: number
-  name: Manual feed
-  icon: "mdi:food-drumstick"
-  mode: "box"
-  dps:
-    - id: 3
-      name: value
-      type: integer
-      persist: false
-      optional: true
-      range:
-        min: 1
-        max: 12
-secondary_entities:
+    manufacturer: Faroro
+    model: PF50
+  - id: g4coy3ffpt7nzchu
+    manufacturer: Faroro
+    model: PF50
+entities:
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        persist: false
+        optional: true
+        range:
+          min: 1
+          max: 12
   - entity: sensor
     name: Feed status
     icon: "mdi:paw"
@@ -31,8 +32,9 @@ secondary_entities:
           - dps_val: feeding
             value: Feeding
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
+    category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean
@@ -45,6 +47,7 @@ secondary_entities:
       - id: 15
         name: sensor
         type: integer
+        optional: true
   - entity: sensor
     name: Voice times
     icon: "mdi:account-voice"
@@ -71,6 +74,7 @@ secondary_entities:
       - id: 101
         name: sensor
         type: string
+        unit: "%"
         mapping:
           - dps_val: "no"
             value: 10
@@ -126,7 +130,6 @@ secondary_entities:
     name: Button portion size
     icon: "mdi:food-drumstick"
     category: config
-    mode: "box"
     dps:
       - id: 106
         name: value

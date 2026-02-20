@@ -1,22 +1,23 @@
 name: Circuit breaker
 products:
   - id: ine4hhapkgxonij1
-    name: EARU SW RCB
+    manufacturer: EARU
+    model: SW RCB
   - id: aqktrdhlsw8q90dr
-    name: Zemismart SPM01-D2TW-ZM
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  name: Fuse switch
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 19
-      type: string
-      optional: true
-      name: breaker_id
-secondary_entities:
+    manufacturer: Zemismart
+    model: SPM01-D2TW-ZM
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    name: Fuse switch
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 19
+        type: string
+        optional: true
+        name: breaker_id
   - entity: sensor
     name: Total energy
     class: energy
@@ -40,9 +41,9 @@ secondary_entities:
         unit: V
         class: measurement
         name: sensor
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     class: current
     category: diagnostic
@@ -53,9 +54,9 @@ secondary_entities:
         type: base64
         unit: A
         name: sensor
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: power
     category: diagnostic
@@ -66,6 +67,6 @@ secondary_entities:
         type: base64
         unit: kW
         name: sensor
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000

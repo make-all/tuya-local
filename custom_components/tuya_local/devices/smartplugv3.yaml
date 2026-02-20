@@ -1,38 +1,30 @@
 name: Advanced energy monitoring smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 41
-      type: string
-      name: cycle_timer
-    - id: 42
-      type: string
-      name: random_timer
-secondary_entities:
-  - entity: number
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+      - id: 41
+        type: string
+        name: cycle_timer
+      - id: 42
+        type: string
+        name: random_timer
   - entity: sensor
     category: diagnostic
     class: current
@@ -90,6 +82,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     category: config
     translation_key: initial_state

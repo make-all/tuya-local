@@ -1,57 +1,55 @@
 name: Dual switch
 products:
   - id: keyjnuy4s3kre7m7
-    name: LoraTap RR620W-JL
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: LoraTap
+    model: RR620W-JL
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
-  - entity: number
-    name: Timer 1
-    translation_key: timer
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
       - id: 42
         name: random_time
         type: string
       - id: 43
         name: cycle_time
         type: string
-  - entity: number
-    name: Timer 2
-    translation_key: timer
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 10
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -84,11 +82,13 @@ secondary_entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 20
         name: sensor
         type: integer
         optional: true
+        class: measurement
         unit: kWh
         mapping:
           - scale: 1000

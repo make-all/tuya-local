@@ -1,37 +1,38 @@
 name: Humidifier
 products:
   - id: 7mijurr4i9e0ewat
-    name: Clean Air 605B Smart
-primary_entity:
-  entity: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 75
-      mapping:
-        - step: 5
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 23
-      name: mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: level1
-          value: "1"
-        - dps_val: level2
-          value: "2"
-        - dps_val: level3
-          value: "3"
-secondary_entities:
+    manufacturer: Clean Air Optima
+    model: CA-605B Smart
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 75
+        mapping:
+          - step: 5
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 23
+        name: mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: level1
+            value: eco
+          - dps_val: level2
+            value: comfort
+          - dps_val: level3
+            value: boost
   - entity: sensor
     name: Current temperature
     class: temperature
@@ -54,7 +55,7 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: cancel
-            value: no timer active
+            value: cancel
           - dps_val: 1h
             value: 1h
           - dps_val: 2h
@@ -105,14 +106,14 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
     dps:
       - id: 28
         type: boolean
         name: button
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 33

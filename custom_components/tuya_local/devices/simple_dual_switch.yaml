@@ -1,17 +1,21 @@
 name: Dual switch
 products:
   - id: jupECyrdMrUifHd8
-    name: eMylo WiFi/RF 2 Gang
-primary_entity:
-  entity: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: eMylo
+    model: WiFi/RF 2 Gang
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean

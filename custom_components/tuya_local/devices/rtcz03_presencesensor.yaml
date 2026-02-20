@@ -1,32 +1,31 @@
 name: Human presence detector
 products:
   - id: e833v6jexwfkjrij
-    name: RTCZ-03 human presence sensor
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: peaceful
-          value: false
-        - dps_val: presence
-          value: true
-        - dps_val: small_move
-          value: true
-        - dps_val: large_move
-          value: true
-        - dps_val: none
-          value: false
-    - id: 1
-      type: string
-      name: raw_state
-    - id: 120
-      type: string
-      name: debug
-secondary_entities:
+    model: RTCZ-03
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: peaceful
+            value: false
+          - dps_val: presence
+            value: true
+          - dps_val: small_move
+            value: true
+          - dps_val: large_move
+            value: true
+          - dps_val: none
+            value: false
+      - id: 1
+        type: string
+        name: raw_state
+      - id: 120
+        type: string
+        name: debug
   - entity: binary_sensor
     class: motion
     dps:

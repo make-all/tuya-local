@@ -1,86 +1,79 @@
 name: Air conditioner
 products:
   - id: hmwftdaaxejmjtfe
-    name: Klarstein Iceblock Ecosmart
-primary_entity:
-  entity: climate
-  dps:
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 31
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_set_f
-              range:
-                min: 62
-                max: 90
-    - id: 3
-      type: integer
-      name: current_temperature
-      readonly: true
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_current_f
-    - id: 20
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
-    - id: 101
-      name: hvac_mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: cool
-        - dps_val: "3"
-          value: dry
-        - dps_val: "5"
-          value: fan_only
-    - id: 103
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: none
-        - dps_val: true
-          value: sleep
-    - id: 104
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: "1"
-          value: high
-        - dps_val: "3"
-          value: low
-    - id: 109
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: true
-          value: F
-        - value: C
-    - id: 110
-      type: integer
-      name: temp_set_f
-      range:
-        min: 62
-        max: 90
-      hidden: true
-      optional: true
-    - id: 111
-      type: integer
-      name: temp_current_f
-      hidden: true
-      optional: true
-secondary_entities:
+    manufacturer: Klarstein
+    model: Iceblock Ecosmart
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 62
+                  max: 90
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_current_f
+      - id: 101
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: cool
+          - dps_val: "3"
+            value: dry
+          - dps_val: "5"
+            value: fan_only
+      - id: 103
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: none
+          - dps_val: true
+            value: sleep
+      - id: 104
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "1"
+            value: high
+          - dps_val: "3"
+            value: low
+      - id: 109
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+      - id: 110
+        type: integer
+        name: temp_set_f
+        range:
+          min: 62
+          max: 90
+        hidden: true
+        optional: true
+      - id: 111
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
   - entity: switch
     name: Power
     icon: "mdi:power"
@@ -88,8 +81,23 @@ secondary_entities:
       - id: 1
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 105

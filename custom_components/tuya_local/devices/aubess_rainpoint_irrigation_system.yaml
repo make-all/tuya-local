@@ -1,25 +1,17 @@
 name: Irrigation system
 products:
   - id: 2ak7r2culspkc7hx
-    name: Aubess RainPoint TTP106W
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      name: valve
-      type: boolean
-secondary_entities:
-  - entity: switch
-    icon: "mdi:pipe-valve"
-    deprecated: valve
-    category: config
+    manufacturer: Aubess
+    model: RainPoint TTP106W
+entities:
+  - entity: valve
+    class: water
     dps:
       - id: 1
-        name: switch
+        name: valve
         type: boolean
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -28,13 +20,13 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "0"
-            value: Unknown
+            value: unknown
           - dps_val: "1"
-            value: Idle
+            value: idle
           - dps_val: "2"
-            value: Auto running
+            value: auto
           - dps_val: "3"
-            value: Manually running
+            value: manual
   - entity: switch
     name: Auto run
     icon: "mdi:timer"
@@ -45,8 +37,7 @@ secondary_entities:
         type: boolean
         optional: true
   - entity: number
-    name: Duration
-    icon: "mdi:timer"
+    class: duration
     category: config
     mode: box
     dps:
@@ -105,8 +96,11 @@ secondary_entities:
     dps:
       - id: 105
         name: sensor
-        type: integer
+        type: bitfield
         mapping:
           - dps_val: 0
             value: false
           - value: true
+      - id: 105
+        type: bitfield
+        name: fault_code

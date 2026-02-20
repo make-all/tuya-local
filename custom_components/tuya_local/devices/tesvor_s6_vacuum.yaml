@@ -1,171 +1,172 @@
 name: Robot vacuum
 products:
   - id: seyplx9aqmrqjk9g
-    name: Tesvor S6
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      optional: true
-      name: power
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-    - id: 2
-      type: boolean
-      optional: true
-      name: command
-      mapping:
-        - dps_val: true
-          value: pause
-        - dps_val: false
-          constraint: mode
-          conditions:
-            - dps_val: smart
-              value: smart
-            - dps_val: chargego
-              value: return_to_base
-            - dps_val: zone
-              value: zone
-            - dps_val: pose
-              value: pose
-            - dps_val: part
-              value: part
-            - dps_val: selectroom
-              value: select_room
-        - dps_val: null
-          constraint: mode
-          conditions:
-            - dps_val: smart
-              value: smart
-              hidden: true
-            - dps_val: chargego
-              value: return_to_base
-              hidden: true
-            - dps_val: zone
-              value: zone
-              hidden: true
-            - dps_val: pose
-              value: pose
-              hidden: true
-            - dps_val: part
-              value: part
-              hidden: true
-            - dps_val: selectroom
-              value: select_room
-              hidden: true
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: smart
-          value: cleaning
-        - dps_val: zone_clean
-          value: cleaning
-        - dps_val: part_clean
-          value: cleaning
-        - dps_val: cleaning
-          value: cleaning
-        - dps_val: paused
-          value: pause
-        - dps_val: goto_pos
-          value: going_to_location
-        - dps_val: pos_arrived
-          value: on_location
-        - dps_val: pos_unarrive
-          value: cannot_find_location
-        - dps_val: goto_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: charged
-        - dps_val: sleep
-          value: sleep
-        - dps_val: select_room
-          value: select_room
-        - dps_val: mop_clean
-          value: mopping
-        - dps_val: manual_control
-          value: direction_control
-    - id: 9
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: closed
-          value: "Off"
-        - dps_val: gentle
-          value: Low
-        - dps_val: normal
-          value: Medium
-        - dps_val: strong
-          value: High
-    - id: 11
-      type: boolean
-      name: locate
-      optional: true
-    - id: 12
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 14
-      name: path_data
-      type: string
-      optional: true
-    - id: 15
-      name: command_trans
-      type: string
-      optional: true
-    - id: 16
-      name: request
-      type: string
-      optional: true
-      mapping:
-        - dps_val: get_map
-          value: Get map
-        - dps_val: get_path
-          value: Get path
-        - dps_val: get_both
-          value: Get both
-    - id: 28
-      type: bitfield
-      name: error
-    - id: 32
-      type: string
-      name: schedule
-      optional: true
-    - id: 33
-      type: string
-      name: do_not_disturb_schedule
-      optional: true
-    - id: 34
-      type: string
-      name: device_info
-      optional: true
-    - id: 35
-      type: string
-      name: voice_data
-      optional: true
-secondary_entities:
+    manufacturer: Tesvor
+    model: S6
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: power
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        type: boolean
+        optional: true
+        name: command
+        mapping:
+          - dps_val: true
+            value: pause
+          - dps_val: false
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: smart
+              - dps_val: chargego
+                value: return_to_base
+              - dps_val: zone
+                value: zone
+              - dps_val: pose
+                value: pose
+              - dps_val: part
+                value: part
+              - dps_val: selectroom
+                value: select_room
+          - dps_val: null
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: smart
+                hidden: true
+              - dps_val: chargego
+                value: return_to_base
+                hidden: true
+              - dps_val: zone
+                value: zone
+                hidden: true
+              - dps_val: pose
+                value: pose
+                hidden: true
+              - dps_val: part
+                value: part
+                hidden: true
+              - dps_val: selectroom
+                value: select_room
+                hidden: true
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: pause
+          - dps_val: goto_pos
+            value: going_to_location
+          - dps_val: pos_arrived
+            value: on_location
+          - dps_val: pos_unarrive
+            value: cannot_find_location
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: select_room
+            value: select_room
+          - dps_val: mop_clean
+            value: mopping
+          - dps_val: manual_control
+            value: direction_control
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: closed
+            value: "Off"
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Medium
+          - dps_val: strong
+            value: High
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 14
+        name: path_data
+        type: string
+        optional: true
+      - id: 15
+        name: command_trans
+        type: string
+        optional: true
+      - id: 16
+        name: request
+        type: string
+        optional: true
+        mapping:
+          - dps_val: get_map
+            value: Get map
+          - dps_val: get_path
+            value: Get path
+          - dps_val: get_both
+            value: Get both
+      - id: 28
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 32
+        type: string
+        name: schedule
+        optional: true
+      - id: 33
+        type: string
+        name: do_not_disturb_schedule
+        optional: true
+      - id: 34
+        type: string
+        name: device_info
+        optional: true
+      - id: 35
+        type: string
+        name: voice_data
+        optional: true
   - entity: switch
     name: Charge
     icon: "mdi:lightning-bolt"
@@ -190,6 +191,7 @@ secondary_entities:
         unit: min
   - entity: sensor
     name: Clean area
+    class: area
     category: diagnostic
     dps:
       - id: 7
@@ -228,6 +230,7 @@ secondary_entities:
     dps:
       - id: 17
         type: integer
+        optional: true
         name: sensor
         unit: min
   - entity: button
@@ -258,7 +261,7 @@ secondary_entities:
         name: button
         optional: true
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
@@ -268,8 +271,7 @@ secondary_entities:
         unit: min
         class: measurement
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 22
@@ -295,8 +297,7 @@ secondary_entities:
         name: button
         optional: true
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:sleep"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 25
@@ -308,9 +309,8 @@ secondary_entities:
             value: false
             hidden: true
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 26
         type: integer
@@ -377,3 +377,17 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code

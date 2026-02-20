@@ -1,44 +1,45 @@
 name: Heater
 products:
   - id: kwicelwvcvgru9vr
-    name: Klarstein Wonderwall Bornholm IR GL23040
-primary_entity:
-  entity: climate
-  translation_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 50
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 6
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: standby
-          value: idle
-secondary_entities:
+    manufacturer: Klarstein
+    model: Wonderwall Bornholm IR
+    model_id: GL23040
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 50
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 6
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: standby
+            value: idle
   - entity: lock
     translation_key: child_lock
     category: config

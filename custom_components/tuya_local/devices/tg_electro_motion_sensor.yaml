@@ -1,0 +1,89 @@
+name: Motion sensor
+products:
+  - id: ksxoagx7y6gsypck
+    manufacturer: TG Electro
+    model: TG-MS-PIR-S201
+entities:
+  - entity: switch
+    name: PIR sensor
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 51
+        type: string
+        name: switch
+        mapping:
+          - dps_val: auto
+            value: true
+          - dps_val: manual
+            value: false
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Scanning
+    icon: "mdi:radar"
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        name: switch
+  - entity: select
+    name: Ambient light sensitivity
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 53
+        type: string
+        name: option
+        mapping:
+          - dps_val: 5lux
+            value: dark
+          - dps_val: 10lux
+            value: late_evening
+          - dps_val: 50lux
+            value: evening
+          - dps_val: 300lux
+            value: early_evening
+          - dps_val: 2000lux
+            value: day
+  - entity: select
+    name: Sensitivity
+    icon: "mdi:signal-distance-variant"
+    category: config
+    dps:
+      - id: 54
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: middle
+          - dps_val: high
+            value: high
+  - entity: number
+    name: Light duration
+    icon: "mdi:timer-star"
+    class: duration
+    category: config
+    dps:
+      - id: 55
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 360
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 52
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: motion
+            value: true
+          - value: false

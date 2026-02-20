@@ -1,28 +1,28 @@
 name: Window shade
 products:
   - id: hldq12vsaqalcfer
-    name: Graywind hardwired blackout
-primary_entity:
-  entity: cover
-  class: shade
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-secondary_entities:
+    manufacturer: Graywind
+    name: Hardwired blackout
+entities:
+  - entity: cover
+    class: shade
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
   - entity: select
     name: Motor direction
     category: config

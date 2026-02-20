@@ -1,10 +1,8 @@
 """Tests for the Woox R4028 powerstrip."""
 
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import UnitOfTime
 
 from ..const import WOOX_R4028_SOCKET_PAYLOAD
-from ..mixins.number import MultiNumberTests
 from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -19,7 +17,6 @@ TIMERUSB_DPS = "105"
 
 
 class TestWooxR4028Powerstrip(
-    MultiNumberTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
@@ -51,43 +48,11 @@ class TestWooxR4028Powerstrip(
                 },
             ]
         )
-        self.setUpMultiNumber(
-            [
-                {
-                    "dps": TIMER1_DPS,
-                    "name": "number_timer_1",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": UnitOfTime.MINUTES,
-                },
-                {
-                    "dps": TIMER2_DPS,
-                    "name": "number_timer_2",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": UnitOfTime.MINUTES,
-                },
-                {
-                    "dps": TIMER3_DPS,
-                    "name": "number_timer_3",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": UnitOfTime.MINUTES,
-                },
-                {
-                    "dps": TIMERUSB_DPS,
-                    "name": "number_usb_timer",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": UnitOfTime.MINUTES,
-                },
-            ]
-        )
         self.mark_secondary(
             [
-                "number_timer_1",
-                "number_timer_2",
-                "number_timer_3",
-                "number_usb_timer",
+                "time_timer_1",
+                "time_timer_2",
+                "time_timer_3",
+                "time_timer_usb",
             ]
         )

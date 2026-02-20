@@ -7,6 +7,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
@@ -48,6 +49,7 @@ class TestEbergQuboQ40HDHeatpump(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])
@@ -286,12 +288,3 @@ class TestEbergQuboQ40HDHeatpump(
 
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
-
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = 22
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "timer": 22,
-            },
-        )

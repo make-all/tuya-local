@@ -1,45 +1,44 @@
 name: Pool heat pump
-primary_entity:
-  entity: climate
-  translation_only_key: pool_heatpump
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 8
-        max: 40
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Auto
-          value: auto
-        - dps_val: Cool
-          value: smart_cool
-        - dps_val: Heat
-          value: smart_heat
-        - dps_val: BoostHeat
-          value: quick_heat
-        - dps_val: BoostCool
-          value: quick_cool
-        - dps_val: SilentHeat
-          value: quiet_heat
-        - dps_val: SilentCool
-          value: quiet_cool
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 8
+          max: 40
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Auto
+            value: auto
+          - dps_val: Cool
+            value: smart_cool
+          - dps_val: Heat
+            value: smart_heat
+          - dps_val: BoostHeat
+            value: quick_heat
+          - dps_val: BoostCool
+            value: quick_cool
+          - dps_val: SilentHeat
+            value: quiet_heat
+          - dps_val: SilentCool
+            value: quiet_cool
   - entity: binary_sensor
     name: Water flow
     class: problem

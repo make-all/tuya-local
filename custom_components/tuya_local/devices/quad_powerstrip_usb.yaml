@@ -1,41 +1,50 @@
 name: Quad powerstrip with USB
-primary_entity:
-  entity: switch
-  name: Outlet 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      name: add_ele
-      optional: true
-    - id: 25
-      type: integer
-      name: ele_calibration
-      optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
-secondary_entities:
+products:
+  - id: keyjup78v54myhan
+entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        name: add_ele
+        optional: true
+      - id: 21
+        type: integer
+        optional: true
+        name: test_flags
+      - id: 25
+        type: integer
+        name: ele_calibration
+        optional: true
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
@@ -47,81 +56,66 @@ secondary_entities:
       - id: 5
         type: boolean
         name: switch
-  - entity: number
-    name: Timer 1
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: Timer 2
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: Timer 3
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 11
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: Timer 4
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 12
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB timer
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 13
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     category: diagnostic
     class: current
@@ -184,8 +178,7 @@ secondary_entities:
           - dps_val: memory
             value: memory
   - entity: select
-    name: Backlight
-    icon: "mdi:circle-double"
+    translation_key: light_mode
     category: config
     dps:
       - id: 40
@@ -194,11 +187,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config
@@ -207,3 +200,51 @@ secondary_entities:
         type: boolean
         name: lock
         optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 42
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 43
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:cog-refresh"
+    hidden: true
+    dps:
+      - id: 44
+        type: string
+        optional: true
+        name: value

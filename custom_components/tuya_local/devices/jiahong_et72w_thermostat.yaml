@@ -1,111 +1,94 @@
-name: Jiahong ET-72W thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 101
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "Smart"
-              value: auto
-            - dps_val: "Manual"
-              value: heat
-            - dps_val: "Anti_frozen"
-              value: cool
-    - id: 102
-      type: integer
-      name: temperature
-      range:
-        min: 50
-        max: 400
-      mapping:
-        - scale: 10
-          step: 5
-          constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              step: 30
-              range:
-                min: 120
-                max: 750
-    - id: 103
-      type: string
-      name: mode
-      hidden: true
-    - id: 105
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: sensor
-          conditions:
-            - dps_val: '0'
-              scale: 10
-            - dps_val: '1'
-              value_redirect: floor_temperature
-            - dps_val: '2'
-              scale: 10
-    - id: 106
-      type: integer
-      name: floor_temperature
-      hidden: true
-      mapping:
-        - scale: 10
-    - id: 107
-      name: temperature_unit
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: C
-        - dps_val: true
-          value: F
-    - id: 111
-      type: string
-      name: sensor
-      hidden: true
-    - id: 118
-      type: boolean
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: true
-                  value: heating
-                - dps_val: false
-                  value: idle
-    - id: 104
-      type: integer
-      name: unknown_104
-    - id: 109
-      type: boolean
-      name: unknown_109
-    - id: 112
-      type: integer
-      name: unknown_112
-    - id: 113
-      type: integer
-      name: unknown_113
-secondary_entities:
+name: Thermostat
+products:
+  - id: m2dkohai78cwr3yd
+    manufacturer: Jiahong
+    model: ET-72GW
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "Smart"
+                value: auto
+              - dps_val: "Manual"
+                value: heat
+              - dps_val: "Anti_frozen"
+                value: cool
+      - id: 102
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                step: 30
+                range:
+                  min: 120
+                  max: 750
+      - id: 103
+        type: string
+        name: mode
+        hidden: true
+      - id: 105
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: sensor
+            conditions:
+              - dps_val: '0'
+                scale: 10
+              - dps_val: '1'
+                value_redirect: floor_temperature
+              - dps_val: '2'
+                scale: 10
+      - id: 106
+        type: integer
+        name: floor_temperature
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 107
+        name: temperature_unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+      - id: 111
+        type: string
+        name: sensor
+        hidden: true
+      - id: 118
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+      - id: 104
+        type: integer
+        name: unknown_104
   - entity: lock
-    name: Screen lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 108
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: Room temperature
     class: temperature
@@ -125,6 +108,9 @@ secondary_entities:
             value: C
           - dps_val: true
             value: F
+      - id: 113
+        type: integer
+        name: calibration
   - entity: sensor
     name: Floor temperature
     class: temperature
@@ -144,18 +130,18 @@ secondary_entities:
             value: C
           - dps_val: true
             value: F
+      - id: 112
+        type: integer
+        name: calibration
   - entity: sensor
-    name: Energy
+    name: Runtime
+    class: duration
+    icon: "mdi:update"
     dps:
       - id: 117
         type: integer
         name: sensor
-        unit: kWh
-        mapping:
-          - scale: 10
-      - id: 116
-        type: integer
-        name: calibration
+        unit: min
   - entity: select
     category: config
     translation_key: temperature_unit
@@ -213,7 +199,7 @@ secondary_entities:
           - dps_val: "1"
             value: "Floor"
             icon: "mdi:heating-coil"
-          - dps_val: '2'
+          - dps_val: "2"
             value: "Both"
             icon: "mdi:thermometer"
   - entity: select
@@ -233,3 +219,31 @@ secondary_entities:
             value: "7 (Adaptive)"
           - dps_val: 3
             value: "5+1+1 (Adaptive)"
+  - entity: select
+    category: config
+    name: Floor sensor power
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 116
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 3950
+            value: "3950"
+          - dps_val: 3600
+            value: "3600"
+          - dps_val: 3700
+            value: "3700"
+  - entity: select
+    category: config
+    name: Location
+    icon: "mdi:home-city"
+    dps:
+      - id: 109
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "Home"
+          - dps_val: true
+            value: "Office"

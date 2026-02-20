@@ -1,66 +1,59 @@
 name: Star projector
 products:
   - id: okyhahmixunjmbca
-    name: Galaxy projector
+    model: Galaxy
   - id: jteg9ktrhbxtiicz
-    name: BlissLights Sky Lite Evolve SKY-EVOLVE-B-RCW8
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 52
-      type: boolean
-      name: color_mode
-      mapping:
-        - dps_val: false
-          value: white
-        - dps_val: true
-          value: hs
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 10
-            max: 1000
-secondary_entities:
-  - entity: number
+    manufacturer: BlissLights
+    model: Sky Lite Evolve
+    model_id: SKY-EVOLVE-B-RCW8
+  - id: l8xe7jasktrwjd7a
+    model: Aurora Galaxy Star Projector
+  - id: shz7blrfcpfccvo3
+    manufacturer: Mirabella Genio
+    model: Genio Galaxy Starship Projector I004545
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 52
+        type: boolean
+        name: color_mode
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 10
+              max: 1000
+  - entity: time
     translation_key: timer
+    category: config
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         range:
           min: 0
           max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
-      - id: 51
-        name: effect
-        type: string
-        mapping:
-          - dps_val: scene
-            value: Scene
-          - dps_val: laser
-            value: Laser
-          - dps_val: colour
-            value: Color
   - entity: light
     translation_key: laser
     dps:
@@ -96,6 +89,15 @@ secondary_entities:
         range:
           min: 0
           max: 100
+  - entity: text
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    hidden: true
+    dps:
+      - id: 58
+        type: base64
+        name: value
   - entity: select
     name: Theme
     icon: "mdi:movie-open-play"
@@ -113,3 +115,13 @@ secondary_entities:
             value: Space
           - dps_val: "AAM="
             value: Ocean
+  - entity: text
+    name: Music sync
+    icon: "mdi:music"
+    category: config
+    hidden: true
+    dps:
+      - id: 42
+        type: hex
+        optional: true
+        name: value

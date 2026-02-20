@@ -1,112 +1,79 @@
 name: Vacuum and mop
 products:
   - id: ela0pxryflaldubr
-    name: MAMNV BR151
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: standby
-          value: stop
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: partial_bow
-          value: partial_bow
-        - dps_val: random
-          value: random
-    - id: 4
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turnn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: "standby"
-          value: standby
-        - dps_val: "smart_clean"
-          value: cleaning
-        - dps_val: "wall_clean"
-          value: cleaning
-        - dps_val: "spot_clean"
-          value: cleaning
-        - dps_val: "room_clean"
-          value: cleaning
-        - dps_val: "goto_charge"
-          value: returning
-        - dps_val: "charging"
-          value: charging
-        - dps_val: "charge_done"
-          value: charged
-        - dps_val: "cleaning"
-          value: cleaning
-        - dps_val: "sleep"
-          value: sleep
-        - dps_val: "in_trouble"
-          value: error
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: strong
-          value: High
-        - dps_val: normal
-          value: Medium
-    - id: 18
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-        - dps_val: 1
-          value: wheel_overload
-        - dps_val: 2
-          value: side_brush_entanglement
-        - dps_val: 3
-          value: brush_abnormality
-        - dps_val: 4
-          value: dustbin_not_installed
-        - dps_val: 5
-          value: left_collision_stuck
-        - dps_val: 6
-          value: right_collision_stuck
-        - dps_val: 7
-          value: machine_off_ground
-        - dps_val: 8
-          value: front_drop_trigger
-        - dps_val: 9
-          value: left_drop_trigger
-        - dps_val: 10
-          value: right_drop_trigger
-        - dps_val: 11
-          value: fan_abnormality
-        - dps_val: 12
-          value: water_tank_not_installed
-        - dps_val: 13
-          value: magnetic_field_abnormality
-        - dps_val: 14
-          value: slippage_abnormality
-secondary_entities:
+    manufacturer: MAMNV
+    model: BR151
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: partial_bow
+            value: partial_bow
+          - dps_val: random
+            value: random
+      - id: 4
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turnn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "standby"
+            value: standby
+          - dps_val: "smart_clean"
+            value: cleaning
+          - dps_val: "wall_clean"
+            value: cleaning
+          - dps_val: "spot_clean"
+            value: cleaning
+          - dps_val: "room_clean"
+            value: cleaning
+          - dps_val: "goto_charge"
+            value: returning
+          - dps_val: "charging"
+            value: charging
+          - dps_val: "charge_done"
+            value: charged
+          - dps_val: "cleaning"
+            value: cleaning
+          - dps_val: "sleep"
+            value: sleep
+          - dps_val: "in_trouble"
+            value: error
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
   - entity: sensor
     class: battery
     dps:
@@ -125,6 +92,54 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: wheel_overload
+          - dps_val: 2
+            value: side_brush_entanglement
+          - dps_val: 3
+            value: brush_abnormality
+          - dps_val: 4
+            value: dustbin_not_installed
+          - dps_val: 5
+            value: left_collision_stuck
+          - dps_val: 6
+            value: right_collision_stuck
+          - dps_val: 7
+            value: machine_off_ground
+          - dps_val: 8
+            value: front_drop_trigger
+          - dps_val: 9
+            value: left_drop_trigger
+          - dps_val: 10
+            value: right_drop_trigger
+          - dps_val: 11
+            value: fan_abnormality
+          - dps_val: 12
+            value: water_tank_not_installed
+          - dps_val: 13
+            value: magnetic_field_abnormality
+          - dps_val: 14
+            value: slippage_abnormality
   - entity: select
     translation_key: mopping
     category: config

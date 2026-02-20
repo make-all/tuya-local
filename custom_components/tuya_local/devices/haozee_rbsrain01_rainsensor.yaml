@@ -1,0 +1,63 @@
+name: Rain sensor
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Haozee?
+#     model: RB-SRAIN01
+entities:
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: voltage
+    name: Solar intensity
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+      - id: 102
+        type: integer
+        name: average
+      - id: 103
+        type: integer
+        name: peak
+  - entity: event
+    name: Cleaning
+    dps:
+      - id: 104
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: need_clean
+          - dps_val: false
+            value: is_clean
+  - entity: sensor
+    name: Rain sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement

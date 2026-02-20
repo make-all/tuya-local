@@ -1,0 +1,50 @@
+name: Weather station
+products:
+  - id: cvurn5ynloebrpwy
+    manufacturer: Viflykoo
+    model: EM3390TF
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: sensor
+    name: Outdoor humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10

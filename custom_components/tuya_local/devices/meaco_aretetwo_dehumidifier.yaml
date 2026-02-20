@@ -1,38 +1,46 @@
 name: Dehumidifier
 products:
   - id: hrqj115cek0tuddi
-    name: MeacoDry Arete Two 10L
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 35
-        max: 70
-      mapping:
-        - step: 5
-    - id: 4
-      name: mode
-      type: string
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: laundry
-          value: laundry
-        - dps_val: sleep
-          value: sleep
-        - dps_val: purify
-          value: purify
-    - id: 16
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: MeacoDry
+    model: Arete Two 10L
+  - id: i3uw9kkmagpdikvo
+    manufacturer: MeacoDry
+    model: Arete Two 18L
+  - id: enfzbqosid8fyyrs
+    manufacturer: MeacoDry
+    model: Arete Two 20L
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 35
+          max: 70
+        mapping:
+          - step: 5
+      - id: 4
+        name: mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: laundry
+            value: laundry
+          - dps_val: sleep
+            value: sleep
+          - dps_val: purify
+            value: purify
+      - id: 16
+        name: current_humidity
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config

@@ -150,3 +150,30 @@ async def test_async_turn_on_with_white_param():
     light = TuyaLocalLight(mock_device, config)
     await light.async_turn_on(white=128)
     mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 506})
+
+
+@pytest.mark.asyncio
+async def test_is_off_when_off_by_brightness():
+    """Test that the light appears off when turned off by brightness."""
+    mock_device = AsyncMock()
+    mock_device.get_property = Mock()
+    dps = {"1": 0}
+    mock_device.get_property.side_effect = lambda arg: dps[arg]
+    mock_config = Mock()
+    config = TuyaEntityConfig(
+        mock_config,
+        {
+            "entity": "light",
+            "dps": [
+                {
+                    "id": "1",
+                    "name": "brightness",
+                    "type": "integer",
+                    "range": {"min": 0, "max": 100},
+                },
+            ],
+        },
+    )
+    light = TuyaLocalLight(mock_device, config)
+    assert light.is_on is False
+    assert light.brightness == 0

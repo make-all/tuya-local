@@ -1,42 +1,52 @@
 name: Curtain
+legacy_type: yueqingcombo_yet848pc_curtain
 products:
   - id: wraaecjqfiirj8go
-    name: Loonas curtain motor
+    manufacturer: Loonas
+    name: Curtain motor
   - id: f6jujmx0is5td50x
-    name: Zemismart BCM500DS-TYW
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      optional: true
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 3
-      name: current_position
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-secondary_entities:
+    manufacturer: Zemismart
+    model: BCM500DS-TYW
+  - id: dpqsvdbi
+    manufacturer: Miju
+    model: CM82
+  - id: paxwqamvmc4hpebp
+    name: Curtain motor
+  - id: xmqkagf5dimcpygi
+    manufacturer: Nordice
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        optional: true
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        name: current_position
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
   - entity: switch
     name: Reverse
     category: config
@@ -45,17 +55,21 @@ secondary_entities:
       - id: 5
         type: string
         name: switch
+        optional: true
         mapping:
           - dps_val: back
             value: true
           - dps_val: forward
             value: false
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
       - id: 12
-        type: boolean
+        type: bitfield
         name: sensor
         optional: true
         persist: false

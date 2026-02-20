@@ -1,59 +1,58 @@
 name: Air conditioner
 products:
   - id: r9lwbruavixdspeb
-    name: "Ballu Aura  9/12"
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "COOL"
-              value: cool
-            - dps_val: "DRY"
-              value: dry
-            - dps_val: "FAN"
-              value: fan_only
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 17
-        max: 30
-      unit: C
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "3"
-          value: high
-    - id: 104
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: vertical
-        - dps_val: false
-          value: "off"
-
-secondary_entities:
+    manufacturer: Ballu
+    model: Aura 9/12
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "COOL"
+                value: cool
+              - dps_val: "DRY"
+                value: dry
+              - dps_val: "FAN"
+                value: fan_only
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 17
+          max: 30
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: vertical
+          - dps_val: false
+            value: "off"
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -75,6 +74,7 @@ secondary_entities:
         name: sensor
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 105

@@ -1,33 +1,29 @@
 name: Bed warmer
 products:
   - id: pjvxl1wsyqxivsaf
-    name: Sunbeam dual heated mattress pad
-primary_entity:
-  entity: switch
-  name: Combined switch
-  icon: "mdi:bed"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-    - id: 13
-      type: bitfield
-      name: fault_code
-      optional: true
-    - id: 101
-      type: string
-      name: schedule
-      optional: true
-    - id: 104
-      type: string
-      name: confirmation
-      optional: true
-secondary_entities:
+    manufacturer: Sunbeam
+    name: Dual heated mattress pad
+entities:
+  - entity: switch
+    name: Combined switch
+    icon: "mdi:bed"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 101
+        type: string
+        name: schedule
+        optional: true
+      - id: 104
+        type: string
+        name: confirmation
+        optional: true
   - entity: select
     name: Combined level
     category: config
@@ -81,6 +77,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     name: Zone
     icon: "mdi:format-page-split"
@@ -99,14 +99,18 @@ secondary_entities:
           - dps_val: DUAL_ZONE
             value: Dual zone
   - entity: switch
-    name: Switch A
+    translation_key: switch_x
+    translation_placeholders:
+      x: A
     icon: "mdi:bed"
     dps:
       - id: 14
         type: boolean
         name: switch
   - entity: switch
-    name: Switch B
+    translation_key: switch_x
+    translation_placeholders:
+      x: B
     icon: "mdi:bed"
     dps:
       - id: 15

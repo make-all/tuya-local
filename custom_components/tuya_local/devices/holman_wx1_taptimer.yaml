@@ -1,57 +1,74 @@
 name: Tap timer
+legacy_type: garza_irrigation_system
 products:
   - id: zrsgzc8jktsricjj
-    name: Holman WX1
+    manufacturer: Holman
+    model: WX1
     # DP decoding thanks to funtastix
-primary_entity:
-  entity: valve
-  name: Manual
-  class: water
-  dps:
-    - id: 108
-      type: boolean
-      name: valve
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-secondary_entities:
-  - entity: switch
+  - id: ixckfr3zke5fgach
+    manufacturer: RainPoint
+    model: TCS005FRF
+  - id: xnajzurgqo1ugohn
+    manufacturer: Garza
+    model: ITV103W
+entities:
+  - entity: valve
     name: Manual
-    category: config
-    deprecated: valve
-    icon: "mdi:watering-can"
+    class: water
     dps:
       - id: 108
         type: boolean
-        name: switch
+        name: valve
         mapping:
           - dps_val: true
             value: false
           - dps_val: false
             value: true
+      - id: 127
+        type: string
+        optional: true
+        name: version
   - entity: sensor
     name: Soil temperature
     class: temperature
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 101
         name: sensor
         type: integer
+        optional: true
         unit: C
       - id: 115
-        name: sensor_present
+        name: available
         type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
   - entity: sensor
     name: Soil moisture
-    class: humidity
+    class: moisture
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 102
         name: sensor
         type: integer
+        optional: true
         unit: "%"
+      - id: 102
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 65535
+            value: false
+          - dps_val: -1
+            value: false
+          - value: true
   - entity: sensor
     name: Water flow
     class: water
@@ -78,9 +95,8 @@ secondary_entities:
           - dps_val: 2
             value: 100
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
-    icon: "mdi:list-status"
     category: diagnostic
     dps:
       - id: 106
@@ -88,15 +104,16 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: idle
           - dps_val: 1
-            value: "Manual"
+            value: manual
           - dps_val: 2
-            value: "Auto"
+            value: auto
           - dps_val: 3
-            value: "Rain Delay"
+            value: rain_delay
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 107
@@ -131,32 +148,27 @@ secondary_entities:
         # flags for days of the week Sun-Sat, plus a bit for on/off
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 110
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 110
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 110
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 110
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start B encoded
     category: diagnostic
@@ -169,32 +181,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 111
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 111
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 111
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 111
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: sensor
     name: Start C encoded
     category: diagnostic
@@ -207,32 +214,27 @@ secondary_entities:
         optional: true
         name: days
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 112
         optional: true
         name: minutes_duration
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 112
         optional: true
         name: hours_duration
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 112
         optional: true
         name: minutes_start
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 112
         optional: true
         name: hours_start
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
   - entity: select
     name: Watering delay
     translation_key: timer
@@ -241,6 +243,7 @@ secondary_entities:
       - id: 113
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: 0
             value: cancel
@@ -266,10 +269,19 @@ secondary_entities:
   - entity: binary_sensor
     name: Soil sensor power OK
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 117
         name: sensor
+        optional: true
         type: boolean
+      - id: 115
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
   - entity: select
     name: Units
     category: config
@@ -303,122 +315,102 @@ secondary_entities:
         optional: true
         name: 10_days
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 121
         optional: true
         name: 10_days_256
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 121
         optional: true
         name: 9_days
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 121
         optional: true
         name: 9_days_256
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 121
         optional: true
         name: 8_days
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"
       - id: 121
         optional: true
         name: 8_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000"
+        mask: "FF0000000000"
       - id: 121
         optional: true
         name: 7_days
         type: base64
-        mapping:
-          - mask: "FF000000000000"
+        mask: "FF000000000000"
       - id: 121
         optional: true
         name: 7_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000"
+        mask: "FF00000000000000"
       - id: 121
         optional: true
         name: 6_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000"
+        mask: "FF0000000000000000"
       - id: 121
         optional: true
         name: 6_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000"
+        mask: "FF000000000000000000"
       - id: 121
         optional: true
         name: 5_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000"
+        mask: "FF00000000000000000000"
       - id: 121
         optional: true
         name: 5_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000"
+        mask: "FF0000000000000000000000"
       - id: 121
         optional: true
         name: 4_days
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000"
+        mask: "FF000000000000000000000000"
       - id: 121
         optional: true
         name: 4_days_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000"
+        mask: "FF00000000000000000000000000"
       - id: 121
         optional: true
         name: 3_days
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000"
+        mask: "FF0000000000000000000000000000"
       - id: 121
         optional: true
         name: 3_days_256
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000"
       - id: 121
         optional: true
         name: 2_days
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000"
       - id: 121
         optional: true
         name: 2_days_256
         type: base64
-        mapping:
-          - mask: "FF0000000000000000000000000000000000"
+        mask: "FF0000000000000000000000000000000000"
       - id: 121
         optional: true
         name: 1_day
         type: base64
-        mapping:
-          - mask: "FF000000000000000000000000000000000000"
+        mask: "FF000000000000000000000000000000000000"
       - id: 121
         optional: true
         name: 1_day_256
         type: base64
-        mapping:
-          - mask: "FF00000000000000000000000000000000000000"
+        mask: "FF00000000000000000000000000000000000000"
   - entity: sensor
     name: Temperature count encoded
     category: diagnostic
@@ -438,14 +430,19 @@ secondary_entities:
   - entity: binary_sensor
     name: Postponed due to rain
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 125
         name: sensor
         type: boolean
+        optional: true
       - id: 116
         optional: true
-        name: sensor_present
+        name: available
         type: boolean
+        mapping:
+          - dps_val: null
+            value: false
   - entity: sensor
     # based on starts A, B and C
     name: Next watering encoded
@@ -459,29 +456,24 @@ secondary_entities:
         optional: true
         name: minute
         type: base64
-        mapping:
-          - mask: "FF"
+        mask: "FF"
       - id: 128
         optional: true
         name: hour
         type: base64
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
       - id: 128
         optional: true
         name: day
         type: base64
-        mapping:
-          - mask: "FF0000"
+        mask: "FF0000"
       - id: 128
         optional: true
         name: month
         type: base64
-        mapping:
-          - mask: "FF000000"
+        mask: "FF000000"
       - id: 128
         optional: true
         name: year
         type: base64
-        mapping:
-          - mask: "FF00000000"
+        mask: "FF00000000"

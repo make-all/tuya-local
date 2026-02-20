@@ -1,38 +1,38 @@
 name: Air purifier
 products:
   - id: lf1ikizwmvevldbp
-    name: iHunt 400m³/h
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: speed
-      type: string
-      mapping:
-        - dps_val: speed_1
-          value: 25
-        - dps_val: speed_2
-          value: 50
-        - dps_val: speed_3
-          value: 75
-        - dps_val: speed_4
-          value: 100
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: auto
-          value: smart
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+    manufacturer: iHunt
+    model: 400m³/h
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: speed_1
+            value: 25
+          - dps_val: speed_2
+            value: 50
+          - dps_val: speed_3
+            value: 75
+          - dps_val: speed_4
+            value: 100
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
   - entity: sensor
     class: pm25
     dps:
@@ -42,9 +42,8 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         type: integer
@@ -81,9 +80,8 @@ secondary_entities:
         type: integer
         unit: h
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: diagnostic
-    class: restart
     dps:
       - id: 11
         type: boolean

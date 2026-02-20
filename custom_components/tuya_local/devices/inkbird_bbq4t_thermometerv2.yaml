@@ -1,26 +1,23 @@
 name: BBQ thermometer
 products:
   - id: wavwesi8clrfwx68
-    name: Inkbird IBBQ-4T v2.x
-primary_entity:
-  entity: sensor
-  name: Temperature probe 1
-  class: temperature
-  dps:
-    - id: 107
-      type: base64
-      name: sensor
-      class: measurement
-      optional: true
-      mapping:
-        - mask: FFFFFF
-          endianness: little
-          scale: 100
-      unit: F
-    - id: 111
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Inkbird
+    model: IBBQ-4T v2.x
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 107
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        mask: FFFFFF
+        endianness: little
+        mapping:
+          - scale: 100
+        unit: F
   - entity: sensor
     name: Temperature probe 2
     class: temperature
@@ -30,10 +27,10 @@ secondary_entities:
         name: sensor
         class: measurement
         optional: true
+        mask: FFFFFF00000000
+        endianness: little
         mapping:
           - scale: 100
-            mask: FFFFFF00000000
-            endianness: little
         unit: F
   - entity: sensor
     name: Temperature probe 3
@@ -44,10 +41,10 @@ secondary_entities:
         name: sensor
         class: measurement
         optional: true
+        mask: FFFFFF0000000000000000
+        endianness: little
         mapping:
           - scale: 100
-            mask: FFFFFF0000000000000000
-            endianness: little
         unit: F
   - entity: sensor
     name: Temperature probe 4
@@ -58,10 +55,10 @@ secondary_entities:
         name: sensor
         class: measurement
         optional: true
+        mask: FFFFFF000000000000000000000000
+        endianness: little
         mapping:
           - scale: 100
-            mask: FFFFFF000000000000000000000000
-            endianness: little
         unit: F
   - entity: binary_sensor
     class: power
@@ -84,6 +81,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 111
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -107,6 +108,7 @@ secondary_entities:
   - entity: number
     name: Screen timeout
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 102
@@ -143,14 +145,14 @@ secondary_entities:
         range:
           min: 0
           max: 50000
+        # mask seems to be wrong, only data available has 40 A characters,
+        # presumably base64 encoded 28 bytes of 00, but could also be
+        # 20 hex bytes. Not sure of the meaning, whether it is 7 (or 5)
+        # bytes per probe or some of the bytes are general settings.
+        mask: FFFF000000000000
+        endianness: little
         mapping:
-          # mask seems to be wrong, only data available has 40 A characters,
-          # presumably base64 encoded 28 bytes of 00, but could also be
-          # 20 hex bytes. Not sure of the meaning, whether it is 7 (or 5)
-          # bytes per probe or some of the bytes are general settings.
-          - mask: FFFF000000000000
-            endianness: little
-            scale: 100
+          - scale: 100
   - entity: number
     name: Preset temperature 2
     category: config
@@ -164,10 +166,10 @@ secondary_entities:
         range:
           min: 0
           max: 50000
+        mask: 0000FFFF00000000
+        endianness: little
         mapping:
-          - mask: 0000FFFF00000000
-            endianness: little
-            scale: 100
+          - scale: 100
   - entity: number
     name: Preset temperature 3
     category: config
@@ -181,10 +183,10 @@ secondary_entities:
         range:
           min: 0
           max: 50000
+        mask: 00000000FFFF0000
+        endianness: little
         mapping:
-          - mask: 00000000FFFF0000
-            endianness: little
-            scale: 100
+          - scale: 100
   - entity: number
     name: Preset temperature 4
     category: config
@@ -198,7 +200,7 @@ secondary_entities:
         range:
           min: 0
           max: 50000
+        mask: 000000000000FFFF
+        endianness: little
         mapping:
-          - mask: 000000000000FFFF
-            endianness: little
-            scale: 100
+          - scale: 100

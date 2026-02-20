@@ -1,19 +1,20 @@
-name: Temperature and humidity Sensor
+name: Temperature and humidity sensor
 products:
   - id: vyfoip9h
-    name: TH05-BLE
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    model: TH05-BLE
+  - id: 1jvidcsf
+    model: TH05F-BLE
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     class: humidity
     dps:
@@ -41,5 +42,35 @@ secondary_entities:
     dps:
       - id: 4
         type: integer
+        optional: true
         name: sensor
         unit: "%"
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    hidden: true
+    dps:
+      - id: 23
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    hidden: true
+    icon: "mdi:water-check"
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10

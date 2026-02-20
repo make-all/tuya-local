@@ -1,0 +1,465 @@
+{
+    "$id": "https://github.com/make-all/tuya-local/custom_components/tuya_local/devices/device_config_schema.json",
+    "title": "Tuya Local Device Configuration Schema",
+    "description": "Schema for validating Tuya Local device configuration files.",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the device."
+        },
+        "products": {
+            "type": "array",
+            "description": "List of products that match this config.",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique product_id from Tuya cloud info."
+                    },
+                    "manufacturer": {
+                        "type": "string",
+                        "description": "The manufacturer or brand of the device."
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "The model name of the device."
+                    },
+                    "model_id": {
+                        "type": "string",
+                        "description": "Optional model identifier for the device if it has both a readable name and a cryptic id."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Optional name to override the device name."
+                    }
+                },
+                "required": ["id"],
+                "additionalProperties": false
+            }
+        },
+        "entities": {
+            "type": "array",
+            "description": "List of entities provided by this device.",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "entity": {
+                        "type": "string",
+                        "enum": ["alarm_control_panel", "binary_sensor", "button", "camera", "climate", "cover", "datetime", "event", "fan", "humidifier", "lawn_mower", "light", "lock", "number", "remote", "select", "sensor", "siren", "switch", "text", "time", "vacuum", "valve", "water_heater"],
+                        "description": "The type of entity (e.g., light, switch, sensor)."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Optional name of the entity if not defined by class or translation_key or needed to differentiate the entity."
+                    },
+                    "translation_key": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]+$",
+                        "description": "Optional translation key for the entity."
+                    },
+                    "translation_only_key": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_]+$",
+                        "description": "Optional translation key which is not used when computing entitiy ids. Intended for adding translation keys to existing unnamed entities."
+                    },
+                    "translation_placeholders": {
+                        "type": "object",
+                        "description": "Optional translation placeholders for the entity.",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "class": {
+                        "type": "string",
+                        "description": "Optional device class for the entity."
+                    },
+                    "icon": {
+                        "type": "string",
+                        "pattern": "mdi:[a-z0-9_+-]+",
+                        "description": "Optional icon for the entity if not defined by class or translation_key."
+                    },
+                    "icon_priority": {
+                        "type": "integer",
+                        "description": "The priority order for choosing an icon when multiple are available. Lower numbers have higher priority. Default is 10.",
+                        "minimum": 1
+                    },
+                    "category": {
+                        "type": "string",
+                        "enum": ["config", "diagnostic"],
+                        "description": "Optional entity category (e.g., config, diagnostic)."
+                    },
+                    "hidden": {
+                        "type": ["boolean", "string"],
+                        "description": "true if the entity should be created as disabled by default. Useful for entities that are not commonly used or require advanced knowledge to use. If set to 'unavailable', the entity will be hidden when the 'available' dps indicates false."
+                    },
+                    "mode": {
+                        "type": "string",
+                        "enum": ["auto", "box", "slider"],
+                        "description": "The display mode of number entities (e.g., box, slider). Usually the default of auto is preferable, this should only be overridden with good reason (not personal preference)."
+                    },
+                    "deprecated": {
+                        "type": "string",
+                        "description": "if the entity is deprecated and should not be used for new setups, a string to output in the deprecation message in the log pointing the user to the replacement. This should not be used in new configs, but can be used in later modifications where a better representation of the entity is introduced. A comment with the date should be added when setting this to help with future cleanup."
+                    },
+                    "dps": {
+                        "type": "array",
+                        "description": "The list of DPs that this entity uses.",
+                        "minItems": 1,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "description": "The DP number.",
+                                    "minimum": 1,
+                                    "maximum": 255
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "enum": ["boolean", "integer", "string", "bitfield", "base64", "hex", "utf16b64", "json", "unixtime", "float"],
+                                    "description": "The type of the DP (e.g., boolean, integer, string)."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9_]+$",
+                                    "description": "Name of the DP."
+                                },
+                                "optional": {
+                                    "type": "boolean",
+                                    "description": "true if the DP is optional and may not be present in every full poll from the device. Default is false, which should not be specified explicitly to avoid clutter."
+                                },
+                                "range": {
+                                    "type": "object",
+                                    "description": "The range of values for integer DPs.",
+                                    "properties": {
+                                        "min": {
+                                            "type": "integer",
+                                            "description": "Minimum value."
+                                        },
+                                        "max": {
+                                            "type": "integer",
+                                            "description": "Maximum value."
+                                        }
+                                    },
+                                    "required": ["min", "max"],
+                                    "additionalProperties": false
+                                },
+                                "precision": {
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "description": "The precision to use in HA UI for scaled integer dps. Default is based on the scale if not specified."
+                                },
+                                "class": {
+                                    "type": "string",
+                                    "enum": ["measurement", "total", "total_increasing"],
+                                    "description": "Optional state class for sensor DPs. (e.g., measurement, total, total_increasing)."
+                                },
+                                "sensitive": {
+                                    "type": "boolean",
+                                    "description": "true if the DP contains sensitive information and should not be included in diagnostics dumps. Default is false, which should not be specified explicitly to avoid clutter."
+                                },
+                                "hidden": {
+                                    "type": "boolean",
+                                    "description": "true if the DP should be hidden from the entities extra attribute list. Default false, which should not be specified explicitly to avoid clutter. Has no effect if used in a dp which is an official part of the entity API."
+                                },
+                                "readonly": {
+                                    "type": "boolean",
+                                    "description": "true if the DP is read-only. Rarely needed, as usually determined automatically based on the entity specification. Should not be specified explicitly unless needed to avoid clutter."
+                                },
+                                "force": {
+                                    "type": "boolean",
+                                    "description": "true to try to force the device to send this dp with full polls. May cause instability if the device does not expect this, generally only works on power/current/voltage sensors for some smartplugs that do not send them by default. Default is false, which should not be specified explicitly to avoid clutter."
+                                },
+                                "persist": {
+                                    "type": "boolean",
+                                    "description": "false to clear the last known value of this dp before each full poll. Only needed for dps that are expected to disappear (become null), but not required to be specified for events as they are automatically only fired when explicitly received. Default is true, which should not be specified explicitly to avoid clutter."
+                                },
+                                "format": {
+                                    "type": "array",
+                                    "description": "The format to extract multiple numeric fields from base64 or hex DP values. Used only for rgbhsv fields of lights currently.",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "The name of the sub-field."
+                                            },
+                                            "bytes": {
+                                                "type": "integer",
+                                                "description": "The size of the sub-field in bytes (default 1). Up to 4 bytes supported for extraction as integers, but filler fields can be bigger.",
+                                                "minimum": 1
+                                            },
+                                            "range": {
+                                                "type": "object",
+                                                "description": "The range of the data in the sub-field. Default is 0 to max value for the given byte size.",
+                                                "properties": {
+                                                    "min": {
+                                                        "type": "integer",
+                                                        "description": "Minimum value."
+                                                    },
+                                                    "max": {
+                                                        "type": "integer",
+                                                        "description": "Maximum value."
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "required": ["name"],
+                                        "additionalProperties": false
+                                    }
+                                },
+                                "mask": {
+                                    "type": "string",
+                                    "pattern": "^[0-9a-fA-F]+$",
+                                    "description": "A hexadecimal mask to extract an integer from a base64 or hex DP value."
+                                },
+                                "mask_signed": {
+                                    "type": "boolean",
+                                    "description": "true if the masked integer is signed. Default is false, which should not be specified explicitly to avoid clutter."
+                                },
+                                "endianness": {
+                                    "type": "string",
+                                    "enum": ["big", "little"],
+                                    "description": "The endianness of masked data in the base64 or hex DP. Default is 'big', so only 'little' needs to be explicitly specified."
+                                },
+                                "unit": {
+                                    "type": "string",
+                                    "description": "The unit of measurement for a sensor DP (e.g., °C, %, W). Some units can use ASCII replacements like C for °C, F for °F, and ugm3 for μg/m³ to simplify input and avoid accidental incorrect Unicode character usage."
+                                },
+                                "mapping": {
+                                    "type": "array",
+                                    "description": "A list of mappings that potentially change the value in HA compared to the raw DP value.",
+                                    "minItems": 1,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "dps_val": {
+                                                "type": ["integer", "string", "boolean", "null"],
+                                                "description": "The DP value this mapping matches."
+                                            },
+                                            "value": {
+                                                "type": ["number", "string", "boolean", "null"],
+                                                "description": "An optional value to map to."
+                                            },
+                                            "value_redirect": {
+                                                "type": "string",
+                                                "pattern": "^[a-z0-9_]+$",
+                                                "description": "The name of a dp in the same dps list to redirect to for read and write."
+                                            },
+                                            "value_mirror": {
+                                                "type": "string",
+                                                "pattern": "^[a-z0-9_]+$",
+                                                "description": "The name of a dp in the same dps list to mirror the value from when read."
+                                            },
+                                            "scale": {
+                                                "type": "number",
+                                                "description": "An optional scale to apply when this mapping is matched.",
+                                                "exclusiveMinimum": 0
+                                            },
+                                            "step": {
+                                                "type": "integer",
+                                                "minimum": 1,
+                                                "description": "An optional step to apply when this mapping is matched."
+                                            },
+                                            "range": {
+                                                "type": "object",
+                                                "description": "An override for range of values for integer DPs when this mapping is matched.",
+                                                "properties": {
+                                                    "min": {
+                                                        "type": "integer",
+                                                        "description": "Minimum value."
+                                                    },
+                                                    "max": {
+                                                        "type": "integer",
+                                                        "description": "Maximum value."
+                                                    }
+                                                },
+                                                "required": ["min", "max"],
+                                                "additionalProperties": false
+                                            },
+                                            "target_range": {
+                                                "type": "object",
+                                                "description": "An optional target range to map the range of values to for integer DPs when this mapping is matched.",
+                                                "properties": {
+                                                    "min": {
+                                                        "type": "integer",
+                                                        "description": "Minimum value."
+                                                    },
+                                                    "max": {
+                                                        "type": "integer",
+                                                        "description": "Maximum value."
+                                                    }
+                                                },
+                                                "required": ["min", "max"],
+                                                "additionalProperties": false
+                                            },
+                                            "icon": {
+                                                "type": "string",
+                                                "pattern": "mdi:[a-z0-9_+-]+",
+                                                "description": "An optional icon to use when this mapping is matched."
+                                            },
+                                            "icon_priority": {
+                                                "type": "integer",
+                                                "description": "The priority order for choosing an icon when multiple are available. Lower numbers have higher priority. Default is 10.",
+                                                "minimum": 1
+                                            },
+                                            "invert": {
+                                                "type": "boolean",
+                                                "description": "true to invert the value within the range when this mapping is matched."
+                                            },
+                                            "default": {
+                                                "type": "boolean",
+                                                "description": "true if this mapping should be used as the default when no value was specified. Currently used only for a siren entity tone dp when there is no switch dp and the turn_on action is called without arguments, or for a water_heater entity when switching out of away mode and away is implemented as a normal mode in the device."
+                                            },
+                                            "hidden": {
+                                                "type": "boolean",
+                                                "description": "true if this mapping should be hidden from the user in selection UIs. Default false, which should not be specified explicitly to avoid clutter."
+                                            },
+                                            "available": {
+                                                "type": "string",
+                                                "pattern": "^[a-z0-9_]+$",
+                                                "description": "The name of a dp in the same dps list that indicates whether this mapping is available."
+                                            },
+                                            "invalid": {
+                                                "type": "boolean",
+                                                "description": "true if this mapping indicates an invalid state."
+                                            },
+                                            "constraint": {
+                                                "type": "string",
+                                                "pattern": "^[a-z0-9_]+$",
+                                                "description": "An optional name of a dp within the same dps list to check conditions against. If unspecified, the conditions apply to the current dp."
+                                            },
+                                            "conditions": {
+                                                "type": "array",
+                                                "description": "A list of conditions that must be met for this mapping to apply.",
+                                                "minItems": 1,
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "dps_val": {
+                                                            "type": ["integer", "string", "boolean", "array", "null"],
+                                                            "description": "The DP value of the constraint DP to match against."
+                                                        },
+                                                        "value": {
+                                                            "type": ["number", "string", "boolean", "null"],
+                                                            "description": "The value to map to."
+                                                        },
+                                                        "value_redirect": {
+                                                            "type": "string",
+                                                            "pattern": "^[a-z0-9_]+$",
+                                                            "description": "The name of a dp in the same dps list to redirect to."
+                                                        },
+                                                        "value_mirror": {
+                                                            "type": "string",
+                                                            "pattern": "^[a-z0-9_]+$",
+                                                            "description": "The name of a dp in the same dps list to mirror the value from when read."
+                                                        },
+                                                        "range": {
+                                                            "type": "object",
+                                                            "description": "An override for range of values for integer DPs when this condition is matched.",
+                                                            "properties": {
+                                                                "min": {
+                                                                    "type": "integer",
+                                                                    "description": "Minimum value."
+                                                                },
+                                                                "max": {
+                                                                    "type": "integer",
+                                                                    "description": "Maximum value."
+                                                                }
+                                                            },
+                                                            "required": ["min", "max"],
+                                                            "additionalProperties": false
+                                                        },
+                                                        "default": {
+                                                            "type": "boolean",
+                                                            "description": "true if this mapping should be used as the default when no value was specified. Currently used only for a siren entity tone dp when there is no switch dp and the turn_on action is called without arguments, or for a water_heater entity when switching out of away mode and away is implemented as a normal mode in the device."
+                                                        },
+                                                        "scale": {
+                                                            "type": "number",
+                                                            "description": "An optional scale to apply when this mapping is matched.",
+                                                            "exclusiveMinimum": 0
+                                                        },
+                                                        "step": {
+                                                            "type": "integer",
+                                                            "minimum": 1,
+                                                            "description": "An optional step to apply when this mapping is matched."
+                                                        },
+                                                        "target_range": {
+                                                            "type": "object",
+                                                            "description": "An optional target range to map the range of values to for integer DPs when this mapping is matched.",
+                                                            "properties": {
+                                                                "min": {
+                                                                    "type": "number",
+                                                                    "description": "Minimum value."
+                                                                },
+                                                                "max": {
+                                                                    "type": "number",
+                                                                    "description": "Maximum value."
+                                                                }
+                                                            },
+                                                            "required": ["min", "max"],
+                                                            "additionalProperties": false
+                                                        },
+                                                        "hidden": {
+                                                            "type": "boolean",
+                                                            "description": "true if this mapping should be hidden from the user in selection UIs. Default false, which should not be specified explicitly to avoid clutter."
+                                                        },
+                                                        "available": {
+                                                            "type": "string",
+                                                            "pattern": "^[a-z0-9_]+$",
+                                                            "description": "The name of a dp in the same dps list that indicates whether this mapping is available."
+                                                        },
+                                                        "invalid": {
+                                                            "type": "boolean",
+                                                            "description": "true if this condition indicates an invalid state."
+                                                        },
+                                                        "mapping": {
+                                                            "type": "array",
+                                                            "description": "An override list of mappings that potentially change the value in HA compared to the raw DP value when this condition is matched.",
+                                                            "minItems": 1,
+                                                            "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "dps_val": {
+                                                                        "type": ["integer", "string", "boolean", "null"],
+                                                                        "description": "The DP value this mapping matches."
+                                                                    },
+                                                                    "value": {
+                                                                        "type": ["number", "string", "boolean", "null"],
+                                                                        "description": "An optional value to map to."
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "required": ["dps_val"],
+                                                    "additionalProperties": false
+                                                }
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "required": ["id", "type", "name"],
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "required": ["entity", "dps"],
+                "additionalProperties": false
+            }
+        },
+        "legacy_type": {
+            "type": "string",
+            "description": "Optional legacy type for backward compatibility. Should not be used for new configs."
+        }
+    },
+    "required": ["name", "entities"],
+    "additionalProperties": false
+}

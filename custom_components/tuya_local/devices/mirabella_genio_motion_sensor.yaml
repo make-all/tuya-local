@@ -1,20 +1,19 @@
 name: Motion sensor
 products:
   - id: p0y7ucexietpcqlq
-    name: Mirabella Genio Motion Sensor
-primary_entity:
-  entity: binary_sensor
-  class: motion
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: pir
-          value: true
-        - dps_val: "none"
-          value: false
-secondary_entities:
+    manufacturer: Mirabella Genio
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: pir
+            value: true
+          - dps_val: "none"
+            value: false
   - entity: sensor
     class: battery
     dps:

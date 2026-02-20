@@ -1,83 +1,83 @@
 name: Electric fireplace
 products:
   - id: qhwld7e4eqvu5fbp
-    name: Touchstone Sideline
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: heat_disable
-          conditions:
-            - dps_val: false
-              value: heat
-            - dps_val: true
-              value: fan_only
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 19
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 67
-                max: 86
-              value_redirect: temp_set_f
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "0"
-          value: eco
-        - dps_val: "1"
-          value: comfort
-        - dps_val: "2"
-          value: boost
-    - id: 13
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 14
-      name: temp_set_f
-      type: integer
-      range:
-        min: 67
-        max: 86
-      hidden: true
-    - id: 15
-      name: temp_current_f
-      type: integer
-      hidden: true
-    - id: 107
-      type: boolean
-      name: heat_disable
-      hidden: true
-    - id: 106
-      name: timer
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Touchstone
+    model: Sideline
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: heat_disable
+            conditions:
+              - dps_val: false
+                value: heat
+              - dps_val: true
+                value: fan_only
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 19
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 67
+                  max: 86
+                value_redirect: temp_set_f
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: eco
+          - dps_val: "1"
+            value: comfort
+          - dps_val: "2"
+            value: boost
+      - id: 13
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        name: temp_set_f
+        type: integer
+        range:
+          min: 67
+          max: 86
+        hidden: true
+      - id: 15
+        name: temp_current_f
+        type: integer
+        hidden: true
+      - id: 107
+        type: boolean
+        name: heat_disable
+        hidden: true
+      - id: 106
+        name: timer
+        type: string
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -149,33 +149,44 @@ secondary_entities:
             value: 0
             hidden: true
       - id: 104
-        name: effect
+        name: named_color
         type: string
         mapping:
           - dps_val: "1"
-            value: "Orange"
+            value: orange
           - dps_val: "2"
-            value: "Red"
+            value: red
           - dps_val: "3"
-            value: "Blue"
+            value: blue
           - dps_val: "4"
-            value: "Yellow"
+            value: yellow
           - dps_val: "5"
-            value: "Green"
+            value: green
           - dps_val: "6"
-            value: "Purple"
+            value: purple
           - dps_val: "7"
-            value: "Teal"
+            value: teal
           - dps_val: "8"
-            value: "Pink"
+            value: pink
           - dps_val: "9"
-            value: "White"
+            value: white
           - dps_val: "10"
-            value: "Peach"
+            value: peachpuff
           - dps_val: "11"
-            value: "Cycle"
+            value: black
           - dps_val: "12"
-            value: "Mystery"
+            value: grey
+      - id: 104
+        name: effect
+        type: string
+        mapping:
+          - dps_val: "12"
+            value: Mystery
+          - dps_val: "11"
+            value: Cycle
+          - dps_val: "1"
+            value: "off"
+          - value: "off"
   - entity: light
     translation_key: logs
     category: config

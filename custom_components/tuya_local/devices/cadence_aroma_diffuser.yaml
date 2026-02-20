@@ -1,23 +1,23 @@
 name: Aroma diffuser
 products:
   - id: 1sim2gu7dd5rh3j3
-    name: Cadence Ultrasonic
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 2
-      name: switch
-      type: boolean
-    - id: 103
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: continued
-          value: continuous
-        - dps_val: indirect
-          value: intermittent
-secondary_entities:
+    manufacturer: Cadence
+    name: Ultrasonic aroma diffuser
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 103
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: continued
+            value: continuous
+          - dps_val: indirect
+            value: intermittent
   - entity: switch
     name: Power
     category: config
@@ -72,8 +72,7 @@ secondary_entities:
           - dps_val: "5"
             value: Track 6
   - entity: number
-    name: Volume
-    icon: "mdi:volume-high"
+    translation_key: volume
     dps:
       - id: 102
         type: integer
@@ -117,6 +116,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 109

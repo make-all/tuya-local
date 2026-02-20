@@ -1,45 +1,31 @@
-name: Renpho RP-AP001S purifier
+name: Air purifier
 products:
   - id: oaleouzsq0sk4quk
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: sleep
-        - dps_val: mid
-          value: fresh
-        - dps_val: high
-          value: strong
-        - dps_val: auto
-          value: smart
-    - id: 19
-      name: timer
-      type: string
-    - id: 22
-      name: air_quality
-      type: string
-    - id: 102
-      name: prefilter_life
-      type: integer
-    - id: 103
-      name: charcoal_filter_life
-      type: integer
-    - id: 104
-      name: activated_charcoal_filter_life
-      type: integer
-    - id: 105
-      name: hepa_filter_life
-      type: integer
-secondary_entities:
+    manufacturer: Renpho
+    model: RP-AP001S
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: sleep
+          - dps_val: mid
+            value: fresh
+          - dps_val: high
+            value: strong
+          - dps_val: auto
+            value: smart
+      - id: 19
+        name: timer
+        type: string
   - entity: lock
     translation_key: child_lock
     category: config
@@ -68,7 +54,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Air quality
+    translation_key: air_quality
     class: enum
     category: diagnostic
     dps:
@@ -76,12 +62,12 @@ secondary_entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "bad"
-            value: "Bad"
-          - dps_val: "fair"
-            value: "Fair"
-          - dps_val: "good"
-            value: "Good"
+          - dps_val: bad
+            value: poor
+          - dps_val: fair
+            value: moderate
+          - dps_val: good
+            value: good
   - entity: sensor
     name: Prefilter life
     category: diagnostic

@@ -1,124 +1,107 @@
 name: Air conditioner
 products:
   - id: hw50w7qvxluhslkk
-    name: Rotenso Roni X
-primary_entity:
-  entity: climate
-  translation_only_key: aircon_extra
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 160
-        max: 310
-      mapping:
-        - scale: 10
-          step: 10
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: "strong"
-          value: strong
-        - dps_val: "high"
-          value: high
-        - dps_val: "mid_high"
-          value: medhigh
-        - dps_val: "mid"
-          value: medium
-        - dps_val: "mid_low"
-          value: medlow
-        - dps_val: "low"
-          value: low
-        - dps_val: "mute"
-          value: quiet
-        - dps_val: "auto"
-          value: auto
-    - id: 18
-      type: integer
-      name: current_humidity
-    - id: 20
-      type: integer
-      name: fault_code
-    - id: 110
-      type: bitfield
-      name: flags
-    - id: 113
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: "0"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
-              value: horizontal
-            - dps_val: ["2", "3", "4"]
-              value: horizontal
-              hidden: true
-        - dps_val: "1"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - dps_val: "1"
-              value: both
-            - dps_val: ["2", "3", "4"]
-              value: both
-              hidden: true
-        - hidden: true
-          value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-    - id: 114
-      type: string
-      name: horizontal_swing
-      hidden: true
-    - id: 120
-      type: string
-      name: energy
-    - id: 123
-      type: hex
-      name: flags_2
-    - id: 125
-      type: string
-      name: air_quality
-      optional: true
-    - id: 132
-      type: boolean
-      name: hot_cool
-secondary_entities:
+    manufacturer: Rotenso
+    model: Roni X
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 160
+          max: 310
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "strong"
+            value: strong
+          - dps_val: "high"
+            value: high
+          - dps_val: "mid_high"
+            value: medhigh
+          - dps_val: "mid"
+            value: medium
+          - dps_val: "mid_low"
+            value: medlow
+          - dps_val: "low"
+            value: low
+          - dps_val: "mute"
+            value: quiet
+          - dps_val: "auto"
+            value: auto
+      - id: 18
+        type: integer
+        name: current_humidity
+      - id: 110
+        type: bitfield
+        name: flags
+      - id: 113
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - hidden: true
+            value: "on"
+      - id: 114
+        type: string
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - value: "on"
+            hidden: true
+      - id: 120
+        type: string
+        name: energy
+      - id: 123
+        type: hex
+        name: flags_2
+      - id: 125
+        type: string
+        name: air_quality
+        optional: true
+      - id: 132
+        type: boolean
+        name: hot_cool
   - entity: select
     name: Sleep
     category: config
@@ -221,17 +204,15 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0008"
+        mask: "0008"
   - entity: switch
-    name: Beep
+    translation_key: sound
     category: config
     dps:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0010"
+        mask: "0010"
   - entity: switch
     name: Anti-mildew
     category: config
@@ -240,9 +221,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - scale: 1
-            mask: "0100"
+        mask: "0100"
   - entity: switch
     name: Eco mode
     category: config
@@ -251,9 +230,15 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - scale: 1
-            mask: "0001"
+        mask: "0001"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -265,6 +250,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: pm25
     category: diagnostic

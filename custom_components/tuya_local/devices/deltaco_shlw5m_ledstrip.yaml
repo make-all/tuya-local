@@ -1,0 +1,39 @@
+name: LED strip
+products:
+  - id: gplzywt8cht24mhs
+    manufacturer: Deltaco
+    model: SH-LW5M
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 25
+          max: 255
+      - id: 104
+        type: string
+        name: effect
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: "Combination"
+          - dps_val: "2"
+            value: "In Wave"
+          - dps_val: "3"
+            value: "Sequence"
+          - dps_val: "4"
+            value: "Slo-glo"
+          - dps_val: "5"
+            value: "Chasing"
+          - dps_val: "6"
+            value: "Fade"
+          - dps_val: "7"
+            value: "Twinkle"
+          - dps_val: "8"
+            value: "Steady"

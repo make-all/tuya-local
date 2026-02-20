@@ -1,44 +1,45 @@
 name: EV charger
 products:
   - id: aaaealnecwgwerjl
-    name: AFYEEV 32A 22kW
+    manufacturer: Afyeev
+    name: "32A 22kW EV charger"
   - id: 65zlpwd6lhgpbwtd
-    name: AFYEEV 32A wall mounted
-primary_entity:
-  entity: sensor
-  class: enum
-  name: Status
-  icon: "mdi:ev-station"
-  dps:
-    - id: 3
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_free
-          value: Disconnected
-        - dps_val: charger_insert
-          value: Connected
-        - dps_val: charger_free_fault
-          value: Fault (disconnected)
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_wait
-          value: Waiting
-        - dps_val: charger_end
-          value: Charged
-        - dps_val: charger_fault
-          value: Fault
-        - dps_val: charger_pause
-          value: Pause
-    - id: 23
-      type: string
-      optional: true
-      name: system_version
-    - id: 33
-      type: string
-      optional: true
-      name: mode_set
-secondary_entities:
+    manufacturer: Afyeev
+    name: "32A wall mounted EV charger"
+entities:
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+          - dps_val: charger_pause
+            value: paused
+      - id: 23
+        type: string
+        optional: true
+        name: system_version
+      - id: 33
+        type: string
+        optional: true
+        name: mode_set
   - entity: sensor
     class: energy
     category: diagnostic
@@ -137,23 +138,22 @@ secondary_entities:
           - dps_val: 16384
             value: "Leakage current fault"
   - entity: select
-    name: Working mode
-    icon: "mdi:list-box-outline"
+    translation_key: charging_mode
     dps:
       - id: 14
         type: string
         name: option
         mapping:
           - dps_val: charge_now
-            value: Charge now
+            value: immediate
           - dps_val: charge_pct
-            value: Charge PCT
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Charge energy
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Charge schedule
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Charge delay
+            value: delayed_charge
   - entity: switch
     dps:
       - id: 18
@@ -173,8 +173,6 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-        mapping:
-          - scale: 10
   - entity: sensor
     name: Last charge
     dps:
@@ -201,6 +199,7 @@ secondary_entities:
             value: true
   - entity: number
     translation_key: timer
+    class: duration
     dps:
       - id: 28
         type: integer
@@ -219,9 +218,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Phase A current
     class: current
@@ -231,9 +230,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF000000"
         mapping:
-          - mask: "000000FFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Phase A power
     class: power
@@ -243,6 +242,6 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "000000000000FFFF"
         mapping:
-          - mask: "000000000000FFFF"
-            scale: 1000
+          - scale: 1000

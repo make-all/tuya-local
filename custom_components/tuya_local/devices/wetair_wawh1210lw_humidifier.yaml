@@ -1,41 +1,36 @@
-name: WetAir-1210 humidifier
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 80
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 24
-      type: string
-      name: mode
-      mapping:
-        - dps_val: AUTO
-          value: auto
-        - dps_val: MIDDLE
-          value: normal
-        - dps_val: HIGH
-          value: boost
-        - dps_val: SLEEP
-          value: sleep
-    - id: 22
-      type: integer
-      name: unknown_22
-secondary_entities:
+name: Humidifier
+# products: WetAir-1210
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 24
+        type: string
+        name: mode
+        mapping:
+          - dps_val: AUTO
+            value: auto
+          - dps_val: MIDDLE
+            value: normal
+          - dps_val: HIGH
+            value: boost
+          - dps_val: SLEEP
+            value: sleep
+      - id: 22
+        type: integer
+        name: unknown_22
   - entity: light
     translation_key: display
     category: config
@@ -44,20 +39,14 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
     dps:
       - id: 8
         name: "switch"
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:volume-high"
-          - dps_val: false
-            icon: "mdi:volume-off"
-
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     category: diagnostic
     dps:
       - id: 101

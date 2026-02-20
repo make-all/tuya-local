@@ -1,0 +1,426 @@
+name: Pool chlorinator
+products:
+  - id: cplkrhlhx1sl0jz1
+    manufacturer: Madimack
+    model: InverChlor
+entities:
+  - entity: sensor
+    name: Saliniity
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: true
+                value_redirect: fahrenheit
+      - id: 133
+        type: integer
+        optional: true
+        name: fahrenheit
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 104
+        type: boolean
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: true
+            value: F
+          - value: C
+  - entity: switch
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 127
+        type: string
+        name: board_config
+      - id: 128
+        type: base64
+        optional: true
+        name: display_config
+      - id: 131
+        type: string
+        optional: true
+        name: custom_model
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+  - entity: sensor
+    name: Chassis temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Electrolytic voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Turbo
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: number
+    name: ORP
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        unit: mv
+        range:
+          min: 650
+          max: 800
+  - entity: number
+    class: volume
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: m³
+        range:
+          min: 5
+          max: 150
+        mapping:
+          - step: 5
+  - entity: number
+    class: ph
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 72
+          max: 78
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: ORP
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: sensor
+        unit: mv
+        class: measurement
+  - entity: sensor
+    class: ph
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Output
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    name: Acid
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    name: Calibration
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    name: Salt
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    name: Sensors
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Water quality
+    class: enum
+    translation_key: air_quality
+    category: diagnostic
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: WAIT
+            value: poor
+          - dps_val: GOOD
+            value: good
+          - dps_val: GREAT
+            value: excellent
+  - entity: number
+    name: Electrolytic chip size
+    category: config
+    class: weight
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Timer
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Polarity reverse period
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "0"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+          - dps_val: "10"
+            value: "10"
+  - entity: switch
+    name: Real time monitoring
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: Electrolytic power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Power level
+    category: config
+    icon: "mdi:gauge"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Acid dosage
+    category: config
+    icon: "mdi:flask-plus"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: mL/day
+        range:
+          min: 0
+          max: 6000
+        mapping:
+          - step: 50
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 129
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 129
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: current
+    name: Electrolytic current
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: chlorination_mode
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: inverter
+            value: inverter
+          - dps_val: auto_ph
+            value: auto_ph
+          - dps_val: smart
+            value: smart
+          - dps_val: manual
+            value: manual
+  - entity: select
+    name: Salt type
+    icon: "mdi:shaker-outline"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Salt
+          - dps_val: true
+            value: Mineral
+  - entity: text
+    name: Timers
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 135
+        type: base64
+        optional: true
+        name: value
+  - entity: binary_sensor
+    name: Polarity
+    category: diagnostic
+    dps:
+      - id: 136
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Cell life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+  - entity: button
+    name: Fast refresh
+    category: config
+    dps:
+      - id: 152
+        type: boolean
+        optional: true
+        name: button

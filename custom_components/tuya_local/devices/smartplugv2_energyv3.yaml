@@ -1,57 +1,57 @@
 name: Energy monitoring smartplug
 products:
   - id: 2iepauebcvo74ujc
-    name: Aubess 20A
+    manufacturer: Aubess
+    model: 20A
   - id: wrz6vzch8htux2zp
-    name: Elivco CB2S-16DL
+    manufacturer: Elivco
+    model: CB2S-16DL
   - id: 3lbgj7cu27nsmh0w
-    name: AT-Q-SY2-JWT
+    model: AT-Q-SY2-JWT
   - id: cipuwutzfuqk3iru
-    name: UNSH SMKG-KNL
+    model: UNSH SMKG-KNL
   - id: azpywu5zfg5wyzpn
-    name: EARU 1P Breaker
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 42
-      type: base64
-      name: cycle_timer
-      optional: true
-    - id: 43
-      type: base64
-      name: random_timer
-      optional: true
-    - id: 44
-      type: base64
-      name: inching
-      optional: true
-secondary_entities:
-  - entity: number
+    manufacturer: EARU
+    model: 1P Breaker
+  - id: mkdejkrgvhsfwfrd
+    manufacturer: Antela
+    model: F1s302-UK
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        optional: true
+        name: test_bit
+      - id: 44
+        type: base64
+        name: inching
+        optional: true
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+      - id: 42
+        type: base64
+        name: cycle_timer
+        optional: true
+      - id: 43
+        type: base64
+        name: random_timer
+        optional: true
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
@@ -59,6 +59,7 @@ secondary_entities:
         type: integer
         unit: Wh
         optional: true
+        class: measurement
       - id: 25
         type: integer
         name: calibration
@@ -72,6 +73,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        optional: true
         force: true
         unit: mA
       - id: 23
@@ -85,6 +87,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        optional: true
         force: true
         unit: W
         mapping:
@@ -107,6 +110,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        optional: true
         force: true
         unit: V
         mapping:
@@ -125,6 +129,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     category: config
     translation_key: initial_state
@@ -142,40 +149,76 @@ secondary_entities:
   - entity: lock
     translation_key: child_lock
     category: config
+    hidden: unavailable
     dps:
+      - id: 41
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 41
         type: boolean
         name: lock
         optional: true
   - entity: select
-    name: Light mode
+    translation_key: light_mode
     category: config
-    icon: "mdi:lightbulb"
+    hidden: unavailable
     dps:
       - id: 40
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Overcharge protection
     category: config
+    hidden: unavailable
     dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: boolean
         name: switch
         optional: true
   - entity: sensor
     class: temperature
+    hidden: unavailable
     category: diagnostic
     dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 47
         type: integer
         optional: true

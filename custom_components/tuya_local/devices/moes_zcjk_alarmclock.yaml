@@ -1,0 +1,241 @@
+name: Alarm clock
+products:
+  - id: rslo8vqc1xjtaoy9
+    manufacturer: Moes House
+    model: Smart Wake Up Light
+    model_id: ZC-JK
+entities:
+  - entity: light
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    icon: "mdi:clock-digital"
+    dps:
+      - id: 103
+        type: string
+        name: hms
+  - entity: select
+    name: Display
+    icon: "mdi:clock-digital"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: Day
+          - dps_val: 2
+            value: Night
+          - dps_val: 3
+            value: Auto
+  - entity: switch
+    name: Radio
+    icon: "mdi:radio"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: volume
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 16
+  - entity: text
+    name: Station list
+    category: config
+    icon: "mdi:playlist-music"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Alarm 1
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: number
+    name: Snooze time
+    class: duration
+    category: config
+    icon: "mdi:alarm-snooze"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 8
+          max: 15
+  - entity: select
+    name: Snooze type
+    icon: "mdi:alarm-snooze"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Sound + Radio
+          - dps_val: "2"
+            value: Light
+          - dps_val: "3"
+            value: Radio
+          - dps_val: "4"
+            value: Radio + Sound + Light
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm 2
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm 3
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm 4
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Internet time
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: button
+    name: Radio seek
+    icon: "mdi:fast-forward"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+      - id: 125
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: button
+    name: Radio stop
+    icon: "mdi:stop"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 125
+        type: boolean
+        name: available
+  - entity: text
+    name: Alarm settings
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 127
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep settings
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 128
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    name: Ambient
+    dps:
+      - id: 129
+        type: boolean
+        name: switch
+      - id: 132
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "1"
+            value: white
+          - dps_val: "2"
+            value: red
+          - dps_val: "3"
+            value: orange
+          - dps_val: "4"
+            value: yellow
+          - dps_val: "5"
+            value: lime
+          - dps_val: "6"
+            value: cyan
+          - dps_val: "7"
+            value: blue
+          - dps_val: "8"
+            value: magenta
+  - entity: switch
+    name: Snooze
+    icon: "mdi:alarm-snooze"
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
+  - entity: select
+    name: Time format
+    icon: "mdi:hours-24"
+    category: config
+    dps:
+      - id: 131
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "12 hour"
+            icon: "mdi:hours-12"
+            icon_priority: 1
+          - dps_val: true
+            value: "24 hour"

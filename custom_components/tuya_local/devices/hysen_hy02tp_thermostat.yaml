@@ -1,78 +1,72 @@
 name: Thermostat
 products:
   - id: 4oeq3v7rua8c4ton
-    name: Hysen HY02TP
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_type
-          conditions:
-            - dps_val: "0cool"
-              value: cool
-            - dps_val: "1heat"
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 700
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: Manual
-          value: manual
-        - dps_val: Program
-          value: program
-        - dps_val: Holiday
-          value: away
-        - dps_val: TempProg
-          value: temp_override
-    - id: 114
-      type: integer
-      name: max_temperature
-    - id: 115
-      type: integer
-      name: min_temperature
-    - id: 123
-      type: string
-      name: work_type
-      hidden: true
-    - id: 127
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: "0allclose"
-                  value: idle
-                - dps_val: "1heaton"
-                  value: heating
-                - dps_val: "2coolon"
-                  value: cooling
-secondary_entities:
+    manufacturer: Hysen
+    model: HY02TP
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_type
+            conditions:
+              - dps_val: "0cool"
+                value: cool
+              - dps_val: "1heat"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 700
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Manual
+            value: manual
+          - dps_val: Program
+            value: program
+          - dps_val: Holiday
+            value: away
+          - dps_val: TempProg
+            value: temp_override
+      - id: 114
+        type: integer
+        name: max_temperature
+      - id: 115
+        type: integer
+        name: min_temperature
+      - id: 123
+        type: string
+        name: work_type
+        hidden: true
+      - id: 127
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0allclose"
+            value: idle
+          - dps_val: "1heaton"
+            value: heating
+          - dps_val: "2coolon"
+            value: cooling
   - entity: lock
     translation_key: child_lock
     category: config
@@ -188,10 +182,9 @@ secondary_entities:
           min: 1
           max: 10
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 114
         type: integer
@@ -201,10 +194,9 @@ secondary_entities:
           min: 20
           max: 70
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 115
         type: integer
@@ -272,7 +264,7 @@ secondary_entities:
           - dps_val: "1open"
             value: true
   - entity: number
-    name: WIndow open temperature
+    name: Window open temperature
     class: temperature
     category: config
     dps:

@@ -1,0 +1,196 @@
+name: Pet feeder
+products:
+  - id: ebdq15yidek4phti
+    manufacturer: Oneisall
+    model: PF-002 Pro IR
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:paw"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Quick feed
+    dps:
+      - id: 2
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 60
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: Cover
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "on"
+            value: false
+          - dps_val: "off"
+            value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - dps_val: 64
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: jammed
+          - dps_val: 2
+            value: food_low
+          - dps_val: 4
+            value: food_empty
+          - dps_val: 8
+            value: desiccant_low
+          - dps_val: 16
+            value: battery_low
+          - dps_val: 32
+            value: stuck
+          - dps_val: 64
+            value: battery_powered
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: false
+          - value: true
+  - entity: event
+    name: Feed
+    dps:
+      - id: 14
+        type: integer
+        name: event
+        mapping:
+          - dps_val: 0
+            value: null
+          - value: fed
+      - id: 14
+        type: integer
+        name: amount
+  - entity: light
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Slow feed
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Weight calibration
+    category: config
+    icon: "mdi:scale-balance"
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: select
+    name: Power mode
+    icon: "mdi:signal"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: strong_power
+            value: Full power
+          - dps_val: battery_power
+            value: Battery saver

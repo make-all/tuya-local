@@ -1,69 +1,69 @@
 name: Alarm system
 products:
   - id: dscqpiq1gdfltjt3
-    name: Wolf Guard WT2R
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: armed_away
-        - dps_val: home
-          value: armed_home
-    - id: 44
-      type: boolean
-      optional: true
-      name: trigger
-      mapping:
-        - dps_val: null
-          constraint: master_state
-          conditions:
-            - dps_val: normal
-              value: false
-              hidden: true
-            - dps_val: alarm
-              value: true
-              hidden: true
-    - id: 32
-      type: string
-      name: master_state
-    - id: 24
-      type: string
-      optional: true
-      name: zone_attribute
-    - id: 33
-      type: string
-      name: master_information
-    - id: 36
-      type: string
-      optional: true
-      name: sub_class
-    - id: 37
-      type: string
-      optional: true
-      name: sub_type
-    - id: 38
-      type: string
-      optional: true
-      name: sub_admin
-    - id: 39
-      type: string
-      optional: true
-      name: sub_state
-    - id: 101
-      type: string
-      optional: true
-      name: child_device_action
-
-secondary_entities:
+    manufacturer: Wolf Guard
+    model: WT2R
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+      - id: 44
+        type: boolean
+        optional: true
+        name: trigger
+        mapping:
+          - dps_val: null
+            constraint: master_state
+            conditions:
+              - dps_val: normal
+                value: false
+                hidden: true
+              - dps_val: alarm
+                value: true
+                hidden: true
+      - id: 32
+        type: string
+        name: master_state
+      - id: 24
+        type: string
+        optional: true
+        name: zone_attribute
+      - id: 33
+        type: string
+        name: master_information
+      - id: 36
+        type: string
+        optional: true
+        name: sub_class
+      - id: 37
+        type: string
+        optional: true
+        name: sub_type
+      - id: 38
+        type: string
+        optional: true
+        name: sub_admin
+      - id: 39
+        type: string
+        optional: true
+        name: sub_state
+      - id: 101
+        type: string
+        optional: true
+        name: child_device_action
   - entity: number
     name: Arm delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 2
@@ -201,6 +201,7 @@ secondary_entities:
   - entity: number
     name: Alarm delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 28
@@ -220,9 +221,9 @@ secondary_entities:
         name: switch
 
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 34
         type: boolean

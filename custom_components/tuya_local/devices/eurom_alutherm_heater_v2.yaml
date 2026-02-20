@@ -1,62 +1,59 @@
 name: Heater
 products:
   - id: kotlg4xiajpds72u
-    name: Eurom Alutherm 2000 v2
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: manual
-              value: heat
-            - dps_val: auto
-              value: auto
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 0
-        max: 37
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: "off"
-        - dps_val: low
-          value: low
-        - dps_val: mid
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 6
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: comfort
-        - dps_val: true
-          value: eco
-    - id: 21
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    manufacturer: Eurom
+    model: Alutherm 2000
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: manual
+                value: heat
+              - dps_val: auto
+                value: auto
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 6
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: eco
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -68,3 +65,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        name: fault_code
+        type: bitfield

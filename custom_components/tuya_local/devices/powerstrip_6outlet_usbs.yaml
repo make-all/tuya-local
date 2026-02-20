@@ -1,21 +1,25 @@
 name: 6 outlet + 4 USB power strip
 products:
   - id: 2fcngzxvsivfzhzj
-    name: ACME SH3305
-primary_entity:
-  entity: switch
-  name: Switch 1
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 101
-      type: integer
-      name: countdown
-secondary_entities:
+    manufacturer: ACME
+    model: SH3305
+entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: integer
+        name: countdown
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2

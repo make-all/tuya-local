@@ -1,0 +1,173 @@
+name: Energy meter
+products:
+  - id: dyazpvq8orn3psn1
+    model: V-WIFI-DL01-ES
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 109
+        name: today
+        type: integer
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 104
+        name: add_ele
+        type: integer
+        optional: true
+        mapping:
+          - scale: 100
+      - id: 112
+        name: add_today
+        type: integer
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Power alert
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: warn
+            value: true
+          - value: false
+  - entity: number
+    name: Power limit
+    category: config
+    class: power
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 200
+          max: 50000
+        mapping:
+          - step: 100
+  - entity: binary_sensor
+    class: connectivity
+    name: Cloud
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: cloud_net
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: cloud_net
+            value: true
+          - dps_val: local_net
+            value: true
+          - value: false
+  - entity: event
+    name: Sync request
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: request
+            value: request
+  - entity: button
+    name: Sync idle
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: idle
+            value: true
+  - entity: button
+    name: Sync ok
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "ok"
+            value: true
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: close
+            value: close
+          - dps_val: monitor
+            value: monitor
+          - dps_val: working
+            value: working
+          - dps_val: warning
+            value: warning

@@ -1,41 +1,39 @@
 name: Garage door
 products:
   - id: kksjmhr9nhjudvzo
-    name: LoraTap GDC100W
+    manufacturer: LoraTap
+    model: GDC100W
   - id: keyftvxappyrem5a
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      type: boolean
-      name: control
-      optional: true
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 101
-      name: open
-      type: boolean
-secondary_entities:
-  - entity: number
+    manufacturer: LoraTap
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 101
+        name: open
+        type: boolean
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 7
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: number
     name: Travel time
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -46,18 +44,14 @@ secondary_entities:
         range:
           min: 10
           max: 120
-  - entity: number
+  - entity: time
     name: Alarm timer
     category: config
     icon: "mdi:alarm"
     dps:
       - id: 103
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60

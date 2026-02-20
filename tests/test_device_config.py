@@ -25,6 +25,9 @@ PRODUCT_SCHEMA = vol.Schema(
     {
         vol.Required("id"): str,
         vol.Optional("name"): str,
+        vol.Optional("manufacturer"): str,
+        vol.Optional("model"): str,
+        vol.Optional("model_id"): str,
     }
 )
 CONDMAP_SCHEMA = vol.Schema(
@@ -44,8 +47,6 @@ CONDMAP_SCHEMA = vol.Schema(
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),
-        vol.Optional("mask"): str,
-        vol.Optional("endianness"): str,
         vol.Optional("invert"): True,
         vol.Optional("unit"): str,
         vol.Optional("icon"): vol.Match(r"^mdi:"),
@@ -90,6 +91,7 @@ DP_SCHEMA = vol.Schema(
                 "bitfield",
                 "unixtime",
                 "json",
+                "utf16b64",
             ]
         ),
         vol.Required("name"): str,
@@ -115,6 +117,9 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("icon_priority"): int,
         vol.Optional("mapping"): [MAPPING_SCHEMA],
         vol.Optional("format"): [FORMAT_SCHEMA],
+        vol.Optional("mask"): str,
+        vol.Optional("endianness"): vol.In(["little"]),
+        vol.Optional("mask_signed"): True,
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -127,6 +132,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "camera",
                 "climate",
                 "cover",
+                "datetime",
                 "event",
                 "fan",
                 "humidifier",
@@ -139,6 +145,8 @@ ENTITY_SCHEMA = vol.Schema(
                 "sensor",
                 "siren",
                 "switch",
+                "text",
+                "time",
                 "vacuum",
                 "valve",
                 "water_heater",
@@ -147,11 +155,13 @@ ENTITY_SCHEMA = vol.Schema(
         vol.Optional("name"): str,
         vol.Optional("class"): str,
         vol.Optional(vol.Or("translation_key", "translation_only_key")): str,
+        vol.Optional("translation_placeholders"): dict[str, str],
         vol.Optional("category"): vol.In(["config", "diagnostic"]),
         vol.Optional("icon"): vol.Match(r"^mdi:"),
         vol.Optional("icon_priority"): int,
         vol.Optional("deprecated"): str,
         vol.Optional("mode"): vol.In(["box", "slider"]),
+        vol.Optional("hidden"): vol.In([True, "unavailable"]),
         vol.Required("dps"): [DP_SCHEMA],
     }
 )
@@ -160,8 +170,7 @@ YAML_SCHEMA = vol.Schema(
         vol.Required("name"): str,
         vol.Optional("legacy_type"): str,
         vol.Optional("products"): [PRODUCT_SCHEMA],
-        vol.Required("primary_entity"): ENTITY_SCHEMA,
-        vol.Optional("secondary_entities"): [ENTITY_SCHEMA],
+        vol.Required("entities"): [ENTITY_SCHEMA],
     }
 )
 
@@ -207,6 +216,10 @@ KNOWN_DPS = {
             "reversed",
         ],
     },
+    "datetime": {
+        "required": [{"or": ["year", "month", "day", "hour", "minute", "second"]}],
+        "optional": [],
+    },
     "event": {"required": ["event"], "optional": []},
     "fan": {
         "required": [{"or": ["preset_mode", "speed"]}],
@@ -219,12 +232,14 @@ KNOWN_DPS = {
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
-        "optional": ["color_mode", "color_temp", "rgbhsv"],
+        "optional": ["color_mode", "color_temp", {"xor": ["rgbhsv", "named_color"]}],
     },
     "lock": {
         "required": [],
         "optional": [
             "lock",
+            "lock_state",
+            "code_unlock",
             {"and": ["request_unlock", "approve_unlock"]},
             {"and": ["request_intercom", "approve_intercom"]},
             "unlock_fingerprint",
@@ -254,6 +269,8 @@ KNOWN_DPS = {
         "optional": ["tone", "volume", "duration", "switch"],
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
+    "text": {"required": ["value"], "optional": []},
+    "time": {"required": [{"or": ["hour", "minute", "second", "hms"]}], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [
@@ -388,12 +405,16 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         Check that the entity has a dps list and each dps has an id,
         type and name, and any other consistency checks.
         """
+        fname = f"custom_components/tuya_local/devices/{cfg}"
+        line = entity._config.__line__
         self.assertIsNotNone(
-            entity._config.get("entity"), f"entity type missing in {cfg}"
+            entity._config.get("entity"),
+            f"\n::error file={fname},line={line}::entity type missing in {cfg}",
         )
         e = entity.config_id
         self.assertIsNotNone(
-            entity._config.get("dps"), f"dps missing from {e} in {cfg}"
+            entity._config.get("dps"),
+            f"\n::error file={fname},line={line}::dps missing from {e} in {cfg}",
         )
         functions = set()
         extra = set()
@@ -403,28 +424,33 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         # Basic checks of dps, and initialising of redirects and extras sets
         # for later checking
         for dp in entity.dps():
+            line = dp._config.__line__
             self.assertIsNotNone(
-                dp._config.get("id"), f"dp id missing from {e} in {cfg}"
+                dp._config.get("id"),
+                f"\n::error file={fname},line={line}::dp id missing from {e} in {cfg}",
             )
             self.assertIsNotNone(
-                dp._config.get("type"), f"dp type missing from {e} in {cfg}"
+                dp._config.get("type"),
+                f"\n::error file={fname},line~{line}::dp type missing from {e} in {cfg}",
             )
             self.assertIsNotNone(
-                dp._config.get("name"), f"dp name missing from {e} in {cfg}"
+                dp._config.get("name"),
+                f"\n::error file={fname},line={line}::dp name missing from {e} in {cfg}",
             )
             extra.add(dp.name)
             mappings = dp._config.get("mapping", [])
             self.assertIsInstance(
                 mappings,
                 list,
-                f"mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
+                f"\n::error file={fname},line={line}::mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
             )
             for m in mappings:
+                line = m.__line__
                 conditions = m.get("conditions", [])
                 self.assertIsInstance(
                     conditions,
                     list,
-                    f"conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
+                    f"\n::error file={fname},line={line}::conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
                 )
                 for c in conditions:
                     if c.get("value_redirect"):
@@ -436,22 +462,27 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 if m.get("value_mirror"):
                     redirects.add(m.get("value_mirror"))
 
+        line = entity._config.__line__
         # Check redirects all exist
         for redirect in redirects:
-            self.assertIn(redirect, extra, f"dp {redirect} missing from {e} in {cfg}")
+            self.assertIn(
+                redirect,
+                extra,
+                f"\n::error file={fname},line={line}::dp {redirect} missing from {e} in {cfg}",
+            )
 
         # Check dps that are required for this entity type all exist
         expected = KNOWN_DPS.get(entity.entity)
         for rule in expected["required"]:
             self.assertTrue(
                 self.dp_match(rule, functions, extra, known, True),
-                f"{cfg} missing required {self.rule_broken_msg(rule)} in {e}",
+                f"\n::error file={fname},line={line}::{cfg} missing required {self.rule_broken_msg(rule)} in {e}",
             )
 
         for rule in expected["optional"]:
             self.assertTrue(
                 self.dp_match(rule, functions, extra, known, False),
-                f"{cfg} expecting {self.rule_broken_msg(rule)} in {e}",
+                f"\n::error file={fname},line={line}::{cfg} expecting {self.rule_broken_msg(rule)} in {e}",
             )
 
         # Check for potential typos in extra attributes
@@ -461,7 +492,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 self.assertLess(
                     fuzz.ratio(attr, dp),
                     85,
-                    f"Probable typo {attr} is too similar to {dp} in {cfg} {e}",
+                    f"\n::error file={fname},line={line}::Probable typo {attr} is too similar to {dp} in {cfg} {e}",
                 )
 
         # Check that sensors with mapped values are of class enum and vice versa
@@ -472,12 +503,12 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 self.assertEqual(
                     entity.device_class,
                     SensorDeviceClass.ENUM,
-                    f"{cfg} {e} has mapped values but does not have a device class of enum",
+                    f"\n::error file={fname},line={line}::{cfg} {e} has mapped values but does not have a device class of enum",
                 )
             if entity.device_class == SensorDeviceClass.ENUM:
                 self.assertIsNotNone(
                     sensor.options,
-                    f"{cfg} {e} has a device class of enum, but has no mapped values",
+                    f"\n::error file={fname},line={line}::{cfg} {e} has a device class of enum, but has no mapped values",
                 )
 
     def test_config_files_parse(self):
@@ -491,55 +522,75 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             if isinstance(parsed, str) or isinstance(parsed._config, str):
                 self.fail(f"unparsable yaml in {cfg}")
 
+            fname = f"custom_components/tuya_local/devices/{cfg}"
             try:
                 YAML_SCHEMA(parsed._config)
             except vol.MultipleInvalid as e:
-                self.fail(f"Validation error in {cfg}: {e}")
+                messages = []
+                for err in e.errors:
+                    path = ".".join([str(p) for p in err.path])
+                    messages.append(f"{path}: {err.msg}")
+                messages = "; ".join(messages)
+                self.fail(
+                    f"\n::error file={fname},line=1::Validation error: {messages}"
+                )
 
             self.assertIsNotNone(
                 parsed._config.get("name"),
-                f"name missing from {cfg}",
+                f"\n::error file={fname},line=1::name missing from {cfg}",
             )
-            self.assertIsNotNone(
-                parsed._config.get("primary_entity"),
-                f"primary_entity missing from {cfg}",
-            )
-            self.check_entity(parsed.primary_entity, cfg)
-            entities.append(parsed.primary_entity.config_id)
-            secondary = False
-            for entity in parsed.secondary_entities():
-                secondary = True
+            count = 0
+            for entity in parsed.all_entities():
                 self.check_entity(entity, cfg)
                 entities.append(entity.config_id)
+                count += 1
+            assert count > 0, (
+                f"\n::error file={fname},line=1::No entities found in {cfg}"
+            )
+
             # check entities are unique
             self.assertCountEqual(
                 entities,
                 set(entities),
-                f"Duplicate entities in {cfg}",
+                f"\n::error file={fname},line=1::Duplicate entities in {cfg}",
             )
-
-            # If there are no secondary entities, check that it is intended
-            if not secondary:
-                for key in parsed._config.keys():
-                    self.assertFalse(
-                        key.startswith("sec"),
-                        f"misspelled secondary_entities in {cfg}",
-                    )
 
     def test_configs_can_be_matched(self):
         """Test that the config files can be matched to a device."""
         for cfg in available_configs():
-            required_dps = 0
+            optional = set()
+            required = set()
             parsed = TuyaDeviceConfig(cfg)
+            fname = f"custom_components/tuya_local/devices/{cfg}"
+            products = parsed._config.get("products")
+            # Configs with a product list can be matched by product id
+            if products:
+                p_match = False
+                for p in products:
+                    if p.get("id"):
+                        p_match = True
+                if p_match:
+                    continue
+
             for entity in parsed.all_entities():
                 for dp in entity.dps():
-                    if not dp.optional:
-                        required_dps += 1
+                    if dp.optional:
+                        optional.add(dp.id)
+                    else:
+                        required.add(dp.id)
+
             self.assertGreater(
-                required_dps,
+                len(required),
                 0,
-                msg=f"No required dps found in {cfg}",
+                msg=f"\n::error file={fname},line=1::No required dps found in {cfg}",
             )
+
+            for dp in required:
+                self.assertNotIn(
+                    dp,
+                    optional,
+                    msg=f"\n::error file={fname},line=1::Optional dp {dp} is required in {cfg}",
+                )
 
     # Most of the device_config functionality is exercised during testing of
     # the various supported devices.  These tests concentrate only on the gaps.
@@ -557,25 +608,33 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def test_entity_find_unknown_dps_fails(self):
         """Test that finding a dps that doesn't exist fails."""
         cfg = get_config("kogan_switch")
-        non_existing = cfg.primary_entity.find_dps("missing")
-        self.assertIsNone(non_existing)
+        for entity in cfg.all_entities():
+            non_existing = entity.find_dps("missing")
+            self.assertIsNone(non_existing)
+            break
 
     async def test_dps_async_set_readonly_value_fails(self):
         """Test that setting a readonly dps fails."""
         mock_device = MagicMock()
-        cfg = get_config("goldair_gpph_heater")
-        error_code = cfg.primary_entity.find_dps("error")
-        with self.assertRaises(TypeError):
-            await error_code.async_set_value(mock_device, 1)
+        cfg = get_config("aquatech_x6_water_heater")
+        for entity in cfg.all_entities():
+            if entity.entity == "climate":
+                temp = entity.find_dps("temperature")
+                with self.assertRaises(TypeError):
+                    await temp.async_set_value(mock_device, 20)
+                break
 
     def test_dps_values_is_empty_with_no_mapping(self):
         """
-        Test that a dps with no mapping returns None as its possible values
+        Test that a dps with no mapping returns empty list for possible values
         """
         mock_device = MagicMock()
         cfg = get_config("goldair_gpph_heater")
-        temp = cfg.primary_entity.find_dps("current_temperature")
-        self.assertEqual(temp.values(mock_device), [])
+        for entity in cfg.all_entities():
+            if entity.entity == "climate":
+                temp = entity.find_dps("current_temperature")
+                self.assertEqual(temp.values(mock_device), [])
+                break
 
     def test_config_returned(self):
         """Test that config file is returned by config"""
@@ -722,9 +781,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"
@@ -741,9 +798,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"
@@ -759,3 +814,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {"id": "1", "name": "test", "type": "string"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
         self.assertIsNone(cfg.default)
+
+    def test_matching_with_product_id(self):
+        """Test that matching with product id works"""
+        cfg = get_config("smartplugv1")
+        self.assertTrue(cfg.matches({}, ["37mnhia3pojleqfh"]))
+
+    def test_matched_product_id_with_conflict_rejected(self):
+        """Test that matching with product id fails when there is a conflict"""
+        cfg = get_config("smartplugv1")
+        self.assertFalse(cfg.matches({"1": "wrong_type"}, ["37mnhia3pojleqfh"]))

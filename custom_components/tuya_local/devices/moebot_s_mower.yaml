@@ -1,89 +1,81 @@
 name: Lawnmower
 products:
   - id: mvt4l2evgq2l3nkn
-    name: MoeBot S20
+    manufacturer: MoeBot
+    model: S20
   - id: icw5sal7xfcevsve
-    name: Parkside PMRDA 20-Li A1
-primary_entity:
-  entity: lawn_mower
-  dps:
-    - id: 101
-      name: activity
-      type: string
-      mapping:
-        - dps_val: STANDBY
-          value: docked
-        - dps_val: MOWING
-          value: mowing
-        - dps_val: CHARGING
-          value: docked
-        - dps_val: EMERGENCY
-          value: error
-        - dps_val: LOCKED
-          value: docked
-        - dps_val: PAUSED
-          value: paused
-        - dps_val: PARK
-          value: returning
-        - dps_val: CHARGING_WITH_TASK_SUSPEND
-          value: docked
-        - dps_val: FIXED_MOWING
-          value: mowing
-        - dps_val: ERROR
-          value: error
-        - dps_val: UPDATA
-          value: docked
-        - dps_val: SELF_TEST
-          value: docked
-    - id: 115
-      name: command
-      type: string
-      optional: true
-      mapping:
-        - dps_val: StartMowing
-          value: start_mowing
-        - dps_val: StartFixedMowing
-          value: start_mowing
-          hidden: true
-        - dps_val: PauseWork
-          value: pause
-        - dps_val: CancelWork
-          value: pause
-          hidden: true
-        - dps_val: ContinueWork
-          value: start_mowing
-          hidden: true
-        - dps_val: StartReturnStation
-          value: dock
-    - id: 101
-      name: raw_activity
-      type: string
-    - id: 102
-      name: error
-      type: bitfield
-      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost,
-      # motor fault, overheated, battery damaged
-    - id: 106
-      type: integer
-      name: password
-      sensitive: true
-    - id: 110
-      type: string
-      name: schedule
-      optional: true
-    - id: 111
-      type: string
-      name: error_log
-      optional: true
-    - id: 112
-      type: string
-      name: work_log
-      optional: true
-    - id: 113
-      type: string
-      name: zones
-      optional: true
-secondary_entities:
+    manufacturer: Parkside
+    model: PMRDA 20-Li A1
+entities:
+  - entity: lawn_mower
+    dps:
+      - id: 101
+        name: activity
+        type: string
+        mapping:
+          - dps_val: STANDBY
+            value: docked
+          - dps_val: MOWING
+            value: mowing
+          - dps_val: CHARGING
+            value: docked
+          - dps_val: EMERGENCY
+            value: error
+          - dps_val: LOCKED
+            value: docked
+          - dps_val: PAUSED
+            value: paused
+          - dps_val: PARK
+            value: returning
+          - dps_val: CHARGING_WITH_TASK_SUSPEND
+            value: docked
+          - dps_val: FIXED_MOWING
+            value: mowing
+          - dps_val: ERROR
+            value: error
+          - dps_val: UPDATA
+            value: docked
+          - dps_val: SELF_TEST
+            value: docked
+      - id: 115
+        name: command
+        type: string
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: start_mowing
+          - dps_val: StartFixedMowing
+            value: start_mowing
+            hidden: true
+          - dps_val: PauseWork
+            value: pause
+          - dps_val: CancelWork
+            value: pause
+            hidden: true
+          - dps_val: ContinueWork
+            value: start_mowing
+            hidden: true
+          - dps_val: StartReturnStation
+            value: dock
+      - id: 101
+        name: raw_activity
+        type: string
+      - id: 106
+        type: integer
+        name: password
+        sensitive: true
+      - id: 110
+        type: string
+        name: schedule
+        optional: true
+      - id: 112
+        type: string
+        name: work_log
+        optional: true
+      - id: 113
+        type: string
+        name: zones
+        optional: true
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
@@ -140,6 +132,14 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 102
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 111
+        type: string
+        name: error_log
+        optional: true
   - entity: sensor
     name: Problem
     icon: "mdi:robot-mower-outline"
@@ -150,7 +150,6 @@ secondary_entities:
       - id: 103
         name: sensor
         type: string
-        icon_priority: 1
         optional: true
         persist: false
         mapping:
@@ -159,75 +158,99 @@ secondary_entities:
           - dps_val: MOWER_LEAN
             value: Tilted
             icon: "mdi:angle-acute"
+            icon_priority: 1
           - dps_val: MOWER_STEEP
             value: Steep
             icon: "mdi:slope-uphill"
+            icon_priority: 1
           - dps_val: RAIN_PARK
             value: Raining
             icon: "mdi:weather-pouring"
+            icon_priority: 1
           - dps_val: BATTERY_NOT_ENOUGH
             value: Low battery
             icon: "mdi:battery-low"
+            icon_priority: 1
           - dps_val: NO_LOOP_SIGNAL
             value: Weak signal
             icon: "mdi:signal-cellular-1"
+            icon_priority: 1
           - dps_val: CLOSE_TOPCOVER
             value: Close top cover
             icon: "mdi:door-open"
+            icon_priority: 1
           - dps_val: MOWER_IN_STATION
             value: Docked
             icon: "mdi:mower"
+            icon_priority: 1
           - dps_val: MOWER_OUT_STATION
             value: Undocked
             icon: "mdi:mower-on"
+            icon_priority: 1
           - dps_val: PLACE_INSIDE_STATION
             value: Manually dock
             icon: "mdi:home-alert"
+            icon_priority: 1
           - dps_val: FIXED_END
             value: Finished fixed mowing
             icon: "mdi:mower"
+            icon_priority: 1
           - dps_val: CHARGING_DISCONNECT
             value: Disconnected
             icon: "mdi:power-plug-battery"
+            icon_priority: 1
           - dps_val: CHARGING_PAUSE
             value: Paused charging
             icon: "mdi:battery-clock"
+            icon_priority: 1
           - dps_val: WORK_INTERRUPT
             value: Interrupted
             icon: "mdi:alert-octogon"
+            icon_priority: 1
           - dps_val: FIXED_MOWING_INTERRUPT
             value: Interrupted fixed mowing
             icon: "mdi:alert-octogon"
+            icon_priority: 1
           - dps_val: TURN_ON_BUTTON
             value: Turn on button
             icon: "mdi:button-pointer"
+            icon_priority: 1
           - dps_val: PRESS_START_KEY
             value: Press start
             icon: "mdi:play"
+            icon_priority: 1
           - dps_val: TIMESET_30MIN
             value: Set 30 minute timer
             icon: "mdi:fast-forward-30"
+            icon_priority: 1
           - dps_val: TIMESET_UNLEGAL
             value: Invalid timer
             icon: "mdi:timer-alert"
+            icon_priority: 1
           - dps_val: CHARGR_CURRENT_LOW
             value: Charging current low
             icon: "mdi:flash-alert"
+            icon_priority: 1
           - dps_val: RAIN_OUT_STATION
             value: Caught in rain
             icon: "mdi:weather-pouring"
+            icon_priority: 1
           - dps_val: UPDATA_FAIL
             value: Data upload failure
             icon: "mdi:cloud-alert"
+            icon_priority: 1
           - dps_val: CONTINUE_TOOLTIP
             value: Continue
             icon: "mdi:step-forward"
+            icon_priority: 1
           - dps_val: MOWER_EMERGENCY
             value: Stopped
             icon: "mdi:octagon"
+            icon_priority: 1
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
+            icon_priority: 1
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -297,3 +320,35 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
+  - entity: switch
+    name: Hedgehog protection
+    icon: "mdi:account-group"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Backward blade stop
+    icon: "mdi:saw-blade"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 121
+        type: integer
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+      - id: 121
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

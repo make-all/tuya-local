@@ -1,20 +1,20 @@
 name: Gas alarm
 products:
   - id: we7hw8nxeqvbd6g8
-    name: Haier Nayun NY-GS-04
-primary_entity:
-  entity: binary_sensor
-  class: gas
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: normal
-          value: false
-        - dps_val: alarm
-          value: true
-secondary_entities:
+    manufacturer: Haier Nayun
+    model: NY-GS-04
+entities:
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
   - entity: sensor
     name: Gas level
     dps:
@@ -113,10 +113,14 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 16
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

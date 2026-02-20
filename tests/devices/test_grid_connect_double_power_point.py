@@ -7,12 +7,10 @@ from homeassistant.const import (
     UnitOfElectricPotential,
     UnitOfEnergy,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD
 from ..mixins.lock import BasicLockTests
-from ..mixins.number import MultiNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
@@ -39,7 +37,6 @@ MASTER_DPS = "101"
 class TestGridConnectDoubleSwitch(
     BasicLockTests,
     BasicSelectTests,
-    MultiNumberTests,
     MultiSensorTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
@@ -89,6 +86,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "unit": UnitOfEnergy.WATT_HOUR,
+                    "state_class": "measurement",
                 },
                 {
                     "name": "sensor_current",
@@ -115,33 +113,17 @@ class TestGridConnectDoubleSwitch(
                 },
             ]
         )
-        self.setUpMultiNumber(
-            [
-                {
-                    "name": "number_timer_1",
-                    "dps": COUNTDOWN1_DPS,
-                    "max": 86400,
-                    "unit": UnitOfTime.SECONDS,
-                },
-                {
-                    "name": "number_timer_2",
-                    "dps": COUNTDOWN2_DPS,
-                    "max": 86400,
-                    "unit": UnitOfTime.SECONDS,
-                },
-            ]
-        )
         self.mark_secondary(
             [
                 "lock_child_lock",
-                "number_timer_1",
-                "number_timer_2",
                 "select_initial_state",
                 "switch_master",
                 "sensor_energy",
                 "sensor_current",
                 "sensor_power",
                 "sensor_voltage",
+                "time_timer_1",
+                "time_timer_2",
             ],
         )
 

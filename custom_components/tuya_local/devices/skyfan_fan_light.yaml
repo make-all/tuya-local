@@ -1,34 +1,34 @@
-name: Skyfan DC fan
+name: Fan with light
 products:
   - id: pktxz1vynowmavuc
-    name: Skyfan DC fan with light
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: Normal
-          value: normal
-        - dps_val: Nature
-          value: nature
-        - dps_val: Sleep
-          value: sleep
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 5
-    - id: 8
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: Skyfan
+    model: DC
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Normal
+            value: normal
+          - dps_val: Nature
+            value: nature
+          - dps_val: Sleep
+            value: sleep
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+      - id: 8
+        type: string
+        name: direction
   - entity: light
     dps:
       - id: 15

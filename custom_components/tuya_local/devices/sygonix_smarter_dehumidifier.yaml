@@ -1,62 +1,48 @@
 name: Dehumidifier
 products:
   - id: 4xcjyqplnfenhplh
-    name: Sygonix Smarter
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Continuities
-          value: boost
-        - dps_val: Auto
-          value: auto
-        - dps_val: Sleep
-          value: sleep
-    - id: 6
-      type: integer
-      name: current_humidity
-    # This doesn't actually have an ionizer, but having the dp
-    # will aid in detection
-    - id: 10
-      type: boolean
-      name: ionizer
-    - id: 19
-      name: error
-      type: bitfield
-      # E2 might be a compressor fault.
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: "Water Tank Full or Removed"
-          icon: "mdi:cup-water"
-          icon_priority: 1
-        - dps_val: 2
-          value: "E2 Compressor Fault"
-          icon: "mdi:engine-off-outline"
-          icon_priority: 1
-    - id: 102
-      type: integer
-      name: model_code
-    - id: 104
-      type: integer
-      name: equipment_code
-secondary_entities:
+    manufacturer: Sygonix
+    model: Smarter
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Continuities
+            value: continuous
+          - dps_val: Auto
+            value: auto
+          - dps_val: Sleep
+            value: sleep
+      - id: 6
+        type: integer
+        name: current_humidity
+      # This doesn't actually have an ionizer, but having the dp
+      # will aid in detection
+      - id: 10
+        type: boolean
+        name: ionizer
+      - id: 102
+        type: integer
+        name: model_code
+      - id: 104
+        type: integer
+        name: equipment_code
   - entity: fan
     dps:
       - id: 1
@@ -216,8 +202,7 @@ secondary_entities:
           - dps_val: 128
             value: "MOTOR: fan failure"
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 20
@@ -225,7 +210,7 @@ secondary_entities:
         name: button
   - entity: sensor
     category: diagnostic
-    name: Filter Lifetime
+    translation_key: filter_life
     dps:
       - id: 23
         type: integer

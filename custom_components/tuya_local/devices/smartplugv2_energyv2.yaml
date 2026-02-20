@@ -1,52 +1,54 @@
 name: Energy monitoring smartplug
 products:
   - id: jdj6ccklup7btq3a
-    name: Tongou TO-Q-SY1-JWT
+    manufacturer: Tongou
+    model: TO-Q-SY1-JWT
   - id: w906qkrrhd3otiwd
-    name: Moes ME322
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-      optional: true
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 42
-      type: string
-      name: cycle_timer
-      optional: true
-    - id: 43
-      type: string
-      name: random_timer
-      optional: true
-    - id: 44
-      type: string
-      name: inching
-      optional: true
-secondary_entities:
-  - entity: number
+    manufacturer: Moes
+    model: ME322
+  - id: ncwuazeo5y1pujun
+    model: STY-63TM
+  - id: uvbhl96dsubgimll
+    manufacturer: Almo
+  - id: dsbptnyuqso0uber
+    manufacturer: Aziot
+    model: 10A smart plug
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+        optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+      - id: 42
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 43
+        type: string
+        name: random_timer
+        optional: true
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
@@ -54,6 +56,7 @@ secondary_entities:
         type: integer
         optional: true
         unit: Wh
+        class: measurement
       - id: 25
         type: integer
         name: calibration
@@ -115,6 +118,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     category: config
     translation_key: initial_state
@@ -132,7 +138,16 @@ secondary_entities:
   - entity: switch
     name: Overcharge protection
     category: config
+    hidden: unavailable
     dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: boolean
         name: switch
@@ -145,28 +160,45 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: select
-    name: Light mode
-    icon: "mdi:television-ambient-light"
+    translation_key: light_mode
     category: config
+    hidden: unavailable
     dps:
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 40
         type: string
         name: option
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: binary_sensor
     name: Online
     class: connectivity
+    hidden: unavailable
     category: diagnostic
     dps:
       - id: 66
-        type: boolean
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 66
+        type: string
         optional: true
         name: sensor
         mapping:

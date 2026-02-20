@@ -1,53 +1,50 @@
 name: Air conditioner
 products:
   - id: rcbmbxfhfjka1kap
-    name: Monzana Klimaanlage
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: Cool
-              value: cool
-            - dps_val: Dyr
-              value: dry
-            - dps_val: Fan
-              value: fan_only
-            - dps_val: Heat
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 32
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: Low
-          value: low
-        - dps_val: High
-          value: high
-    - id: 22
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Monzana
+    model: Klimaanlage
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cool
+              - dps_val: Dyr
+                value: dry
+              - dps_val: Fan
+                value: fan_only
+              - dps_val: Heat
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: High
+            value: high
   - entity: lock
     translation_key: child_lock
     dps:
@@ -65,6 +62,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
   - entity: switch
     translation_key: sleep
     dps:

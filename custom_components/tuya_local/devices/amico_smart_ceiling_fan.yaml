@@ -1,37 +1,37 @@
 name: Ceiling fan
 products:
   - id: eb208a14315d7cb2bd6txt
-    name: Amico 52 inch ceiling fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 61
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-    - id: 62
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 63
-      type: string
-      name: direction
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: reverse
-          value: reverse
-secondary_entities:
+    manufacturer: Amico
+    name: "52 inch ceiling fan"
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
   - entity: light
     dps:
       - id: 20

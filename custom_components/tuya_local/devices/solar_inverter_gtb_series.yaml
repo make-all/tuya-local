@@ -1,0 +1,147 @@
+name: Solar inverter
+products:
+  - id: czu7ynosrkxgbnsb
+    manufacturer: Solar Grid
+    model: GTB Series
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 15
+        name: model
+        type: string
+      - id: 16
+        name: inverter_id
+        type: string
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: DC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: DC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: DC power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    name: AC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF0000000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: AC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFFFF0000000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: AC power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "0000000000FFFFFF0000"
+  - entity: sensor
+    name: AC frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: Hz
+        optional: true
+        class: measurement
+        mask: "0000000000000000FFFF"
+        mapping:
+          - scale: 10
+  - entity: switch
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true

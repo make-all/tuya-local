@@ -1,31 +1,28 @@
-name: eMylo meter
+name: Energy meter
 products:
   - id: nqbs1onwskmmmaac
-    name: EAI-90
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 6
-      type: string
-      name: phase_a
-      optional: true
-      force: true
-    - id: 10
-      type: bitfield
-      name: fault_code
-    - id: 17
-      type: string
-      name: alarm
-      optional: true
-secondary_entities:
+    manufacturer: eMylo
+    model: EAI-90
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 6
+        type: string
+        name: phase_a
+        optional: true
+        force: true
+      - id: 17
+        type: string
+        name: alarm
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -37,6 +34,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Prepayment
     category: config
@@ -93,7 +93,6 @@ secondary_entities:
         name: button
         optional: true
   - entity: sensor
-    name: Voltage A
     class: voltage
     category: diagnostic
     dps:
@@ -102,11 +101,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -115,11 +113,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -128,6 +125,6 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000

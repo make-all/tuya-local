@@ -1,82 +1,69 @@
-name: LEDLUX thermostat
+name: Thermostat
 products:
   - id: atico42xjbgqgiys
-    name: Smart Boiler
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 5
-        max: 1220
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: Manual
-          value: manual
-        - dps_val: Program
-          value: program
-        - dps_val: Holiday
-          value: away
-    - id: 12
-      type: bitfield
-      name: fault_code
-    - id: 102
-      type: boolean
-      name: hvac_action
-      mapping:
-        - dps_val: true
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: false
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-    - id: 106
-      type: boolean
-      name: unknown_106
-    - id: 107
-      type: boolean
-      name: unknown_107
-    - id: 113
-      type: integer
-      name: low_temperature_limit
-    - id: 114
-      type: integer
-      name: max_temperature
-    - id: 115
-      type: integer
-      name: min_temperature
-secondary_entities:
+    manufacturer: LEDLUX
+    name: Smart boiler
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 1220
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Manual
+            value: manual
+          - dps_val: Program
+            value: program
+          - dps_val: Holiday
+            value: away
+      - id: 102
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+      - id: 106
+        type: boolean
+        name: unknown_106
+      - id: 107
+        type: boolean
+        name: unknown_107
+      - id: 113
+        type: integer
+        name: low_temperature_limit
+      - id: 114
+        type: integer
+        name: max_temperature
+      - id: 115
+        type: integer
+        name: min_temperature
   - entity: lock
     translation_key: child_lock
     category: config
@@ -110,7 +97,7 @@ secondary_entities:
         type: integer
         name: minimum
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 109
@@ -119,7 +106,7 @@ secondary_entities:
         range:
           min: -9
           max: 9
-        unit: C
+        unit: °
   - entity: number
     name: Calibration swing internal
     category: config
@@ -146,7 +133,7 @@ secondary_entities:
           max: 10
         unit: C
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
     dps:
@@ -158,7 +145,7 @@ secondary_entities:
           max: 70
         unit: C
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:
@@ -208,3 +195,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

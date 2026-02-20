@@ -1,60 +1,59 @@
 name: Smart lock
 products:
   - id: stugc8dl
-    name: HU06
+    model: HU06
   - id: xicdxood
-    name: Impression ImSmart C502
-primary_entity:
-  entity: lock
-  dps:
-    - id: 13
-      name: unlock_password
-      type: integer
-      optional: true
-      persist: false
-    - id: 16
-      name: unlock_key
-      type: integer
-      optional: true
-      persist: false
-    - id: 19
-      name: unlock_ble
-      type: integer
-      optional: true
-      persist: false
-    - id: 21
-      name: jammed
-      type: string
-      optional: true
-      persist: false
-      mapping:
-        - dps_val: tongue_bad
-          value: true
-        - value: false
-    - id: 43
-      name: unlock_fingerprint
-      type: integer
-      optional: true
-      persist: false
-    - id: 47
-      name: lock
-      type: boolean
-      readonly: true
-    - id: 62
-      name: unlock_app
-      type: integer
-      optional: true
-      persist: false
-    - id: 63
-      name: unlock_voice
-      type: integer
-      optional: true
-      persist: false
-    - id: 105
-      name: lock_record
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Impression
+    model: ImSmart C502
+entities:
+  - entity: lock
+    dps:
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 16
+        name: unlock_key
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 21
+        name: jammed
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - value: false
+      - id: 43
+        name: unlock_fingerprint
+        type: integer
+        optional: true
+        persist: false
+      - id: 47
+        name: lock_state
+        type: boolean
+      - id: 62
+        name: unlock_app
+        type: integer
+        optional: true
+        persist: false
+      - id: 63
+        name: unlock_voice
+        type: integer
+        optional: true
+        persist: false
+      - id: 105
+        name: lock_record
+        type: string
+        optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -126,6 +125,11 @@ secondary_entities:
           - dps_val: "13"
             value: true
           - value: false
+      - id: 21
+        type: string
+        name: description
+        optional: true
+        persist: false
   - entity: binary_sensor
     name: Duress
     class: safety

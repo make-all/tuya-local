@@ -1,39 +1,39 @@
 name: Shutter controller
 products:
   - id: hG8tA80YAj0YyxWP
-    name: KY motor 35W-10
-primary_entity:
-  entity: cover
-  class: shutter
-  dps:
-    - id: 101
-      type: string
-      name: control
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 102
-      type: integer
-      name: current_position
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 103
-      type: integer
-      name: position
-      optional: true
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-secondary_entities:
+    manufacturer: KY motor
+    model: "35W-10"
+entities:
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 101
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 102
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 103
+        type: integer
+        name: position
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
   - entity: number
     name: Sleep
     category: config

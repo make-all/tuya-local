@@ -1,30 +1,33 @@
 name: Energy meter
 products:
   - id: tadm13agjigbdtxd
-    name: Gaqqee KWS-302-WF
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 105
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 116
-      type: string
-      name: state_flag
-    - id: 117
-      type: string
-      name: flag_save
-      optional: true
-    - id: 123
-      type: integer
-      name: add_ele
-      optional: true
-secondary_entities:
+    manufacturer: Gaqqee
+    model: KWS-302-WF
+  - id: bjawzodf
+    manufacturer: Gaqqee
+    model: KWS-303-WF
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 116
+        type: string
+        name: state_flag
+      - id: 117
+        type: string
+        name: flag_save
+        optional: true
+      - id: 123
+        type: integer
+        name: add_ele
+        optional: true
   - entity: switch
     category: config
     dps:
@@ -70,6 +73,7 @@ secondary_entities:
     dps:
       - id: 104
         type: integer
+        optional: true
         name: sensor
         unit: min
         class: measurement
@@ -79,6 +83,7 @@ secondary_entities:
     dps:
       - id: 106
         type: integer
+        optional: true
         name: sensor
         unit: "%"
         class: measurement
@@ -97,6 +102,7 @@ secondary_entities:
     dps:
       - id: 108
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
@@ -107,6 +113,7 @@ secondary_entities:
     dps:
       - id: 109
         type: integer
+        optional: true
         name: value
         unit: V
         range:
@@ -119,6 +126,7 @@ secondary_entities:
     dps:
       - id: 110
         type: integer
+        optional: true
         name: value
         unit: V
         range:
@@ -131,6 +139,7 @@ secondary_entities:
     dps:
       - id: 111
         type: integer
+        optional: true
         name: value
         unit: A
         range:
@@ -142,6 +151,7 @@ secondary_entities:
     name: Power off time
     category: config
     translation_key: timer
+    class: duration
     dps:
       - id: 112
         type: integer
@@ -160,6 +170,7 @@ secondary_entities:
     dps:
       - id: 113
         type: integer
+        optional: true
         name: value
         unit: kWh
         range:
@@ -174,6 +185,7 @@ secondary_entities:
     dps:
       - id: 114
         type: integer
+        optional: true
         name: value
         unit: kW
         range:
@@ -188,6 +200,7 @@ secondary_entities:
     dps:
       - id: 115
         type: integer
+        optional: true
         name: value
         unit: C
         range:
@@ -204,40 +217,38 @@ secondary_entities:
   - entity: number
     translation_key: timer
     name: Screen timeout
+    class: duration
     category: config
     icon: "mdi:television-ambient-light"
     dps:
       - id: 119
         type: integer
+        optional: true
         name: value
         unit: min
         range:
           min: 0
           max: 59
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 120
         type: boolean
         name: button
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 121
         type: integer
-        name: value
+        name: second
         optional: true
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
     name: Schedule
     category: config
@@ -246,3 +257,79 @@ secondary_entities:
         type: boolean
         name: switch
         optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 10
+        type: bitfield
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Screen orientation
+    icon: "mdi:screen-rotation"
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 124
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: Normal
+          - dps_val: true
+            value: Inverted
+          - value: Normal
+            hidden: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    translation_key: initial_state
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 125
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+      - id: 10
+        type: bitfield
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

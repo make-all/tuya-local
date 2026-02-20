@@ -1,84 +1,87 @@
 name: Air conditioner
 products:
   - id: 6r9as02gkiaaxelt
-    name: Trotec PAC-W 2600 SH
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: COOL
-              value: cool
-            - dps_val: DRY
-              value: dry
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: HEAT
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 30
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "3"
-          value: high
-    - id: 19
-      name: temperature_unit
-      type: string
-    - id: 101
-      name: sleep
-      type: boolean
-    - id: 102
-      name: defrost
-      type: boolean
-    - id: 103
-      name: timer
-      type: integer
-    - id: 104
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "vertical"
-        - dps_val: false
-          value: "off"
-    - id: 105
-      name: countdown
-      type: integer
-    - id: 106
-      name: fault_code
-      type: bitfield
-    - id: 110
-      name: model
-      type: string
-    - id: 111
-      name: fault_code2
-      type: bitfield
-secondary_entities:
+    manufacturer: Trotec
+    model: PAC-W 2600 SH
+  - id: baefd3ueooanec3x
+    manufacturer: Qlima
+    model: WDH 229 PTC
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: DRY
+                value: dry
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: HEAT
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                range:
+                  min: 60
+                  max: 86
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+      - id: 19
+        name: temperature_unit
+        type: string
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+      - id: 110
+        name: model
+        type: string
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
   - entity: switch
     translation_key: sleep
     category: config
@@ -86,3 +89,52 @@ secondary_entities:
       - id: 101
         type: boolean
         name: switch
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+      - id: 111
+        name: fault_code_2
+        type: bitfield

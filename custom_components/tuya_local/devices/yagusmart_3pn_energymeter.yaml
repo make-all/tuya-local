@@ -1,33 +1,33 @@
 name: Energy meter
 products:
   - id: fygozcnralhwbauo
-    name: Yagusmart/Zemismart 3PN 63A
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 17
-      type: string
-      name: alarm_set_1
-      optional: true
-    - id: 18
-      type: string
-      name: alarm_set_2
-      optional: true
-    - id: 19
-      type: string
-      name: breaker_id
-      optional: true
-secondary_entities:
+    manufacturer: Yagusmart/Zemismart
+    model: 3PN 63A
+entities:
   - entity: sensor
-    name: Reverse energy
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 17
+        type: string
+        name: alarm_set_1
+        optional: true
+      - id: 18
+        type: string
+        name: alarm_set_2
+        optional: true
+      - id: 19
+        type: string
+        name: breaker_id
+        optional: true
+  - entity: sensor
+    translation_key: energy_produced
     class: energy
     category: diagnostic
     dps:
@@ -96,7 +96,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -106,11 +108,13 @@ secondary_entities:
         optional: true
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -120,11 +124,13 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -134,11 +140,13 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -148,11 +156,13 @@ secondary_entities:
         optional: true
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -162,11 +172,13 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -176,11 +188,13 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -190,11 +204,13 @@ secondary_entities:
         optional: true
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -204,11 +220,13 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -218,6 +236,6 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000

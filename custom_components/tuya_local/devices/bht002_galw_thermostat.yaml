@@ -1,65 +1,58 @@
 name: Thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: manual
-              value: heat
-            - dps_val: program
-              value: auto
-    - id: 2
-      name: mode
-      type: string
-    - id: 3
-      name: hvac_action
-      type: boolean
-      optional: true
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: false
-                  value: idle
-                - dps_val: true
-                  value: heating
-                - dps_val: null
-                  value: idle
-    - id: 16
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 950
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      name: max_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 24
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: manual
+                value: heat
+              - dps_val: program
+                value: auto
+      - id: 2
+        name: mode
+        type: string
+      - id: 3
+        name: hvac_action
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+          - dps_val: null
+            value: idle
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        name: max_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean
@@ -101,9 +94,9 @@ secondary_entities:
           - dps_val: out
             value: External
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
+    class: temperature
     dps:
       - id: 19
         type: integer
@@ -128,13 +121,13 @@ secondary_entities:
           - dps_val: "open"
             value: true
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9

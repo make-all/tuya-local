@@ -1,20 +1,19 @@
 name: Water quality monitor
 products:
   - id: v1jqz5cy
-    name: BLE-YL01 Waterquality tester
-primary_entity:
-  entity: sensor
-  icon: "mdi:pool-thermometer"
-  class: temperature
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: "°C"
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+    model: BLE-YL01
+entities:
+  - entity: sensor
+    icon: "mdi:pool-thermometer"
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     name: TDS
     dps:

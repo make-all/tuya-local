@@ -1,127 +1,113 @@
-name: ME80 thermostat
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: program
-        - dps_val: manual
-          value: manual
-    - id: 16
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 95
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: target_temp_f
-              range:
-                min: 41
-                max: 203
-    - id: 17
-      type: integer
-      name: target_temp_f
-      range:
-        min: 41
-        max: 203
-      hidden: true
-      optional: true
-    - id: 18
-      type: integer
-      name: max_temp_f
-      hidden: true
-      optional: true
-    - id: 19
-      type: integer
-      name: max_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: max_temp_f
-    - id: 20
-      type: integer
-      name: min_temp_f
-      hidden: true
-      optional: true
-    - id: 23
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: current_temp_f
-    - id: 26
-      type: integer
-      name: min_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: min_temp_f
-    - id: 29
-      type: integer
-      name: current_temp_f
-      hidden: true
-      optional: true
-    - id: 36
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: close
-          value: idle
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-        - dps_val: open
-          value: heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-    # 39 = factory reset (boolean but seems write only)
-    - id: 45
-      type: bitfield
-      name: fault_code
-    - id: 104
-      type: string
-      name: program
-secondary_entities:
+name: Thermostat
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 95
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: target_temp_f
+                range:
+                  min: 41
+                  max: 203
+      - id: 17
+        type: integer
+        name: target_temp_f
+        range:
+          min: 41
+          max: 203
+        hidden: true
+        optional: true
+      - id: 18
+        type: integer
+        name: max_temp_f
+        hidden: true
+        optional: true
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+      - id: 20
+        type: integer
+        name: min_temp_f
+        hidden: true
+        optional: true
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: min_temp_f
+      - id: 29
+        type: integer
+        name: current_temp_f
+        hidden: true
+        optional: true
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: close
+            value: idle
+          - dps_val: open
+            value: heating
+      - id: 104
+        type: string
+        name: program
   - entity: number
-    name: Maximum Temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 18
         type: integer
@@ -154,10 +140,9 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 20
         type: integer
@@ -202,13 +187,13 @@ secondary_entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:format-vertical-align-center"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: °
         range:
           min: -9
           max: 9
@@ -265,6 +250,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
   - entity: sensor
     name: Floor temperature
     category: diagnostic
@@ -329,3 +317,12 @@ secondary_entities:
         type: string
         name: temperature_unit
         hidden: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button

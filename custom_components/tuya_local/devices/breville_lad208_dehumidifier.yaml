@@ -1,47 +1,40 @@
 name: Dehumidifier
 products:
   - id: 6cad6hhp5kbwbtyq
-    name: Breville Smart Dry Connect Dehumidifier (LAD208)
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 2
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: 0
-          value: "auto"
-        - dps_val: 1
-          value: "boost"
-        - dps_val: 2
-          value: "laundry"
-          icon: "mdi:t-shirt-crew"
-          icon_priority: 3
-        - dps_val: 3
-          value: "purify"
-    - id: 4
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 104
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: Breville
+    model: Smart Dry Connect
+    model_id: LAD208
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: 0
+            value: "auto"
+          - dps_val: 1
+            value: "boost"
+          - dps_val: 2
+            value: "laundry"
+          - dps_val: 3
+            value: "purify"
+      - id: 4
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 104
+        type: integer
+        name: current_humidity
   - entity: fan
     name: Fan
     category: config
@@ -117,15 +110,6 @@ secondary_entities:
           - dps_val: "24"
             value: "24h"
   - entity: sensor
-    deprecated: humidifier.current_humidity
-    class: humidity
-    dps:
-      - id: 104
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: temperature
     dps:
       - id: 103
@@ -181,3 +165,7 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 11
+        type: bitfield
+        optional: true
+        name: fault_code

@@ -1,63 +1,65 @@
 name: Water heater
 products:
   - id: ssqd7htb3tbhxqvk
-    name: Sanden GAU-A45HP heat pump controller
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 101
-      type: boolean
-      name: boost_mode
-    - id: 103
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - constraint: boost_mode
-          conditions:
-            - dps_val: true
-              value: high_demand
-            - dps_val: false
-              value: heat_pump
-    - id: 119
-      type: integer
-      name: current_temperature
-      unit: C
-    - id: 139
-      type: string
-      name: tank_model
-    - id: 140
-      type: string
-      name: heatpump_serial_number
-    - id: 142
-      type: string
-      name: tank_serial_number
-    - id: 143
-      type: string
-      name: installation_date
-    - id: 144
-      type: string
-      name: post_code
-    - id: 145
-      type: string
-      name: service_date_1
-    - id: 146
-      type: string
-      name: service_date_2
-    - id: 147
-      type: string
-      name: service_date_3
-    - id: 150
-      type: string
-      name: service_error_1
-    - id: 151
-      type: string
-      name: service_error_2
-    - id: 152
-      type: string
-      name: service_error_3
-secondary_entities:
+    manufacturer: Sanden
+    model: GAU-A45HP
+    name: Heat pump controller
+entities:
+  - entity: water_heater
+    translation_only_key: hot_water
+    dps:
+      - id: 101
+        type: boolean
+        name: boost_mode
+      - id: 103
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - constraint: boost_mode
+            conditions:
+              - dps_val: true
+                value: high_demand
+              - dps_val: false
+                value: heat_pump
+      - id: 119
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 139
+        type: string
+        name: tank_model
+      - id: 140
+        type: string
+        name: heatpump_serial_number
+      - id: 142
+        type: string
+        name: tank_serial_number
+      - id: 143
+        type: string
+        name: installation_date
+      - id: 144
+        type: string
+        name: post_code
+      - id: 145
+        type: string
+        name: service_date_1
+      - id: 146
+        type: string
+        name: service_date_2
+      - id: 147
+        type: string
+        name: service_date_3
+      - id: 150
+        type: string
+        name: service_error_1
+      - id: 151
+        type: string
+        name: service_error_2
+      - id: 152
+        type: string
+        name: service_error_3
   - entity: switch
     name: Air purge
     icon: "mdi:pipe-valve"
@@ -134,7 +136,7 @@ secondary_entities:
           - value: true
       - id: 109
         type: string
-        name: fault_code
+        name: description
       - id: 110
         type: string
         name: history_1
@@ -157,7 +159,7 @@ secondary_entities:
         type: string
         name: history_7
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     dps:
       - id: 118

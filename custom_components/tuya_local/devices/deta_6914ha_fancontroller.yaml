@@ -1,0 +1,85 @@
+name: Fan controller
+products:
+  - id: gktnt3qekgoxg0hv
+    manufacturer: Deta
+    model: 6914HA Series 3
+entities:
+  - entity: fan
+    dps:
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "2"
+            value: 66
+          - dps_val: "3"
+            value: 100
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    name: Fan timer
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: cancel
+          - dps_val: "2"
+            value: "1h"
+          - dps_val: "3"
+            value: "2h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "8h"
+  - entity: select
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: cancel
+          - dps_val: "2"
+            value: "1h"
+          - dps_val: "3"
+            value: "2h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "8h"
+  - entity: switch
+    name: Master
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator

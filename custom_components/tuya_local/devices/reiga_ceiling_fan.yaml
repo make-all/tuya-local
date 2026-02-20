@@ -1,34 +1,37 @@
-name: Ceiling Fan
+name: Ceiling fan
 products:
   - id: aktxh7558udrex8a
-    name: Reiga Smart Ceiling Fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 8
-      type: string
-      name: direction
-secondary_entities:
+    manufacturer: CasaFan / Reiga
+    model: Eco Genuino
+  - id: ggcvdl5nydg5qqtr
+    manufacturer: Mercator Ikuu
+    model: Casa DC Ceiling Fan
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        type: string
+        name: direction
   - entity: select
     translation_key: timer
     category: config

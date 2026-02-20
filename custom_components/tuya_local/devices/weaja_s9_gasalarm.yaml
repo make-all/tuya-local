@@ -1,0 +1,78 @@
+name: Gas alarm
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Weaja
+#     model: WJ-TUYA-S9
+entities:
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: number
+    name: Alarm time
+    category: config
+    class: duration
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+      # dp 12 is labelled as switch_alarm, but does not appear to work, so
+      # possibly just an indicator of some sort. Left as an attribute until
+      # it can be figured out.
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Gas
+    icon: "mdi:fire"
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "% LEL"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Carbon monoxide
+    class: gas
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: button
+    name: Mute
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: sensor
+    class: carbon_monoxide
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement

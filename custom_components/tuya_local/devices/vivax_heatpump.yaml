@@ -1,187 +1,173 @@
 name: Heat pump
 products:
   - id: 9xvzf8c0bg33eenj
-    name: Vivax ACP-12CH35REWI / Tadiran Apollo
+    manufacturer: Vivax
+    model: ACP-12CH35REWI
   - id: keycnvksyhjcrg8t
-    name: Thermor Nagano HEWRQU1
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wet
-              value: dry
-            - dps_val: hot
-              value: heat
-            - dps_val: wind
-              value: fan_only
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 64
-                max: 86
-              value_redirect: temp_set_f
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 2
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              scale: 1
-              value_redirect: temp_current_f
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: low
-        - dps_val: high
-          value: medium
-        - dps_val: strong
-          value: high
-    - id: 8
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 18
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 23
-      type: integer
-      name: temp_current_f
-      optional: true
-      hidden: true
-    - id: 24
-      type: integer
-      name: temp_set_f
-      range:
-        min: 64
-        max: 86
-      optional: true
-      hidden: true
-      # Undocumented but in log
-    - id: 102
-      type: integer
-      name: pm25
-    - id: 105
-      type: string
-      name: air_quality
-    - id: 107
-      type: boolean
-      name: strong
-    - id: 111
-      type: boolean
-      name: new_style
-    - id: 113
-      type: string
-      name: sense
-    - id: 114
-      type: boolean
-      name: self_cleaning
-    - id: 116
-      type: integer
-      name: fault_code
-      # next two look obviously swing (logged values ud_00 and lr_00),
-      # but full mappings not available to map to swing mode
-      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c
-      # (last one is swing, others are pos)
-    - id: 117
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: ud_0c
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: lr_0c
-              value: both
-            - dps_val: lr_00
-              value: vertical
-            - dps_val: [lr_01, lr_02, lr_03, lr_04]
-              value: vertical
-              hidden: true
-        - dps_val: ud_00
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: lr_0c
-              value: horizontal
-            - dps_val: lr_00
-              value: "off"
-            - dps_val: [lr_01, lr_02, lr_03, lr_04]
-              value: "off"
-              hidden: true
-        - value: "off"
-          hidden: true
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: lr_0c
-              value: horizontal
-    - id: 118
-      type: string
-      name: horizontal_swing
-    - id: 101
-      type: boolean
-      name: mood_lighting
-      optional: true
-    - id: 103
-      type: integer
-      name: co2
-      optional: true
-    - id: 104
-      type: integer
-      name: volatile_organic_compounds
-      optional: true
-    - id: 110
-      type: boolean
-      name: heating_10c
-      optional: true
-    - id: 112
-      type: integer
-      name: power
-      optional: true
-    - id: 119
-      type: boolean
-      name: cleaning_56c
-      optional: true
-secondary_entities:
+    manufacturer: Thermor
+    model: Nagano
+    model_id: HEWRQU1
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 64
+                  max: 86
+                value_redirect: temp_set_f
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 2
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                scale: 1
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: medium
+          - dps_val: strong
+            value: high
+      - id: 8
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 18
+        type: integer
+        name: current_humidity
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 23
+        type: integer
+        name: temp_current_f
+        optional: true
+        hidden: true
+      - id: 24
+        type: integer
+        name: temp_set_f
+        range:
+          min: 64
+          max: 86
+        optional: true
+        hidden: true
+        # Undocumented but in log
+      - id: 102
+        type: integer
+        name: pm25
+      - id: 105
+        type: string
+        name: air_quality
+      - id: 107
+        type: boolean
+        name: strong
+      - id: 111
+        type: boolean
+        name: new_style
+      - id: 113
+        type: string
+        name: sense
+      - id: 114
+        type: boolean
+        name: self_cleaning
+        # next two look obviously swing (logged values ud_00 and lr_00),
+        # but full mappings not available to map to swing mode
+        # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c
+        # (last one is swing, others are pos)
+      - id: 117
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: ud_0c
+            value: "on"
+          - dps_val: ud_00
+            value: "off"
+          - value: "off"
+            hidden: true
+      - id: 118
+        type: string
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: lr_00
+            value: "off"
+          - dps_val: lr_0c
+            value: "on"
+          - value: "off"
+            hidden: true
+      - id: 101
+        type: boolean
+        name: mood_lighting
+        optional: true
+      - id: 103
+        type: integer
+        name: co2
+        optional: true
+      - id: 104
+        type: integer
+        name: volatile_organic_compounds
+        optional: true
+      - id: 110
+        type: boolean
+        name: heating_10c
+        optional: true
+      - id: 112
+        type: integer
+        name: power
+        optional: true
+      - id: 119
+        type: boolean
+        name: cleaning_56c
+        optional: true
   - entity: switch
     name: Emergency heat
     icon: "mdi:fire"
@@ -287,3 +273,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 116
+        type: bitfield
+        name: fault_code

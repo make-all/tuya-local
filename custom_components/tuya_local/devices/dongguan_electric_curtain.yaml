@@ -1,39 +1,36 @@
 name: Curtain robot
 products:
   - id: kcy0x4pi
-    name: Dongguan LY1678-2
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 3
-      name: current_position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-      optional: true
-      persist: false
-    - id: 7
-      name: learning_state
-      type: string
-    - id: 12
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    manufacturer: Dongguan Lianyou
+    model: LY1678-2
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 3
+        name: current_position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+        optional: true
+        persist: false
+      - id: 7
+        name: learning_state
+        type: string
   - entity: select
     category: config
     name: Closed position
@@ -63,6 +60,20 @@ secondary_entities:
         type: integer
         unit: lx
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: battery
     category: diagnostic

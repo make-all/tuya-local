@@ -1,29 +1,35 @@
-name: Wall switch
+name: Switch
 products:
   - id: nqodepctqralr6su
-    name: Novadigital switch
+    manufacturer: Novadigital
   - id: vxo9yezswiumvync
-    name: PST WT-E1
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
-  - entity: number
+    manufacturer: PST
+    model: WT-E1
+    name: Wall switch
+  - id: dcqi7rv16ft3oneb
+    manufacturer: Andeli
+    model: Smart Boiler
+    name: Water heater
+  - id: oisqyl4o
+    manufacturer: Outsmart
+    model: A-ZB 40A
+    name: Water heater
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 7
-        name: value
+        name: second
         type: integer
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-        unit: min
   - entity: select
     translation_key: initial_state
     category: config
@@ -50,14 +56,22 @@ secondary_entities:
                     value: "on"
                   - dps_val: memory
                     value: memory
+              - dps_val: ["power_off", "power_on", "last"]
+                mapping:
+                  - dps_val: power_off
+                    value: "off"
+                  - dps_val: power_on
+                    value: "on"
+                  - dps_val: last
+                    value: memory
               # during startup there may be no value, but we need the options
               - dps_val: null
                 mapping:
-                  - dps_val: "off"
+                  - dps_val: power_off
                     value: "off"
-                  - dps_val: "on"
+                  - dps_val: power_on
                     value: "on"
-                  - dps_val: memory
+                  - dps_val: last
                     value: memory
   - entity: light
     translation_key: backlight

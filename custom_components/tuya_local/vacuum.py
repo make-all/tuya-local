@@ -6,20 +6,15 @@ from homeassistant.components.vacuum import (
     SERVICE_CLEAN_SPOT,
     SERVICE_RETURN_TO_BASE,
     SERVICE_STOP,
-    STATE_CLEANING,
-    STATE_DOCKED,
-    STATE_ERROR,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
     StateVacuumEntity,
+    VacuumActivity,
     VacuumEntityFeature,
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -98,25 +93,25 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         return self._status_dps.get_value(self._device)
 
     @property
-    def state(self):
+    def activity(self):
         """Return the state of the vacuum cleaner."""
         status = self.status
         if self._error_dps and self._error_dps.get_value(self._device):
-            return STATE_ERROR
+            return VacuumActivity.ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
-            return STATE_RETURNING
+            return VacuumActivity.RETURNING
         elif status in ["standby", "sleep"]:
-            return STATE_IDLE
+            return VacuumActivity.IDLE
         elif status == "paused":
-            return STATE_PAUSED
-        elif status in ["charging", "charged"]:
-            return STATE_DOCKED
+            return VacuumActivity.PAUSED
+        elif status in ["charging", "charged", "docked"]:
+            return VacuumActivity.DOCKED
         elif self._power_dps and self._power_dps.get_value(self._device) is False:
-            return STATE_IDLE
+            return VacuumActivity.IDLE
         elif self._activate_dps and self._activate_dps.get_value(self._device) is False:
-            return STATE_PAUSED
+            return VacuumActivity.PAUSED
         else:
-            return STATE_CLEANING
+            return VacuumActivity.CLEANING
 
     async def async_turn_on(self, **kwargs):
         """Turn on the vacuum cleaner."""

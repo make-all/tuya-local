@@ -1,38 +1,38 @@
-name: Orion BLE lock
+name: Door lock
 products:
   - id: a6nttc41
-    name: Orion DL021HA
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      name: unlock_method_register
-      optional: true
-      sensitive: true
-    - id: 2
-      type: string
-      name: unlock_method_delete
-      optional: true
-    - id: 12
-      type: integer
-      name: unlock_fingerprint
-      persist: false
-      optional: true
-    - id: 19
-      type: integer
-      name: unlock_app
-      persist: false
-      optional: true
-    - id: 33
-      type: boolean
-      name: lock
-    - id: 54
-      type: string
-      name: sync_method
-      optional: true
-      sensitive: true
-secondary_entities:
+    manufacturer: Orion
+    model: DL021HA
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_register
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        persist: false
+        optional: true
+      - id: 19
+        type: integer
+        name: unlock_app
+        persist: false
+        optional: true
+      - id: 33
+        type: boolean
+        name: lock
+      - id: 54
+        type: string
+        name: sync_method
+        optional: true
+        sensitive: true
   - entity: sensor
     class: battery
     category: diagnostic

@@ -1,41 +1,44 @@
 name: Water heater
 products:
   - id: nqlqesmkrje7vdhm
-    name: EMS Thermal TH200DT heatpump
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_pump
-            - dps_val: mix
-              value: high_demand
-            - dps_val: electric
-              value: electric
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 10
-        max: 70
-      unit: C
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 9
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: EMS
+    model: 200L Magneto Thermo Tank
+    model_id: TH200DT
+entities:
+  - entity: water_heater
+    translation_only_key: hot_water
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_pump
+              - dps_val: mix
+                value: high_demand
+              - dps_val: electric
+                value: electric
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 60
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
   - entity: sensor
+    deprecated: water_heater.current_temperature  # 2025-11-05
     class: temperature
     dps:
       - id: 3
@@ -54,3 +57,40 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: P01 Lower water tank temperature sensor fault
+          - dps_val: 2
+            value: P02 Upper water tank temperature sensor fault
+          - dps_val: 4
+            value: P03 Coil temperature sensor fault
+          - dps_val: 8
+            value: P04 Return gas temperature sensor fault
+          - dps_val: 16
+            value: P05 Ambient temperature sensor fault
+          - dps_val: 32
+            value: P06 Winter antifreeze protection
+          - dps_val: 64
+            value: E01 High pressure protection
+          - dps_val: 128
+            value: E02 Low pressure protection
+          - dps_val: 256
+            value: E03 Overheat protection
+          - dps_val: 512
+            value: PA Compressor limit or water tank temperature protection
+          - dps_val: 1024
+            value: E08 Communication fault
+          - dps_val: 2048
+            value: EA8 Microcontroller RAM fault
+          - dps_val: 4096
+            value: EA9 Microcontroller ROM fault
+          - dps_val: 8192
+            value: CS Defrosting/Refrigerant recovery

@@ -1,69 +1,68 @@
 name: Door lock
 products:
   - id: isk2p555
-    name: YSG BS01 BLE lock
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      name: create_unlock_method
-      optional: true
-      sensitive: true
-    - id: 2
-      type: string
-      name: delete_unlock_method
-      optional: true
-    - id: 3
-      type: string
-      name: modify_unlock_method
-      optional: true
-      sensitive: true
-    - id: 6
-      type: string
-      name: bluetooth_unlock
-      optional: true
-    - id: 12
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 13
-      type: integer
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 14
-      type: integer
-      name: unlock_dynamic_pwd
-      optional: true
-      persist: false
-    - id: 19
-      type: integer
-      name: unlock_ble
-      optional: true
-      persist: false
-    - id: 47
-      type: boolean
-      name: lock
-      optional: true
-      readonly: true
-    - id: 55
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 62
-      type: integer
-      name: unlock_app
-      optional: true
-      persist: false
-    - id: 63
-      type: integer
-      name: unlock_voice
-      optional: true
-      persist: false
-secondary_entities:
+    manufacturer: YSG
+    model: BS01
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: create_unlock_method
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: delete_unlock_method
+        optional: true
+      - id: 3
+        type: string
+        name: modify_unlock_method
+        optional: true
+        sensitive: true
+      - id: 6
+        type: string
+        name: bluetooth_unlock
+        optional: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 14
+        type: integer
+        name: unlock_dynamic_pwd
+        optional: true
+        persist: false
+      - id: 19
+        type: integer
+        name: unlock_ble
+        optional: true
+        persist: false
+      - id: 47
+        type: boolean
+        name: lock_state
+        optional: true
+      - id: 55
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        type: integer
+        name: unlock_voice
+        optional: true
+        persist: false
   - entity: sensor
     class: battery
     category: diagnostic
@@ -98,6 +97,7 @@ secondary_entities:
     dps:
       - id: 21
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: low_battery

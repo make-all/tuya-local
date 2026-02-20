@@ -1,17 +1,16 @@
-name: Grid Connnect power metered double outlet with USB
-primary_entity:
-  entity: switch
-  category: config
-  name: Master
-  class: outlet
-  dps:
-    - id: 101
-      name: switch
-      type: boolean
-    - id: 21
-      name: test_bit
-      type: integer
-secondary_entities:
+name: Power metered double outlet with USB
+entities:
+  - entity: switch
+    category: config
+    name: Master
+    class: outlet
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+      - id: 21
+        name: test_bit
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -21,26 +20,32 @@ secondary_entities:
         type: boolean
   - entity: switch
     class: outlet
-    name: Outlet 1
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 1
         name: switch
         type: boolean
   - entity: switch
     class: outlet
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
+        class: measurement
       - id: 25
         name: calibration
         type: integer
@@ -101,27 +106,27 @@ secondary_entities:
             value: "off"
           - dps_val: memory
             value: memory
-  - entity: number
-    name: Timer 1
-    translation_key: timer
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400
-  - entity: number
-    name: Timer 2
-    translation_key: timer
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 10
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
           max: 86400

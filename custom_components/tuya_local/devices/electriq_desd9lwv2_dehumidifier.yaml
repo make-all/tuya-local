@@ -1,75 +1,75 @@
 name: Dehumidifier
 products:
   - id: g2hl04s82mgtkpec
-    name: ElectriQ DESD9LW-V2
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "Auto"
-              value: "auto"
-            - dps_val: "Heater"
-              value: "heat"
-            - dps_val: "Dehumidity"
-              value: "dry"
-            - dps_val: "Fan"
-              value: "fan_only"
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 4
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: Low
-          value: low
-        - dps_val: Medium
-          value: medium
-        - dps_val: High
-          value: high
-        - dps_val: auto
-          value: auto
-    - id: 5
-      name: mode
-      type: string
-      hidden: true
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 7
-      type: integer
-      name: current_temperature
-    - id: 102
-      type: string
-      name: swing_mode
-      mapping:
-        - dps_val: "90"
-          value: "off"
-        - dps_val: "45"
-          value: "middle"
-        - dps_val: "0_90"
-          value: "vertical"
-    - id: 101
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 16
-        max: 30
-secondary_entities:
+    manufacturer: ElectriQ
+    model: DESD9LW-V2
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "Auto"
+                value: "auto"
+              - dps_val: "Heater"
+                value: "heat"
+              - dps_val: "Dehumidity"
+                value: "dry"
+              - dps_val: "Fan"
+                value: "fan_only"
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 4
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: Medium
+            value: medium
+          - dps_val: High
+            value: high
+          - dps_val: auto
+            value: auto
+      - id: 5
+        name: mode
+        type: string
+        hidden: true
+      - id: 6
+        type: integer
+        name: current_humidity
+      - id: 7
+        type: integer
+        name: current_temperature
+      - id: 102
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "90"
+            value: "off"
+          - dps_val: "45"
+            value: "middle"
+          - dps_val: "0_90"
+            value: "vertical"
+      - id: 101
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 30
   - entity: light
     translation_key: uv_sterilization
     dps:

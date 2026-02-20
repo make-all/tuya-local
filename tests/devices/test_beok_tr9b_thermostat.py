@@ -87,32 +87,26 @@ class TestBeokTR9BThermostat(
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
-                {
-                    "dps": VALVE_DPS,
-                    "name": "binary_sensor_valve",
-                    "device_class": BinarySensorDeviceClass.OPENING,
-                    "testdata": ("open", "close"),
-                },
             ],
         )
         self.setUpMultiNumber(
             [
                 {
                     "dps": MINTEMP_DPS,
-                    "name": "number_low_temperature_limit",
+                    "name": "number_minimum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
-                    "max": 1000.0,
+                    "max": 300.0,
                     "step": 1.0,
                     "scale": 10,
                     "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": MAXTEMP_DPS,
-                    "name": "number_high_temperature_limit",
+                    "name": "number_maximum_temperature",
                     "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
-                    "max": 1000.0,
+                    "max": 300.0,
                     "step": 1.0,
                     "scale": 10,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -122,10 +116,9 @@ class TestBeokTR9BThermostat(
         self.mark_secondary(
             [
                 "binary_sensor_problem",
-                "binary_sensor_valve",
                 "lock_child_lock",
-                "number_low_temperature_limit",
-                "number_high_temperature_limit",
+                "number_minimum_temperature",
+                "number_maximum_temperature",
                 "select_schedule",
                 "select_temperature_unit",
                 "switch_anti_frost",
@@ -186,16 +179,17 @@ class TestBeokTR9BThermostat(
     # Override - since min and max are set by attributes, the range
     # allowed when setting is wider than normal.  The thermostat seems
     # to be configurable as at least a water heater (to 212F), as tuya
-    # doc says max 1000.0 (after scaling)
+    # doc says max 300.0 for one matching device, and 1000.0 for
+    # another (after scaling)
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            "temperature \\(4.5\\) must be between 5.0 and 1000.0",
+            "temperature \\(4.5\\) must be between 5.0 and 300.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            "temperature \\(1001\\) must be between 5.0 and 1000.0",
+            "temperature \\(1001\\) must be between 5.0 and 300.0",
         ):
             await self.subject.async_set_target_temperature(1001)
 

@@ -1,0 +1,82 @@
+name: Heater
+products:
+  - id: wv9d5ocs76u6maqj
+    manufacturer: Eurom
+    model: Mon Soleil DSP 400
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: m
+                value: heat
+              - dps_val: p
+                value: auto
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 102
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: none
+          - dps_val: true
+            value: eco
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: text
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        type: string
+        name: value
+        optional: true
+  - entity: select
+    name: Schedule mode
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: holiday
+            value: Holiday
+          - dps_val: program
+            value: Program

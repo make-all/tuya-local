@@ -1,86 +1,87 @@
 name: Dual thermostat
 products:
   - id: kgimsje9a1qhqs2w
-    name: Inkbird IPT-2CH V2.0 reptile thermostat
-primary_entity:
-  entity: climate
-  name: Probe 1
-  translation_key: thermostat
-  dps:
-    - id: 101
-      type: string
-      optional: true
-      name: temperature_unit
-      mapping:
-        - dps_val: null
-          value: C
-    - id: 102
-      type: integer
-      optional: true
-      name: target_temp_low
-      range:
-        min: 0
-        max: 1130
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: C
-              range:
-                min: 0
-                max: 450
-            - dps_val: F
-              range:
-                min: 320
-                max: 1130
-    - id: 103
-      type: integer
-      optional: true
-      name: target_temp_high
-      range:
-        min: 0
-        max: 1130
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: C
-              range:
-                min: 0
-                max: 450
-            - dps_val: F
-              range:
-                min: 320
-                max: 1130
-    - id: 104
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: F
-              value_redirect: current_temp_f
-    - id: 119
-      type: integer
-      optional: true
-      name: current_temp_f
-      mapping:
-        - scale: 10
-    - id: 120
-      type: string
-      optional: true
-      name: hvac_action
-      mapping:
-        - dps_val: "0"
-          value: idle
-        - dps_val: "1"
-          value: heating
-        - dps_val: "2"
-          value: idle
-        - dps_val: "3"
-          value: heating
-secondary_entities:
+    manufacturer: Inkbird
+    model: IPT-2CH V2.0
+    name: Reptile thermostat
+entities:
+  - entity: climate
+    name: Probe 1
+    translation_key: thermostat
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: temperature_unit
+        mapping:
+          - dps_val: null
+            value: C
+      - id: 102
+        type: integer
+        optional: true
+        name: target_temp_low
+        range:
+          min: 0
+          max: 1130
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: 0
+                  max: 450
+              - dps_val: F
+                range:
+                  min: 320
+                  max: 1130
+      - id: 103
+        type: integer
+        optional: true
+        name: target_temp_high
+        range:
+          min: 0
+          max: 1130
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: 0
+                  max: 450
+              - dps_val: F
+                range:
+                  min: 320
+                  max: 1130
+      - id: 104
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: F
+                value_redirect: current_temp_f
+      - id: 119
+        type: integer
+        optional: true
+        name: current_temp_f
+        mapping:
+          - scale: 10
+      - id: 120
+        type: string
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+          - dps_val: "2"
+            value: idle
+          - dps_val: "3"
+            value: heating
   - entity: climate
     name: Probe 2
     translation_key: thermostat
@@ -191,7 +192,7 @@ secondary_entities:
           - dps_val: F
             value: fahrenheit
   - entity: number
-    name: High Temperature Alarm 1
+    name: High temperature alarm 1
     class: temperature
     category: config
     icon: "mdi:thermometer-chevron-up"
@@ -223,7 +224,7 @@ secondary_entities:
           - dps_val: null
             value: C
   - entity: number
-    name: Low Temperature Alarm 1
+    name: Low temperature alarm 1
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-down"
@@ -270,7 +271,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: High Temperature Alarm 2
+    name: High temperature alarm 2
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-up"
@@ -292,7 +293,7 @@ secondary_entities:
           - dps_val: null
             value: C
   - entity: number
-    name: Low Temperature Alarm 2
+    name: Low temperature alarm 2
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-down"

@@ -1,19 +1,18 @@
 name: Universal remote control
 products:
   - id: whs3cty93fzrqkpt
-primary_entity:
-  entity: remote
-  dps:
-    - id: 201
-      name: send
-      type: string
-      optional: true
-    - id: 202
-      name: receive
-      type: string
-      optional: true
-      persist: false
-secondary_entities:
+entities:
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false
   - entity: sensor
     class: temperature
     dps:

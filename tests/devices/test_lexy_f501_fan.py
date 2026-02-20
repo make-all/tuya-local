@@ -1,4 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import LEXY_F501_PAYLOAD
@@ -39,6 +40,7 @@ class TestLexyF501Fan(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=7,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))
@@ -153,10 +155,6 @@ class TestLexyF501Fan(
         self.dps[PRESET_DPS] = "normal"
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 12}):
             await self.subject.async_set_percentage(78)
-
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "5"
-        self.assertEqual(self.subject.extra_state_attributes, {"timer": 5})
 
     def test_icons(self):
         self.dps[LIGHT_DPS] = True

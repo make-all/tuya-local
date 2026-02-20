@@ -1,20 +1,20 @@
 name: Solar inverter
 products:
   - id: r73jxzrtcda4uwwb
-    name: Stepuptech SP800
-primary_entity:
-  entity: sensor
-  name: Daily energy out
-  class: energy
-  dps:
-    - id: 107
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Stepuptech
+    model: SP800
+entities:
+  - entity: sensor
+    name: Daily energy out
+    class: energy
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     name: PV power
     class: power

@@ -1,49 +1,49 @@
 name: Door lock
 products:
   - id: 0zhwazcqndafnhta
-    name: NovaDigital SL06
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 2
-      type: integer
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 3
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 5
-      type: integer
-      name: unlock_card
-      optional: true
-      persist: false
-    - id: 9
-      type: integer
-      name: unlock_request
-      optional: true
-    - id: 15
-      name: unlock_app
-      type: integer
-      optional: true
-      persist: false
-    - id: 44
-      name: unlock_multi
-      type: string
-      optional: true
-      persist: false
-    - id: 212
-      name: push_message
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: NovaDigital
+    model: SL06
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+      - id: 9
+        type: integer
+        name: unlock_request
+        optional: true
+      - id: 15
+        name: unlock_app
+        type: integer
+        optional: true
+        persist: false
+      - id: 44
+        name: unlock_multi
+        type: string
+        optional: true
+        persist: false
+      - id: 212
+        name: push_message
+        type: string
+        optional: true
   - entity: sensor
     name: Alert
     class: enum

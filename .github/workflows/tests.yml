@@ -5,16 +5,22 @@ on:
   pull_request:
     paths:
       - '**.py'
+      - 'requirements-dev.txt'
   push:
     paths:
       - '**.py'
+      - 'requirements-dev.txt'
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.13']
 
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +32,18 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install libturbojpeg
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Full test with pytest
-        run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
+        run: pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
+      - name: Surface results
+        if: always()
+        uses: pmeier/pytest-results-action@main
+        with:
+          path: test-results.xml
+          summary: true
+          display-options: fEX
+          fail-on-empty: true
+          title: Test results

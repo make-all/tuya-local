@@ -1,77 +1,72 @@
 name: Thermostat
 products:
   - id: m3j5wouhgsvjlma9
-    name: Beok TGM50-WIFI-WP
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: temporary
-              value: auto
-              hidden: true
-            - dps_val: home
-              value: heat
-            - dps_val: leave
-              value: heat
-              hidden: true
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 300
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: leave
-          value: away
-        - dps_val: home
-          value: manual
-        - dps_val: auto
-          value: program
-        - dps_val: temporary
-          value: temp_override
-    - id: 5
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: "0"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
-        - dps_val: "1"
-          value: heating
-    - id: 11
-      name: fault_code
-      type: bitfield
-    - id: 15
-      name: max_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Beok / Avatto
+    model: TGM50 / WT200 / M3-GE
+  - id: dbfzaljrysqt7vth
+    manufacturer: Avatto
+    model: WT410
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: temporary
+                value: auto
+                hidden: true
+              - dps_val: home
+                value: heat
+              - dps_val: leave
+                value: heat
+                hidden: true
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: leave
+            value: away
+          - dps_val: home
+            value: manual
+          - dps_val: auto
+            value: program
+          - dps_val: temporary
+            value: temp_override
+      - id: 5
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+      - id: 15
+        name: max_temperature
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config
@@ -90,6 +85,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 11
+        name: fault_code
+        type: bitfield
   - entity: number
     name: Temperature hysteresis
     category: config
@@ -101,14 +99,13 @@ secondary_entities:
         unit: °
         range:
           min: 5
-          max: 95
+          max: 100
         mapping:
           - scale: 10
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 15
         type: integer
@@ -118,17 +115,16 @@ secondary_entities:
           min: 15
           max: 95
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 19
         type: integer
         name: value
         unit: °
         range:
-          min: -90
-          max: 90
+          min: -99
+          max: 99
         mapping:
           - scale: 10
   - entity: number
@@ -142,8 +138,10 @@ secondary_entities:
         name: value
         unit: C
         range:
-          min: 5
+          min: 35
           max: 60
+          # Avatto WT410 is 25-95, but this is the only difference with
+          # the original
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -152,8 +150,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
+    category: config
+    hidden: true
     dps:
       - id: 104
         name: button
@@ -214,10 +213,19 @@ secondary_entities:
           - dps_val: "3"
             value: Both
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
-    icon: "mdi:music-note"
     dps:
       - id: 109
         type: boolean
         name: switch
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value

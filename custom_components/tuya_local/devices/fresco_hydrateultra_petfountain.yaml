@@ -1,17 +1,16 @@
 name: Pet fountain
 products:
   - id: cuw2k3ho3e25fade
-    name: Petoneer Fresco Hydrate Ultra
+    manufacturer: Petoneer
+    model: Fresco Hydrate Ultra
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
 
-primary_entity:
-  entity: switch
-  icon: "mdi:water-pump"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-
-secondary_entities:
   - entity: light
     translation_key: indicator
     category: config
@@ -24,7 +23,7 @@ secondary_entities:
           max: 10
 
   - entity: button
-    name: Reset Water
+    name: Reset water
     icon: "mdi:water-circle"
     category: config
     dps:
@@ -46,7 +45,7 @@ secondary_entities:
         unit: min
 
   - entity: button
-    name: Reset Filter
+    name: Reset filter
     icon: "mdi:air-filter"
     category: config
     dps:
@@ -58,8 +57,7 @@ secondary_entities:
             value: true
 
   - entity: sensor
-    name: Filter life
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     class: duration
     dps:
@@ -72,7 +70,7 @@ secondary_entities:
         unit: min
 
   - entity: button
-    name: Reset Pump
+    name: Reset pump
     icon: "mdi:pump"
     category: config
     dps:
@@ -117,8 +115,7 @@ secondary_entities:
         optional: true
 
   - entity: sensor
-    name: Water level
-    icon: "mdi:water"
+    translation_key: water_level
     category: diagnostic
     dps:
       - id: 108

@@ -1,0 +1,92 @@
+name: Dehumidifier
+products:
+  - id: d44nan1uokr1hlwf
+    manufacturer: Cecotec
+    model: BigDry 4000 Expert
+    # {"dps": {"1": true, "3": "60", "4": "low", "6": 54, "7": 23, "19": 0}}
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+      - id: 6
+        name: current_humidity
+        type: integer
+      - id: 4
+        type: string
+        name: mode
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        class: measurement
+        unit: C
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 2
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+      - id: 19
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "Error 1"
+            # Unknown. Compressor or temperature/humidity sensor fault?
+          - dps_val: 2
+            value: "Water Tank Full or Removed"

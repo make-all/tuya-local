@@ -1,33 +1,31 @@
-name: CCT + RGB Ceiling Light
+name: CCT + RGB ceiling light
 products:
   - id: bwyutsrcsnwf3p5o
-    name: LSC Smart Connect
+    manufacturer: LSC Smart Connect
+entities:
+  - entity: light
+    icon: mdi:circle
+    dps:
+      - id: 63
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
 
-primary_entity:
-  entity: light
-  icon: mdi:circle
-  dps:
-    - id: 63
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      name: color_temp
-      type: integer
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-
-secondary_entities:
   - entity: light
     name: Halo
     icon: "mdi:circle-outline"
@@ -60,8 +58,7 @@ secondary_entities:
         range:
           min: 0
           max: 1000
-        mapping:
-          - mask: "00000000FFFF"
+        mask: "00000000FFFF"
 
   - entity: select
     translation_key: initial_state
@@ -76,9 +73,17 @@ secondary_entities:
           - dps_val: false
             value: "on"
 
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 56
+        name: value
+        type: base64
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 56
@@ -127,21 +132,21 @@ secondary_entities:
           - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
             value: Dream sea
           - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
-            value: Game
+            value: gaming
           - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
-            value: Holiday
+            value: vacation
           - dps_val: "ASEDPDxgAABkAL8YAQQX"
-            value: Work
+            value: working
           - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
-            value: Party
+            value: party
           - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
             value: Trend
           - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
             value: Sport
           - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
-            value: Meditation
+            value: relax
           - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
-            value: Dating
+            value: romantic
           - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
             value: Christmas
           - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"

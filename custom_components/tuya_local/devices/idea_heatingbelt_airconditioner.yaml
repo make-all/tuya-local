@@ -1,110 +1,94 @@
 name: Air conditioner
 products:
   - id: 1dxlcglzadb1wwax
-    name: Idea CS1 ISP-D114 TYWE 1S
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 16
-        max: 32
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: low
-          value: low
-        - dps_val: mid
-          value: medium
-        - dps_val: high
-          value: high
-        - dps_val: auto
-          value: auto
-    - id: 8
-      type: boolean
-      optional: true
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-        - dps_val: null
-          value: comfort
-          hidden: true
-    - id: 18
-      type: integer
-      optional: true
-      name: current_humidity
-    - id: 30
-      type: boolean
-      optional: true
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: horizontal
-            - dps_val: null
-              value: "off"
-              hidden: true
-        - dps_val: true
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: vertical
-            - dps_val: true
-              value: both
-            - dps_val: null
-              value: vertical
-              hidden: true
-        - constraint: swing_horiz
-          conditions:
-            - dps_val: true
-              value: horizontal
-              hidden: true
-            - dps_val: null
-              value: "off"
-              hidden: true
-    - id: 33
-      type: boolean
-      optional: true
-      name: swing_horiz
-      hidden: true
-secondary_entities:
+    manufacturer: Idea
+    model: CS1 ISP-D114 TYWE 1S
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 16
+          max: 32
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
+      - id: 8
+        type: boolean
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+          - dps_val: null
+            value: comfort
+            hidden: true
+      - id: 18
+        type: integer
+        optional: true
+        name: current_humidity
+      - id: 30
+        type: boolean
+        optional: true
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+          - value: "off"
+            hidden: true
+      - id: 33
+        type: boolean
+        optional: true
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+          - value: "off"
+            hidden: true
   - entity: switch
     name: Aux heat
     icon: "mdi:fire"

@@ -1,0 +1,65 @@
+name: Pool heat pump
+products:
+  - id: s3aau3iaenjrspin
+    manufacturer: Poolex
+    model: Mag FI
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - constraint: mode
+            conditions:
+              - dps_val: "Auto"
+                value: auto
+              - dps_val: "Cold"
+                value: cool
+              - dps_val: "Heating"
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 256
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

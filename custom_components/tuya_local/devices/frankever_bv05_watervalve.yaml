@@ -1,0 +1,260 @@
+name: Water valve
+# products:
+#   - id: UNKNOWN
+#     manufacturer: FrankEver
+#     model: FK-BV05
+entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: valve
+    class: water
+    dps:
+      - id: 2
+        type: integer
+        name: valve
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Valve
+    icon: "mdi:pipe-valve"
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 4
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 4
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: sensor
+    name: Last use
+    class: water
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: L
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: water
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: L
+        class: measurement
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-pouring"
+    category: config
+    translation_key: timer
+    dps:
+      - id: 10
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "24h"
+            value: "24h"
+          - dps_val: "48h"
+            value: "48h"
+          - dps_val: "72h"
+            value: "72h"
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: sensor
+    name: Water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: Leak
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: water_leakage_yes
+            value: true
+          - value: false
+  - entity: switch
+    name: Single irrigation
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: number
+    name: Single irrigation amount
+    class: water
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: L
+        range:
+          min: 0
+          max: 1000
+  - entity: switch
+    name: Daily irrigation
+    icon: "mdi:sprinkler-variant"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Daily irrigation amount
+    category: config
+    class: water
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: L
+        range:
+          min: 0
+          max: 5000
+  - entity: switch
+    name: Water usage alarm
+    icon: "mdi:water-alert"
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: number
+    name: Maximum water usage
+    category: config
+    class: water
+    icon: "mdi:water-alert"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: L
+        range:
+          min: 0
+          max: 5000
+  - entity: switch
+    name: Water temperature alarm
+    icon: "mdi:coolant-temperature"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: number
+    name: Maximum water temperature
+    category: config
+    icon: "mdi:coolant-temperature"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 120
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: maintain
+            value: memory
+  - entity: switch
+    name: Hose pump
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: number
+    name: Minimum water temperature
+    category: config
+    icon: "mdi:coolant-temperature"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 120
+  - entity: event
+    name: Water temperature
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 114
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: alarm
+          - dps_val: false
+            value: clear
+  - entity: event
+    name: Water usage
+    dps:
+      - id: 115
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: alarm
+          - dps_val: false
+            value: clear

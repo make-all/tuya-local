@@ -1,42 +1,34 @@
 name: Energy monitoring circuit breaker
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 115
-      type: string
-      name: serial_number
-    - id: 118
-      type: integer
-      name: RkWh
-    - id: 119
-      type: base64
-      name: historical_voltage
-      optional: true
-    - id: 120
-      type: base64
-      name: historical_current
-      optional: true
-secondary_entities:
-  - entity: number
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 115
+        type: string
+        name: serial_number
+      - id: 118
+        type: integer
+        name: rkwh
+      - id: 119
+        type: base64
+        name: historical_voltage
+        optional: true
+      - id: 120
+        type: base64
+        name: historical_current
+        optional: true
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -48,6 +40,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: initial_state
     category: config
@@ -70,7 +65,9 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -81,11 +78,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "FFFF00000000"
         mapping:
           - scale: 10
-            mask: "FFFF00000000"
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -96,11 +95,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "0000FFFF0000"
         mapping:
           - scale: 10
-            mask: "0000FFFF0000"
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -111,11 +112,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "00000000FFFF"
         mapping:
           - scale: 10
-            mask: "00000000FFFF"
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -126,11 +129,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "FFFFFF000000000000"
         mapping:
-          - mask: "FFFFFF000000000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -141,11 +146,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "000000FFFFFF000000"
         mapping:
-          - mask: "000000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -156,9 +163,9 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "000000000000FFFFFF"
         mapping:
-          - mask: "000000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Total power
     class: power
@@ -171,11 +178,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "FFFFFF000000000000000000"
         mapping:
           - scale: 10000
-            mask: "FFFFFF000000000000000000"
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -186,11 +195,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "000000FFFFFF000000000000"
         mapping:
           - scale: 10000
-            mask: "000000FFFFFF000000000000"
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -201,11 +212,13 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "000000000000FFFFFF000000"
         mapping:
           - scale: 10000
-            mask: "000000000000FFFFFF000000"
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -216,9 +229,9 @@ secondary_entities:
         class: measurement
         optional: true
         force: true
+        mask: "000000000000000000FFFFFF"
         mapping:
           - scale: 10000
-            mask: "000000000000000000FFFFFF"
   - entity: sensor
     name: Leakage current
     class: current

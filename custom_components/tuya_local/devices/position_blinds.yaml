@@ -1,38 +1,38 @@
-name: Blind controller with set and read position
-primary_entity:
-  entity: cover
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 2
-      name: current_position
-      type: integer
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 5
-      name: control_back_mode
-      type: boolean
-    - id: 7
-      # seems intended to match action, but doesn't change in observation
-      name: work_state
-      type: string
+name: Blind controller
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 2
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 5
+        name: control_back_mode
+        type: boolean
+      - id: 7
+        # seems intended to match action, but doesn't change in observation
+        name: work_state
+        type: string

@@ -11,9 +11,9 @@ from homeassistant.components.valve import (
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,6 +50,14 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
                 and self._valve_dp.values(device)[0] is int
             ):
                 self._attr_supported_features |= ValveEntityFeature.SET_POSITION
+
+    # HA defines translated names for valve classes, but does not use them
+    def _default_to_device_class_name(self) -> bool:
+        """Return True if an unnamed entity should be named by its device class.
+
+        For valves we make this True if the entity has a device class.
+        """
+        return self.device_class is not None
 
     @property
     def device_class(self):

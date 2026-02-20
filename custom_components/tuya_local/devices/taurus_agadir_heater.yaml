@@ -1,59 +1,53 @@
 name: Radiator
 products:
   - id: rs1azmhtak4bo0o5
-    name: Taurus Agadir Connect 2000
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 5
-        max: 35
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: CF
-          value: home
-        - dps_val: AF
-          value: away
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: working
-                  value: heating
-                - dps_val: standby
-                  value: idle
-    - id: 101
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: H1
-          value: low
-        - dps_val: H2
-          value: medium
-        - dps_val: H3
-          value: high
-secondary_entities:
+    manufacturer: Taurus
+    model: Agadir Connect 2000
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 35
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: CF
+            value: home
+          - dps_val: AF
+            value: away
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: working
+            value: heating
+          - dps_val: standby
+            value: idle
+      - id: 101
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: H1
+            value: low
+          - dps_val: H2
+            value: medium
+          - dps_val: H3
+            value: high
   - entity: lock
     translation_key: child_lock
     category: config

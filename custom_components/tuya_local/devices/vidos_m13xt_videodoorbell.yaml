@@ -1,0 +1,81 @@
+name: Video doorbell
+products:
+  - id: yev0rxmozbfx8wo
+    manufacturer: Vidos
+    model: M13-XT
+entities:
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 154
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: lock
+    name: Lock 1
+    dps:
+      - id: 148
+        type: boolean
+        optional: true
+        name: lock
+  - entity: lock
+    name: Lock 2
+    dps:
+      - id: 232
+        type: boolean
+        optional: true
+        name: lock
+      - id: 231
+        type: string
+        optional: true
+        name: channel
+  - entity: sensor
+    name: SD card
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: storage
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: null
+            value: normal
+            hidden: true
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing

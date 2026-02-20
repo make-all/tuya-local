@@ -1,0 +1,122 @@
+name: TV mount
+products:
+  - id: etspz6new8zb1vdy
+    manufacturer: Speaka
+    model: SP-TVCM-510
+entities:
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: cancel
+            value: true
+  - entity: button
+    name: Up
+    icon: "mdi:arrow-up-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_up
+            value: true
+  - entity: button
+    name: Down
+    icon: "mdi:arrow-down-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_down
+            value: true
+  - entity: button
+    name: Default
+    icon: "mdi:bullseye-arrow"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_default
+            value: true
+      - id: 102
+        type: string
+        optional: true
+        name: model_no
+  - entity: button
+    name: Left
+    icon: "mdi:arrow-left-bold"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_left
+            value: true
+  - entity: button
+    name: Right
+    icon: "mdi:arrow-right-bold"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_right
+            value: true
+  - entity: select
+    name: Preset
+    icon: "mdi:bullseye-arrow"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: recall1
+            value: Preset 1
+          - dps_val: recall2
+            value: Preset 2
+          - dps_val: recall3
+            value: Preset 3
+          - dps_val: cancel
+            value: Manual
+          - value: Manual
+            hidden: true
+  - entity: select
+    name: Save preset
+    icon: "mdi:pencil-circle-outline"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: mem1
+            value: Preset 1
+          - dps_val: mem2
+            value: Preset 2
+          - dps_val: mem3
+            value: Preset 3
+          - dps_val: cancel
+            value: None
+          - value: None
+            hidden: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 105
+        type: bitfield
+        name: fault_code

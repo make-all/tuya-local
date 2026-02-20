@@ -1,48 +1,48 @@
 name: IR Heater
 products:
   - id: cl2wgyhohpjjjuzu
-    name: Klarstein Wonderwall Air Art Smart
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-          icon: "mdi:radiator"
-        - dps_val: false
-          value: "off"
-          icon: "mdi:radiator-disabled"
-    - id: 2
-      name: temperature
-      type: integer
-      mapping:
-        - scale: 10
-          step: 10
-      range:
-        min: 0
-        max: 370
-      unit: "C"
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-          step: 10
-    - id: 4
-      type: string
-      mapping:
-        - dps_val: manual
-          value: manual
-        - dps_val: holiday
-          value: away
-        - dps_val: auto
-          value: program
-      name: preset_mode
-secondary_entities:
+    manufacturer: Klarstein
+    model: Wonderwall Air Art Smart
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+            icon: "mdi:radiator"
+          - dps_val: false
+            value: "off"
+            icon: "mdi:radiator-disabled"
+      - id: 2
+        name: temperature
+        type: integer
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: 0
+          max: 370
+        unit: "C"
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            step: 10
+      - id: 4
+        type: string
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: holiday
+            value: away
+          - dps_val: auto
+            value: program
+        name: preset_mode
   - entity: select
     translation_key: timer
     category: config

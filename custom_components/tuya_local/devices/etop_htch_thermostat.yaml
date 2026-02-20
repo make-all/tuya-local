@@ -1,0 +1,67 @@
+name: RF heat cold thermostat
+products:
+  - id: 5p5bakocfzfxj7bc
+    manufacturer: Ferco Floor
+    model: GN1
+    model_id: ETOP-HT-CH
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - step: 5
+            scale: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            constraint: cool_heat
+            conditions:
+              - dps_val: true
+                value: cool
+              - dps_val: false
+                value: heat
+          - dps_val: false
+            value: "off"
+      - id: 6
+        type: boolean
+        name: cool_heat
+        mapping:
+          - dps_val: true
+            value: cool
+          - dps_val: false
+            value: heat
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: no_working
+            value: idle
+          - dps_val: working
+            constraint: cool_heat
+            conditions:
+              - dps_val: true
+                value: cooling
+              - dps_val: false
+                value: heating
+          - dps_val: window_opened
+            value: idle
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock

@@ -1,36 +1,43 @@
-name: BCom doorbell
+name: Doorbell
 products:
-  - id: bf71b225dc6dd70835wlbt
-    name: Bcom Majic IPBox
-primary_entity:
-  entity: camera
-  dps:
-    - id: 150
-      name: record
-      type: boolean
-      optional: true
-    - id: 136
-      name: snapshot
-      type: base64
-      persist: false
-      optional: true
-      sensitive: true
-      mapping:
-        - dps_val: ""
-          value_redirect: motion_detected
-        - dps_val: null
-          value_redirect: motion_detected
-    - id: 115
-      name: motion_detected
-      type: base64
-      sensitive: true
-secondary_entities:
+  - id: h3bhzu9m0ig80rdu
+    manufacturer: Bcom
+    model: Majic IPBox
+entities:
+  - entity: camera
+    dps:
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+      - id: 154
+        name: snapshot
+        type: base64
+        persist: false
+        optional: true
+        sensitive: true
+        mapping:
+          - dps_val: ""
+            value_redirect: motion_detected
+          - dps_val: null
+            value_redirect: motion_detected
+      - id: 115
+        name: motion_detected
+        type: base64
+        optional: true
+        sensitive: true
   - entity: lock
     name: Door lock
     dps:
       - id: 232
         type: boolean
+        optional: true
         name: lock
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: light
     translation_key: indicator
     category: config
@@ -39,12 +46,12 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     name: Watermark
@@ -53,22 +60,23 @@ secondary_entities:
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
   - entity: select
-    name: Motion Detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: select
     name: Night vision
     icon: "mdi:weather-night"
@@ -76,6 +84,7 @@ secondary_entities:
     dps:
       - id: 108
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
@@ -85,19 +94,30 @@ secondary_entities:
           - dps_val: "2"
             value: "On"
   - entity: sensor
-    name: SD capacity
-    category: diagnostic
-    dps:
-      - id: 109
-        type: string
-        name: sensor
-  - entity: sensor
     name: SD status
+    class: enum
+    translation_key: status
     category: diagnostic
     dps:
       - id: 110
         type: integer
+        optional: true
         name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+      - id: 109
+        type: string
+        optional: true
+        name: capacity
   - entity: button
     name: SD format
     category: config
@@ -105,14 +125,21 @@ secondary_entities:
     dps:
       - id: 111
         type: boolean
+        optional: true
         name: button
-  - entity: sensor
-    name: SD format state
-    category: diagnostic
-    dps:
       - id: 117
         type: integer
-        name: sensor
+        optional: true
+        name: status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
   - entity: select
     name: Recording mode
     icon: "mdi:file-video"
@@ -120,6 +147,7 @@ secondary_entities:
     dps:
       - id: 151
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "1"
@@ -132,6 +160,7 @@ secondary_entities:
     dps:
       - id: 162
         type: boolean
+        optional: true
         name: button
   - entity: sensor
     name: Channel
@@ -140,4 +169,34 @@ secondary_entities:
     dps:
       - id: 231
         type: string
+        optional: true
         name: sensor
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: message
+  - entity: lock
+    name: Accessory lock
+    dps:
+      - id: 148
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

@@ -1,32 +1,31 @@
-name: Air Purifier
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: manual
-          value: normal
-        - dps_val: sleep
-          value: sleep
-    - id: 4
-      name: speed
-      type: string
-      mapping:
-        - dps_val: low
-          value: 33
-        - dps_val: mid
-          value: 66
-        - dps_val: high
-          value: 100
-secondary_entities:
+name: Air purifier
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: manual
+            value: normal
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 33
+          - dps_val: mid
+            value: 66
+          - dps_val: high
+            value: 100
   - entity: switch
     translation_key: ionizer
     category: config
@@ -97,32 +96,30 @@ secondary_entities:
           - dps_val: 12h
             value: 12h
   - entity: sensor
-    name: Air Quality
+    translation_key: air_quality
     class: enum
-    icon: mdi:air-filter
     dps:
       - id: 21
         type: string
         name: sensor
         mapping:
           - dps_val: excellent
-            value: Excellent
+            value: excellent
           - dps_val: good
-            value: Good
+            value: good
           - dps_val: difference
-            value: Bad
+            value: poor
   - entity: sensor
     class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
   - entity: sensor
-    name: Filter days left
+    translation_key: filter_life
     class: duration
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 16
         name: sensor

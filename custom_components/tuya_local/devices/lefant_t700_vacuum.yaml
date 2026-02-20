@@ -1,77 +1,81 @@
 name: Robot vacuum
 products:
   - id: izivjmyjsajl9jdh
-    name: Lefant T700
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: standby
-          value: stop
-        - dps_val: smart
-          value: smart
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: random
-          value: random
-    - id: 4
-      type: string
-      optional: true
-      name: direction_control
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: turn_left
-        - dps_val: turn_right
-          value: turn_right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: "0"
-          value: standby
-        - dps_val: "1"
-          value: cleaning
-        - dps_val: "2"
-          value: mopping
-        - dps_val: "3"
-          value: edge_cleaning
-        - dps_val: "4"
-          value: charging
-        - dps_val: "5"
-          value: charged
-        - dps_val: "6"
-          value: spot_cleaning
-    - id: 13
-      type: boolean
-      optional: true
-      name: locate
-    - id: 15
-      type: string
-      name: clean_record
-    - id: 19
-      type: string
-      optional: true
-      name: map_config
-secondary_entities:
+    manufacturer: Lefant
+    model: T700
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: smart
+            value: smart
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: random
+            value: random
+      - id: 4
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: turn_left
+          - dps_val: turn_right
+            value: turn_right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "0"
+            value: standby
+          - dps_val: "1"
+            value: cleaning
+          - dps_val: "2"
+            value: mopping
+          - dps_val: "3"
+            value: edge_cleaning
+          - dps_val: "4"
+            value: charging
+          - dps_val: "5"
+            value: charged
+          - dps_val: "6"
+            value: spot_cleaning
+      - id: 13
+        type: boolean
+        optional: true
+        name: locate
+      - id: 15
+        type: string
+        name: clean_record
+      - id: 18
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 19
+        type: string
+        optional: true
+        name: map_config
   - entity: sensor
     class: battery
     category: diagnostic
@@ -82,7 +86,7 @@ secondary_entities:
         unit: "%"
   - entity: sensor
     name: Clean area
-    icon: "mdi:floor-plan"
+    class: area
     category: diagnostic
     dps:
       - id: 16

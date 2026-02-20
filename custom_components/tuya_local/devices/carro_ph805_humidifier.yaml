@@ -1,32 +1,32 @@
 name: Humidifier
 products:
   - id: g5wedazavod2wg3h
-    name: Carro PH-805-24
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: auto
-        - dps_val: false
-          value: normal
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 40
-        max: 90
-    - id: 14
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: Carro
+    model: PH-805-24
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: normal
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 90
+      - id: 14
+        name: current_humidity
+        type: integer
   - entity: fan
     icon: "mdi:sprinkler-variant"
     name: Spray
@@ -104,6 +104,7 @@ secondary_entities:
         type: bitfield
         name: sensor
         mapping:
+          # not sure which value is actually the tank empty flag
           - dps_val: 0
             value: false
           - value: true

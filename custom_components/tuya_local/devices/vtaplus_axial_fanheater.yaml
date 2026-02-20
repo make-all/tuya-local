@@ -1,0 +1,79 @@
+name: Fan heater
+# products:
+#   - id: UNKNOWN
+#     manufacturer: VTA+
+#     model: AXIAL
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "null"
+                value: fan_only
+                hidden: true
+              - dps_val: "level_1"
+                value: fan_only
+              - dps_val: "level_2"
+                value: heat
+              - dps_val: "level_3"
+                value: heat
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: none
+            hidden: true
+          - dps_val: "level_2"
+            value: eco
+          - dps_val: "level_3"
+            value: boost
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min

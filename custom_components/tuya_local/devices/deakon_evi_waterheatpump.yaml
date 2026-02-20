@@ -1,81 +1,63 @@
-name: Radiator heatpump
+name: Radiator heat pump
 products:
   - id: 02ek8thasvo40fmd
-    name: Deakon EVI A2pro
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-          hidden: true
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: hot
-              value: heat
-              hidden: true
-            - dps_val: cold
-              value: cool
-              hidden: true
-            - dps_val: hotwater
-              value: "off"
-            - dps_val: hot_hotwater
-              value: heat
-            - dps_val: cold_hotwater
-              value: cool
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 7
-        max: 60
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 103
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: "off"
-          value: idle
-        - dps_val: "on"
-          value: heating
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cooling
-        - dps_val: defrost
-          value: defrosting
-        - dps_val: antifrozen
-          value: heating
-    - id: 109
-      type: string
-      name: error_code_table
-    - id: 110
-      type: string
-      name: error_code_table2
-    - id: 111
-      type: string
-      name: driver_error_code1
-    - id: 112
-      type: string
-      name: driver_error_code2
-    - id: 113
-      type: string
-      name: sen_sys_error_code1
-    - id: 114
-      type: string
-      name: sen_sys_error_code2
-secondary_entities:
+    manufacturer: Deakon
+    model: EVI A2pro
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            hidden: true
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: hot
+                value: heat
+                hidden: true
+              - dps_val: cold
+                value: cool
+                hidden: true
+              - dps_val: hotwater
+                value: "off"
+              - dps_val: hot_hotwater
+                value: heat
+              - dps_val: cold_hotwater
+                value: cool
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 7
+          max: 60
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 103
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "off"
+            value: idle
+          - dps_val: "on"
+            value: heating
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cooling
+          - dps_val: defrost
+            value: defrosting
+          - dps_val: antifrozen
+            value: heating
   - entity: select
     name: Combined mode
     icon: "mdi:heat-pump"
@@ -125,6 +107,24 @@ secondary_entities:
       - id: 13
         type: bitfield
         name: fault_code
+      - id: 109
+        type: string
+        name: error_code_table
+      - id: 110
+        type: string
+        name: error_code_table2
+      - id: 111
+        type: string
+        name: driver_error_code1
+      - id: 112
+        type: string
+        name: driver_error_code2
+      - id: 113
+        type: string
+        name: sen_sys_error_code1
+      - id: 114
+        type: string
+        name: sen_sys_error_code2
   - entity: binary_sensor
     name: Anti-freeze
     class: cold

@@ -1,0 +1,57 @@
+name: Barrier controller
+products:
+  - id: 07kifxaohklzpj0h
+    manufacturer: Safe
+    model: CON09-01
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "open"
+          - dps_val: false
+            value: "close"
+      - id: 103
+        name: open_state
+        type: boolean
+      - id: 102
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: true
+            constraint: control
+            conditions:
+              - dps_val: true
+                value: opening
+              - dps_val: false
+                value: closing
+          - dps_val: false
+            constraint: open_state
+            conditions:
+              - dps_val: true
+                value: opened
+              - dps_val: false
+                value: closed
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Relay engage time
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 15

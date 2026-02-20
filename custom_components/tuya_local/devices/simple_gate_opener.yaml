@@ -2,37 +2,30 @@
 name: Simple garage-door-gate opener
 products:
   - id: b1uk4ftduaqopxv1
-    name: Garage-door-gate opener
-primary_entity:
-  entity: cover
-  class: gate
-  dps:
-    - id: 1
-      name: control
-      type: boolean
-      force: true
-      mapping:
-        - dps_val: true
-          value: "open"
-        - dps_val: false
-          value: "close"
-    - id: 101
-      name: open
-      type: boolean
-secondary_entities:
-  - entity: number
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        force: true
+        mapping:
+          - dps_val: true
+            value: "open"
+          - dps_val: false
+            value: "close"
+      - id: 101
+        name: open
+        type: boolean
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 7
         type: integer
         optional: true
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-          - dps_val: null

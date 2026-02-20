@@ -2,24 +2,25 @@
 # {'dps': {'1': False, '2': 1000, '3': 10, '4': 'led', '5': 1000, '6': 0,
 #  '14': 'memory', '21': 'relay', '103': 'scene', '106': 'dimmer',
 #  '107': '3way_switch'}}
-name: GE Jasco Ultra Pro Toggle Dimmer v2
+name: Dimmer module
 products:
   - id: genhs8iixkqve7sx
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: brightness
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Jasco
+    model: UltraPro Toggle Dimmer
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
   - entity: select
-    name: Bulb Type
+    name: Bulb type
     category: config
     dps:
       - id: 4
@@ -32,20 +33,16 @@ secondary_entities:
             value: Incandescent
           - dps_val: led
             value: LED
-  - entity: number
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 6
-        name: value
+        name: second
         type: integer
-        unit: min
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     category: config
     translation_key: initial_state
@@ -61,7 +58,7 @@ secondary_entities:
           - dps_val: "off"
             value: "off"
   - entity: select
-    name: Indicator Light
+    translation_key: light_mode
     category: config
     dps:
       - id: 21
@@ -69,8 +66,8 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "off"
           - dps_val: pos
-            value: Indicate switch location
+            value: locator
           - dps_val: relay
-            value: Indicate switch on/off
+            value: state

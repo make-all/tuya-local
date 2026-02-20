@@ -1,0 +1,127 @@
+# Smartmi Air Purifier P1
+# Category: kj
+# Product ID: nedhywwbir5vbypd
+# Tested with Tuya Local
+
+name: Air purifier
+products:
+  - id: nedhywwbir5vbypd
+    manufacturer: Smartmi
+    model: Air Purifier P1
+
+entities:
+  # -------------------------------------------------------
+  # Fan (On/Off + Preset modes + Speed)
+  # -------------------------------------------------------
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: mdi:air-purifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      # Manual fan level -> fan speed (DP109)
+      - id: 109
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 1
+
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          # Map HA preset values to defined presets (keep device DP values)
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+          - dps_val: strong
+            value: strong
+          - dps_val: manual
+            value: normal
+
+  # -------------------------------------------------------
+  # Sensors
+  # -------------------------------------------------------
+  - entity: sensor
+    class: pm25
+    icon: mdi:air-filter
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: "µg/m³"
+
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: h
+
+  # -------------------------------------------------------
+  # Timer
+  # -------------------------------------------------------
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0_hour"
+            value: cancel
+          - dps_val: "1_hour"
+            value: 1h
+          - dps_val: "2_hour"
+            value: 2h
+          - dps_val: "4_hour"
+            value: 4h
+          - dps_val: "8_hour"
+            value: 8h
+
+  # -------------------------------------------------------
+  # Misc
+  # -------------------------------------------------------
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+
+  - entity: select
+    name: Display brightness
+    translation_key: mode
+    category: config
+    dps:
+      - id: 110
+        name: option
+        type: string
+        mapping:
+          - dps_val: BRIGHTNESS_HIGH
+            value: high
+          - dps_val: BRIGHTNESS_LOW
+            value: low
+          - dps_val: BRIGHTNESS_OFF
+            value: "off"
+          - dps_val: BRIGHTNESS_AUTO
+            value: auto

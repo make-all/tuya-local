@@ -1,0 +1,330 @@
+name: Fan controller
+products:
+  - id: hqldzgqpsyr1pw8c
+    manufacturer: Aygrochy
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "ON"
+            value: "On"
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "TIMER"
+            value: "Timer"
+          - dps_val: "AUTO"
+            value: "Auto"
+          - dps_val: "ALARM"
+            value: "Alarm"
+      - id: 2
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: "ON"
+            value: "fan_only"
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "TIMER"
+            value: "auto"
+            hidden: true
+          - dps_val: "AUTO"
+            value: "auto"
+          - dps_val: "ALARM"
+            value: "fan_only"
+            hidden: true
+      - id: 8
+        name: current_humidity
+        type: integer
+        unit: "%"
+      - id: 9
+        name: current_temperature
+        type: integer
+        unit: "F"
+      - id: 110
+        name: target_temp_high
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_temp_high
+      - id: 106
+        name: auto_temp_high
+        type: integer
+        range:
+          min: 32
+          max: 194
+      - id: 112
+        name: target_temp_low
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_temp_low
+      - id: 108
+        name: auto_temp_low
+        type: integer
+        range:
+          min: 32
+          max: 194
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 102
+        name: speed
+        type: integer
+        range:
+          min: 0
+          max: 10
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 101
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 4
+  - entity: sensor
+    name: Current speed
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: "%"
+        mapping:
+          - scale: 0.1
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 36000
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    name: Alarm triggered
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: string
+  # id 106 see primairy entity
+  - entity: number
+    name: Maximum humidity
+    category: config
+    class: humidity
+    dps:
+      - id: 111
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_high_humidity
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 107
+        name: auto_high_humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+  # id 108 see primairy entity
+  - entity: number
+    name: Minimum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 113
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_low_humidity
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 109
+        name: auto_low_humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: lock
+  - entity: switch
+    name: Auto - high temperature switch
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto - high humidity switch
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto - low temperature switch
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto - low humidity switch
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm - high temperature switch
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm - high humidity switch
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm - low temperature switch
+    category: config
+    dps:
+      - id: 122
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm - low humidity switch
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: sensor
+    name: Auto triggered
+    category: diagnostic
+    dps:
+      - id: 126
+        name: sensor
+        type: string
+# "1":"Switch",
+# "2":"Work Mode",
+# "8":"Humidity",
+# "9":"Temperature",
+# "101":"Brightness",
+# "102":"Fan Speed Setting",
+# "103":"Running Speed",
+# "104":"Countdown",
+# "105":"Alarm triggered",
+# "106":"Auto-High Temp",
+# "107":"Auto-High Humid",
+# "108":"Auto-Low Temp",
+# "109":"Auto-Low Humid",
+# "110":"Alarm-High Temp",
+# "111":"Alarm-High Humid",
+# "112":"Alarm-Low Temp",
+# "113":"Alarm-Low Humid",
+# "114":"Child Lock",
+# "115":"Unit", (not yet implemented)
+# "116":"Auto-High temp switch",
+# "117":"Auto-High humid switch",
+# "118":"Auto-Low temp switch",
+# "119":"Auto-Low humid switch",
+# "120":"Alarm-High temp switch",
+# "121":"Alarm-High humid switch",
+# "122":"Alarm-Low temp switch",
+# "123":"Alarm-Low humid switch",
+# "124":"Temp calibration", (not yet implemented)
+# "125":"Humid calibration", (not yet implemented)
+# "126":"Auto triggered"

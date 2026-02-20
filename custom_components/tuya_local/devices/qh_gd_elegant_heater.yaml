@@ -1,55 +1,45 @@
 name: IR panel heater
 products:
   - id: 4iuq3mlns7b2zi7q
-    name: QH-GD Elegant Series
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 45
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 6
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: false
-          value: comfort
-        - dps_val: true
-          value: eco
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: heating
-                  value: heating
-                - dps_val: standby
-                  value: idle
-    - id: 21
-      name: fault_code
-      type: bitfield
-secondary_entities:
+    model: QH-GD Elegant Series
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 45
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 6
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: eco
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: standby
+            value: idle
   - entity: lock
     translation_key: child_lock
     category: config
@@ -135,3 +125,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        name: fault_code
+        type: bitfield

@@ -1,0 +1,161 @@
+name: Ventilation fan
+products:
+  - id: 9xaunhonta8om3zr
+    manufacturer: Funai
+    model: Fuji ERW-150
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+      - id: 101
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 9
+
+  - entity: select
+    name: Damper control
+    icon: "mdi:valve"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Manual"
+            value: "Manual"
+          - dps_val: "Auto_1"
+            value: "Auto 1"
+          - dps_val: "Auto_2"
+            value: "Auto 2"
+
+  - entity: number
+    name: Damper position
+    icon: "mdi:valve-open"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5
+
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "µg/m³"
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "ppm"
+
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "ppb"
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "C"
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "great"
+            value: excellent
+          - dps_val: "good"
+            value: good
+          - dps_val: "medium"
+            value: moderate
+          - dps_val: "bad"
+            value: poor
+
+  - entity: binary_sensor
+    name: Cleaning reminder
+    class: problem
+    icon: "mdi:broom"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code

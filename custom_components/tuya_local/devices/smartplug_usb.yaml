@@ -1,23 +1,19 @@
 name: Smartplug with USB
 products:
   - id: zmql6aexy8ua5rox
-    name: Gosund SP112
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
-secondary_entities:
+    manufacturer: Gosund
+    model: SP112
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
   - entity: switch
     name: USB
     icon: "mdi:usb"
@@ -28,6 +24,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: voltage
+    hidden: unavailable
     dps:
       - id: 20
         name: sensor
@@ -42,9 +39,18 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
+      - id: 20
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
     class: current
+    hidden: unavailable
     dps:
       - id: 18
         name: sensor
@@ -57,9 +63,18 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
+      - id: 18
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
     class: power
+    hidden: unavailable
     dps:
       - id: 19
         name: sensor
@@ -74,39 +89,60 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
     category: config
-    name: Outlet Timer
     translation_key: timer
+    hidden: unavailable
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        optional: true
+        name: second
         range:
           min: 0
           max: 86400
+      - id: 9
+        type: integer
+        optional: true
+        name: available
         mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB Timer
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    hidden: unavailable
     dps:
       - id: 15
         type: integer
-        name: value
-        unit: min
+        optional: true
+        name: second
         range:
           min: 0
           max: 86400
+      - id: 15
+        type: integer
+        optional: true
+        name: available
         mapping:
-          - scale: 60
-            step: 60
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: initial_state
     category: config
+    hidden: unavailable
     dps:
       - id: 38
         type: string
@@ -119,10 +155,18 @@ secondary_entities:
             value: "off"
           - dps_val: last
             value: memory
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
-    name: Indicator
-    icon: "mdi:led-on"
+    translation_key: light_mode
     category: config
+    hidden: unavailable
     dps:
       - id: 39
         type: string
@@ -130,8 +174,32 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
+      - id: 39
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

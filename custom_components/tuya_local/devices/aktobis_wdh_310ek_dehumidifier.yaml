@@ -1,29 +1,32 @@
 name: Dehumidifier
 products:
   - id: ifasqsxbghku3bwk
-    name: Aktobis WDH-310EKW dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-        - dps_val: true
-    - id: 3
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 70
-      mapping:
-        - step: 5
-    - id: 6
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: Aktobis
+    model: WDH-310EKW
+  - id: ifbnzf2j2rwr0upp
+    manufacturer: Aktobis
+    model: WDH-930EEW
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+          - dps_val: true
+      - id: 3
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 70
+        mapping:
+          - step: 5
+      - id: 6
+        name: current_humidity
+        type: integer
   - entity: fan
     dps:
       - id: 1

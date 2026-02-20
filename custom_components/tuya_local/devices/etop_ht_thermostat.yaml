@@ -1,87 +1,84 @@
-name: ETOP-HT thermostat
+name: Thermostat
 products:
   - id: viav1onpzcozfneb
-
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  name: Thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: manual
-          value: manual
-          icon: "mdi:cursor-pointer"
-        - dps_val: eco
-          value: eco
-          icon: "mdi:sprout"
-        - dps_val: auto
-          value: activity
-          icon: "mdi:thermostat-auto"
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: no_heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
-        - dps_val: heating
-          value: heating
-    - id: 24
-      type: integer
-      name: current_temperature
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 26
-      type: integer
-      name: min_temperature
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      type: integer
-      name: max_temperature
-      range:
-        min: 50
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 45
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: ETOP
+    model: HT-01AC
+  - id: zhfbsam03cs0ge5n
+    manufacturer: PNI
+    model: CT-400
+  - id: np9tyrarxphw5b6m
+    manufacturer: BVF
+    model: BVF-801
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: eco
+            value: eco
+          - dps_val: auto
+            value: auto
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - value: idle
+      - id: 24
+        type: integer
+        name: current_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 26
+        type: integer
+        name: min_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        range:
+          min: 50
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 101
+        type: integer
+        optional: true
+        name: dead_zone
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -89,6 +86,34 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: window_opened
+            value: true
+          - value: false
+  - entity: switch
+    name: Window detection
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+      - id: 8
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: lock
     translation_key: child_lock
     category: config
@@ -131,15 +156,13 @@ secondary_entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:wrench-clock"
-    mode: slider
     dps:
       - id: 27
         name: value
         type: integer
-        unit: C
+        unit: °
         range:
           min: -100
           max: 100
@@ -157,3 +180,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code

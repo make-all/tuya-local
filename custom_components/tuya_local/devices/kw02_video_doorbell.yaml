@@ -1,45 +1,53 @@
 name: Doorbell
 products:
   - id: 0ukszkfaejkqpz9o
-    name: KW02 IP video doorbell
-primary_entity:
-  entity: siren
-  name: Doorbell
-  dps:
-    - id: 156
-      type: string
-      optional: true
-      name: tone
-      mapping:
-        - dps_val: "1"
-          value: Tone 1
-        - dps_val: "2"
-          value: Tone 2
-        - dps_val: "3"
-          value: Tone 3
-        - dps_val: "4"
-          value: Tone 4
-    - id: 157
-      type: integer
-      optional: true
-      name: volume_level
-      range:
-        min: 0
-        max: 10
-      mapping:
-        - scale: 10
-    - id: 166
-      type: integer
-      optional: true
-      name: duration
-      range:
-        min: 5
-        max: 60
-    - id: 186
-      type: string
-      optional: true
-      name: alarm_report
-secondary_entities:
+    model: KW02
+    name: IP video doorbell
+entities:
+  - entity: button
+    icon: "mdi:gate"
+    name: Door
+    dps:
+      - id: 148
+        type: boolean
+        optional: true
+        name: button
+  - entity: siren
+    name: Doorbell
+    dps:
+      - id: 156
+        type: string
+        optional: true
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: Tone 1
+          - dps_val: "2"
+            value: Tone 2
+          - dps_val: "3"
+            value: Tone 3
+          - dps_val: "4"
+            value: Tone 4
+      - id: 157
+        type: integer
+        optional: true
+        name: volume_level
+        range:
+          min: 0
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 166
+        type: integer
+        optional: true
+        name: duration
+        range:
+          min: 5
+          max: 60
+      - id: 186
+        type: string
+        optional: true
+        name: alarm_report
   - entity: light
     translation_key: indicator
     category: config
@@ -48,8 +56,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -57,8 +64,7 @@ secondary_entities:
         optional: true
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -67,11 +73,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: button
     name: SD format
     icon: "mdi:sd"
@@ -128,9 +134,8 @@ secondary_entities:
         optional: true
         name: raw_event
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 160
         type: integer

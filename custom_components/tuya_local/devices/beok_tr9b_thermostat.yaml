@@ -1,67 +1,86 @@
-name: Beok TR9B thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 16
-      type: integer
-      name: temperature
-      range:
-        min: 50
-        max: 10000
-      mapping:
-        - scale: 10
-          step: 5
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              step: 10
-    - id: 19
-      type: integer
-      name: max_temperature
-      mapping:
-        - scale: 10
-    - id: 23
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      name: min_temperature
-      mapping:
-        - scale: 10
-    - id: 101
-      type: integer
-      name: unknown_101
-    - id: 102
-      type: integer
-      name: unknown_102
-secondary_entities:
+name: Thermostat
+products:
+  - id: 7qx0q329p61h1ace
+    manufacturer: Rti-Tek
+    model: R7C.716
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 16
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 3000
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                step: 10
+      - id: 19
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
+      - id: 101
+        type: integer
+        name: unknown_101
+      - id: 102
+        type: integer
+        name: unknown_102
+      - id: 105
+        type: string
+        optional: true
+        name: model
+      - id: 110
+        type: boolean
+        optional: true
+        name: unknown_110
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -96,19 +115,6 @@ secondary_entities:
             value: "Mon-Sat+Sun"
           - dps_val: "7"
             value: "Daily"
-  - entity: binary_sensor
-    name: Valve
-    class: opening
-    category: diagnostic
-    dps:
-      - id: 36
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: open
-            value: true
-          - dps_val: close
-            value: false
   - entity: lock
     translation_key: "child_lock"
     category: config
@@ -131,7 +137,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
     dps:
@@ -141,12 +147,12 @@ secondary_entities:
         unit: C
         range:
           min: 50
-          max: 10000
+          max: 3000
         mapping:
           - scale: 10
             step: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:
@@ -156,7 +162,7 @@ secondary_entities:
         unit: C
         range:
           min: 50
-          max: 10000
+          max: 3000
         mapping:
           - scale: 10
             step: 10

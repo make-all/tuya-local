@@ -1,83 +1,82 @@
 name: Triple wall switch
 products:
   - id: o2epqysxigahd7mn
-    name: Briliiant Smart glass wall switch 3-gang
-primary_entity:
-  entity: switch
-  class: switch
-  name: Switch 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Briliiant Smart
+    name: Glass wall switch 3-gang
+entities:
   - entity: switch
     class: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    class: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
     class: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         type: boolean
         name: switch
-  - entity: number
-    name: Timer 1
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 7
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: Timer 2
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 8
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: Timer 3
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 101
         type: integer
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor

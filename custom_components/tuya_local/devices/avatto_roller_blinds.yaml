@@ -1,56 +1,64 @@
-name: Avatto roller blinds
+name: Roller blinds
 products:
   - id: 3r8gc33pnqsxfe1g
-primary_entity:
-  entity: cover
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-    - id: 3
-      name: current_position
-      type: integer
-      unit: "%"
-      optional: true
-      persist: false
-    - id: 5
-      name: control_back_mode
-      type: boolean
-    - id: 7
-      name: action
-      type: string
-      mapping:
-        - dps_val: opening
-          value: opening
-          constraint: current_position
-          conditions:
-            - dps_val: 100
-              value: opened
-            - dps_val: null
-              value: opened
-        - dps_val: closing
-          value: closing
-          constraint: current_position
-          conditions:
-            - dps_val: 0
-              value: closed
-            - dps_val: null
-              value: closed
-secondary_entities:
+    manufacturer: Quoya
+    model: MC08
+    name: Blinds motor
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        name: current_position
+        type: integer
+        unit: "%"
+        optional: true
+        persist: false
+        mapping:
+          - invert: true
+        range:
+          min: 0
+          max: 100
+      - id: 7
+        name: action
+        type: string
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: opening
+            value: opening
+            constraint: current_position
+            conditions:
+              - dps_val: 0
+                value: opened
+              - dps_val: null
+                value: null
+          - dps_val: closing
+            value: closing
+            constraint: current_position
+            conditions:
+              - dps_val: 100
+                value: closed
+              - dps_val: null
+                value: null
   - entity: select
     translation_key: timer
     category: config
@@ -88,3 +96,32 @@ secondary_entities:
         name: sensor
         type: integer
         unit: ms
+  - entity: select
+    name: Direction
+    icon: "mdi:swap-vertical"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Clockwise
+          - dps_val: true
+            value: Anti-clockwise
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code

@@ -1,19 +1,16 @@
 name: Air fryer
 products:
   - id: agpcmyexmpd49vpw
-    name: Ultenic K10
-primary_entity:
-  entity: switch
-  name: Power
-  icon: "mdi:power"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 12
-      type: bitfield
-      name: error_code
-secondary_entities:
+    manufacturer: Ultenic
+    model: K10
+entities:
+  - entity: switch
+    name: Power
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     name: Cooking
     icon: "mdi:toaster-oven"
@@ -62,7 +59,7 @@ secondary_entities:
           - dps_val: preheat
             value: preheat
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     dps:
       - id: 5
@@ -71,25 +68,18 @@ secondary_entities:
         mapping:
           - dps_val: "0"
             value: standby
-            icon: "mdi:power-standby"
           - dps_val: "1"
-            value: preheating
-            icon: "mdi:fire"
+            value: pre_heating
           - dps_val: "2"
             value: cooking
-            icon: "mdi:toaster-oven"
           - dps_val: "3"
             value: done
-            icon: "mdi:check"
           - dps_val: "4"
-            value: keeping warm
-            icon: "mdi:heat-wave"
+            value: keeping_warm
           - dps_val: "5"
             value: "off"
-            icon: "mdi:power-off"
           - dps_val: "8"
             value: scheduled
-            icon: "mdi:calendar-clock"
   - entity: number
     name: Cooking temperature
     class: temperature
@@ -120,6 +110,7 @@ secondary_entities:
         unit: C
   - entity: number
     name: Cooking time
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 9
@@ -148,6 +139,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Pause cooking
     dps:

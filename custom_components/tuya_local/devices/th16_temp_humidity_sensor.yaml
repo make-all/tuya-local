@@ -1,18 +1,19 @@
-name: TH16 TH06WB3S Temperature and Humidity Sensor
+name: Temperature and humidity sensor
 products:
   - id: 7akwzwfwhukkdsib
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    model: TH16
+    model_id: TH06WB3S
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     class: humidity
     dps:

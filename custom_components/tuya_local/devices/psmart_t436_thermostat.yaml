@@ -1,82 +1,82 @@
 name: Thermostat
 products:
   - id: gogb05wrtredz3bs
-    name: Psmart T436
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 50
-        max: 700
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      type: integer
-      name: max_temperature
-      optional: true
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      name: min_temperature
-      optional: true
-      mapping:
-        - scale: 10
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 36
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: open
-          value: heating
-        - dps_val: close
-          value: idle
-    - id: 71
-      type: string
-      optional: true
-      name: week_program
-    - id: 104
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: low
-          value: low
-        - dps_val: mid
-          value: medium
-        - dps_val: high
-          value: high
-secondary_entities:
+    manufacturer: Psmart
+    model: T436
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 700
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        optional: true
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        name: min_temperature
+        optional: true
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        type: string
+        name: hvac_action
+        optional: true
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
+      - id: 71
+        type: string
+        optional: true
+        name: week_program
+      - id: 104
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -90,10 +90,9 @@ secondary_entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     class: temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         type: integer
@@ -107,9 +106,8 @@ secondary_entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
@@ -120,8 +118,9 @@ secondary_entities:
           min: -4
           max: 4
   - entity: button
-    name: Factory reset
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

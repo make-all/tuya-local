@@ -1,5 +1,4 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTime
@@ -59,7 +58,6 @@ class TestVorkVK6267AWPurifier(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
-            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpMultiSensors(
             [
@@ -67,8 +65,8 @@ class TestVorkVK6267AWPurifier(
                     "dps": AQI_DPS,
                     "name": "sensor_air_quality",
                     "device_class": SensorDeviceClass.ENUM,
-                    "testdata": ("great", "Great"),
-                    "options": ["Great", "Good", "Severe", "Medium"],
+                    "testdata": ("great", "excellent"),
+                    "options": ["excellent", "good", "severe", "poor"],
                 },
                 {
                     "dps": COUNTDOWN_DPS,
@@ -78,7 +76,7 @@ class TestVorkVK6267AWPurifier(
                 },
                 {
                     "dps": FILTER_DPS,
-                    "name": "sensor_filter",
+                    "name": "sensor_filter_life",
                     "unit": PERCENTAGE,
                 },
             ]
@@ -90,7 +88,7 @@ class TestVorkVK6267AWPurifier(
                 "light",
                 "select_timer",
                 "sensor_air_quality",
-                "sensor_filter",
+                "sensor_filter_life",
                 "sensor_time_remaining",
             ]
         )
@@ -141,3 +139,10 @@ class TestVorkVK6267AWPurifier(
             {MODE_DPS: "sleep"},
         ):
             await self.subject.async_set_preset_mode("sleep")
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

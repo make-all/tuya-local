@@ -1,26 +1,27 @@
 name: Bidirectional energy meter
 products:
   - id: v5jlnn5hwyffkhp3
-    name: MatSee Plus bidirectional 2 channel clamp meter
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      mapping:
-        - scale: 100
-      class: total_increasing
-    - id: 122
-      type: integer
-      name: hourly
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: MatSeePlus
+    name: Bidirectional 2 channel clamp meter
+entities:
   - entity: sensor
-    name: Energy produced
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
+      - id: 122
+        type: integer
+        optional: true
+        name: hourly
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 2
@@ -32,6 +33,7 @@ secondary_entities:
           - scale: 100
       - id: 123
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 100
@@ -92,7 +94,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -110,7 +114,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -128,7 +134,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumption B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -146,6 +154,7 @@ secondary_entities:
           - scale: 100
       - id: 118
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 100
@@ -156,7 +165,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -174,6 +185,7 @@ secondary_entities:
           - scale: 100
       - id: 119
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 100
@@ -195,7 +207,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -213,7 +227,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -231,7 +247,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumption A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -249,6 +267,7 @@ secondary_entities:
           - scale: 100
       - id: 120
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 100
@@ -259,7 +278,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -277,6 +298,7 @@ secondary_entities:
           - scale: 100
       - id: 121
         type: integer
+        optional: true
         name: hourly
         mapping:
           - scale: 100
@@ -286,34 +308,35 @@ secondary_entities:
         name: calibration
         mapping:
           - scale: 1000
-  - entity: sensor
+  - entity: binary_sensor
     name: Direction B
-    class: enum
+    translation_key: direction
     category: diagnostic
     dps:
       - id: 124
         type: boolean
         name: sensor
         mapping:
-          - dps_val: true
-            value: in
           - dps_val: false
-            value: out
-  - entity: sensor
+            value: true
+          - dps_val: true
+            value: false
+  - entity: binary_sensor
     name: Direction A
-    class: enum
+    translation_key: direction
     category: diagnostic
     dps:
       - id: 125
         type: boolean
         name: sensor
         mapping:
-          - dps_val: true
-            value: in
           - dps_val: false
-            value: out
+            value: true
+          - dps_val: true
+            value: false
   - entity: number
     name: Reporting rate
+    class: duration
     category: config
     icon: "mdi:camera-timer"
     dps:

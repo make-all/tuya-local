@@ -1,29 +1,25 @@
-name: SmartPlug
+name: Smartplug
 products:
   - id: eimdzrehi6a6vixn
-    name: Nooie PU13
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
-  - entity: number
+    manufacturer: Nooie
+    model: PU13
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: lock
     translation_key: child_lock
     category: config

@@ -1,23 +1,22 @@
 name: Air quality
 products:
   - id: ezovdhzaxsovyzf0
+    manufacturer: KKMoon
     name: 7in1 air quality meter
-primary_entity:
-  entity: sensor
-  name: Air quality
-  icon: "mdi:factory"
-  dps:
-    - id: 21
-      type: string
-      name: sensor
-secondary_entities:
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    dps:
+      - id: 21
+        type: string
+        name: sensor
   - entity: sensor
     class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
   - entity: sensor
     name: Formaldehyde
@@ -26,7 +25,7 @@ secondary_entities:
       - id: 27
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
   - entity: sensor
     class: temperature
@@ -52,7 +51,7 @@ secondary_entities:
       - id: 14
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
   - entity: sensor
     class: carbon_dioxide

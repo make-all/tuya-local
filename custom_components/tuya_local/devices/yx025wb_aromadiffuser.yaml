@@ -1,25 +1,25 @@
 name: Aroma diffuser
 products:
   - id: yishet3p12fvohmd
-    name: Liplasting YX-025WB
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 2
-      name: switch
-      type: boolean
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: small
-          value: low
-        - dps_val: large
-          value: high
-        - dps_val: interval
-          value: intermittent
-secondary_entities:
+    manufacturer: Liplasting
+    model: YX-025WB
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: small
+            value: low
+          - dps_val: large
+            value: high
+          - dps_val: interval
+            value: intermittent
   - entity: light
     icon: "mdi:light-recessed"
     dps:

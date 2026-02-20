@@ -1,23 +1,23 @@
 name: Dual buttons
 products:
   - id: l8yaz4um5b3pwyvf
-    name: Linkoze LKWSW201
-primary_entity:
-  entity: event
-  name: Button 1
-  class: button
-  dps:
-    - id: 1
-      type: string
-      name: event
-      mapping:
-        - dps_val: single_click
-          value: single_click
-        - dps_val: long_press
-          value: long_press
-        - dps_val: double_click
-          value: double_click
-secondary_entities:
+    manufacturer: Linkoze
+    model: LKWSW201
+entities:
+  - entity: event
+    name: Button 1
+    class: button
+    dps:
+      - id: 1
+        type: string
+        name: event
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
   - entity: event
     name: Button 2
     class: button

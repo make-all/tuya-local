@@ -1,32 +1,32 @@
 name: Ceiling fan
 products:
   - id: 5baeoecnemrwonk6
-    name: Sulion Crixus L
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 53
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 54
-      type: string
-      name: direction
-    - id: 101
-      type: boolean
-      name: switch
-    - id: 102
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-secondary_entities:
+    manufacturer: Sulion
+    model: Crixus L
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 53
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 54
+        type: string
+        name: direction
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
   - entity: light
     category: config
     dps:

@@ -1,40 +1,37 @@
 name: Oil radiator
 products:
   - id: fuqsuq41dqdtzq0n
-    name: Juskys OH125BW2
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 5
-        max: 50
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "0"
-          value: away
-        - dps_val: "1"
-          value: eco
-        - dps_val: "2"
-          value: comfort
-    - id: 21
-      type: bitfield
-      name: fault_code
-secondary_entities:
+    manufacturer: Juskys
+    model: OH125BW2
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 50
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "0"
+            value: away
+          - dps_val: "1"
+            value: eco
+          - dps_val: "2"
+            value: comfort
   - entity: lock
     translation_key: child_lock
     category: config
@@ -118,3 +115,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

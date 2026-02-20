@@ -1,19 +1,22 @@
 name: EV charger
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      optional: true
-      type: integer
-      name: sensor
-      unit: kWh
-      mapping:
-        - scale: 100
-      class: total_increasing
-secondary_entities:
+products:
+  - id: e1kw2auo
+    manufacturer: Andalung
+    model: "Portable EV Charger"
+entities:
   - entity: sensor
-    name: Status
+    class: energy
+    dps:
+      - id: 1
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
+  - entity: sensor
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     dps:
@@ -22,40 +25,24 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: charger_free
-            value: Available
+            value: available
           - dps_val: charger_insert
-            value: Plugged in
+            value: plugged_in
           - dps_val: charger_free_fault
-            value: Fault (unplugged)
+            value: fault_unplugged
           - dps_val: charger_wait
-            value: Waiting
+            value: waiting
           - dps_val: charger_charging
-            value: Charging
+            value: charging
           - dps_val: charger_pause
-            value: Paused
+            value: paused
           - dps_val: charger_end
-            value: Finished
+            value: charged
           - dps_val: charger_fault
-            value: Error
-      - id: 11
-        optional: true
-        type: string
-        name: alarm_set_1
-      - id: 12
-        optional: true
-        type: string
-        name: alarm_set_2
-      - id: 19
-        optional: true
-        type: string
-        name: local_timer
+            value: fault
       - id: 23
         type: string
         name: system_version
-      - id: 33
-        optional: true
-        type: string
-        name: mode_set
   - entity: number
     name: Charging current
     class: current
@@ -66,8 +53,8 @@ secondary_entities:
         name: value
         unit: A
         range:
-          min: 1
-          max: 255
+          min: 6
+          max: 32
   - entity: sensor
     class: power
     category: diagnostic
@@ -91,9 +78,9 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Phase A current
     class: current
@@ -105,9 +92,9 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Phase A power
     class: power
@@ -119,9 +106,9 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Total power
     class: power
@@ -148,6 +135,64 @@ secondary_entities:
       - id: 10
         type: bitfield
         name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: Overcurrent
+          - dps_val: 2
+            value: Secondary overcurrent fault
+          - dps_val: 4
+            value: Overvoltage
+          - dps_val: 8
+            value: Undervoltage alarm
+          - dps_val: 16
+            value: Contactor adhesion
+          - dps_val: 32
+            value: Contactor fault
+          - dps_val: 64
+            value: Earth fault
+          - dps_val: 128
+            value: Meter hardware alarm
+          - dps_val: 256
+            value: Emergency stop fault
+          - dps_val: 512
+            value: CP fault
+          - dps_val: 1024
+            value: Meter communication fault
+          - dps_val: 2048
+            value: Card reader fault
+          - dps_val: 4096
+            value: Circuit short fault
+          - dps_val: 8192
+            value: Adhesion fault
+          - dps_val: 16384
+            value: Self-test alarm
+          - dps_val: 32768
+            value: Leakage current alarm
+  - entity: text
+    name: Alarm 1
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm 2
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        optional: true
+        name: value
   - entity: sensor
     name: Connection
     icon: "mdi:ev-plug-type2"
@@ -173,8 +218,7 @@ secondary_entities:
           - dps_val: controlpi_error
             value: Error
   - entity: select
-    name: Charging mode
-    icon: "mdi:ev-station"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14
@@ -182,15 +226,19 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_pct
-            value: Charge to percent
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Fixed charge
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled charge
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Delayed charge
+            value: delayed_charge
+      - id: 33
+        optional: true
+        type: base64
+        name: mode_set
   - entity: sensor
     name: Remaining
     class: energy_storage
@@ -219,19 +267,30 @@ secondary_entities:
     dps:
       - id: 17
         type: integer
+        optional: true
         name: value
         unit: kWh
         mapping:
           - scale: 100
         range:
           min: 1
-          max: 2000000
+          max: 20000
   - entity: switch
     icon: "mdi:ev-station"
     dps:
       - id: 18
         type: boolean
         name: switch
+  - entity: text
+    name: Charging time
+    category: config
+    icon: "mdi:car-clock"
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
   - entity: sensor
     name: Temperature
     class: temperature
@@ -241,12 +300,14 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
   - entity: sensor
     name: Charge
     class: energy_storage
     dps:
       - id: 25
         type: integer
+        optional: true
         name: sensor
         unit: kWh
         mapping:
@@ -266,10 +327,12 @@ secondary_entities:
   - entity: number
     name: Delayed charge timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 28
         type: integer
+        optional: true
         name: value
         unit: h
         range:

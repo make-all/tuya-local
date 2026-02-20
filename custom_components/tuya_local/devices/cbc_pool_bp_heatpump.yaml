@@ -1,0 +1,139 @@
+name: Pool heat pump
+products:
+  - id: h6ttvtg8klgnleva
+    manufacturer: Sibrape
+    model: CBC-Pool BP
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "Auto"
+                value: heat_cool
+              - dps_val: "Heating"
+                value: heat
+              - dps_val: "Cooling"
+                value: cool
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 40
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "Power"
+            value: quick
+          - dps_val: "Smart"
+            value: smart
+          - dps_val: "Silent"
+            value: quiet
+
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Compressor exhaust
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Heating coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Outlet water temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Operating frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: Hz
+  - entity: sensor
+    name: Expansion valve
+    category: diagnostic
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: P
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        name: sensor
+        type: bitfield
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        optional: true
+        name: fault_code

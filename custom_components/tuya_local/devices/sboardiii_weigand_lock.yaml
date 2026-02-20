@@ -1,0 +1,243 @@
+name: Door access
+products:
+  - id: 5k8h97qska6pf5cm
+    manufacturer: Secukey
+    model: Sboard III mini
+    name: Wiegand access control interface
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: unlock_method_create
+      - id: 2
+        type: string
+        optional: true
+        name: unlock_method_delete
+      - id: 3
+        type: string
+        optional: true
+        name: unlock_method_modify
+      - id: 4
+        type: string
+        optional: true
+        name: sync_method
+      - id: 5
+        type: string
+        optional: true
+        name: tmp_passwd_create
+      - id: 6
+        type: string
+        optional: true
+        name: tmp_passwd_delete
+      - id: 7
+        type: string
+        optional: true
+        name: tmp_passwd_modify
+      - id: 8
+        type: string
+        optional: true
+        name: remote_no_pd_setkey
+      - id: 9
+        type: string
+        optional: true
+        name: remote_no_dp_key
+      - id: 10
+        type: string
+        optional: true
+        persist: false
+        name: unlock_fingerprint
+      - id: 11
+        type: string
+        optional: true
+        persist: false
+        name: unlock_password
+      - id: 12
+        type: string
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 16
+        type: string
+        optional: true
+        persist: false
+        name: unlock_temp_pwd
+      - id: 17
+        type: string
+        optional: true
+        persist: false
+        name: unlock_dynamic_pwd
+      - id: 22
+        type: string
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 23
+        type: string
+        optional: true
+        name: alarm_records
+      - id: 35
+        type: string
+        optional: true
+        name: closed_open_state
+      - id: 38
+        type: string
+        optional: true
+        name: alarm_channel
+      - id: 39
+        type: string
+        optional: true
+        name: alarm_lifted
+  - entity: siren
+    name: Doorbell
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+      - id: 24
+        type: string
+        optional: true
+        name: doorbell_chime
+      - id: 25
+        type: string
+        optional: true
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.33
+          - dps_val: normal
+            value: 0.67
+          - dps_val: high
+            value: 1.0
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 30
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Auto lock delay
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 31
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Alarm duration
+    category: config
+    icon: "mdi:alarm"
+    dps:
+      - id: 34
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 180
+  - entity: button
+    name: Retake photo
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: unlocked
+    dps:
+      - id: 40
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: false
+            value: null
+          - dps_val: true
+            value: unlock
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 101
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: ring
+          - value: null
+  - entity: event
+    name: Retries
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: event
+        mapping:
+          - dps_val: true
+            value: alarm
+          - value: null
+  - entity: event
+    name: Tamper
+    dps:
+      - id: 103
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: alarm
+          - value: null
+  - entity: event
+    name: Door
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: closed
+          - dps_val: false
+            value: open
+  - entity: event
+    name: Forced
+    dps:
+      - id: 105
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: alarm
+          - value: null
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 106
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 106
+        type: string
+        optional: true
+        name: details

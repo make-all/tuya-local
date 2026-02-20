@@ -1,31 +1,31 @@
 name: Smartplug
 products:
   - id: zmql6aexy8ua5rox
-    name: Gosund SP112-RTL
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-    - id: 101
-      name: unknown_101
-      type: boolean
-      optional: true
-secondary_entities:
+    manufacturer: Gosund
+    model: SP112-RTL
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
+      - id: 101
+        name: unknown_101
+        type: boolean
+        optional: true
   - entity: switch
     name: USB
     dps:
@@ -35,11 +35,13 @@ secondary_entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer
@@ -91,35 +93,28 @@ secondary_entities:
         type: integer
         name: calibration
         optional: true
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 9
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB timer
+  - entity: time
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 15
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config
@@ -135,8 +130,7 @@ secondary_entities:
           - dps_val: "2"
             value: memory
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb"
+    translation_key: light_mode
     category: config
     dps:
       - id: 39
@@ -144,11 +138,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: relay
-            value: State
+            value: state
           - dps_val: pos
-            value: Position
+            value: locator
           - dps_val: none
-            value: "Off"
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

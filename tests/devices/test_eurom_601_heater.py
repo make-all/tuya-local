@@ -108,8 +108,11 @@ class TestEurom601Heater(
             await self.subject.async_set_preset_mode(PRESET_COMFORT)
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 13
         self.assertCountEqual(
             self.subject.extra_state_attributes,
-            {"error": 13},
+            {},
         )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertEqual(self.basicBSensor.extra_state_attributes, {"fault_code": 2})

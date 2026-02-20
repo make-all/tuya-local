@@ -1,47 +1,40 @@
 name: Circuit breaker energy meter
 products:
   - id: jexpyxmyl0gubapl
-    name: Tongou TO-Q-ST463JWT 4P
-primary_entity:
-  entity: switch
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 17
-      name: alarm_set_1
-      optional: true
-      type: string
-    - id: 18
-      name: alarm_set_2
-      optional: true
-      type: string
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
-    - id: 7
-      name: phase_b
-      type: base64
-      optional: true
-      force: true
-    - id: 8
-      name: phase_c
-      type: base64
-      optional: true
-      force: true
-    - id: 9
-      name: fault
-      type: bitfield
-      optional: true
-      mapping:
-        - dps_val: 0
-          value: OK
-    - id: 19
-      name: breaker_number
-      type: string
-secondary_entities:
+    manufacturer: Tongou
+    model: TO-Q-ST463JWT 4P
+entities:
+  - entity: switch
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 17
+        name: alarm_set_1
+        optional: true
+        type: string
+      - id: 18
+        name: alarm_set_2
+        optional: true
+        type: string
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 7
+        name: phase_b
+        type: base64
+        optional: true
+        force: true
+      - id: 8
+        name: phase_c
+        type: base64
+        optional: true
+        force: true
+      - id: 19
+        name: breaker_number
+        type: string
   - entity: switch
     name: Prepayment
     icon: "mdi:cash-multiple"
@@ -117,7 +110,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -126,11 +121,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -139,11 +136,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -152,11 +151,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -165,11 +166,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -178,11 +181,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -191,11 +196,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -204,11 +211,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -217,11 +226,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -230,6 +241,24 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true

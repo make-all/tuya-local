@@ -33,6 +33,11 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 
+def _collect_possible_matches(cached_state, product_ids):
+    """Collect possible matches from generator into an array."""
+    return list(possible_matches(cached_state, product_ids))
+
+
 class TuyaLocalDevice(object):
     def __init__(
         self,
@@ -61,6 +66,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._children = []
         self._force_dps = []
+        self._product_ids = []
         self._running = False
         self._shutdown_listener = None
         self._startup_listener = None
@@ -70,26 +76,43 @@ class TuyaLocalDevice(object):
         self.dev_cid = dev_cid
         try:
             if dev_cid:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                    parent_lock = hass.data[DOMAIN][dev_id].get(
+                        "tuyadevicelock", asyncio.Lock()
+                    )
                 else:
                     parent = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
+                    parent_lock = asyncio.Lock()
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {
+                            "tuyadevice": parent,
+                            "tuyadevicelock": parent_lock,
+                        }
                 self._api = tinytuya.Device(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
+                self._api_lock = parent_lock
             else:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                    self._api_lock = hass.data[DOMAIN][dev_id].get(
+                        "tuyadevicelock", asyncio.Lock()
+                    )
                 else:
                     self._api = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
+                    self._api_lock = asyncio.Lock()
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {
+                            "tuyadevice": self._api,
+                            "tuyadevicelock": self._api_lock,
+                        }
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
-                type(e),
+                type(e).__name__,
                 e,
                 dev_id,
             )
@@ -147,7 +170,8 @@ class TuyaLocalDevice(object):
     @property
     def has_returned_state(self):
         """Return True if the device has returned some state."""
-        return len(self._get_cached_state()) > 1
+        cached = self._get_cached_state()
+        return len(cached) > 1 or cached.get("updated_at", 0) > 0
 
     @callback
     def actually_start(self, event=None):
@@ -178,6 +202,9 @@ class TuyaLocalDevice(object):
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:
+            self._api.set_socketPersistent(False)
+            if self._api.parent:
+                self._api.parent.set_socketPersistent(False)
             await self._refresh_task
         _LOGGER.debug("Monitor loop for %s stopped", self.name)
         self._refresh_task = None
@@ -244,6 +271,9 @@ class TuyaLocalDevice(object):
             _LOGGER.exception(
                 "%s receive loop terminated by exception %s", self.name, t
             )
+            self._api.set_socketPersistent(False)
+            if self._api.parent:
+                self._api.parent.set_socketPersistent(False)
 
     @property
     def should_poll(self):
@@ -251,6 +281,9 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
+        self._api.set_socketPersistent(False)
+        if self._api.parent:
+            self._api.parent.set_socketPersistent(False)
 
     def resume(self):
         self._temporary_poll = False
@@ -269,7 +302,10 @@ class TuyaLocalDevice(object):
             self._api.parent.set_socketPersistent(persist)
 
         while self._running:
+            error_count = self._api_working_protocol_failures
+            force_backoff = False
             try:
+                await self._api_lock.acquire()
                 last_cache = self._cached_state.get("updated_at", 0)
                 now = time()
                 full_poll = False
@@ -286,7 +322,10 @@ class TuyaLocalDevice(object):
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
 
-                if now - last_cache > self._CACHE_TIMEOUT:
+                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
+                if now - last_cache > self._CACHE_TIMEOUT or (
+                    persist and needs_full_poll
+                ):
                     if (
                         self._force_dps
                         and not dps_updated
@@ -304,6 +343,7 @@ class TuyaLocalDevice(object):
                         )
                         dps_updated = False
                         full_poll = True
+                    self._last_full_poll = now
                 elif persist:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,
@@ -313,16 +353,24 @@ class TuyaLocalDevice(object):
                         self._api.receive,
                     )
                 else:
-                    await asyncio.sleep(5)
+                    force_backoff = True
                     poll = None
 
                 if poll:
                     if "Error" in poll:
-                        _LOGGER.warning(
-                            "%s error reading: %s", self.name, poll["Error"]
-                        )
+                        # increment the error count if not done already
+                        if error_count == self._api_working_protocol_failures:
+                            self._api_working_protocol_failures += 1
+                        if self._api_working_protocol_failures == 1:
+                            _LOGGER.warning(
+                                "%s error reading: %s", self.name, poll["Error"]
+                            )
+                        else:
+                            _LOGGER.debug(
+                                "%s error reading: %s", self.name, poll["Error"]
+                            )
                         if "Payload" in poll and poll["Payload"]:
-                            _LOGGER.info(
+                            _LOGGER.debug(
                                 "%s err payload: %s",
                                 self.name,
                                 poll["Payload"],
@@ -332,8 +380,6 @@ class TuyaLocalDevice(object):
                             poll = poll["dps"]
                         poll["full_poll"] = full_poll
                         yield poll
-
-                await asyncio.sleep(0.1 if self.has_returned_state else 5)
 
             except CancelledError:
                 self._running = False
@@ -346,15 +392,27 @@ class TuyaLocalDevice(object):
                 _LOGGER.exception(
                     "%s receive loop error %s:%s",
                     self.name,
-                    type(t),
+                    type(t).__name__,
                     t,
                 )
-                await asyncio.sleep(5)
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
+                force_backoff = True
+            finally:
+                if self._api_lock.locked():
+                    self._api_lock.release()
+            if not self.has_returned_state:
+                force_backoff = True
+            await asyncio.sleep(5 if force_backoff else 0.1)
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
+
+    def set_detected_product_id(self, product_id):
+        self._product_ids.append(product_id)
 
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
@@ -364,24 +422,35 @@ class TuyaLocalDevice(object):
             # devices have dp 1. Lights generally start from 20.  101 is where
             # vendor specific dps start.  Between them, these three should cover
             # most devices.  148 covers a doorbell device that didn't have these
-            self._api.set_dpsUsed({"1": None, "20": None, "101": None, "148": None})
+            # 201 covers remote controllers and 2 and 9 cover others without 1
+            self._api.set_dpsUsed(
+                {
+                    "1": None,
+                    "2": None,
+                    "9": None,
+                    "20": None,
+                    "60": None,
+                    "101": None,
+                    "148": None,
+                    "201": None,
+                }
+            )
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        possible = await self._hass.async_add_executor_job(
-            possible_matches,
+        return await self._hass.async_add_executor_job(
+            _collect_possible_matches,
             cached_state,
+            self._product_ids,
         )
-        for match in possible:
-            await asyncio.sleep(0)
-            yield match
 
     async def async_inferred_type(self):
         best_match = None
         best_quality = 0
         cached_state = self._get_cached_state()
-        async for config in self.async_possible_types():
-            quality = config.match_quality(cached_state)
+        possible = await self.async_possible_types()
+        for config in possible:
+            quality = config.match_quality(cached_state, self._product_ids)
             _LOGGER.info(
                 "%s considering %s with quality %s",
                 self.name,
@@ -403,7 +472,7 @@ class TuyaLocalDevice(object):
 
     async def async_refresh(self):
         _LOGGER.debug("Refreshing device state for %s", self.name)
-        if self.should_poll:
+        if not self._running:
             await self._retry_on_failed_connection(
                 lambda: self._refresh_cached_state(),
                 f"Failed to refresh device state for {self.name}.",
@@ -431,10 +500,11 @@ class TuyaLocalDevice(object):
         self._cached_state = {"updated_at": 0}
         self._pending_updates = {}
         self._last_connection = 0
+        self._last_full_poll = 0
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state:
+        if new_state and "Err" not in new_state:
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
             for entity in self._children:
@@ -449,16 +519,25 @@ class TuyaLocalDevice(object):
             log_json(new_state),
         )
         if "Err" in new_state:
-            _LOGGER.warning(
-                "%s protocol error %s: %s",
-                self.name,
-                new_state.get("Err"),
-                new_state.get("Error", "message not provided"),
-            )
+            if self._api_working_protocol_failures == 1:
+                _LOGGER.warning(
+                    "%s protocol error %s: %s",
+                    self.name,
+                    new_state.get("Err"),
+                    new_state.get("Error", "message not provided"),
+                )
+            else:
+                _LOGGER.debug(
+                    "%s protocol error %s: %s",
+                    self.name,
+                    new_state.get("Err"),
+                    new_state.get("Error", "message not provided"),
+                )
         _LOGGER.debug(
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
         )
+        return new_state
 
     async def async_set_properties(self, properties):
         if len(properties) == 0:
@@ -500,7 +579,7 @@ class TuyaLocalDevice(object):
         # Only delay a second if there was recently another command.
         # Otherwise delay 1ms, to keep things simple by reusing the
         # same send mechanism.
-        waittime = 1 if since < 1.1 else 0.001
+        waittime = 1 if since < 1.1 and self.should_poll else 0.001
 
         await asyncio.sleep(waittime)
         await self._send_pending_updates()
@@ -557,7 +636,7 @@ class TuyaLocalDevice(object):
             except Exception as e:
                 _LOGGER.debug(
                     "Retrying after exception %s %s (%d/%d)",
-                    type(e),
+                    type(e).__name__,
                     e,
                     i,
                     connections,
@@ -571,9 +650,12 @@ class TuyaLocalDevice(object):
                         > self._AUTO_FAILURE_RESET_COUNT
                     ):
                         self._api_protocol_working = False
-                    for entity in self._children:
-                        entity.async_schedule_update_ha_state()
-                    _LOGGER.error(error_message)
+                        for entity in self._children:
+                            entity.async_schedule_update_ha_state()
+                    if self._api_working_protocol_failures == 1:
+                        _LOGGER.error(error_message)
+                    else:
+                        _LOGGER.debug(error_message)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
@@ -626,11 +708,18 @@ class TuyaLocalDevice(object):
             self._api_protocol_version_index = 0
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
-        _LOGGER.info(
+        _LOGGER.debug(
             "Setting protocol version for %s to %0.1f",
             self.name,
             new_version,
         )
+        # Only enable tinytuya's auto-detect when using 3.22
+        if new_version == 3.22:
+            new_version = 3.3
+            self._api.disabledetect = False
+        else:
+            self._api.disabledetect = True
+
         await self._hass.async_add_executor_job(
             self._api.set_version,
             new_version,
@@ -666,6 +755,7 @@ def setup_device(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN][get_device_id(config)] = {
         "device": device,
         "tuyadevice": device._api,
+        "tuyadevicelock": device._api_lock,
     }
 
     return device
@@ -677,3 +767,4 @@ async def async_delete_device(hass: HomeAssistant, config: dict):
     await hass.data[DOMAIN][device_id]["device"].async_stop()
     del hass.data[DOMAIN][device_id]["device"]
     del hass.data[DOMAIN][device_id]["tuyadevice"]
+    del hass.data[DOMAIN][device_id]["tuyadevicelock"]

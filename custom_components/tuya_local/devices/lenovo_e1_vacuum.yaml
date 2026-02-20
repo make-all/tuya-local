@@ -1,120 +1,101 @@
-name: Lenovo E1 vacuum
+name: Robot vacuum
 products:
   - id: lec6zthbnidtvk2g
-    name: Lenovo E1
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 17
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 1
-          value: cliff
-        - dps_val: 2
-          value: impact
-        - dps_val: 4
-          value: wheel
-        - dps_val: 8
-          value: brush
-        - dps_val: 16
-          value: fan
-        - dps_val: 32
-          value: roller_brush
-        - dps_val: 64
-          value: low_power
-        - dps_val: 128
-          value: give_up
-        - dps_val: 256
-          value: no_dust
-        - dps_val: 512
-          value: none
-    - id: 101
-      type: string
-      name: status
-      mapping:
-        - dps_val: SLEEP
-          value: standby
-        - dps_val: HALTING
-          value: halting
-        - dps_val: CLEANING
-          value: cleaning
-        - dps_val: CLEAN_COMP
-          value: cleaning_complete
-        - dps_val: FIND_STA
-          value: returning
-        - dps_val: CHARGING_STA
-          value: charging
-        - dps_val: CHARGING_DC
-          value: charging
-        - dps_val: CHARG_COMP
-          value: standby
-    - id: 102
-      type: string
-      name: command
-      mapping:
-        - dps_val: clean_auto
-          value: auto
-        - dps_val: clean_random
-          value: random
-        - dps_val: clean_wall
-          value: wall_follow
-        - dps_val: clean_spot
-          value: clean_spot
-        - dps_val: clean_sroom
-          value: clean_room
-        - dps_val: find_sta
-          value: return_to_base
-        - dps_val: "null"
-          value: unknown
-    - id: 104
-      type: string
-      name: fan
-      mapping:
-        - dps_val: FANHALTING
-          value: low
-        - dps_val: FANNORAM
-          value: mid
-        - dps_val: FANMAX
-          value: high
-    - id: 105
-      type: string
-      name: direction_control
-      mapping:
-        - dps_val: MoveForward
-          value: forward
-        - dps_val: MoveBackward
-          value: backward
-        - dps_val: MoveLeft
-          value: left
-        - dps_val: MoveRight
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 112
-      type: string
-      name: activate
-      mapping:
-        - dps_val: "0"
-          value: false
-        - dps_val: "1"
-          value: true
-    - id: 116
-      type: boolean
-      name: locate
-      optional: true
-    - id: 118
-      type: integer
-      name: model
-    - id: 119
-      type: integer
-      name: data_sample
-secondary_entities:
+    manufacturer: Lenovo
+    model: E1
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 17
+        type: bitfield
+        name: error
+        hidden: true
+      - id: 101
+        type: string
+        name: status
+        mapping:
+          - dps_val: SLEEP
+            value: standby
+          - dps_val: HALTING
+            value: halting
+          - dps_val: CLEANING
+            value: cleaning
+          - dps_val: CLEAN_COMP
+            value: cleaning_complete
+          - dps_val: FIND_STA
+            value: returning
+          - dps_val: CHARGING_STA
+            value: charging
+          - dps_val: CHARGING_DC
+            value: charging
+          - dps_val: CHARG_COMP
+            value: standby
+      - id: 102
+        type: string
+        name: command
+        mapping:
+          - dps_val: clean_auto
+            value: auto
+          - dps_val: clean_random
+            value: random
+          - dps_val: clean_wall
+            value: wall_follow
+          - dps_val: clean_spot
+            value: clean_spot
+          - dps_val: clean_sroom
+            value: clean_room
+          - dps_val: find_sta
+            value: return_to_base
+          - dps_val: "null"
+            value: unknown
+      - id: 104
+        type: string
+        name: fan
+        mapping:
+          - dps_val: FANHALTING
+            value: low
+          - dps_val: FANNORAM
+            value: mid
+          - dps_val: FANMAX
+            value: high
+      - id: 105
+        type: string
+        name: direction_control
+        mapping:
+          - dps_val: MoveForward
+            value: forward
+          - dps_val: MoveBackward
+            value: backward
+          - dps_val: MoveLeft
+            value: left
+          - dps_val: MoveRight
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 112
+        type: string
+        name: activate
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+      - id: 116
+        type: boolean
+        name: locate
+        optional: true
+      - id: 118
+        type: integer
+        name: model
+      - id: 119
+        type: integer
+        name: data_sample
   - entity: sensor
     name: Clean area
+    class: area
     category: diagnostic
     dps:
       - id: 14
@@ -226,3 +207,43 @@ secondary_entities:
             value: high
           - dps_val: water_auto
             value: auto
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 17
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 17
+        type: bitfield
+        name: fault_code
+      - id: 17
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: cliff
+          - dps_val: 2
+            value: impact
+          - dps_val: 4
+            value: wheel
+          - dps_val: 8
+            value: brush
+          - dps_val: 16
+            value: fan
+          - dps_val: 32
+            value: roller_brush
+          - dps_val: 64
+            value: low_power
+          - dps_val: 128
+            value: give_up
+          - dps_val: 256
+            value: no_dust
+          - dps_val: 512
+            value: none

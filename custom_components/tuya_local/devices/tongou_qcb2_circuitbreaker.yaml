@@ -1,15 +1,15 @@
 name: Circuit breaker
 products:
   - id: a0k7kwt5wkqdswnm
-    name: Tongou QCB2-WB
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Tongou
+    model: QCB2-WB 63A
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
   - entity: sensor
     class: energy
     dps:
@@ -21,7 +21,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -31,11 +33,13 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -45,11 +49,13 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -59,11 +65,13 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -73,11 +81,13 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -87,11 +97,13 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -101,11 +113,13 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -115,11 +129,13 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -129,11 +145,13 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -143,11 +161,13 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: select
-    name: Overvoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
     category: config
     dps:
       - id: 102
@@ -155,16 +175,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Undervoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 103
@@ -172,16 +191,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overcurrent action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overcurrent
     category: config
     dps:
       - id: 104
@@ -189,16 +207,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overpower action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overpower
     category: config
     dps:
       - id: 105
@@ -206,16 +223,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Temperature action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Temperature
     category: config
     dps:
       - id: 107
@@ -223,14 +239,33 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Earth leakage
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+      - id: 117
+        type: integer
+        optional: true
+        name: threshold
+        # if range and scaling known, can be made a number entity
   - entity: switch
     category: config
     name: Live updates
@@ -251,6 +286,7 @@ secondary_entities:
       - id: 110
         name: event
         type: string
+        optional: true
         mapping:
           - dps_val: Normal
             value: Normal
@@ -303,9 +339,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 113
         type: boolean
@@ -453,12 +489,13 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Temperature Neutral
+    name: Temperature neutral
     class: temperature
     category: diagnostic
     dps:
       - id: 134
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement

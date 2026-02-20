@@ -1,97 +1,99 @@
 name: Air conditioner
 products:
   - id: zhmv8syot6ye4kjo
-    name: Duux Blizzard
+    manufacturer: Duux
+    model: Blizzard Smart
   - id: 1wfuo7w1yoejmgbn
-    name: Klarstein Kraftwerk Smart
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: cool
-              value: cool
-            - dps_val: dry
-              value: dry
-            - dps_val: fan
-              value: fan_only
-            - dps_val: heat
-              value: heat
-              available: heat_available
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
-    - id: 3
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: low
-          value: low
-        - dps_val: mid
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 5
-      type: integer
-      name: temperature
-      optional: true
-      range:
-        min: 18
-        max: 32
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_set_f
-              range:
-                min: 64
-                max: 90
-    - id: 8
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: true
-              value_redirect: temp_current_f
-    - id: 10
-      type: integer
-      name: temp_set_f
-      optional: true
-      hidden: true
-      range:
-        min: 64
-        max: 90
-    - id: 11
-      type: integer
-      name: temp_current_f
-      hidden: true
-      optional: true
-    - id: 13
-      type: boolean
-      name: heat_available
-    - id: 14
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: false
-          value: C
-        - dps_val: true
-          value: F
-secondary_entities:
+    manufacturer: Klarstein
+    model: Kraftwerk Smart
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: cool
+                value: cool
+              - dps_val: dry
+                value: dry
+              - dps_val: fan
+                value: fan_only
+              - dps_val: heat
+                value: heat
+                available: heat_available
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 5
+        type: integer
+        name: temperature
+        optional: true
+        range:
+          min: 18
+          max: 32
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_set_f
+                range:
+                  min: 64
+                  max: 90
+      - id: 8
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                value_redirect: temp_current_f
+      - id: 10
+        type: integer
+        name: temp_set_f
+        optional: true
+        hidden: true
+        range:
+          min: 64
+          max: 90
+      - id: 11
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
+      - id: 13
+        type: boolean
+        name: heat_available
+      - id: 14
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
   - entity: number
     translation_key: timer
     category: config
+    class: duration
     dps:
       - id: 4
         name: value
@@ -110,6 +112,7 @@ secondary_entities:
   - entity: switch
     translation_key: ionizer
     category: config
+    hidden: unavailable
     dps:
       - id: 7
         type: boolean

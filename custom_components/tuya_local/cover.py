@@ -15,9 +15,9 @@ from homeassistant.util.percentage import (
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -112,7 +112,8 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
-            return self._state_to_percent(state)
+            if state is not None:
+                return self._state_to_percent(state)
 
         if self._position_dp:
             pos = self._position_dp.get_value(self._device)

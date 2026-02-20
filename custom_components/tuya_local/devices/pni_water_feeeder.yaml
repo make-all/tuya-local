@@ -1,15 +1,15 @@
 name: Water feeder
 products:
   - id: ajkayo9kucq6vttv
-    name: PNI TA-WF-SMART(UV)
-primary_entity:
-  entity: switch
-  icon: "mdi:paw"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: PNI
+    model: TA-WF-SMART(UV)
+entities:
+  - entity: switch
+    icon: "mdi:paw"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: uv_sterilization
     category: config

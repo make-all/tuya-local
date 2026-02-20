@@ -1,75 +1,67 @@
-name: Inventor Atomsphere XL dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 110
-      type: string
-      name: switch
-      mapping:
-        - dps_val: "air_purifier"
-          value: false
-        - dps_val: "dehumi_air"
-          value: true
-          constraint: main_switch
-          conditions:
-            - dps_val: false
-              invalid: true
-    - id: 1
-      name: main_switch
-      type: boolean
-    - id: 3
-      type: string
-      name: humidity
-      range:
-        min: 0
-        max: 80
-      mapping:
-        - dps_val: "CO"
-          value: 0
-        - dps_val: "40"
-          value: 40
-        - dps_val: "45"
-          value: 45
-        - dps_val: "50"
-          value: 50
-        - dps_val: "55"
-          value: 55
-        - dps_val: "60"
-          value: 60
-        - dps_val: "65"
-          value: 65
-        - dps_val: "70"
-          value: 70
-        - dps_val: "75"
-          value: 75
-        - dps_val: "80"
-          value: 80
-    - id: 5
-      type: string
-      name: mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: manual
-          value: normal
-        - dps_val: drying
-          value: laundry
-        - dps_val: night
-          value: sleep
-    - id: 6
-      type: integer
-      name: current_humidity
-    - id: 19
-      type: bitfield
-      name: error_code
-      # The following do not have descriptions in iot.tuya.com, the names
-      # though can be obtained from the debugger.  But functionality needs
-      # to be confirmed before making them separate entities
-    - id: 105
-      type: string
-      name: air_purifier
-secondary_entities:
+name: Dehumidifier
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Inventor
+#     model: Atmosphere XL
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 110
+        type: string
+        name: switch
+      - id: 1
+        name: available
+        type: boolean
+      - id: 3
+        type: string
+        name: humidity
+        range:
+          min: 0
+          max: 80
+        mapping:
+          - dps_val: "CO"
+            value: 0
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: normal
+          - dps_val: drying
+            value: laundry
+          - dps_val: night
+            value: sleep
+      - id: 6
+        type: integer
+        name: current_humidity
+        # The following do not have descriptions in iot.tuya.com, the names
+        # though can be obtained from the debugger.  But functionality needs
+        # to be confirmed before making them separate entities
+      - id: 105
+        type: string
+        name: air_purifier
   - entity: fan
     dps:
       - id: 1
@@ -233,6 +225,9 @@ secondary_entities:
             value: true
           # no error / P1/P2/Replace_Hepa (covered by individual sensors)
           - value: false
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     class: problem
     name: HEPA filter replacement
@@ -301,8 +296,7 @@ secondary_entities:
             value: "On"
   - entity: sensor
     category: diagnostic
-    name: Air quality
-    icon: "mdi:weather-dust"
+    translation_key: air_quality
     dps:
       - id: 108
         type: string

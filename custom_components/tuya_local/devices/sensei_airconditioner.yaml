@@ -1,119 +1,118 @@
 name: Air conditioner
 products:
   - id: f3goccgfj6qino4c
-    name: Sensei Air Conditioner
-primary_entity:
-  entity: climate
-  translation_key: aircon_extra
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wet
-              value: dry
-            - dps_val: heat
-              value: heat
-            - dps_val: fan
-              value: fan_only
-            - dps_val: null
-              value: "off"
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 160
-        max: 320
-      mapping:
-        - scale: 10
-          step: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 600
-                max: 900
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-          constraint: temperature_unit
-          conditions:
-            - dps_val: f
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-      optional: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: mute
-          value: quiet
-        - dps_val: low
-          value: low
-        - dps_val: low_mid
-          value: medlow
-        - dps_val: mid
-          value: medium
-        - dps_val: mid_high
-          value: medhigh
-        - dps_val: high
-          value: high
-        - dps_val: turbo
-          value: strong
-    - id: 8
-      type: boolean
-      optional: true
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 15
-      name: swing_mode
-      type: string
-      mapping:
-        - dps_val: un_down
-          value: vertical
-        - dps_val: left_right
-          value: horizontal
-        - dps_val: all
-          value: both
-        - dps_val: "off"
-          value: "off"
-    - id: 105
-      name: temperature_unit
-      type: string
-      optional: true
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 112
-      name: model
-      type: string
-    - id: 114
-      name: current_mode
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Sensei
+entities:
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wet
+                value: dry
+              - dps_val: heat
+                value: heat
+              - dps_val: fan
+                value: fan_only
+              - dps_val: null
+                value: "off"
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 160
+          max: 320
+        mapping:
+          - scale: 10
+            step: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 600
+                  max: 900
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+        optional: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: mute
+            value: quiet
+          - dps_val: low
+            value: low
+          - dps_val: low_mid
+            value: medlow
+          - dps_val: mid
+            value: medium
+          - dps_val: mid_high
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: turbo
+            value: strong
+      - id: 8
+        type: boolean
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 15
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: un_down
+            value: vertical
+          - dps_val: left_right
+            value: horizontal
+          - dps_val: all
+            value: both
+          - dps_val: "off"
+            value: "off"
+      - id: 105
+        name: temperature_unit
+        type: string
+        optional: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 112
+        name: model
+        type: string
+      - id: 114
+        name: current_mode
+        type: string
+        optional: true
   - entity: switch
     name: Wet
     icon: "mdi:hvac"
@@ -242,6 +241,7 @@ secondary_entities:
     dps:
       - id: 105
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: c

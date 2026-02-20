@@ -1,142 +1,126 @@
 name: Robot vacuum
 products:
   - id: 1bgkj0zbhbw7fppy
-    name: Kogan LX8
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 101
-      name: activate  # clean_switch
-      type: boolean
-    - id: 102
-      name: command  # pause_switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: pause
-        - dps_val: false
-          constraint: clean_mode
-          conditions:
-            - dps_val: smart
-              value: smart
-            - dps_val: pose
-              value: clean_spot
-            - dps_val: zone
-              value: zone
-            - dps_val: backcharge
-              value: return_to_base
-    - id: 104
-      name: clean_mode
-      type: string
-      optional: true
-    - id: 105
-      name: status  # robot_state
-      type: string
-      mapping:
-        - dps_val: idle
-          value: standby
-        - dps_val: pointing\areaing
-          value: pointing_areaing
-        - dps_val: totaling
-          value: cleaning
-        - dps_val: sweep
-          value: sweep
-        - dps_val: mop
-          value: mop
-        - dps_val: fault
-          value: error
-        - dps_val: pause
-          value: paused
-        - dps_val: chargring
-          value: charging
-        - dps_val: tocharge
-          value: returning
-        - dps_val: fullcharge
-          value: charged
-        - dps_val: remotectl
-          value: remotectl
-    - id: 109
-      name: fan_speed  # fan_mode
-      type: string
-      mapping:
-        - dps_val: quiet
-          value: quiet
-        - dps_val: strong
-          value: strong
-        - dps_val: standard
-          value: standard
-    - id: 111
-      name: direction_control  # remote_ctrl
-      optional: true
-      type: string
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: backward
-        - dps_val: left
-          value: left
-        - dps_val: right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 112
-      name: locate  # seek_robot
-      optional: true
-      type: boolean
-    - id: 122
-      name: error  # robot_fault
-      type: bitfield
-      mapping:
-        - dps_val: 2
-          value: Battery low
-        - dps_val: 32
-          value: Drop sensor abnormal
-        - dps_val: 4096
-          value: Abnormal main brush
-        - dps_val: 524288
-          value: Machine trapped
-        - dps_val: 1048576
-          value: Was picked up at work
-        - dps_val: 33554432
-          value: Recharge failed
-    - id: 123
-      name: path_comm
-      optional: true
-      type: string
-    - id: 124
-      name: cmd_comm
-      optional: true
-      type: string
-    - id: 125
-      name: request_data
-      optional: true
-      type: string
-    - id: 126
-      name: comm_flag
-      optional: true
-      type: string
-    - id: 127
-      name: comm_raw
-      optional: true
-      type: string
-    - id: 128
-      name: message_report
-      optional: true
-      type: string
-    - id: 130
-      name: sn
-      optional: true
-      type: string
-    - id: 131
-      name: uuid
-      optional: true
-      type: string
-    - id: 132
-      name: device_info
-      optional: true
-      type: string
-secondary_entities:
+    manufacturer: Kogan
+    model: LX8
+entities:
+  - entity: vacuum
+    dps:
+      - id: 101
+        name: activate  # clean_switch
+        type: boolean
+      - id: 102
+        name: command  # pause_switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: pause
+          - dps_val: false
+            constraint: clean_mode
+            conditions:
+              - dps_val: smart
+                value: smart
+              - dps_val: pose
+                value: clean_spot
+              - dps_val: zone
+                value: zone
+              - dps_val: backcharge
+                value: return_to_base
+      - id: 104
+        name: clean_mode
+        type: string
+        optional: true
+      - id: 105
+        name: status  # robot_state
+        type: string
+        mapping:
+          - dps_val: idle
+            value: standby
+          - dps_val: pointing\areaing
+            value: pointing_areaing
+          - dps_val: totaling
+            value: cleaning
+          - dps_val: sweep
+            value: sweep
+          - dps_val: mop
+            value: mop
+          - dps_val: fault
+            value: error
+          - dps_val: pause
+            value: paused
+          - dps_val: chargring
+            value: charging
+          - dps_val: tocharge
+            value: returning
+          - dps_val: fullcharge
+            value: charged
+          - dps_val: remotectl
+            value: remotectl
+      - id: 109
+        name: fan_speed  # fan_mode
+        type: string
+        mapping:
+          - dps_val: quiet
+            value: quiet
+          - dps_val: strong
+            value: strong
+          - dps_val: standard
+            value: standard
+      - id: 111
+        name: direction_control  # remote_ctrl
+        optional: true
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: left
+            value: left
+          - dps_val: right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 112
+        name: locate  # seek_robot
+        optional: true
+        type: boolean
+      - id: 123
+        name: path_comm
+        optional: true
+        type: string
+      - id: 124
+        name: cmd_comm
+        optional: true
+        type: string
+      - id: 125
+        name: request_data
+        optional: true
+        type: string
+      - id: 126
+        name: comm_flag
+        optional: true
+        type: string
+      - id: 127
+        name: comm_raw
+        optional: true
+        type: string
+      - id: 128
+        name: message_report
+        optional: true
+        type: string
+      - id: 130
+        name: sn
+        optional: true
+        type: string
+      - id: 131
+        name: uuid
+        optional: true
+        type: string
+      - id: 132
+        name: device_info
+        optional: true
+        type: string
   - entity: switch
     name: Charge switch
     category: config
@@ -165,13 +149,13 @@ secondary_entities:
         unit: s
   - entity: sensor
     name: Current clean area
+    class: area
     category: diagnostic
-    icon: "mdi:map-marker-distance"
     dps:
       - id: 108
         name: sensor
         type: integer
-        unit: m²
+        unit: m2
         optional: true
   - entity: select
     translation_key: mopping
@@ -191,18 +175,16 @@ secondary_entities:
             value: high
         optional: true
   - entity: switch
-    name: Disturb switch
+    translation_key: do_not_disturb
     category: config
-    icon: "mdi:bell-ring"
     dps:
       - id: 113
         name: switch
         type: boolean
         optional: true
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 114
         type: integer
@@ -247,9 +229,8 @@ secondary_entities:
           - dps_val: resetmainbrush
             value: true
   - entity: button
-    name: Reset filter
+    translation_key: filter_reset
     category: config
-    icon: "mdi:clock-outline"
     dps:
       - id: 115
         type: string
@@ -271,13 +252,13 @@ secondary_entities:
         optional: true
   - entity: sensor
     name: Total clean area
+    class: area
     category: diagnostic
-    icon: "mdi:map-marker-distance"
     dps:
       - id: 117
         name: sensor
         type: integer
-        unit: m²
+        unit: m2
         optional: true
   - entity: sensor
     name: Total clean count
@@ -311,10 +292,9 @@ secondary_entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Filter time
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 121
         name: sensor
@@ -330,3 +310,35 @@ secondary_entities:
         name: button
         optional: true
         type: boolean
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 122
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 122
+        type: bitfield
+        name: fault_code
+      - id: 122
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 2
+            value: Battery low
+          - dps_val: 32
+            value: Drop sensor abnormal
+          - dps_val: 4096
+            value: Abnormal main brush
+          - dps_val: 524288
+            value: Machine trapped
+          - dps_val: 1048576
+            value: Was picked up at work
+          - dps_val: 33554432
+            value: Recharge failed

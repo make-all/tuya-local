@@ -57,7 +57,13 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
             },
         )
         self.mark_secondary(
-            ["sensor_travel_time", "sensor_time_remaining", "select_timer"]
+            [
+                "sensor_travel_time",
+                "sensor_time_remaining",
+                "select_timer",
+                "select_direction",
+                "binary_sensor_problem",
+            ]
         )
 
     def test_device_class_is_blind(self):
@@ -76,11 +82,12 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def test_current_cover_position(self):
         self.dps[CURRENTPOS_DP] = 47
-        self.assertEqual(self.subject.current_cover_position, 47)
+        self.assertEqual(self.subject.current_cover_position, 53)
 
     def test_is_opening(self):
+        self.dps[COMMAND_DP] = "stop"
         self.dps[ACTION_DP] = "opening"
-        self.dps[CURRENTPOS_DP] = 100
+        self.dps[CURRENTPOS_DP] = 0
         self.assertFalse(self.subject.is_opening)
         self.dps[CURRENTPOS_DP] = 50
         self.assertTrue(self.subject.is_opening)
@@ -91,8 +98,9 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_opening)
 
     def test_is_closing(self):
+        self.dps[COMMAND_DP] = "stop"
         self.dps[ACTION_DP] = "closing"
-        self.dps[CURRENTPOS_DP] = 0
+        self.dps[CURRENTPOS_DP] = 100
         self.assertFalse(self.subject.is_closing)
         self.dps[CURRENTPOS_DP] = 50
         self.assertTrue(self.subject.is_closing)
@@ -103,13 +111,14 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_closing)
 
     def test_is_closed(self):
-        self.dps[CURRENTPOS_DP] = 100
-        self.assertFalse(self.subject.is_closed)
+        self.dps[COMMAND_DP] = "stop"
         self.dps[CURRENTPOS_DP] = 0
+        self.assertFalse(self.subject.is_closed)
+        self.dps[CURRENTPOS_DP] = 100
         self.assertTrue(self.subject.is_closed)
         self.dps[ACTION_DP] = "closing"
         self.dps[CURRENTPOS_DP] = None
-        self.assertTrue(self.subject.is_closed)
+        self.assertFalse(self.subject.is_closed)
 
     async def test_open_cover(self):
         async with assert_device_properties_set(
@@ -137,4 +146,4 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
             self.subject._device,
             {POSITION_DP: 23},
         ):
-            await self.subject.async_set_cover_position(23)
+            await self.subject.async_set_cover_position(77)

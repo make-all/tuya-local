@@ -1,32 +1,43 @@
 name: Motion sensor light
 products:
   - id: vwqnz1sn
-    name: Moes XZ-CGV3
-primary_entity:
-  entity: binary_sensor
-  name: Motion detected
-  class: motion
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: none
-          value: false
-        - dps_val: pir
-          value: true
-secondary_entities:
+    manufacturer: Moes
+    model: XZ-CGV3
+  - id: 3towulqd
+    model: ZG-204L
+entities:
+  - entity: binary_sensor
+    name: Motion detected
+    class: motion
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: pir
+            value: true
   - entity: sensor
     name: Current luminance
     class: illuminance
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 12
+        type: integer
+        optional: true
+        name: alt
+        hidden: true
   - entity: sensor
-    name: Battery Level
+    name: Battery level
     class: battery
     dps:
       - id: 4

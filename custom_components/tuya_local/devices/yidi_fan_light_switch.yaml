@@ -1,40 +1,35 @@
 name: Wall switch
 products:
   - id: 66urzkokqdufersv
-    name: NHZS Fan and light switch
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 100
-secondary_entities:
+    manufacturer: NHZS
+    name: Fan and light switch
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
   - entity: light
     dps:
       - id: 5
         type: boolean
         name: switch
-  - entity: number
-    name: Fan timer
+  - entity: time
     category: config
     translation_key: timer
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: second
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     category: config

@@ -1,76 +1,76 @@
-name: Fireplace
+name: Electric fireplace
 products:
   - id: bf773f569661709b88gzbb
-    name: Advanced Fires 1500 electric fireplace
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 16
-        max: 30
-      optional: true
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 32
-                max: 104
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: "OFF"
-          value: "off"
-        - dps_val: LOW
-          value: low
-        - dps_val: HIGH
-          value: high
-    - id: 19
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 20
-      name: temp_set_f
-      type: integer
-      hidden: true
-      optional: true
-      range:
-        min: 32
-        max: 104
-    - id: 21
-      name: temp_current_f
-      type: integer
-      hidden: true
-    - id: 108
-      name: weekly_schedule
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Advanced Fires
+    model: "1500"
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 30
+        optional: true
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 104
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: LOW
+            value: low
+          - dps_val: HIGH
+            value: high
+      - id: 19
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 20
+        name: temp_set_f
+        type: integer
+        hidden: true
+        optional: true
+        range:
+          min: 32
+          max: 104
+      - id: 21
+        name: temp_current_f
+        type: integer
+        hidden: true
+      - id: 108
+        name: weekly_schedule
+        type: string
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config

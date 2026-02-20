@@ -1,36 +1,36 @@
 name: Fan
 products:
   - id: t5nfkruajk3rl4fq
-    name: elinkSmart KH-SY2626
-primary_entity:
-  entity: fan
-  translation_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: fresh
-          value: fresh
-        - dps_val: nature
-          value: nature
-        - dps_val: smart
-          value: smart
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 15
-    - id: 5
-      type: boolean
-      name: oscillate
-secondary_entities:
+    manufacturer: elinkSmart
+    model: KH-SY2626
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+          - dps_val: smart
+            value: smart
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 15
+      - id: 5
+        type: boolean
+        name: oscillate
   - entity: light
     translation_key: display
     category: config

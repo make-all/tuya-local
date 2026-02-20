@@ -1,0 +1,303 @@
+name: Radiator thermostat
+products:
+  - id: rtrmfadk
+    manufacturer: Moes
+    model: TRV605/TRV606
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: heat
+          - dps_val: "off"
+            value: "off"
+            # Assumption - on ignores thermostat and stays on, so not
+            # really a climate setting, more an override
+          - dps_val: "on"
+            value: heat
+            hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 6
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: opened
+            value: heating
+          - value: idle
+      - id: 15
+        type: integer
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 16
+        type: integer
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 109
+        type: string
+        name: model
+      - id: 112
+        type: integer
+        name: software_version
+      - id: 114
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: comfort_mode
+            value: comfort
+          - dps_val: Eco_mode
+            value: eco
+  - entity: binary_sensor
+    class: window
+    dps:
+      - id: 7
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: opened
+            value: true
+          - value: false
+  - entity: switch
+    name: Window detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: lock
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+  - entity: number
+    translation_key: minimum_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 150
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: maximum_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 200
+          max: 350
+        mapping:
+          - scale: 10
+  - entity: text
+    name: Schedule 1
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 17
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 2
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 18
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 3
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 4
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 20
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 5
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 21
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 6
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 22
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Schedule 7
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 23
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: valve
+    class: water
+    name: Valve opening
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: valve
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: select
+    name: Motor strength
+    icon: "mdi:engine"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: strong
+            value: strong
+          - dps_val: middle
+            value: medium
+          - dps_val: weak
+            value: weak
+      - id: 116
+        type: string
+        name: data
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 111
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: high
+            value: 255
+          - dps_val: mid
+            value: 170
+          - dps_val: low
+            value: 85
+  - entity: select
+    name: Screen orientation
+    icon: "mdi:rotate-left-variant"
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: up
+            value: up
+          - dps_val: right
+            value: right
+          - dps_val: down
+            value: down
+          - dps_val: left
+            value: left
+  - entity: number
+    name: Eco hysteresis
+    category: config
+    icon: "mdi:thermometer-minus"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 5
+          max: 50
+        mapping:
+          - scale: 10

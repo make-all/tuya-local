@@ -1,27 +1,31 @@
 name: Pet feeder
 products:
   - id: p7it0r4vcqgluka8
-    name: iPettie W5
-primary_entity:
-  entity: number
-  name: Manual feed
-  icon: "mdi:paw"
-  dps:
-    - id: 3
-      type: integer
-      optional: true
-      name: value
-      unit: portions
-      range:
-        min: 1
-        max: 12
-    - id: 1
-      type: string
-      optional: true
-      name: meal_plan
-secondary_entities:
+    manufacturer: iPettie / Petlibro
+    model: W5 / PLAF101
+entities:
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: text
+    name: Meal plan
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        name: value
+        optional: true
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     icon: "mdi:paw"
     category: diagnostic
@@ -31,19 +35,19 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: no_food
-            value: "No food"
+            value: no_food
           - dps_val: error_ir
-            value: Jammed
+            value: jammed
           - dps_val: feed_timeout
-            value: Feed timeout
+            value: blocked
           - dps_val: feeding
-            value: Feeding
+            value: feeding
   - entity: button
-    name: Factory reset
-    class: restart
+    translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean
@@ -68,7 +72,7 @@ secondary_entities:
         type: bitfield
         name: description
         mapping:
-          - dps_val: 9
+          - dps_val: 0
             value: ok
           - dps_val: 1
             value: no_food

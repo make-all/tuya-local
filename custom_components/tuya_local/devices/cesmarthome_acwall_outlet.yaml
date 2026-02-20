@@ -1,0 +1,21 @@
+name: Wall outlet
+products:
+  - id: xca2lqfaztnmk5jh
+    manufacturer: CE Smart Home
+    model: LQ-2-W3
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 102
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400

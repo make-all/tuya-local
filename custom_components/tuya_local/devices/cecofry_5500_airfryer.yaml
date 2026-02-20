@@ -1,32 +1,32 @@
 name: Air fryer
 products:
   - id: xxwvfk9qrn56r4n6
-    name: Cecofry 5500 Connected
-primary_entity:
-  entity: switch
-  icon: "mdi:toaster-oven"
-  dps:
-    - id: 1
-      type: boolean
-      optional: true
-      name: switch
-    - id: 11
-      type: string
-      optional: true
-      name: multistep
-    - id: 22
-      type: string
-      optional: true
-      name: cloud_recipe_id
-    - id: 23
-      type: string
-      optional: true
-      name: cooking_history_id
-    - id: 101
-      type: string
-      optional: true
-      name: device_version
-secondary_entities:
+    manufacturer: Cecofry
+    model: "5500 Connected"
+entities:
+  - entity: switch
+    icon: "mdi:toaster-oven"
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: switch
+      - id: 11
+        type: string
+        optional: true
+        name: multistep
+      - id: 22
+        type: string
+        optional: true
+        name: cloud_recipe_id
+      - id: 23
+        type: string
+        optional: true
+        name: cooking_history_id
+      - id: 101
+        type: string
+        optional: true
+        name: device_version
   - entity: button
     name: Start
     icon: "mdi:play"
@@ -42,7 +42,6 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Mode
     translation_key: recipe
     dps:
       - id: 3
@@ -68,7 +67,7 @@ secondary_entities:
           - dps_val: none
             value: none
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     dps:
       - id: 5
@@ -76,33 +75,33 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: cooking
-            value: Cooking
+            value: cooking
           - dps_val: done
-            value: Done
+            value: done
           - dps_val: door_open
-            value: Door open
+            value: door_open
           - dps_val: 1_done
-            value: Done stage 1
+            value: done_stage_1
           - dps_val: 2_done
-            value: Done stage 2
+            value: done_stage_2
           - dps_val: 3_done
-            value: Done stage 3
+            value: done_stage_3
           - dps_val: 4_done
-            value: Done stage 4
+            value: done_stage_4
           - dps_val: 5_done
-            value: Done stage 5
+            value: done_stage_5
           - dps_val: 6_done
-            value: Done stage 6
+            value: done_stage_6
           - dps_val: 7_done
-            value: Done stage 7
+            value: done_stage_7
           - dps_val: 8_done
-            value: Done stage 8
+            value: done_stage_8
           - dps_val: 9_done
-            value: Done stage 9
+            value: done_stage_9
           - dps_val: 10_done
-            value: Done stage 10
+            value: done_stage_10
   - entity: number
     class: temperature
     dps:
@@ -118,6 +117,7 @@ secondary_entities:
   - entity: number
     name: Cooking time
     translation_key: timer
+    class: duration
     dps:
       - id: 9
         type: integer

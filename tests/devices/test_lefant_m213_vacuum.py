@@ -1,13 +1,9 @@
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.components.vacuum import (
-    STATE_CLEANING,
-    STATE_ERROR,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
+    VacuumActivity,
     VacuumEntityFeature,
 )
-from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
+from homeassistant.const import PERCENTAGE, UnitOfArea, UnitOfTime
 
 from ..const import LEFANT_M213_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -43,7 +39,8 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": AREA_DPS,
                     "name": "sensor_clean_area",
-                    "unit": AREA_SQUARE_METERS,
+                    "unit": UnitOfArea.SQUARE_METERS,
+                    "device_class": SensorDeviceClass.AREA,
                 },
                 {
                     "dps": TIME_DPS,
@@ -56,11 +53,13 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                     "name": "sensor_battery",
                     "unit": PERCENTAGE,
                     "device_class": SensorDeviceClass.BATTERY,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
             ],
         )
-        self.mark_secondary(["sensor_clean_area", "sensor_clean_time"])
+        self.mark_secondary(
+            ["sensor_clean_area", "sensor_clean_time", "binary_sensor_problem"]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -107,23 +106,23 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
         self.dps[STATUS_DPS] = "7"
         self.assertEqual(self.subject.status, "standby")
 
-    def test_state(self):
+    def test_activity(self):
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = True
         self.dps[ERROR_DPS] = 0
         self.dps[STATUS_DPS] = "4"
-        self.assertEqual(self.subject.state, STATE_RETURNING)
+        self.assertEqual(self.subject.activity, VacuumActivity.RETURNING)
         self.dps[STATUS_DPS] = "7"
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[STATUS_DPS] = "6"
-        self.assertEqual(self.subject.state, STATE_CLEANING)
+        self.assertEqual(self.subject.activity, VacuumActivity.CLEANING)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.state, STATE_PAUSED)
+        self.assertEqual(self.subject.activity, VacuumActivity.PAUSED)
         self.dps[ERROR_DPS] = 1
-        self.assertEqual(self.subject.state, STATE_ERROR)
+        self.assertEqual(self.subject.activity, VacuumActivity.ERROR)
 
     async def test_async_turn_on(self):
         async with assert_device_properties_set(

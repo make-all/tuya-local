@@ -2,12 +2,10 @@
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
-from homeassistant.const import PERCENTAGE, UnitOfTime
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
-from ..mixins.number import MultiNumberTests
 from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -20,7 +18,6 @@ ERROR_DPS = "108"
 
 class TestQotoSprinkler(
     BasicBinarySensorTests,
-    MultiNumberTests,
     MultiSensorTests,
     TuyaDeviceTestCase,
 ):
@@ -34,23 +31,6 @@ class TestQotoSprinkler(
             self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
-        )
-        self.setUpMultiNumber(
-            [
-                {
-                    "name": "number",
-                    "dps": TARGET_DPS,
-                    "max": 100,
-                    "step": 5,
-                    "unit": PERCENTAGE,
-                },
-                {
-                    "name": "number_timer",
-                    "dps": TIMER_DPS,
-                    "max": 86399,
-                    "unit": UnitOfTime.SECONDS,
-                },
-            ]
         )
         self.setUpMultiSensors(
             [
@@ -69,11 +49,10 @@ class TestQotoSprinkler(
         )
         self.mark_secondary(
             [
-                "number",
                 "binary_sensor_problem",
-                "number_timer",
                 "sensor_open",
                 "sensor_time_remaining",
+                "time_timer",
             ]
         )
 
@@ -124,3 +103,10 @@ class TestQotoSprinkler(
             {TARGET_DPS: 50},
         ):
             await self.subject.async_set_valve_position(50)
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

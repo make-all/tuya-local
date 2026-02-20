@@ -4,21 +4,21 @@
         "step": {
             "user": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "デバイスは手動で追加することも、Smart Life アプリを使用してクラウド支援で追加することもできます。",
+                "description": "デバイスは手動で追加することも、SmartLife アプリを使用してクラウド支援で追加することもできます。",
                 "data": {
                     "setup_mode": "セットアップの選択:"
                 }
             },
             "cloud": {
                 "title": "Tuyaにログイン",
-                "description": "Smart Life または Tuya Smart のユーザー コードを入力してください。\n\nこのコードは、Smart Life アプリまたは Tuya Smart アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
+                "description": "SmartLife または Tuya のユーザー コードを入力してください。\n\nこのコードは、SmartLife アプリまたは Tuya アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
                 "data": {
                     "user_code": "ユーザーコード:"
                 }
             },
             "scan": {
                 "title": "ログインを完了する",
-                "description": "Smart Life アプリまたは Tuya Smart アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
+                "description": "SmartLife アプリまたは Tuya アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
             },
             "choose_device": {
                 "title": "追加するデバイスを選択してください",
@@ -34,14 +34,14 @@
             },
             "local": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。]({device_details_url})",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
-                    "device_id": "デバイスID",
+                    "device_id": "デバイスID（デバイスがハブ経由で接続されている場合はハブのdevice_id）",
                     "local_key": "ローカルキー",
                     "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
                     "poll_only": "投票のみ (デバイスが動作しない場合)",
-                    "device_cid": "サブデバイスID (デバイスがハブ経由で接続されている場合)"
+                    "device_cid": "サブデバイスのnode_id又はuuid(デバイスがハブ経由で接続されている場合)"
                 }
             },
             "select_type": {
@@ -73,8 +73,9 @@
     "selector": {
         "setup_mode": {
             "options": {
-                "cloud": "Smart Life クラウド支援デバイスのセットアップ。",
-                "manual": "デバイスの接続情報を手動で提供します。"
+                "cloud": "SmartLife クラウド支援デバイスのセットアップ。",
+                "manual": "デバイスの接続情報を手動で提供します。",
+                "cloud_fresh_login": "SmartLife クラウド支援デバイスのセットアップ (新しいログイン)。"
             }
         }
     },
@@ -82,13 +83,12 @@
         "step": {
             "user": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。]({device_details_url})",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
                     "local_key": "ローカルキー",
                     "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
-                    "poll_only": "投票のみ (デバイスが動作しない場合)",
-                    "device_cid": "サブデバイスID (デバイスがハブ経由で接続されている場合)"
+                    "poll_only": "投票のみ (デバイスが動作しない場合)"
                 }
             }
         },
@@ -101,6 +101,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "方向",
+                "state": {
+                    "off": "入る",
+                    "on": "出る"
+                }
+            },
             "defrost": {
                 "name": "デフロスト",
                 "state": {
@@ -131,7 +138,7 @@
             },
             "casdon_oven_fault": {
                 "state_attributes": {
-                    "fault_message": {
+                    "description": {
                         "state": {
                             "e1": "E1: 過熱保護（290°Cを超える）",
                             "e2": "E2: 蒸発トレイ過熱保護（200°Cを超える）",
@@ -146,8 +153,17 @@
                 }
             }
         },
+        "button": {
+            "factory_reset": {
+                "name": "工場出荷時設定"
+            },
+            "filter_reset": {
+                "name": "フィルターのリセット"
+            }
+        },
         "climate": {
             "aircon_extra": {
+                "name": "エアコン",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -166,12 +182,33 @@
                             "top": "上",
                             "middle": "中",
                             "down": "下",
-                            "downmost": "最下"
+                            "downmost": "最下",
+                            "upper_half": "上半分",
+                            "lower_half": "下半分",
+                            "surround": "サラウンド"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "最左",
+                            "left": "左",
+                            "center": "中",
+                            "right": "右",
+                            "rightmost": "最右",
+                            "left_swing": "左スイング",
+                            "right_swing": "右スイング",
+                            "center_swing": "中央スイング",
+                            "surround": "サラウンド",
+                            "direct": "直接"
                         }
                     }
                 }
             },
+            "cold_water": {
+                "name": "冷水機"
+            },
             "thermostat": {
+                "name": "サーモスタット",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -202,6 +239,7 @@
                 }
             },
             "swing_as_powerlevel": {
+                "name": "ヒーター",
                 "state_attributes": {
                     "swing_mode": {
                         "name": "加熱レベル",
@@ -231,7 +269,21 @@
                 }
             },
             "heater": {
-                "name": "ヒーター"
+                "name": "ヒーター",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "低い",
+                            "medium": "中",
+                            "high": "高い",
+                            "program_1": "プログラム 1",
+                            "program_2": "プログラム 2",
+                            "program_3": "プログラム 3",
+                            "standby": "スタンバイ",
+                            "fan_only": "ファンのみ"
+                        }
+                    }
+                }
             },
             "thermo_switch": {
                 "state_attributes": {
@@ -275,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "洗濯乾燥",
-                            "purify": "浄化"
+                            "purify": "浄化",
+                            "continuous": "連続"
                         }
                     }
                 }
@@ -296,12 +349,25 @@
                             "medium": "中",
                             "high": "高い",
                             "continuous": "連続",
-                            "intermittent": "間欠"
+                            "intermittent": "間欠",
+                            "timer": "タイマー"
+                        }
+                    }
+                }
+            },
+            "dehumidifier": {
+                "name": "除湿器",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "浄化",
+                            "dehumidify": "除湿"
                         }
                     }
                 }
             },
             "fan_with_presets": {
+                "name": "ファン",
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
@@ -312,6 +378,10 @@
                             "fresh": "新鮮",
                             "smart": "スマート",
                             "strong": "強い",
+                            "custom": "カスタム",
+                            "auto": "自動",
+                            "manual": "マニュアル",
+                            "program": "プログラム",
                             "high": "高い",
                             "medium": "中",
                             "low": "低い",
@@ -330,8 +400,14 @@
                             "circulate": "循環",
                             "sleep": "スリープ",
                             "auto": "自動",
+                            "manual": "マニュアル",
                             "eco": "エコ",
-                            "anti-condensation": "結露防止"
+                            "anti-condensation": "結露防止",
+                            "extractor": "抽出",
+                            "heat_recovery": "熱回収",
+                            "timer": "タイマー",
+                            "on": "オン",
+                            "off": "オフ"
                         }
                     }
                 }
@@ -369,11 +445,57 @@
             }
         },
         "number": {
+            "manual_feed": {
+                "name": "手動給餌量"
+            },
+            "maximum_temperature": {
+                "name": "最大温度"
+            },
+            "minimum_temperature": {
+                "name": "最小温度"
+            },
+            "sensor_threshold": {
+                "name": "しきい値{sensor}"
+            },
+            "temperature_calibration": {
+                "name": "温度補正"
+            },
             "timer": {
                 "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
+            },
+            "volume": {
+                "name": "音量"
             }
         },
         "select": {
+            "currency": {
+                "name": "通貨",
+                "state": {
+                    "usd": "米ドル",
+                    "eur": "ユーロ",
+                    "cny": "人民元",
+                    "cad": "カナダドル",
+                    "gbp": "英国ポンド"
+                }
+            },
+            "heat_pump_mode": {
+                "name": "ヒートポンプモード",
+                "state": {
+                    "heat": "加熱",
+                    "cool": "冷却",
+                    "auto": "自動",
+                    "floor_heat": "床暖房",
+                    "off": "オフ",
+                    "hotwater": "給湯",
+                    "hotwater_cool": "給湯冷却",
+                    "hotwater_heat": "給湯加熱",
+                    "hotwater_auto": "給湯自動",
+                    "hotwater_floor_heat": "給湯床暖房"
+                }
+            },
             "initial_state": {
                 "name": "初期状態",
                 "state": {
@@ -382,12 +504,34 @@
                     "memory": "メモリ"
                 }
             },
+            "kettle_mode": {
+                "name": "ケトルモード",
+                "state": {
+                    "off": "オフ",
+                    "heat": "加熱",
+                    "boil": "沸騰",
+                    "quick_heat": "急速加熱",
+                    "quick_boil": "急速沸騰",
+                    "keep_warm": "保温",
+                    "custom": "カスタム",
+                    "dechlorinate": "脱塩素",
+                    "black_tea": "紅茶",
+                    "green_tea": "緑茶",
+                    "coffee": "コーヒー",
+                    "honey_water": "蜂蜜水",
+                    "infant_formula": "乳児用調製粉乳",
+                    "white_tea": "白茶",
+                    "oolong_tea": "烏龍茶",
+                    "water": "水"
+                }
+            },
             "language": {
                 "name": "言語",
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -397,7 +541,20 @@
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
-                    "turkish": "Türkçe"
+                    "turkish": "Türkçe",
+                    "polish": "Polski",
+                    "vietnamese": "Tiếng Việt"
+                }
+            },
+            "light_mode": {
+                "name": "ライトモード",
+                "state": {
+                    "off": "オフ",
+                    "on": "オン",
+                    "state": "状態",
+                    "locator": "ロケーター",
+                    "auto": "自動",
+                    "flash": "フラッシュ"
                 }
             },
             "mopping": {
@@ -405,6 +562,16 @@
                 "state": {
                     "off": "オフ",
                     "auto": "自動",
+                    "low": "低い",
+                    "medium": "中",
+                    "high": "高い",
+                    "very_high": "非常に高い"
+                }
+            },
+            "motion_sensitivity": {
+                "name": "モーション感度",
+                "state": {
+                    "off": "オフ",
                     "low": "低い",
                     "medium": "中",
                     "high": "高い"
@@ -429,6 +596,8 @@
                     "cake": "ケーキ",
                     "bread": "パン",
                     "toast": "トースト",
+                    "sausage": "ソーセージ",
+                    "dry_fruit": "ドライフルーツ",
                     "custom": "カスタム",
                     "cloud_recipe": "クラウドレシピ",
                     "default": "デフォルト",
@@ -436,14 +605,59 @@
                     "preheat": "予熱"
                 }
             },
+            "scene": {
+                "name": "シーン",
+                "state": {
+                    "relax": "リラックス",
+                    "movie": "映画",
+                    "party": "パーティ",
+                    "romantic": "ロマンチック",
+                    "night": "夜",
+                    "morning": "朝",
+                    "working": "作業",
+                    "leisure": "レジャー",
+                    "vacation": "休暇",
+                    "reading": "読書",
+                    "twinkle": "きらめき",
+                    "gaming": "ゲーム",
+                    "none": "なし"
+                }
+            },
             "timer": {
                 "name": "タイマー",
                 "state": {
                     "cancel": "キャンセル",
+                    "continuous": "連続",
+                    "15s": "15秒",
+                    "20s": "20秒",
+                    "30s": "30秒",
+                    "45s": "45秒",
+                    "1m": "1分",
+                    "2m": "2分",
+                    "3m": "3分",
+                    "5m": "5分",
                     "10m": "10分",
+                    "15m": "15分",
+                    "20m": "20分",
+                    "25m": "25分",
                     "30m": "30分",
+                    "35m": "35分",
+                    "40m": "40分",
+                    "45m": "45分",
+                    "50m": "50分",
+                    "55m": "55分",
                     "1h": "1時間",
+                    "1h5m": "1時間5分",
+                    "1h10m": "1時間10分",
+                    "1h15m": "1時間15分",
+                    "1h20m": "1時間20分",
+                    "1h25m": "1時間25分",
                     "1h30m": "1時間30分",
+                    "1h35m": "1時間35分",
+                    "1h40m": "1時間40分",
+                    "1h45m": "1時間45分",
+                    "1h50m": "1時間50分",
+                    "1h55m": "1時間55分",
                     "2h": "2時間",
                     "2h30m": "2時間30分",
                     "3h": "3時間",
@@ -477,7 +691,14 @@
                     "24h": "24時間",
                     "36h": "36時間",
                     "48h": "48時間",
-                    "72h": "72時間"
+                    "72h": "72時間",
+                    "1d": "1日",
+                    "2d": "2日",
+                    "3d": "3日",
+                    "4d": "4日",
+                    "5d": "5日",
+                    "6d": "6日",
+                    "7d": "7日"
                 }
             },
             "temperature_unit": {
@@ -485,6 +706,126 @@
                 "state": {
                     "celsius": "摂氏",
                     "fahrenheit": "華氏"
+                }
+            },
+            "breaker_trigger_action": {
+                "name": "アクション{trigger}",
+                "state": {
+                    "ignore": "無視",
+                    "alarm": "アラーム",
+                    "trip_breaker": "ブレーカーを落とす"
+                }
+            },
+            "mode": {
+                "name": "モード",
+                "state": {
+                    "auto": "自動",
+                    "manual": "手動",
+                    "off": "オフ",
+                    "low": "低い",
+                    "medium": "中",
+                    "high": "高い",
+                    "rapid_clean": "急速清掃",
+                    "schedule": "スケジュール"
+                }
+            },
+            "activation_mode": {
+                "name": "アクティベーションモード",
+                "state": {
+                    "normal": "普通",
+                    "smart": "スマート",
+                    "night": "夜",
+                    "motion": "モーション",
+                    "off": "オフ"
+                }
+            },
+            "bidet_mode": {
+                "name": "ビデモード",
+                "state": {
+                    "normal": "普通",
+                    "dry": "ドライ",
+                    "child": "子供"
+                }
+            },
+            "curtain_mode": {
+                "name": "カーテンモード",
+                "state": {
+                    "morning": "朝",
+                    "night": "夜"
+                }
+            },
+            "chlorination_mode": {
+                "name": "塩素消毒モード",
+                "state": {
+                    "inverter": "インバーター",
+                    "auto_ph": "自動PH",
+                    "smart": "スマート",
+                    "manual": "マニュアル"
+                }
+            },
+            "alarm_mode": {
+                "name": "アラームモード",
+                "state": {
+                    "sound": "サウンド",
+                    "light": "ライト",
+                    "sound_and_light": "サウンドとライト"
+                }
+            },
+            "air_mode": {
+                "name": "エアモード",
+                "state": {
+                    "dehumidify": "除湿",
+                    "purify": "浄化",
+                    "dehumidify_and_purify": "除湿と浄化"
+                }
+            },
+            "cleaning_mode": {
+                "name": "クリーニングモード",
+                "state": {
+                    "sweep": "掃く",
+                    "mop": "モップ",
+                    "sweep_and_mop": "掃きとモップ",
+                    "intensive": "集中的",
+                    "quiet": "静粛",
+                    "sweep_before_mopping": "モッピング前に掃く"
+                }
+            },
+            "washing_mode": {
+                "name": "洗濯モード",
+                "state": {
+                    "fruit": "フルーツ",
+                    "intensive": "集中的",
+                    "rapid": "急速",
+                    "eco": "エコ",
+                    "standard": "標準",
+                    "neutral": "中性",
+                    "90_minute": "90分",
+                    "glass": "ガラス",
+                    "auto": "自動",
+                    "soak": "浸す",
+                    "self_clean": "セルフクリーニング",
+                    "hygiene": "衛生",
+                    "party": "パーティ",
+                    "baby_care": "ベビーケア"
+                }
+            },
+            "menu": {
+                "name": "メニュー",
+                "state": {
+                    "home": "ホーム",
+                    "mode": "モード",
+                    "recode": "記録",
+                    "settings": "設定"
+                }
+            },
+            "charging_mode": {
+                "name": "充電モード",
+                "state": {
+                    "immediate": "即時",
+                    "charge_to_percent": "パーセントまで充電",
+                    "fixed_charge": "固定充電",
+                    "scheduled_charge": "予定された変更",
+                    "delayed_charge": "遅延充電"
                 }
             },
             "oven_built_in_recipe": {
@@ -525,8 +866,118 @@
             }
         },
         "sensor": {
+            "air_quality": {
+                "name": "空気品質",
+                "state": {
+                    "excellent": "優れている",
+                    "good": "良い",
+                    "moderate": "中程度",
+                    "poor": "悪い",
+                    "severe": "非常に悪い",
+                    "danger": "危険"
+                }
+            },
+            "status": {
+                "name": "ステータス",
+                "state": {
+                    "available": "利用可能",
+                    "plugged_in": "プラグイン",
+                    "fault_unplugged": "故障（プラグインされていない）",
+                    "charging": "充電中",
+                    "discharging": "放電中",
+                    "waiting": "待機中",
+                    "charged": "充電済み",
+                    "fault": "故障",
+                    "paused": "一時停止",
+                    "waiting_for_authorization": "承認待ち",
+                    "standby": "スタンバイ",
+                    "heating": "加熱中",
+                    "cooling": "冷却中",
+                    "keeping_warm": "保温中",
+                    "no_water": "水なし",
+                    "boiling": "沸騰中",
+                    "reserve_only": "予備のみ",
+                    "unknown": "不明",
+                    "idle": "アイドル",
+                    "auto": "自動",
+                    "manual": "手動",
+                    "rain_delay": "雨の遅れ",
+                    "off": "オフ",
+                    "on": "オン",
+                    "cooking": "調理中",
+                    "done": "完了",
+                    "door_open": "ドアが開いている",
+                    "setting": "設定中",
+                    "pre_heating": "予熱中",
+                    "scheduled": "予定",
+                    "at_temperature": "温度に達した",
+                    "done_stage_1": "ステージ1完了",
+                    "done_stage_2": "ステージ2完了",
+                    "done_stage_3": "ステージ3完了",
+                    "done_stage_4": "ステージ4完了",
+                    "done_stage_5": "ステージ5完了",
+                    "done_stage_6": "ステージ6完了",
+                    "done_stage_7": "ステージ7完了",
+                    "done_stage_8": "ステージ8完了",
+                    "done_stage_9": "ステージ9完了",
+                    "done_stage_10": "ステージ10完了",
+                    "no_food": "食べ物なし",
+                    "jammed": "ジャム",
+                    "blocked": "ブロック",
+                    "feeding": "給餌中",
+                    "feeding_complete": "給餌完了",
+                    "caking": "固化",
+                    "cleaning": "クリーニング",
+                    "sleep": "スリープ",
+                    "sterilizing": "殺菌",
+                    "deodorizing": "消臭",
+                    "occupied": "占有",
+                    "normal": "通常",
+                    "low": "低い",
+                    "high": "高い",
+                    "unwashed": "未洗浄",
+                    "pre_washing": "予洗い",
+                    "washing": "洗濯",
+                    "rinsing": "すすぎ",
+                    "drying": "乾燥",
+                    "air_purging": "空気清浄",
+                    "anti_freeze": "防凍",
+                    "close": "閉じる",
+                    "monitor": "モニター",
+                    "working": "作業中",
+                    "warning": "警告",
+                    "starting": "開始中",
+                    "emptying": "排出中",
+                    "resetting": "リセット中",
+                    "reverse": "逆",
+                    "full": "満杯",
+                    "empty": "空",
+                    "missing": "欠落",
+                    "formatting": "フォーマット中",
+                    "unformatted": "未フォーマット",
+                    "failed": "失敗",
+                    "replying": "返信中",
+                    "playback": "再生",
+                    "maintenance_required": "メンテナンス必要",
+                    "dry": "乾燥",
+                    "comfortable": "快適",
+                    "damp": "湿気",
+                    "smoothing": "平滑化",
+                    "cleaned": "清掃済み",
+                    "cold_water_unavailable": "冷水利用不可",
+                    "drain": "排水中",
+                    "drain_cold_water": "冷水を排水中",
+                    "drain_hot_water": "温水を排水中",
+                    "drain_normal_water": "通常の水を排水中",
+                    "high_temperature_emptying": "高温排出中",
+                    "high_temperature_emptied": "高温排出完了"
+                }
+            },
             "time_remaining": {
                 "name": "残り時間"
+            },
+            "time_remaining_x": {
+                "name": "残り時間{x}"
             },
             "cooking_status": {
                 "name": "調理状況",
@@ -538,14 +989,67 @@
                     "done": "調理完了",
                     "pause": "調理一時停止"
                 }
+            },
+            "water_level": {
+                "name": "水位",
+                "state": {
+                    "empty": "空",
+                    "medium": "中",
+                    "low": "低い",
+                    "high": "高い",
+                    "full": "満杯"
+                }
+            },
+            "energy_produced": {
+                "name": "発電量"
+            },
+            "energy_consumed": {
+                "name": "消費電力"
+            },
+            "energy_produced_x": {
+                "name": "発電量{x}"
+            },
+            "energy_consumed_x": {
+                "name": "消費電力{x}"
+            },
+            "current_x": {
+                "name": "電流{x}"
+            },
+            "voltage_x": {
+                "name": "電圧{x}"
+            },
+            "power_x": {
+                "name": "電力{x}"
+            },
+            "filter_life": {
+                "name": "フィルター寿命"
             }
         },
         "switch": {
             "anti_frost": {
                 "name": "霜防止"
             },
+            "auto_clean": {
+                "name": "自動クリーニング"
+            },
+            "auto_light": {
+                "name": "自動ライト"
+            },
+            "breaker": {
+                "name": "ブレーカー",
+                "state": {
+                    "off": "トリップ",
+                    "on": "リセット"
+                }
+            },
+            "do_not_disturb": {
+                "name": "邪魔しないでください"
+            },
             "evaporator_cleaning": {
                 "name": "エバポレーターの掃除"
+            },
+            "flip_image": {
+                "name": "画像を反転"
             },
             "ionizer": {
                 "name": "イオナイザー"
@@ -553,11 +1057,52 @@
             "keytone": {
                 "name": "キートーン"
             },
+            "outlet_x": {
+                "name": "コンセント{x}"
+            },
             "sleep": {
                 "name": "睡眠"
             },
+            "sound": {
+                "name": "サウンド"
+            },
+            "switch_x": {
+                "name": "スイッチ{x}"
+            },
+            "electrolytic_sterilization": {
+                "name": "電解殺菌"
+            },
             "uv_sterilization": {
                 "name": "紫外線殺菌"
+            }
+        },
+        "text": {
+            "scene": {
+                "name": "シーン"
+            }
+        },
+        "time": {
+            "timer": {
+                "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
+            }
+        },
+        "valve": {
+            "valve_x": {
+                "name": "バルブ{x}"
+            }
+        },
+        "water_heater": {
+            "water_air": {
+                "name": "給湯器"
+            },
+            "kettle": {
+                "name": "ケトル"
+            },
+            "hot_water": {
+                "name": "温水機"
             }
         }
     }

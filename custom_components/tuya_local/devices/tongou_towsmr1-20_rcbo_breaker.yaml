@@ -1,0 +1,415 @@
+name: Circuit breaker
+products:
+  - id: hktsllupwmoii1it
+    manufacturer: Tongou
+    model: tongou 20A Wi-Fi Smart Reclosing RCBO
+    model_id: TOSMR1-20JWTR
+entities:
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        force: true
+        optional: true
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        optional: true
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kW
+        class: measurement
+        force: true
+        optional: true
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Leakage
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: switch
+    translation_key: breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overcurrent
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overpower
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Temperature
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: select
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Leakage
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: ignore
+          - dps_val: Alarm
+            value: alarm
+          - dps_val: Trip
+            value: trip_breaker
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        force: true
+        optional: true
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Normal
+            value: normal
+          - dps_val: Over_Current_Trip
+            value: tripped_by_overcurrent
+          - dps_val: Over_Power_Trip
+            value: tripped_by_overpower
+          - dps_val: High_Temp_Trip
+            value: tripped_by_high_temperature
+          - dps_val: Over_Voltage_Trip
+            value: tripped_by_overvoltage
+          - dps_val: Undervoltage Trip
+            value: tripped_by_undervoltage
+          - dps_val: Over_Current_Alarm
+            value: overcurrent_alarm
+          - dps_val: Over_Power_Alarm
+            value: overpower_alarm
+          - dps_val: High_Temp_Alarm
+            value: high_temperature_alarm
+          - dps_val: Over_Voltage_Alarm
+            value: overvoltage_alarm
+          - dps_val: Under_Voltage_Alarm
+            value: undervoltage_alarm
+          - dps_val: Remote_ON
+            value: switched_on_remotely
+          - dps_val: Remote_OFF
+            value: switched_off_remotely
+          - dps_val: Manual_ON
+            value: switched_on_manually
+          - dps_val: Manual_OFF
+            value: switched_off_manually
+          - dps_val: Leakage_Trip
+            value: tripped_by_leakage
+          - dps_val: Leakage_Alarm
+            value: leakage_alarm
+          - dps_val: Restore_Default
+            value: resetting
+          - dps_val: Automatic_Closing
+            value: automatic_closing
+          - dps_val: Electricity_Shortage
+            value: prepaid_electricity_used
+          - dps_val: Timing_switch_ON
+            value: switched_on_by_timer
+          - dps_val: Timing_switch_OFF
+            value: switched_off_by_timer
+  - entity: switch
+    name: Overvoltage recloser
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Undervoltage recloser
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overcurrent
+    class: current
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 20
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overvoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 245
+          max: 295
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Undervoltage
+    class: voltage
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 145
+          max: 220
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Leakage
+    class: current
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: mA
+        range:
+          min: 30
+          max: 100
+        mapping:
+          - step: 5
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -250
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Overpower
+    class: power
+    category: config
+    mode: slider
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        precision: 0
+        mapping:
+          - step: 10
+        range:
+          min: 5
+          max: 24995
+        unit: W
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        range:
+          min: -999999999
+          max: 999999999
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 142
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: switch
+    name: Overcurrent recloser
+    category: config
+    dps:
+      - id: 143
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Leakage recloser
+    category: config
+    dps:
+      - id: 144
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Overpower recloser
+    category: config
+    dps:
+      - id: 145
+        type: boolean
+        name: switch

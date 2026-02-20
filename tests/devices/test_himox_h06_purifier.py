@@ -1,4 +1,3 @@
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTime
@@ -40,7 +39,6 @@ class TestHimoxH06Purifier(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
         self.setUpMultiSelect(
@@ -105,6 +103,7 @@ class TestHimoxH06Purifier(
     def test_speed(self):
         self.dps[SPEED_DPS] = "low"
         self.assertEqual(self.subject.percentage, 33)
+        self.assertEqual(type(self.subject.percentage), int)
 
     def test_speed_step(self):
         self.assertAlmostEqual(self.subject.percentage_step, 33, 0)

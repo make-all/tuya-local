@@ -1,0 +1,185 @@
+name: Pet feeder
+products:
+  - id: l0opxehxjnmzyree
+    manufacturer: Happy Llama Tech
+    model: SoCool
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+          - dps_val: last_meal
+            value: no_food
+      - id: 130
+        type: string
+        name: firmware_version
+      - id: 131
+        type: string
+        name: hardware_version
+      - id: 132
+        type: base64
+        optional: true
+        name: device_capabilities
+  - entity: sensor
+    translation_key: status
+    name: Food level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: enough
+            value: high
+          - dps_val: insufficient
+            value: low
+          - dps_val: run_out
+            value: empty
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 150
+        type: integer
+        name: error_code
+  - entity: sensor
+    name: Last feed
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Stainless steel inserts
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 111
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 10
+  - entity: button
+    name: Reset counter
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Counter enable
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: text
+    name: Quick feed command
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Manual defrost
+    category: config
+    icon: "mdi:snowflake-melt"
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        range:
+          min: -2147483647
+          max: 2147483647
+  - entity: sensor
+    name: Counter
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+  - entity: text
+    name: Logs
+    category: config
+    icon: "mdi:script-text"
+    hidden: true
+    dps:
+      - id: 151
+        type: base64
+        optional: true
+        name: value

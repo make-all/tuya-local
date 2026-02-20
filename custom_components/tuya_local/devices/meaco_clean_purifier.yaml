@@ -1,0 +1,134 @@
+name: Air purifier
+products:
+  - id: 4kqsufvuurljmryl
+    manufacturer: Meaco
+    model_id: Meaco76x5WiFi
+    model: Clean CA-HEPA 76x5
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: auto
+            value: auto
+          - dps_val: M
+            value: medium
+          - dps_val: H
+            value: high
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        name: button
+        type: boolean
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        name: option
+        type: string
+        mapping:
+          - dps_val: Cancel
+            value: cancel
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: mild
+            value: poor
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: moderate
+          - dps_val: severe
+            value: severe
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        name: switch
+        type: boolean
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: Close
+            value: 0
+          - dps_val: Soft
+            value: 128
+          - dps_val: Standard
+            value: 255

@@ -1,0 +1,118 @@
+name: Thermostat
+products:
+  - id: 9z20prc4jq1jb4im
+    manufacturer: Elechico
+    model: CCST6001
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: HEAT
+                value: heat
+                available: heating_available
+              - dps_val: FAN
+                value: fan_only
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: stop
+            value: idle
+          - dps_val: blowing
+            value: fan
+          - dps_val: heating
+            value: heating
+          - dps_val: cooling
+            value: cooling
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 28
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
+      - id: 101
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: programmable
+            value: program
+          - dps_val: jieneng
+            value: eco
+      - id: 102
+        type: string
+        name: heating_available
+        mapping:
+          - dps_val: cool
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+  # Each timer can set the 1st and 2nd bytes for time, and the 3rd
+  # and 4th bytes for temperature; 6 timers per "day";
+  # 3 "days": Mon-Fri, Sat, Sun
+  # defaults
+  # 06:00 20°C; 08:00 15°C; 11:30 15°C; 13:30 15°C; 17:00 22°C; 22:00 15°C;
+  # each section occupies 4 bytes, if the temperature has decimals,
+  # the data must be expanded 10 times, if it does not have decimals,
+  # it is transmitted normally, 06:00 35.0 is transmitted as 06 00 01 5e;
+  # 6*4*3=72 bytes encoded as base64
+  - entity: text
+    category: config
+    icon: "mdi:calendar-clock"
+    name: Schedule
+    hidden: true
+    dps:
+      - id: 48
+        type: base64
+        optional: true
+        name: value
