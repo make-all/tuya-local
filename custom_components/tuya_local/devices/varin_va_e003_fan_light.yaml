@@ -1,4 +1,8 @@
-name: Varin VA-E003 Fan Light
+name: Fan light
+products:
+  - id: ufrvcfjnmhnqebge
+    manufacturer: Varin
+    model: VA-E003
 entities:
   - entity: light
     name: Main Light
@@ -41,42 +45,37 @@ entities:
             value: Scene
           - dps_val: music
             value: Music
-
-  - entity: select
-    name: Auxiliary Color
-    icon: "mdi:palette"
-    dps:
       - id: 61
         type: string
-        name: option
+        name: named_color
         optional: true
         mapping:
           - dps_val: "AAEADAAAAAPoA+g="
-            value: "Red"
+            value: red
           - dps_val: "AAEADAAAHgPoA+g="
-            value: "Orange"
+            value: orange
           - dps_val: "AAEADAAAPAPoA+g="
-            value: "Yellow"
+            value: yellow
           - dps_val: "AAEADAAAWgPoA+g="
-            value: "Lime"
+            value: lawngreen
           - dps_val: "AAEADAAAeAPoA+g="
-            value: "Green"
+            value: green
           - dps_val: "AAEADAAAtAPoA+g="
-            value: "Cyan"
+            value: cyan
           - dps_val: "AAEADAAA8APoA+g="
-            value: "Blue"
+            value: blue
           - dps_val: "AAEADAABDgPoA+g="
-            value: "Purple"
+            value: purple
           - dps_val: "AAEADAABLAPoA+g="
-            value: "Pink"
+            value: deeppink
           - dps_val: "AAEADAAAAAAAA+g="
-            value: "White"
+            value: white
           - dps_val: "AAEADAAAAAPoAfQ="
-            value: "Red Dim"
+            value: darkred
           - dps_val: "AAEADAAA8APoAfQ="
-            value: "Blue Dim"
+            value: darkblue
           - dps_val: "AAEADAAAeAPoAfQ="
-            value: "Green Dim"
+            value: darkgreen
 
   - entity: switch
     name: Master Switch
@@ -86,6 +85,7 @@ entities:
         name: switch
 
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 107
         type: boolean
@@ -110,3 +110,8 @@ entities:
         type: string
         name: preset_mode
         optional: true
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
