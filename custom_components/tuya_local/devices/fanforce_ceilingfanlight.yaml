@@ -1,0 +1,65 @@
+name: BBQ Fan
+products:
+  - id: lb9da3os0ihifq7u
+    manufacturer: FanForce
+    model: CeilingLight
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 8
+        type: string
+        name: direction
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 1000
+      - id: 17
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
