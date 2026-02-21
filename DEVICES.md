@@ -120,6 +120,7 @@ devices # Supported
 - Fujicool Yuzu heat pump
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
+- Hokkaido HKEDM 263 ZL air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
