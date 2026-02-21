@@ -44,10 +44,6 @@ entities:
           max: 40
         mapping:
           - scale: 10
-            # # constraint: temperature_unit
-            # # conditions:
-              - # # dps_val: f
-                # # value_redirect: temperature_f
       - id: 17
         type: integer
         name: temperature_f
@@ -63,10 +59,6 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
-            # # constraint: temperature_unit
-            # # conditions:
-              - # # dps_val: f
-                # # value_redirect: current_temperature_f
       - id: 29
         type: integer
         name: current_temperature_f
@@ -79,7 +71,7 @@ entities:
         mapping:
           - dps_val: c
             value: C
-          - # # dps_val: f
+          - dps_val: f
             value: F
 
   - entity: select
