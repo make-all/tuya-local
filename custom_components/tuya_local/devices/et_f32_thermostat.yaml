@@ -22,20 +22,6 @@ entities:
             value: heat
           - dps_val: SLOW
             value: heat
-      - id: 2
-        type: string
-        name: preset_mode
-        mapping:
-          - dps_val: AUTO
-            value: none
-          - dps_val: MANUAL
-            value: none
-          - dps_val: HOLIDAY
-            value: Holiday
-          - dps_val: FROST
-            value: Frost
-          - dps_val: SLOW
-            value: Slow Start
       - id: 16
         type: integer
         name: temperature
@@ -73,6 +59,26 @@ entities:
             value: C
           - dps_val: f
             value: F
+
+  - entity: select
+    name: Thermostat Mode
+    category: config
+    icon: mdi:tune
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: AUTO
+            value: Auto
+          - dps_val: MANUAL
+            value: Manual
+          - dps_val: HOLIDAY
+            value: Holiday
+          - dps_val: FROST
+            value: Frost
+          - dps_val: SLOW
+            value: Slow Start
 
   - entity: select
     name: Sensor Selection
