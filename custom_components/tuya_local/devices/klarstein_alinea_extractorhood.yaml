@@ -1,4 +1,4 @@
-name: Klarstein extractor hood
+name: Extractor hood
 products:
   - id: zggqz0s1atd9qce4
     manufacturer: Klarstein
@@ -15,6 +15,10 @@ entities:
         range:
           min: 0
           max: 6
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
       - id: 103
         type: integer
         name: brightness
@@ -28,20 +32,19 @@ entities:
         name: switch
       - id: 10
         type: string
-        name: preset_mode
+        name: speed
         mapping:
           - dps_val: Off
-            value: Off
+            value: 0
           - dps_val: Low
-            value: Low
+            value: 25
           - dps_val: Medium
-            value: Medium
+            value: 50
           - dps_val: High
-            value: High
+            value: 75
           - dps_val: Strong
-            value: Strong
+            value: 100
   - entity: number
-    name: Countdown
     translation_key: timer
     class: duration
     category: config
