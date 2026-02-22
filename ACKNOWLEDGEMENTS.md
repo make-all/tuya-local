@@ -1261,3 +1261,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tarasifua](https://github.com/tarasifua) for contributing support for MyCond Berg air conditioner.
 - [AdamTReineke](https://github.com/AdamTReineke) for assisting with support for Inkbird IAQM-129-W air quality monitor.
 - [King2zzo](https://github.com/King2zzo) for contributing support for Hokkaido air conditioner.
+- [Mighte1](https://github.com/Mighte1) for contributing support for Varin VA-E003 ceiling fan with light.
