@@ -1240,6 +1240,7 @@ port and password.
 - Treatlife 24GHz mmWave human presence sensor
 - TX-E gas sensor/alarm
 - Valehaus SYZN119 towel warmer
+- Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
