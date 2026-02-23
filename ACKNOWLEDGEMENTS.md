@@ -1266,3 +1266,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jvtd](https://github.com/jvtd) for contributing support for Vevor YT60307 weather station.
 - [rackstar41](https://github.com/rackstar41) for assisting with support for Rojeco V200 DU3L-VS camera pet feeder.
 - [kooori](https://github.com/kooori) for contributing support for Fanforce ceiling fan with lights.
+- [Moss51](https://github.com/Moss51) for assisting with support for Bestherm Nessa Connect panel heater.
