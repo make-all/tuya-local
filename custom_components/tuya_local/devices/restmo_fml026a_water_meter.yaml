@@ -1,0 +1,54 @@
+name: RESTMO BT Water Meter
+products:
+  - id: mqqna0px
+    name: RESTMO BT Water Meter (FML026A)
+entities:
+  - entity: sensor
+    name: Total Consumption
+    class: water
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Flow Rate
+    class: water
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: L/min
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Water Flowing
+    class: running
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Unit Mode
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: string
