@@ -1087,6 +1087,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
 - Petoneer Nutri PF004 pet feeder
+- Petory F03W pet feeder
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box

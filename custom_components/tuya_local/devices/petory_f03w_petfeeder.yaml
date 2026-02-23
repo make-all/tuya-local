@@ -1,0 +1,170 @@
+name: Pet feeder
+products:
+  - id: qjeljtse9t3brf9l
+    manufacturer: Petory
+    model: F03W
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Quick feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Manual feed
+    category: config
+    icon: "mdi:food-turkey"
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 50
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+      - id: 14
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: jammed
+          - dps_val: 2
+            value: food_low
+          - dps_val: 4
+            value: food_empty
+          - dps_val: 8
+            value: dessicant_low
+          - dps_val: 16
+            value: battery_low
+  - entity: sensor
+    name: Last feed
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: portions
+  - entity: number
+    name: Self feed lockout
+    category: config
+    class: duration
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10
+  - entity: light
+    translation_key: indeicator
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Feeding reminder
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: lock
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "0"
+            value: 0
+          - dps_val: "1"
+            value: 10
+          - dps_val: "2"
+            value: 20
+          - dps_val: "3"
+            value: 30
+          - dps_val: "4"
+            value: 40
+          - dps_val: "5"
+            value: 50
+          - dps_val: "6"
+            value: 60
+          - dps_val: "7"
+            value: 70
+          - dps_val: "8"
+            value: 80
+          - dps_val: "9"
+            value: 90
+          - dps_val: "10"
+            value: 100
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: button
