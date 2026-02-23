@@ -1023,7 +1023,7 @@ Further device support has been made with the assistance of users. Please consid
 - [pbassut](https://github.com/pbassut) for contributing improvements to AGL Ultra Magic lock and support for Komeco QC60 pool heat pump.
 - [Zxwcount](https://github.com/Zxwcount) for assisting with support for Haozee RB-SRAIN01 rain sensor.
 - [tobias-b-gmx](https://github.com/tobias-b-gmx) for assisting with support for Dewin KWS-306WF energy monitoring circuit breaker, Sichler ZX-7655 heater.
-- [chrkov](https://github.com/chrkov) for assisting with support for Revesien Q-Pro-W aroma diffuser.
+- [chrkov](https://github.com/chrkov) for assisting with support for Revesien Q-Pro-W aroma diffuser, Loycco Smart Nursery light.
 - [lilYozik](https://github.com/lilYozik) for assisting with support for Eberg Fyn tower fan.
 - [malkavi](https://github.com/malkavi) for contributing support for Cecotec Conga 1970 robot vacuum.
 - [LuckyG3000](https://github.com/LuckyG3000) for assisting with support for Klarstein Wonderwall 600 IR heater, and contributing improvements for Dewin KWS-306WF energy meter.

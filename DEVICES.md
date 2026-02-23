@@ -834,6 +834,7 @@ of device.
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
+- Loycco Smart Nursery light
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
 - LSC Smart Connect CCT + RGB led strip
