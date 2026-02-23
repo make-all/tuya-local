@@ -1264,3 +1264,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Mighte1](https://github.com/Mighte1) for contributing support for Varin VA-E003 ceiling fan with light.
 - [13r1ckz](https://github.com/13r1ckz) for contributing support for Klarstein Ava range hood.
 - [jvtd](https://github.com/jvtd) for contributing support for Vevor YT60307 weather station.
+- [rackstar41](https://github.com/rackstar41) for contributing support for Rojeco V200 DU3L-VS camera pet feeder.
