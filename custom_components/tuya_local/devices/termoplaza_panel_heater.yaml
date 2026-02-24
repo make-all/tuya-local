@@ -20,7 +20,7 @@ entities:
         type: integer
         unit: C
         mapping:
-          - scale: 0
+          - scale: 1
             step: 1
         range:
           min: 5
@@ -61,12 +61,13 @@ entities:
   - entity: sensor
     class: power_factor
     dps:
-      - id: 12 # work_power
+      - id: 12
         type: integer
         optional: true
         name: sensor
         unit: "%"
-  - entity: select
+  - name: Turbo Mode Timer
+    entity: select
     translation_key: countdown_set
     category: config
     dps:
@@ -101,3 +102,56 @@ entities:
             value: 11h
           - dps_val: 12
             value: 12h
+  - name: Brightness
+    entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 1
+          - dps_val: 2
+            value: 2
+          - dps_val: 3
+            value: 3
+          - dps_val: 4
+            value: 4
+  - name: Internal Temperature Set
+    entity: number
+    category: config
+    class: temperature
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 45
+          max: 95
+  - name: Internal Temperature
+    category: diagnostic
+    entity: sensor
+    class: temperature
+    dps:
+      - id: 114
+        class: measurement
+        type: integer
+        name: sensor
+        unit: C
+        range:
+          min: -10
+          max: 110
+  - name: Reset
+    entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 115
+        type: boolean
+        name: button
