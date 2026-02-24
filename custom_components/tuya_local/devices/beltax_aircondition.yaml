@@ -1,0 +1,102 @@
+name: Air conditioner
+products:
+  - id: q1z0isgflmccqzpz
+    manufacturer: Beltax
+    model: Air Condition-A011_D2
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cool
+              - dps_val: Heat
+                value: heat
+              - dps_val: Fan
+                value: fan_only
+              - dps_val: Dyr # Tuya model says "Dyr", but app/UI may show "Dry"
+                value: dry
+
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+
+      - id: 3
+        type: integer
+        name: current_temperature
+        range:
+          min: 0
+          max: 99
+        unit: C
+
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: High
+            value: high
+
+      - id: 19
+        type: string
+        name: temperature_unit
+        # values: "c", "f"
+
+      - id: 23
+        type: integer
+        name: temperature_f
+        range:
+          min: 61
+          max: 90
+        unit: F
+        optional: true
+
+      - id: 24
+        type: integer
+        name: current_temperature_f
+        range:
+          min: 0
+          max: 99
+        unit: F
+        optional: true
+
+      - id: 101
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
