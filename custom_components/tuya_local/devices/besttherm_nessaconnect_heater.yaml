@@ -1,0 +1,138 @@
+name: Panel heater
+products:
+  - id: cah82hbbptejszgh
+    manufacturer: Bestherm
+    model: Nessa Connect
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 290
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: comfor
+            value: comfort
+          - dps_val: economics
+            value: eco
+          - dps_val: antifreezing
+            value: away
+          - dps_val: p1
+            value: program_1
+          - dps_val: p2
+            value: program_2
+          - dps_val: p3
+            value: program_3
+          - dps_val: prog
+            value: external_control
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: standby
+            value: idle
+          - dps_val: antifreezing
+            value: defrosting  # not strictly, but a useful distinction
+          - dps_val: p_standby
+            value: idle
+          - dps_val: p_antifreezing
+            value: defrosting
+          - value: heating
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Hourly usage
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: button
+    name: Time calibration
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Program
+    category: config
+    icon: "mdi:clock-calendar"
+    hidden: true
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Open window detection
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -5
+          max: 5
+        mapping:
+          - scale: 10
