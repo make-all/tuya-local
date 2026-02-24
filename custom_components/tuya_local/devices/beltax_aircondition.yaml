@@ -57,7 +57,12 @@ entities:
       - id: 19
         type: string
         name: temperature_unit
-        # values: "c", "f"
+        # Device sends "c"/"f"; integration expects "C"/"F" for unit_from_ascii
+        mapping:
+          - dps_val: c
+            value: "C"
+          - dps_val: f
+            value: "F"
 
       - id: 23
         type: integer
