@@ -25,6 +25,7 @@ entities:
         range:
           min: 5
           max: 30
+        optional: true
       - id: 3
         name: current_temperature
         type: integer
@@ -58,7 +59,7 @@ entities:
         type: string
         name: sensor
   - entity: sensor
-    class: power
+    class: power_factor
     dps:
       - id: 12 # work_power
         type: integer
@@ -74,6 +75,8 @@ entities:
         type: string
         optional: true
         mapping:
+          - dps_val: 0
+            value: off
           - dps_val: 1
             value: 1h
           - dps_val: 2
