@@ -65,13 +65,9 @@ Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
 Tuya IR hubs that expose general IR remotes as sub devices usually
-expose them as one way devices (send only).  Due to the way this
-integration does device detection based on the dps returned by the
-device, it is not currently able to detect such devices at all.  Some
-specialised IR hubs for air conditioner remote controls do work, as
-they try to emulate a fully smart air conditioner using internal memory
-of what settings are currently set, and internal temperature and humidity
-sensors.
+expose them as cloud only devices, or sometimes read-only local
+devices with an expectation that the app will invoke commands via
+remote commands.
 
 Some Tuya hubs now support Matter over WiFi, and this can be used as an
 alternative to this integration for connecting the hub and sub-devices
