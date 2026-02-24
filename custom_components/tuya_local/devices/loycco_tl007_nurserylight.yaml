@@ -1,0 +1,269 @@
+name: Nursery light
+products:
+  - id: yjy34zvma7nvydy6
+    manufacturer: Loycco
+    model: TL007
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:bug"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: button
+    name: Play
+    icon: "mdi:play"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: play
+            value: true
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: pause
+            value: true
+  - entity: button
+    name: Previous
+    icon: "mdi:skip-previous"
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: prev
+            value: true
+  - entity: button
+    name: Next
+    icon: "mdi:skip-next"
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: next
+            value: true
+  - entity: number
+    translation_key: volume
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        precision: 0
+        unit: "%"
+        range:
+          min: 1
+          max: 16
+        mapping:
+          - target_range:
+              min: 1
+              max: 100
+  - entity: number
+    name: Track
+    category: config
+    icon: "mdi:playlist-music"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 25
+  - entity: switch
+    name: Timer
+    category: config
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "01000000"
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "00FF0000"
+        name: hour
+        range:
+          min: 0
+          max: 23
+      - id: 105
+        type: base64
+        optional: true
+        mask: "0000FF00"
+        name: minute
+        range:
+          min: 0
+          max: 59
+      - id: 105
+        type: base64
+        optional: true
+        mask: "000000FF"
+        name: second
+        range:
+          min: 0
+          max: 59
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: lock
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Delete schedule
+    category: config
+    icon: "mdi:clock-remove"
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Favorite
+    category: config
+    icon: "mdi:star"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Delete favorite
+    category: config
+    icon: "mdi:star-remove"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Retrieve history
+    category: config
+    icon: "mdi:history"
+    hidden: true
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 7
+  - entity: select
+    name: Genre
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: Nature
+            value: Nature
+            icon: "mdi:bee-flower"
+          - dps_val: Animal
+            value: Animal
+            icon: "mdi:cat"
+          - dps_val: Sleep
+            value: Sleep
+            icon: "mdi:weather-night"
+  - entity: text
+    name: Parameters
+    category: config
+    icon: "mdi:code-block-braces"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value

@@ -8,6 +8,7 @@ devices # Supported
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
+- Bestherm Nessa Connect panel heater
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - Brandon Basics towel warmer
@@ -120,6 +121,7 @@ devices # Supported
 - Fujicool Yuzu heat pump
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
+- Hokkaido HKEDM 263 ZL air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
@@ -333,6 +335,7 @@ devices # Supported
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- Fanforce ceiling fan with light
 - Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
 - Funai Fuji ERW-150 Ultimate ventilation fan
@@ -399,6 +402,7 @@ devices # Supported
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
+- Varin VA-E003 ceiling fan with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
@@ -525,6 +529,7 @@ devices # Supported
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
+- Haoyunma BD100 aroma diffuser
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Revesien Q-Pro-W aroma diffuser
@@ -553,6 +558,7 @@ devices # Supported
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Klarstein Amazonia dishwasher
+- Klarstein Ava range hood
 - Kogan glass 1.7L smart kettle (at least 2 different variants)
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
@@ -828,6 +834,7 @@ of device.
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
+- Loycco Smart Nursery light
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
 - LSC Smart Connect CCT + RGB led strip
@@ -1084,6 +1091,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
 - Petoneer Nutri PF004 pet feeder
+- Petory F03W pet feeder
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
@@ -1092,6 +1100,7 @@ port and password.
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
+- Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
 - Tesla Smart pet feeder
@@ -1237,6 +1246,7 @@ port and password.
 - Treatlife 24GHz mmWave human presence sensor
 - TX-E gas sensor/alarm
 - Valehaus SYZN119 towel warmer
+- Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm

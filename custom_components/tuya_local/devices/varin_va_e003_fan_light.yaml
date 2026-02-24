@@ -1,0 +1,117 @@
+name: Fan light
+products:
+  - id: ufrvcfjnmhnqebge
+    manufacturer: Varin
+    model: VA-E003
+entities:
+  - entity: light
+    name: Main Light
+    dps:
+      - id: 63
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  - entity: light
+    name: Auxiliary Light
+    dps:
+      - id: 54
+        type: boolean
+        name: switch
+      - id: 55
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 61
+        type: string
+        name: named_color
+        optional: true
+        mapping:
+          - dps_val: "AAEADAAAAAPoA+g="
+            value: red
+          - dps_val: "AAEADAAAHgPoA+g="
+            value: orange
+          - dps_val: "AAEADAAAPAPoA+g="
+            value: yellow
+          - dps_val: "AAEADAAAWgPoA+g="
+            value: lawngreen
+          - dps_val: "AAEADAAAeAPoA+g="
+            value: green
+          - dps_val: "AAEADAAAtAPoA+g="
+            value: cyan
+          - dps_val: "AAEADAAA8APoA+g="
+            value: blue
+          - dps_val: "AAEADAABDgPoA+g="
+            value: purple
+          - dps_val: "AAEADAABLAPoA+g="
+            value: deeppink
+          - dps_val: "AAEADAAAAAAAA+g="
+            value: white
+          - dps_val: "AAEADAAAAAPoAfQ="
+            value: darkred
+          - dps_val: "AAEADAAA8APoAfQ="
+            value: darkblue
+          - dps_val: "AAEADAAAeAPoAfQ="
+            value: darkgreen
+
+  - entity: switch
+    name: Master Switch
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 104
+        type: string
+        name: direction
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 106
+        type: string
+        name: preset_mode
+        optional: true
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
