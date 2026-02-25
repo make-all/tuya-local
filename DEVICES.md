@@ -224,7 +224,7 @@ devices # Supported
 - Atorch S1TW thermostat smart switch
 - Avatto ME81, WS20R and WT100 thermostats
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Beca BAC-002, BAC-006, BHT-002/3000, BHP-6000 thermostats
+- Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
@@ -373,6 +373,7 @@ devices # Supported
 - Lumary A1 and B2 ceiling fans with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- Novadigital ceiling fan with light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
@@ -787,7 +788,7 @@ of device.
 - Generic RGBWC (RGBCW with color temperature inverted) lightbulbs, tested with YSR-CGD-RGB Smart Bowl lamp.
 - Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
-- Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
+- Generic "Dreamlight" RGBIC and RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m and Outsmart RGBIC LED strips)
 - Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
@@ -1216,6 +1217,7 @@ port and password.
 - PH-W218 water quality monitor
 - Pinjia PJ3101A presence sensor
 - PlantsIO Ivy smart planter
+- PNI Sofe House Smart Gas 300 alarm
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor

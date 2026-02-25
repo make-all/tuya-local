@@ -950,7 +950,7 @@ Further device support has been made with the assistance of users. Please consid
 - [danvit58](https://github.com/danvit58) for assisting with support for Konlen SNT957W-TDE E3S temperature alarm.
 - [Gotanius](https://github.com/Gotanius) for contributing support for PetsPride OO15 pet feeder.
 - [eliel-elie](https://github.com/eliel-elie) for contributing support for Zemismart SMD02T-TZ energy meter.
-- [justme871](https://github.com/justme871) for assisting with support for Garza thermostat.
+- [justme871](https://github.com/justme871) for assisting with support for Garza thermostat, PNI Safe House Smart Gas 300 alarm.
 - [jaso1000](https://github.com/jaso1000) for contributing support for Temple and Webster Alina ceiling fan.
 - [hprombex](https://github.com/hprombex) for contributing support for Götze and Jensen KT975K kettle.
 - [Anzic23](https://github.com/Anzic23) for contributing support for Tary TA-AC380/22 EV charger.
@@ -1268,3 +1268,7 @@ Further device support has been made with the assistance of users. Please consid
 - [kooori](https://github.com/kooori) for contributing support for Fanforce ceiling fan with lights.
 - [Moss51](https://github.com/Moss51) for assisting with support for Bestherm Nessa Connect panel heater.
 - [Aaronhrndz](https://github.com/Aaronhrndz) for assisting with support for Haoyunma BD100 aroma diffuser.
+- [henrique-veiga](https://github.com/henrique-veiga) for assisting with support for Novadigital ceiling fan with light.
+- [andreufontb](https://github.com/andreufontb) for assisting with support for Beca BAC-2005ALW thermostat.
+- [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
+- [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
