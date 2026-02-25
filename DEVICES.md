@@ -373,6 +373,7 @@ devices # Supported
 - Lumary A1 and B2 ceiling fans with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- Novadigital ceiling fan with light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan

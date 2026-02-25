@@ -1268,3 +1268,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kooori](https://github.com/kooori) for contributing support for Fanforce ceiling fan with lights.
 - [Moss51](https://github.com/Moss51) for assisting with support for Bestherm Nessa Connect panel heater.
 - [Aaronhrndz](https://github.com/Aaronhrndz) for assisting with support for Haoyunma BD100 aroma diffuser.
+- [henrique-veiga](https://github.com/henrique-veiga) for assisting with support for Novadigital ceiling fan with light.
