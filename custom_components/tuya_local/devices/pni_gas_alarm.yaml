@@ -1,0 +1,79 @@
+name: Gas alarm
+products:
+  - id: ryukfg7yx3zwh3f8
+    manufacturer: PNI
+    model: Safe House Smart Gas 300
+entities:
+  - entity: binary_sensor
+    class: gas
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    name: Gas
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: button
+    name: Self check
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+      - id: 1
+        type: string
+        name: result
+  - entity: binary_sensor
+    class: cold
+    name: Preheat
+    category: diagnostic
+    dps:
+      - id: 10
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sound
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
