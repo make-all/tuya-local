@@ -788,7 +788,7 @@ of device.
 - Generic RGBWC (RGBCW with color temperature inverted) lightbulbs, tested with YSR-CGD-RGB Smart Bowl lamp.
 - Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
-- Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
+- Generic "Dreamlight" RGBIC and RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m and Outsmart RGBIC LED strips)
 - Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
