@@ -1270,3 +1270,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Aaronhrndz](https://github.com/Aaronhrndz) for assisting with support for Haoyunma BD100 aroma diffuser.
 - [henrique-veiga](https://github.com/henrique-veiga) for assisting with support for Novadigital ceiling fan with light.
 - [andreufontb](https://github.com/andreufontb) for assisting with support for Beca BAC-2005ALW thermostat.
+- [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
