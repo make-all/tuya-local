@@ -224,7 +224,7 @@ devices # Supported
 - Atorch S1TW thermostat smart switch
 - Avatto ME81, WS20R and WT100 thermostats
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Beca BAC-002, BAC-006, BHT-002/3000, BHP-6000 thermostats
+- Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
