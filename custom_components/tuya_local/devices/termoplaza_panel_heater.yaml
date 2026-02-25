@@ -58,7 +58,15 @@ entities:
       - id: 11
         type: string
         name: sensor
+        mapping:
+          - dps_val: heating
+            value: Heating
+          - dps_val: warm
+            value: Warm
+          - dps_val: cold
+            value: Cold
   - entity: sensor
+    translation_key: work_power
     class: power_factor
     dps:
       - id: 12
