@@ -73,12 +73,22 @@ entities:
   - entity: sensor
     name: Distance
     icon: mdi:signal-distance-variant
+    hidden: unavailable
     dps:
       - id: 122
         type: integer
+        optional: true
         name: sensor
         unit: cm
         class: measurement
+      - id: 122
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Stationary sensitivity
     category: config
