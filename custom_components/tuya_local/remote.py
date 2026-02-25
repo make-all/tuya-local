@@ -14,6 +14,8 @@ from typing import Any
 
 import voluptuous as vol
 from homeassistant.components import persistent_notification
+from homeassistant.components.button import DOMAIN as BUTTON_DOMAIN, ButtonEntity
+from homeassistant.components.number import DOMAIN as NUMBER_DOMAIN, NumberEntity, NumberMode
 from homeassistant.components.remote import (
     ATTR_ALTERNATIVE,
     ATTR_COMMAND_TYPE,
@@ -21,6 +23,7 @@ from homeassistant.components.remote import (
     ATTR_DEVICE,
     ATTR_NUM_REPEATS,
     DEFAULT_DELAY_SECS,
+    DEFAULT_NUM_REPEATS,
     SERVICE_DELETE_COMMAND,
     SERVICE_LEARN_COMMAND,
     SERVICE_SEND_COMMAND,
@@ -30,9 +33,15 @@ from homeassistant.components.remote import (
 from homeassistant.components.remote import (
     DOMAIN as RM_DOMAIN,
 )
-from homeassistant.const import ATTR_COMMAND
+from homeassistant.const import ATTR_COMMAND, EntityCategory, UnitOfTime
 from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import entity_registry as er
+from homeassistant.helpers.device_registry import DeviceInfo
+from homeassistant.helpers.entity_platform import EntityPlatform
+from homeassistant.helpers.restore_state import RestoreEntity
 from homeassistant.helpers.storage import Store
+from homeassistant.setup import async_setup_component
 from homeassistant.util import dt as dt_util
 
 # from tinytuya.Contrib.IRRemoteControlDevice import (
@@ -40,6 +49,7 @@ from homeassistant.util import dt as dt_util
 #     pulses_to_pronto,
 #     pulses_to_width_encoded,
 # )
+from .const import DOMAIN
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
@@ -94,24 +104,54 @@ SERVICE_DELETE_SCHEMA = COMMAND_SCHEMA.extend(
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
+    await async_setup_component(hass, BUTTON_DOMAIN, {})
+    await async_setup_component(hass, NUMBER_DOMAIN, {})
+    button_platform = EntityPlatform(
+        hass=hass,
+        logger=_LOGGER,
+        domain=BUTTON_DOMAIN,
+        platform_name=DOMAIN,
+        platform=None,
+        scan_interval=timedelta(seconds=0),
+        entity_namespace=None,
+    )
+    button_platform.config_entry = config_entry
+    number_platform = EntityPlatform(
+        hass=hass,
+        logger=_LOGGER,
+        domain=NUMBER_DOMAIN,
+        platform_name=DOMAIN,
+        platform=None,
+        scan_interval=timedelta(seconds=0),
+        entity_namespace=None,
+    )
+    number_platform.config_entry = config_entry
     await async_tuya_setup_platform(
         hass,
         async_add_entities,
         config,
         "remote",
-        TuyaLocalRemote,
+        lambda device, ecfg: TuyaLocalRemote(device, ecfg, button_platform, number_platform),
     )
 
 
 class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
     """Representation of a Tuya Remote entity."""
 
-    def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
+    def __init__(
+        self,
+        device: TuyaLocalDevice,
+        config: TuyaEntityConfig,
+        button_platform: EntityPlatform,
+        number_platform: EntityPlatform,
+    ):
         """
         Initialise the remote device.
         Args:
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The entity config.
+           button_platform (EntityPlatform): Platform used to register learned command buttons.
+           number_platform (EntityPlatform): Platform used to register IR parameter numbers.
         """
         super().__init__()
         dps_map = self._init_begin(device, config)
@@ -141,12 +181,76 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         self._flags = defaultdict(int)
         self._lock = asyncio.Lock()
         self._attr_is_on = True
+        self._button_platform = button_platform
+        self._buttons: dict[tuple[str, str], TuyaRemoteButton] = {}
+        self._number_platform = number_platform
+        self._subdevice_numbers: dict[str, tuple[TuyaRemoteNumber, TuyaRemoteNumber]] = {}
+
+    async def async_added_to_hass(self) -> None:
+        """Load storage and create buttons when entity is added to HA."""
+        await super().async_added_to_hass()
+        if not self._storage_loaded:
+            await self._async_load_storage()
 
     async def _async_load_storage(self):
-        """Load stored codes and flags from disk."""
+        """Load stored codes and flags from disk, then create buttons and number entities."""
         self._codes.update(await self._code_storage.async_load() or {})
         self._flags.update(await self._flag_storage.async_load() or {})
         self._storage_loaded = True
+        new_buttons = []
+        new_numbers = []
+        for subdevice, commands in self._codes.items():
+            for command in commands:
+                key = (subdevice, command)
+                if key not in self._buttons:
+                    button = TuyaRemoteButton(self, subdevice, command)
+                    self._buttons[key] = button
+                    new_buttons.append(button)
+            if self._has_ir_codes(subdevice) and subdevice not in self._subdevice_numbers:
+                delay_num, repeats_num = self._create_number_entities(subdevice)
+                self._subdevice_numbers[subdevice] = (delay_num, repeats_num)
+                new_numbers.extend([delay_num, repeats_num])
+        if new_buttons:
+            await self._button_platform.async_add_entities(new_buttons)
+        if new_numbers:
+            await self._number_platform.async_add_entities(new_numbers)
+
+    def _has_ir_codes(self, subdevice: str) -> bool:
+        """Return True if the subdevice has any non-RF (IR) codes stored."""
+        for code_val in self._codes.get(subdevice, {}).values():
+            if isinstance(code_val, list):
+                if any(not c.startswith("rf:") for c in code_val):
+                    return True
+            elif not code_val.startswith("rf:"):
+                return True
+        return False
+
+    def _create_number_entities(
+        self, subdevice: str
+    ) -> tuple[TuyaRemoteNumber, TuyaRemoteNumber]:
+        """Create delay and repeats number entities for an IR-capable sub-device."""
+        delay = TuyaRemoteNumber(
+            self,
+            subdevice,
+            param="delay_secs",
+            name="IR delay",
+            default=DEFAULT_DELAY_SECS,
+            min_val=0.0,
+            max_val=10.0,
+            step=0.1,
+            unit=UnitOfTime.SECONDS,
+        )
+        repeats = TuyaRemoteNumber(
+            self,
+            subdevice,
+            param="num_repeats",
+            name="IR repeat",
+            default=float(DEFAULT_NUM_REPEATS),
+            min_val=1.0,
+            max_val=20.0,
+            step=1.0,
+        )
+        return delay, repeats
 
     def _extract_codes(self, commands, subdevice=None):
         """Extract a list of remote codes.
@@ -256,7 +360,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         kwargs[ATTR_COMMAND] = command
         kwargs = SERVICE_SEND_SCHEMA(kwargs)
         subdevice = kwargs.get(ATTR_DEVICE)
-        repeat = kwargs.get(ATTR_NUM_REPEATS)
+        repeat = kwargs.get(ATTR_NUM_REPEATS, DEFAULT_NUM_REPEATS)
         delay = kwargs.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS) * 1000
         service = f"{RM_DOMAIN}.{SERVICE_SEND_COMMAND}"
         if not self._storage_loaded:
@@ -315,6 +419,15 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                     code = [code, await self._async_learn_command(command, is_rf=is_rf)]
                 self._codes.setdefault(subdevice, {}).update({command: code})
                 should_store = True
+                key = (subdevice, command)
+                if key not in self._buttons:
+                    button = TuyaRemoteButton(self, subdevice, command)
+                    self._buttons[key] = button
+                    await self._button_platform.async_add_entities([button])
+                if not is_rf and subdevice not in self._subdevice_numbers:
+                    delay_num, repeats_num = self._create_number_entities(subdevice)
+                    self._subdevice_numbers[subdevice] = (delay_num, repeats_num)
+                    await self._number_platform.async_add_entities([delay_num, repeats_num])
 
             if should_store:
                 await self._code_storage.async_save(self._codes)
@@ -401,10 +514,15 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             _LOGGER.error("Failed to call %s. %s", service, err_msg)
             raise ValueError(err_msg) from err
 
+        entity_reg = er.async_get(self.hass)
         cmds_not_found = []
         for command in commands:
             try:
                 del codes[command]
+                if button := self._buttons.pop((subdevice, command), None):
+                    if button.entity_id:
+                        entity_reg.async_remove(button.entity_id)
+                    await button.async_remove()
             except KeyError:
                 cmds_not_found.append(command)
 
@@ -424,7 +542,111 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         if not codes:
             del self._codes[subdevice]
             if self._flags.pop(subdevice, None) is not None:
-                self._flag_storage.async_delay_save(
-                    lambda: self._flags, FLAG_SAVE_DELAY
-                )
+                self._flag_storage.async_delay_save(lambda: self._flags, FLAG_SAVE_DELAY)
+        # Remove number entities if no IR codes remain for this sub-device
+        if subdevice in self._subdevice_numbers and not self._has_ir_codes(subdevice):
+            delay_num, repeats_num = self._subdevice_numbers.pop(subdevice)
+            for num in (delay_num, repeats_num):
+                if num.entity_id:
+                    entity_reg.async_remove(num.entity_id)
+                await num.async_remove()
+        # Remove the virtual sub-device from the device registry once all codes are gone
+        if subdevice not in self._codes:
+            device_reg = dr.async_get(self.hass)
+            device = device_reg.async_get_device(
+                identifiers={(DOMAIN, f"{self._device.unique_id}_{subdevice}")}
+            )
+            if device is not None:
+                device_reg.async_remove_device(device.id)
         self._code_storage.async_delay_save(lambda: self._codes, CODE_SAVE_DELAY)
+
+
+class TuyaRemoteButton(ButtonEntity):
+    """A button entity representing a single learned remote command."""
+
+    def __init__(self, remote: TuyaLocalRemote, subdevice: str, command: str):
+        """
+        Initialise the button.
+        Args:
+            remote (TuyaLocalRemote): The parent remote entity.
+            subdevice (str): The name of the virtual sub-device (e.g. "TV").
+            command (str): The command name (e.g. "power").
+        """
+        self._remote = remote
+        self._subdevice = subdevice
+        self._command = command
+        self._attr_unique_id = (
+            f"{remote._device.unique_id}_{subdevice}_{command}"
+        )
+        self._attr_name = command
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, f"{remote._device.unique_id}_{subdevice}")},
+            name=subdevice,
+            via_device=(DOMAIN, remote._device.unique_id),
+        )
+
+    async def async_press(self) -> None:
+        """Send the learned command via the parent remote."""
+        kwargs: dict[str, Any] = {ATTR_DEVICE: self._subdevice}
+        if numbers := self._remote._subdevice_numbers.get(self._subdevice):
+            kwargs[ATTR_DELAY_SECS] = numbers[0].native_value
+            kwargs[ATTR_NUM_REPEATS] = int(numbers[1].native_value)
+        await self._remote.async_send_command([self._command], **kwargs)
+
+
+class TuyaRemoteNumber(RestoreEntity, NumberEntity):
+    """A number entity controlling an IR command parameter for a virtual sub-device."""
+
+    def __init__(
+        self,
+        remote: TuyaLocalRemote,
+        subdevice: str,
+        param: str,
+        name: str,
+        default: float,
+        min_val: float,
+        max_val: float,
+        step: float,
+        unit: str | None = None,
+    ):
+        """
+        Initialise the number entity.
+        Args:
+            remote (TuyaLocalRemote): The parent remote entity.
+            subdevice (str): The name of the virtual sub-device (e.g. "TV").
+            param (str): The parameter key used in the unique ID ("delay_secs" or "num_repeats").
+            name (str): The display name for the entity (e.g. "IR delay").
+            default (float): The default value.
+            min_val (float): The minimum allowed value.
+            max_val (float): The maximum allowed value.
+            step (float): The increment step.
+            unit (str | None): The unit of measurement, if any.
+        """
+        self._attr_unique_id = f"{remote._device.unique_id}_{subdevice}_ir_{param}"
+        self._attr_name = name
+        self._attr_entity_category = EntityCategory.CONFIG
+        self._attr_native_value = default
+        self._attr_native_min_value = min_val
+        self._attr_native_max_value = max_val
+        self._attr_native_step = step
+        self._attr_native_unit_of_measurement = unit
+        self._attr_mode = NumberMode.BOX
+        self._attr_device_info = DeviceInfo(
+            identifiers={(DOMAIN, f"{remote._device.unique_id}_{subdevice}")},
+            name=subdevice,
+            via_device=(DOMAIN, remote._device.unique_id),
+        )
+
+    async def async_added_to_hass(self) -> None:
+        """Restore the last known value on startup."""
+        await super().async_added_to_hass()
+        if (last_state := await self.async_get_last_state()) is not None:
+            try:
+                self._attr_native_value = float(last_state.state)
+            except (ValueError, TypeError):
+                pass
+
+    async def async_set_native_value(self, value: float) -> None:
+        """Update the value."""
+        self._attr_native_value = value
+        self.async_write_ha_state()
