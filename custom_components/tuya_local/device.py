@@ -504,35 +504,57 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state and "Err" not in new_state:
-            self._cached_state = self._cached_state | new_state.get("dps", {})
+        if new_state:
+            if "Err" not in new_state:
+                self._cached_state = self._cached_state | new_state.get("dps", {})
+                self._cached_state["updated_at"] = time()
+                for entity in self._children:
+                    for dp in entity._config.dps():
+                        # Clear non-persistant dps that were not in the poll
+                        if not dp.persist and dp.id not in new_state.get("dps", {}):
+                            self._cached_state.pop(dp.id, None)
+                    entity.schedule_update_ha_state()
+            else:
+                if self._api_working_protocol_failures == 1:
+                    _LOGGER.warning(
+                        "%s protocol error %s: %s",
+                        self.name,
+                        new_state.get("Err"),
+                        new_state.get("Error", "message not provided"),
+                    )
+                else:
+                    _LOGGER.debug(
+                        "%s protocol error %s: %s",
+                        self.name,
+                        new_state.get("Err"),
+                        new_state.get("Error", "message not provided"),
+                    )
+                if new_state.get("Err") == "900":
+                    # Error 900 means the device responded but sent non-JSON
+                    # data. This is expected for fire-and-forget devices (e.g.
+                    # IR/RF blasters) that do not support status queries.
+                    # Mark as reachable and return None so the caller does not
+                    # treat this as a retryable failure.
+                    self._cached_state["updated_at"] = time()
+                    _LOGGER.debug(
+                        "%s returned error 900; treating as reachable with no data",
+                        self.name,
+                    )
+                    new_state = None
+        else:
+            # Device connected but returned no data (e.g. fire-and-forget devices
+            # like IR/RF blasters that do not respond to status queries).
+            # Mark the cache as updated so the device is considered reachable.
             self._cached_state["updated_at"] = time()
-            for entity in self._children:
-                for dp in entity._config.dps():
-                    # Clear non-persistant dps that were not in the poll
-                    if not dp.persist and dp.id not in new_state.get("dps", {}):
-                        self._cached_state.pop(dp.id, None)
-                entity.schedule_update_ha_state()
+            _LOGGER.debug(
+                "%s returned null state; treating as reachable with no data",
+                self.name,
+            )
         _LOGGER.debug(
             "%s refreshed device state: %s",
             self.name,
             log_json(new_state),
         )
-        if "Err" in new_state:
-            if self._api_working_protocol_failures == 1:
-                _LOGGER.warning(
-                    "%s protocol error %s: %s",
-                    self.name,
-                    new_state.get("Err"),
-                    new_state.get("Error", "message not provided"),
-                )
-            else:
-                _LOGGER.debug(
-                    "%s protocol error %s: %s",
-                    self.name,
-                    new_state.get("Err"),
-                    new_state.get("Error", "message not provided"),
-                )
         _LOGGER.debug(
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
@@ -629,7 +651,13 @@ class TuyaLocalDevice(object):
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
-                        raise AttributeError(retval["Error"])
+                        if retval.get("Err") == "900":
+                            # Fire-and-forget device (e.g. IR/RF blaster) responded
+                            # but sent non-JSON data. Treat as reachable with no data.
+                            self._cached_state["updated_at"] = time()
+                            retval = None
+                        else:
+                            raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
                     return retval

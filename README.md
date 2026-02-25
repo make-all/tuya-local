@@ -64,14 +64,16 @@ or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
 Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
-Tuya IR hubs that expose general IR remotes as sub devices usually
-expose them as one way devices (send only).  Due to the way this
-integration does device detection based on the dps returned by the
-device, it is not currently able to detect such devices at all.  Some
-specialised IR hubs for air conditioner remote controls do work, as
-they try to emulate a fully smart air conditioner using internal memory
-of what settings are currently set, and internal temperature and humidity
-sensors.
+Tuya IR/RF blasters are supported through the remote entity platform.
+They can learn and store IR and RF commands, and replay them via the
+`remote.learn_command` and `remote.send_command` services. Tuya IR hubs
+that expose general IR remotes as sub devices usually expose them as one
+way devices (send only).  Due to the way this integration does device
+detection based on the dps returned by the device, it is not currently
+able to detect such devices at all.  Some specialised IR hubs for air
+conditioner remote controls do work, as they try to emulate a fully
+smart air conditioner using internal memory of what settings are
+currently set, and internal temperature and humidity sensors.
 
 Some Tuya hubs now support Matter over WiFi, and this can be used as an
 alternative to this integration for connecting the hub and sub-devices
@@ -258,6 +260,30 @@ unlocking the lock.
 Although this is documented in the BLE lock documentation from Tuya, Zigbee
 and WiFi locks often use the same naming for datapoints, which may be
 compatible with this scheme.
+
+## Using IR/RF blasters
+
+Tuya IR and RF blasters are exposed as remote entities and support learning and
+sending commands via the standard Home Assistant remote services.
+
+### Learning commands
+
+Use the `remote.learn_command` service with:
+- `command`: the name to store the command under (e.g. `power`)
+- `device`: a name for the appliance being controlled (e.g. `TV`)
+- `command_type`: set to `rf` for RF remotes, omit or leave blank for IR
+
+The integration will put the blaster into learning mode and wait up to 30 seconds
+for you to press a button on the original remote. The learned code is stored
+persistently and survives restarts.
+
+### Sending commands
+
+Use the `remote.send_command` service with the same `command` and `device` values
+used when learning. You can also send codes directly without learning first:
+
+- **IR inline code**: prefix with `b64:` followed by the base64-encoded IR code
+- **RF inline code**: prefix with `rf:` followed by the base64-encoded RF code
 
 ## Contributing
 
