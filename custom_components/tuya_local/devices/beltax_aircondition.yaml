@@ -19,9 +19,10 @@ entities:
                 value: cool
               - dps_val: Heat
                 value: heat
+                available: heat_supported
               - dps_val: Fan
                 value: fan_only
-              - dps_val: Dyr # Tuya model says "Dyr", but app/UI may show "Dry"
+              - dps_val: Dyr  # Tuya model says "Dyr", but app/UI may show "Dry"
                 value: dry
 
       - id: 2
@@ -30,15 +31,23 @@ entities:
         range:
           min: 16
           max: 32
-        unit: C
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temperature_f
+                range:
+                  min: 61
+                  max: 90
 
       - id: 3
         type: integer
         name: current_temperature
-        range:
-          min: 0
-          max: 99
-        unit: C
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temperature_f
 
       - id: 4
         type: string
@@ -67,20 +76,26 @@ entities:
       - id: 23
         type: integer
         name: temperature_f
+        hidden: true
         range:
           min: 61
           max: 90
-        unit: F
         optional: true
 
       - id: 24
         type: integer
         name: current_temperature_f
-        range:
-          min: 0
-          max: 99
-        unit: F
+        hidden: true
         optional: true
+
+      - id: 103
+        type: string
+        name: heat_supported
+        hidden: true
+        mapping:
+          - dps_val: C_H
+            value: true
+          - value: false
 
       - id: 101
         type: boolean
