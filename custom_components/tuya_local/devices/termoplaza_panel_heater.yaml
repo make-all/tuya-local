@@ -42,7 +42,7 @@ entities:
           - dps_val: Night
             value: away
           - dps_val: Off
-            value: off
+            value: none
   - entity: lock
     translation_key: child_lock
     category: config
@@ -77,31 +77,39 @@ entities:
         optional: true
         mapping:
           - dps_val: 0
-            value: off
+            value: "Off"
           - dps_val: 1
-            value: 1h
-          - dps_val: 2
             value: 2h
-          - dps_val: 3
-            value: 3h
-          - dps_val: 4
+          - dps_val: 2
             value: 4h
-          - dps_val: 5
-            value: 5h
-          - dps_val: 6
+          - dps_val: 3
             value: 6h
-          - dps_val: 7
-            value: 7h
-          - dps_val: 8
+          - dps_val: 4
             value: 8h
-          - dps_val: 9
-            value: 9h
-          - dps_val: 10
+          - dps_val: 5
             value: 10h
-          - dps_val: 11
-            value: 11h
-          - dps_val: 12
+          - dps_val: 6
             value: 12h
+          - dps_val: 7
+            value: 14h
+          - dps_val: 8
+            value: 16h
+          - dps_val: 9
+            value: 18h
+          - dps_val: 10
+            value: 20h
+          - dps_val: 11
+            value: 22h
+          - dps_val: 12
+            value: 24h
+  - name: Program Mode
+    entity: switch
+    translation_key: timer
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
   - name: Brightness
     entity: select
     translation_key: light_mode
@@ -112,16 +120,16 @@ entities:
         name: option
         mapping:
           - dps_val: 0
-            value: 0
+            value: Low
           - dps_val: 1
-            value: 1
+            value: Average
           - dps_val: 2
-            value: 2
+            value: Above avg
           - dps_val: 3
-            value: 3
+            value: Comfort
           - dps_val: 4
-            value: 4
-  - name: Internal Temperature Set
+            value: High
+  - name: Surface Temperature Setpoint
     entity: number
     category: config
     class: temperature
@@ -133,7 +141,7 @@ entities:
         range:
           min: 45
           max: 95
-  - name: Internal Temperature
+  - name: Current Surface Temperature
     category: diagnostic
     entity: sensor
     class: temperature
