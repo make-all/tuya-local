@@ -324,10 +324,20 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         service = f"{RM_DOMAIN}.{SERVICE_LEARN_COMMAND}"
         if is_rf:
             cmd_start = json.dumps(
-                {"control": CMD_STUDYRF, "rf_type": "sub_2g", "study_feq": "0", "ver": "2"}
+                {
+                    "control": CMD_STUDYRF,
+                    "rf_type": "sub_2g",
+                    "study_feq": "0",
+                    "ver": "2",
+                }
             )
             cmd_end = json.dumps(
-                {"control": CMD_ENDSTUDYRF, "rf_type": "sub_2g", "study_feq": "0", "ver": "2"}
+                {
+                    "control": CMD_ENDSTUDYRF,
+                    "rf_type": "sub_2g",
+                    "study_feq": "0",
+                    "ver": "2",
+                }
             )
         if self._control_dp:
             await self._control_dp.async_set_value(self._device, CMD_LEARN)
@@ -414,5 +424,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         if not codes:
             del self._codes[subdevice]
             if self._flags.pop(subdevice, None) is not None:
-                self._flag_storage.async_delay_save(lambda: self._flags, FLAG_SAVE_DELAY)
+                self._flag_storage.async_delay_save(
+                    lambda: self._flags, FLAG_SAVE_DELAY
+                )
         self._code_storage.async_delay_save(lambda: self._codes, CODE_SAVE_DELAY)
