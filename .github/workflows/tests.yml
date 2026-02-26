@@ -11,6 +11,9 @@ on:
       - '**.py'
       - 'requirements-dev.txt'
 
+env:
+  UV_SYSTEM_PYTHON 1
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -27,15 +30,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install libturbojpeg
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+          uv pip install -r requirements-dev.txt
       - name: Full test with pytest
         run: pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
       - name: Surface results

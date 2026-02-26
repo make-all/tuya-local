@@ -11,6 +11,9 @@ on:
       - 'custom_components/tuya_local/translations/*.json'
       - 'custom_components/tuya_local/icons.json'
 
+env:
+  UV_SYSTEM_PYTHON 1
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -29,12 +32,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements-dev.txt
+        run: uv pip install -r requirements-dev.txt
       - name: Translations check with pytest
         run: pytest tests/test_translations.py
