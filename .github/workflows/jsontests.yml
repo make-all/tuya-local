@@ -1,3 +1,4 @@
+
 name: Translation tests
 
 on:
@@ -11,9 +12,6 @@ on:
       - 'custom_components/tuya_local/translations/*.json'
       - 'custom_components/tuya_local/icons.json'
 
-env:
-  UV_SYSTEM_PYTHON 1
-
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -26,6 +24,9 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.13']
+
+    env:
+      UV_SYSTEM_PYTHON: 1
 
     steps:
       - uses: actions/checkout@v4
