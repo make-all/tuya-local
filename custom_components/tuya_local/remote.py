@@ -361,9 +361,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                 await asyncio.sleep(1)
                 code = self._receive_dp.get_value(self._device)
                 if code is not None:
-                    self._device.anticipate_property_value(
-                        self._receive_dp.id, None
-                    )
+                    self._device.anticipate_property_value(self._receive_dp.id, None)
                     return "rf:" + code if is_rf else code
             _LOGGER.warning("Timed out without receiving code in %s", service)
             raise TimeoutError(
