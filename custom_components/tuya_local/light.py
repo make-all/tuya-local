@@ -480,7 +480,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     ),
                 }
 
-        if self._switch_dps and not self.is_on:
+        if self._switch_dps and not self.is_on and self._switch_dps.id not in settings:
             if (
                 self._switch_dps.readonly
                 and self._effect_dps

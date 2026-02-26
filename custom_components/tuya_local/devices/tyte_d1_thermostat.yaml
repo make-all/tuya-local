@@ -96,8 +96,19 @@ entities:
         hidden: true
         mapping:
           - scale: 10
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
   - entity: number
     translation_key: timer
+    deprecated: time.timer  # 2026-01-20
     class: duration
     category: config
     dps:

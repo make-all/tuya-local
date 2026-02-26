@@ -331,13 +331,17 @@ entities:
           min: 10
           max: 100
   - entity: switch
-    name: Mute alarm
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 105
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: binary_sensor
     name: Earth leak
     class: safety

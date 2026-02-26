@@ -87,13 +87,17 @@ entities:
         name: fault_code
 
   - entity: switch
-    name: Mute
+    translation_key: sound
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: number
     name: On timer
     translation_key: timer

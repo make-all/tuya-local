@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Configure seu dispositivo Tuya Local",
-                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.]({device_details_url})",
                 "data": {
                     "host": "Endereço IP ou nome do host",
                     "device_id": "Device ID (ou device_id do gateway para dispositivos conectados via gateway)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Configure seu dispositivo Tuya Local",
-                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.]({device_details_url})",
                 "data": {
                     "host": "Endereço IP ou nome do host",
                     "local_key": "Chave Local",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Roupa seca",
-                            "purify": "Purificar"
+                            "purify": "Purificar",
+                            "continuous": "Contínuo"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 segundos",
                     "1m": "1 minuto",
                     "2m": "2 minutos",
+                    "3m": "3 minutos",
                     "5m": "5 minutos",
                     "10m": "10 minutos",
                     "15m": "15 minutos",
@@ -952,6 +955,9 @@
                     "missing": "Faltando",
                     "formatting": "Formatando",
                     "unformatted": "Não formatado",
+                    "failed": "Falhou",
+                    "replying": "Respondendo",
+                    "playback": "Reprodução",
                     "maintenance_required": "Manutenção necessária",
                     "dry": "Seco",
                     "comfortable": "Confortável",
@@ -1056,6 +1062,9 @@
             },
             "sleep": {
                 "name": "Dormir"
+            },
+            "sound": {
+                "name": "Som"
             },
             "switch_x": {
                 "name": "Interruptor {x}"

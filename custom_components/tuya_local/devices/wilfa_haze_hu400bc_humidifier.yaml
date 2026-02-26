@@ -10,11 +10,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
       - id: 13
         name: humidity
         type: integer
@@ -75,17 +70,12 @@ entities:
           - dps_val: false
             icon: "mdi:led-off"
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
     dps:
       - id: 8
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:volume-high"
-          - dps_val: false
-            icon: "mdi:volume-off"
   - entity: sensor
     class: temperature
     dps:

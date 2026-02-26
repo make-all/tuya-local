@@ -5,6 +5,7 @@ products:
     model: CA-604B Smart
 entities:
   - entity: humidifier
+    class: humidifier
     dps:
       - id: 1
         name: switch
@@ -25,16 +26,15 @@ entities:
           - dps_val: auto
             value: auto
           - dps_val: level1
-            value: low
+            value: eco
           - dps_val: level2
-            value: middle
+            value: comfort
           - dps_val: level3
-            value: high
+            value: boost
           - dps_val: sleep
             value: sleep
   - entity: switch
-    name: Sound
-    icon: mdi:volume-high
+    translation_key: sound
     dps:
       - id: 8
         name: switch
@@ -100,7 +100,7 @@ entities:
           - value: false
   - entity: binary_sensor
     name: Water tank overflow
-    icon: mdi:liquid-spot
+    icon: "mdi:liquid-spot"
     class: problem
     category: diagnostic
     dps:

@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Follow these instructions to find your device id and local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "device_id": "Device ID (or the hub's Device ID for devices connected via gateway)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your local key.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Follow these instructions to find your local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "local_key": "Local key",
@@ -344,12 +344,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Dry clothes",
-                            "purify": "Purify"
+                            "purify": "Purify",
+                            "continuous": "Continuous"
                         }
                     }
                 }
@@ -562,6 +563,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -664,6 +666,7 @@
                     "45s": "45 seconds",
                     "1m": "1 minute",
                     "2m": "2 minutes",
+                    "3m": "3 minutes",
                     "5m": "5 minutes",
                     "10m": "10 minutes",
                     "15m": "15 minutes",
@@ -1086,6 +1089,9 @@
                     "missing": "Missing",
                     "formatting": "Formatting",
                     "unformatted": "Unformatted",
+                    "failed": "Failed",
+                    "replying": "Replying",
+                    "playback": "Playback",
                     "maintenance_required": "Maintenance required",
                     "dry": "Dry",
                     "comfortable": "Comfortable",
@@ -1220,6 +1226,9 @@
             },
             "sleep": {
                 "name": "Sleep"
+            },
+            "sound": {
+                "name": "Sound"
             },
             "switch_x": {
                 "name": "Switch {x}"

@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ]({device_details_url}).",
                 "data": {
                     "host": "IP адрес или име на хост",
                     "device_id": "Device ID (или Device ID шлюза, за устройства свързани чрез шлюз)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "[Следвайте тези инструкции, за да откриете своя локален ключ.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Следвайте тези инструкции, за да откриете своя локален ключ.]({device_details_url})",
                 "data": {
                     "host": "IP адрес или име на хост",
                     "local_key": "Локален ключ",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Сухо пране",
-                            "purify": "Пречистете"
+                            "purify": "Пречистете",
+                            "continuous": "Непрекъснато"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 секунди",
                     "1m": "1 минута",
                     "2m": "2 минути",
+                    "3m": "3 минути",
                     "5m": "5 минути",
                     "10m": "10 минути",
                     "15m": "15 минути",
@@ -953,6 +956,9 @@
                     "missing": "Липсва",
                     "formatting": "Форматиране",
                     "unformatted": "Неформатиран",
+                    "failed": "Неуспешен",
+                    "replying": "Отговаряне",
+                    "playback": "Възпроизвеждане",
                     "maintenance_required": "Изисква се поддръжка",
                     "dry": "Сухо",
                     "comfortable": "Удобно",
@@ -1057,6 +1063,9 @@
             },
             "sleep": {
                 "name": "Сън"
+            },
+            "sound": {
+                "name": "Звук"
             },
             "switch_x": {
                 "name": "Превключване {x}"

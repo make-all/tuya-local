@@ -5,16 +5,22 @@ products:
 entities:
   - entity: sensor
     name: Gas leak
-    category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: "% LEL"
         class: measurement
+  - entity: binary_sensor
+    class: gas
+    dps:
       - id: 1
         type: string
-        name: gas_state
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
   - entity: number
     name: Alarm duration
     category: config
@@ -63,7 +69,6 @@ entities:
   - entity: binary_sensor
     name: Carbon monoxide alarm
     class: gas
-    category: diagnostic
     dps:
       - id: 18
         type: string
@@ -74,7 +79,6 @@ entities:
           - value: false
   - entity: sensor
     class: carbon_monoxide
-    category: diagnostic
     dps:
       - id: 19
         type: integer

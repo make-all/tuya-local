@@ -1,0 +1,67 @@
+name: Towel warmer
+products:
+  - id: aynf0bur9ur8g42d
+    manufacturer: Brandon Basics
+    model: SYZN119_SB1
+entities:
+  - entity: climate
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 100
+          max: 160
+        unit: F
+        mapping:
+          - step: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: standby
+            value: idle
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
+        range:
+          min: 0
+          max: 720

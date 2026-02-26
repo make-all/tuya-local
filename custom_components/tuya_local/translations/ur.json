@@ -35,7 +35,7 @@
             },
             "local": {
                 "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
-                "description": "[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔]({device_details_url})",
                 "data": {
                     "host": "IP ایڈریس یا میزبان نام",
                     "or device_id of gateway for devices connected through gateway": "",
@@ -86,7 +86,7 @@
         "step": {
             "user": {
                 "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں",
-                "description": "[اپنی مقامی کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[اپنی مقامی کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔]({device_details_url})",
                 "data": {
                     "host": "IP پتہ یا میزبان نام",
                     "local_key": "مقامی کلید",
@@ -330,12 +330,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "خشک کپڑے",
-                            "purify": "پاک کریں۔"
+                            "purify": "پاک کریں۔",
+                            "continuous": "مسلسل"
                         }
                     }
                 }
@@ -533,6 +534,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -635,6 +637,7 @@
                     "45s": "45 سیکنڈ",
                     "1m": "1 منٹ",
                     "2m": "2 منٹ",
+                    "3m": "3 منٹ",
                     "5m": "5 منٹ",
                     "10m": "10 منٹ",
                     "15m": "15 منٹ",
@@ -955,6 +958,9 @@
                     "missing": "غائب",
                     "formatting": "فارمیٹنگ",
                     "unformatted": "غیر شکل بند",
+                    "failed": "ناکام",
+                    "replying": "جواب دے رہا ہے",
+                    "playback": "پلے بیک",
                     "maintenance_required": "مینٹیننس کی ضرورت ہے",
                     "dry": "خشک",
                     "comfortable": "آرام دہ",
@@ -1059,6 +1065,9 @@
             },
             "sleep": {
                 "name": "سونا"
+            },
+            "sound": {
+                "name": "آواز"
             },
             "switch_x": {
                 "name": "سوئچ {x}"

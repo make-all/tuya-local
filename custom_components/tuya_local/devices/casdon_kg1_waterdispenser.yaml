@@ -130,14 +130,13 @@ entities:
         name: current_temperature
 
   - entity: sensor
-    category: diagnostic
     class: volume
+    category: diagnostic
     dps:
       - id: 26
         type: integer
         name: sensor
-        unit: ml
-        class: measurement
+        unit: mL
 
   - entity: binary_sensor
     class: problem

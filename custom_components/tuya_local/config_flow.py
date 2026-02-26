@@ -43,11 +43,15 @@ from .helpers.device_config import get_config
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
+DEVICE_DETAILS_URL = (
+    "https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md"
+    "#finding-your-device-id-and-local-key"
+)
 
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 15
+    MINOR_VERSION = 16
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -384,6 +388,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 
@@ -428,13 +433,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 if model:
                     _LOGGER.warning(
-                        "Cloud device spec:\n%s",
+                        "Partial cloud device spec:\n%s",
                         log_json(model),
                     )
             except Exception as e:
-                _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
+                _LOGGER.warning(
+                    "Unable to fetch data model from cloud: %s %s",
+                    type(e).__name__,
+                    e,
+                )
         _LOGGER.warning(
-            "Device matches %s with quality of %d%%. DPS: %s",
+            "Device matches %s with quality of %d%%. LOCAL DPS: %s",
             best_matching_type,
             best_match,
             log_json(dps),
@@ -527,6 +536,7 @@ class OptionsFlowHandler(OptionsFlow):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(schema),
+            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
             errors=errors,
         )
 

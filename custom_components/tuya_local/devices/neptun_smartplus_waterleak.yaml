@@ -1,0 +1,106 @@
+name: Water leak detector
+products:
+  - id: fbewfxzogbzphuy3
+    manufacturer: Neptun
+    model: Smart+
+entities:
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: low
+            value: 20
+          - dps_val: middle
+            value: 50
+          - dps_val: high
+            value: 80
+  - entity: button
+    name: Mute
+    icon: "mdi:volume-mute"
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: button
+  - entity: siren
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: volume_level
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.33
+          - dps_val: middle
+            value: 0.66
+          - dps_val: high
+            value: 1.0
+      - id: 141
+        type: integer
+        name: duration
+        range:
+          min: 0
+          max: 255
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 119
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 119
+        type: bitfield
+        name: fault_code
+      - id: 121
+        type: base64
+        name: serial_number
+      - id: 139
+        type: integer
+        name: line_sensor_errors
+      - id: 140
+        type: integer
+        name: error_code
+  - entity: event
+    name: Notification
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: alert
+          - dps_val: false
+            value: cleared

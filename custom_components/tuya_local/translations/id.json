@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Konfigurasikan perangkat Tuya Local Anda",
-                "description": "[Ikuti petunjuk ini untuk menemukan ID perangkat dan kunci lokal.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Ikuti petunjuk ini untuk menemukan ID perangkat dan kunci lokal.]({device_details_url})",
                 "data": {
                     "host": "Alamat IP atau nama hos",
                     "device_id": "ID Perangkat (device_id, atau device_id dari gateway untuk perangkat yang tersambung via gateway)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Konfigurasikan perangkat Tuya Local Anda",
-                "description": "[Ikuti petunjuk ini untuk menemukan ID perangkat dan kunci lokal.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Ikuti petunjuk ini untuk menemukan ID perangkat dan kunci lokal.]({device_details_url})",
                 "data": {
                     "host": "Alamat IP atau nama hos",
                     "local_key": "Kunci lokal (local_key)",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Pakaian Kering",
-                            "purify": "Penjernih"
+                            "purify": "Penjernih",
+                            "continuous": "Terus menerus"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 detik",
                     "1m": "1 menit",
                     "2m": "2 menit",
+                    "3m": "3 menit",
                     "5m": "5 menit",
                     "10m": "10 menit",
                     "15m": "15 menit",
@@ -952,6 +955,9 @@
                     "missing": "Hilang",
                     "formatting": "Memformat",
                     "unformatted": "Belum diformat",
+                    "failed": "Gagal",
+                    "replying": "Membalas",
+                    "playback": "Pemutaran",
                     "maintenance_required": "Perawatan diperlukan",
                     "dry": "Kering",
                     "comfortable": "Nyaman",
@@ -1056,6 +1062,9 @@
             },
             "sleep": {
                 "name": "Tidur"
+            },
+            "sound": {
+                "name": "Suara"
             },
             "switch_x": {
                 "name": "Saklar {x}"

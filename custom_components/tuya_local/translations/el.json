@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Ρυθμίστε τη συσκευή σας Tuya Local",
-                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το device id και το local key.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το device id και το local key.]({device_details_url})",
                 "data": {
                     "host": "Διεύθυνση IP ή όνομα",
                     "device_id": "Device ID (ή device_id της gateway για συσκευές συνδεδεμένες μέσω gateway)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Ρυθμίστε τη συσκευή σας Tuya Local",
-                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το local key.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το local key.]({device_details_url})",
                 "data": {
                     "host": "Διεύθυνση IP ή όνομα",
                     "local_key": "Local key",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Στέγνωμα ρούχων",
-                            "purify": "Καθαρισμός"
+                            "purify": "Καθαρισμός",
+                            "continuous": "Συνεχής"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 δευτερόλεπτα",
                     "1m": "1 λεπτό",
                     "2m": "2 λεπτά",
+                    "3m": "3 λεπτά",
                     "5m": "5 λεπτά",
                     "10m": "10 λεπτά",
                     "15m": "15 λεπτά",
@@ -952,6 +955,9 @@
                     "missing": "Ελλιπές",
                     "formatting": "Μορφοποίηση",
                     "unformatted": "Μη μορφοποιημένο",
+                    "failed": "Απέτυχε",
+                    "replying": "Απάντηση",
+                    "playback": "Αναπαραγωγή",
                     "maintenance_required": "Απαιτείται συντήρηση",
                     "dry": "Στεγνό",
                     "comfortable": "Άνετο",
@@ -1015,7 +1021,7 @@
             "power_x": {
                 "name": "Ισχύς {x}"
             },
-            "filter_ilfe": {
+            "filter_life": {
                 "name": "Διάρκεια φίλτρου"
             }
         },
@@ -1056,6 +1062,9 @@
             },
             "sleep": {
                 "name": "Αναμονή"
+            },
+            "sound": {
+                "name": "Ήχος"
             },
             "switch_x": {
                 "name": "Διακόπτης {x}"

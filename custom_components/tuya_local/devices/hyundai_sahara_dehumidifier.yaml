@@ -11,13 +11,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 4
       - id: 2
         name: humidity
         type: integer
@@ -37,8 +30,6 @@ entities:
             value: normal
           - dps_val: true
             value: sleep
-            icon: "mdi:power-sleep"
-            icon_priority: 3
   - entity: fan
     dps:
       - id: 1

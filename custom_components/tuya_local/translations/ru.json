@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Настройка устройства Tuya Local",
-                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.]({device_details_url})",
                 "data": {
                     "host": "IP-адрес или имя хоста",
                     "device_id": "Идентификатор устройства (device_id, или device_id шлюза для устройств, подключенных через шлюз)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Настройка устройства Tuya Local",
-                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.]({device_details_url})",
                 "data": {
                     "host": "IP-адрес или имя хоста",
                     "local_key": "Локальный ключ",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Сушка одежды",
-                            "purify": "Очистка"
+                            "purify": "Очистка",
+                            "continuous": "Непрерывный"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 секунд",
                     "1m": "1 минута",
                     "2m": "2 минуты",
+                    "3m": "3 минуты",
                     "5m": "5 минут",
                     "10m": "10 минут",
                     "15m": "15 минут",
@@ -952,6 +955,9 @@
                     "missing": "Отсутствует",
                     "formatting": "Форматирование",
                     "unformatted": "Не отформатировано",
+                    "failed": "Не удалось",
+                    "replying": "Ответ",
+                    "playback": "Воспроизведение",
                     "maintenance_required": "Требуется техническое обслуживание",
                     "dry": "Сухой",
                     "comfortable": "Комфортный",
@@ -1056,6 +1062,9 @@
             },
             "sleep": {
                 "name": "Сон"
+            },
+            "sound": {
+                "name": "Звук"
             },
             "switch_x": {
                 "name": "Выключатель {x}"

@@ -8,6 +8,7 @@ products:
     model: Noah Pro
 entities:
   - entity: humidifier
+    class: humidifier
     dps:
       - id: 1
         name: switch
@@ -66,7 +67,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     icon: mdi:cup-water
     category: diagnostic
     dps:

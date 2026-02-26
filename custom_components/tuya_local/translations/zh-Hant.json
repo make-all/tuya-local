@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "配置您的Tuya Local設備",
-                "description": "[請按照這些說明找到您的裝置ID和 Local key](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[請按照這些說明找到您的裝置ID和 Local key]({devide_details_url})",
                 "data": {
                     "host": "IP位址或主機名",
                     "device_id": "設備ID(或device_id網關,對於透過網關連接的設備）",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "配置您的Tuya Local設備",
-                "description": "[請按照這些說明找到您的 Local key](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[請按照這些說明找到您的 Local key]({devide_details_url})",
                 "data": {
                     "host": "IP位址或主機名",
                     "local_key": "Local key",
@@ -328,12 +328,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "烘乾衣物",
-                            "purify": "淨化"
+                            "purify": "淨化",
+                            "continuous": "連續"
                         }
                     }
                 }
@@ -531,6 +532,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -633,6 +635,7 @@
                     "45s": "45秒",
                     "1m": "1分鐘",
                     "2m": "2分鐘",
+                    "3m": "3分鐘",
                     "5m": "5分鐘",
                     "10m": "10分鐘",
                     "15m": "15分鐘",
@@ -953,6 +956,9 @@
                     "missing": "缺失",
                     "formatting": "格式化中",
                     "unformatted": "未格式化",
+                    "failed": "失敗",
+                    "replying": "回覆中",
+                    "playback": "播放中",
                     "maintenance_required": "需要維護",
                     "dry": "乾燥",
                     "comfortable": "舒適",
@@ -1057,6 +1063,9 @@
             },
             "sleep": {
                 "name": "睡眠模式"
+            },
+            "sound": {
+                "name": "聲音"
             },
             "switch_x": {
                 "name": "開關{x}"

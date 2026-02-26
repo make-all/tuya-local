@@ -60,13 +60,17 @@ entities:
         unit: ugm3
         class: measurement
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 102
         type: boolean
         name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: light
     translation_key: display
     category: config

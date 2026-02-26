@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Nastavte sve lokální zařízení",
-                "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).]({device_details_url})",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
                     "device_id": "identifikátor zařízení (device_id, nebo device_id brány pro zařízení připojená pomocí brány) ",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Nastavte sve lokální zařízení Tuya",
-                "description": "[Postupujte podle tohoto návodu pro získaní lokálního klíče (local_key) zařízení.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Postupujte podle tohoto návodu pro získaní lokálního klíče (local_key) zařízení.]({device_details_url})",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
                     "local_key": "lokální klíč (local_key)",
@@ -327,12 +327,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Suché prádlo",
-                            "purify": "Očistit"
+                            "purify": "Očistit",
+                            "continuous": "Nepřetržitý"
                         }
                     }
                 }
@@ -530,6 +531,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -632,6 +634,7 @@
                     "45s": "45 sekund",
                     "1m": "1 minuta",
                     "2m": "2 minuty",
+                    "3m": "3 minuty",
                     "5m": "5 minut",
                     "10m": "10 minut",
                     "15m": "15 minut",
@@ -952,6 +955,9 @@
                     "missing": "Chybí",
                     "formatting": "Formátování",
                     "unformatted": "Neformátováno",
+                    "failed": "Selhalo",
+                    "replying": "Odpovídání",
+                    "playback": "Přehrávání",
                     "maintenance_required": "Vyžadována údržba",
                     "dry": "Suchý",
                     "comfortable": "Pohodlný",
@@ -1056,6 +1062,9 @@
             },
             "sleep": {
                 "name": "Spát"
+            },
+            "sound": {
+                "name": "Zvuk"
             },
             "switch_x": {
                 "name": "Přepínač {x}"

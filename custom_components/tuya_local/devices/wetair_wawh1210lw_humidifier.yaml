@@ -7,11 +7,6 @@ entities:
       - id: 1
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
       - id: 13
         name: humidity
         type: integer
@@ -44,20 +39,14 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
     dps:
       - id: 8
         name: "switch"
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:volume-high"
-          - dps_val: false
-            icon: "mdi:volume-off"
-
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     category: diagnostic
     dps:
       - id: 101

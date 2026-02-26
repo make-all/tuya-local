@@ -214,8 +214,7 @@ entities:
           - dps_val: controlpi_error
             value: fault
   - entity: select
-    name: Charging mode
-    icon: "mdi:car-select"
+    translation_key: charging_mode
     category: config
     dps:
       - id: 14
@@ -224,17 +223,17 @@ entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: immediate
           - dps_val: charge_pct
-            value: Charge to percent
+            value: charge_to_percent
           - dps_val: charge_energy
-            value: Fixed energy
+            value: fixed_charge
           - dps_val: charge_schedule
-            value: Scheduled
+            value: scheduled_charge
           - dps_val: charge_delay
-            value: Delayed
+            value: delayed_charge
           - dps_val: null
-            value: Immediate
+            value: immediate
             hidden: true
   - entity: switch
     category: config

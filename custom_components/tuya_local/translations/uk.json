@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Налаштуйте свій пристрій Tuya Local",
-                "description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.]({device_details_url})",
                 "data": {
                     "host": "IP-адреса або ім'я хоста",
                     "device_id": "Ідентифікатор пристрою (device_id, або device_id шлюзу для пристроїв, підключених через шлюз)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "Налаштуйте свій пристрій Tuya Local",
-                "description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.]({device_details_url})",
                 "data": {
                     "host": "IP-адреса або ім'я хоста",
                     "local_key": "Локальний ключ (local_key)",
@@ -328,12 +328,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "Висушити білизну",
-                            "purify": "Очистити"
+                            "purify": "Очистити",
+                            "continuous": "Постійний"
                         }
                     }
                 }
@@ -531,6 +532,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -633,6 +635,7 @@
                     "45s": "45 секунд",
                     "1m": "1 хвилина",
                     "2m": "2 хвилини",
+                    "3m": "3 хвилини",
                     "5m": "5 хвилин",
                     "10m": "10 хвилин",
                     "15m": "15 хвилин",
@@ -953,6 +956,9 @@
                     "missing": "Відсутній",
                     "formatting": "Форматування",
                     "unformatted": "Неформатований",
+                    "failed": "Не вдалося",
+                    "replying": "Відповідь",
+                    "playback": "Відтворення",
                     "maintenance_required": "Потрібне обслуговування",
                     "dry": "Сухий",
                     "comfortable": "Комфортний",
@@ -1057,6 +1063,9 @@
             },
             "sleep": {
                 "name": "Сон"
+            },
+            "sound": {
+                "name": "Звук"
             },
             "switch_x": {
                 "name": "Вимикач {x}"

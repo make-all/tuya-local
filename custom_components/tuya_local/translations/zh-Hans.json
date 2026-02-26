@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "配置您的Tuya Local设备",
-                "description": "[按照这些说明找到您的设备ID和 Local key](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[按照这些说明找到您的设备ID和 Local key]({device_details_url})",
                 "data": {
                     "host": "IP地址或主机名",
                     "device_id": "设备ID (或者通过网关连接的设备的设备ID)",
@@ -83,7 +83,7 @@
         "step": {
             "user": {
                 "title": "配置您的Tuya Local设备",
-                "description": "[按照这些说明找到您的 Local key](https://github.com/make-all/tuya-local/blob/main/DEVICE_DETAILS.md#finding-your-device-id-and-local-key)",
+                "description": "[按照这些说明找到您的 Local key]({device_details_url})",
                 "data": {
                     "host": "IP地址或主机名",
                     "local_key": "Local key",
@@ -351,12 +351,13 @@
             }
         },
         "humidifier": {
-            "dehumidifier": {
+            "extended": {
                 "state_attributes": {
                     "mode": {
                         "state": {
                             "laundry": "烘干衣物",
-                            "purify": "净化"
+                            "purify": "净化",
+                            "continuous": "连续"
                         }
                     }
                 }
@@ -569,6 +570,7 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
@@ -671,6 +673,7 @@
                     "45s": "45秒",
                     "1m": "1分钟",
                     "2m": "2分钟",
+                    "3m": "3分钟",
                     "5m": "5分钟",
                     "10m": "10分钟",
                     "15m": "15分钟",
@@ -1061,6 +1064,9 @@
                     "missing": "缺失",
                     "formatting": "格式化中",
                     "unformatted": "未格式化",
+                    "failed": "失败",
+                    "replying": "回复中",
+                    "playback": "回放中",
                     "maintenance_required": "需要维护",
                     "dry": "干燥",
                     "comfortable": "舒适",
@@ -1212,6 +1218,9 @@
             },
             "sleep": {
                 "name": "睡眠"
+            },
+            "sound": {
+                "name": "声音"
             },
             "switch_x": {
                 "name": "开关{x}"
