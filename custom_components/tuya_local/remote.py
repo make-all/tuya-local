@@ -135,7 +135,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
         async_add_entities,
         config,
         "remote",
-        lambda device, ecfg: TuyaLocalRemote(device, ecfg, button_platform, number_platform),
+        lambda device, ecfg: TuyaLocalRemote(
+            device, ecfg, button_platform, number_platform
+        ),
     )
 
 
@@ -188,7 +190,9 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         self._button_platform = button_platform
         self._buttons: dict[tuple[str, str], TuyaRemoteButton] = {}
         self._number_platform = number_platform
-        self._subdevice_numbers: dict[str, tuple[TuyaRemoteNumber, TuyaRemoteNumber]] = {}
+        self._subdevice_numbers: dict[
+            str, tuple[TuyaRemoteNumber, TuyaRemoteNumber]
+        ] = {}
 
     async def async_added_to_hass(self) -> None:
         """Load storage and create buttons when entity is added to HA."""
@@ -210,7 +214,10 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                     button = TuyaRemoteButton(self, subdevice, command)
                     self._buttons[key] = button
                     new_buttons.append(button)
-            if self._has_ir_codes(subdevice) and subdevice not in self._subdevice_numbers:
+            if (
+                self._has_ir_codes(subdevice)
+                and subdevice not in self._subdevice_numbers
+            ):
                 delay_num, repeats_num = self._create_number_entities(subdevice)
                 self._subdevice_numbers[subdevice] = (delay_num, repeats_num)
                 new_numbers.extend([delay_num, repeats_num])
@@ -397,9 +404,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             at_least_one_sent = True
 
         if at_least_one_sent:
-            self._flag_storage.async_delay_save(
-                lambda: self._flags, FLAG_SAVE_DELAY
-            )
+            self._flag_storage.async_delay_save(lambda: self._flags, FLAG_SAVE_DELAY)
 
     async def async_learn_command(self, **kwargs: Any) -> None:
         """Learn a list of commands from a remote."""
@@ -433,7 +438,9 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                 if not is_rf and subdevice not in self._subdevice_numbers:
                     delay_num, repeats_num = self._create_number_entities(subdevice)
                     self._subdevice_numbers[subdevice] = (delay_num, repeats_num)
-                    await self._number_platform.async_add_entities([delay_num, repeats_num])
+                    await self._number_platform.async_add_entities(
+                        [delay_num, repeats_num]
+                    )
 
             if should_store:
                 await self._code_storage.async_save(self._codes)
@@ -583,9 +590,7 @@ class TuyaRemoteButton(ButtonEntity):
         self._remote = remote
         self._subdevice = subdevice
         self._command = command
-        self._attr_unique_id = (
-            f"{remote._device.unique_id}_{subdevice}_{command}"
-        )
+        self._attr_unique_id = f"{remote._device.unique_id}_{subdevice}_{command}"
         self._attr_name = command
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, f"{remote._device.unique_id}_{subdevice}")},
