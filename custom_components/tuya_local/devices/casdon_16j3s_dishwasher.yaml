@@ -31,7 +31,6 @@ entities:
             value: true
   - entity: select
     class: enum
-    name: Work mode
     translation_key: washing_mode
     category: config
     dps:
@@ -40,9 +39,9 @@ entities:
         name: option
         mapping:
           - dps_val: strong
-            value: strong
+            value: intensive
           - dps_val: quick_wash
-            value: quick_wash
+            value: rapid
           - dps_val: "disinfect_wash"
             value: disinfect_wash
           - dps_val: hour_wash
@@ -50,7 +49,7 @@ entities:
           - dps_val: dry
             value: dry
           - dps_val: chucun
-            value: chucun
+            value: storage
           - dps_val: smart_wash
             value: smart_wash
           - dps_val: soft_wash
@@ -58,11 +57,11 @@ entities:
           - dps_val: hotpot_wash
             value: hotpot_wash
           - dps_val: eco_wash
-            value: eco_wash
+            value: eco
           - dps_val: clean_wash
-            value: clean_wash
+            value: self_clean
           - dps_val: baby_wash
-            value: baby_wash
+            value: baby_care
   - entity: sensor
     translation_key: status
     class: enum
@@ -78,18 +77,18 @@ entities:
             value: cleaning
           - dps_val: done
             value: done
-          - dps_val: draining
+          - dps_val: emptying
             value: draining
-          - dps_val: appointment_countdown
+          - dps_val: reservation_countdown
             value: appointmentSt
           - dps_val: drying
             value: drying
-          - dps_val: saving
+          - dps_val: storage
             value: saving
           - dps_val: smartwash_detecting
             value: smartwash_detecting
   - entity: time
-    translation_key: appointment_time
+    translation_key: reservation_time
     category: config
     dps:
       - id: 8
@@ -107,7 +106,6 @@ entities:
         type: integer
         name: sensor
         unit: min
-        class: measurement
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -144,14 +142,14 @@ entities:
             value: e8
           - dps_val: e9
             value: e9
-  - entity: switch
+  - entity: lock
     translation_key: child_lock
     category: config
     dps:
       - id: 19
         type: boolean
         optional: true
-        name: switch
+        name: lock
         mapping:
           - dps_val: true
             value: off
@@ -224,7 +222,7 @@ entities:
         type: boolean
         name: sensor
   - entity: switch
-    translation_key: auto_drt
+    translation_key: auto_dry
     icon: "mdi:clock"
     category: config
     dps:
@@ -232,7 +230,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    translation_key: auto_chucun
+    translation_key: auto_storage
     icon: "mdi:clock"
     category: config
     dps:
@@ -241,7 +239,7 @@ entities:
         name: switch
   - entity: sensor
     class: duration
-    translation_key: chucun_day
+    translation_key: storage_days
     category: diagnostic
     dps:
       - id: 107
@@ -272,23 +270,3 @@ entities:
             value: up
           - dps_val: down
             value: down
-  - entity: sensor
-    class: duration
-    translation_key: water_once
-    category: diagnostic
-    dps:
-      - id: 13
-        type: integer
-        name: sensor
-        unit: L
-        class: measurement
-  - entity: sensor
-    class: duration
-    translation_key: consumption_once
-    category: diagnostic
-    dps:
-      - id: 14
-        type: integer
-        name: sensor
-        unit: kWh
-        class: measurement

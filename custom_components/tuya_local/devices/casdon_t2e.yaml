@@ -48,7 +48,7 @@ entities:
           - dps_val: "1"
             value: steaming
           - dps_val: "2"
-            value: high_temperature_steaming
+            value: high_temp_steam
           - dps_val: "3"
             value: bake_up_and_down
           - dps_val: "4"
@@ -134,7 +134,7 @@ entities:
           min: 1
           max: 1440
   - entity: number
-    translation_key: down_temperature
+    translation_key: bottom_temperature
     category: config
     class: temperature
     dps:
@@ -146,7 +146,7 @@ entities:
           min: 0
           max: 500
   - entity: number
-    translation_key: up_temperature
+    translation_key: top_temperature
     category: config
     class: temperature
     dps:
@@ -157,14 +157,19 @@ entities:
         range:
           min: 0
           max: 500
-  - entity: switch
+  - entity: lock
     translation_key: child_lock
     category: config
     dps:
       - id: 3
         type: boolean
         optional: true
-        name: switch
+        name: lock
+        mapping:
+          - dps_val: true
+            value: off
+          - dps_val: false
+            value: on
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -184,7 +189,7 @@ entities:
         type: boolean
   - entity: select
     class: enum
-    translation_key: rangehood_fun_speed
+    translation_key: rangehood_fan_speed
     dps:
       - id: 2
         type: string
@@ -254,7 +259,7 @@ entities:
         type: boolean
         name: sensor
   - entity: sensor
-    translation_key: clearing_status
+    translation_key: cleanliness
     class: enum
     category: diagnostic
     dps:
@@ -268,9 +273,9 @@ entities:
             value: good
           - dps_val: great
             value: great
-  - entity: sensor
+  - entity: binary_sensor
     translation_key: casdon_t2e_fault
-    class: enum
+    class: problem
     category: diagnostic
     dps:
       - id: 31
