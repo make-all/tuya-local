@@ -1,6 +1,6 @@
 name: Linting
 
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 
 jobs:
   lint:
@@ -32,4 +32,3 @@ jobs:
         run: ruff format --check --diff .
       - name: YAML lint
         run: yamllint --format github custom_components/tuya_local/devices
-
