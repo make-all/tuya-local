@@ -16,8 +16,10 @@ from typing import Any
 
 import voluptuous as vol
 from homeassistant.components import persistent_notification
-from homeassistant.components.button import DOMAIN as BUTTON_DOMAIN, ButtonEntity
-from homeassistant.components.number import DOMAIN as NUMBER_DOMAIN, NumberEntity, NumberMode
+from homeassistant.components.button import DOMAIN as BUTTON_DOMAIN
+from homeassistant.components.button import ButtonEntity
+from homeassistant.components.number import DOMAIN as NUMBER_DOMAIN
+from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.components.remote import (
     ATTR_ALTERNATIVE,
     ATTR_COMMAND_TYPE,
