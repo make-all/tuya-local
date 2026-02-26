@@ -393,7 +393,9 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             at_least_one_sent = True
 
         if at_least_one_sent:
-            self._flag_storage.async_delay_save(lambda: self._flags, FLAG_SAVE_DELAY)
+            self._flag_storage.async_delay_save(
+                lambda: self._flags, FLAG_SAVE_DELAY
+            )
 
     async def async_learn_command(self, **kwargs: Any) -> None:
         """Learn a list of commands from a remote."""
@@ -542,7 +544,9 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         if not codes:
             del self._codes[subdevice]
             if self._flags.pop(subdevice, None) is not None:
-                self._flag_storage.async_delay_save(lambda: self._flags, FLAG_SAVE_DELAY)
+                self._flag_storage.async_delay_save(
+                    lambda: self._flags, FLAG_SAVE_DELAY
+                )
         # Remove number entities if no IR codes remain for this sub-device
         if subdevice in self._subdevice_numbers and not self._has_ir_codes(subdevice):
             delay_num, repeats_num = self._subdevice_numbers.pop(subdevice)
