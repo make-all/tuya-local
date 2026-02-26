@@ -1,0 +1,44 @@
+name: Blind controller
+products:
+  - id: kasmartblib
+    manufacturer: Kogan
+    model: SmarterHome™ Motorised Smart Blinds Driver - Wi-Fi
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        # DP2 is to set position
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        # DP3 is to read position
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 5
+        name: control_back_mode
+        type: boolean
+      - id: 7
+        # DP7 is to read current action
+        name: work_state
+        type: string
