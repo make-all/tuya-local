@@ -36,6 +36,12 @@ class TestRGBCWLightbulb(BasicTextTests, TuyaDeviceTestCase):
                 "text_scene",
                 "time_timer",
                 "switch_do_not_disturb",
+                "text_music",
+                "text_control",
+                "text_debug",
+                "text_rhythm",
+                "text_sleep",
+                "text_wakeup",
             ]
         )
 
