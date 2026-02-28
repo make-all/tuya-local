@@ -1,0 +1,583 @@
+name: Tuvio Vacuum
+products:
+  - id: gbgjradjqq2k6aal
+    manufacturer: Tuvio
+    model: TR06HLCB
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1 #верно
+        type: boolean
+        name: power
+        
+      - id: 28 #монитор ошибок?
+        type: bitfield
+        optional: true
+        name: error
+        hidden: true
+        
+      - id: 8 #атрибут батареи
+        type: integer
+        name: battery_level
+        unit: "%"
+        optional: true
+
+      - id: 5 #список иконок статусов для vacuum card. Часть с привязкой к HA, часть без
+        type: string
+        name: battery_icon
+        optional: true
+        mapping:
+          - dps_val: charging
+            value: mdi:battery-charging
+          - dps_val: charge_done
+            value: mdi:battery
+          - dps_val: standby
+            value: mdi:battery
+          - value: mdi:battery  
+
+      - id: 111
+        name: cleanup_mode
+        type: string
+        optional: true
+        force: true
+        mapping:
+          - dps_val: "1"
+            value: Сухая
+          - dps_val: "2"
+            value: Влажная
+          - dps_val: "3"
+            value: Последовательная
+          - dps_val: "4"
+            value: Комплексная
+            
+      - id: 5 #!!!Уточнить статусы, актуализировать по ходу. Часть с привязкой к HA, часть без
+        type: string
+        name: status
+        optional: true
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: Следует к точке
+          - dps_val: pos_arrived
+            value: Прибыл на точку
+          - dps_val: pos_unarrive
+            value: Точка недостижима
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: Уборка участка   
+          - dps_val: sleep
+            value: sleep 
+          - dps_val: select_room
+            value: Карта создается
+          - dps_val: seek_dust_bucket
+            value: Очистка насадки для влажной уборки
+          - dps_val: collecting_dust
+            value: Сушка насадки для влажной уборки
+          - dps_val: self_clean
+            value: Очистка пылесборника
+          - dps_val: mapping
+            value: Заполнение бака для воды  
+          - dps_val: mapping_done
+            value: Карта загружена
+          - dps_val: 22
+            value: Возвращение на базовую станцию
+            
+      - id: 4  # режимы работы пылесоса
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: smart
+            value: auto
+          - dps_val: goto_charge
+            value: return_to_base
+          - dps_val: part
+            value: spot_cleaning
+          - dps_val: zone
+            value: zone_cleaning
+          - dps_val: select_room
+            value: clean_room
+          - dps_val: pose
+            value: goto_location
+          - dps_val: fast_map
+            value: map_building
+          - dps_val: standy_mode
+            value: standby
+            
+      - id: 9 #мощность всасывания. Работает. Убрал max (турбо) не включается.
+        type: string
+        name: fan_speed
+        optional: true
+        force: true
+        mapping:
+          - dps_val: gentle
+            value: Эко
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: max
+          - dps_val: max
+            value: turbo
+
+      - id: 12 #Ручное управление. Вроде прописано, но не появлется
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+          - dps_val: exit
+            value: exit  
+
+      - id: 1 #старт/стоп уборки
+        type: boolean
+        name: activate
+        optional: true
+        
+      - id: 11 #найти устройство
+        type: boolean
+        name: locate
+        optional: true
+        
+  - entity: sensor #площадь уборки
+    name: Площадь уборки
+    class: area
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: m2
+        optional: true
+        mapping:
+          - scale: 10
+          
+  - entity: binary_sensor #список ошибок. Доработать
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 28
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: cliff
+          - dps_val: 2
+            value: imp
+          - dps_val: 4
+            value: whl
+          - dps_val: 8
+            value: brush
+          - dps_val: 16
+            value: fan
+          - dps_val: 32
+            value: roller_brush
+          - dps_val: 64
+            value: low_power
+          - dps_val: 128
+            value: give_up
+          - dps_val: 256
+            value: Не установлен пылесборник
+          - dps_val: 512
+            value: "none"
+          - dps_val: 536870912
+            value: Контейнер для отработки полон или забит
+          - dps_val: 134217728
+            value: Резервуар для воды не установлен
+          - dps_val: 33554432
+            value: Резервуар для сточной воды заполнен
+            
+  - entity: sensor #Продолжительность последней уборки
+    name: Время уборки
+    class: duration
+    category: diagnostic
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+        
+  - entity: sensor #батарея заряд
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+        
+  - entity: sensor #Оставшийся срок службы боковой щетки
+    name: Ресурс боковой щетки
+    category: diagnostic
+    icon: mdi:brush-variant
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: "%"
+        force: true
+        optional: true
+        mapping:
+          - scale: 90
+        precision: 0
+
+  - entity: sensor #оставшийся срок службы основной щетки
+    name: Ресурс турбощетки
+    category: diagnostic
+    icon: mdi:rotate-right
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        force: true
+        optional: true
+        mapping:
+          - scale: 180
+        precision: 0        
+        
+  - entity: sensor #оставшийся срок службы HEPA фильтра
+    name: Ресурс фильтра
+    category: diagnostic
+    icon: mdi:air-filter
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "%"
+        force: true
+        optional: true
+        mapping:
+          - scale: 90
+        precision: 0           
+        
+  - entity: button #кнопка сброса времени работы щетки
+    name: Сброс ресурса боковой щетки
+    icon: mdi:backup-restore
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+        
+  - entity: button #кнопка сброса времени работы основной щетки
+    name: Сброс ресурса основной щетки
+    icon: mdi:backup-restore
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+        
+  - entity: button #кнопка сброса времени работы фильтра
+    name: Сбросить HEPA фильтр
+    icon: mdi:backup-restore
+    category: config
+    class: restart
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+        
+  - entity: button #кнопка паузы для vacuum-card
+    name: Пауза 
+    icon: mdi:pause
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        optional: true
+        
+  - entity: switch #переключатель углов
+    name: Уборка углов 
+    icon: mdi:vector-curve
+    category: config
+    dps:
+      - id: 130
+        name: switch
+        type: boolean
+        
+  - entity: switch #тщательная уборка
+    name: Тщательная уборка
+    icon: mdi:checkbox-marked-circle-outline
+    category: config
+    dps:
+      - id: 129
+        name: switch
+        type: boolean
+    
+  - entity: select #очистка насадки
+    name: Режим очистки моющей насадки
+    icon: mdi:shower-head
+    category: config
+    dps:
+      - id: 128
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: Стандартный
+          - dps_val: "2"
+            value: Глубокий
+            
+  - entity: select #частота автоочистки пылесборника
+    name: Автоочистка пылесборника
+    icon: mdi:trash-can-outline
+    category: config
+    dps:
+      - id: 124
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: Выключено
+          - dps_val: "2"
+            value: Редко
+          - dps_val: "3"
+            value: Часто
+
+  - entity: switch #подсветка
+    name: Подсветка
+    icon: mdi:lightbulb-outline
+    category: config
+    dps:
+      - id: 122
+        name: switch
+        type: boolean
+        
+  - entity: switch #Режим ухода от столкновений
+    name: Режим ухода от столкновений
+    icon: mdi:gesture-tap-hold
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: false
+          - dps_val: "2"
+            value: true
+        
+  - entity: switch #Увеличение мощности для ковровых покрытий
+    name: Увеличение мощности для ковров
+    icon: mdi:wind-power
+    category: config
+    dps:
+      - id: 107
+        name: switch
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: true
+          - dps_val: "2"
+            value: false
+        
+  - entity: switch #Блокировка от детей
+    name: Блокировка от детей
+    icon: mdi:account-lock-outline
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+        
+  - entity: switch #Продолжить уборку после подзарядки
+    name: Продолжить уборку после подзарядки
+    icon: mdi:progress-check
+    category: config
+    dps:
+      - id: 27
+        name: switch
+        type: boolean
+
+  - entity: number
+    name: Время сушки
+    icon: mdi:clock-time-eight-outline
+    category: config
+    dps:
+      - id: 123
+        name: value
+        type: integer
+        range:
+          min: 60
+          max: 240        
+        optional: true
+        mapping:
+          - step: 60
+          
+  - entity: select #Режим уборки
+    name: Режим уборки
+    icon: mdi:vacuum
+    category: config
+    dps:
+      - id: 111
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: Сухая
+          - dps_val: "2"
+            value: Влажная
+          - dps_val: "3"
+            value: Последовательная
+          - dps_val: "4"
+            value: Комплексная
+            
+  - entity: select #Интервал самоочистки
+    name: Интервал самоочистки
+    icon: mdi:timer-sand
+    category: config
+    dps:
+      - id: 110
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: Частая (раз в 10 мин.)
+          - dps_val: "2"
+            value: Умеренная (раз в 15 мин.)
+          - dps_val: "3"
+            value: Легкая (раз в 20 мин.)
+            
+  - entity: select #Очистка ковров
+    name: Очистка ковров
+    icon: mdi:rug
+    category: config
+    dps:
+      - id: 108
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: Распознавание
+          - dps_val: "2"
+            value: Игнорирование
+          - dps_val: "3"
+            value: Обход
+
+  - entity: select #ручная очистка
+    name: Ручная очистка робота
+    icon: mdi:robot-vacuum-variant
+    category: config
+    dps:
+      - id: 112
+        name: option
+        type: string
+        mapping:
+          - dps_val: "3"
+            value: Очистка насадки
+            icon: mdi:water
+          - dps_val: "4"
+            value: Сушка насадки
+            icon: mdi:weather-sunny
+          - dps_val: "5"
+            value: Очистка пылесборника
+            icon: mdi:delete
+          - dps_val: "6"
+            value: Очистка бака с водой
+            icon: mdi:cup-water
+        optional: true
+        
+  - entity: button #кнопка стоп для vacuum-card
+    name: Стоп 
+    category: config
+    hidden: false
+    dps:
+      - id: 1
+        type: boolean
+        name: button
+        optional: true
+		
+  - entity: sensor
+    name: Заполнение бачка
+    class: enum
+    icon: mdi:waves
+    category: diagnostic
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: Низкий
+          - dps_val: middle
+            value: Средний
+          - dps_val: high
+            value: Высокий
+        optional: true
+
+
+#Опционально. Уборка комнаты. Изменять при изменении карты. Нужно запрашивать по API вручную для каждой комнаты значения в dp_id 15 command_trans.
+#Для полученных Raw значений, чтобы команды корректно отправлялись необходимо
+#декрементировать третий и седьмой байт на 1 (почему-то данные при передаче инкрементируются 
+#и raw значение передается инкрементированнным на 3 и 7 байте)
+#Пример: оригинальный код base64 qgAEFQEBGC8= > hex aa 04 15 01 01 18 2f передается как base64 qgAEFgEBGDA= > hex aa 04 16 01 01 18 30
+#разница +1 в 3-м, +1 в 7-м байтах. Уменьшаем значение в них на 1 и уменьшенные значения прописываем в mapping
+#  - entity: select 
+#    name: Уборка по комнате
+#    icon: mdi:floor-plan
+#    category: config
+#    dps:
+#      - id: 15
+#        name: option
+#        type: raw
+#        mapping:
+#          - dps_val: your_decremented_raw
+#            value: Коридор
+#          - dps_val: your_decremented_raw
+#            value: Зал
+#          - dps_val: your_decremented_raw
+#            value: Ванная
+#          - dps_val: your_decremented_raw
+#            value: Детская
+#          - dps_val: your_decremented_raw
+#            value: Кухня  
