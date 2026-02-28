@@ -331,7 +331,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         devid_opts = {}
         host_opts = {"default": ""}
         key_opts = {}
-        proto_opts = {"default": 3.3}
+        proto_opts = {"default": "auto"}
         polling_opts = {"default": False}
         devcid_opts = {}
 
@@ -349,6 +349,16 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
+                # If auto mode found a working protocol, save it so future
+                # HA restarts connect directly without re-cycling all versions.
+                if (
+                    user_input.get(CONF_PROTOCOL_VERSION) == "auto"
+                    and self.device._protocol_configured != "auto"
+                ):
+                    self.data = {
+                        **self.data,
+                        CONF_PROTOCOL_VERSION: self.device._protocol_configured,
+                    }
                 if self.__cloud_device:
                     if self.__cloud_device.get("product_id"):
                         self.device.set_detected_product_id(
@@ -566,17 +576,43 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].pause()
         await asyncio.sleep(5)
 
-    try:
-        device = await hass.async_add_executor_job(
-            create_test_device,
-            hass,
-            config,
-        )
-        await device.async_refresh()
-        retval = device if device.has_returned_state else None
-    except Exception as e:
-        _LOGGER.warning("Connection test failed with %s %s", type(e), e)
-        retval = None
+    retval = None
+
+    if config.get(CONF_PROTOCOL_VERSION) == "auto":
+        # Test each protocol with a fresh device object. Reusing one device
+        # object across protocol rotations causes 3.4/3.5 handshakes to fail:
+        # the shared tinytuya object carries stale internal state from the
+        # prior connection attempts.
+        for proto in API_PROTOCOL_VERSIONS:
+            proto_config = {**config, CONF_PROTOCOL_VERSION: proto}
+            device = None
+            try:
+                device = await hass.async_add_executor_job(
+                    create_test_device, hass, proto_config
+                )
+                await device.async_refresh()
+                if device.has_returned_state:
+                    retval = device
+                    break
+            except Exception as e:
+                _LOGGER.debug(
+                    "Protocol %s test failed with %s %s", proto, type(e), e
+                )
+            if device is not None:
+                device._api.set_socketPersistent(False)
+                if device._api.parent:
+                    device._api.parent.set_socketPersistent(False)
+    else:
+        try:
+            device = await hass.async_add_executor_job(
+                create_test_device,
+                hass,
+                config,
+            )
+            await device.async_refresh()
+            retval = device if device.has_returned_state else None
+        except Exception as e:
+            _LOGGER.warning("Connection test failed with %s %s", type(e), e)
 
     if existing and existing.get("device"):
         _LOGGER.info("Restarting device after test")
