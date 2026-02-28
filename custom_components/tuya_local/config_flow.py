@@ -476,9 +476,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                         vol.Required(
                             CONF_TYPE,
                             default=best_matching_key,
-                        ): SelectSelector(
-                            SelectSelectorConfig(options=type_options)
-                        ),
+                        ): SelectSelector(SelectSelectorConfig(options=type_options)),
                     }
                 ),
             )
