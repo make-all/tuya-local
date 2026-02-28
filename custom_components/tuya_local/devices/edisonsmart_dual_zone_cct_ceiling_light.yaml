@@ -1,4 +1,4 @@
-name: Dual-zone CCT ceiling light
+name: Dual zone light
 products:
   - id: kjuo8stpv9adjkzo
     manufacturer: Edison Smart
@@ -9,9 +9,6 @@ entities:
       - id: 20
         type: boolean
         name: switch
-      - id: 21
-        name: work_mode
-        type: string
       - id: 22
         name: brightness
         type: integer
@@ -28,20 +25,35 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 25
-        name: scene
-        type: hex
-        optional: true
       - id: 104
         type: string
         name: effect
         mapping:
           - dps_val: up
-            value: UP or SIDE
+            value: Indirect
           - dps_val: all
-            value: ALL
+            value: Both
           - dps_val: down
-            value: DOWN
+            value: Direct
+  - entity: select
+    name: Work mode
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: scene
+            value: Scene
+  - entity: text
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: hex
+        name: value
+        optional: true
   - entity: time
     translation_key: timer
     category: config
