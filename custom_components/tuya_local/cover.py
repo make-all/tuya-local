@@ -147,7 +147,11 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         elif pos > 95:
             return "opened"
 
-        if self._currentpos_dp and self._position_dp:
+        if (
+                self._currentpos_dp
+                and self._currentpos_dp.get_value(self._device) is not None
+                and self._position_dp
+        ):
             setpos = self._position_dp.get_value(self._device)
             if setpos == pos:
                 # if the current position is around the set position,
