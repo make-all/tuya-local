@@ -31,6 +31,8 @@ from .const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_MANUFACTURER,
+    CONF_MODEL,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
@@ -394,22 +396,37 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def async_step_select_type(self, user_input=None):
         if user_input is not None:
-            self.data[CONF_TYPE] = user_input[CONF_TYPE]
+            # Value is a compound key: "config_type||manufacturer||model"
+            parts = user_input[CONF_TYPE].split("||", 2)
+            self.data[CONF_TYPE] = parts[0]
+            if len(parts) > 1 and parts[1]:
+                self.data[CONF_MANUFACTURER] = parts[1]
+            if len(parts) > 2 and parts[2]:
+                self.data[CONF_MODEL] = parts[2]
             return await self.async_step_choose_entities()
 
-        types = []
+        type_options = []
         best_match = 0
         best_matching_type = None
+        best_matching_key = None
 
         for type in await self.device.async_possible_types():
-            types.append(type.config_type)
             q = type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
-            if q > best_match:
-                best_match = q
-                best_matching_type = type.config_type
+            for manufacturer, model in type.product_display_entries():
+                key = f"{type.config_type}||{manufacturer or ''}||{model or ''}"
+                parts = [p for p in [manufacturer, model] if p]
+                if parts:
+                    label = f"{' '.join(parts)} ({type.config_type})"
+                else:
+                    label = f"{type.name} ({type.config_type})"
+                type_options.append(SelectOptionDict(value=key, label=label))
+                if q > best_match:
+                    best_match = q
+                    best_matching_type = type.config_type
+                    best_matching_key = key
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
@@ -451,15 +468,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         _LOGGER.warning(
             "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
-        if types:
+        if type_options:
             return self.async_show_form(
                 step_id="select_type",
                 data_schema=vol.Schema(
                     {
                         vol.Required(
                             CONF_TYPE,
-                            default=best_matching_type,
-                        ): vol.In(types),
+                            default=best_matching_key,
+                        ): SelectSelector(
+                            SelectSelectorConfig(options=type_options)
+                        ),
                     }
                 ),
             )
@@ -467,17 +486,20 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             return self.async_abort(reason="not_supported")
 
     async def async_step_choose_entities(self, user_input=None):
-        if user_input is not None:
-            title = user_input[CONF_NAME]
-            del user_input[CONF_NAME]
-
-            return self.async_create_entry(
-                title=title, data={**self.data, **user_input}
-            )
         config = await self.hass.async_add_executor_job(
             get_config,
             self.data[CONF_TYPE],
         )
+        if user_input is not None:
+            title = user_input[CONF_NAME]
+            del user_input[CONF_NAME]
+            # Fall back to the YAML device type name as model when the user
+            # did not select a specific product entry with a model name.
+            if CONF_MODEL not in self.data and config:
+                self.data[CONF_MODEL] = config.name
+            return self.async_create_entry(
+                title=title, data={**self.data, **user_input}
+            )
         schema = {vol.Required(CONF_NAME, default=config.name): str}
 
         return self.async_show_form(

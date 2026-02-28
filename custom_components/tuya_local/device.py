@@ -22,6 +22,8 @@ from .const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_MANUFACTURER,
+    CONF_MODEL,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
@@ -49,6 +51,8 @@ class TuyaLocalDevice(object):
         dev_cid,
         hass: HomeAssistant,
         poll_only=False,
+        manufacturer=None,
+        model=None,
     ):
         """
         Represents a Tuya-based device.
@@ -61,9 +65,13 @@ class TuyaLocalDevice(object):
             protocol_version (str | number): The protocol version.
             dev_cid (str): The sub device id.
             hass (HomeAssistant): The Home Assistant instance.
-            poll_only (bool): True if the device should be polled only
+            poll_only (bool): True if the device should be polled only.
+            manufacturer (str | None): The device manufacturer, if known.
+            model (str | None): The device model, if known.
         """
         self._name = name
+        self._manufacturer = manufacturer
+        self._model = model
         self._children = []
         self._force_dps = []
         self._product_ids = []
@@ -164,7 +172,8 @@ class TuyaLocalDevice(object):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
-            "manufacturer": "Tuya",
+            "manufacturer": self._manufacturer or "Tuya",
+            "model": self._model,
         }
 
     @property
@@ -751,6 +760,8 @@ def setup_device(hass: HomeAssistant, config: dict):
         config.get(CONF_DEVICE_CID),
         hass,
         config[CONF_POLL_ONLY],
+        manufacturer=config.get(CONF_MANUFACTURER),
+        model=config.get(CONF_MODEL),
     )
     hass.data[DOMAIN][get_device_id(config)] = {
         "device": device,
