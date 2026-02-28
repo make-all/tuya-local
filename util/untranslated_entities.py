@@ -18,14 +18,13 @@ def main() -> int:
     for config in available_configs():
         device = TuyaDeviceConfig(config)
         for entity in device.all_entities():
-            if (
-                entity.translation_key
-                or entity.name is None
-                or entity.entity not in english["entity"]
-            ):
+            if entity.name is None or entity.entity not in english["entity"]:
+                continue
+            slug = slugify(entity.name)
+
+            if entity.translation_key and slug != entity.translation_key:
                 continue
             translations = english["entity"][entity.entity]
-            slug = slugify(entity.name)
             if slug in translations:
                 print(
                     f"::error file=custom_components/tuya_local/devices/{config},line={entity._config.__line__}:: Entity can use translation_key: {slug}"
