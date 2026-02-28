@@ -1,0 +1,151 @@
+name: neatsvor_x520_vacuum_cleaner
+products:
+  - id: dbougox8k7ntyxeh
+    name: Neatsvor X520RU
+    manufacturer: Neatsvor
+    model: X520RU
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: "standby"
+            value: "standby"
+          - dps_val: "smart"
+            value: "smart"
+          - dps_val: "wall_follow"
+            value: "wall_follow"
+          - dps_val: "mop"
+            value: "mop"
+          - dps_val: "spiral"
+            value: "clean_spot"
+          - dps_val: "chargego"
+            value: "return_to_base"
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "0"
+            value: "standby"
+          - dps_val: "1"
+            value: "Smart cleaning"
+          - dps_val: "2"
+            value: "Mopping"
+          - dps_val: "3"
+            value: "Cleaning along the walls"
+          - dps_val: "4"
+            value: "charging"
+          - dps_val: "5"
+            value: "charged"
+          - dps_val: "6"
+            value: "Spot cleaning"
+          - dps_val: "7"
+            value: "Manual cleaning"
+      - id: 14
+        type: string
+        name: fan_speed
+        optional: true
+        mapping:
+          - dps_val: "max"
+            value: "max"
+          - dps_val: "strong"
+            value: "strong"
+          - dps_val: "normal"
+            value: "normal"
+          - dps_val: "weak"
+            value: "weak"
+      - id: 18
+        type: bitfield
+        name: error
+        mapping:
+          - dps_val: 2
+            value: "side scan exception"
+          - dps_val: 4
+            value: "middle scan exception"
+          - dps_val: 8
+            value: "left wheel exception"
+          - dps_val: 16
+            value: "right wheel exception"
+          - dps_val: 32
+            value: "garbage box exception"
+          - dps_val: 64
+            value: "ground inspection exception"
+          - dps_val: 128
+            value: "collision exception"
+          - dps_val: 256
+            value: "Other problems"
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: area
+    name: Last cleaning area
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: m²
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: duration
+    name: Last cleaning duration
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: min
+        class: measurement
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 29
+        type: string
+        name: option
+        mapping:
+          - dps_val: "russian"
+            value: "russian"
+          - dps_val: "english"
+            value: "english"
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "low_step"
+            value: "low"
+          - dps_val: "mid_step"
+            value: "medium"
+          - dps_val: "high_step"
+            value: "high"
+  - entity: switch
+    name: Mute
+    category: config
+    icon: mdi:bell-cancel-outline
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
