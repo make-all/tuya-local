@@ -595,9 +595,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
                     retval = device
                     break
             except Exception as e:
-                _LOGGER.debug(
-                    "Protocol %s test failed with %s %s", proto, type(e), e
-                )
+                _LOGGER.debug("Protocol %s test failed with %s %s", proto, type(e), e)
             if device is not None:
                 device._api.set_socketPersistent(False)
                 if device._api.parent:
