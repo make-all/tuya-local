@@ -148,9 +148,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             return "opened"
 
         if (
-                self._currentpos_dp
-                and self._currentpos_dp.get_value(self._device) is not None
-                and self._position_dp
+            self._currentpos_dp
+            and self._currentpos_dp.get_value(self._device) is not None
+            and self._position_dp
         ):
             setpos = self._position_dp.get_value(self._device)
             if setpos == pos:
