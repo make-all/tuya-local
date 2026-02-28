@@ -331,7 +331,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         devid_opts = {}
         host_opts = {"default": ""}
         key_opts = {}
-        proto_opts = {"default": "auto"}
+        proto_opts = {"default": 3.3}
         polling_opts = {"default": False}
         devcid_opts = {}
 
