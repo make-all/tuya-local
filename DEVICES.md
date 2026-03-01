@@ -813,6 +813,7 @@ of device.
 - Dream of You dual dimmable lamp
 - Dreamegg Nite 1 baby sound machine
 - Dual-mode magic light string controller
+- Edison Smart Treo dual-zone CCT ceiling light
 - Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
