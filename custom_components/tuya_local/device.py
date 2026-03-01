@@ -624,11 +624,13 @@ class TuyaLocalDevice(object):
             else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
         )
 
+        last_err_code = None
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
+                        last_err_code = retval.get("Err")
                         raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
@@ -652,9 +654,9 @@ class TuyaLocalDevice(object):
                         self._api_protocol_working = False
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
-                    if (
-                        self._api_working_protocol_failures == 1
-                        and self._name != "Test"
+                    if self._api_working_protocol_failures == 1 and not (
+                        last_err_code == "914"
+                        and self._protocol_configured == "auto"
                     ):
                         _LOGGER.error(error_message)
                     else:
