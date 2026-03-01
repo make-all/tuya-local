@@ -655,8 +655,7 @@ class TuyaLocalDevice(object):
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
                     if self._api_working_protocol_failures == 1 and not (
-                        last_err_code == "914"
-                        and self._protocol_configured == "auto"
+                        last_err_code == "914" and self._protocol_configured == "auto"
                     ):
                         _LOGGER.error(error_message)
                     else:
