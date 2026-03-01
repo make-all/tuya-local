@@ -1,0 +1,68 @@
+name: Dual zone light
+products:
+  - id: kjuo8stpv9adjkzo
+    manufacturer: Edison Smart
+    model: TREO Mini Spotlight
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 104
+        type: string
+        name: effect
+        mapping:
+          - dps_val: up
+            value: Indirect
+          - dps_val: all
+            value: Both
+          - dps_val: down
+            value: Direct
+  - entity: switch
+    name: Scene
+    icon: "mdi:palette"
+    dps:
+      - id: 21
+        type: string
+        name: switch
+        mapping:
+          - dps_val: scene
+            value: true
+          - dps_val: white
+            value: false
+  - entity: text
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: hex
+        name: value
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
