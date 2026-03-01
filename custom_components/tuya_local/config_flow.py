@@ -351,13 +351,15 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 self.data = user_input
                 # If auto mode found a working protocol, save it so future
                 # HA restarts connect directly without re-cycling all versions.
+                self._auto_detected_protocol = None
                 if (
                     user_input.get(CONF_PROTOCOL_VERSION) == "auto"
                     and self.device._protocol_configured != "auto"
                 ):
+                    self._auto_detected_protocol = self.device._protocol_configured
                     self.data = {
                         **self.data,
-                        CONF_PROTOCOL_VERSION: self.device._protocol_configured,
+                        CONF_PROTOCOL_VERSION: self._auto_detected_protocol,
                     }
                 if self.__cloud_device:
                     if self.__cloud_device.get("product_id"):
@@ -462,19 +464,30 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
         if types:
+            detected = getattr(self, "_auto_detected_protocol", None)
+            schema = vol.Schema(
+                {
+                    vol.Required(
+                        CONF_TYPE,
+                        default=best_matching_type,
+                    ): vol.In(types),
+                }
+            )
+            if detected:
+                return self.async_show_form(
+                    step_id="select_type_auto_detected",
+                    data_schema=schema,
+                    description_placeholders={"detected_protocol": str(detected)},
+                )
             return self.async_show_form(
                 step_id="select_type",
-                data_schema=vol.Schema(
-                    {
-                        vol.Required(
-                            CONF_TYPE,
-                            default=best_matching_type,
-                        ): vol.In(types),
-                    }
-                ),
+                data_schema=schema,
             )
         else:
             return self.async_abort(reason="not_supported")
+
+    async def async_step_select_type_auto_detected(self, user_input=None):
+        return await self.async_step_select_type(user_input)
 
     async def async_step_choose_entities(self, user_input=None):
         if user_input is not None:
