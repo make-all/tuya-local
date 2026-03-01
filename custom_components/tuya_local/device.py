@@ -528,15 +528,6 @@ class TuyaLocalDevice(object):
                     new_state.get("Err"),
                     new_state.get("Error", "message not provided"),
                 )
-        else:
-            # Device connected but returned no data (e.g. fire-and-forget devices
-            # like IR/RF blasters that do not respond to status queries).
-            # Mark the cache as updated so the device is considered reachable.
-            self._cached_state["updated_at"] = time()
-            _LOGGER.debug(
-                "%s returned null state; treating as reachable with no data",
-                self.name,
-            )
         _LOGGER.debug(
             "%s refreshed device state: %s",
             self.name,
