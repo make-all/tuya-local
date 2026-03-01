@@ -325,6 +325,7 @@ async def test_async_test_connection_invalid(mock_device, hass):
     """Test that None is returned when connection is invalid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = False
+    mock_instance._api = MagicMock()
     mock_device.return_value = mock_instance
     device = await config_flow.async_test_connection(
         {

@@ -349,6 +349,18 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
+                # If auto mode found a working protocol, save it so future
+                # HA restarts connect directly without re-cycling all versions.
+                self._auto_detected_protocol = None
+                if (
+                    user_input.get(CONF_PROTOCOL_VERSION) == "auto"
+                    and self.device._protocol_configured != "auto"
+                ):
+                    self._auto_detected_protocol = self.device._protocol_configured
+                    self.data = {
+                        **self.data,
+                        CONF_PROTOCOL_VERSION: self._auto_detected_protocol,
+                    }
                 if self.__cloud_device:
                     if self.__cloud_device.get("product_id"):
                         self.device.set_detected_product_id(
@@ -452,19 +464,30 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
         if types:
+            detected = getattr(self, "_auto_detected_protocol", None)
+            schema = vol.Schema(
+                {
+                    vol.Required(
+                        CONF_TYPE,
+                        default=best_matching_type,
+                    ): vol.In(types),
+                }
+            )
+            if detected:
+                return self.async_show_form(
+                    step_id="select_type_auto_detected",
+                    data_schema=schema,
+                    description_placeholders={"detected_protocol": str(detected)},
+                )
             return self.async_show_form(
                 step_id="select_type",
-                data_schema=vol.Schema(
-                    {
-                        vol.Required(
-                            CONF_TYPE,
-                            default=best_matching_type,
-                        ): vol.In(types),
-                    }
-                ),
+                data_schema=schema,
             )
         else:
             return self.async_abort(reason="not_supported")
+
+    async def async_step_select_type_auto_detected(self, user_input=None):
+        return await self.async_step_select_type(user_input)
 
     async def async_step_choose_entities(self, user_input=None):
         if user_input is not None:
@@ -566,17 +589,41 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].pause()
         await asyncio.sleep(5)
 
-    try:
-        device = await hass.async_add_executor_job(
-            create_test_device,
-            hass,
-            config,
-        )
-        await device.async_refresh()
-        retval = device if device.has_returned_state else None
-    except Exception as e:
-        _LOGGER.warning("Connection test failed with %s %s", type(e), e)
-        retval = None
+    retval = None
+
+    if config.get(CONF_PROTOCOL_VERSION) == "auto":
+        # Test each protocol with a fresh device object. Reusing one device
+        # object across protocol rotations causes 3.4/3.5 handshakes to fail:
+        # the shared tinytuya object carries stale internal state from the
+        # prior connection attempts.
+        for proto in API_PROTOCOL_VERSIONS:
+            proto_config = {**config, CONF_PROTOCOL_VERSION: proto}
+            device = None
+            try:
+                device = await hass.async_add_executor_job(
+                    create_test_device, hass, proto_config
+                )
+                await device.async_refresh()
+                if device.has_returned_state:
+                    retval = device
+                    break
+            except Exception as e:
+                _LOGGER.debug("Protocol %s test failed with %s %s", proto, type(e), e)
+            if device is not None:
+                device._api.set_socketPersistent(False)
+                if device._api.parent:
+                    device._api.parent.set_socketPersistent(False)
+    else:
+        try:
+            device = await hass.async_add_executor_job(
+                create_test_device,
+                hass,
+                config,
+            )
+            await device.async_refresh()
+            retval = device if device.has_returned_state else None
+        except Exception as e:
+            _LOGGER.warning("Connection test failed with %s %s", type(e), e)
 
     if existing and existing.get("device"):
         _LOGGER.info("Restarting device after test")
