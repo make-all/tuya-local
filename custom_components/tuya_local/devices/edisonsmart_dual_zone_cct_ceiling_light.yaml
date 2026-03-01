@@ -35,17 +35,18 @@ entities:
             value: Both
           - dps_val: down
             value: Direct
-  - entity: select
-    name: Work mode
+  - entity: switch
+    name: Scene
+    icon: "mdi:palette"
     dps:
       - id: 21
         type: string
-        name: option
+        name: switch
         mapping:
-          - dps_val: white
-            value: White
           - dps_val: scene
-            value: Scene
+            value: true
+          - dps_val: white
+            value: false
   - entity: text
     translation_key: scene
     category: config
