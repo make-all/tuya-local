@@ -1272,3 +1272,6 @@ Further device support has been made with the assistance of users. Please consid
 - [andreufontb](https://github.com/andreufontb) for assisting with support for Beca BAC-2005ALW thermostat.
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
+- [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
+- [kong09](https://github.com/kong09) for contributing improvements to thermostat icons.
+- [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
