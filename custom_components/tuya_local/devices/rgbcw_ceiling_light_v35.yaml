@@ -1,0 +1,205 @@
+name: RGBCW ceiling light
+products:
+  - id: 6qpsweogzjmfvoyg
+    manufacturer: Horevo
+    name: RGBCW ceiling light v3.5
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+        force: true
+      - id: 21
+        type: string
+        name: color_mode
+        force: true
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: switch
+    name: White LED
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: RGB LED
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: select
+    name: Scene
+    dps:
+      - id: 109
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AQEZAfFfKfC/H/M/PfA="
+            value: Gradient colorful
+          - dps_val: "AgEZAfC/BvAAAAAAAAA="
+            value: Gradient warm
+          - dps_val: "AwEZH/KfJPAAAAAAAAA="
+            value: Gradient cool
+          - dps_val: "BAMeAfFfKfC/H/M/PfA="
+            value: Breathing
+          - dps_val: "BQweAfFfKfC/H/M/PfA="
+            value: Rainbow
+          - dps_val: "BgUoAfFfKfAAAAAAAAA="
+            value: Meteor
+          - dps_val: "BwseAfFfKfC/H/M/PfA="
+            value: Water
+          - dps_val: "CAoeAfFfKfC/H/M/PfA="
+            value: Floating
+          - dps_val: "CQ4eAfFfKfAAAAAAAAA="
+            value: Bounce
+          - dps_val: "CgQeAfFfKfC/H/M/PfA="
+            value: Twinkle
+          - dps_val: "Cw0yAfFfKfAAAAAAAAA="
+            value: Flash
+          - dps_val: "DBAeAfC/PfAAAAAAAAA="
+            value: Flickering
+  - entity: number
+    name: Scene speed
+    dps:
+      - id: 109
+        type: base64
+        name: value
+        optional: true
+        mask: "0000FF0000000000000000000000"
+        range:
+          min: 1
+          max: 100
+  - entity: select
+    name: Power-on behaviour
+    category: config
+    dps:
+      - id: 33
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAAAAAAAAAAAAAAA"
+            value: Initial mode
+          - dps_val: "AAEAAAAAAAAAAAAA"
+            value: Restore memory
+  - entity: number
+    name: Turn-on gradient
+    category: config
+    dps:
+      - id: 35
+        type: base64
+        name: value
+        optional: true
+        unit: s
+        mask: "0000FFFF000000"
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Turn-off gradient
+    category: config
+    dps:
+      - id: 35
+        type: base64
+        name: value
+        optional: true
+        unit: s
+        mask: "0000000000FFFF"
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 1000
+  - entity: text
+    name: Scene data
+    category: config
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        name: value
+        optional: true
+  - entity: switch
+    name: Unknown 34
+    hidden: true
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Unknown 110
+    hidden: true
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        optional: true
+  - entity: number
+    name: Unknown 111
+    hidden: true
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+  - entity: switch
+    name: Unknown 119
+    hidden: true
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+        optional: true
