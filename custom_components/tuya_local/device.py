@@ -514,33 +514,20 @@ class TuyaLocalDevice(object):
                         if not dp.persist and dp.id not in new_state.get("dps", {}):
                             self._cached_state.pop(dp.id, None)
                     entity.schedule_update_ha_state()
+            elif self._api_working_protocol_failures == 1:
+                _LOGGER.warning(
+                    "%s protocol error %s: %s",
+                    self.name,
+                    new_state.get("Err"),
+                    new_state.get("Error", "message not provided"),
+                )
             else:
-                if self._api_working_protocol_failures == 1:
-                    _LOGGER.warning(
-                        "%s protocol error %s: %s",
-                        self.name,
-                        new_state.get("Err"),
-                        new_state.get("Error", "message not provided"),
-                    )
-                else:
-                    _LOGGER.debug(
-                        "%s protocol error %s: %s",
-                        self.name,
-                        new_state.get("Err"),
-                        new_state.get("Error", "message not provided"),
-                    )
-                if new_state.get("Err") == "900":
-                    # Error 900 means the device responded but sent non-JSON
-                    # data. This is expected for fire-and-forget devices (e.g.
-                    # IR/RF blasters) that do not support status queries.
-                    # Mark as reachable and return None so the caller does not
-                    # treat this as a retryable failure.
-                    self._cached_state["updated_at"] = time()
-                    _LOGGER.debug(
-                        "%s returned error 900; treating as reachable with no data",
-                        self.name,
-                    )
-                    new_state = None
+                _LOGGER.debug(
+                    "%s protocol error %s: %s",
+                    self.name,
+                    new_state.get("Err"),
+                    new_state.get("Error", "message not provided"),
+                )
         else:
             # Device connected but returned no data (e.g. fire-and-forget devices
             # like IR/RF blasters that do not respond to status queries).
@@ -652,8 +639,10 @@ class TuyaLocalDevice(object):
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
                         if retval.get("Err") == "900":
-                            # Fire-and-forget device (e.g. IR/RF blaster) responded
-                            # but sent non-JSON data. Treat as reachable with no data.
+                            # Some devices (e.g. IR/RF remotes) never return
+                            # status data; error 900 is their normal response
+                            # to a status query. Treat as reachable with no
+                            # data so commands can still be sent.
                             self._cached_state["updated_at"] = time()
                             retval = None
                         else:
