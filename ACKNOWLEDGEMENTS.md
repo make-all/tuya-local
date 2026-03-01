@@ -1241,7 +1241,7 @@ Further device support has been made with the assistance of users. Please consid
 - [cinek193](https://github.com/cinek193) for assisting with improvements to Clofte 400 Duo humidifier.
 - [nathan-gs](https://github.com/nathan-gs) for contributing support for Andalung EV charger, which was merged into EV Sun. EV charger config.
 - [gaxkalik](https://github.com/gaxkalik) for contributing improvements to Inkbird IBS M1S temperature humidity sensors.
-- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor.
+- [Stevehans](https://github.com/Stevehans) for contributing support for TX-E gas monitor and QTFV3-3 air quality sensor.
 - [er2er](https://github.com/er2er) for contributing support for Klarstein WonderSky IR heater.
 - [evanjd](https://github.com/evanjd) for contributing support for Breville Smart Air Viral Protect Night Glow air purifier.
 - [trixing](https://github.com/trixing) for contributing support for PV28-AW CO2 monitor.
@@ -1273,3 +1273,5 @@ Further device support has been made with the assistance of users. Please consid
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
+- [kong09](https://github.com/kong09) for contributing improvements to thermostat icons.
+- [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
