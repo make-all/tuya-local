@@ -1275,3 +1275,4 @@ Further device support has been made with the assistance of users. Please consid
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
 - [kong09](https://github.com/kong09) for contributing improvements to thermostat icons.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
+- [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
