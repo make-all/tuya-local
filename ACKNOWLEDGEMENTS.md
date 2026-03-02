@@ -1276,3 +1276,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kong09](https://github.com/kong09) for contributing improvements to thermostat icons, support for RF remote controls.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
+- [rwblokzijl](https://github.com/rwblokzijl) for assisting with support for Haier air-water combo heat pump.

@@ -198,6 +198,7 @@ devices # Supported
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
+- Haier air-water combo heat pump
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
