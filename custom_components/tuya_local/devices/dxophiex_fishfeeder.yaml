@@ -1,0 +1,94 @@
+name: Fish feeder
+products:
+  - id: yq5jiyjynyduydw6
+    manufacturer: Dxophiex
+    model: AF2020WIFI
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    icon: "mdi:shaker"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    name: Last manual feed
+    icon: "mdi:shaker"
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: Last auto feed
+    icon: "mdi:shaker"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: portions
+  - entity: number
+    name: Auto first feed
+    category: config
+    icon: "mdi:shaker"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: number
+    name: Auto second feed
+    category: config
+    icon: "mdi:shaker"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: select
+    name: Auto feeding
+    icon: "mdi:repeat"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: once
+            value: Once a day
+          - dps_val: twice
+            value: Twice a day
+          - dps_val: custom
+            value: Custom meal plan

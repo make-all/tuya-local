@@ -69,6 +69,21 @@
                     "heat": "mdi:hot-tub",
                     "cool": "mdi:snowflake"
                 }
+            },
+            "thermostat": {
+                "default": "mdi:thermostat",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "mdi:thermostat-auto",
+                            "comfort_1": "mdi:home-heart",
+                            "comfort_2": "mdi:home-heart",
+                            "manual": "mdi:hand-back-right",
+                            "program": "mdi:calendar-clock",
+                            "temp_override": "mdi:calendar-lock"
+                        }
+                    }
+                }
             }
         },
         "fan": {
@@ -600,6 +615,12 @@
             },
             "sleep": {
                 "default": "mdi:power-sleep"
+            },
+            "sound": {
+                "default": "mdi:volume-high",
+                "state": {
+                    "off": "mdi:volume-mute"
+                }
             },
             "uv_sterilization": {
                 "default": "mdi:sun-wireless"
