@@ -113,17 +113,25 @@ entities:
 
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 106
         name: value
         type: integer
-        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
+      - id: 104
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
 
   - entity: switch
     name: Adaptive start

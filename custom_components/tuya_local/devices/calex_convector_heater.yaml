@@ -136,12 +136,13 @@ entities:
         type: boolean
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 106
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 40

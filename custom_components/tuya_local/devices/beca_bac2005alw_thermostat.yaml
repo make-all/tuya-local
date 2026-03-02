@@ -136,12 +136,13 @@ entities:
             step: 10
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -14
           max: 14
@@ -275,12 +276,13 @@ entities:
   - entity: number
     name: Temperature hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:arrow-expand-vertical"
     dps:
       - id: 111
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 1
           max: 5

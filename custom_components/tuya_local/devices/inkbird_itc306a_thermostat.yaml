@@ -116,17 +116,17 @@ entities:
   - entity: number
     category: config
     translation_key: temperature_calibration
+    class: temperature_delta
     dps:
       - id: 102
         name: value
         type: integer
-        unit: °
         range:
           min: -99
           max: 99
         mapping:
           - scale: 10
-            constraint: temp_unit
+            constraint: unit
             conditions:
               - dps_val: F
                 range:
@@ -134,8 +134,7 @@ entities:
                   max: 150
       - id: 101
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
   - entity: number
     name: Continuous heat hours
     icon: "mdi:clock"
