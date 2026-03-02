@@ -1,0 +1,119 @@
+name: Ceiling Fan with RGB+CCT Light
+products:
+  - id: NP-DVL-01
+    name: NP-DVL-01 Ceiling Fan Light
+
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: Fresh
+          - dps_val: nature
+            value: Nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 64
+        type: integer
+        name: timer
+        unit: min
+        range:
+          min: 0
+          max: 540
+
+  - entity: light
+    translation_key: cct_light
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 20
+        type: boolean
+        name: switch
+        hidden: true
+      - id: 21
+        type: string
+        name: work_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: colour
+          - dps_val: scene
+            value: scene
+          - dps_val: music
+            value: music
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - constraint: work_mode
+            conditions:
+              - dps_val: white
+                mapping:
+                  - scale: 1
+      - id: 24
+        type: hex
+        name: color
+      - id: 26
+        type: integer
+        name: timer
+        unit: s
+        category: config
+        range:
+          min: 0
+          max: 86400
+
+  - entity: light
+    translation_key: rgb_light
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: oscillate
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
