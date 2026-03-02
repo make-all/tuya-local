@@ -1273,6 +1273,6 @@ Further device support has been made with the assistance of users. Please consid
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
-- [kong09](https://github.com/kong09) for contributing improvements to thermostat icons.
+- [kong09](https://github.com/kong09) for contributing improvements to thermostat icons, support for RF remote controls.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
