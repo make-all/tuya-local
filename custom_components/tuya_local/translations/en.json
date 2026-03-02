@@ -151,6 +151,20 @@
                         }
                     }
                 }
+            },
+            "rinse_aid": {
+                "name": "Rinse aid",
+                "state": {
+                    "off": "Sufficient",
+                    "on": "Insufficient"
+                }
+            },
+            "salt": {
+                "name": "salt",
+                "state": {
+                    "off": "Sufficient",
+                    "on": "Insufficient"
+                }
             }
         },
         "button": {
@@ -320,7 +334,10 @@
                             "custom": "Custom",
                             "low_steaming": "Low Steaming",
                             "medium_steaming": "Medium Steaming",
-                            "high_steaming": "High Steaming"
+                            "high_steaming": "High Steaming",
+                            "steaming": "Pure Steaming",
+                            "hot_air_baking": "Hot Air Baking",
+                            "disinfect": "Disinfect"
                         }
                     }
                 }
@@ -437,6 +454,12 @@
             },
             "nightlight": {
                 "name": "Nightlight"
+            },
+            "oven_light": {
+                "name": "Oven light"
+            },
+            "rangehood_light": {
+                "name": "Rangehood light"
             }
         },
         "lock": {
@@ -468,6 +491,15 @@
             },
             "volume": {
                 "name": "Volume"
+            },
+            "appointment_time": {
+                "name": "Appointment time"
+            },
+            "bottom_temperature": {
+                "name": "Bottom temperature"
+            },
+            "top_temperature": {
+                "name": "Top temperature"
             }
         },
         "select": {
@@ -806,7 +838,94 @@
                     "self_clean": "Self Clean",
                     "hygiene": "Hygiene",
                     "party": "Party",
-                    "baby_care": "Baby Care"
+                    "baby_care": "Baby Care",
+                    "disinfect_wash": "Disinfect Wash",
+                    "hour_wash": "Hour Wash",
+                    "dry": "Dry",
+                    "storage": "Storage",
+                    "smart_wash": "Smart Wash",
+                    "soft_wash": "Soft Wash",
+                    "hotpot_wash": "Hotpot Wash"
+                }
+            },
+            "water_hardness": {
+                "name": "Water hardness"
+            },
+            "rinse_aid_level": {
+                "name": "Rinse aid level"
+            },
+            "multi_level": {
+                "name": "Multi level",
+                "state": {
+                    "all": "All Level",
+                    "up": "Up Level",
+                    "down": "Down Level"
+                }
+            },
+            "rangehood_startup_speed": {
+                "name": "Startup fan speed",
+                "state": {
+                    "1": "Steaming (1)",
+                    "2": "Regular (2)",
+                    "3": "Strong (3)"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Rangehood fan speed",
+                "state": {
+                    "close": "Closed",
+                    "low": "Low",
+                    "middle": "Middle",
+                    "high": "High",
+                    "quickfry": "Quick Fry"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Delayed shutdown",
+                "state": {
+                    "0": "disabled",
+                    "1": "1 minute",
+                    "2": "2 minutes",
+                    "3": "3 minutes",
+                    "4": "4 minutes",
+                    "5": "5 minutes",
+                    "6": "6 minutes",
+                    "7": "7 minutes",
+                    "8": "8 minutes",
+                    "9": "9 minutes",
+                    "10": "10 minutes"
+                }
+            },
+            "caston_dishwasher_err": {
+                "name": "Fault code",
+                "state": {
+                    "e1": "E1 Water in",
+                    "e2": "E2 Drain (Default)",
+                    "e3": "E3 Overflow",
+                    "e4": "E4 Sensor",
+                    "e5": "E5 Communication",
+                    "e6": "E6 Heating",
+                    "e7": "E7 Variable frequency fault",
+                    "e8": "E8 Water valve fault",
+                    "e9": "E9 Washing motor fault"
+                }
+            },
+            "caston_t2e_err": {
+                "name": "Fault code",
+                "state": {
+                    "e01": "Chamber temperature probe temperature below 260℃",
+                    "e02": "Evaporation tray temperature probe temperature above 260℃",
+                    "e03": "After starting work, there is no change for 5 minutes and the chamber temperature is low 35℃",
+                    "e04": "After starting work, there is no change for 5 minutes and the evaporation tray temperature is low 35℃",
+                    "e05": "Sensor open circuit",
+                    "e06": "Sensor short circuit",
+                    "e07": "Display board communication error",
+                    "e08": "Display board serial port receive error",
+                    "e09": "Display board serial port send error",
+                    "e10": "Gas leakage",
+                    "e11": "Fire in the intake of the rangehood",
+                    "e12": "Firewall sensor fault",
+                    "e13": "Valve fault, the thermocouple temperature is high after the valve is closed"
                 }
             },
             "menu": {
@@ -866,6 +985,21 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Cleanliness",
+                "state": {
+                    "poor": "Poor",
+                    "good": "Good",
+                    "great": "Great"
+                }
+            },
+            "delayed_fan_operation": {
+                "name": "delayed fan operation",
+                "state": {
+                    "off": "Closed",
+                    "on": "Delayed operation"
+                }
+            },
             "air_quality": {
                 "name": "Air quality",
                 "state": {
@@ -970,7 +1104,9 @@
                     "drain_hot_water": "Drain hot water",
                     "drain_normal_water": "Drain normal water",
                     "high_temperature_emptying": "High temperature emptying",
-                    "high_temperature_emptied": "High temperature emptied"
+                    "high_temperature_emptied": "High temperature emptied",
+                    "reservation_countdown": "Reservation countdown",
+                    "storage": "Storage"
                 }
             },
             "time_remaining": {
@@ -1023,9 +1159,35 @@
             },
             "filter_life": {
                 "name": "Filter life"
+            },
+            "water_once": {
+                "name": "Water once"
+            },
+            "consumption_once": {
+                "name": "Consumption once"
+            },
+            "storage_days": {
+                "name": "Days stored"
+            },
+            "caston_dishwasher_err": {
+                "name": "Fault code",
+                "state": {
+                    "e1": "E1 Water in",
+                    "e2": "E2 Drain (Default)",
+                    "e3": "E3 Overflow",
+                    "e4": "E4 Sensor",
+                    "e5": "E5 Communication",
+                    "e6": "E6 Heating",
+                    "e7": "E7 Variable frequency fault",
+                    "e8": "E8 Water valve fault",
+                    "e9": "E9 Washing motor fault"
+                }
             }
         },
         "switch": {
+            "child_lock": {
+                "name": "Child lock"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1074,6 +1236,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "Electrolytic sterilization"
+            },
+            "auto_storage": {
+                "name": "Auto storage"
+            },
+            "auto_dry": {
+                "name": "Auto dry"
+            },
+            "oven": {
+                "name": "Oven"
+            },
+            "rangehood": {
+                "name": "Rangehood"
             }
         },
         "text": {
@@ -1082,6 +1256,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reservation time"
+            },
+            "cooking_time": {
+                "name": "Cooking time"
+            },
             "timer": {
                 "name": "Timer"
             },

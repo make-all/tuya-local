@@ -136,6 +136,13 @@
                     "on": "唤醒"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "延迟关机",
+                "state": {
+                    "off": "已关机",
+                    "on": "延迟关机中"
+                }
+            },
             "casdon_oven_fault": {
                 "state_attributes": {
                     "description": {
@@ -150,6 +157,20 @@
                             "e8": "E8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
                         }
                     }
+                }
+            },
+            "rinse_aid": {
+                "name": "亮碟剂",
+                "state": {
+                    "off": "充足",
+                    "on": "不足"
+                }
+            },
+            "salt": {
+                "name": "软水盐",
+                "state": {
+                    "off": "充足",
+                    "on": "不足"
                 }
             }
         },
@@ -320,7 +341,10 @@
                             "custom": "自定义模式",
                             "low_steaming": "低湿蒸烤",
                             "medium_steaming": "中湿蒸烤",
-                            "high_steaming": "高湿蒸烤"
+                            "high_steaming": "高湿蒸烤",
+                            "steaming": "纯蒸",
+                            "hot_air_baking": "风扇烤",
+                            "disinfect": "杀菌"
                         }
                     }
                 }
@@ -437,6 +461,12 @@
             },
             "nightlight": {
                 "name": "夜灯"
+            },
+            "oven_light": {
+                "name": "烤箱灯"
+            },
+            "rangehood_light": {
+                "name": "集成灶灯"
             }
         },
         "lock": {
@@ -468,6 +498,15 @@
             },
             "volume": {
                 "name": "音量"
+            },
+            "appointment_time": {
+                "name": "预约时间"
+            },
+            "bottom_temperature": {
+                "name": "下温度"
+            },
+            "top_temperature": {
+                "name": "上温度"
             }
         },
         "select": {
@@ -806,7 +845,62 @@
                     "self_clean": "自清洁",
                     "hygiene": "卫生",
                     "party": "派对",
-                    "baby_care": "婴儿护理"
+                    "baby_care": "婴儿护理",
+                    "disinfect_wash": "消毒洗",
+                    "hour_wash": "小时洗",
+                    "dry": "单干燥",
+                    "storage": "单储存",
+                    "smart_wash": "智能洗",
+                    "soft_wash": "轻柔洗",
+                    "hotpot_wash": "火锅洗"
+                }
+            },
+            "water_hardness": {
+                "name": "自来水硬度"
+            },
+            "rinse_aid_level": {
+                "name": "亮碟剂等级"
+            },
+            "multi_level": {
+                "name": "分层洗",
+                "state": {
+                    "all": "全部",
+                    "up": "上层",
+                    "down": "下层"
+                }
+            },
+            "rangehood_startup_speed": {
+                "name": "默认风量",
+                "state": {
+                    "1": "蒸煮（1档）",
+                    "2": "常规（2档）",
+                    "3": "强劲（3档）"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "延时关机",
+                "state": {
+                    "0": "关闭",
+                    "1": "1分钟",
+                    "2": "2分钟",
+                    "3": "3分钟",
+                    "4": "4分钟",
+                    "5": "5分钟",
+                    "6": "6分钟",
+                    "7": "7分钟",
+                    "8": "8分钟",
+                    "9": "9分钟",
+                    "10": "10分钟"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "烟机风速",
+                "state": {
+                    "close": "关闭",
+                    "low": "低速",
+                    "middle": "中速",
+                    "high": "高速",
+                    "quickfry": "爆炒"
                 }
             },
             "menu": {
@@ -866,6 +960,21 @@
             }
         },
         "sensor": {
+            "delayed_fan_operatio": {
+                "name": "延时风扇运行",
+                "state": {
+                    "true": "关闭",
+                    "false": "延时运行中"
+                }
+            },
+            "cleanliness": {
+                "name": "烟机洁净度",
+                "state": {
+                    "poor": "较差：累计运行时长达到15h",
+                    "good": "良好：累计运行时长在10-15h",
+                    "great": "洁净：累计运行时长0在0-10h"
+                }
+            },
             "air_quality": {
                 "name": "空气质量",
                 "state": {
@@ -970,7 +1079,9 @@
                     "drain_hot_water": "排热水",
                     "drain_normal_water": "排正常水",
                     "high_temperature_emptying": "高温排空中",
-                    "high_temperature_emptied": "高温已排空"
+                    "high_temperature_emptied": "高温已排空",
+                    "reservation_countdown": "预约倒计时中",
+                    "storage": "存储中"
                 }
             },
             "time_remaining": {
@@ -1023,9 +1134,53 @@
             },
             "filter_life": {
                 "name": "滤芯寿命"
+            },
+            "storage_days": {
+                "name": "已储存天数"
+            },
+            "water_once": {
+                "name": "一次用水量"
+            },
+            "consumption_once": {
+                "name": "一次耗电量"
+            },
+            "caston_dishwasher_err": {
+                "name": "故障代码",
+                "state": {
+                    "e1": "E1进水",
+                    "e2": "E2排水（省缺）",
+                    "e3": "E3溢水",
+                    "e4": "E4传感器",
+                    "e5": "E5通信",
+                    "e6": "E6加热",
+                    "e7": "E7变频故障",
+                    "e8": "E8分水阀故障",
+                    "e9": "E9洗涤电机故障"
+                }
+            },
+            "caston_t2e_err": {
+                "name": "故障代码",
+                "state": {
+                    "e01": "腔体温度探头温度于260℃",
+                    "e02": "蒸发盘探头温度高于260℃",
+                    "e03": "启动工作后5min无变化且腔体温度低35℃",
+                    "e04": "启动工作后5min无变化且蒸发盘温度低35℃",
+                    "e05": "温度探头开路",
+                    "e06": "温度探头短路",
+                    "e07": "显示板通信故障",
+                    "e08": "显示板串口接收故障",
+                    "e09": "显示板串口发送故障",
+                    "e10": "燃气泄漏",
+                    "e11": "烟机进风口出现火情",
+                    "e12": "防火墙传感器故障",
+                    "e13": "关阀故障，关阀后热电偶温度偏高"
+                }
             }
         },
         "switch": {
+            "child_lock": {
+                "name": "童锁"
+            },
             "anti_frost": {
                 "name": "防冻"
             },
@@ -1074,6 +1229,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "电解消毒"
+            },
+            "auto_storage": {
+                "name": "自动储存"
+            },
+            "auto_dry": {
+                "name": "自动烘干"
+            },
+            "oven": {
+                "name": "蒸烤箱"
+            },
+            "rangehood": {
+                "name": "油烟机"
             }
         },
         "text": {
@@ -1082,6 +1249,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "预约时间"
+            },
+            "cooking_time": {
+                "name": "烹饪时间"
+            },
             "timer": {
                 "name": "计时器"
             },
