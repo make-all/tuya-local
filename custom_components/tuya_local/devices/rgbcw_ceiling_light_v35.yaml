@@ -4,25 +4,20 @@ products:
     manufacturer: Horevo
     name: RGBCW ceiling light v3.5
 entities:
-  - entity: light
+  - entity: switch
+    name: Master power
     dps:
       - id: 20
         type: boolean
         name: switch
         force: true
-      - id: 21
-        type: string
-        name: color_mode
+  - entity: light
+    name: White LED
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
         force: true
-        mapping:
-          - dps_val: white
-            value: color_temp
-          - dps_val: colour
-            value: hs
-          - dps_val: scene
-            value: Scene
-          - dps_val: music
-            value: Music
       - id: 22
         name: brightness
         type: integer
@@ -30,9 +25,6 @@ entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - dps_val: null
-            value: 0
       - id: 23
         name: color_temp
         type: integer
@@ -44,6 +36,13 @@ entities:
           - target_range:
               min: 2700
               max: 6500
+  - entity: light
+    name: RGB LED
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        force: true
       - id: 24
         name: rgbhsv
         type: hex
@@ -64,18 +63,6 @@ entities:
             range:
               min: 0
               max: 1000
-  - entity: switch
-    name: White LED
-    dps:
-      - id: 107
-        type: boolean
-        name: switch
-  - entity: switch
-    name: RGB LED
-    dps:
-      - id: 108
-        type: boolean
-        name: switch
   - entity: select
     name: Scene
     dps:
