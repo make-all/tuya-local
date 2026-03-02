@@ -27,7 +27,7 @@ def main() -> int:
             if key and (
                 entity.entity not in english or key not in english[entity.entity]
             ):
-                print(f"{where}: translation_key {key} does not exist")
+                print(f"{where}: translation_key {entity.entity}.{key} does not exist")
                 detected += 1
                 continue
 
