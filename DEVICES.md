@@ -284,6 +284,7 @@ devices # Supported
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat
+- SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
