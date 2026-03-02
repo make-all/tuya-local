@@ -1,8 +1,8 @@
 name: Air conditioner
 products:
-  - id: wxqdp6ecfkd78zzz
-    manufacturer: Tesla
-    model: TYAUX F/LM/J
+  - id: nnlr9l5ipq5jfoxp
+    manufacturer: Hokkaido
+    model: HKEDM 263 ZL
 entities:
   - entity: climate
     dps:
@@ -33,7 +33,7 @@ entities:
           max: 320
         mapping:
           - scale: 10
-            step: 5
+            step: 10
             constraint: temperature_unit
             conditions:
               - dps_val: F
@@ -46,15 +46,15 @@ entities:
         mapping:
           - scale: 10
       - id: 4
-        name: mode
         type: string
+        name: mode
         hidden: true
       - id: 5
         type: string
         name: fan_mode
         mapping:
           - dps_val: mute
-            value: "off"
+            value: mute
           - dps_val: low
             value: low
           - dps_val: mid
@@ -63,6 +63,12 @@ entities:
             value: high
           - dps_val: auto
             value: auto
+          - dps_val: strength
+            value: strong
+          - dps_val: mid_low
+            value: medium_low
+          - dps_val: mid_high
+            value: medium_high
       - id: 8
         type: boolean
         name: preset_mode
@@ -76,6 +82,7 @@ entities:
         name: temperature_unit
       - id: 33
         type: boolean
+        optional: true
         name: swing_horizontal_mode
         mapping:
           - dps_val: false
@@ -86,15 +93,13 @@ entities:
         type: boolean
         name: swing_mode
         mapping:
-          - dps_val: false
-            value: "off"
           - dps_val: true
             value: "on"
-      - id: 108
-        type: bitfield
-        name: model
+          - dps_val: false
+            value: "off"
   - entity: switch
     name: Emergency heat
+    icon: "mdi:fire"
     category: config
     dps:
       - id: 12
@@ -158,13 +163,6 @@ entities:
       - id: 104
         type: boolean
         name: switch
-  - entity: switch
-    translation_key: uv_sterilization
-    category: config
-    dps:
-      - id: 106
-        type: boolean
-        name: switch
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -179,15 +177,25 @@ entities:
       - id: 107
         type: bitfield
         name: fault_code
+  - entity: sensor
+    name: Model
+    category: diagnostic
+    dps:
+      - id: 108
+        type: bitfield
+        name: sensor
+        optional: true
   - entity: switch
-    name: "On timer"
+    name: Timer on
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 109
         type: boolean
         name: switch
   - entity: switch
-    name: "Off timer"
+    name: Timer off
+    icon: "mdi:timer-off"
     category: config
     dps:
       - id: 110
@@ -212,7 +220,8 @@ entities:
   - entity: number
     name: Power limit
     icon: "mdi:meter-electric-outline"
-    category: diagnostic
+    category: config
+    hidden: unavailable
     dps:
       - id: 113
         type: integer
@@ -226,11 +235,38 @@ entities:
           - dps_val: null
             value: 100
             hidden: true
+      - id: 113
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Limit power
     icon: "mdi:meter-electric-outline"
     category: config
+    hidden: unavailable
     dps:
       - id: 114
         type: boolean
+        optional: true
+        name: switch
+      - id: 114
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Zero wind sensation
+    icon: "mdi:weather-windy"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        optional: true
         name: switch
