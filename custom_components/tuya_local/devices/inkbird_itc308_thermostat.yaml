@@ -3,11 +3,16 @@ products:
   - id: B0eP8qYAdpUo4yR9
     manufacturer: Inkbird
     model: ITC-308
+  - id: rt9nqdxeiqo7dnz9
+    manufacturer: Inkbird
+    model: ITC-308-WIFI
 entities:
   - entity: climate
     dps:
       - id: 101
         type: string
+        optional: true
+        force: true
         name: temperature_unit
       - id: 104
         type: integer
@@ -20,6 +25,8 @@ entities:
                 value_redirect: current_temperature_f
       - id: 106
         type: integer
+        optional: true
+        force: true
         name: temperature
         range:
           min: -500
@@ -34,6 +41,7 @@ entities:
                   max: 2100
       - id: 111
         type: boolean
+        optional: true
         name: high_temp_alarm
         hidden: true
         mapping:
@@ -42,6 +50,7 @@ entities:
             icon_priority: 1
       - id: 112
         type: boolean
+        optional: true
         name: low_temp_alarm
         hidden: true
         mapping:
@@ -50,6 +59,7 @@ entities:
             icon_priority: 2
       - id: 113
         type: boolean
+        optional: true
         name: sensor_fault_alarm
         hidden: true
         mapping:
@@ -58,6 +68,8 @@ entities:
             icon_priority: 3
       - id: 115
         type: string
+        optional: true
+        force: true
         name: hvac_action
         mapping:
           - dps_val: "0"
@@ -78,6 +90,8 @@ entities:
             value: heating
       - id: 116
         type: integer
+        optional: true
+        force: true
         name: current_temperature_f
         mapping:
           - scale: 10
@@ -89,6 +103,7 @@ entities:
       - id: 102
         name: value
         type: integer
+        optional: true
         unit: °
         range:
           min: -99
@@ -103,6 +118,7 @@ entities:
                   max: 150
       - id: 101
         type: string
+        optional: true
         name: temp_unit
         hidden: true
   - entity: number
@@ -112,6 +128,7 @@ entities:
     dps:
       - id: 108
         type: integer
+        optional: true
         name: value
         unit: min
         range:
@@ -125,6 +142,7 @@ entities:
       - id: 109
         name: value
         type: integer
+        optional: true
         range:
           min: -500
           max: 999
@@ -139,6 +157,7 @@ entities:
       - id: 101
         name: unit
         type: string
+        optional: true
         hidden: true
   - entity: number
     translation_key: minimum_temperature
@@ -148,6 +167,7 @@ entities:
       - id: 110
         name: value
         type: integer
+        optional: true
         range:
           min: -500
           max: 999
@@ -162,6 +182,7 @@ entities:
       - id: 101
         name: unit
         type: string
+        optional: true
         hidden: true
   - entity: select
     category: config
@@ -170,6 +191,7 @@ entities:
       - id: 101
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: C
             value: celsius
@@ -182,6 +204,7 @@ entities:
     dps:
       - id: 111
         type: boolean
+        optional: true
         name: sensor
   - entity: binary_sensor
     class: cold
@@ -190,6 +213,7 @@ entities:
     dps:
       - id: 112
         type: boolean
+        optional: true
         name: sensor
   - entity: binary_sensor
     class: problem
@@ -198,12 +222,14 @@ entities:
       - id: 12
         name: sensor
         type: bitfield
+        optional: true
         mapping:
           - dps_val: 0
             value: false
           - value: true
       - id: 12
         type: bitfield
+        optional: true
         name: fault_code
   - entity: binary_sensor
     class: problem
@@ -213,6 +239,7 @@ entities:
     dps:
       - id: 113
         type: boolean
+        optional: true
         name: sensor
   - entity: number
     category: config
@@ -222,6 +249,7 @@ entities:
       - id: 117
         name: value
         type: integer
+        optional: true
         range:
           min: 3
           max: 150
@@ -236,6 +264,7 @@ entities:
       - id: 101
         name: unit
         type: string
+        optional: true
         hidden: true
   - entity: number
     category: config
@@ -245,6 +274,7 @@ entities:
       - id: 118
         name: value
         type: integer
+        optional: true
         range:
           min: 3
           max: 150
@@ -259,4 +289,5 @@ entities:
       - id: 101
         name: unit
         type: string
+        optional: true
         hidden: true
