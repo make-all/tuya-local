@@ -1,0 +1,221 @@
+name: Ultenic D5 vacuum
+products:
+  - id: a97t8cfsfpjul5v7
+    manufacturer: Ultenic
+    model: D5
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+        optional: true
+      - id: 11
+        type: bitfield
+        name: error
+        mapping:
+          - dps_val: 1
+            value: unknown
+          - dps_val: 2
+            value: unknown
+          - dps_val: 3
+            value: unknown
+          - dps_val: 4
+            value: unknown
+          - dps_val: 5
+            value: unknown
+          - dps_val: 6
+            value: unknown
+          - dps_val: 7
+            value: unknown
+          - dps_val: 8
+            value: unknown
+          - dps_val: 9
+            value: unknown
+          - dps_val: 10
+            value: unknown
+          - dps_val: 11
+            value: unknown
+      - id: 38
+        type: string
+        name: status
+        mapping:
+          - dps_val: 0
+            value: standby
+          - dps_val: 1
+            value: cleaning
+          - dps_val: 2
+            value: cleaning
+          - dps_val: 3
+            value: cleaning
+          - dps_val: 4
+            value: returning
+          - dps_val: 5
+            value: charging
+          - dps_val: 6
+            value: cleaning
+      - id : 25
+        type: string
+        name: command
+        mapping:
+          - dps_val: NONE
+            value: stop
+          - dps_val: NONE
+            value: pause
+          - dps_val: smart
+            value: start
+          - dps_value: wallfollow
+            value: wall_follow
+          - dps_val: mop
+            value: mop
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: chargego
+            value: return_to_base
+      - id: 26
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turnleft
+            value: left
+          - dps_val: turnright
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 27
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
+          - dps_val: eco
+            value: Low
+      - id: 50
+        type: boolean
+        name: locate
+        optional: true
+
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 39
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Cleaned area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Cleaning time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+#  - entity: number
+#    name: Volume
+#    category: config
+#    icon: "mdi:volume-high"
+#    dps:
+#      - id: 43
+#        type: integer
+#        name: value
+#        unit: "%"
+#        range:
+#          min: 0
+#          max: 100
+  - entity: sensor
+    name: Sensor
+    category: diagnostic
+    icon: "mdi:leak"
+    dps:
+      - id: 44
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Filter
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 45
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Edge brush
+    category: diagnostic
+    icon: "mdi:arrow-expand-all"
+    dps:
+      - id: 47
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Main brush
+    category: diagnostic
+    icon: "mdi:circle"
+    dps:
+      - id: 48
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    name: Lamps
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 51
+        type: boolean
+        name: switch
+  - entity: button
+    name: Sensor reset
+    category: config
+    class: restart
+    dps:
+      - id: 54
+        type: boolean
+        name: button
+  - entity: button
+    name: Filter reset
+    category: config
+    class: restart
+    dps:
+      - id: 55
+        type: boolean
+        name: button
+  - entity: button
+    name: Edge brush reset
+    category: config
+    class: restart
+    dps:
+      - id: 56
+        type: boolean
+        name: button
+  - entity: button
+    name: Main brush reset
+    category: config
+    class: restart
+    dps:
+      - id: 57
+        type: boolean
+        name: button
+        optional: true
+
