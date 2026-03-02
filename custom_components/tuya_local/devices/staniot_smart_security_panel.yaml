@@ -101,15 +101,13 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    translation_key: plug
-    class: power
+    class: plug
     category: diagnostic
     dps:
       - id: 15
         type: boolean
         name: sensor
   - entity: sensor
-    translation_key: battery_level
     class: battery
     category: diagnostic
     dps:
