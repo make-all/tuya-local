@@ -1,0 +1,30 @@
+name: Generic Wi-Fi window opener type 1
+entities:
+  - entity: cover
+    class: window
+    dps:
+      - id: 1
+        name: work_state
+        type: string
+      - id: 2
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 7
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 7
+        name: current_position
+        type: integer
+        range:
+          min: 0
+          max: 100
