@@ -504,22 +504,17 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state and "Err" not in new_state:
-            self._cached_state = self._cached_state | new_state.get("dps", {})
-            self._cached_state["updated_at"] = time()
-            for entity in self._children:
-                for dp in entity._config.dps():
-                    # Clear non-persistant dps that were not in the poll
-                    if not dp.persist and dp.id not in new_state.get("dps", {}):
-                        self._cached_state.pop(dp.id, None)
-                entity.schedule_update_ha_state()
-        _LOGGER.debug(
-            "%s refreshed device state: %s",
-            self.name,
-            log_json(new_state),
-        )
-        if "Err" in new_state:
-            if self._api_working_protocol_failures == 1:
+        if new_state:
+            if "Err" not in new_state:
+                self._cached_state = self._cached_state | new_state.get("dps", {})
+                self._cached_state["updated_at"] = time()
+                for entity in self._children:
+                    for dp in entity._config.dps():
+                        # Clear non-persistant dps that were not in the poll
+                        if not dp.persist and dp.id not in new_state.get("dps", {}):
+                            self._cached_state.pop(dp.id, None)
+                    entity.schedule_update_ha_state()
+            elif self._api_working_protocol_failures == 1:
                 _LOGGER.warning(
                     "%s protocol error %s: %s",
                     self.name,
@@ -533,6 +528,11 @@ class TuyaLocalDevice(object):
                     new_state.get("Err"),
                     new_state.get("Error", "message not provided"),
                 )
+        _LOGGER.debug(
+            "%s refreshed device state: %s",
+            self.name,
+            log_json(new_state),
+        )
         _LOGGER.debug(
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
@@ -629,7 +629,15 @@ class TuyaLocalDevice(object):
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
-                        raise AttributeError(retval["Error"])
+                        if retval.get("Err") == "900":
+                            # Some devices (e.g. IR/RF remotes) never return
+                            # status data; error 900 is their normal response
+                            # to a status query. Treat as reachable with no
+                            # data so commands can still be sent.
+                            self._cached_state["updated_at"] = time()
+                            retval = None
+                        else:
+                            raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
                     return retval
