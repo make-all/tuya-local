@@ -125,13 +125,17 @@ entities:
           - dps_val: middle
             value: high
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 103
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: light
     translation_key: nightlight
     dps:

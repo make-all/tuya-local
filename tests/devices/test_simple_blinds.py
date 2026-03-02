@@ -8,6 +8,7 @@ from .base_device_tests import TuyaDeviceTestCase
 
 COMMAND_DPS = "1"
 POSITION_DPS = "2"
+CURRENT_POSITION = "3"
 BACKMODE_DPS = "5"
 ACTION_DPS = "7"
 
@@ -18,6 +19,7 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("simple_blinds.yaml", SIMPLE_BLINDS_PAYLOAD)
         self.subject = self.entities["cover_blind"]
+        self.mark_secondary(["switch_reverse"])
 
     def test_device_class_is_blind(self):
         self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)
@@ -97,12 +99,10 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
             await self.subject.async_set_cover_position(77)
 
     def test_extra_state_attributes(self):
-        self.dps[BACKMODE_DPS] = False
-        self.dps[ACTION_DPS] = "test2"
+        self.dps[ACTION_DPS] = "test"
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "control_back_mode": False,
-                "work_state": "test2",
+                "work_state": "test",
             },
         )

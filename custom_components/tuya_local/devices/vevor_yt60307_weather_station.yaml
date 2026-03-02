@@ -1,0 +1,120 @@
+name: Weather Station
+products:
+  - id: 1roznvzhxv5kqyg1
+    manufacturer: Vevor
+    model: YT60307
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Last rainfall
+    class: precipitation
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mm
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: atmospheric_pressure
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: hPa
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: wind_speed
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kph
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Wind gust
+    class: wind_speed
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: kph
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    name: UV index
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: wind_direction
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: sensor
+        mask: "000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000FFFF00000000\
+               000000000000000000000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               00000000000000000000000000000000000000"
+        unit: °
+      - id: 113
+        type: base64
+        optional: true
+        name: raw_data

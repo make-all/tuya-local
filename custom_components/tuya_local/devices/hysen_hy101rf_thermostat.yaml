@@ -3,6 +3,13 @@ products:
   - id: 9u1pognermrqhicq
     manufacturer: Hysen
     model: HY101RF
+  - id: 9u1pognermrqhicq
+    manufacturer: Ketotek
+    model: KTF0186C
+    model_id: WBR3-HYWE_v3.0
+  - id: hlbr5y67unkyfpfs
+    manufacturer: Ketotek
+    model: KTF017802
 entities:
   - entity: climate
     translation_key: thermostat
@@ -189,22 +196,34 @@ entities:
     name: External temperature zone
     category: config
     icon: "mdi:thermometer-plus"
+    hidden: unavailable
     dps:
       - id: 111
         type: integer
+        optional: true
         name: value
         unit: °
         range:
           min: 1
           max: 18
+      - id: 111
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: High temperature limit
     category: config
     class: temperature
     icon: "mdi:thermometer-alert"
+    hidden: unavailable
     dps:
       - id: 112
         type: integer
+        optional: true
         name: value
         range:
           min: 20
@@ -217,6 +236,14 @@ entities:
             value: C
           - dps_val: true
             value: F
+      - id: 112
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Low temperature limit
     category: config
@@ -279,9 +306,11 @@ entities:
     name: Temperature sensor
     icon: "mdi:home-thermometer"
     category: config
+    hidden: unavailable
     dps:
       - id: 116
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: in
@@ -290,6 +319,14 @@ entities:
             value: External
           - dps_val: all
             value: Both
+      - id: 116
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: initial_state
     category: config
@@ -319,19 +356,43 @@ entities:
             value: "Mon-Sat+Sun"
           - dps_val: "0days"
             value: Daily
+  - entity: text
+    name: Weekday program 1
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
       - id: 119
-        type: string
+        type: base64
         optional: true
-        name: program_workday_1
+        name: value
+  - entity: text
+    name: Weekday program 2
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
       - id: 120
-        type: string
+        type: base64
         optional: true
-        name: program_workday_2
+        name: value
+  - entity: text
+    name: Weekend program 1
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
       - id: 121
-        type: string
+        type: base64
         optional: true
-        name: program_restday_1
+        name: value
+  - entity: text
+    name: Weekend program 2
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
       - id: 122
-        type: string
+        type: base64
         optional: true
-        name: program_restday_2
+        name: value

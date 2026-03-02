@@ -8,6 +8,7 @@ devices # Supported
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
+- Bestherm Nessa Connect panel heater
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - Brandon Basics towel warmer
@@ -49,6 +50,7 @@ devices # Supported
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
 - Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Bornholm Electric heater (1kW, based on WBR3)
+- Klarstein WnoderSky IR heater (360W ACO14)
 - Klarstein Wonderwall IR heaters (including Air Art, Bornholm, 600 models)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
@@ -78,6 +80,7 @@ devices # Supported
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
+- Tecxerllon 1500W panel heater
 - Touchstone Sideline electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -88,9 +91,11 @@ devices # Supported
 
 ### Air Conditioners / Heat pumps
 
+- Airton air conditioner
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
+- Beltax BAC-1009 air conditioner
 - Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
@@ -117,6 +122,7 @@ devices # Supported
 - Fujicool Yuzu heat pump
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
+- Hokkaido HKEDM 263 ZL air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
@@ -128,6 +134,7 @@ devices # Supported
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
+- MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
@@ -191,6 +198,7 @@ devices # Supported
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
+- Haier air-water combo heat pump
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
@@ -218,7 +226,7 @@ devices # Supported
 - Atorch S1TW thermostat smart switch
 - Avatto ME81, WS20R and WT100 thermostats
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Beca BAC-002, BAC-006, BHT-002/3000, BHP-6000 thermostats
+- Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
@@ -269,6 +277,7 @@ devices # Supported
 - Owon PCT513 thermostat
 - Pilot Wire RP5 bath thermostat
 - Plikc Neve X W/RFW and Neve Pro W thermostats
+- PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
@@ -328,6 +337,7 @@ devices # Supported
 - Eglo 5 speed + sleep ceiling fan
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- Fanforce ceiling fan with light
 - Fisher F-ERVQ-B150CO2 heat recovery ventilator
 - FlinQ Breeze indoor pedestal fan
 - Funai Fuji ERW-150 Ultimate ventilation fan
@@ -365,6 +375,7 @@ devices # Supported
 - Lumary A1 and B2 ceiling fans with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- Novadigital ceiling fan with light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
@@ -394,6 +405,7 @@ devices # Supported
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
+- Varin VA-E003 ceiling fan with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
@@ -403,7 +415,7 @@ devices # Supported
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
-- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus purifiers
+- Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
@@ -490,10 +502,12 @@ devices # Supported
 - Advwin 13L humidifier
 - airx H8 humidifier
 - AlecoAir PU55 Humino humidifier
+- Arida Eva humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
 - Clofte Duo 400 humidifier
+- Duux Beam 2 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Eberg HUMI H03G1 humidifier
 - Homvana H111S humidifier
@@ -507,7 +521,7 @@ devices # Supported
 - Tesla Smart humidifier
 - Venta AH510 Original Connect humidifier
 - Wetair WAW-H1210LW humidifier
-- Wilfa Haze HU400BC humidifier
+- Wilfa Haze HU-400BC and Moist C HU-430CW humidifiers
 
 ### Aroma diffusers
 
@@ -518,6 +532,7 @@ devices # Supported
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
+- Haoyunma BD100 aroma diffuser
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Revesien Q-Pro-W aroma diffuser
@@ -538,6 +553,7 @@ devices # Supported
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
+- Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
 - Homend Royaltea kettle
@@ -545,6 +561,7 @@ devices # Supported
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Klarstein Amazonia dishwasher
+- Klarstein Ava range hood
 - Kogan glass 1.7L smart kettle (at least 2 different variants)
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
@@ -592,7 +609,7 @@ devices # Supported
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
 - PC473 3-phase energy monitor
-- PJ-1103 power clamp meter
+- PJ-1103, PJ-1103A power clamp meters
 - PZIOT E01 energy meter
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
@@ -770,9 +787,10 @@ of device.
 - Generic CCT lightbulb (supporting color temperature and brightness) - old and new style
 - Generic dimmable light (2 types, using dp 1,2 and 20,22)
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Three versions - standard dps layout starting from 20, with and without scene/music modes and timer, and a non-standard layout starting from 1 but following the same pattern (tested with "A60" bulbs).
+- Generic RGBWC (RGBCW with color temperature inverted) lightbulbs, tested with YSR-CGD-RGB Smart Bowl lamp.
 - Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
-- Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
+- Generic "Dreamlight" RGBIC and RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m and Outsmart RGBIC LED strips)
 - Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
@@ -796,6 +814,7 @@ of device.
 - Dream of You dual dimmable lamp
 - Dreamegg Nite 1 baby sound machine
 - Dual-mode magic light string controller
+- Edison Smart Treo dual-zone CCT ceiling light
 - Elegrp DTR10 dimmer light switch
 - Enbrighten Café string lights
 - Enbrighten Curtain lights
@@ -819,6 +838,7 @@ of device.
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
+- Loycco Smart Nursery light
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
 - LSC Smart Connect CCT + RGB led strip
@@ -917,7 +937,7 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
-- Cecotec Conga 1970 and X70 vacuum cleaners
+- Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE V20 and A30 pro vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
@@ -1042,6 +1062,7 @@ port and password.
 - Cleverio PF100 pet feeder
 - Doel cat litter box
 - Duoqu Neo-A cat litter box
+- Dxophiex fish feeder
 - Els Pet Spaceship pet litter box
 - Evergreen Solar bird feeder camera
 - Faroro PF50 pet feeder
@@ -1074,6 +1095,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
 - Petoneer Nutri PF004 pet feeder
+- Petory F03W pet feeder
 - Petree 2.0 litter box
 - Petrust TK-WF002 pet fountain
 - PetSnowy Snow+ litter box
@@ -1082,6 +1104,7 @@ port and password.
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Rojeco PTM-001 pet feeder (two versions)
+- Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
 - Tesla Smart pet feeder
@@ -1091,6 +1114,7 @@ port and password.
 - Vevor 76L self-cleaning litter box
 - WellToBe Automatic Pet Feeder (WB S36D)
 - Xtuos dual pet feeder
+- Yakry camera pet feeder
 - YP pet feeder
 - Yuposl dual-band pet feeder
 - Zedar K1200 cat litter box
@@ -1170,6 +1194,7 @@ port and password.
 - iHseno ZTU human presence sensor
 - idoo Smart Bloom 8 hydroponic system
 - Immax Neo Lite 7-in-1 weather station
+- Inkbird IAQM-129-W air quality monitor
 - Inkbird PTH-9CW air quality monitor
 - Kishin BS-DW002 motion sensor (sold under various brands)
 - KKMoon 7in1 air quality monitor
@@ -1195,10 +1220,13 @@ port and password.
 - PH-W218 water quality monitor
 - Pinjia PJ3101A presence sensor
 - PlantsIO Ivy smart planter
+- PNI Sofe House Smart Gas 300 alarm
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PTH9BW air quality monitor
+- PV28-AW 3-in-1 CO2 monitor
 - PV28-CW 8 in 1 air quality monitor
+- QTFV3-3 air quality monitor
 - Raddy PT-5 pool thermometer
 - RainPoint TTV103FRF water timer
 - RQ400A gas alarm
@@ -1222,7 +1250,9 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
+- TX-E gas sensor/alarm
 - Valehaus SYZN119 towel warmer
+- Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
@@ -1300,6 +1330,7 @@ entity types as sub devices.
 - LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Meian SW02 water leak detector
 - Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb

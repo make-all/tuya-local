@@ -86,9 +86,9 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
                         hours = hms[0 : len(hms) - 2]
                         minutes = hms[len(hms) - 2 :]
                     else:
-                        hours = hms.substring(0, len(hms) - 4)
-                        minutes = hms.substring(len(hms) - 4, len(hms) - 2)
-                        seconds = hms.substring(len(hms) - 2)
+                        hours = hms[: len(hms) - 4]
+                        minutes = hms[len(hms) - 4 : len(hms) - 2]
+                        seconds = hms[len(hms) - 2 :]
         if hours is None and minutes is None and seconds is None:
             return None
         hours = hours or 0

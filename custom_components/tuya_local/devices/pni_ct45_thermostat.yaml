@@ -1,0 +1,570 @@
+name: Thermostat
+products:
+  - id: ono8zmpmwfbm06ke
+    manufacturer: PNI
+    model: CT45
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: hotwater
+            value: false
+          - value: true
+      - id: 3
+        type: string
+        optional: true
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: holiday_heating
+            value: heating
+          - dps_val: frost_heating
+            value: defrosting
+          - value: idle
+      - id: 4
+        type: boolean
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: eco
+      - id: 16
+        type: integer
+        optional: true
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+      - id: 24
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+      - id: 34
+        type: integer
+        optional: true
+        name: current_humidity
+      - id: 64
+        type: string
+        optional: true
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "on"
+            value: "on"
+          - dps_val: circulation
+            value: cycle
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 2
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: hotwater
+            value: true
+          - value: false
+      - id: 16
+        type: integer
+        optional: true
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+      - id: 24
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+  - entity: select
+    name: Output
+    translation_key: mode
+    category: config
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: heat
+            value: Heating
+          - dps_val: hotwater
+            value: Hot water
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        optional: true
+        name: switch
+      - id: 28
+        name: brightness
+        type: string
+        optional: true
+        mapping:
+          - dps_val: low
+            value: 85
+          - dps_val: middle
+            value: 170
+          - dps_val: high
+            value: 255
+  - entity: valve
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: valve
+  - entity: switch
+    name: Schedule
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: menu
+    category: config
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Default
+            value: Default
+          - dps_val: Circle
+            value: Circle
+          - dps_val: "2"
+            value: Screen 2
+          - dps_val: "3"
+            value: Screen 3
+          - dps_val: "4"
+            value: Screen 4
+          - dps_val: "5"
+            value: Screen 5
+          - dps_val: "6"
+            value: Screen 6
+          - dps_val: DevPIN
+            value: PIN entry
+  - entity: number
+    name: Home temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 18
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: Away temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    translation_key: maximum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 35
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 35
+  - entity: number
+    name: Anti-freeze temperature
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 400
+  - entity: switch
+    name: Override
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: mode
+    dps:
+      - id: 41
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: program
+            value: schedule
+          - dps_val: manual
+            value: manual
+          - dps_val: boost
+            value: high
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    name: Display timeout
+    translation_key: timer
+    category: config
+    dps:
+      - id: 52
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "20s"
+            value: "20s"
+          - dps_val: "1minute"
+            value: "1m"
+          - dps_val: "3minutes"
+            value: "3m"
+  - entity: number
+    name: Running duration
+    category: config
+    translation_key: timer
+    dps:
+      - id: 56
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 15
+          max: 180
+  - entity: switch
+    name: Alarm
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Child lock
+    category: config
+    icon: "mdi:dialpad"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 9999
+  - entity: sensor
+    name: External temperature 1
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF"
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: base64
+        optional: true
+        # first 8 bytes is "name", but our mask only gives a numeric result
+        name: raw
+  - entity: sensor
+    name: External temperature 2
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF"
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 104
+        type: base64
+        optional: true
+        name: raw
+  - entity: sensor
+    name: External temperature 3
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        mask: "0000000000000000FFFF"
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: base64
+        optional: true
+        name: raw
+  - entity: sensor
+    name: Average temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+      - id: 108
+        type: integer
+        optional: true
+        name: heating
+      - id: 109
+        type: integer
+        optional: true
+        name: cooling
+  - entity: sensor
+    name: Heating per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cooling per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Hot water per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: text
+    name: Heating schedule
+    category: config
+    icon: "mdi:fire"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Hot water schedule
+    category: config
+    icon: "mdi:water-boiler"
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Vacation schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        optional: true
+        name: value
+  - entity: datetime
+    category: config
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        mask: "FF000000000000"
+        name: year
+        range:
+          min: 0
+          max: 99
+        mapping:
+          - target_range:
+              min: 2000
+              max: 2099
+      - id: 118
+        type: base64
+        optional: true
+        mask: "00FF0000000000"
+        name: month
+      - id: 118
+        type: base64
+        optional: true
+        mask: "0000FF00000000"
+        name: day
+      - id: 118
+        type: base64
+        optional: true
+        mask: "000000FF000000"
+        name: hour
+      - id: 118
+        type: base64
+        optional: true
+        mask: "00000000FF0000"
+        name: minute
+      - id: 118
+        type: base64
+        optional: true
+        mask: "0000000000FF00"
+        name: second
+      - id: 118
+        type: base64
+        optional: true
+        mask: "000000000000FF"
+        name: ampm24
+  - entity: text
+    name: Open window settings
+    category: config
+    icon: "mdi:window-open-variant"
+    hidden: true
+    dps:
+      - id: 119
+        type: base64
+        optional: true
+        name: value

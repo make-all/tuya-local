@@ -64,6 +64,10 @@ or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
 Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
+Tuya IR/RF blasters are supported through the remote entity platform.
+They can learn and store IR and RF commands, and replay them via the
+`remote.learn_command` and `remote.send_command` services.
+
 Tuya IR hubs that expose general IR remotes as sub devices usually
 expose them as one way devices (send only).  Due to the way this
 integration does device detection based on the dps returned by the
@@ -259,11 +263,35 @@ Although this is documented in the BLE lock documentation from Tuya, Zigbee
 and WiFi locks often use the same naming for datapoints, which may be
 compatible with this scheme.
 
+## Using IR/RF blasters
+
+Tuya IR and RF blasters are exposed as remote entities and support learning and
+sending commands via the standard Home Assistant remote services.
+
+### Learning commands
+
+Use the `remote.learn_command` service with:
+- `command`: the name to store the command under (e.g. `power`)
+- `device`: a name for the appliance being controlled (e.g. `TV`)
+- `command_type`: set to `rf` for RF remotes, omit or leave blank for IR
+
+The integration will put the blaster into learning mode and wait up to 30 seconds
+for you to press a button on the original remote. The learned code is stored
+persistently and survives restarts.
+
+### Sending commands
+
+Use the `remote.send_command` service with the same `command` and `device` values
+used when learning. You can also send codes directly without learning first:
+
+- **IR inline code**: prefix with `b64:` followed by the base64-encoded IR code
+- **RF inline code**: prefix with `rf:` followed by the base64-encoded RF code
+
 ## Contributing
 
 Beyond contributing device configs, here are some areas that could benefit from more hands:
 
 1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Focus on unit tests is on python code, the current coverage is summarised in reports on github, but to get full coverage details you can run the tests yourself.
-2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
+2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale.
 3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
 
