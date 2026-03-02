@@ -1,0 +1,41 @@
+name: OHMAX Smart Switch (SW5_BK)
+products:
+  - id: ao9jr0spifh91gn4
+    manufacturer: OHMAX
+    model: SW5_BK
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Power On State
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: off
+            value: Stay Off
+          - dps_val: on
+            value: Turn On
+          - dps_val: memory
+            value: Memory
+  - entity: select
+    name: Indicator Behavior
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: Always Off
+          - dps_val: relay
+            value: On When Light On
+          - dps_val: pos
+            value: On When Light Off
