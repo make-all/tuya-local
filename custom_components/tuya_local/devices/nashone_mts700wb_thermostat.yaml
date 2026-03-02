@@ -48,10 +48,9 @@ entities:
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 24
         type: integer
         name: current_temperature
@@ -66,15 +65,22 @@ entities:
         hidden: true
   - entity: number
     category: config
+    class: temperature_delta
     translation_key: temperature_calibration
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
         range:
           min: -5
           max: 5
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: button
     translation_key: factory_reset
     category: config

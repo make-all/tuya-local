@@ -127,17 +127,17 @@ entities:
             value: fahrenheit
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
         range:
           min: -18
           max: 18
         mapping:
-          - constraint: temp_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: temp_correct_f
@@ -147,8 +147,11 @@ entities:
                   max: 9
       - id: 23
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
       - id: 110
         type: integer
         optional: true
@@ -271,18 +274,18 @@ entities:
             value: Daily
   - entity: number
     name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer"
     dps:
       - id: 106
         type: integer
         name: value
-        unit: °
         range:
           min: 1
           max: 30
         mapping:
-          - constraint: temp_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: temp_diff_f
@@ -305,8 +308,11 @@ entities:
           max: 6
       - id: 23
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: number
     name: Eco temperature
     category: config
