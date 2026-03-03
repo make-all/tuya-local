@@ -1,0 +1,330 @@
+name: Aquark Mr. Silence Pool Heat Pump
+products:
+  - id: pkm5dso5i0lmx1dy
+    manufacturer: Aquark
+    model: Mr. Silence
+    name: Mr. Silence Pool Heat Pump
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    name: Pool Heater
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 105
+        type: enum
+        name: set_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: warm
+            value: heat
+          - dps_val: cool
+            value: cool
+      - id: 106
+        type: integer
+        name: target_temperature
+        unit: °C
+        range:
+          min: -22
+          max: 104
+        step: 1
+      - id: 102
+        type: integer
+        name: current_temperature
+        unit: °C
+      - id: 117
+        type: boolean
+        name: silent_mode
+  - entity: select
+    name: Temperature Unit
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        optional: true
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: Celsius
+          - dps_val: true
+            value: Fahrenheit
+  - entity: binary_sensor
+    name: Operating Status
+    category: config
+    device_class: running
+    dps:
+      - id: 118
+        type: boolean
+        name: operating_status
+        optional: true
+        mapping:
+          - dps_val: false
+            value: heating
+          - dps_val: true
+            value: cooling
+  - entity: sensor
+    name: Compressor Speed Percentage
+    category: diagnostic
+    hidden: true
+    unit: '%'
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: speed_percentage
+  - entity: sensor
+    name: Minimum Set Temperature
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: min_temp
+  - entity: sensor
+    name: Maximum Set Temperature
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: max_temp
+  - entity: sensor
+    name: Fault Codes Group 1
+    category: diagnostic
+    dps:
+      - id: 115
+        type: bitfield
+        name: faults_1
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: E1 - High pressure protection
+          - dps_val: 2
+            value: E2 - Low pressure protection
+          - dps_val: 3
+            value: E3 - No water protection
+          - dps_val: 4
+            value: E4 - 3 phase sequence protection
+          - dps_val: 5
+            value: E5 - Power supply excesses operation range
+          - dps_val: 6
+            value: >-
+              E6 - Excessive temp difference between inlet and outlet water
+              (Insufficient water flow protection)
+          - dps_val: 7
+            value: E7 - Water outlet temp too high or too low protection
+          - dps_val: 8
+            value: E8 - High exhaust temp protection
+          - dps_val: 9
+            value: E9
+          - dps_val: 10
+            value: EA - Evaporator overheat protection
+          - dps_val: 11
+            value: EB - Ambient Temperature too high or too low
+          - dps_val: 12
+            value: ED - Anti-freezing reminder
+          - dps_val: 13
+            value: P0 - Controller communication failure
+          - dps_val: 14
+            value: P1 - Water inlet temp sensor failure
+          - dps_val: 15
+            value: P2 - Water outlet temp sensor failure
+          - dps_val: 16
+            value: P3 - Gas exhaust temp sensor failure
+          - dps_val: 17
+            value: P4 - Heating (Evaporator) coil pipe temp sensor
+          - dps_val: 18
+            value: P5 - Gas return temp sensor failure
+          - dps_val: 19
+            value: P6 - Cooling (Titanium heat exchanger) coil pipe temp sensor
+          - dps_val: 20
+            value: P7 - Ambient temp sensor failure
+          - dps_val: 21
+            value: P8 - Cooling plate sensor failure
+          - dps_val: 22
+            value: P9 - Current sensor failure
+          - dps_val: 23
+            value: PA - Restart memory failure
+          - dps_val: 24
+            value: F1 - Compressor drive module failure
+          - dps_val: 25
+            value: F2 - PFC module failure
+          - dps_val: 26
+            value: F3 - Compressor start failure
+          - dps_val: 27
+            value: F4 - Compressor running failure
+          - dps_val: 28
+            value: F5 - Inverter board over current protection
+          - dps_val: 29
+            value: F6 - Inverter board overheat protection
+          - dps_val: 30
+            value: F7 - Current protection
+  - entity: sensor
+    name: Fault Codes Group 2
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: faults_2
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: F8 - Cooling plate overheat protection
+          - dps_val: 2
+            value: F9 - Fan motor failure
+          - dps_val: 3
+            value: Fb - Capacitor no charging protection
+          - dps_val: 4
+            value: Fa - PFC module over current protection
+  - entity: sensor
+    name: Outlet Pipe Temperature
+    category: diagnostic
+    hidden: true
+    unit: °C
+    device_class: temperature
+    dps:
+      - id: 120
+        type: integer
+        name: outlet_pipe_temp
+        optional: true
+  - entity: sensor
+    name: Exhaust Temperature
+    category: diagnostic
+    hidden: true
+    unit: °C
+    device_class: temperature
+    dps:
+      - id: 122
+        type: integer
+        name: exhaust_temp
+        optional: true
+  - entity: sensor
+    name: Ambient Temperature
+    category: diagnostic
+    hidden: true
+    unit: °C
+    device_class: temperature
+    dps:
+      - id: 124
+        type: integer
+        name: ambient_temp
+        optional: true
+  - entity: sensor
+    name: Radiator Temperature
+    category: diagnostic
+    hidden: true
+    unit: °C
+    device_class: temperature
+    dps:
+      - id: 127
+        type: integer
+        name: radiator_temp
+        optional: true
+  - entity: sensor
+    name: Compressor Frequency
+    category: diagnostic
+    hidden: true
+    unit: Hz
+    dps:
+      - id: 125
+        type: integer
+        name: compressor_frequency
+        optional: true
+  - entity: sensor
+    name: Compressor Current
+    category: diagnostic
+    hidden: true
+    unit: A
+    dps:
+      - id: 126
+        type: integer
+        name: compressor_current
+        optional: true
+  - entity: sensor
+    name: EXV Position
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 128
+        type: integer
+        name: exv_position
+        optional: true
+  - entity: sensor
+    name: DC Fan Speed
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 129
+        type: integer
+        name: dc_fan_speed
+        optional: true
+  - entity: select
+    name: AC Fan Speed
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 140
+        type: enum
+        name: fan_speed
+        optional: true
+        mapping:
+          - dps_val: LowSpeed
+            value: low
+          - dps_val: MidSpeed
+            value: medium
+          - dps_val: HighSpeed
+            value: high
+  - entity: binary_sensor
+    name: Defrost Active
+    category: diagnostic
+    hidden: true
+    device_class: running
+    dps:
+      - id: 130
+        type: boolean
+        name: defrost
+        optional: true
+  - entity: binary_sensor
+    name: Compressor AC Contactor
+    category: diagnostic
+    hidden: true
+    device_class: running
+    dps:
+      - id: 134
+        type: boolean
+        name: compressor_contactor
+        optional: true
+  - entity: binary_sensor
+    name: Circulation Pump
+    category: diagnostic
+    hidden: true
+    device_class: running
+    dps:
+      - id: 135
+        type: boolean
+        name: circulation_pump
+        optional: true
+  - entity: binary_sensor
+    name: Reversing Valve
+    category: diagnostic
+    hidden: true
+    device_class: running
+    dps:
+      - id: 136
+        type: boolean
+        name: reversing_valve
+        optional: true
+  - entity: binary_sensor
+    name: Charge Relay
+    category: diagnostic
+    hidden: true
+    device_class: running
+    dps:
+      - id: 139
+        type: boolean
+        name: charge_relay
+        optional: true
