@@ -26,8 +26,6 @@ class TestOrionSmartLock(
     MultiSensorTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("orion_smart_lock.yaml", ORION_SMARTLOCK_PAYLOAD)
         self.subject = self.entities.get("lock")

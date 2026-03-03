@@ -31,8 +31,6 @@ class TestRenphoPurifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("renpho_rp_ap001s.yaml", RENPHO_PURIFIER_PAYLOAD)
         self.subject = self.entities.get("fan")

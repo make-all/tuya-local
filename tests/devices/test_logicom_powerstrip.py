@@ -22,8 +22,6 @@ class TestLogicomPowerstrip(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("logicom_powerstrip.yaml", LOGICOM_STRIPPY_PAYLOAD)
         self.setUpMultiSwitch(

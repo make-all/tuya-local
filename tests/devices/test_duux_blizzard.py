@@ -23,8 +23,6 @@ COUNTDOWN_DP = "15"
 
 
 class TestDuuxBlizzard(TargetTemperatureTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "duux_blizzard_portable_aircon.yaml",

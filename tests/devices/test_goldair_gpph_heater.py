@@ -37,8 +37,6 @@ class TestGoldairHeater(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("goldair_gpph_heater.yaml", GPPH_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")

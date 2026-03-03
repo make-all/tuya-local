@@ -13,8 +13,6 @@ CURRENTTEMP_DPS = "5"
 
 
 class TestKoganGlass1_7LKettle(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "kogan_glass_1_7l_kettle.yaml",

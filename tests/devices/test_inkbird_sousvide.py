@@ -37,8 +37,6 @@ class TestInkbirdSousVideCooker(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("inkbird_sousvide_cooker.yaml", INKBIRD_SOUSVIDE_PAYLOAD)
         self.subject = self.entities.get("climate")

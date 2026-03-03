@@ -25,8 +25,6 @@ class TestSwitchV2(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
         self.subject = self.entities.get("switch_outlet")

@@ -19,8 +19,6 @@ TIMER_DPS = "26"
 
 
 class TestRGBCWLightbulb(BasicTextTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("rgbcw_lightbulb.yaml", RGBCW_LIGHTBULB_PAYLOAD)
         self.subject = self.entities.get("light")

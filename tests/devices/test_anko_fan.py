@@ -16,8 +16,6 @@ TIMER_DPS = "6"
 
 
 class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("anko_fan.yaml", ANKO_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
