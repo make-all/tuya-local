@@ -299,13 +299,14 @@ entities:
             step: 10
   - entity: number
     name: Away heating reduction
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-minus"
     dps:
       - id: 111
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000
@@ -315,12 +316,13 @@ entities:
   - entity: number
     name: Away cooling reduction
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 112
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000
@@ -397,13 +399,14 @@ entities:
           - value: false
   - entity: number
     name: Room temperature calibration
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-check"
     dps:
       - id: 128
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -900
           max: 900
@@ -413,12 +416,13 @@ entities:
   - entity: number
     name: External temperature calibration
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-check"
     dps:
       - id: 130
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -900
           max: 900

@@ -92,6 +92,7 @@ entities:
         type: bitfield
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 20
@@ -102,7 +103,7 @@ entities:
           max: 90
         mapping:
           - scale: 10
-        unit: °
+        unit: C
   - entity: number
     translation_key: maximum_temperature
     category: config
@@ -190,6 +191,7 @@ entities:
         name: switch
   - entity: number
     name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-plus"
     dps:
@@ -201,7 +203,7 @@ entities:
           max: 95
         mapping:
           - scale: 10
-        unit: °
+        unit: C
   - entity: number
     name: External temperature limit
     category: config

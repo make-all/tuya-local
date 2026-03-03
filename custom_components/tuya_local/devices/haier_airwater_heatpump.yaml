@@ -1,0 +1,225 @@
+name: Combo heat pump
+products:
+  - id: dzkashyduh1tuqin
+    manufacturer: Haier
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: climate
+    dps:
+      - id: 5
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: heat
+          - dps_val: "2"
+            value: cool
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 25
+          max: 75
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: "2"
+                value_redirect: cold_temp
+                range:
+                  min: 5
+                  max: 25
+      - id: 35
+        type: integer
+        name: current_temperature
+      - id: 104
+        type: integer
+        name: cold_temp
+        hidden: true
+        range:
+          min: 5
+          max: 25
+  - entity: water_heater
+    dps:
+      - id: 3
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 16
+        type: integer
+        name: current_temperature
+      - id: 34
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 25
+          max: 75
+  - entity: text
+    name: Time
+    category: config
+    icon: "mdi:clock"
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 1
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 2
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 3
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 107
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 4
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 5
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 6
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 7
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 8
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 112
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Program 9
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 113
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Engineering operation
+    icon: "mdi:tools"
+    category: config
+    hidden: true
+    dps:
+      - id: 114
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: start
+            value: start
+          - dps_val: query
+            value: query
+          - dps_val: exit
+            value: exit
+  - entity: text
+    name: Engineering parameters
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 115
+        type: string
+        optional: true
+        name: value
+      - id: 116
+        type: integer
+        optional: true
+        name: return_code
+  - entity: sensor
+    name: Diagnostics
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 117
+        type: base64
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 118
+        type: base64
+        optional: true
+        name: fault_code
