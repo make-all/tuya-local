@@ -48,13 +48,14 @@ entities:
   - entity: number
     translation_key: temperature_calibration
     category: config
+    class: temperature_delta
     hidden: true
     dps:
       - id: 23
         type: integer
         optional: true
         name: value
-        unit: °
+        unit: C
         range:
           min: -20
           max: 20

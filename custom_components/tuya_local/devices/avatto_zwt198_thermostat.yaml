@@ -99,7 +99,7 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    translation_key: minximum_temperature
+    translation_key: minimum_temperature
     category: config
     dps:
       - id: 16
@@ -158,12 +158,12 @@ entities:
   - entity: number
     name: Temperature hysteresis
     category: config
-    icon: "mdi:thermometer-plus"
+    class: temperature_delta
     dps:
       - id: 107
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 5
           max: 100
