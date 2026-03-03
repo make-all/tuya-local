@@ -1,7 +1,7 @@
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import NASHONE_MTS700WB_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
