@@ -721,7 +721,7 @@ class TuyaLocalDevice(object):
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
         _LOGGER.debug(
-            "Setting protocol version for %s to %0.1f",
+            "Setting protocol version for %s to %s",
             self.name,
             new_version,
         )
