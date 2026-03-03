@@ -1,55 +1,14 @@
-name: Ceiling Fan with RGB+CCT Light
+name: NP-DVL-01 Ceiling Fan with RGB+CCT Light
 products:
   - id: NP-DVL-01
-    name: NP-DVL-01 Ceiling Fan Light
+    name: NP-DVL-01
 
 entities:
-  - entity: fan
-    translation_key: fan_with_presets
-    dps:
-      - id: 60
-        type: boolean
-        name: switch
-      - id: 61
-        type: string
-        name: preset_mode
-        mapping:
-          - dps_val: fresh
-            value: Fresh
-          - dps_val: nature
-            value: Nature
-      - id: 62
-        type: integer
-        name: speed
-        range:
-          min: 1
-          max: 6
-      - id: 63
-        type: string
-        name: direction
-        mapping:
-          - dps_val: forward
-            value: forward
-          - dps_val: reverse
-            value: reverse
-      - id: 64
-        type: integer
-        name: timer
-        unit: min
-        range:
-          min: 0
-          max: 540
-
   - entity: light
-    translation_key: cct_light
     dps:
-      - id: 103
-        type: boolean
-        name: switch
       - id: 20
         type: boolean
         name: switch
-        hidden: true
       - id: 21
         type: string
         name: work_mode
@@ -75,43 +34,101 @@ entities:
           min: 0
           max: 1000
         mapping:
-          - constraint: work_mode
-            conditions:
-              - dps_val: white
-                mapping:
-                  - scale: 1
+          - target_range:
+              min: 3000
+              max: 5000
+            step: 500
       - id: 24
         type: hex
         name: color
+        optional: true
+
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
       - id: 26
         type: integer
-        name: timer
-        unit: s
-        category: config
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+
+  - entity: number
+    translation_key: timer
+    deprecated: time.timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        precision: 0
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60
 
-  - entity: light
-    translation_key: rgb_light
+  - entity: switch
+    name: RGB Light
     dps:
       - id: 102
         type: boolean
         name: switch
 
   - entity: switch
-    translation_key: oscillate
+    name: CCT Light
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Oscillate
     dps:
       - id: 101
         type: boolean
         name: switch
 
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        optional: true
+        name: direction
+
   - entity: number
+    name: Fan timer
     translation_key: timer
     category: config
+    icon: "mdi:fan-clock"
     dps:
       - id: 64
         type: integer
+        optional: true
         name: value
         unit: min
         range:
