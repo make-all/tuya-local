@@ -364,6 +364,7 @@ def setup_device_mock(mock, failure=False, type="test"):
     mock_type.legacy_type = type
     mock_type.config_type = type
     mock_type.match_quality.return_value = 100
+    mock_type.product_display_entries.return_value = [(None, None)]
     mock.async_possible_types = AsyncMock(
         return_value=[mock_type] if not failure else []
     )
@@ -416,11 +417,11 @@ async def test_flow_select_type_init(mock_device, hass):
     # Check the schema.  Simple comparison does not work since they are not
     # the same object
     try:
-        result["data_schema"]({CONF_TYPE: "test"})
+        result["data_schema"]({CONF_TYPE: "test||||"})
     except vol.MultipleInvalid:
         assert False
     try:
-        result["data_schema"]({CONF_TYPE: "not_test"})
+        result["data_schema"]({CONF_TYPE: "not_test||||"})
         assert False
     except vol.MultipleInvalid:
         pass
@@ -451,7 +452,7 @@ async def test_flow_select_type_data_valid(mock_device, hass):
     )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
-        user_input={CONF_TYPE: "smartplugv1"},
+        user_input={CONF_TYPE: "smartplugv1||||"},
     )
     assert "form" == result["type"]
     assert "choose_entities" == result["step_id"]
