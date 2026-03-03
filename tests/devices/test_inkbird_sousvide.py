@@ -70,7 +70,8 @@ class TestInkbirdSousVideCooker(
                     "max": 9.9,
                     "scale": 10,
                     "step": 0.1,
-                    "unit": "°",
+                    "device_class": NumberDeviceClass.TEMPERATURE_DELTA,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )
