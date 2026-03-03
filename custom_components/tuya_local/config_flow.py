@@ -405,28 +405,38 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 self.data[CONF_MODEL] = parts[2]
             return await self.async_step_choose_entities()
 
-        type_options = []
+        all_matches = []
         best_match = 0
         best_matching_type = None
         best_matching_key = None
+        has_product_id_match = False
 
         for type in await self.device.async_possible_types():
             q = type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
-            for manufacturer, model in type.product_display_entries():
+            if q > 100:
+                has_product_id_match = True
+            for manufacturer, model in type.product_display_entries(
+                self.device._product_ids
+            ):
                 key = f"{type.config_type}||{manufacturer or ''}||{model or ''}"
                 parts = [p for p in [manufacturer, model] if p]
                 if parts:
                     label = f"{' '.join(parts)} ({type.config_type})"
                 else:
                     label = f"{type.name} ({type.config_type})"
-                type_options.append(SelectOptionDict(value=key, label=label))
+                all_matches.append((SelectOptionDict(value=key, label=label), q))
                 if q > best_match:
                     best_match = q
                     best_matching_type = type.config_type
                     best_matching_key = key
+
+        if has_product_id_match:
+            type_options = [opt for opt, q in all_matches if q > 100]
+        else:
+            type_options = [opt for opt, _ in all_matches]
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
@@ -491,10 +501,6 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             title = user_input[CONF_NAME]
             del user_input[CONF_NAME]
-            # Fall back to the YAML device type name as model when the user
-            # did not select a specific product entry with a model name.
-            if CONF_MODEL not in self.data and config:
-                self.data[CONF_MODEL] = config.name
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
