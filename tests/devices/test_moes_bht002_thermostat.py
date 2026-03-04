@@ -24,8 +24,6 @@ UNKNOWN104_DPS = "104"
 class TestMoesBHT002Thermostat(
     BasicLockTests, TargetTemperatureTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "moes_bht002_thermostat_c.yaml",

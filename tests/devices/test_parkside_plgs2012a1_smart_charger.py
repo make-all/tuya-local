@@ -44,8 +44,6 @@ class TestParksidePLGS2012A1Charger(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "parkside_plgs2012a1_smart_charger.yaml", PARKSIDE_PLGS2012A1_PAYLOAD

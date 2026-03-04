@@ -26,8 +26,6 @@ LIGHT_DPS = "102"
 class TestAspenASP200Fan(
     DimmableLightTests, SwitchableTests, TargetTemperatureTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("aspen_asp200_fan.yaml", ASPEN_ASP200_FAN_PAYLOAD)
         self.subject = self.entities.get("fan")

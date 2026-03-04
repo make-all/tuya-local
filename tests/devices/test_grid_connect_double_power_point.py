@@ -41,8 +41,6 @@ class TestGridConnectDoubleSwitch(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "grid_connect_usb_double_power_point.yaml",

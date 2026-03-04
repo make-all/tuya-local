@@ -60,11 +60,13 @@ body:
     attributes:
       label: Confirmation
       description: |
-        Please select if the following are applicable
+        Please select if the following are applicable. Checking all options here without the corresponding info in your report may lead to your issue being closed.
       options:
         - label: I am sure this is a bug or improvement, that is well enough described that it can be implemented.
           required: true
         - label: This report is for tuya-local, **not** for localtuya.
+          required: true
+        - label: I have checked the latest released version of tuya-local
           required: true
         - label: |
             If this is for a specific device, the device config filename is mentioned above, or diagnostics are included.

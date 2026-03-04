@@ -12,8 +12,6 @@ IRRECV_DP = "202"
 
 
 class TestIRRemoteSensors(MultiSensorTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("ir_remote_sensors.yaml", IR_REMOTE_SENSORS_PAYLOAD)
         self.subject = self.entities.get("remote")

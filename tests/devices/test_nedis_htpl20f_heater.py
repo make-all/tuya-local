@@ -28,8 +28,6 @@ class TestNedisHtpl20fHeater(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("nedis_htpl20f_heater.yaml", NEDIS_HTPL20F_PAYLOAD)
         self.subject = self.entities.get("climate")
