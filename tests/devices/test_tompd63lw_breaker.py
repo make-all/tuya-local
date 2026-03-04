@@ -27,8 +27,6 @@ TEST_DP = "21"
 
 
 class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("tompd_63lw_breaker.yaml", TOMPD63LW_SOCKET_PAYLOAD)
         self.subject = self.entities.get("switch")

@@ -24,8 +24,6 @@ class TestThermexIF50V(
     BasicBinarySensorTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "thermex_if50v_waterheater.yaml",

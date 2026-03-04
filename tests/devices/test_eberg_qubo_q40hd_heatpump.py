@@ -31,8 +31,6 @@ HVACACTION_DPS = "101"
 class TestEbergQuboQ40HDHeatpump(
     BasicNumberTests, TargetTemperatureTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "eberg_qubo_q40hd_heatpump.yaml",

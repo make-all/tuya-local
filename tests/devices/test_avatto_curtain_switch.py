@@ -12,8 +12,6 @@ BACKLIGHT_DP = "101"
 
 
 class TestAvattoCurtainSwitch(BasicLightTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "avatto_curtain_switch.yaml",

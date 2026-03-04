@@ -33,8 +33,6 @@ class TestBecaBAC002Thermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("beca_bac002_thermostat_c.yaml", BECA_BAC002_PAYLOAD)
         self.subject = self.entities.get("climate")

@@ -27,8 +27,6 @@ class TestDigooDGSP202Switch(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("digoo_dgsp202.yaml", DIGOO_DGSP202_SOCKET_PAYLOAD)
         self.setUpMultiSwitch(
