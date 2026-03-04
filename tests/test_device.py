@@ -1,7 +1,6 @@
-import pytest
-
 from time import time
 
+import pytest
 # from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
 
 from custom_components.tuya_local.device import TuyaLocalDevice
