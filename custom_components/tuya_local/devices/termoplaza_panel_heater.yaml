@@ -1,4 +1,4 @@
-name: TermoPlaza heater
+name: Infrared Panel Heater
 products:
   - id: xlln3q6hczrp31df
     manufacturer: TermoPlaza
@@ -19,9 +19,6 @@ entities:
         name: temperature
         type: integer
         unit: C
-        mapping:
-          - scale: 1
-            step: 1
         range:
           min: 5
           max: 30
@@ -40,7 +37,7 @@ entities:
           - dps_val: Comfort
             value: comfort
           - dps_val: Night
-            value: away
+            value: sleep
           - dps_val: Off
             value: none
   - entity: lock
@@ -51,7 +48,7 @@ entities:
         type: boolean
         name: lock
   - entity: sensor
-    translation_key: work_state
+    name: Work state
     class: enum
     category: diagnostic
     dps:
@@ -66,17 +63,16 @@ entities:
           - dps_val: cold
             value: Cold
   - entity: sensor
-    translation_key: work_power
-    class: power_factor
+    name: Duty cycle
     dps:
       - id: 12
         type: integer
         optional: true
         name: sensor
         unit: "%"
-  - name: Turbo Mode Timer
+  - name: Turbo mode timer
     entity: select
-    translation_key: countdown_set
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -118,9 +114,8 @@ entities:
       - id: 110
         type: boolean
         name: switch
-  - name: Brightness
+  - name: Brightness level
     entity: select
-    translation_key: light_mode
     category: config
     dps:
       - id: 112
@@ -137,7 +132,7 @@ entities:
             value: Comfort
           - dps_val: 4
             value: High
-  - name: Surface Temperature Setpoint
+  - name: Surface Temperature
     entity: number
     category: config
     class: temperature
@@ -149,7 +144,7 @@ entities:
         range:
           min: 45
           max: 95
-  - name: Current Surface Temperature
+  - name: Surface Temperature
     category: diagnostic
     entity: sensor
     class: temperature
@@ -162,8 +157,7 @@ entities:
         range:
           min: -10
           max: 110
-  - name: Reset
-    entity: button
+  - entity: button
     translation_key: factory_reset
     category: config
     hidden: true
