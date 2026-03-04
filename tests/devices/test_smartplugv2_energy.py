@@ -46,8 +46,6 @@ class TestSwitchV2Energy(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("smartplugv2_energy.yaml", SMARTSWITCH_ENERGY_PAYLOAD)
         self.setUpMultiSwitch(

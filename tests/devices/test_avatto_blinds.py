@@ -21,8 +21,6 @@ TRAVELTIME_DP = "11"
 
 
 class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("avatto_roller_blinds.yaml", AVATTO_BLINDS_PAYLOAD)
         self.subject = self.entities["cover_blind"]

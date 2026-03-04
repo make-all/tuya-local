@@ -284,6 +284,7 @@ devices # Supported
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat
+- SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
@@ -1296,6 +1297,7 @@ port and password.
 - Primebras Athenas lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Raykube A1 Pro Max clip over door lock
+- RESTMO FML026A water meter
 - SGS01 plant sensor
 - Smart Ape solar garden light
 - SOP10 water sprinkler

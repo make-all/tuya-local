@@ -9,8 +9,6 @@ TIMER_DPS = "11"
 
 
 class TestTimedSwitch(SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("simple_switch_timer.yaml", TIMED_SOCKET_PAYLOAD)
         self.subject = self.entities.get("switch")

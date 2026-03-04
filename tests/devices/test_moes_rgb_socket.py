@@ -41,8 +41,6 @@ class TestMoesRGBSocket(
     BasicSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("moes_rgb_socket.yaml", MOES_RGB_SOCKET_PAYLOAD)
         self.light = self.entities.get("light_nightlight")

@@ -23,8 +23,6 @@ class TestWeauPoolHeatpumpV2(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("weau_pool_heatpump_v2.yaml", WEAU_POOL_HEATPUMPV2_PAYLOAD)
         self.subject = self.entities.get("climate")

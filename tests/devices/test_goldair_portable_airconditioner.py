@@ -26,8 +26,6 @@ SWINGH_DP = "110"
 
 
 class TestGoldairPortableAir(TargetTemperatureTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "goldair_portable_airconditioner.yaml",

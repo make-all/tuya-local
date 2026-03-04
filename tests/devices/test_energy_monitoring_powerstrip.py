@@ -32,8 +32,6 @@ class TestEnergyMonitoringPowerstrip(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "energy_monitoring_powerstrip.yaml", ENERGY_POWERSTRIP_PAYLOAD

@@ -36,8 +36,6 @@ class TestEssentialsPurifier(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("essentials_purifier.yaml", ESSENTIALS_PURIFIER_PAYLOAD)
         self.setUpBasicButton(

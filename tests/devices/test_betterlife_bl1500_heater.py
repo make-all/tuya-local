@@ -25,8 +25,6 @@ class TestBetterlifeBL1500Heater(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("betterlife_bl1500_heater.yaml", BETTERLIFE_BL1500_PAYLOAD)
         self.subject = self.entities.get("climate")

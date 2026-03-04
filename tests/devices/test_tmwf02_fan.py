@@ -12,8 +12,6 @@ SPEED_DPS = "4"
 
 
 class TestTMWF02Fan(SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("tmwf02_fan.yaml", TMWF02_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
