@@ -35,8 +35,6 @@ class TestSD123HumanPresenceRadar(
     MultiSelectTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("sd123_hpr01_presence.yaml", SD123_PRESENCE_PAYLOAD)
         self.setUpBasicBinarySensor(

@@ -1278,3 +1278,4 @@ Further device support has been made with the assistance of users. Please consid
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
 - [rwblokzijl](https://github.com/rwblokzijl) for assisting with support for Haier air-water combo heat pump.
 - [rdiamond1984-bit](https://github.com/rdiamond1984-bit) for assisting with support for SimPal TY-130 thermostat switch.
+- [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.

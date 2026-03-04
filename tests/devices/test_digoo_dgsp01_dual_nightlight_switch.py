@@ -25,8 +25,6 @@ UNKNOWN36_DPS = "36"
 
 
 class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "digoo_dgsp01_dual_nightlight_switch.yaml",

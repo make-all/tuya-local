@@ -8,8 +8,6 @@ OVERRIDE_END_DPS = "108"
 
 
 class TestElkoCFMTBThermostat(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "elko_cfmtb_thermostat.yaml",

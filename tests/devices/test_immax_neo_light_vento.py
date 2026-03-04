@@ -30,8 +30,6 @@ TIMER_DPS = "22"
 class TestImmaxNeoLightVento(
     SwitchableTests, BasicSelectTests, BasicLightTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("immax_neo_light_vento.yaml", IMAX_NEO_LIGHT_VENTO_PAYLOAD)
         self.fan = self.entities["fan"]
