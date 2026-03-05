@@ -324,6 +324,7 @@ async def test_async_test_connection_invalid(hass, mocker):
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = False
+    mock_instance._api = mocker.MagicMock()
     mock_device.return_value = mock_instance
     device = await config_flow.async_test_connection(
         {
@@ -374,6 +375,7 @@ def setup_device_mock(mock, mocker, failure=False, type="test"):
 async def test_flow_user_init_data_valid(hass, mocker):
     """Test we advance to the next step when connection config is valid."""
     mock_device = mocker.MagicMock()
+    mock_device._protocol_configured = "auto"
     setup_device_mock(mock_device, mocker)
     mocker.patch(
         "custom_components.tuya_local.config_flow.async_test_connection",

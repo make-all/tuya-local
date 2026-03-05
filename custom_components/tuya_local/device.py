@@ -624,12 +624,14 @@ class TuyaLocalDevice(object):
             else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
         )
 
+        last_err_code = None
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
-                        if retval.get("Err") == "900":
+                        last_err_code = retval.get("Err")
+                        if last_err_code == "900":
                             # Some devices (e.g. IR/RF remotes) never return
                             # status data; error 900 is their normal response
                             # to a status query. Treat as reachable with no
@@ -660,7 +662,9 @@ class TuyaLocalDevice(object):
                         self._api_protocol_working = False
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
-                    if self._api_working_protocol_failures == 1:
+                    if self._api_working_protocol_failures == 1 and not (
+                        last_err_code == "914" and self._protocol_configured == "auto"
+                    ):
                         _LOGGER.error(error_message)
                     else:
                         _LOGGER.debug(error_message)
@@ -717,7 +721,7 @@ class TuyaLocalDevice(object):
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
         _LOGGER.debug(
-            "Setting protocol version for %s to %0.1f",
+            "Setting protocol version for %s to %s",
             self.name,
             new_version,
         )
