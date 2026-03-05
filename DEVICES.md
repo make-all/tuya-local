@@ -81,6 +81,7 @@ devices # Supported
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Tecxerllon 1500W panel heater
+- Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater

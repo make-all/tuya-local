@@ -1280,3 +1280,5 @@ Further device support has been made with the assistance of users. Please consid
 - [rdiamond1984-bit](https://github.com/rdiamond1984-bit) for assisting with support for SimPal TY-130 thermostat switch.
 - [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
+- [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
+
