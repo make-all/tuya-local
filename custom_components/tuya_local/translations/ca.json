@@ -50,6 +50,13 @@
                     "type": "Tipus de dispositiu"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Trieu el tipus de dispositiu",
+                "description": "Trieu el tipus que coincideix amb el vostre dispositiu. La versión de protocolo {detected_protocol} se detectó automáticamente y se guardó. Si actualiza el firmware del dispositivo en el futuro, es posible que deba reconfigurar esta integración.",
+                "data": {
+                    "type": "Tipus de dispositiu"
+                }
+            },
             "choose_entities": {
                 "title": "Detalls del dispositiu",
                 "description": "Trieu un nom per a aquest dispositiu",
@@ -64,7 +71,7 @@
             "no_devices": "No s'ha pogut trobar cap dispositiu sense registrar per al compte."
         },
         "error": {
-            "connection": "No s'ha pogut connectar al vostre dispositiu amb aquests detalls. Podria ser una qüestió intermitent, o pot ser que siguin incorrectes.",
+            "connection": "No s'ha pogut conectar al vostre dispositiu con esos detalles. Podría ser un problema intermitente, o podrían ser incorrectos. Si seleccionó una versión de protocolo específica, intente 'auto' en su lugar.",
             "needs_hub": "El dispositiu necessita una passarel·la i no se n'ha seleccionat cap.",
             "does_not_need_hub": "El dispositiu no necessita una passarel·la i se n'ha seleccionat una. Reviseu les vostres opcions."
         }
@@ -96,7 +103,7 @@
             "not_supported": "No hi ha suport per a aquest dispositiu."
         },
         "error": {
-            "connection": "No s'ha pogut connectar al vostre dispositiu amb aquests detalls. Podria ser una qüestió intermitent, o pot ser que siguin incorrectes."
+            "connection": "No s'ha pogut conectar al vostre dispositiu con esos detalles. Podría ser un problema intermitente, o podrían ser incorrectos. Si seleccionó una versión de protocolo específica, intente 'auto' en su lugar."
         }
     },
     "entity": {
@@ -412,6 +419,8 @@
                     "waiting_for_authorization": "S'està esperant autorització",
                     "standby": "En espera",
                     "heating": "Calefacció",
+                    "cold": "Frío",
+                    "warm": "Calor",
                     "cooling": "Refrigeració",
                     "keeping_warm": "Conserva l'escalfor",
                     "no_water": "Sense aigua",

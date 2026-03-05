@@ -51,6 +51,13 @@
                     "type": "Typ zařízení"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Vyberte typ zařízení",
+                "description": "Vyberte typ, který odpovídá vašemu zařízení. Verze protokolu {detected_protocol} byla automaticky detekována a uložena. Pokud v budoucnu aktualizujete firmware zařízení, možná budete muset tuto integraci znovu nakonfigurovat.",
+                "data": {
+                    "type": "Typ zařízení"
+                }
+            },
             "choose_entities": {
                 "title": "Podrobnosti o zařízení",
                 "description": "Vyberte jméno pro toto zařízení",
@@ -65,7 +72,7 @@
             "no_devices": "Nelze najít žádná neregistrovaná zařízení pro účet."
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné.",
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné. Pokud jste vybrali konkrétní verzi protokolu, zkuste místo toho 'auto'.",
             "does_not_need_hub": "Zařízení nepotřebuje bránu a byla vybrána. ",
             "needs_hub": "Zařízení potřebuje bránu a žádná nebyla vybrána."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné. Pokud jste vybrali konkrétní verzi protokolu, zkuste místo toho 'auto'."
         },
         "abort": {
             "not_supported": "Omlouváme se, toto zažízení není podporováno."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Čekání na autorizaci",
                     "standby": "Pohotovost",
                     "heating": "Teplo",
+                    "cold": "Chlad",
+                    "warm": "Teplý",
                     "cooling": "Chlazení",
                     "keeping_warm": "Udržování tepla",
                     "no_water": "Bez vody",

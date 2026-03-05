@@ -51,6 +51,13 @@
                     "type": "设备类型"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "选择设备类型",
+                "description": "选择与您的设备匹配的类型。协议版本{detected_protocol}已自动检测并保存。如果您将来更新设备固件，可能需要重新配置此集成。",
+                "data": {
+                    "type": "设备类型"
+                }
+            },
             "choose_entities": {
                 "title": "设备详情",
                 "description": "为此设备选择一个名称",
@@ -65,7 +72,7 @@
             "no_devices": "无法找到该账户的任何未注册设备。"
         },
         "error": {
-            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。",
+            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。如果您选择了特定的协议版本，请改为尝试“自动”。",
             "does_not_need_hub": "设备不需要网关，但选择了一个。请检查您的选择。",
             "needs_hub": "设备需要网关，但未选择。"
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。"
+            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。如果您选择了特定的协议版本，请改为尝试“自动”。"
         },
         "abort": {
             "not_supported": "抱歉，不支持此设备。"
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "等待授权",
                     "standby": "待机",
                     "heating": "加热中",
+                    "cold": "冷却中",
+                    "warm": "温暖中",
                     "cooling": "制冷中",
                     "keeping_warm": "保持温暖",
                     "no_water": "无水",

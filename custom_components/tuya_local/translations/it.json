@@ -52,6 +52,13 @@
                     "type": "Tipo dispositivo"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Scegli il tipo di dispositivo",
+                "description": "Scegli il tipo che corrisponde al tuo dispositivo. La versione del protocollo {detected_protocol} è stata rilevata automaticamente e salvata. Se aggiorni il firmware del dispositivo in futuro, potresti dover riconfigurare questa integrazione.",
+                "data": {
+                    "type": "Tipo dispositivo"
+                }
+            },
             "choose_entities": {
                 "title": "Dettagli dispositivo",
                 "description": "Inserisci il nome del dispositivo",
@@ -66,7 +73,7 @@
             "no_devices": "Impossibile trovare dispositivi non registrati per l'account."
         },
         "error": {
-            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette.",
+            "connection": "Impossibile connettersi al dispositivo con quei dettagli. Potrebbe essere un problema intermittente o potrebbero essere errati. Se hai selezionato una versione specifica del protocollo, prova invece 'auto'.",
             "does_not_need_hub": "Il dispositivo non necessita di un gateway e ne è stato selezionato uno. ",
             "needs_hub": "Il dispositivo necessita di un gateway e non ne è stato selezionato nessuno."
         }
@@ -94,7 +101,7 @@
             }
         },
         "error": {
-            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette."
+            "connection": "Impossibile connettersi al dispositivo con quei dettagli. Potrebbe essere un problema intermittente o potrebbero essere errati. Se hai selezionato una versione specifica del protocollo, prova invece 'auto'."
         },
         "abort": {
             "not_supported": "Spiacente, questo dispositivo non è supportato."
@@ -893,6 +900,8 @@
                     "waiting_for_authorization": "In attesa di autorizzazione",
                     "standby": "Standby",
                     "heating": "Riscaldamento",
+                    "cold": "Freddo",
+                    "warm": "Caldo",
                     "cooling": "Raffreddamento",
                     "keeping_warm": "Mantenimento calore",
                     "no_water": "Senza acqua",

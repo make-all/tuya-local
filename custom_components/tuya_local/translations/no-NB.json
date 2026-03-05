@@ -52,6 +52,13 @@
                     "type": "Enhetstype"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Velg enhetstypen",
+                "description": "Velg typen som samsvarer med enheten din. Protokollversjon {detected_protocol} ble automatisk oppdaget og lagret. Hvis du oppdaterer enhetens firmware i fremtiden, må du kanskje konfigurere denne integrasjonen på nytt.",
+                "data": {
+                    "type": "Enhetstype"
+                }
+            },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
                 "description": "Angi et navn for din enhet",
@@ -66,7 +73,7 @@
             "no_devices": "Kan ikke finne noen uregistrerte enheter for kontoen."
         },
         "error": {
-            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt.",
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt. Hvis du valgte en spesifikk protokollversjon, prøv 'auto' i stedet.",
             "does_not_need_hub": "Enheten trenger ikke en gateway",
             "needs_hub": "Enheten trenger en gateway"
         }
@@ -94,7 +101,7 @@
             }
         },
         "error": {
-            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt."
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt. Hvis du valgte en spesifikk protokollversjon, prøv 'auto' i stedet."
         },
         "abort": {
             "not_supported": "Beklager, det er ingen støtte for denne enheten"
@@ -893,6 +900,8 @@
                     "waiting_for_authorization": "Venter på autorisasjon",
                     "standby": "Standby",
                     "heating": "Varmes opp",
+                    "cold": "Kald",
+                    "warm": "Varm",
                     "cooling": "Kjøler",
                     "keeping_warm": "Holder varm",
                     "no_water": "Ingen vann",

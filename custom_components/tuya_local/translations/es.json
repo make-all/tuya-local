@@ -51,6 +51,13 @@
                     "type": "Tipo de dispositivo"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Elige el tipo de dispositivo",
+                "description": "Elija el tipo que coincida con su dispositivo. La versión del protocolo {detected_protocol} se detectó automáticamente y se guardó. Si actualiza el firmware del dispositivo en el futuro, es posible que deba reconfigurar esta integración.",
+                "data": {
+                    "type": "Tipo de dispositivo"
+                }
+            },
             "choose_entities": {
                 "title": "Detalles del dispositivo",
                 "description": "Elija un nombre para este dispositivo",
@@ -65,7 +72,7 @@
             "no_devices": "No se puede encontrar ningún dispositivo no registrado para la cuenta."
         },
         "error": {
-            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos.",
+            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos. Si seleccionó una versión de protocolo específica, pruebe 'auto' en su lugar.",
             "does_not_need_hub": "El dispositivo no necesita una puerta de enlace y se seleccionó una. ",
             "needs_hub": "El dispositivo necesita una puerta de enlace y no se seleccionó ninguna."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos."
+            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos. Si seleccionó una versión de protocolo específica, pruebe 'auto' en su lugar."
         },
         "abort": {
             "not_supported": "Lo sentimos, no hay soporte para este dispositivo."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Esperando autorización",
                     "standby": "En espera",
                     "heating": "Calentando",
+                    "cold": "Frío",
+                    "warm": "Caliente",
                     "cooling": "Enfriando",
                     "keeping_warm": "Manteniendo caliente",
                     "no_water": "Sin agua",

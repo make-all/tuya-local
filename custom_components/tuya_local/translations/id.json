@@ -51,6 +51,13 @@
                     "type": "Tipe perangkat"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Pilih tipe perangkat",
+                "description": "Pilih tipe yang cocok dengan perangkat Anda. Versi protokol {detected_protocol} terdeteksi secara otomatis dan disimpan. Jika Anda memperbarui firmware perangkat di masa mendatang, Anda mungkin perlu mengkonfigurasi ulang integrasi ini.",
+                "data": {
+                    "type": "Tipe perangkat"
+                }
+            },
             "choose_entities": {
                 "title": "Detail perangkat",
                 "description": "Buat nama untuk perangkat ini",
@@ -65,7 +72,7 @@
             "no_devices": "Tidak dapat menemukan perangkat yang tidak terdaftar untuk akun tersebut."
         },
         "error": {
-            "connection": "Tidak dapat terkoneksi ke perangkat tersebut. Bisa jadi sementara, atau ada kesalahan.",
+            "connection": "Tidak dapat terkoneksi ke perangkat Anda dengan detail tersebut. Bisa jadi masalah sementara, atau mungkin salah. Jika Anda memilih versi protokol tertentu, coba 'otomatis' sebagai gantinya.",
             "does_not_need_hub": "Perangkat tidak memerlukan gateway dan satu telah dipilih. ",
             "needs_hub": "Perangkat memerlukan gateway dan tidak ada yang dipilih."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Tidak dapat terkoneksi ke perangkat tersebut. Bisa jadi sementara, atau ada kesalahan."
+            "connection": "Tidak dapat terkoneksi ke perangkat Anda dengan detail tersebut. Bisa jadi masalah sementara, atau mungkin salah. Jika Anda memilih versi protokol tertentu, coba 'otomatis' sebagai gantinya."
         },
         "abort": {
             "not_supported": "Maaf, perangkat ini belum didukung."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Menunggu otorisasi",
                     "standby": "Siaga",
                     "heating": "Pemanasan",
+                    "cold": "Dingin",
+                    "warm": "Hangat",
                     "cooling": "Pendinginan",
                     "keeping_warm": "Tetap hangat",
                     "no_water": "Tidak ada air",

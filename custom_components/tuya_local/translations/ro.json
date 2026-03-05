@@ -51,6 +51,13 @@
                     "type": "Tip dispozitiv"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Alege tipul dispozitivului",
+                "description": "Alegeți tipul care corespunde dispozitivului dvs. Versiunea protocolului {detected_protocol} a fost detectată și salvată automat. Dacă actualizați firmware-ul dispozitivului în viitor, este posibil să fie necesar să reconfigurați această integrare.",
+                "data": {
+                    "type": "Tip dispozitiv"
+                }
+            },
             "choose_entities": {
                 "title": "Detalii dispozitiv",
                 "description": "Alegeți un nume pentru acest dispozitiv",
@@ -65,7 +72,7 @@
             "no_devices": "Nu a fost posibilă găsirea niciunui dispozitiv neînregistrat pentru cont."
         },
         "error": {
-            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele sunt incorecte.",
+            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele pot fi incorecte. Dacă ați selectat o versiune specifică a protocolului, încercați 'auto' în schimb.",
             "does_not_need_hub": "Dispozitivul nu necesită gateway și unul a fost selectat. Vă rugăm să revizuiți alegerea.",
             "needs_hub": "Dispozitivul necesită gateway și nu a fost selectat niciunul."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele sunt incorecte."
+            "connection": "Nu s-a putut conecta la dispozitiv cu aceste detalii. Poate fi o problemă temporară sau datele pot fi incorecte. Dacă ați selectat o versiune specifică a protocolului, încercați 'auto' în schimb."
         },
         "abort": {
             "not_supported": "Ne pare rău, acest dispozitiv nu este suportat."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Așteaptă autorizare",
                     "standby": "În așteptare",
                     "heating": "Încălzește",
+                    "cold": "Rece",
+                    "warm": "Cald",
                     "cooling": "Răcește",
                     "keeping_warm": "Menține cald",
                     "no_water": "Fără apă",

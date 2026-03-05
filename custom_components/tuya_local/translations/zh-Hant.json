@@ -51,6 +51,13 @@
                     "type": "設備類型"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "選擇設備類型",
+                "description": "選擇與您的裝置相符的類型。協議版本{detected_protocol}已自動檢測並保存。如果您將來更新設備固件，可能需要重新配置此集成。",
+                "data": {
+                    "type": "設備類型"
+                }
+            },
             "choose_entities": {
                 "title": "設備詳情",
                 "description": "為此設備選擇一個名稱",
@@ -65,7 +72,7 @@
             "no_devices": "無法找到該帳戶的任何未註冊設備。"
         },
         "error": {
-            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。",
+            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。如果您選擇了特定的協議版本，請改為嘗試'auto'。",
             "does_not_need_hub": "設備不需要網關，但選擇了一個。請檢查您的選擇。",
             "needs_hub": "設備需要網關，但未選擇。"
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。"
+            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。如果您選擇了特定的協議版本，請改為嘗試'auto'。"
         },
         "abort": {
             "not_supported": "抱歉，不支援此設備。"
@@ -893,6 +900,8 @@
                     "waiting_for_authorization": "等待授權",
                     "standby": "待機",
                     "heating": "加熱",
+                    "cold": "冷",
+                    "warm": "溫暖",
                     "cooling": "冷卻",
                     "keeping_warm": "保溫中",
                     "no_water": "無水",

@@ -51,6 +51,13 @@
                     "type": "Gerätetyp"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Wählen Sie den Gerätetyp aus",
+                "description": "Wählen Sie den Typ aus, der Ihrem Gerät entspricht. Protokollversion {detected_protocol} wurde automatisch erkannt und gespeichert. Wenn Sie die Geräte-Firmware in Zukunft aktualisieren, müssen Sie diese Integration möglicherweise neu konfigurieren.",
+                "data": {
+                    "type": "Gerätetyp"
+                }
+            },
             "choose_entities": {
                 "title": "Gerätename",
                 "description": "Wählen Sie einen Namen für dieses Gerät aus.",
@@ -65,7 +72,7 @@
             "no_devices": "Für das Konto konnten keine nicht registrierten Geräte gefunden werden."
         },
         "error": {
-            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch.",
+            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch. Wenn Sie eine bestimmte Protokollversion ausgewählt haben, versuchen Sie stattdessen 'auto'.",
             "does_not_need_hub": "Das Gerät benötigt kein Gateway und es wurde eines ausgewählt. ",
             "needs_hub": "Das Gerät benötigt ein Gateway und es wurde keines ausgewählt."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch."
+            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch. Wenn Sie eine bestimmte Protokollversion ausgewählt haben, versuchen Sie stattdessen 'auto'."
         },
         "abort": {
             "not_supported": "Dieses Gerät wird leider nicht unterstützt."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Warten auf Autorisierung",
                     "standby": "Standby",
                     "heating": "Aufheizen",
+                    "cold": "Kalt",
+                    "warm": "Warm",
                     "cooling": "Abkühlen",
                     "keeping_warm": "Warmhalten",
                     "no_water": "Kein Wasser",

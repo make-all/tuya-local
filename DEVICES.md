@@ -81,6 +81,7 @@ devices # Supported
 - Sunred Smart Triangle Dark patio wall heater
 - Taurus Agadir Connect oil column heaters
 - Tecxerllon 1500W panel heater
+- Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -642,6 +643,7 @@ devices # Supported
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall Charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller

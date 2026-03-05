@@ -51,6 +51,13 @@
                     "type": "Typ urządzenia"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Wybierz typ urządzenia",
+                "description": "Wybierz typ odpowiadający Twojemu urządzeniu. Wersja protokołu {detected_protocol} została automatycznie wykryta i zapisana. Jeśli zaktualizujesz oprogramowanie układowe urządzenia w przyszłości, może być konieczne ponowne skonfigurowanie tej integracji.",
+                "data": {
+                    "type": "Typ urządzenia"
+                }
+            },
             "choose_entities": {
                 "title": "Szczegóły urządzenia",
                 "description": "Wybierz nazwę dla urządzenia",
@@ -65,7 +72,7 @@
             "no_devices": "Nie udało się znaleźć żadnych niezarejestrowanych urządzeń dla konta."
         },
         "error": {
-            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem lub dane mogą być niewłaściwe.",
+            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem, lub mogą być one nieprawidłowe. Jeśli wybrałeś konkretną wersję protokołu, spróbuj zamiast tego 'auto'.",
             "does_not_need_hub": "Urządzenie nie potrzebuje bramy i taką wybrano. ",
             "needs_hub": "Urządzenie wymaga bramy"
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem lub dane mogą być niewłaściwe."
+            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem, lub mogą być one nieprawidłowe. Jeśli wybrałeś konkretną wersję protokołu, spróbuj zamiast tego 'auto'."
         },
         "abort": {
             "not_supported": "Przepraszam, to urządzenie nie jest wspierane."
@@ -893,6 +900,8 @@
                     "waiting_for_authorization": "Oczekiwanie na autoryzację",
                     "standby": "Gotowość",
                     "heating": "Ogrzewanie",
+                    "cold": "Zimny",
+                    "warm": "Ciepły",
                     "cooling": "Chłodzenie",
                     "keeping_warm": "Podgrzewanie",
                     "no_water": "Brak wody",

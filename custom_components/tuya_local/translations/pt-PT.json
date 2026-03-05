@@ -51,6 +51,13 @@
                     "type": "Tipo de dispositivo"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Escolha o tipo de dispositivo",
+                "description": "Escolha o tipo que corresponde ao seu dispositivo. A versão do protocolo {detected_protocol} foi detectada automaticamente e salva. Se você atualizar o firmware do dispositivo no futuro, talvez seja necessário reconfigurar esta integração.",
+                "data": {
+                    "type": "Tipo de dispositivo"
+                }
+            },
             "choose_entities": {
                 "title": "Detalhes do dispositivo",
                 "description": "Escolha um nome para este dispositivo",
@@ -65,7 +72,7 @@
             "no_devices": "Não foi possível encontrar nenhum dispositivo ainda não registado para a conta."
         },
         "error": {
-            "connection": "Não foi possível conectar ao seu dispositivo com estes detalhes. Pode ser um problema intermitente ou podem estar incorretos.",
+            "connection": "Não foi possível conectar ao seu dispositivo com esses detalhes. Pode ser um problema intermitente ou eles podem estar incorretos. Se você selecionou uma versão de protocolo específica, tente 'auto' em vez disso.",
             "does_not_need_hub": "O dispositivo não precisa de gateway mas um foi selecionado. ",
             "needs_hub": "O dispositivo precisa de um gateway e nenhum foi selecionado."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Não foi possível conectar o seu dispositivo com estes detalhes. Pode ser um problema intermitente ou podem estar incorretos."
+            "connection": "Não foi possível conectar ao seu dispositivo com esses detalhes. Pode ser um problema intermitente ou eles podem estar incorretos. Se você selecionou uma versão de protocolo específica, tente 'auto' em vez disso."
         },
         "abort": {
             "not_supported": "Desculpe, não há suporte para este dispositivo."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Aguardando autorização",
                     "standby": "Em espera",
                     "heating": "Aquecimento",
+                    "cold": "Frio",
+                    "warm": "Quente",
                     "cooling": "Arrefecimento",
                     "keeping_warm": "Mantendo quente",
                     "no_water": "Sem água",
