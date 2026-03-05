@@ -20,8 +20,6 @@ class TestWooxR4028Powerstrip(
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("woox_r4028_powerstrip.yaml", WOOX_R4028_SOCKET_PAYLOAD)
         self.setUpMultiSwitch(

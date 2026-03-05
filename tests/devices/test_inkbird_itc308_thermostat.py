@@ -34,8 +34,6 @@ class TestInkbirdITC308Thermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "inkbird_itc308_thermostat.yaml", INKBIRD_ITC308_THERMOSTAT_PAYLOAD

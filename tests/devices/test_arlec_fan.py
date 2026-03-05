@@ -18,8 +18,6 @@ TIMER_DPS = "103"
 
 
 class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("arlec_fan.yaml", ARLEC_FAN_PAYLOAD)
         self.subject = self.entities["fan"]

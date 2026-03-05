@@ -18,8 +18,6 @@ BATTERY_DP = "15"
 
 
 class TestBleSmartPlant(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "ble_smart_plant_moisture.yaml",

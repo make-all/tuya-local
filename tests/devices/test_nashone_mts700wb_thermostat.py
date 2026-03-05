@@ -34,8 +34,6 @@ class TestNashoneMTS700WBThermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "nashone_mts700wb_thermostat.yaml",

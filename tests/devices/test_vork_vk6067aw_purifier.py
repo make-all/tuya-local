@@ -33,8 +33,6 @@ class TestVorkVK6267AWPurifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("vork_vk6067aw_purifier.yaml", VORK_VK6067_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]

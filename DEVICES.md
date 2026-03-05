@@ -642,6 +642,7 @@ devices # Supported
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall Charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
@@ -1297,6 +1298,7 @@ port and password.
 - Primebras Athenas lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Raykube A1 Pro Max clip over door lock
+- RESTMO FML026A water meter
 - SGS01 plant sensor
 - Smart Ape solar garden light
 - SOP10 water sprinkler

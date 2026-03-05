@@ -11,8 +11,6 @@ SPEED_DPS = "3"
 
 
 class TestTreatlifeFan(SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("treatlife_ds02_fan.yaml", TREATLIFE_DS02F_PAYLOAD)
         self.subject = self.entities["fan"]

@@ -26,8 +26,6 @@ class TestHydrothermDynamicX8(
     BasicBinarySensorTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "hydrotherm_dynamic_x8_water_heater.yaml", HYDROTHERM_DYNAMICX8_PAYLOAD
