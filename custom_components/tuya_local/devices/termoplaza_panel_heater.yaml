@@ -1,4 +1,4 @@
-name: Infrared Panel Heater
+name: Infrared panel heater
 products:
   - id: xlln3q6hczrp31df
     manufacturer: TermoPlaza
@@ -18,7 +18,6 @@ entities:
       - id: 2
         name: temperature
         type: integer
-        unit: C
         range:
           min: 5
           max: 30
@@ -26,19 +25,18 @@ entities:
       - id: 3
         name: current_temperature
         type: integer
-        unit: C
       - id: 4
         name: preset_mode
         type: string
         optional: true
         mapping:
-          - dps_val: ECO
+          - dps_val: "ECO"
             value: eco
-          - dps_val: Comfort
+          - dps_val: "Comfort"
             value: comfort
-          - dps_val: Night
+          - dps_val: "Night"
             value: sleep
-          - dps_val: Off
+          - dps_val: "Off"
             value: none
   - entity: lock
     translation_key: child_lock
@@ -48,7 +46,7 @@ entities:
         type: boolean
         name: lock
   - entity: sensor
-    name: Work state
+    name: Surface status
     class: enum
     category: diagnostic
     dps:
@@ -72,7 +70,6 @@ entities:
         unit: "%"
   - name: Turbo mode timer
     entity: select
-    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -106,9 +103,8 @@ entities:
             value: 22h
           - dps_val: 12
             value: 24h
-  - name: Program Mode
+  - name: Program mode
     entity: switch
-    translation_key: timer
     category: config
     dps:
       - id: 110
@@ -132,7 +128,7 @@ entities:
             value: Comfort
           - dps_val: 4
             value: High
-  - name: Surface Temperature
+  - name: Maximum surface temperature
     entity: number
     category: config
     class: temperature
@@ -144,7 +140,7 @@ entities:
         range:
           min: 45
           max: 95
-  - name: Surface Temperature
+  - name: Surface temperature
     category: diagnostic
     entity: sensor
     class: temperature
@@ -152,8 +148,8 @@ entities:
       - id: 114
         class: measurement
         type: integer
-        name: sensor
         unit: C
+        name: sensor
         range:
           min: -10
           max: 110
