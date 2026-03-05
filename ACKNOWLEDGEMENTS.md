@@ -1273,7 +1273,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
-- [kong09](https://github.com/kong09) for contributing improvements to thermostat icons, support for RF remote controls.
+- [kong09](https://github.com/kong09) for contributing improvements to protocol detection, thermostat icons, support for RF remote controls.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
 - [rwblokzijl](https://github.com/rwblokzijl) for assisting with support for Haier air-water combo heat pump.
@@ -1281,4 +1281,3 @@ Further device support has been made with the assistance of users. Please consid
 - [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
-
