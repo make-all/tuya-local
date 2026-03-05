@@ -287,6 +287,12 @@ used when learning. You can also send codes directly without learning first:
 - **IR inline code**: prefix with `b64:` followed by the base64-encoded IR code
 - **RF inline code**: prefix with `rf:` followed by the base64-encoded RF code
 
+### UI
+
+If you would like to expose the learnt commands as buttons in the user interface
+you might want to take a look at the [Remote buttons](https://github.com/kongo09/remote_buttons)
+integration, which is compatible with Tuya Local.
+
 ## Contributing
 
 Beyond contributing device configs, here are some areas that could benefit from more hands:
