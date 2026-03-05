@@ -1,0 +1,159 @@
+name: DEPOW 7kW EV Wallbox
+products:
+  - id: gxrtu5vljdthtd3g
+    manufacturer: DEPOW
+    model: 7kW EV Wallbox
+entities:
+  # --- Main Status & Attributes ---
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: SLEEP
+            value: sleep
+          - dps_val: IDLE
+            value: idle
+          - dps_val: IDLEINS
+            value: plugged_in
+          - dps_val: WORKING
+            value: charging
+          - dps_val: WAIT
+            value: waiting
+          - dps_val: ERRORPAUSE
+            value: fault
+          - dps_val: PAUSE
+            value: paused
+          - dps_val: STOP
+            value: charged
+      - id: 101
+        type: integer
+        name: work_state_code
+        optional: true
+
+  # --- Core Controls ---
+  - entity: switch
+    name: Charge Control
+    icon: "mdi:ev-station"
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: number
+    name: Charge Current
+    category: config
+    class: current
+    dps:
+      - id: 150
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+      - id: 152
+        type: integer
+        name: maximum
+        optional: true
+      - id: 107
+        type: string
+        name: steps
+        optional: true
+
+  # --- Device Commands ---
+  - entity: button
+    name: Reset Charger
+    icon: "mdi:refresh"
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        name: button
+        optional: true
+
+  - entity: button
+    name: Reboot Charger
+    class: restart
+    category: config
+    dps:
+      - id: 142
+        type: boolean
+        name: button
+        optional: true
+
+  # --- Hardware Configs ---
+  - entity: select
+    name: Plug In Action
+    icon: "mdi:ev-plug-type2"
+    category: config
+    dps:
+      - id: 154
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Prompt
+          - dps_val: 1
+            value: Charge
+          - dps_val: 2
+            value: Idle
+
+  - entity: switch
+    name: NFC Authentication
+    icon: "mdi:nfc"
+    category: config
+    dps:
+      - id: 155
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: switch
+    name: Earth Free Config
+    icon: "mdi:lightning-bolt-circle"
+    category: config
+    dps:
+      - id: 156
+        type: boolean
+        name: switch
+        optional: true
+
+  # --- Raw JSON Payloads ---
+  - entity: sensor
+    name: Raw Metrics JSON
+    category: diagnostic
+    icon: "mdi:code-json"
+    dps:
+      - id: 102 # Allows for power monitoring templates
+        type: string
+        name: sensor
+        optional: true
+
+  - entity: sensor
+    name: Charge History JSON
+    category: diagnostic
+    icon: "mdi:history"
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        optional: true
+
+  # --- Misc Diagnostics ---
+  - entity: text
+    name: Language Config
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 153
+        type: string
+        name: value
+        optional: true
