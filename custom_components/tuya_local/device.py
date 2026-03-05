@@ -375,6 +375,22 @@ class TuyaLocalDevice(object):
                                 self.name,
                                 poll["Payload"],
                             )
+                            # Device DPS not initialized (e.g. after power
+                            # cycle) — nudge with updatedps to force init
+                            if "unvalid" in str(poll["Payload"]):
+                                _LOGGER.debug(
+                                    "%s DPS uninitialized, sending updatedps",
+                                    self.name,
+                                )
+                                if self._force_dps:
+                                    await self._hass.async_add_executor_job(
+                                        self._api.updatedps,
+                                        self._force_dps,
+                                    )
+                                else:
+                                    await self._hass.async_add_executor_job(
+                                        self._api.updatedps,
+                                    )
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
