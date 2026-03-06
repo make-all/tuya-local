@@ -179,6 +179,7 @@ devices # Supported
 - Swim & Fun InverBoost pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
+- Aquark Mr. Silence pool heat pump (sometimes called Blue Zone)
 
 - these seem to use a small number of common controllers with minor variations, and many other Pool heat pumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
