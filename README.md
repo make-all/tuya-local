@@ -263,7 +263,7 @@ Although this is documented in the BLE lock documentation from Tuya, Zigbee
 and WiFi locks often use the same naming for datapoints, which may be
 compatible with this scheme.
 
-## Using IR/RF blasters
+## IR/RF blasters
 
 Tuya IR and RF blasters are exposed as remote entities and support learning and
 sending commands via the standard Home Assistant remote services.
@@ -286,6 +286,12 @@ used when learning. You can also send codes directly without learning first:
 
 - **IR inline code**: prefix with `b64:` followed by the base64-encoded IR code
 - **RF inline code**: prefix with `rf:` followed by the base64-encoded RF code
+
+### UI
+
+If you would like to expose the learnt commands as buttons in the user interface
+you might want to take a look at the [Remote buttons](https://github.com/kongo09/remote_buttons)
+integration, which is compatible with Tuya Local.
 
 ## Contributing
 
