@@ -1,6 +1,6 @@
 name: Fan
 products:
-  - id: bf5e0aadb629a31094y5bc
+  - id: kccccitzawmgkwkh
     manufacturer: Arlec
     model: ATF4601HA
     name: Tower fan
@@ -32,7 +32,6 @@ entities:
         type: boolean
   - entity: select
     translation_key: timer
-    category: config
     dps:
       - id: 101
         type: string
@@ -66,7 +65,6 @@ entities:
             value: "12h"
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 21
         type: integer
@@ -76,7 +74,6 @@ entities:
   - entity: sensor
     translation_key: time_remaining
     class: duration
-    category: diagnostic
     dps:
       - id: 23
         type: integer
