@@ -262,6 +262,36 @@ async def test_flow_user_init(hass, mocker):
 
 
 @pytest.mark.asyncio
+async def test_flow_user_init_protocol_options_are_strings(hass, mocker):
+    """Test that protocol version dropdown uses strings, not floats."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "local"}
+    )
+    schema = result["data_schema"]
+    # Validate that string protocol versions are accepted
+    schema(
+        {
+            CONF_DEVICE_ID: "test",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_HOST: "test",
+            CONF_PROTOCOL_VERSION: "3.3",
+            CONF_POLL_ONLY: False,
+        }
+    )
+    # Validate that float protocol versions are rejected
+    with pytest.raises(vol.MultipleInvalid):
+        schema(
+            {
+                CONF_DEVICE_ID: "test",
+                CONF_LOCAL_KEY: TESTKEY,
+                CONF_HOST: "test",
+                CONF_PROTOCOL_VERSION: 3.3,
+                CONF_POLL_ONLY: False,
+            }
+        )
+
+
+@pytest.mark.asyncio
 async def test_async_test_connection_valid(hass, mocker):
     """Test that device is returned when connection is valid."""
     mock_device = mocker.patch(
@@ -622,7 +652,7 @@ async def test_options_flow_modifies_config(hass, bypass_setup, mocker):
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: 3.3,
+            CONF_PROTOCOL_VERSION: "3.3",
         },
     )
     expected = {
