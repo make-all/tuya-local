@@ -343,11 +343,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             host_opts = {"default": self.__cloud_device.get("ip")}
             key_opts = {"default": self.__cloud_device.get(CONF_LOCAL_KEY)}
             if self.__cloud_device.get("version"):
-                proto_opts = {"default": float(self.__cloud_device.get("version"))}
+                proto_opts = {"default": str(self.__cloud_device.get("version"))}
             if self.__cloud_device.get(CONF_DEVICE_CID):
                 devcid_opts = {"default": self.__cloud_device.get(CONF_DEVICE_CID)}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
@@ -384,7 +387,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
                 if CONF_DEVICE_CID in user_input:
                     devcid_opts["default"] = user_input[CONF_DEVICE_CID]
-                proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
+                proto_opts["default"] = str(user_input[CONF_PROTOCOL_VERSION])
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
         return self.async_show_form(
@@ -397,7 +400,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Required(
                         CONF_PROTOCOL_VERSION,
                         **proto_opts,
-                    ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                    ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
@@ -554,6 +557,9 @@ class OptionsFlowHandler(OptionsFlow):
         config = {**self.config_entry.data, **self.config_entry.options}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             config = {**config, **user_input}
             device = await async_test_connection(config, self.hass)
             if device:
@@ -569,8 +575,8 @@ class OptionsFlowHandler(OptionsFlow):
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
             vol.Required(
                 CONF_PROTOCOL_VERSION,
-                default=config.get(CONF_PROTOCOL_VERSION, "auto"),
-            ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                default=str(config.get(CONF_PROTOCOL_VERSION, "auto")),
+            ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
