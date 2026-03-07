@@ -43,7 +43,7 @@ entities:
           - dps_val: quick_wash
             value: rapid
           - dps_val: "disinfect_wash"
-            value: disinfect_wash
+            value: hygiene
           - dps_val: hour_wash
             value: hour_wash
           - dps_val: dry
@@ -51,11 +51,11 @@ entities:
           - dps_val: chucun
             value: storage
           - dps_val: smart_wash
-            value: smart_wash
+            value: auto
           - dps_val: soft_wash
-            value: soft_wash
+            value: light
           - dps_val: hotpot_wash
-            value: hotpot_wash
+            value: pots
           - dps_val: eco_wash
             value: eco
           - dps_val: clean_wash
@@ -79,8 +79,8 @@ entities:
             value: done
           - dps_val: draining
             value: emptying
-          - dps_val: reservation_countdown
-            value: appointmentSt
+          - dps_val: appointmentSt
+            value: scheduled
           - dps_val: drying
             value: drying
           - dps_val: saving
@@ -115,9 +115,9 @@ entities:
         name: sensor
         unit: C
         class: measurement
-  - entity: sensor
-    translation_key: caston_dishwasher_err
-    class: enum
+  - entity: binary_sensor
+    translation_key: problem
+    class: problem
     category: diagnostic
     dps:
       - id: 18
@@ -125,23 +125,23 @@ entities:
         name: sensor
         mapping:
           - dps_val: e1
-            value: e1
+            value: no_water
           - dps_val: e2
-            value: e2
+            value: drain_blocked
           - dps_val: e3
-            value: e3
+            value: overflow
           - dps_val: e4
-            value: e4
+            value: sensor_fault
           - dps_val: e5
-            value: e5
+            value: communication_fault
           - dps_val: e6
-            value: e6
+            value: heating_fault
           - dps_val: e7
-            value: e7
+            value: variable_frequency_fault
           - dps_val: e8
-            value: e8
+            value: valve_fault
           - dps_val: e9
-            value: e9
+            value: washing_motor_fault
   - entity: lock
     translation_key: child_lock
     category: config
@@ -239,7 +239,7 @@ entities:
         name: switch
   - entity: sensor
     class: duration
-    translation_key: storage_days
+    translation_key: days_stored
     category: diagnostic
     dps:
       - id: 107
@@ -256,8 +256,7 @@ entities:
         type: boolean
         name: sensor
   - entity: select
-    translation_key: multi_level
-    icon: "mdi:water-opacity"
+    translation_key: rack
     category: config
     dps:
       - id: 109
@@ -265,8 +264,8 @@ entities:
         name: option
         mapping:
           - dps_val: all
-            value: all
+            value: both
           - dps_val: up
-            value: up
+            value: top
           - dps_val: down
-            value: down
+            value: bottom

@@ -150,22 +150,6 @@
                     "on": "延迟关机中"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1：腔体高温保护(腔体传感器温度高于290°C)",
-                            "e2": "E2：蒸发盘高温保护(蒸发盘传感器温度高于200°C)",
-                            "e3": "E3：腔体低温保护(连续工作5分钟温度低于35°C)",
-                            "e4": "E4：蒸发盘低温保护(连续工作5分钟温度低于35°C)",
-                            "e5": "E5：传感器连接出故障(腔体或蒸发盘传感器开路)",
-                            "e6": "E6：传感器感应出故障(腔体或蒸发盘传感器短路)",
-                            "e7": "E7：显示板通信故障",
-                            "e8": "E8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
-                        }
-                    }
-                }
-            },
             "rinse_aid": {
                 "name": "亮碟剂",
                 "state": {
@@ -505,9 +489,6 @@
             },
             "volume": {
                 "name": "音量"
-            },
-            "appointment_time": {
-                "name": "预约时间"
             },
             "bottom_temperature": {
                 "name": "下温度"
@@ -851,15 +832,13 @@
                     "soak": "浸泡",
                     "self_clean": "自清洁",
                     "hygiene": "卫生",
-                    "party": "派对",
                     "baby_care": "婴儿护理",
                     "disinfect_wash": "消毒洗",
                     "hour_wash": "小时洗",
                     "dry": "单干燥",
                     "storage": "单储存",
-                    "smart_wash": "智能洗",
-                    "soft_wash": "轻柔洗",
-                    "hotpot_wash": "火锅洗"
+                    "light": "轻柔洗",
+                    "pots": "火锅洗"
                 }
             },
             "water_hardness": {
@@ -868,7 +847,7 @@
             "rinse_aid_level": {
                 "name": "亮碟剂等级"
             },
-            "multi_level": {
+            "rack": {
                 "name": "分层洗",
                 "state": {
                     "all": "全部",
@@ -882,6 +861,16 @@
                     "1": "蒸煮（1档）",
                     "2": "常规（2档）",
                     "3": "强劲（3档）"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "烟机风速",
+                "state": {
+                    "off": "关闭",
+                    "low": "低速",
+                    "medium": "中速",
+                    "high": "高速",
+                    "quickfry": "爆炒"
                 }
             },
             "rangehood_delayed_shutdown": {
@@ -898,16 +887,6 @@
                     "8": "8分钟",
                     "9": "9分钟",
                     "10": "10分钟"
-                }
-            },
-            "rangehood_fan_speed": {
-                "name": "烟机风速",
-                "state": {
-                    "close": "关闭",
-                    "low": "低速",
-                    "middle": "中速",
-                    "high": "高速",
-                    "quickfry": "爆炒"
                 }
             },
             "menu": {
@@ -967,13 +946,6 @@
             }
         },
         "sensor": {
-            "delayed_fan_operatio": {
-                "name": "延时风扇运行",
-                "state": {
-                    "true": "关闭",
-                    "false": "延时运行中"
-                }
-            },
             "cleanliness": {
                 "name": "烟机洁净度",
                 "state": {
@@ -1088,8 +1060,6 @@
                     "drain_hot_water": "排热水",
                     "drain_normal_water": "排正常水",
                     "high_temperature_emptying": "高温排空中",
-                    "high_temperature_emptied": "高温已排空",
-                    "reservation_countdown": "预约倒计时中",
                     "storage": "存储中"
                 }
             },
@@ -1144,52 +1114,11 @@
             "filter_life": {
                 "name": "滤芯寿命"
             },
-            "storage_days": {
+            "days_stored": {
                 "name": "已储存天数"
-            },
-            "water_once": {
-                "name": "一次用水量"
-            },
-            "consumption_once": {
-                "name": "一次耗电量"
-            },
-            "caston_dishwasher_err": {
-                "name": "故障代码",
-                "state": {
-                    "e1": "E1进水",
-                    "e2": "E2排水（省缺）",
-                    "e3": "E3溢水",
-                    "e4": "E4传感器",
-                    "e5": "E5通信",
-                    "e6": "E6加热",
-                    "e7": "E7变频故障",
-                    "e8": "E8分水阀故障",
-                    "e9": "E9洗涤电机故障"
-                }
-            },
-            "caston_t2e_err": {
-                "name": "故障代码",
-                "state": {
-                    "e01": "腔体温度探头温度于260℃",
-                    "e02": "蒸发盘探头温度高于260℃",
-                    "e03": "启动工作后5min无变化且腔体温度低35℃",
-                    "e04": "启动工作后5min无变化且蒸发盘温度低35℃",
-                    "e05": "温度探头开路",
-                    "e06": "温度探头短路",
-                    "e07": "显示板通信故障",
-                    "e08": "显示板串口接收故障",
-                    "e09": "显示板串口发送故障",
-                    "e10": "燃气泄漏",
-                    "e11": "烟机进风口出现火情",
-                    "e12": "防火墙传感器故障",
-                    "e13": "关阀故障，关阀后热电偶温度偏高"
-                }
             }
         },
         "switch": {
-            "child_lock": {
-                "name": "童锁"
-            },
             "anti_frost": {
                 "name": "防冻"
             },

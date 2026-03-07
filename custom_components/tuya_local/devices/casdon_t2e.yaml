@@ -19,7 +19,7 @@ entities:
         type: boolean
         name: button
   - entity: climate
-    translation_only_key: oven
+    translation_key: oven
     dps:
       - id: 1
         name: hvac_mode
@@ -106,7 +106,6 @@ entities:
         type: boolean
   - entity: switch
     translation_key: rangehood
-    icon: "mdi:turbine"
     dps:
       - id: 117
         type: boolean
@@ -196,11 +195,11 @@ entities:
         name: option
         mapping:
           - dps_val: close
-            value: close
+            value: "off"
           - dps_val: low
             value: low
           - dps_val: middle
-            value: middle
+            value: medium
           - dps_val: high
             value: high
           - dps_val: QuickFry
@@ -274,7 +273,7 @@ entities:
           - dps_val: great
             value: great
   - entity: binary_sensor
-    translation_key: casdon_t2e_fault
+    translation_key: problem
     class: problem
     category: diagnostic
     dps:
@@ -283,28 +282,28 @@ entities:
         name: sensor
         mapping:
           - dps_val: e01
-            value: e01
+            value: chamber_overheat
           - dps_val: e02
-            value: e02
+            value: evaporation_tray_overheat
           - dps_val: e03
-            value: e03
+            value: chamber_low_temperature
           - dps_val: e04
-            value: e04
+            value: evaporation_tray_low_temperature
           - dps_val: e05
-            value: e05
+            value: sensor_open_circuit
           - dps_val: e06
-            value: e06
+            value: sensor_short_circuit
           - dps_val: e07
-            value: e07
+            value: communication_error
           - dps_val: e08
-            value: e08
+            value: receive_error
           - dps_val: e09
-            value: e09
+            value: transmit_error
           - dps_val: e10
-            value: e10
+            value: gas_leak
           - dps_val: e11
-            value: e11
+            value: fire
           - dps_val: e12
-            value: e12
+            value: firewall_sensor_fault
           - dps_val: e13
-            value: e13
+            value: valve_fault
