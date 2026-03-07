@@ -6,7 +6,7 @@ import asyncio
 import logging
 from asyncio.exceptions import CancelledError
 from threading import Lock
-from time import time
+from time import sleep, time
 
 import tinytuya
 from homeassistant.const import (
@@ -386,6 +386,27 @@ class TuyaLocalDevice(object):
                                 self.name,
                                 poll["Payload"],
                             )
+                            # Device DPS not initialized (e.g. after power
+                            # cycle) — nudge with a CONTROL command to force
+                            # DPS registration.  Unlike query commands
+                            # (status/updatedps), a set_value (cmd 7) makes
+                            # the firmware register its datapoints.
+                            if "unvalid" in str(poll["Payload"]) and self._force_dps:
+                                nudge_dp = self._force_dps[0]
+                                cached = self._get_cached_state()
+                                nudge_val = cached.get(str(nudge_dp), False)
+                                _LOGGER.debug(
+                                    "%s DPS uninitialized, sending"
+                                    " set_value(%s, %s) to force init",
+                                    self.name,
+                                    nudge_dp,
+                                    nudge_val,
+                                )
+                                await self._hass.async_add_executor_job(
+                                    self._api.set_value,
+                                    nudge_dp,
+                                    nudge_val,
+                                )
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
@@ -525,7 +546,38 @@ class TuyaLocalDevice(object):
                         if not dp.persist and dp.id not in new_state.get("dps", {}):
                             self._cached_state.pop(dp.id, None)
                     entity.schedule_update_ha_state()
-            elif self._api_working_protocol_failures == 1:
+            elif "unvalid" in str(new_state.get("Payload", "")) and self._force_dps:
+                # Device DPS not initialized (e.g. after cold boot).
+                # A CONTROL command (set_value, cmd 7) forces the firmware
+                # to register its datapoints, unlike query-only commands.
+                nudge_dp = self._force_dps[0]
+                cached = self._get_cached_state()
+                nudge_val = cached.get(str(nudge_dp), False)
+                _LOGGER.debug(
+                    "%s DPS uninitialized, sending set_value(%s, %s) to force init",
+                    self.name,
+                    nudge_dp,
+                    nudge_val,
+                )
+                self._api.set_value(nudge_dp, nudge_val)
+                sleep(1)
+                new_state = self._api.status()
+        if new_state and "Err" not in new_state:
+            self._cached_state = self._cached_state | new_state.get("dps", {})
+            self._cached_state["updated_at"] = time()
+            for entity in self._children:
+                for dp in entity._config.dps():
+                    # Clear non-persistant dps that were not in the poll
+                    if not dp.persist and dp.id not in new_state.get("dps", {}):
+                        self._cached_state.pop(dp.id, None)
+                entity.schedule_update_ha_state()
+        _LOGGER.debug(
+            "%s refreshed device state: %s",
+            self.name,
+            log_json(new_state),
+        )
+        if "Err" in new_state:
+            if self._api_working_protocol_failures == 1:
                 _LOGGER.warning(
                     "%s protocol error %s: %s",
                     self.name,
