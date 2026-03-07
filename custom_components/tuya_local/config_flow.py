@@ -530,7 +530,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
-        schema = {vol.Required(CONF_NAME, default=config.name): str}
+        default_name = config.name
+        if self.__cloud_device and self.__cloud_device.get("name"):
+            default_name = self.__cloud_device["name"]
+        schema = {vol.Required(CONF_NAME, default=default_name): str}
 
         return self.async_show_form(
             step_id="choose_entities",
