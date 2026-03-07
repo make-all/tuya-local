@@ -16,7 +16,7 @@ def get_translations():
     translations = join(dirname(root.__file__), "translations")
     for path, dirs, files in walk(translations):
         for file in files:
-            if fnmatch(file, "*.json"):
+            if fnmatch(file, "*.json") and file != "en.json":
                 yield (file, load_json(join(path, file)))
 
 
@@ -27,9 +27,9 @@ def get_english():
     global english
     if english is None:
         translations = join(dirname(root.__file__), "translations", "en.json")
-        json = load_json(translations)
+        english = load_json(translations)
 
-    return json
+    return english
 
 
 def json_compare_keys(english, json, file, path=""):
@@ -41,6 +41,9 @@ def json_compare_keys(english, json, file, path=""):
             warnings.warn(f"{file} Missing translation for {path}{key}")
         elif isinstance(english[key], dict):
             json_compare_keys(english[key], json[key], file, f"{path}{key}.")
+    for key in json:
+        if key not in english:
+            warnings.warn(f"{file} Extra translation for {path}{key}")
 
 
 def test_missing_translations():
