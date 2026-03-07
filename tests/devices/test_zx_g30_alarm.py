@@ -26,8 +26,6 @@ TICKDOWN_DP = "29"
 
 
 class TestZXG30Alarm(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("zx_g30_alarm.yaml", ZXG30_ALARM_PAYLOAD)
         self.subject = self.entities["alarm_control_panel"]

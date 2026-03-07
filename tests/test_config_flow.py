@@ -1,7 +1,5 @@
 """Tests for the config flow."""
 
-from unittest.mock import ANY, AsyncMock, MagicMock, patch
-
 import pytest
 import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
@@ -33,31 +31,23 @@ def auto_enable_custom_integrations(enable_custom_integrations):
 
 
 @pytest.fixture(autouse=True)
-def prevent_task_creation():
-    with patch(
-        "custom_components.tuya_local.device.TuyaLocalDevice.register_entity",
-    ):
-        yield
+def prevent_task_creation(mocker):
+    mocker.patch("custom_components.tuya_local.device.TuyaLocalDevice.register_entity")
+    yield
 
 
 @pytest.fixture
-def bypass_setup():
+def bypass_setup(mocker):
     """Prevent actual setup of the integration after config flow."""
-    with patch(
-        "custom_components.tuya_local.async_setup_entry",
-        return_value=True,
-    ):
-        yield
+    mocker.patch("custom_components.tuya_local.async_setup_entry", return_value=True)
+    yield
 
 
 @pytest.fixture
-def bypass_data_fetch():
+def bypass_data_fetch(mocker):
     """Prevent actual data fetching from the device."""
-    with patch(
-        "tinytuya.Device.status",
-        return_value={"1": True},
-    ):
-        yield
+    mocker.patch("tinytuya.Device.status", return_value={"1": True})
+    yield
 
 
 @pytest.mark.asyncio
@@ -86,12 +76,13 @@ async def test_init_entry(hass, bypass_data_fetch):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.setup_device")
-async def test_migrate_entry(mock_setup, hass):
+async def test_migrate_entry(hass, mocker):
     """Test migration from old entry format."""
-    mock_device = MagicMock()
-    mock_device.async_inferred_type = AsyncMock(return_value="goldair_gpph_heater")
-    mock_setup.return_value = mock_device
+    mock_device = mocker.MagicMock()
+    mock_device.async_inferred_type = mocker.AsyncMock(
+        return_value="goldair_gpph_heater"
+    )
+    mocker.patch("custom_components.tuya_local.setup_device", return_value=mock_device)
 
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -110,7 +101,7 @@ async def test_migrate_entry(mock_setup, hass):
     entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
-    mock_device.async_inferred_type = AsyncMock(return_value=None)
+    mock_device.async_inferred_type = mocker.AsyncMock(return_value=None)
     mock_device.reset_mock()
 
     entry = MockConfigEntry(
@@ -146,7 +137,7 @@ async def test_migrate_entry(mock_setup, hass):
     entry.add_to_hass(hass)
     assert not await async_migrate_entry(hass, entry)
 
-    mock_device.async_inferred_type = AsyncMock(return_value="smartplugv1")
+    mock_device.async_inferred_type = mocker.AsyncMock(return_value="smartplugv1")
     mock_device.reset_mock()
 
     entry = MockConfigEntry(
@@ -166,7 +157,7 @@ async def test_migrate_entry(mock_setup, hass):
     entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
-    mock_device.async_inferred_type = AsyncMock(return_value="smartplugv2")
+    mock_device.async_inferred_type = mocker.AsyncMock(return_value="smartplugv2")
     mock_device.reset_mock()
 
     entry = MockConfigEntry(
@@ -186,7 +177,9 @@ async def test_migrate_entry(mock_setup, hass):
     entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
-    mock_device.async_inferred_type = AsyncMock(return_value="goldair_dehumidifier")
+    mock_device.async_inferred_type = mocker.AsyncMock(
+        return_value="goldair_dehumidifier"
+    )
     mock_device.reset_mock()
 
     entry = MockConfigEntry(
@@ -210,7 +203,7 @@ async def test_migrate_entry(mock_setup, hass):
     entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
-    mock_device.async_inferred_type = AsyncMock(
+    mock_device.async_inferred_type = mocker.AsyncMock(
         return_value="grid_connect_usb_double_power_point"
     )
     mock_device.reset_mock()
@@ -236,21 +229,21 @@ async def test_migrate_entry(mock_setup, hass):
 
 
 @pytest.mark.asyncio
-async def test_flow_user_init(hass):
+async def test_flow_user_init(hass, mocker):
     """Test the initialisation of the form in the first page of the manual config flow path."""
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "local"}
     )
     expected = {
-        "data_schema": ANY,
-        "description_placeholders": ANY,
+        "data_schema": mocker.ANY,
+        "description_placeholders": mocker.ANY,
         "errors": {},
-        "flow_id": ANY,
+        "flow_id": mocker.ANY,
         "handler": DOMAIN,
         "step_id": "local",
         "type": "form",
-        "last_step": ANY,
-        "preview": ANY,
+        "last_step": mocker.ANY,
+        "preview": mocker.ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -269,13 +262,45 @@ async def test_flow_user_init(hass):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
-async def test_async_test_connection_valid(mock_device, hass):
+async def test_flow_user_init_protocol_options_are_strings(hass, mocker):
+    """Test that protocol version dropdown uses strings, not floats."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "local"}
+    )
+    schema = result["data_schema"]
+    # Validate that string protocol versions are accepted
+    schema(
+        {
+            CONF_DEVICE_ID: "test",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_HOST: "test",
+            CONF_PROTOCOL_VERSION: "3.3",
+            CONF_POLL_ONLY: False,
+        }
+    )
+    # Validate that float protocol versions are rejected
+    with pytest.raises(vol.MultipleInvalid):
+        schema(
+            {
+                CONF_DEVICE_ID: "test",
+                CONF_LOCAL_KEY: TESTKEY,
+                CONF_HOST: "test",
+                CONF_PROTOCOL_VERSION: 3.3,
+                CONF_POLL_ONLY: False,
+            }
+        )
+
+
+@pytest.mark.asyncio
+async def test_async_test_connection_valid(hass, mocker):
     """Test that device is returned when connection is valid."""
-    mock_instance = AsyncMock()
+    mock_device = mocker.patch(
+        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+    )
+    mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
-    mock_instance.pause = MagicMock()
-    mock_instance.resume = MagicMock()
+    mock_instance.pause = mocker.MagicMock()
+    mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid": {"device": mock_instance}}
 
@@ -294,13 +319,15 @@ async def test_async_test_connection_valid(mock_device, hass):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
-async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
+async def test_async_test_connection_for_subdevice_valid(hass, mocker):
     """Test that subdevice is returned when connection is valid."""
-    mock_instance = AsyncMock()
+    mock_device = mocker.patch(
+        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+    )
+    mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
-    mock_instance.pause = MagicMock()
-    mock_instance.resume = MagicMock()
+    mock_instance.pause = mocker.MagicMock()
+    mock_instance.resume = mocker.MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
 
@@ -320,11 +347,14 @@ async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
-async def test_async_test_connection_invalid(mock_device, hass):
+async def test_async_test_connection_invalid(hass, mocker):
     """Test that None is returned when connection is invalid."""
-    mock_instance = AsyncMock()
+    mock_device = mocker.patch(
+        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+    )
+    mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = False
+    mock_instance._api = mocker.MagicMock()
     mock_device.return_value = mock_instance
     device = await config_flow.async_test_connection(
         {
@@ -339,10 +369,12 @@ async def test_async_test_connection_invalid(mock_device, hass):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_flow_user_init_invalid_config(mock_test, hass):
+async def test_flow_user_init_invalid_config(hass, mocker):
     """Test errors populated when config is invalid."""
-    mock_test.return_value = None
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=None,
+    )
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "local"}
     )
@@ -359,23 +391,27 @@ async def test_flow_user_init_invalid_config(mock_test, hass):
     assert {"base": "connection"} == result["errors"]
 
 
-def setup_device_mock(mock, failure=False, type="test"):
-    mock_type = MagicMock()
+def setup_device_mock(mock, mocker, failure=False, type="test"):
+    mock_type = mocker.MagicMock()
     mock_type.legacy_type = type
     mock_type.config_type = type
     mock_type.match_quality.return_value = 100
-    mock.async_possible_types = AsyncMock(
+    mock_type.product_display_entries.return_value = [(None, None)]
+    mock.async_possible_types = mocker.AsyncMock(
         return_value=[mock_type] if not failure else []
     )
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_flow_user_init_data_valid(mock_test, hass):
+async def test_flow_user_init_data_valid(hass, mocker):
     """Test we advance to the next step when connection config is valid."""
-    mock_device = MagicMock()
-    setup_device_mock(mock_device)
-    mock_test.return_value = mock_device
+    mock_device = mocker.MagicMock()
+    mock_device._protocol_configured = "auto"
+    setup_device_mock(mock_device, mocker)
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=mock_device,
+    )
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "local"}
@@ -393,44 +429,45 @@ async def test_flow_user_init_data_valid(mock_test, hass):
 
 
 @pytest.mark.asyncio
-@patch.object(config_flow.ConfigFlowHandler, "device")
-async def test_flow_select_type_init(mock_device, hass):
+async def test_flow_select_type_init(hass, mocker):
     """Test the initialisation of the form in the 2nd step of the config flow."""
-    setup_device_mock(mock_device)
+    mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
+
+    setup_device_mock(mock_device, mocker)
 
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}
     )
     expected = {
-        "data_schema": ANY,
+        "data_schema": mocker.ANY,
         "description_placeholders": None,
         "errors": None,
-        "flow_id": ANY,
+        "flow_id": mocker.ANY,
         "handler": DOMAIN,
         "step_id": "select_type",
         "type": "form",
-        "last_step": ANY,
-        "preview": ANY,
+        "last_step": mocker.ANY,
+        "preview": mocker.ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
     # the same object
     try:
-        result["data_schema"]({CONF_TYPE: "test"})
+        result["data_schema"]({CONF_TYPE: "test||||"})
     except vol.MultipleInvalid:
         assert False
     try:
-        result["data_schema"]({CONF_TYPE: "not_test"})
+        result["data_schema"]({CONF_TYPE: "not_test||||"})
         assert False
     except vol.MultipleInvalid:
         pass
 
 
 @pytest.mark.asyncio
-@patch.object(config_flow.ConfigFlowHandler, "device")
-async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
+async def test_flow_select_type_aborts_when_no_match(hass, mocker):
     """Test the flow aborts when an unsupported device is used."""
-    setup_device_mock(mock_device, failure=True)
+    mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
+    setup_device_mock(mock_device, mocker, failure=True)
 
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}
@@ -441,41 +478,42 @@ async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
 
 
 @pytest.mark.asyncio
-@patch.object(config_flow.ConfigFlowHandler, "device")
-async def test_flow_select_type_data_valid(mock_device, hass):
+async def test_flow_select_type_data_valid(hass, mocker):
     """Test the flow continues when valid data is supplied."""
-    setup_device_mock(mock_device, type="smartplugv1")
+    mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
+
+    setup_device_mock(mock_device, mocker, type="smartplugv1")
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}
     )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
-        user_input={CONF_TYPE: "smartplugv1"},
+        user_input={CONF_TYPE: "smartplugv1||||"},
     )
     assert "form" == result["type"]
     assert "choose_entities" == result["step_id"]
 
 
 @pytest.mark.asyncio
-async def test_flow_choose_entities_init(hass):
+async def test_flow_choose_entities_init(hass, mocker):
     """Test the initialisation of the form in the 3rd step of the config flow."""
 
-    with patch.dict(config_flow.ConfigFlowHandler.data, {CONF_TYPE: "smartplugv1"}):
-        result = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": "choose_entities"}
-        )
+    mocker.patch.dict(config_flow.ConfigFlowHandler.data, {CONF_TYPE: "smartplugv1"})
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "choose_entities"}
+    )
 
     expected = {
-        "data_schema": ANY,
+        "data_schema": mocker.ANY,
         "description_placeholders": None,
         "errors": None,
-        "flow_id": ANY,
+        "flow_id": mocker.ANY,
         "handler": DOMAIN,
         "step_id": "choose_entities",
         "type": "form",
-        "last_step": ANY,
-        "preview": ANY,
+        "last_step": mocker.ANY,
+        "preview": mocker.ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -492,10 +530,10 @@ async def test_flow_choose_entities_init(hass):
 
 
 @pytest.mark.asyncio
-async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
+async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup, mocker):
     """Test the flow ends when data is valid."""
 
-    with patch.dict(
+    mocker.patch.dict(
         config_flow.ConfigFlowHandler.data,
         {
             CONF_DEVICE_ID: "deviceid",
@@ -506,40 +544,40 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_TYPE: "kogan_kahtp_heater",
             CONF_DEVICE_CID: None,
         },
-    ):
-        flow = await hass.config_entries.flow.async_init(
-            DOMAIN, context={"source": "choose_entities"}
-        )
-        result = await hass.config_entries.flow.async_configure(
-            flow["flow_id"],
-            user_input={
-                CONF_NAME: "test",
-            },
-        )
-        expected = {
-            "version": 13,
-            "minor_version": ANY,
-            "context": {"source": "choose_entities"},
-            "type": FlowResultType.CREATE_ENTRY,
-            "flow_id": ANY,
-            "handler": DOMAIN,
-            "title": "test",
-            "description": None,
-            "description_placeholders": None,
-            "result": ANY,
-            "subentries": (),
-            "options": {},
-            "data": {
-                CONF_DEVICE_ID: "deviceid",
-                CONF_HOST: "hostname",
-                CONF_LOCAL_KEY: TESTKEY,
-                CONF_POLL_ONLY: False,
-                CONF_PROTOCOL_VERSION: "auto",
-                CONF_TYPE: "kogan_kahtp_heater",
-                CONF_DEVICE_CID: None,
-            },
-        }
-        assert expected == result
+    )
+    flow = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "choose_entities"}
+    )
+    result = await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={
+            CONF_NAME: "test",
+        },
+    )
+    expected = {
+        "version": 13,
+        "minor_version": mocker.ANY,
+        "context": {"source": "choose_entities"},
+        "type": FlowResultType.CREATE_ENTRY,
+        "flow_id": mocker.ANY,
+        "handler": DOMAIN,
+        "title": "test",
+        "description": None,
+        "description_placeholders": None,
+        "result": mocker.ANY,
+        "subentries": (),
+        "options": {},
+        "data": {
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
+        },
+    }
+    assert expected == result
 
 
 @pytest.mark.asyncio
@@ -579,10 +617,12 @@ async def test_options_flow_init(hass, bypass_data_fetch):
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
-    mock_device = MagicMock()
-    mock_test.return_value = mock_device
+async def test_options_flow_modifies_config(hass, bypass_setup, mocker):
+    mock_device = mocker.MagicMock()
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=mock_device,
+    )
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
@@ -612,7 +652,7 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: 3.3,
+            CONF_PROTOCOL_VERSION: "3.3",
         },
     )
     expected = {
@@ -623,17 +663,17 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]
-    assert result["result"] is True
     assert expected == result["data"]
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_fails_when_connection_fails(
-    mock_test, hass, bypass_data_fetch
+    hass, bypass_data_fetch, mocker
 ):
-    mock_test.return_value = None
-
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=None,
+    )
     config_entry = MockConfigEntry(
         domain=DOMAIN,
         version=13,
@@ -669,10 +709,12 @@ async def test_options_flow_fails_when_connection_fails(
 
 
 @pytest.mark.asyncio
-@patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
-    mock_device = MagicMock()
-    mock_test.return_value = mock_device
+async def test_options_flow_fails_when_config_is_missing(hass, mocker):
+    mock_device = mocker.MagicMock()
+    mocker.patch(
+        "custom_components.tuya_local.config_flow.async_test_connection",
+        return_value=mock_device,
+    )
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,

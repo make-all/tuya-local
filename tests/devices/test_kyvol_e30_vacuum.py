@@ -36,8 +36,6 @@ CARPET_DPS = "107"
 
 
 class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("kyvol_e30_vacuum.yaml", KYVOL_E30_VACUUM_PAYLOAD)
         self.subject = self.entities.get("vacuum")

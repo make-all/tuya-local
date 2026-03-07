@@ -51,6 +51,13 @@
                     "type": "Enhetstyp"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Välj enhetstyp",
+                "description": "Välj den typ som matchar din enhet. Protokollversion {detected_protocol} upptäcktes automatiskt och sparades. Om du uppdaterar enhetens firmware i framtiden kan du behöva konfigurera om denna integration.",
+                "data": {
+                    "type": "Enhetstyp"
+                }
+            },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
                 "description": "Välj ett namn för enheten",
@@ -65,7 +72,7 @@
             "no_devices": "Kan inte hitta några oregistrerade enheter för kontot."
         },
         "error": {
-            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga.",
+            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga. Om du valde en specifik protokollversion, prova 'auto' istället.",
             "does_not_need_hub": "Enheten behöver ingen gateway och en valdes. Vänligen granska dina val.",
             "needs_hub": "Enheten behöver en gateway och ingen valdes."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga."
+            "connection": "Kan inte ansluta till din enhet med dessa uppgifter. Det kan vara ett intermittent problem, eller så kan de vara felaktiga. Om du valde en specifik protokollversion, prova 'auto' istället."
         },
         "abort": {
             "not_supported": "Tyvärr finns det inget stöd för denna enhet."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "Väntar på auktorisering",
                     "standby": "Standby",
                     "heating": "Värmer",
+                    "cold": "Kall",
+                    "warm": "Varm",
                     "cooling": "Kyler",
                     "keeping_warm": "Håller varm",
                     "no_water": "Inget vatten",

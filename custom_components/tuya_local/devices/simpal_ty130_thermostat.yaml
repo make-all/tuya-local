@@ -1,0 +1,178 @@
+name: Thermostat switch
+products:
+  - id: vqtesox68dh4nflq
+    manufacturer: Simpal
+    model: TY-130
+entities:
+  - entity: switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 9
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 7
+        type: base64
+        name: value
+
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 9
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: hot
+                value: heat
+              - dps_val: colding
+                value: cool
+              - dps_val: dehumidify
+                value: dry
+              - dps_val: wet
+                value: fan_only  # because climate does not support humidify
+      - id: 8
+        type: string
+        name: mode
+        hidden: true
+      - id: 20
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 21
+        type: integer
+        name: temp_set_f
+        hidden: true
+        range:
+          min: -40
+          max: 2210
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 22
+        type: integer
+        name: temperature
+        range:
+          min: -200
+          max: 1050
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: -40
+                  max: 2210
+      - id: 27
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 28
+        type: integer
+        name: temp_current_f
+        hidden: true
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 29
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 90
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 20
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+      - id: 20
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: number
+    name: Cold delay
+    class: duration
+    category: config
+    dps:
+      - id: 55
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10
+      - id: 56
+        type: boolean
+        name: available
+  - entity: switch
+    name: Cold delay
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        name: switch

@@ -109,12 +109,13 @@ entities:
         name: switch
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 102
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -5
           max: 5

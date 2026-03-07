@@ -51,6 +51,13 @@
                     "type": "Type d'appareil"
                 }
             },
+            "select_type_auto_detected": {
+                "title": "Choisissez le type d'appareil",
+                "description": "Choisissez le type qui correspond à votre appareil. La version du protocole {detected_protocol} a été automatiquement détectée et enregistrée. Si vous mettez à jour le firmware de l'appareil à l'avenir, vous devrez peut-être reconfigurer cette intégration.",
+                "data": {
+                    "type": "Type d'appareil"
+                }
+            },
             "choose_entities": {
                 "title": "Details appareil",
                 "description": "Choisissez un nom pour cet appareil",
@@ -65,7 +72,7 @@
             "no_devices": "Impossible de trouver des appareils non enregistrés pour le compte."
         },
         "error": {
-            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou les réglages sont incorrects.",
+            "connection": "Impossible de se connecter à votre appareil avec ces détails. Il peut s'agir d'un problème intermittent, ou ils peuvent être incorrects. Si vous avez sélectionné une version de protocole spécifique, essayez 'auto' à la place.",
             "does_not_need_hub": "L'appareil n'a pas besoin de passerelle et une a été sélectionnée. ",
             "needs_hub": "L'appareil a besoin d'une passerelle et aucune n'a été sélectionnée."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou les réglages sont incorrects."
+            "connection": "Impossible de se connecter à votre appareil avec ces détails. Il peut s'agir d'un problème intermittent, ou ils peuvent être incorrects. Si vous avez sélectionné une version de protocole spécifique, essayez 'auto' à la place."
         },
         "abort": {
             "not_supported": "Désolé, il n'y a pas de support pour cet appareil."
@@ -892,6 +899,8 @@
                     "waiting_for_authorization": "En attente d'autorisation",
                     "standby": "Veille",
                     "heating": "Chauffage",
+                    "cold": "Froid",
+                    "warm": "Chaud",
                     "cooling": "Refroidissement",
                     "keeping_warm": "Garder au chaud",
                     "no_water": "Pas d'eau",

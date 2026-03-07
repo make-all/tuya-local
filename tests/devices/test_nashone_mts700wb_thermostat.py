@@ -1,6 +1,7 @@
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import NASHONE_MTS700WB_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -33,8 +34,6 @@ class TestNashoneMTS700WBThermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "nashone_mts700wb_thermostat.yaml",
@@ -56,7 +55,8 @@ class TestNashoneMTS700WBThermostat(
             self.entities.get("number_temperature_calibration"),
             min=-5,
             max=5,
-            unit="°",
+            device_class=NumberDeviceClass.TEMPERATURE_DELTA,
+            unit=UnitOfTemperature.CELSIUS,
         )
         self.setUpBasicSelect(
             TIMER_DPS,

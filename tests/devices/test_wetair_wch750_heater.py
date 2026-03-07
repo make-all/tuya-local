@@ -33,8 +33,6 @@ class TestWetairWCH750Heater(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("wetair_wch750_heater.yaml", WETAIR_WCH750_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")

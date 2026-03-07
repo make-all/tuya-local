@@ -31,6 +31,8 @@ from .const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_MANUFACTURER,
+    CONF_MODEL,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
@@ -331,7 +333,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         devid_opts = {}
         host_opts = {"default": ""}
         key_opts = {}
-        proto_opts = {"default": 3.3}
+        proto_opts = {"default": "auto"}
         polling_opts = {"default": False}
         devcid_opts = {}
 
@@ -341,14 +343,29 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             host_opts = {"default": self.__cloud_device.get("ip")}
             key_opts = {"default": self.__cloud_device.get(CONF_LOCAL_KEY)}
             if self.__cloud_device.get("version"):
-                proto_opts = {"default": float(self.__cloud_device.get("version"))}
+                proto_opts = {"default": str(self.__cloud_device.get("version"))}
             if self.__cloud_device.get(CONF_DEVICE_CID):
                 devcid_opts = {"default": self.__cloud_device.get(CONF_DEVICE_CID)}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
+                # If auto mode found a working protocol, save it so future
+                # HA restarts connect directly without re-cycling all versions.
+                self._auto_detected_protocol = None
+                if (
+                    user_input.get(CONF_PROTOCOL_VERSION) == "auto"
+                    and self.device._protocol_configured != "auto"
+                ):
+                    self._auto_detected_protocol = self.device._protocol_configured
+                    self.data = {
+                        **self.data,
+                        CONF_PROTOCOL_VERSION: self._auto_detected_protocol,
+                    }
                 if self.__cloud_device:
                     if self.__cloud_device.get("product_id"):
                         self.device.set_detected_product_id(
@@ -370,7 +387,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
                 if CONF_DEVICE_CID in user_input:
                     devcid_opts["default"] = user_input[CONF_DEVICE_CID]
-                proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
+                proto_opts["default"] = str(user_input[CONF_PROTOCOL_VERSION])
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
         return self.async_show_form(
@@ -383,7 +400,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Required(
                         CONF_PROTOCOL_VERSION,
                         **proto_opts,
-                    ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                    ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
@@ -394,22 +411,47 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
 
     async def async_step_select_type(self, user_input=None):
         if user_input is not None:
-            self.data[CONF_TYPE] = user_input[CONF_TYPE]
+            # Value is a compound key: "config_type||manufacturer||model"
+            parts = user_input[CONF_TYPE].split("||", 2)
+            self.data[CONF_TYPE] = parts[0]
+            if len(parts) > 1 and parts[1]:
+                self.data[CONF_MANUFACTURER] = parts[1]
+            if len(parts) > 2 and parts[2]:
+                self.data[CONF_MODEL] = parts[2]
             return await self.async_step_choose_entities()
 
-        types = []
+        all_matches = []
         best_match = 0
         best_matching_type = None
+        best_matching_key = None
+        has_product_id_match = False
 
         for type in await self.device.async_possible_types():
-            types.append(type.config_type)
             q = type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
-            if q > best_match:
-                best_match = q
-                best_matching_type = type.config_type
+            if q > 100:
+                has_product_id_match = True
+            for manufacturer, model in type.product_display_entries(
+                self.device._product_ids
+            ):
+                key = f"{type.config_type}||{manufacturer or ''}||{model or ''}"
+                parts = [p for p in [manufacturer, model] if p]
+                if parts:
+                    label = f"{' '.join(parts)} ({type.config_type})"
+                else:
+                    label = f"{type.name} ({type.config_type})"
+                all_matches.append((SelectOptionDict(value=key, label=label), q))
+                if q > best_match:
+                    best_match = q
+                    best_matching_type = type.config_type
+                    best_matching_key = key
+
+        if has_product_id_match:
+            type_options = [opt for opt, q in all_matches if q > 100]
+        else:
+            type_options = [opt for opt, _ in all_matches]
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
@@ -451,33 +493,43 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         _LOGGER.warning(
             "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
-        if types:
+        if type_options:
+            detected = getattr(self, "_auto_detected_protocol", None)
+            schema = vol.Schema(
+                {
+                    vol.Required(
+                        CONF_TYPE,
+                        default=best_matching_key,
+                    ): SelectSelector(SelectSelectorConfig(options=type_options)),
+                }
+            )
+            if detected:
+                return self.async_show_form(
+                    step_id="select_type_auto_detected",
+                    data_schema=schema,
+                    description_placeholders={"detected_protocol": str(detected)},
+                )
             return self.async_show_form(
                 step_id="select_type",
-                data_schema=vol.Schema(
-                    {
-                        vol.Required(
-                            CONF_TYPE,
-                            default=best_matching_type,
-                        ): vol.In(types),
-                    }
-                ),
+                data_schema=schema,
             )
         else:
             return self.async_abort(reason="not_supported")
 
-    async def async_step_choose_entities(self, user_input=None):
-        if user_input is not None:
-            title = user_input[CONF_NAME]
-            del user_input[CONF_NAME]
+    async def async_step_select_type_auto_detected(self, user_input=None):
+        return await self.async_step_select_type(user_input)
 
-            return self.async_create_entry(
-                title=title, data={**self.data, **user_input}
-            )
+    async def async_step_choose_entities(self, user_input=None):
         config = await self.hass.async_add_executor_job(
             get_config,
             self.data[CONF_TYPE],
         )
+        if user_input is not None:
+            title = user_input[CONF_NAME]
+            del user_input[CONF_NAME]
+            return self.async_create_entry(
+                title=title, data={**self.data, **user_input}
+            )
         schema = {vol.Required(CONF_NAME, default=config.name): str}
 
         return self.async_show_form(
@@ -505,6 +557,9 @@ class OptionsFlowHandler(OptionsFlow):
         config = {**self.config_entry.data, **self.config_entry.options}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             config = {**config, **user_input}
             device = await async_test_connection(config, self.hass)
             if device:
@@ -520,8 +575,8 @@ class OptionsFlowHandler(OptionsFlow):
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
             vol.Required(
                 CONF_PROTOCOL_VERSION,
-                default=config.get(CONF_PROTOCOL_VERSION, "auto"),
-            ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                default=str(config.get(CONF_PROTOCOL_VERSION, "auto")),
+            ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
@@ -566,17 +621,41 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].pause()
         await asyncio.sleep(5)
 
-    try:
-        device = await hass.async_add_executor_job(
-            create_test_device,
-            hass,
-            config,
-        )
-        await device.async_refresh()
-        retval = device if device.has_returned_state else None
-    except Exception as e:
-        _LOGGER.warning("Connection test failed with %s %s", type(e), e)
-        retval = None
+    retval = None
+
+    if config.get(CONF_PROTOCOL_VERSION) == "auto":
+        # Test each protocol with a fresh device object. Reusing one device
+        # object across protocol rotations causes 3.4/3.5 handshakes to fail:
+        # the shared tinytuya object carries stale internal state from the
+        # prior connection attempts.
+        for proto in API_PROTOCOL_VERSIONS:
+            proto_config = {**config, CONF_PROTOCOL_VERSION: proto}
+            device = None
+            try:
+                device = await hass.async_add_executor_job(
+                    create_test_device, hass, proto_config
+                )
+                await device.async_refresh()
+                if device.has_returned_state:
+                    retval = device
+                    break
+            except Exception as e:
+                _LOGGER.debug("Protocol %s test failed with %s %s", proto, type(e), e)
+            if device is not None:
+                device._api.set_socketPersistent(False)
+                if device._api.parent:
+                    device._api.parent.set_socketPersistent(False)
+    else:
+        try:
+            device = await hass.async_add_executor_job(
+                create_test_device,
+                hass,
+                config,
+            )
+            await device.async_refresh()
+            retval = device if device.has_returned_state else None
+        except Exception as e:
+            _LOGGER.warning("Connection test failed with %s %s", type(e), e)
 
     if existing and existing.get("device"):
         _LOGGER.info("Restarting device after test")
