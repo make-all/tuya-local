@@ -1,0 +1,141 @@
+name: Gosund SP6
+products:
+  - id: re5wqraswcozglky
+    name: Gosund SP6
+entities:
+  - entity: switch
+    name: Socket 220V
+    icon: "mdi:power-socket-eu"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    name: USB Ports
+    icon: "mdi:usb-port"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: number
+    name: Main Timer
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: USB Timer
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: sensor
+    name: Power
+    class: power
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current
+    class: current
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: select
+    name: Initial State
+    icon: "mdi:power-settings"
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "On"
+          - dps_val: "2"
+            value: "Last State"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "memory"
+            value: "Last State"
+  - entity: select
+    name: Light Mode
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: "relay"
+            value: "Relay Status"
+          - dps_val: "pos"
+            value: "Position Indicator"
+          - dps_val: "none"
+            value: "Off"
+  - entity: binary_sensor
+    name: Child Lock
+    class: lock
+    dps:
+      - id: 40
+        type: boolean
+        name: sensor
+  - entity: text
+    name: Cycle Timer
+    dps:
+      - id: 41
+        type: string
+        name: value
+  - entity: text
+    name: Random Timer
+    dps:
+      - id: 42
+        type: string
+        name: value
+  - entity: text
+    name: Inching Mode
+    dps:
+      - id: 43
+        type: string
+        name: value
