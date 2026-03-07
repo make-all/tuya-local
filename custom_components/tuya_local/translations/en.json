@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Locate the device IP address",
-                "description": "Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes up to 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment.\n\nFor this step and the following device addition to succeed you must shut down the mobile app or its connections to the device will often block Tuya Local communication with them."
+                "description": "{device_name}Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes up to 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment.\n\nFor this step and the following device addition to succeed you must shut down the mobile app or its connections to the device will often block Tuya Local communication with them."
             },
             "local": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your device id and local key.]({device_details_url})",
+                "description": "{device_name}[Follow these instructions to find your device id and local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "device_id": "Device ID (or the hub's Device ID for devices connected via gateway)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Choose the type of device",
-                "description": "Choose the type that matches your device.",
+                "description": "{device_name}Choose the type that matches your device.",
                 "data": {
                     "type": "Device type"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Choose the type of device",
-                "description": "Choose the type that matches your device. Protocol version {detected_protocol} was automatically detected and saved. If you update the device firmware in the future, you may need to reconfigure this integration.",
+                "description": "{device_name}Choose the type that matches your device. Protocol version {detected_protocol} was automatically detected and saved. If you update the device firmware in the future, you may need to reconfigure this integration.",
                 "data": {
                     "type": "Device type"
                 }
             },
             "choose_entities": {
                 "title": "Device details",
-                "description": "Choose a name for this device",
+                "description": "{device_name}Choose a name for this device",
                 "data": {
                     "name": "Name"
                 }
