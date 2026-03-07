@@ -122,6 +122,43 @@
                     "off": "Normal"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Ventilador de operación retrasada",
+                "state": {
+                    "off": "Normal",
+                    "on": "Operación retrasada"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Temperatura baja de la cámara",
+                            "chamber_overheat": "Sobrecalentamiento de la cámara",
+                            "communication_error": "Error de comunicación",
+                            "drain_blocked": "Desagüe bloqueado",
+                            "evaporation_tray_low_temperature": "Temperatura baja de la bandeja de evaporación",
+                            "evaporation_tray_overheat": "Sobrecalentamiento de la bandeja de evaporación",
+                            "fire": "Incendio",
+                            "firewall_sensor_fault": "Falla del sensor de cortafuegos",
+                            "gas_leak": "Fuga de gas",
+                            "heating_fault": "Falla de calefacción",
+                            "no_water": "Sin agua",
+                            "ok": "Sin problemas",
+                            "overflow": "Desbordamiento",
+                            "receive_error": "Error de recepción",
+                            "sensor_open_circuit": "Sensor de circuito abierto",
+                            "sensor_short_circuit": "Sensor de cortocircuito",
+                            "sensor_fault": "Falla del sensor",
+                            "transmit_error": "Error de transmisión",
+                            "valve_fault": "Falla de la válvula",
+                            "variable_frequency_fault": "Falla de frecuencia variable",
+                            "washing_motor_fault": "Falla del motor de lavado",
+                            "water_removed_or_empty": "Agua retirada o vacía"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Dipòsit",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Despert"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Protecció contra sobreescalfament de la cambra (excedeix 290°C)",
-                            "e2": "E2: Protecció contra sobreescalfament de la safata d'evaporació (excedeix 200°C)",
-                            "e4": "E4: Protecció contra baixa temperatura de la safata d'evaporació (inferior a 35°C)",
-                            "e5": "E5: Error de connexió al sensor (circuit obert)",
-                            "e6": "E6: Disfunció del sensor (curtcircuit)",
-                            "e7": "E7: Error de comunicació amb la placa de visualització",
-                            "e8": "E8: Dipòsit d'aigua obert (CN7) o safata d'evaporació seca (CN3)",
-                            "e3": "E3: Protecció contra baixa temperatura de la cambra (inferior a 35°C)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Abrillantador",
+                "state": {
+                    "off": "D'acord",
+                    "on": "Bajo"
+                }
+            },
+            "salt": {
+                "name": "Sal",
+                "state": {
+                    "off": "D'acord",
+                    "on": "Bajo"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Personalitzat",
                             "low_steaming": "Vapor baix",
                             "medium_steaming": "Vapor mitjà",
-                            "high_steaming": "Vapor alt"
+                            "high_steaming": "Vapor alt",
+                            "steaming": "Vapor",
+                            "hot_air_baking": "Horneado con aire caliente",
+                            "disinfect": "Desinfección"
                         }
                     }
                 }
@@ -357,6 +395,12 @@
             },
             "nightlight": {
                 "name": "Llum nocturna"
+            },
+            "oven_light": {
+                "name": "Luz del horno"
+            },
+            "rangehood_light": {
+                "name": "Luz de la campana extractora"
             }
         },
         "sensor": {
@@ -637,6 +681,12 @@
             },
             "volume": {
                 "name": "Volum"
+            },
+            "bottom_temperature": {
+                "name": "Temperatura inferior"
+            },
+            "top_temperature": {
+                "name": "Temperatura superior"
             }
         },
         "select": {
@@ -975,7 +1025,26 @@
                     "self_clean": "Autoneteja",
                     "hygiene": "Higiene",
                     "party": "Festa",
-                    "baby_care": "Cura del nadó"
+                    "baby_care": "Cura del nadó",
+                    "hour_wash": "Lavado de una hora",
+                    "dry": "Seco",
+                    "storage": "Almacenamiento",
+                    "light": "Ligero",
+                    "pots": "Ollas"
+                }
+            },
+            "water_hardness": {
+                "name": "Dureza del agua"
+            },
+            "rinse_aid_level": {
+                "name": "Nivel de abrillantador"
+            },
+            "rack": {
+                "name": "Estante",
+                "state": {
+                    "lower": "Inferior",
+                    "upper": "Superior",
+                    "both": "Ambos"
                 }
             },
             "menu": {
