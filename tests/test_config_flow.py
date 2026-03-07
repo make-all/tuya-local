@@ -440,7 +440,7 @@ async def test_flow_select_type_init(hass, mocker):
     )
     expected = {
         "data_schema": mocker.ANY,
-        "description_placeholders": None,
+        "description_placeholders": {"device_name": ""},
         "errors": None,
         "flow_id": mocker.ANY,
         "handler": DOMAIN,
@@ -506,7 +506,7 @@ async def test_flow_choose_entities_init(hass, mocker):
 
     expected = {
         "data_schema": mocker.ANY,
-        "description_placeholders": None,
+        "description_placeholders": {"device_name": ""},
         "errors": None,
         "flow_id": mocker.ANY,
         "handler": DOMAIN,
