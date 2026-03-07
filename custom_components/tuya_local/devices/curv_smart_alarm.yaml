@@ -1,0 +1,233 @@
+name: Smart Alarm System
+
+products:
+  - id: "mrwxwgtnpnemqwa1"
+    manufacturer: Curv
+    model: Smart Alarm System
+    model_id: "000003csuo"
+
+entities:
+  - entity: alarm_control_panel
+    name: Alarm
+    dps:
+      - id: 101
+        name: alarm_state
+        type: string
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: armed
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+
+  - entity: sensor
+    name: GSM Status
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+
+  - entity: select
+    name: Language
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: English
+            value: English
+          - dps_val: French
+            value: French
+          - dps_val: Italian
+            value: Italian
+          - dps_val: German
+            value: German
+          - dps_val: Spanish
+            value: Spanish
+          - dps_val: Danish
+            value: Danish
+          - dps_val: Dutch
+            value: Dutch
+          - dps_val: Portuguese
+            value: Portuguese
+
+  - entity: sensor
+    name: DC Status
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        type: string
+
+  - entity: sensor
+    name: Battery Level
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: "%"
+
+  - entity: number
+    name: Arm Delay
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 300
+        unit: s
+
+  - entity: number
+    name: Alarm Delay
+    category: config
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 300
+        unit: s
+
+  - entity: number
+    name: Alarm Sound Duration
+    category: config
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+        unit: min
+
+  - entity: number
+    name: Ring Times
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+
+  - entity: number
+    name: Telephone Alarm Cycle
+    category: config
+    dps:
+      - id: 110
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+
+  - entity: switch
+    name: Inside Siren Sound
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: string
+        mapping:
+          - dps_val: "ON"
+            value: true
+          - dps_val: "OFF"
+            value: false
+
+  - entity: switch
+    name: GSM Enabled
+    category: config
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Telephone Control Enabled
+    category: config
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Arm SMS Enabled
+    category: config
+    dps:
+      - id: 114
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Disarm SMS Enabled
+    category: config
+    dps:
+      - id: 115
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Keyboard Tone Enabled
+    category: config
+    dps:
+      - id: 116
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Arm Delay Tone Enabled
+    category: config
+    dps:
+      - id: 117
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Alarm Delay Tone Enabled
+    category: config
+    dps:
+      - id: 118
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Arm Disarm Tone Enabled
+    category: config
+    dps:
+      - id: 119
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Inside Siren Enabled
+    category: config
+    dps:
+      - id: 120
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Wireless Siren Enabled
+    category: config
+    dps:
+      - id: 121
+        name: switch
+        type: boolean
+
+  - entity: sensor
+    name: Device Info
+    category: diagnostic
+    dps:
+      - id: 125
+        name: sensor
+        type: string
+        sensitive: true
