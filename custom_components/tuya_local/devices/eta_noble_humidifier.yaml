@@ -17,11 +17,11 @@ entities:
         name: mode
         mapping:
           - dps_val: manual
-            value: continuous
+            value: manual
           - dps_val: auto
             value: auto
           - dps_val: humidity
-            value: manual
+            value: normal
       - id: 13
         type: integer
         name: humidity
@@ -78,7 +78,7 @@ entities:
         name: switch
         optional: true
   - entity: light
-    translation_key: tank_led
+    translation_key: ambient_light
     category: config
     dps:
       - id: 5
