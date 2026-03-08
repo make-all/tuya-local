@@ -1,0 +1,432 @@
+name: Etaker F2000 Alternator Solar Charger
+products:
+  - id: ex0nj9l2thnxwmby
+entities:
+  - entity: switch
+    name: System Power
+    icon: mdi:power
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: System Temperature
+    class: temperature
+    icon: mdi:thermometer
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Fan Speed
+    icon: mdi:fan
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    name: Model
+    icon: mdi:information
+    category: diagnostic
+    dps:
+      - id: 130
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Hardware Version
+    icon: mdi:chip
+    category: diagnostic
+    dps:
+      - id: 131
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Software Version
+    icon: mdi:software-control
+    category: diagnostic
+    dps:
+      - id: 132
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Error Code
+    icon: mdi:alert-circle
+    category: diagnostic
+    dps:
+      - id: 133
+        type: string
+        name: sensor
+
+  # Alternator (Car Charging)
+  - entity: switch
+    name: Alternator Charging
+    icon: mdi:car-battery
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Alternator Work Mode
+    icon: mdi:cog
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "ALT_CHG"
+            value: "Alternator Charge"
+          - dps_val: "CHG_CAR_BAT"
+            value: "Charge Car Battery"
+          - dps_val: "ACT_CAR_BAT"
+            value: "Active Car Battery"
+
+  - entity: number
+    name: Alternator Max Charge Power
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: W
+        mapping:
+          - step: 100
+        range:
+          min: 100
+          max: 1000
+
+  - entity: number
+    name: Alternator Max Charge Current
+    icon: mdi:current-dc
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - step: 10
+        range:
+          min: 10
+          max: 70
+
+  - entity: sensor
+    name: Alternator Port Voltage
+    device_class: voltage
+    icon: mdi:sine-wave
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: V
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Alternator Power
+    class: power
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: switch
+    name: Alternator Status Check
+    icon: mdi:check-circle
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Car Charging Start Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    category: config
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        unit: V
+        mapping:
+          - scale: 10
+            step: 1
+        range:
+          min: 125
+          max: 280
+
+  # PV (Solar)
+  - entity: switch
+    name: PV Port
+    icon: mdi:solar-panel
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: PV Work Mode
+    icon: mdi:solar-power
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: PV_CHG
+            value: Solar Charging
+          - dps_val: DC_OUT
+            value: DC Output
+
+  - entity: select
+    name: PV Reverse DC Output Voltage
+    icon: mdi:flash-outline
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: 12V
+            value: 12V
+          - dps_val: 24V
+            value: 24V
+          - dps_val: 36V
+            value: 36V
+          - dps_val: 48V
+            value: 48V
+
+  - entity: number
+    name: PV Output Current
+    icon: mdi:current-dc
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - step: 1
+        range:
+          min: 5
+          max: 20
+
+  - entity: sensor
+    name: PV Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: PV Power
+    class: power
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: W
+
+  # Etaker Port
+  - entity: switch
+    name: Etaker Port
+    icon: mdi:connection
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Etaker Port Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Etaker Port Power
+    class: power
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: W
+
+  # DC Port
+  - entity: switch
+    name: DC Port
+    icon: mdi:power-plug
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: DC Work Mode
+    icon: mdi:cog-transfer
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: CHG_POWER
+            value: Charge Power
+          - dps_val: CHG_BAT
+            value: Charge Battery
+          - dps_val: DC_OUT
+            value: DC Output
+
+  - entity: select
+    name: DC Output Voltage
+    icon: mdi:flash-outline
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: 12V
+            value: 12V
+          - dps_val: 24V
+            value: 24V
+          - dps_val: 36V
+            value: 36V
+          - dps_val: 48V
+            value: 48V
+
+  - entity: number
+    name: DC Output Overcurrent Protection
+    icon: mdi:shield-alert
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - step: 1
+        range:
+          min: 5
+          max: 40
+
+  - entity: number
+    name: DC Charge Battery Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: V
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 120
+          max: 600
+
+  - entity: number
+    name: DC Charge Current
+    icon: mdi:current-dc
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: 30
+          max: 600
+
+  - entity: number
+    name: DC Precharge Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    category: config
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: V
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 120
+          max: 600
+
+  - entity: number
+    name: DC Precharge Current
+    icon: mdi:current-dc
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 5
+          max: 100
+
+  - entity: select
+    name: DC Charge Power Source Voltage
+    icon: mdi:sine-wave
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: 24V
+            value: 24V
+          - dps_val: 48V
+            value: 48V
+
+  - entity: sensor
+    name: DC Port Voltage
+    class: voltage
+    icon: mdi:sine-wave
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: DC Port Power
+    class: power
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: W
