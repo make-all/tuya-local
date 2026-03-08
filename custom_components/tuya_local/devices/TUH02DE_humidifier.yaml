@@ -1,0 +1,110 @@
+name: Humidifier
+products:
+  - id: fxsdsk
+    model: TUH02DE
+    manufacturer: Tuvio
+
+entities:
+  - entity: humidifier
+    name: Humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+
+      - id: 14
+        name: current_humidity
+        type: integer
+
+      - id: 101
+        name: humidity
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: 0
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+      - id: 23
+        name: mode
+        type: string
+        mapping:
+          - dps_val: level_1
+            value: low
+          - dps_val: level_2
+            value: medium
+          - dps_val: level_3
+            value: high
+
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: "°C"
+
+  - entity: sensor
+    name: Current Humidity
+    class: humidity
+    dps:
+      - id: 14
+        name: sensor
+        type: integer
+        unit: "%"
+
+  - entity: binary_sensor
+    name: Water Tank Empty
+    class: problem
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+
+  - entity: switch
+    name: UV Sterilization
+    icon: mdi:bacteria
+    category: config
+    dps:
+      - id: 21
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Light
+    icon: mdi:lightbulb
+    category: config
+    dps:
+      - id: 26
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Sleep Mode
+    icon: mdi:sleep
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
