@@ -37,7 +37,6 @@
                 "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.]({device_details_url})",
                 "data": {
                     "host": "IP addresse eller vertsnavn",
-                    "or device_id of gateway for devices connected via gateway": "",
                     "device_id": "Enhets-ID (device_id, eller device_id for gateway for enheter tilkoblet via gateway)",
                     "local_key": "Lokal nøkkel",
                     "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
@@ -123,6 +122,43 @@
                     "on": "Tining"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Forsinket vifteoperasjon",
+                "state": {
+                    "off": "Av",
+                    "on": "Forsinket"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Kammer lav temperatur beskyttelse",
+                            "chamber_overheat": "Kammer overoppheting beskyttelse",
+                            "communication_error": "Kommunikasjonsfeil",
+                            "drain_blocked": "Avløp blokkert",
+                            "evaporation_tray_low_temperature": "Evaporation tray lav temperatur beskyttelse",
+                            "evaporation_tray_overheat": "Evaporation tray overoppheting beskyttelse",
+                            "fire": "Brann",
+                            "firewall_sensor_fault": "Feil på brannveggsensor",
+                            "gas_leak": "Gasslekkasje",
+                            "heating_fault": "Feil på oppvarming",
+                            "no_water": "Ingen vann",
+                            "ok": "OK",
+                            "overflow": "Overløp",
+                            "receive_error": "Motta feil",
+                            "sensor_open_circuit": "Sensor tilkoblingsfeil (Åpen krets)",
+                            "sensor_short_circuit": "Sensor tilkoblingsfeil (Kortslutning)",
+                            "sensor_fault": "Sensorfeil",
+                            "transmit_error": "Sende feil",
+                            "valve_fault": "Feil på ventil",
+                            "variable_frequency_fault": "Feil på variabel frekvens",
+                            "washing_motor_fault": "Feil på vaskemotor",
+                            "water_removed_or_empty": "Vann fjernet eller tom"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tank",
                 "state": {
@@ -144,20 +180,18 @@
                     "on": "Våken"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Kammer overoppheting beskyttelse (over 290°C)",
-                            "e2": "E2: Evaporation tray overoppheting beskyttelse (over 200°C)",
-                            "e3": "E3: Kammer lav temperatur beskyttelse (under 35°C)",
-                            "e4": "E4: Evaporation tray lav temperatur beskyttelse (under 35°C)",
-                            "e5": "E5: Sensor tilkoblingsfeil (Åpen krets)",
-                            "e6": "E6: Sensor tilkoblingsfeil (Kortslutning)",
-                            "e7": "E7: Displaybrett kommunikasjonsfeil",
-                            "e8": "E8: Vanntank åpen (CN7) eller Evaporation tray tørr (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Skyllhjelp",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
+                }
+            },
+            "salt": {
+                "name": "Salt",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
                 }
             }
         },
@@ -328,7 +362,10 @@
                             "custom": "Egendefinert",
                             "low_steaming": "Lav Steaming",
                             "medium_steaming": "Medium Steaming",
-                            "high_steaming": "Høy Steaming"
+                            "high_steaming": "Høy Steaming",
+                            "steaming": "Steaming",
+                            "hot_air_baking": "Varmluftsbaking",
+                            "disinfect": "Desinfeksjon"
                         }
                     }
                 }
@@ -445,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Nattlys"
+            },
+            "oven_light": {
+                "name": "Ovnlys"
+            },
+            "rangehood_light": {
+                "name": "Kjøkkenhette lys"
             }
         },
         "lock": {
@@ -476,6 +519,12 @@
             },
             "volume": {
                 "name": "Volum"
+            },
+            "bottom_temperature": {
+                "name": "Bunn temperatur"
+            },
+            "top_temperature": {
+                "name": "Topp temperatur"
             }
         },
         "select": {
@@ -814,7 +863,60 @@
                     "self_clean": "Selvrens",
                     "hygiene": "Hygiene",
                     "party": "Fest",
-                    "baby_care": "Barnomsorg"
+                    "baby_care": "Barnomsorg",
+                    "hour_wash": "1-timers vask",
+                    "dry": "Tørr",
+                    "storage": "Lagring",
+                    "light": "Lett",
+                    "pots": "Kasseroller"
+                }
+            },
+            "water_hardness": {
+                "name": "Vannhardhet"
+            },
+            "rinse_aid_level": {
+                "name": "Skyllhjelp nivå"
+            },
+            "rack": {
+                "name": "Stativ",
+                "state": {
+                    "lower": "Nedre",
+                    "upper": "Øvre",
+                    "both": "Begge"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Kjøkkenhette modus",
+                "state": {
+                    "steaming": "Damping",
+                    "regular": "Vanlig",
+                    "strong": "Sterk"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Kjøkkenhette viftehastighet",
+                "state": {
+                    "off": "Av",
+                    "low": "Lav",
+                    "medium": "Medium",
+                    "high": "Høy",
+                    "quickfry": "Kjapp steking"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Kjøkkenhette forsinket nedstenging",
+                "state": {
+                    "disabled": "Deaktivert",
+                    "1m": "1 minutt",
+                    "2m": "2 minutter",
+                    "3m": "3 minutter",
+                    "4m": "4 minutter",
+                    "5m": "5 minutter",
+                    "6m": "6 minutter",
+                    "7m": "7 minutter",
+                    "8m": "8 minutter",
+                    "9m": "9 minutter",
+                    "10m": "10 minutter"
                 }
             },
             "menu": {
@@ -874,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Renhet",
+                "state": {
+                    "poor": "Dårlig",
+                    "good": "God",
+                    "great": "Utmerket"
+                }
+            },
             "air_quality": {
                 "name": "Luftkvalitet",
                 "state": {
@@ -980,7 +1090,8 @@
                     "drain_hot_water": "Tøm varmtvann",
                     "drain_normal_water": "Tøm normalt vann",
                     "high_temperature_emptying": "Høy temperatur tømming",
-                    "high_temperature_emptied": "Høy temperatur tømt"
+                    "high_temperature_emptied": "Høy temperatur tømt",
+                    "storage": "Lagring"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Filterlevetid"
+            },
+            "days_stored": {
+                "name": "Dager lagret"
             }
         },
         "switch": {
@@ -1084,6 +1198,18 @@
             },
             "uv_sterilization": {
                 "name": "UV-sterilisering"
+            },
+            "auto_storage": {
+                "name": "Auto-lagring"
+            },
+            "auto_dry": {
+                "name": "Auto-tørking"
+            },
+            "oven": {
+                "name": "Ovn"
+            },
+            "rangehood": {
+                "name": "Kjøkkenhette"
             }
         },
         "text": {
@@ -1092,6 +1218,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reserveringstid"
+            },
+            "cooking_time": {
+                "name": "Koketid"
+            },
             "timer": {
                 "name": "Timer"
             },

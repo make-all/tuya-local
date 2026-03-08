@@ -122,6 +122,43 @@
                     "on": "Defrosting"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Verzögerter Ventilatorbetrieb",
+                "state": {
+                    "off": "Normal",
+                    "on": "Verzögert"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Kammer Niedertemperaturschutz",
+                            "chamber_overheat": "Kammer Überhitzungsschutz",
+                            "communication_error": "Kommunikationsfehler",
+                            "drain_blocked": "Abfluss blockiert",
+                            "evaporation_tray_low_temperature": "Verdunstungsschale Niedertemperaturschutz",
+                            "evaporation_tray_overheat": "Verdunstungsschale Überhitzungsschutz",
+                            "fire": "Feuer",
+                            "firewall_sensor_fault": "Firewall-Sensorfehler",
+                            "gas_leak": "Gasleck",
+                            "heating_fault": "Heizungsfehler",
+                            "no_water": "Kein Wasser",
+                            "ok": "OK",
+                            "overflow": "Überlauf",
+                            "receive_error": "Empfangsfehler",
+                            "sensor_fault": "Sensorfehler",
+                            "sensor_open_circuit": "Sensor offener Stromkreis",
+                            "sensor_short_circuit": "Sensor Kurzschluss",
+                            "transmit_error": "Übertragungsfehler",
+                            "valve_fault": "Ventilfehler",
+                            "variable_frequency_fault": "Fehler der variablen Frequenz",
+                            "washing_motor_fault": "Waschmotorfehler",
+                            "water_removed_or_empty": "Wasser entfernt oder leer"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tank",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Wach"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Kammer Überhitzungsschutz (über 290°C)",
-                            "e2": "E2: Verdunstungsschale Überhitzungsschutz (über 200°C)",
-                            "e3": "E3: Kammer Niedertemperaturschutz (unter 35°C)",
-                            "e4": "E4: Verdunstungsschale Niedertemperaturschutz (unter 35°C)",
-                            "e5": "E5: Sensorverbindungsfehler (offener Stromkreis)",
-                            "e6": "E6: E6: Sensorfehlfunktion (Kurzschluss)",
-                            "e7": "E7: Anzeigetafel Kommunikationsfehler",
-                            "e8": "E8: Wassertank offen (CN7) oder Verdunstungsschale trocken (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Klarspüler",
+                "state": {
+                    "off": "OK",
+                    "on": "Niedrig"
+                }
+            },
+            "salt": {
+                "name": "Salz",
+                "state": {
+                    "off": "OK",
+                    "on": "Niedrig"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Benutzerdefiniert",
                             "low_steaming": "Niedriges Dämpfen",
                             "medium_steaming": "Mittleres Dämpfen",
-                            "high_steaming": "Hohes Dämpfen"
+                            "high_steaming": "Hohes Dämpfen",
+                            "steaming": "Dämpfen",
+                            "hot_air_baking": "Heißluftbacken",
+                            "disinfect": "Desinfizieren"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Nachtlicht"
+            },
+            "oven_light": {
+                "name": "Ofenlicht"
+            },
+            "rangehood_light": {
+                "name": "Dunstabzugshaubenlicht"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Lautstärke"
+            },
+            "bottom_temperature": {
+                "name": "Bodentemperatur"
+            },
+            "top_temperature": {
+                "name": "Obertemperatur"
             }
         },
         "select": {
@@ -813,7 +863,60 @@
                     "self_clean": "Selbstreinigung",
                     "hygiene": "Hygiene",
                     "party": "Party",
-                    "baby_care": "Babypflege"
+                    "baby_care": "Babypflege",
+                    "hour_wash": "1-Stunden-Wäsche",
+                    "dry": "Trocknen",
+                    "storage": "Lagerung",
+                    "light": "Leicht",
+                    "pots": "Töpfe"
+                }
+            },
+            "water_hardness": {
+                "name": "Wasserhärte"
+            },
+            "rinse_aid_level": {
+                "name": "Klarspülerstand"
+            },
+            "rack": {
+                "name": "Rack",
+                "state": {
+                    "lower": "Unteres Rack",
+                    "upper": "Oberes Rack",
+                    "both": "Beide Racks"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Dunstabzugshaubenmodus",
+                "state": {
+                    "steaming": "Dämpfen",
+                    "regular": "Normal",
+                    "strong": "Stark"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Dunstabzugshaubenlüftergeschwindigkeit",
+                "state": {
+                    "off": "Aus",
+                    "low": "Niedrig",
+                    "medium": "Mittel",
+                    "high": "Hoch",
+                    "quickfry": "Schnellbraten"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Dunstabzugshaubenverzögerte Abschaltung",
+                "state": {
+                    "disabled": "Deaktiviert",
+                    "1m": "1 Minute",
+                    "2m": "2 Minuten",
+                    "3m": "3 Minuten",
+                    "4m": "4 Minuten",
+                    "5m": "5 Minuten",
+                    "6m": "6 Minuten",
+                    "7m": "7 Minuten",
+                    "8m": "8 Minuten",
+                    "9m": "9 Minuten",
+                    "10m": "10 Minuten"
                 }
             },
             "menu": {
@@ -873,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Sauberkeit",
+                "state": {
+                    "poor": "Schlecht",
+                    "good": "Gut",
+                    "great": "Großartig"
+                }
+            },
             "air_quality": {
                 "name": "Luftqualität",
                 "state": {
@@ -946,7 +1057,6 @@
                     "high": "Hoch",
                     "unwashed": "Ungewaschen",
                     "pre_washing": "Vorwäsche",
-                    "pre_rinsing": "Vorspülen",
                     "washing": "Waschen",
                     "rinsing": "Spülen",
                     "drying": "Trocknen",
@@ -980,7 +1090,8 @@
                     "drain_hot_water": "Heißwasser ablassen",
                     "drain_normal_water": "Normales Wasser ablassen",
                     "high_temperature_emptying": "Hochtemperatur-Leerung",
-                    "high_temperature_emptied": "Hochtemperatur-Leerung abgeschlossen"
+                    "high_temperature_emptied": "Hochtemperatur-Leerung abgeschlossen",
+                    "storage": "Lagerung"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Filterlebensdauer"
+            },
+            "days_stored": {
+                "name": "Tage gespeichert"
             }
         },
         "switch": {
@@ -1084,6 +1198,18 @@
             },
             "uv_sterilization": {
                 "name": "UV Sterilization"
+            },
+            "auto_storage": {
+                "name": "Automatische Lagerung"
+            },
+            "auto_dry": {
+                "name": "Automatisches Trocknen"
+            },
+            "oven": {
+                "name": "Ofen"
+            },
+            "rangehood": {
+                "name": "Dunstabzugshaube"
             }
         },
         "text": {
@@ -1092,6 +1218,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reservierungszeit"
+            },
+            "cooking_time": {
+                "name": "Kochzeit"
+            },
             "timer": {
                 "name": "Timer"
             },
