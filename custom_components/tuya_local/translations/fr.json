@@ -122,6 +122,43 @@
                     "on": "Dégivrage"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Ventilation différée",
+                "state": {
+                    "off": "Désactivé",
+                    "on": "Activé"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Température de la chambre basse",
+                            "chamber_overheat": "Surchauffe de la chambre",
+                            "communication_error": "Erreur de communication",
+                            "drain_blocked": "Drain bloqué",
+                            "evaporation_tray_low_temperature": "Température basse du plateau d'évaporation",
+                            "evaporation_tray_overheat": "Surchauffe du plateau d'évaporation",
+                            "fire": "Feu",
+                            "firewall_sensor_fault": "Défaut du capteur de pare-feu",
+                            "gas_leak": "Fuite de gaz",
+                            "heating_fault": "Défaut de chauffage",
+                            "no_water": "Pas d'eau",
+                            "ok": "OK",
+                            "overflow": "Débordement",
+                            "receive_error": "Erreur de réception",
+                            "sensor_open_circuit": "Circuit ouvert du capteur",
+                            "sensor_short_circuit": "Court-circuit du capteur",
+                            "sensor_fault": "Défaut du capteur",
+                            "transmit_error": "Erreur de transmission",
+                            "valve_fault": "Défaut de la valve",
+                            "variable_frequency_fault": "Défaut de fréquence variable",
+                            "washing_motor_fault": "Défaut du moteur de lavage",
+                            "water_removed_or_empty": "Eau retirée ou vide"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Réservoir",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Réveillé"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Protection contre la surchauffe de la chambre (dépasse 290°C)",
-                            "e2": "E2: Protection contre la surchauffe du bac d'évaporation (dépasse 200°C)",
-                            "e3": "E3: Protection contre la basse température de la chambre (inférieure à 35°C)",
-                            "e4": "E4: Protection contre la basse température du bac d'évaporation (inférieure à 35°C)",
-                            "e5": "E5: Erreur de connexion du capteur (Circuit ouvert)",
-                            "e6": "E6: Erreur de connexion du capteur (Court-circuit)",
-                            "e7": "E7: Erreur de communication de la carte d'affichage",
-                            "e8": "E8: Réservoir d'eau ouvert (CN7) ou Bac d'évaporation sec (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Rinçage",
+                "state": {
+                    "off": "OK",
+                    "on": "Besoin de rinçage"
+                }
+            },
+            "salt": {
+                "name": "Sel",
+                "state": {
+                    "off": "OK",
+                    "on": "Besoin de sel"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Personnalisé",
                             "low_steaming": "Faible vapeur",
                             "medium_steaming": "Vapeur moyenne",
-                            "high_steaming": "Haute vapeur"
+                            "high_steaming": "Haute vapeur",
+                            "steaming": "Vapeur",
+                            "hot_air_baking": "Cuisson à l'air chaud",
+                            "disinfect": "Désinfecter"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Veilleuse"
+            },
+            "oven_light": {
+                "name": "Lumière du four"
+            },
+            "rangehood_light": {
+                "name": "Lumière de la hotte"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Volume"
+            },
+            "bottom_temperature": {
+                "name": "Température du bas"
+            },
+            "top_temperature": {
+                "name": "Température du haut"
             }
         },
         "select": {
@@ -813,7 +863,60 @@
                     "self_clean": "Auto-nettoyage",
                     "hygiene": "Hygiène",
                     "party": "Fête",
-                    "baby_care": "Soin bébé"
+                    "baby_care": "Soin bébé",
+                    "hour_wash": "Lavage d'une heure",
+                    "dry": "Séchage",
+                    "storage": "Stockage",
+                    "light": "Léger",
+                    "pots": "Casseroles"                    
+                }
+            },
+            "water_hardness": {
+                "name": "Dureté de l'eau"
+            },
+            "rinse_aid_level": {
+                "name": "Niveau de liquide de rinçage"
+            },
+            "rack": {
+                "name": "Rack",
+                "state": {
+                    "lower": "Inférieur",
+                    "upper": "Supérieur",
+                    "both": "Les deux"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Mode de hotte",
+                "state": {
+                    "steaming": "Vapeur",
+                    "regular": "Régulier",
+                    "strong": "Fort"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Vitesse de la hotte",
+                "state": {
+                    "off": "Éteint",
+                    "low": "Bas",
+                    "medium": "Moyen",
+                    "high": "Haut",
+                    "quickfry": "Friture rapide"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Arrêt différé de la hotte",
+                "state": {
+                    "disabled": "Désactivé",
+                    "1m": "1 minute",
+                    "2m": "2 minutes",
+                    "3m": "3 minutes",
+                    "4m": "4 minutes",
+                    "5m": "5 minutes",
+                    "6m": "6 minutes",
+                    "7m": "7 minutes",
+                    "8m": "8 minutes",
+                    "9m": "9 minutes",
+                    "10m": "10 minutes"
                 }
             },
             "menu": {
@@ -873,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Propreté",
+                "state": {
+                    "poor": "Mauvais",
+                    "good": "Bon",
+                    "great": "Excellent"
+                }
+            },
             "air_quality": {
                 "name": "Qualité de l'air",
                 "state": {
@@ -979,7 +1090,8 @@
                     "drain_hot_water": "Drainage de l'eau chaude",
                     "drain_normal_water": "Drainage de l'eau normale",
                     "high_temperature_emptying": "Vidange à haute température",
-                    "high_temperature_emptied": "Vidange à haute température terminée"
+                    "high_temperature_emptied": "Vidange à haute température terminée",
+                    "storage": "Stockage"
                 }
             },
             "time_remaining": {
@@ -1032,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Durée de vie du filtre"
+            },
+            "days_stored": {
+                "name": "Jours de stockage"
             }
         },
         "switch": {
@@ -1083,6 +1198,18 @@
             },
             "uv_sterilization": {
                 "name": "Stérilisation UV"
+            },
+            "auto_storage": {
+                "name": "Stockage automatique"
+            },
+            "auto_dry": {
+                "name": "Séchage automatique"
+            },
+            "oven": {
+                "name": "Four"
+            },
+            "rangehood": {
+                "name": "Hotte"
             }
         },
         "text": {
@@ -1091,6 +1218,12 @@
             }
         },
         "time": {
+            "cooking_time": {
+                "name": "Temps de cuisson"
+            },
+            "reservation_time": {
+                "name": "Heure de réservation"
+            },
             "timer": {
                 "name": "Minuteur"
             },

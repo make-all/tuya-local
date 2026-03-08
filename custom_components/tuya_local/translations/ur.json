@@ -37,9 +37,7 @@
                 "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
                 "description": "[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔]({device_details_url})",
                 "data": {
-                    "host": "IP ایڈریس یا میزبان نام",
-                    "or device_id of gateway for devices connected through gateway": "",
-                    
+                    "host": "IP ایڈریس یا میزبان نام",                    
                     "device_id": "ڈیوائس کی شناخت(یا گیٹ وے کے ذریعے منسلک آلات کے لیے ڈیوائس آئی ڈی)",
                     "local_key": "مقامی کلید",
                     "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
@@ -125,6 +123,43 @@
                     "on": "ڈیفروسٹنگ"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "تاخیر سے پنکھا چلانا",
+                "state": {
+                    "off": "نارمل",
+                    "on": "تاخیر سے پنکھا چلانا"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "چیمبر کم درجہ حرارت",
+                            "chamber_overheat": "چیمبر اوور ہیٹ",
+                            "communication_error": "رابطہ کی خرابی",
+                            "drain_blocked": "ڈرین بلاک",
+                            "evaporation_tray_low_temperature": "ایواپریشن ٹرے کم درجہ حرارت",
+                            "evaporation_tray_overheat": "ایواپریشن ٹرے اوور ہیٹ",
+                            "fire": "آگ",
+                            "firewall_sensor_fault": "فائر وال سینسر کی خرابی",
+                            "gas_leak": "گیس لیک",
+                            "heating_fault": "ہیٹنگ کی خرابی",
+                            "no_water": "پانی نہیں",
+                            "ok": "اوکے",
+                            "overflow": "اوور فلو",
+                            "receive_error": "ریسیو ایرر",
+                            "sensor_open_circuit": "سینسر اوپن سرکٹ",
+                            "sensor_short_circuit": "سینسر شارٹ سرکٹ",
+                            "sensor_fault": "سینسر کی خرابی",
+                            "transmit_error": "ٹرانسمیٹ ایرر",
+                            "valve_fault": "والو کی خرابی",
+                            "variable_frequency_fault": "متغیر فریکوئنسی کی خرابی",
+                            "washing_motor_fault": "واشنگ موٹر کی خرابی",
+                            "water_removed_or_empty": "پانی ہٹا دیا گیا یا خالی"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "ٹینک",
                 "state": {
@@ -146,20 +181,18 @@
                     "on": "جاگ رہا ہے"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
-                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
-                            "e3": "E3: Chamber low temperature protection (below 35°C)",
-                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
-                            "e5": "E5: Sensor connection error (Open circuit)",
-                            "e6": "E6: Sensor malfunction (Short circuit)",
-                            "e7": "E7: Display board communication error",
-                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "رنس ایڈ",
+                "state": {
+                    "off": "اوکے",
+                    "on": "کم"
+                }
+            },
+            "salt": {
+                "name": "نمک",
+                "state": {
+                    "off": "اوکے",
+                    "on": "کم"
                 }
             }
         },
@@ -330,7 +363,10 @@
                             "custom": "اپنی مرضی",
                             "low_steaming": "کم بخاری",
                             "medium_steaming": "درمیانہ بخاری",
-                            "high_steaming": "زیادہ بخاری"
+                            "high_steaming": "زیادہ بخاری",
+                            "steaming": "بخاری",
+                            "hot_air_baking": "گرم ہوا بیکنگ",
+                            "disinfect": "جراثیم کش"
                         }
                     }
                 }
@@ -447,6 +483,12 @@
             },
             "nightlight": {
                 "name": "رات کی روشنی"
+            },
+            "oven_light": {
+                "name": "اوون لائٹ"
+            },
+            "rangehood_light": {
+                "name": "رینج ہڈ لائٹ"
             }
         },
         "lock": {
@@ -478,6 +520,12 @@
             },
             "volume": {
                 "name": "آواز"
+            },
+            "bottom_temperature": {
+                "name": "نیچے کا درجہ حرارت"
+            },
+            "top_temperature": {
+                "name": "اوپر کا درجہ حرارت"
             }
         },
         "select": {
@@ -816,7 +864,60 @@
                     "self_clean": "خود صفائی",
                     "hygiene": "صفائی",
                     "party": "پارٹی",
-                    "baby_care": "بچے کی دیکھ بھال"
+                    "baby_care": "بچے کی دیکھ بھال",
+                    "hour_wash": "گھنٹہ دھونا",
+                    "dry": "خشک",
+                    "storage": "ذخیرہ",
+                    "light": "ہلکا",
+                    "pots": "برتن"
+                }
+            },
+            "water_hardness": {
+                "name": "پانی کی سختی"
+            },
+            "rinse_aid_level": {
+                "name": "رنس ایڈ کی سطح"
+            },
+            "rack": {
+                "name": "رک",
+                "state": {
+                    "lower": "نیچے",
+                    "upper": "اوپر",
+                    "both": "دونوں"
+                }
+            },
+            "rangehood_mode": {
+                "name": "رینج ہڈ موڈ",
+                "state": {
+                    "steaming": "بخار",
+                    "regular": "باقاعدہ",
+                    "strong": "مضبوط"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "رینج ہڈ پنکھا کی رفتار",
+                "state": {
+                    "off": "آف",
+                    "low": "کم",
+                    "medium": "درمیانہ",
+                    "high": "زیادہ",
+                    "quickfry": "فوری فرائی"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "رینج ہڈ تاخیر سے بند",
+                "state": {
+                    "disabled": "غیر فعال",
+                    "1m": "1 منٹ",
+                    "2m": "2 منٹ",
+                    "3m": "3 منٹ",
+                    "4m": "4 منٹ",
+                    "5m": "5 منٹ",
+                    "6m": "6 منٹ",
+                    "7m": "7 منٹ",
+                    "8m": "8 منٹ",
+                    "9m": "9 منٹ",
+                    "10m": "10 منٹ"
                 }
             },
             "menu": {
@@ -876,6 +977,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "صفائی",
+                "state": {
+                    "poor": "خراب",
+                    "good": "اچھا",
+                    "great": "عظیم"
+                }
+            },
             "air_quality": {
                 "name": "ہوا کی معیار",
                 "state": {
@@ -982,7 +1091,8 @@
                     "drain_hot_water": "گرم پانی نکالیں",
                     "drain_normal_water": "عام پانی نکالیں",
                     "high_temperature_emptying": "اعلی درجہ حرارت خالی کرنا",
-                    "high_temperature_emptied": "اعلی درجہ حرارت خالی ہوگیا"
+                    "high_temperature_emptied": "اعلی درجہ حرارت خالی ہوگیا",
+                    "storage": "ذخیرہ"
                 }
             },
             "time_remaining": {
@@ -1035,6 +1145,9 @@
             },
             "filter_life": {
                 "name": "فلٹر کی عمر"
+            },
+            "days_stored": {
+                "name": "محفوظ دن"
             }
         },
         "switch": {
@@ -1086,6 +1199,18 @@
             },
             "uv_sterilization": {
                 "name": "UV نس بندی"
+            },
+            "auto_storage": {
+                "name": "خود کار ذخیرہ"
+            },
+            "auto_dry": {
+                "name": "خود کار خشک"
+            },
+            "oven": {
+                "name": "اوون"
+            },
+            "rangehood": {
+                "name": "رینج ہڈ"
             }
         },
         "text": {
@@ -1094,6 +1219,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "وقت کی پیش گوئی"
+            },
+            "cooking_time": {
+                "name": "پکانے کا وقت"
+            },
             "timer": {
                 "name": "ٹائمر"
             },
