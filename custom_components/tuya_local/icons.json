@@ -133,6 +133,9 @@
                         }
                     }
                 }
+            },
+            "spray_level": {
+                "default": "mdi:fan"
             }
         },
         "event": {
@@ -146,7 +149,9 @@
                     "mode": {
                         "state": {
                             "laundry": "mdi:tshirt-crew",
-                            "purify": "mdi:air-filter"
+                            "purify": "mdi:air-filter",
+                            "continuous": "mdi:fan",
+                            "manual": "mdi:water-percent"
                         }
                     }
                 }
@@ -185,6 +190,12 @@
             },
             "rangehood_light": {
                 "default": "mdi:ceiling-fan-light"
+            },
+            "tank_led": {
+                "default": "mdi:led-on",
+                "state": {
+                    "off": "mdi:led-off"
+                }
             }
         },
         "lock": {
@@ -726,6 +737,15 @@
             },
             "rangehood": {
                 "default": "mdi:ceiling-fan"
+            },
+            "warm_mist": {
+                "default": "mdi:heat-wave"
+            },
+            "plasma": {
+                "default": "mdi:creation"
+            },
+            "night_mode": {
+                "default": "mdi:weather-night"
             }
         },
         "text": {
