@@ -426,26 +426,26 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         best_matching_key = None
         has_product_id_match = False
 
-        for dev_type in await self.device.async_possible_types():
-            q = dev_type.match_quality(
+        for type in await self.device.async_possible_types():
+            q = type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
             if q > 100:
                 has_product_id_match = True
-            for manufacturer, model in dev_type.product_display_entries(
+            for manufacturer, model in type.product_display_entries(
                 self.device._product_ids
             ):
-                key = f"{dev_type.config_type}||{manufacturer or ''}||{model or ''}"
+                key = f"{type.config_type}||{manufacturer or ''}||{model or ''}"
                 parts = [p for p in [manufacturer, model] if p]
                 if parts:
-                    label = f"{' '.join(parts)} ({dev_type.config_type})"
+                    label = f"{' '.join(parts)} ({type.config_type})"
                 else:
-                    label = f"{dev_type.name} ({dev_type.config_type})"
+                    label = f"{type.name} ({type.config_type})"
                 all_matches.append((SelectOptionDict(value=key, label=label), q))
                 if q > best_match:
                     best_match = q
-                    best_matching_type = dev_type.config_type
+                    best_matching_type = type.config_type
                     best_matching_key = key
 
         if has_product_id_match:
