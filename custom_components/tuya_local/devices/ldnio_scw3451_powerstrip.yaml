@@ -1,0 +1,179 @@
+name: USB+3 outlet powerstrip
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        optional: true
+        name: cycle_schedule
+      - id: 43
+        type: string
+        optional: true
+        name: random_schedule
+      - id: 44
+        type: string
+        optional: true
+        name: inching
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
+    class: outlet
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    name: USB switch
+    class: switch
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 11
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
+    dps:
+      - id: 12
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    translation_key: initial_state
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 38
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - conditions:
+              - dps_val: [memory, "off", "on"]
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+              - dps_val: [power_off, power_on, last]
+                mapping:
+                  - dps_val: power_off
+                    value: "off"
+                  - dps_val: power_on
+                    value: "on"
+                  - dps_val: last
+                    value: memory
+              - dps_val: ["0", "1", "2"]
+                mapping:
+                  - dps_val: "0"
+                    value: "off"
+                  - dps_val: "1"
+                    value: "on"
+                  - dps_val: "2"
+                    value: memory
+              - dps_val: null
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    translation_key: light_mode
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: lock
+    category: config
+    translation_key: child_lock
+    dps:
+      - id: 41
+        name: lock
+        type: boolean
+
