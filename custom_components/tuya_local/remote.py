@@ -142,14 +142,6 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         self._lock = asyncio.Lock()
         self._attr_is_on = True
 
-    async def async_turn_on(self, **kwargs: Any) -> None:
-        """Turn the remote 'on'."""
-        self._attr_is_on = True
-
-    async def async_turn_off(self, **kwargs: Any) -> None:
-        """Turn the remote 'off'."""
-        self._attr_is_on = False
-
     async def _async_load_storage(self):
         """Load stored codes and flags from disk."""
         self._codes.update(await self._code_storage.async_load() or {})
