@@ -1,0 +1,264 @@
+name: EV charger
+products:
+  - id: nui1mldb0iedtsoj
+    manufacturer: Emini
+    model: 16A Public
+entities:
+  - entity: sensor  # work_state -3- enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_fault
+            value: fault
+          - dps_val: charger_stop_wait
+            value: paused
+          - dps_val: charger_start_wait
+            value: waiting
+
+  - entity: sensor  # forward_energy_total -1- integer kW·h
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: number  # charge_cur_set -4- integer A
+    name: Charging current
+    category: config
+    class: current
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 16
+
+  - entity: sensor  # phase_a -6- raw (voltage, bytes 0-1, 0.1V)
+    class: voltage
+    category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor  # phase_a -6- raw (current, bytes 2-4, 0.001A)
+    class: current
+    category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor  # phase_a -6- raw (power, bytes 5-7, 0.001kW)
+    class: power
+    category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  # Not reported when idle; constraint forces 0 for all non-charging states
+  - entity: sensor  # power_total -9- integer kW
+    class: power
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: work_state
+            conditions:
+              - dps_val: charger_free
+                value: 0
+              - dps_val: charger_insert
+                value: 0
+              - dps_val: charger_free_fault
+                value: 0
+              - dps_val: charger_fault
+                value: 0
+              - dps_val: charger_stop_wait
+                value: 0
+              - dps_val: charger_start_wait
+                value: 0
+      - id: 3
+        type: string
+        name: work_state
+
+  - entity: binary_sensor  # fault -10- bitmap
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: ov_cr
+          - dps_val: 2
+            value: ov_vol
+          - dps_val: 4
+            value: undervoltage_alarm
+          - dps_val: 8
+            value: contactor_fault
+          - dps_val: 16
+            value: earth_fault
+          - dps_val: 32
+            value: cp_fault
+          - dps_val: 64
+            value: cir_short_fault
+          - dps_val: 128
+            value: self_test_alarm
+          - dps_val: 256
+            value: leakagecurr_alarm
+          - dps_val: 512
+            value: mcu_temp_over
+          - dps_val: 1024
+            value: plug_temp_over
+          - dps_val: 2048
+            value: relay_fault
+          - dps_val: 4096
+            value: mcu_temp_fault
+          - dps_val: 8192
+            value: plug_temp_fault
+          - dps_val: 16384
+            value: connector_temp_over
+          - dps_val: 32768
+            value: connector_temp_fault
+
+  - entity: select  # work_mode -14- enum
+    translation_key: charging_mode
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: immediate
+          - dps_val: charge_pct
+            value: charge_to_percent
+          - dps_val: charge_energy
+            value: fixed_charge
+          - dps_val: charge_schedule
+            value: scheduled_charge
+          - dps_val: charge_delay
+            value: delayed_charge
+
+  - entity: switch  # switch -18- boolean
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+
+  - entity: sensor  # system_version -23- string
+    name: System version
+    category: diagnostic
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+
+  - entity: sensor  # temp_current -24- integer °C
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        range:
+          min: -40
+          max: 200
+
+  - entity: sensor  # charge_energy_once -25- integer kW·h
+    name: Last charge
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: binary_sensor  # online_state -27- enum
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+
+  - entity: sensor  # product_sn -101- string
+    name: Serial number
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
