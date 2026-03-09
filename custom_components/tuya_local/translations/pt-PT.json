@@ -122,6 +122,43 @@
                     "on": "Descongelar"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Operação do ventilador atrasada",
+                "state": {
+                    "off": "Desligado",
+                    "on": "Atrasado"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Proteção contra baixa temperatura da câmara",
+                            "chamber_overheat": "Proteção contra superaquecimento da câmara",
+                            "communication_error": "Erro de comunicação",
+                            "drain_blocked": "Bloqueio de drenagem",
+                            "evaporation_tray_low_temperature": "Proteção contra baixa temperatura da bandeja de evaporação",
+                            "evaporation_tray_overheat": "Proteção contra superaquecimento da bandeja de evaporação",
+                            "fire": "Proteção contra incêndio",
+                            "firewall_sensor_fault": "Falha do sensor de firewall",
+                            "gas_leak": "Proteção contra vazamento de gás",
+                            "heating_fault": "Falha de aquecimento",
+                            "no_water": "Proteção contra falta de água",
+                            "ok": "OK",
+                            "overflow": "Proteção contra transbordamento",
+                            "receive_error": "Erro de recepção",
+                            "sensor_open_circuit": "Erro de circuito aberto do sensor",
+                            "sensor_short_circuit": "Erro de circuito curto do sensor",
+                            "sensor_fault": "Falha do sensor",
+                            "transmit_error": "Erro de transmissão",
+                            "valve_fault": "Falha da válvula",
+                            "variable_frequency_fault": "Falha de frequência variável",
+                            "washing_motor_fault": "Falha do motor de lavagem",
+                            "water_removed_or_empty": "Proteção contra água removida ou vazia"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tanque",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Acordado"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Proteção contra superaquecimento da câmara (excede 290°C)",
-                            "e2": "E2: Proteção contra superaquecimento da bandeja de evaporação (excede 200°C)",
-                            "e3": "E3: Proteção contra baixa temperatura da câmara (abaixo de 35°C)",
-                            "e4": "E4: Proteção contra baixa temperatura da bandeja de evaporação (abaixo de 35°C)",
-                            "e5": "E5: Erro de conexão do sensor (Circuito aberto)",
-                            "e6": "E6: Erro de conexão do sensor (Circuito curto)",
-                            "e7": "E7: Erro de comunicação da placa de exibição",
-                            "e8": "E8: Tanque de água aberto (CN7) ou Bandeja de evaporação seca (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Ajuda de enxágue",
+                "state": {
+                    "off": "OK",
+                    "on": "Reabastecer"
+                }
+            },
+            "salt": {
+                "name": "Sal",
+                "state": {
+                    "off": "OK",
+                    "on": "Reabastecer"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Personalizado",
                             "low_steaming": "Cozimento a vapor baixo",
                             "medium_steaming": "Cozimento a vapor médio",
-                            "high_steaming": "Cozimento a vapor alto"
+                            "high_steaming": "Cozimento a vapor alto",
+                            "steaming": "Cozimento a vapor",
+                            "hot_air_baking": "Assar com ar quente",
+                            "disinfect": "Desinfetar"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Luz noturna"
+            },
+            "oven_light": {
+                "name": "Luz do forno"
+            },
+            "rangehood_light": {
+                "name": "Luz do exaustor"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Volume"
+            },
+            "bottom_temperature": {
+                "name": "Temperatura inferior"
+            },
+            "top_temperature": {
+                "name": "Temperatura superior"
             }
         },
         "select": {
@@ -813,7 +863,60 @@
                     "self_clean": "Auto limpeza",
                     "hygiene": "Higiene",
                     "party": "Festa",
-                    "baby_care": "Cuidados infantis"
+                    "baby_care": "Cuidados infantis",
+                    "hour_wash": "Lavagem de uma hora",
+                    "dry": "Secar",
+                    "storage": "Armazenamento",
+                    "light": "Leve",
+                    "pots": "Panelas"
+                }
+            },
+            "water_hardness": {
+                "name": "Dureza da água"
+            },
+            "rinse_aid_level": {
+                "name": "Nível de ajuda de enxágue"
+            },
+            "rack": {
+                "name": "Rack",
+                "state": {
+                    "lower": "Inferior",
+                    "upper": "Superior",
+                    "both": "Ambos"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Modo do exaustor",
+                "state": {
+                    "steaming": "Vapor",
+                    "regular": "Regular",
+                    "strong": "Forte"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Velocidade do ventilador do exaustor",
+                "state": {
+                    "off": "Desligado",
+                    "low": "Baixo",
+                    "medium": "Médio",
+                    "high": "Alto",
+                    "quickfry": "Fritura rápida"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Desligamento atrasado do exaustor",
+                "state": {
+                    "disabled": "Desativado",
+                    "1m": "1 minuto",
+                    "2m": "2 minutos",
+                    "3m": "3 minutos",
+                    "4m": "4 minutos",
+                    "5m": "5 minutos",
+                    "6m": "6 minutos",
+                    "7m": "7 minutos",
+                    "8m": "8 minutos",
+                    "9m": "9 minutos",
+                    "10m": "10 minutos"
                 }
             },
             "menu": {
@@ -873,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Limpeza",
+                "state": {
+                    "poor": "Ruim",
+                    "good": "Bom",
+                    "great": "Ótimo"
+                }
+            },
             "air_quality": {
                 "name": "Qualidade do ar",
                 "state": {
@@ -979,7 +1090,8 @@
                     "drain_hot_water": "Drenar água quente",
                     "drain_normal_water": "Drenar água normal",
                     "high_temperature_emptying": "Esvaziamento de alta temperatura",
-                    "high_temperature_emptied": "Esvaziado em alta temperatura"
+                    "high_temperature_emptied": "Esvaziado em alta temperatura",
+                    "storage": "Armazenamento"
                 }
             },
             "time_remaining": {
@@ -1032,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Vida útil do filtro"
+            },
+            "days_stored": {
+                "name": "Dias armazenados"
             }
         },
         "switch": {
@@ -1083,6 +1198,18 @@
             },
             "uv_sterilization": {
                 "name": "Esterilização UV"
+            },
+            "auto_storage": {
+                "name": "Armazenamento automático"
+            },
+            "auto_dry": {
+                "name": "Secagem automática"
+            },
+            "oven": {
+                "name": "Forno"
+            },
+            "rangehood": {
+                "name": "Exaustor"
             }
         },
         "text": {
@@ -1091,6 +1218,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Tempo de reserva"
+            },
+            "cooking_time": {
+                "name": "Tempo de cozimento"
+            },
             "timer": {
                 "name": "Cronômetro"
             },

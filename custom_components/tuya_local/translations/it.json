@@ -37,7 +37,6 @@
                 "description": "{device_name}[Segui queste istruzioni per trovare 'device id' e 'local key'.]({device_details_url})",
                 "data": {
                     "host": "Indirizzo IP o hostname",
-                    "or device_id of gateway": "oppure ID dispositivo del gateway",
                     "device_id": "Device ID (oppure Device ID dell'hub per dispositivi connessi tramite gateway)",
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
@@ -123,6 +122,43 @@
                     "on": "Scongelamento"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Operazione ventola ritardata",
+                "state": {
+                    "off": "Spento",
+                    "on": "Ritardato"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Temperatura bassa della camera",
+                            "chamber_overheat": "Surriscaldamento della camera",
+                            "communication_error": "Errore di comunicazione",
+                            "drain_blocked": "Scarico bloccato",
+                            "evaporation_tray_low_temperature": "Temperatura bassa del vassoio di evaporazione",
+                            "evaporation_tray_overheat": "Surriscaldamento del vassoio di evaporazione",
+                            "fire": "Incendio",
+                            "firewall_sensor_fault": "Malfunzionamento del sensore del firewall",
+                            "gas_leak": "Perdita di gas",
+                            "heating_fault": "Malfunzionamento del riscaldamento",
+                            "no_water": "Nessuna acqua",
+                            "ok": "OK",
+                            "overflow": "Tracimazione",
+                            "receive_error": "Errore di ricezione",
+                            "sensor_fault": "Malfunzionamento del sensore",
+                            "sensor_open_circuit": "Circuito aperto del sensore",
+                            "sensor_short_circuit": "Corto circuito del sensore",
+                            "transmit_error": "Errore di trasmissione",
+                            "valve_fault": "Malfunzionamento della valvola",
+                            "variable_frequency_fault": "Malfunzionamento della frequenza variabile",
+                            "washing_motor_fault": "Malfunzionamento del motore di lavaggio",
+                            "water_removed_or_empty": "Acqua rimossa o vuota"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Serbatoio",
                 "state": {
@@ -144,20 +180,18 @@
                     "on": "Acceso"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Protezione surriscaldamento camera (superiore a 290°C)",
-                            "e2": "E2: Protezione surriscaldamento vassoio di evaporazione (superiore a 200°C)",
-                            "e3": "E3: Protezione bassa temperatura camera (inferiore a 35°C)",
-                            "e4": "E4: Protezione bassa temperatura vassoio di evaporazione (inferiore a 35°C)",
-                            "e5": "E5: Errore di connessione del sensore (circuito aperto)",
-                            "e6": "E6: Malfunzionamento del sensore (circuito chiuso)",
-                            "e7": "E7: Errore di comunicazione della scheda display",
-                            "e8": "E8: Serbatoio dell'acqua aperto (CN7) o Vassoio di evaporazione asciutto (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Risciacquo",
+                "state": {
+                    "off": "OK",
+                    "on": "Risciacquo vuoto"
+                }
+            },
+            "salt": {
+                "name": "Sale",
+                "state": {
+                    "off": "OK",
+                    "on": "Sale vuoto"
                 }
             }
         },
@@ -328,7 +362,10 @@
                             "custom": "Personalizzato",
                             "low_steaming": "Basso Steaming",
                             "medium_steaming": "Steaming medio",
-                            "high_steaming": "Alto Steaming"
+                            "high_steaming": "Alto Steaming",
+                            "steaming": "Steaming",
+                            "hot_air_baking": "Cottura ad aria calda",
+                            "disinfect": "Disinfettare"
                         }
                     }
                 }
@@ -445,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Luce notturna"
+            },
+            "oven_light": {
+                "name": "Luce del forno"
+            },
+            "rangehood_light": {
+                "name": "Luce della cappa"
             }
         },
         "lock": {
@@ -476,6 +519,12 @@
             },
             "volume": {
                 "name": "Volume"
+            },
+            "bottom_temperature": {
+                "name": "Temperatura inferiore"
+            },
+            "top_temperature": {
+                "name": "Temperatura superiore"
             }
         },
         "select": {
@@ -814,7 +863,60 @@
                     "self_clean": "Auto-pulizia",
                     "hygiene": "Igiene",
                     "party": "Festa",
-                    "baby_care": "Cura del bambino"
+                    "baby_care": "Cura del bambino",
+                    "hour_wash": "Lavaggio di un'ora",
+                    "dry": "Asciutto",
+                    "storage": "Conservazione",
+                    "light": "Leggero",
+                    "pots": "Pentole"
+                }
+            },
+            "water_hardness": {
+                "name": "Durezza dell'acqua"
+            },
+            "rinse_aid_level": {
+                "name": "Livello del brillantante"
+            },
+            "rack": {
+                "name": "Porta",
+                "state": {
+                    "lower": "Inferiore",
+                    "upper": "Superiore",
+                    "both": "Entrambi"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Modalità cappa",
+                "state": {
+                    "steaming": "Vapore",
+                    "regular": "Regolare",
+                    "strong": "Forte"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Velocità della ventola della cappa",
+                "state": {
+                    "off": "Spento",
+                    "low": "Basso",
+                    "medium": "Medio",
+                    "high": "Alto",
+                    "quickfry": "Frittura rapida"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Spegnimento ritardato della cappa",
+                "state": {
+                    "disabled": "Disabilitato",
+                    "1m": "1 minuto",
+                    "2m": "2 minuti",
+                    "3m": "3 minuti",
+                    "4m": "4 minuti",
+                    "5m": "5 minuti",
+                    "6m": "6 minuti",
+                    "7m": "7 minuti",
+                    "8m": "8 minuti",
+                    "9m": "9 minuti",
+                    "10m": "10 minuti"
                 }
             },
             "menu": {
@@ -874,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Pulizia",
+                "state": {
+                    "poor": "Scarsa",
+                    "good": "Buona",
+                    "great": "Ottima"
+                }
+            },
             "air_quality": {
                 "name": "Qualità dell'aria",
                 "state": {
@@ -980,7 +1090,8 @@
                     "drain_hot_water": "Scarico acqua calda",
                     "drain_normal_water": "Scarico acqua normale",
                     "high_temperature_emptying": "Svuotamento ad alta temperatura",
-                    "high_temperature_emptied": "Svuotamento ad alta temperatura completato"
+                    "high_temperature_emptied": "Svuotamento ad alta temperatura completato",
+                    "storage": "Conservazione"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Durata del filtro"
+            },
+            "days_stored": {
+                "name": "Giorni memorizzati"
             }
         },
         "switch": {
@@ -1084,6 +1198,18 @@
             },
             "uv_sterilization": {
                 "name": "Sterilizzazione UV"
+            },
+            "auto_storage": {
+                "name": "Conservazione automatica"
+            },
+            "auto_dry": {
+                "name": "Asciugatura automatica"
+            },
+            "oven": {
+                "name": "Forno"
+            },
+            "rangehood": {
+                "name": "Cappa"
             }
         },
         "text": {
@@ -1092,6 +1218,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Orario di prenotazione"
+            },
+            "cooking_time": {
+                "name": "Tempo di cottura"
+            },
             "timer": {
                 "name": "Timer"
             },
