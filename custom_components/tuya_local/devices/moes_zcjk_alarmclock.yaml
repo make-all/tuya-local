@@ -206,6 +206,7 @@ entities:
         mapping:
           - dps_val: "1"
             value: white
+            hidden: true
           - dps_val: "2"
             value: red
           - dps_val: "3"
@@ -220,6 +221,16 @@ entities:
             value: blue
           - dps_val: "8"
             value: magenta
+      - id: 132
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "1"
+            value: Loop
+          - dps_val: "2"
+            value: "off"
+          - value: "off"
+            hidden: true
   - entity: switch
     name: Snooze
     icon: "mdi:alarm-snooze"
