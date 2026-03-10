@@ -280,8 +280,7 @@ equivalents, other units are currently ASCII so can be easily entered directly).
 
 *Optional.*
 
-For sensors, this sets the state class of the sensor (measurement, total
-or total_increasing)
+For sensors, this sets the state class of the sensor (`measurement`, `measurement_angle`, `total` or `total_increasing`)
 
 
 ### `format`
