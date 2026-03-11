@@ -1,7 +1,9 @@
-name: Martec Viper Ceiling Fan with Light
+name: Ceiling fan with light
 products:
   - id: lb9da3os0ihifq7u
-    name: Martec Viper DC WiFi Ceiling Fan with Light
+    manufacturer: Martec
+    model: Viper DC
+    model_id: MVDC134W/MVDC1343W
 entities:
   - entity: fan
     dps:
@@ -31,11 +33,6 @@ entities:
       - id: 8
         name: direction
         type: string
-        mapping:
-          - dps_val: "forward"
-            value: forward
-          - dps_val: "reverse"
-            value: reverse
   - entity: light
     dps:
       - id: 15
@@ -73,23 +70,6 @@ entities:
             value: 5000
           - dps_val: cold
             value: 6000
-  - entity: select
-    name: Fixed color temperature
-    icon: "mdi:lightbulb"
-    category: config
-    dps:
-      - id: 19
-        type: string
-        name: option
-        mapping:
-          - dps_val: night
-            value: Night
-          - dps_val: warm
-            value: Warm
-          - dps_val: white
-            value: White
-          - dps_val: cold
-            value: Cool
   - entity: select
     translation_key: timer
     category: config
