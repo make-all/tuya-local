@@ -1,0 +1,133 @@
+name: Mini central air conditioner
+products:
+  - id: ypydgdiic5ztkorj
+    model: Mini Central AC
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cooling
+                value: cool
+              - dps_val: heating
+                value: heat
+              - dps_val: fan
+                value: fan_only
+              - dps_val: dehum
+                value: dry
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 32
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: sensor
+    name: Coil in temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        optional: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Coil mid temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        optional: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Coil mid 2 temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        optional: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Outdoor fan speed
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Indoor fan speed feedback
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Outdoor ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: C
+        optional: true
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Four way valve
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Compressor
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+        optional: true
