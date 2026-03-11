@@ -13,6 +13,7 @@ entities:
       - id: 2
         type: string
         name: preset_mode
+        optional: true
         mapping:
           - dps_val: nature
             value: nature
@@ -27,6 +28,7 @@ entities:
       - id: 3
         name: speed
         type: integer
+        optional: true
         range:
           min: 1
           max: 6
@@ -38,9 +40,11 @@ entities:
       - id: 15
         name: switch
         type: boolean
+        optional: true
       - id: 16
         name: brightness
         type: integer
+        optional: true
         range:
           min: 1
           max: 100
@@ -60,6 +64,7 @@ entities:
       - id: 19
         type: string
         name: fixed_color_temp
+        optional: true
         hidden: true
         mapping:
           - dps_val: night
