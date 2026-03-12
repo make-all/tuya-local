@@ -1105,6 +1105,7 @@ port and password.
 - Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
+- Repetsun double bowl 5L pet feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
