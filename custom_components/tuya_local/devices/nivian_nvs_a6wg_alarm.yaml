@@ -18,7 +18,7 @@ entities:
           - dps_val: home
             value: armed_home
   - entity: sensor
-    name: GSM Status
+    name: GSM status
     category: diagnostic
     dps:
       - id: 102
@@ -32,31 +32,26 @@ entities:
         name: option
         type: string
         mapping:
-          - dps_val: English
-            value: English
-          - dps_val: French
-            value: French
-          - dps_val: Italian
-            value: Italian
-          - dps_val: German
-            value: German
-          - dps_val: Spanish
-            value: Spanish
-          - dps_val: Danish
-            value: Danish
-          - dps_val: Dutch
-            value: Dutch
-          - dps_val: Portuguese
-            value: Portuguese
+          - dps_val: english
+            value: english
+          - dps_val: french
+            value: french
+          - dps_val: italian
+            value: italian
+          - dps_val: german
+            value: german
+          - dps_val: spanish
+            value: spanish
+          - dps_val: portuguese
+            value: portuguese
   - entity: sensor
-    name: DC Status
+    name: DC status
     category: diagnostic
     dps:
       - id: 104
         name: sensor
         type: string
   - entity: sensor
-    name: Battery Level
     category: diagnostic
     class: battery
     dps:
@@ -65,8 +60,9 @@ entities:
         type: integer
         unit: "%"
   - entity: number
-    name: Arm Delay
+    name: Exit delay
     category: config
+    class: duration
     dps:
       - id: 106
         name: value
@@ -76,8 +72,9 @@ entities:
           max: 300
         unit: s
   - entity: number
-    name: Alarm Delay
+    name: Entry delay
     category: config
+    class: duration
     dps:
       - id: 107
         name: value
@@ -87,8 +84,9 @@ entities:
           max: 300
         unit: s
   - entity: number
-    name: Alarm Sound Duration
+    name: Alarm duration
     category: config
+    class: duration
     dps:
       - id: 108
         name: value
@@ -98,7 +96,7 @@ entities:
           max: 9
         unit: min
   - entity: number
-    name: Ring Times
+    name: Call ring count
     category: config
     dps:
       - id: 109
@@ -108,7 +106,7 @@ entities:
           min: 1
           max: 9
   - entity: number
-    name: Telephone Alarm Cycle
+    name: Call cycle count
     category: config
     dps:
       - id: 110
@@ -118,92 +116,72 @@ entities:
           min: 1
           max: 9
   - entity: switch
-    name: Inside Siren Sound
-    category: config
-    dps:
-      - id: 111
-        name: switch
-        type: string
-        mapping:
-          - dps_val: "ON"
-            value: true
-          - dps_val: "OFF"
-            value: false
-  - entity: switch
-    name: GSM Enabled
+    name: GSM
     category: config
     dps:
       - id: 112
         name: switch
         type: boolean
   - entity: switch
-    name: Telephone Control Enabled
+    name: SMS/call remote control
     category: config
     dps:
       - id: 113
         name: switch
         type: boolean
   - entity: switch
-    name: Arm SMS Enabled
+    name: Arm SMS notification
     category: config
     dps:
       - id: 114
         name: switch
         type: boolean
   - entity: switch
-    name: Disarm SMS Enabled
+    name: Disarm SMS notification
     category: config
     dps:
       - id: 115
         name: switch
         type: boolean
   - entity: switch
-    name: Keyboard Tone Enabled
+    translation_key: keytone
     category: config
     dps:
       - id: 116
         name: switch
         type: boolean
   - entity: switch
-    name: Arm Delay Tone Enabled
+    name: Exit delay tone
     category: config
     dps:
       - id: 117
         name: switch
         type: boolean
   - entity: switch
-    name: Alarm Delay Tone Enabled
+    name: Entry delay tone
     category: config
     dps:
       - id: 118
         name: switch
         type: boolean
   - entity: switch
-    name: Arm Disarm Tone Enabled
+    name: Arm/disarm tone
     category: config
     dps:
       - id: 119
         name: switch
         type: boolean
   - entity: switch
-    name: Inside Siren Enabled
+    name: Inside siren
     category: config
     dps:
       - id: 120
         name: switch
         type: boolean
   - entity: switch
-    name: Wireless Siren Enabled
+    name: Wireless siren
     category: config
     dps:
       - id: 121
         name: switch
         type: boolean
-  - entity: sensor
-    name: Device Info
-    category: diagnostic
-    dps:
-      - id: 125
-        name: sensor
-        type: string
-        sensitive: true
