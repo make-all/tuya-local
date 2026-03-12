@@ -102,6 +102,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("class"): vol.In(
             [
                 "measurement",
+                "measurement_angle",
                 "total",
                 "total_increasing",
             ]

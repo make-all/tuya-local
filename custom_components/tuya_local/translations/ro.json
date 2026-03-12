@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Localizați adresa IP a dispozitivului",
-                "description": "Cloud-ul Tuya nu oferă adrese IP locale, așa că trebuie căutat dispozitivul în rețeaua locală. Aceasta poate dura până la 20 de secunde.\n\nDacă nu reușește, va trebui să furnizați adresa IP prin alte metode, cum ar fi din atribuirea DHCP a routerului.\n\nPentru ca acest pas și următoarea adăugare a dispozitivului să reușească, trebuie să închideți aplicația mobilă, altfel conexiunile acesteia pot bloca comunicarea Tuya Local."
+                "description": "{device_name}Cloud-ul Tuya nu oferă adrese IP locale, așa că trebuie căutat dispozitivul în rețeaua locală. Aceasta poate dura până la 20 de secunde.\n\nDacă nu reușește, va trebui să furnizați adresa IP prin alte metode, cum ar fi din atribuirea DHCP a routerului.\n\nPentru ca acest pas și următoarea adăugare a dispozitivului să reușească, trebuie să închideți aplicația mobilă, altfel conexiunile acesteia pot bloca comunicarea Tuya Local."
             },
             "local": {
                 "title": "Configurează dispozitivul Tuya Local",
-                "description": "[Urmați aceste instrucțiuni pentru a găsi device id și local key.]({device_details_url})",
+                "description": "{device_name}[Urmați aceste instrucțiuni pentru a găsi device id și local key.]({device_details_url})",
                 "data": {
                     "host": "Adresă IP sau hostname",
                     "device_id": "Device ID (sau Device ID al hub-ului pentru dispozitive conectate prin gateway)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Alege tipul dispozitivului",
-                "description": "Alegeți tipul care corespunde dispozitivului dvs.",
+                "description": "{device_name}Alegeți tipul care corespunde dispozitivului dvs.",
                 "data": {
                     "type": "Tip dispozitiv"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Alege tipul dispozitivului",
-                "description": "Alegeți tipul care corespunde dispozitivului dvs. Versiunea protocolului {detected_protocol} a fost detectată și salvată automat. Dacă actualizați firmware-ul dispozitivului în viitor, este posibil să fie necesar să reconfigurați această integrare.",
+                "description": "{device_name}Alegeți tipul care corespunde dispozitivului dvs. Versiunea protocolului {detected_protocol} a fost detectată și salvată automat. Dacă actualizați firmware-ul dispozitivului în viitor, este posibil să fie necesar să reconfigurați această integrare.",
                 "data": {
                     "type": "Tip dispozitiv"
                 }
             },
             "choose_entities": {
                 "title": "Detalii dispozitiv",
-                "description": "Alegeți un nume pentru acest dispozitiv",
+                "description": "{device_name}Alegeți un nume pentru acest dispozitiv",
                 "data": {
                     "name": "Nume"
                 }
@@ -122,6 +122,43 @@
                     "on": "Dezghețare"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Funcționare ventilator întârziată",
+                "state": {
+                    "off": "Oprit",
+                    "on": "Întârziat"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Temperatură scăzută cameră",
+                            "chamber_overheat": "Supraîncălzire cameră",
+                            "communication_error": "Eroare de comunicare",
+                            "drain_blocked": "Scurgere blocată",
+                            "evaporation_tray_low_temperature": "Temperatură scăzută tavă de evaporare",
+                            "evaporation_tray_overheat": "Supraîncălzire tavă de evaporare",
+                            "fire": "Incendiu",
+                            "firewall_sensor_fault": "Defecțiune senzor firewall",
+                            "gas_leak": "Scurgere de gaz",
+                            "heating_fault": "Defecțiune încălzire",
+                            "no_water": "Fără apă",
+                            "ok": "OK",
+                            "overflow": "Revărsare",
+                            "receive_error": "Eroare de recepție",
+                            "sensor_open_circuit": "Circuit deschis senzor",
+                            "sensor_short_circuit": "Senzor scurtcircuitat",
+                            "sensor_fault": "Defecțiune senzor",
+                            "transmit_error": "Eroare de transmisie",
+                            "valve_fault": "Defecțiune supapă",
+                            "variable_frequency_fault": "Defecțiune frecvență variabilă",
+                            "washing_motor_fault": "Defecțiune motor de spălare",
+                            "water_removed_or_empty": "Apă îndepărtată sau rezervor gol"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Rezervor",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Activ"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Protecție supraîncălzire cameră (peste 290°C)",
-                            "e2": "E2: Protecție supraîncălzire tavă de evaporare (peste 200°C)",
-                            "e3": "E3: Protecție temperatură scăzută cameră (sub 35°C)",
-                            "e4": "E4: Protecție temperatură scăzută tavă evaporare (sub 35°C)",
-                            "e5": "E5: Eroare conexiune senzor (circuit deschis)",
-                            "e6": "E6: Defecțiune senzor (scurtcircuit)",
-                            "e7": "E7: Eroare comunicare placă afișaj",
-                            "e8": "E8: Rezervor apă deschis (CN7) sau tavă evaporare uscată (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Ajutor de clătire",
+                "state": {
+                    "off": "OK",
+                    "on": "Adăugați ajutor de clătire"
+                }
+            },
+            "salt": {
+                "name": "Sare",
+                "state": {
+                    "off": "OK",
+                    "on": "Adăugați sare"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Personalizat",
                             "low_steaming": "Aburire redusă",
                             "medium_steaming": "Aburire medie",
-                            "high_steaming": "Aburire intensă"
+                            "high_steaming": "Aburire intensă",
+                            "steaming": "Aburire",
+                            "hot_air_baking": "Copt cu aer cald",
+                            "disinfect": "Dezinfectare"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Lumină de noapte"
+            },
+            "oven_light": {
+                "name": "Lumină cuptor"
+            },
+            "rangehood_light": {
+                "name": "Lumină hotă"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Volum"
+            },
+            "bottom_temperature": {
+                "name": "Temperatură inferioară"
+            },
+            "top_temperature": {
+                "name": "Temperatură superioară"
             }
         },
         "select": {
@@ -813,7 +863,60 @@
                     "self_clean": "Auto-curățare",
                     "hygiene": "Igienă",
                     "party": "Petrecere",
-                    "baby_care": "Îngrijire bebeluși"                    
+                    "baby_care": "Îngrijire bebeluși",
+                    "hour_wash": "Spălare de o oră",
+                    "dry": "Uscare",
+                    "storage": "Depozitare",
+                    "light": "Ușor",
+                    "pots": "Oale"
+                }
+            },
+            "water_hardness": {
+                "name": "Duritate apă"
+            },
+            "rinse_aid_level": {
+                "name": "Nivel ajutor de clătire"
+            },
+            "rack": {
+                "name": "Raft",
+                "state": {
+                    "lower": "Inferior",
+                    "upper": "Superior",
+                    "both": "Ambele"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Mod hotă",
+                "state": {
+                    "steaming": "Aburire",
+                    "regular": "Normal",
+                    "strong": "Puternic"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Viteză ventilator hotă",
+                "state": {
+                    "off": "Oprit",
+                    "low": "Scăzut",
+                    "medium": "Mediu",
+                    "high": "Ridicat",
+                    "quickfry": "Prăjire rapidă"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Oprire întârziată hotă",
+                "state": {
+                    "disabled": "Dezactivat",
+                    "1m": "1 minut",
+                    "2m": "2 minute",
+                    "3m": "3 minute",
+                    "4m": "4 minute",
+                    "5m": "5 minute",
+                    "6m": "6 minute",
+                    "7m": "7 minute",
+                    "8m": "8 minute",
+                    "9m": "9 minute",
+                    "10m": "10 minute"
                 }
             },
             "menu": {
@@ -873,6 +976,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Curățenie",
+                "state": {
+                    "poor": "Slab",
+                    "good": "Bun",
+                    "great": "Excelent"
+                }
+            },
             "air_quality": {
                 "name": "Calitatea aerului",
                 "state": {
@@ -979,7 +1090,8 @@
                     "drain_hot_water": "Drenare apă caldă",
                     "drain_normal_water": "Drenare apă normală",
                     "high_temperature_emptying": "Golire la temperatură înaltă",
-                    "high_temperature_emptied": "Golire la temperatură înaltă finalizată"
+                    "high_temperature_emptied": "Golire la temperatură înaltă finalizată",
+                    "storage": "Depozitare"
                 }
             },
             "time_remaining": {
@@ -1032,6 +1144,9 @@
             },
             "filter_life": {
                 "name": "Durata de viață a filtrului"
+            },
+            "days_stored": {
+                "name": "Zile stocate"
             }
         },
         "switch": {
@@ -1083,6 +1198,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "Sterilizare electrolitică"
+            },
+            "auto_storage": {
+                "name": "Depozitare automată"
+            },
+            "auto_dry": {
+                "name": "Uscare automată"
+            },
+            "oven": {
+                "name": "Cuptor"
+            },
+            "rangehood": {
+                "name": "Hotă"
             }
         },
         "text": {
@@ -1091,6 +1218,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Timp rezervare"
+            },
+            "cooking_time": {
+                "name": "Timp gătire"
+            },
             "timer": {
                 "name": "Temporizator"
             },
