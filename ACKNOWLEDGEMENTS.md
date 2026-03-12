@@ -1281,3 +1281,6 @@ Further device support has been made with the assistance of users. Please consid
 - [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
+- [rainbowghost](https://github.com/rainbowghost) for contributing support for Casdon 16J3S dishwasher and T2E oven.
+- [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
+- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow.

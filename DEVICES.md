@@ -302,9 +302,7 @@ devices # Supported
 - Arida Venti 160 small through-wall heat-recovery ventilation fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
 - Arlec Grid Connect smart ceiling fan (with and without light)
-- Arlec 12 speed tower fan (2 variants: ATF1006HA and ATF4602BHA)
-- Arlec 19 speed wall fan
-- Arlec 6 speed floor fan
+- Arlec 19, 12, 6, 4 speed speed fans
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
@@ -551,8 +549,9 @@ devices # Supported
 - Anko 1.7L smart kettle
 - BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
+- Casdon 16J3S dishwasher
 - Casdon KG1 inline water dispenser
-- Casdon TD Pro 2 oven
+- Casdon TD Pro 2 and T2E ovens
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
 - Fiesta DK-1G smart kettle

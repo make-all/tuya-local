@@ -4,6 +4,9 @@ products:
     manufacturer: Moes House
     model: Smart Wake Up Light
     model_id: ZC-JK
+  - id: ya39qahrcdhvxowz
+    model: Wake Up Light II
+    model_id: ACA002-II-WWA
 entities:
   - entity: light
     dps:
@@ -148,7 +151,7 @@ entities:
       - id: 126
         type: boolean
         name: button
-      - id: 125
+      - id: 105
         type: boolean
         name: available
         mapping:
@@ -168,7 +171,7 @@ entities:
             value: false
           - dps_val: false
             value: true
-      - id: 125
+      - id: 105
         type: boolean
         name: available
   - entity: text
@@ -203,6 +206,7 @@ entities:
         mapping:
           - dps_val: "1"
             value: white
+            hidden: true
           - dps_val: "2"
             value: red
           - dps_val: "3"
@@ -217,6 +221,16 @@ entities:
             value: blue
           - dps_val: "8"
             value: magenta
+      - id: 132
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "1"
+            value: Loop
+          - dps_val: "2"
+            value: "off"
+          - value: "off"
+            hidden: true
   - entity: switch
     name: Snooze
     icon: "mdi:alarm-snooze"
