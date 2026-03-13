@@ -42,19 +42,16 @@ CODE_REPLY_OUTOFHOURS = 0x04
 CODE_REPLY_WRONGCODE = 0x05
 CODE_REPLY_DOUBLELOCKED = 0x06
 
-# DP73 (accessories variant of DP60) payload layout (cloud-to-device):
-#   Bytes  0- 1: Central ID (2 bytes)
-#   Bytes  2- 3: Peripheral ID (2 bytes)
-#   Bytes  4-11: Random number (8 bytes)
-#   Byte     12: Validity (1 byte)
-#   Bytes 13-14: Member ID (2 bytes)
-#   Bytes 15-18: Start time (4 bytes, Unix timestamp)
-#   Bytes 19-22: End time (4 bytes, Unix timestamp)
-#   Bytes 23-24: Access times (2 bytes)
-#   Bytes 25-32: Key (8 bytes ASCII)  ← extracted for DP61 unlock
-DP73_KEY_OFFSET = 25
+# DP73 / DP60 key provisioning payload layout as received via MQTT/TuyaLocal
+# (the BLE framing — Central ID, Peripheral ID, Random number — is stripped
+# by the gateway before the message is published; only the inner payload arrives):
+#   Byte      0: Validity (1 byte, 0x00=invalid, 0x01=valid)
+#   Bytes  1- 2: Member ID (2 bytes)
+#   Bytes  3-10: Key (8 bytes ASCII)  ← extracted for DP61 unlock
+#   Bytes 11-12: Access times (2 bytes, 0x0000=infinite)
+DP73_KEY_OFFSET = 3
 DP73_KEY_LENGTH = 8
-DP73_MIN_LENGTH = DP73_KEY_OFFSET + DP73_KEY_LENGTH  # 33 bytes
+DP73_MIN_LENGTH = DP73_KEY_OFFSET + DP73_KEY_LENGTH  # 11 bytes
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -115,16 +112,13 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         obtain the key needed to send a DP61 (code_unlock) remote unlock
         command, so the user never has to enter the key manually.
 
-        DP73 payload layout (cloud-to-device, per Tuya BLE accessory spec):
-          Bytes  0- 1: Central ID (2 bytes)
-          Bytes  2- 3: Peripheral ID (2 bytes)
-          Bytes  4-11: Random number (8 bytes)
-          Byte     12: Validity (1 byte, 0x00=invalid, 0x01=valid)
-          Bytes 13-14: Member ID (2 bytes)
-          Bytes 15-18: Start time (4 bytes, Unix timestamp)
-          Bytes 19-22: End time (4 bytes, Unix timestamp)
-          Bytes 23-24: Access times (2 bytes)
-          Bytes 25-32: Key (8 bytes ASCII)  ← returned by this method
+        The BLE framing (Central ID, Peripheral ID, Random number) is stripped
+        by the gateway before the message reaches TuyaLocal via MQTT. The
+        inner payload layout is:
+          Byte      0: Validity (1 byte, 0x01 = valid)
+          Bytes  1- 2: Member ID (2 bytes)
+          Bytes  3-10: Key (8 bytes ASCII)  ← returned by this method
+          Bytes 11-12: Access times (2 bytes)
 
         Returns:
           str: 8-character ASCII key, or None if unavailable/invalid.
