@@ -2,7 +2,7 @@
 Setup for different kinds of Tuya lock devices
 """
 
-from base64 import b64encode
+from base64 import b64decode, b64encode
 
 from homeassistant.components.lock import LockEntity, LockEntityFeature
 
@@ -41,6 +41,20 @@ CODE_REPLY_TIMEOUT = 0x03
 CODE_REPLY_OUTOFHOURS = 0x04
 CODE_REPLY_WRONGCODE = 0x05
 CODE_REPLY_DOUBLELOCKED = 0x06
+
+# DP73 (accessories variant of DP60) payload layout (cloud-to-device):
+#   Bytes  0- 1: Central ID (2 bytes)
+#   Bytes  2- 3: Peripheral ID (2 bytes)
+#   Bytes  4-11: Random number (8 bytes)
+#   Byte     12: Validity (1 byte)
+#   Bytes 13-14: Member ID (2 bytes)
+#   Bytes 15-18: Start time (4 bytes, Unix timestamp)
+#   Bytes 19-22: End time (4 bytes, Unix timestamp)
+#   Bytes 23-24: Access times (2 bytes)
+#   Bytes 25-32: Key (8 bytes ASCII)  ← extracted for DP61 unlock
+DP73_KEY_OFFSET = 25
+DP73_KEY_LENGTH = 8
+DP73_MIN_LENGTH = DP73_KEY_OFFSET + DP73_KEY_LENGTH  # 33 bytes
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -85,12 +99,49 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._code_unlock_dp = dps_map.pop("code_unlock", None)
+        self._remote_key_dp = dps_map.pop("remote_pd_setkey_check", None)  # DP73
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
         self._approve_intercom_dp = dps_map.pop("approve_intercom", None)
         self._jam_dp = dps_map.pop("jammed", None)
         self._init_end(dps_map)
         if self._open_dp and not self._open_dp.readonly:
             self._attr_supported_features = LockEntityFeature.OPEN
+
+    def _get_remote_key(self):
+        """Extract the 8-byte ASCII key from a cached DP73 payload.
+
+        The Tuya cloud sends DP73 (remote_pd_setkey_check) to the device
+        during pairing. TuyaLocal caches this value. We decode it here to
+        obtain the key needed to send a DP61 (code_unlock) remote unlock
+        command, so the user never has to enter the key manually.
+
+        DP73 payload layout (cloud-to-device, per Tuya BLE accessory spec):
+          Bytes  0- 1: Central ID (2 bytes)
+          Bytes  2- 3: Peripheral ID (2 bytes)
+          Bytes  4-11: Random number (8 bytes)
+          Byte     12: Validity (1 byte, 0x00=invalid, 0x01=valid)
+          Bytes 13-14: Member ID (2 bytes)
+          Bytes 15-18: Start time (4 bytes, Unix timestamp)
+          Bytes 19-22: End time (4 bytes, Unix timestamp)
+          Bytes 23-24: Access times (2 bytes)
+          Bytes 25-32: Key (8 bytes ASCII)  ← returned by this method
+
+        Returns:
+          str: 8-character ASCII key, or None if unavailable/invalid.
+        """
+        if self._remote_key_dp is None:
+            return None
+        raw = self._remote_key_dp.get_value(self._device)
+        if not raw:
+            return None
+        try:
+            decoded = b64decode(raw)
+            if len(decoded) < DP73_MIN_LENGTH:
+                return None
+            key = decoded[DP73_KEY_OFFSET : DP73_KEY_OFFSET + DP73_KEY_LENGTH]
+            return key.decode("ascii")
+        except Exception:
+            return None
 
     @property
     def is_locked(self):
@@ -135,8 +186,14 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
 
     @property
     def code_format(self):
-        """Return the code format of the lock."""
-        if self._code_unlock_dp:
+        """Return the code format of the lock.
+
+        If a remote key dp (DP73) is configured alongside code_unlock (DP61),
+        the key is extracted automatically so no code entry is needed in the UI.
+        Only advertise code_format (which triggers the HA lock card PIN input)
+        when there is no automatic key source available.
+        """
+        if self._code_unlock_dp and not self._remote_key_dp:
             return r".{8}"
         return None
 
@@ -180,7 +237,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         if self._lock_dp and not self._lock_dp.readonly:
             await self._lock_dp.async_set_value(self._device, True)
         elif self._code_unlock_dp:
-            code = kwargs.get("code")
+            code = kwargs.get("code") or self._get_remote_key()
             if not code:
                 raise ValueError("Code required to lock")
             msg = self.build_code_unlock_msg(
@@ -193,11 +250,17 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
         if self._code_unlock_dp:
-            code = kwargs.get("code")
+            # Prefer an explicitly provided code (e.g. from automation),
+            # otherwise extract automatically from the cached DP73 payload.
+            code = kwargs.get("code") or self._get_remote_key()
             if not code:
-                raise ValueError("Code required to unlock")
+                raise ValueError(
+                    "Remote unlock key not available. Ensure the lock has been "
+                    "paired via the SmartLife app so the Tuya cloud can provision "
+                    "the key (DP73) to the device."
+                )
             msg = self.build_code_unlock_msg(
-                CODE_UNLOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
+                CODE_UNLOCK, member_id=1, code=code, source=CODE_SRC_APP
             )
             await self._code_unlock_dp.async_set_value(self._device, msg)
         elif self._lock_dp and not self._lock_dp.readonly:
