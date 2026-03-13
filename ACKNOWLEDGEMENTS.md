@@ -1282,3 +1282,6 @@ Further device support has been made with the assistance of users. Please consid
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
 - [rainbowghost](https://github.com/rainbowghost) for contributing support for Casdon 16J3S dishwasher and T2E oven.
+- [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
+- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow.
+- [TinQ0](https://github.com/TinQ0) for contributing support for Repetsun 5L double bowl pet feeder.

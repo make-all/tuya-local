@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Keresse meg az eszköz IP-címét",
-                "description": "A Tuya felhő nem biztosít helyi IP-címeket"
+                "description": "{device_name}A Tuya felhő nem biztosít helyi IP-címeket"
             },
             "local": {
                 "title": "Állítsd be a helyi Tuya eszközöd",
-                "description": "[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).]({device_details_url})",
+                "description": "{device_name}[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).]({device_details_url})",
                 "data": {
                     "host": "IP cím vagy állomásnév",
                     "device_id": "Eszköz azonosító (device_id, vagy átjáró device_id)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Válaszd ki az eszköz típusát",
-                "description": "Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz",
+                "description": "{device_name}Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz",
                 "data": {
                     "type": "Eszköz típus"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Válaszd ki az eszköz típusát",
-                "description": "Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz. A {detected_protocol} protokoll verzió automatikusan észlelve és elmentve. Ha a jövőben frissíted az eszköz firmware-jét, előfordulhat, hogy újra kell konfigurálnod ezt az integrációt.",
+                "description": "{device_name}Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz. A {detected_protocol} protokoll verzió automatikusan észlelve és elmentve. Ha a jövőben frissíted az eszköz firmware-jét, előfordulhat, hogy újra kell konfigurálnod ezt az integrációt.",
                 "data": {
                     "type": "Eszköz típus"
                 }
             },
             "choose_entities": {
                 "title": "Eszköz részletei",
-                "description": "Válasz egy nevet az eszköznek",
+                "description": "{device_name}Válasz egy nevet az eszköznek",
                 "data": {
                     "name": "Név"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",

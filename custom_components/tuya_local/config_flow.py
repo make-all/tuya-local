@@ -53,7 +53,7 @@ DEVICE_DETAILS_URL = (
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 16
+    MINOR_VERSION = 17
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -293,6 +293,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             last_step=False,
         )
 
+    @property
+    def _device_name_placeholder(self) -> str:
+        """Return device name placeholder for step descriptions."""
+        if self.__cloud_device and self.__cloud_device.get("product_name"):
+            parts = []
+            if self.__cloud_device.get("name"):
+                parts.append(self.__cloud_device["name"])
+            parts.append(self.__cloud_device["product_name"])
+            return "**" + " — ".join(parts) + "**\n\n"
+        return ""
+
     async def async_step_search(self, user_input=None):
         if user_input is not None:
             # Current IP is the WAN IP which is of no use. Need to try and discover to the local IP.
@@ -325,7 +336,13 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             return await self.async_step_local()
 
         return self.async_show_form(
-            step_id="search", data_schema=vol.Schema({}), errors={}, last_step=False
+            step_id="search",
+            data_schema=vol.Schema({}),
+            description_placeholders={
+                "device_name": self._device_name_placeholder,
+            },
+            errors={},
+            last_step=False,
         )
 
     async def async_step_local(self, user_input=None):
@@ -405,7 +422,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
-            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
+            description_placeholders={
+                "device_details_url": DEVICE_DETAILS_URL,
+                "device_name": self._device_name_placeholder,
+            },
             errors=errors,
         )
 
@@ -426,26 +446,26 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         best_matching_key = None
         has_product_id_match = False
 
-        for type in await self.device.async_possible_types():
-            q = type.match_quality(
+        for dev_type in await self.device.async_possible_types():
+            q = dev_type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
             if q > 100:
                 has_product_id_match = True
-            for manufacturer, model in type.product_display_entries(
+            for manufacturer, model in dev_type.product_display_entries(
                 self.device._product_ids
             ):
-                key = f"{type.config_type}||{manufacturer or ''}||{model or ''}"
+                key = f"{dev_type.config_type}||{manufacturer or ''}||{model or ''}"
                 parts = [p for p in [manufacturer, model] if p]
                 if parts:
-                    label = f"{' '.join(parts)} ({type.config_type})"
+                    label = f"{' '.join(parts)} ({dev_type.config_type})"
                 else:
-                    label = f"{type.name} ({type.config_type})"
+                    label = f"{dev_type.name} ({dev_type.config_type})"
                 all_matches.append((SelectOptionDict(value=key, label=label), q))
                 if q > best_match:
                     best_match = q
-                    best_matching_type = type.config_type
+                    best_matching_type = dev_type.config_type
                     best_matching_key = key
 
         if has_product_id_match:
@@ -507,11 +527,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 return self.async_show_form(
                     step_id="select_type_auto_detected",
                     data_schema=schema,
-                    description_placeholders={"detected_protocol": str(detected)},
+                    description_placeholders={
+                        "detected_protocol": str(detected),
+                        "device_name": self._device_name_placeholder,
+                    },
                 )
             return self.async_show_form(
                 step_id="select_type",
                 data_schema=schema,
+                description_placeholders={
+                    "device_name": self._device_name_placeholder,
+                },
             )
         else:
             return self.async_abort(reason="not_supported")
@@ -530,11 +556,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
-        schema = {vol.Required(CONF_NAME, default=config.name): str}
+        default_name = config.name
+        if self.__cloud_device and self.__cloud_device.get("name"):
+            default_name = self.__cloud_device["name"]
+        schema = {vol.Required(CONF_NAME, default=default_name): str}
 
         return self.async_show_form(
             step_id="choose_entities",
             data_schema=vol.Schema(schema),
+            description_placeholders={
+                "device_name": self._device_name_placeholder,
+            },
         )
 
     @staticmethod

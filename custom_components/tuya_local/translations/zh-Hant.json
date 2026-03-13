@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "定位設備IP位址",
-                "description": "Tuya雲端不提供本地IP位址，因此我們現在必須搜尋您的本地網路以找到裝置。這需要最多20秒。 \n\n如果搜尋不成功，您需要透過其他方式提供IP位址，例如從路由器的DHCP分配中取得。 \n\n為了使此步驟和後續的裝置新增成功，您必須關閉行動應用，否則其連線會阻止Tuya Local與裝置的通訊。"
+                "description": "{device_name}Tuya雲端不提供本地IP位址，因此我們現在必須搜尋您的本地網路以找到裝置。這需要最多20秒。 \n\n如果搜尋不成功，您需要透過其他方式提供IP位址，例如從路由器的DHCP分配中取得。 \n\n為了使此步驟和後續的裝置新增成功，您必須關閉行動應用，否則其連線會阻止Tuya Local與裝置的通訊。"
             },
             "local": {
                 "title": "配置您的Tuya Local設備",
-                "description": "[請按照這些說明找到您的裝置ID和 Local key]({devide_details_url})",
+                "description": "{device_name}[請按照這些說明找到您的裝置ID和 Local key]({devide_details_url})",
                 "data": {
                     "host": "IP位址或主機名",
                     "device_id": "設備ID(或device_id網關,對於透過網關連接的設備）",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "選擇設備類型",
-                "description": "選擇與您的裝置相符的類型",
+                "description": "{device_name}選擇與您的裝置相符的類型",
                 "data": {
                     "type": "設備類型"
                 }
             },
             "select_type_auto_detected": {
                 "title": "選擇設備類型",
-                "description": "選擇與您的裝置相符的類型。協議版本{detected_protocol}已自動檢測並保存。如果您將來更新設備固件，可能需要重新配置此集成。",
+                "description": "{device_name}選擇與您的裝置相符的類型。協議版本{detected_protocol}已自動檢測並保存。如果您將來更新設備固件，可能需要重新配置此集成。",
                 "data": {
                     "type": "設備類型"
                 }
             },
             "choose_entities": {
                 "title": "設備詳情",
-                "description": "為此設備選擇一個名稱",
+                "description": "{device_name}為此設備選擇一個名稱",
                 "data": {
                     "name": "名稱"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
