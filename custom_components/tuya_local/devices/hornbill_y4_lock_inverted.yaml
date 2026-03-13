@@ -3,6 +3,9 @@ products:
   - id: g7rboh0x
     manufacturer: Hornbill
     model: Y4
+  - id: e9du88
+    manufacturer: Unknown
+    model: Residential Lock
 entities:
   - entity: lock
     dps:
@@ -88,9 +91,9 @@ entities:
         name: lock_state
         mapping:
           - dps_val: false
-            value: locked
+            value: true
           - dps_val: true
-            value: unlocked
+            value: false
       # [Report unlocking record] is used for the device to report the record
       # of online temporary password unlocking.
       - id: 55
