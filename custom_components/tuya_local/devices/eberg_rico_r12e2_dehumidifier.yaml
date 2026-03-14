@@ -59,6 +59,14 @@ entities:
         name: sensor
         unit: C
         class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: '%'
+        class: measurement        
   - entity: lock
     translation_key: child_lock
     category: config
