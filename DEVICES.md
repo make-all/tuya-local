@@ -1266,6 +1266,7 @@ port and password.
 - Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
+- Yu Home Yu Turbo laundry drying rack
 - Zecamin ZG-205W mmWave human presence sensor
 - Zeissler ZSw.1312 water leak detector
 - ZMP71SH variable speed swimming pool pump
