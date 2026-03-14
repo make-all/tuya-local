@@ -1,8 +1,11 @@
 name: Alarm system
 products:
-  - id: "p3sdak6d9jznh14x"
+  - id: p3sdak6d9jznh14x
     manufacturer: Nivian
     model: NVS-A6WG
+  - id: mrwxwgtnpnemqwa1
+    manufacturer: Curv
+    model: CURV-ALR01
 entities:
   - entity: alarm_control_panel
     name: Alarm
@@ -17,6 +20,9 @@ entities:
             value: armed_away
           - dps_val: home
             value: armed_home
+      - id: 125
+        type: string
+        name: info
   - entity: sensor
     name: GSM status
     category: diagnostic
@@ -183,9 +189,30 @@ entities:
         name: switch
         type: boolean
   - entity: switch
+    name: Inside siren sound
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: false
+          - dps_val:  "ON"
+            value: true
+  - entity: switch
     name: Wireless siren
     category: config
     dps:
       - id: 121
         name: switch
         type: boolean
+  - entity: text
+    name: Password
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: value
+        hidden: true
+        sensitive: true
