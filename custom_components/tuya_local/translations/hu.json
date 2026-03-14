@@ -30,14 +30,13 @@
             },
             "search": {
                 "title": "Keresse meg az eszköz IP-címét",
-                "description": "A Tuya felhő nem biztosít helyi IP-címeket"
+                "description": "{device_name}A Tuya felhő nem biztosít helyi IP-címeket"
             },
             "local": {
                 "title": "Állítsd be a helyi Tuya eszközöd",
-                "description": "[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).]({device_details_url})",
+                "description": "{device_name}[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).]({device_details_url})",
                 "data": {
                     "host": "IP cím vagy állomásnév",
-                    "or device_id of gateway": "Vagy átjáró eszköz azonosítója (device_id átjárón keresztül használt eszközök esetén)",
                     "device_id": "Eszköz azonosító (device_id, vagy átjáró device_id)",
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
@@ -47,21 +46,21 @@
             },
             "select_type": {
                 "title": "Válaszd ki az eszköz típusát",
-                "description": "Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz",
+                "description": "{device_name}Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz",
                 "data": {
                     "type": "Eszköz típus"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Válaszd ki az eszköz típusát",
-                "description": "Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz. A {detected_protocol} protokoll verzió automatikusan észlelve és elmentve. Ha a jövőben frissíted az eszköz firmware-jét, előfordulhat, hogy újra kell konfigurálnod ezt az integrációt.",
+                "description": "{device_name}Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz. A {detected_protocol} protokoll verzió automatikusan észlelve és elmentve. Ha a jövőben frissíted az eszköz firmware-jét, előfordulhat, hogy újra kell konfigurálnod ezt az integrációt.",
                 "data": {
                     "type": "Eszköz típus"
                 }
             },
             "choose_entities": {
                 "title": "Eszköz részletei",
-                "description": "Válasz egy nevet az eszköznek",
+                "description": "{device_name}Válasz egy nevet az eszköznek",
                 "data": {
                     "name": "Név"
                 }
@@ -123,6 +122,43 @@
                     "on": "Leolvasztás"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Ventilátor késleltetett működés",
+                "state": {
+                    "off": "Normál",
+                    "on": "Késleltetett működés"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Kamra alacsony hőmérséklet védelem",
+                            "chamber_overheat": "Kamra túlmelegedés védelem",
+                            "communication_error": "Kommunikációs hiba",
+                            "drain_blocked": "Leeresztő blokk",
+                            "evaporation_tray_low_temperature": "Elpárologtató tálcán alacsony hőmérséklet védelem",
+                            "evaporation_tray_overheat": "Elpárologtató tálcán túlmelegedés védelem",
+                            "fire": "Tűz",
+                            "firewall_sensor_fault": "Tűzfal érzékelő hiba",
+                            "gas_leak": "Gázszivárgás",
+                            "heating_fault": "Fűtési hiba",
+                            "no_water": "Nincs víz",
+                            "ok": "OK",
+                            "overflow": "Túlfolyás",
+                            "receive_error": "Fogadási hiba",
+                            "sensor_open_circuit": "Szenzor csatlakozási hiba",
+                            "sensor_short_circuit": "Szenzor hiba",
+                            "sensor_fault": "Szenzor hiba",
+                            "transmit_error": "Átviteli hiba",
+                            "valve_fault": "Szelep hiba",
+                            "variable_frequency_fault": "Változó frekvencia hiba",
+                            "washing_motor_fault": "Mosási motor hiba",
+                            "water_removed_or_empty": "Víz eltávolítva vagy üres"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tartály",
                 "state": {
@@ -144,20 +180,18 @@
                     "on": "Ébresztés"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
-                            "e2": "E2: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
-                            "e3": "E3: Kamra alacsony hőmérséklet védelem (35°C alatt)",
-                            "e4": "E4: Elpárologtató tálcán alacsony hőmérséklet védelem (35°C alatt)",
-                            "e5": "E5: Szenzor csatlakozási hiba (Nyitott áramkör)",
-                            "e6": "E6: Szenzor hiba (Rövidzárlat)",
-                            "e7": "E7: Kijelző panel kommunikációs hiba",
-                            "e8": "E8: Víztartály nyitva (CN7) vagy Elpárologtató tálcán száraz (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Öblítőszer",
+                "state": {
+                    "off": "OK",
+                    "on": "Alacsony"
+                }
+            },
+            "salt": {
+                "name": "Só",
+                "state": {
+                    "off": "OK",
+                    "on": "Alacsony"
                 }
             }
         },
@@ -328,7 +362,10 @@
                             "custom": "Egyéni",
                             "low_steaming": "Alacsony Steaming",
                             "medium_steaming": "Közepes Steaming",
-                            "high_steaming": "Magas Steaming"
+                            "high_steaming": "Magas Steaming",
+                            "steaming": "Steaming",
+                            "hot_air_baking": "Forró levegős sütés",
+                            "disinfect": "Fertőtlenítés"                            
                         }
                     }
                 }
@@ -445,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Éjjeli lámpa"
+            },
+            "oven_light": {
+                "name": "Sütő lámpa"
+            },
+            "rangehood_light": {
+                "name": "Páraelszívó lámpa"
             }
         },
         "lock": {
@@ -476,6 +519,12 @@
             },
             "volume": {
                 "name": "Hangerő"
+            },
+            "bottom_temperature": {
+                "name": "Alsó hőmérséklet"
+            },
+            "top_temperature": {
+                "name": "Felső hőmérséklet"
             }
         },
         "select": {
@@ -538,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -545,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -814,7 +865,60 @@
                     "self_clean": "Öntisztító",
                     "hygiene": "Higiénia",
                     "party": "Buli",
-                    "baby_care": "Babaápolás"
+                    "baby_care": "Babaápolás",
+                    "hour_wash": "Óra mosás",
+                    "dry": "Szárítás",
+                    "storage": "Tárolás",
+                    "light": "Könnyű",
+                    "pots": "Edények"
+                }
+            },
+            "water_hardness": {
+                "name": "Vízkeménység"
+            },
+            "rinse_aid_level": {
+                "name": "Öblítőszer szintje"
+            },
+            "rack": {
+                "name": "Polc",
+                "state": {
+                    "lower": "Alsó",
+                    "upper": "Felső",
+                    "both": "Mindkettő"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Páraelszívó mód",
+                "state": {
+                    "steaming": "Gőzölés",
+                    "regular": "Normál",
+                    "strong": "Erős"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Páraelszívó ventilátor sebesség",
+                "state": {
+                    "off": "Ki",
+                    "low": "Alacsony",
+                    "medium": "Közepes",
+                    "high": "Magas",
+                    "quickfry": "Gyors sütés"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Páraelszívó késleltetett leállítás",
+                "state": {
+                    "disabled": "Letiltva",
+                    "1m": "1 perc",
+                    "2m": "2 perc",
+                    "3m": "3 perc",
+                    "4m": "4 perc",
+                    "5m": "5 perc",
+                    "6m": "6 perc",
+                    "7m": "7 perc",
+                    "8m": "8 perc",
+                    "9m": "9 perc",
+                    "10m": "10 perc"
                 }
             },
             "menu": {
@@ -874,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Tisztaság",
+                "state": {
+                    "poor": "Rossz",
+                    "good": "Jó",
+                    "great": "Kiváló"
+                }
+            },
             "air_quality": {
                 "name": "Levegő minőség",
                 "state": {
@@ -980,7 +1092,8 @@
                     "drain_hot_water": "Forró víz leeresztése",
                     "drain_normal_water": "Normál víz leeresztése",
                     "high_temperature_emptying": "Magas hőmérsékletű ürítés",
-                    "high_temperature_emptied": "Magas hőmérsékletű ürítve"
+                    "high_temperature_emptied": "Magas hőmérsékletű ürítve",
+                    "storage": "Tárolás"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "Szűrő élettartam"
+            },
+            "days_stored": {
+                "name": "Tárolt napok"
             }
         },
         "switch": {
@@ -1084,6 +1200,18 @@
             },
             "uv_sterilization": {
                 "name": "UV sterilizálás"
+            },
+            "auto_storage": {
+                "name": "Automatikus tárolás"
+            },
+            "auto_dry": {
+                "name": "Automatikus szárítás"
+            },
+            "oven": {
+                "name": "Sütő"
+            },
+            "rangehood": {
+                "name": "Páraelszívó"
             }
         },
         "text": {
@@ -1092,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Foglalási idő"
+            },
+            "cooking_time": {
+                "name": "Főzési idő"
+            },
             "timer": {
                 "name": "Időzítő"
             },

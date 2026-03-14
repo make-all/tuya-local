@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "定位設備IP位址",
-                "description": "Tuya雲端不提供本地IP位址，因此我們現在必須搜尋您的本地網路以找到裝置。這需要最多20秒。 \n\n如果搜尋不成功，您需要透過其他方式提供IP位址，例如從路由器的DHCP分配中取得。 \n\n為了使此步驟和後續的裝置新增成功，您必須關閉行動應用，否則其連線會阻止Tuya Local與裝置的通訊。"
+                "description": "{device_name}Tuya雲端不提供本地IP位址，因此我們現在必須搜尋您的本地網路以找到裝置。這需要最多20秒。 \n\n如果搜尋不成功，您需要透過其他方式提供IP位址，例如從路由器的DHCP分配中取得。 \n\n為了使此步驟和後續的裝置新增成功，您必須關閉行動應用，否則其連線會阻止Tuya Local與裝置的通訊。"
             },
             "local": {
                 "title": "配置您的Tuya Local設備",
-                "description": "[請按照這些說明找到您的裝置ID和 Local key]({devide_details_url})",
+                "description": "{device_name}[請按照這些說明找到您的裝置ID和 Local key]({devide_details_url})",
                 "data": {
                     "host": "IP位址或主機名",
                     "device_id": "設備ID(或device_id網關,對於透過網關連接的設備）",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "選擇設備類型",
-                "description": "選擇與您的裝置相符的類型",
+                "description": "{device_name}選擇與您的裝置相符的類型",
                 "data": {
                     "type": "設備類型"
                 }
             },
             "select_type_auto_detected": {
                 "title": "選擇設備類型",
-                "description": "選擇與您的裝置相符的類型。協議版本{detected_protocol}已自動檢測並保存。如果您將來更新設備固件，可能需要重新配置此集成。",
+                "description": "{device_name}選擇與您的裝置相符的類型。協議版本{detected_protocol}已自動檢測並保存。如果您將來更新設備固件，可能需要重新配置此集成。",
                 "data": {
                     "type": "設備類型"
                 }
             },
             "choose_entities": {
                 "title": "設備詳情",
-                "description": "為此設備選擇一個名稱",
+                "description": "{device_name}為此設備選擇一個名稱",
                 "data": {
                     "name": "名稱"
                 }
@@ -122,6 +122,43 @@
                     "on": "除霜中"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "延遲風扇運行",
+                "state": {
+                    "off": "正常",
+                    "on": "延遲風扇運行中"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "腔體低溫",
+                            "chamber_overheat": "腔體過熱",
+                            "communication_error": "通信錯誤",
+                            "drain_blocked": "排水堵塞",
+                            "evaporation_tray_low_temperature": "蒸發盤低溫",
+                            "evaporation_tray_overheat": "蒸發盤過熱",
+                            "fire": "火災",
+                            "firewall_sensor_fault": "防火牆傳感器故障",
+                            "gas_leak": "氣體洩漏",
+                            "heating_fault": "加熱故障",
+                            "no_water": "無水",
+                            "ok": "正常",
+                            "overflow": "溢出",
+                            "receive_error": "接收错误",
+                            "sensor_fault": "传感器故障",
+                            "sensor_open_circuit": "传感器开路",
+                            "sensor_short_circuit": "传感器短路",
+                            "transmit_error": "传输错误",
+                            "valve_fault": "閥門故障",
+                            "variable_frequency_fault": "变频故障",
+                            "washing_motor_fault": "洗衣机电机故障",
+                            "water_removed_or_empty": "水已移除或水箱空"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "水箱",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "唤醒"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: 高溫保護 (超過290°C)",
-                            "e2": "E2: 蒸發盤過熱保護 (超過200°C)",
-                            "e3": "E3: 空腔低溫保護 (低於35°C)",
-                            "e4": "E4: 蒸發盤低溫保護 (低於35°C)",
-                            "e5": "E5: 传感器连接错误（开路）",
-                            "e6": "E6: 传感器故障（短路）",
-                            "e7": "E7: 顯示板通信錯誤",
-                            "e8": "E8: 水箱打開 (CN7) 或蒸發盤乾燥 (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "漂洗助剂",
+                "state": {
+                    "off": "正常",
+                    "on": "需要补充"
+                }
+            },
+            "salt": {
+                "name": "盐",
+                "state": {
+                    "off": "正常",
+                    "on": "需要补充"
                 }
             }
         },
@@ -305,7 +340,6 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "off": "關",
                             "healthy_steam": "健康蒸汽",
                             "fresh_steam": "新鮮蒸汽",
                             "high_temp_steam": "高溫蒸汽",
@@ -328,7 +362,10 @@
                             "custom": "自訂",
                             "low_steaming": "低蒸",
                             "medium_steaming": "中蒸",
-                            "high_steaming": "高蒸"
+                            "high_steaming": "高蒸",
+                            "steaming": "蒸汽",
+                            "hot_air_baking": "熱風烘焙",
+                            "disinfect": "消毒"
                         }
                     }
                 }
@@ -445,6 +482,12 @@
             },
             "nightlight": {
                 "name": "夜燈"
+            },
+            "oven_light": {
+                "name": "烤箱燈"
+            },
+            "rangehood_light": {
+                "name": "抽油煙機燈"
             }
         },
         "lock": {
@@ -476,6 +519,12 @@
             },
             "volume": {
                 "name": "音量"
+            },
+            "bottom_temperature": {
+                "name": "底部溫度"
+            },
+            "top_temperature": {
+                "name": "頂部溫度"
             }
         },
         "select": {
@@ -538,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -545,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -814,7 +865,60 @@
                     "self_clean": "自我清潔",
                     "hygiene": "衛生",
                     "party": "派對",
-                    "baby_care": "嬰兒護理"
+                    "baby_care": "嬰兒護理",
+                    "hour_wash": "1小時洗",
+                    "dry": "乾燥",
+                    "storage": "儲存",
+                    "light": "輕柔",
+                    "pots": "鍋具"
+                }
+            },
+            "water_hardness": {
+                "name": "水硬度"
+            },
+            "rinse_aid_level": {
+                "name": "漂洗助剂水平"
+            },
+            "rack": {
+                "name": "架子",
+                "state": {
+                    "upper": "上",
+                    "lower": "下",
+                    "both": "兩者"
+                }
+            },
+            "rangehood_mode": {
+                "name": "抽油煙機模式",
+                "state": {
+                    "steaming": "蒸汽",
+                    "regular": "常規",
+                    "strong": "強力"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "抽油煙機風速",
+                "state": {
+                    "off": "關",
+                    "low": "低",
+                    "medium": "中",
+                    "high": "高",
+                    "quickfry": "快速"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "抽油煙機延遲關閉",
+                "state": {
+                    "disabled": "禁用",
+                    "1m": "1分鐘",
+                    "2m": "2分鐘",
+                    "3m": "3分鐘",
+                    "4m": "4分鐘",
+                    "5m": "5分鐘",
+                    "6m": "6分鐘",
+                    "7m": "7分鐘",
+                    "8m": "8分鐘",
+                    "9m": "9分鐘",
+                    "10m": "10分鐘"
                 }
             },
             "menu": {
@@ -874,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "清潔度",
+                "state": {
+                    "poor": "差",
+                    "good": "良",
+                    "great": "優"
+                }
+            },
             "air_quality": {
                 "name": "空氣質量",
                 "state": {
@@ -980,7 +1092,8 @@
                     "drain_hot_water": "排熱水中",
                     "drain_normal_water": "排常溫水中",
                     "high_temperature_emptying": "高溫排空中",
-                    "high_temperature_emptied": "高溫已排空"
+                    "high_temperature_emptied": "高溫已排空",
+                    "storage": "儲存中"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "濾網壽命"
+            },
+            "days_stored": {
+                "name": "儲存天數"
             }
         },
         "switch": {
@@ -1084,6 +1200,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "電解消毒"
+            },
+            "auto_storage": {
+                "name": "自動儲存"
+            },
+            "auto_dry": {
+                "name": "自動烘乾"
+            },
+            "oven": {
+                "name": "烤箱"
+            },
+            "rangehood": {
+                "name": "抽油煙機"
             }
         },
         "text": {
@@ -1092,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "預約時間"
+            },
+            "cooking_time": {
+                "name": "烹飪時間"
+            },
             "timer": {
                 "name": "計時器"
             },

@@ -31,6 +31,8 @@ from .const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_MANUFACTURER,
+    CONF_MODEL,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
@@ -51,7 +53,7 @@ DEVICE_DETAILS_URL = (
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 16
+    MINOR_VERSION = 17
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -291,6 +293,17 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             last_step=False,
         )
 
+    @property
+    def _device_name_placeholder(self) -> str:
+        """Return device name placeholder for step descriptions."""
+        if self.__cloud_device and self.__cloud_device.get("product_name"):
+            parts = []
+            if self.__cloud_device.get("name"):
+                parts.append(self.__cloud_device["name"])
+            parts.append(self.__cloud_device["product_name"])
+            return "**" + " — ".join(parts) + "**\n\n"
+        return ""
+
     async def async_step_search(self, user_input=None):
         if user_input is not None:
             # Current IP is the WAN IP which is of no use. Need to try and discover to the local IP.
@@ -323,7 +336,13 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             return await self.async_step_local()
 
         return self.async_show_form(
-            step_id="search", data_schema=vol.Schema({}), errors={}, last_step=False
+            step_id="search",
+            data_schema=vol.Schema({}),
+            description_placeholders={
+                "device_name": self._device_name_placeholder,
+            },
+            errors={},
+            last_step=False,
         )
 
     async def async_step_local(self, user_input=None):
@@ -341,11 +360,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             host_opts = {"default": self.__cloud_device.get("ip")}
             key_opts = {"default": self.__cloud_device.get(CONF_LOCAL_KEY)}
             if self.__cloud_device.get("version"):
-                proto_opts = {"default": float(self.__cloud_device.get("version"))}
+                proto_opts = {"default": str(self.__cloud_device.get("version"))}
             if self.__cloud_device.get(CONF_DEVICE_CID):
                 devcid_opts = {"default": self.__cloud_device.get(CONF_DEVICE_CID)}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
@@ -382,7 +404,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
                 if CONF_DEVICE_CID in user_input:
                     devcid_opts["default"] = user_input[CONF_DEVICE_CID]
-                proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
+                proto_opts["default"] = str(user_input[CONF_PROTOCOL_VERSION])
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
         return self.async_show_form(
@@ -395,33 +417,61 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     vol.Required(
                         CONF_PROTOCOL_VERSION,
                         **proto_opts,
-                    ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                    ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
-            description_placeholders={"device_details_url": DEVICE_DETAILS_URL},
+            description_placeholders={
+                "device_details_url": DEVICE_DETAILS_URL,
+                "device_name": self._device_name_placeholder,
+            },
             errors=errors,
         )
 
     async def async_step_select_type(self, user_input=None):
         if user_input is not None:
-            self.data[CONF_TYPE] = user_input[CONF_TYPE]
+            # Value is a compound key: "config_type||manufacturer||model"
+            parts = user_input[CONF_TYPE].split("||", 2)
+            self.data[CONF_TYPE] = parts[0]
+            if len(parts) > 1 and parts[1]:
+                self.data[CONF_MANUFACTURER] = parts[1]
+            if len(parts) > 2 and parts[2]:
+                self.data[CONF_MODEL] = parts[2]
             return await self.async_step_choose_entities()
 
-        types = []
+        all_matches = []
         best_match = 0
         best_matching_type = None
+        best_matching_key = None
+        has_product_id_match = False
 
-        for type in await self.device.async_possible_types():
-            types.append(type.config_type)
-            q = type.match_quality(
+        for dev_type in await self.device.async_possible_types():
+            q = dev_type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
-            if q > best_match:
-                best_match = q
-                best_matching_type = type.config_type
+            if q > 100:
+                has_product_id_match = True
+            for manufacturer, model in dev_type.product_display_entries(
+                self.device._product_ids
+            ):
+                key = f"{dev_type.config_type}||{manufacturer or ''}||{model or ''}"
+                parts = [p for p in [manufacturer, model] if p]
+                if parts:
+                    label = f"{' '.join(parts)} ({dev_type.config_type})"
+                else:
+                    label = f"{dev_type.name} ({dev_type.config_type})"
+                all_matches.append((SelectOptionDict(value=key, label=label), q))
+                if q > best_match:
+                    best_match = q
+                    best_matching_type = dev_type.config_type
+                    best_matching_key = key
+
+        if has_product_id_match:
+            type_options = [opt for opt, q in all_matches if q > 100]
+        else:
+            type_options = [opt for opt, _ in all_matches]
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
@@ -463,25 +513,31 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         _LOGGER.warning(
             "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
-        if types:
+        if type_options:
             detected = getattr(self, "_auto_detected_protocol", None)
             schema = vol.Schema(
                 {
                     vol.Required(
                         CONF_TYPE,
-                        default=best_matching_type,
-                    ): vol.In(types),
+                        default=best_matching_key,
+                    ): SelectSelector(SelectSelectorConfig(options=type_options)),
                 }
             )
             if detected:
                 return self.async_show_form(
                     step_id="select_type_auto_detected",
                     data_schema=schema,
-                    description_placeholders={"detected_protocol": str(detected)},
+                    description_placeholders={
+                        "detected_protocol": str(detected),
+                        "device_name": self._device_name_placeholder,
+                    },
                 )
             return self.async_show_form(
                 step_id="select_type",
                 data_schema=schema,
+                description_placeholders={
+                    "device_name": self._device_name_placeholder,
+                },
             )
         else:
             return self.async_abort(reason="not_supported")
@@ -490,22 +546,27 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         return await self.async_step_select_type(user_input)
 
     async def async_step_choose_entities(self, user_input=None):
-        if user_input is not None:
-            title = user_input[CONF_NAME]
-            del user_input[CONF_NAME]
-
-            return self.async_create_entry(
-                title=title, data={**self.data, **user_input}
-            )
         config = await self.hass.async_add_executor_job(
             get_config,
             self.data[CONF_TYPE],
         )
-        schema = {vol.Required(CONF_NAME, default=config.name): str}
+        if user_input is not None:
+            title = user_input[CONF_NAME]
+            del user_input[CONF_NAME]
+            return self.async_create_entry(
+                title=title, data={**self.data, **user_input}
+            )
+        default_name = config.name
+        if self.__cloud_device and self.__cloud_device.get("name"):
+            default_name = self.__cloud_device["name"]
+        schema = {vol.Required(CONF_NAME, default=default_name): str}
 
         return self.async_show_form(
             step_id="choose_entities",
             data_schema=vol.Schema(schema),
+            description_placeholders={
+                "device_name": self._device_name_placeholder,
+            },
         )
 
     @staticmethod
@@ -528,6 +589,9 @@ class OptionsFlowHandler(OptionsFlow):
         config = {**self.config_entry.data, **self.config_entry.options}
 
         if user_input is not None:
+            proto = user_input.get(CONF_PROTOCOL_VERSION)
+            if proto != "auto":
+                user_input[CONF_PROTOCOL_VERSION] = float(proto)
             config = {**config, **user_input}
             device = await async_test_connection(config, self.hass)
             if device:
@@ -543,8 +607,8 @@ class OptionsFlowHandler(OptionsFlow):
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
             vol.Required(
                 CONF_PROTOCOL_VERSION,
-                default=config.get(CONF_PROTOCOL_VERSION, "auto"),
-            ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                default=str(config.get(CONF_PROTOCOL_VERSION, "auto")),
+            ): vol.In(["auto"] + [str(v) for v in API_PROTOCOL_VERSIONS]),
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,

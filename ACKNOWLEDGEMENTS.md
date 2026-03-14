@@ -1273,7 +1273,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
-- [kongo09](https://github.com/kongo09) for contributing improvements to protocol detection, thermostat icons, support for RF remote controls.
+- [kongo09](https://github.com/kongo09) for contributing improvements to protocol detection, device details display, thermostat icons, support for RF remote controls.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
 - [rwblokzijl](https://github.com/rwblokzijl) for assisting with support for Haier air-water combo heat pump.
@@ -1281,3 +1281,7 @@ Further device support has been made with the assistance of users. Please consid
 - [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
+- [rainbowghost](https://github.com/rainbowghost) for contributing support for Casdon 16J3S dishwasher and T2E oven.
+- [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
+- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow.
+- [TinQ0](https://github.com/TinQ0) for contributing support for Repetsun 5L double bowl pet feeder.

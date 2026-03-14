@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Locate the device IP address",
-                "description": "Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes up to 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment.\n\nFor this step and the following device addition to succeed you must shut down the mobile app or its connections to the device will often block Tuya Local communication with them."
+                "description": "{device_name}Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes up to 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment.\n\nFor this step and the following device addition to succeed you must shut down the mobile app or its connections to the device will often block Tuya Local communication with them."
             },
             "local": {
                 "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your device id and local key.]({device_details_url})",
+                "description": "{device_name}[Follow these instructions to find your device id and local key.]({device_details_url})",
                 "data": {
                     "host": "IP address or hostname",
                     "device_id": "Device ID (or the hub's Device ID for devices connected via gateway)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Choose the type of device",
-                "description": "Choose the type that matches your device.",
+                "description": "{device_name}Choose the type that matches your device.",
                 "data": {
                     "type": "Device type"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Choose the type of device",
-                "description": "Choose the type that matches your device. Protocol version {detected_protocol} was automatically detected and saved. If you update the device firmware in the future, you may need to reconfigure this integration.",
+                "description": "{device_name}Choose the type that matches your device. Protocol version {detected_protocol} was automatically detected and saved. If you update the device firmware in the future, you may need to reconfigure this integration.",
                 "data": {
                     "type": "Device type"
                 }
             },
             "choose_entities": {
                 "title": "Device details",
-                "description": "Choose a name for this device",
+                "description": "{device_name}Choose a name for this device",
                 "data": {
                     "name": "Name"
                 }
@@ -122,6 +122,43 @@
                     "on": "Defrosting"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Delayed fan operation",
+                "state": {
+                    "off": "Normal",
+                    "on": "Delayed"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Chamber low temperature",
+                            "chamber_overheat": "Chamber overheat",
+                            "communication_error": "Communication error",
+                            "drain_blocked": "Drain blocked",
+                            "evaporation_tray_low_temperature": "Evaporation tray low temperature",
+                            "evaporation_tray_overheat": "Evaporation tray overheat",
+                            "fire": "Fire",
+                            "firewall_sensor_fault": "Firewall sensor fault",
+                            "gas_leak": "Gas leak",
+                            "heating_fault": "Heating fault",
+                            "no_water": "No water",
+                            "ok": "OK",
+                            "overflow": "Overflow",
+                            "receive_error": "Receive error",
+                            "sensor_open_circuit": "Sensor open circuit",
+                            "sensor_short_circuit": "Sensor short circuit",
+                            "sensor_fault": "Sensor fault",
+                            "transmit_error": "Transmit error",
+                            "valve_fault": "Valve fault",
+                            "variable_frequency_fault": "Variable frequency fault",
+                            "washing_motor_fault": "Washing motor fault",
+                            "water_removed_or_empty": "Water removed or empty"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tank",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Awake"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
-                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
-                            "e3": "E3: Chamber low temperature protection (below 35°C)",
-                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
-                            "e5": "E5: Sensor connection error (Open circuit)",
-                            "e6": "E6: Sensor malfunction (Short circuit)",
-                            "e7": "E7: Display board communication error",
-                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Rinse aid",
+                "state": {
+                    "off": "OK",
+                    "on": "Low"
+                }
+            },
+            "salt": {
+                "name": "salt",
+                "state": {
+                    "off": "OK",
+                    "on": "Low"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Custom",
                             "low_steaming": "Low Steaming",
                             "medium_steaming": "Medium Steaming",
-                            "high_steaming": "High Steaming"
+                            "high_steaming": "High Steaming",
+                            "steaming": "Pure Steaming",
+                            "hot_air_baking": "Hot Air Baking",
+                            "disinfect": "Disinfect"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Nightlight"
+            },
+            "oven_light": {
+                "name": "Oven light"
+            },
+            "rangehood_light": {
+                "name": "Rangehood light"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Volume"
+            },
+            "bottom_temperature": {
+                "name": "Bottom temperature"
+            },
+            "top_temperature": {
+                "name": "Top temperature"
             }
         },
         "select": {
@@ -537,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -544,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -810,10 +862,63 @@
                     "glass": "Glass",
                     "auto": "Auto",
                     "soak": "Soak",
-                    "self_clean": "Self Clean",
+                    "self_clean": "Self clean",
                     "hygiene": "Hygiene",
                     "party": "Party",
-                    "baby_care": "Baby Care"
+                    "baby_care": "Baby care",
+                    "hour_wash": "Hour wash",
+                    "dry": "Dry",
+                    "storage": "Storage",
+                    "light": "Light",
+                    "pots": "Pots"
+                }
+            },
+            "water_hardness": {
+                "name": "Water hardness"
+            },
+            "rinse_aid_level": {
+                "name": "Rinse aid level"
+            },
+            "rack": {
+                "name": "Rack",
+                "state": {
+                    "both": "Both",
+                    "upper": "Upper",
+                    "lower": "Lower"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Rangehood mode",
+                "state": {
+                    "steaming": "Steaming",
+                    "regular": "Regular",
+                    "strong": "Strong"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Rangehood fan speed",
+                "state": {
+                    "off": "Off",
+                    "low": "Low",
+                    "medium": "Medium",
+                    "high": "High",
+                    "quickfry": "Quick Fry"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Delayed shutdown",
+                "state": {
+                    "disabled": "disabled",
+                    "1m": "1 minute",
+                    "2m": "2 minutes",
+                    "3m": "3 minutes",
+                    "4m": "4 minutes",
+                    "5m": "5 minutes",
+                    "6m": "6 minutes",
+                    "7m": "7 minutes",
+                    "8m": "8 minutes",
+                    "9m": "9 minutes",
+                    "10m": "10 minutes"
                 }
             },
             "menu": {
@@ -873,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Cleanliness",
+                "state": {
+                    "poor": "Poor",
+                    "good": "Good",
+                    "great": "Great"
+                }
+            },
             "air_quality": {
                 "name": "Air quality",
                 "state": {
@@ -979,7 +1092,8 @@
                     "drain_hot_water": "Drain hot water",
                     "drain_normal_water": "Drain normal water",
                     "high_temperature_emptying": "High temperature emptying",
-                    "high_temperature_emptied": "High temperature emptied"
+                    "high_temperature_emptied": "High temperature emptied",
+                    "storage": "Storage"
                 }
             },
             "time_remaining": {
@@ -1032,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "Filter life"
+            },
+            "days_stored": {
+                "name": "Days stored"
             }
         },
         "switch": {
@@ -1083,6 +1200,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "Electrolytic sterilization"
+            },
+            "auto_storage": {
+                "name": "Auto storage"
+            },
+            "auto_dry": {
+                "name": "Auto dry"
+            },
+            "oven": {
+                "name": "Oven"
+            },
+            "rangehood": {
+                "name": "Rangehood"
             }
         },
         "text": {
@@ -1091,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reservation time"
+            },
+            "cooking_time": {
+                "name": "Cooking time"
+            },
             "timer": {
                 "name": "Timer"
             },
