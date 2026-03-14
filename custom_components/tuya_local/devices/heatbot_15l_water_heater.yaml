@@ -1,0 +1,36 @@
+name: Electric water heater
+products:
+  - id: edqofyucyuo4zk8a
+    manufacturer: A.O. Smith
+    model: HeatBot 15L
+entities:
+  - entity: water_heater
+    translation_key: water_air
+    dps:
+        - id: 1
+          type: boolean
+          name: operation_mode
+          mapping:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: "heat"
+        - id: 9
+          type: integer
+          name: temperature
+          unit: C
+          range:
+            min: 25
+            max: 75
+        - id: 10
+          type: integer
+          name: current_temperature
+  - entity: sensor
+    class: energy
+    name: Energy Usage
+    dps:
+        - id: 12
+          name: sensor
+          type: integer
+          unit: kWh
+          class: total_increasing
