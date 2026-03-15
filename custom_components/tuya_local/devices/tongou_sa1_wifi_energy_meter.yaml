@@ -144,3 +144,290 @@ entities:
         mapping:
           - dps_val: null
             value: false
+  # Сенсоры состояния
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    name: Power Factor
+    dps:
+      - id: 50
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    name: Internal Temperature
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Last Event
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Normal"
+            value: "Normal"
+            icon: "mdi:check-circle"
+          - dps_val: "Over_Current_Trip"
+            value: "Over Current Trip"
+            icon: "mdi:current-ac"
+          - dps_val: "Over_Power_Trip"
+            value: "Over Power Trip"
+            icon: "mdi:flash-alert"
+          - dps_val: "High_Temp_Trip"
+            value: "High Temp Trip"
+            icon: "mdi:thermometer-alert"
+          - dps_val: "Over_Voltage_Trip"
+            value: "Over Voltage Trip"
+            icon: "mdi:lightning-bolt"
+          - dps_val: "Under_Voltage_Trip"
+            value: "Under Voltage Trip"
+            icon: "mdi:lightning-bolt-outline"
+          - dps_val: "Over_Current_Alarm"
+            value: "Over Current Alarm"
+            icon: "mdi:current-ac"
+          - dps_val: "Over_Power_Alarm"
+            value: "Over Power Alarm"
+            icon: "mdi:flash-alert"
+          - dps_val: "High_Temp_Alarm"
+            value: "High Temp Alarm"
+            icon: "mdi:thermometer-alert"
+          - dps_val: "Over_Voltage_Alarm"
+            value: "Over Voltage Alarm"
+            icon: "mdi:lightning-bolt"
+          - dps_val: "Under_Voltage_Alarm"
+            value: "Under Voltage Alarm"
+            icon: "mdi:lightning-bolt-outline"
+          - dps_val: "Remote_ON"
+            value: "Remote ON"
+            icon: "mdi:remote"
+          - dps_val: "Remote_OFF"
+            value: "Remote OFF"
+            icon: "mdi:remote-off"
+          - dps_val: "Manual_ON"
+            value: "Manual ON"
+            icon: "mdi:toggle-switch"
+          - dps_val: "Manual_OFF"
+            value: "Manual OFF"
+            icon: "mdi:toggle-switch-off"
+          - dps_val: "Leakage_Trip"
+            value: "Leakage Trip"
+            icon: "mdi:pipe-leak"
+          - dps_val: "Leakage_Alarm"
+            value: "Leakage Alarm"
+            icon: "mdi:pipe-leak"
+          - dps_val: "Restore_Default"
+            value: "Factory Reset"
+            icon: "mdi:restart"
+          - dps_val: "Automatic_Closing"
+            value: "Auto Closing"
+            icon: "mdi:autorenew"
+          - dps_val: "Electricity_Shortage"
+            value: "Low Energy"
+            icon: "mdi:battery-alert"
+          - dps_val: "Electricity_Shortage_Alarm"
+            value: "Low Energy Alarm"
+            icon: "mdi:battery-alert"
+          - dps_val: "Timing_switch_ON"
+            value: "Timer ON"
+            icon: "mdi:timer"
+          - dps_val: "Timing_switch_OFF"
+            value: "Timer OFF"
+            icon: "mdi:timer-off"
+          - dps_val: "Electricity_Reset"
+            value: "Energy Reset"
+            icon: "mdi:restore"
+
+  # alarm switches (Switches: Alarm <-> Closed)
+
+  # DP 101: Energy Shortage
+  - entity: switch
+    name: Alarm Low Energy
+    category: config
+    icon: "mdi:battery-alert"
+    dps:
+      - id: 101
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # DP 102: Over Voltage (OV)
+  - entity: switch
+    name: Alarm Over Voltage
+    category: config
+    icon: "mdi:flash-alert"
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # DP 103: Under Voltage (UV)
+  - entity: switch
+    name: Alarm Under Voltage
+    category: config
+    icon: "mdi:flash-off"
+    dps:
+      - id: 103
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # DP 104: Over Current (OC)
+  - entity: switch
+    name: Alarm Over Current
+    category: config
+    icon: "mdi:current-ac"
+    dps:
+      - id: 104
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # DP 105: Over Power (OP)
+  - entity: switch
+    name: Alarm Over Power
+    category: config
+    icon: "mdi:gauge-full"
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # DP 107: Temperature (Temp)
+  - entity: switch
+    name: Alarm Over Temp
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 107
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # Thresholds for alarms
+
+  # DP 114: Current Threshold
+  - entity: number
+    class: current
+    name: Threshold Over Current
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 50
+
+  # DP 115: Over Voltage Threshold
+  - entity: number
+    class: voltage
+    name: Threshold Over Voltage
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 100
+          max: 280
+
+  # DP 116: Under Voltage Threshold
+  - entity: number
+    class: voltage
+    name: Threshold Under Voltage
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 100
+          max: 280
+
+  # DP 118: Temperature Threshold
+  - entity: number
+    class: temperature
+    name: Threshold Over Temp
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -25
+          max: 100
+
+  # DP 119: Over Power Threshold
+  - entity: number
+    class: power
+    name: Threshold Over Power
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 5
+          max: 12000
+          step: 10
+
+  # DP 120: Energy Shortage Threshold
+  - entity: number
+    class: energy
+    name: Threshold Low Energy
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 10
+          max: 500
