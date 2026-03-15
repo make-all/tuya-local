@@ -308,6 +308,7 @@ devices # Supported
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
+- Ausclimate EcoSmart pedestal fan
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
 - BKZO ceiling fan with RGBCW light
