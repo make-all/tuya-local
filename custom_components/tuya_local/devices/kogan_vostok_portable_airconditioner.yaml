@@ -50,19 +50,8 @@ entities:
             value: high
           - dps_val: low
             value: low
-      - id: 105
-        type: integer
-        name: countdown
-        optional: true
-  - entity: switch
-    name: Power
-    icon: "mdi:power"
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
     class: duration
     dps:
@@ -84,3 +73,6 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
