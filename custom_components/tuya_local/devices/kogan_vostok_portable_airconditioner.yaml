@@ -1,0 +1,78 @@
+name: Air conditioner
+products:
+  - id: emoxxvomv8xpvxfg
+    manufacturer: Kogan
+    model: VOSTOK Portable AC
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: hvac_mode_101
+            conditions:
+              - dps_val: cool
+                value: cool
+              - dps_val: dry
+                value: dry
+              - dps_val: fan
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 101
+        type: string
+        name: hvac_mode_101
+        hidden: true
+      - id: 103
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: false
+            value: none
+          - dps_val: true
+            value: sleep
+      - id: 104
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: low
+            value: low
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
