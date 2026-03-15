@@ -41,10 +41,8 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
         self._valve_dp = dps_map.pop("valve")
-        self._switch_dp = dps_map.pop("switch")
+        self._switch_dp = dps_map.pop("switch", None)
         self._init_end(dps_map)
-        if self._valve_dp is None:
-            raise AttributeError(f"{config.config_id} is missing valve dp")
 
         if not self._valve_dp.readonly or self._switch_dp:
             self._attr_supported_features |= ValveEntityFeature.OPEN
