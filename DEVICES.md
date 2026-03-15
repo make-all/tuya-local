@@ -1043,6 +1043,7 @@ port and password.
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
+- Nevian NVS-A6WG alarm panel (also branded as Curv)
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
 - Tolviviov DP-W2.1 security alarm panel
