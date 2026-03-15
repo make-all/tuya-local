@@ -1293,4 +1293,5 @@ Further device support has been made with the assistance of users. Please consid
 - [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
 - [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
 - [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
+- [wan0net](https://github.com/wan0net) for contributing support for Kogan  Vostok portable air conditioner.
 
