@@ -1295,3 +1295,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
 - [wan0net](https://github.com/wan0net) for contributing support for Kogan  Vostok portable air conditioner.
 - [penguin00xx](https://github.com/penguin00xx) for assisting with support for Koenic KTM-221723-M kettle.
+- [dodhouse](https://github.com/dodhouse) for assisting with support for Brilliant ceiling fan remote controller.
