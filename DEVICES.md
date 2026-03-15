@@ -665,6 +665,7 @@ devices # Supported
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - SRNE SE Series lithium battery
+- Suntree SPG3 EV charger
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers

@@ -1292,4 +1292,5 @@ Further device support has been made with the assistance of users. Please consid
 - [arayanhasgithub](https://github.com/arayanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
 - [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
 - [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
+- [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
 
