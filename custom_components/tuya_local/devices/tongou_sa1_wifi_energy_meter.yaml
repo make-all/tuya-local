@@ -147,7 +147,6 @@ entities:
   - entity: sensor
     class: power_factor
     category: diagnostic
-    name: Power Factor
     dps:
       - id: 50
         type: integer
@@ -389,8 +388,8 @@ entities:
         mapping:
           - scale: 10
         range:
-          min: -25
-          max: 100
+          min: -250
+          max: 1000
   # DP 119: Over Power Threshold
   - entity: number
     class: power
@@ -401,10 +400,11 @@ entities:
         type: integer
         name: value
         unit: W
+        mapping:
+          - step: 10
         range:
           min: 5
           max: 12000
-          step: 10
   # DP 120: Energy Shortage Threshold
   - entity: number
     class: energy
