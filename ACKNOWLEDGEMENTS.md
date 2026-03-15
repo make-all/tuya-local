@@ -1283,7 +1283,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
 - [rainbowghost](https://github.com/rainbowghost) for contributing support for Casdon 16J3S dishwasher and T2E oven.
 - [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
-- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow.
+- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow and LDNIO SCW3451 powerstrip which was merged to `quad_power_timer`.
 - [TinQ0](https://github.com/TinQ0) for contributing support for Repetsun 5L double bowl pet feeder.
 - [lweikit](https://github.com/lweikit) for contributing support for Yu Home Yu Turbo laundry drying rack.
 - [AlbertoMarziali](https://github.com/AlbertoMarziali) for contributing support for Nivian NVS-A6WG alarm panel.
