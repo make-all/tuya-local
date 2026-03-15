@@ -226,6 +226,7 @@ devices # Supported
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW thermostat smart switch
 - Avatto ME81, WS20R and WT100 thermostats
+- Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
