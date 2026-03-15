@@ -144,7 +144,6 @@ entities:
         mapping:
           - dps_val: null
             value: false
-  # Сенсоры состояния
   - entity: sensor
     class: power_factor
     category: diagnostic
@@ -156,7 +155,6 @@ entities:
         name: sensor
         mapping:
           - scale: 100
-
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -169,7 +167,6 @@ entities:
         unit: C
         mapping:
           - scale: 10
-
   - entity: sensor
     name: Last Event
     category: diagnostic
@@ -267,7 +264,6 @@ entities:
             value: true
           - dps_val: "Closed"
             value: false
-
   # DP 102: Over Voltage (OV)
   - entity: switch
     name: Alarm Over Voltage
@@ -282,7 +278,6 @@ entities:
             value: true
           - dps_val: "Closed"
             value: false
-
   # DP 103: Under Voltage (UV)
   - entity: switch
     name: Alarm Under Voltage
@@ -297,7 +292,6 @@ entities:
             value: true
           - dps_val: "Closed"
             value: false
-
   # DP 104: Over Current (OC)
   - entity: switch
     name: Alarm Over Current
@@ -312,7 +306,6 @@ entities:
             value: true
           - dps_val: "Closed"
             value: false
-
   # DP 105: Over Power (OP)
   - entity: switch
     name: Alarm Over Power
@@ -327,7 +320,6 @@ entities:
             value: true
           - dps_val: "Closed"
             value: false
-
   # DP 107: Temperature (Temp)
   - entity: switch
     name: Alarm Over Temp
@@ -358,7 +350,6 @@ entities:
         range:
           min: 1
           max: 50
-
   # DP 115: Over Voltage Threshold
   - entity: number
     class: voltage
@@ -372,7 +363,6 @@ entities:
         range:
           min: 100
           max: 280
-
   # DP 116: Under Voltage Threshold
   - entity: number
     class: voltage
@@ -386,7 +376,6 @@ entities:
         range:
           min: 100
           max: 280
-
   # DP 118: Temperature Threshold
   - entity: number
     class: temperature
@@ -402,7 +391,6 @@ entities:
         range:
           min: -25
           max: 100
-
   # DP 119: Over Power Threshold
   - entity: number
     class: power
@@ -417,7 +405,6 @@ entities:
           min: 5
           max: 12000
           step: 10
-
   # DP 120: Energy Shortage Threshold
   - entity: number
     class: energy
