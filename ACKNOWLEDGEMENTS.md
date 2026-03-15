@@ -1289,3 +1289,4 @@ Further device support has been made with the assistance of users. Please consid
 - [AlbertoMarziali](https://github.com/AlbertoMarziali) for contributing support for Nivian NVS-A6WG alarm panel.
 - [TheAdamGalloway](https://github.com/TheAdamGalloway) for contributing support for Curv alarm panel that was merged to the Nivian above.
 - [LeeRuMax](https://github.com/LeeRuMax) for assisting with support for Avonflow AFD14-H thermostat.
+- [arayanhasgithub](https://github.com/arayanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
