@@ -13,6 +13,7 @@ products:
     model: LP365
     name: Frizzlife LP365
 entities:
+  # Valve
   - entity: valve
     name: Valve
     class: water
@@ -30,6 +31,7 @@ entities:
       - id: 20
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "f"
             value: "Fahrenheit"
@@ -70,17 +72,19 @@ entities:
           - dps_val: 3
             value: "Fault"
 
+  # Leak Warning
   - entity: binary_sensor
-    class: problem
-    name: Leak Alarm
+    class: moisture
+    name: Leak Warning
     dps:
       - id: 106
         type: boolean
         name: sensor
 
+  # Leak Alarm
   - entity: binary_sensor
-    class: moisture
-    name: Moisture Detected
+    class: problem
+    name: Leak Alarm
     dps:
       - id: 107
         type: boolean
@@ -94,6 +98,7 @@ entities:
         type: boolean
         name: sensor
 
+  # Alarm Clear Button
   - entity: button
     name: Alarm Clear
     category: config
@@ -105,6 +110,7 @@ entities:
         optional: true
 
   # --- TEMPERATURE (Optional & Dynamic based on DPS 20) ---
+  # Temperature sensor - This doesn't actually work with the LP365P Pressure variant
   - entity: sensor
     name: Water Temperature
     class: temperature
@@ -144,6 +150,7 @@ entities:
           max: 100
 
   # --- PRESSURE (Optional) ---
+  # Pressure Sensor
   - entity: sensor
     class: pressure
     dps:
@@ -178,6 +185,7 @@ entities:
               dps_val: "metric_unit"
 
   # --- VOLUME & FLOW ---
+  # Volume Today
   - entity: sensor
     class: water
     name: Volume Today
@@ -210,6 +218,7 @@ entities:
               id: 102
               dps_val: "metric_unit"
 
+  # Flow rate
   - entity: sensor
     class: volume_flow_rate
     name: Flow Rate per Hour
@@ -242,6 +251,7 @@ entities:
               id: 102
               dps_val: "metric_unit"
 
+  # Current flow rate
   - entity: sensor
     class: volume_flow_rate
     name: Current Flow Rate
@@ -273,6 +283,7 @@ entities:
               dps_val: "metric_unit"
 
   # --- MODES & LIMITS ---
+  # Protection Enabled Switch
   - entity: switch
     name: Protection Enabled
     dps:
@@ -280,6 +291,7 @@ entities:
         type: boolean
         name: switch
 
+  # Protection Mode Select
   - entity: select
     name: Protection Mode
     category: config
@@ -293,6 +305,7 @@ entities:
           - dps_val: "ADVANCED_SETTING"
             value: "Advanced"
 
+  # AUTO Mode
   - entity: select
     name: AUTO Mode
     category: config
@@ -307,7 +320,15 @@ entities:
             value: "Mode 2"
           - dps_val: "mode3"
             value: "Mode 3"
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "AUTO"
+            value: true
+          - value: false
 
+  # ADVANCED Mode
   - entity: select
     name: ADVANCED Mode
     category: config
@@ -322,52 +343,154 @@ entities:
             value: "Mode 5"
           - dps_val: "mode6"
             value: "Mode 6"
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
 
+  # Allowed flow time (Dynamic Redirect)
   - entity: number
-    name: Mode4 Allowed Flow Time
+    name: Advanced Allowed Flow Time
     category: config
     dps:
-      - id: 112
-        type: integer
-        optional: true
+      - id: 111
+        type: string
         name: value
         unit: min
         range:
           min: 1
           max: 1000
         mapping:
+          - dps_val: "mode4"
+            value_redirect: mode4_time
+          - dps_val: "mode5"
+            value_redirect: mode5_time
+          - dps_val: "mode6"
+            value_redirect: mode6_time
+      - id: 112
+        type: integer
+        name: mode4_time
+        mapping:
           - scale: 1.0
+      - id: 113
+        type: integer
+        name: mode5_time
+        mapping:
+          - scale: 1.0
+      - id: 114
+        type: integer
+        name: mode6_time
+        mapping:
+          - scale: 1.0
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
 
+  # Allowed flow volume (Imperial - Dynamic Redirect)
   - entity: number
-    name: Mode4 Allowed Flow Volume
+    name: Advanced Allowed Flow Volume
     category: config
     dps:
-      - id: 115
-        type: integer
+      - id: 111
+        type: string
         name: value
         unit: gal
         range:
           min: 0
           max: 5000
         mapping:
-          - scale: 10.0
+          - dps_val: "mode4"
+            value_redirect: mode4_vol
             constraint:
               id: 102
               dps_val: "us_units"
-
-  - entity: number
-    name: Mode4 Allowed Flow Volume
-    category: config
-    dps:
+          - dps_val: "mode5"
+            value_redirect: mode5_vol
+            constraint:
+              id: 102
+              dps_val: "us_units"
+          - dps_val: "mode6"
+            value_redirect: mode6_vol
+            constraint:
+              id: 102
+              dps_val: "us_units"
       - id: 115
         type: integer
+        name: mode4_vol
+        mapping:
+          - scale: 10.0
+      - id: 116
+        type: integer
+        name: mode5_vol
+        mapping:
+          - scale: 10.0
+      - id: 117
+        type: integer
+        name: mode6_vol
+        mapping:
+          - scale: 10.0
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
+
+  # Allowed flow volume (Metric - Dynamic Redirect)
+  - entity: number
+    name: Advanced Allowed Flow Volume
+    category: config
+    dps:
+      - id: 111
+        type: string
         name: value
         unit: L
         range:
           min: 0
           max: 20000
         mapping:
-          - scale: 100.0
+          - dps_val: "mode4"
+            value_redirect: mode4_vol
             constraint:
               id: 102
               dps_val: "metric_unit"
+          - dps_val: "mode5"
+            value_redirect: mode5_vol
+            constraint:
+              id: 102
+              dps_val: "metric_unit"
+          - dps_val: "mode6"
+            value_redirect: mode6_vol
+            constraint:
+              id: 102
+              dps_val: "metric_unit"
+      - id: 115
+        type: integer
+        name: mode4_vol
+        mapping:
+          - scale: 100.0
+      - id: 116
+        type: integer
+        name: mode5_vol
+        mapping:
+          - scale: 100.0
+      - id: 117
+        type: integer
+        name: mode6_vol
+        mapping:
+          - scale: 100.0
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
