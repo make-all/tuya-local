@@ -26,10 +26,11 @@ entities:
             value: true
       - id: 10
         type: integer
+        unit: C
         name: current_temperature
       - id: 103
         type: integer
-        name: temperature
+        name: setpoint_temperature
         unit: C
         range:
           min: 30
@@ -190,6 +191,17 @@ entities:
     category: diagnostic
     dps:
       - id: 108
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Geyser temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 10
         type: integer
         name: sensor
         optional: true
