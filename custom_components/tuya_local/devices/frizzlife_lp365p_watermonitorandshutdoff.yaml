@@ -39,7 +39,7 @@ entities:
             value: "Celsius"
 
   - entity: select
-    name: Units
+    name: Volume Units
     category: config
     icon: "mdi:ruler-square"
     dps:
@@ -48,9 +48,9 @@ entities:
         name: option
         mapping:
           - dps_val: "us_units"
-            value: "Imperial"
+            value: "Gallon"
           - dps_val: "metric_unit"
-            value: "Metric"
+            value: "Liter"
 
   # --- STATUS / DIAGNOSTICS ---
   - entity: sensor
@@ -122,12 +122,16 @@ entities:
         class: measurement
         mapping:
           - scale: 10.0
-            constraint:
-              id: 20
-              dps_val: "f"
         range:
           min: -40
           max: 212
+      - id: 20
+        type: string
+        name: available
+        mapping:
+          - dps_val: "f"
+            value: true
+          - value: false
 
   - entity: sensor
     name: Water Temperature
@@ -141,15 +145,18 @@ entities:
         class: measurement
         mapping:
           - scale: 10.0
-            constraint:
-              id: 20
-              dps_val: "c"
         range:
           min: -40
           max: 100
+      - id: 20
+        type: string
+        name: available
+        mapping:
+          - dps_val: "c"
+            value: true
+          - value: false
 
   # --- PRESSURE (Optional) ---
-  # Pressure Sensor
   - entity: sensor
     class: pressure
     dps:
@@ -161,12 +168,16 @@ entities:
         class: measurement
         mapping:
           - scale: 10.0
-            constraint:
-              id: 102
-              dps_val: "us_units"
         range:
           min: 0
           max: 99999
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
 
   - entity: sensor
     class: pressure
@@ -179,12 +190,15 @@ entities:
         class: measurement
         mapping:
           - scale: 100.0
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
   # --- VOLUME & FLOW ---
-  # Volume Today
   - entity: sensor
     class: water
     name: Volume Today
@@ -196,10 +210,14 @@ entities:
         class: total_increasing
         unit: gal
         mapping:
-          - scale: 10
-            constraint:
-              id: 102
-              dps_val: "us_units"
+          - scale: 10 
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
 
   - entity: sensor
     class: water
@@ -213,11 +231,14 @@ entities:
         unit: L
         mapping:
           - scale: 10.0
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
-  # Flow rate
   - entity: sensor
     class: volume_flow_rate
     name: Flow Rate per Hour
@@ -229,10 +250,14 @@ entities:
         class: measurement
         unit: gal/h
         mapping:
-          - scale: 1
-            constraint:
-              id: 102
-              dps_val: "us_units"
+          - scale: 1 
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
 
   - entity: sensor
     class: volume_flow_rate
@@ -246,11 +271,14 @@ entities:
         unit: L/h
         mapping:
           - scale: 1.0
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
-  # Current flow rate
   - entity: sensor
     class: volume_flow_rate
     name: Current Flow Rate
@@ -259,12 +287,16 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        unit: gal/min
+        unit: gal/min 
         mapping:
-          - scale: 1000.0
-            constraint:
-              id: 102
-              dps_val: "us_units"
+          - scale: 1000.0 
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
 
   - entity: sensor
     class: volume_flow_rate
@@ -277,12 +309,15 @@ entities:
         unit: L/h
         mapping:
           - scale: 1000.0
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
   # --- MODES & LIMITS ---
-  # Protection Enabled Switch
   - entity: switch
     name: Protection Enabled
     dps:
@@ -290,7 +325,6 @@ entities:
         type: boolean
         name: switch
 
-  # Protection Mode Select
   - entity: select
     name: Protection Mode
     category: config
@@ -407,19 +441,10 @@ entities:
         mapping:
           - dps_val: "mode4"
             value_redirect: mode4_vol
-            constraint:
-              id: 102
-              dps_val: "us_units"
           - dps_val: "mode5"
             value_redirect: mode5_vol
-            constraint:
-              id: 102
-              dps_val: "us_units"
           - dps_val: "mode6"
             value_redirect: mode6_vol
-            constraint:
-              id: 102
-              dps_val: "us_units"
       - id: 115
         type: integer
         name: mode4_vol
@@ -435,12 +460,18 @@ entities:
         name: mode6_vol
         mapping:
           - scale: 10.0
+      - id: 102
+        type: string
+        name: unit_system
       - id: 109
         type: string
         name: available
         mapping:
           - dps_val: "ADVANCED_SETTING"
-            value: true
+            constraint: unit_system
+            conditions:
+              - dps_val: "us_units"
+                value: true
           - value: false
 
   # Allowed flow volume (Metric - Dynamic Redirect)
@@ -458,19 +489,10 @@ entities:
         mapping:
           - dps_val: "mode4"
             value_redirect: mode4_vol
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
           - dps_val: "mode5"
             value_redirect: mode5_vol
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
           - dps_val: "mode6"
             value_redirect: mode6_vol
-            constraint:
-              id: 102
-              dps_val: "metric_unit"
       - id: 115
         type: integer
         name: mode4_vol
@@ -486,10 +508,74 @@ entities:
         name: mode6_vol
         mapping:
           - scale: 100.0
+      - id: 102
+        type: string
+        name: unit_system
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            constraint: unit_system
+            conditions:
+              - dps_val: "metric_unit"
+                value: true
+          - value: false
+
+  # Advanced: Allowed Flow Rate
+  - entity: switch
+    name: Ignore Minimal Flow
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
       - id: 109
         type: string
         name: available
         mapping:
           - dps_val: "ADVANCED_SETTING"
             value: true
+          - value: false
+
+  - entity: select
+    name: Allowed Minimal Flow Rate
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "0.01 Gal / 2.5 L"
+          - dps_val: 1
+            value: "0.02 Gal / 5.0 L"
+          - dps_val: 2
+            value: "0.03 Gal / 7.5 L"
+          - dps_val: 3
+            value: "0.04 Gal / 10.0 L"
+          - dps_val: 4
+            value: "0.05 Gal / 12.5 L"
+          - dps_val: 5
+            value: "0.06 Gal / 15.0 L"
+          - dps_val: 6
+            value: "0.07 Gal / 17.5 L"
+          - dps_val: 7
+            value: "0.08 Gal / 20.0 L"
+          - dps_val: 8
+            value: "0.09 Gal / 22.5 L"
+          - dps_val: 9
+            value: "0.10 Gal / 25.0 L"
+      - id: 109
+        type: string
+        name: mode_system
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            constraint: mode_system
+            conditions:
+              - dps_val: "ADVANCED_SETTING"
+                value: true
           - value: false
