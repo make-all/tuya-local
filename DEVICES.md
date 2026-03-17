@@ -402,7 +402,7 @@ devices # Supported
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
-- Stirling FS1-40DC pedestal fan
+- Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -1097,6 +1097,7 @@ port and password.
 - Ningbo BF314A camera pet feeder
 - Oneisall PFD-002 Pro IR pet feeder
 - Papifeed pet feeder
+- Pawspik Microchip pet feeder
 - Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 camera pet feeder
