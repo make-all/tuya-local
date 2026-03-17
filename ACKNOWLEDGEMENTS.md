@@ -1297,3 +1297,4 @@ Further device support has been made with the assistance of users. Please consid
 - [penguin00xx](https://github.com/penguin00xx) for assisting with support for Koenic KTM-221723-M kettle.
 - [dodhouse](https://github.com/dodhouse) for assisting with support for Brilliant ceiling fan remote controller.
 - [lolmaxlevel](https://github.com/lolmaxlevel) for contributin improvements for Tongou SA1 energy meter.
+- [goblinmaks](https://github.com/goblinmaks) for contributing support for iPengen GO-E31-32A EV charger.
