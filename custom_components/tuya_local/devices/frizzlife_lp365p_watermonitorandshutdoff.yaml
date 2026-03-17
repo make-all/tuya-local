@@ -110,7 +110,6 @@ entities:
         optional: true
 
   # --- TEMPERATURE (Optional & Dynamic based on DPS 20) ---
-  # Temperature sensor - This doesn't actually work with the LP365P Pressure variant
   - entity: sensor
     name: Water Temperature
     class: temperature
@@ -197,7 +196,7 @@ entities:
         class: total_increasing
         unit: gal
         mapping:
-          - scale: 10 
+          - scale: 10
             constraint:
               id: 102
               dps_val: "us_units"
@@ -230,7 +229,7 @@ entities:
         class: measurement
         unit: gal/h
         mapping:
-          - scale: 1 
+          - scale: 1
             constraint:
               id: 102
               dps_val: "us_units"
@@ -260,9 +259,9 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        unit: gal/min 
+        unit: gal/min
         mapping:
-          - scale: 1000.0 
+          - scale: 1000.0
             constraint:
               id: 102
               dps_val: "us_units"
