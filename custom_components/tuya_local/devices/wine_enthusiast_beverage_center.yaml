@@ -1,0 +1,162 @@
+name: Beverage center
+products:
+  - id: qvcxc9c0wlkcuwto
+    manufacturer: Wine Enthusiast
+    model: Prestige S Smart Wi-Fi Beverage Center
+entities:
+  - entity: climate
+    translation_key: wine_cellar
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: cool
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 34
+                  max: 50
+                value_redirect: temp_set_f
+      - id: 4
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 6
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temperature_f
+      - id: 103
+        type: integer
+        hidden: true
+        name: current_temperature_f
+      - id: 104
+        type: integer
+        hidden: true
+        name: temp_set_f
+        range:
+          min: 34
+          max: 50
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: lock
+  - entity: light
+    name: Interior light
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 13
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - constraint: lamp_color_select
+            conditions:
+              - dps_val: yellow
+                value_redirect: yellow_brightness
+      - id: 109
+        type: string
+        hidden: true
+        name: lamp_color_select
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: yellow
+            value: yellow
+      - id: 110
+        type: integer
+        hidden: true
+        name: yellow_brightness
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Lamp color
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: yellow
+            value: Yellow
+  - entity: switch
+    name: ECO mode
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Filter days remaining
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: days
+        class: measurement
+  - entity: select
+    name: Filter reset interval
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: M_6
+            value: 6 months
+          - dps_val: M_12
+            value: 12 months
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+        mask: "3F"
