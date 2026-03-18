@@ -29,11 +29,13 @@ entities:
 
   - entity: number
     name: Upper Temp Limit (C)
+    class: temperature
     category: config
     dps:
       - id: 10
         type: integer
         name: value
+        unit: C
         range:
           min: -400
           max: 1000
@@ -42,11 +44,13 @@ entities:
 
   - entity: number
     name: Lower Temp Limit (C)
+    class: temperature
     category: config
     dps:
       - id: 11
         type: integer
         name: value
+        unit: C
         range:
           min: -400
           max: 1000
@@ -56,11 +60,12 @@ entities:
   - entity: number
     name: Alarm Delay Time
     category: config
-    unit: min
+    class: duration
     dps:
       - id: 108
         type: integer
         name: value
+        unit: min
         range:
           min: 0
           max: 10
@@ -68,11 +73,12 @@ entities:
   - entity: number
     name: Alarm Duration
     category: config
-    unit: min
+    class: duration
     dps:
       - id: 106
         type: integer
         name: value
+        unit: min
         range:
           min: 1
           max: 10
@@ -113,11 +119,12 @@ entities:
   - entity: number
     name: Periodic Report Interval
     category: config
-    unit: h
+    class: duration
     dps:
       - id: 17
         type: integer
         name: value
+        unit: h
 
   - entity: select
     name: Temperature Unit
@@ -151,11 +158,12 @@ entities:
   - entity: number
     name: Sampling Interval
     category: config
-    unit: min
+    class: duration
     dps:
       - id: 6
         type: integer
         name: value
+        unit: min
 
   - entity: switch
     name: Master Alarm Switch
