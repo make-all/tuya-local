@@ -1299,3 +1299,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lolmaxlevel](https://github.com/lolmaxlevel) for contributin improvements for Tongou SA1 energy meter.
 - [goblinmaks](https://github.com/goblinmaks) for contributing support for iPengen GO-E31-32A EV charger.
 - [cjsturgess](https://github.com/cjsturgess) for assisting with support for Pawspik Microchip pet feeder.
+- [meeowgler](https://github.com/meeowgler) for assisting with support for Frienhund ACF180W-A dual camera pet feeder.
