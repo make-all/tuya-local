@@ -497,7 +497,7 @@ def test_config_files_parse(mocker):
     All configs should be parsable and meet certain criteria
     """
     for cfg in available_configs():
-        entities = []
+        entities = {}
         parsed = TuyaDeviceConfig(cfg)
         # Check for error messages or unparsed config
         if isinstance(parsed, str) or isinstance(parsed._config, str):
@@ -527,13 +527,21 @@ def test_config_files_parse(mocker):
         count = 0
         for entity in parsed.all_entities():
             check_entity(entity, cfg, mocker)
-            # check entities are unique
+            # check entities are unique, allowing mutually-exclusive duplicates
             if entity.config_id in entities:
-                pytest.fail(
-                    f"\n::error file={fname},line={entity._config.__line__}::"
-                    "Duplicate entity {entity.config_id} in {cfg}"
-                )
-            entities.append(entity.config_id)
+                existing_entity = entities[entity.config_id]
+                existing_avail = existing_entity.find_dps("available")
+                new_avail = entity.find_dps("available")
+                
+                # If both duplicate entities have an 'available' DP pointing to the exact same ID, they are mutually exclusive
+                if existing_avail and new_avail and existing_avail.id == new_avail.id:
+                    pass 
+                else:
+                    pytest.fail(
+                        f"\n::error file={fname},line={entity._config.__line__}::"
+                        f"Duplicate entity {entity.config_id} in {cfg}"
+                    )
+            entities[entity.config_id] = entity
 
             count += 1
         assert count > 0, f"\n::error file={fname},line=1::No entities found in {cfg}"
