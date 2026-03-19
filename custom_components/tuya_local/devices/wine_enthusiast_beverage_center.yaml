@@ -2,10 +2,9 @@ name: Beverage center
 products:
   - id: qvcxc9c0wlkcuwto
     manufacturer: Wine Enthusiast
-    model: Prestige S Smart Wi-Fi Beverage Center
+    model: Prestige S
 entities:
   - entity: climate
-    translation_key: thermostat
     dps:
       - id: 1
         type: boolean
@@ -45,6 +44,14 @@ entities:
             conditions:
               - dps_val: f
                 value_redirect: current_temperature_f
+      - id: 102
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: none
       - id: 103
         type: integer
         hidden: true
@@ -77,19 +84,18 @@ entities:
           min: 0
           max: 100
         mapping:
-          - constraint: lamp_color_select
+          - constraint: color_temp
             conditions:
               - dps_val: yellow
                 value_redirect: yellow_brightness
       - id: 109
         type: string
-        hidden: true
-        name: lamp_color_select
+        name: color_temp
         mapping:
           - dps_val: white
-            value: white
+            value: 6500
           - dps_val: yellow
-            value: yellow
+            value: 2700
       - id: 110
         type: integer
         hidden: true
@@ -97,25 +103,6 @@ entities:
         range:
           min: 0
           max: 100
-  - entity: select
-    name: Lamp color
-    category: config
-    dps:
-      - id: 109
-        type: string
-        name: option
-        mapping:
-          - dps_val: white
-            value: White
-          - dps_val: yellow
-            value: Yellow
-  - entity: switch
-    name: ECO mode
-    category: config
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
   - entity: sensor
     class: humidity
     category: diagnostic
@@ -126,7 +113,7 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Filter days remaining
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 106
@@ -147,7 +134,6 @@ entities:
           - dps_val: M_12
             value: 12 months
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -158,4 +144,7 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
         mask: "3F"
