@@ -425,7 +425,7 @@ def check_entity(entity, cfg, mocker):
             f"\n::error file={fname},line={line}::dp id missing from {e} in {cfg}"
         )
         assert dp._config.get("type") is not None, (
-            f"\n::error file={fname},line~{line}::dp type missing from {e} in {cfg}"
+            f"\n::error file={fname},line={line}::dp type missing from {e} in {cfg}"
         )
         assert dp._config.get("name") is not None, (
             f"\n::error file={fname},line={line}::dp name missing from {e} in {cfg}"
@@ -508,11 +508,18 @@ def test_config_files_parse(mocker):
             YAML_SCHEMA(parsed._config)
         except vol.MultipleInvalid as e:
             messages = []
+            first_line = None
             for err in e.errors:
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
+                if first_line is None:
+                    first_line = err.path[-1].__line__
             messages = "; ".join(messages)
-            pytest.fail(f"\n::error file={fname},line=1::Validation error: {messages}")
+            if not first_line:
+                first_line = 1
+            pytest.fail(
+                f"\n::error file={fname},line={first_line}::Validation error: {messages}"
+            )
 
         assert parsed._config.get("name") is not None, (
             f"\n::error file={fname},line=1::name missing from {cfg}"
@@ -520,14 +527,16 @@ def test_config_files_parse(mocker):
         count = 0
         for entity in parsed.all_entities():
             check_entity(entity, cfg, mocker)
+            # check entities are unique
+            if entity.config_id in entities:
+                pytest.fail(
+                    f"\n::error file={fname},line={entity._config.__line__}::"
+                    "Duplicate entity {entity.config_id} in {cfg}"
+                )
             entities.append(entity.config_id)
+
             count += 1
         assert count > 0, f"\n::error file={fname},line=1::No entities found in {cfg}"
-
-        # check entities are unique
-        assert len(entities) == len(set(entities)), (
-            f"\n::error file={fname},line=1::Duplicate entities in {cfg}"
-        )
 
 
 def test_configs_can_be_matched():
