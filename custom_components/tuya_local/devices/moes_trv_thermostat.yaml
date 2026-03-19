@@ -183,13 +183,14 @@ entities:
         readonly: true
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 105
         type: integer
         name: value
         optional: true
-        unit: °
+        unit: C
         range:
           min: -9
           max: 9

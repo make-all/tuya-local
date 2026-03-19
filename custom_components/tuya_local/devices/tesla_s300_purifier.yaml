@@ -144,13 +144,17 @@ entities:
         type: bitfield
         name: fault_code
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: light
     dps:
       - id: 105

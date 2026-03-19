@@ -29,8 +29,6 @@ UNKNOWN108_DPS = "108"
 
 
 class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("lefant_m213_vacuum.yaml", LEFANT_M213_VACUUM_PAYLOAD)
         self.subject = self.entities.get("vacuum")

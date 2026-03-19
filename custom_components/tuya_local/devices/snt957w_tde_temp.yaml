@@ -72,12 +72,13 @@ entities:
             value: Not set
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 23
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -100
           max: 100

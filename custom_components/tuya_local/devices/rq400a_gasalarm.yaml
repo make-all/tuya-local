@@ -74,10 +74,14 @@ entities:
         type: boolean
         name: sensor
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 14
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

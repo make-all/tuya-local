@@ -20,8 +20,6 @@ DEFAULT_TONE = "alarm_sound_light"
 
 
 class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("orion_outdoor_siren.yaml", ORION_SIREN_PAYLOAD)
         self.subject = self.entities.get("siren")

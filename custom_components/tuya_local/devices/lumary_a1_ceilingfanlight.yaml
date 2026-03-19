@@ -178,30 +178,19 @@ entities:
         type: boolean
         name: available
   - entity: switch
-    name: Beep
+    translation_key: sound
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 66
         type: boolean
         optional: true
         name: switch
         mapping:
-          - dps_val: false
-            icon: "mdi:volume-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:volume-high"
-            icon_priority: 1
           - dps_val: null
             value_redirect: alt
       - id: 103
         type: boolean
         name: alt
-        mapping:
-          - dps_val: false
-            icon: "mdi:volume-off"
-            icon_priority: 2
   - entity: text
     name: Segment dimming
     category: config

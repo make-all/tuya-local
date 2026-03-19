@@ -12,8 +12,6 @@ TIMER_DP = "19"
 
 
 class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "blitzwolf_bwsh2_humidifier.yaml",

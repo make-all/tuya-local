@@ -49,12 +49,13 @@ entities:
           - scale: 10
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         name: value
         type: integer
-        unit: "°"
+        unit: C
         range:
           min: -35
           max: 35
@@ -62,7 +63,7 @@ entities:
           - scale: 10
             step: 5
   - entity: lock
-    translation_key: child_Lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40

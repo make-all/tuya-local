@@ -107,13 +107,17 @@ entities:
         type: boolean
         name: sensor
   - entity: switch
-    name: Muffling
-    icon: "mdi:alarm"
+    translation_key: sound
     category: config
     dps:
       - id: 16
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: sensor
     name: Detection value
     dps:

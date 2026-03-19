@@ -30,8 +30,6 @@ UNKNOWN19_DPS = "19"
 class TestEbergCoolyC35HDHeatpump(
     BasicSelectTests, TargetTemperatureTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "eberg_cooly_c35hd.yaml",

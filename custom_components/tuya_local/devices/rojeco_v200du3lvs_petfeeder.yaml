@@ -1,0 +1,160 @@
+name: Camera pet feeder
+products:
+  - id: nfeelzrghxtfj7xf
+    manufacturer: Rojeco
+    model: V200 DU3L-VS
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "low"
+          - dps_val: "2"
+            value: "high"
+  - entity: camera
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: motion_enable
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Feed amount
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 201
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 20
+  - entity: sensor
+    name: Portion size
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 202
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Control
+    category: config
+    hidden: true
+    icon: "mdi:tools"
+    dps:
+      - id: 203
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 2147483647
+  - entity: sensor
+    name: Data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 204
+        type: integer
+        optional: true
+        name: sensor
+  - entity: number
+    name: Auto portioning
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 205
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 255
+  - entity: sensor
+    name: History
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 206
+        type: integer
+        optional: true
+        name: sensor
+  - entity: text
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 207
+        type: string
+        optional: true
+        name: value
+  - entity: select
+    name: Voice recording
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 208
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "stop"
+          - dps_val: "1"
+            value: "record"
+          - dps_val: "2"
+            value: "error"
+            hidden: true

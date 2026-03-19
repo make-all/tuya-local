@@ -21,8 +21,6 @@ class TestQotoSprinkler(
     MultiSensorTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("qoto_03_sprinkler.yaml", QOTO_SPRINKLER_PAYLOAD)
         self.subject = self.entities.get("valve_water")

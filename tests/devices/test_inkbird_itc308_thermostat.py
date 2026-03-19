@@ -34,8 +34,6 @@ class TestInkbirdITC308Thermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "inkbird_itc308_thermostat.yaml", INKBIRD_ITC308_THERMOSTAT_PAYLOAD
@@ -90,7 +88,8 @@ class TestInkbirdITC308Thermostat(
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
-                    "unit": "°",
+                    "device_class": NumberDeviceClass.TEMPERATURE_DELTA,
+                    "unit": NumberDeviceClass.CELSIUS,
                 },
                 {
                     "name": "number_compressor_delay",
@@ -125,6 +124,7 @@ class TestInkbirdITC308Thermostat(
                     "step": 0.1,
                     "min": 0.3,
                     "max": 15.0,
+                    "device_class": NumberDeviceClass.TEMPERATURE_DELTA,
                     "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
@@ -134,6 +134,7 @@ class TestInkbirdITC308Thermostat(
                     "step": 0.1,
                     "min": 0.3,
                     "max": 15.0,
+                    "device_class": NumberDeviceClass.TEMPERATURE_DELTA,
                     "unit": UnitOfTemperature.CELSIUS,
                 },
             ]

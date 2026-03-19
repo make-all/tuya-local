@@ -65,12 +65,13 @@ entities:
             value: heating
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -9
           max: 9
@@ -255,8 +256,7 @@ entities:
             value: false
           - value: true
   - entity: switch
-    name: Sound
-    icon: "mdi:ear-hearing"
+    translation_key: sound
     category: config
     hidden: unavailable
     dps:

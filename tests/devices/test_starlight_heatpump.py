@@ -13,8 +13,6 @@ class TestStarLightHeatpump(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("starlight_heatpump.yaml", STARLIGHT_HEATPUMP_PAYLOAD)
         self.subject = self.entities["climate"]

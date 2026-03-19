@@ -144,3 +144,249 @@ entities:
         mapping:
           - dps_val: null
             value: false
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 50
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Normal"
+            value: false
+          - dps_val: "Over_Current_Trip"
+            value: true
+          - dps_val: "Over_Power_Trip"
+            value: true
+          - dps_val: "High_Temp_Trip"
+            value: true
+          - dps_val: "Over_Voltage_Trip"
+            value: true
+          - dps_val: "Under_Voltage_Trip"
+            value: true
+          - dps_val: "Over_Current_Alarm"
+            value: true
+          - dps_val: "Over_Power_Alarm"
+            value: true
+          - dps_val: "High_Temp_Alarm"
+            value: true
+          - dps_val: "Over_Voltage_Alarm"
+            value: true
+          - dps_val: "Under_Voltage_Alarm"
+            value: true
+          - dps_val: "Restore_Default"
+            value: true
+          - dps_val: "Automatic_Closing"
+            value: false
+          - dps_val: "Electricity_Shortage"
+            value: true
+          - dps_val: "Electricity_Shortage_Alarm"
+            value: true
+          - dps_val: "Electricity_Reset"
+            value: true
+
+      - id: 110
+        type: string
+        name: reason
+
+  # alarm switches (Switches: Alarm <-> Closed)
+
+  # DP 101: Energy Shortage
+  - entity: switch
+    name: Low energy alarm
+    category: config
+    icon: "mdi:battery-alert"
+    dps:
+      - id: 101
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+  # DP 102: Over Voltage (OV)
+  - entity: switch
+    name: Over voltage alarm
+    category: config
+    icon: "mdi:flash-alert"
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+  # DP 103: Under Voltage (UV)
+  - entity: switch
+    name: Under voltage alarm
+    category: config
+    icon: "mdi:flash-off"
+    dps:
+      - id: 103
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+  # DP 104: Over Current (OC)
+  - entity: switch
+    name: Over current alarm
+    category: config
+    icon: "mdi:current-ac"
+    dps:
+      - id: 104
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+  # DP 105: Over Power (OP)
+  - entity: switch
+    name: Over power alarm
+    category: config
+    icon: "mdi:gauge-full"
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+  # DP 107: Temperature (Temp)
+  - entity: switch
+    name: Over temp alarm
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 107
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "Alarm"
+            value: true
+          - dps_val: "Closed"
+            value: false
+
+  # Thresholds for alarms
+  # DP 114: Current Threshold
+  - entity: number
+    class: current
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over current
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 50
+  # DP 115: Over Voltage Threshold
+  - entity: number
+    class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over voltage
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 100
+          max: 280
+  # DP 116: Under Voltage Threshold
+  - entity: number
+    class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Under voltage
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 100
+          max: 280
+  # DP 118: Temperature Threshold
+  - entity: number
+    class: temperature
+    translation_key: maximum_temperature
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: -250
+          max: 1000
+  # DP 119: Over Power Threshold
+  - entity: number
+    class: power
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over power
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        mapping:
+          - step: 10
+        range:
+          min: 5
+          max: 12000
+  # DP 120: Energy Shortage Threshold
+  - entity: number
+    class: energy
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Low energy
+    category: config
+    dps:
+      - id: 120
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 10
+          max: 500

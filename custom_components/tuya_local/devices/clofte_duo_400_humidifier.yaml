@@ -56,12 +56,16 @@ entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Mute
-    icon: mdi:volume-mute
+    translation_key: sound
     dps:
       - id: 116
         name: switch
         type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Drying
     dps:

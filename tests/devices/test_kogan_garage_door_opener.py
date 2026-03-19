@@ -21,8 +21,6 @@ class TestKoganGarageOpener(
     BasicSensorTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("kogan_garage_opener.yaml", KOGAN_GARAGE_DOOR_PAYLOAD)
         self.subject = self.entities["cover_garage"]

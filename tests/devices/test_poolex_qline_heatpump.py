@@ -20,8 +20,6 @@ class TestPoolexQlineHeatpump(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("poolex_qline_heatpump.yaml", POOLEX_QLINE_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")

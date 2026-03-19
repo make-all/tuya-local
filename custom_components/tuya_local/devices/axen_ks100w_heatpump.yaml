@@ -31,18 +31,17 @@ entities:
         optional: true
         name: fault_flag
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
-    icon_priority: 2
+    translation_key: sound
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
         mapping:
+          - dps_val: true
+            value: false
           - dps_val: false
-            icon: "mdi:volume-high"
-            icon_priority: 1
+            value: true
   - entity: climate
     dps:
       - id: 1

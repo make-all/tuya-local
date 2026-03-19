@@ -70,13 +70,14 @@ entities:
         class: measurement
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 109
         type: integer
         optional: true
         name: value
-        unit: °
+        unit: C
         range:
           min: -99
           max: 99

@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "デバイスのIPアドレスを特定する",
-                "description": "Tuya クラウドはローカル IP アドレスを提供しないため、ローカル ネットワークを検索してデバイスを見つける必要があります。"
+                "description": "{device_name}Tuya クラウドはローカル IP アドレスを提供しないため、ローカル ネットワークを検索してデバイスを見つける必要があります。"
             },
             "local": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。]({device_details_url})",
+                "description": "{device_name}[これらの手順に従ってデバイスIDとローカルキーを見つけてください。]({device_details_url})",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
                     "device_id": "デバイスID（デバイスがハブ経由で接続されている場合はハブのdevice_id）",
@@ -46,14 +46,21 @@
             },
             "select_type": {
                 "title": "デバイスの種類を選択してください",
-                "description": "デバイスに合ったタイプを選択してください",
+                "description": "{device_name}デバイスに合ったタイプを選択してください",
+                "data": {
+                    "type": "デバイスタイプ"
+                }
+            },
+            "select_type_auto_detected": {
+                "title": "デバイスの種類を選択してください",
+                "description": "{device_name}デバイスに合ったタイプを選択してください。プロトコルバージョン{detected_protocol}が自動的に検出され、保存されました。将来デバイスのファームウェアを更新する場合は、この統合を再構成する必要があるかもしれません。",
                 "data": {
                     "type": "デバイスタイプ"
                 }
             },
             "choose_entities": {
                 "title": "デバイスの詳細",
-                "description": "このデバイスの名前を選択してください",
+                "description": "{device_name}このデバイスの名前を選択してください",
                 "data": {
                     "name": "名"
                 }
@@ -65,7 +72,7 @@
             "no_devices": "アカウントに未登録のデバイスが見つかりません。"
         },
         "error": {
-            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。",
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。特定のプロトコルバージョンを選択した場合は、代わりに「auto」を試してください。",
             "does_not_need_hub": "デバイスにはゲートウェイが必要なく、ゲートウェイが選択されました。",
             "needs_hub": "デバイスにはゲートウェイが必要ですが、ゲートウェイが選択されていません。"
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。"
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。特定のプロトコルバージョンを選択した場合は、代わりに「auto」を試してください。"
         },
         "abort": {
             "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
@@ -113,6 +120,43 @@
                 "state": {
                     "off": "普通",
                     "on": "霜取り"
+                }
+            },
+            "delayed_fan_operation": {
+                "name": "遅延ファン操作",
+                "state": {
+                    "off": "普通",
+                    "on": "遅延"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "チャンバーの低温",
+                            "chamber_overheat": "チャンバーの過熱",
+                            "communication_error": "通信エラー",
+                            "drain_blocked": "排水口の詰まり",
+                            "evaporation_tray_low_temperature": "蒸発トレイの低温",
+                            "evaporation_tray_overheat": "蒸発トレイの過熱",
+                            "fire": "火災",
+                            "firewall_sensor_fault": "ファイアウォールセンサーの故障",
+                            "gas_leak": "ガス漏れ",
+                            "heating_fault": "加熱の故障",
+                            "no_water": "水なし",
+                            "ok": "OK",
+                            "overflow": "オーバーフロー",
+                            "receive_error": "受信エラー",
+                            "sensor_open_circuit": "センサーオープン回路",
+                            "sensor_short_circuit": "センサーショート回路",
+                            "sensor_fault": "センサーの故障",
+                            "transmit_error": "送信エラー",
+                            "valve_fault": "バルブの故障",
+                            "variable_frequency_fault": "可変周波数の故障",
+                            "washing_motor_fault": "洗濯モーターの故障",
+                            "water_removed_or_empty": "水が取り除かれたか空です"
+                        }
+                    }
                 }
             },
             "tank_empty": {
@@ -136,20 +180,18 @@
                     "on": "起床"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: 過熱保護（290°Cを超える）",
-                            "e2": "E2: 蒸発トレイ過熱保護（200°Cを超える）",
-                            "e3": "E3: 室内低温保護（35°C未満）",
-                            "e4": "E4: 蒸発トレイ低温保護（35°C未満）",
-                            "e5": "E5: センサ接続エラー（オープン回路）",
-                            "e6": "E6: センサ故障（ショート）",
-                            "e7": "E7: ディスプレイボード通信エラー",
-                            "e8": "E8: 水槽オープン（CN7）または蒸発トレイ乾燥（CN3）"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "リンス剤",
+                "state": {
+                    "off": "OK",
+                    "on": "補充"
+                }
+            },
+            "salt": {
+                "name": "塩",
+                "state": {
+                    "off": "OK",
+                    "on": "補充"
                 }
             }
         },
@@ -320,7 +362,10 @@
                             "custom": "カスタム",
                             "low_steaming": "低温蒸し",
                             "medium_steaming": "中温蒸し",
-                            "high_steaming": "高温蒸し"
+                            "high_steaming": "高温蒸し",
+                            "steaming": "蒸し",
+                            "hot_air_baking": "熱風焼き",
+                            "disinfect": "消毒"
                         }
                     }
                 }
@@ -437,6 +482,12 @@
             },
             "nightlight": {
                 "name": "夜の光"
+            },
+            "oven_light": {
+                "name": "オーブンライト"
+            },
+            "rangehood_light": {
+                "name": "レンジフードライト"
             }
         },
         "lock": {
@@ -468,6 +519,12 @@
             },
             "volume": {
                 "name": "音量"
+            },
+            "bottom_temperature": {
+                "name": "底部温度"
+            },
+            "top_temperature": {
+                "name": "上部温度"
             }
         },
         "select": {
@@ -530,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -537,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -806,7 +865,60 @@
                     "self_clean": "セルフクリーニング",
                     "hygiene": "衛生",
                     "party": "パーティ",
-                    "baby_care": "ベビーケア"
+                    "baby_care": "ベビーケア",
+                    "hour_wash": "1時間洗い",
+                    "dry": "乾燥",
+                    "storage": "保管",
+                    "light": "軽い",
+                    "pots": "鍋"
+                }
+            },
+            "water_hardness": {
+                "name": "水の硬度"
+            },
+            "rinse_aid_level": {
+                "name": "リンス剤レベル"
+            },
+            "rack": {
+                "name": "ラック",
+                "state": {
+                    "lower": "下",
+                    "upper": "上",
+                    "both": "両方"
+                }
+            },
+            "rangehood_mode": {
+                "name": "レンジフードモード",
+                "state": {
+                    "steaming": "蒸し",
+                    "regular": "通常",
+                    "strong": "強い"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "レンジフードファンスピード",
+                "state": {
+                    "off": "オフ",
+                    "low": "低い",
+                    "medium": "中",
+                    "high": "高い",
+                    "quickfry": "急速"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "レンジフード遅延シャットダウン",
+                "state": {
+                    "disabled": "無効",
+                    "1m": "1分",
+                    "2m": "2分",
+                    "3m": "3分",
+                    "4m": "4分",
+                    "5m": "5分",
+                    "6m": "6分",
+                    "7m": "7分",
+                    "8m": "8分",
+                    "9m": "9分",
+                    "10m": "10分"    
                 }
             },
             "menu": {
@@ -866,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "清潔さ",
+                "state": {
+                    "poor": "悪い",
+                    "good": "良い",
+                    "great": "素晴らしい"
+                }
+            },
             "air_quality": {
                 "name": "空気品質",
                 "state": {
@@ -892,6 +1012,8 @@
                     "waiting_for_authorization": "承認待ち",
                     "standby": "スタンバイ",
                     "heating": "加熱中",
+                    "cold": "冷たい",
+                    "warm": "暖かい",
                     "cooling": "冷却中",
                     "keeping_warm": "保温中",
                     "no_water": "水なし",
@@ -970,7 +1092,8 @@
                     "drain_hot_water": "温水を排水中",
                     "drain_normal_water": "通常の水を排水中",
                     "high_temperature_emptying": "高温排出中",
-                    "high_temperature_emptied": "高温排出完了"
+                    "high_temperature_emptied": "高温排出完了",
+                    "storage": "保管"
                 }
             },
             "time_remaining": {
@@ -1023,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "フィルター寿命"
+            },
+            "days_stored": {
+                "name": "保存された日数"
             }
         },
         "switch": {
@@ -1063,6 +1189,9 @@
             "sleep": {
                 "name": "睡眠"
             },
+            "sound": {
+                "name": "サウンド"
+            },
             "switch_x": {
                 "name": "スイッチ{x}"
             },
@@ -1071,6 +1200,18 @@
             },
             "uv_sterilization": {
                 "name": "紫外線殺菌"
+            },
+            "auto_storage": {
+                "name": "自動収納"
+            },
+            "auto_dry": {
+                "name": "自動乾燥"
+            },
+            "oven": {
+                "name": "オーブン"
+            },
+            "rangehood": {
+                "name": "レンジフード"
             }
         },
         "text": {
@@ -1079,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "予約時間"
+            },
+            "cooking_time": {
+                "name": "調理時間"
+            },
             "timer": {
                 "name": "タイマー"
             },

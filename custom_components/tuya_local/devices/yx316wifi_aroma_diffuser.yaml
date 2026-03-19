@@ -78,22 +78,13 @@ entities:
               min: 0
               max: 255
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
     dps:
       - id: 6
         type: boolean
         name: switch
         optional: true
-        mapping:
-          - dps_val: true
-            icon: "mdi:speaker"
-          - dps_val: false
-            icon: "mdi:speaker-off"
-          - dps_val: null
-            icon: "mdi:speaker-off"
-            value: false
-            hidden: true
   - entity: binary_sensor
     class: problem
     category: diagnostic

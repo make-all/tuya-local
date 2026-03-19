@@ -1,0 +1,129 @@
+name: Air quality monitor
+products:
+  - id: UNKNOWN
+    manufacturer: Inkbird
+    model: IAQM-129-W
+entities:
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Good
+            value: good
+          - dps_val: Medium
+            value: moderate
+          - dps_val: Serious
+            value: poor
+  - entity: sensor
+    class: aqi
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 101
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 0.1
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: switch
+    name: Eco
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: select
+    name: Time format
+    icon: "mdi:clock-digital"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "12 hour"
+          - dps_val: true
+            value: "24 hour"
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
