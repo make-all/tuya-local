@@ -66,6 +66,7 @@ entities:
       - id: 21
         name: current_temperature
         type: integer
+        force: true
       - id: 27
         name: hvac_action
         type: boolean
@@ -138,6 +139,7 @@ entities:
         type: integer
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -160,6 +162,7 @@ entities:
         type: integer
         unit: "F"
         class: measurement
+        force: true
   - entity: sensor
     name: Outlet temperature
     category: diagnostic
@@ -170,6 +173,7 @@ entities:
         type: integer
         unit: "F"
         class: measurement
+        force: true
   - entity: sensor
     name: Coil temperature
     category: diagnostic
@@ -199,6 +203,7 @@ entities:
         type: integer
         unit: "F"
         class: measurement
+        force: true
   - entity: binary_sensor
     name: Backflow
     class: problem
