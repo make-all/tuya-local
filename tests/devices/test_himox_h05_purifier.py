@@ -29,8 +29,6 @@ class TestHimoxH05Purifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("himox_h05_purifier.yaml", HIMOX_H05_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]

@@ -11,8 +11,6 @@ OPEN_DPS = "101"
 
 
 class TestSimpleGarageOpener(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("garage_door_opener.yaml", SIMPLE_GARAGE_DOOR_PAYLOAD)
         self.subject = self.entities["cover_garage"]

@@ -19,8 +19,6 @@ TILTPOS_DP = "109"
 
 
 class TestAM25Blinds(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "zemismart_am25_rollerblind.yaml",

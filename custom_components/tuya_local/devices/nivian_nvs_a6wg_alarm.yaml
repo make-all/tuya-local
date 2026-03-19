@@ -1,0 +1,219 @@
+name: Alarm system
+products:
+  - id: p3sdak6d9jznh14x
+    manufacturer: Nivian
+    model: NVS-A6WG
+  - id: mrwxwgtnpnemqwa1
+    manufacturer: Curv
+    model: CURV-ALR01
+entities:
+  - entity: alarm_control_panel
+    name: Alarm
+    dps:
+      - id: 101
+        name: alarm_state
+        type: string
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: armed
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+      - id: 125
+        type: string
+        name: info
+        sensitive: true
+  - entity: sensor
+    name: GSM status
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: English
+            value: english
+          - dps_val: French
+            value: french
+          - dps_val: Italian
+            value: italian
+          - dps_val: German
+            value: german
+          - dps_val: Spanish
+            value: spanish
+          - dps_val: Danish
+            value: danish
+          - dps_val: Dutch
+            value: dutch
+          - dps_val: Portuguese
+            value: portuguese
+  - entity: sensor
+    name: DC status
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 300
+        unit: s
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 300
+        unit: s
+  - entity: number
+    name: Alarm duration
+    category: config
+    class: duration
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+        unit: min
+  - entity: number
+    name: Call ring count
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    name: Call cycle count
+    category: config
+    dps:
+      - id: 110
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 9
+  - entity: switch
+    name: GSM
+    category: config
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+  - entity: switch
+    name: SMS/call remote control
+    category: config
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Arm SMS notification
+    category: config
+    dps:
+      - id: 114
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Disarm SMS notification
+    category: config
+    dps:
+      - id: 115
+        name: switch
+        type: boolean
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 116
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Exit delay tone
+    category: config
+    dps:
+      - id: 117
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Entry delay tone
+    category: config
+    dps:
+      - id: 118
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Arm/disarm tone
+    category: config
+    dps:
+      - id: 119
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Inside siren
+    category: config
+    dps:
+      - id: 120
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Inside siren sound
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: false
+          - dps_val: "ON"
+            value: true
+  - entity: switch
+    name: Wireless siren
+    category: config
+    dps:
+      - id: 121
+        name: switch
+        type: boolean
+  - entity: text
+    name: Password
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: value
+        hidden: true
+        sensitive: true

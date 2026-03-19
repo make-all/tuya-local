@@ -26,8 +26,6 @@ class TestGoldairGECOHeater(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("goldair_geco_heater.yaml", GECO_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")

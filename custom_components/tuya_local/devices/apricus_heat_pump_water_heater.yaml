@@ -36,13 +36,13 @@ entities:
         type: string
         hidden: true
   - entity: sensor
-    class: power
+    class: energy
     category: diagnostic
     dps:
       - id: 101
         type: integer
         name: sensor
-        unit: W
-        class: measurement
+        unit: kWh
+        class: total_increasing
         mapping:
           - scale: 10

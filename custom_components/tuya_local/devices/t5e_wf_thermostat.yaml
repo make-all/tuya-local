@@ -246,10 +246,9 @@ entities:
         type: string
         name: unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -310,15 +309,22 @@ entities:
             value: true
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
         range:
           min: -10
           max: 10
+      - id: 43
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: select
     name: Schedule
     category: config

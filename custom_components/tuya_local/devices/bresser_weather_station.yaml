@@ -243,8 +243,7 @@ entities:
         unit: hPa
         class: measurement
   - entity: sensor
-    name: Wind speed
-    icon: mdi:weather-windy
+    class: wind_speed
     dps:
       - id: 56
         optional: true
@@ -257,14 +256,13 @@ entities:
           class: measurement
   - entity: sensor
     name: Wind gust
-    icon: mdi:weather-windy
+    class: wind_speed
     dps:
       - id: 57
         optional: true
         <<: *wind_speed
   - entity: sensor
-    name: Rain
-    icon: mdi:weather-rainy
+    class: precipitation
     dps:
       - id: 60
         <<: &rain
@@ -275,8 +273,7 @@ entities:
           class: measurement
         unit: mm
   - entity: sensor
-    name: Rainfall rate
-    icon: mdi:weather-pouring
+    class: precipitation_intensity
     dps:
       - id: 61
         optional: true
@@ -295,7 +292,6 @@ entities:
           - scale: 10
         class: measurement
   - entity: sensor
-    name: Light intensity
     class: illuminance
     dps:
       - id: 63
@@ -333,11 +329,10 @@ entities:
         optional: true
         <<: *temperature
   - entity: sensor
-    name: Wind bearing
-    icon: mdi:compass-outline
+    class: wind_direction
     dps:
       - id: 101
         type: integer
         name: sensor
         unit: "°"
-        class: measurement
+        class: measurement_angle

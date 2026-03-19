@@ -22,8 +22,6 @@ UNKNOWN101_DPS = "101"
 
 
 class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("m027_curtain.yaml", M027_CURTAIN_PAYLOAD)
         self.subject = self.entities["cover_curtain"]

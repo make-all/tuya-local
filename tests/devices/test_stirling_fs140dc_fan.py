@@ -13,8 +13,6 @@ TIMER_DPS = "22"
 
 
 class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("stirling_fs140dc_fan.yaml", STIRLING_FS1_FAN_PAYLOAD)
         self.subject = self.entities.get("fan")
