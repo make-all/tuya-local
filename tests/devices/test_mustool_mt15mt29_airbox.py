@@ -6,8 +6,6 @@ from .base_device_tests import TuyaDeviceTestCase
 
 
 class TestMustoolMT15MT29Airbox(MultiTimeTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "mustool_mt15mt29_airbox.yaml", MUSTOOL_MT15MT29_AIRBOX_PAYLOAD

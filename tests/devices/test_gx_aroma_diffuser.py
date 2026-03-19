@@ -15,8 +15,6 @@ ERROR_DP = "9"
 
 
 class TestAromaDiffuser(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("yym_805SW_aroma_nightlight.yaml", GX_AROMA_PAYLOAD)
         self.subject = self.entities["fan_aroma_diffuser"]

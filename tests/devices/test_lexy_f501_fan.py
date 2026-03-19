@@ -28,8 +28,6 @@ class TestLexyF501Fan(
     BasicSwitchTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("lexy_f501_fan.yaml", LEXY_F501_PAYLOAD)
         self.subject = self.entities.get("fan")

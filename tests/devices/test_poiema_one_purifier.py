@@ -29,8 +29,6 @@ class TestPoeimaOnePurifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("poiema_one_purifier.yaml", POIEMA_ONE_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]

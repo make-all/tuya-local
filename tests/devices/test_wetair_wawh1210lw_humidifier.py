@@ -35,8 +35,6 @@ class TestWetairWAWH1210LWHumidifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "wetair_wawh1210lw_humidifier.yaml", WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD

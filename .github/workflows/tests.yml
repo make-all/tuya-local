@@ -20,13 +20,13 @@ jobs:
       pull-requests: write
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ['3.14']
 
     env:
       UV_SYSTEM_PYTHON: 1
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}

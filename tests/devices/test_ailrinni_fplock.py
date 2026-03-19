@@ -24,8 +24,6 @@ UNLOCK_OFFLINE_DP = "67"
 
 
 class TestAilrinniFingerprintLock(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "ailrinni_fingerprint_lock.yaml", AILRINNI_FINGERPRINTLOCK_PAYLOAD

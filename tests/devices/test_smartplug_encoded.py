@@ -14,8 +14,6 @@ SCHEDULE_DPS = "103"
 
 
 class TestSwitchEncoded(SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("smartplug_encoded.yaml", SMARTPLUG_ENCODED_PAYLOAD)
         self.subject = self.entities.get("switch_outlet")

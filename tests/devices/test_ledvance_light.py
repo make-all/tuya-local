@@ -13,8 +13,6 @@ class TestLedvanceLight(TuyaDeviceTestCase):
     Tests for Ledvance Panel lighting.
     """
 
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "ledvance_smart_plabl100x25b.yaml",

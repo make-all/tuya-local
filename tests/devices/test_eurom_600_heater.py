@@ -17,8 +17,6 @@ ERROR_DPS = "6"
 class TestEurom600Heater(
     BasicBinarySensorTests, TargetTemperatureTests, TuyaDeviceTestCase
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("eurom_600_heater.yaml", EUROM_600_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")

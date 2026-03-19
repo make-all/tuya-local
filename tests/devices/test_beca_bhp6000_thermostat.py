@@ -23,8 +23,6 @@ class TestBecaBHP6000Thermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "beca_bhp6000_thermostat_f.yaml",
@@ -144,8 +142,6 @@ class TestBecaBHP6000Thermostat(
 
 
 class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "beca_bhp6000_thermostat_c.yaml",

@@ -16,7 +16,7 @@ def get_translations():
     translations = join(dirname(root.__file__), "translations")
     for path, dirs, files in walk(translations):
         for file in files:
-            if fnmatch(file, "*.json"):
+            if fnmatch(file, "*.json") and file != "en.json":
                 yield (file, load_json(join(path, file)))
 
 
@@ -27,26 +27,38 @@ def get_english():
     global english
     if english is None:
         translations = join(dirname(root.__file__), "translations", "en.json")
-        json = load_json(translations)
+        english = load_json(translations)
 
-    return json
+    return english
 
 
 def json_compare_keys(english, json, file, path=""):
+    matched = True
     for key in english:
         if key not in json:
             # Issue a warning rather than a failure.
             # This lets us catch all the missing translations at once.
             # Also, contributors shouldn't need to add translations for every language.
             warnings.warn(f"{file} Missing translation for {path}{key}")
+            matched = False
         elif isinstance(english[key], dict):
             json_compare_keys(english[key], json[key], file, f"{path}{key}.")
+    for key in json:
+        if key not in english:
+            warnings.warn(f"{file} Extra translation for {path}{key}")
+            matched = False
+
+    return matched
 
 
 def test_missing_translations():
     english = get_english()
+    unmatched = []
     for file, json in get_translations():
-        json_compare_keys(english, json, file)
+        if not json_compare_keys(english, json, file):
+            unmatched.append(file)
+    if unmatched:
+        raise AssertionError(f"Inconsistent translations in {', '.join(unmatched)}")
 
 
 # @pytest.mark.parametrize("device", get_devices())

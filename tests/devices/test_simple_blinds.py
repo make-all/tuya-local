@@ -14,8 +14,6 @@ ACTION_DPS = "7"
 
 
 class TestSimpleBlinds(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("simple_blinds.yaml", SIMPLE_BLINDS_PAYLOAD)
         self.subject = self.entities["cover_blind"]
