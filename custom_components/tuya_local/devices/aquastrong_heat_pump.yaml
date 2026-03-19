@@ -66,7 +66,6 @@ entities:
       - id: 21
         name: current_temperature
         type: integer
-        force: true
       - id: 27
         name: hvac_action
         type: boolean
@@ -79,48 +78,6 @@ entities:
             conditions:
               - dps_val: make_cold
                 value: cooling
-  - entity: select
-    name: Heat curve
-    category: config
-    dps:
-      - id: 13
-        name: option
-        type: string
-        mapping:
-          - dps_val: "OFF"
-            value: "OFF"
-          - dps_val: "H1"
-            value: "H1"
-          - dps_val: "H2"
-            value: "H2"
-          - dps_val: "H3"
-            value: "H3"
-          - dps_val: "H4"
-            value: "H4"
-          - dps_val: "H5"
-            value: "H5"
-          - dps_val: "H6"
-            value: "H6"
-          - dps_val: "H7"
-            value: "H7"
-          - dps_val: "H8"
-            value: "H8"
-          - dps_val: "L1"
-            value: "L1"
-          - dps_val: "L2"
-            value: "L2"
-          - dps_val: "L3"
-            value: "L3"
-          - dps_val: "L4"
-            value: "L4"
-          - dps_val: "L5"
-            value: "L5"
-          - dps_val: "L6"
-            value: "L6"
-          - dps_val: "L7"
-            value: "L7"
-          - dps_val: "L8"
-            value: "L8"
   - entity: sensor
     name: EEV opening
     category: diagnostic
@@ -139,7 +96,6 @@ entities:
         type: integer
         unit: A
         class: measurement
-        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -162,7 +118,6 @@ entities:
         type: integer
         unit: "F"
         class: measurement
-        force: true
   - entity: sensor
     name: Outlet temperature
     category: diagnostic
@@ -173,7 +128,6 @@ entities:
         type: integer
         unit: "F"
         class: measurement
-        force: true
   - entity: sensor
     name: Coil temperature
     category: diagnostic
@@ -203,7 +157,6 @@ entities:
         type: integer
         unit: "F"
         class: measurement
-        force: true
   - entity: binary_sensor
     name: Backflow
     class: problem
