@@ -32,8 +32,6 @@ COMMAND_DP = "115"
 
 
 class TestMoebot(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
         self.mower = self.entities.get("lawn_mower")

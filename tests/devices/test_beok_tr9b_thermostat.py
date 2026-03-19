@@ -37,8 +37,6 @@ class TestBeokTR9BThermostat(
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "beok_tr9b_thermostat.yaml",

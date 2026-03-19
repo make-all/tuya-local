@@ -1,0 +1,23 @@
+name: Water leak detector
+products:
+  - id: kyb656no
+    manufacturer: Meian
+    model: SW02
+entities:
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"

@@ -1,0 +1,267 @@
+name: Dishwasher
+products:
+  - id: z9xmtevm2acowc62
+    manufacturer: Casdon
+    model: 16J3S
+entities:
+  - entity: switch
+    icon: "mdi:dishwasher"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    class: enum
+    translation_key: washing_mode
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: strong
+            value: intensive
+          - dps_val: quick_wash
+            value: rapid
+          - dps_val: "disinfect_wash"
+            value: hygiene
+          - dps_val: hour_wash
+            value: hour_wash
+          - dps_val: dry
+            value: dry
+          - dps_val: chucun
+            value: storage
+          - dps_val: smart_wash
+            value: auto
+          - dps_val: soft_wash
+            value: light
+          - dps_val: hotpot_wash
+            value: pots
+          - dps_val: eco_wash
+            value: eco
+          - dps_val: clean_wash
+            value: self_clean
+          - dps_val: baby_wash
+            value: baby_care
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 7
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: done
+            value: done
+          - dps_val: draining
+            value: emptying
+          - dps_val: appointmentSt
+            value: scheduled
+          - dps_val: drying
+            value: drying
+          - dps_val: saving
+            value: storage
+          - dps_val: smartwash_detecting
+            value: starting
+  - entity: time
+    translation_key: reservation_time
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    translation_key: problem
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: e1
+            value: no_water
+          - dps_val: e2
+            value: drain_blocked
+          - dps_val: e3
+            value: overflow
+          - dps_val: e4
+            value: sensor_fault
+          - dps_val: e5
+            value: communication_fault
+          - dps_val: e6
+            value: heating_fault
+          - dps_val: e7
+            value: variable_frequency_fault
+          - dps_val: e8
+            value: valve_fault
+          - dps_val: e9
+            value: washing_motor_fault
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: binary_sensor
+    class: door
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    translation_key: water_hardness
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+  - entity: select
+    translation_key: rinse_aid_level
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+  - entity: binary_sensor
+    translation_key: salt
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: switch
+    translation_key: auto_dry
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: auto_storage
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: duration
+    translation_key: days_stored
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: d
+        class: measurement
+  - entity: binary_sensor
+    translation_key: rinse_aid
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+  - entity: select
+    translation_key: rack
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: all
+            value: both
+          - dps_val: up
+            value: upper
+          - dps_val: down
+            value: lower

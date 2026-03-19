@@ -1,0 +1,100 @@
+name: Pet feeder
+products:
+  - id: za7jpjw2nimxkjxt
+    manufacturer: Repetsun
+    model: 5L double bowl
+entities:
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    translation_key: status
+    name: Food status
+    class: enum
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: enough
+            value: normal
+          - dps_val: insufficient
+            value: low
+          - dps_val: run_out
+            value: no_food
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Last feed
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: portions
+        class: measurement
+  - entity: light
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Slow feed
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button

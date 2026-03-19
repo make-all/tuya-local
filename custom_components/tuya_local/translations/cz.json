@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Najděte IP adresu zařízení",
-                "description": "Cloud Tuya neposkytuje místní IP adresy"
+                "description": "{device_name}Cloud Tuya neposkytuje místní IP adresy"
             },
             "local": {
                 "title": "Nastavte sve lokální zařízení",
-                "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).]({device_details_url})",
+                "description": "{device_name}[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).]({device_details_url})",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
                     "device_id": "identifikátor zařízení (device_id, nebo device_id brány pro zařízení připojená pomocí brány) ",
@@ -46,14 +46,21 @@
             },
             "select_type": {
                 "title": "Vyberte typ zařízení",
-                "description": "vyberte typ odpovídající vašemu zařízení",
+                "description": "{device_name}vyberte typ odpovídající vašemu zařízení",
+                "data": {
+                    "type": "Typ zařízení"
+                }
+            },
+            "select_type_auto_detected": {
+                "title": "Vyberte typ zařízení",
+                "description": "{device_name}Vyberte typ, který odpovídá vašemu zařízení. Verze protokolu {detected_protocol} byla automaticky detekována a uložena. Pokud v budoucnu aktualizujete firmware zařízení, možná budete muset tuto integraci znovu nakonfigurovat.",
                 "data": {
                     "type": "Typ zařízení"
                 }
             },
             "choose_entities": {
                 "title": "Podrobnosti o zařízení",
-                "description": "Vyberte jméno pro toto zařízení",
+                "description": "{device_name}Vyberte jméno pro toto zařízení",
                 "data": {
                     "name": "Jméno"
                 }
@@ -65,7 +72,7 @@
             "no_devices": "Nelze najít žádná neregistrovaná zařízení pro účet."
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné.",
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné. Pokud jste vybrali konkrétní verzi protokolu, zkuste místo toho 'auto'.",
             "does_not_need_hub": "Zařízení nepotřebuje bránu a byla vybrána. ",
             "needs_hub": "Zařízení potřebuje bránu a žádná nebyla vybrána."
         }
@@ -93,7 +100,7 @@
             }
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné. Pokud jste vybrali konkrétní verzi protokolu, zkuste místo toho 'auto'."
         },
         "abort": {
             "not_supported": "Omlouváme se, toto zažízení není podporováno."
@@ -113,6 +120,43 @@
                 "state": {
                     "off": "Normální",
                     "on": "Rozmrazování"
+                }
+            },
+            "delayed_fan_operation": {
+                "name": "Zpožděná operace ventilátoru",
+                "state": {
+                    "off": "Normální",
+                    "on": "Zpožděná operace"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Nízká teplota komory",
+                            "chamber_overheat": "Přehřátí komory",
+                            "communication_error": "Chyba komunikace",
+                            "drain_blocked": "Zablokovaný odtok",
+                            "evaporation_tray_low_temperature": "Nízká teplota odpařovací misky",
+                            "evaporation_tray_overheat": "Přehřátí odpařovací misky",
+                            "fire": "Oheň",
+                            "firewall_sensor_fault": "Porucha senzoru firewallu",
+                            "gas_leak": "Únik plynu",
+                            "heating_fault": "Porucha vytápění",
+                            "no_water": "Žádná voda",
+                            "ok": "OK",
+                            "overflow": "Přetečení",
+                            "receive_error": "Chyba příjmu",
+                            "sensor_open_circuit": "Otevřený obvod senzoru",
+                            "sensor_short_circuit": "Zkrat senzoru",
+                            "sensor_fault": "Porucha senzoru",
+                            "transmit_error": "Chyba přenosu",
+                            "valve_fault": "Porucha ventilu",
+                            "variable_frequency_fault": "Porucha měniče frekvence",
+                            "washing_motor_fault": "Porucha motoru pračky",
+                            "water_removed_or_empty": "Voda odstraněna nebo prázdná"
+                        }
+                    }
                 }
             },
             "tank_empty": {
@@ -136,20 +180,18 @@
                     "on": "Probuzený"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Ochrana před přehřátím komory (překročení 290°C)",
-                            "e2": "E2: Ochrana před přehřátím výparníku (překročení 200°C)",
-                            "e3": "E3: Ochrana před nízkou teplotou komory (pod 35°C)",
-                            "e4": "E4: Ochrana před nízkou teplotou výparníku (pod 35°C)",
-                            "e5": "E5: Chyba připojení senzoru (Otevřený obvod)",
-                            "e6": "E6: Porucha senzoru (Zkrat)",
-                            "e7": "E7: Chyba komunikace s deska",
-                            "e8": "E8: Otevřená nádrž na vodu (CN7) nebo vysušená odpařovací miska (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Oplachovací prostředek",
+                "state": {
+                    "off": "OK",
+                    "on": "Nízký"
+                }
+            },
+            "salt": {
+                "name": "Sůl",
+                "state": {
+                    "off": "OK",
+                    "on": "Nízký"
                 }
             }
         },
@@ -320,7 +362,10 @@
                             "custom": "Vlastní",
                             "low_steaming": "Nízké páření",
                             "medium_steaming": "Střední páření",
-                            "high_steaming": "Vysoké páření"
+                            "high_steaming": "Vysoké páření",
+                            "steaming": "Páření",
+                            "hot_air_baking": "Horkovzdušné pečení",
+                            "disinfect": "Dezinfekce"
                         }
                     }
                 }
@@ -437,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Noční světlo"
+            },
+            "oven_light": {
+                "name": "Osvětlení trouby"
+            },
+            "rangehood_light": {
+                "name": "Osvětlení digestoře"
             }
         },
         "lock": {
@@ -468,6 +519,12 @@
             },
             "volume": {
                 "name": "Hlasitost"
+            },
+            "bottom_temperature": {
+                "name": "Spodní teplota"
+            },
+            "top_temperature": {
+                "name": "Horní teplota"
             }
         },
         "select": {
@@ -530,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -537,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -806,7 +865,60 @@
                     "self_clean": "Samočistící",
                     "hygiene": "Hygiena",
                     "party": "Večírek",
-                    "baby_care": "Dětská péče"
+                    "baby_care": "Dětská péče",
+                    "hour_wash": "Hodinové praní",
+                    "dry": "Suchý",
+                    "storage": "Skladování",
+                    "light": "Lehký",
+                    "pots": "Hrnec"
+                }
+            },
+            "water_hardness": {
+                "name": "Tvrdost vody"
+            },
+            "rinse_aid_level": {
+                "name": "Úroveň oplachovacího prostředku"
+            },
+            "rack": {
+                "name": "Stojan",
+                "state": {
+                    "lower": "Dolní",
+                    "upper": "Horní",
+                    "both": "Oba"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Režim digestoře",
+                "state": {
+                    "steaming": "Páření",
+                    "regular": "Normální",
+                    "strong": "Silný"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Rychlost ventilátoru digestoře",
+                "state": {
+                    "off": "Vypnuto",
+                    "low": "Nízký",
+                    "medium": "Střední",
+                    "high": "Vysoký",
+                    "quickfry": "Rychlé smažení"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Zpožděné vypnutí digestoře",
+                "state": {
+                    "disabled": "Zakázáno",
+                    "1m": "1 minuta",
+                    "2m": "2 minuty",
+                    "3m": "3 minuty",
+                    "4m": "4 minuty",
+                    "5m": "5 minut",
+                    "6m": "6 minut",
+                    "7m": "7 minut",
+                    "8m": "8 minut",
+                    "9m": "9 minut",
+                    "10m": "10 minut"
                 }
             },
             "menu": {
@@ -866,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Čistota",
+                "state": {
+                    "poor": "Špatná",
+                    "good": "Dobrá",
+                    "great": "Skvělá"
+                }
+            },
             "air_quality": {
                 "name": "Kvalita vzduchu",
                 "state": {
@@ -892,6 +1012,8 @@
                     "waiting_for_authorization": "Čekání na autorizaci",
                     "standby": "Pohotovost",
                     "heating": "Teplo",
+                    "cold": "Chlad",
+                    "warm": "Teplý",
                     "cooling": "Chlazení",
                     "keeping_warm": "Udržování tepla",
                     "no_water": "Bez vody",
@@ -970,7 +1092,8 @@
                     "drain_hot_water": "Odtok horké vody",
                     "drain_normal_water": "Odtok normální vody",
                     "high_temperature_emptying": "Vysokoteplotní vyprazdňování",
-                    "high_temperature_emptied": "Vysokoteplotní vyprazdněno"
+                    "high_temperature_emptied": "Vysokoteplotní vyprazdněno",
+                    "storage": "Skladování"
                 }
             },
             "time_remaining": {
@@ -1023,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "Životnost filtru"
+            },
+            "days_stored": {
+                "name": "Dny uloženy"
             }
         },
         "switch": {
@@ -1074,6 +1200,18 @@
             },
             "uv_sterilization": {
                 "name": "UV sterilizace"
+            },
+            "auto_storage": {
+                "name": "Automatické skladování"
+            },
+            "auto_dry": {
+                "name": "Automatické sušení"
+            },
+            "oven": {
+                "name": "Trouba"
+            },
+            "rangehood": {
+                "name": "Digestoř"
             }
         },
         "text": {
@@ -1082,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Čas rezervace"
+            },
+            "cooking_time": {
+                "name": "Čas vaření"
+            },
             "timer": {
                 "name": "Časovač"
             },

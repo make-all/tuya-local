@@ -215,24 +215,40 @@ entities:
             value: "5+1+1 (Adaptive)"
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 112
         type: integer
         name: value
-        unit: °
         range:
           min: -9
           max: 9
+      - id: 107
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
   - entity: number
     name: Floor temperature calibration
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-check"
     dps:
       - id: 113
         type: integer
         name: value
-        unit: °
         range:
           min: -9
           max: 9
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F

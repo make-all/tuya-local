@@ -16,8 +16,6 @@ RESET_DPS = "106"
 
 
 class TestMotionLight(BasicSwitchTests, MultiNumberTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("motion_sensor_light.yaml", MOTION_LIGHT_PAYLOAD)
         self.subject = self.entities.get("light")

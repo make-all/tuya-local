@@ -218,12 +218,13 @@ entities:
         name: switch
   - entity: number
     name: Inlet temperature compensation
+    class: temperature_delta
     category: config
     dps:
       - id: 102
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -400
           max: 0
@@ -281,12 +282,13 @@ entities:
   - entity: number
     name: Auxiliary heating hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:heating-coil"
     dps:
       - id: 106
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 100
           max: 500
@@ -362,12 +364,13 @@ entities:
   - entity: number
     name: Heating restart hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer"
     dps:
       - id: 111
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000
@@ -377,12 +380,13 @@ entities:
   - entity: number
     name: Heating stop hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer"
     dps:
       - id: 112
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000
@@ -392,12 +396,13 @@ entities:
   - entity: number
     name: Cooling restart hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer"
     dps:
       - id: 113
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000
@@ -407,12 +412,13 @@ entities:
   - entity: number
     name: Cooling stop hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer"
     dps:
       - id: 114
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 1000

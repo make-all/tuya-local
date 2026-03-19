@@ -15,8 +15,6 @@ LIGHT_DPS = "101"
 
 
 class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("goldair_fan.yaml", FAN_PAYLOAD)
         self.subject = self.entities.get("fan")

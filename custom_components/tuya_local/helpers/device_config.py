@@ -229,6 +229,33 @@ class TuyaDeviceConfig:
 
         return product_match or round((total - len(keys)) * 100 / total)
 
+    def product_display_entries(self, product_ids=None):
+        """Return distinct (manufacturer, model) pairs for display in the config flow.
+
+        When product_ids is provided, only products whose id matches are
+        included.  When there are no confirmed matches (or no product_ids),
+        returns [(None, None)] so the caller falls back to the config filename.
+        """
+        seen = set()
+        result = []
+
+        for p in self._config.get("products", []):
+            if product_ids and p.get("id") not in product_ids:
+                continue
+            manufacturer = p.get("manufacturer")
+            model = p.get("model")
+            if manufacturer is None and model is None:
+                continue
+            key = (manufacturer, model)
+            if key not in seen:
+                seen.add(key)
+                result.append(key)
+
+        if not result:
+            result.append((None, None))
+
+        return result
+
 
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""

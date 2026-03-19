@@ -44,7 +44,6 @@ entities:
       - id: 111
         type: integer
         name: sensor
-        unit: °
         mapping:
           - scale: 10
         class: measurement
@@ -58,18 +57,26 @@ entities:
             value: F
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 105
         type: integer
         name: value
-        unit: °
         range:
           min: -30
           max: 30
         mapping:
           - scale: 10
             step: 5
+      - id: 109
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -103,7 +110,7 @@ entities:
           min: -10
           max: 10
   - entity: sensor
-    translation_key: illuminance
+    class: illuminance
     dps:
       - id: 106
         type: integer
