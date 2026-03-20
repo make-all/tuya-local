@@ -1,0 +1,49 @@
+name: SR223 Solar Water Heater
+products:
+  - product_id: mlezgpkhb08dvjjx
+    model: SR223
+
+  # Solar Collector Temperature (T1)
+  - entity: sensor
+    name: Solar Collector Temperature (T1)
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+
+  # Tank Temperature (T2)
+  - entity: sensor
+    name: Tank Temperature (T2)
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+
+  # Pump Speed
+  - entity: sensor
+    name: Pump
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+
+  # WiFi Signal Strength
+  - entity: sensor
+    name: Wi-Fi Signal
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: dBm
