@@ -581,6 +581,7 @@ devices # Supported
 - Ultenic K10 air fryer
 - Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weeket KE4071TF, KES5211TE-CE smart kettles
+- Wine Enthusiast Prestige S beverage center
 
 ### Smart Meter/Circuit Breaker
 
