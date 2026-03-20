@@ -1,0 +1,236 @@
+name: Door lock
+products:
+  - id: 99gv5nmz
+    manufacturer: Foxgard
+    model: Smart Fingerprint Door Lock
+entities:
+  - entity: lock
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_fingerprint
+      - id: 13
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_password
+      - id: 14
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_dynamic
+      - id: 15
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 19
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_ble
+      - id: 46
+        type: boolean
+        optional: true
+        name: lock
+      - id: 47
+        type: boolean
+        name: open
+        readonly: true
+      - id: 61
+        type: base64
+        optional: true
+        name: code_unlock
+      - id: 62
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 63
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_voice
+      - id: 69
+        type: base64
+        optional: true
+        name: record
+      - id: 70
+        type: base64
+        optional: true
+        name: check_code_set
+      - id: 71
+        type: base64
+        optional: true
+        name: ble_unlock_check
+      - id: 72
+        type: base64
+        optional: true
+        name: unlock_record_check
+      - id: 74
+        type: base64
+        optional: true
+        name: unlock_double_kit
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: "%"
+        optional: true
+        mapping:
+          - dps_val: high
+            value: 90
+          - dps_val: medium
+            value: 60
+          - dps_val: low
+            value: 30
+          - dps_val: poweroff
+            value: 0
+          - dps_val: null
+            value_redirect: percent
+      - id: 8
+        type: integer
+        name: percent
+        optional: true
+  - entity: select
+    name: Volume
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 31
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mute
+            value: Mute
+          - dps_val: low
+            value: Low
+          - dps_val: normal
+            value: Normal
+          - dps_val: high
+            value: High
+  - entity: switch
+    name: Auto-lock
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 33
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Sync clock
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 44
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: Chinese (Simplified)
+          - dps_val: english
+            value: English
+  - entity: select
+    name: Sound mode
+    icon: "mdi:music-note"
+    category: config
+    dps:
+      - id: 83
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: ringtone_0
+            value: Ringtone 1
+          - dps_val: ringtone_1
+            value: Ringtone 2
+          - dps_val: ringtone_2
+            value: Ringtone 3
+          - dps_val: ringtone_3
+            value: Ringtone 4
+          - dps_val: ringtone_4
+            value: Ringtone 5
+          - dps_val: ringtone_5
+            value: Ringtone 6
+  - entity: text
+    name: Remote unlock code
+    category: config
+    icon: "mdi:form-textbox-password"
+    hidden: true
+    dps:
+      - id: 73
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: New credential
+    category: config
+    icon: "mdi:card-plus"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Delete credential
+    category: config
+    icon: "mdi:card-minus"
+    hidden: true
+    dps:
+      - id: 2
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Modify credential
+    category: config
+    icon: "mdi:credit-card-edit"
+    hidden: true
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Sync credentials
+    category: config
+    icon: "mdi:lock-reset"
+    hidden: true
+    dps:
+      - id: 54
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Offline password time
+    category: config
+    icon: "mdi:clock-lock"
+    hidden: true
+    dps:
+      - id: 64
+        type: string
+        optional: true
+        name: value
