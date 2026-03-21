@@ -1302,3 +1302,4 @@ Further device support has been made with the assistance of users. Please consid
 - [meeowgler](https://github.com/meeowgler) for assisting with support for Frienhund ACF180W-A dual camera pet feeder.
 - [ivasso](https://github.com/ivasso) for contributing support for Gosund SP6, which was merged into smartplug_usb.yaml.
 - [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
+- [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.

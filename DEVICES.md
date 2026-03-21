@@ -902,6 +902,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
+- BobYun Tech gatePro gate opener 
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
