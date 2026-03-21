@@ -1,0 +1,58 @@
+name: Water valve
+products:
+  - id: llbov9p1f0lemzjz
+    manufacturer: Tellur
+    model: TL331501
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: valve
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: number
+    name: Maximum
+    category: config
+    icon: "mdi:pipe-valve"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10

@@ -1273,7 +1273,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mxwmnn](https://github.com/mxwmnn) for contributing improvements to ZG-205W mmWave presence sensors.
 - [BarRaider](https://github.com/BarRaider) for assisting with support for Dreamlight RGBIC LED strip.
 - [diogolccsilva](https://github.com/diogolccsilva) for contributing support for Beltax BAC-1009 air conditioner.
-- [kong09](https://github.com/kong09) for contributing improvements to protocol detection, thermostat icons, support for RF remote controls.
+- [kongo09](https://github.com/kongo09) for contributing improvements to protocol detection, device details display, thermostat icons, support for RF remote controls.
 - [hrko](https://github.com/hrko) for contributing support for Edison Smart Treo dual zone ceiling light.
 - [akoky](https://github.com/akoky) for assisting with support for Meian SW02 water leak detector.
 - [rwblokzijl](https://github.com/rwblokzijl) for assisting with support for Haier air-water combo heat pump.
@@ -1281,3 +1281,25 @@ Further device support has been made with the assistance of users. Please consid
 - [pmyers](https://github.com/pmyers) for contributing support for RESTMO FML026A water meter.
 - [privatereese](https://github.com/privatereese) for contributing support for Aimiler 11kW EV charger.
 - [Schm1tz1](https://github.com/Schm1tz1) for contributing support for Termoplaza 900 panel heater.
+- [rainbowghost](https://github.com/rainbowghost) for contributing support for Casdon 16J3S dishwasher and T2E oven.
+- [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
+- [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow and LDNIO SCW3451 powerstrip which was merged to `quad_power_timer`.
+- [TinQ0](https://github.com/TinQ0) for contributing support for Repetsun 5L double bowl pet feeder.
+- [lweikit](https://github.com/lweikit) for contributing support for Yu Home Yu Turbo laundry drying rack.
+- [AlbertoMarziali](https://github.com/AlbertoMarziali) for contributing support for Nivian NVS-A6WG alarm panel.
+- [TheAdamGalloway](https://github.com/TheAdamGalloway) for contributing support for Curv alarm panel that was merged to the Nivian above.
+- [LeeRuMax](https://github.com/LeeRuMax) for assisting with support for Avonflow AFD14-H thermostat.
+- [arayanhasgithub](https://github.com/arayanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
+- [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
+- [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
+- [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
+- [wan0net](https://github.com/wan0net) for contributing support for Kogan  Vostok portable air conditioner.
+- [penguin00xx](https://github.com/penguin00xx) for assisting with support for Koenic KTM-221723-M kettle.
+- [dodhouse](https://github.com/dodhouse) for assisting with support for Brilliant ceiling fan remote controller.
+- [lolmaxlevel](https://github.com/lolmaxlevel) for contributin improvements for Tongou SA1 energy meter.
+- [goblinmaks](https://github.com/goblinmaks) for contributing support for iPengen GO-E31-32A EV charger.
+- [cjsturgess](https://github.com/cjsturgess) for assisting with support for Pawspik Microchip pet feeder.
+- [meeowgler](https://github.com/meeowgler) for assisting with support for Frienhund ACF180W-A dual camera pet feeder.
+- [ivasso](https://github.com/ivasso) for contributing support for Gosund SP6, which was merged into smartplug_usb.yaml.
+- [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
+- [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.

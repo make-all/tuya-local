@@ -65,11 +65,25 @@ entities:
         range:
           min: 25
           max: 75
+  - entity: time
+    category: config
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        mask: "FF00"
+        name: hour
+      - id: 103
+        type: base64
+        optional: true
+        mask: "00FF"
+        name: minute
   - entity: text
     name: Time
     category: config
     icon: "mdi:clock"
     hidden: true
+    deprecated: time  # 2026-03-17
     dps:
       - id: 103
         type: base64

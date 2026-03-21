@@ -1,9 +1,9 @@
 name: Fan
 products:
   - id: lb9da3os0ihifq7u
-    manufacturer: Temple and Webster
+    manufacturer: Temple and Webster / Martec
     model_id: AART1643
-    model: Alina
+    model: Alina / Viper
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -60,3 +60,52 @@ entities:
             value: "7h"
           - dps_val: "8h"
             value: "8h"
+  - entity: light
+    hidden: unavailable
+    dps:
+      - id: 15
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 15
+        type: boolean
+        optional: true
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 100
+      - id: 17
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: null
+            value_redirect: fixed_temp
+          - target_range:
+              min: 2700
+              max: 6000
+      - id: 19
+        type: string
+        optional: true
+        name: fixed_temp
+        hidden: true
+        mapping:
+          - dps_val: night
+            value: 2700
+          - dps_val: warm
+            value: 4000
+          - dps_val: white
+            value: 5000
+          - dps_val: cold
+            value: 6000

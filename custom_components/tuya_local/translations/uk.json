@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Знайдіть IP-адресу пристрою",
-                "description": "Хмара Tuya не надає локальних IP-адрес"
+                "description": "{device_name}Хмара Tuya не надає локальних IP-адрес"
             },
             "local": {
                 "title": "Налаштуйте свій пристрій Tuya Local",
-                "description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.]({device_details_url})",
+                "description": "{device_name}[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.]({device_details_url})",
                 "data": {
                     "host": "IP-адреса або ім'я хоста",
                     "device_id": "Ідентифікатор пристрою (device_id, або device_id шлюзу для пристроїв, підключених через шлюз)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Оберіть тип пристрою",
-                "description": "Виберіть тип, що відповідає вашому пристрою",
+                "description": "{device_name}Виберіть тип, що відповідає вашому пристрою",
                 "data": {
                     "type": "Тип пристрою"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Оберіть тип пристрою",
-                "description": "Выберите тип, который соответствует вашему устройству. Версия протокола {detected_protocol} была автоматически обнаружена и сохранена. Если вы обновите прошивку устройства в будущем, вам может потребоваться повторно настроить эту интеграцию.",
+                "description": "{device_name}Выберите тип, который соответствует вашему устройству. Версия протокола {detected_protocol} была автоматически обнаружена и сохранена. Если вы обновите прошивку устройства в будущем, вам может потребоваться повторно настроить эту интеграцию.",
                 "data": {
                     "type": "Тип пристрою"
                 }
             },
             "choose_entities": {
                 "title": "Налаштування пристрою",
-                "description": "Оберіть назву для цього пристрою",
+                "description": "{device_name}Оберіть назву для цього пристрою",
                 "data": {
                     "name": "Назва"
                 }
@@ -122,6 +122,43 @@
                     "on": "Розморожування"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Затримка роботи вентилятора",
+                "state": {
+                    "off": "Вимк",
+                    "on": "Затримка"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Низька температура камеры",
+                            "chamber_overheat": "Перегрів камери",
+                            "communication_error": "Помилка связи",
+                            "drain_blocked": "Заблокирован слив",
+                            "evaporation_tray_low_temperature": "Низкая температура поддона для испарителя",
+                            "evaporation_tray_overheat": "Перегрев поддона для испарителя",
+                            "fire": "Пожар",
+                            "firewall_sensor_fault": "Неисправность датчика пожарной стены",
+                            "gas_leak": "Утечка газа",
+                            "heating_fault": "Неисправность нагрева",
+                            "no_water": "Нет воды",
+                            "ok": "OK",
+                            "overflow": "Переполнение",
+                            "receive_error": "Ошибка приема",
+                            "sensor_fault": "Неисправность датчика",
+                            "sensor_open_circuit": "Открытая цепь датчика",
+                            "sensor_short_circuit": "Короткое замыкание датчика",
+                            "transmit_error": "Ошибка передачи",
+                            "valve_fault": "Неисправность клапана",
+                            "variable_frequency_fault": "Неисправность переменной частоты",
+                            "washing_motor_fault": "Неисправность мотора стирки",
+                            "water_removed_or_empty": "Вода удалена или пуста"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Танк",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Будильник"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Захист від перегріву камери (перевищує 290°C)",
-                            "e2": "E2: Захист від перегріву випарника (перевищує 200°C)",
-                            "e3": "E3: Захист від низької температури камери (нижче 35°C)",
-                            "e4": "E4: Захист від низької температури випарника (нижче 35°C)",
-                            "e5": "E5: Помилка підключення датчика (відкритий коло)",
-                            "e6": "E6: Помилка датчика (коротке замикання)",
-                            "e7": "E7: Помилка зв'язку з платою дисплею",
-                            "e8": "E8: Відкритий бак з водою (CN7) або суха піддон для випарника (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Ополаскиватель",
+                "state": {
+                    "off": "OK",
+                    "on": "Низький"
+                }
+            },
+            "salt": {
+                "name": "Соль",
+                "state": {
+                    "off": "OK",
+                    "on": "Низький"
                 }
             }
         },
@@ -305,7 +340,6 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "off": "Вимк",
                             "healthy_steam": "Здоровий пар",
                             "fresh_steam": "Свіжий пар",
                             "high_temp_steam": "Висока температура пару",
@@ -328,7 +362,10 @@
                             "custom": "Користувацький",
                             "low_steaming": "Низьке парування",
                             "medium_steaming": "Середнє парування",
-                            "high_steaming": "Високе парування"
+                            "high_steaming": "Високе парування",
+                            "steaming": "Парування",
+                            "hot_air_baking": "Горячее воздушное выпекание",
+                            "disinfect": "Дезинфекция"
                         }
                     }
                 }
@@ -445,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Нічне світло"
+            },
+            "oven_light": {
+                "name": "Світло духовки"
+            },
+            "rangehood_light": {
+                "name": "Світло вытяжки"
             }
         },
         "lock": {
@@ -476,6 +519,12 @@
             },
             "volume": {
                 "name": "Гучність"
+            },
+            "bottom_temperature": {
+                "name": "Температура дна"
+            },
+            "top_temperature": {
+                "name": "Температура верха"
             }
         },
         "select": {
@@ -538,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -545,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -814,7 +865,60 @@
                     "self_clean": "Самоочищення",
                     "hygiene": "Гігієна",
                     "party": "Вечірка",
-                    "baby_care": "Догляд за дитиною"
+                    "baby_care": "Догляд за дитиною",
+                    "hour_wash": "Почасовая стирка",
+                    "dry": "Сушка",
+                    "storage": "Хранение",
+                    "light": "Легкий",
+                    "pots": "Кастрюли"
+                }
+            },
+            "water_hardness": {
+                "name": "Жорсткість воды"
+            },
+            "rinse_aid_level": {
+                "name": "Уровень ополаскивателя"
+            },
+            "rack": {
+                "name": "Стойка",
+                "state": {
+                    "lower": "Нижняя",
+                    "upper": "Верхняя",
+                    "both": "Обе"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Режим вытяжки",
+                "state": {
+                    "steaming": "Пар",
+                    "regular": "Обычный",
+                    "strong": "Сильный"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Скорость вентилятора вытяжки",
+                "state": {
+                    "off": "Вимк",
+                    "low": "Низкий",
+                    "medium": "Средний",
+                    "high": "Высокий",
+                    "quickfry": "Быстрая жарка"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Задержка выключения вытяжки",
+                "state": {
+                    "disabled": "Отключено",
+                    "1m": "1 минута",
+                    "2m": "2 минуты",
+                    "3m": "3 минуты",
+                    "4m": "4 минуты",
+                    "5m": "5 минут",
+                    "6m": "6 минут",
+                    "7m": "7 минут",
+                    "8m": "8 минут",
+                    "9m": "9 минут",
+                    "10m": "10 минут"
                 }
             },
             "menu": {
@@ -874,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Чистота",
+                "state": {
+                    "poor": "Плохо",
+                    "good": "Хорошо",
+                    "great": "Отлично"
+                }
+            },
             "air_quality": {
                 "name": "Якість повітря",
                 "state": {
@@ -980,7 +1092,8 @@
                     "drain_hot_water": "Злив гарячої води",
                     "drain_normal_water": "Злив нормальної води",
                     "high_temperature_emptying": "Висока температура спорожнення",
-                    "high_temperature_emptied": "Висока температура спорожнена"
+                    "high_temperature_emptied": "Висока температура спорожнена",
+                    "storage": "Хранение"
                 }
             },
             "time_remaining": {
@@ -1033,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "Термін служби фільтра"
+            },
+            "days_stored": {
+                "name": "Дни хранения"
             }
         },
         "switch": {
@@ -1084,6 +1200,18 @@
             },
             "uv_sterilization": {
                 "name": "УФ стерилізація"
+            },
+            "auto_storage": {
+                "name": "Автохранение"
+            },
+            "auto_dry": {
+                "name": "Автосушка"
+            },
+            "oven": {
+                "name": "Духовка"
+            },
+            "rangehood": {
+                "name": "Вытяжка"
             }
         },
         "text": {
@@ -1092,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Время бронирования"
+            },
+            "cooking_time": {
+                "name": "Время приготовления"
+            },
             "timer": {
                 "name": "Таймер"
             },

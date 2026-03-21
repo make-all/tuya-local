@@ -29,11 +29,11 @@
             },
             "search": {
                 "title": "Localitzeu l'adreça IP del dispositiu",
-                "description": "Tuya cloud no proporciona adreces IP locals, per tant, ara hem de cercar a la vostra xarxa local per a trobar el dispositiu. Això triga fins a 20 segons.\n\nSi no teniu èxit, haureu de proporcionar l'adreça IP vós mateix d'alguna altra manera, com ara des de l'assignació DHCP de l'encaminador.\n\nPer a aquest pas i que pugueu afegir amb èxit el dispositiu, heu de tancar l'aplicació mòbil o les seves connexions al dispositiu sovint bloquejarà la comunicació Tuya Local amb ells."
+                "description": "{device_name}Tuya cloud no proporciona adreces IP locals, per tant, ara hem de cercar a la vostra xarxa local per a trobar el dispositiu. Això triga fins a 20 segons.\n\nSi no teniu èxit, haureu de proporcionar l'adreça IP vós mateix d'alguna altra manera, com ara des de l'assignació DHCP de l'encaminador.\n\nPer a aquest pas i que pugueu afegir amb èxit el dispositiu, heu de tancar l'aplicació mòbil o les seves connexions al dispositiu sovint bloquejarà la comunicació Tuya Local amb ells."
             },
             "local": {
                 "title": "Configureu el vostre dispositiu Tuya Local",
-                "description": "[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.]({device_details_url})",
+                "description": "{device_name}[Seguiu aquestes instruccions per a trobar l'identificador del dispositiu i la clau local.]({device_details_url})",
                 "data": {
                     "host": "Adreça IP o nom d'amfitrió",
                     "device_id": "ID del dispositiu (o ID del dispositiu del centre per a dispositius connectats a través de la passarel·la)",
@@ -45,21 +45,21 @@
             },
             "select_type": {
                 "title": "Trieu el tipus de dispositiu",
-                "description": "Trieu el tipus que coincideix amb el vostre dispositiu",
+                "description": "{device_name}Trieu el tipus que coincideix amb el vostre dispositiu",
                 "data": {
                     "type": "Tipus de dispositiu"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Trieu el tipus de dispositiu",
-                "description": "Trieu el tipus que coincideix amb el vostre dispositiu. La versión de protocolo {detected_protocol} se detectó automáticamente y se guardó. Si actualiza el firmware del dispositivo en el futuro, es posible que deba reconfigurar esta integración.",
+                "description": "{device_name}Trieu el tipus que coincideix amb el vostre dispositiu. La versión de protocolo {detected_protocol} se detectó automáticamente y se guardó. Si actualiza el firmware del dispositivo en el futuro, es posible que deba reconfigurar esta integración.",
                 "data": {
                     "type": "Tipus de dispositiu"
                 }
             },
             "choose_entities": {
                 "title": "Detalls del dispositiu",
-                "description": "Trieu un nom per a aquest dispositiu",
+                "description": "{device_name}Trieu un nom per a aquest dispositiu",
                 "data": {
                     "name": "Nom"
                 }
@@ -122,6 +122,43 @@
                     "off": "Normal"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Ventilador de operación retrasada",
+                "state": {
+                    "off": "Normal",
+                    "on": "Operación retrasada"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Temperatura baja de la cámara",
+                            "chamber_overheat": "Sobrecalentamiento de la cámara",
+                            "communication_error": "Error de comunicación",
+                            "drain_blocked": "Desagüe bloqueado",
+                            "evaporation_tray_low_temperature": "Temperatura baja de la bandeja de evaporación",
+                            "evaporation_tray_overheat": "Sobrecalentamiento de la bandeja de evaporación",
+                            "fire": "Incendio",
+                            "firewall_sensor_fault": "Falla del sensor de cortafuegos",
+                            "gas_leak": "Fuga de gas",
+                            "heating_fault": "Falla de calefacción",
+                            "no_water": "Sin agua",
+                            "ok": "Sin problemas",
+                            "overflow": "Desbordamiento",
+                            "receive_error": "Error de recepción",
+                            "sensor_open_circuit": "Sensor de circuito abierto",
+                            "sensor_short_circuit": "Sensor de cortocircuito",
+                            "sensor_fault": "Falla del sensor",
+                            "transmit_error": "Error de transmisión",
+                            "valve_fault": "Falla de la válvula",
+                            "variable_frequency_fault": "Falla de frecuencia variable",
+                            "washing_motor_fault": "Falla del motor de lavado",
+                            "water_removed_or_empty": "Agua retirada o vacía"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Dipòsit",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Despert"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Protecció contra sobreescalfament de la cambra (excedeix 290°C)",
-                            "e2": "E2: Protecció contra sobreescalfament de la safata d'evaporació (excedeix 200°C)",
-                            "e4": "E4: Protecció contra baixa temperatura de la safata d'evaporació (inferior a 35°C)",
-                            "e5": "E5: Error de connexió al sensor (circuit obert)",
-                            "e6": "E6: Disfunció del sensor (curtcircuit)",
-                            "e7": "E7: Error de comunicació amb la placa de visualització",
-                            "e8": "E8: Dipòsit d'aigua obert (CN7) o safata d'evaporació seca (CN3)",
-                            "e3": "E3: Protecció contra baixa temperatura de la cambra (inferior a 35°C)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Abrillantador",
+                "state": {
+                    "off": "D'acord",
+                    "on": "Bajo"
+                }
+            },
+            "salt": {
+                "name": "Sal",
+                "state": {
+                    "off": "D'acord",
+                    "on": "Bajo"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Personalitzat",
                             "low_steaming": "Vapor baix",
                             "medium_steaming": "Vapor mitjà",
-                            "high_steaming": "Vapor alt"
+                            "high_steaming": "Vapor alt",
+                            "steaming": "Vapor",
+                            "hot_air_baking": "Horneado con aire caliente",
+                            "disinfect": "Desinfección"
                         }
                     }
                 }
@@ -357,168 +395,12 @@
             },
             "nightlight": {
                 "name": "Llum nocturna"
-            }
-        },
-        "sensor": {
-            "cooking_status": {
-                "state": {
-                    "wait": "En espera per a cuinar",
-                    "reservation": "En reserva",
-                    "cooking": "En curs",
-                    "cancel": "Cocció cancel·lada",
-                    "done": "Cocció completada",
-                    "pause": "Cocció en pausa"
-                },
-                "name": "Estat"
             },
-            "water_level": {
-                "name": "Nivell d'aigua",
-                "state": {
-                    "empty": "Buit",
-                    "low": "Baix",
-                    "medium": "Mitjà",
-                    "high": "Alt",
-                    "full": "Ple"
-                }
+            "oven_light": {
+                "name": "Luz del horno"
             },
-            "energy_produced": {
-                "name": "Energia produïda"
-            },
-            "energy_consumed": {
-                "name": "Energia consumida"
-            },
-            "energy_produced_x": {
-                "name": "Energia produïda {x}"
-            },
-            "energy_consumed_x": {
-                "name": "Energia consumida {x}"
-            },
-            "air_quality": {
-                "name": "Qualitat de l'aire",
-                "state": {
-                    "excellent": "Excel·lent",
-                    "good": "Bo",
-                    "moderate": "Moderat",
-                    "poor": "Dolent",
-                    "severe": "Molt dolent",
-                    "danger": "Perill"
-                }
-            },
-            "status": {
-                "name": "Estat",
-                "state": {
-                    "available": "Disponible",
-                    "plugged_in": "Connectat",
-                    "fault_unplugged": "Errada (desconnectat)",
-                    "charging": "Carregant",
-                    "discharging": "Descàrrega",
-                    "waiting": "Esperant",
-                    "charged": "Carregat",
-                    "fault": "Fallada",
-                    "paused": "En pausa",
-                    "waiting_for_authorization": "S'està esperant autorització",
-                    "standby": "En espera",
-                    "heating": "Calefacció",
-                    "cold": "Frío",
-                    "warm": "Calor",
-                    "cooling": "Refrigeració",
-                    "keeping_warm": "Conserva l'escalfor",
-                    "no_water": "Sense aigua",
-                    "boiling": "Ebullició",
-                    "reserve_only": "Només reserva",
-                    "unknown": "Desconegut",
-                    "idle": "Inactiu",
-                    "auto": "Automàtic",
-                    "manual": "Manual",
-                    "rain_delay": "Retard per pluja",
-                    "off": "Desactivat",
-                    "on": "Activat",
-                    "cooking": "Cuina",
-                    "done": "Fet",
-                    "door_open": "Porta oberta",
-                    "setting": "Configuració",
-                    "pre_heating": "Preescalfament",
-                    "scheduled": "Programat",
-                    "at_temperature": "A la temperatura",
-                    "done_stage_1": "Fase 1 feta",
-                    "done_stage_2": "Fase 2 feta",
-                    "done_stage_3": "Fase 3 feta",
-                    "done_stage_4": "Fase 4 feta",
-                    "done_stage_5": "Fase 5 feta",
-                    "done_stage_6": "Fase 6 feta",
-                    "done_stage_7": "Fase 7 feta",
-                    "done_stage_8": "Fase 8 feta",
-                    "done_stage_9": "Fase 9 feta",
-                    "done_stage_10": "Fase 10 feta",
-                    "no_food": "Sense menjar",
-                    "jammed": "Encallat",
-                    "blocked": "Blocat",
-                    "feeding": "Alimentació",
-                    "feeding_complete": "S'ha completat l'alimentació",
-                    "caking": "Aglomeració",
-                    "cleaning": "Neteja",
-                    "sleep": "Dorm",
-                    "sterilizing": "Esterilització",
-                    "deodorizing": "Deseodorització",
-                    "occupied": "Ocupat",
-                    "normal": "Normal",
-                    "low": "Baix",
-                    "high": "Alt",
-                    "unwashed": "No rentat",
-                    "pre_washing": "Prerentat",
-                    "washing": "Rentat",
-                    "rinsing": "Esbandida",
-                    "drying": "Eixugada",
-                    "air_purging": "Purificació d'aire",
-                    "anti_freeze": "Anticongelació",
-                    "close": "Tanca",
-                    "monitor": "Seguiment",
-                    "working": "Treball",
-                    "warning": "Avís",
-                    "starting": "Inici",
-                    "emptying": "Buidat",
-                    "resetting": "Reinicialització",
-                    "reverse": "Inversió",
-                    "full": "Ple",
-                    "empty": "Buit",
-                    "missing": "Falta",
-                    "formatting": "Formatant",
-                    "unformatted": "No formatat",
-                    "failed": "Ha fallat",
-                    "replying": "Responent",
-                    "playback": "Reproducció",
-                    "maintenance_required": "Manteniment necessari",
-                    "dry": "Sec",
-                    "comfortable": "Còmode",
-                    "damp": "Humit",
-                    "smoothing": "Allisant",
-                    "cleaned": "Netejat",
-                    "cold_water_unavailable": "Aigua freda no disponible",
-                    "drain": "Desguàs",
-                    "drain_cold_water": "Desguàs d'aigua freda",
-                    "drain_hot_water": "Desguàs d'aigua calenta",
-                    "drain_normal_water": "Desguàs d'aigua normal",
-                    "high_temperature_emptying": "Buidatge a alta temperatura",
-                    "high_temperature_emptied": "Buidatge a alta temperatura completat"
-                }
-            },
-            "time_remaining": {
-                "name": "Temps restant"
-            },
-            "time_remaining_x": {
-                "name": "Temps restant {x}"
-            },
-            "current_x": {
-                "name": "Corrent {x}"
-            },
-            "voltage_x": {
-                "name": "Voltatge {x}"
-            },
-            "power_x": {
-                "name": "Potència {x}"
-            },
-            "filter_life": {
-                "name": "Vida útil del filtre"
+            "rangehood_light": {
+                "name": "Luz de la campana extractora"
             }
         },
         "humidifier": {
@@ -637,6 +519,12 @@
             },
             "volume": {
                 "name": "Volum"
+            },
+            "bottom_temperature": {
+                "name": "Temperatura inferior"
+            },
+            "top_temperature": {
+                "name": "Temperatura superior"
             }
         },
         "select": {
@@ -697,17 +585,19 @@
             "language": {
                 "name": "Llengua",
                 "state": {
+                    "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "spanish": "Español",
                     "turkish": "Türkçe",
-                    "chinese": "中文",
                     "japanese": "日本語",
                     "korean": "한국어",
                     "russian": "Русский",
@@ -975,7 +865,60 @@
                     "self_clean": "Autoneteja",
                     "hygiene": "Higiene",
                     "party": "Festa",
-                    "baby_care": "Cura del nadó"
+                    "baby_care": "Cura del nadó",
+                    "hour_wash": "Lavado de una hora",
+                    "dry": "Seco",
+                    "storage": "Almacenamiento",
+                    "light": "Ligero",
+                    "pots": "Ollas"
+                }
+            },
+            "water_hardness": {
+                "name": "Dureza del agua"
+            },
+            "rinse_aid_level": {
+                "name": "Nivel de abrillantador"
+            },
+            "rack": {
+                "name": "Estante",
+                "state": {
+                    "lower": "Inferior",
+                    "upper": "Superior",
+                    "both": "Ambos"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Mode de campana extractora",
+                "state": {
+                    "steaming": "Vapor",
+                    "regular": "Regular",
+                    "strong": "Fuerte"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Velocidad del ventilador de la campana extractora",
+                "state": {
+                    "off": "Apagado",
+                    "low": "Bajo",
+                    "medium": "Medio",
+                    "high": "Alto",
+                    "quickfry": "Freír rápido"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Apagado retrasado de la campana extractora",
+                "state": {
+                    "disabled": "Desactivado",
+                    "1m": "1 minuto",
+                    "2m": "2 minutos",
+                    "3m": "3 minutos",
+                    "4m": "4 minutos",
+                    "5m": "5 minutos",
+                    "6m": "6 minutos",
+                    "7m": "7 minutos",
+                    "8m": "8 minutos",
+                    "9m": "9 minutos",
+                    "10m": "10 minutos"
                 }
             },
             "menu": {
@@ -1034,6 +977,180 @@
                 }
             }
         },
+        "sensor": {
+            "cleanliness": {
+                "name": "Limpieza",
+                "state": {
+                    "poor": "Mala",
+                    "good": "Buena",
+                    "great": "Excelente"
+                }
+            },
+            "air_quality": {
+                "name": "Qualitat de l'aire",
+                "state": {
+                    "excellent": "Excel·lent",
+                    "good": "Bo",
+                    "moderate": "Moderat",
+                    "poor": "Dolent",
+                    "severe": "Molt dolent",
+                    "danger": "Perill"
+                }
+            },
+            "cooking_status": {
+                "state": {
+                    "wait": "En espera per a cuinar",
+                    "reservation": "En reserva",
+                    "cooking": "En curs",
+                    "cancel": "Cocció cancel·lada",
+                    "done": "Cocció completada",
+                    "pause": "Cocció en pausa"
+                },
+                "name": "Estat"
+            },
+            "water_level": {
+                "name": "Nivell d'aigua",
+                "state": {
+                    "empty": "Buit",
+                    "low": "Baix",
+                    "medium": "Mitjà",
+                    "high": "Alt",
+                    "full": "Ple"
+                }
+            },
+            "energy_produced": {
+                "name": "Energia produïda"
+            },
+            "energy_consumed": {
+                "name": "Energia consumida"
+            },
+            "energy_produced_x": {
+                "name": "Energia produïda {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energia consumida {x}"
+            },
+            "status": {
+                "name": "Estat",
+                "state": {
+                    "available": "Disponible",
+                    "plugged_in": "Connectat",
+                    "fault_unplugged": "Errada (desconnectat)",
+                    "charging": "Carregant",
+                    "discharging": "Descàrrega",
+                    "waiting": "Esperant",
+                    "charged": "Carregat",
+                    "fault": "Fallada",
+                    "paused": "En pausa",
+                    "waiting_for_authorization": "S'està esperant autorització",
+                    "standby": "En espera",
+                    "heating": "Calefacció",
+                    "cold": "Frío",
+                    "warm": "Calor",
+                    "cooling": "Refrigeració",
+                    "keeping_warm": "Conserva l'escalfor",
+                    "no_water": "Sense aigua",
+                    "boiling": "Ebullició",
+                    "reserve_only": "Només reserva",
+                    "unknown": "Desconegut",
+                    "idle": "Inactiu",
+                    "auto": "Automàtic",
+                    "manual": "Manual",
+                    "rain_delay": "Retard per pluja",
+                    "off": "Desactivat",
+                    "on": "Activat",
+                    "cooking": "Cuina",
+                    "done": "Fet",
+                    "door_open": "Porta oberta",
+                    "setting": "Configuració",
+                    "pre_heating": "Preescalfament",
+                    "scheduled": "Programat",
+                    "at_temperature": "A la temperatura",
+                    "done_stage_1": "Fase 1 feta",
+                    "done_stage_2": "Fase 2 feta",
+                    "done_stage_3": "Fase 3 feta",
+                    "done_stage_4": "Fase 4 feta",
+                    "done_stage_5": "Fase 5 feta",
+                    "done_stage_6": "Fase 6 feta",
+                    "done_stage_7": "Fase 7 feta",
+                    "done_stage_8": "Fase 8 feta",
+                    "done_stage_9": "Fase 9 feta",
+                    "done_stage_10": "Fase 10 feta",
+                    "no_food": "Sense menjar",
+                    "jammed": "Encallat",
+                    "blocked": "Blocat",
+                    "feeding": "Alimentació",
+                    "feeding_complete": "S'ha completat l'alimentació",
+                    "caking": "Aglomeració",
+                    "cleaning": "Neteja",
+                    "sleep": "Dorm",
+                    "sterilizing": "Esterilització",
+                    "deodorizing": "Deseodorització",
+                    "occupied": "Ocupat",
+                    "normal": "Normal",
+                    "low": "Baix",
+                    "high": "Alt",
+                    "unwashed": "No rentat",
+                    "pre_washing": "Prerentat",
+                    "washing": "Rentat",
+                    "rinsing": "Esbandida",
+                    "drying": "Eixugada",
+                    "air_purging": "Purificació d'aire",
+                    "anti_freeze": "Anticongelació",
+                    "close": "Tanca",
+                    "monitor": "Seguiment",
+                    "working": "Treball",
+                    "warning": "Avís",
+                    "starting": "Inici",
+                    "emptying": "Buidat",
+                    "resetting": "Reinicialització",
+                    "reverse": "Inversió",
+                    "full": "Ple",
+                    "empty": "Buit",
+                    "missing": "Falta",
+                    "formatting": "Formatant",
+                    "unformatted": "No formatat",
+                    "failed": "Ha fallat",
+                    "replying": "Responent",
+                    "playback": "Reproducció",
+                    "maintenance_required": "Manteniment necessari",
+                    "dry": "Sec",
+                    "comfortable": "Còmode",
+                    "damp": "Humit",
+                    "smoothing": "Allisant",
+                    "cleaned": "Netejat",
+                    "cold_water_unavailable": "Aigua freda no disponible",
+                    "drain": "Desguàs",
+                    "drain_cold_water": "Desguàs d'aigua freda",
+                    "drain_hot_water": "Desguàs d'aigua calenta",
+                    "drain_normal_water": "Desguàs d'aigua normal",
+                    "high_temperature_emptying": "Buidatge a alta temperatura",
+                    "high_temperature_emptied": "Buidatge a alta temperatura completat",
+                    "storage": "Almacenamiento"
+                }
+            },
+            "time_remaining": {
+                "name": "Temps restant"
+            },
+            "time_remaining_x": {
+                "name": "Temps restant {x}"
+            },
+            "current_x": {
+                "name": "Corrent {x}"
+            },
+            "voltage_x": {
+                "name": "Voltatge {x}"
+            },
+            "power_x": {
+                "name": "Potència {x}"
+            },
+            "filter_life": {
+                "name": "Vida útil del filtre"
+            },
+            "days_stored": {
+                "name": "Días almacenados"
+            }
+        },
         "switch": {
             "anti_frost": {
                 "name": "Antigel"
@@ -1083,6 +1200,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "Esterilització electrolítica"
+            },
+            "auto_storage": {
+                "name": "Almacenamiento automático"
+            },
+            "auto_dry": {
+                "name": "Secado automático"
+            },
+            "oven": {
+                "name": "Horno"
+            },
+            "rangehood": {
+                "name": "Campana extractora"
             }
         },
         "text": {
@@ -1091,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Hora de reserva"
+            },
+            "cooking_time": {
+                "name": "Hora de cocción"
+            },
             "timer": {
                 "name": "Temporitzador"
             },

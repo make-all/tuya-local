@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Leta upp enhetens IP-adress",
-                "description": "Tuya cloud tillhandahåller inte lokala IP-adresser så vi måste nu söka i ditt lokala nätverk för att hitta enheten. Detta tar upp till 20 sekunder.\n\nOm det misslyckas måste du själv tillhandahålla IP-adressen på något annat sätt, till exempel från routerns DHCP-tilldelning.\n\nFör att detta steg och den följande enhetsläggningen ska lyckas måste du stänga mobilappen eller dess anslutningar till enheten kommer ofta blockera Tuya Local-kommunikation med dem."
+                "description": "{device_name}Tuya cloud tillhandahåller inte lokala IP-adresser så vi måste nu söka i ditt lokala nätverk för att hitta enheten. Detta tar upp till 20 sekunder.\n\nOm det misslyckas måste du själv tillhandahålla IP-adressen på något annat sätt, till exempel från routerns DHCP-tilldelning.\n\nFör att detta steg och den följande enhetsläggningen ska lyckas måste du stänga mobilappen eller dess anslutningar till enheten kommer ofta blockera Tuya Local-kommunikation med dem."
             },
             "local": {
                 "title": "Konfigurera din Tuya Local-enhet",
-                "description": "[Följ dessa instruktioner för att hitta ditt enhets-ID och lokala nyckel.]({device_details_url})",
+                "description": "{device_name}[Följ dessa instruktioner för att hitta ditt enhets-ID och lokala nyckel.]({device_details_url})",
                 "data": {
                     "host": "IP-adress eller värdnamn",
                     "device_id": "Enhets-ID (eller hubbens enhets-ID för enheter anslutna via gateway)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Välj enhetstyp",
-                "description": "Välj den typ som matchar din enhet",
+                "description": "{device_name}Välj den typ som matchar din enhet",
                 "data": {
                     "type": "Enhetstyp"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Välj enhetstyp",
-                "description": "Välj den typ som matchar din enhet. Protokollversion {detected_protocol} upptäcktes automatiskt och sparades. Om du uppdaterar enhetens firmware i framtiden kan du behöva konfigurera om denna integration.",
+                "description": "{device_name}Välj den typ som matchar din enhet. Protokollversion {detected_protocol} upptäcktes automatiskt och sparades. Om du uppdaterar enhetens firmware i framtiden kan du behöva konfigurera om denna integration.",
                 "data": {
                     "type": "Enhetstyp"
                 }
             },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
-                "description": "Välj ett namn för enheten",
+                "description": "{device_name}Välj ett namn för enheten",
                 "data": {
                     "name": "Namn"
                 }
@@ -122,6 +122,43 @@
                     "on": "Avfrostar"
                 }
             },
+            "delayed_fan_operation": {
+                "name": "Fördröjd fläktoperation",
+                "state": {
+                    "off": "Av",
+                    "on": "Fördröjd"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Kammare låg temperatur",
+                            "chamber_overheat": "Kammare överhettad",
+                            "communication_error": "Kommunikationsfel",
+                            "drain_blocked": "Avlopp blockerat",
+                            "evaporation_tray_low_temperature": "Förångningstråg låg temperatur",
+                            "evaporation_tray_overheat": "Förångningstråg överhettad",
+                            "fire": "Brand",
+                            "firewall_sensor_fault": "Brandväggssensorfel",
+                            "gas_leak": "Gasläcka",
+                            "heating_fault": "Värmefel",
+                            "no_water": "Inget vatten",
+                            "ok": "OK",
+                            "overflow": "Överflöd",
+                            "receive_error": "Mottagningsfel",
+                            "sensor_open_circuit": "Sensor öppen krets",
+                            "sensor_short_circuit": "Sensor kortslutning",
+                            "sensor_fault": "Sensorfel",
+                            "transmit_error": "Sändningsfel",
+                            "valve_fault": "Ventilfel",
+                            "variable_frequency_fault": "Felfrekvensfel",
+                            "washing_motor_fault": "Tvättmotorfel",
+                            "water_removed_or_empty": "Vatten borttaget eller tomt"
+                        }
+                    }
+                }
+            },
             "tank_empty": {
                 "name": "Tank",
                 "state": {
@@ -143,20 +180,18 @@
                     "on": "Vaken"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Överhettningsskydd för kammare (överstiger 290°C)",
-                            "e2": "E2: Överhettningsskydd för förångningsbricka (överstiger 200°C)",
-                            "e3": "E3: Lågtemperaturskydd för kammare (under 35°C)",
-                            "e4": "E4: Lågtemperaturskydd för förångningsbricka (under 35°C)",
-                            "e5": "E5: Sensoranslutningsfel (Öppen krets)",
-                            "e6": "E6: Sensorfel (Kortslutning)",
-                            "e7": "E7: Kommunikationsfel på displaykortet",
-                            "e8": "E8: Vattentank öppen (CN7) eller förångningsbricka torr (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Sköljmedel",
+                "state": {
+                    "off": "OK",
+                    "on": "Låg"
+                }
+            },
+            "salt": {
+                "name": "Salt",
+                "state": {
+                    "off": "OK",
+                    "on": "Låg"
                 }
             }
         },
@@ -327,7 +362,10 @@
                             "custom": "Anpassad",
                             "low_steaming": "Låg ångning",
                             "medium_steaming": "Medel ångning",
-                            "high_steaming": "Hög ångning"
+                            "high_steaming": "Hög ångning",
+                            "steaming": "Ångning",
+                            "hot_air_baking": "Varmluftsbakning",
+                            "disinfect": "Desinfektion"
                         }
                     }
                 }
@@ -444,6 +482,12 @@
             },
             "nightlight": {
                 "name": "Nattlampa"
+            },
+            "oven_light": {
+                "name": "Ugnsljus"
+            },
+            "rangehood_light": {
+                "name": "Fläktkåpeljus"
             }
         },
         "lock": {
@@ -475,6 +519,12 @@
             },
             "volume": {
                 "name": "Volym"
+            },
+            "bottom_temperature": {
+                "name": "Nedre temperatur"
+            },
+            "top_temperature": {
+                "name": "Övre temperatur"
             }
         },
         "select": {
@@ -537,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -544,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -813,7 +865,60 @@
                     "self_clean": "Självrengöring",
                     "hygiene": "Hygien",
                     "party": "Fest",
-                    "baby_care": "Barnomsorg"
+                    "baby_care": "Barnomsorg",
+                    "hour_wash": "Timtvätt",
+                    "dry": "Torr",
+                    "storage": "Förvaring",
+                    "light": "Lätt",
+                    "pots": "Kastruller"
+                }
+            },
+            "water_hardness": {
+                "name": "Vattenhårdhet"
+            },
+            "rinse_aid_level": {
+                "name": "Sköljmedelsnivå"
+            },
+            "rack": {
+                "name": "Rack",
+                "state": {
+                    "lower": "Nedre",
+                    "upper": "Övre",
+                    "both": "Båda"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Fläktkåpeläge",
+                "state": {
+                    "steaming": "Ångning",
+                    "regular": "Reguljär",
+                    "strong": "Stark"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Fläktkåpefläkthastighet",
+                "state": {
+                    "off": "Av",
+                    "low": "Låg",
+                    "medium": "Medel",
+                    "high": "Hög",
+                    "quickfry": "Snabbfritering"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Fördröjd avstängning för fläktkåpa",
+                "state": {
+                    "disabled": "Inaktiverad",
+                    "1m": "1 minut",
+                    "2m": "2 minuter",
+                    "3m": "3 minuter",
+                    "4m": "4 minuter",
+                    "5m": "5 minuter",
+                    "6m": "6 minuter",
+                    "7m": "7 minuter",
+                    "8m": "8 minuter",
+                    "9m": "9 minuter",
+                    "10m": "10 minuter"
                 }
             },
             "menu": {
@@ -873,6 +978,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "name": "Renlighet",
+                "state": {
+                    "poor": "Dålig",
+                    "good": "Bra",
+                    "great": "Utmärkt"
+                }
+            },
             "air_quality": {
                 "name": "Luftkvalitet",
                 "state": {
@@ -979,7 +1092,8 @@
                     "drain_hot_water": "Töm varmt vatten",
                     "drain_normal_water": "Töm normalt vatten",
                     "high_temperature_emptying": "Hög temperatur tömning",
-                    "high_temperature_emptied": "Hög temperatur tömd"
+                    "high_temperature_emptied": "Hög temperatur tömd",
+                    "storage": "Förvaring"
                 }
             },
             "time_remaining": {
@@ -1032,6 +1146,9 @@
             },
             "filter_life": {
                 "name": "Filterlivslängd"
+            },
+            "days_stored": {
+                "name": "Dagar lagrade"
             }
         },
         "switch": {
@@ -1083,6 +1200,18 @@
             },
             "electrolytic_sterilization": {
                 "name": "Elektrolytisk sterilisering"
+            },
+            "auto_storage": {
+                "name": "Auto-förvaring"
+            },
+            "auto_dry": {
+                "name": "Auto-torkning"
+            },
+            "oven": {
+                "name": "Ugn"
+            },
+            "rangehood": {
+                "name": "Fläktkåpa"
             }
         },
         "text": {
@@ -1091,6 +1220,12 @@
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reservationstid"
+            },
+            "cooking_time": {
+                "name": "Matlagningstid"
+            },
             "timer": {
                 "name": "Timer"
             },

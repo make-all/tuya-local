@@ -262,6 +262,36 @@ async def test_flow_user_init(hass, mocker):
 
 
 @pytest.mark.asyncio
+async def test_flow_user_init_protocol_options_are_strings(hass, mocker):
+    """Test that protocol version dropdown uses strings, not floats."""
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "local"}
+    )
+    schema = result["data_schema"]
+    # Validate that string protocol versions are accepted
+    schema(
+        {
+            CONF_DEVICE_ID: "test",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_HOST: "test",
+            CONF_PROTOCOL_VERSION: "3.3",
+            CONF_POLL_ONLY: False,
+        }
+    )
+    # Validate that float protocol versions are rejected
+    with pytest.raises(vol.MultipleInvalid):
+        schema(
+            {
+                CONF_DEVICE_ID: "test",
+                CONF_LOCAL_KEY: TESTKEY,
+                CONF_HOST: "test",
+                CONF_PROTOCOL_VERSION: 3.3,
+                CONF_POLL_ONLY: False,
+            }
+        )
+
+
+@pytest.mark.asyncio
 async def test_async_test_connection_valid(hass, mocker):
     """Test that device is returned when connection is valid."""
     mock_device = mocker.patch(
@@ -366,6 +396,7 @@ def setup_device_mock(mock, mocker, failure=False, type="test"):
     mock_type.legacy_type = type
     mock_type.config_type = type
     mock_type.match_quality.return_value = 100
+    mock_type.product_display_entries.return_value = [(None, None)]
     mock.async_possible_types = mocker.AsyncMock(
         return_value=[mock_type] if not failure else []
     )
@@ -409,7 +440,7 @@ async def test_flow_select_type_init(hass, mocker):
     )
     expected = {
         "data_schema": mocker.ANY,
-        "description_placeholders": None,
+        "description_placeholders": {"device_name": ""},
         "errors": None,
         "flow_id": mocker.ANY,
         "handler": DOMAIN,
@@ -422,11 +453,11 @@ async def test_flow_select_type_init(hass, mocker):
     # Check the schema.  Simple comparison does not work since they are not
     # the same object
     try:
-        result["data_schema"]({CONF_TYPE: "test"})
+        result["data_schema"]({CONF_TYPE: "test||||"})
     except vol.MultipleInvalid:
         assert False
     try:
-        result["data_schema"]({CONF_TYPE: "not_test"})
+        result["data_schema"]({CONF_TYPE: "not_test||||"})
         assert False
     except vol.MultipleInvalid:
         pass
@@ -458,7 +489,7 @@ async def test_flow_select_type_data_valid(hass, mocker):
     )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
-        user_input={CONF_TYPE: "smartplugv1"},
+        user_input={CONF_TYPE: "smartplugv1||||"},
     )
     assert "form" == result["type"]
     assert "choose_entities" == result["step_id"]
@@ -475,7 +506,7 @@ async def test_flow_choose_entities_init(hass, mocker):
 
     expected = {
         "data_schema": mocker.ANY,
-        "description_placeholders": None,
+        "description_placeholders": {"device_name": ""},
         "errors": None,
         "flow_id": mocker.ANY,
         "handler": DOMAIN,
@@ -621,7 +652,7 @@ async def test_options_flow_modifies_config(hass, bypass_setup, mocker):
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: 3.3,
+            CONF_PROTOCOL_VERSION: "3.3",
         },
     )
     expected = {
