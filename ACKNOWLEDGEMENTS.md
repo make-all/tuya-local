@@ -1303,3 +1303,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ivasso](https://github.com/ivasso) for contributing support for Gosund SP6, which was merged into smartplug_usb.yaml.
 - [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
 - [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.
+- [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer.
