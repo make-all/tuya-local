@@ -1264,7 +1264,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Mighte1](https://github.com/Mighte1) for contributing support for Varin VA-E003 ceiling fan with light.
 - [13r1ckz](https://github.com/13r1ckz) for contributing support for Klarstein Ava range hood.
 - [jvtd](https://github.com/jvtd) for contributing support for Vevor YT60307 weather station.
-- [rackstar41](https://github.com/rackstar41) for assisting with support for Rojeco V200 DU3L-VS camera pet feeder.
+- [rackstar41](https://github.com/rackstar41) for assisting with and contributing improvements to support for Rojeco V200 DU3L-VS camera pet feeder.
 - [kooori](https://github.com/kooori) for contributing support for Fanforce ceiling fan with lights.
 - [Moss51](https://github.com/Moss51) for assisting with support for Bestherm Nessa Connect panel heater.
 - [Aaronhrndz](https://github.com/Aaronhrndz) for assisting with support for Haoyunma BD100 aroma diffuser.
