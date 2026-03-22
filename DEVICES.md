@@ -1,10 +1,10 @@
-devices # Supported
+# Supported devices
 
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
-- Amantii Bespoke R1-2-AP1 Andersson
-- fireplace GSH heater
+- Amantii Bespoke R1-2-AP1 fireplace
+- Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
@@ -420,6 +420,7 @@ devices # Supported
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
+- Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
