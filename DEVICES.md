@@ -1,10 +1,10 @@
-devices # Supported
+# Supported devices
 
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
-- Amantii Bespoke R1-2-AP1 Andersson
-- fireplace GSH heater
+- Amantii Bespoke R1-2-AP1 fireplace
+- Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
@@ -420,6 +420,7 @@ devices # Supported
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
+- Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
@@ -581,6 +582,7 @@ devices # Supported
 - Ultenic K10 air fryer
 - Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weeket KE4071TF, KES5211TE-CE smart kettles
+- Wine Enthusiast Prestige S beverage center
 
 ### Smart Meter/Circuit Breaker
 
@@ -901,6 +903,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
+- BobYun Tech gatePro gate opener 
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
@@ -1181,6 +1184,7 @@ port and password.
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
+- Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
 - C30W gas leak detector

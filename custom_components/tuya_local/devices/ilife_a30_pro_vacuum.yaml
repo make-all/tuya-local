@@ -245,7 +245,7 @@ entities:
       - id: 17
         type: integer
         name: sensor
-        unit: h
+        unit: min
   - entity: sensor
     name: Rolling brush lifetime
     category: diagnostic
@@ -254,7 +254,7 @@ entities:
       - id: 19
         type: integer
         name: sensor
-        unit: h
+        unit: min
   - entity: sensor
     translation_key: filter_life
     category: diagnostic
@@ -263,7 +263,7 @@ entities:
       - id: 21
         type: integer
         name: sensor
-        unit: h
+        unit: min
   - entity: number
     name: Dust collection frequency
     category: config
@@ -287,7 +287,9 @@ entities:
         unit: "%"
         range:
           min: 0
-          max: 100
+          max: 10
+        mapping:
+          - scale: 0.1
   - entity: sensor
     name: Total cleaning area
     class: area
@@ -411,7 +413,7 @@ entities:
         name: switch
   - entity: switch
     name: Edge brush clean
-    icon: "mdi:razor-single-edget"
+    icon: "mdi:razor-single-edge"
     category: config
     dps:
       - id: 150
@@ -500,9 +502,9 @@ entities:
             value: radar_fault
           - dps_val: 2097152
             value: camera_fault
-          - dps_val: 84194304
+          - dps_val: 4194304
             value: stuck_fault
-          - dps_val: 18388608
+          - dps_val: 8388608
             value: flow_fault
           - dps_val: 16777216
             value: other_fault
@@ -514,5 +516,3 @@ entities:
             value: water2_fault
           - dps_val: 268435456
             value: explore_fault
-          - dps_val: 53687091
-            value: kit_water_pump

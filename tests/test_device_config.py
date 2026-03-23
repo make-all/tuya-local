@@ -18,6 +18,7 @@ from custom_components.tuya_local.helpers.device_config import (
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
+from .helpers import assert_device_properties_set
 
 PRODUCT_SCHEMA = vol.Schema(
     {
@@ -302,6 +303,16 @@ KNOWN_DPS = {
 }
 
 
+def mock_device(dps, mocker):
+    """Helper function to create a mock device with specified dps."""
+    device = mocker.MagicMock()
+    device.get_property.side_effect = lambda id: dps.get(id)
+    device.has_returned_state = True
+    device.unique_id = "test_device_id"
+    device.name = "Test Device"
+    return device
+
+
 def test_can_find_config_files():
     """Test that the config files can be found by the parser."""
     found = False
@@ -425,7 +436,7 @@ def check_entity(entity, cfg, mocker):
             f"\n::error file={fname},line={line}::dp id missing from {e} in {cfg}"
         )
         assert dp._config.get("type") is not None, (
-            f"\n::error file={fname},line~{line}::dp type missing from {e} in {cfg}"
+            f"\n::error file={fname},line={line}::dp type missing from {e} in {cfg}"
         )
         assert dp._config.get("name") is not None, (
             f"\n::error file={fname},line={line}::dp name missing from {e} in {cfg}"
@@ -508,11 +519,18 @@ def test_config_files_parse(mocker):
             YAML_SCHEMA(parsed._config)
         except vol.MultipleInvalid as e:
             messages = []
+            first_line = None
             for err in e.errors:
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
+                if first_line is None:
+                    first_line = err.path[-1].__line__
             messages = "; ".join(messages)
-            pytest.fail(f"\n::error file={fname},line=1::Validation error: {messages}")
+            if not first_line:
+                first_line = 1
+            pytest.fail(
+                f"\n::error file={fname},line={first_line}::Validation error: {messages}"
+            )
 
         assert parsed._config.get("name") is not None, (
             f"\n::error file={fname},line=1::name missing from {cfg}"
@@ -520,14 +538,16 @@ def test_config_files_parse(mocker):
         count = 0
         for entity in parsed.all_entities():
             check_entity(entity, cfg, mocker)
+            # check entities are unique
+            if entity.config_id in entities:
+                pytest.fail(
+                    f"\n::error file={fname},line={entity._config.__line__}::"
+                    "Duplicate entity {entity.config_id} in {cfg}"
+                )
             entities.append(entity.config_id)
+
             count += 1
         assert count > 0, f"\n::error file={fname},line=1::No entities found in {cfg}"
-
-        # check entities are unique
-        assert len(entities) == len(set(entities)), (
-            f"\n::error file={fname},line=1::Duplicate entities in {cfg}"
-        )
 
 
 def test_configs_can_be_matched():
@@ -802,3 +822,88 @@ def test_matched_product_id_with_conflict_rejected():
     """Test that matching with product id fails when there is a conflict"""
     cfg = get_config("smartplugv1")
     assert not cfg.matches({"1": "wrong_type"}, ["37mnhia3pojleqfh"])
+
+
+def test_multi_stage_redirect(mocker):
+    """Test that multi stage redirects work correctly for read."""
+
+    # Redirect used to combine multiple dps into a single value
+    kc_cfg = get_config("kcvents_vt501_fan")
+    for entity in kc_cfg.all_entities():
+        if entity.entity == "fan":
+            fan = entity
+            break
+    assert fan is not None
+    speed = fan.find_dps("speed")
+    assert speed is not None
+    dps = {"1": True, "101": True, "102": False, "103": False}
+    device = mock_device(dps, mocker)
+    assert speed.values(device) == [33, 66, 100]
+    assert speed.get_value(device) == 33
+    dps["101"] = False
+    dps["102"] = True
+    assert speed.get_value(device) == 66
+    dps["102"] = False
+    dps["103"] = True
+    assert speed.get_value(device) == 100
+
+    # Redirect used for alternate dps
+    dewin_cfg = get_config("dewin_kws306wf_energymeter")
+    for entity in dewin_cfg.all_entities():
+        if entity.entity == "switch" and entity.name is None:
+            switch = entity
+            break
+    assert switch is not None
+    main = switch.find_dps("switch")
+    alt = switch.find_dps("alt")
+    assert main is not None and alt is not None
+    dps = {"16": True, "141": None}
+    device = mock_device(dps, mocker)
+    assert main.get_value(device) is True
+    dps["16"] = False
+    assert main.get_value(device) is False
+    dps["141"] = True
+    dps["16"] = None
+    assert main.get_value(device) is True
+    dps["141"] = False
+    assert main.get_value(device) is False
+
+
+@pytest.mark.asyncio
+async def test_setting_multi_stage_redirect(mocker):
+    """Test that multi stage redirects work correctly for write."""
+
+    # Redirect used to combine multiple dps into a single value
+    kc_cfg = get_config("kcvents_vt501_fan")
+    for entity in kc_cfg.all_entities():
+        if entity.entity == "fan":
+            fan = entity
+            break
+    assert fan is not None
+    speed = fan.find_dps("speed")
+    assert speed is not None
+    dps = {"1": True, "101": True, "102": False, "103": False}
+    device = mock_device(dps, mocker)
+    async with assert_device_properties_set(device, {"102": True}):
+        await speed.async_set_value(device, 66)
+    async with assert_device_properties_set(device, {"103": True}):
+        await speed.async_set_value(device, 100)
+
+    # Redirect used for alternate dps
+    dewin_cfg = get_config("dewin_kws306wf_energymeter")
+    for entity in dewin_cfg.all_entities():
+        if entity.entity == "switch" and entity.name is None:
+            switch = entity
+            break
+    assert switch is not None
+    main = switch.find_dps("switch")
+    alt = switch.find_dps("alt")
+    assert main is not None and alt is not None
+    dps = {"16": True, "141": None}
+    device = mock_device(dps, mocker)
+    async with assert_device_properties_set(device, {"16": False}):
+        await main.async_set_value(device, False)
+    dps["16"] = None
+    dps["141"] = True
+    async with assert_device_properties_set(device, {"141": False}):
+        await main.async_set_value(device, False)

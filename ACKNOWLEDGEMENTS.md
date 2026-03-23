@@ -1264,7 +1264,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Mighte1](https://github.com/Mighte1) for contributing support for Varin VA-E003 ceiling fan with light.
 - [13r1ckz](https://github.com/13r1ckz) for contributing support for Klarstein Ava range hood.
 - [jvtd](https://github.com/jvtd) for contributing support for Vevor YT60307 weather station.
-- [rackstar41](https://github.com/rackstar41) for assisting with support for Rojeco V200 DU3L-VS camera pet feeder.
+- [rackstar41](https://github.com/rackstar41) for assisting with and contributing improvements to support for Rojeco V200 DU3L-VS camera pet feeder.
 - [kooori](https://github.com/kooori) for contributing support for Fanforce ceiling fan with lights.
 - [Moss51](https://github.com/Moss51) for assisting with support for Bestherm Nessa Connect panel heater.
 - [Aaronhrndz](https://github.com/Aaronhrndz) for assisting with support for Haoyunma BD100 aroma diffuser.
@@ -1289,7 +1289,8 @@ Further device support has been made with the assistance of users. Please consid
 - [AlbertoMarziali](https://github.com/AlbertoMarziali) for contributing support for Nivian NVS-A6WG alarm panel.
 - [TheAdamGalloway](https://github.com/TheAdamGalloway) for contributing support for Curv alarm panel that was merged to the Nivian above.
 - [LeeRuMax](https://github.com/LeeRuMax) for assisting with support for Avonflow AFD14-H thermostat.
-- [arayanhasgithub](https://github.com/arayanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
+- [prfj](https://github.com/prfj) for contributing support for Cecotec TotalPure purifier.
+- [aryanhasgithub](https://github.com/aryanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
 - [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
 - [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
 - [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
@@ -1300,3 +1301,7 @@ Further device support has been made with the assistance of users. Please consid
 - [goblinmaks](https://github.com/goblinmaks) for contributing support for iPengen GO-E31-32A EV charger.
 - [cjsturgess](https://github.com/cjsturgess) for assisting with support for Pawspik Microchip pet feeder.
 - [meeowgler](https://github.com/meeowgler) for assisting with support for Frienhund ACF180W-A dual camera pet feeder.
+- [ivasso](https://github.com/ivasso) for contributing support for Gosund SP6, which was merged into smartplug_usb.yaml.
+- [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
+- [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.
+- [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer.
