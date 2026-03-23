@@ -38,9 +38,9 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "off"
-          - dps_val: "1"
             value: "low"
+          - dps_val: "1"
+            value: "medium"
           - dps_val: "2"
             value: "high"
   - entity: camera
@@ -53,6 +53,17 @@ entities:
         type: base64
         optional: true
         name: snapshot
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
   - entity: switch
     name: Motion detection
     category: config
@@ -132,9 +143,8 @@ entities:
         optional: true
         name: sensor
   - entity: text
-    name: Schedule
+    translation_key: schedule
     category: config
-    icon: "mdi:calendar-clock"
     hidden: true
     dps:
       - id: 207
