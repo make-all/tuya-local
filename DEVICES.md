@@ -898,6 +898,7 @@ of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
+- AGL Mini Smart RX Wi-Fi electric lock
 - Avatto curtain and double light switch (CL02, CLS02 models)
 - Avatto curtain and light switch
 - Avatto curtain switch
