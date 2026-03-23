@@ -1,0 +1,54 @@
+name: KKT Kolbe SOLO HCM
+products:
+  - id: bgvbvjwomgbisd8x # Ensure this matches your exact product key
+    name: KKT Kolbe SOLO HCM Extractor Hood
+entities:
+  - entity: fan
+    name: Okap
+    class: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 9
+  - entity: switch
+    name: Okap Led
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Okap Led 2
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: light
+    name: Okap Led Kolor
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 106
+        type: integer
+        name: brightness
+        range:
+          min: 29
+          max: 1000
+      - id: 107
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
