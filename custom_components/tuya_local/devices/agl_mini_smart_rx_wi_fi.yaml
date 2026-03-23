@@ -13,9 +13,9 @@ entities:
         optional: true
         mapping:
           - dps_val: true
-            value: open
-          - dps_val: false
             value: close
+          - dps_val: false
+            value: open
       - id: 3
         type: boolean
         name: action
@@ -59,7 +59,7 @@ entities:
         type: boolean
   - entity: switch
     category: config
-    name: Allow IC card unlock
+    name: Allow RF remote unlock
     icon: 'mdi:nfc-variant'
     dps:
       - id: 109
