@@ -4,7 +4,7 @@ products:
     manufacturer: Moes
 
 entities:
-
+  # Luz principal RGB
   - entity: light
     name: Background
     icon: "mdi:projector"
@@ -30,54 +30,63 @@ entities:
         format:
           - name: h
             bytes: 2
-            range: { min: 0, max: 360 }
+            range: {min: 0, max: 360}
           - name: s
             bytes: 2
-            range: { min: 0, max: 1000 }
+            range: {min: 0, max: 1000}
           - name: v
             bytes: 2
-            range: { min: 0, max: 1000 }
+            range: {min: 0, max: 1000}
 
       - id: 25
         name: scene_data
         type: hex
 
-
+  # Selector nativo de escenas internas
   - entity: select
     name: Scene
     icon: "mdi:movie-open-star"
     dps:
       - id: 25
-        type: json
+        type: string
         name: option
         mapping:
 
-          # ESCENA DESACTIVADA (sale del modo escena)
-          - value: "Desactivada"
+          # ESCENA DESACTIVADA
+          - value: "Disabled"
             dps_val:
               25: ""
 
           # SOFT
           - value: "Soft"
             dps_val:
-              25: "04464602007803e803e800000000464602007803e8000a00000000"
+              25: >
+                04464602007803e803e800000000464602007803e8000a00000000
 
           # COLORFUL
           - value: "Colorful"
             dps_val:
-              25: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+              25: >
+                05464601000003e803e800000000464601007803e803e800000000
+                46460100f003e803e800000000464601003d03e803e800000000
+                46460100ae03e803e800000000464601011303e803e800000000
 
           # DAZZLING
           - value: "Dazzling"
             dps_val:
-              25: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+              25: >
+                06464601000003e803e800000000464601007803e803e800000000
+                46460100f003e803e800000000
 
           # GORGEOUS
           - value: "Gorgeous"
             dps_val:
-              25: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+              25: >
+                07464602000003e803e800000000464602007803e803e800000000
+                46460200f003e803e800000000464602003d03e803e800000000
+                46460200ae03e803e800000000464602011303e803e800000000
 
-
+  # Láser
   - entity: light
     translation_key: laser
     dps:
@@ -87,8 +96,9 @@ entities:
       - id: 22
         name: brightness
         type: integer
-        range: { min: 10, max: 1000 }
+        range: {min: 10, max: 1000}
 
+  # Velocidad de rotación
   - entity: number
     name: Star rotation speed
     category: config
@@ -97,8 +107,9 @@ entities:
       - id: 101
         type: integer
         name: value
-        range: { min: 10, max: 1000 }
+        range: {min: 10, max: 1000}
 
+  # Interruptor maestro
   - entity: switch
     name: Master
     dps:
@@ -106,6 +117,7 @@ entities:
         type: boolean
         name: switch
 
+  # Temporizador
   - entity: time
     translation_key: timer
     category: config
@@ -113,4 +125,4 @@ entities:
       - id: 26
         type: integer
         name: second
-        range: { min: 0, max: 86400 }
+        range: {min: 0, max: 86400}
