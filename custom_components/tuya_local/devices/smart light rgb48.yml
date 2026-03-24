@@ -3,9 +3,8 @@
 # Protocol: 3.4
 #
 # Notes:
-# - DP 24 colour_data is type string per Tuya data model.
-# - DP 59 draw_tool is raw type for direct per-LED control.
-# - DP 56 rgbic_linerlight_scene is raw type for scene switching.
+# - DP 59 draw_tool is base64 type for direct per-LED control.
+# - DP 56 rgbic_linerlight_scene is base64 type for scene switching.
 # - DP 58 led_number_set configures string length/segment count.
 
 name: RGBIC string light
@@ -47,10 +46,6 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 24
-        type: string
-        name: rgbhsv
-        optional: true
   - entity: select
     name: Segment mode
     category: config
