@@ -2,7 +2,9 @@ name: Star projector
 products:
   - id: cw7kinnselbesfp9
     manufacturer: Moes
+
 entities:
+
   - entity: light
     name: Background
     icon: "mdi:projector"
@@ -10,6 +12,7 @@ entities:
       - id: 103
         type: boolean
         name: switch
+
       - id: 21
         name: color_mode
         type: string
@@ -19,29 +22,62 @@ entities:
           - dps_val: colour
             value: hs
           - dps_val: scene
-            value: Scene
+            value: scene
+
       - id: 24
         name: rgbhsv
         type: hex
         format:
           - name: h
             bytes: 2
-            range:
-              min: 0
-              max: 360
+            range: { min: 0, max: 360 }
           - name: s
             bytes: 2
-            range:
-              min: 0
-              max: 1000
+            range: { min: 0, max: 1000 }
           - name: v
             bytes: 2
-            range:
-              min: 0
-              max: 1000
+            range: { min: 0, max: 1000 }
+
       - id: 25
         name: scene_data
         type: hex
+
+
+  - entity: select
+    name: Scene
+    icon: "mdi:movie-open-star"
+    dps:
+      - id: 25
+        type: json
+        name: option
+        mapping:
+
+          # ESCENA DESACTIVADA (sale del modo escena)
+          - value: "Desactivada"
+            dps_val:
+              25: ""
+
+          # SOFT
+          - value: "Soft"
+            dps_val:
+              25: "04464602007803e803e800000000464602007803e8000a00000000"
+
+          # COLORFUL
+          - value: "Colorful"
+            dps_val:
+              25: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+
+          # DAZZLING
+          - value: "Dazzling"
+            dps_val:
+              25: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+
+          # GORGEOUS
+          - value: "Gorgeous"
+            dps_val:
+              25: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+
+
   - entity: light
     translation_key: laser
     dps:
@@ -51,9 +87,8 @@ entities:
       - id: 22
         name: brightness
         type: integer
-        range:
-          min: 10
-          max: 1000
+        range: { min: 10, max: 1000 }
+
   - entity: number
     name: Star rotation speed
     category: config
@@ -62,15 +97,15 @@ entities:
       - id: 101
         type: integer
         name: value
-        range:
-          min: 10
-          max: 1000
+        range: { min: 10, max: 1000 }
+
   - entity: switch
     name: Master
     dps:
       - id: 20
         type: boolean
         name: switch
+
   - entity: time
     translation_key: timer
     category: config
@@ -78,6 +113,4 @@ entities:
       - id: 26
         type: integer
         name: second
-        range:
-          min: 0
-          max: 86400
+        range: { min: 0, max: 86400 }
