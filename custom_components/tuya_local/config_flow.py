@@ -444,15 +444,12 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         best_match = 0
         best_matching_type = None
         best_matching_key = None
-        has_product_id_match = False
 
         for dev_type in await self.device.async_possible_types():
             q = dev_type.match_quality(
                 self.device._get_cached_state(),
                 self.device._product_ids,
             )
-            if q > 100:
-                has_product_id_match = True
             for manufacturer, model in dev_type.product_display_entries(
                 self.device._product_ids
             ):
@@ -468,10 +465,8 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     best_matching_type = dev_type.config_type
                     best_matching_key = key
 
-        if has_product_id_match:
-            type_options = [opt for opt, q in all_matches if q > 100]
-        else:
-            type_options = [opt for opt, _ in all_matches]
+        all_matches.sort(key=lambda x: x[1], reverse=True)
+        type_options = [opt for opt, _ in all_matches]
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
