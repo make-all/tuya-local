@@ -1,18 +1,17 @@
-# Smart Light RGB48 - RGBIC Outdoor String Lights
+# Smart Light RGB48 - RGBIC outdoor string lights
 # Product ID: 2znvfkx64d4fkzxp
 # Protocol: 3.4
 #
 # Notes:
-# - Direct color control via DP 24 does not persist reliably on this device.
-#   Colors set via DP 59 (base64 scene payload) work correctly and persistently.
-#   This matches how the SmartLife app controls the device natively.
-# - DPs 47 and 53 are present in device responses but their function is unknown.
-#   Included as optional hidden attributes to improve device matching quality.
+# - DP 24 colour_data is type string per Tuya data model.
+# - DP 59 draw_tool is raw type for direct per-LED control.
+# - DP 56 rgbic_linerlight_scene is raw type for scene switching.
+# - DP 58 led_number_set configures string length/segment count.
 
-name: RGBIC Patio String Lights
+name: RGBIC string light
 products:
   - id: 2znvfkx64d4fkzxp
-    name: Smart Light RGB48
+    model: Smart Light RGB48
 entities:
   - entity: light
     icon: "mdi:string-lights"
@@ -49,40 +48,12 @@ entities:
               min: 2700
               max: 6500
       - id: 24
-        type: hex
+        type: string
         name: rgbhsv
-        format:
-          - name: h
-            bytes: 2
-            range:
-              min: 0
-              max: 360
-          - name: s
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
-          - name: v
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
-      - id: 26
-        type: integer
-        name: timer
         optional: true
-      - id: 47
-        type: integer
-        name: unknown_47
-        optional: true
-        hidden: true
-      - id: 53
-        type: integer
-        name: unknown_53
-        optional: true
-        hidden: true
   - entity: select
-    name: Segment Mode
+    name: Segment mode
+    category: config
     icon: "mdi:led-strip-variant"
     dps:
       - id: 101
@@ -97,17 +68,43 @@ entities:
             value: "White"
           - dps_val: "SCENE"
             value: "Scene"
-  - entity: text
-    name: Holiday Scene
+  - entity: number
+    name: LED count
     category: config
-    dps:
-      - id: 59
-        type: base64
-        name: value
-  - entity: sensor
-    name: Bulb Count
-    category: diagnostic
+    icon: "mdi:counter"
     dps:
       - id: 58
         type: integer
-        name: sensor
+        name: value
+        range:
+          min: 1
+          max: 5000
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: s
+  - entity: text
+    name: Scene data
+    category: config
+    icon: "mdi:palette"
+    dps:
+      - id: 56
+        type: raw
+        name: value
+  - entity: text
+    name: Draw tool
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 59
+        type: raw
+        name: value
