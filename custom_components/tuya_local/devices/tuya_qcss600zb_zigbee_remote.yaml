@@ -1,0 +1,64 @@
+name: 3 Gang ZigBee Remote
+products:
+  - id: famkxci2
+    manufacturer: Tuya
+    model: qcss600zb
+    name: 3 Gang ZigBee Remote
+
+entities:
+  - entity: event
+    name: Button 1
+    class: button
+    dps:
+      - id: 1
+        name: event
+        type: string
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: double_click
+            value: double_click
+          - dps_val: long_press
+            value: long_press
+
+  - entity: event
+    name: Button 2
+    class: button
+    dps:
+      - id: 2
+        name: event
+        type: string
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: double_click
+            value: double_click
+          - dps_val: long_press
+            value: long_press
+
+  - entity: event
+    name: Button 3
+    class: button
+    dps:
+      - id: 3
+        name: event
+        type: string
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: double_click
+            value: double_click
+          - dps_val: long_press
+            value: long_press
+
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: "%"

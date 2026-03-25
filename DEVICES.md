@@ -1365,6 +1365,7 @@ entity types as sub devices.
 - Smart air box BR V2
 - Temperature and humidity sensor with alarm feature
 - TH02 Z3-P3Z temperature and humidity sensor
+- Tuya QCSS600ZB 3 gang ZigBee remote control
 - WL-898WZ water leak sensor
 - WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
