@@ -1,0 +1,130 @@
+name: Dual channel energy meter
+products:
+  - id: zcmq0kvd01bn6s1n
+    manufacturer: WMDL
+    model: (WMDL-2C) Smart Energy Meter WIFI Bidirection 2 Channel
+entities:
+  - entity: sensor
+    name: Power Phase A
+    class: power
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        precision: 1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage Phase A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        precision: 1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current Phase A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power Phase B
+    class: power
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: W
+        precision: 1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage Phase B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        precision: 1
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current Phase B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Total Forward Energy
+    class: energy
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+            - scale: 100
+  - entity: sensor
+    name: Total Reverse Energy
+    class: energy
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Limit Power Phase A
+    category: config
+    class: power
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 25000
+        mapping:
+          - dps_val: null
+            invalid: true
+          - scale: 10
+  - entity: number
+    name: Limit Power Phase B
+    category: config
+    class: power
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 25000
+        mapping:
+          - dps_val: null
+            invalid: true
+          - scale: 10
