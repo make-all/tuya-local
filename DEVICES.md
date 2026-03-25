@@ -393,6 +393,7 @@
 - Pro Breeze AirFlo 43" pedestal fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
+- Reventon / Holtop Smart ERV heat recovery ventilator
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
