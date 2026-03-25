@@ -16,7 +16,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage Phase A
+    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -53,6 +53,7 @@ entities:
     name: Voltage Phase B
     class: voltage
     category: diagnostic
+    hidden: true
     dps:
       - id: 114
         type: integer
@@ -107,11 +108,12 @@ entities:
         unit: W
         range:
           min: 0
-          max: 25000
+          max: 150000
         mapping:
           - dps_val: null
             invalid: true
-          - scale: 10
+          - scale: 1
+            step: 100
   - entity: number
     name: Limit Power Phase B
     category: config
@@ -123,8 +125,57 @@ entities:
         unit: W
         range:
           min: 0
-          max: 25000
+          max: 150000
         mapping:
           - dps_val: null
             invalid: true
-          - scale: 10
+          - scale: 1
+            step: 100
+  - entity: sensor
+    name: Forward Energy A
+    class: energy
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Reverse Energy A
+    class: energy
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Forward Energy B
+    class: energy
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Reverse Energy B
+    class: energy
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        precision: 2
+        mapping:
+          - scale: 100
