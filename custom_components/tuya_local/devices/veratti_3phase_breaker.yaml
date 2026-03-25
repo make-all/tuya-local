@@ -1,4 +1,4 @@
-name: 3-phase circuit breaker
+name: Circuit breaker
 products:
   - id: zxhlsbmhkauiyget
     manufacturer: VERATTI
@@ -11,6 +11,7 @@ entities:
         name: switch
 
   - entity: sensor
+    translation_key: energy_consumed
     class: energy
     dps:
       - id: 1
@@ -22,7 +23,7 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Reverse energy
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 110
@@ -218,3 +219,6 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
