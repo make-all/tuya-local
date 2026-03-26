@@ -101,7 +101,6 @@ entities:
         mapping:
           - scale: 1000
 
-  # Not reported when idle; constraint forces 0 for all non-charging states
   - entity: sensor # power_total -9- integer kW
     class: power
     dps:
@@ -112,23 +111,6 @@ entities:
         class: measurement
         mapping:
           - scale: 1000
-            constraint: work_state
-            conditions:
-              - dps_val: charger_free
-                value: 0
-              - dps_val: charger_insert
-                value: 0
-              - dps_val: charger_free_fault
-                value: 0
-              - dps_val: charger_fault
-                value: 0
-              - dps_val: charger_stop_wait
-                value: 0
-              - dps_val: charger_start_wait
-                value: 0
-      - id: 3
-        type: string
-        name: work_state
 
   - entity: binary_sensor # fault -10- bitmap
     class: problem
