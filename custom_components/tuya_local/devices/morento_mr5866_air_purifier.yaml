@@ -10,7 +10,6 @@ products:
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
     dps:
       - id: 1
         name: switch
@@ -33,7 +32,6 @@ entities:
 
   - entity: sensor
     class: pm25
-    name: pm25
     dps:
       - id: 2
         name: sensor
@@ -44,7 +42,6 @@ entities:
   - entity: sensor
     translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         name: sensor
@@ -54,7 +51,6 @@ entities:
   - entity: lock
     translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
         name: lock
@@ -63,7 +59,6 @@ entities:
   - entity: light
     translation_key: backlight
     category: config
-    icon: "mdi:lightbulb-outline"
     dps:
       - id: 8
         name: switch
@@ -81,25 +76,23 @@ entities:
   - entity: select
     translation_key: timer
     category: config
-    icon: "mdi:timer-outline"
     dps:
       - id: 18
         name: option
         type: string
         mapping:
           - dps_val: cancel
-            value: Cancel
+            value: cancel
           - dps_val: 2h
-            value: 2 hours
+            value: 2h
           - dps_val: 5h
-            value: 5 hours
+            value: 5h
           - dps_val: 8h
-            value: 8 hours
+            value: 8h
 
   - entity: sensor
     translation_key: air_quality
     class: enum
-    icon: "mdi:air-filter"
     dps:
       - id: 21
         name: sensor
