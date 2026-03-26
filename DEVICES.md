@@ -434,7 +434,7 @@
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
-- Morento HY4866-WF and MR7566-WF air purifiers
+- Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
