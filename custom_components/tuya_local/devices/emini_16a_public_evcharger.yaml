@@ -4,7 +4,7 @@ products:
     manufacturer: Emini
     model: 16A Public
 entities:
-  - entity: sensor  # work_state -3- enum
+  - entity: sensor # work_state -3- enum
     translation_key: status
     icon: "mdi:ev-station"
     class: enum
@@ -28,7 +28,7 @@ entities:
           - dps_val: charger_start_wait
             value: waiting
 
-  - entity: sensor  # forward_energy_total -1- integer kW·h
+  - entity: sensor # forward_energy_total -1- integer kW·h
     class: energy
     dps:
       - id: 1
@@ -39,7 +39,7 @@ entities:
         mapping:
           - scale: 100
 
-  - entity: number  # charge_cur_set -4- integer A
+  - entity: number # charge_cur_set -4- integer A
     name: Charging current
     category: config
     class: current
@@ -53,7 +53,7 @@ entities:
           min: 6
           max: 16
 
-  - entity: sensor  # phase_a -6- raw (voltage, bytes 0-1, 0.1V)
+  - entity: sensor # phase_a -6- raw (voltage, bytes 0-1, 0.1V)
     class: voltage
     category: diagnostic
     translation_key: voltage_x
@@ -69,7 +69,7 @@ entities:
         mapping:
           - scale: 10
 
-  - entity: sensor  # phase_a -6- raw (current, bytes 2-4, 0.001A)
+  - entity: sensor # phase_a -6- raw (current, bytes 2-4, 0.001A)
     class: current
     category: diagnostic
     translation_key: current_x
@@ -85,7 +85,7 @@ entities:
         mapping:
           - scale: 1000
 
-  - entity: sensor  # phase_a -6- raw (power, bytes 5-7, 0.001kW)
+  - entity: sensor # phase_a -6- raw (power, bytes 5-7, 0.001kW)
     class: power
     category: diagnostic
     translation_key: power_x
@@ -103,7 +103,7 @@ entities:
           - scale: 1000
 
   # Not reported when idle; constraint forces 0 for all non-charging states
-  - entity: sensor  # power_total -9- integer kW
+  - entity: sensor # power_total -9- integer kW
     class: power
     dps:
       - id: 9
@@ -131,7 +131,7 @@ entities:
         type: string
         name: work_state
 
-  - entity: binary_sensor  # fault -10- bitmap
+  - entity: binary_sensor # fault -10- bitmap
     class: problem
     category: diagnostic
     dps:
@@ -184,7 +184,7 @@ entities:
           - dps_val: 32768
             value: connector_temp_fault
 
-  - entity: select  # work_mode -14- enum
+  - entity: select # work_mode -14- enum
     translation_key: charging_mode
     category: config
     dps:
@@ -203,14 +203,14 @@ entities:
           - dps_val: charge_delay
             value: delayed_charge
 
-  - entity: switch  # switch -18- boolean
+  - entity: switch # switch -18- boolean
     icon: "mdi:ev-station"
     dps:
       - id: 18
         type: boolean
         name: switch
 
-  - entity: sensor  # system_version -23- string
+  - entity: sensor # system_version -23- string
     name: System version
     category: diagnostic
     dps:
@@ -218,7 +218,7 @@ entities:
         type: string
         name: sensor
 
-  - entity: sensor  # temp_current -24- integer °C
+  - entity: sensor # temp_current -24- integer °C
     class: temperature
     category: diagnostic
     dps:
@@ -231,7 +231,7 @@ entities:
           min: -40
           max: 200
 
-  - entity: sensor  # charge_energy_once -25- integer kW·h
+  - entity: sensor # charge_energy_once -25- integer kW·h
     name: Last charge
     dps:
       - id: 25
@@ -242,20 +242,24 @@ entities:
         mapping:
           - scale: 100
 
-  - entity: binary_sensor  # online_state -27- enum
-    class: connectivity
-    category: diagnostic
+  - entity: switch # live updates -27- enum
+    name: Live updates
+    category: config
+    icon: "mdi:chart-bar"
     dps:
       - id: 27
         type: string
-        name: sensor
+        name: switch
         mapping:
-          - dps_val: offline
-            value: false
           - dps_val: online
             value: true
+          - dps_val: offline
+            value: false
+          - value: false
+            hidden: true
+        always_send: true
 
-  - entity: sensor  # product_sn -101- string
+  - entity: sensor # product_sn -101- string
     name: Serial number
     category: diagnostic
     dps:
