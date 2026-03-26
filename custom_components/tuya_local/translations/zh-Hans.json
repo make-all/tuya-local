@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "定位设备IP地址",
-                "description": "Tuya云不提供本地IP地址，因此我们现在必须搜索您的本地网络以找到设备。这需要最多20秒。\n\n如果搜索不成功，您需要通过其他方式提供IP地址，例如从路由器的DHCP分配中获取。\n\n为了使这一步骤和后续的设备添加成功，您必须关闭移动应用，否则其连接会阻止Tuya Local与设备的通信。"
+                "description": "{device_name}Tuya云不提供本地IP地址，因此我们现在必须搜索您的本地网络以找到设备。这需要最多20秒。\n\n如果搜索不成功，您需要通过其他方式提供IP地址，例如从路由器的DHCP分配中获取。\n\n为了使这一步骤和后续的设备添加成功，您必须关闭移动应用，否则其连接会阻止Tuya Local与设备的通信。"
             },
             "local": {
                 "title": "配置您的Tuya Local设备",
-                "description": "[按照这些说明找到您的设备ID和 Local key]({device_details_url})",
+                "description": "{device_name}[按照这些说明找到您的设备ID和 Local key]({device_details_url})",
                 "data": {
                     "host": "IP地址或主机名",
                     "device_id": "设备ID (或者通过网关连接的设备的设备ID)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "选择设备类型",
-                "description": "选择与您的设备匹配的类型",
+                "description": "{device_name}选择与您的设备匹配的类型",
                 "data": {
                     "type": "设备类型"
                 }
             },
             "select_type_auto_detected": {
                 "title": "选择设备类型",
-                "description": "选择与您的设备匹配的类型。协议版本{detected_protocol}已自动检测并保存。如果您将来更新设备固件，可能需要重新配置此集成。",
+                "description": "{device_name}选择与您的设备匹配的类型。协议版本{detected_protocol}已自动检测并保存。如果您将来更新设备固件，可能需要重新配置此集成。",
                 "data": {
                     "type": "设备类型"
                 }
             },
             "choose_entities": {
                 "title": "设备详情",
-                "description": "为此设备选择一个名称",
+                "description": "{device_name}为此设备选择一个名称",
                 "data": {
                     "name": "名称"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -1215,6 +1217,9 @@
         "text": {
             "scene": {
                 "name": "场景"
+            },
+            "schedule": {
+                "name": "日程"
             }
         },
         "time": {

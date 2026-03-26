@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Намерете IP адреса на устройството",
-                "description": "Облакът Tuya не предоставя локални IP адреси"
+                "description": "{device_name}Облакът Tuya не предоставя локални IP адреси"
             },
             "local": {
                 "title": "Конфигуриране на вашето Tuya Local устройство",
-                "description": "[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ]({device_details_url}).",
+                "description": "{device_name}[Следвайте тези инструкции, за да откриете идентификатора на вашето устройство и локалния ключ]({device_details_url}).",
                 "data": {
                     "host": "IP адрес или име на хост",
                     "device_id": "Device ID (или Device ID шлюза, за устройства свързани чрез шлюз)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Изберете типа на устройството",
-                "description": "Изберете типа, който съответства на вашето устройство",
+                "description": "{device_name}Изберете типа, който съответства на вашето устройство",
                 "data": {
                     "type": "Тип устройство"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Изберете типа на устройството",
-                "description": "Изберете типа, който съответства на вашето устройство. Версията на протокола {detected_protocol} беше автоматично открита и запазена. Ако в бъдеще актуализирате фърмуера на устройството, може да се наложи да конфигурирате отново тази интеграция.",
+                "description": "{device_name}Изберете типа, който съответства на вашето устройство. Версията на протокола {detected_protocol} беше автоматично открита и запазена. Ако в бъдеще актуализирате фърмуера на устройството, може да се наложи да конфигурирате отново тази интеграция.",
                 "data": {
                     "type": "Тип устройство"
                 }
             },
             "choose_entities": {
                 "title": "Подробности за устройството",
-                "description": "Изберете име за това устройство",
+                "description": "{device_name}Изберете име за това устройство",
                 "data": {
                     "name": "Име"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -1216,6 +1218,9 @@
         "text": {
             "scene": {
                 "name": "Сцена"
+            },
+            "schedule": {
+                "name": "График"
             }
         },
         "time": {

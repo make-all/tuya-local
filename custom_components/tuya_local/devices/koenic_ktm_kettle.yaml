@@ -1,0 +1,107 @@
+name: Kettle
+products:
+  - id: d9wi3si7ytqma30a
+    manufacturer: Koenic
+    model: KTM 221723 M
+entities:
+  - entity: water_heater
+    translation_key: kettle
+    dps:
+      - id: 102
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 95
+      - id: 105
+        type: integer
+        name: current_temperature
+  - entity: select
+    translation_key: kettle_mode
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: infant_formula
+          - dps_val: "1"
+            value: honey_water
+          - dps_val: "2"
+            value: green_tea
+          - dps_val: "3"
+            value: dechlorinate
+          - dps_val: "4"
+            value: boil
+          - dps_val: "5"
+            value: keep_warm
+          - dps_val: "6"
+            value: "off"
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: fault_unplugged
+          - dps_val: "1"
+            value: missing
+          - dps_val: "2"
+            value: idle
+          - dps_val: "3"
+            value: heating
+          - dps_val: "4"
+            value: cooling
+          - dps_val: "5"
+            value: keeping_warm
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 104
+        type: bitfield
+        name: fault_code
+      - id: 104
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: boiled_dry
+          - dps_val: 2
+            value: fault
+          - dps_val: 4
+            value: water_low
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: min
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 240

@@ -3,6 +3,9 @@ products:
   - id: zmql6aexy8ua5rox
     manufacturer: Gosund
     model: SP112
+  - id: re5wqraswcozglky
+    manufacturer: Gosund
+    model: SP6
 entities:
   - entity: switch
     class: outlet
@@ -97,6 +100,17 @@ entities:
           - dps_val: null
             value: false
           - value: true
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
   - entity: time
     category: config
     translation_key: timer
@@ -151,10 +165,60 @@ entities:
         mapping:
           - dps_val: power_on
             value: "on"
+            available: alternate
           - dps_val: power_off
             value: "off"
+            available: alternate
           - dps_val: last
             value: memory
+            available: alternate
+          - dps_val: "on"
+            value: "on"
+            available: standard
+          - dps_val: "off"
+            value: "off"
+            available: standard
+          - dps_val: memory
+            value: memory
+            available: standard
+          - dps_val: "0"
+            value: "off"
+            available: numeric
+          - dps_val: "1"
+            value: "on"
+            available: numeric
+          - dps_val: "2"
+            value: memory
+            available: numeric
+      - id: 38
+        type: string
+        optional: true
+        name: standard
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: ["on", "off", memory]
+                value: true
+              - dps_val: null
+                value: true  # allow options to populate at init
+      - id: 38
+        type: string
+        optional: true
+        name: alternate
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [power_on, power_off, last]
+                value: true
+      - id: 38
+        type: string
+        optional: true
+        name: numeric
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: ["0", "1", "2"]
+                value: true
       - id: 38
         type: string
         optional: true
@@ -187,6 +251,23 @@ entities:
           - dps_val: null
             value: false
           - value: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: lock
+      - id: 40
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -203,3 +284,32 @@ entities:
         type: bitfield
         name: fault_code
         optional: true
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 41
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 42
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 43
+        type: string
+        optional: true
+        name: value

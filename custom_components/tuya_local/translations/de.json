@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Suchen Sie die IP-Adresse des Geräts",
-                "description": "Die Tuya-Cloud stellt keine lokalen IP-Adressen bereit"
+                "description": "{device_name}Die Tuya-Cloud stellt keine lokalen IP-Adressen bereit"
             },
             "local": {
                 "title": "Konfigurieren Sie Ihr Tuya Local-Gerät",
-                "description": "[Folgen Sie diesen Anweisungen, um Ihre Geräte-ID und Ihren lokalen Schlüssel zu finden.]({device_details_url})",
+                "description": "{device_name}[Folgen Sie diesen Anweisungen, um Ihre Geräte-ID und Ihren lokalen Schlüssel zu finden.]({device_details_url})",
                 "data": {
                     "host": "IP-Adresse oder Host-Name",
                     "device_id": "Geräte-ID (device_id, oder device_id des Gateways für Geräte, die über ein Gateway angeschlossen sind)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Wählen Sie den Gerätetyp aus",
-                "description": "Wählen Sie den für Ihr Gerät geeigneten Typ aus.",
+                "description": "{device_name}Wählen Sie den für Ihr Gerät geeigneten Typ aus.",
                 "data": {
                     "type": "Gerätetyp"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Wählen Sie den Gerätetyp aus",
-                "description": "Wählen Sie den Typ aus, der Ihrem Gerät entspricht. Protokollversion {detected_protocol} wurde automatisch erkannt und gespeichert. Wenn Sie die Geräte-Firmware in Zukunft aktualisieren, müssen Sie diese Integration möglicherweise neu konfigurieren.",
+                "description": "{device_name}Wählen Sie den Typ aus, der Ihrem Gerät entspricht. Protokollversion {detected_protocol} wurde automatisch erkannt und gespeichert. Wenn Sie die Geräte-Firmware in Zukunft aktualisieren, müssen Sie diese Integration möglicherweise neu konfigurieren.",
                 "data": {
                     "type": "Gerätetyp"
                 }
             },
             "choose_entities": {
                 "title": "Gerätename",
-                "description": "Wählen Sie einen Namen für dieses Gerät aus.",
+                "description": "{device_name}Wählen Sie einen Namen für dieses Gerät aus.",
                 "data": {
                     "name": "Gerätename"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -1215,6 +1217,9 @@
         "text": {
             "scene": {
                 "name": "Szene"
+            },
+            "schedule": {
+                "name": "Zeitplan"
             }
         },
         "time": {

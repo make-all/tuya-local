@@ -1,0 +1,305 @@
+name: Gate opener
+products:
+  - id: rzqbb9bm0mymxyqh
+    manufacturer: BoboYun Tech
+    model: gatePro
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 10
+        type: string
+        name: action
+        mapping:
+          - dps_val: opened
+            value: open
+          - dps_val: closed
+            value: closed
+          - dps_val: opening
+            value: opening
+          - dps_val: closing
+            value: closing
+          - value: null
+      - id: 103
+        type: boolean
+        name: control
+        mapping:
+          - dps_val: true
+            value: stop
+          - dps_val: false
+            value_redirect: control_open
+            value: open
+          - dps_val: false
+            value: close
+            value_redirect: control_close
+      - id: 106
+        type: boolean
+        name: control_open
+        mapping:
+          - dps_val: true
+            value: open
+          - value_redirect: control_close
+      - id: 107
+        type: boolean
+        name: control_close
+        mapping:
+          - dps_val: true
+            value: close
+          - value: null
+      - id: 142
+        type: string
+        name: info
+      - id: 150
+        type: string
+        optional: true
+        name: brand
+  - entity: light
+    hidden: unavailable
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 144
+        type: boolean
+        name: available
+  - entity: button
+    name: Pedestrian
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: button
+    name: Start
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: button
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 141
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: No
+            value: null
+          - dps_val: openLongTime
+            value: Left open
+          - dps_val: systemError
+            value: Fault
+          - dps_val: temperatureError
+            value: Overheat
+          - dps_val: batteryError
+            value: Battery low
+          - dps_val: encoderError
+            value: Encoder failure
+          - dps_val: ACfails
+            value: Power failure
+          - dps_val: stopError
+            value: Stopped unexpectedly
+          - dps_val: photoError
+            value: Photo sensor failure
+          - dps_val: detectError
+            value: Detector failure
+          - dps_val: bruteForceOpening
+            value: Forced open
+  - entity: button
+    name: Learn code 1
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 110
+        type: boolean
+        optional: true
+        name: button
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: showAll
+            value: true
+          - value: false
+  - entity: button
+    name: Learn code 2
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: showAll
+            value: true
+          - value: false
+  - entity: button
+    name: Learn code 3
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: boolean
+        optional: true
+        name: button
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: showAll
+            value: true
+          - value: false
+  - entity: button
+    name: Learn code 4
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: button
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: showAll
+            value: true
+          - value: false
+  - entity: button
+    name: Erase codes
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 114
+        type: boolean
+        optional: true
+        name: button
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: showAll
+            value: true
+          - value: false
+  - entity: select
+    name: Operation mode
+    translation_key: mode
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 120
+        type: string
+        name: option
+        mapping:
+          - dps_val: Step_by_step
+            value: manual
+          - dps_val: Auto_Close
+            value: Auto close
+          - dps_val: Condominium
+            value: Condominium
+          - dps_val: Open_Close
+            value: Open-close
+          - dps_val: Open_Close_Auto
+            value: Auto open-close
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: hidden
+            value: false
+          - value: true
+  - entity: number
+    name: Pause time
+    icon: "mdi:timer-pause"
+    category: config
+    class: duration
+    hidden: unavailable
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 299
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: hidden
+            value: false
+          - value: true
+  - entity: select
+    name: App control
+    icon: "mdi:tools"
+    category: config
+    hidden: true
+    dps:
+      - id: 139
+        type: string
+        name: option
+        mapping:
+          - dps_val: hidden
+            value: Basic
+          - dps_val: hideRadio
+            value: Except RF
+          - dps_val: showAll
+            value: Show all
+  - entity: switch
+    name: Keep open
+    category: config
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+  - entity: select
+    name: Gate type
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 143
+        type: string
+        name: option
+        mapping:
+          - dps_val: swing
+            value: Swing
+            icon: "mdi:gate-open"
+          - dps_val: singleSwing
+            value: Single swing
+            icon: "mdi:gate"
+          - dps_val: sliding
+            value: Sliding
+            icon: "mdi:gate-arrow-left"
+          - dps_val: barrier
+            value: Barrier arm
+            icon: "mdi:boom-gate"
+          - dps_val: doubleBarrier
+            value: Double barrier arm
+            icon: "mdi:boom-gate"
+          - dps_val: swingPedestrian
+            value: Pedestrian swing
+            icon: "mdi:door"
+          - dps_val: garageOpener
+            value: Garage
+            icon: "mdi:garage"
+          - dps_val: doubleSliding
+            value: Double sliding
+            icon: "mdi:gate-open"
+          - dps_val: metalRollingShutter
+            value: Metal roller shutter
+            icon: "mdi:garage-open"
+          - dps_val: rollingShutter
+            value: Roller shutter
+            icon: "mdi:window-shutter"
+      - id: 139
+        type: string
+        name: available
+        mapping:
+          - dps_val: hidden
+            value: false
+          - value: true

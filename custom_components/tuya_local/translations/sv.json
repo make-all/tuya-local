@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Leta upp enhetens IP-adress",
-                "description": "Tuya cloud tillhandahåller inte lokala IP-adresser så vi måste nu söka i ditt lokala nätverk för att hitta enheten. Detta tar upp till 20 sekunder.\n\nOm det misslyckas måste du själv tillhandahålla IP-adressen på något annat sätt, till exempel från routerns DHCP-tilldelning.\n\nFör att detta steg och den följande enhetsläggningen ska lyckas måste du stänga mobilappen eller dess anslutningar till enheten kommer ofta blockera Tuya Local-kommunikation med dem."
+                "description": "{device_name}Tuya cloud tillhandahåller inte lokala IP-adresser så vi måste nu söka i ditt lokala nätverk för att hitta enheten. Detta tar upp till 20 sekunder.\n\nOm det misslyckas måste du själv tillhandahålla IP-adressen på något annat sätt, till exempel från routerns DHCP-tilldelning.\n\nFör att detta steg och den följande enhetsläggningen ska lyckas måste du stänga mobilappen eller dess anslutningar till enheten kommer ofta blockera Tuya Local-kommunikation med dem."
             },
             "local": {
                 "title": "Konfigurera din Tuya Local-enhet",
-                "description": "[Följ dessa instruktioner för att hitta ditt enhets-ID och lokala nyckel.]({device_details_url})",
+                "description": "{device_name}[Följ dessa instruktioner för att hitta ditt enhets-ID och lokala nyckel.]({device_details_url})",
                 "data": {
                     "host": "IP-adress eller värdnamn",
                     "device_id": "Enhets-ID (eller hubbens enhets-ID för enheter anslutna via gateway)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Välj enhetstyp",
-                "description": "Välj den typ som matchar din enhet",
+                "description": "{device_name}Välj den typ som matchar din enhet",
                 "data": {
                     "type": "Enhetstyp"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Välj enhetstyp",
-                "description": "Välj den typ som matchar din enhet. Protokollversion {detected_protocol} upptäcktes automatiskt och sparades. Om du uppdaterar enhetens firmware i framtiden kan du behöva konfigurera om denna integration.",
+                "description": "{device_name}Välj den typ som matchar din enhet. Protokollversion {detected_protocol} upptäcktes automatiskt och sparades. Om du uppdaterar enhetens firmware i framtiden kan du behöva konfigurera om denna integration.",
                 "data": {
                     "type": "Enhetstyp"
                 }
             },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
-                "description": "Välj ett namn för enheten",
+                "description": "{device_name}Välj ett namn för enheten",
                 "data": {
                     "name": "Namn"
                 }
@@ -587,6 +587,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -594,7 +596,7 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -1215,6 +1217,9 @@
         "text": {
             "scene": {
                 "name": "Scen"
+            },
+            "schedule": {
+                "name": "Schema"
             }
         },
         "time": {

@@ -30,11 +30,11 @@
             },
             "search": {
                 "title": "Znajdź adres IP urządzenia",
-                "description": "Chmura Tuya nie udostępnia lokalnych adresów IP"
+                "description": "{device_name}Chmura Tuya nie udostępnia lokalnych adresów IP"
             },
             "local": {
                 "title": "Skonfiguruj swoje urządzenie Tuya Local",
-                "description": "[Postępuj zgodnie z instrukcjami by znaleźć swoje Device ID oraz Local key.]({device_details_url})",
+                "description": "{device_name}[Postępuj zgodnie z instrukcjami by znaleźć swoje Device ID oraz Local key.]({device_details_url})",
                 "data": {
                     "host": "Adres IP lub nazwa hosta",
                     "device_id": "Device ID (lub device_id bramki dla urządzeń podłączonych poprzez bramkę)",
@@ -46,21 +46,21 @@
             },
             "select_type": {
                 "title": "Wybierz typ urządzenia",
-                "description": "Wybierz typ odpowiadający Twojemu urządzeniu",
+                "description": "{device_name}Wybierz typ odpowiadający Twojemu urządzeniu",
                 "data": {
                     "type": "Typ urządzenia"
                 }
             },
             "select_type_auto_detected": {
                 "title": "Wybierz typ urządzenia",
-                "description": "Wybierz typ odpowiadający Twojemu urządzeniu. Wersja protokołu {detected_protocol} została automatycznie wykryta i zapisana. Jeśli zaktualizujesz oprogramowanie układowe urządzenia w przyszłości, może być konieczne ponowne skonfigurowanie tej integracji.",
+                "description": "{device_name}Wybierz typ odpowiadający Twojemu urządzeniu. Wersja protokołu {detected_protocol} została automatycznie wykryta i zapisana. Jeśli zaktualizujesz oprogramowanie układowe urządzenia w przyszłości, może być konieczne ponowne skonfigurowanie tej integracji.",
                 "data": {
                     "type": "Typ urządzenia"
                 }
             },
             "choose_entities": {
                 "title": "Szczegóły urządzenia",
-                "description": "Wybierz nazwę dla urządzenia",
+                "description": "{device_name}Wybierz nazwę dla urządzenia",
                 "data": {
                     "name": "Nazwa"
                 }
@@ -588,13 +588,15 @@
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
                     "english": "English",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english_child": "English (Child)",
                     "french": "Français",
                     "german": "Deutsch",
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
@@ -1215,6 +1217,9 @@
         "text": {
             "scene": {
                 "name": "Scena"
+            },
+            "schedule": {
+                "name": "Harmonogram"
             }
         },
         "time": {

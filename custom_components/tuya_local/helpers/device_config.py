@@ -946,19 +946,28 @@ class TuyaDpsConfig:
         if self.readonly:
             return dps_map
 
-        # Special case: if the current value has a redirect mapping,
-        # follow that.
+        # Use cases for value_redirect:
+        #  1. To merge multiple dps into a single HA setting (eg where the
+        #     manufacturer has chosen to implement speeds as dipswitch type
+        #     binary dps rather than a single dp with multiple values)
+        #     This style will have values on the main dp alongside the dp
+        #     to redirect to.
+        #  2. Alternate dps to cover multiple device variants with a single
+        #     config. This variant covers the same values on each dp, and
+        #     the redirect should be followed first (typically conditional
+        #     on the dps_val being None).
         current_value = device.get_property(self.id)
         current_mapping = self._find_map_for_dps(current_value, device)
-        if current_mapping:
+        mapping = self._find_map_for_value(value, device)
+        # Case 2 above: there is no value specific mapping, but based on
+        # current dps_val we should redirect.
+        if current_mapping and not mapping:
             redirect = current_mapping.get("value_redirect")
             if redirect:
                 return self._entity.find_dps(redirect).get_values_to_set(
                     device,
                     value,
                 )
-        # If no redirect, we need to check for mapped values in reverse
-        mapping = self._find_map_for_value(value, device)
         scale = self.scale(device)
         mask = self.mask
         if mapping:

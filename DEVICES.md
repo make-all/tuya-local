@@ -1,10 +1,10 @@
-devices # Supported
+# Supported devices
 
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
-- Amantii Bespoke R1-2-AP1 Andersson
-- fireplace GSH heater
+- Amantii Bespoke R1-2-AP1 fireplace
+- Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
@@ -129,7 +129,7 @@ devices # Supported
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
-- Kogan portable air conditioners (Y09, Y12, Y16)
+- Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
 - MeacoCool MC Series Pro portable air conditioners
@@ -188,6 +188,7 @@ devices # Supported
 ### Water heaters
 
 - Apricus heat pump water heater
+- A.O. Smith HeatBot 15L electric water heater
 - Aquatech Rapid/X6 heat pump water heater
 - Aquaviva AVH15S combo air-water heat pump
 - Arçelik AHPH-MM series combo air-water heat pump
@@ -226,6 +227,7 @@ devices # Supported
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW thermostat smart switch
 - Avatto ME81, WS20R and WT100 thermostats
+- Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002, BAC-006, BAC-2005ALW, BHT-002/3000, BHP-6000 thermostats
 - Beca BHT-12 thermostat smartplug
@@ -302,19 +304,18 @@ devices # Supported
 - Arida Venti 160 small through-wall heat-recovery ventilation fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
 - Arlec Grid Connect smart ceiling fan (with and without light)
-- Arlec 12 speed tower fan (2 variants: ATF1006HA and ATF4602BHA)
-- Arlec 19 speed wall fan
-- Arlec 6 speed floor fan
+- Arlec 19, 12, 6, 4 speed speed fans
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
+- Ausclimate EcoSmart pedestal fan
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
 - BKZO ceiling fan with RGBCW light
 - Blitzwill ceiling fan with light
 - Brandson A307362x3 tower fan
 - Breville AirDynamic 3D pedestal fan
-- Brilliant Ceiling fan with light
+- Brilliant Ceiling fan with light, and remote controller
 - Calibo Cloudfan DC ceiling fan with light
 - Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
@@ -390,6 +391,7 @@ devices # Supported
 - Princess Smart Tower fan
 - Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Pro Breeze AirFlo 43" pedestal fan
+- Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
@@ -400,7 +402,7 @@ devices # Supported
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
-- Stirling FS1-40DC pedestal fan
+- Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -418,6 +420,7 @@ devices # Supported
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
+- Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
@@ -563,8 +566,10 @@ devices # Supported
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
+- KKT Kolbe kitchen hood
 - Klarstein Amazonia dishwasher
 - Klarstein Ava range hood
+- Koenic KTM-221723-M kettle
 - Kogan glass 1.7L smart kettle (at least 2 different variants)
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
@@ -578,6 +583,7 @@ devices # Supported
 - Ultenic K10 air fryer
 - Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weeket KE4071TF, KES5211TE-CE smart kettles
+- Wine Enthusiast Prestige S beverage center
 
 ### Smart Meter/Circuit Breaker
 
@@ -653,7 +659,7 @@ devices # Supported
 - EVSun EV charger
 - Feyree EV charger (several models)
 - Immax Neo Lite 3-phase 22kW EV charger
-- Ipengen GO-E31-16A EV charger
+- Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
 - MakeSkyBlue MPPT solar battery charger
@@ -663,6 +669,7 @@ devices # Supported
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - SRNE SE Series lithium battery
+- Suntree SPG3 EV charger
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
@@ -897,6 +904,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
+- BobYun Tech gatePro gate opener 
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
@@ -1045,6 +1053,7 @@ port and password.
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
+- Nevian NVS-A6WG alarm panel (also branded as Curv)
 - Smart alarm siren (unbranded)
 - Staniot smart security panel
 - Tolviviov DP-W2.1 security alarm panel
@@ -1072,6 +1081,7 @@ port and password.
 - Faroro PF50 pet feeder
 - Faroro TD20 pet treat camera
 - FeelNeedy P-LFP01 camera pet feeder
+- Frienhund ACF180W-A dual camera pet feeder
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
@@ -1092,6 +1102,7 @@ port and password.
 - Ningbo BF314A camera pet feeder
 - Oneisall PFD-002 Pro IR pet feeder
 - Papifeed pet feeder
+- Pawspik Microchip pet feeder
 - Petempo PAF-02 pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 camera pet feeder
@@ -1107,6 +1118,7 @@ port and password.
 - Petwant F13-W 6-meal pet feeder
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
+- Repetsun double bowl 5L pet feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
@@ -1173,6 +1185,7 @@ port and password.
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
+- Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
 - C30W gas leak detector
@@ -1267,6 +1280,7 @@ port and password.
 - Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
+- Yu Home Yu Turbo laundry drying rack
 - Zecamin ZG-205W mmWave human presence sensor
 - Zeissler ZSw.1312 water leak detector
 - ZMP71SH variable speed swimming pool pump

@@ -1,0 +1,306 @@
+name: Pet feeder
+products:
+  - id: ht47hdx6aghbzzqk
+    manufacturer: Pawspik
+    model: Microchip
+entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 10
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 101
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 11
+        type: boolean
+        name: sensor
+  - entity: cover
+    dps:
+      - id: 12
+        type: string
+        name: current_position
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: "on_off"
+            value: 50
+          - dps_val: "on"
+            value: 100
+      - id: 106
+        type: boolean
+        name: control
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: no_battery
+          - dps_val: 2
+            value: no_food
+          - dps_val: 4
+            value: low_food
+          - dps_val: 8
+            value: no_internet
+          - dps_val: 16
+            value: no_power
+          - dps_val: 32
+            value: low_battery
+      - id: 108
+        type: string
+        name: info
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Display text
+    category: config
+    icon: "mdi:form-textbox"
+    dps:
+      - id: 109
+        type: string
+        name: value
+      - id: 112
+        type: string
+        name: messages
+  - entity: select
+    name: Feeding method
+    icon: "mdi:food-drumstick"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "On demand"
+          - dps_val: "2"
+            value: "On schedule"
+          - dps_val: "3"
+            value: Learning
+  - entity: select
+    name: Cover speed
+    icon: "mdi:door"
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Fast
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: Slow
+
+  - entity: text
+    name: Meal plan
+    category: config
+    icon: "mdi:food-drumstick"
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 4
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: enough
+            value: normal
+          - dps_val: insufficient
+            value: low
+          - dps_val: run_out
+            value: empty
+  - entity: sensor
+    name: Last feed
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: sensor
+        unit: portions
+  - entity: select
+    name: Portion unit
+    icon: "mdi:delete-variant"
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cup
+            value: Cup
+          - dps_val: oz
+            value: oz
+          - dps_val: ml
+            value: mL
+          - dps_val: g
+            value: gram
+          - value: Cup
+            hidden: true
+  - entity: sensor
+    name: Last feed duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Dessicant remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: d
+  - entity: button
+    name: Pair
+    icon: "mdi:human-greeting-proximity"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Pairing result
+    dps:
+      - id: 104
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: success
+          - dps_val: false
+            value: failure
+  - entity: text
+    name: Pet information
+    category: config
+    icon: "mdi:cat"
+    hidden: true
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Unpair
+    category: config
+    icon: "mdi:memory"
+    hidden: true
+    dps:
+      - id: 107
+        type: string
+        optional: true
+        name: value
+  - entity: sensor
+    name: Log
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: string
+        optional: true
+        name: sensor
+
+  - entity: text
+    name: Do not disturb
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 114
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    name: Feed
+    dps:
+      - id: 115
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: eating
+          - dps_val: false
+            value: finished
+  - entity: switch
+    name: Selective service
+    category: config
+    dps:
+      - id: 116
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: true
+          - dps_val: "1"
+            value: false
