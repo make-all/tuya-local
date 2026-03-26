@@ -7,51 +7,60 @@ entities:
   - entity: sensor
     name: Power Phase A
     class: power
+    force: true
     dps:
       - id: 19
         type: integer
         name: sensor
         unit: W
+        class: measurement
         precision: 1
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage
+    name: Voltage Phase A
     class: voltage
+    force: true
     category: diagnostic
     dps:
       - id: 20
         type: integer
         name: sensor
         unit: V
+        class: measurement
         precision: 1
         mapping:
           - scale: 10
   - entity: sensor
     name: Current Phase A
     class: current
+    force: true
     category: diagnostic
     dps:
       - id: 18
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
     name: Power Phase B
     class: power
+    force: true
     dps:
       - id: 113
         type: integer
         name: sensor
         unit: W
+        class: measurement
         precision: 1
         mapping:
           - scale: 10
   - entity: sensor
     name: Voltage Phase B
     class: voltage
+    force: true
     category: diagnostic
     hidden: true
     dps:
@@ -59,18 +68,21 @@ entities:
         type: integer
         name: sensor
         unit: V
+        class: measurement
         precision: 1
         mapping:
           - scale: 10
   - entity: sensor
     name: Current Phase B
     class: current
+    force: true
     category: diagnostic
     dps:
       - id: 112
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 1000
   - entity: sensor
