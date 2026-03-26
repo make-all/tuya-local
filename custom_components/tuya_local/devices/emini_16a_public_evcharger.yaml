@@ -4,7 +4,7 @@ products:
     manufacturer: Emini
     model: 16A Public
 entities:
-  - entity: sensor # work_state -3- enum
+  - entity: sensor # work_state -3- enum, system_version -23- string, product_sn -101- string
     translation_key: status
     icon: "mdi:ev-station"
     class: enum
@@ -27,6 +27,14 @@ entities:
             value: paused
           - dps_val: charger_start_wait
             value: waiting
+      - id: 23
+        type: string
+        name: system_version
+        category: diagnostic
+      - id: 101
+        type: string
+        name: serial_number
+        category: diagnostic
 
   - entity: sensor # forward_energy_total -1- integer kW·h
     class: energy
@@ -191,14 +199,6 @@ entities:
         type: boolean
         name: switch
 
-  - entity: sensor # system_version -23- string
-    name: System version
-    category: diagnostic
-    dps:
-      - id: 23
-        type: string
-        name: sensor
-
   - entity: sensor # temp_current -24- integer °C
     class: temperature
     category: diagnostic
@@ -239,11 +239,3 @@ entities:
           - value: false
             hidden: true
         always_send: true
-
-  - entity: sensor # product_sn -101- string
-    name: Serial number
-    category: diagnostic
-    dps:
-      - id: 101
-        type: string
-        name: sensor
