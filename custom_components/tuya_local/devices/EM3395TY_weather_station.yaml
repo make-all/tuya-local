@@ -1,7 +1,6 @@
 name: Weather station
 products:
   - id: 6cwineqz1ndjmuee
-    manufacturer: Tuya
     model: EM3395TY-2
 entities:
   - entity: sensor
@@ -27,7 +26,6 @@ entities:
           unit: "%"
           class: measurement
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -92,13 +90,11 @@ entities:
           - dps_val: inch
             value: inch
   - entity: sensor
-    name: Outdoor temperature
     class: temperature
     dps:
       - id: 38
         <<: *temperature
   - entity: sensor
-    name: Outdoor humidity
     class: humidity
     dps:
       - id: 39
@@ -146,7 +142,7 @@ entities:
         optional: true
         <<: *humidity
   - entity: sensor
-    class: pressure
+    class: atmospheric_pressure
     dps:
       - id: 54
         type: integer
@@ -155,7 +151,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Pressure drop
-    class: pressure
+    class: atmospheric_pressure
     dps:
       - id: 55
         type: integer
@@ -163,8 +159,7 @@ entities:
         unit: hPa
         class: measurement
   - entity: sensor
-    name: Wind speed
-    icon: mdi:weather-windy
+    class: wind_speed
     dps:
       - id: 56
         optional: true
@@ -177,14 +172,14 @@ entities:
           class: measurement
   - entity: sensor
     name: Wind gust
-    icon: mdi:weather-windy
+    class: wind_speed
     dps:
       - id: 57
         optional: true
         <<: *wind_speed
   - entity: sensor
     name: Rain 1h
-    icon: mdi:weather-rainy
+    class: precipitation
     dps:
       - id: 59
         <<: &rain
@@ -195,15 +190,13 @@ entities:
           class: measurement
         unit: mm
   - entity: sensor
-    name: Rain 24h
-    icon: mdi:weather-rainy
+    class: precipitation
     dps:
       - id: 60
         <<: *rain
         unit: mm
   - entity: sensor
-    name: Rainfall rate
-    icon: mdi:weather-pouring
+    class: precipitation_intensity
     dps:
       - id: 61
         optional: true
@@ -217,7 +210,6 @@ entities:
         type: integer
         optional: true
         name: sensor
-        unit: UV Index
         mapping:
           - scale: 10
         class: measurement
