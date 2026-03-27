@@ -1306,3 +1306,5 @@ Further device support has been made with the assistance of users. Please consid
 - [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.
 - [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer.
 - [kordek212](https://github.com/kordek212) for contributing support for KKT Kolbe kitchen hood.
+- [bobaoapae](https://github.com/bobaoapae) for contributing support for Veratti V4 3-phase circuit breaker.
+- [alfry82](https://github.com/alfry82) for contributing support for Morento MR5866 air purifier.

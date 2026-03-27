@@ -434,7 +434,7 @@
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
-- Morento HY4866-WF and MR7566-WF air purifiers
+- Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
@@ -636,6 +636,7 @@
 - Unknown brand dual channel smart meter
 - V-WIFI-DL01-ES energy consumption single clamp meter
 - V-WIFI-DL02-ES energy consumption dual clamp meter
+- Veratti V4 3-phase energy meter circuit breaker
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
