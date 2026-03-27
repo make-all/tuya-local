@@ -376,6 +376,7 @@
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
 - Lumary A1 and B2 ceiling fans with lights
+- Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light

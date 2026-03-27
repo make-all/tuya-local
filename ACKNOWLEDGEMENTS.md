@@ -1308,3 +1308,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kordek212](https://github.com/kordek212) for contributing support for KKT Kolbe kitchen hood.
 - [bobaoapae](https://github.com/bobaoapae) for contributing support for Veratti V4 3-phase circuit breaker.
 - [alfry82](https://github.com/alfry82) for contributing support for Morento MR5866 air purifier.
+- [R4gN4rk](https://github.com/R4gN4rk) for contributing support for Magnovent Cefiro ceiling fan with lights.
