@@ -1,7 +1,6 @@
 name: Circuit breaker
 products:
   - id: zjblhee2cbl31twx
-    manufacturer: Tuya
     name: SWC33v2-CBU
 entities:
   - entity: switch
@@ -243,7 +242,7 @@ entities:
             value: Low current
 
   - entity: switch
-    name: Prepay
+    name: Prepay alarm
     category: config
     icon: "mdi:hand-coin"
     dps:
@@ -282,7 +281,7 @@ entities:
         unit: mA
 
   - entity: switch
-    name: Overload
+    name: Overload alarm
     category: config
     dps:
       - id: 17
@@ -301,7 +300,7 @@ entities:
         mask: "0000000000FF00000000000000000000"
 
   - entity: number
-    name: Overload limit
+    name: Overload threshold
     category: config
     mode: box
     dps:
@@ -325,7 +324,7 @@ entities:
           max: 30
 
   - entity: switch
-    name: Leakage
+    name: Leakage alarm
     category: config
     dps:
       - id: 17
@@ -344,7 +343,7 @@ entities:
         mask: "000000000000000000FF000000000000"
 
   - entity: number
-    name: Leakage limit
+    name: Leakage threshold
     category: config
     mode: box
     dps:
@@ -368,7 +367,7 @@ entities:
           max: 99
 
   - entity: switch
-    name: Temperature
+    name: Temperature alarm
     category: config
     dps:
       - id: 17
@@ -387,7 +386,7 @@ entities:
         mask: "00000000000000000000000000FF0000"
 
   - entity: number
-    name: Temperature limit
+    name: Temperature threshold
     category: config
     mode: box
     dps:
@@ -411,7 +410,7 @@ entities:
           max: 85
 
   - entity: switch
-    name: Overvoltage
+    name: Overvoltage alarm
     category: config
     dps:
       - id: 18
@@ -430,7 +429,7 @@ entities:
         mask: "0000000000FF00000000000000000000"
 
   - entity: number
-    name: Overvoltage limit
+    name: Overvoltage threshold
     category: config
     mode: box
     dps:
@@ -456,7 +455,7 @@ entities:
           max: 630
 
   - entity: switch
-    name: Undervoltage
+    name: Undervoltage alarm
     category: config
     dps:
       - id: 18
@@ -475,7 +474,7 @@ entities:
         mask: "000000000000000000FF000000000000"
 
   - entity: number
-    name: Undervoltage limit
+    name: Undervoltage threshold
     category: config
     mode: box
     dps:
@@ -499,7 +498,7 @@ entities:
           max: 300
 
   - entity: switch
-    name: Insufficient balance
+    name: Insufficient balance alarm
     category: config
     dps:
       - id: 18
@@ -518,7 +517,7 @@ entities:
         mask: "00000000000000000000000000FF0000"
 
   - entity: number
-    name: Insufficient balance limit
+    name: Insufficient balance threshold
     category: config
     mode: box
     dps:
@@ -542,7 +541,7 @@ entities:
           max: 210
 
   - entity: switch
-    name: Overcurrent
+    name: Overcurrent alarm
     category: config
     dps:
       - id: 18
@@ -561,7 +560,7 @@ entities:
         mask: "00FF0000000000000000000000000000"
 
   - entity: number
-    name: Overcurrent limit
+    name: Overcurrent threshold
     category: config
     mode: box
     dps:
