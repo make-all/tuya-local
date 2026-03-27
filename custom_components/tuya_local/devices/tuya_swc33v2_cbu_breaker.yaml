@@ -1,12 +1,12 @@
 name: Circuit breaker
 products:
   - id: zjblhee2cbl31twx
-    manufacturer: NONAME
-    model: SWC33v2-CBU
+    manufacturer: Tuya
+    name: SWC33v2-CBU
 entities:
   - entity: switch
     icon: "mdi:fuse"
-    name: Main
+    translation_key: breaker
     dps:
       - id: 16
         name: switch
@@ -21,7 +21,6 @@ entities:
         name: button
 
   - entity: sensor
-    name: Total energy
     class: energy
     dps:
       - id: 1
@@ -33,9 +32,10 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Phase C Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
-    icon: "mdi:sine-wave"
     dps:
       - id: 6
         optional: true
@@ -49,9 +49,10 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase C Current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
-    icon: "mdi:current-ac"
     dps:
       - id: 6
         optional: true
@@ -65,9 +66,10 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase C Power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
-    icon: "mdi:flash"
     dps:
       - id: 6
         optional: true
@@ -80,9 +82,10 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase B Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
-    icon: "mdi:sine-wave"
     dps:
       - id: 7
         optional: true
@@ -96,9 +99,10 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase B Current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
-    icon: "mdi:current-ac"
     dps:
       - id: 7
         optional: true
@@ -112,9 +116,10 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase B Power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
-    icon: "mdi:flash"
     dps:
       - id: 7
         optional: true
@@ -127,9 +132,10 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase A Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
-    icon: "mdi:sine-wave"
     dps:
       - id: 8
         optional: true
@@ -143,9 +149,10 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase A Current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
-    icon: "mdi:current-ac"
     dps:
       - id: 8
         optional: true
@@ -159,9 +166,10 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase A Power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
-    icon: "mdi:flash"
     dps:
       - id: 8
         optional: true
@@ -264,8 +272,8 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Actual leakage current
-    icon: "mdi:wave-undercurrent"
+    name: Actual leakage
+    class: current
     dps:
       - id: 15
         optional: true
@@ -293,7 +301,7 @@ entities:
         mask: "0000000000FF00000000000000000000"
 
   - entity: number
-    name: Overload
+    name: Overload limit
     category: config
     mode: box
     dps:
@@ -317,7 +325,7 @@ entities:
           max: 30
 
   - entity: switch
-    name: Leakage current
+    name: Leakage
     category: config
     dps:
       - id: 17
@@ -336,7 +344,7 @@ entities:
         mask: "000000000000000000FF000000000000"
 
   - entity: number
-    name: Leakage current
+    name: Leakage limit
     category: config
     mode: box
     dps:
@@ -360,7 +368,7 @@ entities:
           max: 99
 
   - entity: switch
-    name: High temperature
+    name: Temperature
     category: config
     dps:
       - id: 17
@@ -379,7 +387,7 @@ entities:
         mask: "00000000000000000000000000FF0000"
 
   - entity: number
-    name: High temperature
+    name: Temperature limit
     category: config
     mode: box
     dps:
@@ -403,7 +411,7 @@ entities:
           max: 85
 
   - entity: switch
-    name: Over voltage
+    name: Overvoltage
     category: config
     dps:
       - id: 18
@@ -422,7 +430,7 @@ entities:
         mask: "0000000000FF00000000000000000000"
 
   - entity: number
-    name: Over voltage
+    name: Overvoltage limit
     category: config
     mode: box
     dps:
@@ -448,7 +456,7 @@ entities:
           max: 630
 
   - entity: switch
-    name: Under voltage #Over voltage
+    name: Undervoltage
     category: config
     dps:
       - id: 18
@@ -467,7 +475,7 @@ entities:
         mask: "000000000000000000FF000000000000"
 
   - entity: number
-    name: Under voltage #Over voltage
+    name: Undervoltage limit
     category: config
     mode: box
     dps:
@@ -510,7 +518,7 @@ entities:
         mask: "00000000000000000000000000FF0000"
 
   - entity: number
-    name: Insufficient balance
+    name: Insufficient balance limit
     category: config
     mode: box
     dps:
@@ -534,7 +542,7 @@ entities:
           max: 210
 
   - entity: switch
-    name: Over current
+    name: Overcurrent
     category: config
     dps:
       - id: 18
@@ -553,7 +561,7 @@ entities:
         mask: "00FF0000000000000000000000000000"
 
   - entity: number
-    name: Over current
+    name: Overcurrent limit
     category: config
     mode: box
     dps:
@@ -577,7 +585,8 @@ entities:
           max: 80
 
   - entity: sensor
-    name: countdown
+    translation_key: time_remaining
+    class: duration
     category: diagnostic
     hidden: true
     dps:
@@ -588,12 +597,10 @@ entities:
         unit: s
 
   - entity: sensor
-    name: Temperature
-    icon: "mdi:thermometer-lines"
+    class: temperature
     dps:
       - id: 102
         optional: true
-        force: true
         type: integer
         name: sensor
         unit: C
