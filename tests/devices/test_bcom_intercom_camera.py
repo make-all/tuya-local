@@ -22,8 +22,6 @@ LOCK_DPS = "232"
 
 
 class TestBcomIntercomCamera(TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("bcom_intercom_camera.yaml", BCOM_CAMERA_PAYLOAD)
         self.subject = self.entities.get("camera")

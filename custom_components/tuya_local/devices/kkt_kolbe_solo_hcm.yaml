@@ -1,0 +1,42 @@
+name: Kitchen Hood
+products:
+  - id: bgvbvjwomgbisd8x
+    manufacturer: KKT Kolbe
+    model: SOLO HCM
+entities:
+  - entity: fan
+    name: Hood fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 9
+  - entity: light
+    name: Auxiliary light
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: light
+    name: Main light
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 106
+        type: integer
+        name: brightness
+        range:
+          min: 29
+          max: 1000
+      - id: 107
+        type: string
+        name: mode
+        mapping:
+          - dps_val: white
+            value: white

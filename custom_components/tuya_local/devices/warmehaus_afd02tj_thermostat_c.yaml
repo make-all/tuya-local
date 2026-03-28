@@ -90,17 +90,18 @@ entities:
         type: boolean
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -5
           max: 5
   - entity: text
-    name: Program
+    translation_key: schedule
     category: config
     hidden: true
     dps:

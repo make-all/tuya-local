@@ -30,8 +30,6 @@ class TestEanonsHumidifier(
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
         self.subject = self.entities.get("humidifier_humidifier")

@@ -14,6 +14,12 @@
                     "on": "mdi:snowflake-melt"
                 }
             },
+            "delayed_fan_operation": {
+                "default": "mdi:fan-clock",
+                "state": {
+                    "off": "mdi:fan-off"
+                }
+            },
             "tank_empty": {
                 "default": "mdi:water",
                 "state": {
@@ -31,6 +37,12 @@
                 "state": {
                     "off": "mdi:weather-night"
                 }
+            },
+            "rinse_aid" : {
+                "default": "mdi:silverware-clean"
+            },
+            "salt": {
+                "default": "mdi:salt"
             }
         },
         "button": {
@@ -162,6 +174,12 @@
             },
             "nightlight": {
                 "default": "mdi:lightbulb-night"
+            },
+            "oven_light": {
+                "default": "mdi:stove"
+            },
+            "rangehood_light": {
+                "default": "mdi:ceiling-fan-light"
             }
         },
         "lock": {
@@ -210,6 +228,12 @@
                     "34": "mdi:volume-medium",
                     "67": "mdi:volume-high"
                 }
+            },
+            "bottom_temperature": {
+                "default": "mdi:thermometer-chevron-down"
+            },
+            "top_temperature": {
+                "default": "mdi:thermometer-chevron-up"
             }
         },
         "select": {
@@ -412,7 +436,50 @@
                     "self_clean": "mdi:broom",
                     "hygiene": "mdi:shield-check",
                     "party": "mdi:party-popper",
-                    "baby_care": "mdi:baby-bottle"
+                    "baby_care": "mdi:baby-bottle",
+                    "hour_wash": "mdi:timer-sand",
+                    "dry": "mdi:hair-dryer",
+                    "storage": "mdi:tray-full",
+                    "light": "mdi:dishwasher",
+                    "pots": "mdi:pot-steam"
+                }
+            },
+            "water_hardness": {
+                "default": "mdi:water-opacity"
+            },
+            "rinse_aid_level": {
+                "default": "mdi:silverware-clean"
+            },
+            "rack": {
+                "default": "mdi:dishwasher",
+                "state": {
+                    "lower": "mdi:format-vertical-align-bottom",
+                    "upper": "mdi:format-vertical-align-top",
+                    "both": "mdi:arrow-expand-vertical"
+                }
+            },
+            "rangehood_mode": {
+                "default": "mdi:ceiling-fan",
+                "state": {
+                    "steaming": "mdi:pot-steam",
+                    "regular": "mdi:ceiling-fan",
+                    "strong": "mdi:weather-hurricane"
+                }
+            },
+            "rangehood_fan_speed": {
+                "default": "mdi:ceiling-fan",
+                "state": {
+                    "off": "mdi:fan-off",
+                    "low": "mdi:fan-speed-1",
+                    "medium": "mdi:fan-speed-2",
+                    "high": "mdi:fan-speed-3",
+                    "quickfry": "mdi:weather-hurricane"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "default": "mdi:fan-clock",
+                "state": {
+                    "disabled": "mdi:fan-off"
                 }
             },
             "menu": {
@@ -436,6 +503,14 @@
             }
         },
         "sensor": {
+            "cleanliness": {
+                "default": "mdi:biohazard",
+                "state": {
+                    "poor": "mdi:emoticon-sad",
+                    "good": "mdi:emoticon-happy",
+                    "great": "mdi:emoticon-excited"
+                }
+            },
             "air_quality": {
                 "default": "mdi:weather-dust",
                 "state": {
@@ -452,6 +527,9 @@
             },
             "filter_life": {
                 "default": "mdi:air-filter"
+            },
+            "days_stored": {
+                "default": "mdi:calendar"
             },
             "water_level": {
                 "default": "mdi:gauge",
@@ -550,7 +628,8 @@
                     "drain_hot_water": "mdi:pipe-valve",
                     "drain_normal_water": "mdi:pipe-valve",
                     "high_temperature_emptying": "mdi:thermometer-high",
-                    "high_temperature_emptied": "mdi:thermometer-check"   
+                    "high_temperature_emptied": "mdi:thermometer-check",
+                    "storage": "mdi:tray-full"
                 }
             },
             "time_remaining": {
@@ -624,14 +703,38 @@
             },
             "uv_sterilization": {
                 "default": "mdi:sun-wireless"
+            },
+            "auto_storage": {
+                "default": "mdi:auto-download"
+            },
+            "auto_dry": {
+                "default": "mdi:auto-mode"
+            },
+            "oven": {
+                "default": "mdi:stove",
+                "state": {
+                    "off": "mdi:stove-off"
+                }
+            },
+            "rangehood": {
+                "default": "mdi:ceiling-fan"
             }
         },
         "text": {
             "scene": {
                 "default": "mdi:palette"
+            },
+            "schedule": {
+                "default": "mdi:calendar-clock"
             }
         },
         "time": {
+            "reservation_time": {
+                "default": "mdi:calendar-clock"
+            },
+            "cooking_time": {
+                "default": "mdi:timer-sand"
+            },
             "timer": {
                 "default": "mdi:timer"
             },

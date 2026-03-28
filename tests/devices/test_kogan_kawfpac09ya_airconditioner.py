@@ -18,8 +18,6 @@ UNKNOWN107_DPS = "107"
 
 
 class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
-    __test__ = True
-
     def setUp(self):
         self.setUpForConfig(
             "kogan_kawfpac09ya_airconditioner.yaml",

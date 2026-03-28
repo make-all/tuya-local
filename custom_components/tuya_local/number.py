@@ -114,4 +114,5 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
 
     async def async_set_native_value(self, value):
         """Set the number."""
+        _LOGGER.info("%s setting value to %s", self._config.config_id, value)
         await self._value_dps.async_set_value(self._device, value)

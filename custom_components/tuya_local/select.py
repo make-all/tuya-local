@@ -9,6 +9,8 @@ from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 
+_LOGGER = logging.getLogger(__name__)
+
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
@@ -54,4 +56,5 @@ class TuyaLocalSelect(TuyaLocalEntity, SelectEntity):
 
     async def async_select_option(self, option):
         "Set the option"
+        _LOGGER.info("%s selecting option %s", self._config.config_id, option)
         await self._option_dps.async_set_value(self._device, option)
