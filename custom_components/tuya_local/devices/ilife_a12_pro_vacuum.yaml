@@ -1,4 +1,4 @@
-name: ILIFE A12 Pro vacuum
+name: Robot vacuum
 products:
   - id: 9uib7wur9qbt7oov
     manufacturer: ILIFE
@@ -100,7 +100,7 @@ entities:
         name: fan_speed
         mapping:
           - dps_val: closed
-            value: 'Off'
+            value: "Off"
           - dps_val: gentle
             value: Low
           - dps_val: normal
@@ -141,7 +141,7 @@ entities:
         name: voice_data
   - entity: switch
     name: Charge
-    icon: 'mdi:battery-charging'
+    icon: "mdi:battery-charging"
     category: config
     dps:
       - id: 3
@@ -149,8 +149,8 @@ entities:
         optional: true
         name: switch
   - entity: sensor
-    name: Cleaning time
-    icon: 'mdi:progress-clock'
+    name: Clean time
+    icon: "mdi:progress-clock"
     class: duration
     category: diagnostic
     dps:
@@ -159,7 +159,7 @@ entities:
         name: sensor
         unit: min
   - entity: sensor
-    name: Cleaning area
+    name: Clean area
     class: area
     category: diagnostic
     dps:
@@ -173,7 +173,7 @@ entities:
       - id: 8
         type: integer
         name: sensor
-        unit: '%'
+        unit: "%"
         class: measurement
   - entity: select
     translation_key: mopping
@@ -184,7 +184,7 @@ entities:
         name: option
         mapping:
           - dps_val: closed
-            value: 'off'
+            value: "off"
           - dps_val: low
             value: low
           - dps_val: middle
@@ -193,8 +193,9 @@ entities:
             value: high
   - entity: select
     name: Fetch request
-    icon: 'mdi:message-question'
+    icon: "mdi:message-question"
     category: config
+    hidden: true
     dps:
       - id: 16
         type: string
@@ -208,7 +209,7 @@ entities:
           - dps_val: get_both
             value: Both
   - entity: sensor
-    name: Edge brush lifetime
+    name: Edge brush life
     category: diagnostic
     class: duration
     dps:
@@ -217,7 +218,7 @@ entities:
         name: sensor
         unit: min
   - entity: sensor
-    name: Rolling brush lifetime
+    name: Rolling brush life
     category: diagnostic
     class: duration
     dps:
@@ -237,7 +238,7 @@ entities:
   - entity: number
     name: Dust collection frequency
     category: config
-    icon: 'mdi:weather-dust'
+    icon: "mdi:weather-dust"
     dps:
       - id: 37
         type: integer
@@ -254,10 +255,12 @@ entities:
         type: integer
         name: value
         optional: true
-        unit: '%'
+        unit: "%"
         range:
           min: 0
           max: 10
+        mapping:
+          - scale: 0.1
   - entity: sensor
     name: Total cleaning area
     class: area
@@ -268,8 +271,8 @@ entities:
         name: sensor
         unit: m2
   - entity: sensor
-    name: Total cleaning times
-    icon: 'mdi:counter'
+    name: Total cleaning count
+    icon: "mdi:counter"
     category: diagnostic
     dps:
       - id: 30
@@ -278,7 +281,7 @@ entities:
   - entity: sensor
     name: Total cleaning time
     class: duration
-    icon: 'mdi:history'
+    icon: "mdi:history"
     category: diagnostic
     dps:
       - id: 31
@@ -286,8 +289,8 @@ entities:
         name: sensor
         unit: min
   - entity: button
-    name: Reset map
-    icon: 'mdi:map-marker-remove'
+    name: Map reset
+    icon: "mdi:map-marker-remove"
     category: config
     dps:
       - id: 13
@@ -295,7 +298,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Reset edge brush
+    name: Edge brush reset
     class: restart
     category: config
     dps:
@@ -304,7 +307,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Reset roll brush
+    name: Roll brush reset
     class: restart
     category: config
     dps:
@@ -313,8 +316,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Reset filter
-    icon: 'mdi:air-filter'
+    translation_key: filter_reset
     category: config
     dps:
       - id: 22
@@ -330,7 +332,7 @@ entities:
         name: switch
   - entity: switch
     name: Intermittent cleaning
-    icon: 'mdi:clock-star-four-points'
+    icon: "mdi:clock-star-four-points"
     category: config
     dps:
       - id: 27
@@ -338,7 +340,7 @@ entities:
         name: switch
   - entity: switch
     name: Auto carpet boost
-    icon: 'mdi:car-turbocharger'
+    icon: "mdi:car-turbocharger"
     category: config
     dps:
       - id: 45
@@ -346,8 +348,8 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: Dust collection switch
-    icon: 'mdi:weather-dust'
+    name: Dust collection enable
+    icon: "mdi:weather-dust"
     category: config
     dps:
       - id: 38
@@ -356,7 +358,7 @@ entities:
         name: switch
   - entity: switch
     name: Y-shaped mop
-    icon: 'mdi:alpha-y'
+    icon: "mdi:alpha-y"
     category: config
     dps:
       - id: 149
@@ -365,7 +367,7 @@ entities:
         name: switch
   - entity: select
     name: Cleaning efficiency
-    icon: 'mdi:robot-vacuum'
+    icon: "mdi:robot-vacuum"
     category: config
     dps:
       - id: 155
