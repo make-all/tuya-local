@@ -376,6 +376,7 @@
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
 - Lumary A1 and B2 ceiling fans with lights
+- Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
@@ -435,7 +436,7 @@
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
-- Morento HY4866-WF and MR7566-WF air purifiers
+- Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
@@ -625,6 +626,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800, SPD800 solar inverters
+- SWC32v2 CBU circuit breaker energy meter
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
@@ -637,6 +639,7 @@
 - Unknown brand dual channel smart meter
 - V-WIFI-DL01-ES energy consumption single clamp meter
 - V-WIFI-DL02-ES energy consumption dual clamp meter
+- Veratti V4 3-phase energy meter circuit breaker
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
@@ -952,7 +955,7 @@ of device.
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
-- ILIFE V20 and A30 pro vacuum cleaners
+- ILIFE V20, A12, A30 pro vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
@@ -1196,6 +1199,7 @@ port and password.
 - EASTtime D401 water purifier
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
+- EM3395TY-2 weather station
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
 - Eureka ERK-S62 adjustable desk
