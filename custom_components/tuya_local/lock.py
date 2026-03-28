@@ -11,6 +11,8 @@ from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 
+_LOGGER = logging.getLogger(__name__)
+
 # Remote Code unlocking protocol: 8 digit code set when paired by
 # remote_no_pd_setkey (typically dp 60), user can obtain by
 # eavesdropping cloud unlock messages.
