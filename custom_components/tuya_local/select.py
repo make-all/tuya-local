@@ -54,4 +54,5 @@ class TuyaLocalSelect(TuyaLocalEntity, SelectEntity):
 
     async def async_select_option(self, option):
         "Set the option"
+        _LOGGER.info("%s selecting option %s", self._config.config_id, option)
         await self._option_dps.async_set_value(self._device, option)

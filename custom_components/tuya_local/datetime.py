@@ -115,11 +115,13 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
         minute = value.minute
         second = value.second
         if self._year_dps:
+            _LOGGER.info("%s setting year to %d", self.name, year)
             settings.update(
                 self._year_dps.get_values_to_set(self._device, year, settings)
             )
             month = month + (year - 1970) * 12
         if self._month_dps:
+            _LOGGER.info("%s setting month to %d", self.name, month)
             settings.update(
                 self._month_dps.get_values_to_set(self._device, month, settings)
             )
@@ -136,12 +138,14 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
                 - 1
             )
         if self._day_dps:
+            _LOGGER.info("%s setting day to %d", self.name, day)
             settings.update(
                 self._day_dps.get_values_to_set(self._device, day, settings)
             )
         else:
             hour = hour + day * 24
         if self._hour_dps:
+            _LOGGER.info("%s setting hour to %d", self.name, hour)
             settings.update(
                 self._hour_dps.get_values_to_set(self._device, hour, settings)
             )
@@ -149,6 +153,7 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
             minute = minute + hour * 60
 
         if self._minute_dps:
+            _LOGGER.info("%s setting minute to %d", self.name, minute)
             settings.update(
                 self._minute_dps.get_values_to_set(self._device, minute, settings)
             )
@@ -156,6 +161,7 @@ class TuyaLocalDateTime(TuyaLocalEntity, DateTimeEntity):
             second = second + minute * 60
 
         if self._second_dps:
+            _LOGGER.info("%s setting second to %d", self.name, second)
             settings.update(
                 self._second_dps.get_values_to_set(self._device, second, settings)
             )

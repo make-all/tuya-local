@@ -178,6 +178,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     async def async_lock(self, **kwargs):
         """Lock the lock."""
         if self._lock_dp and not self._lock_dp.readonly:
+            _LOGGER.info("%s locking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, True)
         elif self._code_unlock_dp:
             code = kwargs.get("code")
@@ -186,6 +187,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             msg = self.build_code_unlock_msg(
                 CODE_LOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
             )
+            _LOGGER.info("%s locking with code", self._config.config_id)
             await self._code_unlock_dp.async_set_value(self._device, msg)
         else:
             raise NotImplementedError()
@@ -199,18 +201,22 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             msg = self.build_code_unlock_msg(
                 CODE_UNLOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
             )
+            _LOGGER.info("%s unlocking with code", self._config.config_id)
             await self._code_unlock_dp.async_set_value(self._device, msg)
         elif self._lock_dp and not self._lock_dp.readonly:
+            _LOGGER.info("%s unlocking", self._config.config_id)
             await self._lock_dp.async_set_value(self._device, False)
         elif self._approve_unlock_dp:
             if self._req_unlock_dp and not self._req_unlock_dp.get_value(self._device):
                 raise TimeoutError()
+            _LOGGER.info("%s approving unlock", self._config.config_id)
             await self._approve_unlock_dp.async_set_value(self._device, True)
         elif self._approve_intercom_dp:
             if self._req_intercom_dp and not self._req_intercom_dp.get_value(
                 self._device
             ):
                 raise TimeoutError()
+            _LOGGER.info("%s approving intercom unlock", self._config.config_id)
             await self._approve_intercom_dp.async_set_value(self._device, True)
         else:
             raise NotImplementedError()
@@ -218,6 +224,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
     async def async_open(self, **kwargs):
         """Open the door latch."""
         if self._open_dp:
+            _LOGGER.info("%s opening", self._config.config_id)
             await self._open_dp.async_set_value(self._device, True)
 
     def build_code_unlock_msg(self, action, member_id, code, source=CODE_SRC_UNKNOWN):
