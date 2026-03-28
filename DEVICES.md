@@ -1198,6 +1198,7 @@ port and password.
 - EASTtime D401 water purifier
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
+- EM3395TY-2 weather station
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
 - Eureka ERK-S62 adjustable desk
