@@ -2,6 +2,7 @@
 Setup for different kinds of Tuya lock devices
 """
 
+import logging
 from base64 import b64encode
 
 from homeassistant.components.lock import LockEntity, LockEntityFeature
