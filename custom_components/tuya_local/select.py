@@ -2,6 +2,8 @@
 Setup for different kinds of Tuya selects
 """
 
+import logging
+
 from homeassistant.components.select import SelectEntity
 
 from .device import TuyaLocalDevice

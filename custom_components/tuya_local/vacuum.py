@@ -2,6 +2,8 @@
 Setup for different kinds of Tuya vacuum cleaners
 """
 
+import logging
+
 from homeassistant.components.vacuum import (
     SERVICE_CLEAN_SPOT,
     SERVICE_RETURN_TO_BASE,
