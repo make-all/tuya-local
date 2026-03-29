@@ -1,0 +1,37 @@
+name: PIR Wall Switch
+
+products:
+  - id: iii7gagtan21i2of
+    model: MFA05
+    manufacturer: MOES
+    name: MOES Smart Motion Sensor Switch Single Pole
+
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: text
+    name: Inching Mode
+    dps:
+      - id: 103
+        type: string
+        name: value
+
+  - entity: light
+    translation_key: indicator
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    name: Motion Alarm
+    device_class: motion
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+        readonly: true
