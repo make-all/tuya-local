@@ -28,6 +28,7 @@
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
+- Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
 - Eurom Alutherm 1000,1500,2000,2500 heaters
@@ -74,6 +75,7 @@
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rovsun NSC-150-7A2R oil column heater
 - Rumba bathroom heater
+- Sai Me Tei towel rail
 - Semptec ZX7007 infrared heater
 - Sichler ZX-7655/ZX-7656 hybrid infrared convection heater
 - SolAire Vitra S2 panel heater
@@ -83,6 +85,7 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
+- Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
@@ -196,6 +199,7 @@
 - Chiltrix CX50 combo heat pump
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
+- Envirosun ES330M9 hot water system
 - Ferroli Titano Twin water heater
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
@@ -424,6 +428,7 @@
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
+- ComfortZone AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
@@ -660,6 +665,7 @@
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger
+- Emini 16A Public EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
 - Immax Neo Lite 3-phase 22kW EV charger
@@ -784,9 +790,10 @@ of device.
 - Generic smartplug without power monitoring but with most other features (initial state setting, light options, child lock)
   _confirmed working with SX1 relay socket_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
+- Generic multi switches (up to 8-gang in any combination - confirmed with non-standard eMylo US-083e dual outlet+USB switches)
 - Generic triple and quad switches (confirmed with Songam wall switches)
-- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
-- Generic quad powerstrip with uSB and power monitoring (confirmed with EKF Connect Pro)
+- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub)
+- Generic quad powerstrip with USB and power monitoring (confirmed with EKF Connect Pro)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -891,6 +898,7 @@ of device.
 - Treatlife outdoor dimmer with dual outlets
 - TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
+- V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
 
@@ -1164,7 +1172,7 @@ port and password.
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
-- KRain KRX8 irrigation controller
+- KRain KRX8 (also KRX6) irrigation controller
 - Neo NAS-WV02W water use monitoring valve
 - Neptun Smart and Smart+ water leak control systems
 - Qoto 03 smart water valve / sprinkler controller
@@ -1255,7 +1263,6 @@ port and password.
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
-- Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
@@ -1273,7 +1280,6 @@ port and password.
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
 - TX-E gas sensor/alarm
-- Valehaus SYZN119 towel warmer
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
