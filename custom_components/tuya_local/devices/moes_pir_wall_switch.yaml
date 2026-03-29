@@ -29,7 +29,7 @@ entities:
 
   - entity: binary_sensor
     name: Motion Alarm
-    device_class: motion
+    class: motion          # ← Changed from device_class to class
     dps:
       - id: 106
         type: boolean
