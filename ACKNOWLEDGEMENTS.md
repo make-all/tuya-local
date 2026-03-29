@@ -1312,3 +1312,4 @@ Further device support has been made with the assistance of users. Please consid
 - [8k37](https://github.com/8k37) for contributing support for SWC32v2 CBU circuit breaker energy meter.
 - [killercece](https://github.com/killercece) for contributing support for EM3395TY-2 weather station.
 - [jonno-m](https://github.com/jonno-m) for contributing support for ILife A12 Pro vacuum.
+- [tfmm](https://github.com/tfmm) for assisting with support for ComfortZone AP100 air purifier.

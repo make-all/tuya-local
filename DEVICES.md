@@ -423,6 +423,7 @@
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
+- ComfortZone AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
