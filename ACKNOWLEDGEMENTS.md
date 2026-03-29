@@ -1315,3 +1315,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lfrlucas](https://github.com/lfrlucas) for contributing support for Emini 16A Public EV charger.
 - [tfmm](https://github.com/tfmm) for assisting with support for ComfortZone AP100 air purifier.
 - [subpanel0576](https://github.com/subpanel0576) for assisting with support for V Jules.V SK17 galaxy projector.
+- [camcamnz](https://github.com/camcamnz) for contributing support for KRain KRX6 irrigation controller, which was merged with KRX8.
