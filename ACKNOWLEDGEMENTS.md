@@ -1319,3 +1319,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nonamelee1003](https://github.com/nonamelee1003) for assisting with support for eMylo US-08e3 dual outlet + USB wall outlet (implemented as a generic multiswitch).
 - [marcbaul](https://github.com/marcbaul) for assisting with support for Emke Orbrad PTR towel radiator.
 - [antigravity83](https://github.com/antigravity83) for assisting with support for Envirosun ES330M9 hot water system.
+- [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
