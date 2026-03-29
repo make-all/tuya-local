@@ -1318,3 +1318,4 @@ Further device support has been made with the assistance of users. Please consid
 - [camcamnz](https://github.com/camcamnz) for contributing support for KRain KRX6 irrigation controller, which was merged with KRX8.
 - [nonamelee1003](https://github.com/nonamelee1003) for assisting with support for eMylo US-08e3 dual outlet + USB wall outlet (implemented as a generic multiswitch).
 - [marcbaul](https://github.com/marcbaul) for assisting with support for Emke Orbrad PTR towel radiator.
+- [antigravity83](https://github.com/antigravity83) for assisting with support for Envirosun ES330M9 hot water system.
