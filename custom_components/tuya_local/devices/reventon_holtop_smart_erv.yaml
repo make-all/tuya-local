@@ -5,104 +5,106 @@ products:
     model: Smart ERV
 
 entities:
-  - entity: switch
-    name: Ventilation
+  - entity: fan
+    translation_key: ventilation
     dps:
       - id: 101
         name: switch
         type: boolean
-
-  - entity: select
-    name: Supply fan speed (10-step)
-    icon: mdi:fan-plus
-    category: config
-    dps:
       - id: 102
-        name: option
+        name: speed
         type: string
         mapping:
+          - constraint: speed_mode
+            conditions:
+              - dps_val: true
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 11
+                  - dps_val: "2"
+                    value: 22
+                  - dps_val: "3"
+                    value: 33
+                  - dps_val: "4"
+                    value: 44
+                  - dps_val: "5"
+                    value: 56
+                  - dps_val: "6"
+                    value: 67
+                  - dps_val: "7"
+                    value: 78
+                  - dps_val: "8"
+                    value: 89
+                  - dps_val: "9"
+                    value: 100
+              - dps_val: false
+                value_redirect: speed_3step
+      - id: 104
+        name: speed_3step
+        type: string
+        hidden: true
+        mapping:
           - dps_val: "0"
-            value: "0"
+            value: 0
           - dps_val: "1"
-            value: "1"
+            value: 50
           - dps_val: "2"
-            value: "2"
-          - dps_val: "3"
-            value: "3"
-          - dps_val: "4"
-            value: "4"
-          - dps_val: "5"
-            value: "5"
-          - dps_val: "6"
-            value: "6"
-          - dps_val: "7"
-            value: "7"
-          - dps_val: "8"
-            value: "8"
-          - dps_val: "9"
-            value: "9"
+            value: 100
+      - id: 125
+        name: speed_mode
+        type: boolean
+        hidden: true
 
-  - entity: select
-    name: Exhaust fan speed (10-step)
-    icon: mdi:fan-minus
-    category: config
+  - entity: fan
+    name: Exhaust fan
     dps:
       - id: 103
-        name: option
+        name: speed
         type: string
         mapping:
-          - dps_val: "0"
-            value: "0"
-          - dps_val: "1"
-            value: "1"
-          - dps_val: "2"
-            value: "2"
-          - dps_val: "3"
-            value: "3"
-          - dps_val: "4"
-            value: "4"
-          - dps_val: "5"
-            value: "5"
-          - dps_val: "6"
-            value: "6"
-          - dps_val: "7"
-            value: "7"
-          - dps_val: "8"
-            value: "8"
-          - dps_val: "9"
-            value: "9"
-
-  - entity: select
-    name: Supply fan speed (3-step)
-    icon: mdi:fan-plus
-    category: config
-    dps:
-      - id: 104
-        name: option
-        type: string
-        mapping:
-          - dps_val: "0"
-            value: low
-          - dps_val: "1"
-            value: medium
-          - dps_val: "2"
-            value: high
-
-  - entity: select
-    name: Exhaust fan speed (3-step)
-    icon: mdi:fan-minus
-    category: config
-    dps:
+          - constraint: speed_mode
+            conditions:
+              - dps_val: true
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 11
+                  - dps_val: "2"
+                    value: 22
+                  - dps_val: "3"
+                    value: 33
+                  - dps_val: "4"
+                    value: 44
+                  - dps_val: "5"
+                    value: 56
+                  - dps_val: "6"
+                    value: 67
+                  - dps_val: "7"
+                    value: 78
+                  - dps_val: "8"
+                    value: 89
+                  - dps_val: "9"
+                    value: 100
+              - dps_val: false
+                value_redirect: speed_3step
       - id: 105
-        name: option
+        name: speed_3step
         type: string
+        hidden: true
         mapping:
           - dps_val: "0"
-            value: low
+            value: 0
           - dps_val: "1"
-            value: medium
+            value: 50
           - dps_val: "2"
-            value: high
+            value: 100
+      - id: 125
+        name: speed_mode
+        type: boolean
+        hidden: true
 
   - entity: number
     name: Supply air target temperature
@@ -179,9 +181,8 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: TVOC level
+    translation_key: air_quality
     class: enum
-    icon: mdi:molecule
     dps:
       - id: 112
         name: sensor
@@ -253,7 +254,7 @@ entities:
         type: bitfield
 
   - entity: binary_sensor
-    name: Defrost active
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 122
@@ -268,21 +269,6 @@ entities:
       - id: 123
         name: sensor
         type: boolean
-
-  - entity: sensor
-    name: Fan speed control mode
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 125
-        name: sensor
-        type: boolean
-        force: true
-        mapping:
-          - dps_val: false
-            value: 3-step
-          - dps_val: true
-            value: 10-step
 
   - entity: sensor
     translation_key: filter_life
