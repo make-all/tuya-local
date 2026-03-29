@@ -785,9 +785,10 @@ of device.
 - Generic smartplug without power monitoring but with most other features (initial state setting, light options, child lock)
   _confirmed working with SX1 relay socket_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
+- Generic multi switches (up to 8-gang in any combination - confirmed with non-standard eMylo US-083e dual outlet+USB switches)
 - Generic triple and quad switches (confirmed with Songam wall switches)
-- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
-- Generic quad powerstrip with uSB and power monitoring (confirmed with EKF Connect Pro)
+- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub)
+- Generic quad powerstrip with USB and power monitoring (confirmed with EKF Connect Pro)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
