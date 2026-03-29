@@ -892,6 +892,7 @@ of device.
 - Treatlife outdoor dimmer with dual outlets
 - TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
+- V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
 
