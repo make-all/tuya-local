@@ -1212,7 +1212,7 @@ Further device support has been made with the assistance of users. Please consid
 - [PawelSwaczyna](https://github.com/PawelSwaczyna) for contributing support for Klarta Humea Grande humidifier.
 - [laskas-p](https://github.com/laskas-p) for contributing support for Wellio D008A 20L dehumidifier.
 - [akritikos](https://github.com/akritikos) for assisting with support for Eureka ERK-S62 adjustable desk.
-- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
+- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing support for Moes PIR wall switch and improvements to Feit dimmer.
 - [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
 - [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
 - [MrJinxed55](https://github.com/MrJinxed55) for contributing improvements to Zigbee ZN373186 temperature and humidity sensor, and support for M604 quad wall switch.

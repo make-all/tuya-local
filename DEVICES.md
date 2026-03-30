@@ -741,8 +741,9 @@ the best option.
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
-- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - Moes motion sensor smart switch
+- Moes PIR wall switch
+- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - MoesHouse smartplug with RGBW nightlight
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
