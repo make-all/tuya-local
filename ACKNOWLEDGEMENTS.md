@@ -1326,3 +1326,4 @@ Further device support has been made with the assistance of users. Please consid
 - [thisistotallyshaun](https://github.com/thisistotallyshaun) for assisting with support for Breville Smart Mist Glow Connect humidifier.
 - [appetjoek1978](https://github.com/appetjoek1978) for assisting with support for NP-DVL-01 ceiling fan with RGB+CW light.
 - [gabriel-landeira](https://github.com/gabriel-landeira) for assisting with support for Brustec Pool Heater.
+- [eq7mavala-ops](https://github.com/eq7mavala-ops) for assisting with support for Eachen GD-DC5 garage door opener.
