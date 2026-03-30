@@ -202,11 +202,11 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
         if self._control_dp and "open" in self._control_dp.values(self._device):
-            _LOGGER.info("%s opening", self._config._config_id)
+            _LOGGER.info("%s opening", self._config.config_id)
             await self._control_dp.async_set_value(self._device, "open")
         elif self._position_dp:
             pos = 100
-            _LOGGER.info("%s opening to 100%%", self._config._config_id)
+            _LOGGER.info("%s opening to 100%%", self._config.config_id)
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
@@ -214,11 +214,11 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
         if self._control_dp and "close" in self._control_dp.values(self._device):
-            _LOGGER.info("%s closing", self._config._config_id)
+            _LOGGER.info("%s closing", self._config.config_id)
             await self._control_dp.async_set_value(self._device, "close")
         elif self._position_dp:
             pos = 0
-            _LOGGER.info("%s closing to 0%%", self._config._config_id)
+            _LOGGER.info("%s closing to 0%%", self._config.config_id)
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
@@ -229,7 +229,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             raise AttributeError()
         if self._position_dp:
             _LOGGER.info(
-                "%s setting position to %d%%", self._config._config_id, position
+                "%s setting position to %d%%", self._config.config_id, position
             )
             await self._position_dp.async_set_value(self._device, position)
         else:
@@ -250,7 +250,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
             _LOGGER.info(
                 "%s setting tilt position to %d%%",
-                self._config._config_id,
+                self._config.config_id,
                 tilt_position,
             )
             await self._tiltpos_dp.async_set_value(self._device, tilt_position)
@@ -260,7 +260,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
         if self._control_dp and "stop" in self._control_dp.values(self._device):
-            _LOGGER.info("%s stopping", self._config._config_id)
+            _LOGGER.info("%s stopping", self._config.config_id)
             await self._control_dp.async_set_value(self._device, "stop")
         else:
             raise NotImplementedError()
