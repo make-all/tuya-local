@@ -26,10 +26,12 @@ entities:
             value: "color_temp"
           - dps_val: "colour"
             value: "hs"
+            hidden: true  # there is no RGB dp, so prevent selection of this
           - dps_val: "scene"
             value: "scene"
           - dps_val: "music"
             value: "music"
+            hidden: true
       - id: 22
         type: integer
         name: brightness
@@ -74,23 +76,21 @@ entities:
         range:
           min: 1
           max: 5000
-  - entity: number
-    name: Timer
+  - entity: time
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         type: integer
-        name: value
+        name: second
         optional: true
         range:
           min: 0
-          max: 86400
+          max: 86399
         unit: s
   - entity: text
-    name: Scene data
+    translation_key: scene
     category: config
-    icon: "mdi:palette"
     dps:
       - id: 56
         type: base64
