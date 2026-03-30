@@ -1321,3 +1321,4 @@ Further device support has been made with the assistance of users. Please consid
 - [antigravity83](https://github.com/antigravity83) for assisting with support for Envirosun ES330M9 hot water system.
 - [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
 - [JxxIT](https://github.com/JxxIT) for contributing improvements to vscode config.
+- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light.
