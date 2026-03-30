@@ -1292,7 +1292,7 @@ Further device support has been made with the assistance of users. Please consid
 - [prfj](https://github.com/prfj) for contributing support for Cecotec TotalPure purifier.
 - [aryanhasgithub](https://github.com/aryanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
 - [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
-- [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
+- [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal and desk fans.
 - [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
 - [wan0net](https://github.com/wan0net) for contributing support for Kogan  Vostok portable air conditioner.
 - [penguin00xx](https://github.com/penguin00xx) for assisting with support for Koenic KTM-221723-M kettle.
