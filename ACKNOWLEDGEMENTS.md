@@ -1322,3 +1322,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
 - [JxxIT](https://github.com/JxxIT) for contributing improvements to vscode config.
 - [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light.
+- [osxisl](https://github.com/osxisl) for assisting with support for Juro-Pro 2006 dehumidifier.
