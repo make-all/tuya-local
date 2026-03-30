@@ -88,6 +88,25 @@ entities:
             range:
               min: 0
               max: 1000
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: speed_one
+            value: 20
+          - dps_val: speed_two
+            value: 40
+          - dps_val: speed_three
+            value: 60
+          - dps_val: speed_four
+            value: 80
+          - dps_val: speed_five
+            value: 100
   - entity: switch
     translation_key: sleep
     dps:
