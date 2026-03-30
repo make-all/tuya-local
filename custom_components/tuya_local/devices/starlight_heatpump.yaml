@@ -26,10 +26,10 @@ entities:
       - id: 2
         name: temperature
         type: integer
-        unit: C
+        unit: F
         range:
-          min: 160
-          max: 310
+          min: 600
+          max: 860
         mapping:
           - scale: 10
             step: 5
@@ -42,6 +42,7 @@ entities:
       - id: 3
         name: current_temperature
         type: integer
+        unit: C
       - id: 4
         name: mode
         type: string

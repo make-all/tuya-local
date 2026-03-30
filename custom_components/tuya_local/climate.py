@@ -304,6 +304,30 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 temp = round(
                     temp, self._current_temperature_dps.suggested_display_precision
                 )
+            # Convert if current_temperature DPS unit differs from the
+            # entity's native temperature unit. Some devices report target
+            # and current temperatures in different units (e.g. target in
+            # Fahrenheit, current in Celsius).
+            if temp is not None and self._current_temperature_dps.unit:
+                current_unit = validate_temp_unit(
+                    self._current_temperature_dps.unit
+                )
+                entity_unit = self.temperature_unit
+                if (
+                    current_unit
+                    and entity_unit
+                    and current_unit != entity_unit
+                ):
+                    if (
+                        current_unit == UnitOfTemperature.CELSIUS
+                        and entity_unit == UnitOfTemperature.FAHRENHEIT
+                    ):
+                        temp = temp * 9.0 / 5.0 + 32.0
+                    elif (
+                        current_unit == UnitOfTemperature.FAHRENHEIT
+                        and entity_unit == UnitOfTemperature.CELSIUS
+                    ):
+                        temp = (temp - 32.0) * 5.0 / 9.0
             return temp
 
     @property
