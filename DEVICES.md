@@ -163,6 +163,7 @@
 
 ### Pool heaters / heat pumps
 
+- Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
 - Evotherm ETI series heat pump

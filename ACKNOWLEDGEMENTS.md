@@ -1325,3 +1325,4 @@ Further device support has been made with the assistance of users. Please consid
 - [osxisl](https://github.com/osxisl) for assisting with support for Juro-Pro 2006 dehumidifier.
 - [thisistotallyshaun](https://github.com/thisistotallyshaun) for assisting with support for Breville Smart Mist Glow Connect humidifier.
 - [appetjoek1978](https://github.com/appetjoek1978) for assisting with support for NP-DVL-01 ceiling fan with RGB+CW light.
+- [gabriel-landeira](https://github.com/gabriel-landeira) for assisting with support for Brustec Pool Heater.
