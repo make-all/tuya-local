@@ -1,0 +1,38 @@
+name: Smart switch TH
+products:
+  - id: oj6soirdngp9jijy
+    manufacturer: Tongou
+    model: tongou Smart Wi-Fi Switch Temp and Humidity Sensor
+    model_id: TOVTH-216WTTDA
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 46
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    name: Switch1
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch2
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
