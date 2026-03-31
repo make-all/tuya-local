@@ -163,6 +163,7 @@
 
 ### Pool heaters / heat pumps
 
+- Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
 - Evotherm ETI series heat pump
@@ -312,7 +313,7 @@
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
-- Ausclimate EcoSmart pedestal fan
+- Ausclimate EcoSmart pedestal and desk fans
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
 - BKZO ceiling fan with RGBCW light
@@ -384,6 +385,7 @@
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
+- NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
@@ -487,6 +489,7 @@
 - Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL, Eva Ion Pro, Rise Pro dehumidifiers
 - JJPro JPD01, JPD02 dehumidifers
+- Juro-Pro 2006 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Luko dehumidifier
@@ -516,6 +519,7 @@
 - AlecoAir PU55 Humino humidifier
 - Arida Eva humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
+- Breville Smart Mist Glow Connect humidifier
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
 - Clofte Duo 400 humidifier
@@ -742,8 +746,9 @@ the best option.
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
-- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - Moes motion sensor smart switch
+- Moes PIR wall switch
+- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - MoesHouse smartplug with RGBW nightlight
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
@@ -887,6 +892,7 @@ of device.
 - Outon Smart Lamp
 - Peteme recessed lighting
 - PowerAsia RGB 6-inch recessed lighting
+- RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
@@ -924,6 +930,7 @@ of device.
 - Dongguan garage door
 - Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
+- Eachen GD-DC5 garage door opener
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
