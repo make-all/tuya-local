@@ -1,5 +1,5 @@
 """
-Platform for Tuya WiFi-connected devices.
+Integration for Tuya WiFi-connected devices.
 
 Based on nikrolls/homeassistant-goldair-climate for Goldair branded devices.
 Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
