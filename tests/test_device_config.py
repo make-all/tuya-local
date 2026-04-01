@@ -136,6 +136,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "event",
                 "fan",
                 "humidifier",
+                "infrared",
                 "lawn_mower",
                 "light",
                 "lock",
@@ -229,6 +230,10 @@ KNOWN_DPS = {
         "required": ["humidity"],
         "optional": ["switch", "mode", "current_humidity"],
     },
+    "infrared": {
+        "required": ["send"],
+        "optional": ["control", "code_type", "delay"],
+    },
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
@@ -260,7 +265,7 @@ KNOWN_DPS = {
     },
     "remote": {
         "required": ["send"],
-        "optional": ["receive"],
+        "optional": ["receive", "command", "type", "head"],
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
