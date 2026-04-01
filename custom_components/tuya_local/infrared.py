@@ -34,7 +34,7 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
         """Initialize the infrared control device."""
-        super().__init__(device, config)
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._send_dp = dps_map.pop("send", None)
         self._command_dp = dps_map.pop("control", None)
