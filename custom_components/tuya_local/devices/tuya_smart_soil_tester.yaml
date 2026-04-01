@@ -1,0 +1,80 @@
+name: Smart soil tester
+products:
+  - id: nt4pquef
+    manufacturer: Tuya
+    model: Tuya smart soil tester
+    model_id: SGS02Z
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        range:
+          min: -90
+          max: 600
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: sensor
+    class: enum
+    translation_key: illuminance
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: lower
+            value: lower
+          - dps_val: low
+            value: low
+          - dps_val: normal
+            value: normal
+          - dps_val: high
+            value: high
+          - dps_val: higher
+            value: higher
+  - entity: select
+    class: enum
+    translation_key: temp_unit_convert
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
