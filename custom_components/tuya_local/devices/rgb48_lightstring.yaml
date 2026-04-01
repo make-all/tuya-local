@@ -3,10 +3,24 @@
 # Protocol: 3.4
 #
 # Notes:
-# - DP 59 draw_tool is base64 type for direct per-LED control.
-# - DP 56 rgbic_linerlight_scene is base64 type for scene switching.
-# - DP 58 led_number_set configures string length/segment count.
-
+# - DP 56 (rgbic_linerlight_scene): base64 scene payload for animated
+#   multicolor scenes saved via Smart Life DIY scene editor. Write-only
+#   device never reports this DP in status polls. All DP 56 scenes animate;
+#   static per-bulb color is NOT possible via this DP.
+#   Use text.set_value to apply saved scenes.
+# - DP 58 (led_number_set): configures string length/segment count.
+# - DP 59 (draw_tool): base64 per-bulb paint protocol. Mirrors the Smart
+#   Life draw tool. Supports static (effect=0) and gradient (effect=1).
+#   Payload format per bulb (12 bytes):
+#     [0x01, 0x02, effect, hue_hi, hue_lo, sat, 0x64, 0x00, 0x00, 0x81,
+#      0x00, bulb_index]
+#   - effect: 0 = static, 1 = gradient
+#   - hue: 0-360 as 2-byte big-endian integer
+#   - sat: 0-100
+#   - bulb_index: 0-47 for a 48-bulb string
+#   Init frame first (9 bytes):
+#     [0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x64, 0x00, 0x00]
+#   Then one payload per bulb with ~50ms delay. Write-only.
 name: RGBIC string light
 products:
   - id: 2znvfkx64d4fkzxp
