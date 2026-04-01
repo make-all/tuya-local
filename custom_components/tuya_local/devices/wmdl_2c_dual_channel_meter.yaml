@@ -146,6 +146,7 @@ entities:
   - entity: sensor
     name: Forward Energy A
     class: energy
+    icon: mdi:transmission-tower-import
     dps:
       - id: 17
         type: integer
@@ -158,6 +159,7 @@ entities:
   - entity: sensor
     name: Reverse Energy A
     class: energy
+    icon: mdi:transmission-tower-export
     dps:
       - id: 115
         type: integer
@@ -170,6 +172,7 @@ entities:
   - entity: sensor
     name: Forward Energy B
     class: energy
+    icon: mdi:transmission-tower-import
     dps:
       - id: 111
         type: integer
@@ -182,6 +185,7 @@ entities:
   - entity: sensor
     name: Reverse Energy B
     class: energy
+    icon: mdi:transmission-tower-export
     dps:
       - id: 117
         type: integer
@@ -191,3 +195,41 @@ entities:
         precision: 2
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Cur State A
+    class: enum
+    icon: mdi:swap-horizontal
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "work_p"
+            value: "importing"
+          - dps_val: "work_n"
+            value: "exporting"
+          - dps_val: "close"
+            value: "idle"
+          - dps_val: "produce"
+            value: "producing"
+          - default: true
+            value: "unknown"
+  - entity: sensor
+    name: Cur State B
+    class: enum
+    icon: mdi:swap-horizontal
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "work_p"
+            value: "importing"
+          - dps_val: "work_n"
+            value: "exporting"
+          - dps_val: "close"
+            value: "idle"
+          - dps_val: "produce"
+            value: "producing"
+          - default: true
+            value: "unknown"
