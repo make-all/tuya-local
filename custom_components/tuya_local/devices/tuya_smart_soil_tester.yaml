@@ -16,11 +16,8 @@ entities:
         range:
           min: -90
           max: 600
-        mapping:
-          - scale: 1
-            step: 1
   - entity: sensor
-    class: humidity
+    class: moisture
     dps:
       - id: 3
         type: integer
@@ -72,9 +69,9 @@ entities:
     dps:
       - id: 9
         type: string
-        name: sensor
+        name: option
         mapping:
           - dps_val: c
-            value: C
+            value: Celsius
           - dps_val: f
-            value: F
+            value: Fahrenheit
