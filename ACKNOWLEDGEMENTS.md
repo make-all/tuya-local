@@ -1212,7 +1212,7 @@ Further device support has been made with the assistance of users. Please consid
 - [PawelSwaczyna](https://github.com/PawelSwaczyna) for contributing support for Klarta Humea Grande humidifier.
 - [laskas-p](https://github.com/laskas-p) for contributing support for Wellio D008A 20L dehumidifier.
 - [akritikos](https://github.com/akritikos) for assisting with support for Eureka ERK-S62 adjustable desk.
-- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing improvements to Feit dimmer.
+- [BigGeorgeTx](https://github.com/BigGeorgeTx) for contributing support for Moes PIR wall switch and improvements to Feit dimmer.
 - [pawlak2](https://github.com/pawlak2) for assisting with support for TH02 Z3-P3Z temperature and humidity sensor.
 - [caretakermk-droid](https://github.com/caretakermk-droid) for assisting with support for Ourtop ATMS100133 energy meter.
 - [MrJinxed55](https://github.com/MrJinxed55) for contributing improvements to Zigbee ZN373186 temperature and humidity sensor, and support for M604 quad wall switch.
@@ -1292,7 +1292,7 @@ Further device support has been made with the assistance of users. Please consid
 - [prfj](https://github.com/prfj) for contributing support for Cecotec TotalPure purifier.
 - [aryanhasgithub](https://github.com/aryanhasgithub) for contributing support for A.O. Smith HeatBot 15L water heater.
 - [jmlugo15](https://github.com/jmlugo15) for assisting with support for Qiachipceiling fan with light.
-- [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal fan.
+- [sydneysider123](https://github.com/sydneysider123) for assisting with support for Ausclimate EcoSmart pedestal and desk fans.
 - [ClarkAlmazan](https://github.com/ClarkAlmazan) for assisting with support for Suntree SPG3 EV charger.
 - [wan0net](https://github.com/wan0net) for contributing support for Kogan  Vostok portable air conditioner.
 - [penguin00xx](https://github.com/penguin00xx) for assisting with support for Koenic KTM-221723-M kettle.
@@ -1305,3 +1305,25 @@ Further device support has been made with the assistance of users. Please consid
 - [ScottHansma](https://github.com/ScottHansma) for contributing support for Wine Enthusiast Prestige S beverage center.
 - [szabi45](https://github.com/szabi45) for assisting with support for BobYun Tech gatePro gate opener.
 - [decompil3d](https://github.com/decompil3d) for contributing support for Chtoocy MC82 refrigerator thermometer.
+- [kordek212](https://github.com/kordek212) for contributing support for KKT Kolbe kitchen hood.
+- [bobaoapae](https://github.com/bobaoapae) for contributing support for Veratti V4 3-phase circuit breaker.
+- [alfry82](https://github.com/alfry82) for contributing support for Morento MR5866 air purifier.
+- [R4gN4rk](https://github.com/R4gN4rk) for contributing support for Magnovent Cefiro ceiling fan with lights.
+- [8k37](https://github.com/8k37) for contributing support for SWC32v2 CBU circuit breaker energy meter.
+- [killercece](https://github.com/killercece) for contributing support for EM3395TY-2 weather station.
+- [jonno-m](https://github.com/jonno-m) for contributing support for ILife A12 Pro vacuum.
+- [lfrlucas](https://github.com/lfrlucas) for contributing support for Emini 16A Public EV charger.
+- [tfmm](https://github.com/tfmm) for assisting with support for ComfortZone AP100 air purifier.
+- [subpanel0576](https://github.com/subpanel0576) for assisting with support for V Jules.V SK17 galaxy projector.
+- [camcamnz](https://github.com/camcamnz) for contributing support for KRain KRX6 irrigation controller, which was merged with KRX8.
+- [nonamelee1003](https://github.com/nonamelee1003) for assisting with support for eMylo US-08e3 dual outlet + USB wall outlet (implemented as a generic multiswitch).
+- [marcbaul](https://github.com/marcbaul) for assisting with support for Emke Orbrad PTR towel radiator.
+- [antigravity83](https://github.com/antigravity83) for assisting with support for Envirosun ES330M9 hot water system.
+- [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
+- [JxxIT](https://github.com/JxxIT) for contributing improvements to vscode config.
+- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light.
+- [osxisl](https://github.com/osxisl) for assisting with support for Juro-Pro 2006 dehumidifier.
+- [thisistotallyshaun](https://github.com/thisistotallyshaun) for assisting with support for Breville Smart Mist Glow Connect humidifier.
+- [appetjoek1978](https://github.com/appetjoek1978) for assisting with support for NP-DVL-01 ceiling fan with RGB+CW light.
+- [gabriel-landeira](https://github.com/gabriel-landeira) for assisting with support for Brustec Pool Heater.
+- [eq7mavala-ops](https://github.com/eq7mavala-ops) for assisting with support for Eachen GD-DC5 garage door opener.

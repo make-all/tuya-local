@@ -907,3 +907,34 @@ async def test_setting_multi_stage_redirect(mocker):
     dps["141"] = True
     async with assert_device_properties_set(device, {"141": False}):
         await main.async_set_value(device, False)
+
+
+def test_reading_target_range(mocker):
+    """Test reading a number that has a target range."""
+    mock_config = {
+        "id": 1,
+        "name": "test",
+        "type": "integer",
+        "range": {"min": 0, "max": 16},
+        "mapping": [{"target_range": {"min": 0, "max": 100}}],
+    }
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = 8
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == 50
+
+
+def test_writing_target_range(mocker):
+    """Test writing a number that has a target range."""
+    mock_config = {
+        "id": 1,
+        "name": "test",
+        "type": "integer",
+        "range": {"min": 0, "max": 16},
+        "mapping": [{"target_range": {"min": 0, "max": 100}}],
+    }
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_values_to_set(mock_device, 100) == {"1": 16}

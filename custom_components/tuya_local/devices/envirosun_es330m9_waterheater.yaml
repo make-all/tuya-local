@@ -1,0 +1,482 @@
+name: Hot water
+products:
+  - id: phdnbytcogafrjr
+    manufacturer: Envirosun
+    model: ES330M9
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: heating_mode
+            conditions:
+              - dps_val: "0"
+                value: high_demand  # auto
+              - dps_val: "1"
+                value: heat_pump  # timer
+              - dps_val: "2"
+                value: electric
+              - dps_val: "3"
+                value: eco  # mute
+      - id: 4
+        type: integer
+        optional: true
+        name: temperature
+        unit: F
+        range:
+          min: 0
+          max: 176
+      - id: 35
+        type: integer
+        optional: true
+        name: current_temperature
+      - id: 105
+        type: string
+        optional: true
+        name: heating_mode
+        hidden: true
+      - id: 114
+        type: integer
+        name: display_version
+      - id: 115
+        type: integer
+        name: main_version
+      - id: 121
+        type: integer
+        name: min_temperature
+      - id: 122
+        type: integer
+        name: max_temperature
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: lock
+  - entity: sensor
+    class: temperature
+    name: Water temperature
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Available hot water
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 0.12
+  - entity: binary_sensor
+    name: Heat pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Element
+    class: running
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Quiet mode
+    class: running
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Evaporator temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: text
+    name: Eco mode start time 1
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 1
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 111
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Cooling temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: binary_sensor
+    name: Auxiliary heating
+    class: running
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: switch
+    name: Cooling
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 119
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: celsius
+          - dps_val: "1"
+            value: fahrenheit
+  - entity: binary_sensor
+    name: Cooling lock
+    class: lock
+    category: diagnostic
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: switch
+    name: Fast recovery
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: "Off peak heating"
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        optional: true
+        name: switch
+  - entity: lock
+    name: Device lock
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        optional: true
+        name: lock
+  - entity: sensor
+    name: Diagnostics
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 148
+        type: base64
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 149
+        type: base64
+        optional: true
+        persist: false
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 149
+        type: base64
+        optional: true
+        name: details
+  - entity: text
+    name: Quiet mode start time
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 150
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Quiet mode end time
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 151
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode start time 2
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 176
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 2
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 177
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode start time 3
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 178
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 3
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 179
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode start time 4
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 180
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 4
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 181
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode start time 5
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 182
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 5
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 183
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode start time 6
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 184
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco mode stop time 6
+    category: config
+    icon: "mdi:leaf"
+    hidden: true
+    dps:
+      - id: 185
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Monday program
+    category: config
+    dps:
+      - id: 186
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Tuesday program
+    category: config
+    dps:
+      - id: 187
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wednesday program
+    category: config
+    dps:
+      - id: 188
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Thursday program
+    category: config
+    dps:
+      - id: 189
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Friday program
+    category: config
+    dps:
+      - id: 190
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Saturday program
+    category: config
+    dps:
+      - id: 191
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sunday program
+    category: config
+    dps:
+      - id: 192
+        type: boolean
+        name: switch
+  - entity: text
+    name: Quiet schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 193
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Week schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 194
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Eco schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    hidden: true
+    dps:
+      - id: 195
+        type: base64
+        optional: true
+        name: value
