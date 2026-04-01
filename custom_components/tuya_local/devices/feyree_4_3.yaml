@@ -1,0 +1,306 @@
+name: Feyree 4.3 Wallbox
+products:
+  - id: zk1jkjhxqkfaaalp
+
+entities:
+
+  # --- STATUS ---
+  - entity: select
+    name: Device State
+    icon: "mdi:ev-station"
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "no_connet"
+            value: "Disconnected"
+          - dps_val: "connect"
+            value: "Connected"
+          - dps_val: "charing"
+            value: "Charging"
+          - dps_val: "wait_rfid"
+            value: "Waiting RFID"
+          - dps_val: "finish"
+            value: "Finished"
+          - dps_val: "wait_charing"
+            value: "Waiting Charging"
+          - dps_val: "error"
+            value: "Error"
+          - dps_val: "stopusing"
+            value: "Stopped"
+
+  # --- BŁĘDY ---
+  - entity: sensor
+    name: Fault bitmap
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+
+  # --- ENERGIA SESJI ---
+  - entity: sensor
+    name: Session Energy
+    class: energy
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  # --- NAPIĘCIA ---
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Voltage B
+    class: voltage
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Voltage C
+    class: voltage
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+
+  # --- PRĄDY ---
+  - entity: sensor
+    name: Current A
+    class: current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Current B
+    class: current
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Current C
+    class: current
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 10
+
+  # --- TRYB FAZOWY ---
+  - entity: select
+    name: Phase Mode
+    icon: "mdi:transmission-tower"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Single_phase"
+            value: "Single phase"
+          - dps_val: "Three_phase"
+            value: "Three phase"
+          - dps_val: "No_phase"
+            value: "No phase"
+          - dps_val: "Phase_err"
+            value: "Phase error"
+
+  # --- MOC ---
+  - entity: sensor
+    name: Power
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 10
+
+  # --- TEMPERATURA ---
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  # --- MIESIĄC LOGU ---
+  - entity: sensor
+    name: Log Month
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: mth
+
+  # --- ENERGIA CAŁKOWITA ---
+  - entity: sensor
+    name: Total Session Energy
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 10
+
+  # --- MAKSYMALNY PRĄD ---
+  - entity: select
+    name: Max Current Setting
+    icon: "mdi:current-ac"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Max16A"
+            value: "16 A"
+          - dps_val: "Max32A"
+            value: "32 A"
+          - dps_val: "Max40A"
+            value: "40 A"
+          - dps_val: "Max50A"
+            value: "50 A"
+          - dps_val: "Max60A"
+            value: "60 A"
+          - dps_val: "Max80A"
+            value: "80 A"
+
+  # --- USTAWIONY PRĄD ---
+  - entity: number
+    name: Charge Current Limit
+    icon: "mdi:current-ac"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 8
+          max: 32
+
+  # --- OPÓŹNIENIA ---
+  - entity: number
+    name: Delay Time
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+
+  - entity: number
+    name: Define Time
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+
+  # --- CZAS SESJI ---
+  - entity: sensor
+    name: Charge Time
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+
+  # --- RFID ---
+  - entity: binary_sensor
+    name: RFID Active
+    class: occupancy
+    dps:
+      - id: 123
+        type: boolean
+        name: sensor
+
+  # --- PRZEŁĄCZNIK ŁADOWANIA ---
+  - entity: select
+    name: Charging Operation
+    icon: "mdi:power"
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OpenCharging"
+            value: "Start Charging"
+          - dps_val: "CloseCharging"
+            value: "Stop Charging"
+          - dps_val: "WaitOperation"
+            value: "Waiting"
+
+  # --- WERSJE ---
+  - entity: sensor
+    name: Hardware Version
+    icon: "mdi:chip"
+    dps:
+      - id: 125
+        type: string
+        name: sensor
+
+  - entity: sensor
+    name: Software Version
+    icon: "mdi:chip"
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+
+  # --- LOG FLAG ---
+  - entity: binary_sensor
+    name: Log Flag
+    category: diagnostic
+    dps:
+      - id: 132
+        type: boolean
+        name: sensor
