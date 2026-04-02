@@ -39,8 +39,8 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         self._send_dp = dps_map.pop("send", None)
         self._command_dp = dps_map.pop("control", None)
         self._type_dp = dps_map.pop("code_type", None)
-        self._init_end(device, config, dps_map)
-
+        self._init_end(dps_map)
+2
     async def async_send_command(self, command: InfraredCommand) -> None:
         """Handle sending an infrared command."""
         timings = command.get_raw_timings()
