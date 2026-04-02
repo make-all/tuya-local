@@ -1330,3 +1330,4 @@ Further device support has been made with the assistance of users. Please consid
 - [numanx11](https://github.com/numanx11) for contributing support for Reventon / Holtop ERV heat recovery ventilator.
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
 - [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
+- [giggiu16](https://github.com/giggiu16) for contributing support for YET YET6956WTR-B RF 4 button controller.

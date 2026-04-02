@@ -1165,6 +1165,7 @@ port and password.
 - S11+ IR/RF remote controller
 - Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
 - Woox R7246 remote control with temperature and humidity sensors
+- YET YET6956WTR-B 240-930MHz RF 4 button controller
 
 ### Valves
 
