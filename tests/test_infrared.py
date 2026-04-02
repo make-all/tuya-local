@@ -98,7 +98,8 @@ async def test_init_entry_fails_if_config_is_missing(hass, mocker):
     m_add_entities.assert_not_called()
 
 
-def test_async_send_command(mocker):
+@pytest.mark.asyncio
+async def test_async_send_command(mocker):
     """Test that infrared encodes commands as expected."""
     config = {
         "entity": "infrared",
