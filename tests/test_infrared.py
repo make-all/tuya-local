@@ -15,6 +15,7 @@ from custom_components.tuya_local.infrared import TuyaLocalInfrared, async_setup
 
 from helpers import assert_device_properties_set, mock_device
 
+
 @pytest.mark.asyncio
 async def test_init_entry(hass, mocker):
     """Test the initialisation."""
@@ -100,12 +101,14 @@ async def test_init_entry_fails_if_config_is_missing(hass, mocker):
 def test_async_send_command(mocker):
     """Test that infrared encodes commands as expected."""
     config = {
-        "entity": "infrared"
-        "dps": [{
-            "id": "201",
-            "name": "send",
-            "type": "base64",
-        }]
+        "entity": "infrared",
+        "dps": [
+            {
+                "id": "201",
+                "name": "send",
+                "type": "base64",
+            }
+        ],
     }
     tuyadevice = mocker.MagicMock()
     dps = {"201": ""}
@@ -115,9 +118,16 @@ def test_async_send_command(mocker):
         TuyaEntityConfig(tuyadevice, config),
     )
 
-    async with assert_device_properties_set(device, {
-            "201": ('{"control": "send_ir", "type": 0, "head": "", "key1": "1ISORESgCKAKTBig'
-                    'CKAIoAigCkwYoApMGKAIoApMGKAKTBigCKAIoAigCkwaTBigCkwYoApMGkwaTBigCKAKTBig'
-                    'CkwYoAqav"}')
-    }):
-        await infrared.async_send_command(NECCommand(address=0x214a, command=0x4c, modulation=38000))
+    async with assert_device_properties_set(
+        device,
+        {
+            "201": (
+                '{"control": "send_ir", "type": 0, "head": "", "key1": "1ISORESgCKAKTBig'
+                "CKAIoAigCkwYoApMGKAIoApMGKAKTBigCKAIoAigCkwaTBigCkwYoApMGkwaTBigCKAKTBig"
+                'CkwYoAqav"}'
+            )
+        },
+    ):
+        await infrared.async_send_command(
+            NECCommand(address=0x214A, command=0x4C, modulation=38000)
+        )
