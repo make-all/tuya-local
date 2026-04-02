@@ -117,7 +117,7 @@ def test_async_send_command(mocker):
 
     async with assert_device_properties_set(device, {
             "201": ('{"control": "send_ir", "type": 0, "head": "", "key1": "1ISORESgCKAKTBig'
-                    'CKAIoAigCkwYoApMGKAIoApMGKAKTBigCKAIoAigCkwaTBigCkwYoApMGkwaTBigCKAKTBig`
-                    `CkwYoAqav"}')
+                    'CKAIoAigCkwYoApMGKAIoApMGKAKTBigCKAIoAigCkwaTBigCkwYoApMGkwaTBigCKAKTBig'
+                    'CkwYoAqav"}')
     }):
         await infrared.async_send_command(NECCommand(address=0x214a, command=0x4c, modulation=38000))
