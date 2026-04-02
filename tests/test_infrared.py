@@ -131,5 +131,5 @@ async def test_async_send_command(mocker):
         },
     ):
         await infrared.async_send_command(
-            NECCommand(address=0x214A, command=0x4C, modulation=38000)
+            NECCommand(address=0x5284, command=0x32, modulation=38000)
         )
