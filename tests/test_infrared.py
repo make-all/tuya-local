@@ -1,9 +1,9 @@
 """Tests for the infrared entity."""
 
-from unittest.mock import AsyncMock, Mock
-
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+
+from infrared_protocols.commands import NECCommand
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -13,9 +13,10 @@ from custom_components.tuya_local.const import (
 )
 from custom_components.tuya_local.infrared import TuyaLocalInfrared, async_setup_entry
 
+from helpers import assert_device_properties_set, mock_device
 
 @pytest.mark.asyncio
-async def test_init_entry(hass):
+async def test_init_entry(hass, mocker):
     """Test the initialisation."""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -28,8 +29,8 @@ async def test_init_entry(hass):
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
-    m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_add_entities = mocker.Mock()
+    m_device = mocker.AsyncMock()
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}
@@ -41,7 +42,7 @@ async def test_init_entry(hass):
 
 
 @pytest.mark.asyncio
-async def test_init_entry_fails_if_device_has_no_infrared(hass):
+async def test_init_entry_fails_if_device_has_no_infrared(hass, mocker):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -54,8 +55,8 @@ async def test_init_entry_fails_if_device_has_no_infrared(hass):
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
-    m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_add_entities = mocker.Mock()
+    m_device = mocker.AsyncMock()
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}
@@ -69,7 +70,7 @@ async def test_init_entry_fails_if_device_has_no_infrared(hass):
 
 
 @pytest.mark.asyncio
-async def test_init_entry_fails_if_config_is_missing(hass):
+async def test_init_entry_fails_if_config_is_missing(hass, mocker):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -82,8 +83,8 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
-    m_add_entities = Mock()
-    m_device = AsyncMock()
+    m_add_entities = mocker.Mock()
+    m_device = mocker.AsyncMock()
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}
@@ -94,3 +95,29 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     except ValueError:
         pass
     m_add_entities.assert_not_called()
+
+
+def test_async_send_command(mocker):
+    """Test that infrared encodes commands as expected."""
+    config = {
+        "entity": "infrared"
+        "dps": [{
+            "id": "201",
+            "name": "send",
+            "type": "base64",
+        }]
+    }
+    tuyadevice = mocker.MagicMock()
+    dps = {"201": ""}
+    device = mock_device(dps, mocker)
+    infrared = TuyaLocalInfrared(
+        device,
+        TuyaEntityConfig(tuyadevice, config),
+    )
+
+    async with assert_device_properties_set(device, {
+            "201": ('{"control": "send_ir", "type": 0, "head": "", "key1": "1ISORESgCKAKTBig'
+                    'CKAIoAigCkwYoApMGKAIoApMGKAKTBigCKAIoAigCkwaTBigCkwYoApMGkwaTBigCKAKTBig`
+                    `CkwYoAqav"}')
+    }):
+        await infrared.async_send_command(NECCommand(address=0x214a, command=0x4c, modulation=38000))
