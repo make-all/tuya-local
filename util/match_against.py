@@ -5,7 +5,7 @@ import sys
 
 from common_funcs import FakeDevice, load_config, make_sample_dps
 
-from custom_components.tuya_local.helpers.device_config import _typematch
+from custom_components.ledvance_local.helpers.device_config import _typematch
 
 
 def main() -> int:

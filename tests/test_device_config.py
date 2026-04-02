@@ -5,8 +5,8 @@ import voluptuous as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
-from custom_components.tuya_local.helpers.config import get_device_id
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.config import get_device_id
+from custom_components.ledvance_local.helpers.device_config import (
     TuyaDeviceConfig,
     TuyaDpsConfig,
     TuyaEntityConfig,
@@ -15,7 +15,7 @@ from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     get_config,
 )
-from custom_components.tuya_local.sensor import TuyaLocalSensor
+from custom_components.ledvance_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
 from .helpers import assert_device_properties_set
@@ -414,7 +414,7 @@ def check_entity(entity, cfg, mocker):
     Check that the entity has a dps list and each dps has an id,
     type and name, and any other consistency checks.
     """
-    fname = f"custom_components/tuya_local/devices/{cfg}"
+    fname = f"custom_components/ledvance_local/devices/{cfg}"
     line = entity._config.__line__
     assert entity._config.get("entity") is not None, (
         f"\n::error file={fname},line={line}::entity type missing in {cfg}"
@@ -514,7 +514,7 @@ def test_config_files_parse(mocker):
         if isinstance(parsed, str) or isinstance(parsed._config, str):
             pytest.fail(f"unparsable yaml in {cfg}")
 
-        fname = f"custom_components/tuya_local/devices/{cfg}"
+        fname = f"custom_components/ledvance_local/devices/{cfg}"
         try:
             YAML_SCHEMA(parsed._config)
         except vol.MultipleInvalid as e:
@@ -556,7 +556,7 @@ def test_configs_can_be_matched():
         optional = set()
         required = set()
         parsed = TuyaDeviceConfig(cfg)
-        fname = f"custom_components/tuya_local/devices/{cfg}"
+        fname = f"custom_components/ledvance_local/devices/{cfg}"
         products = parsed._config.get("products")
         # Configs with a product list can be matched by product id
         if products:

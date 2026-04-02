@@ -5,14 +5,14 @@ import sys
 
 from common_funcs import FakeDevice
 
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
 )
 
 
 def main() -> int:
-    with open("custom_components/tuya_local/translations/en.json", "r") as f:
+    with open("custom_components/ledvance_local/translations/en.json", "r") as f:
         english = json.load(f)
     select = english["entity"]["select"]
     dev = FakeDevice({})

@@ -8,7 +8,7 @@ modification, then again after to compare the two outputs.
 
 import sys
 
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
 )

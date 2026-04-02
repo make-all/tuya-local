@@ -1,6 +1,6 @@
 """Common functions used in the utilities."""
 
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.device_config import (
     get_config,
 )
 

@@ -1,0 +1,212 @@
+name: Pool heat pump
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: heating
+                value: heat
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 4
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 60
+                  max: 104
+        range:
+          min: 18
+          max: 40
+      # ^ in reality, the range is different for cool and auto
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: silence
+            value: sleep
+          - dps_val: power
+            value: comfort
+          - dps_val: boost
+            value: boost
+      - id: 6
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 21
+        type: integer
+        name: max_temperature
+      - id: 22
+        type: integer
+        name: min_temperature
+      - id: 102
+        name: current_temperature
+        type: integer
+      - id: 101
+        name: unknown_101
+        type: integer
+      - id: 107
+        name: unknown_107
+        type: boolean
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    category: diagnostic
+    name: Power level
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    name: Evaporator coil pipe temperature
+    class: temperature
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Exhaust gas temperature
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Outlet water temperature
+    class: temperature
+    dps:
+      - id: 25
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Return gas temperature
+    class: temperature
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Cooling coil pipe temperature
+    class: temperature
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Cooling plate temperature
+    class: temperature
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: EEV opening
+    dps:
+      - id: 106
+        name: sensor
+        type: integer

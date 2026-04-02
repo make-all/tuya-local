@@ -1,7 +1,7 @@
 from contextlib import asynccontextmanager
 from unittest.mock import AsyncMock
 
-from custom_components.tuya_local.device import TuyaLocalDevice
+from custom_components.ledvance_local.device import TuyaLocalDevice
 
 
 @asynccontextmanager

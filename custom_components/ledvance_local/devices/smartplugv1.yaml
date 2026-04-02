@@ -1,0 +1,82 @@
+name: Energy monitoring smartplug
+legacy_type: kogan_switch
+products:
+  - id: "370053454855194e5607"
+    manufacturer: Gosund
+    model: EP2
+  - id: 37mnhia3pojleqfh
+    model: SP111-A
+  - id: kOKEJBFoF9VNB5FR
+    model: HYS-U1S-13A
+  - id: bWBb4e6BTZGie0Lv
+    manufacturer: TopGreener
+    model: TGWF115PRM
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Overcurrent alarm
+    class: problem
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 7
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 2
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400

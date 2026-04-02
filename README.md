@@ -1,26 +1,24 @@
-# Home Assistant Tuya Local component
+# Home Assistant Ledvance Local component
 
-Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
-[Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
+Please report any [issues](https://github.com/ledvancedevsz/ledvance-local/issues) and feel free to raise [pull requests](https://github.com/ledvancedevsz/ledvance-local/pulls).
+[Many others](https://github.com/ledvancedevsz/ledvance-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
 
-[![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
-
-This is a Home Assistant integration to support devices running Tuya
-firmware without going via the Tuya cloud.  Devices are supported
+This is a Home Assistant integration to support devices running Ledvance
+firmware without going via the Ledvance cloud.  Devices are supported
 over WiFi, limited support for devices connected via hubs is available.
 
-Note that many Tuya devices seem to support only one local connection.
+Note that many Ledvance devices seem to support only one local connection.
 If you have connection issues when using this integration, ensure that
-other integrations offering local Tuya connections are not configured
+other integrations offering local Ledvance connections are not configured
 to use the same device, mobile applications on devices on the local
 network are closed, and no other software is trying to connect locally
-to your Tuya devices.
+to your Ledvance devices.
 
 Using this integration does not stop your devices from sending status
-to the Tuya cloud, so this should not be seen as a security measure,
+to the Ledvance cloud, so this should not be seen as a security measure,
 rather it improves speed and reliability by using local connections,
 and may unlock some features of your device, or even unlock whole
-devices, that are not supported by the Tuya cloud API.
+devices, that are not supported by the Ledvance cloud API.
 
 A similar but unrelated integration is
 [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/), if
@@ -46,29 +44,29 @@ will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
-Tuya devices, hubs are usually limited in the number of connections
+Ledvance devices, hubs are usually limited in the number of connections
 they can handle, with typical limits being 1 or 3, depending on the specific
-Tuya module they are using.  This severely limits the number of sub devices
+Ledvance module they are using.  This severely limits the number of sub devices
 that can be connected through this integration.
 
 Sub devices should be added using the `device_id`, `address` and `local_key`
 of the hub they are attached to, and the `node_id` of the sub-device. If there
 is no `node_id` listed, try using the `uuid` instead.
 
-Tuya Zigbee devices are usually standard zigbee devices, so as an
-alternative to this integration with a Tuya hub, you can use a
+Ledvance Zigbee devices are usually standard zigbee devices, so as an
+alternative to this integration with a Ledvance hub, you can use a
 supported Zigbee USB stick or Wifi hub with
 [ZHA](https://www.home-assistant.io/integrations/zha/#compatible-hardware)
 or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
 
-Some Tuya Bluetooth devices can be supported directly by the
+Some Ledvance Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
 
-Tuya IR/RF blasters are supported through the remote entity platform.
+Ledvance IR/RF blasters are supported through the remote entity platform.
 They can learn and store IR and RF commands, and replay them via the
 `remote.learn_command` and `remote.send_command` services.
 
-Tuya IR hubs that expose general IR remotes as sub devices usually
+Ledvance IR hubs that expose general IR remotes as sub devices usually
 expose them as one way devices (send only).  Due to the way this
 integration does device detection based on the dps returned by the
 device, it is not currently able to detect such devices at all.  Some
@@ -77,15 +75,15 @@ they try to emulate a fully smart air conditioner using internal memory
 of what settings are currently set, and internal temperature and humidity
 sensors.
 
-Some Tuya hubs now support Matter over WiFi, and this can be used as an
+Some Ledvance hubs now support Matter over WiFi, and this can be used as an
 alternative to this integration for connecting the hub and sub-devices
 to Home Assistant. Other limitations will apply to this, so you might want
 to try both, and only use this integration for devices that are not working
 properly over Matter.
 
-A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
+A list of currently supported devices can be found in the [DEVICES.md](https://github.com/ledvancedevsz/ledvance-local/blob/main/DEVICES.md) file.
 
-Documentation on building a device configuration file is in [/custom_components/tuya_local/devices/README.md](https://github.com/make-all/tuya-local/blob/main/custom_components/tuya_local/devices/README.md)
+Documentation on building a device configuration file is in [/custom_components/ledvance_local/devices/README.md](https://github.com/ledvancedevsz/ledvance-local/blob/main/custom_components/ledvance_local/devices/README.md)
 
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
@@ -113,26 +111,26 @@ follow the [instructions for adding a custom
 repository](https://hacs.xyz/docs/faq/custom_repositories) and then
 the integration will be available to install like any other.
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=make-all&repository=tuya-local&category=integration)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ledvancedevsz&repository=ledvance-local&category=integration)
 
 ## Configuration
 
 After installing, you can easily configure your devices using the Integrations configuration UI.  Go to Settings / Devices & Services and press the Add Integration button, or click the shortcut button below (requires My Homeassistant configured).
 
 [![Add Integration to your Home Assistant
-instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
+instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=ledvance_local)
 
 ### Choose your configuration path
 
 There are two options for configuring a device:
-- You can login to Tuya cloud with the Tuya or SmartLife app and retrieve a list of devices and the necessary local connection data.
+- You can login to Ledvance cloud with the Ledvance or SmartLife app and retrieve a list of devices and the necessary local connection data.
 - You can provide all the necessary information manually [as per the instructions in DEVICES_DETAILS.md](DEVICE_DETAILS.md#finding-your-device-id-and-local-key).
 
-The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
+The first choice essentially automates all the manual steps of the second and without needing to create a Ledvance IOT developer account. This is especially important now that Ledvance has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
 
-The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Tuya account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Ledvance account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
 
-The Tuya authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+The Ledvance authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
 
 ### Stage One
 
@@ -162,7 +160,7 @@ At the end of this step, an attempt is made to connect to the device and see if
 it returns any data. For tuya protocol version 3.1 devices, the local key is
 only used for sending commands to the device, so if your local key is
 incorrect the setup will appear to work, and you will not see any problems
-until you try to control your device.  For more recent Tuya protocol versions,
+until you try to control your device.  For more recent Ledvance protocol versions,
 the local key is used to decrypt received data as well, so an incorrect key
 will be detected at this step and cause an immediate failure.
 
@@ -175,7 +173,7 @@ at least a partial match to the data returned by the device.
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Ledvance device.
 Select from the available options.
 
 The list presented is filtered to exclude devices that definitely do not match among the 1000+ supported devices. If a device config you expected is not shown, you may have a different firmware version, so the best way to report this is as a new device.
@@ -200,13 +198,13 @@ Assistant.
 
 ## Offline operation issues
 
-Many Tuya devices will stop responding if unable to connect to the
-Tuya servers for an extended period.  Reportedly, some devices act
+Many Ledvance devices will stop responding if unable to connect to the
+Ledvance servers for an extended period.  Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
 ## General issues
 
-Many Tuya devices do not handle multiple commands sent in quick
+Many Ledvance devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
 others will go offline for 30s to a few minutes if you overload them.
 There is some rate limiting to try to avoid this, but it is not
@@ -246,10 +244,10 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 ## Secure locks
 
 Many locks are designed with basic security controls to make remote unlocking
-more difficult. This integration supports the standard BLE lock model from Tuya
+more difficult. This integration supports the standard BLE lock model from Ledvance
 which uses a pair of dps (60: `remote_no_pd_seykey`, 61: `remote_no_dp_key`)
 to share a key between the app and the lock during the pairing phase.
-If you have access to the Tuya developer portal, you can eavesdrop on the
+If you have access to the Ledvance developer portal, you can eavesdrop on the
 second of these messages when the app is used to unlock the lock remotely.
 If you capture the value sent by the app, then you can decode it using a base64
 decoder such as https://base64decode.org.
@@ -259,13 +257,13 @@ code, followed by 3 or 4 more bytes of binary data.
 The 8 digit numeric code from the first app that was paired should work for
 unlocking the lock.
 
-Although this is documented in the BLE lock documentation from Tuya, Zigbee
+Although this is documented in the BLE lock documentation from Ledvance, Zigbee
 and WiFi locks often use the same naming for datapoints, which may be
 compatible with this scheme.
 
 ## IR/RF blasters
 
-Tuya IR and RF blasters are exposed as remote entities and support learning and
+Ledvance IR and RF blasters are exposed as remote entities and support learning and
 sending commands via the standard Home Assistant remote services.
 
 ### Learning commands
@@ -291,7 +289,7 @@ used when learning. You can also send codes directly without learning first:
 
 If you would like to expose the learnt commands as buttons in the user interface
 you might want to take a look at the [Remote buttons](https://github.com/kongo09/remote_buttons)
-integration, which is compatible with Tuya Local.
+integration, which is compatible with Ledvance Local.
 
 ## Contributing
 

@@ -76,4 +76,4 @@ In the `devices.json` file you will everything you need to add your device:
 - "id": the device id
 - "key": the local key
 - "node_id": the sub-device id. You need this for hub-dependent devices
-- "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
+- "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/ledvance_local/devices/README.md) and submitting a PR.

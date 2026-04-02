@@ -6,7 +6,7 @@ This script was created to prioritise common entities for translation.
 
 import sys
 
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
 )

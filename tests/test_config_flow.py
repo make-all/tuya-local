@@ -6,12 +6,12 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.tuya_local import (
+from custom_components.ledvance_local import (
     async_migrate_entry,
     config_flow,
     get_device_unique_id,
 )
-from custom_components.tuya_local.const import (
+from custom_components.ledvance_local.const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
@@ -32,14 +32,14 @@ def auto_enable_custom_integrations(enable_custom_integrations):
 
 @pytest.fixture(autouse=True)
 def prevent_task_creation(mocker):
-    mocker.patch("custom_components.tuya_local.device.TuyaLocalDevice.register_entity")
+    mocker.patch("custom_components.ledvance_local.device.TuyaLocalDevice.register_entity")
     yield
 
 
 @pytest.fixture
 def bypass_setup(mocker):
     """Prevent actual setup of the integration after config flow."""
-    mocker.patch("custom_components.tuya_local.async_setup_entry", return_value=True)
+    mocker.patch("custom_components.ledvance_local.async_setup_entry", return_value=True)
     yield
 
 
@@ -82,7 +82,7 @@ async def test_migrate_entry(hass, mocker):
     mock_device.async_inferred_type = mocker.AsyncMock(
         return_value="goldair_gpph_heater"
     )
-    mocker.patch("custom_components.tuya_local.setup_device", return_value=mock_device)
+    mocker.patch("custom_components.ledvance_local.setup_device", return_value=mock_device)
 
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -295,7 +295,7 @@ async def test_flow_user_init_protocol_options_are_strings(hass, mocker):
 async def test_async_test_connection_valid(hass, mocker):
     """Test that device is returned when connection is valid."""
     mock_device = mocker.patch(
-        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+        "custom_components.ledvance_local.config_flow.TuyaLocalDevice"
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
@@ -322,7 +322,7 @@ async def test_async_test_connection_valid(hass, mocker):
 async def test_async_test_connection_for_subdevice_valid(hass, mocker):
     """Test that subdevice is returned when connection is valid."""
     mock_device = mocker.patch(
-        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+        "custom_components.ledvance_local.config_flow.TuyaLocalDevice"
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = True
@@ -350,7 +350,7 @@ async def test_async_test_connection_for_subdevice_valid(hass, mocker):
 async def test_async_test_connection_invalid(hass, mocker):
     """Test that None is returned when connection is invalid."""
     mock_device = mocker.patch(
-        "custom_components.tuya_local.config_flow.TuyaLocalDevice"
+        "custom_components.ledvance_local.config_flow.TuyaLocalDevice"
     )
     mock_instance = mocker.AsyncMock()
     mock_instance.has_returned_state = False
@@ -372,7 +372,7 @@ async def test_async_test_connection_invalid(hass, mocker):
 async def test_flow_user_init_invalid_config(hass, mocker):
     """Test errors populated when config is invalid."""
     mocker.patch(
-        "custom_components.tuya_local.config_flow.async_test_connection",
+        "custom_components.ledvance_local.config_flow.async_test_connection",
         return_value=None,
     )
     flow = await hass.config_entries.flow.async_init(
@@ -409,7 +409,7 @@ async def test_flow_user_init_data_valid(hass, mocker):
     mock_device._protocol_configured = "auto"
     setup_device_mock(mock_device, mocker)
     mocker.patch(
-        "custom_components.tuya_local.config_flow.async_test_connection",
+        "custom_components.ledvance_local.config_flow.async_test_connection",
         return_value=mock_device,
     )
 
@@ -620,7 +620,7 @@ async def test_options_flow_init(hass, bypass_data_fetch):
 async def test_options_flow_modifies_config(hass, bypass_setup, mocker):
     mock_device = mocker.MagicMock()
     mocker.patch(
-        "custom_components.tuya_local.config_flow.async_test_connection",
+        "custom_components.ledvance_local.config_flow.async_test_connection",
         return_value=mock_device,
     )
 
@@ -671,7 +671,7 @@ async def test_options_flow_fails_when_connection_fails(
     hass, bypass_data_fetch, mocker
 ):
     mocker.patch(
-        "custom_components.tuya_local.config_flow.async_test_connection",
+        "custom_components.ledvance_local.config_flow.async_test_connection",
         return_value=None,
     )
     config_entry = MockConfigEntry(
@@ -712,7 +712,7 @@ async def test_options_flow_fails_when_connection_fails(
 async def test_options_flow_fails_when_config_is_missing(hass, mocker):
     mock_device = mocker.MagicMock()
     mocker.patch(
-        "custom_components.tuya_local.config_flow.async_test_connection",
+        "custom_components.ledvance_local.config_flow.async_test_connection",
         return_value=mock_device,
     )
 

@@ -1,0 +1,186 @@
+name: Human presence radar
+# products: SD123
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: presence
+            value: true
+      - id: 105
+        type: string
+        name: unknown_105
+      - id: 111
+        type: integer
+        name: unknown_111
+  - entity: select
+    name: Safe range
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0_meters
+            value: 0m
+          - dps_val: 1_meters
+            value: 1m
+          - dps_val: 2_meters
+            value: 2m
+          - dps_val: 3_meters
+            value: 3m
+          - dps_val: 4_meters
+            value: 4m
+          - dps_val: 5_meters
+            value: 5m
+          - dps_val: 6_meters
+            value: 6m
+  - entity: select
+    name: Max range
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0_meters
+            value: 0m
+          - dps_val: 1_meters
+            value: 1m
+          - dps_val: 2_meters
+            value: 2m
+          - dps_val: 3_meters
+            value: 3m
+          - dps_val: 4_meters
+            value: 4m
+          - dps_val: 5_meters
+            value: 5m
+          - dps_val: 6_meters
+            value: 6m
+          - dps_val: 7_meters
+            value: 7m
+  - entity: select
+    name: Delay
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: case_0
+            value: 10s
+          - dps_val: case_1
+            value: 30s
+          - dps_val: case_2
+            value: 1m
+          - dps_val: case_3
+            value: 2m
+          - dps_val: case_4
+            value: 5m
+          - dps_val: case_5
+            value: 10m
+          - dps_val: case_6
+            value: 30m
+  - entity: select
+    name: Configuration
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: case_0
+            value: Sleep/Micro motion
+          - dps_val: case_1
+            value: Meeting/Office
+          - dps_val: case_2
+            value: Classroom/Corridor
+          - dps_val: case_3
+            value: Custom
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 106
+        name: switch
+        type: string
+        mapping:
+          - dps_val: normal
+            value: true
+          - dps_val: slient
+            value: false
+  - entity: number
+    name: Trigger power
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - step: 100
+  - entity: number
+    name: Maintain power
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - step: 100
+  - entity: number
+    name: Trigger frames
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 20
+  - entity: number
+    name: Interrupt frames
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 20
+  - entity: number
+    name: Trigger points
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Maintain points
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: switch
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: switch

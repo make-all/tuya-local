@@ -1,0 +1,25 @@
+name: Water leak detector
+products:
+  - id: bfb8a9376cc12866d7rhfv
+    manufacturer: Gidrolock
+    model: Standard WiFi
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: switch
+    icon: "mdi:spray-bottle"
+    name: Cleaning mode
+    dps:
+      - id: 103
+        type: boolean
+        name: switch

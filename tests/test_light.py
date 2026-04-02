@@ -5,14 +5,14 @@ from unittest.mock import AsyncMock, Mock
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.tuya_local.const import (
+from custom_components.ledvance_local.const import (
     CONF_DEVICE_ID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
-from custom_components.tuya_local.light import TuyaLocalLight, async_setup_entry
+from custom_components.ledvance_local.helpers.device_config import TuyaEntityConfig
+from custom_components.ledvance_local.light import TuyaLocalLight, async_setup_entry
 
 
 @pytest.mark.asyncio

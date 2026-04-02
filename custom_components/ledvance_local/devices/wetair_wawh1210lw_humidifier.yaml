@@ -1,0 +1,80 @@
+name: Humidifier
+# products: WetAir-1210
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 24
+        type: string
+        name: mode
+        mapping:
+          - dps_val: AUTO
+            value: auto
+          - dps_val: MIDDLE
+            value: normal
+          - dps_val: HIGH
+            value: boost
+          - dps_val: SLEEP
+            value: sleep
+      - id: 22
+        type: integer
+        name: unknown_22
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 8
+        name: "switch"
+        type: boolean
+  - entity: sensor
+    translation_key: water_level
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: string
+        unit: "%"
+        mapping:
+          - dps_val: No_water
+            icon: "mdi:cup-outline"
+            value: 0
+          - dps_val: Have_water
+            icon: "mdi:cup-water"
+            value: 50
+          - dps_val: Full_water
+            icon: "mdi:cup"
+            value: 100
+
+  - entity: switch
+    translation_key: ionizer
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock

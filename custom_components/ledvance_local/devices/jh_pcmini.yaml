@@ -1,0 +1,31 @@
+name: Pcie computer power
+products:
+  - id: na90jncjlvw5t0ba
+    model: JH-PC mini
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset
+    icon: mdi:restart
+    dps:
+      - id: 101
+        name: button
+        type: string
+        mapping:
+          - dps_val: Reset
+            value: true
+  - entity: button
+    name: Force reset
+    icon: mdi:restart-alert
+    dps:
+      - id: 101
+        name: button
+        type: string
+        mapping:
+          - dps_val: forceReset
+            value: true

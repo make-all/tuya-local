@@ -9,7 +9,7 @@ from os.path import dirname, join
 
 from homeassistant.util.json import load_json
 
-import custom_components.tuya_local as root
+import custom_components.ledvance_local as root
 
 
 def get_translations():

@@ -5,18 +5,18 @@ import sys
 
 from homeassistant.util import slugify
 
-from custom_components.tuya_local.helpers.device_config import (
+from custom_components.ledvance_local.helpers.device_config import (
     TuyaDeviceConfig,
     available_configs,
 )
 
 
 def error_location(entity):
-    return f"::error file=custom_components/tuya_local/devices/{entity._device.config},line={entity._config.__line__}:"
+    return f"::error file=custom_components/ledvance_local/devices/{entity._device.config},line={entity._config.__line__}:"
 
 
 def main() -> int:
-    with open("custom_components/tuya_local/translations/en.json", "r") as f:
+    with open("custom_components/ledvance_local/translations/en.json", "r") as f:
         english = json.load(f)["entity"]
     detected = 0
     for config in available_configs():

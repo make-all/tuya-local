@@ -1,0 +1,261 @@
+name: Advanced energy monitoring smartplug
+products:
+  - id: auojpnb4hpc13ftb
+    manufacturer: Arlec
+    model: PC191HA
+  - id: 2fxr6sttw70cgbau
+    manufacturer: Antela
+    model: ZY-OYD-Y
+  - id: qiv5hllylfebpl4g
+    manufacturer: Eightree
+    model: ET20
+  - id: 7k5zwdhwlnrtsuhu
+    manufacturer: SWE SAGEWE
+    model: F2s501-GB
+  - id: uqehhcrmk5depvtl
+    manufacturer: Smatrul / Beston
+    model: 16A/20A / BDS01
+  - id: as9lf4slujgvu5tm
+    manufacturer: ZhiYun
+    model: P01
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+        optional: true
+  - entity: time
+    category: config
+    translation_key: timer
+    hidden: unavailable
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 41
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 42
+        type: string
+        name: random_timer
+        optional: true
+      - id: 9
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    category: diagnostic
+    hidden: true
+    name: Energy
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: Wh
+        class: measurement
+        optional: true
+      - id: 25
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: select
+    category: config
+    hidden: unavailable
+    translation_key: initial_state
+    dps:
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 38
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - conditions:
+              - dps_val: ["memory", "off", "on"]
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+              - dps_val: ["power_off", "power_on", "last"]
+                mapping:
+                  - dps_val: power_off
+                    value: "off"
+                  - dps_val: power_on
+                    value: "on"
+                  - dps_val: last
+                    value: memory
+              - dps_val: ["0", "1", "2"]
+                mapping:
+                  - dps_val: "0"
+                    value: "off"
+                  - dps_val: "1"
+                    value: "on"
+                  - dps_val: "2"
+                    value: memory
+              # during startup there may be no value, but we need the options
+              - dps_val: null
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+  - entity: switch
+    name: Overcharge cutoff
+    category: config
+    hidden: unavailable
+    icon: "mdi:battery-charging"
+    dps:
+      - id: 46
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: alt_switch
+            conditions:
+              - dps_val: null
+                value: false
+          - value: true
+      - id: 46
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value_redirect: alt_switch
+      - id: 51
+        type: boolean
+        name: alt_switch
+        optional: true
+        hidden: true
+  - entity: select
+    translation_key: light_mode
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 39
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 39
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+  - entity: lock
+    translation_key: child_lock
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 40
+        type: boolean
+        name: lock
+        optional: true

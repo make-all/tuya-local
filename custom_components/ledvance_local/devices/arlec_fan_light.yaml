@@ -1,0 +1,66 @@
+name: Fan with light
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 4
+        name: direction
+        type: string
+      - id: 102
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+  - entity: light
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+      - id: 10
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 2
+      - id: 11
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 2
+            invert: true
+            target_range:
+              min: 2700
+              max: 6500
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: cancel
+          - dps_val: 2hour
+            value: "2h"
+          - dps_val: 4hour
+            value: "4h"
+          - dps_val: 8hour
+            value: "8h"

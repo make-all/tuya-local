@@ -1,0 +1,142 @@
+name: Dehumidifier
+legacy_type: dehumidifier
+products:
+  - id: gynthidZEhTUCoMN
+    manufacturer: Goldair
+    model: GPDH420
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_only_key: extended
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: normal
+          - dps_val: "1"
+            value: eco
+          - dps_val: "2"
+            value: boost
+          - dps_val: "3"
+            value: laundry
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 101
+        type: boolean
+        name: unknown_101
+      - id: 104
+        type: integer
+        name: current_humidity
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: dehumidifier_mode
+        type: string
+        hidden: true
+      - id: 6
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 50
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: "2"
+                invalid: true
+              - dps_val: "3"
+                invalid: true
+          - dps_val: "3"
+            value: 100
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: "1"
+                invalid: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Air clean
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 12
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 24

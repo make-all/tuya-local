@@ -1,0 +1,59 @@
+name: 4 outlet + USB powerstrip
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
+    class: outlet
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
+    class: outlet
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: USB switch
+    class: switch
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory

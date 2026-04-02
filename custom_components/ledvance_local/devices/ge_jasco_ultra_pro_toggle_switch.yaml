@@ -1,0 +1,55 @@
+# Example DPS Status
+# {'dps': {'1': False, '14': 'memory', '15': 'relay', '106': '3way_switch'}}
+name: Toggle switch
+products:
+  - id: 7kvomtxxfqcrbiqq
+    manufacturer: Jasco
+    model: UltraPro Toggle Switch
+  - id: nobhkdmuof1zhgle
+    manufacturer: Loratap
+    model: QCRR400W-WB2S
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 14
+        name: option
+        type: string
+        mapping:
+          - dps_val: memory
+            value: memory
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+  - entity: select
+    translation_key: light_mode
+    category: config
+    dps:
+      - id: 15
+        name: option
+        type: string
+        mapping:
+          - dps_val: none
+            value: "off"
+          - dps_val: pos
+            value: locator
+          - dps_val: relay
+            value: state
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400

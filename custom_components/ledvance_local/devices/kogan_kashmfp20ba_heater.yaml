@@ -1,0 +1,81 @@
+name: Electric fireplace
+products:
+  - id: eqyne046pnqkysqh
+    manufacturer: Kogan
+    model: SmarterHome™ 2000W flame heater
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        type: string
+        mapping:
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+        name: preset_mode
+      - id: 3
+        type: integer
+        range:
+          min: 10
+          max: 30
+        name: temperature
+        unit: C
+      - id: 4
+        type: integer
+        name: current_temperature
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 5
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "white"
+            value: "white"
+          - dps_val: "blue"
+            value: "blue"
+          - dps_val: "orange"
+            value: "orange"
+          - dps_val: "whiteblue"
+            value: "whiteblue"
+          - dps_val: "whiteorange"
+            value: "whiteorange"
+          - dps_val: "blueorange"
+            value: "blueorange"
+  - entity: light
+    translation_key: flame
+    dps:
+      - id: 6
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "orange"
+            value: "orange"
+          - dps_val: "red"
+            value: "red"
+          - dps_val: "green"
+            value: "green"
+          - dps_val: "blue"
+            value: "blue"
+          - dps_val: "redgreen"
+            value: "redgreen"
+          - dps_val: "redblue"
+            value: "redblue"
+          - dps_val: "bluegreen"
+            value: "bluegreen"
+          - dps_val: "redorange"
+            value: "redorange"
+          - dps_val: "greenorange"
+            value: "greenorange"
+          - dps_val: "blueorange"
+            value: "blueorange"
