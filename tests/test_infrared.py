@@ -11,6 +11,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
+from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
 from custom_components.tuya_local.infrared import TuyaLocalInfrared, async_setup_entry
 
 from .helpers import assert_device_properties_set, mock_device
