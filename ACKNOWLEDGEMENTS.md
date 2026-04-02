@@ -1329,3 +1329,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eq7mavala-ops](https://github.com/eq7mavala-ops) for assisting with support for Eachen GD-DC5 garage door opener.
 - [numanx11](https://github.com/numanx11) for contributing support for Reventon / Holtop ERV heat recovery ventilator.
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
+- [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
