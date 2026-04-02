@@ -13,7 +13,7 @@ from custom_components.tuya_local.const import (
 )
 from custom_components.tuya_local.infrared import TuyaLocalInfrared, async_setup_entry
 
-from helpers import assert_device_properties_set, mock_device
+from .helpers import assert_device_properties_set, mock_device
 
 
 @pytest.mark.asyncio
