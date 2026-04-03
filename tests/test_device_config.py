@@ -18,7 +18,7 @@ from custom_components.tuya_local.helpers.device_config import (
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
-from .helpers import assert_device_properties_set
+from .helpers import assert_device_properties_set, mock_device
 
 PRODUCT_SCHEMA = vol.Schema(
     {
@@ -136,6 +136,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "event",
                 "fan",
                 "humidifier",
+                "infrared",
                 "lawn_mower",
                 "light",
                 "lock",
@@ -229,6 +230,10 @@ KNOWN_DPS = {
         "required": ["humidity"],
         "optional": ["switch", "mode", "current_humidity"],
     },
+    "infrared": {
+        "required": ["send"],
+        "optional": ["control", "code_type", "delay"],
+    },
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
@@ -260,7 +265,7 @@ KNOWN_DPS = {
     },
     "remote": {
         "required": ["send"],
-        "optional": ["receive"],
+        "optional": ["receive", "command", "type", "head"],
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
@@ -301,16 +306,6 @@ KNOWN_DPS = {
         ],
     },
 }
-
-
-def mock_device(dps, mocker):
-    """Helper function to create a mock device with specified dps."""
-    device = mocker.MagicMock()
-    device.get_property.side_effect = lambda id: dps.get(id)
-    device.has_returned_state = True
-    device.unique_id = "test_device_id"
-    device.name = "Test Device"
-    return device
 
 
 def test_can_find_config_files():

@@ -1,8 +1,8 @@
 name: RGBCW lightbulb
-products:
-  - id: bfde31c920bcaa323azft2
-    manufacturer: Xinled
-    model: XLD-CL002
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Xinled
+#     model: XLD-CL002
 entities:
   - entity: light
     dps:
@@ -62,30 +62,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
-        name: scene_data
-        type: hex
-        optional: true
-      - id: 27
-        name: music_data
-        type: hex
-        optional: true
-      - id: 28
-        name: control_data
-        type: hex
-        optional: true
-      - id: 30
-        name: rhythm_mode
-        type: base64
-        optional: true
-      - id: 31
-        name: sleep_mode
-        type: base64
-        optional: true
-      - id: 32
-        name: wakeup_mode
-        type: base64
-        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -139,3 +115,41 @@ entities:
             value: "WW+RED 50%"
           - dps_val: "AAcAAAPoA+gD6AAA"
             value: "WW+RED 1%"
+      - id: 25
+        name: scene_data  # dp 51 used instead but this still declared
+        type: string  # some compat devices put other data here, avoid hex
+        optional: true
+  - entity: text
+    name: Rhythm mode
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+      - id: 27
+        name: music_data  # dp 30 used instead but this still declared
+        type: string
+        optional: true
+  - entity: text
+    name: Sleep mode
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup mode
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
