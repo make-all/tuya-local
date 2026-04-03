@@ -10,21 +10,24 @@ entities:
   - entity: sensor
     name: Device state
     icon: "mdi:ev-station"
-    device_class: enum
+    class: enum
     dps:
       - id: 101
         type: string
         name: sensor
 
   # --- BŁĘDY ---
-  - entity: sensor
-    name: Fault bitmap
-    icon: "mdi:alert"
+  - entity: binary_sensor
+    name: Fault
+    device_class: problem
     category: diagnostic
     dps:
       - id: 10
         type: integer
         name: sensor
+    attributes:
+      - dps: 10
+        name: fault_code
 
   # --- ENERGIA SESJI ---
   - entity: sensor
@@ -164,7 +167,7 @@ entities:
   - entity: sensor
     name: Max Current Setting
     icon: "mdi:current-ac"
-    device_class: enum
+    class: enum
     dps:
       - id: 113
         type: string
