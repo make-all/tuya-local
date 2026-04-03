@@ -1,0 +1,95 @@
+# Copyright 2026 Chris Keeser
+# SPDX-License-Identifier: Apache-2.0
+
+name: Sauna
+products:
+  - id: acl5qrawgmjajabn
+    manufacturer: TyloHelo
+    model: SaunaLogic2
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 25
+          max: 194
+      - id: 3
+        name: current_temperature
+        type: integer
+  - entity: select
+    name: Light
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 101
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: White
+          - dps_val: 2
+            value: Red
+          - dps_val: 3
+            value: Green
+          - dps_val: 4
+            value: Blue
+          - dps_val: 5
+            value: Yellow
+          - dps_val: 6
+            value: Aqua
+          - dps_val: 7
+            value: Purple
+          - dps_val: 8
+            value: Rainbow
+  - entity: switch
+    name: Bluetooth
+    icon: "mdi:bluetooth"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Timer remaining
+    class: duration
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Sauna mode
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: string
+        optional: true
+  - entity: sensor
+    name: DP 9
+    category: diagnostic
+    dps:
+      - id: 9
+        name: sensor
+        type: integer
+        optional: true
+  - entity: sensor
+    name: Sauna state
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        optional: true
