@@ -79,14 +79,15 @@ entities:
 
   # --- ENERGIA SESJI ---
   - entity: sensor
-    name: Session Energy
-    class: energy
+    name: Session energy
+    class: energy_storage
     icon: "mdi:lightning-bolt"
     dps:
       - id: 25
         type: integer
         name: sensor
         unit: kWh
+        class: measurement
         mapping:
           - scale: 100
 
