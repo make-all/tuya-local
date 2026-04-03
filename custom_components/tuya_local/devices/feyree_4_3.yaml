@@ -179,7 +179,7 @@ entities:
 
   # --- TRYB FAZOWY ---
   - entity: sensor
-    name: Phase Mode
+    name: Phase mode
     icon: "mdi:transmission-tower"
     dps:
       - id: 108
@@ -210,7 +210,7 @@ entities:
 
   # --- MIESIĄC LOGU ---
   - entity: sensor
-    name: Log Month
+    name: Log month
     category: diagnostic
     dps:
       - id: 111
@@ -220,7 +220,7 @@ entities:
 
   # --- ENERGIA CAŁKOWITA ---
   - entity: sensor
-    name: Total Session Energy
+    name: Total session energy
     class: energy
     dps:
       - id: 112
@@ -232,7 +232,7 @@ entities:
 
   # --- MAKSYMALNY PRĄD ---
   - entity: sensor
-    name: Max Current Setting
+    name: Max current setting
     icon: "mdi:current-ac"
     class: enum
     dps:
@@ -242,7 +242,7 @@ entities:
 
   # --- USTAWIONY PRĄD ---
   - entity: number
-    name: Charge Current Limit
+    name: Charge current limit
     icon: "mdi:current-ac"
     dps:
       - id: 115
@@ -255,7 +255,7 @@ entities:
 
   # --- OPÓŹNIENIA ---
   - entity: number
-    name: Delay Time
+    name: Charge delay time
     icon: "mdi:timer-sand"
     dps:
       - id: 118
@@ -267,7 +267,7 @@ entities:
           max: 15
 
   - entity: number
-    name: Define Time
+    name: Charge duration limit
     icon: "mdi:timer-outline"
     dps:
       - id: 119
@@ -280,7 +280,7 @@ entities:
 
   # --- CZAS SESJI ---
   - entity: sensor
-    name: Charge Time
+    name: Charge duration
     icon: "mdi:clock-outline"
     dps:
       - id: 120
@@ -289,7 +289,7 @@ entities:
 
   # --- RFID ---
   - entity: binary_sensor
-    name: RFID Active
+    name: RFID active
     class: occupancy
     dps:
       - id: 123
@@ -298,7 +298,7 @@ entities:
 
   # --- PRZEŁĄCZNIK ŁADOWANIA ---
   - entity: select
-    name: Charging Operation
+    name: Charging operation
     icon: "mdi:power"
     dps:
       - id: 124
@@ -314,7 +314,7 @@ entities:
 
   # --- WERSJE ---
   - entity: sensor
-    name: Hardware Version
+    name: Hardware version
     icon: "mdi:chip"
     dps:
       - id: 125
@@ -322,7 +322,7 @@ entities:
         name: sensor
 
   - entity: sensor
-    name: Software Version
+    name: Software version
     icon: "mdi:chip"
     dps:
       - id: 126
@@ -331,7 +331,7 @@ entities:
 
   # --- LOG FLAG ---
   - entity: binary_sensor
-    name: Log Flag
+    name: Log flag
     category: diagnostic
     dps:
       - id: 132
