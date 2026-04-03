@@ -2,7 +2,7 @@ name: EV Wallbox
 products:
   - id: zk1jkjhxqkfaaalp
     manufacturer: Feyree
-    model: "4.3"
+    model: "4.3 22kW 3phase wallbox Socket Version"
 
 entities:
 
@@ -21,13 +21,61 @@ entities:
     name: Fault
     class: problem
     category: diagnostic
+    icon: 'mdi:alert-outline'
     dps:
       - id: 10
-        type: integer
+        type: bitfield
+        optional: true
         name: sensor
-    attributes:
-      - dps: 10
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
         name: fault_code
+      - id: 10
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Leakage Error (err_leak)"
+          - dps_val: 2
+            value: "Control Pilot Error (err_cp)"
+          - dps_val: 4
+            value: "Temperature Error (err_temp)"
+          - dps_val: 8
+            value: "Phase A Under-voltage (warn_a_uvp)"
+          - dps_val: 16
+            value: "Phase B Under-voltage (warn_b_uvp)"
+          - dps_val: 32
+            value: "Phase C Under-voltage (warn_c_uvp)"
+          - dps_val: 64
+            value: "Phase A Over-voltage (err_a_ovp)"
+          - dps_val: 128
+            value: "Phase B Over-voltage (err_b_ovp)"
+          - dps_val: 256
+            value: "Phase C Over-voltage (err_c_ovp)"
+          - dps_val: 512
+            value: "Over Current Protection (err_ocp)"
+          - dps_val: 1024
+            value: "Over Temperature 10 (err_10)"
+          - dps_val: 2048
+            value: "Over Temperature 11 (err_11)"
+          - dps_val: 4096
+            value: "Emergency Stop Button (err_esb)"
+          - dps_val: 8192
+            value: "PE Check Warning (warn_pe_sck)"
+          - dps_val: 16384
+            value: "Leakage Check Error (err_leak_sck)"
+          - dps_val: 32768
+            value: "Protective Earth Error (err_pe)"
 
   # --- ENERGIA SESJI ---
   - entity: sensor
