@@ -156,20 +156,6 @@ entities:
         mapping:
           - scale: 10
 
-  # - entity: select
-  #   name: Mode
-  #   dps:
-  #     - id: 101
-  #       type: string
-  #       name: option
-  #       mapping:
-  #         - dps_val: hot
-  #           value: Heat
-  #         - dps_val: colding
-  #           value: Cool
-  #         - dps_val: socket
-  #           value: Socket
-
   - entity: switch
     name: Switch
     dps:
@@ -183,86 +169,6 @@ entities:
           - dps_val: socket
             value: true
           - value: false
-
-  # - entity: number
-  #   name: Heating start temperature
-  #   dps:
-  #     - id: 104
-  #       type: integer
-  #       name: value
-  #       unit: °C
-  #       range:
-  #         min: -200
-  #         max: 1200
-  #       mapping:
-  #         - scale: 10
-  #     - id: 101
-  #       type: string
-  #       name: available
-  #       mapping:
-  #         - dps_val: hot
-  #           value: true
-  #         - value: false
-
-  # - entity: number
-  #   name: Heating stop temperature
-  #   dps:
-  #     - id: 106
-  #       type: integer
-  #       name: value
-  #       unit: °C
-  #       range:
-  #         min: -200
-  #         max: 1200
-  #       mapping:
-  #         - scale: 10
-  #     - id: 101
-  #       type: string
-  #       name: available
-  #       mapping:
-  #         - dps_val: hot
-  #           value: true
-  #         - value: false
-
-  # - entity: number
-  #   name: Cooling start temperature
-  #   dps:
-  #     - id: 105
-  #       type: integer
-  #       name: value
-  #       unit: °C
-  #       range:
-  #         min: -200
-  #         max: 1200
-  #       mapping:
-  #         - scale: 10
-  #     - id: 101
-  #       type: string
-  #       name: available
-  #       mapping:
-  #         - dps_val: colding
-  #           value: true
-  #         - value: false
-
-  # - entity: number
-  #   name: Cooling stop temperature
-  #   dps:
-  #     - id: 107
-  #       type: integer
-  #       name: value
-  #       unit: °C
-  #       range:
-  #         min: -200
-  #         max: 1200
-  #       mapping:
-  #         - scale: 10
-  #     - id: 101
-  #       type: string
-  #       name: available
-  #       mapping:
-  #         - dps_val: colding
-  #           value: true
-  #         - value: false
 
   - entity: sensor
     name: Current temperature
@@ -379,6 +285,7 @@ entities:
 
   - entity: lock
     name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 116
@@ -387,6 +294,7 @@ entities:
 
   - entity: number
     name: Temperature calibration
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 117
@@ -401,6 +309,7 @@ entities:
 
   - entity: select
     name: Temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 118
