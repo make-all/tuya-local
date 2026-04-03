@@ -1,9 +1,8 @@
 """Tests for the infrared entity."""
 
 import pytest
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-
 from infrared_protocols.commands import NECCommand
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,

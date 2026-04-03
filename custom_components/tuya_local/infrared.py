@@ -3,9 +3,9 @@ Implementation of Tuya infrared control devices
 """
 
 import logging
-from tinytuya.Contrib.IRRemoteControlDevice import IRRemoteControlDevice as IR
 
 from homeassistant.components.infrared import InfraredCommand, InfraredEntity
+from tinytuya.Contrib.IRRemoteControlDevice import IRRemoteControlDevice as IR
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
