@@ -1,0 +1,110 @@
+name: Deshumidificador WiFi
+products:
+  - id: 55e916oobezauqfb
+    manufacturer: Orbegozo
+    model: DHW 2080
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 6
+        name: current_humidity
+        type: integer
+  - entity: select
+    name: Fan speed
+    icon: "mdi:fan"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: high
+            value: High
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: Strong
+            value: Strong
+          - dps_val: Auto
+            value: Auto
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+      - id: 19
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "Water Tank Full or Removed"
+          - dps_val: 2
+            # E2 might be a compressor fault.
+            value: "E2 Compressor Fault"
+          - dps_val: 4
+            value: "Cleaning necessary"
