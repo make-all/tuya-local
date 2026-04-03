@@ -49,6 +49,8 @@ DEVICE_DETAILS_URL = (
     "https://github.com/ledvancedevsz/ledvance-local/blob/main/DEVICE_DETAILS.md"
     "#finding-your-device-id-and-local-key"
 )
+CONF_DISCOVERED_DEVICE = "discovered_device"
+DISCOVERY_MANUAL = "__manual__"
 
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
@@ -65,6 +67,9 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     def __init__(self) -> None:
         """Initialize the config flow."""
         self.cloud = None
+        self.__local_devices: dict[str, dict[str, str]] = {}
+        self.__selected_local_device: dict[str, str] | None = None
+        self.__selected_local_product_key: str | None = None
 
     def init_cloud(self):
         if self.cloud is None:
@@ -77,7 +82,61 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
             self.hass.data[DOMAIN][DATA_STORE] = {}
 
         # Cloud-assisted entry is intentionally disabled for now.
-        return await self.async_step_local()
+        return await self.async_step_discover_local()
+
+    async def async_step_discover_local(self, user_input=None):
+        if user_input is not None:
+            selected_device = user_input[CONF_DISCOVERED_DEVICE]
+            if selected_device == DISCOVERY_MANUAL:
+                self.__selected_local_device = None
+                self.__selected_local_product_key = None
+            else:
+                self.__selected_local_device = self.__local_devices.get(selected_device)
+                self.__selected_local_product_key = (
+                    self.__selected_local_device or {}
+                ).get("product_key")
+            return await self.async_step_local()
+
+        try:
+            discovered_devices = await self.hass.async_add_executor_job(
+                scan_for_devices
+            )
+        except OSError:
+            discovered_devices = []
+        except Exception:  # pragma: no cover - defensive config flow fallback
+            _LOGGER.exception("Unexpected error while scanning for local devices")
+            discovered_devices = []
+
+        self.__local_devices = {
+            device["id"]: device for device in discovered_devices if device.get("id")
+        }
+        device_list = [
+            SelectOptionDict(value=device["id"], label=device["label"])
+            for device in self.__local_devices.values()
+        ]
+        device_list.append(
+            SelectOptionDict(
+                value=DISCOVERY_MANUAL,
+                label="Enter details manually",
+            )
+        )
+
+        return self.async_show_form(
+            step_id="discover_local",
+            data_schema=vol.Schema(
+                {
+                    vol.Required(
+                        CONF_DISCOVERED_DEVICE, default=DISCOVERY_MANUAL
+                    ): SelectSelector(
+                        SelectSelectorConfig(
+                            options=device_list,
+                            mode=SelectSelectorMode.LIST,
+                        )
+                    ),
+                }
+            ),
+            errors={},
+        )
 
     async def async_step_cloud(
         self, user_input: dict[str, Any] | None = None
@@ -318,6 +377,14 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
         polling_opts = {"default": False}
         devcid_opts = {}
 
+        if self.__selected_local_device is not None:
+            devid_opts = {"default": self.__selected_local_device.get("id", "")}
+            host_opts = {"default": self.__selected_local_device.get("ip", "")}
+            if self.__selected_local_device.get("version"):
+                proto_opts = {
+                    "default": str(self.__selected_local_device.get("version"))
+                }
+
         if self.__cloud_device is not None:
             # We already have some or all of the device settings from the cloud flow. Set them into the defaults.
             devid_opts = {"default": self.__cloud_device.get("id")}
@@ -356,6 +423,10 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                         self.device.set_detected_product_id(
                             self.__cloud_device.get("local_product_id")
                         )
+                if self.__selected_local_product_key:
+                    self.device.set_detected_product_id(
+                        self.__selected_local_product_key
+                    )
                 await self.async_set_unique_id(
                     user_input.get(CONF_DEVICE_CID, user_input[CONF_DEVICE_ID])
                 )
@@ -657,3 +728,31 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
 
 def scan_for_device(id):
     return tinytuya.find_device(dev_id=id)
+
+
+def scan_for_devices():
+    raw_devices = tinytuya.deviceScan(False, 15) or {}
+    discovered: dict[str, dict[str, str]] = {}
+
+    for fallback_id, raw_device in raw_devices.items():
+        if not isinstance(raw_device, dict):
+            continue
+
+        device_id = raw_device.get("gwId") or raw_device.get("id") or fallback_id
+        ip_address = raw_device.get("ip") or ""
+        version = raw_device.get("version") or ""
+        product_key = raw_device.get("productKey") or ""
+        if not device_id or not ip_address:
+            continue
+
+        device_id = str(device_id)
+        ip_address = str(ip_address)
+        discovered[device_id] = {
+            "id": device_id,
+            "ip": ip_address,
+            "version": str(version) if version else "",
+            "product_key": str(product_key) if product_key else "",
+            "label": f"{device_id} - {ip_address}",
+        }
+
+    return list(discovered.values())

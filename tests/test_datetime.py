@@ -11,7 +11,10 @@ from custom_components.ledvance_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.ledvance_local.datetime import TuyaLocalDateTime, async_setup_entry
+from custom_components.ledvance_local.datetime import (
+    TuyaLocalDateTime,
+    async_setup_entry,
+)
 
 
 @pytest.mark.asyncio

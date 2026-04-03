@@ -136,6 +136,8 @@ The Ledvance authentication token expires after a small number of hours and so i
 
 The first stage of configuration is to provide the information needed to connect to the device.
 
+When using the manual config path, Ledvance Local will first scan your local network for compatible devices and let you choose one to pre-fill the device id and IP address. You can still skip this and enter the details manually if discovery does not find your device.
+
 When using the cloud assisted config, the device id and local key will be pre-filled from the cloud, and the IP address will also be filled if local discovery is not blocked by other integrations or a complex network setup. Otherwise, see [DEVICE_DETAILS.md](DEVICE_DETAILS.md) for instructions on how to find the info.
 
 #### host
@@ -297,5 +299,5 @@ Beyond contributing device configs, here are some areas that could benefit from 
 
 1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Focus on unit tests is on python code, the current coverage is summarised in reports on github, but to get full coverage details you can run the tests yourself.
 2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale.
-3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
+3. Discovery. Local discovery is currently used to pre-fill the manual config flow with a device id and IP address, and to find the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network and would keep device IP addresses updated automatically.
 

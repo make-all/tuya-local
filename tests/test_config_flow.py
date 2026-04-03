@@ -32,14 +32,18 @@ def auto_enable_custom_integrations(enable_custom_integrations):
 
 @pytest.fixture(autouse=True)
 def prevent_task_creation(mocker):
-    mocker.patch("custom_components.ledvance_local.device.TuyaLocalDevice.register_entity")
+    mocker.patch(
+        "custom_components.ledvance_local.device.TuyaLocalDevice.register_entity"
+    )
     yield
 
 
 @pytest.fixture
 def bypass_setup(mocker):
     """Prevent actual setup of the integration after config flow."""
-    mocker.patch("custom_components.ledvance_local.async_setup_entry", return_value=True)
+    mocker.patch(
+        "custom_components.ledvance_local.async_setup_entry", return_value=True
+    )
     yield
 
 
@@ -82,7 +86,9 @@ async def test_migrate_entry(hass, mocker):
     mock_device.async_inferred_type = mocker.AsyncMock(
         return_value="goldair_gpph_heater"
     )
-    mocker.patch("custom_components.ledvance_local.setup_device", return_value=mock_device)
+    mocker.patch(
+        "custom_components.ledvance_local.setup_device", return_value=mock_device
+    )
 
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -259,6 +265,105 @@ async def test_flow_user_init(hass, mocker):
         assert False
     except vol.MultipleInvalid:
         pass
+
+
+@pytest.mark.asyncio
+async def test_flow_user_init_starts_with_discover_local(hass, mocker):
+    """Test the manual add flow starts with the local discovery step."""
+    mocker.patch(
+        "custom_components.ledvance_local.config_flow.scan_for_devices",
+        return_value=[],
+    )
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": "user"}
+    )
+
+    assert "form" == result["type"]
+    assert "discover_local" == result["step_id"]
+
+
+@pytest.mark.asyncio
+async def test_flow_discover_local_manual_fallback_goes_to_local(hass, mocker):
+    """Test the local discovery step can fall back to manual entry."""
+    mocker.patch(
+        "custom_components.ledvance_local.config_flow.scan_for_devices",
+        return_value=[],
+    )
+    flow = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+
+    result = await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={"discovered_device": "__manual__"},
+    )
+
+    assert "form" == result["type"]
+    assert "local" == result["step_id"]
+
+
+@pytest.mark.asyncio
+async def test_flow_discover_local_prefills_local_form(hass, mocker):
+    """Test selecting a discovered device pre-fills the local form."""
+    mocker.patch(
+        "custom_components.ledvance_local.config_flow.scan_for_devices",
+        return_value=[
+            {
+                "id": "deviceid",
+                "ip": "192.168.0.10",
+                "version": "3.3",
+                "product_key": "product-key",
+                "label": "deviceid - 192.168.0.10",
+            }
+        ],
+    )
+    flow = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+
+    result = await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={"discovered_device": "deviceid"},
+    )
+
+    configured = result["data_schema"]({CONF_LOCAL_KEY: TESTKEY})
+    assert configured[CONF_DEVICE_ID] == "deviceid"
+    assert configured[CONF_HOST] == "192.168.0.10"
+    assert configured[CONF_PROTOCOL_VERSION] == "3.3"
+
+
+@pytest.mark.asyncio
+async def test_flow_local_uses_discovered_product_key(hass, mocker):
+    """Test discovered product key is used to improve device matching."""
+    mock_device = mocker.MagicMock()
+    mock_device._protocol_configured = "auto"
+    setup_device_mock(mock_device, mocker)
+    mocker.patch(
+        "custom_components.ledvance_local.config_flow.scan_for_devices",
+        return_value=[
+            {
+                "id": "deviceid",
+                "ip": "192.168.0.10",
+                "version": "3.3",
+                "product_key": "product-key",
+                "label": "deviceid - 192.168.0.10",
+            }
+        ],
+    )
+    mocker.patch(
+        "custom_components.ledvance_local.config_flow.async_test_connection",
+        return_value=mock_device,
+    )
+
+    flow = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={"discovered_device": "deviceid"},
+    )
+    result = await hass.config_entries.flow.async_configure(
+        flow["flow_id"],
+        user_input={CONF_LOCAL_KEY: TESTKEY},
+    )
+
+    assert "form" == result["type"]
+    assert "select_type" == result["step_id"]
+    mock_device.set_detected_product_id.assert_called_once_with("product-key")
 
 
 @pytest.mark.asyncio
