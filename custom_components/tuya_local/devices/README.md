@@ -684,6 +684,11 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **current_humidity** (optional, number): a dp to report the current humidity measured by the device
 - **action** (optional, string): a dp to report the current action the device is performing. Valid actions are `humidifying`, `drying`, `idle` and `off`
 
+### `infrared`
+- **send** (required, accepts a string): a dp to send remote codes.
+- **control** (optional, accepts strings `"send_ir"`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
+- **code_type** (optional, accepts integers): a dp to set the type of code being sent. The current implementation only supports type `0`. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
+
 ### `lawn_mower`
 - **activity** (required, string): a dp to report the current activity of the mower. Valid activities are `mowing`, `paused`, `docked`, `error`, `returning` (from LawnMowerActivities in https://github.com/home-assistant/core/blob/dev/homeassistant/components/lawn_mower/const.py). Any additional activities should be mapped to one of those, and exposed through an extra attribute or sensor entity that shows all the statuses that the mower is reporting.
 
@@ -743,9 +748,10 @@ no information will be available about which specific credential was used to unl
 ### `remote`
 - **send** (required, accepts a string): a dp to send remote codes.
 - **receive** (optional, returns strings): a dp to receive learned commands on. If not supplied, the `remote.learn_command` service call will not be available. 
-- **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
+- **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`, `rfstudy_send`, `rf_study`, `rfstudy_exit`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
 - **delay** (optional, accepts numbers): a dp to set the delay in ms between buttons when there are multiple in the send string. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
 - **code_type** (optional, accepts integers): a dp to set the type of code being sent. The current implementation only supports type `0`. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
+
 ### `select`
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 
