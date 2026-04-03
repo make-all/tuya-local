@@ -1,10 +1,10 @@
-devices # Supported
+# Supported devices
 
 ### Heaters
 
 - Advanced Fires 1500 electric fireplace
-- Amantii Bespoke R1-2-AP1 Andersson
-- fireplace GSH heater
+- Amantii Bespoke R1-2-AP1 fireplace
+- Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
 - Auchsiag 750W/1500W electric fireplace
@@ -28,6 +28,7 @@ devices # Supported
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
+- Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
 - Eurom Alutherm 1000,1500,2000,2500 heaters
@@ -74,6 +75,7 @@ devices # Supported
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rovsun NSC-150-7A2R oil column heater
 - Rumba bathroom heater
+- Sai Me Tei towel rail
 - Semptec ZX7007 infrared heater
 - Sichler ZX-7655/ZX-7656 hybrid infrared convection heater
 - SolAire Vitra S2 panel heater
@@ -83,6 +85,7 @@ devices # Supported
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
+- Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
 - Wärme Designer wall panel heater
@@ -160,6 +163,7 @@ devices # Supported
 
 ### Pool heaters / heat pumps
 
+- Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
 - Evotherm ETI series heat pump
@@ -196,6 +200,7 @@ devices # Supported
 - Chiltrix CX50 combo heat pump
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
+- Envirosun ES330M9 hot water system
 - Ferroli Titano Twin water heater
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
@@ -308,7 +313,7 @@ devices # Supported
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
-- Ausclimate EcoSmart pedestal fan
+- Ausclimate EcoSmart pedestal and desk fans
 - Aygrochy ventilation duct fan
 - Aziot fan modular switch
 - BKZO ceiling fan with RGBCW light
@@ -376,9 +381,11 @@ devices # Supported
 - Living Comfort LC310S twin window fan
 - Lucci Connect Wi-Fi fan remote
 - Lumary A1 and B2 ceiling fans with lights
+- Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
+- NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
@@ -393,6 +400,7 @@ devices # Supported
 - Pro Breeze AirFlo 43" pedestal fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
+- Reventon / Holtop Smart ERV heat recovery ventilator
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
@@ -420,7 +428,9 @@ devices # Supported
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
+- Cecotec TotalPure purifier
 - Cleverio AP100 air purifier
+- ComfortZone AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
@@ -433,7 +443,7 @@ devices # Supported
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
-- Morento HY4866-WF and MR7566-WF air purifiers
+- Morento HY4866-WF, MR5866, MR7566-WF air purifiers
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
@@ -479,6 +489,7 @@ devices # Supported
 - Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL, Eva Ion Pro, Rise Pro dehumidifiers
 - JJPro JPD01, JPD02 dehumidifers
+- Juro-Pro 2006 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Luko dehumidifier
@@ -508,6 +519,7 @@ devices # Supported
 - AlecoAir PU55 Humino humidifier
 - Arida Eva humidifier
 - BlitzWolf BW-SH2, BW-SH5 humidifiers
+- Breville Smart Mist Glow Connect humidifier
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B, CA-605B, CA-607B humidifiers
 - Clofte Duo 400 humidifier
@@ -565,6 +577,7 @@ devices # Supported
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
+- KKT Kolbe kitchen hood
 - Klarstein Amazonia dishwasher
 - Klarstein Ava range hood
 - Koenic KTM-221723-M kettle
@@ -622,6 +635,7 @@ devices # Supported
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800, SPD800 solar inverters
+- SWC32v2 CBU circuit breaker energy meter
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
@@ -634,6 +648,7 @@ devices # Supported
 - Unknown brand dual channel smart meter
 - V-WIFI-DL01-ES energy consumption single clamp meter
 - V-WIFI-DL02-ES energy consumption dual clamp meter
+- Veratti V4 3-phase energy meter circuit breaker
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
@@ -654,6 +669,7 @@ devices # Supported
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger
+- Emini 16A Public EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)
 - Immax Neo Lite 3-phase 22kW EV charger
@@ -730,8 +746,9 @@ the best option.
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
-- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - Moes motion sensor smart switch
+- Moes PIR wall switch
+- Moes Star Feather Scene Switches (3 and 4 gang tested)
 - MoesHouse smartplug with RGBW nightlight
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
@@ -746,6 +763,7 @@ the best option.
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
+- Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch
 - TY-12W 12 switch relay board
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
@@ -778,9 +796,10 @@ of device.
 - Generic smartplug without power monitoring but with most other features (initial state setting, light options, child lock)
   _confirmed working with SX1 relay socket_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
+- Generic multi switches (up to 8-gang in any combination - confirmed with non-standard eMylo US-083e dual outlet+USB switches)
 - Generic triple and quad switches (confirmed with Songam wall switches)
-- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
-- Generic quad powerstrip with uSB and power monitoring (confirmed with EKF Connect Pro)
+- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub)
+- Generic quad powerstrip with USB and power monitoring (confirmed with EKF Connect Pro)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -874,6 +893,7 @@ of device.
 - Outon Smart Lamp
 - Peteme recessed lighting
 - PowerAsia RGB 6-inch recessed lighting
+- RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
@@ -885,6 +905,7 @@ of device.
 - Treatlife outdoor dimmer with dual outlets
 - TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
+- V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
 
@@ -902,6 +923,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
+- BobYun Tech gatePro gate opener 
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
@@ -909,6 +931,7 @@ of device.
 - Dongguan garage door
 - Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
+- Eachen GD-DC5 garage door opener
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
@@ -948,7 +971,7 @@ of device.
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
-- ILIFE V20 and A30 pro vacuum cleaners
+- ILIFE V20, A12, A30 pro vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
@@ -1142,6 +1165,7 @@ port and password.
 - S11+ IR/RF remote controller
 - Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
 - Woox R7246 remote control with temperature and humidity sensors
+- YET YET6956WTR-B 240-930MHz RF 4 button controller
 
 ### Valves
 
@@ -1157,7 +1181,7 @@ port and password.
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
-- KRain KRX8 irrigation controller
+- KRain KRX8 (also KRX6) irrigation controller
 - Neo NAS-WV02W water use monitoring valve
 - Neptun Smart and Smart+ water leak control systems
 - Qoto 03 smart water valve / sprinkler controller
@@ -1182,6 +1206,7 @@ port and password.
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
+- Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
 - C30W gas leak detector
@@ -1191,6 +1216,7 @@ port and password.
 - EASTtime D401 water purifier
 - E Chief SGH01 hydroponic planter
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
+- EM3395TY-2 weather station
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
 - Eureka ERK-S62 adjustable desk
@@ -1246,7 +1272,6 @@ port and password.
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
-- Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
@@ -1264,7 +1289,6 @@ port and password.
 - TOPENS TC196 remote control for gate openers
 - Treatlife 24GHz mmWave human presence sensor
 - TX-E gas sensor/alarm
-- Valehaus SYZN119 towel warmer
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor

@@ -1,5 +1,5 @@
 """
-Platform for Tuya WiFi-connected devices.
+Integration for Tuya WiFi-connected devices.
 
 Based on nikrolls/homeassistant-goldair-climate for Goldair branded devices.
 Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
@@ -841,6 +841,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "sensor_light_intensity": "sensor_illuminance",
                 "sensor_rain": "sensor_precipitation",
                 "sensor_rainfall_rate": "sensor_precipitation_intensity",
+                "text_regular_schedule": "text_schedule",
+                "text_program": "text_schedule",
+                "text_program_data": "text_schedule",
+                "text_weekly_program": "text_schedule",
+                "text_weekprogram": "text_schedule",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 

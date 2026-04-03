@@ -1,0 +1,77 @@
+name: Desk fan
+products:
+  - id: shrf3e1oo92aaijt
+    manufacturer: Ausclimate
+    model: EcoSmart Desk Air Circulator
+    model_id: ACAC230
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+      - id: 5
+        type: boolean
+        name: oscillate
+  - entity: switch
+    name: Vertical oscillation
+    icon: "mdi:pan-vertical"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: select
+    name: "On timer"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: select
+    translation_key: timer
+    name: "Off timer"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1H"
+            value: "1h"
+          - dps_val: "2H"
+            value: "2h"
+          - dps_val: "4H"
+            value: "4h"
+          - dps_val: "6H"
+            value: "6h"
+          - dps_val: "8H"
+            value: "8h"
+  - entity: switch
+    name: Turbo
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
