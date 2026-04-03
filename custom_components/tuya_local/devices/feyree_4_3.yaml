@@ -30,6 +30,15 @@ entities:
             value: waiting
           - dps_val: error
             value: fault
+    attributes:
+      - dps: 125
+        name: hardware_version
+        type: string
+        optional: true
+      - dps: 126
+        name: software_version
+        type: string
+        optional: true
 
   # --- BŁĘDY ---
   - entity: binary_sensor
@@ -326,29 +335,3 @@ entities:
             value: "Stop Charging"
           - dps_val: "WaitOperation"
             value: "Waiting"
-
-  # --- WERSJE ---
-  - entity: sensor
-    name: Hardware version
-    icon: "mdi:chip"
-    dps:
-      - id: 125
-        type: string
-        name: sensor
-
-  - entity: sensor
-    name: Software version
-    icon: "mdi:chip"
-    dps:
-      - id: 126
-        type: string
-        name: sensor
-
-  # --- LOG FLAG ---
-  - entity: binary_sensor
-    name: Log flag
-    category: diagnostic
-    dps:
-      - id: 132
-        type: boolean
-        name: sensor
