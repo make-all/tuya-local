@@ -93,69 +93,87 @@ entities:
 
   # --- NAPIĘCIA ---
   - entity: sensor
-    name: Voltage A
     class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 102
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 10
 
   - entity: sensor
-    name: Voltage B
     class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 10
 
   - entity: sensor
-    name: Voltage C
     class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     dps:
       - id: 104
         type: integer
         name: sensor
         unit: V
+        class: measurement
         mapping:
           - scale: 10
 
   # --- PRĄDY ---
   - entity: sensor
-    name: Current A
     class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 105
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 10
 
   - entity: sensor
-    name: Current B
     class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 106
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 10
 
   - entity: sensor
-    name: Current C
     class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     dps:
       - id: 107
         type: integer
         name: sensor
         unit: A
+        class: measurement
         mapping:
           - scale: 10
 
