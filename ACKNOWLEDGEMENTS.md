@@ -1331,3 +1331,4 @@ Further device support has been made with the assistance of users. Please consid
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
 - [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
 - [giggiu16](https://github.com/giggiu16) for contributing support for YET YET6956WTR-B RF 4 button controller.
+- [TomPenrose](https://github.com/TomPenrose) for contributing support for Shuangri SR223 solar water heating controller.
