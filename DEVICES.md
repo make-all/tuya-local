@@ -965,6 +965,7 @@ of device.
 - Zemismart AM25 roller blinds
 - Zemismart curtain rail
 - Zemismart roller shade
+- Zitech Basic 3.0 sliding door controller
 
 ### Robot vacuums
 
