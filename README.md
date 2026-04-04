@@ -1,5 +1,3 @@
-# Tuya Local ; Home Assistant integration
-
 ![logo](custom_components/tuya_local/brand/icon.svg) 
 
 Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
@@ -271,7 +269,7 @@ Tuya IR and RF blasters are exposed as remote entities and support learning and
 sending commands via the standard Home Assistant remote services.
 
 ### Learning commands
-
+
 Use the `remote.learn_command` service with:
 - `command`: the name to store the command under (e.g. `power`)
 - `device`: a name for the appliance being controlled (e.g. `TV`)
