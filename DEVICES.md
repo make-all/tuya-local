@@ -266,7 +266,7 @@
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
-- Inkbird ITC306A, ITC308 thermostat smartplugs
+- Inkbird ITC306A, ITC308, C236T thermostat smartplugs
 - Jiahong ET-44W thermostat (also sold under the TheroLife brand)
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
