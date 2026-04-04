@@ -1334,3 +1334,4 @@ Further device support has been made with the assistance of users. Please consid
 - [TomPenrose](https://github.com/TomPenrose) for contributing support for Shuangri SR223 solar water heating controller.
 - [martinmain](https://github.com/martinmain) for assisting with support for Zitech Basic 3.0 sliding door controller.
 - [gearhead765](https://github.com/gearhead765) for assisting with support for Inkbird C236T thermostat.
+- [snicker](https://github.com/snicker) for contributing support for Nutromo SH014 space heater.

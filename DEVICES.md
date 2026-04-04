@@ -65,6 +65,7 @@
 - Modern Flames Orion electric fireplace
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
+- Nutromo SH014 space heater
 - Nybro heater
 - Orbegozo RRW heater
 - Orion OWH-PTC2000 heater
