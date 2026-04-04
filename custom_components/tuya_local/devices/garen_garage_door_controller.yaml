@@ -1,0 +1,51 @@
+name: Garen garage door controller
+products:
+  - id: y07fcukpjhg0yj5g
+    manufacturer: Garen
+
+entities:
+  - entity: button
+    name: Open
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Stop
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Close
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+
+  - entity: lock
+    name: Lock
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: lock
+
+  - entity: select
+    name: Auto-close timer
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "5s"
+            value: "5 seconds"
+          - dps_val: "20s"
+            value: "20 seconds"
+          - dps_val: "60s"
+            value: "60 seconds"
