@@ -277,6 +277,7 @@ entities:
   - entity: number
     translation_key: temperature_calibration
     category: config
+    mode: box
     dps:
       - id: 117
         type: integer
@@ -350,9 +351,10 @@ entities:
     name: Over-limit disconnect delay
     class: duration
     category: config
+    mode: box
     dps:
       - id: 130
-        type: integer
+        type: float
         name: value
         unit: s
         range:
@@ -421,6 +423,7 @@ entities:
     name: Over-limit recovery time
     class: duration
     category: config
+    mode: box
     dps:
       - id: 134
         type: integer
