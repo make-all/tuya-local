@@ -1,7 +1,6 @@
 name: Temperature controller
 products:
   - id: 3kw82iy6w4udblee
-    name: ATORCH S1BWP-T/H
     manufacturer: ATORCH
     model: S1BWP-T/H
 
@@ -157,7 +156,6 @@ entities:
           - scale: 10
 
   - entity: switch
-    name: Switch
     dps:
       - id: 103
         type: boolean
@@ -171,20 +169,7 @@ entities:
           - value: false
 
   - entity: sensor
-    name: Current temperature
-    class: measurement
-    dps:
-      - id: 102
-        type: integer
-        name: sensor
-        unit: °C
-        class: measurement
-        mapping:
-          - scale: 10
-
-  - entity: sensor
-    name: Current
-    class: measurement
+    class: current
     dps:
       - id: 108
         type: integer
@@ -195,8 +180,7 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Power
-    class: measurement
+    class: power
     dps:
       - id: 109
         type: integer
@@ -207,8 +191,7 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Voltage
-    class: measurement
+    class: voltage
     dps:
       - id: 110
         type: integer
@@ -219,8 +202,7 @@ entities:
           - scale: 100
 
   - entity: sensor
-    name: Energy
-    class: total_increasing
+    class: energy
     dps:
       - id: 111
         type: integer
@@ -245,6 +227,7 @@ entities:
 
   - entity: number
     name: Over-voltage protection
+    class: voltage
     category: config
     dps:
       - id: 113
@@ -259,6 +242,7 @@ entities:
 
   - entity: number
     name: Over-current protection
+    class: current
     category: config
     dps:
       - id: 114
@@ -273,6 +257,7 @@ entities:
 
   - entity: number
     name: Over-power protection
+    class: power
     category: config
     dps:
       - id: 115
@@ -314,9 +299,9 @@ entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
 
   - entity: sensor
     name: Energy cost
@@ -365,6 +350,7 @@ entities:
 
   - entity: number
     name: Over-limit disconnect delay
+    class: duration
     category: config
     dps:
       - id: 130
@@ -377,6 +363,7 @@ entities:
 
   - entity: number
     name: Low-voltage protection
+    class: voltage
     category: config
     dps:
       - id: 131
@@ -391,21 +378,31 @@ entities:
 
   - entity: sensor
     name: Recovery countdown
+    class: duration
+    category: config
     dps:
       - id: 132
         type: integer
         name: sensor
         unit: s
-        class: measurement
 
-  - entity: select
-    name: Warning
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 133
         type: string
-        name: option
-        readonly: true
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: false
+          - value: true
+      - id: 133
+        type: string
+        name: fault_code
+      - id: 133
+        type: string
+        name: description
         mapping:
           - dps_val: "off"
             value: None
@@ -424,6 +421,7 @@ entities:
 
   - entity: number
     name: Over-limit recovery time
+    class: duration
     category: config
     dps:
       - id: 134
