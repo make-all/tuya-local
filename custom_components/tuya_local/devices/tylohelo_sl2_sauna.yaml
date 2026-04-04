@@ -1,5 +1,5 @@
 # Copyright 2026 Chris Keeser
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: MIT
 
 name: Sauna
 products:
@@ -28,6 +28,19 @@ entities:
       - id: 3
         name: current_temperature
         type: integer
+      - id: 105
+        type: integer
+        name: hvac_action
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: idle
+          - dps_val: 2
+            value: heating
+      - id: 9
+        type: integer
+        name: unknown_9
+        optional: true
   - entity: select
     name: Light
     icon: "mdi:lightbulb"
@@ -76,20 +89,4 @@ entities:
       - id: 4
         name: sensor
         type: string
-        optional: true
-  - entity: sensor
-    name: DP 9
-    category: diagnostic
-    dps:
-      - id: 9
-        name: sensor
-        type: integer
-        optional: true
-  - entity: sensor
-    name: Sauna state
-    category: diagnostic
-    dps:
-      - id: 105
-        name: sensor
-        type: integer
         optional: true
