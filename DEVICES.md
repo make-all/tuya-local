@@ -65,6 +65,7 @@
 - Modern Flames Orion electric fireplace
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
+- Nutromo SH014 space heater
 - Nybro heater
 - Orbegozo RRW heater
 - Orion OWH-PTC2000 heater
@@ -219,6 +220,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
+- Shuangri SR223 solar water heating controller 
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermann R290 heat pump water heater
@@ -265,7 +267,7 @@
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
-- Inkbird ITC306A, ITC308 thermostat smartplugs
+- Inkbird ITC306A, ITC308, C236T thermostat smartplugs
 - Jiahong ET-44W thermostat (also sold under the TheroLife brand)
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
@@ -361,7 +363,7 @@
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
-- Hunter Pacific 9 speed ceiling fan with light
+- Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Inkbird IVC001W fan controller
@@ -964,6 +966,7 @@ of device.
 - Zemismart AM25 roller blinds
 - Zemismart curtain rail
 - Zemismart roller shade
+- Zitech Basic 3.0 sliding door controller
 
 ### Robot vacuums
 
