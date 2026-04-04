@@ -1,4 +1,4 @@
-name: NUTROMO SH014 Space Heater
+name: Space heater
 products:
   # https://www.amazon.com/dp/B0FX9K8Q7B
   # basic research on the DPS for this device:
@@ -11,13 +11,13 @@ products:
   #   14 - target temperature in F
   #   15 - current temperature in F
   #   19 - manual timer in hours values 1-24, or cancel
-  #   20 - remaining minutes to shut down if DPS 19 is NOT 'cancel'
+  #   20 - remaining minutes on DPS 19 timer
   #   21 - unknown
   #   102 - do not disturb switch (disables sound)
-  #   103 - countdown in minutes until autoshutoff (only when DPS 19 is 'cancel')
+  #   103 - remaining minutes to shut off (when DPS 19=cancel)
   - id: 2b8tuuczxpiwdrlb
     manufacturer: NUTROMO
-    model: "SH014 Space Heater"
+    model: "SH014"
 entities:
   - entity: climate
     translation_only_key: heater
@@ -68,16 +68,16 @@ entities:
           - dps_val: false
             value: "off"
 
-  - entity: switch
-    name: Child lock
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
-        name: switch
+        name: lock
 
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 102
@@ -155,7 +155,7 @@ entities:
         unit: min
 
   - entity: sensor
-    name: Auto shutoff countdown
+    name: Auto off countdown
     class: duration
     category: diagnostic
     dps:
