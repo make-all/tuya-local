@@ -8,7 +8,7 @@ entities:
 
   # --- STATUS ---
   - entity: sensor
-    name: Device state
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     dps:
@@ -30,22 +30,11 @@ entities:
             value: waiting
           - dps_val: error
             value: fault
-    attributes:
-      - dps: 125
-        name: hardware_version
-        type: string
-        optional: true
-      - dps: 126
-        name: software_version
-        type: string
-        optional: true
 
   # --- BŁĘDY ---
   - entity: binary_sensor
     name: Fault
-    class: problem
     category: diagnostic
-    icon: 'mdi:alert-outline'
     dps:
       - id: 10
         type: bitfield
@@ -244,7 +233,6 @@ entities:
 
   # --- ENERGIA CAŁKOWITA ---
   - entity: sensor
-    name: Total session energy
     class: energy
     dps:
       - id: 112
@@ -254,28 +242,79 @@ entities:
         mapping:
           - scale: 10
 
-  # --- MAKSYMALNY PRĄD ---
-  - entity: sensor
-    name: Max current setting
-    icon: "mdi:current-ac"
-    class: enum
-    dps:
-      - id: 113
-        type: string
-        name: sensor
-
   # --- USTAWIONY PRĄD ---
   - entity: number
     name: Charge current limit
     icon: "mdi:current-ac"
+    class: current
     dps:
-      - id: 115
+      - id: 114
         type: integer
         name: value
         unit: A
         range:
-          min: 8
+          min: 6
+          max: 16
+        mapping:
+          - constraint: maximum
+            conditions:
+              - dps_val: Max32A
+                value_redirect: value_32a
+                range:
+                  min: 8
+                  max: 32
+              - dps_val: Max40A
+                value_redirect: value_40a
+                range:
+                  min: 8
+                  max: 40
+              - dps_val: Max50A
+                value_redirect: value_50a
+                range:
+                  min: 8
+                  max: 50
+
+      - id: 113
+        type: string
+        optional: true
+        name: maximum
+        mapping:
+          - dps_val: Max16A
+            value: 16
+          - dps_val: Max32A
+            value: 32
+          - dps_val: Max40A
+            value: 40
+          - dps_val: Max50A
+            value: 50
+          - dps_val: Max60A
+            value: 60
+          - dps_val: Max80A
+            value: 80
+
+      - id: 115
+        type: integer
+        optional: true
+        name: value_32a
+        range:
+          min: 6
           max: 32
+
+      - id: 116
+        type: integer
+        optional: true
+        name: value_40a
+        range:
+          min: 8
+          max: 40
+
+      - id: 117
+        type: integer
+        optional: true
+        name: value_50a
+        range:
+          min: 8
+          max: 50
 
   # --- OPÓŹNIENIA ---
   - entity: number
