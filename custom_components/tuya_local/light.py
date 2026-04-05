@@ -139,6 +139,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         elif self._brightness_dps:
             b = self.brightness
             return isinstance(b, int) and b > 0
+        elif self._effect_dps and "off" in self._effect_dps.values(self._device):
+            return self._effect_dps.get_value(self._device) != "off"
         else:
             # There shouldn't be lights without control, but if there are,
             # assume always on if they are responding
