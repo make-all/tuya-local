@@ -1,4 +1,4 @@
-name: EV Wallbox
+name: EV wallbox
 products:
   - id: zk1jkjhxqkfaaalp
     manufacturer: Feyree
@@ -33,7 +33,7 @@ entities:
 
   # --- BŁĘDY ---
   - entity: binary_sensor
-    name: Fault
+    class: problem
     category: diagnostic
     dps:
       - id: 10
@@ -194,6 +194,7 @@ entities:
   - entity: sensor
     name: Phase mode
     icon: "mdi:transmission-tower"
+    category: diagnostic
     dps:
       - id: 108
         type: string
@@ -229,7 +230,6 @@ entities:
       - id: 111
         type: integer
         name: sensor
-        unit: mth
 
   # --- ENERGIA CAŁKOWITA ---
   - entity: sensor
@@ -244,7 +244,7 @@ entities:
 
   # --- USTAWIONY PRĄD ---
   - entity: number
-    name: Charge current limit
+    name: Charge current
     icon: "mdi:current-ac"
     class: current
     dps:
@@ -252,28 +252,23 @@ entities:
         type: integer
         name: value
         unit: A
-        range:
-          min: 6
-          max: 16
         mapping:
           - constraint: maximum
             conditions:
               - dps_val: Max32A
                 value_redirect: value_32a
-                range:
-                  min: 8
-                  max: 32
               - dps_val: Max40A
                 value_redirect: value_40a
-                range:
-                  min: 8
-                  max: 40
               - dps_val: Max50A
                 value_redirect: value_50a
-                range:
-                  min: 8
-                  max: 50
-
+      - id: 113
+        type: string
+        optional: true
+        name: minimum
+        mapping:
+          - dps_val: Max16A
+            value: 6
+          - value: 8
       - id: 113
         type: string
         optional: true
@@ -287,11 +282,13 @@ entities:
             value: 40
           - dps_val: Max50A
             value: 50
-          - dps_val: Max60A
-            value: 60
-          - dps_val: Max80A
-            value: 80
-
+          # The following do not have dps to redirect to so ignore
+          # - dps_val: Max60A
+          #   value: 60
+          # - dps_val: Max80A
+          #   value: 80
+          # default to 16, as there will be no redirect
+          - value: 16
       - id: 115
         type: integer
         optional: true
@@ -318,7 +315,7 @@ entities:
 
   # --- OPÓŹNIENIA ---
   - entity: number
-    name: Charge delay time
+    name: Charge delay
     icon: "mdi:timer-sand"
     dps:
       - id: 118
@@ -330,7 +327,7 @@ entities:
           max: 15
 
   - entity: number
-    name: Charge duration limit
+    name: Charge duration
     icon: "mdi:timer-outline"
     dps:
       - id: 119
