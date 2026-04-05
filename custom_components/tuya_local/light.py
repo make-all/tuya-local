@@ -511,7 +511,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 settings = settings | self._switch_dps.get_values_to_set(
                     self._device, True, settings
                 )
-        elif self._brightness_dps and not self.is_on:
+        elif (
+            self._brightness_dps
+            and not self.is_on
+            and self._brightness_dps.id not in settings
+        ):
             bright = 255
             r = self._brightness_dps.range(self._device)
             if r:
@@ -524,7 +528,21 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             settings = settings | self._brightness_dps.get_values_to_set(
                 self._device, bright, settings
             )
-
+        elif (
+            self._effect_dps
+            and not self.is_on
+            and "off" in self._effect_dps.values(self._device)
+            and self._effect_dps.id not in settings
+        ):
+            # Special case for lights with effect that has off state, but no switch or brightness
+            _LOGGER.info("%s turning light on using effect", self._config.config_id)
+            on_value = self._effect_dps.default
+            if on_value is None and "on" in self._effect_dps.values(self._device):
+                on_value = "on"
+            if on_value:
+                settings = settings | self._effect_dps.get_values_to_set(
+                    self._device, on_value, settings
+                )
         if settings:
             await self._device.async_set_properties(settings)
 
