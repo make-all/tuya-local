@@ -491,26 +491,16 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     ),
                 }
 
-        if self._switch_dps and not self.is_on and self._switch_dps.id not in settings:
-            if (
-                self._switch_dps.readonly
-                and self._effect_dps
-                and "on" in self._effect_dps.values(self._device)
-            ):
-                # Special case for motion sensor lights with readonly switch
-                # that have tristate switch available as effect
-                if self._effect_dps.id not in settings:
-                    _LOGGER.info(
-                        "%s turning light on using effect", self._config.config_id
-                    )
-                    settings = settings | self._effect_dps.get_values_to_set(
-                        self._device, "on", settings
-                    )
-            else:
-                _LOGGER.info("%s turning light on", self._config.config_id)
-                settings = settings | self._switch_dps.get_values_to_set(
-                    self._device, True, settings
-                )
+        if (
+            self._switch_dps
+            and not self._switch_dps.readonly
+            and not self.is_on
+            and self._switch_dps.id not in settings
+        ):
+            _LOGGER.info("%s turning light on", self._config.config_id)
+            settings = settings | self._switch_dps.get_values_to_set(
+                self._device, True, settings
+            )
         elif (
             self._brightness_dps
             and not self.is_on
@@ -535,11 +525,15 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             and self._effect_dps.id not in settings
         ):
             # Special case for lights with effect that has off state, but no switch or brightness
-            _LOGGER.info("%s turning light on using effect", self._config.config_id)
             on_value = self._effect_dps.default
             if on_value is None and "on" in self._effect_dps.values(self._device):
                 on_value = "on"
             if on_value:
+                _LOGGER.info(
+                    "%s turning light on using %s effect",
+                    self._config.config_id,
+                    on_value,
+                )
                 settings = settings | self._effect_dps.get_values_to_set(
                     self._device, on_value, settings
                 )
