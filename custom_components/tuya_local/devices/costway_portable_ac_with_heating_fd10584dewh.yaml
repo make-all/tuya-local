@@ -78,12 +78,12 @@ entities:
           - dps_val: F
             value: fahrenheit
 
-  - entity: binary_sensor
-    translation_key: sleep_mode
+  - entity: switch
+    translation_key: sleep
     category: config
     dps:
       - id: 101
-        name: sensor
+        name: switch
         type: boolean
 
   - entity: binary_sensor
@@ -109,7 +109,6 @@ entities:
 
   - entity: binary_sensor
     class: problem
-    translation_key: fault_code
     category: diagnostic
     dps:
       - id: 106
