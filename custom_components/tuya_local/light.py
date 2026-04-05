@@ -139,6 +139,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         elif self._brightness_dps:
             b = self.brightness
             return isinstance(b, int) and b > 0
+        elif self._effect_dps and "off" in self._effect_dps.values(self._device):
+            return self._effect_dps.get_value(self._device) != "off"
         else:
             # There shouldn't be lights without control, but if there are,
             # assume always on if they are responding
@@ -491,27 +493,21 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     ),
                 }
 
-        if self._switch_dps and not self.is_on and self._switch_dps.id not in settings:
-            if (
-                self._switch_dps.readonly
-                and self._effect_dps
-                and "on" in self._effect_dps.values(self._device)
-            ):
-                # Special case for motion sensor lights with readonly switch
-                # that have tristate switch available as effect
-                if self._effect_dps.id not in settings:
-                    _LOGGER.info(
-                        "%s turning light on using effect", self._config.config_id
-                    )
-                    settings = settings | self._effect_dps.get_values_to_set(
-                        self._device, "on", settings
-                    )
-            else:
-                _LOGGER.info("%s turning light on", self._config.config_id)
-                settings = settings | self._switch_dps.get_values_to_set(
-                    self._device, True, settings
-                )
-        elif self._brightness_dps and not self.is_on:
+        if (
+            self._switch_dps
+            and not self._switch_dps.readonly
+            and not self.is_on
+            and self._switch_dps.id not in settings
+        ):
+            _LOGGER.info("%s turning light on", self._config.config_id)
+            settings = settings | self._switch_dps.get_values_to_set(
+                self._device, True, settings
+            )
+        elif (
+            self._brightness_dps
+            and not self.is_on
+            and self._brightness_dps.id not in settings
+        ):
             bright = 255
             r = self._brightness_dps.range(self._device)
             if r:
@@ -524,32 +520,42 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             settings = settings | self._brightness_dps.get_values_to_set(
                 self._device, bright, settings
             )
-
+        elif (
+            self._effect_dps
+            and not self.is_on
+            and "off" in self._effect_dps.values(self._device)
+            and self._effect_dps.id not in settings
+        ):
+            # Special case for lights with effect that has off state, but no switch or brightness
+            on_value = self._effect_dps.default
+            if on_value is None and "on" in self._effect_dps.values(self._device):
+                on_value = "on"
+            if on_value:
+                _LOGGER.info(
+                    "%s turning light on using %s effect",
+                    self._config.config_id,
+                    on_value,
+                )
+                settings = settings | self._effect_dps.get_values_to_set(
+                    self._device, on_value, settings
+                )
         if settings:
             await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
-        if self._switch_dps:
-            if (
-                self._switch_dps.readonly
-                and self._effect_dps
-                and "off" in self._effect_dps.values(self._device)
-            ):
-                # Special case for motion sensor lights with readonly switch
-                # that have tristate switch available as effect
-                _LOGGER.info(
-                    "%s turning light off using effect", self._config.config_id
-                )
-                await self._effect_dps.async_set_value(self._device, "off")
-            else:
-                _LOGGER.info("%s turning light off", self._config.config_id)
-                await self._switch_dps.async_set_value(self._device, False)
+        if self._switch_dps and not self._switch_dps.readonly:
+            _LOGGER.info("%s turning light off", self._config.config_id)
+            await self._switch_dps.async_set_value(self._device, False)
         elif self._brightness_dps:
             _LOGGER.info(
                 "%s turning light off by setting brightness to 0",
                 self._config.config_id,
             )
             await self._brightness_dps.async_set_value(self._device, 0)
+        elif self._effect_dps and "off" in self._effect_dps.values(self._device):
+            # off by effect
+            _LOGGER.info("%s turning light off using effect", self._config.config_id)
+            await self._effect_dps.async_set_value(self._device, "off")
         else:
             raise NotImplementedError()
 
