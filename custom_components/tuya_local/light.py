@@ -541,27 +541,19 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
-        if self._switch_dps:
-            if (
-                self._switch_dps.readonly
-                and self._effect_dps
-                and "off" in self._effect_dps.values(self._device)
-            ):
-                # Special case for motion sensor lights with readonly switch
-                # that have tristate switch available as effect
-                _LOGGER.info(
-                    "%s turning light off using effect", self._config.config_id
-                )
-                await self._effect_dps.async_set_value(self._device, "off")
-            else:
-                _LOGGER.info("%s turning light off", self._config.config_id)
-                await self._switch_dps.async_set_value(self._device, False)
+        if self._switch_dps and not self._switch_dps.readonly:
+            _LOGGER.info("%s turning light off", self._config.config_id)
+            await self._switch_dps.async_set_value(self._device, False)
         elif self._brightness_dps:
             _LOGGER.info(
                 "%s turning light off by setting brightness to 0",
                 self._config.config_id,
             )
             await self._brightness_dps.async_set_value(self._device, 0)
+        elif self._effect_dps and "off" in self._effect_dps.values(self._device):
+            # off by effect
+            _LOGGER.info("%s turning light off using effect", self._config.config_id)
+            await self._effect_dps.async_set_value(self._device, "off")
         else:
             raise NotImplementedError()
 
