@@ -49,23 +49,29 @@ entities:
         mapping:
           - dps_val: 0
             value: "off"
-          - dps_val: 1
-            value: White
-            default: true
-          - dps_val: 2
-            value: Red
-          - dps_val: 3
-            value: Green
-          - dps_val: 4
-            value: Blue
-          - dps_val: 5
-            value: Yellow
-          - dps_val: 6
-            value: Aqua
-          - dps_val: 7
-            value: Purple
           - dps_val: 8
             value: Rainbow
+          - dps_val: 1
+            value: "white"
+            default: true
+            hidden: true
+        name: named_color
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: white
+          - dps_val: 2
+            value: red
+          - dps_val: 3
+            value: lime
+          - dps_val: 4
+            value: blue
+          - dps_val: 5
+            value: yellow
+          - dps_val: 6
+            value: aqua
+          - dps_val: 7
+            value: magenta
   - entity: switch
     name: Bluetooth
     icon: "mdi:bluetooth-audio"
