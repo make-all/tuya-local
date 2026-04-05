@@ -385,6 +385,7 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
