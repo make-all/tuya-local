@@ -196,6 +196,15 @@
             }
         },
         "button": {
+            "alarm_off": {
+                "name": "Alarm off"
+            },
+            "alarm_snooze": {
+                "name": "Alarm snooze"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} reset"
+            },
             "factory_reset": {
                 "name": "Factory reset"
             },
@@ -493,6 +502,15 @@
             },
             "rangehood_light": {
                 "name": "Rangehood light"
+            },
+            "color_light": {
+                "name": "Color light"
+            },
+            "ambient_light": {
+                "name": "Ambient light"
+            },
+            "night_light": {
+                "name": "Night light"
             }
         },
         "lock": {
@@ -509,6 +527,12 @@
             },
             "minimum_temperature": {
                 "name": "Minimum temperature"
+            },
+            "radio_frequency": {
+                "name": "Radio frequency"
+            },
+            "radio_frequency_decimal": {
+                "name": "Radio decimal"
             },
             "sensor_threshold": {
                 "name": "{sensor} threshold"
@@ -530,6 +554,18 @@
             },
             "top_temperature": {
                 "name": "Top temperature"
+            },
+            "alarm_x_duration": {
+                "name": "Alarm {x} duration"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} snooze duration"
+            },
+            "alarm_x_volume": {
+                "name": "Alarm {x} volume"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} wake light lead time"
             }
         },
         "select": {
@@ -541,6 +577,15 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
+                }
+            },
+            "display_brightness": {
+                "name": "Display brightness",
+                "state": {
+                    "off": "Off",
+                    "dim": "Dim",
+                    "bright": "Bright",
+                    "auto": "Auto"
                 }
             },
             "heat_pump_mode": {
@@ -685,6 +730,13 @@
                     "twinkle": "Twinkle",
                     "gaming": "Gaming",
                     "none": "None"
+                }
+            },
+            "seconds_dot": {
+                "name": "Seconds dot",
+                "state": {
+                    "static": "Static",
+                    "blinking": "Blinking"
                 }
             },
             "timer": {
@@ -982,6 +1034,60 @@
                     "red_bean_bread": "Red Bean Bread",
                     "milk_toast": "Milk Toast"
                 }
+            },
+            "alarm_x_repeat": {
+                "name": "Alarm {x} repeat",
+                "state": {
+                    "once": "Once",
+                    "weekdays": "Weekdays",
+                    "weekends": "Weekends",
+                    "every_day": "Every day"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} snooze action",
+                "state": {
+                    "mute": "Mute",
+                    "mute_light": "Mute + light",
+                    "light_only": "Light only"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} sound effect",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fade in",
+                    "fade_out": "Fade out"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} wake light mode",
+                "state": {
+                    "no_light": "No light",
+                    "rainbow": "Rainbow",
+                    "candle_flicker": "Candle flicker",
+                    "romantic_breath": "Romantic breath",
+                    "quiet_deep_sea": "Quiet deep sea",
+                    "flowing_colors": "Flowing colors",
+                    "magic_jungle": "Magic jungle",
+                    "perfect_party": "Perfect party",
+                    "sunrise_at_sea": "Sunrise at sea",
+                    "dynamic_music": "Dynamic music"
+                }
+            },
+            "alarm_x_wake_sound": {
+                "name": "Alarm {x} wake sound",
+                "state": {
+                    "none": "None",
+                    "birds": "Birds",
+                    "sea": "Sea",
+                    "valley": "Valley",
+                    "piano": "Piano",
+                    "soft": "Soft",
+                    "phone": "Phone",
+                    "beep": "Beep",
+                    "radio": "Radio"
+                }
             }
         },
         "sensor": {
@@ -1005,6 +1111,15 @@
                     "poor": "Poor",
                     "severe": "Severe",
                     "danger": "Danger"
+                }
+            },
+            "light_status": {
+                "name": "Light status",
+                "state": {
+                    "all_off": "All off",
+                    "night_on": "Night light on",
+                    "color_on": "Color light on",
+                    "ambient_on": "Ambient light on"
                 }
             },
             "status": {
@@ -1159,9 +1274,45 @@
             },
             "days_stored": {
                 "name": "Days stored"
+            },
+            "wireless_charging": {
+                "name": "Wireless charging status",
+                "state": {
+                    "idle": "Idle",
+                    "charging": "Charging",
+                    "full": "Full",
+                    "foreign_object_detected": "Foreign object detected"
+                }
             }
         },
         "switch": {
+            "alarm_x_enabled": {
+                "name": "Alarm {x} enabled"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} snooze enabled"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} Day 1-Monday"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} Day 2-Tuesday"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} Day 3-Wednesday"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} Day 4-Thursday"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} Day 5-Friday"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} Day 6-Saturday"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} Day 7-Sunday"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1193,8 +1344,20 @@
             "keytone": {
                 "name": "Keytone"
             },
+            "music_playback": {
+                "name": "Music playback"
+            },
+            "network_time": {
+                "name": "Network time sync"
+            },
+            "night_mode": {
+                "name": "Night mode"
+            },
             "outlet_x": {
                 "name": "Outlet {x}"
+            },
+            "radio": {
+                "name": "Radio"
             },
             "sleep": {
                 "name": "Sleep"
@@ -1204,6 +1367,9 @@
             },
             "switch_x": {
                 "name": "Switch {x}"
+            },
+            "time_24h": {
+                "name": "24 hour display"
             },
             "uv_sterilization": {
                 "name": "UV sterilization"
@@ -1236,6 +1402,12 @@
             }
         },
         "time": {
+            "alarm_x_time": {
+                "name": "Alarm {x} time"
+            },
+            "clock_time": {
+                "name": "Clock time"
+            },
             "reservation_time": {
                 "name": "Reservation time"
             },
