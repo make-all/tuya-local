@@ -1336,3 +1336,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gearhead765](https://github.com/gearhead765) for assisting with support for Inkbird C236T thermostat.
 - [snicker](https://github.com/snicker) for contributing support for Nutromo SH014 space heater
 - [thetallbloke](https://github.com/thetallbloke) for contributing support for Hunter Pacific 6 speed fan and light controller.
+- [kriskomp](https://github.com/kriskomp) for contributing support for Feyree 4.3 wallbox EV charger.
