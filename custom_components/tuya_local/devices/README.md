@@ -706,7 +706,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
     If no `color_mode` dp is available, a single supported color mode will be
     calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
-   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
+   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable. If there is no (or read-only) switch and no brightness dp, then the "off" effect will be used to turn off the light, and a default option should be marked for turning on the light with no parameters.
 
 ### `lock`
 
