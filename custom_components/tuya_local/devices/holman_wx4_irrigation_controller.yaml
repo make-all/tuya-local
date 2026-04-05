@@ -1,0 +1,319 @@
+name: Irrigation controller
+products:
+  - id: 5jotr6jtclzapmik
+    manufacturer: Holman
+    model: WX4
+
+entities:
+  # Zone valves
+  - entity: valve
+    name: Zone 1
+    class: water
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Zone 2
+    class: water
+    dps:
+      - id: 155
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Zone 3
+    class: water
+    dps:
+      - id: 181
+        type: boolean
+        name: valve
+
+  - entity: valve
+    name: Zone 4
+    class: water
+    dps:
+      - id: 182
+        type: boolean
+        name: valve
+
+  # Manual run timers (0-60 min) per zone
+  # Note: timer DPs for zones 3 and 4 not yet confirmed
+  - entity: number
+    name: Manual timer 1
+    class: duration
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+
+  - entity: number
+    name: Manual timer 2
+    class: duration
+    category: config
+    dps:
+      - id: 154
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+
+  # Last water flow per zone (raw value ÷ 10 = litres)
+  - entity: sensor
+    name: Last water flow 1
+    class: water
+    category: diagnostic
+    icon: mdi:water
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        readonly: true
+        unit: L
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Last water flow 2
+    class: water
+    category: diagnostic
+    icon: mdi:water
+    dps:
+      - id: 152
+        name: sensor
+        type: integer
+        readonly: true
+        unit: L
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Last water flow 3
+    class: water
+    category: diagnostic
+    icon: mdi:water
+    dps:
+      - id: 183
+        name: sensor
+        type: integer
+        readonly: true
+        unit: L
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Last water flow 4
+    class: water
+    category: diagnostic
+    icon: mdi:water
+    dps:
+      - id: 184
+        name: sensor
+        type: integer
+        readonly: true
+        unit: L
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+
+  # Last runtime per zone (seconds)
+  # Note: runtime DPs for zones 3 and 4 not yet confirmed
+  - entity: sensor
+    name: Last runtime 1
+    class: duration
+    category: diagnostic
+    icon: mdi:timer
+    dps:
+      - id: 193
+        type: integer
+        name: sensor
+        readonly: true
+        optional: true
+        unit: s
+
+  - entity: sensor
+    name: Last runtime 2
+    class: duration
+    category: diagnostic
+    icon: mdi:timer
+    dps:
+      - id: 194
+        type: integer
+        name: sensor
+        readonly: true
+        optional: true
+        unit: s
+
+  # Battery and alarm
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        readonly: true
+        unit: "%"
+
+  - entity: sensor
+    name: Alarm status
+    category: diagnostic
+    icon: mdi:alert-circle
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+        readonly: true
+
+  # Physical add-on sensor presence (hidden when not fitted)
+  - entity: binary_sensor
+    name: T&H soil sensor present 1
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 115
+        name: sensor
+        type: boolean
+        readonly: true
+        optional: true
+
+  - entity: binary_sensor
+    name: Rain sensor present 1
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 117
+        name: sensor
+        type: boolean
+        readonly: true
+        optional: true
+
+  - entity: binary_sensor
+    name: T&H soil sensor power OK 1
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 125
+        name: sensor
+        type: boolean
+        readonly: true
+        optional: true
+
+  - entity: binary_sensor
+    name: T&H soil sensor present 2
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 161
+        name: sensor
+        type: boolean
+        readonly: true
+        optional: true
+
+  - entity: binary_sensor
+    name: Soil sensor power OK 2
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 162
+        name: sensor
+        type: boolean
+        readonly: true
+        optional: true
+
+  # Units and time format (optional - not confirmed on all firmware)
+  - entity: select
+    name: Units
+    category: config
+    dps:
+      - id: 119
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: l/C
+          - dps_val: "2"
+            value: gal/F
+
+  - entity: select
+    name: Time format
+    category: config
+    dps:
+      - id: 114
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "12"
+            value: 12H
+          - dps_val: "24"
+            value: 24H
+
+  # Raw data DPs for advanced HA template use.
+  # DP 172: zone timer sync blob - decoded in HA to keep manual
+  #         timer sliders in sync when changed via the Tuya app.
+  # DP 173: live countdown blob - decoded in HA templates to show
+  #         remaining watering time per zone.
+  # DP 175: rain delay blob - encoded/decoded in HA to expose an
+  #         Off / 24h / 48h / 72h rain delay selector.
+  # DP 176: master scheduling blob - not decoded; device scheduling
+  #         is replaced by HA automations for greater flexibility.
+  - entity: text
+    name: Zone Timers Raw Data
+    icon: mdi:code-brackets
+    category: config
+    dps:
+      - id: 172
+        type: string
+        name: value
+        optional: true
+
+  - entity: sensor
+    name: Timer setting 1 encoded
+    category: diagnostic
+    dps:
+      - id: 173
+        name: sensor
+        type: base64
+        readonly: true
+        optional: true
+
+  - entity: text
+    name: Rain Delay Raw Data
+    icon: mdi:weather-pouring
+    category: config
+    dps:
+      - id: 175
+        type: string
+        name: value
+        optional: true
+
+  - entity: sensor
+    name: Timestamp or schedule encoded
+    category: diagnostic
+    dps:
+      - id: 176
+        name: sensor
+        type: base64
+        readonly: true
+        optional: true
