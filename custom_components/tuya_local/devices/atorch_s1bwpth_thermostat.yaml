@@ -354,12 +354,14 @@ entities:
     mode: box
     dps:
       - id: 130
-        type: float
+        type: integer
         name: value
         unit: s
         range:
           min: 0
-          max: 20
+          max: 200
+        mapping:
+          - scale: 10
 
   - entity: number
     name: Low-voltage protection
