@@ -1,4 +1,4 @@
-name: Garen garage door controller
+name: Garage door
 products:
   - id: y07fcukpjhg0yj5g
     manufacturer: Garen
@@ -6,6 +6,7 @@ products:
 entities:
   - entity: button
     name: Open
+    icon: "mdi:garage-open"
     dps:
       - id: 101
         type: boolean
@@ -13,6 +14,7 @@ entities:
 
   - entity: button
     name: Stop
+    icon: "mdi:stop"
     dps:
       - id: 102
         type: boolean
@@ -20,13 +22,13 @@ entities:
 
   - entity: button
     name: Close
+    icon: "mdi:garage"
     dps:
       - id: 103
         type: boolean
         name: button
 
   - entity: lock
-    name: Lock
     category: config
     dps:
       - id: 106
@@ -35,6 +37,7 @@ entities:
 
   - entity: select
     name: Auto-close timer
+    translation_key: timer
     category: config
     dps:
       - id: 109
@@ -42,10 +45,10 @@ entities:
         name: option
         mapping:
           - dps_val: "OFF"
-            value: "Off"
+            value: "cancel"
           - dps_val: "5s"
-            value: "5 seconds"
+            value: "5s"
           - dps_val: "20s"
-            value: "20 seconds"
+            value: "20s"
           - dps_val: "60s"
-            value: "60 seconds"
+            value: "1m"
