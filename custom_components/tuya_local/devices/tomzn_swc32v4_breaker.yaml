@@ -1,0 +1,190 @@
+name: Breaker SWC32v4
+products:
+  - id: sh45wydgedautxda
+    manufacturer: TOMZN
+    model: SWC32v4
+
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+
+  #Phase A
+  - entity: sensor
+    name: Phase A Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Phase A Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Phase A Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  #Phase B
+  - entity: sensor
+    name: Phase B Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Phase B Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Phase B Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  #Phase C
+  - entity: sensor
+    name: Phase C Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Phase C Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: Phase C Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  #Rest of the sensors
+  - entity: sensor
+    name: Leakage Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        unit: mA
+        name: sensor
+
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        unit: C
+        name: sensor
+        mapping:
+          - scale: 10

@@ -1543,6 +1543,16 @@ TOMPD63LW_SOCKET_PAYLOAD = {
     # "106": False,
 }
 
+TOMZN_SWC32V4_BREAKER_PAYLOAD = {
+    "1": 123450,
+    "6": "CPwAFGEAAu4=",
+    "7": "CPwAFGEAAu4=",
+    "8": "CPwAFGEAAu4=",
+    "15": 15,
+    "16": True,
+    "102": 235,
+}
+
 GOLDAIR_GPDH340_PAYLOAD = {
     "1": True,
     "2": "2",
