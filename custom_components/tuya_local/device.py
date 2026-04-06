@@ -149,6 +149,7 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
         self._CACHE_TIMEOUT = 30
+        self._HEARTBEAT_INTERVAL = 10
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
@@ -315,6 +316,7 @@ class TuyaLocalDevice(object):
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
+            last_heartbeat = self._cached_state.get("updated_at", 0)
             try:
                 await self._api_lock.acquire()
                 last_cache = self._cached_state.get("updated_at", 0)
@@ -355,11 +357,15 @@ class TuyaLocalDevice(object):
                         dps_updated = False
                         full_poll = True
                     self._last_full_poll = now
+                    last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    await self._hass.async_add_executor_job(
-                        self._api.heartbeat,
-                        True,
-                    )
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
+                        await self._hass.async_add_executor_job(
+                            self._api.heartbeat,
+                            True,
+                        )
+                        last_heartbeat = now
+
                     poll = await self._hass.async_add_executor_job(
                         self._api.receive,
                     )

@@ -99,10 +99,12 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""
+        _LOGGER.info("%s turning on", self._config.config_id)
         await self._switch_dp.async_set_value(self._device, True)
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
+        _LOGGER.info("%s turning off", self._config.config_id)
         await self._switch_dp.async_set_value(self._device, False)
 
     @property
@@ -137,7 +139,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
     async def async_set_humidity(self, humidity):
         if self._humidity_dp is None:
             raise NotImplementedError()
-
+        _LOGGER.info("%s setting humidity to %s", self._config.config_id, humidity)
         await self._humidity_dp.async_set_value(self._device, humidity)
 
     @property
@@ -157,4 +159,5 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         """Set the preset mode."""
         if self._mode_dp is None:
             raise NotImplementedError()
+        _LOGGER.info("%s setting mode to %s", self._config.config_id, mode)
         await self._mode_dp.async_set_value(self._device, mode)
