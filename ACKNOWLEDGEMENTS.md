@@ -1340,4 +1340,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sschwieb](https://github.com/sschwieb) for contributing support for Milano ceiling fan.
 - [bitswype](https://github.com/bitswype) for contributing support for TyleHelo SaunaLogic2 sauna controller.
 - [edpenz](https://github.com/edpenz) for contributing bug fixes for the remote entity.
-- [rezendeneto](https://github.com/rezendeneto) for contributing support for Garen Kit Central garage door controller.
+- [rezendeneto](https://github.com/rezendeneto) for contributing support for Garen Kit Central garage door controller, ATorch S1BWP-T/H thermostat smartplug.
