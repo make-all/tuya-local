@@ -1,0 +1,136 @@
+name: Steam Room
+products:
+  - id: pjh7lsqhyn86almn
+    manufacturer: Sanjun
+    model: Steam Room
+entities:
+  - entity: climate
+    name: Steam Room
+    dps:
+      - id: 104
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 102
+        type: integer
+        name: temperature
+        range:
+          min: 25
+          max: 68
+      - id: 112
+        type: integer
+        name: current_temperature
+        readonly: true
+      - id: 113
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+  - entity: switch
+    name: Power
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    name: Light
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: light
+    name: Colour Lamp
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+      - id: 107
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "00"
+            value: Rainbow
+          - dps_val: "01"
+            value: Red
+          - dps_val: "02"
+            value: Yellow
+          - dps_val: "03"
+            value: Green
+          - dps_val: "04"
+            value: Cyan
+          - dps_val: "05"
+            value: Blue
+          - dps_val: "06"
+            value: Purple
+          - dps_val: "07"
+            value: White
+  - entity: switch
+    name: Aromatherapy
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wash / Rinse
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+  - entity: button
+    name: RTC Sync
+    icon: "mdi:timer-sync-outline"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Countdown Timer
+    category: diagnostic
+    dps:
+      - id: 103
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Schedule / Timing
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Steam Time Count
+    category: diagnostic
+    dps:
+      - id: 115
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Time / Temperature Range
+    category: diagnostic
+    dps:
+      - id: 116
+        type: base64
+        name: sensor
+        optional: true
