@@ -68,7 +68,8 @@ entities:
         name: calibration
         optional: true
 
-  # DP 19 — Instantaneous power (W, Tuya scale=1 → raw/10 → tuya-local scale: 10)
+  # DP 19 — Instantaneous power
+  # (W, Tuya scale=1 → raw/10 → tuya-local scale: 10)
   # DP 24 (power_coe) attached as calibration
   - entity: sensor
     category: diagnostic
@@ -86,7 +87,8 @@ entities:
         name: calibration
         optional: true
 
-  # DP 20 — Instantaneous voltage (V, Tuya scale=1 → raw/10 → tuya-local scale: 10)
+  # DP 20 — Instantaneous voltage
+  # (V, Tuya scale=1 → raw/10 → tuya-local scale: 10)
   # DP 22 (voltage_coe) attached as calibration
   - entity: sensor
     category: diagnostic
