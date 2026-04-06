@@ -215,7 +215,7 @@ entities:
         type: boolean
         name: switch
   - entity: event
-    name: Alarm
+    translation_key: alarm
     dps:
       - id: 185
         type: base64
@@ -295,9 +295,8 @@ entities:
           - dps_val: "0"
             value: true
   - entity: text
-    name: Schedule
+    translation_key: schedule
     category: config
-    icon: "mdi:calendar-clock"
     hidden: true
     dps:
       - id: 233
