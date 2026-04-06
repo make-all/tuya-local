@@ -1,7 +1,7 @@
 name: Temperature controller
 products:
   - id: 3kw82iy6w4udblee
-    manufacturer: ATORCH
+    manufacturer: ATorch
     model: S1BWP-T/H
 
 entities:
@@ -209,6 +209,11 @@ entities:
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 127
+        type: integer
+        name: historical
+        mapping:
+          - scale: 100
 
   - entity: number
     name: Electricity price
@@ -224,7 +229,7 @@ entities:
           - scale: 100
 
   - entity: number
-    name: Over-voltage protection
+    name: High voltage limit
     class: voltage
     category: config
     dps:
@@ -239,7 +244,7 @@ entities:
           - scale: 10
 
   - entity: number
-    name: Over-current protection
+    name: Current limit
     class: current
     category: config
     dps:
@@ -254,7 +259,7 @@ entities:
           - scale: 100
 
   - entity: number
-    name: Over-power protection
+    name: Power limit
     class: power
     category: config
     dps:
@@ -313,42 +318,32 @@ entities:
           - scale: 1000
 
   - entity: binary_sensor
-    name: Temperature sensor
+    name: Temperature
     class: problem
     dps:
       - id: 126
         type: boolean
         name: sensor
 
-  - entity: sensor
-    name: Historical energy
-    dps:
-      - id: 127
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
-
   - entity: switch
-    name: Over-limit disconnect
+    name: Over limit breaker
     category: config
     dps:
       - id: 128
         type: boolean
         name: switch
 
-  - entity: switch
-    name: Real-time refresh
+  - entity: button
+    name: Refresh
+    icon: "mdi:refresh"
     category: config
     dps:
       - id: 129
         type: boolean
-        name: switch
+        name: button
 
   - entity: number
-    name: Over-limit disconnect delay
+    name: Over limit breaker delay
     class: duration
     category: config
     mode: box
@@ -364,7 +359,7 @@ entities:
           - scale: 10
 
   - entity: number
-    name: Low-voltage protection
+    name: Low voltage limit
     class: voltage
     category: config
     dps:
@@ -379,7 +374,7 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Recovery countdown
+    name: Auto reset countdown
     class: duration
     category: config
     dps:
@@ -422,7 +417,7 @@ entities:
             value: Relay error
 
   - entity: number
-    name: Over-limit recovery time
+    name: Auto reset time
     class: duration
     category: config
     mode: box
