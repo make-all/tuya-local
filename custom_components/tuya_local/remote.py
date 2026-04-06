@@ -399,7 +399,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             persistent_notification.async_dismiss(
                 self._device._hass, notification_id="learn_command"
             )
-            _LOGGER("%s ending learning mode", self._config.config_id)
+            _LOGGER.debug("%s ending learning mode", self._config.config_id)
             if self._control_dp:
                 await self._control_dp.async_set_value(
                     self._device,
