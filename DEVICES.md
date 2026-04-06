@@ -108,7 +108,7 @@
 - Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
-- Costway portable air conditioner
+- Costway portable air conditioner models with and without heating
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
 - Della air conditioner
