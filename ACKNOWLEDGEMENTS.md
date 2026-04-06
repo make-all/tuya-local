@@ -1339,3 +1339,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kriskomp](https://github.com/kriskomp) for contributing support for Feyree 4.3 wallbox EV charger.
 - [sschwieb](https://github.com/sschwieb) for contributing support for Milano ceiling fan.
 - [bitswype](https://github.com/bitswype) for contributing support for TyleHelo SaunaLogic2 sauna controller.
+- [edpenz](https://github.com/edpenz) for contributing bug fixes for the remote entity.
