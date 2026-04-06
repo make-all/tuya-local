@@ -1331,3 +1331,13 @@ Further device support has been made with the assistance of users. Please consid
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
 - [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
 - [giggiu16](https://github.com/giggiu16) for contributing support for YET YET6956WTR-B RF 4 button controller.
+- [TomPenrose](https://github.com/TomPenrose) for contributing support for Shuangri SR223 solar water heating controller.
+- [martinmain](https://github.com/martinmain) for assisting with support for Zitech Basic 3.0 sliding door controller.
+- [gearhead765](https://github.com/gearhead765) for assisting with support for Inkbird C236T thermostat.
+- [snicker](https://github.com/snicker) for contributing support for Nutromo SH014 space heater
+- [thetallbloke](https://github.com/thetallbloke) for contributing support for Hunter Pacific 6 speed fan and light controller.
+- [kriskomp](https://github.com/kriskomp) for contributing support for Feyree 4.3 wallbox EV charger.
+- [sschwieb](https://github.com/sschwieb) for contributing support for Milano ceiling fan.
+- [bitswype](https://github.com/bitswype) for contributing support for TyleHelo SaunaLogic2 sauna controller.
+- [edpenz](https://github.com/edpenz) for contributing bug fixes for the remote entity.
+- [rezendeneto](https://github.com/rezendeneto) for contributing support for Garen Kit Central garage door controller, ATorch S1BWP-T/H thermostat smartplug.

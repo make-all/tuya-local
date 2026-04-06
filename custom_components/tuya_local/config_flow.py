@@ -53,7 +53,7 @@ DEVICE_DETAILS_URL = (
 
 class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 17
+    MINOR_VERSION = 18
     CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}

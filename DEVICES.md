@@ -65,6 +65,7 @@
 - Modern Flames Orion electric fireplace
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
+- Nutromo SH014 space heater
 - Nybro heater
 - Orbegozo RRW heater
 - Orion OWH-PTC2000 heater
@@ -85,6 +86,7 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
+- TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -219,6 +221,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
+- Shuangri SR223 solar water heating controller 
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermann R290 heat pump water heater
@@ -230,7 +233,7 @@
 - 4-TH quad temperature/humidity smart switch
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
-- Atorch S1TW thermostat smart switch
+- Atorch S1TW, S1BWP-T/H thermostat smart switches
 - Avatto ME81, WS20R and WT100 thermostats
 - Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
@@ -265,7 +268,7 @@
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
-- Inkbird ITC306A, ITC308 thermostat smartplugs
+- Inkbird ITC306A, ITC308, C236T thermostat smartplugs
 - Jiahong ET-44W thermostat (also sold under the TheroLife brand)
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
@@ -361,7 +364,7 @@
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
-- Hunter Pacific 9 speed ceiling fan with light
+- Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Inkbird IVC001W fan controller
@@ -383,6 +386,7 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
@@ -937,7 +941,7 @@ of device.
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
-- Garen TSI Fit garage door opener
+- Garen TSI Fit and Kit Central garage door openers
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
@@ -966,6 +970,7 @@ of device.
 - Zemismart AM25 roller blinds
 - Zemismart curtain rail
 - Zemismart roller shade
+- Zitech Basic 3.0 sliding door controller
 
 ### Robot vacuums
 
