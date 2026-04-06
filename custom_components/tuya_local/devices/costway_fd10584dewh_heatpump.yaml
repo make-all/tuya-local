@@ -1,0 +1,116 @@
+name: Portable air conditioner
+products:
+  - id: 4vtaekm8epj9cdlu
+    manufacturer: Costway
+    model: FD10584DE-WH
+
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "cold"
+                value: cool
+              - dps_val: "hot"
+                value: heat
+              - dps_val: "auto"
+                value: auto
+              - dps_val: "wet"
+                value: dry
+              - dps_val: "wind"
+                value: fan_only
+
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 17
+          max: 30
+        unit: C
+
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: vertical
+          - dps_val: false
+            value: "off"
+
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: boolean
+
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 105
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 7200
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: string
