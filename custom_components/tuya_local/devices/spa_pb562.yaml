@@ -1,0 +1,105 @@
+name: Spa PB562 Complete
+products:
+  - id: jbxvi3pbxjjlmec2
+
+entities:
+  # --- THERMOSTAT ---
+  - entity: climate
+    name: Thermostat
+    dps:
+      - id: 3
+        type: integer
+        name: temperature
+        range:
+          min: 15
+          max: 40
+      - id: 24
+        type: integer
+        name: current_temperature
+
+  # --- POMPES & LUMIÈRES ---
+  - entity: switch
+    name: Pompe Jets
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Blower
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+
+  - entity: light
+    name: Lumières
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+
+  # --- HORAIRES CHAUFFAGE (MINUTES) ---
+  - entity: number
+    name: Chauffage Début
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440
+        step: 30
+
+  - entity: number
+    name: Chauffage Fin
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440
+        step: 30
+
+  # --- HORAIRES FILTRATION (MINUTES) ---
+  - entity: number
+    name: Filtration Début
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440
+        step: 30
+
+  - entity: number
+    name: Filtration Fin
+    dps:
+      - id: 138
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440
+        step: 30
+
+  # --- CAPTEURS ---
+  - entity: sensor
+    name: Consommation
+    class: power
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: sensor
+    name: Tension
+    class: voltage
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
