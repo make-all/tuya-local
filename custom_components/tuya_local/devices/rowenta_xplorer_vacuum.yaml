@@ -1,0 +1,467 @@
+name: X-plorer 75S
+products:
+  - id: bf6195cb4951e1c6b6s9gz
+    manufacturer: Rowenta
+    model: X-plorer 75S
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: false
+                value: false
+                hidden: true
+              - dps_val: null
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: false
+                value: true
+              - dps_val: true
+                value: true
+                hidden: true
+              - dps_val: null
+                value: true
+                hidden: true
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        type: boolean
+        optional: true
+        name: pause
+        hidden: true
+
+      - id: 4
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: wallfollow
+          - dps_val: selectroom
+            value: selectroom
+      - id: 5
+        type: string
+        name: status
+        readonly: true
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: Low
+          - dps_val: normal
+            value: Medium
+          - dps_val: strong
+            value: High
+          - dps_val: max
+            value: Max
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: foward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 14
+        type: string
+        optional: true
+        name: path_data
+      - id: 15
+        type: string
+        optional: true
+        name: command_trans
+      - id: 32
+        type: string
+        optional: true
+        name: device_timer
+      - id: 33
+        type: string
+        optional: true
+        name: disturb_time_set
+      - id: 35
+        type: string
+        optional: true
+        name: voice_data
+
+  - entity: button
+    name: Charge
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: button
+        
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: select
+    name: Fetch request
+    icon: "mdi:message-question"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: sensor
+    name: Edge brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rolling brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Total cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Total cleaning times
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+          - dps_val: french
+            value: french
+          - dps_val: spanish
+            value: spanish
+          - dps_val: portuguese
+            value: portuguese
+
+  - entity: select
+    category: config
+    dps:
+      - id: 101
+        optional: true
+        type: string
+        name: smart_rooms_unseen
+        mapping:
+          - dps_val: cur_rooms
+            value: cur_rooms
+          - dps_val: edit_rooms
+            value: edit_rooms
+          - dps_val: segment
+            value: segment 
+          - dps_val: clear_rooms
+            value: clear_rooms
+          - dps_val: save_rooms
+            value: save_rooms
+
+  - entity: switch
+    category: config
+    name: "Apply room settings"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: "Partition error status prompt"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        name: sensor
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      - id: 28
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: ""
+          - dps_val: 2
+            value: left_wheel_air          
+          - dps_val: 4
+            value: middle_sweep_stuck
+          - dps_val: 8
+            value: right_wheel_air
+          - dps_val: 16
+            value: left_wheel_stuck 
+          - dps_val: 32
+            value: right_wheel_stuck
+          - dps_val: 64
+            value: fall_sensor
+          - dps_val: 128
+            value: edge_sweep
+          - dps_val: 256
+            value: ""
+          - dps_val: 512
+            value: collision
+          - dps_val: 1024
+            value: garbage_box
+          - dps_val: 2048
+            value: ""
+          - dps_val: 4096
+            value: land_check
+          - dps_val: 8192
+            value: Reserved
+          - dps_val: 16384
+            value: Reserved
+          - dps_val: 32768
+            value: vacuum_motor_stuck
+          - dps_val: 65536
+            value: Excessive current
+          - dps_val: 131072
+            value: Charging base closed
+          - dps_val: 262144
+            value: Error 6
+          - dps_val: 524288
+            value: machine_stuck
+          - dps_val: 1048576
+            value: machine_stuck_2
+          - dps_val: 2097152
+            value: laser_head_cover_stuck
+          - dps_val: 4194304
+            value: laser_head_cover_stuck_2
+          - dps_val: 8388608
+            value: wall_sensor_blocked
+          - dps_val: 16777216
+            value: area_setting
+          - dps_val: 33554432
+            value: charge_fail
+          - dps_val: 67108864
+            value: pick_up
+          - dps_val: 134217728
+            value: ""
+          - dps_val: 268435456
+            value: "power_switch"
+          - dps_val: 53687091
+            value: ""
