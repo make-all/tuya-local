@@ -558,6 +558,3 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             await self._effect_dps.async_set_value(self._device, "off")
         else:
             raise NotImplementedError()
-
-    async def async_toggle(self):
-        await (self.async_turn_off() if self.is_on else self.async_turn_on())
