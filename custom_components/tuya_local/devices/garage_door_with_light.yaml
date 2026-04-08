@@ -1,0 +1,39 @@
+name: Garage door with light
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 101
+        type: string
+        name: control
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 102
+        type: integer
+        name: current_position
+        range:
+          min: 0
+          max: 100
+      - id: 107
+        type: string
+        name: action
+        mapping:
+          - dps_val: opened
+            value: open
+          - dps_val: closed
+            value: closed
+          - dps_val: opening
+            value: opening
+          - dps_val: closing
+            value: closing
+
+  - entity: light
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
