@@ -5,7 +5,7 @@ products:
 entities:
   # --- THERMOSTAT ---
   - entity: climate
-    name: Thermostat
+    translation_key: thermostat
     dps:
       - id: 3
         type: integer
@@ -17,9 +17,9 @@ entities:
         type: integer
         name: current_temperature
 
-  # --- POMPES & LUMIÈRES ---
+  # --- PUMPS & LIGHTS ---
   - entity: switch
-    name: Pompe Jets
+    name: Jet pump
     dps:
       - id: 104
         type: boolean
@@ -33,15 +33,15 @@ entities:
         name: switch
 
   - entity: light
-    name: Lumières
+    name: Lights
     dps:
       - id: 123
         type: boolean
         name: switch
 
-  # --- HORAIRES CHAUFFAGE (MINUTES) ---
+  # --- HEATING SCHEDULE (MINUTES) ---
   - entity: number
-    name: Chauffage Début
+    name: Heating start
     dps:
       - id: 127
         type: integer
@@ -51,7 +51,7 @@ entities:
           max: 1440
 
   - entity: number
-    name: Chauffage Fin
+    name: Heating end
     dps:
       - id: 128
         type: integer
@@ -60,9 +60,9 @@ entities:
           min: 0
           max: 1440
 
-  # --- HORAIRES FILTRATION (MINUTES) ---
+  # --- FILTRATION SCHEDULE (MINUTES) ---
   - entity: number
-    name: Filtration Début
+    name: Filtration start
     dps:
       - id: 137
         type: integer
@@ -72,7 +72,7 @@ entities:
           max: 1440
 
   - entity: number
-    name: Filtration Fin
+    name: Filtration end
     dps:
       - id: 138
         type: integer
@@ -81,9 +81,9 @@ entities:
           min: 0
           max: 1440
 
-  # --- CAPTEURS ---
+  # --- SENSORS ---
   - entity: sensor
-    name: Consommation
+    name: Power
     class: power
     dps:
       - id: 102
@@ -92,7 +92,7 @@ entities:
         unit: W
 
   - entity: sensor
-    name: Tension
+    name: Voltage
     class: voltage
     dps:
       - id: 101
