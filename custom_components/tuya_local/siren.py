@@ -2,6 +2,8 @@
 Setup for Tuya siren devices
 """
 
+import logging
+
 from homeassistant.components.siren import SirenEntity, SirenEntityFeature
 from homeassistant.components.siren.const import (
     ATTR_DURATION,
@@ -13,6 +15,8 @@ from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -88,12 +92,14 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
                     tone = self._default_tone
 
             if tone is not None:
+                _LOGGER.info("%s sending tone %s", self._config.config_id, tone)
                 set_dps = {
                     **set_dps,
                     **self._tone_dp.get_values_to_set(self._device, tone, set_dps),
                 }
 
         if duration is not None and self._duration_dp:
+            _LOGGER.info("%s setting duration to %s", self._config.config_id, duration)
             set_dps = {
                 **set_dps,
                 **self._duration_dp.get_values_to_set(self._device, duration, set_dps),
@@ -110,12 +116,14 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
                     key=lambda x: abs(x - volume),
                 )
 
+            _LOGGER.info("%s setting volume to %s", self._config.config_id, volume)
             set_dps = {
                 **set_dps,
                 **self._volume_dp.get_values_to_set(self._device, volume, set_dps),
             }
 
         if self._switch_dp and not self.is_on:
+            _LOGGER.info("%s turning on siren", self._config.config_id)
             set_dps = {
                 **set_dps,
                 **self._switch_dp.get_values_to_set(self._device, True, set_dps),
@@ -126,6 +134,8 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
     async def async_turn_off(self) -> None:
         """Turn off the siren"""
         if self._switch_dp:
+            _LOGGER.info("%s turning off siren", self._config.config_id)
             await self._switch_dp.async_set_value(self._device, False)
         elif self._tone_dp:
+            _LOGGER.info("%s setting siren tone to off", self._config.config_id)
             await self._tone_dp.async_set_value(self._device, "off")

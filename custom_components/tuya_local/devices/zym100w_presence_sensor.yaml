@@ -2,6 +2,8 @@ name: mmWave presence sensor
 products:
   - id: 4cjzlliucdjaanvl
     model: ZY-M100-WIFI24G
+  - id: j5tnwuyrqc2oaupd
+    model: ZY-M100-24G-WIFI
 entities:
   - entity: binary_sensor
     class: motion
@@ -32,6 +34,7 @@ entities:
     dps:
       - id: 3
         type: integer
+        optional: true
         name: value
         unit: m
         range:
@@ -47,6 +50,7 @@ entities:
     dps:
       - id: 4
         type: integer
+        optional: true
         name: value
         unit: m
         range:
@@ -82,6 +86,7 @@ entities:
     dps:
       - id: 103
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
@@ -105,11 +110,21 @@ entities:
     category: config
     class: duration
     icon: "mdi:camera-timer"
+    hidden: unavailable
     dps:
       - id: 105
         type: integer
+        optional: true
         name: value
         unit: s
         range:
           min: 5
           max: 15000
+      - id: 105
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

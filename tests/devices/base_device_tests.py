@@ -18,6 +18,7 @@ from custom_components.tuya_local.helpers.device_config import (
     possible_matches,
 )
 from custom_components.tuya_local.humidifier import TuyaLocalHumidifier
+from custom_components.tuya_local.infrared import TuyaLocalInfrared
 from custom_components.tuya_local.lawn_mower import TuyaLocalLawnMower
 from custom_components.tuya_local.light import TuyaLocalLight
 from custom_components.tuya_local.lock import TuyaLocalLock
@@ -44,6 +45,7 @@ DEVICE_TYPES = {
     "event": TuyaLocalEvent,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,
+    "infrared": TuyaLocalInfrared,
     "lawn_mower": TuyaLocalLawnMower,
     "light": TuyaLocalLight,
     "lock": TuyaLocalLock,

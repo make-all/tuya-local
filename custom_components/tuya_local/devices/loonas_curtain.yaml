@@ -16,6 +16,9 @@ products:
     manufacturer: Nordice
   - id: iznuapjmqurazh7m
     manufacturer: Emteco
+  - id: 4ha1598tkq4dh2yx
+    manufacturer: Dooya
+    model: DC1545V
 entities:
   - entity: cover
     class: curtain
@@ -49,10 +52,15 @@ entities:
           max: 100
         mapping:
           - invert: true
+      - id: 7
+        name: work_state
+        type: string
+        optional: true
   - entity: switch
     name: Reverse
     category: config
     icon: "mdi:arrow-u-down-left"
+    hidden: unavailable
     dps:
       - id: 5
         type: string
@@ -63,9 +71,14 @@ entities:
             value: true
           - dps_val: forward
             value: false
+      - id: 5
+        type: string
+        optional: true
+        name: available
+        mapping:
           - dps_val: null
             value: false
-            hidden: true
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic

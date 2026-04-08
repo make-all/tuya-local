@@ -1,0 +1,331 @@
+name: Galaxy projector
+products:
+  - id: hfvolspgnicmjhv2
+    manufacturer: V Jules.V
+    model: SK17
+entities:
+  - entity: switch
+    name: Main
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+  - entity: light
+    name: White
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 63
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: time
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 42
+        type: string
+        optional: true
+        name: value
+  - entity: light
+    name: Color
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 52
+        type: boolean
+        name: switch
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: light
+    translation_key: laser
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 53
+        type: boolean
+        name: switch
+      - id: 64
+        type: string
+        optional: true
+        name: effect
+        mapping:
+          - dps_val: "0"
+            value: Mode 1
+          - dps_val: "1"
+            value: Mode 2
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+  - entity: text
+    name: Star scene
+    category: config
+    icon: "mdi:creation"
+    hidden: true
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 65
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    name: Play
+    icon: "mdi:play"
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Previous
+    icon: "mdi:skip-previous"
+    dps:
+      - id: 67
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: previous
+            value: true
+  - entity: button
+    name: Next
+    icon: "mdi:skip-next"
+    dps:
+      - id: 67
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: next
+            value: true
+  - entity: number
+    translation_key: volume
+    dps:
+      - id: 68
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: time
+    translation_key: timer
+    name: Music timer
+    category: config
+    dps:
+      - id: 69
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: select
+    name: Playback mode
+    icon: "mdi:play-box-multiple"
+    dps:
+      - id: 70
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: order
+            value: Normal
+            icon: "mdi:shuffle-disabled"
+          - dps_val: repeat_one
+            value: Track repeat
+            icon: "mdi:repeat-once"
+          - dps_val: random
+            value: Random
+            icon: "mdi:shuffle-variant"
+  - entity: select
+    name: Source
+    icon: "mdi:import"
+    dps:
+      - id: 71
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: White noise
+          - dps_val: "1"
+            value: Bluetooth
+            icon: "mdi:bluetooth-audio"
+  - entity: select
+    name: Effect
+    icon: "mdi:surround-sound"
+    category: config
+    dps:
+      - id: 72
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: classical
+            value: Classical
+          - dps_val: jazz
+            value: Jazz
+          - dps_val: rock
+            value: Rock
+          - dps_val: electronic
+            value: Electronic
+          - dps_val: reverb
+            value: Reverb
+          - dps_val: vocal
+            value: Vocal
+          - dps_val: heavy_bass
+            value: Heavy bass
+          - dps_val: concert_hall
+            value: Concert hall
+          - dps_val: stereo
+            value: Wide stereo
+  - entity: number
+    name: Track
+    icon: "mdi:playlist-music"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Bluetooth
+    icon: "mdi:bluetooth"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: connect
+            value: Connect
+          - dps_val: disconnect
+            value: Disconnect
+  - entity: switch
+    name: Laser breathe
+    icon: "mdi:laser-pointer"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value_redirect: laser_on
+      - id: 53
+        type: boolean
+        name: laser_on
+        hidden: true
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Laser breathe speed
+    category: config
+    icon: "mdi:laser-pointer"
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        hidden: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 100
+  - entity: text
+    name: Alarm clock
+    category: config
+    icon: "mdi:alarm"
+    hidden: true
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: value

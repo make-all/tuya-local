@@ -1,0 +1,601 @@
+name: Timer thermostat
+products:
+  - id: ae6rmrnkqz7rjh66
+    manufacturer: Inkbird
+    model: C236T
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 103
+        type: integer
+        name: hvac_mode
+        mapping:
+          - dps_val: 0
+            constraint: mode
+            conditions:
+              - dps_val: true
+                value: cool
+              - dps_val: false
+                value: heat
+          - dps_val: 1
+            constraint: mode
+            conditions:
+              - dps_val: true
+                value: cool
+                hidden: true
+              - dps_val: false
+                value: heat
+                hidden: true
+          - dps_val: 3
+            value: "off"
+          - value: "off"
+            hidden: true
+      - id: 106
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: true
+            value: "F"
+          - dps_val: false
+            value: "C"
+      # Complex double redirection on temperature dps, since
+      # they depend both on heat/cool mode, and on whether
+      # the mode is thermostat or program
+      - id: 108
+        type: integer
+        name: target_temp_high
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: mode
+            conditions:
+              - dps_val: false
+                value_redirect: heat_temp_stop
+              - dps_val: true
+                value_redirect: cool_temp_start
+      - id: 107
+        type: integer
+        name: target_temp_low
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: mode
+            conditions:
+              - dps_val: false
+                value_redirect: heat_temp_start
+              - dps_val: true
+                value_redirect: cool_temp_stop
+      - id: 107
+        type: integer
+        name: heat_temp_start
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: 2
+                value_redirect: timer_heat_temp_start
+      - id: 108
+        type: integer
+        name: heat_temp_stop
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: 2
+                value_redirect: timer_heat_temp_stop
+      - id: 117
+        type: boolean
+        name: mode
+        hidden: true
+      - id: 134
+        type: integer
+        name: cool_temp_start
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: 2
+                value_redirect: timer_cool_temp_start
+
+      - id: 129
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 100
+
+      - id: 130
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "HEAT_ON"
+            value: "heating"
+          - dps_val: "COOL_ON"
+            value: "cooling"
+          - value: idle
+
+      - id: 135
+        type: integer
+        name: cool_temp_stop
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: 2
+                value_redirect: timer_cool_temp_stop
+
+      - id: 136
+        type: integer
+        name: timer_heat_temp_start
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 137
+        type: integer
+        name: timer_heat_temp_stop
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 138
+        type: integer
+        name: timer_cool_temp_start
+        hidden: true
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 139
+        type: integer
+        hidden: true
+        name: timer_cool_temp_stop
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 102
+        type: integer
+        name: guide
+
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: available  # only works when in manual mode
+        mapping:
+          - dps_val: 3
+            value: true
+          - value: false
+
+  - entity: switch
+    name: Timer start
+    icon: "mdi:timer-play"
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Mute alarm
+    icon: "mdi:volume-off"
+    dps:
+      - id: 148
+        type: boolean
+        name: button
+        optional: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "no"
+            value: false
+          - dps_val: ah_cl
+            value: false
+          - dps_val: al_cl
+            value: false
+          - value: true
+      - id: 131
+        type: string
+        name: description
+        mapping:
+          - dps_val: "no"
+            value: ok
+          - dps_val: er
+            value: Error
+          - dps_val: ah
+            value: High temperature
+          - dps_val: al
+            value: Low temperature
+          - dps_val: ah_cl
+            value: High temperature cleared
+          - dps_val: al_cl
+            value: Low temperature cleared
+      - id: 149
+        type: string
+        name: version
+        optional: true
+
+  # -----------------------------------------------------------
+  # CONFIGURATION PROPERTIES (Alarms, Delay, Calibration)
+  # -----------------------------------------------------------
+
+  # MODE SELECTIONS
+
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Thermostat
+          - dps_val: 1
+            value: Timer
+          - dps_val: 2
+            value: Program
+          - dps_val: 3
+            value: manual
+
+  - entity: select
+    name: Timer mode
+    category: config
+    icon: "mdi:knob"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Cyclic"
+          - dps_val: 1
+            value: "Countdown to on"
+          - dps_val: 2
+            value: "Countdown to off"
+          - dps_val: 3
+            value: "Countdown to toggle"
+      - id: 103
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+
+  - entity: select
+    name: Program mode
+    icon: "mdi:knob"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Cyclic thermostat"
+          - dps_val: 1
+            value: "Countdown to thermostat on"
+          - dps_val: 2
+            value: "Countdown to thermostat off"
+          - dps_val: 3
+            value: "Countdown to thermostat toggle"
+      - id: 103
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: lock
+
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+
+  - entity: number
+    name: High temp alarm limit
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 106
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: true
+            value: "F"
+          - dps_val: false
+            value: "C"
+
+  - entity: number
+    name: Low temp alarm limit
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: -4000
+          max: 21200
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 106
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: true
+            value: "F"
+          - dps_val: false
+            value: "C"
+
+  - entity: switch
+    name: High temperature alarm enable
+    category: config
+    icon: "mdi:alarm-light-outline"
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Low temperature alarm enable
+    category: config
+    icon: "mdi:alarm-light-outline"
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Compressor restart delay
+    category: config
+    icon: "mdi:timer-plus-outline"
+    mode: box
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+        unit: min
+
+  - entity: switch
+    name: Compressor delay bypass
+    category: config
+    icon: "mdi:timer-cancel-outline"
+    dps:
+      - id: 146
+        type: boolean
+        name: switch
+
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: -990
+          max: 990
+        mapping:
+          - scale: 100
+            step: 10
+      - id: 106
+        type: boolean
+        name: unit
+        mapping:
+          - dps_val: true
+            value: "F"
+          - dps_val: false
+            value: "C"
+
+  # MODE SPECIFIC TIMER SETTINGS P01-P08
+
+  # DP_121
+  #  p01_p08 Schedule parameters is a base64 encoded string
+  #  of 40 bytes comprising eight 5-byte blocks:
+  #
+  #  Byte 1: Mode ID (01 through 08)
+  #  Bytes 2 & 3: First time slot (HH:MM) (99:59)  ???decimal or hex???
+  #  Bytes 4 & 5: Second time slot (HH:MM) (99:59)
+  #
+  #  Hex value FF acts as a "not used" placeholder.
+  #
+  # Ex:
+  #   DP121 string: AQEAAAECAgD//wP//wMABAQAAAQFBQAABQYGAP//B///BwAICAAACA==
+  #       hex data: 0101000001 020200FFFF 03FFFF0300 0404000004 0505000005
+  #                 060600FFFF 07FFFF0700 0808000008
+  #
+  # Byte Breakdown
+  #     Hex Sequence     Mode ID    Start     Stop
+  #     01 01 00 00 01     01       01:00     00:01
+  #     02 02 00 FF FF     02       02:00      N/A
+  #     03 FF FF 03 00     03        N/A      03:00
+  #     04 04 00 00 04     04       04:00     00:04
+  #     05 05 00 00 05     05       05:00     00:05
+  #     06 06 00 FF FF     06       06:00      N/A
+  #     07 FF FF 07 00     07        N/A      07:00
+  #     08 08 00 00 08     08       08:00     00:08
+  #
+  # to write to DP121 you can only send a single 5-byte string at a time
+  # i.e. to change mode P06 timers to start at 66:06, you would send 064206ffff
+  # or BkIG//8=
+  # can't use time entity for these as it limits hours to 0-24
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        name: value
+
+  # -----------------------------------------------------------
+  # DIAGNOSTIC PROPERTIES
+  # -----------------------------------------------------------
+
+  - entity: button
+    name: Refresh
+    category: config
+    icon: "mdi:refresh"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+
+  # Not sure how to decipher this and HA does history anyway
+  # ex: AAABTQIsBUAV8wyW/nsBAQAA////////////  base64 encoded string
+  #     0000014d022c  0540 15f3  0c96fe7b01010000 ffffffffffffffffff
+  #
+  # bytes 0-5 ??? rarely change
+  # bytes 6-7 temperature in C X 100
+  # bytes 8-9 temperature in F X 100
+  # bytes 10-17 ??? rarely change
+  # bytes 18-26 padding?
+
+  - entity: sensor
+    name: Temperature history
+    category: diagnostic
+    icon: "mdi:history"
+    hidden: true
+    dps:
+      - id: 132
+        type: base64
+        name: sensor
+        optional: true
+
+  # Not sure how to decipher this.  Only a couple of bytes in the middle cycle.
+  - entity: sensor
+    name: Running time
+    category: diagnostic
+    icon: "mdi:timer-sand"
+    hidden: true
+    dps:
+      - id: 133
+        type: base64
+        name: sensor
+        optional: true
+
+  # Always "unknown"; used for mobile device app pop-ups
+  - entity: event
+    name: Alarm notification
+    icon: "mdi:message-alert"
+    dps:
+      - id: 145
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 145
+        type: utf16b64
+        name: message
+        optional: true
+
+  # Do we need this since we are not monitoring history (DP132)
+  - entity: button
+    name: Clear history logs
+    category: config
+    icon: "mdi:delete-clock"
+    hidden: true
+    dps:
+      - id: 147
+        type: boolean
+        name: button
+        optional: true

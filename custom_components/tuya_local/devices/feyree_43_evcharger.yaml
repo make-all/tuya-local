@@ -1,0 +1,373 @@
+name: EV wallbox
+products:
+  - id: zk1jkjhxqkfaaalp
+    manufacturer: Feyree
+    model: "4.3 22kW 3phase wallbox Socket Version"
+
+entities:
+
+  # --- STATUS ---
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_connet
+            value: available
+          - dps_val: connect
+            value: plugged_in
+          - dps_val: charing
+            value: charging
+          - dps_val: wait_rfid
+            value: waiting_for_authorization
+          - dps_val: finish
+            value: charged
+          - dps_val: wait_charing
+            value: waiting
+          - dps_val: error
+            value: fault
+
+  # --- BŁĘDY ---
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 10
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Leakage Error (err_leak)"
+          - dps_val: 2
+            value: "Control Pilot Error (err_cp)"
+          - dps_val: 4
+            value: "Temperature Error (err_temp)"
+          - dps_val: 8
+            value: "Phase A Under-voltage (warn_a_uvp)"
+          - dps_val: 16
+            value: "Phase B Under-voltage (warn_b_uvp)"
+          - dps_val: 32
+            value: "Phase C Under-voltage (warn_c_uvp)"
+          - dps_val: 64
+            value: "Phase A Over-voltage (err_a_ovp)"
+          - dps_val: 128
+            value: "Phase B Over-voltage (err_b_ovp)"
+          - dps_val: 256
+            value: "Phase C Over-voltage (err_c_ovp)"
+          - dps_val: 512
+            value: "Over Current Protection (err_ocp)"
+          - dps_val: 1024
+            value: "Over Temperature 10 (err_10)"
+          - dps_val: 2048
+            value: "Over Temperature 11 (err_11)"
+          - dps_val: 4096
+            value: "Emergency Stop Button (err_esb)"
+          - dps_val: 8192
+            value: "PE Check Warning (warn_pe_sck)"
+          - dps_val: 16384
+            value: "Leakage Check Error (err_leak_sck)"
+          - dps_val: 32768
+            value: "Protective Earth Error (err_pe)"
+
+  # --- ENERGIA SESJI ---
+  - entity: sensor
+    name: Session energy
+    class: energy_storage
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # --- NAPIĘCIA ---
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # --- PRĄDY ---
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # --- TRYB FAZOWY ---
+  - entity: sensor
+    name: Phase mode
+    icon: "mdi:transmission-tower"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+
+  # --- MOC ---
+  - entity: sensor
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 10
+
+  # --- TEMPERATURA ---
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "°C"
+        mapping:
+          - scale: 10
+
+  # --- MIESIĄC LOGU ---
+  - entity: sensor
+    name: Log month
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+
+  # --- ENERGIA CAŁKOWITA ---
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 10
+
+  # --- USTAWIONY PRĄD ---
+  - entity: number
+    name: Charge current
+    icon: "mdi:current-ac"
+    class: current
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        mapping:
+          - constraint: maximum
+            conditions:
+              - dps_val: Max32A
+                value_redirect: value_32a
+              - dps_val: Max40A
+                value_redirect: value_40a
+              - dps_val: Max50A
+                value_redirect: value_50a
+      - id: 113
+        type: string
+        optional: true
+        name: minimum
+        mapping:
+          - dps_val: Max16A
+            value: 6
+          - value: 8
+      - id: 113
+        type: string
+        optional: true
+        name: maximum
+        mapping:
+          - dps_val: Max16A
+            value: 16
+          - dps_val: Max32A
+            value: 32
+          - dps_val: Max40A
+            value: 40
+          - dps_val: Max50A
+            value: 50
+          # The following do not have dps to redirect to so ignore
+          # - dps_val: Max60A
+          #   value: 60
+          # - dps_val: Max80A
+          #   value: 80
+          # default to 16, as there will be no redirect
+          - value: 16
+      - id: 115
+        type: integer
+        optional: true
+        name: value_32a
+        range:
+          min: 6
+          max: 32
+
+      - id: 116
+        type: integer
+        optional: true
+        name: value_40a
+        range:
+          min: 8
+          max: 40
+
+      - id: 117
+        type: integer
+        optional: true
+        name: value_50a
+        range:
+          min: 8
+          max: 50
+
+  # --- OPÓŹNIENIA ---
+  - entity: number
+    name: Charge delay
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+
+  - entity: number
+    name: Charge duration
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+
+  # --- CZAS SESJI ---
+  - entity: sensor
+    name: Charge duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 120
+        type: string
+        name: sensor
+
+  # --- RFID ---
+  - entity: binary_sensor
+    name: RFID active
+    class: occupancy
+    dps:
+      - id: 123
+        type: boolean
+        name: sensor
+
+  # --- PRZEŁĄCZNIK ŁADOWANIA ---
+  - entity: select
+    name: Charging operation
+    icon: "mdi:power"
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OpenCharging"
+            value: "Start Charging"
+          - dps_val: "CloseCharging"
+            value: "Stop Charging"
+          - dps_val: "WaitOperation"
+            value: "Waiting"

@@ -9,7 +9,7 @@ entities:
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: hvac_mode
         mapping:
           - dps_val: false
             value: "off"
@@ -393,9 +393,8 @@ entities:
         type: boolean
         name: sensor
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 116
         type: integer

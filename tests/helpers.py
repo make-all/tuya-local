@@ -77,3 +77,13 @@ async def assert_device_properties_set_optional(
 
         for result in results:
             result.assert_awaited()
+
+
+def mock_device(dps, mocker):
+    """Helper function to create a mock device with specified dps."""
+    device = mocker.MagicMock()
+    device.get_property.side_effect = lambda id: dps.get(id)
+    device.has_returned_state = True
+    device.unique_id = "test_device_id"
+    device.name = "Test Device"
+    return device

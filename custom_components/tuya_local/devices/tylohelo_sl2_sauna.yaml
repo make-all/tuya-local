@@ -1,0 +1,98 @@
+# Copyright 2026 Chris Keeser
+# SPDX-License-Identifier: MIT
+
+name: Sauna
+products:
+  - id: acl5qrawgmjajabn
+    manufacturer: TyloHelo
+    model: SaunaLogic2
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 25
+          max: 194
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 105
+        type: integer
+        name: hvac_action
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: idle
+          - dps_val: 2
+            value: heating
+      - id: 9
+        type: integer
+        name: unknown_9
+        optional: true
+  - entity: light
+    dps:
+      - id: 101
+        name: effect
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "off"
+          - dps_val: 8
+            value: Rainbow
+          - dps_val: 1
+            value: "white"
+            default: true
+            hidden: true
+      - id: 101
+        name: named_color
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: white
+          - dps_val: 2
+            value: red
+          - dps_val: 3
+            value: lime
+          - dps_val: 4
+            value: blue
+          - dps_val: 5
+            value: yellow
+          - dps_val: 6
+            value: aqua
+          - dps_val: 7
+            value: magenta
+  - entity: switch
+    name: Bluetooth
+    icon: "mdi:bluetooth-audio"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Timer remaining
+    class: duration
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Sauna mode
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: string
+        optional: true

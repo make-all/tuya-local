@@ -1,0 +1,431 @@
+name: Temperature controller
+products:
+  - id: 3kw82iy6w4udblee
+    manufacturer: ATorch
+    model: S1BWP-T/H
+
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 101
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: socket
+            value: "off"
+          - dps_val: hot
+            value: heat
+          - dps_val: colding
+            value: cool
+      - id: 103
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            constraint: hvac_mode
+            conditions:
+              - dps_val: hot
+                value: heating
+              - dps_val: colding
+                value: cooling
+      - id: 118
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 102
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temperature_f
+      - id: 124
+        type: integer
+        name: current_temperature_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 104
+        type: integer
+        name: target_temp_low
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                value_redirect: target_temp_low_c
+                range:
+                  min: -200
+                  max: 1200
+              - dps_val: f
+                value_redirect: target_temp_low_f
+                range:
+                  min: -40
+                  max: 2480
+      - id: 104
+        type: integer
+        name: target_temp_low_c
+        hidden: true
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cooling_temp_high_c
+      - id: 105
+        type: integer
+        name: cooling_temp_low_c
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 120
+        type: integer
+        name: target_temp_low_f
+        hidden: true
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cooling_temp_high_f
+      - id: 121
+        type: integer
+        name: cooling_temp_low_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 106
+        type: integer
+        name: target_temp_high
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: c
+                value_redirect: target_temp_high_c
+                range:
+                  min: -200
+                  max: 1200
+              - dps_val: f
+                value_redirect: target_temp_high_f
+                range:
+                  min: -40
+                  max: 2480
+      - id: 106
+        type: integer
+        name: target_temp_high_c
+        hidden: true
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cooling_temp_low_c
+      - id: 107
+        type: integer
+        name: cooling_temp_high_c
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 122
+        type: integer
+        name: target_temp_high_f
+        hidden: true
+        mapping:
+          - scale: 10
+            constraint: hvac_mode
+            conditions:
+              - dps_val: colding
+                value_redirect: cooling_temp_low_f
+      - id: 123
+        type: integer
+        name: cooling_temp_high_f
+        hidden: true
+        mapping:
+          - scale: 10
+
+  - entity: switch
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: available
+        mapping:
+          - dps_val: socket
+            value: true
+          - value: false
+
+  - entity: sensor
+    class: current
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 127
+        type: integer
+        name: historical
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: Electricity price
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: High voltage limit
+    class: voltage
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 2750
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Current limit
+    class: current
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 2000
+        mapping:
+          - scale: 100
+
+  - entity: number
+    name: Power limit
+    class: power
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 4500
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: lock
+
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    mode: box
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: °C
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+
+  - entity: sensor
+    name: Energy cost
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: binary_sensor
+    name: Temperature
+    class: problem
+    dps:
+      - id: 126
+        type: boolean
+        name: sensor
+
+  - entity: switch
+    name: Over limit breaker
+    category: config
+    dps:
+      - id: 128
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Refresh
+    icon: "mdi:refresh"
+    category: config
+    dps:
+      - id: 129
+        type: boolean
+        name: button
+
+  - entity: number
+    name: Over limit breaker delay
+    class: duration
+    category: config
+    mode: box
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 200
+        mapping:
+          - scale: 10
+
+  - entity: number
+    name: Low voltage limit
+    class: voltage
+    category: config
+    dps:
+      - id: 131
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 2750
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Auto reset countdown
+    class: duration
+    category: config
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 133
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: false
+          - value: true
+      - id: 133
+        type: string
+        name: fault_code
+      - id: 133
+        type: string
+        name: description
+        mapping:
+          - dps_val: "off"
+            value: None
+          - dps_val: ovp
+            value: Over-voltage
+          - dps_val: ocp
+            value: Over-current
+          - dps_val: opp
+            value: Over-power
+          - dps_val: lvp
+            value: Low voltage
+          - dps_val: err_temp
+            value: Temperature error
+          - dps_val: err_relay
+            value: Relay error
+
+  - entity: number
+    name: Auto reset time
+    class: duration
+    category: config
+    mode: box
+    dps:
+      - id: 134
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 99

@@ -77,6 +77,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
         )
 
     async def _alarm_send_command(self, cmd: str):
+        _LOGGER.info("%s setting alarm state to %s", self._config.config_id, cmd)
         if cmd in self._alarm_state_dp.values(self._device):
             await self._alarm_state_dp.async_set_value(self._device, cmd)
         else:
@@ -106,6 +107,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
 
     async def async_alarm_trigger(self, code=None):
         if self._trigger_dp:
+            _LOGGER.info("%s triggering alarm", self._config.config_id)
             await self._trigger_dp.async_set_value(self._device, True)
         else:
             await self._alarm_send_command(AlarmControlPanelState.TRIGGERED)

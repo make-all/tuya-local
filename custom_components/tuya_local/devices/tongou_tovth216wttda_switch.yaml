@@ -1,0 +1,40 @@
+name: Sensor switch
+products:
+  - id: oj6soirdngp9jijy
+    manufacturer: Tongou
+    model: TOVTH-216WTTDA
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 46
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
