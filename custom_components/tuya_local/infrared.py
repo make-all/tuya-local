@@ -45,7 +45,7 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         raw = [
             interval
             for timing in timings
-            for interval in (min(timing.high_us, 65535), min(timing.low_us, 65535)))
+            for interval in (min(timing.high_us, 65535), min(timing.low_us, 65535))
         ]
         tuya_command = IR.pulses_to_base64(raw)
         _LOGGER.debug("Sending infrared command: %s", tuya_command)
