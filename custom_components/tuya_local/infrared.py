@@ -2,6 +2,7 @@
 Implementation of Tuya infrared control devices
 """
 
+import asyncio
 import logging
 
 from homeassistant.components.infrared import InfraredCommand, InfraredEntity
