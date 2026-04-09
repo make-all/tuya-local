@@ -141,7 +141,6 @@ entities:
         type: string
         optional: true
         name: voice_data
-
   - entity: button
     name: Charge
     icon: "mdi:battery-charging"
@@ -151,7 +150,6 @@ entities:
         type: boolean
         optional: true
         name: button
-        
   - entity: sensor
     name: Cleaning time
     icon: "mdi:progress-clock"
@@ -349,13 +347,12 @@ entities:
             value: spanish
           - dps_val: portuguese
             value: portuguese
-
   - entity: select
     category: config
     dps:
       - id: 101
-        optional: true
         type: string
+        optional: true
         name: smart_rooms_unseen
         mapping:
           - dps_val: cur_rooms
@@ -363,12 +360,11 @@ entities:
           - dps_val: edit_rooms
             value: edit_rooms
           - dps_val: segment
-            value: segment 
+            value: segment
           - dps_val: clear_rooms
             value: clear_rooms
           - dps_val: save_rooms
             value: save_rooms
-
   - entity: switch
     category: config
     name: "Apply room settings"
@@ -376,7 +372,6 @@ entities:
       - id: 105
         type: boolean
         name: switch
-
   - entity: sensor
     name: "Partition error status prompt"
     category: diagnostic
@@ -384,7 +379,6 @@ entities:
       - id: 102
         type: bitfield
         name: sensor
-
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -408,13 +402,13 @@ entities:
           - dps_val: 1
             value: ""
           - dps_val: 2
-            value: left_wheel_air          
+            value: left_wheel_air
           - dps_val: 4
             value: middle_sweep_stuck
           - dps_val: 8
             value: right_wheel_air
           - dps_val: 16
-            value: left_wheel_stuck 
+            value: left_wheel_stuck
           - dps_val: 32
             value: right_wheel_stuck
           - dps_val: 64
