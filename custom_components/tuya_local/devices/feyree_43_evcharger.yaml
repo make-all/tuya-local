@@ -317,6 +317,7 @@ entities:
   - entity: select
     name: Charging operation
     icon: "mdi:power"
+    category: config
     dps:
       - id: 124
         type: string
@@ -328,3 +329,21 @@ entities:
             value: "Stop Charging"
           - dps_val: "WaitOperation"
             value: "Waiting"
+
+- entity: button
+    name: Start Charging
+    icon: "mdi:play-circle"
+    dps:
+      - id: 124
+        type: string
+        name: button
+        send_val: "OpenCharging"
+
+  - entity: button
+    name: Stop Charging
+    icon: "mdi:stop-circle"
+    dps:
+      - id: 124
+        type: string
+        name: button
+        send_val: "CloseCharging"
