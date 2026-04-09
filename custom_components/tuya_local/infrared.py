@@ -46,26 +46,26 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         raw = []
         i = 0
         for timing in timings:
-            if timing.high_us > 65535
+            if timing.high_us > 65535:
                 split[i] = timing.high_us - 65535
                 raw.append(65535)
                 raw.append(timing.low_us)
             elif timing.low_us > 65535:
                 raw.append(timing.high_us)
                 raw.append(65535)
-                split[i+2] = timing.low_us - 65535
-            else
+                split[i + 2] = timing.low_us - 65535
+            else:
                 raw.append(timing.high_us)
                 raw.append(timing.low_us)
-            i+=2
+            i += 2
 
         start = 0
         for s, t in split:
-            tuya_command = IR.pulses_to_base64(raw[start : s])
+            tuya_command = IR.pulses_to_base64(raw[start:s])
             _LOGGER.debug("Sending infrared command: %s", tuya_command)
             self._ir_send(tuya_command)
             start = s
-            asyncio.sleep(t/1000000)
+            asyncio.sleep(t / 1000000)
         if start < len(raw):
             tuya_command = IR.pulses_to_base64(raw[start:])
             _LOGGER.debug("Sending infrared command: %s", tuya_command)
