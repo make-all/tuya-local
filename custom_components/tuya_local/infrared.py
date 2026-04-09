@@ -60,7 +60,7 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
             i += 2
 
         start = 0
-        for s, t in split:
+        for s, t in split.items():
             tuya_command = IR.pulses_to_base64(raw[start:s])
             _LOGGER.debug("Sending infrared command: %s", tuya_command)
             start = s
