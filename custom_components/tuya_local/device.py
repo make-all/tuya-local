@@ -365,10 +365,13 @@ class TuyaLocalDevice(object):
                             True,
                         )
                         last_heartbeat = now
-
                     poll = await self._hass.async_add_executor_job(
                         self._api.receive,
                     )
+                    # Ignore Payload error 904, as 3.4 protocol devices seem to return
+                    # this when there is no new data, instead of just returning nothing.
+                    if "Err" in poll and poll["Err"] == 904:
+                        poll = None
                 else:
                     force_backoff = True
                     poll = None
