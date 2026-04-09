@@ -63,13 +63,17 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         start = 0
         for s, t in split.items():
             tuya_command = IR.pulses_to_base64(raw[start:s])
-            _LOGGER.debug("Sending infrared command: %s", tuya_command)
+            _LOGGER.info(
+                "%s sending infrared command: %s", self._config.config_id, tuya_command
+            )
             start = s
             await self._ir_send(tuya_command)
             await asyncio.sleep(t / 1000000)
         if start < len(raw):
             tuya_command = IR.pulses_to_base64(raw[start:])
-            _LOGGER.debug("Sending infrared command: %s", tuya_command)
+            _LOGGER.info(
+                "%s sending infrared command: %s", self._config.config_id, tuya_command
+            )
             await self._ir_send(tuya_command)
 
     async def _ir_send(self, tuya_command: str):
