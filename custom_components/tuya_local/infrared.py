@@ -42,25 +42,49 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
     async def async_send_command(self, command: InfraredCommand) -> None:
         """Handle sending an infrared command."""
         timings = command.get_raw_timings()
-        raw = [
-            interval
-            for timing in timings
-            for interval in (min(timing.high_us, 65535), min(timing.low_us, 65535))
-        ]
-        tuya_command = IR.pulses_to_base64(raw)
-        _LOGGER.debug("Sending infrared command: %s", tuya_command)
+        split = {}
+        raw = []
+        i = 0
+        for timing in timings:
+            if timing.high_us > 65535
+                split[i] = timing.high_us - 65535
+                raw.append(65535)
+                raw.append(timing.low_us)
+            elif timing.low_us > 65535:
+                raw.append(timing.high_us)
+                raw.append(65535)
+                split[i+2] = timing.low_us - 65535
+            else
+                raw.append(timing.high_us)
+                raw.append(timing.low_us)
+            i+=2
+
+        start = 0
+        for s, t in split:
+            tuya_command = IR.pulses_to_base64(raw[start : s])
+            _LOGGER.debug("Sending infrared command: %s", tuya_command)
+            self._ir_send(tuya_command)
+            start = s
+            asyncio.sleep(t/1000000)
+        if start < len(raw):
+            tuya_command = IR.pulses_to_base64(raw[start:])
+            _LOGGER.debug("Sending infrared command: %s", tuya_command)
+            self._ir_send(tuya_command)
+
+    def _ir_send(self, tuya_command: str):
+        """Send the infrared command to the device."""
         if self._send_dp:
             if self._command_dp:
                 await self._device.async_set_properties(
-                    self.package_multi_dp_send(tuya_command)
+                    self._package_multi_dp_send(tuya_command)
                 )
             else:
                 await self._send_dp.async_set_value(
                     self._device,
-                    self.package_single_dp_send(tuya_command),
+                    self._package_single_dp_send(tuya_command),
                 )
 
-    def package_single_dp_send(self, command: str) -> str:
+    def _package_single_dp_send(self, command: str) -> str:
         """Package the command for a single DP (usually dp id 201) send."""
         json_command = {
             "control": "send_ir",
@@ -70,7 +94,7 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         }
         return json_command
 
-    def package_multi_dp_send(self, command: str) -> dict:
+    def _package_multi_dp_send(self, command: str) -> dict:
         """Package the command for a multi DP send"""
         return {
             f"{self._command_dp.id}": "send_ir",
