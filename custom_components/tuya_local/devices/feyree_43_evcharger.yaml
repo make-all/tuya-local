@@ -198,19 +198,25 @@ entities:
         mapping:
           - scale: 10
 
-  # --- USTAWIONY PRĄD ---
+# --- USTAWIONY PRĄD ---
   - entity: number
     name: Charge current
     icon: "mdi:current-ac"
     class: current
     dps:
+      - id: 113
+        type: string
+        name: device_max_set_a
+        optional: true
       - id: 114
         type: integer
         name: value
         unit: A
         mapping:
-          - constraint: maximum
+          - constraint: device_max_set_a
             conditions:
+              - dps_val: Max16A
+                value_redirect: value_16a
               - dps_val: Max32A
                 value_redirect: value_32a
               - dps_val: Max40A
@@ -238,32 +244,27 @@ entities:
             value: 40
           - dps_val: Max50A
             value: 50
-          # The following do not have dps to redirect to so ignore
-          # - dps_val: Max60A
-          #   value: 60
-          # - dps_val: Max80A
-          #   value: 80
-          # default to 16, as there will be no redirect
           - value: 16
+      - id: 114
+        type: integer
+        name: value_16a
+        range:
+          min: 6
+          max: 16
       - id: 115
         type: integer
-        optional: true
         name: value_32a
         range:
           min: 6
           max: 32
-
       - id: 116
         type: integer
-        optional: true
         name: value_40a
         range:
           min: 8
           max: 40
-
       - id: 117
         type: integer
-        optional: true
         name: value_50a
         range:
           min: 8
