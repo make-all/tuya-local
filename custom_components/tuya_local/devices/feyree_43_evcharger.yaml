@@ -38,9 +38,12 @@ entities:
     dps:
       - id: 10
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
 
@@ -295,7 +298,7 @@ entities:
             value: 40
           - dps_val: Max50A
             value: 50
-          # Jeśli DP 113 nie pasuje do niczego powyżej, suwak domyślnie ustawi 32A.
+          # Jeśli DP 113 nie pasuje do niczego powyżej
           - value: 16
 
       # 5) Definicje docelowych rejestrów (obsługiwane przez przekierowanie)
@@ -387,7 +390,7 @@ entities:
         mapping:
           - dps_val: "OpenCharging"
             value: true
-            constraint: "OpenCharging" # Wymuszamy tę wartość
+            constraint: "OpenCharging"
 
   - entity: button
     name: Stop charging
