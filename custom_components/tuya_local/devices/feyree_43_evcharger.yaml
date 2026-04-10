@@ -42,9 +42,52 @@ entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: null
-            value: false
           - value: true
+
+  # --- OPIS BŁĘDU (Dodatkowy sensor tekstowy) ---
+  - entity: sensor
+    name: Fault description
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Leakage Error"
+          - dps_val: 2
+            value: "Control Pilot Error"
+          - dps_val: 4
+            value: "Temperature Error"
+          - dps_val: 8
+            value: "Phase A Under-voltage"
+          - dps_val: 16
+            value: "Phase B Under-voltage"
+          - dps_val: 32
+            value: "Phase C Under-voltage"
+          - dps_val: 64
+            value: "Phase A Over-voltage"
+          - dps_val: 128
+            value: "Phase B Over-voltage"
+          - dps_val: 256
+            value: "Phase C Over-voltage"
+          - dps_val: 512
+            value: "Over Current Protection"
+          - dps_val: 1024
+            value: "Over Temp (Internal)"
+          - dps_val: 2048
+            value: "Over Temp (Cable)"
+          - dps_val: 4096
+            value: "Emergency Stop"
+          - dps_val: 8192
+            value: "PE Check Warning"
+          - dps_val: 16384
+            value: "Leakage Check Error"
+          - dps_val: 32768
+            value: "Protective Earth Error"
 
   # --- ENERGIA SESJI ---
   - entity: sensor
@@ -204,7 +247,7 @@ entities:
     icon: "mdi:current-ac"
     class: current
     dps:
-      # 1) Główne wejście i mechanizm przekierowania (Zapis)
+      # 1) Główne wejście i mechanizm przekierowania
       - id: 114
         type: integer
         name: value
