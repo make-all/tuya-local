@@ -122,7 +122,7 @@ async def test_async_send_command(mocker):
     async with assert_device_properties_set(
         device,
         {
-            "201"(
+            "201": (
                 '"control": "send_ir", "type": 0, "head": "", "key1": "1KCOUETICMgIyAjI'
                 "CMgKXBjICMgIyAjICMgIyAjICMgIyApcGMgIyAjIClwYyAjICMgIyAjIClwYyAjICMgKXBj"
                 "ICMgIyAjICMgKXBjICMgIyAjICMgKXBjIClwYyAjICMgIyAjIClwYyAjICMgKXBjIClwYyA"
