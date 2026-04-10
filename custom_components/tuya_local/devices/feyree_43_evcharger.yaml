@@ -250,45 +250,31 @@ entities:
     icon: "mdi:current-ac"
     class: current
     dps:
-      # 1) Główne wejście i mechanizm przekierowania
       - id: 114
         type: integer
         name: value
         unit: A
         mapping:
-          - constraint: device_max_set_a
+          - constraint: maximum
             conditions:
-              - dps_val: Max16A
-                value_redirect: value_16a
               - dps_val: Max32A
                 value_redirect: value_32a
               - dps_val: Max40A
                 value_redirect: value_40a
               - dps_val: Max50A
                 value_redirect: value_50a
-
-      # 2) Informator (Odczyt typu urządzenia)
-      - id: 113
-        type: string
-        optional: true
-        name: device_max_set_a
-        readonly: true
-
-      # 3) Dynamiczne MINIMUM dla suwaka
       - id: 113
         type: string
         optional: true
         name: minimum
-        readonly: true
         mapping:
+          - dps_val: Max16A
+            value: 6
           - value: 8
-
-      # 4) Dynamiczne MAXIMUM dla suwaka
       - id: 113
         type: string
         optional: true
         name: maximum
-        readonly: true
         mapping:
           - dps_val: Max16A
             value: 16
@@ -298,26 +284,36 @@ entities:
             value: 40
           - dps_val: Max50A
             value: 50
-          # Jeśli DP 113 nie pasuje do niczego powyżej
+          # The following do not have dps to redirect to so ignore
+          # - dps_val: Max60A
+          #   value: 60
+          # - dps_val: Max80A
+          #   value: 80
+          # default to 16, as there will be no redirect
           - value: 16
-
-      # 5) Definicje docelowych rejestrów (obsługiwane przez przekierowanie)
-      - id: 114
-        type: integer
-        optional: true
-        name: value_16a
       - id: 115
         type: integer
         optional: true
         name: value_32a
+        range:
+          min: 6
+          max: 32
+
       - id: 116
         type: integer
         optional: true
         name: value_40a
+        range:
+          min: 8
+          max: 40
+
       - id: 117
         type: integer
         optional: true
         name: value_50a
+        range:
+          min: 8
+          max: 50
 
   # --- OPÓŹNIENIA ---
   - entity: number
