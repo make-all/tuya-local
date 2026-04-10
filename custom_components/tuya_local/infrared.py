@@ -97,7 +97,7 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
             "head": "",
             "key1": "1" + command,
         }
-        return json_command
+        return json.dumps(json_command)
 
     def _package_multi_dp_send(self, command: str) -> dict:
         """Package the command for a multi DP send"""
