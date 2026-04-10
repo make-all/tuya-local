@@ -313,7 +313,7 @@ entities:
         type: boolean
         name: sensor
 
-# --- PRZEŁĄCZNIK ŁADOWANIA ---
+  # --- PRZEŁĄCZNIK ŁADOWANIA ---
   - entity: select
     name: Charging operation
     icon: "mdi:power"
@@ -330,20 +330,27 @@ entities:
           - dps_val: "WaitOperation"
             value: "Waiting"
 
+  # --- PRZYCISKI STERUJĄCE (BUTTONS) ---
   - entity: button
-    name: Start Charging
-    icon: "mdi:play-circle"
+    name: Start charging
+    icon: "mdi:play"
     dps:
       - id: 124
         type: string
         name: button
-        send_val: "OpenCharging"
+        mapping:
+          - dps_val: "OpenCharging"
+            value: true
+            constraint: "OpenCharging" # Wymuszamy tę wartość
 
   - entity: button
-    name: Stop Charging
-    icon: "mdi:stop-circle"
+    name: Stop charging
+    icon: "mdi:stop"
     dps:
       - id: 124
         type: string
         name: button
-        send_val: "CloseCharging"
+        mapping:
+          - dps_val: "CloseCharging"
+            value: true
+            constraint: "CloseCharging"
