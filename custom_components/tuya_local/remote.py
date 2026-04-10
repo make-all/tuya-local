@@ -271,7 +271,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         at_least_one_sent = False
         for _, codes in product(range(repeat), code_list):
             if at_least_one_sent:
-                await asyncio.sleep(delay)
+                await asyncio.sleep(delay / 1000)  # delay is in ms
 
             if len(codes) > 1:
                 code = codes[self._flags[subdevice]]
