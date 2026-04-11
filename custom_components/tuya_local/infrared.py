@@ -49,13 +49,13 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         i = 0
         for timing in timings:
             if timing.high_us > 65535:
-                split[i] = timing.high_us - 65535
-                raw.append(65535)
+                split[i] = timing.high_us
+                raw.append(0)
                 raw.append(timing.low_us)
             elif timing.low_us > 65535:
                 raw.append(timing.high_us)
-                raw.append(65535)
-                split[i + 2] = timing.low_us - 65535
+                raw.append(0)
+                split[i + 2] = timing.low_us
             else:
                 raw.append(timing.high_us)
                 raw.append(timing.low_us)
