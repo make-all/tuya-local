@@ -49,32 +49,32 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
         i = 0
         for timing in timings:
             if timing.high_us > 50000:
-                split[i] = timing.high_us
-                raw.append(0)
+                split[i] = timing.high_us - 5000
+                raw.append(5000)
                 raw.append(timing.low_us)
             elif timing.low_us > 50000:
                 raw.append(timing.high_us)
-                raw.append(0)
-                split[i + 2] = timing.low_us
+                raw.append(5000)
+                split[i + 2] = timing.low_us - 5000
             else:
                 raw.append(timing.high_us)
                 raw.append(timing.low_us)
             i += 2
 
+        # HA's converter leaves the last low timing as 0, but Tuya seems to expect around 5 - 10 ms
+        if raw[-1] == 0:
+            raw[-1] = 5000
+
         start = 0
         for s, t in split.items():
             tuya_command = IR.pulses_to_base64(raw[start:s])
-            _LOGGER.info(
-                "%s sending infrared command: %s", self._config.config_id, tuya_command
-            )
+            _LOGGER.info("%s sending command: %s", self._config.config_id, tuya_command)
             start = s
             await self._ir_send(tuya_command)
             await asyncio.sleep(t / 1000000.0)
         if start < len(raw):
             tuya_command = IR.pulses_to_base64(raw[start:])
-            _LOGGER.info(
-                "%s sending infrared command: %s", self._config.config_id, tuya_command
-            )
+            _LOGGER.info("%s sending command: %s", self._config.config_id, tuya_command)
             await self._ir_send(tuya_command)
 
     async def _ir_send(self, tuya_command: str):
