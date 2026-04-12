@@ -1,0 +1,110 @@
+name: mmWave presence sensor
+products:
+  - id: 2jmaefvrsyghdswo
+    name: 人体存在传感器WT24
+    model: 人体存在传感器WT24
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: presence
+            value: true
+          - dps_val: peaceful
+            value: false
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 0
+            step: 1
+  - entity: number
+    name: Near detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1050
+        mapping:
+          - step: 70
+        unit: cm
+  - entity: number
+    name: Far detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - step: 10
+        unit: cm
+  - entity: sensor
+    name: Target closest distance
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        class: measurement
+        unit: cm
+  - entity: number
+    name: No person duration
+    category: config
+    icon: mdi:timer-sand
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 600
+        unit: s
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: lx
+  - entity: number
+    name: Stationary sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    category: config
+    name: Switch
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
