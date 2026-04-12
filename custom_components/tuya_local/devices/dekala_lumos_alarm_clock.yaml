@@ -1,4 +1,5 @@
-# `tuya-local` configuration for the Dekala Lumos sunrise alarm clock (`e1xp7w`).
+# `tuya-local` configuration for the Dekala Lumos sunrise alarm
+# clock (`e1xp7w`).
 #
 # Working features:
 # - color, ambient and night lights with brightness/color control
@@ -6,14 +7,18 @@
 # - manual clock time setting when network time sync is disabled
 #
 # Known limitations:
-# - alarm raw payloads may need one-time initialization via `Alarm 1 reset` / `Alarm 2 reset` (using force:true is not working here)
+# - alarm raw payloads may need one-time initialization via
+#   `Alarm 1 reset` / `Alarm 2 reset`
+#   (using force: true is not working here)
 # - light tones can differ slightly from the Tuya app
 #
 # Not yet exposed:
-# - DP120 `lcd_icon_display`: LCD icon visibility for temperature / humidity / weather / UV
+# - DP120 `lcd_icon_display`: LCD icon visibility for
+#   temperature / humidity / weather / UV
 # - DP131 `radio_searching`: start / stop automatic FM station scan
 # - DP132 `radio_list`: stored station list / presets after scan
-# - decoded weather/alarm runtime sensors from DP113 / DP126 (raw diagnostics are present)
+# - decoded weather/alarm runtime sensors from DP113 / DP126
+#   (raw diagnostics are present)
 
 name: Sunrise alarm clock
 
@@ -27,10 +32,10 @@ entities:
   - entity: light
     translation_key: color_light
     dps:
-      - id: "2"
+      - id: 2
         name: switch
         type: boolean
-      - id: "101"
+      - id: 101
         name: brightness
         type: integer
         optional: true
@@ -38,7 +43,7 @@ entities:
           min: 10
           max: 1000
         step: 10
-      - id: "11"
+      - id: 11
         name: rgbhsv
         type: hex
         optional: true
@@ -62,10 +67,10 @@ entities:
   - entity: light
     translation_key: ambient_light
     dps:
-      - id: "102"
+      - id: 102
         name: switch
         type: boolean
-      - id: "123"
+      - id: 123
         name: brightness
         type: integer
         optional: true
@@ -77,10 +82,10 @@ entities:
   - entity: light
     translation_key: night_light
     dps:
-      - id: "104"
+      - id: 104
         name: switch
         type: boolean
-      - id: "124"
+      - id: 124
         name: brightness
         type: integer
         optional: true
@@ -88,7 +93,7 @@ entities:
           min: 10
           max: 1000
         step: 10
-      - id: "105"
+      - id: 105
         name: rgbhsv
         type: hex
         optional: true
@@ -113,7 +118,7 @@ entities:
     translation_key: volume
     mode: slider
     dps:
-      - id: "5"
+      - id: 5
         name: value
         type: integer
         range:
@@ -125,7 +130,7 @@ entities:
   - entity: switch
     translation_key: sleep
     dps:
-      - id: "106"
+      - id: 106
         name: switch
         type: boolean
 
@@ -135,7 +140,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "108"
+      - id: 108
         name: switch
         type: boolean
 
@@ -145,7 +150,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "110"
+      - id: 110
         name: switch
         type: boolean
 
@@ -156,13 +161,13 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: hour
         type: base64
         optional: true
         persist: true
         mask: "FF00000000000000000000000000"
-      - id: "109"
+      - id: 109
         name: minute
         type: base64
         optional: true
@@ -175,7 +180,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: option
         type: base64
         optional: true
@@ -191,14 +196,15 @@ entities:
           - dps_val: 127
             value: every_day
 
-  # Repeat-day bits are assumed to map Monday..Sunday across the 7 low bits of Data[2].
+  # Repeat-day bits map Monday..Sunday across the 7 low bits of
+  # Data[2].
   - entity: switch
     translation_key: alarm_x_day_sunday
     translation_placeholders:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -211,7 +217,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -224,7 +230,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -237,7 +243,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -250,7 +256,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -263,7 +269,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -276,7 +282,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -289,7 +295,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: option
         type: base64
         optional: true
@@ -321,7 +327,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: option
         type: base64
         optional: true
@@ -342,7 +348,7 @@ entities:
     category: config
     mode: slider
     dps:
-      - id: "109"
+      - id: 109
         name: value
         type: base64
         optional: true
@@ -358,7 +364,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: value
         type: base64
         optional: true
@@ -375,7 +381,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: option
         type: base64
         optional: true
@@ -409,7 +415,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: value
         type: base64
         optional: true
@@ -426,7 +432,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: switch
         type: base64
         optional: true
@@ -439,7 +445,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: value
         type: base64
         optional: true
@@ -456,7 +462,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: option
         type: base64
         optional: true
@@ -477,13 +483,13 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: hour
         type: base64
         optional: true
         persist: true
         mask: "FF00000000000000000000000000"
-      - id: "111"
+      - id: 111
         name: minute
         type: base64
         optional: true
@@ -496,7 +502,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: option
         type: base64
         optional: true
@@ -518,7 +524,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -531,7 +537,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -544,7 +550,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -557,7 +563,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -570,7 +576,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -583,7 +589,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -596,7 +602,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -609,7 +615,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: option
         type: base64
         optional: true
@@ -641,7 +647,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: option
         type: base64
         optional: true
@@ -662,7 +668,7 @@ entities:
     category: config
     mode: slider
     dps:
-      - id: "111"
+      - id: 111
         name: value
         type: base64
         optional: true
@@ -678,7 +684,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: value
         type: base64
         optional: true
@@ -695,7 +701,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: option
         type: base64
         optional: true
@@ -729,7 +735,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: value
         type: base64
         optional: true
@@ -746,7 +752,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: switch
         type: base64
         optional: true
@@ -759,7 +765,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: value
         type: base64
         optional: true
@@ -776,7 +782,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: option
         type: base64
         optional: true
@@ -793,14 +799,14 @@ entities:
   - entity: button
     translation_key: alarm_snooze
     dps:
-      - id: "7"
+      - id: 7
         name: button
         type: boolean
 
   - entity: button
     translation_key: alarm_off
     dps:
-      - id: "112"
+      - id: 112
         name: button
         type: boolean
 
@@ -813,7 +819,7 @@ entities:
       x: "1"
     category: config
     dps:
-      - id: "109"
+      - id: 109
         name: button
         type: base64
         optional: true
@@ -828,7 +834,7 @@ entities:
       x: "2"
     category: config
     dps:
-      - id: "111"
+      - id: 111
         name: button
         type: base64
         optional: true
@@ -840,14 +846,14 @@ entities:
   - entity: switch
     translation_key: music_playback
     dps:
-      - id: "129"
+      - id: 129
         name: switch
         type: boolean
 
   - entity: switch
     translation_key: radio
     dps:
-      - id: "130"
+      - id: 130
         name: switch
         type: boolean
 
@@ -856,7 +862,7 @@ entities:
     translation_key: radio_frequency
     mode: box
     dps:
-      - id: "133"
+      - id: 133
         name: value
         type: base64
         optional: true
@@ -867,7 +873,7 @@ entities:
           max: 108
         step: 1
         unit: MHz
-      - id: "130"
+      - id: 130
         name: available
         type: boolean
         optional: true
@@ -877,7 +883,7 @@ entities:
     translation_key: radio_frequency_decimal
     mode: box
     dps:
-      - id: "133"
+      - id: 133
         name: value
         type: base64
         optional: true
@@ -887,7 +893,7 @@ entities:
           min: 0
           max: 9
         step: 1
-      - id: "130"
+      - id: 130
         name: available
         type: boolean
         optional: true
@@ -899,25 +905,25 @@ entities:
     translation_key: clock_time
     category: config
     dps:
-      - id: "114"
+      - id: 114
         name: hour
         type: base64
         optional: true
         persist: true
         mask: "000000FF000000"
-      - id: "114"
+      - id: 114
         name: minute
         type: base64
         optional: true
         persist: true
         mask: "00000000FF0000"
-      - id: "114"
+      - id: 114
         name: second
         type: base64
         optional: true
         persist: true
         mask: "0000000000FF00"
-      - id: "115"
+      - id: 115
         name: available
         type: boolean
         optional: true
@@ -932,7 +938,7 @@ entities:
     translation_key: network_time
     category: config
     dps:
-      - id: "115"
+      - id: 115
         name: switch
         type: boolean
 
@@ -940,7 +946,7 @@ entities:
     translation_key: night_mode
     category: config
     dps:
-      - id: "121"
+      - id: 121
         name: switch
         type: boolean
 
@@ -948,7 +954,7 @@ entities:
     translation_key: time_24h
     category: config
     dps:
-      - id: "125"
+      - id: 125
         name: switch
         type: boolean
 
@@ -956,7 +962,7 @@ entities:
     translation_key: display_brightness
     category: config
     dps:
-      - id: "116"
+      - id: 116
         name: option
         type: string
         mapping:
@@ -973,7 +979,7 @@ entities:
     translation_key: seconds_dot
     category: config
     dps:
-      - id: "118"
+      - id: 118
         name: option
         type: string
         mapping:
@@ -986,13 +992,13 @@ entities:
     translation_key: temperature_unit
     category: config
     dps:
-      - id: "119"
+      - id: 119
         name: option
         type: string
         mapping:
-          - dps_val: C
+          - dps_val: "C"
             value: celsius
-          - dps_val: F
+          - dps_val: "F"
             value: fahrenheit
 
   - entity: sensor
@@ -1000,7 +1006,7 @@ entities:
     class: enum
     category: diagnostic
     dps:
-      - id: "117"
+      - id: 117
         name: sensor
         type: string
         optional: true
@@ -1019,7 +1025,7 @@ entities:
     class: enum
     category: diagnostic
     dps:
-      - id: "134"
+      - id: 134
         name: sensor
         type: string
         optional: true
@@ -1037,7 +1043,7 @@ entities:
     name: Color light raw
     category: diagnostic
     dps:
-      - id: "11"
+      - id: 11
         name: sensor
         type: string
         optional: true
@@ -1048,7 +1054,7 @@ entities:
     name: Night light raw
     category: diagnostic
     dps:
-      - id: "105"
+      - id: 105
         name: sensor
         type: string
         optional: true
@@ -1059,7 +1065,7 @@ entities:
     name: Color light brightness raw
     category: diagnostic
     dps:
-      - id: "101"
+      - id: 101
         name: sensor
         type: integer
         optional: true
@@ -1070,7 +1076,7 @@ entities:
     name: Ambient light brightness raw
     category: diagnostic
     dps:
-      - id: "123"
+      - id: 123
         name: sensor
         type: integer
         optional: true
@@ -1081,7 +1087,7 @@ entities:
     name: Night light brightness raw
     category: diagnostic
     dps:
-      - id: "124"
+      - id: 124
         name: sensor
         type: integer
         optional: true
@@ -1092,7 +1098,7 @@ entities:
     name: Alarm status raw
     category: diagnostic
     dps:
-      - id: "126"
+      - id: 126
         name: sensor
         type: base64
         optional: true
@@ -1103,7 +1109,7 @@ entities:
     name: Alarm 1 status raw
     category: diagnostic
     dps:
-      - id: "109"
+      - id: 109
         name: sensor
         type: base64
         optional: true
@@ -1114,7 +1120,7 @@ entities:
     name: Alarm 2 status raw
     category: diagnostic
     dps:
-      - id: "111"
+      - id: 111
         name: sensor
         type: base64
         optional: true
@@ -1125,7 +1131,7 @@ entities:
     name: Sleep aid status raw
     category: diagnostic
     dps:
-      - id: "128"
+      - id: 128
         name: sensor
         type: base64
         optional: true
@@ -1136,7 +1142,7 @@ entities:
     name: Weather raw
     category: diagnostic
     dps:
-      - id: "113"
+      - id: 113
         name: sensor
         type: base64
         optional: true
@@ -1147,7 +1153,7 @@ entities:
     name: Device time raw
     category: diagnostic
     dps:
-      - id: "114"
+      - id: 114
         name: sensor
         type: base64
         optional: true
