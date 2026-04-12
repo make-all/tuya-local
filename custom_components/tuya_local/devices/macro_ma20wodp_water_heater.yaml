@@ -1,5 +1,5 @@
 # https://www.cityenergylife.com.sg/products/ma-20wodp
-name: Gas Water Heater
+name: Gas water heater
 products:
   - id: yliuzmey7vxflbzr
     manufacturer: Macro
@@ -7,7 +7,7 @@ products:
     model: MA-20WODP
 entities:
   - entity: water_heater
-    translation_key: water_air
+    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -19,7 +19,7 @@ entities:
             constraint: work_mode
             conditions:
               - dps_val: Manual
-                value: electric
+                value: gas
               - dps_val: Eco
                 value: eco
               - dps_val: Turbo
@@ -33,15 +33,15 @@ entities:
         name: temperature
         unit: C
         range:
-          min: 40
-          max: 75
+          min: 36
+          max: 60
         mapping:
           - step: 5
       - id: 10
         type: integer
         name: current_temperature
   - entity: switch
-    name: Instant Heating
+    name: Instant heating
     icon: mdi:lightning-bolt
     dps:
       - id: 15
