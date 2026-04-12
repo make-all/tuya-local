@@ -1,4 +1,4 @@
-name: Deshumidificador WiFi
+name: Deshumidifier
 products:
   - id: 55e916oobezauqfb
     manufacturer: Orbegozo
@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
@@ -21,6 +22,14 @@ entities:
       - id: 6
         name: current_humidity
         type: integer
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Strong
+            value: laundry
+          - dps_val: Auto
+            value: auto
   - entity: select
     name: Fan speed
     icon: "mdi:fan"
@@ -34,18 +43,6 @@ entities:
             value: Low
           - dps_val: high
             value: High
-  - entity: select
-    translation_key: mode
-    category: config
-    dps:
-      - id: 5
-        type: string
-        name: option
-        mapping:
-          - dps_val: Strong
-            value: Strong
-          - dps_val: Auto
-            value: Auto
   - entity: sensor
     class: temperature
     dps:
