@@ -42,7 +42,8 @@ entities:
         range:
           min: 10
           max: 1000
-        step: 10
+        mapping:
+          - step: 10
       - id: 11
         name: rgbhsv
         type: hex
@@ -77,7 +78,8 @@ entities:
         range:
           min: 10
           max: 1000
-        step: 10
+        mapping:
+          - step: 10
 
   - entity: light
     translation_key: night_light
@@ -92,7 +94,8 @@ entities:
         range:
           min: 10
           max: 1000
-        step: 10
+        mapping:
+          - step: 10
       - id: 105
         name: rgbhsv
         type: hex
@@ -124,7 +127,6 @@ entities:
         range:
           min: 5
           max: 100
-        step: 1
         unit: "%"
 
   - entity: switch
@@ -871,7 +873,6 @@ entities:
         range:
           min: 76
           max: 108
-        step: 1
         unit: MHz
       - id: 130
         name: available
@@ -892,7 +893,6 @@ entities:
         range:
           min: 0
           max: 9
-        step: 1
       - id: 130
         name: available
         type: boolean
