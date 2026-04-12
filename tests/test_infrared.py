@@ -126,7 +126,7 @@ async def test_async_send_command(mocker):
                 '{"control": "send_ir", "type": 0, "head": "", "key1": "1KCOUETICMgIyAjI'
                 "CMgKXBjICMgIyAjICMgIyAjICMgIyApcGMgIyAjIClwYyAjICMgIyAjIClwYyAjICMgKXBj"
                 "ICMgIyAjICMgKXBjICMgIyAjICMgKXBjIClwYyAjICMgIyAjIClwYyAjICMgKXBjIClwYyA"
-                'jICMgIyAjIClwYyApcGMgIAAA=="}'
+                'jICMgIyAjIClwYyApcGMgKIEw=="}'
             )
         },
     ):
