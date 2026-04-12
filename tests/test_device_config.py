@@ -519,7 +519,10 @@ def test_config_files_parse(mocker):
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
                 if first_line is None:
-                    first_line = err.path[-1].__line__
+                    # voluptuous doesn't always seem to return line numbers
+                    if err.path and hasattr(err.path[-1], "__line__"):
+                        first_line = err.path[-1].__line__
+
             messages = "; ".join(messages)
             if not first_line:
                 first_line = 1
