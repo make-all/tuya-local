@@ -671,7 +671,11 @@ class TuyaLocalDevice(object):
                     i,
                     connections,
                 )
-
+                # Ensure we have a fresh connection for the next attempt
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
+                    
                 if i + 1 == connections:
                     self._reset_cached_state()
                     self._api_working_protocol_failures += 1
