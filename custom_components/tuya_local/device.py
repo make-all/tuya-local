@@ -370,7 +370,7 @@ class TuyaLocalDevice(object):
                     )
                     # Ignore Payload error 904, as 3.4 protocol devices seem to return
                     # this when there is no new data, instead of just returning nothing.
-                    if poll and "Err" in poll and poll["Err"] == 904:
+                    if poll and "Err" in poll and poll["Err"] == "904":
                         poll = None
                 else:
                     force_backoff = True
