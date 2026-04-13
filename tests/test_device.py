@@ -604,7 +604,7 @@ async def test_async_receive(subject, mock_api, mocker):
     mock_api().set_socketPersistent.reset_mock()
     mock_api().status.reset_mock()
     # Wait long enough to force a heartbeat poll on the next iteration
-    await asyncio.sleep(subject._heartbeat_interval + 0.1)
+    await asyncio.sleep(10.1)
     # Call the function under test
     print("getting second iteration...")
     result = await loop.__anext__()
