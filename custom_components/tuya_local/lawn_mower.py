@@ -2,6 +2,8 @@
 Setup for different kinds of Tuya lawn mowers
 """
 
+import logging
+
 from homeassistant.components.lawn_mower import LawnMowerEntity
 from homeassistant.components.lawn_mower.const import (
     SERVICE_DOCK,
@@ -15,6 +17,8 @@ from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -61,14 +65,17 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
     async def async_start_mowing(self) -> None:
         """Start mowing the lawn."""
         if self._command_dp:
+            _LOGGER.info("%s starting lawn mowing", self._config.config_id)
             await self._command_dp.async_set_value(self._device, SERVICE_START_MOWING)
 
     async def async_pause(self):
         """Pause lawn mowing."""
         if self._command_dp:
+            _LOGGER.info("%s pausing lawn mowing", self._config.config_id)
             await self._command_dp.async_set_value(self._device, SERVICE_PAUSE)
 
     async def async_dock(self):
         """Stop mowing and return to dock."""
         if self._command_dp:
+            _LOGGER.info("%s returning to dock", self._config.config_id)
             await self._command_dp.async_set_value(self._device, SERVICE_DOCK)

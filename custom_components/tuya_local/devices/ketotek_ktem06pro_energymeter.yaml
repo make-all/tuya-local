@@ -426,7 +426,7 @@ entities:
         unit: kW
         class: measurement
         mapping:
-          - scale: 3
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -456,6 +456,7 @@ entities:
     dps:
       - id: 107
         type: integer
+        optional: true
         name: minute
         range:
           min: 0
