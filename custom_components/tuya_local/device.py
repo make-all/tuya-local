@@ -313,10 +313,10 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(persist)
 
+        last_heartbeat = self._cached_state.get("updated_at", 0)
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
-            last_heartbeat = self._cached_state.get("updated_at", 0)
             try:
                 await self._api_lock.acquire()
                 last_cache = self._cached_state.get("updated_at", 0)
