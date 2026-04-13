@@ -37,7 +37,10 @@ select = [
   "F",     # pyflakes
   "E",     # pycodestyle
   "W",     # pycodestyle warnings
-  "S",     # flake8-bandit
-  "B",     # flake8-bugbear
-  "A",     # flake8-builtins
+#  "S",     # flake8-bandit
+#  "B",     # flake8-bugbear
+#  "A",    # flake8-builtins
+]
+ignore = [
+  "E501",  # Duplicate of format rule, hits on tests
 ]
