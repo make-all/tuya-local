@@ -75,6 +75,7 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
 
     async def async_set_value(self, value: str) -> None:
         """Set the value"""
+        _LOGGER.info("%s setting value to %s", self._config.config_id, value)
         await self._value_dp.async_set_value(self._device, value)
 
     @property
