@@ -36,9 +36,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-      - name: Install dependencies
-        run:  uv pip install -r requirements-dev.txt
       - name: Device configs check with pytest
         run: |
-          pytest tests/test_device_config.py
-          python util/untranslated_entities.py
+          uv run pytest tests/test_device_config.py
+          uv run python util/untranslated_entities.py

@@ -313,10 +313,10 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(persist)
 
+        last_heartbeat = self._cached_state.get("updated_at", 0)
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
-            last_heartbeat = self._cached_state.get("updated_at", 0)
             try:
                 await self._api_lock.acquire()
                 last_cache = self._cached_state.get("updated_at", 0)
@@ -370,7 +370,7 @@ class TuyaLocalDevice(object):
                     )
                     # Ignore Payload error 904, as 3.4 protocol devices seem to return
                     # this when there is no new data, instead of just returning nothing.
-                    if poll and "Err" in poll and poll["Err"] == 904:
+                    if poll and "Err" in poll and poll["Err"] == "904":
                         poll = None
                 else:
                     force_backoff = True
@@ -671,6 +671,10 @@ class TuyaLocalDevice(object):
                     i,
                     connections,
                 )
+                # Ensure we have a fresh connection for the next attempt
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
 
                 if i + 1 == connections:
                     self._reset_cached_state()
@@ -697,10 +701,7 @@ class TuyaLocalDevice(object):
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
-        return {
-            key: property["value"]
-            for key, property in self._get_pending_updates().items()
-        }
+        return {key: prop["value"] for key, prop in self._get_pending_updates().items()}
 
     def _get_unsent_properties(self):
         return {
