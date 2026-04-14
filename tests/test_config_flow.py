@@ -482,7 +482,7 @@ async def test_flow_select_type_data_valid(hass, mocker):
     """Test the flow continues when valid data is supplied."""
     mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
 
-    setup_device_mock(mock_device, mocker, type="smartplugv1")
+    setup_device_mock(mock_device, mocker, devtype="smartplugv1")
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}
