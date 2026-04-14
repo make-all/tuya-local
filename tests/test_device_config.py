@@ -758,8 +758,8 @@ def test_values_with_mirror(mocker):
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = "1"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
-    map = TuyaDpsConfig(mock_entity, mock_map_config)
-    mock_entity.find_dps.return_value = map
+    mapping = TuyaDpsConfig(mock_entity, mock_map_config)
+    mock_entity.find_dps.return_value = mapping
 
     assert set(cfg.values(mock_device)) == {"unmirrored", "map_one", "map_two"}
     assert len(cfg.values(mock_device)) == 3

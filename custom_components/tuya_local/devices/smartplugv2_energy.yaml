@@ -21,6 +21,9 @@ products:
   - id: pq860vo9ib50jhud
     manufacturer: Positivo
     model: 10A CTD
+  - id: i4fg8sszym1rtqz7
+    manufacturer: Voltcraft
+    model: SEM6500
 entities:
   - entity: switch
     class: outlet
@@ -63,13 +66,13 @@ entities:
   - entity: sensor
     category: diagnostic
     hidden: true
-    name: Energy
+    class: energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
-        class: measurement
+        class: total_increasing
         optional: true
       - id: 25
         type: integer
