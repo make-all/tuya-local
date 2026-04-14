@@ -7,8 +7,7 @@ products:
 # Mapping validated on AQUASTRONG HEX100 over local protocol 3.5.
 entities:
   - entity: climate
-    name: Pool heat pump
-    icon: mdi:hot-tub
+    translation_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -17,7 +16,22 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: heat
+            constraint: work_mode
+            conditions:
+              - dps_val: make_cold
+                value: cool
+              - dps_val: cold
+                value: cool
+              - dps_val: make_hot
+                value: heat
+              - dps_val: heating
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        name: work_mode
+        type: string
+        hidden: true
       - id: 4
         name: temperature
         type: integer
@@ -48,22 +62,16 @@ entities:
         name: option
         type: string
         mapping:
+          - dps_val: make_cold
+            value: cool
+          - dps_val: make_hot
+            value: heat
           - dps_val: cold
             value: cool
           - dps_val: heating
             value: heat
-          - dps_val: floor_heating
-            value: floor_heat
-          - dps_val: hot_water
-            value: hotwater
-          - dps_val: make_hot
-            value: hotwater
-          - dps_val: cold_and_hot_water
-            value: hotwater_cool
-          - dps_val: heating_and_hot_water
-            value: hotwater_heat
-          - dps_val: floor_heating_and_hot_water
-            value: hotwater_floor_heat
+          - dps_val: auto
+            value: auto
 
   - entity: binary_sensor
     translation_key: defrost
