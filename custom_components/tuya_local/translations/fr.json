@@ -216,6 +216,15 @@
             }
         },
         "button": {
+            "alarm_off": {
+                "name": "Arrêt alarme"
+            },
+            "alarm_snooze": {
+                "name": "Répéter alarme"
+            },
+            "alarm_x_reset": {
+                "name": "Alarme {x} réinitialiser"
+            },
             "factory_reset": {
                 "name": "Réinitialisation d'usine"
             },
@@ -530,6 +539,12 @@
             },
             "rangehood_light": {
                 "name": "Lumière de la hotte"
+            },
+            "color_light": {
+                "name": "Lumière couleur"
+            },
+            "ambient_light": {
+                "name": "Lumière d'ambiance"
             }
         },
         "lock": {
@@ -538,6 +553,12 @@
             }
         },
         "number": {
+            "alarm_x_snooze_duration": {
+                "name": "Alarme {x} durée répétition"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarme {x} avance lumière d'éveil"
+            },
             "manual_feed": {
                 "name": "Nourriture manuelle"
             },
@@ -546,6 +567,9 @@
             },
             "minimum_temperature": {
                 "name": "Température minimale"
+            },
+            "radio_frequency": {
+                "name": "Fréquence radio"
             },
             "sensor_threshold": {
                 "name": "{sensor} seuil"
@@ -581,6 +605,15 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
+                }
+            },
+            "display_brightness": {
+                "name": "Luminosité de l’écran",
+                "state": {
+                    "off": "Éteint",
+                    "dim": "Faible",
+                    "bright": "Lumineuse",
+                    "auto": "Auto"
                 }
             },
             "heat_pump_mode": {
@@ -725,6 +758,13 @@
                     "twinkle": "Scintillement",
                     "gaming": "Jeu",
                     "none": "Aucun"
+                }
+            },
+            "seconds_dot": {
+                "name": "Séparateur des secondes",
+                "state": {
+                    "static": "Fixe",
+                    "blinking": "Clignotant"
                 }
             },
             "timer": {
@@ -918,7 +958,7 @@
                     "dry": "Séchage",
                     "storage": "Stockage",
                     "light": "Léger",
-                    "pots": "Casseroles"                    
+                    "pots": "Casseroles"
                 }
             },
             "water_hardness": {
@@ -1023,6 +1063,37 @@
                     "red_bean_bread": "Pain aux haricots rouges",
                     "milk_toast": "Pain au lait"
                 }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarme {x} mode répétition",
+                "state": {
+                    "mute": "Couper le son",
+                    "mute_light": "Couper son + lumière",
+                    "light_only": "Couper la lumière"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarme {x} effet sonore",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fondu d'entrée",
+                    "fade_out": "Fondu de sortie"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarme {x} mode lumière d'éveil",
+                "state": {
+                    "no_light": "Sans lumière",
+                    "rainbow": "Arc-en-ciel",
+                    "candle_flicker": "Vacillement de bougie",
+                    "romantic_breath": "Souffle romantique",
+                    "quiet_deep_sea": "Mer profonde tranquille",
+                    "flowing_colors": "Couleurs fluides",
+                    "magic_jungle": "Jungle magique",
+                    "perfect_party": "Fête parfaite",
+                    "sunrise_at_sea": "Lever de soleil en mer",
+                    "dynamic_music": "Musique dynamique"
+                }
             }
         },
         "sensor": {
@@ -1046,6 +1117,15 @@
                     "poor": "Mauvais",
                     "severe": "Grave",
                     "danger": "Danger"
+                }
+            },
+            "light_status": {
+                "name": "État de l'éclairage",
+                "state": {
+                    "all_off": "Tout éteint",
+                    "night_on": "Veilleuse allumée",
+                    "color_on": "Lumière couleur allumée",
+                    "ambient_on": "Lumière d'ambiance allumée"
                 }
             },
             "status": {
@@ -1203,9 +1283,61 @@
             },
             "leakage_current": {
                 "name": "Courant de fuite"
+            "wireless_charging": {
+                "name": "Charge sans fil",
+                "state": {
+                    "idle": "Inactif",
+                    "charging": "En charge",
+                    "full": "Chargé",
+                    "foreign_object_detected": "Objet étranger détecté"
+                }
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarme {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Aucun",
+                            "birds": "Oiseaux",
+                            "sea": "Mer",
+                            "valley": "Vallée",
+                            "piano": "Piano",
+                            "soft": "Doux",
+                            "phone": "Téléphone",
+                            "beep": "Bip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         },
         "switch": {
+            "alarm_x_snooze_enabled": {
+                "name": "Alarme {x} répétition activée"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarme {x} Jour 1-Lundi"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarme {x} Jour 2-Mardi"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarme {x} Jour 3-Mercredi"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarme {x} Jour 4-Jeudi"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarme {x} Jour 5-Vendredi"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarme {x} Jour 6-Samedi"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarme {x} Jour 7-Dimanche"
+            },
             "anti_frost": {
                 "name": "Anti-gel"
             },
@@ -1237,8 +1369,20 @@
             "keytone": {
                 "name": "Tonalité des touches"
             },
+            "music_playback": {
+                "name": "Lecture de musique"
+            },
+            "network_time": {
+                "name": "Synchronisation de l'heure réseau"
+            },
+            "night_mode": {
+                "name": "Mode nuit"
+            },
             "outlet_x": {
                 "name": "Prise {x}"
+            },
+            "radio": {
+                "name": "Radio"
             },
             "sleep": {
                 "name": "Veille"
@@ -1251,6 +1395,9 @@
             },
             "electrolytic_sterilization": {
                 "name": "Stérilisation électrolytique"
+            },
+            "time_24h": {
+                "name": "Affichage 24 heures"
             },
             "uv_sterilization": {
                 "name": "Stérilisation UV"
@@ -1280,6 +1427,9 @@
             }
         },
         "time": {
+            "clock_time": {
+                "name": "Heure de l'horloge"
+            },
             "cooking_time": {
                 "name": "Temps de cuisson"
             },
@@ -1291,6 +1441,9 @@
             },
             "timer_x": {
                 "name": "Minuteur {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarme {x} heure"
             }
         },
         "valve": {
