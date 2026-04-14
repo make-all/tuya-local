@@ -5,9 +5,9 @@ Functions for logging
 import json
 
 
-def non_json(in):
+def non_json(data):
     """Handler for json_dumps when used for debugging."""
-    return f"Non-JSON: ({in})"
+    return f"Non-JSON: ({data})"
 
 
 def log_json(data):
