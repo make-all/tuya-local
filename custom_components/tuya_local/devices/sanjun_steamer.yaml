@@ -21,10 +21,16 @@ entities:
         range:
           min: 25
           max: 68
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 77
+                  max: 154
       - id: 112
         type: integer
         name: current_temperature
-        readonly: true
       - id: 113
         type: boolean
         name: temperature_unit
@@ -34,19 +40,17 @@ entities:
           - dps_val: true
             value: F
   - entity: switch
-    name: Power
     dps:
       - id: 101
         type: boolean
         name: switch
   - entity: light
-    name: Light
     dps:
       - id: 105
         type: boolean
         name: switch
   - entity: light
-    name: Colour Lamp
+    name: Colour lamp
     dps:
       - id: 106
         type: boolean
@@ -58,19 +62,27 @@ entities:
           - dps_val: "00"
             value: Rainbow
           - dps_val: "01"
-            value: Red
+            value: red
+            default: true
+            hidden: true
+      - id: 107
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "01"
+            value: red
           - dps_val: "02"
-            value: Yellow
+            value: yellow
           - dps_val: "03"
-            value: Green
+            value: lime
           - dps_val: "04"
-            value: Cyan
+            value: aqua
           - dps_val: "05"
-            value: Blue
+            value: blue
           - dps_val: "06"
-            value: Purple
+            value: magenta
           - dps_val: "07"
-            value: White
+            value: white
   - entity: switch
     name: Aromatherapy
     dps:
@@ -78,13 +90,12 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Wash / Rinse
+    name: Wash rinse
     dps:
       - id: 109
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -94,8 +105,13 @@ entities:
         mapping:
           - dps_val: 0
             value: false
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code
+        hidden: true
   - entity: button
-    name: RTC Sync
+    name: Clock sync
     icon: "mdi:timer-sync-outline"
     category: config
     dps:
@@ -103,32 +119,36 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Countdown Timer
+    translation_key: time_remaining
     category: diagnostic
+    hidden: true
     dps:
       - id: 103
         type: base64
         name: sensor
         optional: true
   - entity: sensor
-    name: Schedule / Timing
+    name: Schedule
     category: diagnostic
+    hidden: true
     dps:
       - id: 110
         type: base64
         name: sensor
         optional: true
   - entity: sensor
-    name: Steam Time Count
+    name: Steam time count
     category: diagnostic
+    hidden: true
     dps:
       - id: 115
         type: base64
         name: sensor
         optional: true
   - entity: sensor
-    name: Time / Temperature Range
+    name: Temperature range
     category: diagnostic
+    hidden: true
     dps:
       - id: 116
         type: base64
