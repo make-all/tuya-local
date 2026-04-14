@@ -30,7 +30,7 @@ products:
 
 entities:
   - entity: light
-    translation_key: color_light
+    name: Color light
     dps:
       - id: 2
         name: switch
@@ -66,7 +66,7 @@ entities:
               max: 1000
 
   - entity: light
-    translation_key: ambient_light
+    name: Ambient light
     dps:
       - id: 102
         name: switch
@@ -82,7 +82,7 @@ entities:
           - step: 10
 
   - entity: light
-    translation_key: night_light
+    name: Night light
     dps:
       - id: 104
         name: switch
@@ -118,7 +118,7 @@ entities:
               max: 1000
 
   - entity: number
-    translation_key: volume
+    name: Volume
     mode: slider
     dps:
       - id: 5
@@ -130,16 +130,14 @@ entities:
         unit: "%"
 
   - entity: switch
-    translation_key: sleep
+    name: Sleep
     dps:
       - id: 106
         name: switch
         type: boolean
 
   - entity: switch
-    translation_key: alarm_x_enabled
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 enabled
     category: config
     dps:
       - id: 108
@@ -147,9 +145,7 @@ entities:
         type: boolean
 
   - entity: switch
-    translation_key: alarm_x_enabled
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 enabled
     category: config
     dps:
       - id: 110
@@ -158,9 +154,7 @@ entities:
 
   # Alarm 1 configuration (DP 109 raw payload)
   - entity: time
-    translation_key: alarm_x_time
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 time
     category: config
     dps:
       - id: 109
@@ -175,9 +169,7 @@ entities:
         mask: "00FF000000000000000000000000"
 
   - entity: select
-    translation_key: alarm_x_repeat
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 repeat
     category: config
     dps:
       - id: 109
@@ -198,9 +190,7 @@ entities:
   # Repeat-day bits map Monday..Sunday across the 7 low bits of
   # Data[2].
   - entity: switch
-    translation_key: alarm_x_day_sunday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Sunday
     category: config
     dps:
       - id: 109
@@ -210,9 +200,7 @@ entities:
         mask: "0000010000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_saturday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Saturday
     category: config
     dps:
       - id: 109
@@ -222,9 +210,7 @@ entities:
         mask: "0000020000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_friday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Friday
     category: config
     dps:
       - id: 109
@@ -234,9 +220,7 @@ entities:
         mask: "0000040000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_thursday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Thursday
     category: config
     dps:
       - id: 109
@@ -246,9 +230,7 @@ entities:
         mask: "0000080000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_wednesday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Wednesday
     category: config
     dps:
       - id: 109
@@ -258,9 +240,7 @@ entities:
         mask: "0000100000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_tuesday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Tuesday
     category: config
     dps:
       - id: 109
@@ -270,9 +250,7 @@ entities:
         mask: "0000200000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_monday
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 Monday
     category: config
     dps:
       - id: 109
@@ -282,9 +260,7 @@ entities:
         mask: "0000400000000000000000000000"
 
   - entity: select
-    translation_key: alarm_x_wake_sound
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 wake sound
     category: config
     dps:
       - id: 109
@@ -313,9 +289,7 @@ entities:
             value: radio
 
   - entity: select
-    translation_key: alarm_x_sound_effect
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 sound effect
     category: config
     dps:
       - id: 109
@@ -332,9 +306,7 @@ entities:
             value: fade_out
 
   - entity: number
-    translation_key: alarm_x_volume
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 volume
     category: config
     mode: slider
     dps:
@@ -348,9 +320,7 @@ entities:
           max: 10
 
   - entity: number
-    translation_key: alarm_x_duration
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 duration
     category: config
     dps:
       - id: 109
@@ -364,9 +334,7 @@ entities:
         unit: min
 
   - entity: select
-    translation_key: alarm_x_wake_light_mode
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 wake light mode
     category: config
     dps:
       - id: 109
@@ -397,9 +365,7 @@ entities:
             value: dynamic_music
 
   - entity: number
-    translation_key: alarm_x_wake_light_lead_time
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 wake light lead time
     category: config
     dps:
       - id: 109
@@ -413,9 +379,7 @@ entities:
         unit: min
 
   - entity: switch
-    translation_key: alarm_x_snooze_enabled
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 snooze enabled
     category: config
     dps:
       - id: 109
@@ -425,9 +389,7 @@ entities:
         mask: "000000000000000000FF00000000"
 
   - entity: number
-    translation_key: alarm_x_snooze_duration
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 snooze duration
     category: config
     dps:
       - id: 109
@@ -441,9 +403,7 @@ entities:
         unit: min
 
   - entity: select
-    translation_key: alarm_x_snooze_action
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 snooze action
     category: config
     dps:
       - id: 109
@@ -461,9 +421,7 @@ entities:
 
   # Alarm 2 configuration (DP 111 raw payload)
   - entity: time
-    translation_key: alarm_x_time
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 time
     category: config
     dps:
       - id: 111
@@ -478,9 +436,7 @@ entities:
         mask: "00FF000000000000000000000000"
 
   - entity: select
-    translation_key: alarm_x_repeat
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 repeat
     category: config
     dps:
       - id: 111
@@ -499,9 +455,7 @@ entities:
             value: every_day
 
   - entity: switch
-    translation_key: alarm_x_day_sunday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Sunday
     category: config
     dps:
       - id: 111
@@ -511,9 +465,7 @@ entities:
         mask: "0000010000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_saturday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Saturday
     category: config
     dps:
       - id: 111
@@ -523,9 +475,7 @@ entities:
         mask: "0000020000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_friday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Friday
     category: config
     dps:
       - id: 111
@@ -535,9 +485,7 @@ entities:
         mask: "0000040000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_thursday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Thursday
     category: config
     dps:
       - id: 111
@@ -547,9 +495,7 @@ entities:
         mask: "0000080000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_wednesday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Wednesday
     category: config
     dps:
       - id: 111
@@ -559,9 +505,7 @@ entities:
         mask: "0000100000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_tuesday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Tuesday
     category: config
     dps:
       - id: 111
@@ -571,9 +515,7 @@ entities:
         mask: "0000200000000000000000000000"
 
   - entity: switch
-    translation_key: alarm_x_day_monday
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 Monday
     category: config
     dps:
       - id: 111
@@ -583,9 +525,7 @@ entities:
         mask: "0000400000000000000000000000"
 
   - entity: select
-    translation_key: alarm_x_wake_sound
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 wake sound
     category: config
     dps:
       - id: 111
@@ -614,9 +554,7 @@ entities:
             value: radio
 
   - entity: select
-    translation_key: alarm_x_sound_effect
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 sound effect
     category: config
     dps:
       - id: 111
@@ -633,9 +571,7 @@ entities:
             value: fade_out
 
   - entity: number
-    translation_key: alarm_x_volume
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 volume
     category: config
     mode: slider
     dps:
@@ -649,9 +585,7 @@ entities:
           max: 10
 
   - entity: number
-    translation_key: alarm_x_duration
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 duration
     category: config
     dps:
       - id: 111
@@ -665,9 +599,7 @@ entities:
         unit: min
 
   - entity: select
-    translation_key: alarm_x_wake_light_mode
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 wake light mode
     category: config
     dps:
       - id: 111
@@ -698,9 +630,7 @@ entities:
             value: dynamic_music
 
   - entity: number
-    translation_key: alarm_x_wake_light_lead_time
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 wake light lead time
     category: config
     dps:
       - id: 111
@@ -714,9 +644,7 @@ entities:
         unit: min
 
   - entity: switch
-    translation_key: alarm_x_snooze_enabled
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 snooze enabled
     category: config
     dps:
       - id: 111
@@ -726,9 +654,7 @@ entities:
         mask: "000000000000000000FF00000000"
 
   - entity: number
-    translation_key: alarm_x_snooze_duration
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 snooze duration
     category: config
     dps:
       - id: 111
@@ -742,9 +668,7 @@ entities:
         unit: min
 
   - entity: select
-    translation_key: alarm_x_snooze_action
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 snooze action
     category: config
     dps:
       - id: 111
@@ -761,14 +685,14 @@ entities:
             value: light_only
 
   - entity: button
-    translation_key: alarm_snooze
+    name: Alarm snooze
     dps:
       - id: 7
         name: button
         type: boolean
 
   - entity: button
-    translation_key: alarm_off
+    name: Alarm off
     dps:
       - id: 112
         name: button
@@ -778,9 +702,7 @@ entities:
   # They write a complete default 14-byte alarm blob so the masked alarm
   # controls above have a real payload to edit locally afterwards.
   - entity: button
-    translation_key: alarm_x_reset
-    translation_placeholders:
-      x: "1"
+    name: Alarm 1 reset
     category: config
     dps:
       - id: 109
@@ -792,9 +714,7 @@ entities:
             dps_val: "AAB/AwAGDwEeAQkAAAA="
 
   - entity: button
-    translation_key: alarm_x_reset
-    translation_placeholders:
-      x: "2"
+    name: Alarm 2 reset
     category: config
     dps:
       - id: 111
@@ -806,14 +726,14 @@ entities:
             dps_val: "AAB/AwAGDwEeAQkAAAA="
 
   - entity: switch
-    translation_key: music_playback
+    name: Music playback
     dps:
       - id: 129
         name: switch
         type: boolean
 
   - entity: switch
-    translation_key: radio
+    name: Radio
     dps:
       - id: 130
         name: switch
@@ -821,7 +741,7 @@ entities:
 
   # FM tuning is only available while the radio is on (DP 130).
   - entity: number
-    translation_key: radio_frequency
+    name: Radio frequency
     mode: box
     dps:
       - id: 133
@@ -839,7 +759,7 @@ entities:
         optional: true
 
   - entity: number
-    translation_key: radio_frequency_decimal
+    name: Radio decimal
     mode: box
     dps:
       - id: 133
@@ -858,7 +778,7 @@ entities:
   # DP 114 stores date/time as 7 bytes: year offset, month, day, hour, minute,
   # second and weekday. Expose the wall-clock portion for manual edits.
   - entity: time
-    translation_key: clock_time
+    name: Clock time
     category: config
     dps:
       - id: 114
@@ -887,7 +807,7 @@ entities:
             value: true
 
   - entity: switch
-    translation_key: network_time
+    name: Network time sync
     category: config
     dps:
       - id: 115
@@ -895,7 +815,7 @@ entities:
         type: boolean
 
   - entity: switch
-    translation_key: night_mode
+    name: Night mode
     category: config
     dps:
       - id: 121
@@ -903,7 +823,7 @@ entities:
         type: boolean
 
   - entity: switch
-    translation_key: time_24h
+    name: 24-hour time
     category: config
     dps:
       - id: 125
@@ -911,7 +831,7 @@ entities:
         type: boolean
 
   - entity: select
-    translation_key: display_brightness
+    name: Display brightness
     category: config
     dps:
       - id: 116
@@ -928,7 +848,7 @@ entities:
             value: auto
 
   - entity: select
-    translation_key: seconds_dot
+    name: Seconds dot
     category: config
     dps:
       - id: 118
@@ -941,7 +861,7 @@ entities:
             value: blinking
 
   - entity: select
-    translation_key: temperature_unit
+    name: Temperature unit
     category: config
     dps:
       - id: 119
@@ -954,7 +874,7 @@ entities:
             value: fahrenheit
 
   - entity: sensor
-    translation_key: wireless_charging
+    name: Wireless charging status
     class: enum
     category: diagnostic
     dps:
@@ -973,7 +893,7 @@ entities:
             value: foreign_object_detected
 
   - entity: sensor
-    translation_key: light_status
+    name: Light status
     class: enum
     category: diagnostic
     dps:
