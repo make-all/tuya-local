@@ -1342,3 +1342,4 @@ Further device support has been made with the assistance of users. Please consid
 - [edpenz](https://github.com/edpenz) for contributing bug fixes for the remote entity.
 - [rezendeneto](https://github.com/rezendeneto) for contributing support for Garen Kit Central garage door controller, ATorch S1BWP-T/H thermostat smartplug.
 - [tkaefer](https://github.com/tkaefer) for contributing support for Costway portable air conditioner with heating.
+- [pepitogrillo02](https://github.com/pepitogrillo02) for contributing support for Beok TR9HB-AC2.
