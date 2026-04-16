@@ -121,7 +121,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Leakage current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
@@ -207,7 +207,7 @@ entities:
         name: switch
   - entity: number
     translation_key: timer
-    deprecated: time.timer  # 2026-01-20
+    deprecated: time.timer # 2026-01-20
     category: config
     dps:
       - id: 105
