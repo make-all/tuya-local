@@ -1,10 +1,8 @@
 name: Ceiling fan with light
-
 products:
   - id: k8j78n65zeu3orz7
     manufacturer: Eglo
     model: Surf with Light
-
 entities:
   - entity: fan
     name: Ceiling Fan
@@ -12,7 +10,6 @@ entities:
       - id: 60
         type: boolean
         name: switch
-
       - id: 61
         type: string
         name: preset_mode
@@ -21,7 +18,6 @@ entities:
             value: Normal
           - dps_val: nature
             value: Natural
-
       - id: 62
         type: integer
         name: speed
@@ -40,26 +36,21 @@ entities:
             value: 100
           - dps_val: -1
             value: 10
-
       - id: 63
         type: string
         name: direction
-
   - entity: light
     name: Fan Light
     dps:
       - id: 20
         type: boolean
         name: switch
-
       - id: 22
         type: integer
         name: brightness
         range:
           min: 10
           max: 1000
-          step: 10
-
       - id: 23
         type: integer
         name: color_temp
@@ -71,7 +62,6 @@ entities:
               min: 3000
               max: 5000
             step: 500
-
   - entity: number
     name: Light Timer
     icon: mdi:timer-outline
@@ -90,7 +80,6 @@ entities:
         mapping:
           - scale: 60
             step: 60
-
   - entity: number
     name: Fan Timer
     icon: "mdi:fan-clock"
