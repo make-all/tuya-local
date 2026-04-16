@@ -1,4 +1,4 @@
-name: Breaker SWC32v4
+name: Circuit breaker
 products:
   - id: sh45wydgedautxda
     manufacturer: TOMZN
@@ -6,14 +6,13 @@ products:
 
 entities:
   - entity: switch
-    icon: "mdi:fuse"
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
         name: switch
 
   - entity: sensor
-    name: Total Energy
     class: energy
     category: diagnostic
     dps:
@@ -27,7 +26,9 @@ entities:
 
   #Phase A
   - entity: sensor
-    name: Phase A Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -43,7 +44,9 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase A Current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -58,7 +61,9 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase A Power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -74,7 +79,9 @@ entities:
 
   #Phase B
   - entity: sensor
-    name: Phase B Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -90,7 +97,9 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase B Current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -105,7 +114,9 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase B Power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -121,7 +132,9 @@ entities:
 
   #Phase C
   - entity: sensor
-    name: Phase C Voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -137,7 +150,9 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Phase C Current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -152,7 +167,9 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    name: Phase C Power
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -168,7 +185,7 @@ entities:
 
   #Rest of the sensors
   - entity: sensor
-    name: Leakage Current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
