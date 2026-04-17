@@ -1,0 +1,155 @@
+name: Gas water heater
+products:
+  - id: di9ybnrv3s2d1axk
+    manufacturer: City Energy
+    model: L10WFE
+entities:
+  - entity: water_heater
+    translation_only_key: water_air
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: gas
+      - id: 9
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 35
+          max: 55
+      - id: 10
+        type: integer
+        name: current_temperature
+        unit: C
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: burning
+            value: heating
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Water flow
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: L/min
+        class: measurement
+  - entity: sensor
+    name: Session runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Session gas
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: m³
+        class: measurement
+  - entity: sensor
+    name: Cumulative gas
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+  - entity: sensor
+    name: Session water
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: L
+        class: measurement
+  - entity: sensor
+    name: Cumulative water
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+  - entity: button
+    name: Reset water meter
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset gas meter
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    name: Flow
+    class: running
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Flame
+    icon: "mdi:fire"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan
+    icon: "mdi:fan"
+    class: running
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
