@@ -1,0 +1,30 @@
+name: Garage opener
+products:
+  - id: xvsgeeru2i5wsd0y
+    manufacturer: Eachen
+    model: GD-DC5
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: close
+          - dps_val: true
+            value: open
+      - id: 1
+        type: boolean
+        name: open
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399

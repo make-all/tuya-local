@@ -1,0 +1,127 @@
+name: Towel radiator
+products:
+  - id: yghsoyzoicezv8sy
+    manufacturer: Emke
+    model: Orbrad PTR
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 30
+          max: 70
+        mapping:
+          - step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 115
+                  max: 155
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 9
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 10
+        type: integer
+        optional: true
+        name: temp_set_f
+        hidden: true
+        range:
+          min: 115
+          max: 155
+        mapping:
+          - step: 5
+      - id: 11
+        type: integer
+        optional: true
+        name: temp_current_f
+        hidden: true
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - value: idle
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

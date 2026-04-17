@@ -1,0 +1,176 @@
+name: Humidifier
+products:
+  - id: i8rxusuw56e1kr3q
+    manufacturer: Breville
+    model: Smart Mist Glow Connect
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 14
+        type: integer
+        name: current_humidity
+      - id: 102
+        type: string
+        name: humidity
+        range:
+          min: 30
+          max: 75
+        mapping:
+          - dps_val: "30H"
+            value: 30
+          - dps_val: "35H"
+            value: 35
+          - dps_val: "40H"
+            value: 40
+          - dps_val: "45H"
+            value: 45
+          - dps_val: "50H"
+            value: 50
+          - dps_val: "55H"
+            value: 55
+          - dps_val: "60H"
+            value: 60
+          - dps_val: "65H"
+            value: 65
+          - dps_val: "70H"
+            value: 70
+          - dps_val: "75H"
+            value: 75
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        readonly: true
+      - id: 6
+        name: effect
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "off"
+          - dps_val: colourful
+            value: Colourful
+          - dps_val: mint_green
+            value: Mint green
+          - dps_val: sunset_yellow
+            value: Sunset yellow
+          - dps_val: orange_yellow
+            value: Orange yellow
+          - dps_val: cherry_pink
+            value: Cherry pink
+          - dps_val: sky_blue
+            value: Sky blue
+          - dps_val: lake_blue
+            value: Lake blue
+          - dps_val: ice_blue
+            value: Ice blue
+      - id: 105
+        name: rgbhsv
+        optional: true
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: speed_one
+            value: 20
+          - dps_val: speed_two
+            value: 40
+          - dps_val: speed_three
+            value: 60
+          - dps_val: speed_four
+            value: 80
+          - dps_val: speed_five
+            value: 100
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: No_water
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Tank removed
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: No_tank
+            value: true
+          - value: false

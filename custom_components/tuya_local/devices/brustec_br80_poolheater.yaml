@@ -1,0 +1,253 @@
+name: Pool heater
+products:
+  - id: wgpg4qdqg8dd3xtx
+    manufacturer: Brustec
+    model: BR80
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: Heat
+                value: heat
+              - dps_val: Cool
+                value: cool
+              - dps_val: [BoostHeat, SilentHeat]
+                value: heat
+                hidden: true
+              - dps_val: [BoostCool, SilentCool]
+                value: cool
+                hidden: true
+              - dps_val: Auto
+                value: heat_cool
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 104
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Heat
+            value: smart_heat
+          - dps_val: Cool
+            value: smart_cool
+          - dps_val: Auto
+            value: auto
+          - dps_val: BoostHeat
+            value: quick_heat
+          - dps_val: SilentHeat
+            value: quiet_heat
+          - dps_val: BoostCool
+            value: quick_cool
+          - dps_val: SilentCool
+            value: quiet_cool
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 14
+        type: integer
+        name: temp_set_f
+        hidden: true
+        range:
+          min: 32
+          max: 104
+      - id: 15
+        type: integer
+        name: temp_current_f
+        hidden: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Compressor coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 13
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Target frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: Hz
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: Hz
+  - entity: sensor
+    name: Main valve
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: binary_sensor
+    name: Water pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor

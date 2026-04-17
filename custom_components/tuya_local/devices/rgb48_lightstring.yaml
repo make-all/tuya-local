@@ -1,0 +1,105 @@
+# Smart Light RGB48 - RGBIC outdoor string lights
+# Product ID: 2znvfkx64d4fkzxp
+# Protocol: 3.4
+#
+# Notes:
+# - DP 59 draw_tool is base64 type for direct per-LED control.
+# - DP 56 rgbic_linerlight_scene is base64 type for scene switching.
+# - DP 58 led_number_set configures string length/segment count.
+
+name: RGBIC string light
+products:
+  - id: 2znvfkx64d4fkzxp
+    model: Smart Light RGB48
+entities:
+  - entity: light
+    icon: "mdi:string-lights"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: "white"
+            value: "color_temp"
+          - dps_val: "colour"
+            value: "hs"
+            hidden: true  # there is no RGB dp, so prevent selection of this
+          - dps_val: "scene"
+            value: "scene"
+          - dps_val: "music"
+            value: "music"
+            hidden: true
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: select
+    name: Segment mode
+    category: config
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "RGB"
+            value: "RGB"
+          - dps_val: "RGBIC"
+            value: "RGBIC"
+          - dps_val: "WHITE"
+            value: "White"
+          - dps_val: "SCENE"
+            value: "Scene"
+  - entity: number
+    name: LED count
+    category: config
+    icon: "mdi:counter"
+    dps:
+      - id: 58
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86399
+        unit: s
+  - entity: text
+    translation_key: scene
+    category: config
+    dps:
+      - id: 56
+        type: base64
+        name: value
+  - entity: text
+    name: Draw tool
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 59
+        type: base64
+        name: value

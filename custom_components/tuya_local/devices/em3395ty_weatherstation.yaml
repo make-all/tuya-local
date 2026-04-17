@@ -1,10 +1,7 @@
-# Bresser 7-in-1 ClimateConnect Tuya Smart Home Weather Centre
-# https://www.bresser.de/en/Weather-Time/BRESSER-7-in-1-ClimateConnect-Tuya-Smart-Home-Weather-Centre.html
 name: Weather station
 products:
-  - id: 8qk6p78udvbjwlof
-    manufacturer: Bresser
-    model: ClimateConnect C6085A
+  - id: 6cwineqz1ndjmuee
+    model: EM3395TY-2
 entities:
   - entity: sensor
     name: Indoor temperature
@@ -17,9 +14,6 @@ entities:
         mapping:
           - scale: 10
         class: measurement
-      - id: 68
-        type: string
-        name: com_index
   - entity: sensor
     name: Indoor humidity
     class: humidity
@@ -29,19 +23,15 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: binary_sensor
-    name: Base station battery
+  - entity: sensor
     class: battery
     category: diagnostic
     dps:
-      - id: 3
-        type: string
+      - id: 4
+        type: integer
         name: sensor
-        mapping:
-          - dps_val: low
-            value: true
-          - dps_val: high
-            value: false
+        unit: "%"
+        class: measurement
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -63,17 +53,12 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: m_s
+          - dps_val: mps
             value: m/s
-          - dps_val: km_h
+          - dps_val: kmph
             value: km/h
-          - dps_val: knots
-            value: knots
           - dps_val: mph
             value: mph
-      - id: 58
-        type: string
-        name: wind_direct
   - entity: select
     name: Pressure unit
     icon: mdi:gauge
@@ -102,99 +87,10 @@ entities:
             value: mm
           - dps_val: inch
             value: inch
-  - entity: select
-    name: Light intensity unit
-    icon: mdi:brightness-5
-    category: config
-    dps:
-      - id: 13
-        type: string
-        name: option
-        mapping:
-          - dps_val: lux
-            value: lux
-          - dps_val: fc
-            value: fc
-          - dps_val: wm2
-            value: W/m2
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 22
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: ""
-            value: false
-          - dps_val: null
-            value: false
-          - value: true
-      - id: 22
-        type: string
-        optional: true
-        name: description
-  - entity: binary_sensor
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 30
-        optional: true
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: low
-            value: true
-          - dps_val: high
-            value: false
-  - entity: binary_sensor
-    name: Battery ch1
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 31
-        optional: true
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: low
-            value: true
-          - dps_val: high
-            value: false
-  - entity: binary_sensor
-    name: Battery ch2
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 32
-        optional: true
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: low
-            value: true
-          - dps_val: high
-            value: false
-  - entity: binary_sensor
-    name: Battery ch3
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 33
-        optional: true
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: low
-            value: true
-          - dps_val: high
-            value: false
   - entity: sensor
     class: temperature
     dps:
       - id: 38
-        optional: true
         type: integer
         name: sensor
         unit: C
@@ -205,7 +101,6 @@ entities:
     class: humidity
     dps:
       - id: 39
-        optional: true
         type: integer
         name: sensor
         unit: "%"
@@ -277,18 +172,16 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    class: pressure
+    class: atmospheric_pressure
     dps:
       - id: 54
         type: integer
         name: sensor
         unit: hPa
-        mapping:
-          - scale: 10
         class: measurement
   - entity: sensor
     name: Pressure drop
-    class: pressure
+    class: atmospheric_pressure
     dps:
       - id: 55
         type: integer
@@ -319,13 +212,24 @@ entities:
           - scale: 10
         class: measurement
   - entity: sensor
+    name: Rain 1h
+    class: precipitation
+    dps:
+      - id: 59
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 10
+        class: measurement
+        unit: mm
+  - entity: sensor
     class: precipitation
     dps:
       - id: 60
         type: integer
         name: sensor
         mapping:
-          - scale: 1000
+          - scale: 10
         class: measurement
         unit: mm
   - entity: sensor
@@ -336,7 +240,7 @@ entities:
         type: integer
         name: sensor
         mapping:
-          - scale: 1000
+          - scale: 10
         class: measurement
         unit: mm/h
   - entity: sensor
@@ -347,18 +251,8 @@ entities:
         type: integer
         optional: true
         name: sensor
-        unit: UV Index
         mapping:
           - scale: 10
-        class: measurement
-  - entity: sensor
-    class: illuminance
-    dps:
-      - id: 63
-        type: integer
-        optional: true
-        name: sensor
-        unit: lx
         class: measurement
   - entity: sensor
     name: Dew point
@@ -408,11 +302,3 @@ entities:
         mapping:
           - scale: 10
         class: measurement
-  - entity: sensor
-    class: wind_direction
-    dps:
-      - id: 101
-        type: integer
-        name: sensor
-        unit: "°"
-        class: measurement_angle

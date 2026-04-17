@@ -120,6 +120,7 @@ class TuyaLocalEntity:
             _LOGGER.warning(self._config.deprecation_message)
 
     async def async_will_remove_from_hass(self):
+        _LOGGER.debug("Removing %s for %s", self._config.config_id, self._device.name)
         await self._device.async_unregister_entity(self)
 
     def on_receive(self, dps, full_poll):
