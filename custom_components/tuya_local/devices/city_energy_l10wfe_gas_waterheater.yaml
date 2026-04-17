@@ -83,6 +83,8 @@ entities:
         name: sensor
         unit: m³
         class: measurement
+        mapping:
+          - scale: 1000
   - entity: sensor
     name: Cumulative gas
     class: volume
@@ -127,29 +129,3 @@ entities:
       - id: 108
         type: boolean
         name: button
-  - entity: binary_sensor
-    name: Flow
-    class: running
-    category: diagnostic
-    dps:
-      - id: 111
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Flame
-    icon: "mdi:fire"
-    class: running
-    category: diagnostic
-    dps:
-      - id: 112
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Fan
-    icon: "mdi:fan"
-    class: running
-    category: diagnostic
-    dps:
-      - id: 113
-        type: boolean
-        name: sensor
