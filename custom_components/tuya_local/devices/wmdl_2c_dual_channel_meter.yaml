@@ -1,3 +1,4 @@
+---
 name: Dual channel energy meter
 products:
   - id: zcmq0kvd01bn6s1n
@@ -96,7 +97,7 @@ entities:
         class: total_increasing
         precision: 2
         mapping:
-            - scale: 100
+          - scale: 100
   - entity: sensor
     name: Total Reverse Energy
     class: energy
@@ -122,7 +123,7 @@ entities:
           min: 0
           max: 150000
         mapping:
-          - dps_val: null
+          - dps_val:
             invalid: true
           - scale: 1
             step: 100
@@ -139,7 +140,7 @@ entities:
           min: 0
           max: 150000
         mapping:
-          - dps_val: null
+          - dps_val:
             invalid: true
           - scale: 1
             step: 100
@@ -204,16 +205,16 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "work_p"
-            value: "importing"
-          - dps_val: "work_n"
-            value: "exporting"
-          - dps_val: "close"
-            value: "idle"
-          - dps_val: "produce"
-            value: "producing"
+          - dps_val: work_p
+            value: importing
+          - dps_val: work_n
+            value: exporting
+          - dps_val: close
+            value: idle
+          - dps_val: produce
+            value: producing
           - default: true
-            value: "unknown"
+            value: unknown
   - entity: sensor
     name: Cur State B
     class: enum
@@ -223,13 +224,13 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "work_p"
-            value: "importing"
-          - dps_val: "work_n"
-            value: "exporting"
-          - dps_val: "close"
-            value: "idle"
-          - dps_val: "produce"
-            value: "producing"
+          - dps_val: work_p
+            value: importing
+          - dps_val: work_n
+            value: exporting
+          - dps_val: close
+            value: idle
+          - dps_val: produce
+            value: producing
           - default: true
-            value: "unknown"
+            value: unknown
