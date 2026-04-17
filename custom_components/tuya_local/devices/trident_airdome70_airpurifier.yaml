@@ -78,21 +78,6 @@ entities:
           - dps_val: severe
             value: severe
 
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 22
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-      - id: 22
-        type: bitfield
-        name: fault_code
-
   - entity: button
     translation_key: filter_reset
     category: config
