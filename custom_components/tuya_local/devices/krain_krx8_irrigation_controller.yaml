@@ -100,7 +100,6 @@ entities:
   - entity: button
     name: Start A
     icon: "mdi:timer-play"
-    category: config
     dps:
       - id: 117
         type: boolean
@@ -108,7 +107,6 @@ entities:
   - entity: button
     name: Start B
     icon: "mdi:timer-play"
-    category: config
     dps:
       - id: 118
         type: boolean
@@ -116,7 +114,6 @@ entities:
   - entity: button
     name: Start C
     icon: "mdi:timer-play"
-    category: config
     dps:
       - id: 119
         type: boolean
@@ -124,7 +121,6 @@ entities:
   - entity: button
     name: Start D
     icon: "mdi:timer-play"
-    category: config
     hidden: unavailable
     dps:
       - id: 120
@@ -141,19 +137,35 @@ entities:
           - value: true
   - entity: switch
     name: Enable programs
+    category: config
     icon: "mdi:calendar-check"
     dps:
       - id: 121
         type: boolean
         name: switch
+        mapping:
+          - dps_val: null
+            value: off
+          - dps_val: false
+            value: off
+          - dps_val: true
+            value: on
   - entity: switch
     name: Program A
     icon: "mdi:timetable"
     category: config
+    hidden: unavailable
     dps:
       - id: 122
         type: boolean
         name: switch
+        mapping:
+          - dps_val: null
+            value: off
+          - dps_val: false
+            value: off
+          - dps_val: true
+            value: on
       - id: 121
         type: boolean
         name: available
@@ -161,32 +173,57 @@ entities:
     name: Program B
     icon: "mdi:timetable"
     category: config
+    hidden: unavailable
     dps:
       - id: 123
         type: boolean
         name: switch
+        mapping:
+          - dps_val: null
+            value: off
+          - dps_val: false
+            value: off
+          - dps_val: true
+            value: on
       - id: 121
         type: boolean
         name: available
   - entity: switch
     name: Program C
     icon: "mdi:timetable"
+    category: config
+    hidden: unavailable
     dps:
       - id: 124
         type: boolean
         name: switch
+        mapping:
+          - dps_val: null
+            value: off
+          - dps_val: false
+            value: off
+          - dps_val: true
+            value: on
       - id: 121
         type: boolean
         name: available
   - entity: switch
     name: Program D
     icon: "mdi:timetable"
+    category: config
     hidden: unavailable
     dps:
       - id: 125
         type: boolean
         optional: true
         name: switch
+        mapping:
+          - dps_val: null
+            value: off
+          - dps_val: false
+            value: off
+          - dps_val: true
+            value: on
       - id: 125
         type: boolean
         optional: true
