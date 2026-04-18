@@ -26,8 +26,7 @@ entities:
         type: string
         name: hms
   - entity: select
-    name: Display
-    icon: "mdi:clock-digital"
+    translation_key: display_brightness
     category: config
     dps:
       - id: 104
@@ -35,13 +34,13 @@ entities:
         name: option
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: "off"
           - dps_val: 1
-            value: Day
+            value: day
           - dps_val: 2
-            value: Night
+            value: night
           - dps_val: 3
-            value: Auto
+            value: auto
   - entity: switch
     translation_key: radio
     dps:
@@ -58,9 +57,8 @@ entities:
           min: 1
           max: 16
   - entity: text
-    name: Station list
+    translation_key: station_list
     category: config
-    icon: "mdi:playlist-music"
     hidden: true
     dps:
       - id: 107
@@ -68,18 +66,18 @@ entities:
         optional: true
         name: value
   - entity: switch
-    name: Alarm 1
-    icon: "mdi:alarm"
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 109
         type: boolean
         name: switch
   - entity: number
-    name: Snooze time
+    translation_key: snooze_duration
     class: duration
     category: config
-    icon: "mdi:alarm-snooze"
     dps:
       - id: 116
         type: integer
@@ -89,8 +87,7 @@ entities:
           min: 8
           max: 15
   - entity: select
-    name: Snooze type
-    icon: "mdi:alarm-snooze"
+    translation_key: snooze_action
     category: config
     dps:
       - id: 117
@@ -98,13 +95,13 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Sound + Radio
+            value: sound_radio
           - dps_val: "2"
-            value: Light
+            value: light
           - dps_val: "3"
-            value: Radio
+            value: radio
           - dps_val: "4"
-            value: Radio + Sound + Light
+            value: radio_sound_light
   - entity: switch
     translation_key: sleep
     dps:
@@ -112,24 +109,27 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Alarm 2
-    icon: "mdi:alarm"
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 122
         type: boolean
         name: switch
   - entity: switch
-    name: Alarm 3
-    icon: "mdi:alarm"
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "3"
     category: config
     dps:
       - id: 123
         type: boolean
         name: switch
   - entity: switch
-    name: Alarm 4
-    icon: "mdi:alarm"
+    translation_key: alarm_x
+    translation_placeholders:
+      x: "4"
     category: config
     dps:
       - id: 124
@@ -143,8 +143,7 @@ entities:
         type: boolean
         name: switch
   - entity: button
-    name: Radio seek
-    icon: "mdi:fast-forward"
+    translation_key: radio_seek
     dps:
       - id: 126
         type: boolean
@@ -158,8 +157,7 @@ entities:
           - dps_val: false
             value: true
   - entity: button
-    name: Radio stop
-    icon: "mdi:stop"
+    translation_key: radio_stop
     dps:
       - id: 126
         type: boolean
@@ -173,9 +171,8 @@ entities:
         type: boolean
         name: available
   - entity: text
-    name: Alarm settings
+    translation_key: alarm_settings
     category: config
-    icon: "mdi:alarm"
     hidden: true
     dps:
       - id: 127
@@ -183,9 +180,8 @@ entities:
         optional: true
         name: value
   - entity: text
-    name: Sleep settings
+    translation_key: sleep_settings
     category: config
-    icon: "mdi:sleep"
     hidden: true
     dps:
       - id: 128
@@ -193,7 +189,7 @@ entities:
         optional: true
         name: value
   - entity: light
-    name: Ambient
+    translation_key: ambient_light
     dps:
       - id: 129
         type: boolean
@@ -230,15 +226,13 @@ entities:
           - value: "off"
             hidden: true
   - entity: switch
-    name: Snooze
-    icon: "mdi:alarm-snooze"
+    translation_key: snooze
     dps:
       - id: 130
         type: boolean
         name: switch
   - entity: select
-    name: Time format
-    icon: "mdi:hours-24"
+    translation_key: time_format
     category: config
     dps:
       - id: 131
@@ -246,8 +240,8 @@ entities:
         name: option
         mapping:
           - dps_val: false
-            value: "12 hour"
+            value: 12_hour
             icon: "mdi:hours-12"
             icon_priority: 1
           - dps_val: true
-            value: "24 hour"
+            value: 24_hour
