@@ -1218,6 +1218,7 @@ port and password.
 - CO2v1 carbon dioxide sensor
 - C30W gas leak detector
 - CT20W PIR motion detector
+- Dekala Lumos sunrise alarm clock
 - Dienmern DM165A noise meter
 - Digma DiSense G1 gas leak detector
 - EASTtime D401 water purifier
