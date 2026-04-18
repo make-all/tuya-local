@@ -1,4 +1,3 @@
-
 {
     "title": "ٹویا لوکل",
     "config": {
@@ -37,7 +36,7 @@
                 "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
                 "description": "{device_name}[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔]({device_details_url})",
                 "data": {
-                    "host": "IP ایڈریس یا میزبان نام",                    
+                    "host": "IP ایڈریس یا میزبان نام",
                     "device_id": "ڈیوائس کی شناخت(یا گیٹ وے کے ذریعے منسلک آلات کے لیے ڈیوائس آئی ڈی)",
                     "local_key": "مقامی کلید",
                     "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
@@ -202,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "فلٹر ری سیٹ"
+            },
+            "alarm_off": {
+                "name": "الارم آف"
+            },
+            "alarm_snooze": {
+                "name": "الارم سنوز"
+            },
+            "alarm_x_reset": {
+                "name": "الارم {x} ری سیٹ"
+            },
+            "radio_seek": {
+                "name": "ریڈیو تلاش"
+            },
+            "radio_stop": {
+                "name": "ریڈیو بند"
             }
         },
         "climate": {
@@ -494,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "رینج ہڈ لائٹ"
+            },
+            "color_light": {
+                "name": "رنگین روشنی"
+            },
+            "ambient_light": {
+                "name": "ماحولیاتی روشنی"
             }
         },
         "lock": {
@@ -531,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "اوپر کا درجہ حرارت"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "الارم {x} سنوز دورانیہ"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "الارم {x} جاگنے کی روشنی کا پیشگی وقت"
+            },
+            "radio_frequency": {
+                "name": "ریڈیو فریکوئنسی"
+            },
+            "snooze_duration": {
+                "name": "سنوز دورانیہ"
             }
         },
         "select": {
@@ -983,6 +1015,71 @@
                     "red_bean_bread": "لال بین بریڈ",
                     "milk_toast": "دودھ ٹوسٹ"
                 }
+            },
+            "display_brightness": {
+                "name": "ڈسپلے چمک",
+                "state": {
+                    "off": "آف",
+                    "day": "دن",
+                    "night": "رات",
+                    "dim": "مدھم",
+                    "bright": "روشن",
+                    "auto": "خود کار"
+                }
+            },
+            "seconds_dot": {
+                "name": "سیکنڈ ڈاٹ",
+                "state": {
+                    "static": "جامد",
+                    "blinking": "ٹمٹماتا"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "الارم {x} سنوز موڈ",
+                "state": {
+                    "mute": "آواز بند",
+                    "mute_light": "آواز + روشنی بند",
+                    "light_only": "صرف روشنی بند"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "الارم {x} آواز کا اثر",
+                "state": {
+                    "normal": "عام",
+                    "fade_in": "آہستہ آہستہ بلند",
+                    "fade_out": "آہستہ آہستہ کم"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "الارم {x} جاگنے کی روشنی موڈ",
+                "state": {
+                    "no_light": "روشنی نہیں",
+                    "rainbow": "قوس قزح",
+                    "candle_flicker": "موم بتی ٹمٹماہٹ",
+                    "romantic_breath": "رومانوی سانس",
+                    "quiet_deep_sea": "پرسکون گہرا سمندر",
+                    "flowing_colors": "بہتے رنگ",
+                    "magic_jungle": "جادوئی جنگل",
+                    "perfect_party": "بہترین پارٹی",
+                    "sunrise_at_sea": "سمندر پر طلوع آفتاب",
+                    "dynamic_music": "متحرک موسیقی"
+                }
+            },
+            "snooze_action": {
+                "name": "سنوز عمل",
+                "state": {
+                    "sound_radio": "آواز + ریڈیو",
+                    "light": "روشنی",
+                    "radio": "ریڈیو",
+                    "radio_sound_light": "ریڈیو + آواز + روشنی"
+                }
+            },
+            "time_format": {
+                "name": "وقت کی شکل",
+                "state": {
+                    "12_hour": "12 گھنٹے",
+                    "24_hour": "24 گھنٹے"
+                }
             }
         },
         "sensor": {
@@ -1160,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "محفوظ دن"
+            },
+            "active_lights": {
+                "name": "فعال روشنیاں",
+                "state": {
+                    "all_off": "سب آف",
+                    "night_on": "رات کی روشنی آن",
+                    "color_on": "رنگین روشنی آن",
+                    "ambient_on": "ماحولیاتی روشنی آن"
+                }
+            },
+            "wireless_charging": {
+                "name": "وائرلیس چارجنگ حالت",
+                "state": {
+                    "idle": "آرام",
+                    "charging": "چارجنگ",
+                    "full": "مکمل",
+                    "foreign_object_detected": "غیر متعلقہ چیز کا پتہ چلا"
+                }
             }
         },
         "switch": {
@@ -1223,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "رینج ہڈ"
+            },
+            "alarm_x": {
+                "name": "الارم {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "الارم {x} سنوز فعال"
+            },
+            "alarm_x_day_monday": {
+                "name": "الارم {x} دن 1-پیر"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "الارم {x} دن 2-منگل"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "الارم {x} دن 3-بدھ"
+            },
+            "alarm_x_day_thursday": {
+                "name": "الارم {x} دن 4-جمعرات"
+            },
+            "alarm_x_day_friday": {
+                "name": "الارم {x} دن 5-جمعہ"
+            },
+            "alarm_x_day_saturday": {
+                "name": "الارم {x} دن 6-ہفتہ"
+            },
+            "alarm_x_day_sunday": {
+                "name": "الارم {x} دن 7-اتوار"
+            },
+            "music_playback": {
+                "name": "موسیقی پلے بیک"
+            },
+            "network_time": {
+                "name": "نیٹ ورک ٹائم سنک"
+            },
+            "night_mode": {
+                "name": "رات کا موڈ"
+            },
+            "radio": {
+                "name": "ریڈیو"
+            },
+            "snooze": {
+                "name": "سنوز"
+            },
+            "time_24h": {
+                "name": "24 گھنٹے ڈسپلے"
             }
         },
         "text": {
@@ -1234,6 +1394,15 @@
             },
             "schedule": {
                 "name": "شیڈول"
+            },
+            "alarm_settings": {
+                "name": "الارم ترتیبات"
+            },
+            "sleep_settings": {
+                "name": "نیند کی ترتیبات"
+            },
+            "station_list": {
+                "name": "اسٹیشن فہرست"
             }
         },
         "time": {
@@ -1248,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "ٹائمر {x}"
+            },
+            "alarm_x_time": {
+                "name": "الارم {x} وقت"
+            },
+            "clock_time": {
+                "name": "گھڑی کا وقت"
             }
         },
         "valve": {
@@ -1264,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "گرم پانی"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "الارم {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "کوئی نہیں",
+                            "birds": "پرندے",
+                            "sea": "سمندر",
+                            "valley": "وادی",
+                            "piano": "پیانو",
+                            "soft": "نرم",
+                            "phone": "فون",
+                            "beep": "بیپ",
+                            "radio": "ریڈیو"
+                        }
+                    }
+                }
             }
         }
     }

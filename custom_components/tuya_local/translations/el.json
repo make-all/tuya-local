@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Επαναφορά φίλτρου"
+            },
+            "alarm_off": {
+                "name": "Συναγερμός απενεργοποίηση"
+            },
+            "alarm_snooze": {
+                "name": "Συναγερμός αναβολή"
+            },
+            "alarm_x_reset": {
+                "name": "Συναγερμός {x} επαναφορά"
+            },
+            "radio_seek": {
+                "name": "Ραδιόφωνο αναζήτηση"
+            },
+            "radio_stop": {
+                "name": "Ραδιόφωνο διακοπή"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Φως απορροφητήρα"
+            },
+            "color_light": {
+                "name": "Χρωματιστό φως"
+            },
+            "ambient_light": {
+                "name": "Φωτισμός περιβάλλοντος"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Θερμοκρασία πάνω"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Συναγερμός {x} διάρκεια αναβολής"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Συναγερμός {x} προπορεία φωτός αφύπνισης"
+            },
+            "radio_frequency": {
+                "name": "Ραδιόφωνο συχνότητα"
+            },
+            "snooze_duration": {
+                "name": "Διάρκεια αναβολής"
             }
         },
         "select": {
@@ -606,9 +639,9 @@
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe",
-                     "polish": "Polski",
+                    "polish": "Polski",
                     "vietnamese": "Tiếng Việt"
-               }
+                }
             },
             "light_mode": {
                 "name": "Λειτουργία φωτισμού",
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Ψωμί με κόκκινα φασόλια",
                     "milk_toast": "Ψωμί με γάλα"
                 }
+            },
+            "display_brightness": {
+                "name": "Φωτεινότητα οθόνης",
+                "state": {
+                    "off": "Απενεργοποίηση",
+                    "day": "Ημέρα",
+                    "night": "Νύχτα",
+                    "dim": "Χαμηλό",
+                    "bright": "Φωτεινό",
+                    "auto": "Αυτόματο"
+                }
+            },
+            "seconds_dot": {
+                "name": "Τελεία δευτερολέπτων",
+                "state": {
+                    "static": "Στατικό",
+                    "blinking": "Αναβοσβήνει"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Συναγερμός {x} λειτουργία αναβολής",
+                "state": {
+                    "mute": "Σίγαση ήχου",
+                    "mute_light": "Σίγαση ήχου + φωτός",
+                    "light_only": "Σίγαση μόνο φωτός"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Συναγερμός {x} ηχητικό εφέ",
+                "state": {
+                    "normal": "Κανονικό",
+                    "fade_in": "Σταδιακή αύξηση",
+                    "fade_out": "Σταδιακή μείωση"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Συναγερμός {x} λειτουργία φωτός αφύπνισης",
+                "state": {
+                    "no_light": "Χωρίς φως",
+                    "rainbow": "Ουράνιο τόξο",
+                    "candle_flicker": "Τρεμόφωτο κεριού",
+                    "romantic_breath": "Ρομαντική αναπνοή",
+                    "quiet_deep_sea": "Ήρεμη βαθιά θάλασσα",
+                    "flowing_colors": "Ρέοντα χρώματα",
+                    "magic_jungle": "Μαγική ζούγκλα",
+                    "perfect_party": "Τέλειο πάρτι",
+                    "sunrise_at_sea": "Ανατολή στη θάλασσα",
+                    "dynamic_music": "Δυναμική μουσική"
+                }
+            },
+            "snooze_action": {
+                "name": "Ενέργεια αναβολής",
+                "state": {
+                    "sound_radio": "Ήχος + ραδιόφωνο",
+                    "light": "Φως",
+                    "radio": "Ραδιόφωνο",
+                    "radio_sound_light": "Ραδιόφωνο + ήχος + φως"
+                }
+            },
+            "time_format": {
+                "name": "Μορφή ώρας",
+                "state": {
+                    "12_hour": "12 ωρών",
+                    "24_hour": "24 ωρών"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Ημέρες αποθήκευσης"
+            },
+            "active_lights": {
+                "name": "Ενεργά φώτα",
+                "state": {
+                    "all_off": "Όλα απενεργοποιημένα",
+                    "night_on": "Νυχτερινό φως αναμμένο",
+                    "color_on": "Χρωματιστό φως αναμμένο",
+                    "ambient_on": "Φως περιβάλλοντος αναμμένο"
+                }
+            },
+            "wireless_charging": {
+                "name": "Κατάσταση ασύρματης φόρτισης",
+                "state": {
+                    "idle": "Αδράνεια",
+                    "charging": "Φόρτιση",
+                    "full": "Πλήρης",
+                    "foreign_object_detected": "Ανιχνεύθηκε ξένο αντικείμενο"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Απορροφητήρας"
+            },
+            "alarm_x": {
+                "name": "Συναγερμός {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Συναγερμός {x} αναβολή ενεργή"
+            },
+            "alarm_x_day_monday": {
+                "name": "Συναγερμός {x} ημέρα 1-Δευτέρα"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Συναγερμός {x} ημέρα 2-Τρίτη"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Συναγερμός {x} ημέρα 3-Τετάρτη"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Συναγερμός {x} ημέρα 4-Πέμπτη"
+            },
+            "alarm_x_day_friday": {
+                "name": "Συναγερμός {x} ημέρα 5-Παρασκευή"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Συναγερμός {x} ημέρα 6-Σάββατο"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Συναγερμός {x} ημέρα 7-Κυριακή"
+            },
+            "music_playback": {
+                "name": "Αναπαραγωγή μουσικής"
+            },
+            "network_time": {
+                "name": "Συγχρονισμός ώρας δικτύου"
+            },
+            "night_mode": {
+                "name": "Νυχτερινή λειτουργία"
+            },
+            "radio": {
+                "name": "Ραδιόφωνο"
+            },
+            "snooze": {
+                "name": "Αναβολή"
+            },
+            "time_24h": {
+                "name": "Εμφάνιση 24 ωρών"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Πρόγραμμα"
+            },
+            "alarm_settings": {
+                "name": "Συναγερμός ρυθμίσεις"
+            },
+            "sleep_settings": {
+                "name": "Ρυθμίσεις ύπνου"
+            },
+            "station_list": {
+                "name": "Λίστα σταθμών"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Χρονοδιακόπτης {x}"
+            },
+            "alarm_x_time": {
+                "name": "Συναγερμός {x} ώρα"
+            },
+            "clock_time": {
+                "name": "Ώρα ρολογιού"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Ζεστό νερό"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Συναγερμός {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Κανένα",
+                            "birds": "Πουλιά",
+                            "sea": "Θάλασσα",
+                            "valley": "Κοιλάδα",
+                            "piano": "Piano",
+                            "soft": "Απαλό",
+                            "phone": "Τηλέφωνο",
+                            "beep": "Μπιπ",
+                            "radio": "Ραδιόφωνο"
+                        }
+                    }
+                }
             }
         }
     }

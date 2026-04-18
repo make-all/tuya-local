@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Reset filter"
+            },
+            "alarm_off": {
+                "name": "Alarm mati"
+            },
+            "alarm_snooze": {
+                "name": "Alarm tunda"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} reset"
+            },
+            "radio_seek": {
+                "name": "Radio cari"
+            },
+            "radio_stop": {
+                "name": "Radio berhenti"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Lampu penangas"
+            },
+            "color_light": {
+                "name": "Lampu warna"
+            },
+            "ambient_light": {
+                "name": "Lampu ambient"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Suhu atas"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} durasi tunda"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} waktu awal lampu bangun"
+            },
+            "radio_frequency": {
+                "name": "Radio frekuensi"
+            },
+            "snooze_duration": {
+                "name": "Durasi tunda"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Roti kacang merah",
                     "milk_toast": "Roti susu"
                 }
+            },
+            "display_brightness": {
+                "name": "Kecerahan layar",
+                "state": {
+                    "off": "Mati",
+                    "day": "Siang",
+                    "night": "Malam",
+                    "dim": "Redup",
+                    "bright": "Terang",
+                    "auto": "Otomatis"
+                }
+            },
+            "seconds_dot": {
+                "name": "Titik detik",
+                "state": {
+                    "static": "Statis",
+                    "blinking": "Berkedip"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} mode tunda",
+                "state": {
+                    "mute": "Bisukan suara",
+                    "mute_light": "Bisukan suara + lampu",
+                    "light_only": "Bisukan lampu saja"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} efek suara",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fade in",
+                    "fade_out": "Fade out"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} mode lampu bangun",
+                "state": {
+                    "no_light": "Tanpa lampu",
+                    "rainbow": "Pelangi",
+                    "candle_flicker": "Kedipan lilin",
+                    "romantic_breath": "Nafas romantis",
+                    "quiet_deep_sea": "Laut dalam tenang",
+                    "flowing_colors": "Warna mengalir",
+                    "magic_jungle": "Hutan ajaib",
+                    "perfect_party": "Pesta sempurna",
+                    "sunrise_at_sea": "Matahari terbit di laut",
+                    "dynamic_music": "Musik dinamis"
+                }
+            },
+            "snooze_action": {
+                "name": "Aksi tunda",
+                "state": {
+                    "sound_radio": "Suara + radio",
+                    "light": "Lampu",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + suara + lampu"
+                }
+            },
+            "time_format": {
+                "name": "Format waktu",
+                "state": {
+                    "12_hour": "12 jam",
+                    "24_hour": "24 jam"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Hari tersimpan"
+            },
+            "active_lights": {
+                "name": "Lampu aktif",
+                "state": {
+                    "all_off": "Semua mati",
+                    "night_on": "Lampu malam menyala",
+                    "color_on": "Lampu warna menyala",
+                    "ambient_on": "Lampu ambient menyala"
+                }
+            },
+            "wireless_charging": {
+                "name": "Status pengisian nirkabel",
+                "state": {
+                    "idle": "Siaga",
+                    "charging": "Mengisi daya",
+                    "full": "Penuh",
+                    "foreign_object_detected": "Objek asing terdeteksi"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Penangas"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} tunda diaktifkan"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} hari 1-Senin"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} hari 2-Selasa"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} hari 3-Rabu"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} hari 4-Kamis"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} hari 5-Jumat"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} hari 6-Sabtu"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} hari 7-Minggu"
+            },
+            "music_playback": {
+                "name": "Pemutaran musik"
+            },
+            "network_time": {
+                "name": "Sinkronisasi waktu jaringan"
+            },
+            "night_mode": {
+                "name": "Mode malam"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Tunda"
+            },
+            "time_24h": {
+                "name": "Tampilan 24 jam"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Jadwal"
+            },
+            "alarm_settings": {
+                "name": "Alarm pengaturan"
+            },
+            "sleep_settings": {
+                "name": "Pengaturan tidur"
+            },
+            "station_list": {
+                "name": "Daftar stasiun"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Pengatur waktu {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} waktu"
+            },
+            "clock_time": {
+                "name": "Waktu jam"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Air panas"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Tidak ada",
+                            "birds": "Burung",
+                            "sea": "Laut",
+                            "valley": "Lembah",
+                            "piano": "Piano",
+                            "soft": "Lembut",
+                            "phone": "Telepon",
+                            "beep": "Bip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

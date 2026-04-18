@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Сброс фильтра"
+            },
+            "alarm_off": {
+                "name": "Выключить будильник"
+            },
+            "alarm_snooze": {
+                "name": "Отложить будильник"
+            },
+            "alarm_x_reset": {
+                "name": "Будильник {x} сброс"
+            },
+            "radio_seek": {
+                "name": "Поиск радио"
+            },
+            "radio_stop": {
+                "name": "Остановить радио"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Освещение вытяжки"
+            },
+            "color_light": {
+                "name": "Цветная подсветка"
+            },
+            "ambient_light": {
+                "name": "Фоновая подсветка"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Температура верха"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Будильник {x} длительность отсрочки"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Будильник {x} опережение света пробуждения"
+            },
+            "radio_frequency": {
+                "name": "Частота радио"
+            },
+            "snooze_duration": {
+                "name": "Длительность отсрочки"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Хлеб с красной фасолью",
                     "milk_toast": "Молочный тост"
                 }
+            },
+            "display_brightness": {
+                "name": "Яркость дисплея",
+                "state": {
+                    "off": "Выкл",
+                    "day": "День",
+                    "night": "Ночь",
+                    "dim": "Тусклый",
+                    "bright": "Яркий",
+                    "auto": "Авто"
+                }
+            },
+            "seconds_dot": {
+                "name": "Точка секунд",
+                "state": {
+                    "static": "Статичная",
+                    "blinking": "Мигающая"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Будильник {x} режим отсрочки",
+                "state": {
+                    "mute": "Выключить звук",
+                    "mute_light": "Выключить звук + свет",
+                    "light_only": "Выключить только свет"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Будильник {x} звуковой эффект",
+                "state": {
+                    "normal": "Нормальный",
+                    "fade_in": "Нарастание",
+                    "fade_out": "Затухание"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Будильник {x} режим света пробуждения",
+                "state": {
+                    "no_light": "Без света",
+                    "rainbow": "Радуга",
+                    "candle_flicker": "Мерцание свечи",
+                    "romantic_breath": "Романтическое дыхание",
+                    "quiet_deep_sea": "Тихое глубокое море",
+                    "flowing_colors": "Текущие цвета",
+                    "magic_jungle": "Волшебные джунгли",
+                    "perfect_party": "Идеальная вечеринка",
+                    "sunrise_at_sea": "Восход на море",
+                    "dynamic_music": "Динамичная музыка"
+                }
+            },
+            "snooze_action": {
+                "name": "Действие отсрочки",
+                "state": {
+                    "sound_radio": "Звук + радио",
+                    "light": "Свет",
+                    "radio": "Радио",
+                    "radio_sound_light": "Радио + звук + свет"
+                }
+            },
+            "time_format": {
+                "name": "Формат времени",
+                "state": {
+                    "12_hour": "12-часовой",
+                    "24_hour": "24-часовой"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Дни хранения"
+            },
+            "active_lights": {
+                "name": "Активное освещение",
+                "state": {
+                    "all_off": "Всё выключено",
+                    "night_on": "Ночник включён",
+                    "color_on": "Цветная подсветка включена",
+                    "ambient_on": "Фоновая подсветка включена"
+                }
+            },
+            "wireless_charging": {
+                "name": "Статус беспроводной зарядки",
+                "state": {
+                    "idle": "Простой",
+                    "charging": "Зарядка",
+                    "full": "Полный",
+                    "foreign_object_detected": "Обнаружен посторонний предмет"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Вытяжка"
+            },
+            "alarm_x": {
+                "name": "Будильник {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Будильник {x} отсрочка включена"
+            },
+            "alarm_x_day_monday": {
+                "name": "Будильник {x} день 1-понедельник"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Будильник {x} день 2-вторник"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Будильник {x} день 3-среда"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Будильник {x} день 4-четверг"
+            },
+            "alarm_x_day_friday": {
+                "name": "Будильник {x} день 5-пятница"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Будильник {x} день 6-суббота"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Будильник {x} день 7-воскресенье"
+            },
+            "music_playback": {
+                "name": "Воспроизведение музыки"
+            },
+            "network_time": {
+                "name": "Синхронизация сетевого времени"
+            },
+            "night_mode": {
+                "name": "Ночной режим"
+            },
+            "radio": {
+                "name": "Радио"
+            },
+            "snooze": {
+                "name": "Отсрочка"
+            },
+            "time_24h": {
+                "name": "24-часовой формат"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Расписание"
+            },
+            "alarm_settings": {
+                "name": "Настройки будильника"
+            },
+            "sleep_settings": {
+                "name": "Настройки сна"
+            },
+            "station_list": {
+                "name": "Список станций"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Таймер {x}"
+            },
+            "alarm_x_time": {
+                "name": "Будильник {x} время"
+            },
+            "clock_time": {
+                "name": "Время часов"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Горячая вода"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Будильник {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Нет",
+                            "birds": "Птицы",
+                            "sea": "Море",
+                            "valley": "Долина",
+                            "piano": "Пианино",
+                            "soft": "Мягкий",
+                            "phone": "Телефон",
+                            "beep": "Сигнал",
+                            "radio": "Радио"
+                        }
+                    }
+                }
             }
         }
     }

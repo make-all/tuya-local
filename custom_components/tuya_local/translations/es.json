@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Restablecimiento del filtro"
+            },
+            "alarm_off": {
+                "name": "Apagar alarma"
+            },
+            "alarm_snooze": {
+                "name": "Posponer alarma"
+            },
+            "alarm_x_reset": {
+                "name": "Alarma {x} reiniciar"
+            },
+            "radio_seek": {
+                "name": "Buscar radio"
+            },
+            "radio_stop": {
+                "name": "Detener radio"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Luz de la campana extractora"
+            },
+            "color_light": {
+                "name": "Luz de color"
+            },
+            "ambient_light": {
+                "name": "Luz ambiental"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Temperatura superior"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarma {x} duración de repetición"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarma {x} anticipación luz de despertar"
+            },
+            "radio_frequency": {
+                "name": "Frecuencia de radio"
+            },
+            "snooze_duration": {
+                "name": "Duración de repetición"
             }
         },
         "select": {
@@ -862,7 +895,7 @@
                     "fruit": "Fruta",
                     "intensive": "Intensivo",
                     "rapid": "Rápido",
-                    "eco": "Ecológico",                   
+                    "eco": "Ecológico",
                     "standard": "Estándar",
                     "neutral": "Neutro",
                     "90_minute": "90 minutos",
@@ -981,6 +1014,71 @@
                     "puff_pastry": "Hoja de masa",
                     "red_bean_bread": "Pan de frijoles rojos",
                     "milk_toast": "Tostada de leche"
+                }
+            },
+            "display_brightness": {
+                "name": "Brillo de pantalla",
+                "state": {
+                    "off": "Apagado",
+                    "day": "Día",
+                    "night": "Noche",
+                    "dim": "Tenue",
+                    "bright": "Brillante",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Separador de segundos",
+                "state": {
+                    "static": "Fijo",
+                    "blinking": "Parpadeante"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarma {x} modo repetición",
+                "state": {
+                    "mute": "Silenciar sonido",
+                    "mute_light": "Silenciar sonido + luz",
+                    "light_only": "Silenciar solo luz"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarma {x} efecto de sonido",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fundido de entrada",
+                    "fade_out": "Fundido de salida"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarma {x} modo luz de despertar",
+                "state": {
+                    "no_light": "Sin luz",
+                    "rainbow": "Arcoíris",
+                    "candle_flicker": "Parpadeo de vela",
+                    "romantic_breath": "Respiración romántica",
+                    "quiet_deep_sea": "Mar profundo tranquilo",
+                    "flowing_colors": "Colores fluidos",
+                    "magic_jungle": "Jungla mágica",
+                    "perfect_party": "Fiesta perfecta",
+                    "sunrise_at_sea": "Amanecer en el mar",
+                    "dynamic_music": "Música dinámica"
+                }
+            },
+            "snooze_action": {
+                "name": "Acción de repetición",
+                "state": {
+                    "sound_radio": "Sonido + radio",
+                    "light": "Luz",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + sonido + luz"
+                }
+            },
+            "time_format": {
+                "name": "Formato de hora",
+                "state": {
+                    "12_hour": "12 horas",
+                    "24_hour": "24 horas"
                 }
             }
         },
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Días almacenados"
+            },
+            "active_lights": {
+                "name": "Luces activas",
+                "state": {
+                    "all_off": "Todas apagadas",
+                    "night_on": "Luz nocturna encendida",
+                    "color_on": "Luz de color encendida",
+                    "ambient_on": "Luz ambiental encendida"
+                }
+            },
+            "wireless_charging": {
+                "name": "Estado de carga inalámbrica",
+                "state": {
+                    "idle": "Inactivo",
+                    "charging": "Cargando",
+                    "full": "Completa",
+                    "foreign_object_detected": "Objeto extraño detectado"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Campana extractora"
+            },
+            "alarm_x": {
+                "name": "Alarma {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarma {x} repetición activada"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarma {x} día 1 lunes"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarma {x} día 2 martes"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarma {x} día 3 miércoles"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarma {x} día 4 jueves"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarma {x} día 5 viernes"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarma {x} día 6 sábado"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarma {x} día 7 domingo"
+            },
+            "music_playback": {
+                "name": "Reproducción de música"
+            },
+            "network_time": {
+                "name": "Sincronización de hora de red"
+            },
+            "night_mode": {
+                "name": "Modo nocturno"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Repetición"
+            },
+            "time_24h": {
+                "name": "Pantalla 24 horas"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Horario"
+            },
+            "alarm_settings": {
+                "name": "Ajustes de alarma"
+            },
+            "sleep_settings": {
+                "name": "Ajustes de sueño"
+            },
+            "station_list": {
+                "name": "Lista de emisoras"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Temporizador {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarma {x} hora"
+            },
+            "clock_time": {
+                "name": "Hora del reloj"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Agua caliente"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarma {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ninguno",
+                            "birds": "Pájaros",
+                            "sea": "Mar",
+                            "valley": "Valle",
+                            "piano": "Piano",
+                            "soft": "Suave",
+                            "phone": "Teléfono",
+                            "beep": "Pitido",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

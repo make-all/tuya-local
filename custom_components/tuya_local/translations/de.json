@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Filter zurücksetzen"
+            },
+            "alarm_off": {
+                "name": "Alarm aus"
+            },
+            "alarm_snooze": {
+                "name": "Alarm schlummern"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} zurücksetzen"
+            },
+            "radio_seek": {
+                "name": "Radiosendersuche"
+            },
+            "radio_stop": {
+                "name": "Radio stopp"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Dunstabzugshaubenlicht"
+            },
+            "color_light": {
+                "name": "Farblicht"
+            },
+            "ambient_light": {
+                "name": "Umgebungslicht"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Obertemperatur"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} Schlummerdauer"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} Wecklicht-Vorlaufzeit"
+            },
+            "radio_frequency": {
+                "name": "Radiofrequenz"
+            },
+            "snooze_duration": {
+                "name": "Schlummerdauer"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Rote-Bohnen-Brot",
                     "milk_toast": "Milchtoast"
                 }
+            },
+            "display_brightness": {
+                "name": "Displayhelligkeit",
+                "state": {
+                    "off": "Aus",
+                    "day": "Tag",
+                    "night": "Nacht",
+                    "dim": "Gedimmt",
+                    "bright": "Hell",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundenpunkt",
+                "state": {
+                    "static": "Statisch",
+                    "blinking": "Blinkend"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} Schlummermodus",
+                "state": {
+                    "mute": "Ton stummschalten",
+                    "mute_light": "Ton + Licht stummschalten",
+                    "light_only": "Nur Licht stummschalten"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} Soundeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Einblenden",
+                    "fade_out": "Ausblenden"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} Wecklichtmodus",
+                "state": {
+                    "no_light": "Kein Licht",
+                    "rainbow": "Regenbogen",
+                    "candle_flicker": "Kerzenflackern",
+                    "romantic_breath": "Romantisches Atmen",
+                    "quiet_deep_sea": "Ruhige Tiefsee",
+                    "flowing_colors": "Fließende Farben",
+                    "magic_jungle": "Magischer Dschungel",
+                    "perfect_party": "Perfekte Party",
+                    "sunrise_at_sea": "Sonnenaufgang am Meer",
+                    "dynamic_music": "Dynamische Musik"
+                }
+            },
+            "snooze_action": {
+                "name": "Schlummeraktion",
+                "state": {
+                    "sound_radio": "Ton + Radio",
+                    "light": "Licht",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + Ton + Licht"
+                }
+            },
+            "time_format": {
+                "name": "Zeitformat",
+                "state": {
+                    "12_hour": "12 Stunden",
+                    "24_hour": "24 Stunden"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Tage gespeichert"
+            },
+            "active_lights": {
+                "name": "Aktive Lichter",
+                "state": {
+                    "all_off": "Alle aus",
+                    "night_on": "Nachtlicht an",
+                    "color_on": "Farblicht an",
+                    "ambient_on": "Umgebungslicht an"
+                }
+            },
+            "wireless_charging": {
+                "name": "Kabelloser Ladestatus",
+                "state": {
+                    "idle": "Leerlauf",
+                    "charging": "Laden",
+                    "full": "Voll",
+                    "foreign_object_detected": "Fremdkörper erkannt"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Dunstabzugshaube"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} Schlummern aktiviert"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} Tag 1-Montag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} Tag 2-Dienstag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} Tag 3-Mittwoch"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} Tag 4-Donnerstag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} Tag 5-Freitag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} Tag 6-Samstag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} Tag 7-Sonntag"
+            },
+            "music_playback": {
+                "name": "Musikwiedergabe"
+            },
+            "network_time": {
+                "name": "Netzwerkzeitsynchronisierung"
+            },
+            "night_mode": {
+                "name": "Nachtmodus"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Schlummern"
+            },
+            "time_24h": {
+                "name": "24-Stunden-Anzeige"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Zeitplan"
+            },
+            "alarm_settings": {
+                "name": "Alarmeinstellungen"
+            },
+            "sleep_settings": {
+                "name": "Schlafeinstellungen"
+            },
+            "station_list": {
+                "name": "Senderliste"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} Zeit"
+            },
+            "clock_time": {
+                "name": "Uhrzeit"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Heißwasserbereiter"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Keine",
+                            "birds": "Vögel",
+                            "sea": "Meer",
+                            "valley": "Tal",
+                            "piano": "Piano",
+                            "soft": "Sanft",
+                            "phone": "Telefon",
+                            "beep": "Piep",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Reinicialització del filtre"
+            },
+            "alarm_off": {
+                "name": "Apagar alarma"
+            },
+            "alarm_snooze": {
+                "name": "Posposar alarma"
+            },
+            "alarm_x_reset": {
+                "name": "Alarma {x} reinici"
+            },
+            "radio_seek": {
+                "name": "Cercar ràdio"
+            },
+            "radio_stop": {
+                "name": "Aturar ràdio"
             }
         },
         "climate": {
@@ -401,9 +416,15 @@
             },
             "rangehood_light": {
                 "name": "Luz de la campana extractora"
+            },
+            "color_light": {
+                "name": "Llum de color"
+            },
+            "ambient_light": {
+                "name": "Llum ambiental"
             }
         },
-        "event" : {
+        "event": {
             "alarm": {
                 "name": "Alarma"
             }
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Temperatura superior"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarma {x} durada de l'ajornament"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarma {x} avançament de llum de despertar"
+            },
+            "radio_frequency": {
+                "name": "Freqüència de ràdio"
+            },
+            "snooze_duration": {
+                "name": "Durada de l'ajornament"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Pa de mongeta vermella",
                     "milk_toast": "Torrada amb llet"
                 }
+            },
+            "display_brightness": {
+                "name": "Brillantor de la pantalla",
+                "state": {
+                    "off": "Desactivat",
+                    "day": "Dia",
+                    "night": "Nit",
+                    "dim": "Atenuat",
+                    "bright": "Brillant",
+                    "auto": "Automàtic"
+                }
+            },
+            "seconds_dot": {
+                "name": "Punt dels segons",
+                "state": {
+                    "static": "Estàtic",
+                    "blinking": "Parpellejant"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarma {x} mode d'ajornament",
+                "state": {
+                    "mute": "Silenciar so",
+                    "mute_light": "Silenciar so + llum",
+                    "light_only": "Silenciar només llum"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarma {x} efecte de so",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Aparició gradual",
+                    "fade_out": "Desaparició gradual"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarma {x} mode de llum de despertar",
+                "state": {
+                    "no_light": "Sense llum",
+                    "rainbow": "Arc de Sant Martí",
+                    "candle_flicker": "Parpelleig d'espelma",
+                    "romantic_breath": "Respiració romàntica",
+                    "quiet_deep_sea": "Mar profund tranquil",
+                    "flowing_colors": "Colors fluents",
+                    "magic_jungle": "Jungla màgica",
+                    "perfect_party": "Festa perfecta",
+                    "sunrise_at_sea": "Sortida de sol al mar",
+                    "dynamic_music": "Música dinàmica"
+                }
+            },
+            "snooze_action": {
+                "name": "Acció d'ajornament",
+                "state": {
+                    "sound_radio": "So + ràdio",
+                    "light": "Llum",
+                    "radio": "Ràdio",
+                    "radio_sound_light": "Ràdio + so + llum"
+                }
+            },
+            "time_format": {
+                "name": "Format de l'hora",
+                "state": {
+                    "12_hour": "12 hores",
+                    "24_hour": "24 hores"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Días almacenados"
+            },
+            "active_lights": {
+                "name": "Llums actius",
+                "state": {
+                    "all_off": "Tots desactivats",
+                    "night_on": "Llum nocturna activada",
+                    "color_on": "Llum de color activada",
+                    "ambient_on": "Llum ambiental activada"
+                }
+            },
+            "wireless_charging": {
+                "name": "Estat de càrrega sense fil",
+                "state": {
+                    "idle": "Inactiu",
+                    "charging": "Carregant",
+                    "full": "Ple",
+                    "foreign_object_detected": "Objecte estrany detectat"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,51 @@
             },
             "rangehood": {
                 "name": "Campana extractora"
+            },
+            "alarm_x": {
+                "name": "Alarma {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarma {x} ajornament activat"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarma {x} dia 1-dilluns"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarma {x} dia 2-dimarts"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarma {x} dia 3-dimecres"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarma {x} dia 4-dijous"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarma {x} dia 5-divendres"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarma {x} dia 6-dissabte"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarma {x} dia 7-diumenge"
+            },
+            "music_playback": {
+                "name": "Reproducció de música"
+            },
+            "network_time": {
+                "name": "Sincronització de l'hora de xarxa"
+            },
+            "night_mode": {
+                "name": "Mode nocturn"
+            },
+            "radio": {
+                "name": "Ràdio"
+            },
+            "snooze": {
+                "name": "Ajornament"
+            },
+            "time_24h": {
+                "name": "Pantalla de 24 hores"
             }
         },
         "text": {
@@ -1233,6 +1394,15 @@
             },
             "schedule": {
                 "name": "Programa"
+            },
+            "alarm_settings": {
+                "name": "Configuració d'alarma"
+            },
+            "sleep_settings": {
+                "name": "Configuració del son"
+            },
+            "station_list": {
+                "name": "Llista d'estacions"
             }
         },
         "time": {
@@ -1247,6 +1417,12 @@
             },
             "timer_x": {
                 "name": "Temporitzador {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarma {x} hora"
+            },
+            "clock_time": {
+                "name": "Hora del rellotge"
             }
         },
         "valve": {
@@ -1263,6 +1439,26 @@
             },
             "hot_water": {
                 "name": "Aigua calenta"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarma {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Cap",
+                            "birds": "Ocells",
+                            "sea": "Mar",
+                            "valley": "Vall",
+                            "piano": "Piano",
+                            "soft": "Suau",
+                            "phone": "Telèfon",
+                            "beep": "Bip",
+                            "radio": "Ràdio"
+                        }
+                    }
+                }
             }
         }
     }
