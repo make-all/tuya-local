@@ -1,5 +1,64 @@
-[tool.black]
-target-version = ["py313"]
+[build-system]
+requires = ["uv_build >=0.11.6,<0.12"]
+build-backend = "uv_build"
+
+[project]
+name = "tuya-local"
+description = "A Home Assistant integration for local control of Tuya devices."
+version = "0.0.0"
+requires-python = ">3.14.2"
+dependencies = [
+  "tinytuya~=1.18.0",
+  "tuya-device-sharing-sdk~=0.2.4"
+]
+readme = "README.md"
+license = "MIT"
+license-file = "LICENSE.md"
+
+[project.scripts]
+duplicates = "util.duplicates:main"
+best_match = "util.best_match:main"
+all_matches = "util.config_match:main"
+match_against = "util.match_against:main"
+translation_candidates = "util.translation_candidates:main"
+untranslated_entities = "util.untranslated_entities:main"
+catalog = "util.catalog:main"
+entities = "util.entities:main"
+
+[dependency-groups]
+dev = [
+  "fuzzywuzzy",
+  "infrared-protocols~=1.1",
+  "levenshtein",
+  "PyTurboJPEG~=1.8.0",
+  "pytest-homeassistant-custom-component==0.13.322",
+  "pytest",
+  "pytest-asyncio",
+  "pytest-cov",
+  "pytest-mock",
+  "ruff",
+  "yamllint"
+]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+  "F",     # pyflakes
+  "E",     # pycodestyle
+  "W",     # pycodestyle warnings
+#  "S",     # flake8-bandit
+#  "B",     # flake8-bugbear
+  "A",    # flake8-builtins
+]
+ignore = [
+  "E501",  # Duplicate of format rule, hits on tests
+]
+
+[tool.uv.build-backend]
+module-name = ["custom_components.tuya_local", "util"]
+module-root = ""

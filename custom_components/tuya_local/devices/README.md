@@ -744,6 +744,7 @@ no information will be available about which specific credential was used to unl
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
+- **decimal** (optional, number): a dp that is added to the value to specify the decimal portion of the number separately from the whole number portion. This must be scaled into a decimal number range.
 
 ### `remote`
 - **send** (required, accepts a string): a dp to send remote codes.

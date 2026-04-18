@@ -1,0 +1,245 @@
+name: Pool heat pump
+products:
+  - id: nxuflhfprft3btpt
+    manufacturer: Aquastrong
+    model: HEX series
+    model_id: HEX100
+# Mapping validated on AQUASTRONG HEX100 over local protocol 3.5.
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: make_cold
+                value: cool
+              - dps_val: make_hot
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        name: work_mode
+        type: string
+        hidden: true
+      - id: 4
+        name: temperature
+        type: integer
+        unit: F
+        range:
+          min: 50
+          max: 104
+      - id: 21
+        name: current_temperature
+        type: integer
+        unit: F
+      - id: 20
+        name: hvac_action
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: idle
+          - value: heating
+            constraint: work_mode
+            conditions:
+              - dps_val: make_cold
+                value: cooling
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: ECO
+            value: eco
+          - dps_val: Normal
+            value: normal
+          - dps_val: Boost
+            value: boost
+
+  - entity: binary_sensor
+    translation_key: defrost
+    dps:
+      - id: 33
+        name: sensor
+        type: boolean
+
+  - entity: binary_sensor
+    name: Backflow
+    category: diagnostic
+    dps:
+      - id: 31
+        name: sensor
+        type: boolean
+
+  - entity: sensor
+    name: High pressure
+    category: diagnostic
+    class: pressure
+    dps:
+      - id: 35
+        name: sensor
+        type: integer
+        unit: psi
+        class: measurement
+
+  - entity: sensor
+    name: Compressor frequency
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+
+  - entity: sensor
+    name: Inlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Outlet temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Coiler temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Discharge temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    translation_key: ambient_temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Incoiler temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 37
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: Fan motor frequency
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 40
+        name: sensor
+        type: integer
+        unit: Hz
+        class: measurement
+
+  - entity: sensor
+    name: Suction temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 41
+        name: sensor
+        type: integer
+        unit: F
+        class: measurement
+
+  - entity: sensor
+    name: EEV opening
+    category: diagnostic
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: P
+        class: measurement
+
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100

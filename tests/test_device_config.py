@@ -261,7 +261,7 @@ KNOWN_DPS = {
     },
     "number": {
         "required": ["value"],
-        "optional": ["unit", "minimum", "maximum"],
+        "optional": ["unit", "minimum", "maximum", "decimal"],
     },
     "remote": {
         "required": ["send"],
@@ -519,7 +519,10 @@ def test_config_files_parse(mocker):
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
                 if first_line is None:
-                    first_line = err.path[-1].__line__
+                    # voluptuous doesn't always seem to return line numbers
+                    if err.path and hasattr(err.path[-1], "__line__"):
+                        first_line = err.path[-1].__line__
+
             messages = "; ".join(messages)
             if not first_line:
                 first_line = 1
@@ -755,8 +758,8 @@ def test_values_with_mirror(mocker):
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = "1"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
-    map = TuyaDpsConfig(mock_entity, mock_map_config)
-    mock_entity.find_dps.return_value = map
+    mapping = TuyaDpsConfig(mock_entity, mock_map_config)
+    mock_entity.find_dps.return_value = mapping
 
     assert set(cfg.values(mock_device)) == {"unmirrored", "map_one", "map_two"}
     assert len(cfg.values(mock_device)) == 3

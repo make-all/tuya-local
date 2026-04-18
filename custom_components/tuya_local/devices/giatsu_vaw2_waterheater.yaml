@@ -5,7 +5,6 @@ products:
     model: GIA-ATS-O-300VAWT
 entities:
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -14,12 +13,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: heat
-                value: Heating
-              - dps_val: heatfan
-                value: "Heating + Ventilation"
+            value: heat_pump
       - id: 2
         type: integer
         name: temperature
@@ -27,18 +21,36 @@ entities:
           min: 10
           max: 70
         unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
       - id: 4
         type: string
         name: mode
         hidden: true
   - entity: sensor
     class: temperature
+    category: diagnostic
+    deprecated: water_heater.current_temperature  # 2026-04-18
     dps:
       - id: 3
         type: integer
         name: sensor
         unit: C
         class: measurement
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: heat
+            value: Heating
+          - dps_val: heatfan
+            value: Heating and ventilation
+
   - entity: binary_sensor
     class: problem
     category: diagnostic

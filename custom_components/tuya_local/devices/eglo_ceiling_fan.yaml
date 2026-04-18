@@ -5,10 +5,30 @@ products:
     model: Surf
 entities:
   - entity: fan
+    translation_only_key: fan_with_presets
     dps:
       - id: 60
         type: boolean
         name: switch
+      - id: 61
+        type: string
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+            available: preset_supported
+          - dps_val: nature
+            value: nature
+            available: preset_supported
+      - id: 61
+        type: string
+        optional: true
+        name: preset_supported
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 62
         type: integer
         name: speed
@@ -43,3 +63,56 @@ entities:
           min: 0
           max: 540
         unit: min
+  - entity: light
+    hidden: unavailable
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 20
+        type: boolean
+        optional: true
+        name: switch
+      - id: 22
+        type: integer
+        optional: true
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 5000
+            step: 500
+  - entity: time
+    name: Light timer
+    hidden: unavailable
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86399
