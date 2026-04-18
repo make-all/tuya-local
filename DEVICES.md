@@ -548,11 +548,11 @@
 
 ### Aroma diffusers
 
-- Asakuki aroma diffuser with light (newer devices seem to require the Ditua config below)
+- Asakuki aroma diffuser with light (newer devices seem to require the Dituo config below)
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Calex V2 aroma diffuser
 - Delixing KCL-1802A-M aroma diffuser
-- Ditua DT-1522-YN aroma diffuser
+- Dituo DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
 - Haoyunma BD100 aroma diffuser
@@ -1329,6 +1329,7 @@ port and password.
 - Arlec usb strip light
 - BSTUOKEY Invisible induction door lock
 - Diivoo DWV010, WT05 dual water timers
+- Dituo DT-T2190A aroma diffuser
 - Gainsborough Liberty entrance lock
 - HCT-611 water timer
 - HCT-626 dual water timer
