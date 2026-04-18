@@ -1,0 +1,156 @@
+name: Steam Room
+products:
+  - id: pjh7lsqhyn86almn
+    manufacturer: Sanjun
+    model: Steam Room
+entities:
+  - entity: climate
+    name: Steam Room
+    dps:
+      - id: 104
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 102
+        type: integer
+        name: temperature
+        range:
+          min: 25
+          max: 68
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 77
+                  max: 154
+      - id: 112
+        type: integer
+        name: current_temperature
+      - id: 113
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: light
+    name: Colour lamp
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+      - id: 107
+        type: string
+        name: effect
+        mapping:
+          - dps_val: "00"
+            value: Rainbow
+          - dps_val: "07"
+            value: "off"
+          - value: "off"
+            hidden: true
+      - id: 107
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "01"
+            value: red
+          - dps_val: "02"
+            value: yellow
+          - dps_val: "03"
+            value: lime
+          - dps_val: "04"
+            value: aqua
+          - dps_val: "05"
+            value: blue
+          - dps_val: "06"
+            value: magenta
+          - dps_val: "07"
+            value: white
+  - entity: switch
+    name: Aromatherapy
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wash rinse
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code
+        hidden: true
+  - entity: button
+    name: Clock sync
+    icon: "mdi:timer-sync-outline"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: button
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 103
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Schedule
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Steam time count
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 115
+        type: base64
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Temperature range
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 116
+        type: base64
+        name: sensor
+        optional: true

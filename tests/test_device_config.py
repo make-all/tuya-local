@@ -261,7 +261,7 @@ KNOWN_DPS = {
     },
     "number": {
         "required": ["value"],
-        "optional": ["unit", "minimum", "maximum"],
+        "optional": ["unit", "minimum", "maximum", "decimal"],
     },
     "remote": {
         "required": ["send"],
