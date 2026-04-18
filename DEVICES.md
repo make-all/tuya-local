@@ -348,7 +348,7 @@
 - Eberg Fyn tower fan
 - EcoNour 42" tower fan
 - Efenz Kith ceiling fan with light
-- Eglo 5 speed + sleep ceiling fan
+- Eglo 5 speed + sleep ceiling fan (with or without light and presets)
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Fanforce ceiling fan with light

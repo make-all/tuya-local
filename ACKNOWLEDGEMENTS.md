@@ -1347,3 +1347,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eijnehc](https://github.com/eijnehc) for contributing support for Macro MA-20WODP gas water heater.
 - [martinsotir](https://github.com/martinsotir) for contributing support for Dekala Lumos sunrise alarm clock.
 - [aicbaicb](https://github.com/aicbaicb) for contributing support for Sajun steam room.
+- [pro-logic](https://github.com/pro-logic) for contributing support for Eglo ceiling fan with light, which was merged with the non-light variant.
