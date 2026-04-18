@@ -254,25 +254,6 @@ entities:
         optional: true
         mask: "00FF000000000000000000000000"
 
-  - entity: select
-    name: Alarm 1 repeat
-    category: config
-    dps:
-      - id: 109
-        name: option
-        type: base64
-        optional: true
-        mask: "0000FF0000000000000000000000"
-        mapping:
-          - dps_val: 0
-            value: once
-          - dps_val: 124
-            value: weekdays
-          - dps_val: 3
-            value: weekends
-          - dps_val: 127
-            value: every_day
-
   # Repeat-day bits map Monday..Sunday across the 7 low bits of
   # Data[2].
   - entity: switch
@@ -463,25 +444,6 @@ entities:
         type: base64
         optional: true
         mask: "00FF000000000000000000000000"
-
-  - entity: select
-    name: Alarm 2 repeat
-    category: config
-    dps:
-      - id: 111
-        name: option
-        type: base64
-        optional: true
-        mask: "0000FF0000000000000000000000"
-        mapping:
-          - dps_val: 0
-            value: once
-          - dps_val: 124
-            value: weekdays
-          - dps_val: 3
-            value: weekends
-          - dps_val: 127
-            value: every_day
 
   - entity: switch
     name: Alarm 2 Sunday
