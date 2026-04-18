@@ -1115,6 +1115,7 @@ port and password.
 - Happy Llama Tech SoCool pet feeder
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
+- Imipaw DUW21 WBR3D cat feeder
 - iPettie W5 pet feeder
 - Kanchou pet fountain
 - Leo's Loo Too pet toilet
