@@ -1343,3 +1343,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rezendeneto](https://github.com/rezendeneto) for contributing support for Garen Kit Central garage door controller, ATorch S1BWP-T/H thermostat smartplug.
 - [tkaefer](https://github.com/tkaefer) for contributing support for Costway portable air conditioner with heating.
 - [pepitogrillo02](https://github.com/pepitogrillo02) for contributing support for Beok TR9HB-AC2.
+- [ps851112](https://github.com/ps851112) for contributing support for Aquastrong Hex pool heat pumps.
