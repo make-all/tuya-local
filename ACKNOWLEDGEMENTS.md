@@ -1344,3 +1344,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tkaefer](https://github.com/tkaefer) for contributing support for Costway portable air conditioner with heating.
 - [pepitogrillo02](https://github.com/pepitogrillo02) for contributing support for Beok TR9HB-AC2.
 - [ps851112](https://github.com/ps851112) for contributing support for Aquastrong Hex pool heat pumps.
+- [eijnehc](https://github.com/eijnehc) for contributing support for Macro MA-20WODP gas water heater.

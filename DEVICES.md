@@ -215,6 +215,7 @@
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
+- Macro MA-20WODP gas water heater
 - Modena ES-15-SKY water heater
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
