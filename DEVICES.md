@@ -294,6 +294,7 @@
 - Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
+- Sajun steam room
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat

@@ -1346,3 +1346,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ps851112](https://github.com/ps851112) for contributing support for Aquastrong Hex pool heat pumps.
 - [eijnehc](https://github.com/eijnehc) for contributing support for Macro MA-20WODP gas water heater.
 - [martinsotir](https://github.com/martinsotir) for contributing support for Dekala Lumos sunrise alarm clock.
+- [aicbaicb](https://github.com/aicbaicb) for contributing support for Sajun steam room.
