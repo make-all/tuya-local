@@ -1,11 +1,11 @@
-name: Water heater
+name: Pool Heat pump
 products:
   - id: cjfj60binlzftdqw
     manufacturer: Aquaviva
     model: Superior Split
 entities:
-  - entity: water_heater
-    translation_only_key: hot_water
+  - entity: climate
+    translation_key: pool_heatpump
     dps:
       - id: 1
         type: boolean
@@ -30,8 +30,8 @@ entities:
         type: integer
         name: temperature
         range:
-          min: 10
-          max: 70
+          min: 15
+          max: 40
         unit: C
       - id: 4
         type: string
