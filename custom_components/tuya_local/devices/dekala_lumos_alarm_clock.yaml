@@ -136,21 +136,107 @@ entities:
         name: switch
         type: boolean
 
-  - entity: switch
-    name: Alarm 1 enabled
+  - entity: siren
+    name: Alarm 1
     category: config
     dps:
       - id: 108
         name: switch
         type: boolean
+      - id: 109
+        name: volume_level
+        type: base64
+        optional: true
+        mask: "0000000000FF0000000000000000"
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 109
+        name: duration
+        type: base64
+        optional: true
+        mask: "000000000000FF00000000000000"
+        range:
+          min: 5
+          max: 30
+        unit: min
+      - id: 109
+        name: tone
+        type: base64
+        optional: true
+        mask: "000000FF00000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: None
+          - dps_val: 1
+            value: Birds
+          - dps_val: 2
+            value: Sea
+          - dps_val: 3
+            value: Valley
+          - dps_val: 4
+            value: Piano
+          - dps_val: 5
+            value: Soft
+          - dps_val: 6
+            value: Phone
+          - dps_val: 7
+            value: Beep
+          - dps_val: 8
+            value: Radio
 
-  - entity: switch
-    name: Alarm 2 enabled
+  - entity: siren
+    name: Alarm 2
     category: config
     dps:
       - id: 110
         name: switch
         type: boolean
+      - id: 111
+        name: volume_level
+        type: base64
+        optional: true
+        mask: "0000000000FF0000000000000000"
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 111
+        name: duration
+        type: base64
+        optional: true
+        mask: "000000000000FF00000000000000"
+        range:
+          min: 5
+          max: 30
+        unit: min
+      - id: 111
+        name: tone
+        type: base64
+        optional: true
+        mask: "000000FF00000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: None
+          - dps_val: 1
+            value: Birds
+          - dps_val: 2
+            value: Sea
+          - dps_val: 3
+            value: Valley
+          - dps_val: 4
+            value: Piano
+          - dps_val: 5
+            value: Soft
+          - dps_val: 6
+            value: Phone
+          - dps_val: 7
+            value: Beep
+          - dps_val: 8
+            value: Radio
 
   # Alarm 1 configuration (DP 109 raw payload)
   - entity: time
@@ -260,35 +346,6 @@ entities:
         mask: "0000400000000000000000000000"
 
   - entity: select
-    name: Alarm 1 wake sound
-    category: config
-    dps:
-      - id: 109
-        name: option
-        type: base64
-        optional: true
-        mask: "000000FF00000000000000000000"
-        mapping:
-          - dps_val: 0
-            value: none
-          - dps_val: 1
-            value: birds
-          - dps_val: 2
-            value: sea
-          - dps_val: 3
-            value: valley
-          - dps_val: 4
-            value: piano
-          - dps_val: 5
-            value: soft
-          - dps_val: 6
-            value: phone
-          - dps_val: 7
-            value: beep
-          - dps_val: 8
-            value: radio
-
-  - entity: select
     name: Alarm 1 sound effect
     category: config
     dps:
@@ -304,34 +361,6 @@ entities:
             value: fade_in
           - dps_val: 2
             value: fade_out
-
-  - entity: number
-    name: Alarm 1 volume
-    category: config
-    mode: slider
-    dps:
-      - id: 109
-        name: value
-        type: base64
-        optional: true
-        mask: "0000000000FF0000000000000000"
-        range:
-          min: 1
-          max: 10
-
-  - entity: number
-    name: Alarm 1 duration
-    category: config
-    dps:
-      - id: 109
-        name: value
-        type: base64
-        optional: true
-        mask: "000000000000FF00000000000000"
-        range:
-          min: 5
-          max: 30
-        unit: min
 
   - entity: select
     name: Alarm 1 wake light mode
@@ -525,35 +554,6 @@ entities:
         mask: "0000400000000000000000000000"
 
   - entity: select
-    name: Alarm 2 wake sound
-    category: config
-    dps:
-      - id: 111
-        name: option
-        type: base64
-        optional: true
-        mask: "000000FF00000000000000000000"
-        mapping:
-          - dps_val: 0
-            value: none
-          - dps_val: 1
-            value: birds
-          - dps_val: 2
-            value: sea
-          - dps_val: 3
-            value: valley
-          - dps_val: 4
-            value: piano
-          - dps_val: 5
-            value: soft
-          - dps_val: 6
-            value: phone
-          - dps_val: 7
-            value: beep
-          - dps_val: 8
-            value: radio
-
-  - entity: select
     name: Alarm 2 sound effect
     category: config
     dps:
@@ -569,34 +569,6 @@ entities:
             value: fade_in
           - dps_val: 2
             value: fade_out
-
-  - entity: number
-    name: Alarm 2 volume
-    category: config
-    mode: slider
-    dps:
-      - id: 111
-        name: value
-        type: base64
-        optional: true
-        mask: "0000000000FF0000000000000000"
-        range:
-          min: 1
-          max: 10
-
-  - entity: number
-    name: Alarm 2 duration
-    category: config
-    dps:
-      - id: 111
-        name: value
-        type: base64
-        optional: true
-        mask: "000000000000FF00000000000000"
-        range:
-          min: 5
-          max: 30
-        unit: min
 
   - entity: select
     name: Alarm 2 wake light mode
