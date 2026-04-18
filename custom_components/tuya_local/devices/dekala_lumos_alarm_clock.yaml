@@ -725,23 +725,16 @@ entities:
           min: 76
           max: 108
         unit: MHz
-      - id: 130
-        name: available
-        type: boolean
-        optional: true
-
-  - entity: number
-    name: Radio decimal
-    mode: box
-    dps:
       - id: 133
-        name: value
+        name: decimal
         type: base64
         optional: true
         mask: "00FF"
         range:
           min: 0
           max: 9
+        mapping:
+          - scale: 10
       - id: 130
         name: available
         type: boolean
