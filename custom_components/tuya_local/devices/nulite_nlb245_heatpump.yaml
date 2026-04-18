@@ -76,8 +76,64 @@ entities:
         type: bitfield
         name: fault_code
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: dhw_only
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Heat
+                value: "off"
+                available: air_heat
+              - dps_val: Cool
+                value: "off"
+                available: air_cool
+              - dps_val: HotWater
+                value: heat_pump
+                available: dhw_only
+              - dps_val: Heat_HotWater
+                value: heat_pump
+                available: air_heat
+              - dps_val: Cool_HotWater
+                value: heat_pump
+                available: air_cool
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 4
+        type: string
+        name: dhw_only
+        hidden: true
+        mapping:
+          - dps_val: HotWater
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        name: air_heat
+        hidden: true
+        mapping:
+          - dps_val: Heat
+            value: true
+          - dps_val: Heat_HotWater
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        name: air_cool
+        hidden: true
+        mapping:
+          - dps_val: Cool
+            value: true
+          - dps_val: Cool_HotWater
+            value: true
+          - value: false
       - id: 101
         type: integer
         name: temperature
@@ -87,6 +143,7 @@ entities:
           max: 50
   - entity: select
     translation_key: heat_pump_mode
+    deprecated: climate.hvac_mode and water_heater.operation_mode  # 2026-04-18
     category: config
     dps:
       - id: 4
