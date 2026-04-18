@@ -54,7 +54,7 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: select
-    name: Time format
+    translation_key: time_format
     icon: "mdi:clock"
     category: config
     dps:
@@ -63,9 +63,9 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "12h"
+            value: 12_hour
           - dps_val: "1"
-            value: "24h"
+            value: 24_hour
       - id: 107
         type: string
         optional: true
