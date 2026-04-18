@@ -5,11 +5,11 @@ from ..helpers import assert_device_properties_set
 
 
 class TargetTemperatureTests:
-    def setUpTargetTemperature(self, dps, subject, min=15, max=35, step=1, scale=1):
+    def setUpTargetTemperature(self, dps, subject, mini=15, maxi=35, step=1, scale=1):
         self.targetTemp = subject
         self.targetTempDps = dps
-        self.targetTempMin = min
-        self.targetTempMax = max
+        self.targetTempMin = mini
+        self.targetTempMax = maxi
         self.targetTempStep = step
         self.targetTempScale = scale
 

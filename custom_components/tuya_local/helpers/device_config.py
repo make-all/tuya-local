@@ -61,14 +61,14 @@ _signed_fmts = {
 }
 
 
-def _bytes_to_fmt(bytes, signed=False):
+def _bytes_to_fmt(b, signed=False):
     """Convert a byte count to an unpack format."""
     fmt = _signed_fmts if signed else _unsigned_fmts
 
-    if bytes in fmt:
-        return fmt[bytes]
+    if b in fmt:
+        return fmt[b]
     else:
-        return f"{bytes}s"
+        return f"{b}s"
 
 
 def _equal_or_in(value1, values2):
