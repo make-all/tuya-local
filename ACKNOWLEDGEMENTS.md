@@ -771,4 +771,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pro-logic](https://github.com/pro-logic) for contributing support for Eglo ceiling fan with light, which was merged with the non-light variant.
 - [ludook](https://github.com/ludook) for contributing support for Beok BAC-009 smart knob zigbee thermostat.
 - [haywoodmarx](https://github.com/haywoodmarx) for contributing support for Kogan KASMWEKFITEA fitted electric blanket.
-- [nicholasng99](https://github.com/nicholasng99) for contributing support for City Energy L10WFE gas water heater.
+- [nicholasng99](https://github.com/nicholasng99) for contributing support for City Energy L10WFE gas water heater and Trident AirDome-70 air purifier.

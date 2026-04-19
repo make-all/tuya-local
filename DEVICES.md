@@ -464,6 +464,7 @@
 
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
+- Trident AirDome-70 air purifier
 - TrueLife P3 and P7 air purifiers
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
