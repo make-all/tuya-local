@@ -185,6 +185,7 @@ entities:
         type: string
         name: event
         optional: true
+        persist: false
         mapping:
           - dps_val: wrong_finger
             value: wrong_finger
@@ -216,20 +217,6 @@ entities:
             value: defense
           - dps_val: wrong_unlock
             value: wrong_unlock
-      # [Doorbell] If the local doorbell ringtone of the device supports
-      # switching, you can use this DP to switch the local doorbell ringtone of
-      # the door lock on the app; this DP is only enabled if the hardware of
-      # this smart lock product supports doorbell ringtone switching and the
-      # user is allowed to switch on the app.
-      - id: 26
-        type: string
-        name: event
-        optional: true
-        mapping:
-          - dps_val: ding_0
-            value: ding_0
-          - dps_val: ding_1
-            value: ding_1
   # [Device Status] is used to display the power level in percentage. The range
   # is -1 to 100. When the device reports a value of -1, the power level is not
   # displayed. (Choose one from DP9).
@@ -290,6 +277,25 @@ entities:
             value: Normal
           - dps_val: high
             value: High
+  # [Doorbell] If the local doorbell ringtone of the device supports
+  # switching, you can use this DP to switch the local doorbell ringtone of
+  # the door lock on the app. This DP is only enabled if the hardware of
+  # this smart lock product supports doorbell ringtone switching and the
+  # user is allowed to switch on the app.
+  - entity: select
+    name: Doorbell tune
+    category: config
+    icon: "mdi:bell-ring"
+    dps:
+      - id: 26
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: ding_0
+            value: Ding 0
+          - dps_val: ding_1
+            value: Ding 1
   # [Device Status] If the device has indoor anti-lock detection, it is used to
   # report the switch status of indoor anti-lock. Only select this dp when the
   # hardware of this smart lock product can detect the anti-lock status and
@@ -341,6 +347,23 @@ entities:
   #           value: Open
   #         - dps_val: closed
   #           value: Closed
+  - entity: event
+    name: Door
+    category: diagnostic
+    dps:
+      # [Device Status] If the device has door opening and closing status
+      # detection, it is used to report the door opening and closing status.
+      - id: 40
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: open
+            value: opened
+          - dps_val: closed
+            value: closed
+          - dps_val: unknown
+            value: null
   # [Approach Unlock] is used to set the delay time of automatic locking in the
   # approach unlock scenario. If it is not enabled, the original automatic
   # locking delay time will be retained.
