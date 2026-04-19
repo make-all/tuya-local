@@ -20,6 +20,16 @@ entities:
             value: manual
           - dps_val: sleep
             value: sleep
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: speed1
+            value: 33
+          - dps_val: speed2
+            value: 66
+          - dps_val: speed3
+            value: 100
 
   - entity: sensor
     class: pm25
@@ -29,21 +39,6 @@ entities:
         type: integer
         unit: ugm3
         class: measurement
-
-  - entity: select
-    name: Fan speed
-    category: config
-    dps:
-      - id: 4
-        name: option
-        type: string
-        mapping:
-          - dps_val: speed1
-            value: speed1
-          - dps_val: speed2
-            value: speed2
-          - dps_val: speed3
-            value: speed3
 
   - entity: lock
     translation_key: child_lock
@@ -74,7 +69,7 @@ entities:
           - dps_val: good
             value: good
           - dps_val: medium
-            value: moderate
+            value: poor
           - dps_val: severe
             value: severe
 
