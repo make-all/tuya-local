@@ -770,3 +770,4 @@ Further device support has been made with the assistance of users. Please consid
 - [aicbaicb](https://github.com/aicbaicb) for contributing support for Sajun steam room.
 - [pro-logic](https://github.com/pro-logic) for contributing support for Eglo ceiling fan with light, which was merged with the non-light variant.
 - [ludook](https://github.com/ludook) for contributing support for Beok BAC-009 smart knob zigbee thermostat.
+- [haywoodmarx](https://github.com/haywoodmarx) for contributing support for Kogan KASMWEKFITEA fitted electric blanket.

@@ -1248,6 +1248,7 @@ port and password.
 - Kishin BS-DW002 motion sensor (sold under various brands)
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
+- Kogan KASMWEKFITEA fitted electric blanket
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen SNT957W-TDE E3S temperature alarm
 - Konlen/Rockson WF96L water level controller
