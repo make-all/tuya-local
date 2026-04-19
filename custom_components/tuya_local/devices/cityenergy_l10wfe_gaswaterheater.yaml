@@ -5,7 +5,6 @@ products:
     model: L10WFE
 entities:
   - entity: water_heater
-    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -60,7 +59,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Session gas
-    class: gas
+    class: volume
     category: diagnostic
     dps:
       - id: 103
@@ -71,7 +70,6 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Cumulative gas
     class: gas
     category: diagnostic
     dps:
@@ -82,7 +80,7 @@ entities:
         class: total_increasing
   - entity: sensor
     name: Session water
-    class: water
+    class: volume
     category: diagnostic
     dps:
       - id: 105
@@ -91,7 +89,6 @@ entities:
         unit: L
         class: measurement
   - entity: sensor
-    name: Cumulative water
     class: water
     category: diagnostic
     dps:
