@@ -4,17 +4,17 @@ products:
     manufacturer: City Energy
     model: L10WFE
 entities:
-  - entity: climate
-    translation_key: heater
+  - entity: water_heater
+    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
-        name: hvac_mode
+        name: operation_mode
         mapping:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: heat
+            value: gas
       - id: 9
         type: integer
         name: temperature
