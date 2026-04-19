@@ -40,7 +40,6 @@ entities:
           - dps_val: burning
             value: heating
   - entity: sensor
-    name: Water flow
     class: volume_flow_rate
     category: diagnostic
     dps:
@@ -61,7 +60,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Session gas
-    class: volume
+    class: gas
     category: diagnostic
     dps:
       - id: 103
@@ -73,7 +72,7 @@ entities:
           - scale: 1000
   - entity: sensor
     name: Cumulative gas
-    class: volume
+    class: gas
     category: diagnostic
     dps:
       - id: 104
@@ -83,7 +82,7 @@ entities:
         class: total_increasing
   - entity: sensor
     name: Session water
-    class: volume
+    class: water
     category: diagnostic
     dps:
       - id: 105
@@ -93,7 +92,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Cumulative water
-    class: volume
+    class: water
     category: diagnostic
     dps:
       - id: 106
@@ -104,6 +103,7 @@ entities:
   - entity: button
     name: Reset water meter
     category: config
+    hidden: true
     dps:
       - id: 107
         type: boolean
@@ -111,6 +111,7 @@ entities:
   - entity: button
     name: Reset gas meter
     category: config
+    hidden: true
     dps:
       - id: 108
         type: boolean
