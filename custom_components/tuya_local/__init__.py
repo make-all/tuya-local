@@ -9,10 +9,13 @@ https://github.com/codetheweb/tuyapi/issues/31.
 
 import logging
 
+import voluptuous as vol
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
-from homeassistant.core import HomeAssistant, callback
-from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.core import HomeAssistant, ServiceCall, callback
+from homeassistant.exceptions import ConfigEntryNotReady, HomeAssistantError
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.entity_registry import (
     async_get as async_get_entity_registry,
 )
@@ -33,6 +36,44 @@ from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
+
+SERVICE_UPDATE_DPS = "update_dps"
+SERVICE_UPDATE_DPS_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_DEVICE_ID): cv.string,
+        vol.Optional("dps"): list,
+    }
+)
+
+
+async def async_setup(hass: HomeAssistant, config: dict):
+    """Set up the tuya_local integration."""
+
+    async def _handle_update_dps(call: ServiceCall):
+        """Handle update_dps service call - sends UPDATEDPS command."""
+        dev_id = call.data[CONF_DEVICE_ID]
+        data = hass.data.get(DOMAIN, {}).get(dev_id)
+        if not data or "device" not in data:
+            raise HomeAssistantError(f"Device {dev_id} not found")
+
+        device = data["device"]
+        if not device.has_returned_state:
+            raise HomeAssistantError(f"Device {dev_id} is not connected")
+
+        dps = call.data.get("dps")
+        if dps is None:
+            dps = device._force_dps or [18, 19, 20]
+
+        await hass.async_add_executor_job(device._api.updatedps, dps)
+
+    hass.services.async_register(
+        DOMAIN,
+        SERVICE_UPDATE_DPS,
+        _handle_update_dps,
+        schema=SERVICE_UPDATE_DPS_SCHEMA,
+    )
+
+    return True
 
 
 def replace_unique_ids(entity_entry, device_id, conf_file, replacements):

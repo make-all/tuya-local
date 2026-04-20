@@ -1,0 +1,18 @@
+update_dps:
+  name: "Update DPs"
+  description: "Request the device to report current values for specified datapoints (sends UPDATEDPS 0x12 command)"
+  fields:
+    device_id:
+      name: "Device ID"
+      description: The Tuya device ID to request updated DP values from
+      required: true
+      example: 11100118278aab4de001
+      selector:
+        text:
+    dps:
+      name: "DPs"
+      description: "List of DP indexes to refresh. If omitted, the device's force_dps list will be used, or defaults to [18, 19, 20]."
+      required: false
+      example: "[18, 19, 20]"
+      selector:
+        object:
