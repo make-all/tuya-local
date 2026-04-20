@@ -66,7 +66,9 @@ async def async_setup(hass: HomeAssistant, config: dict):
 
         try:
             async with device._api_lock:
-                await hass.async_add_executor_job(device._api.updatedps, dps)
+                await hass.async_add_executor_job(
+                    device._api.updatedps, dps, True
+                )
         except Exception as e:
             _LOGGER.warning("update_dps failed for %s: %s", dev_id, e)
 
