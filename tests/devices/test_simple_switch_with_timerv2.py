@@ -28,8 +28,8 @@ class TestTimedSwitch(SwitchableTests, TuyaDeviceTestCase):
         )
 
     def test_available(self):
-        for id, e in self.entities.items():
-            if id == "select_initial_state":
+        for entid, e in self.entities.items():
+            if entid == "select_initial_state":
                 self.dps[INITIAL_STATE_DPS] = None
                 self.assertFalse(e.available)
                 self.dps[INITIAL_STATE_DPS] = "on"
