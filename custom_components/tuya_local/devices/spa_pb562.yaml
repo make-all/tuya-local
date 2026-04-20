@@ -4,9 +4,9 @@ products:
     manufacturer: JOYONWAY
     model: PB562
 entities:
-  # --- THERMOSTAT (CLIMATE) ---
+  # --- THERMOSTAT ---
   - entity: climate
-    name: Thermostat
+    translation_key: thermostat
     dps:
       - id: 3
         type: integer
@@ -25,15 +25,6 @@ entities:
             value: heating
           - dpsval: false
             value: idle
-      - id: 111
-        type: boolean
-        name: hvac_mode
-        mapping:
-          - dpsval: true
-            value: heat
-          - dpsval: false
-            value: heat
-        hidden: true
 
   # --- PUMPS & LIGHTS ---
   - entity: switch
@@ -120,10 +111,3 @@ entities:
         type: integer
         name: sensor
         unit: V
-
-  - entity: sensor
-    name: Fault
-    dps:
-      - id: 45
-        type: integer
-        name: sensor
