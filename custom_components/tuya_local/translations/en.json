@@ -216,6 +216,12 @@
             }
         },
         "button": {
+            "factory_reset": {
+                "name": "Factory reset"
+            },
+            "filter_reset": {
+                "name": "Filter reset"
+            },
             "alarm_off": {
                 "name": "Alarm off"
             },
@@ -224,12 +230,6 @@
             },
             "alarm_x_reset": {
                 "name": "Alarm {x} reset"
-            },
-            "factory_reset": {
-                "name": "Factory reset"
-            },
-            "filter_reset": {
-                "name": "Filter reset"
             },
             "radio_seek": {
                 "name": "Radio seek"
@@ -568,9 +568,6 @@
             "minimum_temperature": {
                 "name": "Minimum temperature"
             },
-            "radio_frequency": {
-                "name": "Radio frequency"
-            },
             "sensor_threshold": {
                 "name": "{sensor} threshold"
             },
@@ -601,6 +598,9 @@
             "alarm_x_wake_light_lead_time": {
                 "name": "Alarm {x} wake light lead time"
             },
+            "radio_frequency": {
+                "name": "Radio frequency"
+            },
             "snooze_duration": {
                 "name": "Snooze duration"
             }
@@ -614,17 +614,6 @@
                     "cny": "CNY",
                     "cad": "CAD",
                     "gbp": "GBP"
-                }
-            },
-            "display_brightness": {
-                "name": "Display brightness",
-                "state": {
-                    "off": "Off",
-                    "day": "Day",
-                    "night": "Night",
-                    "dim": "Dim",
-                    "bright": "Bright",
-                    "auto": "Auto"
                 }
             },
             "heat_pump_mode": {
@@ -769,13 +758,6 @@
                     "twinkle": "Twinkle",
                     "gaming": "Gaming",
                     "none": "None"
-                }
-            },
-            "seconds_dot": {
-                "name": "Seconds dot",
-                "state": {
-                    "static": "Static",
-                    "blinking": "Blinking"
                 }
             },
             "timer": {
@@ -1075,6 +1057,24 @@
                     "milk_toast": "Milk Toast"
                 }
             },
+            "display_brightness": {
+                "name": "Display brightness",
+                "state": {
+                    "off": "Off",
+                    "day": "Day",
+                    "night": "Night",
+                    "dim": "Dim",
+                    "bright": "Bright",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Seconds dot",
+                "state": {
+                    "static": "Static",
+                    "blinking": "Blinking"
+                }
+            },
             "alarm_x_snooze_action": {
                 "name": "Alarm {x} snooze mode",
                 "state": {
@@ -1106,13 +1106,6 @@
                     "dynamic_music": "Dynamic music"
                 }
             },
-            "time_format": {
-                "name": "Time format",
-                "state": {
-                    "12_hour": "12 hour",
-                    "24_hour": "24 hour"
-                }
-            },
             "snooze_action": {
                 "name": "Snooze action",
                 "state": {
@@ -1120,6 +1113,13 @@
                     "light": "Light",
                     "radio": "Radio",
                     "radio_sound_light": "Radio + sound + light"
+                }
+            },
+            "time_format": {
+                "name": "Time format",
+                "state": {
+                    "12_hour": "12 hour",
+                    "24_hour": "24 hour"
                 }
             }
         },
@@ -1144,15 +1144,6 @@
                     "poor": "Poor",
                     "severe": "Severe",
                     "danger": "Danger"
-                }
-            },
-            "active_lights": {
-                "name": "Active lights",
-                "state": {
-                    "all_off": "All off",
-                    "night_on": "Night light on",
-                    "color_on": "Color light on",
-                    "ambient_on": "Ambient light on"
                 }
             },
             "status": {
@@ -1311,6 +1302,15 @@
             "leakage_current": {
                 "name": "Leakage current"
             },
+            "active_lights": {
+                "name": "Active lights",
+                "state": {
+                    "all_off": "All off",
+                    "night_on": "Night light on",
+                    "color_on": "Color light on",
+                    "ambient_on": "Ambient light on"
+                }
+            },
             "wireless_charging": {
                 "name": "Wireless charging status",
                 "state": {
@@ -1321,51 +1321,7 @@
                 }
             }
         },
-        "siren": {
-            "alarm_x": {
-                "name": "Alarm {x}",
-                "state_attributes": {
-                    "tone": {
-                        "state": {
-                            "none": "None",
-                            "birds": "Birds",
-                            "sea": "Sea",
-                            "valley": "Valley",
-                            "piano": "Piano",
-                            "soft": "Soft",
-                            "phone": "Phone",
-                            "beep": "Beep",
-                            "radio": "Radio"
-                        }
-                    }
-                }
-            }
-        },
         "switch": {
-            "alarm_x_snooze_enabled": {
-                "name": "Alarm {x} snooze enabled"
-            },
-            "alarm_x_day_monday": {
-                "name": "Alarm {x} day 1 monday"
-            },
-            "alarm_x_day_tuesday": {
-                "name": "Alarm {x} day 2 tuesday"
-            },
-            "alarm_x_day_wednesday": {
-                "name": "Alarm {x} day 3 wednesday"
-            },
-            "alarm_x_day_thursday": {
-                "name": "Alarm {x} day 4 thursday"
-            },
-            "alarm_x_day_friday": {
-                "name": "Alarm {x} day 5 friday"
-            },
-            "alarm_x_day_saturday": {
-                "name": "Alarm {x} day 6 saturday"
-            },
-            "alarm_x_day_sunday": {
-                "name": "Alarm {x} day 7 sunday"
-            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1397,20 +1353,8 @@
             "keytone": {
                 "name": "Keytone"
             },
-            "music_playback": {
-                "name": "Music playback"
-            },
-            "network_time": {
-                "name": "Network time sync"
-            },
-            "night_mode": {
-                "name": "Night mode"
-            },
             "outlet_x": {
                 "name": "Outlet {x}"
-            },
-            "radio": {
-                "name": "Radio"
             },
             "sleep": {
                 "name": "Sleep"
@@ -1420,9 +1364,6 @@
             },
             "switch_x": {
                 "name": "Switch {x}"
-            },
-            "time_24h": {
-                "name": "24 hour display"
             },
             "uv_sterilization": {
                 "name": "UV sterilization"
@@ -1444,6 +1385,42 @@
             },
             "alarm_x": {
                 "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} snooze enabled"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} day 1 monday"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} day 2 tuesday"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} day 3 wednesday"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} day 4 thursday"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} day 5 friday"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} day 6 saturday"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} day 7 sunday"
+            },
+            "music_playback": {
+                "name": "Music playback"
+            },
+            "network_time": {
+                "name": "Network time sync"
+            },
+            "night_mode": {
+                "name": "Night mode"
+            },
+            "radio": {
+                "name": "Radio"
             },
             "snooze": {
                 "name": "Snooze"
@@ -1470,12 +1447,6 @@
             }
         },
         "time": {
-            "alarm_x_time": {
-                "name": "Alarm {x} time"
-            },
-            "clock_time": {
-                "name": "Clock time"
-            },
             "reservation_time": {
                 "name": "Reservation time"
             },
@@ -1487,6 +1458,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} time"
+            },
+            "clock_time": {
+                "name": "Clock time"
             }
         },
         "valve": {
@@ -1503,6 +1480,26 @@
             },
             "hot_water": {
                 "name": "Hot water dispenser"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "None",
+                            "birds": "Birds",
+                            "sea": "Sea",
+                            "valley": "Valley",
+                            "piano": "Piano",
+                            "soft": "Soft",
+                            "phone": "Phone",
+                            "beep": "Beep",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }
