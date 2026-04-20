@@ -71,28 +71,6 @@ entities:
           min: 0
           max: 1439
 
-  - entity: number
-    name: Filtration start
-    icon: mdi:clock-start
-    dps:
-      - id: 137
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 1439
-
-  - entity: number
-    name: Filtration end
-    icon: mdi:clock-end
-    dps:
-      - id: 138
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 1439
-
   # --- SENSORS ---
   - entity: sensor
     name: Power
@@ -111,3 +89,10 @@ entities:
         type: integer
         name: sensor
         unit: V
+
+  - entity: sensor
+    name: Fault
+    dps:
+      - id: 45
+        type: integer
+        name: sensor
