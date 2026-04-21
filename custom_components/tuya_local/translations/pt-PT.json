@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Redefinição do filtro"
+            },
+            "alarm_off": {
+                "name": "Desligar alarme"
+            },
+            "alarm_snooze": {
+                "name": "Adiar alarme"
+            },
+            "alarm_x_reset": {
+                "name": "Alarme {x} redefinição"
+            },
+            "radio_seek": {
+                "name": "Procurar rádio"
+            },
+            "radio_stop": {
+                "name": "Parar rádio"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Luz do exaustor"
+            },
+            "color_light": {
+                "name": "Luz colorida"
+            },
+            "ambient_light": {
+                "name": "Luz ambiente"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Temperatura superior"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarme {x} duração da soneca"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarme {x} antecedência luz de despertar"
+            },
+            "radio_frequency": {
+                "name": "Frequência de rádio"
+            },
+            "snooze_duration": {
+                "name": "Duração da soneca"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Pão de feijão vermelho",
                     "milk_toast": "Torrada de leite"
                 }
+            },
+            "display_brightness": {
+                "name": "Brilho do ecrã",
+                "state": {
+                    "off": "Desligado",
+                    "day": "Dia",
+                    "night": "Noite",
+                    "dim": "Fraco",
+                    "bright": "Forte",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Ponto dos segundos",
+                "state": {
+                    "static": "Estático",
+                    "blinking": "A piscar"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarme {x} modo soneca",
+                "state": {
+                    "mute": "Silenciar som",
+                    "mute_light": "Silenciar som + luz",
+                    "light_only": "Silenciar apenas luz"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarme {x} efeito sonoro",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Aumentar gradualmente",
+                    "fade_out": "Diminuir gradualmente"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarme {x} modo luz de despertar",
+                "state": {
+                    "no_light": "Sem luz",
+                    "rainbow": "Arco-íris",
+                    "candle_flicker": "Tremular de vela",
+                    "romantic_breath": "Respiração romântica",
+                    "quiet_deep_sea": "Mar profundo tranquilo",
+                    "flowing_colors": "Cores fluindo",
+                    "magic_jungle": "Selva mágica",
+                    "perfect_party": "Festa perfeita",
+                    "sunrise_at_sea": "Nascer do sol no mar",
+                    "dynamic_music": "Música dinâmica"
+                }
+            },
+            "snooze_action": {
+                "name": "Ação da soneca",
+                "state": {
+                    "sound_radio": "Som + rádio",
+                    "light": "Luz",
+                    "radio": "Rádio",
+                    "radio_sound_light": "Rádio + som + luz"
+                }
+            },
+            "time_format": {
+                "name": "Formato de hora",
+                "state": {
+                    "12_hour": "12 horas",
+                    "24_hour": "24 horas"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Dias armazenados"
+            },
+            "active_lights": {
+                "name": "Luzes ativas",
+                "state": {
+                    "all_off": "Todas desligadas",
+                    "night_on": "Luz noturna ligada",
+                    "color_on": "Luz colorida ligada",
+                    "ambient_on": "Luz ambiente ligada"
+                }
+            },
+            "wireless_charging": {
+                "name": "Estado do carregamento sem fios",
+                "state": {
+                    "idle": "Inativo",
+                    "charging": "A carregar",
+                    "full": "Cheio",
+                    "foreign_object_detected": "Objeto estranho detetado"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,48 @@
             },
             "rangehood": {
                 "name": "Exaustor"
+            },
+            "alarm_x": {
+                "name": "Alarme {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarme {x} soneca ativada"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarme {x} dia 1-segunda"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarme {x} dia 2-terça"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarme {x} dia 3-quarta"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarme {x} dia 4-quinta"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarme {x} dia 5-sexta"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarme {x} dia 6-sábado"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarme {x} dia 7-domingo"
+            },
+            "music_playback": {
+                "name": "Reprodução de música"
+            },
+            "network_time": {
+                "name": "Sincronização de hora da rede"
+            },
+            "night_mode": {
+                "name": "Modo noturno"
+            },
+            "radio": {
+                "name": "Rádio"
+            },
+            "snooze": {
+                "name": "Soneca"
             }
         },
         "text": {
@@ -1233,6 +1391,15 @@
             },
             "schedule": {
                 "name": "Agendamento"
+            },
+            "alarm_settings": {
+                "name": "Definições de alarme"
+            },
+            "sleep_settings": {
+                "name": "Definições de sono"
+            },
+            "station_list": {
+                "name": "Lista de estações"
             }
         },
         "time": {
@@ -1247,6 +1414,12 @@
             },
             "timer_x": {
                 "name": "Cronômetro {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarme {x} hora"
+            },
+            "clock_time": {
+                "name": "Hora do relógio"
             }
         },
         "valve": {
@@ -1263,6 +1436,26 @@
             },
             "hot_water": {
                 "name": "Água quente"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarme {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Nenhum",
+                            "birds": "Pássaros",
+                            "sea": "Mar",
+                            "valley": "Vale",
+                            "piano": "Piano",
+                            "soft": "Suave",
+                            "phone": "Telefone",
+                            "beep": "Bipe",
+                            "radio": "Rádio"
+                        }
+                    }
+                }
             }
         }
     }

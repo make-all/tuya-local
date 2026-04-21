@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "滤芯复位"
+            },
+            "alarm_off": {
+                "name": "闹钟关闭"
+            },
+            "alarm_snooze": {
+                "name": "闹钟贪睡"
+            },
+            "alarm_x_reset": {
+                "name": "闹钟 {x} 重置"
+            },
+            "radio_seek": {
+                "name": "电台搜索"
+            },
+            "radio_stop": {
+                "name": "电台停止"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "集成灶灯"
+            },
+            "color_light": {
+                "name": "彩色灯"
+            },
+            "ambient_light": {
+                "name": "氛围灯"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "上温度"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "闹钟 {x} 贪睡时长"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "闹钟 {x} 唤醒灯提前时间"
+            },
+            "radio_frequency": {
+                "name": "电台频率"
+            },
+            "snooze_duration": {
+                "name": "贪睡时长"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "红豆面包",
                     "milk_toast": "牛奶吐司"
                 }
+            },
+            "display_brightness": {
+                "name": "显示亮度",
+                "state": {
+                    "off": "关闭",
+                    "day": "白天",
+                    "night": "夜间",
+                    "dim": "暗",
+                    "bright": "亮",
+                    "auto": "自动"
+                }
+            },
+            "seconds_dot": {
+                "name": "秒点",
+                "state": {
+                    "static": "常亮",
+                    "blinking": "闪烁"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "闹钟 {x} 贪睡模式",
+                "state": {
+                    "mute": "静音",
+                    "mute_light": "静音 + 关灯",
+                    "light_only": "仅关灯"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "闹钟 {x} 音效",
+                "state": {
+                    "normal": "正常",
+                    "fade_in": "渐强",
+                    "fade_out": "渐弱"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "闹钟 {x} 唤醒灯模式",
+                "state": {
+                    "no_light": "无灯光",
+                    "rainbow": "彩虹",
+                    "candle_flicker": "烛光闪烁",
+                    "romantic_breath": "浪漫呼吸",
+                    "quiet_deep_sea": "静谧深海",
+                    "flowing_colors": "流光溢彩",
+                    "magic_jungle": "魔幻丛林",
+                    "perfect_party": "完美派对",
+                    "sunrise_at_sea": "海上日出",
+                    "dynamic_music": "动感音乐"
+                }
+            },
+            "snooze_action": {
+                "name": "贪睡动作",
+                "state": {
+                    "sound_radio": "声音 + 电台",
+                    "light": "灯光",
+                    "radio": "电台",
+                    "radio_sound_light": "电台 + 声音 + 灯光"
+                }
+            },
+            "time_format": {
+                "name": "时间格式",
+                "state": {
+                    "12_hour": "12小时",
+                    "24_hour": "24小时"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "已储存天数"
+            },
+            "active_lights": {
+                "name": "活动灯光",
+                "state": {
+                    "all_off": "全部关闭",
+                    "night_on": "夜灯已开",
+                    "color_on": "彩灯已开",
+                    "ambient_on": "氛围灯已开"
+                }
+            },
+            "wireless_charging": {
+                "name": "无线充电状态",
+                "state": {
+                    "idle": "空闲",
+                    "charging": "充电中",
+                    "full": "已满",
+                    "foreign_object_detected": "检测到异物"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,48 @@
             },
             "rangehood": {
                 "name": "油烟机"
+            },
+            "alarm_x": {
+                "name": "闹钟 {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "闹钟 {x} 贪睡已启用"
+            },
+            "alarm_x_day_monday": {
+                "name": "闹钟 {x} 周一"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "闹钟 {x} 周二"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "闹钟 {x} 周三"
+            },
+            "alarm_x_day_thursday": {
+                "name": "闹钟 {x} 周四"
+            },
+            "alarm_x_day_friday": {
+                "name": "闹钟 {x} 周五"
+            },
+            "alarm_x_day_saturday": {
+                "name": "闹钟 {x} 周六"
+            },
+            "alarm_x_day_sunday": {
+                "name": "闹钟 {x} 周日"
+            },
+            "music_playback": {
+                "name": "音乐播放"
+            },
+            "network_time": {
+                "name": "网络时间同步"
+            },
+            "night_mode": {
+                "name": "夜间模式"
+            },
+            "radio": {
+                "name": "电台"
+            },
+            "snooze": {
+                "name": "贪睡"
             }
         },
         "text": {
@@ -1233,6 +1391,15 @@
             },
             "schedule": {
                 "name": "日程"
+            },
+            "alarm_settings": {
+                "name": "闹钟设置"
+            },
+            "sleep_settings": {
+                "name": "睡眠设置"
+            },
+            "station_list": {
+                "name": "电台列表"
             }
         },
         "time": {
@@ -1247,6 +1414,12 @@
             },
             "timer_x": {
                 "name": "计时器{x}"
+            },
+            "alarm_x_time": {
+                "name": "闹钟 {x} 时间"
+            },
+            "clock_time": {
+                "name": "时钟时间"
             }
         },
         "valve": {
@@ -1263,6 +1436,26 @@
             },
             "hot_water": {
                 "name": "热水器"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "闹钟 {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "无",
+                            "birds": "鸟鸣",
+                            "sea": "海浪",
+                            "valley": "山谷",
+                            "piano": "钢琴",
+                            "soft": "轻柔",
+                            "phone": "电话",
+                            "beep": "蜂鸣",
+                            "radio": "电台"
+                        }
+                    }
+                }
             }
         }
     }

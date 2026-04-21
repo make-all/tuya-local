@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Filteråterställning"
+            },
+            "alarm_off": {
+                "name": "Larm av"
+            },
+            "alarm_snooze": {
+                "name": "Larm slummer"
+            },
+            "alarm_x_reset": {
+                "name": "Larm {x} återställ"
+            },
+            "radio_seek": {
+                "name": "Radiosökning"
+            },
+            "radio_stop": {
+                "name": "Radiostopp"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Fläktkåpeljus"
+            },
+            "color_light": {
+                "name": "Färgljus"
+            },
+            "ambient_light": {
+                "name": "Omgivningsljus"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Övre temperatur"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Larm {x} slummerlängd"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Larm {x} väckningsljus försprång"
+            },
+            "radio_frequency": {
+                "name": "Radiofrekvens"
+            },
+            "snooze_duration": {
+                "name": "Slummerlängd"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Röda bönor bröd",
                     "milk_toast": "Mjölkrostat"
                 }
+            },
+            "display_brightness": {
+                "name": "Displayljusstyrka",
+                "state": {
+                    "off": "Av",
+                    "day": "Dag",
+                    "night": "Natt",
+                    "dim": "Dämpad",
+                    "bright": "Ljus",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundpunkt",
+                "state": {
+                    "static": "Statisk",
+                    "blinking": "Blinkande"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Larm {x} slummerläge",
+                "state": {
+                    "mute": "Tysta ljud",
+                    "mute_light": "Tysta ljud + ljus",
+                    "light_only": "Tysta ljus enbart"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Larm {x} ljudeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Tona in",
+                    "fade_out": "Tona ut"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Larm {x} väckningsljusläge",
+                "state": {
+                    "no_light": "Inget ljus",
+                    "rainbow": "Regnbåge",
+                    "candle_flicker": "Stearinljusflimmer",
+                    "romantic_breath": "Romantiskt andning",
+                    "quiet_deep_sea": "Stilla djuphav",
+                    "flowing_colors": "Flytande färger",
+                    "magic_jungle": "Magisk djungel",
+                    "perfect_party": "Perfekt fest",
+                    "sunrise_at_sea": "Soluppgång vid havet",
+                    "dynamic_music": "Dynamisk musik"
+                }
+            },
+            "snooze_action": {
+                "name": "Slummeråtgärd",
+                "state": {
+                    "sound_radio": "Ljud + radio",
+                    "light": "Ljus",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + ljud + ljus"
+                }
+            },
+            "time_format": {
+                "name": "Tidsformat",
+                "state": {
+                    "12_hour": "12 timmar",
+                    "24_hour": "24 timmar"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Dagar lagrade"
+            },
+            "active_lights": {
+                "name": "Aktiva ljus",
+                "state": {
+                    "all_off": "Alla av",
+                    "night_on": "Nattljus på",
+                    "color_on": "Färgljus på",
+                    "ambient_on": "Omgivningsljus på"
+                }
+            },
+            "wireless_charging": {
+                "name": "Trådlös laddningsstatus",
+                "state": {
+                    "idle": "Inaktiv",
+                    "charging": "Laddar",
+                    "full": "Full",
+                    "foreign_object_detected": "Främmande föremål upptäckt"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,48 @@
             },
             "rangehood": {
                 "name": "Fläktkåpa"
+            },
+            "alarm_x": {
+                "name": "Larm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Larm {x} slummer aktiverad"
+            },
+            "alarm_x_day_monday": {
+                "name": "Larm {x} dag 1-måndag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Larm {x} dag 2-tisdag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Larm {x} dag 3-onsdag"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Larm {x} dag 4-torsdag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Larm {x} dag 5-fredag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Larm {x} dag 6-lördag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Larm {x} dag 7-söndag"
+            },
+            "music_playback": {
+                "name": "Musikuppspelning"
+            },
+            "network_time": {
+                "name": "Nätverkstidssynk"
+            },
+            "night_mode": {
+                "name": "Nattläge"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Slummer"
             }
         },
         "text": {
@@ -1233,6 +1391,15 @@
             },
             "schedule": {
                 "name": "Schema"
+            },
+            "alarm_settings": {
+                "name": "Larminställningar"
+            },
+            "sleep_settings": {
+                "name": "Sömninställningar"
+            },
+            "station_list": {
+                "name": "Stationslista"
             }
         },
         "time": {
@@ -1247,6 +1414,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Larm {x} tid"
+            },
+            "clock_time": {
+                "name": "Klocktid"
             }
         },
         "valve": {
@@ -1263,6 +1436,26 @@
             },
             "hot_water": {
                 "name": "Varmvattenberedare"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Larm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ingen",
+                            "birds": "Fåglar",
+                            "sea": "Hav",
+                            "valley": "Dal",
+                            "piano": "Piano",
+                            "soft": "Mjuk",
+                            "phone": "Telefon",
+                            "beep": "Pip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

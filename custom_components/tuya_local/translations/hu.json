@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Szűrő visszaállítás"
+            },
+            "alarm_off": {
+                "name": "Riasztás kikapcsolása"
+            },
+            "alarm_snooze": {
+                "name": "Riasztás szundi"
+            },
+            "alarm_x_reset": {
+                "name": "Riasztás {x} visszaállítás"
+            },
+            "radio_seek": {
+                "name": "Rádió keresés"
+            },
+            "radio_stop": {
+                "name": "Rádió leállítás"
             }
         },
         "climate": {
@@ -365,7 +380,7 @@
                             "high_steaming": "Magas Steaming",
                             "steaming": "Steaming",
                             "hot_air_baking": "Forró levegős sütés",
-                            "disinfect": "Fertőtlenítés"                            
+                            "disinfect": "Fertőtlenítés"
                         }
                     }
                 }
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Páraelszívó lámpa"
+            },
+            "color_light": {
+                "name": "Színes fény"
+            },
+            "ambient_light": {
+                "name": "Hangulat fény"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Felső hőmérséklet"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Riasztás {x} szundi időtartam"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Riasztás {x} ébresztő fény előidő"
+            },
+            "radio_frequency": {
+                "name": "Rádió frekvencia"
+            },
+            "snooze_duration": {
+                "name": "Szundi időtartam"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Vörös babos kenyér",
                     "milk_toast": "Tejes pirítós"
                 }
+            },
+            "display_brightness": {
+                "name": "Kijelző fényereje",
+                "state": {
+                    "off": "Ki",
+                    "day": "Nappali",
+                    "night": "Éjszakai",
+                    "dim": "Halvány",
+                    "bright": "Fényes",
+                    "auto": "Automatikus"
+                }
+            },
+            "seconds_dot": {
+                "name": "Másodperc pont",
+                "state": {
+                    "static": "Statikus",
+                    "blinking": "Villogó"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Riasztás {x} szundi mód",
+                "state": {
+                    "mute": "Hang némítása",
+                    "mute_light": "Hang + fény némítása",
+                    "light_only": "Csak fény némítása"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Riasztás {x} hangeffektus",
+                "state": {
+                    "normal": "Normál",
+                    "fade_in": "Fokozatos erősödés",
+                    "fade_out": "Fokozatos halkulás"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Riasztás {x} ébresztő fény mód",
+                "state": {
+                    "no_light": "Nincs fény",
+                    "rainbow": "Szivárvány",
+                    "candle_flicker": "Gyertyafény",
+                    "romantic_breath": "Romantikus lélegzet",
+                    "quiet_deep_sea": "Csendes mélytenger",
+                    "flowing_colors": "Áramló színek",
+                    "magic_jungle": "Varázslatos dzsungel",
+                    "perfect_party": "Tökéletes buli",
+                    "sunrise_at_sea": "Napfelkelte a tengeren",
+                    "dynamic_music": "Dinamikus zene"
+                }
+            },
+            "snooze_action": {
+                "name": "Szundi művelet",
+                "state": {
+                    "sound_radio": "Hang + rádió",
+                    "light": "Fény",
+                    "radio": "Rádió",
+                    "radio_sound_light": "Rádió + hang + fény"
+                }
+            },
+            "time_format": {
+                "name": "Időformátum",
+                "state": {
+                    "12_hour": "12 órás",
+                    "24_hour": "24 órás"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Tárolt napok"
+            },
+            "active_lights": {
+                "name": "Aktív fények",
+                "state": {
+                    "all_off": "Mind kikapcsolva",
+                    "night_on": "Éjszakai fény bekapcsolva",
+                    "color_on": "Színes fény bekapcsolva",
+                    "ambient_on": "Hangulat fény bekapcsolva"
+                }
+            },
+            "wireless_charging": {
+                "name": "Vezeték nélküli töltés állapota",
+                "state": {
+                    "idle": "Üresjárat",
+                    "charging": "Töltés",
+                    "full": "Tele",
+                    "foreign_object_detected": "Idegen tárgy észlelve"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,48 @@
             },
             "rangehood": {
                 "name": "Páraelszívó"
+            },
+            "alarm_x": {
+                "name": "Riasztás {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Riasztás {x} szundi engedélyezve"
+            },
+            "alarm_x_day_monday": {
+                "name": "Riasztás {x} 1. nap-hétfő"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Riasztás {x} 2. nap-kedd"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Riasztás {x} 3. nap-szerda"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Riasztás {x} 4. nap-csütörtök"
+            },
+            "alarm_x_day_friday": {
+                "name": "Riasztás {x} 5. nap-péntek"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Riasztás {x} 6. nap-szombat"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Riasztás {x} 7. nap-vasárnap"
+            },
+            "music_playback": {
+                "name": "Zenelejátszás"
+            },
+            "network_time": {
+                "name": "Hálózati idő szinkronizálás"
+            },
+            "night_mode": {
+                "name": "Éjszakai mód"
+            },
+            "radio": {
+                "name": "Rádió"
+            },
+            "snooze": {
+                "name": "Szundi"
             }
         },
         "text": {
@@ -1233,6 +1391,15 @@
             },
             "schedule": {
                 "name": "Ütemezés"
+            },
+            "alarm_settings": {
+                "name": "Riasztás beállítások"
+            },
+            "sleep_settings": {
+                "name": "Alvás beállítások"
+            },
+            "station_list": {
+                "name": "Állomáslista"
             }
         },
         "time": {
@@ -1247,6 +1414,12 @@
             },
             "timer_x": {
                 "name": "Időzítő {x}"
+            },
+            "alarm_x_time": {
+                "name": "Riasztás {x} idő"
+            },
+            "clock_time": {
+                "name": "Óra idő"
             }
         },
         "valve": {
@@ -1263,6 +1436,26 @@
             },
             "hot_water": {
                 "name": "Forró víz"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Riasztás {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Nincs",
+                            "birds": "Madarak",
+                            "sea": "Tenger",
+                            "valley": "Völgy",
+                            "piano": "Piano",
+                            "soft": "Lágy",
+                            "phone": "Telefon",
+                            "beep": "Csipogás",
+                            "radio": "Rádió"
+                        }
+                    }
+                }
             }
         }
     }

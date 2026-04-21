@@ -201,6 +201,21 @@
             },
             "filter_reset": {
                 "name": "Obnovení filtru"
+            },
+            "alarm_off": {
+                "name": "Alarm vypnutí"
+            },
+            "alarm_snooze": {
+                "name": "Alarm odložení"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} obnovení"
+            },
+            "radio_seek": {
+                "name": "Rádio hledání"
+            },
+            "radio_stop": {
+                "name": "Rádio zastavení"
             }
         },
         "climate": {
@@ -493,6 +508,12 @@
             },
             "rangehood_light": {
                 "name": "Osvětlení digestoře"
+            },
+            "color_light": {
+                "name": "Barevné světlo"
+            },
+            "ambient_light": {
+                "name": "Okolní světlo"
             }
         },
         "lock": {
@@ -530,6 +551,18 @@
             },
             "top_temperature": {
                 "name": "Horní teplota"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} doba odložení"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} předstih budícího světla"
+            },
+            "radio_frequency": {
+                "name": "Rádiová frekvence"
+            },
+            "snooze_duration": {
+                "name": "Doba odložení"
             }
         },
         "select": {
@@ -982,6 +1015,71 @@
                     "red_bean_bread": "Chléb s červenými fazolemi",
                     "milk_toast": "Mléčná topinka"
                 }
+            },
+            "display_brightness": {
+                "name": "Jas displeje",
+                "state": {
+                    "off": "Vypnuto",
+                    "day": "Den",
+                    "night": "Noc",
+                    "dim": "Tlumené",
+                    "bright": "Jasné",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Tečka sekund",
+                "state": {
+                    "static": "Statický",
+                    "blinking": "Blikající"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} režim odložení",
+                "state": {
+                    "mute": "Ztlumit zvuk",
+                    "mute_light": "Ztlumit zvuk + světlo",
+                    "light_only": "Ztlumit pouze světlo"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} zvukový efekt",
+                "state": {
+                    "normal": "Normální",
+                    "fade_in": "Postupné zesilování",
+                    "fade_out": "Postupné ztišování"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} režim budícího světla",
+                "state": {
+                    "no_light": "Bez světla",
+                    "rainbow": "Duha",
+                    "candle_flicker": "Mihotání svíčky",
+                    "romantic_breath": "Romantické dýchání",
+                    "quiet_deep_sea": "Tiché hluboké moře",
+                    "flowing_colors": "Plynoucí barvy",
+                    "magic_jungle": "Kouzelná džungle",
+                    "perfect_party": "Perfektní párty",
+                    "sunrise_at_sea": "Východ slunce na moři",
+                    "dynamic_music": "Dynamická hudba"
+                }
+            },
+            "snooze_action": {
+                "name": "Akce odložení",
+                "state": {
+                    "sound_radio": "Zvuk + rádio",
+                    "light": "Světlo",
+                    "radio": "Rádio",
+                    "radio_sound_light": "Rádio + zvuk + světlo"
+                }
+            },
+            "time_format": {
+                "name": "Formát času",
+                "state": {
+                    "12_hour": "12 hodin",
+                    "24_hour": "24 hodin"
+                }
             }
         },
         "sensor": {
@@ -1159,6 +1257,24 @@
             },
             "days_stored": {
                 "name": "Dny uloženy"
+            },
+            "active_lights": {
+                "name": "Aktivní světla",
+                "state": {
+                    "all_off": "Vše vypnuto",
+                    "night_on": "Noční světlo zapnuto",
+                    "color_on": "Barevné světlo zapnuto",
+                    "ambient_on": "Okolní světlo zapnuto"
+                }
+            },
+            "wireless_charging": {
+                "name": "Stav bezdrátového nabíjení",
+                "state": {
+                    "idle": "Nečinný",
+                    "charging": "Nabíjení",
+                    "full": "Plný",
+                    "foreign_object_detected": "Zjištěn cizí předmět"
+                }
             }
         },
         "switch": {
@@ -1222,6 +1338,48 @@
             },
             "rangehood": {
                 "name": "Digestoř"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} odložení aktivováno"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} den 1-pondělí"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} den 2-úterý"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} den 3-středa"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} den 4-čtvrtek"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} den 5-pátek"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} den 6-sobota"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} den 7-neděle"
+            },
+            "music_playback": {
+                "name": "Přehrávání hudby"
+            },
+            "network_time": {
+                "name": "Synchronizace síťového času"
+            },
+            "night_mode": {
+                "name": "Noční režim"
+            },
+            "radio": {
+                "name": "Rádio"
+            },
+            "snooze": {
+                "name": "Odložení"
             }
         },
         "text": {
@@ -1233,6 +1391,15 @@
             },
             "schedule": {
                 "name": "Plán"
+            },
+            "alarm_settings": {
+                "name": "Alarm nastavení"
+            },
+            "sleep_settings": {
+                "name": "Nastavení spánku"
+            },
+            "station_list": {
+                "name": "Seznam stanic"
             }
         },
         "time": {
@@ -1247,6 +1414,12 @@
             },
             "timer_x": {
                 "name": "Časovač {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} čas"
+            },
+            "clock_time": {
+                "name": "Čas hodin"
             }
         },
         "valve": {
@@ -1263,6 +1436,26 @@
             },
             "hot_water": {
                 "name": "Horká voda"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Žádný",
+                            "birds": "Ptáci",
+                            "sea": "Moře",
+                            "valley": "Údolí",
+                            "piano": "Piano",
+                            "soft": "Jemný",
+                            "phone": "Telefon",
+                            "beep": "Pípnutí",
+                            "radio": "Rádio"
+                        }
+                    }
+                }
             }
         }
     }
