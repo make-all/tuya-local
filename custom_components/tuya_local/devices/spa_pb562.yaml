@@ -3,6 +3,7 @@ products:
   - id: jbxvi3pbxjjlmec2
     manufacturer: JOYONWAY
     model: PB562
+
 entities:
   # --- THERMOSTAT ---
   - entity: climate
@@ -17,16 +18,17 @@ entities:
       - id: 24
         type: integer
         name: current_temperature
+
+  # --- HEATER (read only) ---
+  - entity: sensor
+    name: Heating state
+    icon: mdi:fire
+    dps:
       - id: 111
         type: boolean
-        name: hvac_action
-        mapping:
-          - from: true
-            value: heating
-          - from: false
-            value: idle
+        name: sensor
 
-  # --- PUMPS & LIGHTS ---
+  # --- PUMPS & BLOWER ---
   - entity: switch
     name: Jet pump
     dps:
@@ -41,6 +43,7 @@ entities:
         type: boolean
         name: switch
 
+  # --- LIGHT ---
   - entity: light
     translation_key: light
     dps:
@@ -65,6 +68,28 @@ entities:
     icon: mdi:clock-end
     dps:
       - id: 128
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1439
+
+  - entity: number
+    name: Filtration start
+    icon: mdi:clock-start
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1439
+
+  - entity: number
+    name: Filtration end
+    icon: mdi:clock-end
+    dps:
+      - id: 138
         type: integer
         name: value
         range:
