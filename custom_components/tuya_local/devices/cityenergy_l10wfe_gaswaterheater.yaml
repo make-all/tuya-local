@@ -1,0 +1,113 @@
+name: Gas water heater
+products:
+  - id: di9ybnrv3s2d1axk
+    manufacturer: City Energy
+    model: L10WFE
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: gas
+      - id: 9
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 35
+          max: 55
+      - id: 10
+        type: integer
+        name: current_temperature
+        unit: C
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: burning
+            value: heating
+  - entity: sensor
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: L/min
+        class: measurement
+  - entity: sensor
+    name: Session runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Session gas
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: m³
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: gas
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+  - entity: sensor
+    name: Session water
+    class: volume
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: L
+        class: measurement
+  - entity: sensor
+    class: water
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+  - entity: button
+    name: Reset water meter
+    category: config
+    hidden: true
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset gas meter
+    category: config
+    hidden: true
+    dps:
+      - id: 108
+        type: boolean
+        name: button

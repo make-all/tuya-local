@@ -141,12 +141,12 @@ entities:
     translation_placeholders:
       x: A
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFFFF0000000000000000"
         mapping:
@@ -156,12 +156,12 @@ entities:
     translation_placeholders:
       x: A
     class: current
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: A
         mask: "000000FFFFFF0000000000"
         mapping:
@@ -171,13 +171,13 @@ entities:
     translation_placeholders:
       x: A
     class: power
-    category: diagnostic
     dps:
       - id: 6
         type: base64
         name: sensor
         optional: true
         unit: kW
+        class: measurement
         mask: "000000000000FFFFFF0000"
         mapping:
           - scale: 1000
@@ -186,12 +186,12 @@ entities:
     translation_placeholders:
       x: B
     class: voltage
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: V
         mask: "FFFFFF000000000000"
         mapping:
@@ -201,12 +201,12 @@ entities:
     translation_placeholders:
       x: B
     class: current
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: A
         mask: "000000FFFFFF000000"
         mapping:
@@ -216,11 +216,11 @@ entities:
     translation_placeholders:
       x: B
     class: power
-    category: diagnostic
     dps:
       - id: 7
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: kW
         mask: "000000000000FFFFFF"
@@ -231,11 +231,11 @@ entities:
     translation_placeholders:
       x: C
     class: voltage
-    category: diagnostic
     dps:
       - id: 8
         type: base64
         name: sensor
+        class: measurement
         optional: true
         unit: V
         mask: "FFFFFF000000000000"
@@ -246,12 +246,12 @@ entities:
     translation_placeholders:
       x: C
     class: current
-    category: diagnostic
     dps:
       - id: 8
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: A
         mask: "000000FFFFFF000000"
         mapping:
@@ -261,12 +261,12 @@ entities:
     translation_placeholders:
       x: C
     class: power
-    category: diagnostic
     dps:
       - id: 8
         type: base64
         name: sensor
         optional: true
+        class: measurement
         unit: kW
         mask: "000000000000FFFFFF"
         mapping:

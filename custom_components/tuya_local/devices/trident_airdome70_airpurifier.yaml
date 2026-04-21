@@ -1,0 +1,99 @@
+name: Air purifier
+products:
+  - id: j33n2ubodbflhsc4
+    manufacturer: Trident
+    model: AirDome-70
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: sleep
+            value: sleep
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: speed1
+            value: 33
+          - dps_val: speed2
+            value: 66
+          - dps_val: speed3
+            value: 100
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: ugm3
+        class: measurement
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+          - dps_val: severe
+            value: severe
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    class: restart
+    dps:
+      - id: 101
+        name: button
+        optional: true
+        type: boolean
+
+  - entity: select
+    name: Airflow angle
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "30"
+            value: "30"
+          - dps_val: "60"
+            value: "60"
+          - dps_val: "90"
+            value: "90"

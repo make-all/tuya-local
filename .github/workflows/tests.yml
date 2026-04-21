@@ -39,9 +39,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install libturbojpeg
-          uv pip install -r requirements-dev.txt
       - name: Full test with pytest
-        run: pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
+        run: uv run pytest --cov=custom_components/tuya_local --cov-report term:skip-covered --junit-xml=test-results.xml
       - name: Surface results
         if: always()
         uses: pmeier/pytest-results-action@main

@@ -2,6 +2,8 @@
 Implementation of Tuya infrared control devices
 """
 
+import asyncio
+import json
 import logging
 
 from homeassistant.components.infrared import InfraredCommand, InfraredEntity
@@ -42,25 +44,53 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
     async def async_send_command(self, command: InfraredCommand) -> None:
         """Handle sending an infrared command."""
         timings = command.get_raw_timings()
-        raw = [
-            interval
-            for timing in timings
-            for interval in (timing.high_us, timing.low_us)
-        ]
-        tuya_command = IR.pulses_to_base64(raw)
-        _LOGGER.debug("Sending infrared command: %s", tuya_command)
+        split = {}
+        raw = []
+        i = 0
+        for timing in timings:
+            if timing.high_us > 50000:
+                split[i] = timing.high_us - 5000
+                raw.append(5000)
+                raw.append(timing.low_us)
+            elif timing.low_us > 50000:
+                raw.append(timing.high_us)
+                raw.append(5000)
+                split[i + 2] = timing.low_us - 5000
+            else:
+                raw.append(timing.high_us)
+                raw.append(timing.low_us)
+            i += 2
+
+        # HA's converter leaves the last low timing as 0, but Tuya seems to expect around 5 - 10 ms
+        if raw[-1] == 0:
+            raw[-1] = 5000
+
+        start = 0
+        for s, t in split.items():
+            tuya_command = IR.pulses_to_base64(raw[start:s])
+            _LOGGER.info("%s sending command: %s", self._config.config_id, tuya_command)
+            start = s
+            await self._ir_send(tuya_command)
+            await asyncio.sleep(t / 1000000.0)
+        if start < len(raw):
+            tuya_command = IR.pulses_to_base64(raw[start:])
+            _LOGGER.info("%s sending command: %s", self._config.config_id, tuya_command)
+            await self._ir_send(tuya_command)
+
+    async def _ir_send(self, tuya_command: str):
+        """Send the infrared command to the device."""
         if self._send_dp:
             if self._command_dp:
                 await self._device.async_set_properties(
-                    self.package_multi_dp_send(tuya_command)
+                    self._package_multi_dp_send(tuya_command)
                 )
             else:
                 await self._send_dp.async_set_value(
                     self._device,
-                    self.package_single_dp_send(tuya_command),
+                    self._package_single_dp_send(tuya_command),
                 )
 
-    def package_single_dp_send(self, command: str) -> str:
+    def _package_single_dp_send(self, command: str) -> str:
         """Package the command for a single DP (usually dp id 201) send."""
         json_command = {
             "control": "send_ir",
@@ -68,9 +98,9 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
             "head": "",
             "key1": "1" + command,
         }
-        return json_command
+        return json.dumps(json_command)
 
-    def package_multi_dp_send(self, command: str) -> dict:
+    def _package_multi_dp_send(self, command: str) -> dict:
         """Package the command for a multi DP send"""
         return {
             f"{self._command_dp.id}": "send_ir",

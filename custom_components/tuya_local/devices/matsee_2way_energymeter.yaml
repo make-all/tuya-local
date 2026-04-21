@@ -68,6 +68,10 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -10
       - id: 102
         type: string
         optional: true
@@ -91,6 +95,10 @@ entities:
         class: measurement
         mapping:
           - scale: 10
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -10
       - id: 104
         type: string
         optional: true
@@ -232,6 +240,14 @@ entities:
         class: measurement
         mapping:
           - scale: 1000
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -1000
+      - id: 102
+        type: string
+        optional: true
+        name: direction
       - id: 117
         type: integer
         name: calibration
@@ -251,6 +267,14 @@ entities:
         class: measurement
         mapping:
           - scale: 1000
+            constraint: direction
+            conditions:
+              - dps_val: REVERSE
+                scale: -1000
+      - id: 104
+        type: string
+        optional: true
+        name: direction
       - id: 123
         type: integer
         name: calibration

@@ -18,8 +18,8 @@ class BasicTextTests:
         self,
         dp,
         subject,
-        max=None,
-        min=None,
+        maxi=None,
+        mini=None,
         mode=TextMode.TEXT,
         pattern=None,
         testdata=None,
@@ -27,8 +27,8 @@ class BasicTextTests:
     ):
         self.basicText = subject
         self.basicTextDp = dp
-        self.basicTextMin = min
-        self.basicTextMax = max
+        self.basicTextMin = mini
+        self.basicTextMax = maxi
         self.basicTextMode = mode
         self.basicTextPattern = pattern
         self.basicTextTestData = testdata

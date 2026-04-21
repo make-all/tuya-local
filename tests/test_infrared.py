@@ -123,10 +123,10 @@ async def test_async_send_command(mocker):
         device,
         {
             "201": (
-                "{'control': 'send_ir', 'type': 0, 'head': '', 'key1': '1KCOUETICMgIyAjI"
+                '{"control": "send_ir", "type": 0, "head": "", "key1": "1KCOUETICMgIyAjI'
                 "CMgKXBjICMgIyAjICMgIyAjICMgIyApcGMgIyAjIClwYyAjICMgIyAjIClwYyAjICMgKXBj"
                 "ICMgIyAjICMgKXBjICMgIyAjICMgKXBjIClwYyAjICMgIyAjIClwYyAjICMgKXBjIClwYyA"
-                "jICMgIyAjIClwYyApcGMgIAAA=='}"
+                'jICMgIyAjIClwYyApcGMgKIEw=="}'
             )
         },
     ):

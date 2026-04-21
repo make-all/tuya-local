@@ -691,5 +691,5 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     return retval
 
 
-def scan_for_device(id):
-    return tinytuya.find_device(dev_id=id)
+def scan_for_device(devid):
+    return tinytuya.find_device(dev_id=devid)

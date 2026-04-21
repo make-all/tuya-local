@@ -2,6 +2,7 @@
 Common functionality for Tuya Local entities
 """
 
+import json
 import logging
 
 from homeassistant.const import (
@@ -102,6 +103,17 @@ class TuyaLocalEntity:
         for a in self._attr_dps:
             value = a.get_value(self._device)
             if value is not None or not a.optional:
+                # Decode json attributes for user convenience
+                if a.rawtype == "json":
+                    try:
+                        value = json.loads(value)
+                    except json.JSONDecodeError:
+                        if value is not None:
+                            _LOGGER.warning(
+                                "Failed to decode JSON for attribute %s: %s",
+                                a.name,
+                                value,
+                            )
                 attr[a.name] = value
         return attr
 

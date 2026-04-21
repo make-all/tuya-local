@@ -357,17 +357,40 @@ entities:
         name: sensor
 
   # --- PRZEŁĄCZNIK ŁADOWANIA ---
-  - entity: select
+  - entity: sensor
     name: Charging operation
     icon: "mdi:power"
+    class: enum
     dps:
       - id: 124
         type: string
-        name: option
+        name: sensor
         mapping:
           - dps_val: "OpenCharging"
-            value: "Start Charging"
+            value: "Charging"
           - dps_val: "CloseCharging"
-            value: "Stop Charging"
+            value: "Not Charging"
           - dps_val: "WaitOperation"
             value: "Waiting"
+
+  - entity: button
+    name: Start charging
+    icon: "mdi:play"
+    dps:
+      - id: 124
+        type: string
+        name: button
+        mapping:
+          - dps_val: OpenCharging
+            value: true
+
+  - entity: button
+    name: Stop charging
+    icon: "mdi:stop"
+    dps:
+      - id: 124
+        type: string
+        name: button
+        mapping:
+          - dps_val: CloseCharging
+            value: true

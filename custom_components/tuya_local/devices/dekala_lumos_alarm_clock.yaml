@@ -1,0 +1,949 @@
+# `tuya-local` configuration for the Dekala Lumos sunrise alarm
+# clock (`e1xp7w`).
+#
+# Working features:
+# - color, ambient and night lights with brightness/color control
+# - Alarm 1/2 scheduling, snooze/stop, radio tuning, volume and display settings
+# - manual clock time setting when network time sync is disabled
+#
+# Known limitations:
+# - alarm raw payloads may need one-time initialization via
+#   `Alarm 1 reset` / `Alarm 2 reset`
+#   (using force: true is not working here)
+# - light tones can differ slightly from the Tuya app
+#
+# Not yet exposed:
+# - DP120 `lcd_icon_display`: LCD icon visibility for
+#   temperature / humidity / weather / UV
+# - DP131 `radio_searching`: start / stop automatic FM station scan
+# - DP132 `radio_list`: stored station list / presets after scan
+# - decoded weather/alarm runtime sensors from DP113 / DP126
+#   (raw diagnostics are present)
+
+name: Sunrise alarm clock
+
+products:
+  - id: e1xp7w
+    manufacturer: Dekala
+    model: Dekala Lumos
+    model_id: e1xp7w
+
+entities:
+  - entity: light
+    name: Color light
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+      - id: 101
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - step: 10
+      - id: 11
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 100
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+  - entity: light
+    name: Ambient light
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+      - id: 123
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - step: 10
+
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+      - id: 124
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - step: 10
+      - id: 105
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 100
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+  - entity: number
+    translation_key: volume
+    mode: slider
+    dps:
+      - id: 5
+        name: value
+        type: integer
+        range:
+          min: 5
+          max: 100
+        unit: "%"
+
+  - entity: switch
+    name: Sleep aid
+    dps:
+      - id: 106
+        name: switch
+        type: boolean
+
+  - entity: siren
+    name: Alarm 1
+    category: config
+    dps:
+      - id: 108
+        name: switch
+        type: boolean
+      - id: 109
+        name: volume_level
+        type: base64
+        optional: true
+        mask: "0000000000FF0000000000000000"
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 109
+        name: duration
+        type: base64
+        optional: true
+        mask: "000000000000FF00000000000000"
+        range:
+          min: 5
+          max: 30
+        unit: min
+      - id: 109
+        name: tone
+        type: base64
+        optional: true
+        mask: "000000FF00000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: None
+          - dps_val: 1
+            value: Birds
+          - dps_val: 2
+            value: Sea
+          - dps_val: 3
+            value: Valley
+          - dps_val: 4
+            value: Piano
+          - dps_val: 5
+            value: Soft
+          - dps_val: 6
+            value: Phone
+          - dps_val: 7
+            value: Beep
+          - dps_val: 8
+            value: Radio
+
+  - entity: siren
+    name: Alarm 2
+    category: config
+    dps:
+      - id: 110
+        name: switch
+        type: boolean
+      - id: 111
+        name: volume_level
+        type: base64
+        optional: true
+        mask: "0000000000FF0000000000000000"
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 111
+        name: duration
+        type: base64
+        optional: true
+        mask: "000000000000FF00000000000000"
+        range:
+          min: 5
+          max: 30
+        unit: min
+      - id: 111
+        name: tone
+        type: base64
+        optional: true
+        mask: "000000FF00000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: None
+          - dps_val: 1
+            value: Birds
+          - dps_val: 2
+            value: Sea
+          - dps_val: 3
+            value: Valley
+          - dps_val: 4
+            value: Piano
+          - dps_val: 5
+            value: Soft
+          - dps_val: 6
+            value: Phone
+          - dps_val: 7
+            value: Beep
+          - dps_val: 8
+            value: Radio
+
+  # Alarm 1 configuration (DP 109 raw payload)
+  - entity: time
+    name: Alarm 1 time
+    category: config
+    dps:
+      - id: 109
+        name: hour
+        type: base64
+        optional: true
+        mask: "FF00000000000000000000000000"
+      - id: 109
+        name: minute
+        type: base64
+        optional: true
+        mask: "00FF000000000000000000000000"
+
+  # Repeat-day bits map Monday..Sunday across the 7 low bits of
+  # Data[2].
+  - entity: switch
+    name: Alarm 1 Sunday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000010000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Saturday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000020000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Friday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000040000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Thursday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000080000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Wednesday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000100000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Tuesday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000200000000000000000000000"
+
+  - entity: switch
+    name: Alarm 1 Monday
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000400000000000000000000000"
+
+  - entity: select
+    name: Alarm 1 sound effect
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: base64
+        optional: true
+        mask: "00000000FF000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: normal
+          - dps_val: 1
+            value: fade_in
+          - dps_val: 2
+            value: fade_out
+
+  - entity: select
+    name: Alarm 1 wake light mode
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: base64
+        optional: true
+        mask: "00000000000000FF000000000000"
+        mapping:
+          - dps_val: 0
+            value: no_light
+          - dps_val: 1
+            value: rainbow
+          - dps_val: 2
+            value: candle_flicker
+          - dps_val: 3
+            value: romantic_breath
+          - dps_val: 4
+            value: quiet_deep_sea
+          - dps_val: 5
+            value: flowing_colors
+          - dps_val: 6
+            value: magic_jungle
+          - dps_val: 7
+            value: perfect_party
+          - dps_val: 8
+            value: sunrise_at_sea
+          - dps_val: 9
+            value: dynamic_music
+
+  - entity: number
+    name: Alarm 1 wake light lead time
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: base64
+        optional: true
+        mask: "0000000000000000FF0000000000"
+        range:
+          min: 0
+          max: 120
+        unit: min
+
+  - entity: switch
+    name: Alarm 1 snooze enabled
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: base64
+        optional: true
+        mask: "000000000000000000FF00000000"
+
+  - entity: number
+    name: Alarm 1 snooze duration
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: base64
+        optional: true
+        mask: "00000000000000000000FF000000"
+        range:
+          min: 5
+          max: 20
+        unit: min
+
+  - entity: select
+    name: Alarm 1 snooze action
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: base64
+        optional: true
+        mask: "0000000000000000000000FF0000"
+        mapping:
+          - dps_val: 0
+            value: mute
+          - dps_val: 1
+            value: mute_light
+          - dps_val: 2
+            value: light_only
+
+  # Alarm 2 configuration (DP 111 raw payload)
+  - entity: time
+    name: Alarm 2 time
+    category: config
+    dps:
+      - id: 111
+        name: hour
+        type: base64
+        optional: true
+        mask: "FF00000000000000000000000000"
+      - id: 111
+        name: minute
+        type: base64
+        optional: true
+        mask: "00FF000000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Sunday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000010000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Saturday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000020000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Friday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000040000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Thursday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000080000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Wednesday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000100000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Tuesday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000200000000000000000000000"
+
+  - entity: switch
+    name: Alarm 2 Monday
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "0000400000000000000000000000"
+
+  - entity: select
+    name: Alarm 2 sound effect
+    category: config
+    dps:
+      - id: 111
+        name: option
+        type: base64
+        optional: true
+        mask: "00000000FF000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: normal
+          - dps_val: 1
+            value: fade_in
+          - dps_val: 2
+            value: fade_out
+
+  - entity: select
+    name: Alarm 2 wake light mode
+    category: config
+    dps:
+      - id: 111
+        name: option
+        type: base64
+        optional: true
+        mask: "00000000000000FF000000000000"
+        mapping:
+          - dps_val: 0
+            value: no_light
+          - dps_val: 1
+            value: rainbow
+          - dps_val: 2
+            value: candle_flicker
+          - dps_val: 3
+            value: romantic_breath
+          - dps_val: 4
+            value: quiet_deep_sea
+          - dps_val: 5
+            value: flowing_colors
+          - dps_val: 6
+            value: magic_jungle
+          - dps_val: 7
+            value: perfect_party
+          - dps_val: 8
+            value: sunrise_at_sea
+          - dps_val: 9
+            value: dynamic_music
+
+  - entity: number
+    name: Alarm 2 wake light lead time
+    category: config
+    dps:
+      - id: 111
+        name: value
+        type: base64
+        optional: true
+        mask: "0000000000000000FF0000000000"
+        range:
+          min: 0
+          max: 120
+        unit: min
+
+  - entity: switch
+    name: Alarm 2 snooze enabled
+    category: config
+    dps:
+      - id: 111
+        name: switch
+        type: base64
+        optional: true
+        mask: "000000000000000000FF00000000"
+
+  - entity: number
+    name: Alarm 2 snooze duration
+    category: config
+    dps:
+      - id: 111
+        name: value
+        type: base64
+        optional: true
+        mask: "00000000000000000000FF000000"
+        range:
+          min: 5
+          max: 20
+        unit: min
+
+  - entity: select
+    name: Alarm 2 snooze action
+    category: config
+    dps:
+      - id: 111
+        name: option
+        type: base64
+        optional: true
+        mask: "0000000000000000000000FF0000"
+        mapping:
+          - dps_val: 0
+            value: mute
+          - dps_val: 1
+            value: mute_light
+          - dps_val: 2
+            value: light_only
+
+  - entity: button
+    name: Alarm snooze
+    dps:
+      - id: 7
+        name: button
+        type: boolean
+
+  - entity: button
+    name: Alarm off
+    dps:
+      - id: 112
+        name: button
+        type: boolean
+
+  # Use these once if DP 109 / 111 are still undefined after first pairing.
+  # They write a complete default 14-byte alarm blob so the masked alarm
+  # controls above have a real payload to edit locally afterwards.
+  - entity: button
+    name: Alarm 1 reset
+    category: config
+    dps:
+      - id: 109
+        name: button
+        type: base64
+        optional: true
+        mapping:
+          - value: true
+            dps_val: "AAB/AwAGDwEeAQkAAAA="
+
+  - entity: button
+    name: Alarm 2 reset
+    category: config
+    dps:
+      - id: 111
+        name: button
+        type: base64
+        optional: true
+        mapping:
+          - value: true
+            dps_val: "AAB/AwAGDwEeAQkAAAA="
+
+  - entity: switch
+    name: Music playback
+    dps:
+      - id: 129
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Radio
+    dps:
+      - id: 130
+        name: switch
+        type: boolean
+
+  # FM tuning is only available while the radio is on (DP 130).
+  - entity: number
+    name: Radio frequency
+    mode: box
+    dps:
+      - id: 133
+        name: value
+        type: base64
+        optional: true
+        mask: "FF00"
+        range:
+          min: 76
+          max: 108
+        unit: MHz
+      - id: 133
+        name: decimal
+        type: base64
+        optional: true
+        mask: "00FF"
+        range:
+          min: 0
+          max: 9
+        mapping:
+          - scale: 10
+      - id: 130
+        name: available
+        type: boolean
+        optional: true
+
+  # DP 114 stores date/time as 7 bytes: year offset, month, day, hour, minute,
+  # second and weekday. Expose the wall-clock portion for manual edits.
+  - entity: time
+    name: Clock time
+    category: config
+    dps:
+      - id: 114
+        name: hour
+        type: base64
+        optional: true
+        mask: "000000FF000000"
+      - id: 114
+        name: minute
+        type: base64
+        optional: true
+        mask: "00000000FF0000"
+      - id: 114
+        name: second
+        type: base64
+        optional: true
+        mask: "0000000000FF00"
+      - id: 115
+        name: available
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+
+  - entity: switch
+    name: Network time sync
+    category: config
+    dps:
+      - id: 115
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: Night mode
+    category: config
+    dps:
+      - id: 121
+        name: switch
+        type: boolean
+
+  - entity: switch
+    name: 24-hour time
+    category: config
+    dps:
+      - id: 125
+        name: switch
+        type: boolean
+
+  - entity: select
+    name: Display brightness
+    category: config
+    dps:
+      - id: 116
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: dim
+          - dps_val: "2"
+            value: bright
+          - dps_val: "3"
+            value: auto
+
+  - entity: select
+    name: Seconds dot
+    category: config
+    dps:
+      - id: 118
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: static
+          - dps_val: "1"
+            value: blinking
+
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 119
+        name: option
+        type: string
+        mapping:
+          - dps_val: "C"
+            value: celsius
+          - dps_val: "F"
+            value: fahrenheit
+
+  - entity: sensor
+    name: Wireless charging status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        type: string
+        optional: true
+        mapping:
+          - dps_val: IDlE  # Note: the Tuya app sends "IDlE" with a lowercase L
+            value: idle
+          - dps_val: CHARGING
+            value: charging
+          - dps_val: FULL
+            value: full
+          - dps_val: FOD
+            value: foreign_object_detected
+
+  - entity: sensor
+    name: Light status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 134
+        name: sensor
+        type: string
+        optional: true
+        mapping:
+          - dps_val: ALL_OFF
+            value: all_off
+          - dps_val: Night_ON
+            value: night_on
+          - dps_val: Color_ON
+            value: color_on
+          - dps_val: Spec_ON
+            value: ambient_on
+
+  - entity: sensor
+    name: Color light raw
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: string
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Night light raw
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: string
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Color light brightness raw
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Ambient light brightness raw
+    category: diagnostic
+    dps:
+      - id: 123
+        name: sensor
+        type: integer
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Night light brightness raw
+    category: diagnostic
+    dps:
+      - id: 124
+        name: sensor
+        type: integer
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Alarm status raw
+    category: diagnostic
+    dps:
+      - id: 126
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Alarm 1 status raw
+    category: diagnostic
+    dps:
+      - id: 109
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Alarm 2 status raw
+    category: diagnostic
+    dps:
+      - id: 111
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Sleep aid status raw
+    category: diagnostic
+    dps:
+      - id: 128
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Weather raw
+    category: diagnostic
+    dps:
+      - id: 113
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true
+
+  - entity: sensor
+    name: Device time raw
+    category: diagnostic
+    dps:
+      - id: 114
+        name: sensor
+        type: base64
+        optional: true
+    hidden: true

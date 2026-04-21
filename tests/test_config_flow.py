@@ -391,10 +391,10 @@ async def test_flow_user_init_invalid_config(hass, mocker):
     assert {"base": "connection"} == result["errors"]
 
 
-def setup_device_mock(mock, mocker, failure=False, type="test"):
+def setup_device_mock(mock, mocker, failure=False, devtype="test"):
     mock_type = mocker.MagicMock()
-    mock_type.legacy_type = type
-    mock_type.config_type = type
+    mock_type.legacy_type = devtype
+    mock_type.config_type = devtype
     mock_type.match_quality.return_value = 100
     mock_type.product_display_entries.return_value = [(None, None)]
     mock.async_possible_types = mocker.AsyncMock(
@@ -482,7 +482,7 @@ async def test_flow_select_type_data_valid(hass, mocker):
     """Test the flow continues when valid data is supplied."""
     mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
 
-    setup_device_mock(mock_device, mocker, type="smartplugv1")
+    setup_device_mock(mock_device, mocker, devtype="smartplugv1")
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}

@@ -1,8 +1,12 @@
-name: Seven channel switch
+name: Multi channel switch
+legacy_type: seven_channel_switch
 products:
   - id: 7w1gnppunpyev9tj
     manufacturer: Inna
     model: AUT000014
+    name: Underfloor heating controller
+  - id: aaa2vqyazpodpqhb
+    model: "8112"
     name: Underfloor heating controller
 entities:
   - entity: switch
@@ -61,6 +65,24 @@ entities:
       - id: 7
         type: boolean
         name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "8"
+    hidden: unavailable
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+      - id: 8
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     category: config
     translation_key: timer_x
@@ -145,6 +167,28 @@ entities:
         range:
           min: 0
           max: 86400
+  - entity: time
+    category: config
+    translation_key: timer_x
+    translation_placeholders:
+      x: "8"
+    hidden: unavailable
+    dps:
+      - id: 16
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 16
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: initial_state
     category: config
@@ -159,3 +203,27 @@ entities:
             value: "on"
           - dps_val: memory
             value: memory
+  - entity: select
+    translation_key: light_mode
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay
+            value: state
+          - dps_val: pos
+            value: locator
+          - dps_val: none
+            value: "off"
+      - id: 40
+        type: string
+        name: available
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

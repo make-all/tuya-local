@@ -1,0 +1,76 @@
+# https://www.cityenergylife.com.sg/products/ma-20wodp
+name: Gas water heater
+products:
+  - id: yliuzmey7vxflbzr
+    manufacturer: Macro
+    model: MA-20WODP
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: Manual
+                value: gas
+              - dps_val: Eco
+                value: eco
+              - dps_val: Turbo
+                value: performance
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 9
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 36
+          max: 60
+        mapping:
+          - step: 5
+      - id: 10
+        type: integer
+        name: current_temperature
+  - entity: switch
+    name: Instant heating
+    icon: mdi:lightning-bolt
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Stop
+            value: idle
+          - dps_val: Heating
+            value: heating
+          - dps_val: Warm
+            value: keeping_warm

@@ -72,7 +72,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
         self.dps = payload.copy()
-        self.mock_device.get_property.side_effect = lambda id: self.dps.get(id)
+        self.mock_device.get_property.side_effect = lambda dpid: self.dps.get(dpid)
         cfg = TuyaDeviceConfig(config_file)
         self.conf_type = cfg.legacy_type
         type(self.mock_device).has_returned_state = PropertyMock(return_value=True)

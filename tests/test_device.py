@@ -1,3 +1,4 @@
+import asyncio
 from time import time
 
 import pytest
@@ -602,9 +603,9 @@ async def test_async_receive(subject, mock_api, mocker):
     subject._cached_state = subject._cached_state | result
     mock_api().set_socketPersistent.reset_mock()
     mock_api().status.reset_mock()
-    # Set the updated_at back in time to force a heartbeat poll on the next iteration
-    subject._cached_state["updated_at"] = time() - 11
-
+    # Wait long enough to force a heartbeat poll on the next iteration
+    subject._cached_state = subject._cached_state | {"updated_at": time()}
+    await asyncio.sleep(10.1)
     # Call the function under test
     print("getting second iteration...")
     result = await loop.__anext__()
