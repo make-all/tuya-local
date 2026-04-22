@@ -1,0 +1,32 @@
+name: Ecostrad iQ Ceramic Radiator
+products:
+  - id: g8szwifd3zgozoxt
+    name: Ecostrad iQ Ceramic WiFi Controlled Electric Radiators
+primary_entity: climate
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 3
+        name: target_temperature
+        type: integer
+      - id: 2
+        name: mode
+        type: enum
+      - id: 40
+        name: child_lock
+        type: boolean
+      - id: 42
+        name: timer
+        type: integer
+      - id: 27
+        name: temp_correction
+        type: integer
+      - id: 24
+        name: current_temperature
+        type: integer
