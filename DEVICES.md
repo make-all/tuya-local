@@ -201,6 +201,7 @@
 - Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Chiltrix CX50 combo heat pump
+- City Energy L10WFE gas water heater
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Envirosun ES330M9 hot water system
@@ -463,6 +464,7 @@
 
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
+- Trident AirDome-70 air purifier
 - TrueLife P3 and P7 air purifiers
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
@@ -1248,6 +1250,7 @@ port and password.
 - Kishin BS-DW002 motion sensor (sold under various brands)
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
+- Kogan KASMWEKFITEA fitted electric blanket
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen SNT957W-TDE E3S temperature alarm
 - Konlen/Rockson WF96L water level controller
