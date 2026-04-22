@@ -1,0 +1,141 @@
+name: Air Purifier
+products:
+  - id: 1by0kpf8cflpfqcl
+    manufacturer: Neriox
+    model: P8802
+    name: Neriox Air Purifier
+
+entities:
+  - entity: fan
+    name: Air Purifier
+    icon: mdi:air-purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+
+  - entity: select
+    name: Mode
+    icon: mdi:auto-mode
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: AUTO
+            value: auto
+          - dps_val: SLEEP
+            value: sleep
+          - dps_val: MANURL
+            value: manual
+
+  - entity: select
+    name: Fan Speed
+    icon: mdi:fan
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: LOW
+            value: low
+          - dps_val: MID
+            value: medium
+          - dps_val: HI
+            value: high
+          - dps_val: TOPHI
+            value: top high
+          - dps_val: TOP HI
+            value: top high
+
+  - entity: switch
+    name: Child Lock
+    icon: mdi:lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: UV
+    icon: mdi:shield-sun
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Filter Reset
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+
+  - entity: sensor
+    name: Filter Remaining
+    category: diagnostic
+    icon: mdi:air-filter
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: h
+
+  - entity: sensor
+    name: Total Runtime
+    category: diagnostic
+    icon: mdi:timer-outline
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+
+  - entity: select
+    name: Countdown
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: cancel
+          - dps_val: "1"
+            value: 1 hour
+          - dps_val: "2"
+            value: 2 hours
+          - dps_val: "3"
+            value: 3 hours
+          - dps_val: "4"
+            value: 4 hours
+          - dps_val: "5"
+            value: 5 hours
+          - dps_val: "6"
+            value: 6 hours
+
+  - entity: sensor
+    name: Countdown Left
+    category: diagnostic
+    icon: mdi:timer-sand
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
