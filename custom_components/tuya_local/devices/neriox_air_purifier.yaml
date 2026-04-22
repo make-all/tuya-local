@@ -14,6 +14,21 @@ entities:
         type: boolean
         name: switch
 
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: LOW
+            value: low
+          - dps_val: MID
+            value: medium
+          - dps_val: HI
+            value: high
+          - dps_val: TOPHI
+            value: top
+          - dps_val: TOP HI
+            value: top
+
   - entity: sensor
     name: PM2.5
     class: pm25
@@ -38,26 +53,6 @@ entities:
             value: sleep
           - dps_val: MANURL
             value: manual
-
-  - entity: select
-    name: Fan Speed
-    icon: mdi:fan
-    category: config
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: LOW
-            value: low
-          - dps_val: MID
-            value: medium
-          - dps_val: HI
-            value: high
-          - dps_val: TOPHI
-            value: top high
-          - dps_val: TOP HI
-            value: top high
 
   - entity: switch
     name: Child Lock
