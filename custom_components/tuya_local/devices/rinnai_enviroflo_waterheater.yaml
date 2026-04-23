@@ -5,7 +5,6 @@ products:
     model: Enviroflo
 entities:
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -88,9 +87,8 @@ entities:
         type: bitfield
         name: fault_code
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 101
         type: integer

@@ -271,7 +271,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         at_least_one_sent = False
         for _, codes in product(range(repeat), code_list):
             if at_least_one_sent:
-                await asyncio.sleep(delay)
+                await asyncio.sleep(delay / 1000)  # delay is in ms
 
             if len(codes) > 1:
                 code = codes[self._flags[subdevice]]
@@ -399,7 +399,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             persistent_notification.async_dismiss(
                 self._device._hass, notification_id="learn_command"
             )
-            _LOGGER("%s ending learning mode", self._config.config_id)
+            _LOGGER.debug("%s ending learning mode", self._config.config_id)
             if self._control_dp:
                 await self._control_dp.async_set_value(
                     self._device,

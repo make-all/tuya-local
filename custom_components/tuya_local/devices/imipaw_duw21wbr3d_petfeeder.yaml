@@ -1,0 +1,103 @@
+name: Cat feeder
+products:
+  - id: myhc7cokpdrb0uhx
+    manufacturer: Imipaw
+    model: DUW21 WBR3D
+entities:
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 20
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: event
+    name: Feed report
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: null
+          - value: Fed
+      - id: 14
+        type: integer
+        optional: true
+        name: portions
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 24
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    icon: "mdi:cat"
+    dps:
+      - id: 25
+        type: boolean
+        name: switch

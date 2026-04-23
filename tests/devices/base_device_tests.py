@@ -18,6 +18,7 @@ from custom_components.tuya_local.helpers.device_config import (
     possible_matches,
 )
 from custom_components.tuya_local.humidifier import TuyaLocalHumidifier
+from custom_components.tuya_local.infrared import TuyaLocalInfrared
 from custom_components.tuya_local.lawn_mower import TuyaLocalLawnMower
 from custom_components.tuya_local.light import TuyaLocalLight
 from custom_components.tuya_local.lock import TuyaLocalLock
@@ -44,6 +45,7 @@ DEVICE_TYPES = {
     "event": TuyaLocalEvent,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,
+    "infrared": TuyaLocalInfrared,
     "lawn_mower": TuyaLocalLawnMower,
     "light": TuyaLocalLight,
     "lock": TuyaLocalLock,
@@ -70,7 +72,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
         self.dps = payload.copy()
-        self.mock_device.get_property.side_effect = lambda id: self.dps.get(id)
+        self.mock_device.get_property.side_effect = lambda dpid: self.dps.get(dpid)
         cfg = TuyaDeviceConfig(config_file)
         self.conf_type = cfg.legacy_type
         type(self.mock_device).has_returned_state = PropertyMock(return_value=True)

@@ -1,0 +1,255 @@
+name: Sliding door
+products:
+  - id: zfdp0ndsfka3vfni
+    manufacturer: Zitech
+    model: Basic 3.0
+entities:
+  - entity: cover
+    class: door
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            constraint: close_control
+            conditions:
+              - dps_val: true
+                value: close
+                value_redirect: close_control
+              - dps_val: false
+                value: stop
+                value_redirect: stop_control
+      - id: 2
+        type: boolean
+        name: close_control
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: close
+          - value_redirect: stop_control
+      - id: 3
+        type: boolean
+        name: stop_control
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: stop
+          - value: null
+      - id: 114
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - constraint: percent_available
+            conditions:
+              - dps_val: false
+                value: null
+      - id: 114
+        type: integer
+        name: current_position
+        mapping:
+          - constraint: percent_available
+            conditions:
+              - dps_val: false
+                value: null
+      - id: 116
+        type: boolean
+        name: percent_available
+        hidden: true
+  - entity: lock
+    dps:
+      - id: 4
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Alarm notifications
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        optional: true
+        name: switch
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: door
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Door alarm
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    translation_key: mode
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: Mode 1
+          - dps_val: mode_2
+            value: Mode 2
+          - dps_val: mode_3
+            value: Mode 3
+          - dps_val: mode_4
+            value: Mode 4
+          - dps_val: mode_5
+            value: Mode 5
+          - dps_val: mode_6
+            value: Mode 6
+          - dps_val: mode_7
+            value: Mode 7
+          - dps_val: mode_8
+            value: Mode 8
+          - dps_val: mode_9
+            value: Mode 9
+          - dps_val: mode_10
+            value: Mode 10
+          - dps_val: mode_11
+            value: Mode 11
+          - dps_val: mode_12
+            value: Mode 12
+          - dps_val: mode_13
+            value: Mode 13
+          - dps_val: mode_14
+            value: Mode 14
+          - dps_val: mode_15
+            value: Mode 15
+          - dps_val: mode_16
+            value: Mode 16
+          - dps_val: mode_17
+            value: Mode 17
+          - dps_val: mode_18
+            value: Mode 18
+          - dps_val: mode_19
+            value: Mode 19
+  - entity: button
+    name: Unpair remote
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    name: AC power
+    class: connectivity
+    icon: "mdi:lightning-bolt"
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "ON"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: DC power
+    class: connectivity
+    icon: "mdi:current-dc"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "ON"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Auto stop wire
+    class: connected
+    category: diagnostic
+    dps:
+      - id: 107
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: connected
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: OPEN
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "ON"
+            value: true
+          - value: false
+  - entity: switch
+    name: Cruise
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: number
+    name: Calibration
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 900
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        optional: true
+        name: lock
+  - entity: binary_sensor
+    name: Fire
+    class: smoke
+    category: diagnostic
+    dps:
+      - id: 117
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: fire_alarm
+            value: true
+          - value: false

@@ -18,7 +18,7 @@ from custom_components.tuya_local.helpers.device_config import (
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
-from .helpers import assert_device_properties_set
+from .helpers import assert_device_properties_set, mock_device
 
 PRODUCT_SCHEMA = vol.Schema(
     {
@@ -136,6 +136,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "event",
                 "fan",
                 "humidifier",
+                "infrared",
                 "lawn_mower",
                 "light",
                 "lock",
@@ -229,6 +230,10 @@ KNOWN_DPS = {
         "required": ["humidity"],
         "optional": ["switch", "mode", "current_humidity"],
     },
+    "infrared": {
+        "required": ["send"],
+        "optional": ["control", "code_type", "delay"],
+    },
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
@@ -256,11 +261,11 @@ KNOWN_DPS = {
     },
     "number": {
         "required": ["value"],
-        "optional": ["unit", "minimum", "maximum"],
+        "optional": ["unit", "minimum", "maximum", "decimal"],
     },
     "remote": {
         "required": ["send"],
-        "optional": ["receive"],
+        "optional": ["receive", "command", "type", "head"],
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
@@ -301,16 +306,6 @@ KNOWN_DPS = {
         ],
     },
 }
-
-
-def mock_device(dps, mocker):
-    """Helper function to create a mock device with specified dps."""
-    device = mocker.MagicMock()
-    device.get_property.side_effect = lambda id: dps.get(id)
-    device.has_returned_state = True
-    device.unique_id = "test_device_id"
-    device.name = "Test Device"
-    return device
 
 
 def test_can_find_config_files():
@@ -524,7 +519,10 @@ def test_config_files_parse(mocker):
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
                 if first_line is None:
-                    first_line = err.path[-1].__line__
+                    # voluptuous doesn't always seem to return line numbers
+                    if err.path and hasattr(err.path[-1], "__line__"):
+                        first_line = err.path[-1].__line__
+
             messages = "; ".join(messages)
             if not first_line:
                 first_line = 1
@@ -760,8 +758,8 @@ def test_values_with_mirror(mocker):
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = "1"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
-    map = TuyaDpsConfig(mock_entity, mock_map_config)
-    mock_entity.find_dps.return_value = map
+    mapping = TuyaDpsConfig(mock_entity, mock_map_config)
+    mock_entity.find_dps.return_value = mapping
 
     assert set(cfg.values(mock_device)) == {"unmirrored", "map_one", "map_two"}
     assert len(cfg.values(mock_device)) == 3

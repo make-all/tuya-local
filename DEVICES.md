@@ -65,6 +65,7 @@
 - Modern Flames Orion electric fireplace
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
+- Nutromo SH014 space heater
 - Nybro heater
 - Orbegozo RRW heater
 - Orion OWH-PTC2000 heater
@@ -85,6 +86,7 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplace
+- TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -96,6 +98,7 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
+- Aquastrong HEX pool heat pumps
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -106,7 +109,7 @@
 - Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
-- Costway portable air conditioner
+- Costway portable air conditioner models with and without heating
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
 - Della air conditioner
@@ -198,6 +201,7 @@
 - Arçelik AHPH-MM series combo air-water heat pump
 - Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Chiltrix CX50 combo heat pump
+- City Energy L10WFE gas water heater
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Envirosun ES330M9 hot water system
@@ -212,6 +216,7 @@
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
+- Macro MA-20WODP gas water heater
 - Modena ES-15-SKY water heater
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
@@ -219,6 +224,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
+- Shuangri SR223 solar water heating controller 
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermann R290 heat pump water heater
@@ -230,7 +236,7 @@
 - 4-TH quad temperature/humidity smart switch
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
-- Atorch S1TW thermostat smart switch
+- Atorch S1TW, S1BWP-T/H thermostat smart switches
 - Avatto ME81, WS20R and WT100 thermostats
 - Avonflow AFD14-H radiator thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
@@ -239,7 +245,7 @@
 - Beok TCB/W38 thermostat (also sold as RT-70 under other brands)
 - Beok TGR81 thermostat _(also reported working with Myuet ME98, Avatto WT81/ME81)_
 - Beok SH-TGM50-WP, TGM50, TOL47, TR8B thermostats
-- Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
+- Beok TR9B _(rebadged as Vancoo and perhaps others)_, TR9B-AC2 thermostats
 - BHT-002-GALW and GABW thermostats _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
 - Dr Heater DR-008 electric radiant floor thermostat
@@ -265,7 +271,7 @@
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
-- Inkbird ITC306A, ITC308 thermostat smartplugs
+- Inkbird ITC306A, ITC308, C236T thermostat smartplugs
 - Jiahong ET-44W thermostat (also sold under the TheroLife brand)
 - Jiahong ET-72W thermostat (branded Warmme in the app)
 - Kiturami NCTR-100 water and heating thermostat
@@ -289,6 +295,7 @@
 - Polytherm Polyalpha thermostat
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
+- Sajun steam room
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat
@@ -342,7 +349,7 @@
 - Eberg Fyn tower fan
 - EcoNour 42" tower fan
 - Efenz Kith ceiling fan with light
-- Eglo 5 speed + sleep ceiling fan
+- Eglo 5 speed + sleep ceiling fan (with or without light and presets)
 - eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Fanforce ceiling fan with light
@@ -361,7 +368,7 @@
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
-- Hunter Pacific 9 speed ceiling fan with light
+- Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Inkbird IVC001W fan controller
@@ -383,6 +390,7 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
@@ -400,6 +408,7 @@
 - Pro Breeze AirFlo 43" pedestal fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
+- Reventon / Holtop Smart ERV heat recovery ventilator
 - Riyue Box 3 fan with light
 - Roomratv ceiling fan with light
 - Royal Clima RCB 150 ventilation system
@@ -455,6 +464,7 @@
 
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
+- Trident AirDome-70 air purifier
 - TrueLife P3 and P7 air purifiers
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
@@ -540,11 +550,11 @@
 
 ### Aroma diffusers
 
-- Asakuki aroma diffuser with light (newer devices seem to require the Ditua config below)
+- Asakuki aroma diffuser with light (newer devices seem to require the Dituo config below)
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Calex V2 aroma diffuser
 - Delixing KCL-1802A-M aroma diffuser
-- Ditua DT-1522-YN aroma diffuser
+- Dituo DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
 - Haoyunma BD100 aroma diffuser
@@ -762,6 +772,7 @@ the best option.
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
+- Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch
 - TY-12W 12 switch relay board
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
@@ -933,7 +944,7 @@ of device.
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
-- Garen TSI Fit garage door opener
+- Garen TSI Fit and Kit Central garage door openers
 - Graywind window shades
 - GW Motor roller blinds
 - HHC AM68 curtain motor
@@ -962,6 +973,7 @@ of device.
 - Zemismart AM25 roller blinds
 - Zemismart curtain rail
 - Zemismart roller shade
+- Zitech Basic 3.0 sliding door controller
 
 ### Robot vacuums
 
@@ -1105,6 +1117,7 @@ port and password.
 - Happy Llama Tech SoCool pet feeder
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
+- Imipaw DUW21 WBR3D cat feeder
 - iPettie W5 pet feeder
 - Kanchou pet fountain
 - Leo's Loo Too pet toilet
@@ -1163,6 +1176,7 @@ port and password.
 - S11+ IR/RF remote controller
 - Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
 - Woox R7246 remote control with temperature and humidity sensors
+- YET YET6956WTR-B 240-930MHz RF 4 button controller
 
 ### Valves
 
@@ -1208,6 +1222,7 @@ port and password.
 - CO2v1 carbon dioxide sensor
 - C30W gas leak detector
 - CT20W PIR motion detector
+- Dekala Lumos sunrise alarm clock
 - Dienmern DM165A noise meter
 - Digma DiSense G1 gas leak detector
 - EASTtime D401 water purifier
@@ -1235,6 +1250,7 @@ port and password.
 - Kishin BS-DW002 motion sensor (sold under various brands)
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
+- Kogan KASMWEKFITEA fitted electric blanket
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen SNT957W-TDE E3S temperature alarm
 - Konlen/Rockson WF96L water level controller
@@ -1316,6 +1332,7 @@ port and password.
 - Arlec usb strip light
 - BSTUOKEY Invisible induction door lock
 - Diivoo DWV010, WT05 dual water timers
+- Dituo DT-T2190A aroma diffuser
 - Gainsborough Liberty entrance lock
 - HCT-611 water timer
 - HCT-626 dual water timer
@@ -1358,6 +1375,7 @@ entity types as sub devices.
 - Aubess temperature and humidity sensor
 - Avatto TRV06 radiator valve (also sold branded as Thaleos)
 - Avatto ZWT198 thermostat
+- Beok BAC-009 smart knob thermostat
 - Generic Zigbee Door Sensor
 - Haozee RB-SRAIN01 solar rain sensor
 - Haozee ZG-302ZM mmWave presence dual light switch

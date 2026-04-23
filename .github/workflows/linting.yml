@@ -22,13 +22,11 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-      - name: Install dependencies
-        run: uv pip install -r requirements-dev.txt
       - name: Python lint
-        run: ruff check --output-format=github .
+        run: uv run ruff check --output-format=github .
       - name: Python include order
-        run: ruff check --select I --diff .
+        run: uv run ruff check --select I --diff .
       - name: Python coding style
-        run: ruff format --check --diff .
+        run: uv run ruff format --check --diff .
       - name: YAML lint
-        run: yamllint --format github custom_components/tuya_local/devices
+        run: uv run yamllint --format github custom_components/tuya_local/devices

@@ -69,7 +69,6 @@ entities:
           min: 0
           max: 99
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -237,9 +236,8 @@ entities:
             value: F
           - value: C
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 101
         type: base64

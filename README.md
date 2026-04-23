@@ -1,4 +1,4 @@
-# Home Assistant Tuya Local component
+![logo](custom_components/tuya_local/brand/icon.svg) 
 
 Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
@@ -94,9 +94,10 @@ If your device is not listed, you can find the information required to add a con
 
 If you file an issue to request support for a new device, please include the following information:
 
-1. Identification of the device, such as model and brand name.
-2. As much information on the datapoints you can gather using the above methods.
-3. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
+1. Logs from this integration showing the LOCAL DPS actually received from the device.
+2. Identification of the device, such as model and brand name.
+3. As much information on the datapoints you can gather using the above methods.
+4. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
 
 If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general.  So it may be necessary to remove and re-add your device once it has been integrated into a release.
 
@@ -269,7 +270,7 @@ Tuya IR and RF blasters are exposed as remote entities and support learning and
 sending commands via the standard Home Assistant remote services.
 
 ### Learning commands
-
+
 Use the `remote.learn_command` service with:
 - `command`: the name to store the command under (e.g. `power`)
 - `device`: a name for the appliance being controlled (e.g. `TV`)
