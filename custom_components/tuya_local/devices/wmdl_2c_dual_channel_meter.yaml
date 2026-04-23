@@ -3,10 +3,13 @@ name: Dual channel energy meter
 products:
   - id: zcmq0kvd01bn6s1n
     manufacturer: WMDL
-    model: (WMDL-2C) Smart Energy Meter WIFI Bidirection 2 Channel
+    model: Smart Energy Meter WIFI Bidirectional 2 Channel
+    model_id: WMDL-2C
 entities:
   - entity: sensor
-    name: Power Phase A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 19
@@ -14,12 +17,13 @@ entities:
         name: sensor
         unit: W
         class: measurement
-        precision: 1
         force: true
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage Phase A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -33,7 +37,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current Phase A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -46,7 +52,9 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power Phase B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 113
@@ -59,7 +67,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage Phase B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     hidden: true
@@ -74,7 +84,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current Phase B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -87,7 +99,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Total Forward Energy
+    translation_key: energy_consumed
     class: energy
     dps:
       - id: 119
@@ -99,7 +111,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Reverse Energy
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 121
@@ -111,7 +123,7 @@ entities:
         mapping:
           - scale: 100
   - entity: number
-    name: Limit Power Phase A
+    name: Power limit A
     category: config
     class: power
     dps:
@@ -125,10 +137,9 @@ entities:
         mapping:
           - dps_val:
             invalid: true
-          - scale: 1
-            step: 100
+          - step: 100
   - entity: number
-    name: Limit Power Phase B
+    name: Power limit B
     category: config
     class: power
     dps:
@@ -142,12 +153,12 @@ entities:
         mapping:
           - dps_val:
             invalid: true
-          - scale: 1
-            step: 100
+          - step: 100
   - entity: sensor
-    name: Forward Energy A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
-    icon: mdi:transmission-tower-import
     dps:
       - id: 17
         type: integer
