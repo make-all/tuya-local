@@ -1,39 +1,29 @@
 name: Circuit breaker
 products:
-  - id: zxhlsbmhkauiyget
-    manufacturer: VERATTI
-    model: V4 3-phase circuit breaker
+  - id: sh45wydgedautxda
+    manufacturer: TOMZN
+    model: SWC32v4
+
 entities:
   - entity: switch
+    translation_key: breaker
     dps:
       - id: 16
         type: boolean
         name: switch
 
   - entity: sensor
-    translation_key: energy_consumed
     class: energy
     dps:
       - id: 1
         type: integer
-        name: sensor
         unit: kWh
         class: total_increasing
+        name: sensor
         mapping:
           - scale: 100
 
-  - entity: sensor
-    translation_key: energy_produced
-    class: energy
-    dps:
-      - id: 110
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
-
+  # Phase A
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
@@ -41,12 +31,12 @@ entities:
     class: voltage
     dps:
       - id: 6
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: V
         class: measurement
+        name: sensor
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
@@ -58,12 +48,11 @@ entities:
     class: current
     dps:
       - id: 6
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: A
-        class: measurement
+        name: sensor
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
@@ -75,28 +64,29 @@ entities:
     class: power
     dps:
       - id: 6
-        type: base64
-        name: sensor
         optional: true
         force: true
-        unit: W
-        class: measurement
+        type: base64
+        unit: kW
+        name: sensor
         mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
 
+  # Phase B
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: B
     class: voltage
-    hidden: true
     dps:
       - id: 7
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: V
         class: measurement
+        name: sensor
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
@@ -106,15 +96,13 @@ entities:
     translation_placeholders:
       x: B
     class: current
-    hidden: true
     dps:
       - id: 7
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: A
-        class: measurement
+        name: sensor
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
@@ -124,31 +112,31 @@ entities:
     translation_placeholders:
       x: B
     class: power
-    hidden: true
     dps:
       - id: 7
-        type: base64
-        name: sensor
         optional: true
         force: true
-        unit: W
-        class: measurement
+        type: base64
+        unit: kW
+        name: sensor
         mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
 
+  # Phase C
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: C
     class: voltage
-    hidden: true
     dps:
       - id: 8
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: V
         class: measurement
+        name: sensor
         mask: "FFFF000000000000"
         mapping:
           - scale: 10
@@ -158,15 +146,13 @@ entities:
     translation_placeholders:
       x: C
     class: current
-    hidden: true
     dps:
       - id: 8
-        type: base64
-        name: sensor
         optional: true
         force: true
+        type: base64
         unit: A
-        class: measurement
+        name: sensor
         mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
@@ -176,49 +162,33 @@ entities:
     translation_placeholders:
       x: C
     class: power
-    hidden: true
     dps:
       - id: 8
-        type: base64
-        name: sensor
         optional: true
         force: true
-        unit: W
-        class: measurement
-        mask: "0000000000FFFFFF"
-
-  - entity: sensor
-    class: temperature
-    category: diagnostic
-    dps:
-      - id: 103
-        type: integer
+        type: base64
+        unit: kW
         name: sensor
-        unit: "\xB0C"
-        class: measurement
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
 
+  # Rest of the sensors
   - entity: sensor
     translation_key: leakage_current
     class: current
-    category: diagnostic
     dps:
       - id: 15
         type: integer
-        name: sensor
         unit: mA
-        class: measurement
+        name: sensor
 
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
+  - entity: sensor
+    class: temperature
     dps:
-      - id: 9
-        type: bitfield
+      - id: 102
+        type: integer
+        unit: C
         name: sensor
         mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-      - id: 9
-        type: bitfield
-        name: fault_code
+          - scale: 10
