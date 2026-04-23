@@ -1,0 +1,67 @@
+name: Ecostrad iQ WiFi Element
+products:
+  - id: keq3x2tw6plbbipm
+    name: iQ WiFi Element
+primary_entity: climate
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 3
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 70
+          max: 300
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 2
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: hot
+            value: heat
+          - dps_val: Program
+            value: program
+          - dps_val: program
+            value: program
+      - id: 24
+        name: current_temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        name: lock
+        type: boolean
+        optional: true
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        optional: true
+        unit: C
+        range:
+          min: -5
+          max: 5
