@@ -14,7 +14,6 @@ entities:
 
   - entity: sensor
     class: energy
-    category: diagnostic
     dps:
       - id: 1
         type: integer
@@ -24,13 +23,12 @@ entities:
         mapping:
           - scale: 100
 
-  #Phase A
+  # Phase A
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: A
     class: voltage
-    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -48,7 +46,6 @@ entities:
     translation_placeholders:
       x: A
     class: current
-    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -65,7 +62,6 @@ entities:
     translation_placeholders:
       x: A
     class: power
-    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -77,13 +73,12 @@ entities:
         mapping:
           - scale: 1000
 
-  #Phase B
+  # Phase B
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: B
     class: voltage
-    category: diagnostic
     dps:
       - id: 7
         optional: true
@@ -101,7 +96,6 @@ entities:
     translation_placeholders:
       x: B
     class: current
-    category: diagnostic
     dps:
       - id: 7
         optional: true
@@ -118,7 +112,6 @@ entities:
     translation_placeholders:
       x: B
     class: power
-    category: diagnostic
     dps:
       - id: 7
         optional: true
@@ -130,13 +123,12 @@ entities:
         mapping:
           - scale: 1000
 
-  #Phase C
+  # Phase C
   - entity: sensor
     translation_key: voltage_x
     translation_placeholders:
       x: C
     class: voltage
-    category: diagnostic
     dps:
       - id: 8
         optional: true
@@ -154,7 +146,6 @@ entities:
     translation_placeholders:
       x: C
     class: current
-    category: diagnostic
     dps:
       - id: 8
         optional: true
@@ -171,7 +162,6 @@ entities:
     translation_placeholders:
       x: C
     class: power
-    category: diagnostic
     dps:
       - id: 8
         optional: true
@@ -183,11 +173,10 @@ entities:
         mapping:
           - scale: 1000
 
-  #Rest of the sensors
+  # Rest of the sensors
   - entity: sensor
     translation_key: leakage_current
     class: current
-    category: diagnostic
     dps:
       - id: 15
         type: integer
@@ -196,7 +185,6 @@ entities:
 
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 102
         type: integer
