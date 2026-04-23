@@ -169,9 +169,10 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Reverse Energy A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
-    icon: mdi:transmission-tower-export
     dps:
       - id: 115
         type: integer
@@ -208,7 +209,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Cur State A
+    name: Current State A
     class: enum
     icon: mdi:swap-horizontal
     dps:
@@ -227,7 +228,7 @@ entities:
           - default: true
             value: unknown
   - entity: sensor
-    name: Cur State B
+    name: Current State B
     class: enum
     icon: mdi:swap-horizontal
     dps:
