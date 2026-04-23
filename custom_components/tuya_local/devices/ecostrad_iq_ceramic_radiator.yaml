@@ -1,32 +1,84 @@
 name: Ecostrad iQ Ceramic Radiator
 products:
   - id: g8szwifd3zgozoxt
-    name: Ecostrad iQ Ceramic WiFi Controlled Electric Radiators
+    name: Ecostrad iQ Ceramic WiFi Controlled Electric Radiator
 primary_entity: climate
 entities:
   - entity: climate
+    translation_only_key: heater
     dps:
       - id: 1
         name: hvac_mode
         type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
       - id: 3
-        name: current_temperature
+        name: temperature
         type: integer
-      - id: 3
-        name: target_temperature
-        type: integer
+        unit: C
+        range:
+          min: 70
+          max: 300
+        mapping:
+          - scale: 10
+            step: 5
       - id: 2
-        name: mode
-        type: enum
-      - id: 40
-        name: child_lock
-        type: boolean
-      - id: 42
-        name: timer
-        type: integer
-      - id: 27
-        name: temp_correction
-        type: integer
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: hot
+            value: heat
+          - dps_val: Program
+            value: program
+          - dps_val: program
+            value: program
       - id: 24
         name: current_temperature
         type: integer
+        unit: C
+        mapping:
+          - scale: 10
+      - id: 32
+        name: hvac_action
+        type: string
+        optional: true
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: idle
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        name: lock
+        type: boolean
+        optional: true
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        optional: true
+        unit: C
+        range:
+          min: -5
+          max: 5
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        name: sensor
+        type: integer
+        optional: true
+        unit: min
