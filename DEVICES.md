@@ -648,7 +648,7 @@
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
-- Tomzn energy meter
+- Tomzn energy meter (SWC32v4 and other models)
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
 - Tongou SA1 WiFi energy meter
 - Tongou SMR1 20 and 40 circuit breakers
