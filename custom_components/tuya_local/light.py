@@ -69,11 +69,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     self._attr_max_color_temp_kelvin = tr.get("max")
                     range_set = True
             if not range_set:
-                range = self._color_temp_dps.range(self._device)
-                if range:
+                r = self._color_temp_dps.range(self._device)
+                if r:
                     # For lights that use K natively, use range
-                    self._attr_min_color_temp_kelvin = range[0]
-                    self._attr_max_color_temp_kelvin = range[1]
+                    self._attr_min_color_temp_kelvin = r[0]
+                    self._attr_max_color_temp_kelvin = r[1]
 
     @property
     def supported_color_modes(self):
