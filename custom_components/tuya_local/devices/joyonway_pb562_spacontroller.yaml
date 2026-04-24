@@ -1,7 +1,7 @@
 name: Spa
 products:
   - id: jbxvi3pbxjjlmec2
-    manufacturer: JOYONWAY
+    manufacturer: Joyonway
     model: PB562
 
 entities:
@@ -50,46 +50,46 @@ entities:
         name: switch
 
   # --- SCHEDULES (MINUTES FROM MIDNIGHT) ---
-  - entity: number
+  - entity: time
     name: Heating start
     icon: mdi:clock-start
     dps:
       - id: 127
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1439
 
-  - entity: number
+  - entity: time
     name: Heating end
     icon: mdi:clock-end
     dps:
       - id: 128
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1439
 
-  - entity: number
+  - entity: time
     name: Filtration start
     icon: mdi:clock-start
     dps:
       - id: 137
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1439
 
-  - entity: number
+  - entity: time
     name: Filtration end
     icon: mdi:clock-end
     dps:
       - id: 138
         type: integer
-        name: value
+        name: minute
         range:
           min: 0
           max: 1439
@@ -112,7 +112,6 @@ entities:
         unit: V
 
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
