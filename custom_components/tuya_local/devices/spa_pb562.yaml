@@ -18,15 +18,14 @@ entities:
       - id: 24
         type: integer
         name: current_temperature
-
-  # --- HEATER (read only) ---
-  - entity: sensor
-    name: Heating state
-    icon: mdi:fire
-    dps:
       - id: 111
         type: boolean
-        name: sensor
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
 
   # --- PUMPS & BLOWER ---
   - entity: switch
@@ -45,7 +44,6 @@ entities:
 
   # --- LIGHT ---
   - entity: light
-    name: LED
     dps:
       - id: 123
         type: boolean
@@ -113,9 +111,18 @@ entities:
         name: sensor
         unit: V
 
-  - entity: sensor
+  - entity: binary_sensor
     name: Fault
+    class: problem
+    category: diagnostic
     dps:
       - id: 45
-        type: integer
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
