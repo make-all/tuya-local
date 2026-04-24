@@ -205,7 +205,7 @@
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Envirosun ES330M9 hot water system
-- Ferroli Titano Twin water heater
+- Ferroli EGEA and Titano Twin water heaters
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
