@@ -37,9 +37,13 @@ entities:
         mapping:
           - scale: 10
             step: 5
+            range:
+              min: 70
+              max: 300
             constraint: preset_mode
             conditions:
               - dps_val: boost
+                value_redirect: radiator_temperature
                 range:
                   min: 300
                   max: 700
@@ -48,6 +52,16 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
+      - id: 57
+        type: integer
+        name: radiator_temperature
+        optional: true
+        range:
+          min: 300
+          max: 700
+        mapping:
+          - scale: 10
+            step: 5
   - entity: lock
     translation_key: child_lock
     category: config
