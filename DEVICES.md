@@ -214,6 +214,7 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
 - ITS-4.5HD super water heat pump
+- Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
 - Macro MA-20WODP gas water heater

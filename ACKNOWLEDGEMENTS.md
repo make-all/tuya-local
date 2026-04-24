@@ -774,3 +774,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nicholasng99](https://github.com/nicholasng99) for contributing support for City Energy L10WFE gas water heater and Trident AirDome-70 air purifier.
 - [underscorejasiu](https://github.com/underscorejasiu) for contributing support for TOMZN SWC32v4 energy monitoring breaker.
 - [muccijacopo](https://github.com/muccijacopo) for contributing support for Ferroli EGEA heat pump water heater.
+- [Tombost](https://github.com/Tombost) for contributing support for Joyonway PB562 spa pool controller.
