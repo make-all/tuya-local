@@ -52,16 +52,25 @@ entities:
         name: current_temperature
         mapping:
           - scale: 10
-      - id: 57
+      - id: 32
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: noheat
+            value: idle
+          - dps_val: cooling
+            value: idle
+      - id: 102
         type: integer
         name: radiator_temperature
-        optional: true
         range:
           min: 300
           max: 700
         mapping:
           - scale: 10
-            step: 5
+            step: 50
   - entity: lock
     translation_key: child_lock
     category: config
