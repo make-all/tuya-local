@@ -1,0 +1,127 @@
+name: Spa
+products:
+  - id: jbxvi3pbxjjlmec2
+    manufacturer: Joyonway
+    model: PB562
+
+entities:
+  # --- THERMOSTAT ---
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 3
+        type: integer
+        name: temperature
+        range:
+          min: 15
+          max: 40
+      - id: 24
+        type: integer
+        name: current_temperature
+      - id: 111
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+
+  # --- PUMPS & BLOWER ---
+  - entity: switch
+    name: Jet pump
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Blower
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+
+  # --- LIGHT ---
+  - entity: light
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+
+  # --- SCHEDULES (MINUTES FROM MIDNIGHT) ---
+  - entity: time
+    name: Heating start
+    icon: mdi:clock-start
+    dps:
+      - id: 127
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: time
+    name: Heating end
+    icon: mdi:clock-end
+    dps:
+      - id: 128
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: time
+    name: Filtration start
+    icon: mdi:clock-start
+    dps:
+      - id: 137
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: time
+    name: Filtration end
+    icon: mdi:clock-end
+    dps:
+      - id: 138
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  # --- SENSORS ---
+  - entity: sensor
+    class: power
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: W
+
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code

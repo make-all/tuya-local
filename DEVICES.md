@@ -205,7 +205,7 @@
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Envirosun ES330M9 hot water system
-- Ferroli Titano Twin water heater
+- Ferroli EGEA and Titano Twin water heaters
 - Fisher air to water heat pump
 - Geyserwise TSE1 and MWS Geyser controller kits
 - Giatsu VAW 2 heat pump water heater
@@ -214,6 +214,7 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
 - ITS-4.5HD super water heat pump
+- Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
 - Lohxa SR208C solar water heating controller
 - Macro MA-20WODP gas water heater
@@ -648,7 +649,7 @@
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
-- Tomzn energy meter
+- Tomzn energy meter (SWC32v4 and other models)
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
 - Tongou SA1 WiFi energy meter
 - Tongou SMR1 20 and 40 circuit breakers
@@ -1271,7 +1272,7 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - Pinjia PJ3101A presence sensor
-- PlantsIO Ivy smart planter
+- PlantsIO Ivy and Ivy Gen2 smart planters
 - PNI Sofe House Smart Gas 300 alarm
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
