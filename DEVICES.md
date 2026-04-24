@@ -648,7 +648,7 @@
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW, 63-WIFI energy meter circuit breakers
-- Tomzn energy meter
+- Tomzn energy meter (SWC32v4 and other models)
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
 - Tongou SA1 WiFi energy meter
 - Tongou SMR1 20 and 40 circuit breakers
@@ -1271,7 +1271,7 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - Pinjia PJ3101A presence sensor
-- PlantsIO Ivy smart planter
+- PlantsIO Ivy and Ivy Gen2 smart planters
 - PNI Sofe House Smart Gas 300 alarm
 - Prodotec PT02 air quality monitor
 - Protmex PT-19DW alarm clock with temperature and humidity monitor
