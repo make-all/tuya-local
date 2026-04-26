@@ -419,7 +419,8 @@
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
-- Stirling FS1-40DC pedestal fan
+- Stirling FS1-40DC pedestal fan
+
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -522,6 +523,7 @@
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
+- Krisbow Sync Dehumidifier 36W
 
 ### Humidifiers
 
