@@ -101,10 +101,22 @@ entities:
             value: "48h"
           - dps_val: "72h"
             value: "72h"
+  - entity: time
+    name: Irrigation time
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86400
   - entity: number
     class: duration
     name: Irrigation duration
     category: config
+    hidden: true
     dps:
       - id: 11
         type: integer
