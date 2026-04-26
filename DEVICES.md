@@ -420,7 +420,8 @@
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
-- Stirling FS1-40DC pedestal fan
+- Stirling FS1-40DC pedestal fan
+
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -508,6 +509,7 @@
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
+- NovaDry 12 Smart dehumidifier
 - NWT WDH-02EM dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
