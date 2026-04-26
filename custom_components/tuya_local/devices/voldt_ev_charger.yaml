@@ -2,7 +2,7 @@ name: EV charger
 products:
   - id: skbzo8y3ud2htya4
     manufacturer: Voldt
-    model: 8-13A 3 Pin
+    model: 8-13A
 
 entities:
   - entity: sensor
@@ -56,8 +56,6 @@ entities:
           max: 13
   - entity: sensor
     name: Single phase power
-    class: power
-    category: diagnostic
     dps:
       - id: 5
         type: integer
@@ -65,11 +63,9 @@ entities:
         unit: kW
         class: measurement
         mapping:
-          - scale: 3
+          - scale: 1000
   - entity: sensor
-    name: Total power
-    class: power
-    category: diagnostic
+    name: Power
     dps:
       - id: 9
         type: integer
@@ -77,7 +73,7 @@ entities:
         unit: kW
         class: measurement
         mapping:
-          - scale: 3
+          - scale: 1000
   - entity: select
     translation_key: charging_mode
     icon: "mdi:ev-station"
@@ -183,14 +179,15 @@ entities:
         mask: "000000FFFF000000"
         mapping:
           - scale: 1000
-  - entity: sensor
-    class: power
-    dps:
-      - id: 6
-        type: base64
-        name: sensor
-        optional: true
-        unit: kW
-        mask: "000000000000FFFF"
-        mapping:
-          - scale: 1000
+  # Better to use the public power DP?
+  # - entity: sensor
+  #   class: power
+  #   dps:
+  #     - id: 6
+  #       type: base64
+  #       name: sensor
+  #       optional: true
+  #       unit: kW
+  #       mask: "000000000000FFFF"
+  #       mapping:
+  #         - scale: 1000
