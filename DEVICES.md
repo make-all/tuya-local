@@ -635,6 +635,7 @@
 - MatSee Plus bidirectional two channel clamp meter (multiple variants)
 - Meterk single phase clamp meter
 - Ourtop ATMS100133 energy meter
+- Owon PC341 3 in 16 out clamp energy meter
 - Parkside PG/PMW-300 solar inverter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
