@@ -430,6 +430,7 @@
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
+- Yoevu EOS ceiling fan with CCT light
 - Yunlong ceiling fan with RGBCW lights
 
 ### Air Purifiers
