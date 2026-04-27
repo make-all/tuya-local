@@ -372,7 +372,17 @@ ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD = {
     "15": False,
     "101": 20,
 }
-
+NOVADRY_12SMART_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "3": "45",
+    "4": "1",
+    "5": "dehumidify",
+    "6": 60,
+    "10": False,
+    "16": False,
+    "17": "0h",
+    "19": 0,
+}
 POOLEX_SILVERLINE_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}
 POOLEX_VERTIGO_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
 POOLEX_QLINE_HEATPUMP_PAYLOAD = {"1": True, "2": "heating", "4": 30, "15": 0, "16": 28}
