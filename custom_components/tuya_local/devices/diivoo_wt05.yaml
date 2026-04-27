@@ -22,6 +22,8 @@ products:
   - id: jntxv3q4
     manufacturer: Insoma
     model: YZD02B,SGW02MB,SGW08MB
+  - id: qycalacn
+    manufacturer: Yohgee
 entities:
   - entity: valve
     class: water
@@ -51,6 +53,7 @@ entities:
     dps:
       - id: 113
         type: string
+        optional: true
         name: sensor
   - entity: sensor
     name: Operation 2
@@ -58,6 +61,7 @@ entities:
     dps:
       - id: 112
         type: string
+        optional: true
         name: sensor
   - entity: sensor
     name: Last use time 1
@@ -108,6 +112,7 @@ entities:
     dps:
       - id: 117
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "OFF"
@@ -133,6 +138,7 @@ entities:
     dps:
       - id: 114
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "OFF"

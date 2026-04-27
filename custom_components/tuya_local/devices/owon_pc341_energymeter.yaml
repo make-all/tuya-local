@@ -1,0 +1,774 @@
+name: Clamp meter
+products:
+  - id: t88mk4nfhu7ejp4k
+    manufacturer: Owon
+    model: PC341
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Phase A
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000FFFF0000000000000000000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Phase A
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000FFFFFF0000000000000000000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000001"
+        name: sign
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Phase A
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000FFFFFF0000000000000000"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000002"
+        name: sign
+  - entity: sensor
+    name: Reactive power Phase A
+    class: reactive_power
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFFFF0000000000"
+        name: sensor
+        unit: kvar
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000004"
+        name: sign
+  - entity: sensor
+    name: Apparent power Phase A
+    class: apparent_power
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000FFFFFF0000"
+        name: sensor
+        unit: kVA
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor Phase A
+    class: power_factor
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000FF00"
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -100
+      - id: 6
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000008"
+        name: sign
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Phase B
+    class: voltage
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000FFFF0000000000000000000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Phase B
+    class: current
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "00000000FFFFFF0000000000000000000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 7
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000001"
+        name: sign
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Phase B
+    class: power
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "00000000000000FFFFFF0000000000000000"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 7
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000002"
+        name: sign
+  - entity: sensor
+    name: Reactive power Phase B
+    class: reactive_power
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFFFF0000000000"
+        name: sensor
+        unit: kvar
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 7
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000004"
+        name: sign
+  - entity: sensor
+    name: Apparent power Phase B
+    class: apparent_power
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000FFFFFF0000"
+        name: sensor
+        unit: kVA
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor Phase B
+    class: power_factor
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000FF00"
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -100
+      - id: 7
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000008"
+        name: sign
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Phase C
+    class: voltage
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "0000FFFF0000000000000000000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: Phase C
+    class: current
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "00000000FFFFFF0000000000000000000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 8
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000001"
+        name: sign
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: Phase C
+    class: power
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "00000000000000FFFFFF0000000000000000"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 8
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000002"
+        name: sign
+  - entity: sensor
+    name: Reactive power Phase C
+    class: reactive_power
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "00000000000000000000FFFFFF0000000000"
+        name: sensor
+        unit: kvar
+        class: measurement
+        mapping:
+          - scale: 1000
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -1000
+      - id: 8
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000004"
+        name: sign
+  - entity: sensor
+    name: Apparent power Phase C
+    class: apparent_power
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000FFFFFF0000"
+        name: sensor
+        unit: kVA
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor Phase C
+    class: power_factor
+    dps:
+      - id: 8
+        type: base64
+        optional: true
+        mask: "00000000000000000000000000000000FF00"
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+            constraint: sign
+            conditions:
+              - dps_val: 1
+                scale: -100
+      - id: 8
+        type: base64
+        optional: true
+        mask: "000000000000000000000000000000000008"
+        name: sign
+  - entity: sensor
+    class: power
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: button
+    name: Clear
+    category: config
+    dps:
+      - id: 43
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 1
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 56
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 101
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 2
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 57
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 102
+        type: base64
+        optional: true
+        name: data
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 3
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 58
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 103
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 4
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 104
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 5
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 105
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 6
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 106
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 7
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 107
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 8
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 108
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 9
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 109
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 10
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 110
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 11
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 111
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 12
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 112
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 13
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 113
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 14
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 114
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 15
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 115
+        type: base64
+        optional: true
+        name: data
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: Line 16
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 116
+        type: base64
+        optional: true
+        name: data
+  - entity: text
+    name: Settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 130
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    translation_key: alarm
+    dps:
+      - id: 131
+        type: bitfield
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: Line 1
+          - dps_val: 2
+            value: Line 2
+          - dps_val: 4
+            value: Line 3
+          - dps_val: 8
+            value: Line 4
+          - dps_val: 16
+            value: Line 5
+          - dps_val: 32
+            value: Line 6
+          - dps_val: 64
+            value: Line 7
+          - dps_val: 128
+            value: Line 8
+          - dps_val: 256
+            value: Line 9
+          - dps_val: 512
+            value: Line 10
+          - dps_val: 1024
+            value: Line 11
+          - dps_val: 2048
+            value: Line 12
+          - dps_val: 4096
+            value: Line 13
+          - dps_val: 8192
+            value: Line 14
+          - dps_val: 16384
+            value: Line 15
+          - dps_val: 32768
+            value: Line 16
+  - entity: select
+    name: Reporting rate
+    icon: "mdi:invoice-text-fast"
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: slow_mode
+            value: Slow
+          - dps_val: fast_mode
+            value: Fast

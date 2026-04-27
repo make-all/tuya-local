@@ -60,12 +60,20 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         # Set min and max color temp
         if self._color_temp_dps:
+            range_set = False
             m = self._color_temp_dps._find_map_for_dps(0, self._device)
             if m:
                 tr = m.get("target_range")
                 if tr:
                     self._attr_min_color_temp_kelvin = tr.get("min")
                     self._attr_max_color_temp_kelvin = tr.get("max")
+                    range_set = True
+            if not range_set:
+                r = self._color_temp_dps.range(self._device)
+                if r:
+                    # For lights that use K natively, use range
+                    self._attr_min_color_temp_kelvin = r[0]
+                    self._attr_max_color_temp_kelvin = r[1]
 
     @property
     def supported_color_modes(self):
