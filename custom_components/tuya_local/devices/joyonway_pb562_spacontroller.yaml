@@ -49,7 +49,39 @@ entities:
         type: boolean
         name: switch
 
-  # --- SCHEDULES (MINUTES FROM MIDNIGHT) ---
+  # --- SCHEDULES ACTIVATION ---
+  - entity: switch
+    name: Filtration Clock 1 Enable
+    icon: mdi:calendar-check
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Filtration Clock 2 Enable
+    icon: mdi:calendar-check
+    dps:
+      - id: 140
+        type: boolean
+        name: switch
+        
+  - entity: switch
+    name: Heating Clock 1 Enable
+    dps:
+      - id: 131
+        type: boolean
+        name: switch
+        
+  - entity: switch
+    name: Heating Clock 2 Enable
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+  
+# --- SCHEDULES TIME (HEAT) ---  
+  
   - entity: time
     name: Heating start
     icon: mdi:clock-start
@@ -71,9 +103,49 @@ entities:
         range:
           min: 0
           max: 1439
+          
+  - entity: time
+    name: Heating start clock 2
+    icon: mdi:clock-start
+    dps:
+      - id: 129
+        type: integer
+        name: minute
 
   - entity: time
-    name: Filtration start
+    name: Heating end clock 2
+    icon: mdi:clock-end
+    dps:
+      - id: 130
+        type: integer
+        name: minute
+
+# --- SCHEDULES TIME (FILTRATION) --- 
+
+  - entity: time
+    name: Filtration start clock 1
+    icon: mdi:clock-start
+    dps:
+      - id: 135
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: time
+    name: Filtration end clock 1
+    icon: mdi:clock-end
+    dps:
+      - id: 136
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: time
+    name: Filtration start clock 2
     icon: mdi:clock-start
     dps:
       - id: 137
@@ -84,7 +156,7 @@ entities:
           max: 1439
 
   - entity: time
-    name: Filtration end
+    name: Filtration end clock 2
     icon: mdi:clock-end
     dps:
       - id: 138
