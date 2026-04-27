@@ -1,7 +1,11 @@
-name: Ecostrad iQ Ceramic Radiator
+name: WiFi Radiator
 products:
   - id: g8szwifd3zgozoxt
-    name: Ecostrad iQ Ceramic WiFi Controlled Electric Radiator
+    manufacturer: Ecostrad
+    name: iQ Ceramic
+  - id: oqqreuepbc0g8lcg
+    manufacturer: Ecostrad
+    name: iQ Ceramic
 entities:
   - entity: climate
     translation_only_key: heater
@@ -32,8 +36,6 @@ entities:
           - dps_val: hot
             value: heat
           - dps_val: Program
-            value: program
-          - dps_val: program
             value: program
       - id: 24
         name: current_temperature
@@ -81,3 +83,37 @@ entities:
         type: integer
         optional: true
         unit: min
+  - entity: select
+    name: Open window detection
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+            icon: "mdi:window-closed"
+          - dps_val: 60
+            value: "60 mins"
+            icon: "mdi:window-open"
+          - dps_val: 90
+            value: "90 mins"
+            icon: "mdi:window-open"
+  - entity: select
+    name: PIR timeout
+    category: config
+    icon: "mdi:timer-settings-outline"
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "15"
+            value: "15 mins"
+          - dps_val: "30"
+            value: "30 mins"
+          - dps_val: "45"
+            value: "45 mins"
+          - dps_val: "60"
+            value: "60 mins"
