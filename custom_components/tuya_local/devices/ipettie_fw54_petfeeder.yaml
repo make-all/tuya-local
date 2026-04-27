@@ -1,6 +1,8 @@
-name: iPettie FW54 Master
+name: Pet feeder
 products:
   - id: tejdgn0tuyiq6vmt
+    manufacturer: iPettie
+    model: FW54
 entities:
   - entity: switch
     name: Water light
@@ -21,7 +23,6 @@ entities:
           min: 1
           max: 15
   - entity: binary_sensor
-    name: Problem
     class: problem
     category: diagnostic
     dps:
@@ -33,7 +34,7 @@ entities:
             value: false
           - value: true
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:paw"
     category: diagnostic
     dps:
