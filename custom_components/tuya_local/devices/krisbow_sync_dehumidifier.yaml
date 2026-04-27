@@ -25,7 +25,6 @@ entities:
         name: current_humidity
 
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 7
@@ -34,7 +33,6 @@ entities:
         unit: "°C"
 
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 6
@@ -43,7 +41,7 @@ entities:
         unit: "%"
 
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     dps:
       - id: 14
         type: boolean
@@ -93,7 +91,7 @@ entities:
           - dps_val: "colorful"
             value: Colorful
   - entity: select
-    name: Timer
+    translation_key: timer
     icon: "mdi:timer-outline"
     category: config
     dps:
