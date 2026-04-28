@@ -3,8 +3,7 @@ name: Dual channel energy meter
 products:
   - id: zcmq0kvd01bn6s1n
     manufacturer: WMDL
-    model: Smart Energy Meter WIFI Bidirectional 2 Channel
-    model_id: WMDL-2C
+    model: WMDL-2C
 entities:
   - entity: sensor
     translation_key: power_x
@@ -183,7 +182,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Forward Energy B
+    name: Forward energy B
     class: energy
     icon: mdi:transmission-tower-import
     dps:
@@ -196,7 +195,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Reverse Energy B
+    name: Reverse energy B
     class: energy
     icon: mdi:transmission-tower-export
     dps:
@@ -209,7 +208,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current State A
+    name: Current state A
     class: enum
     icon: mdi:swap-horizontal
     dps:
@@ -228,7 +227,7 @@ entities:
           - default: true
             value: unknown
   - entity: sensor
-    name: Current State B
+    name: Current state B
     class: enum
     icon: mdi:swap-horizontal
     dps:
