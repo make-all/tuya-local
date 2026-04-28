@@ -779,3 +779,4 @@ Further device support has been made with the assistance of users. Please consid
 - [deltaclock](https://github.com/deltaclock) for contributing support for Ideal Clima fancoil air condirioning indoor unit.
 - [medisoft](https://github.com/medisoft) for contributing support for WMDL 2C dual channel bidirectional energy meter.
 - [bluefroguk1](https://github.com/bluefroguk1) for contributing support for new variants of Ecostrad iQ ceramic radiator and elements.
+- [lboy](https://github.com/lboy) for contributing support for Krisbow Sync 36W dehumidifier.
