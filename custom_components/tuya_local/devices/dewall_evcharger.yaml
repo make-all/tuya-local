@@ -199,3 +199,20 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: button
+    name: Refresh
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 188
+        type: boolean
+        optional: true
+        name: button
+      - id: 188
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
