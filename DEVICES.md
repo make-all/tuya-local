@@ -504,6 +504,7 @@
 - Juro-Pro 2006 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
+- Krisbow Sync Dehumidifier 36W
 - Luko dehumidifier
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
@@ -523,7 +524,6 @@
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
-- Krisbow Sync Dehumidifier 36W
 
 ### Humidifiers
 
