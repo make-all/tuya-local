@@ -1,4 +1,3 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
 
 from ..const import NOVADRY_12SMART_DEHUMIDIFIER_PAYLOAD
