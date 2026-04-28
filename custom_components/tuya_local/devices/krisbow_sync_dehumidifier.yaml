@@ -48,16 +48,16 @@ entities:
         name: switch
       - id: 31
         type: string
-        name: effect
+        name: named_color
         mapping:
           - dps_val: "light_red"
             value: red
           - dps_val: "light_green"
-            value: green
+            value: lime
           - dps_val: "light_blue"
             value: blue
           - dps_val: "light_pink"
-            value: pink
+            value: magenta
           - dps_val: "light_white"
             value: white
           - dps_val: "light_yellow"
@@ -65,14 +65,24 @@ entities:
           - dps_val: "light_purple"
             value: purple
           - dps_val: "light_warm_yellow"
-            value: warm_white
+            value: lemonchiffon
           - dps_val: "light_orange"
             value: orange
           - dps_val: "colorful"
-            value: colorful
-
+            value: black
+            hidden: true
+      - id: 31
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colorful
+            value: Colorful
+          - dps_val: light_white
+            value: "off"
+          - value: "off"
+            hidden: true
   - entity: switch
-    name: Water Tank Reminder
+    name: Water tank reminder
     category: config
     dps:
       - id: 25
