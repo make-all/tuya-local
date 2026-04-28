@@ -1,11 +1,11 @@
-name: WiFi Radiator Element
+name: Radiator element
 products:
   - id: keq3x2tw6plbbipm
     manufacturer: Ecostrad
     model: iQ WiFi Element
 entities:
   - entity: climate
-    translation_only_key: thermostat
+    translation_key: thermostat
     dps:
       - id: 1
         type: boolean
@@ -90,23 +90,25 @@ entities:
           max: 5
   - entity: select
     name: Open window detection
+    translation_key: timer
     category: config
     dps:
       - id: 108
         type: string
         name: option
         mapping:
-          - dps_val: 0
-            value: "Off"
+          - dps_val: "0"
+            value: cancel
             icon: "mdi:window-closed"
-          - dps_val: 60
-            value: "60 mins"
+          - dps_val: "60"
+            value: "1h"
             icon: "mdi:window-open"
-          - dps_val: 90
-            value: "90 mins"
+          - dps_val: "90"
+            value: "1h30m"
             icon: "mdi:window-open"
   - entity: number
     name: Boost time
+    class: duration
     category: config
     dps:
       - id: 111
