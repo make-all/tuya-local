@@ -26,8 +26,8 @@
 - Devola Intelligent and Patio heaters
 - Dynasty BTX fireplace
 - Ecostrad Accent iQ heating panel
-- Ecostrad iQ ceramic radiator
-- Ecostrad iQ heating element
+- Ecostrad iQ ceramic radiators
+- Ecostrad iQ heating elements
 - Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
