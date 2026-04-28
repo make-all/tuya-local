@@ -1,4 +1,4 @@
-name: Krisbow Sync Dehumidifier 36W
+name: Dehumidifier
 products:
   - id: ymfznwejbhviuhjk
     manufacturer: Krisbow
@@ -32,14 +32,6 @@ entities:
         name: sensor
         unit: "°C"
 
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-
   - entity: switch
     translation_key: sleep
     dps:
@@ -47,21 +39,9 @@ entities:
         type: boolean
         name: switch
 
-  - entity: select
-    name: Water Tank Reminder
-    category: config
-    dps:
-      - id: 25
-        type: string
-        name: option
-        mapping:
-          - dps_val: "on"
-            value: "on"
-          - dps_val: "off"
-            value: "off"
-
   - entity: light
-    name: Indicator Light
+    translation_key: indicator
+    category: config
     dps:
       - id: 29
         type: boolean
@@ -71,39 +51,52 @@ entities:
         name: effect
         mapping:
           - dps_val: "light_red"
-            value: Red
+            value: red
           - dps_val: "light_green"
-            value: Green
+            value: green
           - dps_val: "light_blue"
-            value: Blue
+            value: blue
           - dps_val: "light_pink"
-            value: Pink
+            value: pink
           - dps_val: "light_white"
-            value: White
+            value: white
           - dps_val: "light_yellow"
-            value: Yellow
+            value: yellow
           - dps_val: "light_purple"
-            value: Purple
+            value: purple
           - dps_val: "light_warm_yellow"
-            value: Warm Yellow
+            value: warm_white
           - dps_val: "light_orange"
-            value: Orange
+            value: orange
           - dps_val: "colorful"
-            value: Colorful
+            value: colorful
+
+  - entity: switch
+    name: Water Tank Reminder
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+
   - entity: select
     translation_key: timer
-    icon: "mdi:timer-outline"
     category: config
     dps:
       - id: 17
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "Off"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1h"
-            value: "1 Hour"
+            value: "1h"
           - dps_val: "2h"
-            value: "2 Hours"
+            value: "2h"
           - dps_val: "3h"
-            value: "3 Hours"
+            value: "3h"
