@@ -100,6 +100,7 @@ entities:
   - entity: sensor
     translation_key: energy_consumed
     class: energy
+    icon: mdi:transmission-tower-import
     dps:
       - id: 119
         type: integer
@@ -112,6 +113,7 @@ entities:
   - entity: sensor
     translation_key: energy_produced
     class: energy
+    icon: mdi:transmission-tower-export
     dps:
       - id: 121
         type: integer
@@ -158,6 +160,7 @@ entities:
     translation_placeholders:
       x: A
     class: energy
+    icon: mdi:transmission-tower-import
     dps:
       - id: 17
         type: integer
@@ -172,6 +175,7 @@ entities:
     translation_placeholders:
       x: A
     class: energy
+    icon: mdi:transmission-tower-export
     dps:
       - id: 115
         type: integer
@@ -182,7 +186,9 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Forward energy B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     icon: mdi:transmission-tower-import
     dps:
@@ -195,7 +201,9 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Reverse energy B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     icon: mdi:transmission-tower-export
     dps:
