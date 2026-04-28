@@ -131,6 +131,7 @@
 - Haier Airmart wall air conditioner
 - Hokkaido HKEDM 263 ZL air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
+- Ideal Clima TQCT07 fancoil air conditioner
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner

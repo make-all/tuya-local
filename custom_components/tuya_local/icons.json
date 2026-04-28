@@ -54,45 +54,185 @@
             }
         },
         "climate": {
+            "aircon_extra": {
+                "default": "mdi:air-conditioner",
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "mdi:heart-pulse",
+                            "medhigh": "mdi:fan-chevron-up",
+                            "medlow": "mdi:fan-chevron-down",
+                            "natural": "mdi:leaf",
+                            "quiet": "mdi:weather-night",
+                            "sleep": "mdi:sleep",
+                            "strong": "mdi:weather-hurricane"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "mdi:arrow-up",
+                            "top": "mdi:arrow-top-right",
+                            "middle": "mdi:arrow-right",
+                            "down": "mdi:arrow-bottom-right",
+                            "downmost": "mdi:arrow-down",
+                            "upper_half": "mdi:arrow-expand-up",
+                            "lower_half": "mdi:arrow-expand-down",
+                            "surround": "mdi:cached"
+                        }
+                    },
+                    "swing_horizontal_mode": {
+                        "state": {
+                            "leftmost": "mdi:arrow-left",
+                            "left": "mdi:arrow-bottom-left",
+                            "middle": "mdi:arrow-down",
+                            "right": "mdi:arrow-bottom-right",
+                            "rightmost": "mdi:arrow-right",
+                            "left_half": "mdi:arrow-expand-left",
+                            "right_half": "mdi:arrow-expand-right",
+                            "surround": "mdi:sync"
+                        }
+                    }
+                }
+            },
             "cold_water": {
                 "default": "mdi:snowflake",
                 "state": {
                     "off": "mdi:snowflake-off"
                 }
             },
+            "combo_floor": {
+                "default": "mdi:heating-coil",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "mdi:snowflake",
+                            "fan_only": "mdi:fan",
+                            "heat": "mdi:fire",
+                            "floor_cool": "mdi:snowflake-melt",
+                            "floor_heat": "mdi:heat-wave"
+                        }
+                    }
+                }
+            },
             "heater": {
                 "default": "mdi:radiator",
                 "state": {
                     "off": "mdi:radiator-off"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "mdi:signal-cellular-1",
+                            "medium": "mdi:signal-cellular-2",
+                            "high": "mdi:signal-cellular-3",
+                            "program_1": "mdi:numeric-1-circle",
+                            "program_2": "mdi:numeric-2-circle",
+                            "program_3": "mdi:numeric-3-circle",
+                            "standby": "mdi:power-standby",
+                            "fan_only": "mdi:fan"
+                        }
+                    }
                 }
             },
             "swing_as_powerlevel": {
                 "default": "mdi:radiator",
                 "state": {
                     "off": "mdi:radiator-off"
+                },
+                "state_attributes": {
+                    "swing_mode": {
+                        "state": {
+                            "stop": "mdi:stop",
+                            "auto": "mdi:auto-mode"
+                        }
+                    }
                 }
             },
             "oven": {
-                "default": "mdi:stove"
+                "default": "mdi:stove",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "mdi:pot-steam",
+                            "fresh_steam": "mdi:pot-steam",
+                            "high_temp_steam": "mdi:pot-steam",
+                            "stew": "mdi:pot-steam",
+                            "bake_up_and_down": "mdi:stove",
+                            "bbq": "mdi:grill",
+                            "bottom_hot_air": "mdi:stove",
+                            "on_strong_roast": "mdi:stove",
+                            "3d_hot_air": "mdi:stove",
+                            "air_fry": "mdi:weather-hurricane",
+                            "steam_frying": "mdi:pot-steam",
+                            "one_click_bread": "mdi:baguette",
+                            "quick_heat": "mdi:flash",
+                            "keep_warm": "mdi:heat-wave",
+                            "unfreeze": "mdi:snowflake-melt",
+                            "fermentation": "mdi:yeast",
+                            "descale": "mdi:scale-bathroom",
+                            "local_recipes": "mdi:script-text",
+                            "drying": "mdi:tumble-dryer",
+                            "custom": "mdi:shape",
+                            "low_steaming": "mdi:pot-steam",
+                            "medium_steaming": "mdi:pot-steam",
+                            "high_steaming": "mdi:pot-steam",
+                            "steaming": "mdi:pot-steam",
+                            "hot_air_baking": "mdi:stove",
+                            "disinfect": "mdi:sun-wireless"
+                        }
+                    }
+                }
             },
             "pool_heatpump": {
                 "default": "mdi:pool",
                 "state": {
                     "heat": "mdi:hot-tub",
                     "cool": "mdi:snowflake"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "mdi:fire",
+                            "smart_cool": "mdi:snowflake",
+                            "quick_heat": "mdi:fire-alert",
+                            "quick_cool": "mdi:snowflake-alert",
+                            "quiet_heat": "mdi:fire-circle",
+                            "quiet_cool": "mdi:snowflake-check",
+                            "auto": "mdi:auto-mode",
+                            "smart": "mdi:home-automation",
+                            "quick": "mdi:flash",
+                            "quiet": "mdi:sleep"
+                        }
+                    }
                 }
             },
             "thermostat": {
                 "default": "mdi:thermostat",
                 "state_attributes": {
+                    "fan-mode": {
+                        "state": {
+                            "cycle": "mdi:auto-renew"
+                        }
+                    },
                     "preset_mode": {
                         "state": {
-                            "auto": "mdi:thermostat-auto",
-                            "comfort_1": "mdi:home-heart",
-                            "comfort_2": "mdi:home-heart",
-                            "manual": "mdi:hand-back-right",
-                            "program": "mdi:calendar-clock",
-                            "temp_override": "mdi:calendar-lock"
+                            "manual": "mdi:thermostat-cog",
+                            "program": "mdi:thermostat-auto",
+                            "temp_override": "mdi:calendar-lock",
+                            "perm_override": "mdi:calendar-lock-open"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "default": "mdi:thermostat",
+                "state": {
+                    "off": "mdi:thermostat-off"
+                },
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "mdi:pause"
                         }
                     }
                 }
@@ -365,7 +505,8 @@
                     "medium": "mdi:signal-cellular-2",
                     "high": "mdi:signal-cellular-3",
                     "rapid_clean": "mdi:broom",
-                    "schedule": "mdi:calendar-clock"
+                    "schedule": "mdi:calendar-clock",
+                    "sleep": "mdi:sleep"
                 }
             },
             "activation_mode": {
