@@ -182,7 +182,7 @@ class TestGoldairHeater(
         self.assertIsNone(self.subject.max_humidity)
         self.assertIsNone(self.subject.current_humidity)
         with self.assertRaises(NotImplementedError):
-            self.subject.target_humidity
+            self.subject.target_humidity  # noqa: B018
 
     async def test_set_humidity_unsupported(self):
         with self.assertRaises(NotImplementedError):

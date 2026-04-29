@@ -14,7 +14,7 @@ import custom_components.tuya_local as root
 
 def get_translations():
     translations = join(dirname(root.__file__), "translations")
-    for path, dirs, files in walk(translations):
+    for path, _, files in walk(translations):
         for file in files:
             if fnmatch(file, "*.json") and file != "en.json":
                 yield (file, load_json(join(path, file)))

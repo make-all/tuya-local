@@ -52,12 +52,15 @@ select = [
   "E",     # pycodestyle
   "W",     # pycodestyle warnings
 #  "S",     # flake8-bandit
-#  "B",     # flake8-bugbear
+  "B",     # flake8-bugbear
   "A",    # flake8-builtins
 ]
 ignore = [
   "E501",  # Duplicate of format rule, hits on tests
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**.py" = ["B011", "B028"]
 
 [tool.uv.build-backend]
 module-name = ["custom_components.tuya_local", "util"]

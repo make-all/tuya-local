@@ -23,7 +23,7 @@ class BasicTextTests:
         mode=TextMode.TEXT,
         pattern=None,
         testdata=None,
-        extra_state={},
+        extra_state=None,
     ):
         self.basicText = subject
         self.basicTextDp = dp
@@ -32,7 +32,7 @@ class BasicTextTests:
         self.basicTextMode = mode
         self.basicTextPattern = pattern
         self.basicTextTestData = testdata
-        self.basicTextExtra = extra_state
+        self.basicTextExtra = extra_state or {}
 
     def test_text_min_value(self):
         if self.basicTextMin is not None:

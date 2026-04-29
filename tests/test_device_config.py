@@ -311,7 +311,7 @@ KNOWN_DPS = {
 def test_can_find_config_files():
     """Test that the config files can be found by the parser."""
     found = False
-    for cfg in available_configs():
+    for _ in available_configs():
         found = True
         break
     assert found

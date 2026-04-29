@@ -55,7 +55,7 @@ class TuyaLocalEntity:
         own_name = self._config.name
         if not own_name and not self.use_device_name:
             # super has the translation logic
-            own_name = getattr(super(), "name")
+            own_name = super().name
         return own_name
 
     @property

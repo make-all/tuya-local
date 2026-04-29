@@ -939,10 +939,14 @@ class TuyaDpsConfig:
 
         return c_match
 
-    def get_values_to_set(self, device, value, pending_map={}):
+    def get_values_to_set(self, device, value, pending_map=None):
         """Return the dps values that would be set when setting to value"""
         result = value
         dps_map = {}
+
+        if pending_map is None:
+            pending_map = {}
+
         if self.readonly:
             return dps_map
 
