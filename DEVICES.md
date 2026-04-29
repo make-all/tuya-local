@@ -510,6 +510,7 @@
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
+- NovaDry 12 Smart dehumidifier
 - NWT WDH-02EM dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
