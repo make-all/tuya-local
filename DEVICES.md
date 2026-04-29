@@ -1084,6 +1084,7 @@ port and password.
 
 ### Alarm control panels
 
+- Aixi-SHS Big siren alarm system
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
