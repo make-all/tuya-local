@@ -56,24 +56,26 @@ entities:
         name: lock
   - entity: select
     name: Open window detection
+    translation_key: timer
     category: config
     dps:
       - id: 108
         type: string
         name: option
         mapping:
-          - dps_val: 0
-            value: "Off"
+          - dps_val: "0"
+            value: cancel
             icon: "mdi:window-closed"
-          - dps_val: 60
-            value: "60 mins"
+          - dps_val: "60"
+            value: "1h"
             icon: "mdi:window-open"
-          - dps_val: 90
-            value: "90 mins"
+          - dps_val: "90"
+            value: "1h30m"
             icon: "mdi:window-open"
   - entity: select
     name: PIR timeout
     category: config
+    translation_key: timer
     icon: "mdi:timer-settings-outline"
     dps:
       - id: 104
@@ -81,13 +83,13 @@ entities:
         name: option
         mapping:
           - dps_val: "15"
-            value: "15 mins"
+            value: "15m"
           - dps_val: "30"
-            value: "30 mins"
+            value: "30m"
           - dps_val: "45"
-            value: "45 mins"
+            value: "45m"
           - dps_val: "60"
-            value: "60 mins"
+            value: "1h"
   - entity: switch
     name: Time sync
     category: config
