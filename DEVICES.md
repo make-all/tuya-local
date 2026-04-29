@@ -780,7 +780,7 @@ the best option.
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
 - Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch
-- TY-12W 12 switch relay board
+- TY-12W/24W 12/24 switch relay boards (boards with 8 - 24 relays supported)
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
