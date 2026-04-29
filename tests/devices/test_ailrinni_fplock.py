@@ -6,7 +6,7 @@ from .base_device_tests import TuyaDeviceTestCase
 
 BATTERY_DP = "8"
 UNLOCK_FP_DP = "12"
-UNLOCK_PWD_DP = "13"
+UNLOCK_PWD_DP = "13"  # noqa: S105
 UNLOCK_DYN_DP = "14"
 UNLOCK_BLE_DP = "19"
 ALERT_DP = "21"
