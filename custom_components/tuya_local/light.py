@@ -501,11 +501,20 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     ),
                 }
 
+        # On packed dps where switch / brightness / effect all share the same
+        # dp id (e.g. dp 51 with different masks), the original `id not in
+        # settings` check incorrectly skipped the switch-on merge once any
+        # other masked sub-field had populated settings. For masked dps it's
+        # always safe to merge — get_values_to_set with pending_map=settings
+        # will OR onto the existing pending value.
         if (
             self._switch_dps
             and not self._switch_dps.readonly
             and not self.is_on
-            and self._switch_dps.id not in settings
+            and (
+                self._switch_dps.mask is not None
+                or self._switch_dps.id not in settings
+            )
         ):
             _LOGGER.info("%s turning light on", self._config.config_id)
             settings = settings | self._switch_dps.get_values_to_set(
@@ -514,7 +523,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         elif (
             self._brightness_dps
             and not self.is_on
-            and self._brightness_dps.id not in settings
+            and (
+                self._brightness_dps.mask is not None
+                or self._brightness_dps.id not in settings
+            )
         ):
             bright = 255
             r = self._brightness_dps.range(self._device)
@@ -532,7 +544,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             self._effect_dps
             and not self.is_on
             and "off" in self._effect_dps.values(self._device)
-            and self._effect_dps.id not in settings
+            and (
+                self._effect_dps.mask is not None
+                or self._effect_dps.id not in settings
+            )
         ):
             # Special case for lights with effect that has off state, but no switch or brightness
             on_value = self._effect_dps.default
