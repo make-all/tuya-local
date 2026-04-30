@@ -988,7 +988,7 @@ of device.
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
-- ILIFE V20, A12, A30 pro vacuum cleaners
+- ILIFE A12, A30 pro, V20, V30 vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
