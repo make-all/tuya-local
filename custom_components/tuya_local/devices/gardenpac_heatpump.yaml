@@ -5,6 +5,7 @@ products:
     model: InverTech GHD-150-0356
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -12,12 +13,8 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
-            icon_priority: 1
           - dps_val: true
-            value: "heat"
-            icon: "mdi:hot-tub"
-            icon_priority: 3
+            value: heat
       - id: 102
         name: current_temperature
         type: integer
@@ -56,9 +53,9 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: sleep
+            value: quiet
           - dps_val: true
-            value: activity
+            value: smart
   - entity: sensor
     name: Power level
     icon: "mdi:signal"
