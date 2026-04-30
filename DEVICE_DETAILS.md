@@ -17,6 +17,19 @@ your manufacturer's branded app, but there are a few devices where that is
 not the case and you will need to decide whether you are willing to potentially
 lose access to some functionality (such as mapping for some vacuum cleaners).
 
+For pool heat pumps paired through the Smarter Pool OEM app, the device may
+not be visible from Tuya Smart or Smart Life without re-pairing. In that case,
+[smarterpool-auth](https://github.com/nicolas-albert/smarterpool-tuya-auth)
+can retrieve the Tuya device ID, local key, DPS values and schema from a
+Smarter Pool account:
+
+```sh
+npx smarterpool-auth <email-or-phone> <password> --show-secrets
+```
+
+Do not share the output publicly, as the local key allows local control of the
+device.
+
 If you log on to your Developer Portal account, under Cloud you should
 be able to get a list of your devices, which contains the "Device ID".
 If you don't see them, check your server is set correctly at the top
