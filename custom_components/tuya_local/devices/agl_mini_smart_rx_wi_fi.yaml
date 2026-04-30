@@ -1,0 +1,222 @@
+name: Gate lock
+products:
+  - id: e8ztbq4effpb0nmw
+    manufacturer: AGL
+    name: Mini Smart RX Wi-Fi
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 118
+        type: boolean
+        name: control
+        optional: true
+        mapping:
+          - dps_val: true
+            value: close
+          - dps_val: false
+            value: open
+      - id: 3
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: true
+            value: closed
+          - dps_val: false
+            value: opened
+  - entity: select
+    category: config
+    name: Beep
+    icon: 'mdi:volume-high'
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: Silencioso
+            value: Mute
+          - dps_val: Baixo
+            value: Low
+          - dps_val: Medio
+            value: Medium
+          - dps_val: Alto
+            value: High
+  - entity: switch
+    category: config
+    name: Allow intercom unlock
+    icon: 'mdi:doorbell'
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Allow exit button unlock
+    icon: 'mdi:gesture-tap-button'
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Allow RF remote unlock
+    icon: 'mdi:nfc-variant'
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Auto close
+    icon: 'mdi:lock-check-outline'
+    dps:
+      - id: 108
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Allow inside button unlock
+    icon: 'mdi:gesture-tap-button'
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+  - entity: number
+    category: config
+    name: Fast close delay
+    icon: 'mdi:timer'
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+        unit: s
+  - entity: number
+    category: config
+    icon: 'mdi:clock-end'
+    name: Auto close timeout
+    dps:
+      - id: 115
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 1200
+        unit: s
+  - entity: number
+    category: config
+    icon: 'mdi:alarm'
+    name: Open door alarm delay
+    mode: box
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: s
+
+  - entity: number
+    category: config
+    name: Record tag ID
+    icon: 'mdi:nfc-variant'
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 2000
+  - entity: number
+    category: config
+    name: Delete tag ID
+    icon: 'mdi:nfc-variant-off'
+    dps:
+      - id: 110
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100000
+
+  - entity: switch
+    category: config
+    name: Open door notification
+    icon: 'mdi:bell-alert'
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Close door notification
+    icon: 'mdi:bell-check'
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Intercom notifications
+    icon: 'mdi:doorbell'
+    dps:
+      - id: 120
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Button notifications
+    icon: 'mdi:gesture-tap-button'
+    dps:
+      - id: 121
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Mobile notifications
+    icon: 'mdi:message-alert'
+    dps:
+      - id: 122
+        name: switch
+        type: boolean
+  - entity: select
+    category: config
+    name: Backup options
+    icon: 'mdi:backup-restore'
+    dps:
+      - id: 114
+        name: option
+        type: string
+        mapping:
+          - dps_val: Selecionar
+            value: Select
+          - dps_val: Upload
+            value: Upload
+          - dps_val: Download
+            value: Download
+
+  - entity: binary_sensor
+    name: Door contact
+    class: door
+    dps:
+      - id: 124
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: Door alarm
+    class: problem
+    dps:
+      - id: 125
+        name: sensor
+        type: boolean
+
+  - entity: binary_sensor
+    name: Mechanical key unlock
+    class: door
+    dps:
+      - id: 129
+        name: sensor
+        type: boolean
