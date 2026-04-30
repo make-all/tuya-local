@@ -540,7 +540,7 @@ def test_config_files_parse(mocker):
             if entity.config_id in entities:
                 pytest.fail(
                     f"\n::error file={fname},line={entity._config.__line__}::"
-                    "Duplicate entity {entity.config_id} in {cfg}"
+                    f"Duplicate entity {entity.config_id} in {cfg}"
                 )
             entities.append(entity.config_id)
 
