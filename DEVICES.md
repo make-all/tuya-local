@@ -1003,8 +1003,9 @@ of device.
 - OPK K2 vacuum cleaner
 - Parkside PPWD 30 A1 workshop vacuum
 - Proscenic M9, 850T vacuum cleaners
-- Realme TechLife robot vacuum cleaner
+- Realme TechLife vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Rowenta X-plorer 75 S vacuum cleaner
 - Tefal X-plorer serie 75 animal vacuum
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
