@@ -1,6 +1,6 @@
 name: Honiture G20 Robot Vacuum and Mop
 products:
-  - id: ela0pxryflaldubr
+  - id: rxmacvgkaz640r4q
     manufacturer: Honiture
     model: G20
 entities:
@@ -15,16 +15,18 @@ entities:
         mapping:
           - dps_val: standby
             value: stop
+          - dps_val: smart
+            value: clean
           - dps_val: spiral
             value: clean_spot
           - dps_val: wall_follow
             value: wall_follow
           - dps_val: chargego
             value: return_to_base
-          - dps_val: partial_bow
-            value: partial_bow
           - dps_val: random
             value: random
+          - dps_val: partial_bow
+            value: partial_bow
       - id: 4
         type: string
         name: direction_control
@@ -36,7 +38,7 @@ entities:
             value: reverse
           - dps_val: turn_left
             value: left
-          - dps_val: turnn_right
+          - dps_val: turn_right
             value: right
           - dps_val: stop
             value: stop
@@ -44,28 +46,34 @@ entities:
         type: string
         name: status
         mapping:
-          - dps_val: "standby"
+          - dps_val: standby
             value: standby
-          - dps_val: "smart_clean"
+          - dps_val: smart_clean
             value: cleaning
-          - dps_val: "wall_clean"
+          - dps_val: wall_clean
             value: cleaning
-          - dps_val: "spot_clean"
+          - dps_val: spot_clean
             value: cleaning
-          - dps_val: "room_clean"
+          - dps_val: mop_clean
             value: cleaning
-          - dps_val: "goto_charge"
+          - dps_val: random_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: clean_done
             value: returning
-          - dps_val: "charging"
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
             value: charging
-          - dps_val: "charge_done"
+          - dps_val: charging_dc
+            value: charging
+          - dps_val: charge_done
             value: charged
-          - dps_val: "cleaning"
-            value: cleaning
-          - dps_val: "sleep"
-            value: sleep
-          - dps_val: "in_trouble"
+          - dps_val: fault
             value: error
+          - dps_val: sleep
+            value: sleep
       - id: 14
         type: string
         name: fan_speed
@@ -76,6 +84,7 @@ entities:
             value: Normal
           - dps_val: strong
             value: Strong
+
   - entity: sensor
     class: battery
     dps:
@@ -84,6 +93,87 @@ entities:
         name: sensor
         unit: "%"
         class: measurement
+
+  - entity: sensor
+    name: Edge brush life
+    category: diagnostic
+    icon: "mdi:brush"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Roll brush life
+    category: diagnostic
+    icon: "mdi:brush"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: button
+    name: Reset edge brush
+    category: config
+    icon: "mdi:brush"
+    dps:
+      - id: 10
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Reset roll brush
+    category: config
+    icon: "mdi:brush"
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Reset filter
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Seek robot
+    category: config
+    icon: "mdi:magnify"
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+
+  - entity: sensor
+    name: Cleaning area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "m²"
+        class: measurement
+
   - entity: sensor
     name: Cleaning time
     category: diagnostic
@@ -94,6 +184,7 @@ entities:
         type: integer
         name: sensor
         unit: min
+
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -115,33 +206,20 @@ entities:
           - dps_val: 0
             value: ok
           - dps_val: 1
-            value: wheel_overload
+            value: edge_sweep
           - dps_val: 2
-            value: side_brush_entanglement
-          - dps_val: 3
-            value: brush_abnormality
+            value: middle_sweep
           - dps_val: 4
-            value: dustbin_not_installed
-          - dps_val: 5
-            value: left_collision_stuck
-          - dps_val: 6
-            value: right_collision_stuck
-          - dps_val: 7
-            value: machine_off_ground
+            value: left_wheel
           - dps_val: 8
-            value: front_drop_trigger
-          - dps_val: 9
-            value: left_drop_trigger
-          - dps_val: 10
-            value: right_drop_trigger
-          - dps_val: 11
-            value: fan_abnormality
-          - dps_val: 12
-            value: water_tank_not_installed
-          - dps_val: 13
-            value: magnetic_field_abnormality
-          - dps_val: 14
-            value: slippage_abnormality
+            value: right_wheel
+          - dps_val: 16
+            value: garbage_box
+          - dps_val: 32
+            value: land_check
+          - dps_val: 64
+            value: collision
+
   - entity: select
     translation_key: mopping
     category: config
@@ -151,9 +229,81 @@ entities:
         name: option
         type: string
         mapping:
-          - dps_val: closed
-            value: "off"
           - dps_val: low
             value: low
+          - dps_val: middle
+            value: medium
           - dps_val: high
             value: high
+
+  - entity: select
+    name: Work mode
+    category: config
+    icon: "mdi:robot-vacuum"
+    dps:
+      - id: 24
+        name: option
+        type: string
+        mapping:
+          - dps_val: only_sweep
+            value: sweep only
+          - dps_val: only_mop
+            value: mop only
+          - dps_val: both_work
+            value: sweep and mop
+
+  - entity: switch
+    name: Carpet boost
+    category: config
+    icon: "mdi:rug"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Carpet detection
+    category: config
+    icon: "mdi:rug"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+
+  - entity: select
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: vol_mute
+            value: mute
+          - dps_val: vol_normal
+            value: normal
+          - dps_val: vol_max
+            value: max
+
+  - entity: select
+    name: Language
+    category: config
+    icon: "mdi:translate"
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: english
+            value: English
+          - dps_val: german
+            value: German
+          - dps_val: french
+            value: French
+          - dps_val: italian
+            value: Italian
+          - dps_val: spanish
+            value: Spanish
+          - dps_val: japanese
+            value: Japanese
