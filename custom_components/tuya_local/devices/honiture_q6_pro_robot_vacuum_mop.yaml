@@ -77,7 +77,6 @@ entities:
     name: Current clean time
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 107
         type: integer
@@ -87,13 +86,12 @@ entities:
   - entity: sensor
     name: Current clean area
     category: diagnostic
-    icon: "mdi:floor-plan"
+    class: area
     dps:
       - id: 108
         type: integer
         name: sensor
         unit: "m²"
-        class: measurement
 
   - entity: select
     translation_key: mopping
@@ -114,7 +112,6 @@ entities:
   - entity: switch
     translation_key: do_not_disturb
     category: config
-    icon: "mdi:bell-off"
     dps:
       - id: 113
         type: boolean
@@ -123,7 +120,6 @@ entities:
   - entity: number
     translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 114
         type: integer
@@ -136,7 +132,6 @@ entities:
     name: Total clean time
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 116
         type: integer
@@ -146,13 +141,12 @@ entities:
   - entity: sensor
     name: Total clean area
     category: diagnostic
-    icon: "mdi:floor-plan"
+    class: area
     dps:
       - id: 117
         type: integer
         name: sensor
         unit: "m²"
-        class: measurement
 
   - entity: sensor
     name: Total clean count
@@ -167,7 +161,6 @@ entities:
   - entity: sensor
     name: Side brush time
     category: diagnostic
-    icon: "mdi:brush"
     dps:
       - id: 119
         type: integer
@@ -178,7 +171,6 @@ entities:
   - entity: sensor
     name: Main brush life
     category: diagnostic
-    icon: "mdi:brush"
     dps:
       - id: 120
         type: integer
@@ -189,7 +181,6 @@ entities:
   - entity: sensor
     translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 121
         type: integer
@@ -215,7 +206,6 @@ entities:
   - entity: switch
     name: Auto boost
     category: config
-    icon: "mdi:rug"
     dps:
       - id: 137
         type: boolean
@@ -224,7 +214,6 @@ entities:
   - entity: binary_sensor
     name: Mop attached
     class: connectivity
-    icon: "mdi:water"
     dps:
       - id: 138
         type: boolean
@@ -233,7 +222,6 @@ entities:
   - entity: switch
     name: Mop only mode
     category: config
-    icon: "mdi:water"
     dps:
       - id: 141
         type: boolean
@@ -242,7 +230,6 @@ entities:
   - entity: switch
     name: Deep clean
     category: config
-    icon: "mdi:vacuum"
     dps:
       - id: 142
         type: boolean
@@ -251,7 +238,6 @@ entities:
   - entity: switch
     name: Room mode
     category: config
-    icon: "mdi:floor-plan"
     dps:
       - id: 144
         type: boolean
