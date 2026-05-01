@@ -1,40 +1,229 @@
-name: Water meter
+name: Smart Water Monitor
 products:
   - id: 89tojzdfimssmkuk
     manufacturer: Frizzlife
     model: LP365P
+    name: Frizzlife LP365P
+  - id: eb0a8e6c88ec94012fduxa
+    manufacturer: Frizzlife
+    model: LP365P
+    name: Frizzlife LP365P
+  - id: eb1a9dccd17a663803qmrt
+    manufacturer: Frizzlife
+    model: LP365
+    name: Frizzlife LP365
 entities:
   # Valve
   - entity: valve
+    name: Valve
     class: water
     dps:
       - id: 1
         type: boolean
         name: valve
 
-  # Temperature sensor
+  # --- CONFIGURATION ---
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 20
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "f"
+            value: "Fahrenheit"
+          - dps_val: "c"
+            value: "Celsius"
+
+  - entity: select
+    name: Volume Units
+    category: config
+    icon: "mdi:ruler-square"
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "us_units"
+            value: "Gallon"
+          - dps_val: "metric_unit"
+            value: "Liter"
+
+  # --- STATUS / DIAGNOSTICS ---
   - entity: sensor
+    name: System Status
+    class: enum
+    category: diagnostic
+    icon: "mdi:information-outline"
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Normal"
+          - dps_val: 1
+            value: "Warning"
+          - dps_val: 2
+            value: "Empty Pipe"
+          - dps_val: 3
+            value: "Fault"
+
+  # Leak Warning
+  - entity: binary_sensor
+    class: moisture
+    name: Leak Warning
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+
+  # Leak Alarm
+  - entity: binary_sensor
+    class: problem
+    name: Leak Alarm
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+
+  - entity: binary_sensor
+    class: problem
+    name: Low Temperature Alarm
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+
+  # Alarm Clear Button
+  - entity: button
+    name: Alarm Clear
+    category: config
+    icon: "mdi:alarm-off"
+    dps:
+      - id: 125
+        type: string
+        name: button
+        optional: true
+
+  # --- TEMPERATURE (Optional & Dynamic based on DPS 20) ---
+  - entity: sensor
+    name: Water Temperature
     class: temperature
     dps:
       - id: 12
         type: integer
+        optional: true
+        name: sensor
+        unit: F
+        class: measurement
+        mapping:
+          - scale: 10.0
+        range:
+          min: -40
+          max: 212
+      - id: 20
+        type: string
+        name: available
+        mapping:
+          - dps_val: "f"
+            value: true
+          - value: false
+
+  - entity: sensor
+    name: Water Temperature
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
         mapping:
-          - scale: 10
+          - scale: 10.0
+        range:
+          min: -40
+          max: 100
+      - id: 20
+        type: string
+        name: available
+        mapping:
+          - dps_val: "c"
+            value: true
+          - value: false
 
-  # Protection Enabled Switch
-  - entity: switch
-    name: Protection Enabled
+  # --- PRESSURE (Optional) ---
+  - entity: sensor
+    name: Water Pressure
+    class: pressure
     dps:
-      - id: 101
-        type: boolean
-        name: switch
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: psi
+        class: measurement
+        mapping:
+          - scale: 10.0
+        range:
+          min: 0
+          max: 99999
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
 
-  # Volume Today
+  - entity: sensor
+    name: Water Pressure
+    class: pressure
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        unit: bar
+        class: measurement
+        mapping:
+          - scale: 100.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
+
+  # --- VOLUME & FLOW ---
   - entity: sensor
     class: water
+    name: Volume Today
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        class: total_increasing
+        unit: gal
+        mapping:
+          - scale: 10.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
+
+  - entity: sensor
+    class: water
+    name: Volume Today
     dps:
       - id: 103
         type: integer
@@ -43,12 +232,38 @@ entities:
         class: total_increasing
         unit: L
         mapping:
-          - scale: 10
+          - scale: 10.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
-  # Flow rate
   - entity: sensor
     class: volume_flow_rate
-    name: Average flow rate
+    name: Flow Rate per Hour
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        unit: gal/h
+        mapping:
+          - scale: 1.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
+
+  - entity: sensor
+    class: volume_flow_rate
+    name: Flow Rate per Hour
     dps:
       - id: 104
         type: integer
@@ -56,11 +271,38 @@ entities:
         name: sensor
         class: measurement
         unit: L/h
+        mapping:
+          - scale: 1.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
-  # Current flow rate
   - entity: sensor
     class: volume_flow_rate
-    name: Current flow rate
+    name: Flow Rate
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+        unit: gal/min
+        mapping:
+          - scale: 1000.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "us_units"
+            value: true
+          - value: false
+
+  - entity: sensor
+    class: volume_flow_rate
+    name: Flow Rate
     dps:
       - id: 105
         type: integer
@@ -68,35 +310,25 @@ entities:
         class: measurement
         unit: L/h
         mapping:
-          - scale: 1000
-  # Leak Warning
-  - entity: binary_sensor
-    class: moisture
-    dps:
-      - id: 106
-        type: boolean
-        name: sensor
+          - scale: 1000.0
+      - id: 102
+        type: string
+        name: available
+        mapping:
+          - dps_val: "metric_unit"
+            value: true
+          - value: false
 
-  # Leak Alarm
-  - entity: binary_sensor
-    name: Leak alarm
-    class: problem
+  # --- MODES & LIMITS ---
+  - entity: switch
+    name: Protection Enabled
     dps:
-      - id: 107
+      - id: 101
         type: boolean
-        name: sensor
+        name: switch
 
-  # Alarm Clear Button
-  - entity: button
-    name: Alarm clear
-    dps:
-      - id: 108
-        type: boolean
-        name: button
-
-  # Protection Mode Select
   - entity: select
-    name: Protection mode
+    name: Protection Mode
     category: config
     dps:
       - id: 109
@@ -108,9 +340,9 @@ entities:
           - dps_val: "ADVANCED_SETTING"
             value: "Advanced"
 
-  # AUTO Mode #
+  # AUTO Mode
   - entity: select
-    name: "Auto mode"
+    name: AUTO Mode
     category: config
     dps:
       - id: 110
@@ -127,13 +359,13 @@ entities:
         type: string
         name: available
         mapping:
-          - dps_val: AUTO
+          - dps_val: "AUTO"
             value: true
           - value: false
 
-  # ADVANCED Mode #
+  # ADVANCED Mode
   - entity: select
-    name: "Advanced mode"
+    name: ADVANCED Mode
     category: config
     dps:
       - id: 111
@@ -150,124 +382,202 @@ entities:
         type: string
         name: available
         mapping:
-          - dps_val: ADVANCED_SETTING
+          - dps_val: "ADVANCED_SETTING"
             value: true
           - value: false
 
-  # Mode4 allowed flow time
+  # Allowed flow time (Dynamic Redirect)
   - entity: number
-    name: Allowed flow time
-    class: duration
+    name: Advanced Allowed Flow Time
     category: config
     dps:
-      - id: 109
-        type: string
-        name: available
-        mapping:
-          - dps_val: ADVANCED_SETTING
-            value: true
-          - value: false
       - id: 111
         type: string
         name: value
         unit: min
         range:
-          min: 18
-          max: 180
+          min: 1
+          max: 1000
         mapping:
-          - dps_val: mode4
-            step: 6
-            value_redirect: mode4_val
-          - dps_val: mode5
-            step: 6
-            value_redirect: mode5_val
-          - dps_val: mode6
-            step: 6
-            value_redirect: mode6_val
+          - dps_val: "mode4"
+            value_redirect: mode4_time
+          - dps_val: "mode5"
+            value_redirect: mode5_time
+          - dps_val: "mode6"
+            value_redirect: mode6_time
       - id: 112
         type: integer
-        name: mode4_val
-        precision: 0
-        range:
-          min: 3
-          max: 30
+        name: mode4_time
         mapping:
-          - scale: 0.1666666667
+          - scale: 1.0
       - id: 113
         type: integer
-        name: mode5_val
-        precision: 0
-        range:
-          min: 3
-          max: 30
+        name: mode5_time
         mapping:
-          - scale: 0.1666666667
+          - scale: 1.0
       - id: 114
         type: integer
-        name: mode6_val
-        precision: 0
-        range:
-          min: 3
-          max: 30
+        name: mode6_time
         mapping:
-          - scale: 0.1666666667
-
-  # Mode4 allowed flow volume
-  - entity: number
-    name: Allowed flow volume
-    category: config
-    dps:
+          - scale: 1.0
       - id: 109
         type: string
         name: available
         mapping:
-          - dps_val: ADVANCED_SETTING
+          - dps_val: "ADVANCED_SETTING"
             value: true
           - value: false
+
+  # Allowed flow volume (Imperial - Dynamic Redirect)
+  - entity: number
+    name: Advanced Allowed Flow Volume
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: value
+        unit: gal
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - dps_val: "mode4"
+            value_redirect: mode4_vol
+          - dps_val: "mode5"
+            value_redirect: mode5_vol
+          - dps_val: "mode6"
+            value_redirect: mode6_vol
+      - id: 115
+        type: integer
+        name: mode4_vol
+        mapping:
+          - scale: 10.0
+      - id: 116
+        type: integer
+        name: mode5_vol
+        mapping:
+          - scale: 10.0
+      - id: 117
+        type: integer
+        name: mode6_vol
+        mapping:
+          - scale: 10.0
+      - id: 102
+        type: string
+        name: unit_system
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            constraint: unit_system
+            conditions:
+              - dps_val: "us_units"
+                value: true
+          - value: false
+
+  # Allowed flow volume (Metric - Dynamic Redirect)
+  - entity: number
+    name: Advanced Allowed Flow Volume
+    category: config
+    dps:
       - id: 111
         type: string
         name: value
         unit: L
         range:
           min: 0
-          max: 5000
+          max: 20000
         mapping:
-          - dps_val: mode4
-            step: 100
-            value_redirect: mode4_val
-          - dps_val: mode5
-            step: 100
-            value_redirect: mode5_val
-          - dps_val: mode6
-            step: 100
-            value_redirect: mode6_val
+          - dps_val: "mode4"
+            value_redirect: mode4_vol
+          - dps_val: "mode5"
+            value_redirect: mode5_vol
+          - dps_val: "mode6"
+            value_redirect: mode6_vol
       - id: 115
         type: integer
-        name: mode4_val
-        range:
-          min: 0
-          max: 50
+        name: mode4_vol
         mapping:
-          - dps_val: 0
-            value: 50
-          - scale: 0.01
+          - scale: 100.0
       - id: 116
         type: integer
-        name: mode5_val
-        range:
-          min: 0
-          max: 50
+        name: mode5_vol
         mapping:
-          - dps_val: 0
-            value: 50
-          - scale: 0.01
+          - scale: 100.0
       - id: 117
         type: integer
-        name: mode6_val
-        range:
-          min: 0
-          max: 50
+        name: mode6_vol
+        mapping:
+          - scale: 100.0
+      - id: 102
+        type: string
+        name: unit_system
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            constraint: unit_system
+            conditions:
+              - dps_val: "metric_unit"
+                value: true
+          - value: false
+
+  # Advanced: Allowed Flow Rate
+  - entity: switch
+    name: Allow Minimal Flow
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
+
+  - entity: select
+    name: Allowed Minimal Flow Rate
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: option
         mapping:
           - dps_val: 0
-            value: 50
-          - scale: 0.01
+            value: "0.01 Gal / 2.5 L"
+          - dps_val: 1
+            value: "0.02 Gal / 5.0 L"
+          - dps_val: 2
+            value: "0.03 Gal / 7.5 L"
+          - dps_val: 3
+            value: "0.04 Gal / 10.0 L"
+          - dps_val: 4
+            value: "0.05 Gal / 12.5 L"
+          - dps_val: 5
+            value: "0.06 Gal / 15.0 L"
+          - dps_val: 6
+            value: "0.07 Gal / 17.5 L"
+          - dps_val: 7
+            value: "0.08 Gal / 20.0 L"
+          - dps_val: 8
+            value: "0.09 Gal / 22.5 L"
+          - dps_val: 9
+            value: "0.10 Gal / 25.0 L"
+      - id: 109
+        type: string
+        name: mode_system
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            constraint: mode_system
+            conditions:
+              - dps_val: "ADVANCED_SETTING"
+                value: true
+          - value: false
