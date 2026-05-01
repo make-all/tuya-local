@@ -97,7 +97,6 @@ entities:
   - entity: sensor
     name: Edge brush life
     category: diagnostic
-    icon: "mdi:brush"
     dps:
       - id: 7
         type: integer
@@ -108,7 +107,6 @@ entities:
   - entity: sensor
     name: Roll brush life
     category: diagnostic
-    icon: "mdi:brush"
     dps:
       - id: 8
         type: integer
@@ -119,7 +117,6 @@ entities:
   - entity: sensor
     translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 9
         type: integer
@@ -130,7 +127,6 @@ entities:
   - entity: button
     name: Reset edge brush
     category: config
-    icon: "mdi:brush"
     dps:
       - id: 10
         type: boolean
@@ -139,7 +135,6 @@ entities:
   - entity: button
     name: Reset roll brush
     category: config
-    icon: "mdi:brush"
     dps:
       - id: 11
         type: boolean
@@ -148,7 +143,6 @@ entities:
   - entity: button
     name: Reset filter
     category: config
-    icon: "mdi:air-filter"
     dps:
       - id: 12
         type: boolean
@@ -166,19 +160,17 @@ entities:
   - entity: sensor
     name: Cleaning area
     category: diagnostic
-    icon: "mdi:floor-plan"
+    class: area
     dps:
       - id: 16
         type: integer
         name: sensor
         unit: "m²"
-        class: measurement
 
   - entity: sensor
     name: Cleaning time
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 17
         type: integer
@@ -246,16 +238,15 @@ entities:
         type: string
         mapping:
           - dps_val: only_sweep
-            value: sweep only
+            value: Sweep only
           - dps_val: only_mop
-            value: mop only
+            value: Mop only
           - dps_val: both_work
-            value: sweep and mop
+            value: Sweep and mop
 
   - entity: switch
     name: Carpet boost
     category: config
-    icon: "mdi:rug"
     dps:
       - id: 101
         type: boolean
@@ -264,16 +255,14 @@ entities:
   - entity: switch
     name: Carpet detection
     category: config
-    icon: "mdi:rug"
     dps:
       - id: 102
         type: boolean
         name: switch
 
   - entity: select
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 104
         name: option
@@ -289,7 +278,6 @@ entities:
   - entity: select
     translation_key: language
     category: config
-    icon: "mdi:translate"
     dps:
       - id: 105
         name: option
