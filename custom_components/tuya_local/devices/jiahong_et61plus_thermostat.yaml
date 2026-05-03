@@ -203,15 +203,18 @@ entities:
             value: "5+1+1 (Adaptive)"
   - entity: number
     category: config
-    name: Floor sensor power
+    name: Power setting
     class: power
     dps:
       - id: 116
         type: integer
-        name: option
+        name: value
+        unit: W
         range:
           min: 0
           max: 4500
+        mapping:
+          - scale: 10
   - entity: binary_sensor
     class: problem
     category: diagnostic
