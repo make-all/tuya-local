@@ -275,8 +275,7 @@
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308, C236T thermostat smartplugs
-- Jiahong ET-44W thermostat (also sold under the TheroLife brand)
-- Jiahong ET-72W thermostat (branded Warmme in the app)
+- Jiahong ET-44W, ET-61, ET-72W thermostats (also sold under the ThermoLife, and Warmme brands)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
 - Konlen WF72TT/WF96TT dual temperature controller
