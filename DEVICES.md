@@ -1090,6 +1090,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
+- eTiger S6 alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
@@ -1277,6 +1278,7 @@ port and password.
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
+- Nobito air quality monitor
 - Palicy EC Pro 4 pool chlorinator
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
