@@ -1,0 +1,296 @@
+name: Alarm system
+products:
+  - id: 3deebgnmuusydlxa
+    manufacturer: eTiger
+    model: S6
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 101
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: armed
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+      - id: 125
+        type: string
+        name: device_info
+      - id: 128
+        type: utf16b64
+        optional: true
+        name: history
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Normal
+            value: true
+          - value: false
+      - id: 102
+        type: string
+        name: reason
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: English
+            value: english
+          - dps_val: French
+            value: french
+          - dps_val: Italian
+            value: italian
+          - dps_val: German
+            value: german
+          - dps_val: Spanish
+            value: spanish
+          - dps_val: Danish
+            value: danish
+          - dps_val: Dutch
+            value: dutch
+          - dps_val: Portuguese
+            value: portuguese
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "off"
+            value: false
+          - value: true
+      - id: 104
+        type: string
+        name: status
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    icon: "mdi:location-exit"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    icon: "mdi:location-enter"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: siren
+    dps:
+      - id: 108
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 9
+      - id: 111
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "ON"
+            value: true
+          - dps_val: "OFF"
+            value: false
+  - entity: number
+    name: Ring count
+    category: config
+    icon: "mdi:phone-ring"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 1
+          max: 9
+  - entity: number
+    name: Dial attempts
+    category: config
+    icon: "mdi:phone-missed"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 1
+          max: 9
+  - entity: switch
+    name: Mobile
+    icon: "mdi:phone"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Phone control
+    icon: "mdi:phone-dial"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: switch
+    name: SMS arming notifications
+    category: config
+    icon: "mdi:message-check"
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: switch
+    name: SMS disarm notifications
+    category: config
+    icon: "mdi:message-check-outline"
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Exit tone
+    category: config
+    icon: "mdi:location-exit"
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Entry tone
+    category: config
+    icon: "mdi:location-enter"
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Arm/disarm tome
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Indoor siren
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wireless siren
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+  - entity: text
+    name: Password
+    category: config
+    icon: "mdi:form-textbox-password"
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        sensitive: true
+        hidden: true
+        name: value
+  - entity: text
+    name: Phone number
+    category: config
+    icon: "mdi:phone"
+    hidden: true
+    dps:
+      - id: 124
+        type: base64
+        optional: true
+        sensitive: true
+        name: value
+  - entity: text
+    name: Sub device config
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 126
+        type: base64
+        optional: true
+        name: value
+  - entity: event
+    translation_key: alarm
+    dps:
+      - id: 127
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 127
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 129
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 129
+        type: base64
+        optional: true
+        name: button
+        mapping:
+          - dps_val: AA==
+            value: true
