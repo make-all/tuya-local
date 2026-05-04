@@ -176,7 +176,7 @@
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
-- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
@@ -275,8 +275,7 @@
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308, C236T thermostat smartplugs
-- Jiahong ET-44W thermostat (also sold under the TheroLife brand)
-- Jiahong ET-72W thermostat (branded Warmme in the app)
+- Jiahong ET-44W, ET-61, ET-72W thermostats (also sold under the ThermoLife, and Warmme brands)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
 - Konlen WF72TT/WF96TT dual temperature controller
@@ -1036,6 +1035,7 @@ work reliably, even if listed below.
 
 - A03 siren
 - Airam S1WFAA siren
+- ECoolBuy Siren with temperature and humidity sensor
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect SWS07HA indoor siren
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
@@ -1090,6 +1090,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
+- eTiger S6 alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
@@ -1277,6 +1278,7 @@ port and password.
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
+- Nobito air quality monitor
 - Palicy EC Pro 4 pool chlorinator
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
