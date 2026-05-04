@@ -1,7 +1,7 @@
-name: ECS-974T Temperature Controller
+name: ECS-974T
 products:
   - id: hcsrgtxqugqadvms
-    name: ECS-974T
+    name: Elitech ECS-974T
 entities:
   - entity: climate
     dps:
@@ -37,8 +37,7 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
 
   # ------------------------------------------------
   # Diagnostic Sensors & Binary States
@@ -56,8 +55,7 @@ entities:
         mapping:
           - scale: 10
   - entity: binary_sensor
-    name: Defrost state
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 104
@@ -65,7 +63,7 @@ entities:
         name: sensor
         optional: true
   - entity: binary_sensor
-    name: Fan state
+    name: Fan
     class: running
     category: diagnostic
     dps:
@@ -73,15 +71,18 @@ entities:
         type: boolean
         name: sensor
         optional: true
-  - entity: sensor
-    name: Fault code
-    icon: mdi:alert
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 45
-        type: integer
+        type: bitfield
         name: sensor
         optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
 
   # ------------------------------------------------
   # Core Operations
@@ -99,7 +100,8 @@ entities:
   # Configuration: Timers & Delays
   # ------------------------------------------------
   - entity: number
-    name: Compressor on time fault limit
+    name: Compressor max on time
+    class: duration
     category: config
     icon: mdi:timer-alert
     dps:
@@ -111,10 +113,9 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
-    name: Compressor off time fault limit
+    name: Compressor max off time
+    class: duration
     category: config
     icon: mdi:timer-alert
     dps:
@@ -126,10 +127,9 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
     name: Compressor restart delay
+    class: duration
     category: config
     icon: mdi:timer-sync
     dps:
@@ -141,10 +141,9 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
     name: Power on delay
+    class: duration
     category: config
     icon: mdi:power-plug-outline
     dps:
@@ -156,10 +155,9 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
-    name: Drainage time
+    name: Drainage duration
+    class: duration
     category: config
     icon: mdi:water-pump
     dps:
@@ -171,14 +169,13 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
 
   # ------------------------------------------------
   # Configuration: Defrost Settings
   # ------------------------------------------------
   - entity: number
     name: Defrost interval
+    class: duration
     category: config
     icon: mdi:clock-outline
     dps:
@@ -190,10 +187,8 @@ entities:
         range:
           min: 1
           max: 250
-        mapping:
-          - step: 1
   - entity: select
-    name: Defrost counter type
+    name: Defrost interval method
     category: config
     icon: mdi:counter
     dps:
@@ -203,13 +198,14 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: compressor_run_time
+            value: Compressor run time
           - dps_val: "1"
-            value: real_time
+            value: Real time
           - dps_val: "2"
-            value: compressor_stop_time
+            value: Compressor stop time
   - entity: number
-    name: Defrost offset
+    name: Defrost power on offset
+    class: duration
     category: config
     icon: mdi:timer-sand
     dps:
@@ -221,10 +217,9 @@ entities:
         range:
           min: 0
           max: 59
-        mapping:
-          - step: 1
   - entity: number
-    name: Defrost endurance time
+    name: Defrost duration
+    class: duration
     category: config
     icon: mdi:timer-stop
     dps:
@@ -236,8 +231,6 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
     name: Defrost stop temperature
     class: temperature
@@ -252,8 +245,7 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: switch
     name: Defrost at power on
     category: config
@@ -269,7 +261,7 @@ entities:
           - dps_val: "1"
             value: true
   - entity: select
-    name: Defrost display lock
+    name: Defrost display mode
     category: config
     icon: mdi:monitor-lock
     dps:
@@ -279,11 +271,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: current_temperature
+            value: Current temperature
           - dps_val: "1"
-            value: lock_at_temperature
+            value: Lock at temperature
           - dps_val: "2"
-            value: display_def
+            value: Display DEF
 
   # ------------------------------------------------
   # Configuration: Fan Settings
@@ -302,10 +294,10 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
-    name: Fan activation differential
+    name: Fan hysteresis
+    class: temperature_delta
     category: config
     icon: mdi:thermometer-lines
     dps:
@@ -318,10 +310,10 @@ entities:
           min: 10
           max: 500
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
     name: Fan delay time
+    class: duration
     category: config
     icon: mdi:fan-clock
     dps:
@@ -333,8 +325,6 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: switch
     name: Defrost fan disable
     category: config
@@ -355,6 +345,7 @@ entities:
   # ------------------------------------------------
   - entity: number
     name: Power alarm override
+    class: duration
     category: config
     icon: mdi:alarm-light-off
     dps:
@@ -366,10 +357,9 @@ entities:
         range:
           min: 0
           max: 15
-        mapping:
-          - step: 1
   - entity: number
     name: Defrost alarm override
+    class: duration
     category: config
     icon: mdi:alarm-light-off
     dps:
@@ -381,10 +371,9 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
   - entity: number
     name: Temperature alarm override
+    class: duration
     category: config
     icon: mdi:alarm-light-off
     dps:
@@ -396,8 +385,6 @@ entities:
         range:
           min: 0
           max: 250
-        mapping:
-          - step: 1
 
   # ------------------------------------------------
   # Configuration: System & Display Parameters
@@ -435,7 +422,8 @@ entities:
   # Supplemental Undocumented DPs (Inferred)
   # ------------------------------------------------
   - entity: number
-    name: Temperature differential
+    name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: mdi:thermometer-lines
     dps:
@@ -448,10 +436,9 @@ entities:
           min: 10
           max: 500
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     class: temperature
     category: config
     dps:
@@ -464,10 +451,9 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
-    name: Low temperature limit
+    translation_key: minimum_temperature
     class: temperature
     category: config
     dps:
@@ -480,8 +466,7 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: select
     name: Defrost type
     category: config
@@ -493,9 +478,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: electric
+            value: Electric
           - dps_val: "1"
-            value: hot_gas
+            value: Hot gas
   - entity: switch
     name: Fan continuous operation
     category: config
@@ -524,8 +509,7 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
     name: Low alarm limit
     class: temperature
@@ -540,10 +524,9 @@ entities:
           min: -500
           max: 990
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
-    name: Room sensor calibration
+    translation_key: temperature_calibration
     category: config
     icon: mdi:tune-vertical
     dps:
@@ -556,8 +539,7 @@ entities:
           min: -100
           max: 100
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
   - entity: number
     name: Evaporator sensor calibration
     category: config
@@ -572,5 +554,4 @@ entities:
           min: -100
           max: 100
         mapping:
-          - step: 1
-            scale: 10
+          - scale: 10
