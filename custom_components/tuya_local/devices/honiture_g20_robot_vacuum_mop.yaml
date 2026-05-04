@@ -1,4 +1,4 @@
-name: Honiture G20 Robot Vacuum and Mop
+name: Robot vacuum and mop
 products:
   - id: rxmacvgkaz640r4q
     manufacturer: Honiture
@@ -49,15 +49,15 @@ entities:
           - dps_val: standby
             value: standby
           - dps_val: smart_clean
-            value: cleaning
+            value: smart_clean
           - dps_val: wall_clean
-            value: cleaning
+            value: wall_clean
           - dps_val: spot_clean
-            value: cleaning
+            value: spot_clean
           - dps_val: mop_clean
-            value: cleaning
+            value: mop_clean
           - dps_val: random_clean
-            value: cleaning
+            value: random_clean
           - dps_val: cleaning
             value: cleaning
           - dps_val: clean_done
@@ -74,16 +74,19 @@ entities:
             value: error
           - dps_val: sleep
             value: sleep
+      - id: 13
+        type: boolean
+        name: locate
       - id: 14
         type: string
         name: fan_speed
         mapping:
           - dps_val: gentle
-            value: Gentle
+            value: low
           - dps_val: normal
-            value: Normal
+            value: medium
           - dps_val: strong
-            value: Strong
+            value: high
 
   - entity: sensor
     class: battery
@@ -141,19 +144,10 @@ entities:
         name: button
 
   - entity: button
-    name: Reset filter
+    translation_key: filter_reset
     category: config
     dps:
       - id: 12
-        type: boolean
-        name: button
-
-  - entity: button
-    name: Seek robot
-    category: config
-    icon: "mdi:magnify"
-    dps:
-      - id: 13
         type: boolean
         name: button
 
@@ -229,20 +223,19 @@ entities:
             value: high
 
   - entity: select
-    name: Work mode
+    translation_key: cleaning_mode
     category: config
-    icon: "mdi:robot-vacuum"
     dps:
       - id: 24
         name: option
         type: string
         mapping:
           - dps_val: only_sweep
-            value: Sweep only
+            value: sweep
           - dps_val: only_mop
-            value: Mop only
+            value: mop
           - dps_val: both_work
-            value: Sweep and mop
+            value: sweep_and_mop
 
   - entity: switch
     name: Carpet boost
@@ -284,14 +277,14 @@ entities:
         type: string
         mapping:
           - dps_val: english
-            value: English
+            value: english
           - dps_val: german
-            value: German
+            value: german
           - dps_val: french
-            value: French
+            value: french
           - dps_val: italian
-            value: Italian
+            value: italian
           - dps_val: spanish
-            value: Spanish
+            value: spanish
           - dps_val: japanese
-            value: Japanese
+            value: japanese
