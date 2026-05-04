@@ -334,6 +334,7 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
+                    self._last_full_poll = 0  # ensure we start with a full poll
 
                 needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
                 if now - last_cache > self._CACHE_TIMEOUT or (
@@ -404,6 +405,7 @@ class TuyaLocalDevice(object):
             except CancelledError:
                 self._running = False
                 # Close the persistent connection when exiting the loop
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -415,6 +417,7 @@ class TuyaLocalDevice(object):
                     type(t).__name__,
                     t,
                 )
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
