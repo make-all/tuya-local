@@ -1,4 +1,4 @@
-name: Refrigeration thermostat
+name: ECS-974T
 products:
   - id: hcsrgtxqugqadvms
     name: Elitech ECS-974T
@@ -83,6 +83,10 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+        optional: true
 
   # ------------------------------------------------
   # Core Operations
