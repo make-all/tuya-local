@@ -13,10 +13,19 @@ entities:
         type: boolean
         name: pause
         optional: true
-      - id: 103
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: smart
+            value: clean
+          - dps_val: chargego
+            value: return_to_base
+      - id: 13
         type: boolean
-        name: return_to_base
-        optional: true
+        name: locate
       - id: 105
         type: string
         name: status
@@ -224,6 +233,14 @@ entities:
     category: config
     dps:
       - id: 141
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Charge switch
+    category: config
+    dps:
+      - id: 103
         type: boolean
         name: switch
 
