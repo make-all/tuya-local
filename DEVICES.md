@@ -257,6 +257,7 @@
 - EARU Electronic K6H-3A-W thermostat
 - Elko EKO07262 thermostat
 - EleChico CCST6001 thermostat
+- Elitech ECS-974T refrigeration thermostat
 - Emmeti Zona thermostat
 - Engo E901WiFi thermostat
 - Essentials Wall thermostat

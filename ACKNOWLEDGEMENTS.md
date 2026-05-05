@@ -782,3 +782,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lboy](https://github.com/lboy) for contributing support for Krisbow Sync 36W dehumidifier.
 - [uhodav](https://github.com/uhodav) for contributing improvements to Ukrainian translations.
 - [casualg1t](https://github.com/casualg1t) for contributing support for Poolex JetLine Premium FI pool heat pump.
+- [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
