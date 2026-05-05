@@ -1107,9 +1107,14 @@ class TuyaDpsConfig:
             else:
                 decoded_value = self.decode_value(raw_current, device)
 
+            # When the device hasn't reported this dp yet (e.g. an `optional`
+            # masked dp that the device only sends after first being written),
+            # treat the current value as zero so we can OR our masked bits in
+            # cleanly. Otherwise the first write of a masked field would fail
+            # with "Cannot mask unknown current value".
             if decoded_value is None:
-                raise ValueError("Cannot mask unknown current value")
-            elif isinstance(decoded_value, int):
+                decoded_value = 0
+            if isinstance(decoded_value, int):
                 current_value = decoded_value
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
                 # Only convert back to bytes if the DP is actually hex/base64

@@ -802,6 +802,28 @@ def test_setting_masked_hex(mocker):
     assert cfg.get_values_to_set(mock_device, 0xCA) == {"1": "cabe"}
 
 
+def test_setting_masked_hex_when_current_value_is_unknown(mocker):
+    """Masked write must not fail when the device hasn't reported the dp yet.
+
+    Optional masked dps are only sent by some devices after first being
+    written, so the first write must succeed against an unknown current value.
+    Treating it as zero gives a clean OR onto the new bits in the masked
+    region while leaving everything else at zero.
+    """
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "hex",
+        "mask": "ff00",
+        "optional": True,
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = None
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_values_to_set(mock_device, 0xCA) == {"1": "ca00"}
+
+
 def test_default_without_mapping(mocker):
     """Test that default returns None when there is no mapping"""
     mock_entity = mocker.MagicMock()

@@ -157,6 +157,12 @@ class TuyaLocalDevice(object):
         # The number of failures from a working protocol before retrying other protocols.
         self._AUTO_FAILURE_RESET_COUNT = 10
         self._lock = Lock()
+        # Serialises the read-modify-write window for entities that share a
+        # packed dp (e.g. multiple sub-entity lights writing to dp 51 with
+        # different masks). Without this, two concurrent async_turn_on calls
+        # both read the same baseline before either updates pending, then the
+        # second's pending update clobbers the first.
+        self._set_lock = asyncio.Lock()
 
     @property
     def name(self):

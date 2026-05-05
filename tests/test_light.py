@@ -153,6 +153,57 @@ async def test_async_turn_on_with_white_param():
 
 
 @pytest.mark.asyncio
+async def test_async_turn_on_with_brightness_on_packed_dp():
+    """Switch-on must merge cleanly when the dp is shared across sub-fields.
+
+    On packed dps where switch / brightness / color all share the same dp id
+    (e.g. dp 51 with different masks), the switch-on branch was previously
+    skipped once the brightness branch had populated `settings[dp_id]`,
+    leaving the bulb with brightness staged but not actually on.
+
+    For masked switch dps, the merge is always safe — `get_values_to_set`
+    with `pending_map=settings` ORs onto the existing pending value — so the
+    final write contains the switch byte AND the brightness bytes.
+    """
+    mock_device = AsyncMock()
+    mock_device.get_property = Mock()
+    # Bulb currently off: switch byte (mask 0001) is 0, brightness is 0.
+    dps = {"1": "000000000000"}
+    mock_device.get_property.side_effect = lambda arg: dps[arg]
+    mock_config = Mock()
+    config = TuyaEntityConfig(
+        mock_config,
+        {
+            "entity": "light",
+            "dps": [
+                {
+                    "id": "1",
+                    "name": "switch",
+                    "type": "hex",
+                    "mask": "000100000000",
+                },
+                {
+                    "id": "1",
+                    "name": "brightness",
+                    "type": "hex",
+                    "mask": "0000FFFF0000",
+                    "range": {"min": 0, "max": 1000},
+                },
+            ],
+        },
+    )
+    light = TuyaLocalLight(mock_device, config)
+    await light.async_turn_on(brightness=255)
+    mock_device.async_set_properties.assert_called_once()
+    sent = mock_device.async_set_properties.call_args[0][0]
+    sent_value = int(sent["1"], 16)
+    # brightness bytes set
+    assert sent_value & 0x0000FFFF0000 != 0
+    # switch byte also set (this is the bug — was zero before the fix)
+    assert sent_value & 0x000100000000 != 0
+
+
+@pytest.mark.asyncio
 async def test_is_off_when_off_by_brightness():
     """Test that the light appears off when turned off by brightness."""
     mock_device = AsyncMock()
