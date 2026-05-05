@@ -46,6 +46,7 @@ entities:
 
   - entity: sensor
     name: Top tank temperature
+    class: temperature
     category: diagnostic
     dps:
       - id: 21
@@ -56,12 +57,13 @@ entities:
 
   - entity: sensor
     name: Power consumption
+    class: energy
     dps:
       - id: 18
         type: integer
         name: sensor
         unit: kWh
-        class: energy
+        class: total_increasing
         mapping:
           - scale: 100
             step: 1
