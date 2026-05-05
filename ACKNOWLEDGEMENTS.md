@@ -749,7 +749,7 @@ Further device support has been made with the assistance of users. Please consid
 - [camcamnz](https://github.com/camcamnz) for contributing support for KRain KRX6 irrigation controller, which was merged with KRX8.
 - [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
 - [JxxIT](https://github.com/JxxIT) for contributing improvements to vscode config.
-- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light.
+- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light, Horiture G20 and Q6 Pro vacuums.
 - [numanx11](https://github.com/numanx11) for contributing support for Reventon / Holtop ERV heat recovery ventilator.
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
 - [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
