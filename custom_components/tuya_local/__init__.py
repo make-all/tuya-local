@@ -889,15 +889,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         get_device_id(entry.data),
     )
     config = {**entry.data, **entry.options, "name": entry.title}
-    try:
-        device = await hass.async_add_executor_job(setup_device, hass, config)
-        await device.async_refresh()
-
-    except Exception as e:
-        raise ConfigEntryNotReady("tuya-local device not ready") from e
-
-    if not device.has_returned_state:
-        raise ConfigEntryNotReady("tuya-local device offline")
 
     device_conf = await hass.async_add_executor_job(
         get_config,
@@ -906,6 +897,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
+
+    try:
+        device = await hass.async_add_executor_job(setup_device, hass, config)
+        # Pre-populate force_dps from device config so the nudge in
+        # _refresh_cached_state knows which DP to use on cold boot.
+        for e in device_conf.all_entities():
+            for dp in e.dps():
+                if dp.force and dp.id not in device._force_dps:
+                    device._force_dps.append(int(dp.id))
+        await device.async_refresh()
+
+    except Exception as e:
+        raise ConfigEntryNotReady("tuya-local device not ready") from e
+
+    if not device.has_returned_state:
+        raise ConfigEntryNotReady("tuya-local device offline")
 
     entities = set()
     for e in device_conf.all_entities():
