@@ -226,7 +226,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
-- Shuangri SR223 solar water heating controller 
+- Shuangri SR223 solar water heating controller
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Thermann R290 heat pump water heater
@@ -675,7 +675,7 @@
 - Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
-### Battery Charger
+### EV Chargers
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
@@ -704,6 +704,7 @@
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
+- Voldt 8-13A Charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
 
@@ -940,7 +941,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
-- BobYun Tech gatePro gate opener 
+- BobYun Tech gatePro gate opener
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
