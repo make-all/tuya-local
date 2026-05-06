@@ -1,0 +1,562 @@
+name: Refrigeration thermostat
+products:
+  - id: hcsrgtxqugqadvms
+    manufacturer: Elitech
+    model: ECS-974T
+entities:
+  - entity: climate
+    dps:
+      - id: 106
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: cool
+          - dps_val: false
+            value: "off"
+      - id: 103
+        type: boolean
+        name: hvac_action
+        optional: true
+        readonly: true
+        mapping:
+          - dps_val: true
+            value: cooling
+          - dps_val: false
+            value: idle
+      - id: 101
+        type: integer
+        name: current_temperature
+        readonly: true
+        mapping:
+          - scale: 10
+      - id: 107
+        type: integer
+        name: temperature
+        optional: true
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+
+  # ------------------------------------------------
+  # Diagnostic Sensors & Binary States
+  # ------------------------------------------------
+  - entity: sensor
+    name: Evaporator temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Fan
+    class: running
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+        optional: true
+
+  # ------------------------------------------------
+  # Core Operations
+  # ------------------------------------------------
+  - entity: switch
+    name: Manual defrost
+    icon: mdi:snowflake-melt
+    dps:
+      - id: 138
+        type: boolean
+        name: switch
+        optional: true
+
+  # ------------------------------------------------
+  # Configuration: Timers & Delays
+  # ------------------------------------------------
+  - entity: number
+    name: Compressor max on time
+    class: duration
+    category: config
+    icon: mdi:timer-alert
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Compressor max off time
+    class: duration
+    category: config
+    icon: mdi:timer-alert
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Compressor restart delay
+    class: duration
+    category: config
+    icon: mdi:timer-sync
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Power on delay
+    class: duration
+    category: config
+    icon: mdi:power-plug-outline
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Drainage duration
+    class: duration
+    category: config
+    icon: mdi:water-pump
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+
+  # ------------------------------------------------
+  # Configuration: Defrost Settings
+  # ------------------------------------------------
+  - entity: number
+    name: Defrost interval
+    class: duration
+    category: config
+    icon: mdi:clock-outline
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        optional: true
+        unit: h
+        range:
+          min: 1
+          max: 250
+  - entity: select
+    name: Defrost interval method
+    category: config
+    icon: mdi:counter
+    dps:
+      - id: 117
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Compressor run time
+          - dps_val: "1"
+            value: Real time
+          - dps_val: "2"
+            value: Compressor stop time
+  - entity: number
+    name: Defrost power on offset
+    class: duration
+    category: config
+    icon: mdi:timer-sand
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Defrost duration
+    class: duration
+    category: config
+    icon: mdi:timer-stop
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Defrost stop temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Defrost at power on
+    category: config
+    icon: mdi:power-settings
+    dps:
+      - id: 122
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: select
+    name: Defrost display mode
+    category: config
+    icon: mdi:monitor-lock
+    dps:
+      - id: 137
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Current temperature
+          - dps_val: "1"
+            value: Lock at temperature
+          - dps_val: "2"
+            value: Display DEF
+
+  # ------------------------------------------------
+  # Configuration: Fan Settings
+  # ------------------------------------------------
+  - entity: number
+    name: Fan stop temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Fan hysteresis
+    class: temperature_delta
+    category: config
+    icon: mdi:thermometer-lines
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 10
+          max: 500
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Fan delay time
+    class: duration
+    category: config
+    icon: mdi:fan-clock
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: switch
+    name: Defrost fan disable
+    category: config
+    icon: mdi:fan-off
+    dps:
+      - id: 127
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+
+  # ------------------------------------------------
+  # Configuration: Alarms & Overrides
+  # ------------------------------------------------
+  - entity: number
+    name: Power alarm override
+    class: duration
+    category: config
+    icon: mdi:alarm-light-off
+    dps:
+      - id: 131
+        type: integer
+        name: value
+        optional: true
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Defrost alarm override
+    class: duration
+    category: config
+    icon: mdi:alarm-light-off
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    name: Temperature alarm override
+    class: duration
+    category: config
+    icon: mdi:alarm-light-off
+    dps:
+      - id: 133
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 250
+
+  # ------------------------------------------------
+  # Configuration: System & Display Parameters
+  # ------------------------------------------------
+  - entity: switch
+    name: Evaporator sensor
+    category: config
+    icon: mdi:thermometer
+    dps:
+      - id: 120
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: switch
+    name: Decimal point display
+    category: config
+    icon: mdi:decimal-comma
+    dps:
+      - id: 134
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+
+  # ------------------------------------------------
+  # Supplemental Undocumented DPs (Inferred)
+  # ------------------------------------------------
+  - entity: number
+    name: Temperature hysteresis
+    class: temperature_delta
+    category: config
+    icon: mdi:thermometer-lines
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 10
+          max: 500
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: maximum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Defrost type
+    category: config
+    icon: mdi:heating-coil
+    dps:
+      - id: 115
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Electric
+          - dps_val: "1"
+            value: Hot gas
+  - entity: switch
+    name: Fan continuous operation
+    category: config
+    icon: mdi:fan-sync
+    dps:
+      - id: 128
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: number
+    name: High alarm limit
+    class: temperature
+    category: config
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low alarm limit
+    class: temperature
+    category: config
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    icon: mdi:tune-vertical
+    dps:
+      - id: 135
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Evaporator sensor calibration
+    category: config
+    icon: mdi:tune-vertical
+    dps:
+      - id: 136
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10

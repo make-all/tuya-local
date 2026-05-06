@@ -26,8 +26,8 @@
 - Devola Intelligent and Patio heaters
 - Dynasty BTX fireplace
 - Ecostrad Accent iQ heating panel
-- Ecostrad iQ ceramic radiator
-- Ecostrad iQ heating element
+- Ecostrad iQ ceramic radiators
+- Ecostrad iQ heating elements
 - Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
@@ -176,7 +176,7 @@
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
-- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
@@ -229,6 +229,7 @@
 - Shuangri SR223 solar water heating controller 
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
+- Tauclima DGN-250 heat pump water heater
 - Thermann R290 heat pump water heater
 - Thermex IF series V pro and Lima 80V hot water systems
 - Thermoval Aqua TI water heater
@@ -250,12 +251,14 @@
 - Beok TR9B _(rebadged as Vancoo and perhaps others)_, TR9B-AC2 thermostats
 - BHT-002-GALW and GABW thermostats _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- Computherm Q20 thermostat
 - Dr Heater DR-008 electric radiant floor thermostat
 - Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
 - Elko EKO07262 thermostat
 - EleChico CCST6001 thermostat
+- Elitech ECS-974T refrigeration thermostat
 - Emmeti Zona thermostat
 - Engo E901WiFi thermostat
 - Essentials Wall thermostat
@@ -274,8 +277,7 @@
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308, C236T thermostat smartplugs
-- Jiahong ET-44W thermostat (also sold under the TheroLife brand)
-- Jiahong ET-72W thermostat (branded Warmme in the app)
+- Jiahong ET-44W, ET-61, ET-72W thermostats (also sold under the ThermoLife, and Warmme brands)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
 - Konlen WF72TT/WF96TT dual temperature controller
@@ -420,7 +422,8 @@
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
-- Stirling FS1-40DC pedestal fan
+- Stirling FS1-40DC pedestal fan
+
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -504,6 +507,7 @@
 - Juro-Pro 2006 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
+- Krisbow Sync 36W dehumidifier
 - Luko dehumidifier
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
@@ -663,6 +667,7 @@
 - V-WIFI-DL02-ES energy consumption dual clamp meter
 - Veratti V4 3-phase energy meter circuit breaker
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
+- WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
@@ -777,7 +782,7 @@ the best option.
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
 - Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch
-- TY-12W 12 switch relay board
+- TY-12W/24W 12/24 switch relay boards (boards with 8 - 24 relays supported)
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
@@ -984,8 +989,9 @@ of device.
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
-- ILIFE V20, A12, A30 pro vacuum cleaners
+- ILIFE A12, A30 pro, V20, V30 vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
@@ -1000,8 +1006,9 @@ of device.
 - OPK K2 vacuum cleaner
 - Parkside PPWD 30 A1 workshop vacuum
 - Proscenic M9, 850T vacuum cleaners
-- Realme TechLife robot vacuum cleaner
+- Realme TechLife vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Rowenta X-plorer 75 S vacuum cleaner
 - Tefal X-plorer serie 75 animal vacuum
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
@@ -1031,6 +1038,7 @@ work reliably, even if listed below.
 
 - A03 siren
 - Airam S1WFAA siren
+- ECoolBuy Siren with temperature and humidity sensor
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect SWS07HA indoor siren
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
@@ -1081,9 +1089,11 @@ port and password.
 
 ### Alarm control panels
 
+- Aixi-SHS Big siren alarm system
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
+- eTiger S6 alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
@@ -1271,6 +1281,7 @@ port and password.
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
+- Nobito air quality monitor
 - Palicy EC Pro 4 pool chlorinator
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor

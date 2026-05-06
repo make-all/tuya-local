@@ -173,9 +173,12 @@ class DimmableLightTests:
         dps,
         subject,
         offval=0,
-        tests=[(100, 100)],
+        tests=None,
         no_off=False,
     ):
+        if tests is None:
+            tests = [(100, 100)]
+
         self.dimmableLight = subject
         self.dimmableLightDps = dps
         self.dimmableLightOff = offval

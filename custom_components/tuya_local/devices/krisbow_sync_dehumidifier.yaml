@@ -1,0 +1,112 @@
+name: Dehumidifier
+products:
+  - id: ymfznwejbhviuhjk
+    manufacturer: Krisbow
+    model: Sync Dehumidifier 36W
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "30"
+            value: 30
+          - dps_val: "40"
+            value: 40
+          - dps_val: "50"
+            value: 50
+      - id: 6
+        type: integer
+        name: current_humidity
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+      - id: 31
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "light_red"
+            value: red
+          - dps_val: "light_green"
+            value: lime
+          - dps_val: "light_blue"
+            value: blue
+          - dps_val: "light_pink"
+            value: magenta
+          - dps_val: "light_white"
+            value: white
+          - dps_val: "light_yellow"
+            value: yellow
+          - dps_val: "light_purple"
+            value: purple
+          - dps_val: "light_warm_yellow"
+            value: lemonchiffon
+          - dps_val: "light_orange"
+            value: orange
+          - dps_val: "colorful"
+            value: black
+            hidden: true
+      - id: 31
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colorful
+            value: Colorful
+          - dps_val: light_white
+            value: "off"
+          - value: "off"
+            hidden: true
+  - entity: switch
+    name: Water tank reminder
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"

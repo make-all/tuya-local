@@ -1,0 +1,191 @@
+name: Alarm siren
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Aixi-SHS
+#     model: Big
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 24
+        type: string
+        optional: true
+        name: zone_attribute
+  - entity: number
+    name: Exit delay
+    category: config
+    class: duration
+    icon: "mdi:location-exit"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 120
+  - entity: number
+    name: Entry delay
+    category: config
+    class: duration
+    icon: "mdi:location-enter"
+    dps:
+      - id: 28
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 120
+  - entity: number
+    class: duration
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 5
+  - entity: switch
+    translation_key: sound
+    dps:
+      - id: 25
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: switch
+    name: Low battery alarm
+    icon: "mdi:battery-alert-variant-outline"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: english
+            value: english
+          - dps_val: french
+            value: french
+          - dps_val: italian
+            value: italian
+          - dps_val: spanish
+            value: spanish
+          - dps_val: russian
+            value: russian
+          - dps_val: polish
+            value: polish
+  - entity: event
+    translation_key: alarm
+    dps:
+      - id: 26
+        type: utf16b64
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 26
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Sub class
+    icon: "mdi:cogs"
+    category: config
+    hidden: true
+    dps:
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: detector
+            value: Detector
+          - dps_val: remote_controller
+            value: Remote control
+          - dps_val: wired_detector
+            value: Wired detector
+          - dps_val: rfid
+            value: RFID
+          - dps_val: doorbell_door_lock
+            value: Doorbell lock
+          - dps_val: alarm
+            value: Alarm
+          - dps_val: others
+            value: Other
+  - entity: select
+    name: Sub type
+    icon: "mdi:cogs"
+    category: config
+    hidden: true
+    dps:
+      - id: 37
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: motion_sensor
+            value: Motion sensor
+          - dps_val: contact_sensor
+            value: Contact sensor
+          - dps_val: remote_controller
+            value: Remote control
+          - dps_val: others
+            value: Other
+  - entity: text
+    name: Sub admin
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 38
+        type: base64
+        optional: true
+        name: value
