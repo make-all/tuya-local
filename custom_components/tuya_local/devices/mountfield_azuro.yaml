@@ -1,0 +1,112 @@
+name: Pool heat pump
+products:
+  - id: vw4rtznkehten691
+    manufacturer: Mountfield
+    model: Azuro
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: hvac_mode_switch
+            conditions:
+              - dps_val: Auto
+                value: auto
+              - dps_val: Cooling
+                value: cool
+              - dps_val: Heating
+                value: heat
+
+      - id: 4
+        name: hvac_mode_switch
+        type: string
+        hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: "°C"
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+
+  - entity: sensor
+    class: temperature
+    translation_key: ambient_temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    class: temperature
+    name: Heatcoil temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 256
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: temperature
+    name: Compressor temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    class: temperature
+    name: Input water temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: sensor
+    class: temperature
+    name: Output water temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "°C"
