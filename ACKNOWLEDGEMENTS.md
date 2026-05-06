@@ -684,7 +684,7 @@ Further device support has been made with the assistance of users. Please consid
 - [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
 - [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
 - [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
-- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve.
+- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve and improvements to Royal Clima Fresh air conditioner.
 - [wfsyd](https://github.com/wfsyd) for contributing support for Mercator ceiling fan with lights, which was merged with Ovlaim ceiling fan with lights.
 - [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.
 - [ben-h-a](https://github.com/ben-h-a) for contributing support for Xtuos dual pet feeder.
@@ -749,7 +749,7 @@ Further device support has been made with the assistance of users. Please consid
 - [camcamnz](https://github.com/camcamnz) for contributing support for KRain KRX6 irrigation controller, which was merged with KRX8.
 - [MatsNI](https://github.com/MatsNI) for contributing improvements to EChief SGH01 planter.
 - [JxxIT](https://github.com/JxxIT) for contributing improvements to vscode config.
-- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light.
+- [starfire0606](https://github.com/starfire0606) for contributing support for RGB48 RGBIC string light, Horiture G20 and Q6 Pro vacuums.
 - [numanx11](https://github.com/numanx11) for contributing support for Reventon / Holtop ERV heat recovery ventilator.
 - [terryfork](https://github.com/terryfork) for contributing support for Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch.
 - [belleDESiRE](https://github.com/belleDESiRE) for contributing improvements to Saswell C16 thermostat.
@@ -781,3 +781,7 @@ Further device support has been made with the assistance of users. Please consid
 - [bluefroguk1](https://github.com/bluefroguk1) for contributing support for new variants of Ecostrad iQ ceramic radiator and elements.
 - [lboy](https://github.com/lboy) for contributing support for Krisbow Sync 36W dehumidifier.
 - [uhodav](https://github.com/uhodav) for contributing improvements to Ukrainian translations.
+- [casualg1t](https://github.com/casualg1t) for contributing support for Poolex JetLine Premium FI pool heat pump.
+- [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
+- [slv96](https://github.com/slv96) for contributing support for Tauclima DGN-250 heat pump water heater.
+- - [mbze430](https://github.com/mbze430) for contributing support for Humhold low profile ceiling fan with RGB+CW lights.

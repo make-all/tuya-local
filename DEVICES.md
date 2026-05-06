@@ -176,7 +176,7 @@
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
-- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
@@ -229,6 +229,7 @@
 - Shuangri SR223 solar water heating controller 
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
+- Tauclima DGN-250 heat pump water heater
 - Thermann R290 heat pump water heater
 - Thermex IF series V pro and Lima 80V hot water systems
 - Thermoval Aqua TI water heater
@@ -257,6 +258,7 @@
 - EARU Electronic K6H-3A-W thermostat
 - Elko EKO07262 thermostat
 - EleChico CCST6001 thermostat
+- Elitech ECS-974T refrigeration thermostat
 - Emmeti Zona thermostat
 - Engo E901WiFi thermostat
 - Essentials Wall thermostat
@@ -370,6 +372,7 @@
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
+- Humhold 24" low profile ceiling fan with RGB+CW lights
 - Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
@@ -987,6 +990,7 @@ of device.
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE A12, A30 pro, V20, V30 vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
@@ -1090,6 +1094,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
+- eTiger S6 alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
@@ -1277,6 +1282,7 @@ port and password.
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
+- Nobito air quality monitor
 - Palicy EC Pro 4 pool chlorinator
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
