@@ -783,3 +783,4 @@ Further device support has been made with the assistance of users. Please consid
 - [uhodav](https://github.com/uhodav) for contributing improvements to Ukrainian translations.
 - [casualg1t](https://github.com/casualg1t) for contributing support for Poolex JetLine Premium FI pool heat pump.
 - [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
+- [slv96](https://github.com/slv96) for contributing support for Tauclima DGN-250 heat pump water heater.
