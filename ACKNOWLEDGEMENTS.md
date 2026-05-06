@@ -784,5 +784,4 @@ Further device support has been made with the assistance of users. Please consid
 - [casualg1t](https://github.com/casualg1t) for contributing support for Poolex JetLine Premium FI pool heat pump.
 - [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
 - [slv96](https://github.com/slv96) for contributing support for Tauclima DGN-250 heat pump water heater.
-- [mbze430](https://github.com/mbze430) for contributing support for Humhold low profile ceiling fan with RGB+CW lights.
 - [minzoong](https://github.com/minzoong) for contributing support for LDH-7700 dehumidifier and UK002WL2 dual switch.
