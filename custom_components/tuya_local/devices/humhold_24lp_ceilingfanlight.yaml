@@ -1,0 +1,231 @@
+name: Ceiling fan
+products:
+  - id: mw9a9twu7odvcvzm
+    manufacturer: Humhold
+    model: 24 inch low profile
+entities:
+  - entity: switch
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: std_switch
+        hidden: true
+      - id: 107
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            constraint: std_switch
+            conditions:
+              - dps_val: true
+                value: true
+              - dps_val: false
+                value: false
+                hidden: true
+          - dps_val: false
+            value: false
+      - id: 21
+        name: work_mode
+        type: string
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: light
+    name: Color light
+    dps:
+      - id: 20
+        type: boolean
+        name: std_switch
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: false
+          - dps_val: true
+            constraint: std_switch
+            conditions:
+              - dps_val: true
+                value: true
+              - dps_val: false
+                value: false
+                hidden: true
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 63
+        type: string
+        name: direction
+  - entity: text
+    name: Light control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    name: Light switch gradient
+    category: config
+    icon: "mdi:gradient-horizontal"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Mix RGBCW
+    category: config
+    icon: "mdi:lightbulb-multiple-outline"
+    hidden: true
+    dps:
+      - id: 51
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Fan timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 64
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 109
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: LED sequence
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5
+  - entity: number
+    name: LED pixels
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 150
+  - entity: time
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 121
+        type: string
+        optional: true
+        name: value
