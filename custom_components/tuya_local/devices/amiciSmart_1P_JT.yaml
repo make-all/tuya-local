@@ -1,0 +1,294 @@
+name: Energy meter
+products:
+  - id: ixbxhsx6schv9abb
+    manufacturer: amiciSmart
+    model: AS-SM-63A
+entities:
+  - entity: switch
+    translation_key: breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Short circuit
+          - dps_val: 2
+            value: Surge
+          - dps_val: 4
+            value: Overload
+          - dps_val: 8
+            value: Earth leak
+          - dps_val: 16
+            value: High temperature
+          - dps_val: 32
+            value: Fire
+          - dps_val: 64
+            value: High power
+          - dps_val: 128
+            value: Self test
+          - dps_val: 256
+            value: Over current
+          - dps_val: 512
+            value: Unbalanced
+          - dps_val: 1024
+            value: Over voltage
+          - dps_val: 2048
+            value: Under voltage
+          - dps_val: 4096
+            value: Phase fault
+          - dps_val: 8192
+            value: Outage
+          - dps_val: 16384
+            value: Magnetism
+          - dps_val: 32768
+            value: Low credit
+          - dps_val: 65536
+            value: Credit expired
+  - entity: sensor
+    name: Remaining energy
+    category: diagnostic
+    class: energy_storage
+    icon: "mdi:home-lightning-bolt"
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: measurement
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+        class: measurement
+  - entity: sensor
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+# ==========================================
+# CONFIG SETTINGS : TEMPERATURE
+# ==========================================
+  - entity: number
+    name: Alrm Temp Max
+    category: config
+    class: temperature
+    dps:
+      - id: 17
+        type: base64
+        name: value
+        unit: C
+        mask: "0000FFFF"
+        range:
+          min: 10
+          max: 85
+  - entity: switch
+    name: Alrm Temp Max Shutoff 
+    category: config
+    dps:
+      - id: 17
+        type: base64
+        name: switch
+        mask: "00FF0000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+# ==========================================
+# CONFIG SETTINGS : CURRENT
+# ==========================================
+  - entity: number
+    name: Alrm Current Max
+    category: config
+    class: current
+    dps:
+      - id: 18
+        type: base64
+        name: value
+        unit: A
+        mask: "0000FFFF0000000000000000"
+        range:
+          min: 10
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: switch
+    name: Alrm Current Max Shutoff 
+    category: config
+    dps:
+      - id: 18
+        type: base64
+        name: switch
+        mask: "00FF00000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+# ==========================================
+# CONFIG SETTINGS : VOLTAGE
+# ==========================================
+  - entity: number
+    name: Alrm Voltage Max
+    category: config
+    class: voltage
+    dps:
+      - id: 18
+        type: base64
+        name: value
+        unit: V
+        mask: "000000000000FFFF00000000"
+        range:
+          min: 120
+          max: 300
+  - entity: switch
+    name: Alrm Voltage Max Shutoff 
+    category: config
+    dps:
+      - id: 18
+        type: base64
+        name: switch
+        mask: "0000000000FF000000000000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: number
+    name: Alrm Voltage Min
+    category: config
+    class: voltage
+    dps:
+      - id: 18
+        type: base64
+        name: value
+        unit: V
+        mask: "00000000000000000000FFFF"
+        range:
+          min: 80
+          max: 210
+  - entity: switch
+    name: Alrm Voltage Min Shutoff 
+    category: config
+    dps:
+      - id: 18
+        type: base64
+        name: switch
+        mask: "000000000000000000FF0000"
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+# ==========================================
+# CONFIG SETTINGS : RECOVERY
+# ==========================================
+  - entity: number
+    name: Recovery Attempts
+    category: config
+    icon: "mdi:counter"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Recovery Delay
+    category: config
+    icon: "mdi:timer-check-outline"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 100
+# ==========================================
+# CONFIG SETTINGS : MISC
+# ==========================================
+  - entity: switch
+    name: Prepayment Feature Toggle
+    category: config
+    icon: "mdi:hand-coin"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Remaining energy reset
+    category: config
+    class: restart
+    dps:
+      - id: 12
+        type: boolean
+        name: button
