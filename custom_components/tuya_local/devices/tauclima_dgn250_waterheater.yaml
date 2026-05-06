@@ -1,8 +1,7 @@
-name: Tauclima DGN-250 Heat pump water heater
+name: Heat pump water heater
 
 products:
   - id: cojwk3pbppwpgofa
-    name: DGN-250
     manufacturer: Tauclima
     model: DGN-250
 
@@ -40,14 +39,14 @@ entities:
         name: sensor
 
   - entity: select
-    translation_key: mode
+    translation_key: heat_pump_mode
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: heating
-            value: heating
+            value: heat
           - dps_val: cold
             value: cool
 
