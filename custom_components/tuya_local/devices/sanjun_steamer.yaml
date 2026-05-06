@@ -118,15 +118,32 @@ entities:
       - id: 114
         type: boolean
         name: button
-  - entity: sensor
-    translation_key: time_remaining
-    category: diagnostic
-    hidden: true
+  - entity: number
+    name: Timer hours
+    icon: "mdi:clock-outline"
+    category: config
     dps:
       - id: 103
         type: base64
-        name: sensor
-        optional: true
+        name: value
+        mask: "FF00"
+        default: "AAA="
+        range:
+          min: 0
+          max: 1
+  - entity: number
+    name: Timer minutes
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 103
+        type: base64
+        name: value
+        mask: "00FF"
+        default: "AAA="
+        range:
+          min: 0
+          max: 59
   - entity: sensor
     name: Schedule
     category: diagnostic
