@@ -28,18 +28,29 @@ entities:
             value: sleep
           - dps_val: Auto
             value: auto
-  - entity: select
-    name: Fan speed
-    icon: "mdi:fan"
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: fan
     dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 5
+        type: string
+        name: available
+        mapping:
+          - dps_val: Continuities
+            value: true
+          - value: false
       - id: 4
         type: string
-        name: option
+        name: speed
         mapping:
           - dps_val: low
-            value: Low
+            value: 50
           - dps_val: high
-            value: High
+            value: 100
   - entity: switch
     translation_key: ionizer
     dps:
@@ -52,14 +63,6 @@ entities:
       - id: 16
         type: boolean
         name: lock
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:
