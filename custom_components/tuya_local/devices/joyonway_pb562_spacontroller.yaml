@@ -65,22 +65,22 @@ entities:
       - id: 140
         type: boolean
         name: switch
-        
+
   - entity: switch
     name: Heating Clock 1 Enable
     dps:
       - id: 131
         type: boolean
         name: switch
-        
+
   - entity: switch
     name: Heating Clock 2 Enable
     dps:
       - id: 132
         type: boolean
         name: switch
-  
-# --- SCHEDULES TIME (HEAT) ---  
+
+  # --- SCHEDULES TIME (HEAT) ---
   - entity: time
     name: Heating start
     icon: mdi:clock-start
@@ -102,7 +102,7 @@ entities:
         range:
           min: 0
           max: 1439
-          
+
   - entity: time
     name: Heating start clock 2
     icon: mdi:clock-start
@@ -119,8 +119,7 @@ entities:
         type: integer
         name: minute
 
-# --- SCHEDULES TIME (FILTRATION) --- 
-
+  # --- SCHEDULES TIME (FILTRATION) ---
   - entity: time
     name: Filtration start clock 1
     icon: mdi:clock-start
