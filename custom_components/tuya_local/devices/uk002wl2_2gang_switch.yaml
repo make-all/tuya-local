@@ -28,8 +28,6 @@ entities:
         name: switch
   - entity: select
     translation_key: initial_state
-    name: Relay Status
-    icon: mdi:power-settings
     category: config
     dps:
       - id: 14
@@ -61,31 +59,6 @@ entities:
       - id: 8
         type: integer
         name: second
-          - dps_val: off
-            value: Off
-          - dps_val: on
-            value: On
-          - dps_val: memory
-            value: Memory
-  - entity: number
-    name: Timer 1
-    icon: mdi:timer-outline
-    dps:
-      - id: 7
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    name: Timer 2
-    icon: mdi:timer-outline
-    dps:
-      - id: 8
-        type: integer
-        name: value
-        unit: s
         range:
           min: 0
           max: 86400
