@@ -684,7 +684,7 @@ Further device support has been made with the assistance of users. Please consid
 - [verwilst](https://github.com/verwilst) for contributing improvements to Fairland MrPure salt chlorinator.
 - [arjungopisetty](https://github.com/arjungopisetty) for contributing support for Brandon Basics towel warmer.
 - [AlexFozor](https://github.com/AlexFozor) for contributing support for Engo E901WiFi thermostat.
-- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve.
+- [nkaliev](https://github.com/nkaliev) for contributing support for Gidrolock Standard leak detection water valve and improvements to Royal Clima Fresh air conditioner.
 - [wfsyd](https://github.com/wfsyd) for contributing support for Mercator ceiling fan with lights, which was merged with Ovlaim ceiling fan with lights.
 - [Keou0007](https://github.com/Keou0007) for contributing support for Waterco Electroheat ECO-VS pool heat pump.
 - [ben-h-a](https://github.com/ben-h-a) for contributing support for Xtuos dual pet feeder.
@@ -783,3 +783,4 @@ Further device support has been made with the assistance of users. Please consid
 - [uhodav](https://github.com/uhodav) for contributing improvements to Ukrainian translations.
 - [casualg1t](https://github.com/casualg1t) for contributing support for Poolex JetLine Premium FI pool heat pump.
 - [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
+- [slv96](https://github.com/slv96) for contributing support for Tauclima DGN-250 heat pump water heater.
