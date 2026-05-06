@@ -616,6 +616,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- AmiciSmart AS-SM-63A (also called 1P_JT)
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
