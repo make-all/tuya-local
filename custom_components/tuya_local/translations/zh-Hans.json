@@ -106,6 +106,26 @@
             "not_supported": "抱歉，不支持此设备。"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "发送学习到的红外命令",
+            "description": "发送之前由遥控器实体学习的远程命令到任何红外发射器。",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "发射器",
+                    "description": "要发送命令的红外实体的实体ID。"
+                },
+                "command": {
+                    "name": "命令",
+                    "description": "要发送的命令。必须是之前由此集成为此遥控器学习的命令。" 
+                },
+                "device": {
+                    "name": "设备",
+                    "description": "要发送命令的红外设备。这是可选的，仅当命令与设备一起保存时才需要。"
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

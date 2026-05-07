@@ -106,6 +106,26 @@
             "not_supported": "Desculpe, não há suporte para este dispositivo."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Enviar comando IR aprendido",
+            "description": "Enviar um comando remoto que foi aprendido anteriormente pela entidade remota para qualquer emissor infravermelho.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Entidade do dispositivo de controle remoto",
+                    "description": "O ID da entidade da entidade infravermelha para a qual enviar o comando."
+                },
+                "command": {
+                    "name": "Comando IR",
+                    "description": "Comando a ser enviado. Este deve ser um comando que foi aprendido anteriormente pela integração para este controle remoto."
+                },
+                "device": {
+                    "name": "Dispositivo",
+                    "description": "Dispositivo para o qual enviar o comando. Isso é opcional e só é necessário se o comando foi salvo com um dispositivo."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

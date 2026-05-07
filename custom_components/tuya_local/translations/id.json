@@ -106,6 +106,26 @@
             "not_supported": "Maaf, perangkat ini belum didukung."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Kirim perintah IR yang dipelajari",
+            "description": "Kirim perintah remote yang sebelumnya dipelajari oleh entitas remote ke emitter inframerah mana pun.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Pengirim",
+                    "description": "ID entitas dari entitas inframerah untuk mengirim perintah ke."
+                },
+                "command": {
+                    "name": "Perintah",
+                    "description": "Perintah untuk dikirim. Ini harus perintah yang sebelumnya dipelajari oleh integrasi untuk remote ini."
+                },
+                "device": {
+                    "name": "Perangkat",
+                    "description": "Perangkat IR untuk mengirim perintah. Ini opsional dan hanya diperlukan jika perintah disimpan dengan perangkat."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

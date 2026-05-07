@@ -106,6 +106,26 @@
             "not_supported": "Omlouváme se, toto zažízení není podporováno."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Odeslat naučený IR příkaz",
+            "description": "Odeslat dálkový příkaz, který byl dříve naučen entitou dálkového ovládání, na jakýkoli infračervený vysílač.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Vysílač",
+                    "description": "Entita, která obsahuje naučený IR příkaz, který chcete odeslat."
+                },
+                "command": {
+                    "name": "Příkaz",
+                    "description": "Naučený IR příkaz, který chcete odeslat. Pokud je zadán, bude použit místo příkazu obsaženého ve vysílači."
+                },
+                "device": {
+                    "name": "Zařízení",
+                    "description": "Zařízení, na které chcete příkaz odeslat. Toto je volitelné a je potřeba pouze v případě, že příkaz byl uložen s konkrétním zařízením."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

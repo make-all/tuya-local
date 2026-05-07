@@ -30,6 +30,7 @@ from .const import (
 )
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
+from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
@@ -912,6 +913,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         entities.add(e.entity)
 
     await hass.config_entries.async_forward_entry_setups(entry, entities)
+    await async_setup_services(hass, entities)
 
     entry.add_update_listener(async_update_entry)
 

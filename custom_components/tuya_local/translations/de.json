@@ -106,6 +106,26 @@
             "not_supported": "Dieses Gerät wird leider nicht unterstützt."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Gelernten IR-Befehl senden",
+            "description": "Senden Sie einen zuvor von der Fernbedienungsentität gelernten Fernbefehl an einen Infrarot-Emitter.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emitter-Entität",
+                    "description": "Die Entität eines Infrarot-Emitters, der den Befehl senden soll."
+                },
+                "command": {
+                    "name": "Befehl",
+                    "description": "Befehl zum Senden. Dies muss ein Befehl sein, der zuvor von der Integration für diese Fernbedienung gelernt wurde."
+                },
+                "device": {
+                    "name": "Gerät",
+                    "description": "Das IR-Gerät, an das der Befehl gesendet werden soll. Dies ist optional und nur erforderlich, wenn der Befehl mit einem Gerät gespeichert wurde."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
