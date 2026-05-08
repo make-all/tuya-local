@@ -1,11 +1,8 @@
 name: Lawnmower
 products:
-  - id: mvt4l2evgq2l3nkn
-    manufacturer: MoeBot
-    model: S20
-  - id: icw5sal7xfcevsve
+  - id: 7yr5iwga
     manufacturer: Parkside
-    model: PMRDA 20-Li A1
+    model: PMRC 250 Ai Bluetooth
 entities:
   - entity: lawn_mower
     dps:
@@ -55,6 +52,9 @@ entities:
           - dps_val: ContinueWork
             value: start_mowing
             hidden: true
+          # PMRC 250 Ai firmware rejects StartReturnStation from MOWING;
+          #  it must be preceded by PauseWork and CancelWork (same flow
+          #  as the Tuya app). The mapping is left here for completeness.
           - dps_val: StartReturnStation
             value: dock
       - id: 101
@@ -163,10 +163,11 @@ entities:
         mapping:
           - dps_val: null
             value: OK
+          # PMRC 250 Ai reports MOWER_LEAN as its default idle code, not an
+          #  actual tilt alarm — the Tuya app and the robot itself show no
+          #  error in this state. Treat it as OK.
           - dps_val: MOWER_LEAN
-            value: Tilted
-            icon: "mdi:angle-acute"
-            icon_priority: 1
+            value: OK
           - dps_val: MOWER_STEEP
             value: Steep
             icon: "mdi:slope-uphill"
