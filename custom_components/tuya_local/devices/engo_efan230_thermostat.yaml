@@ -1,6 +1,5 @@
-name: Fan Coil Thermostat
+name: Fan coil thermostat
 products:
-  # Replace id with your device product id from Tuya IoT if needed.
   - id: "tnvv9nnqnz8nljgt"
     manufacturer: Engo
     model: EFAN230W
@@ -70,15 +69,7 @@ entities:
         name: sensor
         type: integer
         unit: "%"
-  - entity: sensor
-    class: temperature
-    dps:
-      - id: 24
-        name: sensor
-        type: integer
-        unit: C
-        mapping:
-          - scale: 10
+
   - entity: lock
     translation_key: child_lock
     category: config
