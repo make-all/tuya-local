@@ -45,19 +45,27 @@ entities:
             value: Incandescent
           - dps_val: halogen
             value: LED
-  - entity: select
-    name: Indicator
-    icon: mdi:lightbulb-variant
+  - entity: light
+    translation_key: indicator
     category: config
+    hidden: unavailable
     dps:
       - id: 101
         type: string
-        name: option
+        name: brightness
         optional: true
         mapping:
-          - dps_val: off
-            value: None
+          - dps_val: "off"
+            value: 0
           - dps_val: low
-            value: Low
+            value: 128
           - dps_val: high
-            value: High
+            value: 255
+      - id: 101
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
