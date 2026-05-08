@@ -1,4 +1,4 @@
-name: Smart 3D Oscillating DC Fan
+name: 3D Oscillating Fan
 products:
   - id: udqi9qir8xu7fxmb
     manufacturer: Kogan
@@ -25,28 +25,25 @@ entities:
             value: false
 
   - entity: select
-    name: Mode
-    icon: "mdi:fan-cog"
-    category: config
-    hidden: true
+    translation_key: fan_with_presets
     dps:
       - id: 2
         type: string
         name: option
         mapping:
           - dps_val: normal
-            value: Normal
+            value: normal
           - dps_val: nature
-            value: Nature
+            value: nature
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: "3Dmode"
             value: 3D Mode
 
   - entity: select
-    name: Vertical Oscillation
+    name: Vertical oscillation
     icon: "mdi:arrow-up-down-bold-outline"
     category: config
     dps:
@@ -60,7 +57,7 @@ entities:
             value: "Off"
 
   - entity: select
-    name: Horizontal Swing
+    name: Horizontal swing
     icon: "mdi:arrow-left-right-bold-outline"
     category: config
     dps:
@@ -82,27 +79,25 @@ entities:
             value: "150°"
 
   - entity: select
-    name: Timer
-    icon: "mdi:timer-outline"
+    translation_key: timer
     category: config
-    hidden: true
     dps:
       - id: 22
         type: string
         name: option
         mapping:
           - dps_val: cancel
-            value: "Off"
+            value: cancel
           - dps_val: "1h"
-            value: 1 hour
+            value: "1h"
           - dps_val: "2h"
-            value: 2 hours
+            value: "2h"
           - dps_val: "4h"
-            value: 4 hours
+            value: "4h"
           - dps_val: "8h"
-            value: 8 hours
+            value: "8h"
           - dps_val: "12h"
-            value: 12 hours
+            value: "12h"
 
   - entity: switch
     name: Mute
