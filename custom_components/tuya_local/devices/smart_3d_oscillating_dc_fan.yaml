@@ -1,10 +1,11 @@
-name: 3D Oscillating Fan
+name: Smart 3D Oscillating DC Fan
 products:
   - id: udqi9qir8xu7fxmb
     manufacturer: Kogan
     model: Smart 3D Oscillating DC Fan
 entities:
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -23,13 +24,9 @@ entities:
             value: true
           - dps_val: normal
             value: false
-
-  - entity: select
-    translation_key: fan_with_presets
-    dps:
       - id: 2
         type: string
-        name: option
+        name: preset_mode
         mapping:
           - dps_val: normal
             value: normal
