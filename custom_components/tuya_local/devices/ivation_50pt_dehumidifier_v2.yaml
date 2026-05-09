@@ -1,0 +1,127 @@
+name: Ivation Dehumidifier
+products:
+  - id: gywqtqpgiu74ozok
+    manufacturer: Ivation
+    model: IVADUWIFI50WP
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 6
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "1"
+            value: normal
+          - dps_val: "3"
+            value: high
+  - entity: binary_sensor
+    name: Tank
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Defrosting
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Fault Code
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+  - entity: sensor
+    name: Room temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Actual Fan speed
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 116
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "Ultra-Low"
+          - dps_val: "2"
+            value: "Low"
+          - dps_val: "3"
+            value: "Medium"
+          - dps_val: "4"
+            value: "High"
+  - entity: select
+    name: Set Wind Speed
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "3"
+            value: high
+  - entity: switch
+    name: Continuous mode
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
