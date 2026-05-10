@@ -106,6 +106,26 @@
             "not_supported": "Przepraszam, to urządzenie nie jest wspierane."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Wyślij nauczoną komendę IR",
+            "description": "Wyślij zdalną komendę, która została wcześniej nauczona przez encję pilota do dowolnego emitera podczerwieni.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emiter",
+                    "description": "ID encji emitera podczerwieni, do którego zostanie wysłana komenda."
+                },
+                "command": {
+                    "name": "Komenda",
+                    "description": "Komenda do wysłania. Musi to być komenda, która została wcześniej nauczona przez integrację dla tego pilota."
+                },
+                "device": {
+                    "name": "Urządzenie",
+                    "description": "Urządzenie do którego zostanie wysłana komenda. Jest to opcjonalne i jest potrzebne tylko jeśli komenda została zapisana z urządzeniem."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

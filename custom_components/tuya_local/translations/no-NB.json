@@ -106,6 +106,26 @@
             "not_supported": "Beklager, det er ingen støtte for denne enheten"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Send lært IR-fjernkontrollsignal",
+            "description": "Send en fjernkontrollkommando som tidligere ble lært av fjernkontrollentiteten til en hvilken som helst infrarød sender.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "IR sender",
+                    "description": "Enhet-ID for den infrarøde enheten som skal sende kommandoen til."
+                },
+                "command": {
+                    "name": "Kommando",
+                    "description": "Kommandot som skal sendes. Dette må være en kommando som tidligere ble lært av integrasjonen for denne fjernkontrollen."
+                },
+                "device": {
+                    "name": "Enhet",
+                    "description": "Den IR-enheten som kommandoen skal sendes til. Dette er valgfritt og bare nödvendig om kommandoen sparades med en enhet."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

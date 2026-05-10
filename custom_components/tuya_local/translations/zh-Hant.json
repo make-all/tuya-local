@@ -106,6 +106,26 @@
             "not_supported": "抱歉，不支援此設備。"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "發送學習到的紅外線命令",
+            "description": "將先前由遙控實體學習到的遠程命令發送到任何紅外線發射器。",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "發射器實體ID",
+                    "description": "要發送命令的紅外線實體ID。"
+                },
+                "command": {
+                    "name": "命令",
+                    "description": "要發送的命令。這必須是之前由此遙控器的集成學習到的命令。"
+                },
+                "device": {
+                    "name": "設備",
+                    "description": "要發送命令的紅外線設備。這是可選的，僅在命令保存時帶有設備时需要。" 
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

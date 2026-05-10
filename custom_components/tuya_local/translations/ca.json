@@ -106,6 +106,26 @@
             "connection": "No s'ha pogut conectar al vostre dispositiu con esos detalles. Podría ser un problema intermitente, o podrían ser incorrectos. Si seleccionó una versión de protocolo específica, intente 'auto' en su lugar."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Enviar comando IR aprendido",
+            "description": "Envía un comando IR que ha sido aprendido por un dispositivo Tuya Local compatible.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emisor",
+                    "description": "La entidad del transmisor IR que se utilizará para enviar el comando."
+                },
+                "command": {
+                    "name": "Comando",
+                    "description": "El comando IR a enviar. Este debe ser el mismo comando que fue aprendido por el dispositivo."
+                },
+                "device": {
+                    "name": "Dispositivo",
+                    "description": "El dispositivo IR al que enviar el comando. Esto es opcional y solo se necesita si el comando se guardó con un dispositivo."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

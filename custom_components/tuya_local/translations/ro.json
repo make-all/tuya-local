@@ -106,6 +106,26 @@
             "not_supported": "Ne pare rău, acest dispozitiv nu este suportat."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Trimite comandă IR învățată",
+            "description": "Trimite o comandă de telecomandă care a fost învățată anterior de entitatea de telecomandă către orice emițător infraroșu.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Entitate",
+                    "description": "ID-ul entității entității infraroșii către care se va trimite comanda."
+                },
+                "command": {
+                    "name": "Comandă",
+                    "description": "Comanda de trimis. Aceasta trebuie să fie o comandă care a fost învățată anterior de integrare pentru această telecomandă."
+                },
+                "device": {
+                    "name": "Dispozitiv",
+                    "description": "Dispozitivul IR către care se va trimite comanda. Acesta este opțional și este necesar doar dacă comanda a fost salvată cu un dispozitiv."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

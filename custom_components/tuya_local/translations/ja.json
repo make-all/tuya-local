@@ -106,6 +106,26 @@
             "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "学習した赤外線コマンドを送信",
+            "description": "以前にリモートエンティティによって学習されたリモートコマンドを、任意の赤外線エミッタに送信します。",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "赤外線エミッタ",
+                    "description": "コマンドを送信する赤外線エンティティのエンティティID。"
+                },
+                "command": {
+                    "name": "コマンド",
+                    "description": "送信するコマンド。これは、このリモートの統合によって以前に学習されたコマンドでなければなりません。"
+                },
+                "device": {
+                    "name": "デバイス",
+                    "description": "コマンドを送信するIRデバイス。これはオプションで、コマンドがデバイスとともに保存された場合にのみ必要です。"
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {

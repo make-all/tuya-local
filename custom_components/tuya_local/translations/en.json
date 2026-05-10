@@ -106,6 +106,26 @@
             "not_supported": "Sorry, there is no support for this device."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Send a learned remote command to infrared",
+            "description": "Send a remote command that was previously learned by the remote entity to any infrared emitter.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emitter",
+                    "description": "The entity ID of the infrared entity to send the command to."
+                },
+                "command": {
+                    "name": "Command",
+                    "description": "The command to send. This must be a command that was previously learned by the integration for this remote."
+                },
+                "device": {
+                    "name": "Device",
+                    "description": "The IR device to send the command to. This is optional and only needed if the command was saved with a device."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
