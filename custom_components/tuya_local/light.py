@@ -516,8 +516,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             and not self._switch_dps.readonly
             and not self.is_on
             and (
-                self._switch_dps.mask is not None
-                or self._switch_dps.id not in settings
+                self._switch_dps.mask is not None or self._switch_dps.id not in settings
             )
         ):
             _LOGGER.info("%s turning light on", self._config.config_id)
@@ -549,8 +548,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             and not self.is_on
             and "off" in self._effect_dps.values(self._device)
             and (
-                self._effect_dps.mask is not None
-                or self._effect_dps.id not in settings
+                self._effect_dps.mask is not None or self._effect_dps.id not in settings
             )
         ):
             # Special case for lights with effect that has off state, but no switch or brightness
