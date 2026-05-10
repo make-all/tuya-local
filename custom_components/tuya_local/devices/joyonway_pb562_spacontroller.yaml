@@ -51,30 +51,36 @@ entities:
 
   # --- SCHEDULES ACTIVATION ---
   - entity: switch
-    name: Filtration Clock 1 Enable
-    icon: mdi:calendar-check
+    name: Filtration schedule 1
+    icon: "mdi:calendar-check"
+    category: config
     dps:
       - id: 139
         type: boolean
         name: switch
 
   - entity: switch
-    name: Filtration Clock 2 Enable
-    icon: mdi:calendar-check
+    name: Filtration schedule 2
+    icon: "mdi:calendar-check"
+    category: config
     dps:
       - id: 140
         type: boolean
         name: switch
 
   - entity: switch
-    name: Heating Clock 1 Enable
+    name: Heating schedule
+    icon: "mdi:calendar-check"
+    category: config
     dps:
       - id: 131
         type: boolean
         name: switch
 
   - entity: switch
-    name: Heating Clock 2 Enable
+    name: Heating schedule 2
+    icon: "mdi:calendar-check"
+    category: config
     dps:
       - id: 132
         type: boolean
@@ -83,7 +89,8 @@ entities:
   # --- SCHEDULES TIME (HEAT) ---
   - entity: time
     name: Heating start
-    icon: mdi:clock-start
+    icon: "mdi:clock-start"
+    category: config
     dps:
       - id: 127
         type: integer
@@ -91,10 +98,14 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 131
+        type: boolean
+        name: available
 
   - entity: time
     name: Heating end
-    icon: mdi:clock-end
+    icon: "mdi:clock-end"
+    category: config
     dps:
       - id: 128
         type: integer
@@ -102,27 +113,39 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 131
+        type: boolean
+        name: available
 
   - entity: time
-    name: Heating start clock 2
-    icon: mdi:clock-start
+    name: Heating start 2
+    icon: "mdi:clock-start"
+    category: config
     dps:
       - id: 129
         type: integer
         name: minute
+      - id: 132
+        type: boolean
+        name: available
 
   - entity: time
-    name: Heating end clock 2
-    icon: mdi:clock-end
+    name: Heating end 2
+    icon: "mdi:clock-end"
+    category: config
     dps:
       - id: 130
         type: integer
         name: minute
+      - id: 132
+        type: boolean
+        name: available
 
   # --- SCHEDULES TIME (FILTRATION) ---
   - entity: time
-    name: Filtration start clock 1
-    icon: mdi:clock-start
+    name: Filtration start 1
+    icon: "mdi:clock-start"
+    category: config
     dps:
       - id: 135
         type: integer
@@ -130,10 +153,14 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 139
+        type: boolean
+        name: available
 
   - entity: time
-    name: Filtration end clock 1
-    icon: mdi:clock-end
+    name: Filtration end 1
+    icon: "mdi:clock-end"
+    category: config
     dps:
       - id: 136
         type: integer
@@ -141,10 +168,14 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 139
+        type: boolean
+        name: available
 
   - entity: time
-    name: Filtration start clock 2
-    icon: mdi:clock-start
+    name: Filtration start 2
+    icon: "mdi:clock-start"
+    category: config
     dps:
       - id: 137
         type: integer
@@ -152,10 +183,14 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 140
+        type: boolean
+        name: available
 
   - entity: time
-    name: Filtration end clock 2
-    icon: mdi:clock-end
+    name: Filtration end 2
+    icon: "mdi:clock-end"
+    category: config
     dps:
       - id: 138
         type: integer
@@ -163,6 +198,9 @@ entities:
         range:
           min: 0
           max: 1439
+      - id: 140
+        type: boolean
+        name: available
 
   # --- SENSORS ---
   - entity: sensor
