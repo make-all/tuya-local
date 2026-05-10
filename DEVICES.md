@@ -98,7 +98,6 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
-- Aquastrong HEX pool heat pumps
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -167,6 +166,7 @@
 
 ### Pool heaters / heat pumps
 
+- Aquastrong HEX pool heat pumps
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
@@ -176,6 +176,7 @@
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
+- Mountfield Azuro pool heat pump
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Poolstyle PSL-150-00xx pool heat pump
@@ -260,7 +261,7 @@
 - EleChico CCST6001 thermostat
 - Elitech ECS-974T refrigeration thermostat
 - Emmeti Zona thermostat
-- Engo E901WiFi thermostat
+- Engo E901WiFi and EFAN230 thermostats
 - Essentials Wall thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
@@ -424,7 +425,6 @@
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
 - Stirling FS1-40DC pedestal fan
-
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -685,7 +685,7 @@
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
-- dé Wall Charger (3-phase 22Kw)
+- dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger

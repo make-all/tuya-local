@@ -785,3 +785,7 @@ Further device support has been made with the assistance of users. Please consid
 - [remarkable-bit](https://github.com/remarkable-bit) for contributing support for Elitech ECS-974T thermostat.
 - [slv96](https://github.com/slv96) for contributing support for Tauclima DGN-250 heat pump water heater.
 - [minzoong](https://github.com/minzoong) for contributing support for LDH-7700 dehumidifier and UK002WL2 dual switch.
+- [vtashev](https://github.com/vtashev) for contributing support for Engo EFAN230 fan coil thermostat.
+- [kasparmir](https://github.com/kasparmir) for contributing support for Mountfield Azuro pool heat pump.
+- [WellKnitTech](https://github.com/WellKnitTech) for contributing improvements to EG4 Solar heat pump.
+- [BostonPandaGit](https://github.com/BostonPandaGit) for contributing improvements to Feit dimmer.

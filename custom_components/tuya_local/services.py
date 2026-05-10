@@ -11,19 +11,18 @@ from homeassistant.components.remote import (
 )
 from homeassistant.components.remote import DOMAIN as REMOTE_DOMAIN
 from homeassistant.core import HomeAssistant, ServiceCall
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import service
 
 from .const import DOMAIN
 from .infrared import TuyaRemoteCommand
 from .remote import TuyaLocalRemote
 
-REMOTE_SEND_IR_COMMAND_SCHEMA = vol.Schema(
-    {
-        vol.Required("emitter_entity_id"): str,
-        vol.Required("code"): str,
-        vol.Optional("device"): str,
-    }
-)
+REMOTE_SEND_IR_COMMAND_SCHEMA = {
+    vol.Required("emitter_entity_id"): cv.entity_id,
+    vol.Required("command"): str,
+    vol.Optional("device"): str,
+}
 
 _LOGGER = logging.getLogger(__name__)
 
