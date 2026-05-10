@@ -243,14 +243,15 @@ entities:
         class: measurement
         mapping:
           - scale: 100
-  - entity: binary_sensor
-    class: connectivity
-    category: diagnostic
+  - entity: button
+    name: Refresh
+    icon: "mdi:refresh"
+    category: config
     dps:
       - id: 27
         type: string
         optional: true
-        name: sensor
+        name: button
         mapping:
           - dps_val: offline
             value: false
