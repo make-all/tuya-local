@@ -788,3 +788,4 @@ Further device support has been made with the assistance of users. Please consid
 - [vtashev](https://github.com/vtashev) for contributing support for Engo EFAN230 fan coil thermostat.
 - [kasparmir](https://github.com/kasparmir) for contributing support for Mountfield Azuro pool heat pump.
 - [WellKnitTech](https://github.com/WellKnitTech) for contributing improvements to EG4 Solar heat pump.
+- [BostonPandaGit](https://github.com/BostonPandaGit) for contributing improvements to Feit dimmer.
