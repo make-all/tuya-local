@@ -6,6 +6,9 @@ products:
   - id: icw5sal7xfcevsve
     manufacturer: Parkside
     model: PMRDA 20-Li A1
+  - id: 7yr5iwga
+    manufacturer: Parkside
+    model: PMRC 250 Ai Bluetooth
 entities:
   - entity: lawn_mower
     dps:
@@ -114,9 +117,17 @@ entities:
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
         unit: "%"
         class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 13
+        type: integer
+        optional: true
+        name: alt
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -305,8 +316,10 @@ entities:
     dps:
       - id: 114
         type: string
-        name: option
+        # Parkside mowers mark this as boolean01Reserved, but as long as they
+        #  don't use it the incompatibility is just theoretical
         optional: true
+        name: option
         mapping:
           - dps_val: AutoMode
             value: Auto

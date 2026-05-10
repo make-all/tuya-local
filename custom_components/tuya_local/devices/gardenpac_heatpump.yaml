@@ -1,7 +1,11 @@
 name: Pool heat pump
-# products: GardenPAC
+products:
+  - id: koAASpds906awojG
+    manufacturer: Garden PAC
+    model: InverTech GHD-150-0356
 entities:
   - entity: climate
+    translation_only_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -9,12 +13,8 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:hvac-off"
-            icon_priority: 1
           - dps_val: true
-            value: "heat"
-            icon: "mdi:hot-tub"
-            icon_priority: 3
+            value: heat
       - id: 102
         name: current_temperature
         type: integer
@@ -27,11 +27,8 @@ entities:
           - dps_val: true
             value: C
       - id: 105
-        name: hvac_action
+        name: work_mode
         type: string
-        mapping:
-          - dps_val: warm
-            value: idle
       - id: 106
         name: temperature
         type: integer
@@ -56,9 +53,9 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: sleep
+            value: quiet
           - dps_val: true
-            value: activity
+            value: smart
   - entity: sensor
     name: Power level
     icon: "mdi:signal"
