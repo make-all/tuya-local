@@ -13,7 +13,7 @@ entities:
         name: sensor
         force: true
         unit: kWh
-        class: total_increasing
+        class: total
         mapping:
           - scale: 100
 
@@ -42,6 +42,14 @@ entities:
             value: charged
           - dps_val: charger_fault
             value: fault
+      - id: 22
+        type: string
+        optional: true
+        name: software_version
+      - id: 23
+        type: string
+        optional: true
+        name: hardware_version
 
   - entity: number
     name: Set current
@@ -56,18 +64,6 @@ entities:
         range:
           min: 8
           max: 13
-
-  - entity: sensor
-    name: Single phase power
-    dps:
-      - id: 5
-        type: integer
-        name: sensor
-        optional: true
-        unit: kW
-        class: measurement
-        mapping:
-          - scale: 1000
 
   - entity: sensor
     class: voltage
@@ -105,7 +101,7 @@ entities:
   #         - scale: 1000
 
   - entity: sensor
-    name: Power
+    class: power
     dps:
       - id: 9
         type: integer
@@ -193,56 +189,41 @@ entities:
           - dps_val: charge_delay
             value: delayed_charge
   # "Remaining available power"
-  - entity: sensor
-    name: Balance energy
-    dps:
-      - id: 15
-        type: integer
-        optional: true
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
-  - entity: switch
-    icon: "mdi:ev-station"
-    name: Clear energy
-    dps:
-      - id: 16
-        type: boolean
-        name: switch
-  - entity: sensor
-    name: Charge energy
-    dps:
-      - id: 17
-        type: integer
-        optional: true
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
+  # - entity: sensor
+  #   name: Balance energy
+  #   dps:
+  #     - id: 15
+  #       type: integer
+  #       optional: true
+  #       name: sensor
+  #       unit: kWh
+  #       class: total_increasing
+  #       mapping:
+  #         - scale: 100
+  # - entity: switch
+  #   icon: "mdi:ev-station"
+  #   name: Clear energy
+  #   dps:
+  #     - id: 16
+  #       type: boolean
+  #       name: switch
+  # - entity: sensor
+  #   name: Charge energy
+  #   dps:
+  #     - id: 17
+  #       type: integer
+  #       optional: true
+  #       name: sensor
+  #       unit: kWh
+  #       class: total_increasing
+  #       mapping:
+  #         - scale: 100
   - entity: switch
     icon: "mdi:ev-station"
     dps:
       - id: 18
         type: boolean
         name: switch
-  - entity: sensor
-    name: Hardware ID
-    category: diagnostic
-    dps:
-      - id: 22
-        type: string
-        optional: true
-        name: sensor
-  - entity: sensor
-    name: Software version
-    category: diagnostic
-    dps:
-      - id: 23
-        type: string
-        name: sensor
   - entity: sensor
     class: temperature
     category: diagnostic
