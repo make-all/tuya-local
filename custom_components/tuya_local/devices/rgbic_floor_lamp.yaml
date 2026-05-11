@@ -1,0 +1,265 @@
+name: RGBIC floor lamp
+products:
+  - id: k1opzwpazlauaaih
+    manufacturer: Saiming
+    model: 5050RGB-02
+entities:
+  - entity: light
+    icon: "mdi:floor-lamp-outline"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: static
+            value: Static
+          - dps_val: pre_set
+            value: Dynamic
+          - dps_val: custom
+            value: DIY
+          - dps_val: local_music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        type: string
+        name: scene_data
+        optional: true
+      - id: 101
+        type: string
+        name: scene_num
+      - id: 105
+        type: string
+        name: debug_info
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    name: Static scene
+    category: config
+    icon: "mdi:palette"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Candle
+          - dps_val: 1
+            value: Christmas Candy
+          - dps_val: 2
+            value: Santa Claus
+          - dps_val: 3
+            value: Romantic
+          - dps_val: 4
+            value: Green Rainbow
+          - dps_val: 5
+            value: Blue Purple Strip
+          - dps_val: 6
+            value: Fire Eye
+          - dps_val: 7
+            value: Gold Ring
+          - dps_val: 8
+            value: Fixed Blue
+          - dps_val: 9
+            value: Halloween
+          - dps_val: 10
+            value: Superman
+          - dps_val: 11
+            value: Dazzling
+  - entity: select
+    name: Dynamic scene
+    category: config
+    icon: "mdi:motion-play"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Colorful Spectrum
+          - dps_val: 1
+            value: Rainbow
+          - dps_val: 2
+            value: Cyclon
+          - dps_val: 3
+            value: Confetti
+          - dps_val: 4
+            value: Color Swing
+          - dps_val: 5
+            value: Light Show
+          - dps_val: 6
+            value: Fire
+          - dps_val: 7
+            value: Christmas Candy
+          - dps_val: 8
+            value: Santa Claus
+          - dps_val: 9
+            value: Halloween
+          - dps_val: 10
+            value: Dazzling
+          - dps_val: 11
+            value: Party
+  - entity: select
+    name: DIY scene
+    category: config
+    icon: "mdi:creation"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Blink
+          - dps_val: 1
+            value: Breath
+          - dps_val: 2
+            value: Colorful Cylon
+          - dps_val: 3
+            value: Color Wipe
+          - dps_val: 4
+            value: Twinkle
+          - dps_val: 5
+            value: Blue Fire
+          - dps_val: 6
+            value: Two Color Chase
+          - dps_val: 7
+            value: One Color Chase
+          - dps_val: 8
+            value: Three Color Chase
+          - dps_val: 9
+            value: Color Strip
+          - dps_val: 10
+            value: Ribbon
+          - dps_val: 11
+            value: Marquee
+  - entity: select
+    name: Music scene
+    category: config
+    icon: "mdi:music"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Shooting Rainbow
+          - dps_val: 1
+            value: Shooting Star
+          - dps_val: 2
+            value: Falling Star
+          - dps_val: 3
+            value: Star Rainbow
+          - dps_val: 4
+            value: Sky Rainbow
+          - dps_val: 5
+            value: Sky Star
+          - dps_val: 6
+            value: Color Flow
+  - entity: select
+    name: Scene speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "03e800020"
+            value: "0%"
+          - dps_val: "03e80a020"
+            value: "10%"
+          - dps_val: "03e814020"
+            value: "20%"
+          - dps_val: "03e81e020"
+            value: "30%"
+          - dps_val: "03e828020"
+            value: "40%"
+          - dps_val: "03e832020"
+            value: "50%"
+          - dps_val: "03e83c020"
+            value: "60%"
+          - dps_val: "03e846020"
+            value: "70%"
+          - dps_val: "03e850020"
+            value: "80%"
+          - dps_val: "03e85a020"
+            value: "90%"
+          - dps_val: "03e864020"
+            value: "100%"
+  - entity: number
+    name: Scene data reset
+    category: config
+    icon: "mdi:restore"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 255
+  - entity: number
+    name: LED number
+    category: config
+    icon: "mdi:counter"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 150
