@@ -213,6 +213,20 @@
                     "off": "正常",
                     "on": "需要补充"
                 }
+            },
+            "filter_clean": {
+                "name": "濾網清洗",
+                "state": {
+                    "off": "不需清洗",
+                    "on": "清洗"
+                }
+            },
+            "auto_close": {
+                "name": "自動關機",
+                "state": {
+                    "off": "未達時間",
+                    "on": "已自動關機"
+                }
             }
         },
         "button": {
@@ -403,7 +417,9 @@
                         "state": {
                             "laundry": "烘乾衣物",
                             "purify": "淨化",
-                            "continuous": "連續"
+                            "continuous": "連續",
+							"sleep": "睡眠",
+                            "dehumidify": "除濕"
                         }
                     }
                 }
@@ -1006,6 +1022,16 @@
                     "red_bean_bread": "紅豆麵包",
                     "milk_toast": "牛奶吐司"
                 }
+            },
+            "fan_speed": {
+                "name": "風速",
+                "state": {
+                    "off": "關",
+                    "low": "低",
+                    "medium": "中",
+                    "high": "高",
+                    "quickfry": "快速"
+                }
             }
         },
         "sensor": {
@@ -1249,7 +1275,10 @@
             },
             "rangehood": {
                 "name": "抽油煙機"
-            }
+            },
+			"swing_fan": {
+				"name": "擺風"
+			}
         },
         "text": {
             "meal_plan": {
