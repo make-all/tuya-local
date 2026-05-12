@@ -40,32 +40,22 @@ entities:
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     dps:
       - id: 12
         type: boolean
         name: lock
   - entity: sensor
     name: Operating state
+    category: diagnostic
     dps:
       - id: 8
         type: string
         name: sensor
   - entity: sensor
-    name: Unknown 1 DP18
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 2 DP106
-    dps:
-      - id: 106
-        type: boolean
-        name: sensor
-  - entity: sensor
-    name: Ambient temperature DP101
+    name: Ambient temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 101
         type: integer
@@ -73,8 +63,9 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Tank temperature DP102
+    name: Tank temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 102
         type: integer
@@ -82,8 +73,9 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Temperature DP103
+    name: Discharge temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 103
         type: integer
@@ -91,8 +83,9 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Evaporator temperature DP104
+    name: Evaporator temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 104
         type: integer
@@ -100,8 +93,9 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Suction temperature DP105
+    name: Suction temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 105
         type: integer
@@ -110,6 +104,7 @@ entities:
         class: measurement
   - entity: sensor
     name: EEV opening
+    category: diagnostic
     dps:
       - id: 107
         type: integer
@@ -118,70 +113,25 @@ entities:
         class: measurement
   - entity: binary_sensor
     name: Fan
+    category: diagnostic
     dps:
       - id: 108
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 3 DP109
-    dps:
-      - id: 109
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 4 DP110
-    dps:
-      - id: 110
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 5 DP111
-    dps:
-      - id: 111
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 6 DP112
-    dps:
-      - id: 112
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 7 DP113
-    dps:
-      - id: 113
         type: boolean
         name: sensor
   - entity: sensor
     name: Mains voltage
     class: voltage
+    category: diagnostic
     dps:
       - id: 114
         type: integer
         name: sensor
         unit: V
         class: measurement
-  - entity: binary_sensor
-    name: Unknown 8 DP115
-    dps:
-      - id: 115
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 9 DP116
-    dps:
-      - id: 116
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Unknown 10 DP117
-    dps:
-      - id: 117
-        type: boolean
-        name: sensor
   - entity: sensor
     name: Compressor operation hours
     class: duration
+    category: diagnostic
     dps:
       - id: 118
         type: integer
@@ -191,15 +141,10 @@ entities:
   - entity: sensor
     name: Unit on hours
     class: duration
+    category: diagnostic
     dps:
       - id: 119
         type: integer
         name: sensor
         unit: h
         class: total_increasing
-  - entity: sensor
-    name: Firmware version
-    dps:
-      - id: 120
-        type: string
-        name: sensor
