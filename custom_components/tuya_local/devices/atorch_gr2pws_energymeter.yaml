@@ -1,18 +1,32 @@
 name: Energy meter
 products:
-  - id: seqzqh45b0ggn9so
+  - id: sq1ahfxhgove4kgo
     manufacturer: Atorch
-    model: AT2PL
+    model: GR2PWS
 entities:
   - entity: switch
+    class: outlet
     dps:
       - id: 1
         type: boolean
         name: switch
+  # DP 17 is writable in the model, but its exact device-side purpose is unclear.
+  # It appears to be related to adding prepaid energy/credit.
+  - entity: number
+    name: Add energy
+    category: config
+    class: energy
+    dps:
       - id: 17
         type: integer
         optional: true
-        name: add_ele
+        name: value
+        unit: kWh
+        range:
+          min: 0
+          max: 5000000
+        mapping:
+          - scale: 100
   - entity: number
     translation_key: timer
     class: duration
@@ -30,7 +44,6 @@ entities:
             step: 60
   - entity: sensor
     class: current
-    category: diagnostic
     dps:
       - id: 18
         type: integer
@@ -41,7 +54,6 @@ entities:
           - scale: 1000
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 19
         type: integer
@@ -52,7 +64,6 @@ entities:
           - scale: 100
   - entity: sensor
     class: voltage
-    category: diagnostic
     dps:
       - id: 20
         type: integer
@@ -65,6 +76,7 @@ entities:
     name: Price
     category: config
     class: monetary
+    icon: "mdi:cash-multiple"
     dps:
       - id: 101
         type: integer
@@ -76,14 +88,20 @@ entities:
           - scale: 100
   - entity: sensor
     name: Cost
-    category: diagnostic
+    class: monetary
+    icon: mdi:cash-clock
     dps:
       - id: 102
         type: integer
         name: sensor
+        precision: 2
+        mapping:
+          - scale: 1000
       - id: 103
         type: integer
         name: add_cost
+        mapping:
+          - scale: 100
   - entity: number
     name: Overvoltage threshold
     category: config
@@ -95,7 +113,7 @@ entities:
         unit: V
         range:
           min: 1
-          max: 2650
+          max: 3200
         mapping:
           - scale: 10
   - entity: number
@@ -113,7 +131,7 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Over power threshold
+    name: Overpower threshold
     class: power
     category: config
     dps:
@@ -123,7 +141,7 @@ entities:
         unit: W
         range:
           min: 1
-          max: 27500
+          max: 32000
   - entity: select
     translation_key: language
     category: config
@@ -138,6 +156,7 @@ entities:
             value: english
   - entity: light
     name: Display active
+    translation_key: display
     category: config
     dps:
       - id: 108
@@ -149,6 +168,7 @@ entities:
   - entity: light
     name: Display standby
     category: config
+    icon: "mdi:brightness-4"
     dps:
       - id: 109
         name: brightness
@@ -267,7 +287,7 @@ entities:
         unit: V
         range:
           min: 1
-          max: 2750
+          max: 3200
         mapping:
           - scale: 10
   - entity: switch
@@ -311,18 +331,20 @@ entities:
         class: total_increasing
         mapping:
           - scale: 1000
-  - entity: number
+  # DP 124 is marked writable in the model, but DP 121 already exposes the
+  # configurable leakage threshold. Treating 124 as a sensor avoids presenting
+  # a second ambiguous writable leakage-current control.
+  - entity: sensor
     translation_key: leakage_current
-    category: config
+    name: Leakage current
     class: current
+    category: diagnostic
     dps:
       - id: 124
         type: integer
-        name: value
+        name: sensor
         unit: mA
-        range:
-          min: 0
-          max: 120000
+        class: measurement
   - entity: number
     name: Data refresh interval
     category: config
@@ -331,7 +353,6 @@ entities:
     dps:
       - id: 125
         type: integer
-        optional: true
         name: value
         unit: s
         range:
@@ -344,16 +365,19 @@ entities:
     dps:
       - id: 126
         type: boolean
-        optional: true
         name: switch
-  - entity: select
+  # DP 132 is marked writable in the model, but the enum values read as the
+  # current alarm/protection state. Thresholds and protection settings are
+  # already configured via dedicated DPs, so exposing 132 as a sensor is safer.
+  - entity: sensor
     name: Alarm
     icon: "mdi:alert"
-    category: config
+    class: enum
+    category: diagnostic
     dps:
       - id: 132
         type: string
-        name: option
+        name: sensor
         mapping:
           - dps_val: "off"
             value: None
@@ -371,7 +395,6 @@ entities:
             value: Earth leakage
   - entity: sensor
     class: frequency
-    category: diagnostic
     dps:
       - id: 133
         type: integer
@@ -382,13 +405,14 @@ entities:
           - scale: 100
   - entity: sensor
     class: power_factor
-    category: diagnostic
     dps:
       - id: 134
         type: integer
         name: sensor
         unit: "%"
         class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     name: CPU temperature
     class: temperature
@@ -435,10 +459,8 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: open
-            value: "off"
-          - dps_val: close
-            value: "on"
+          - dps_val: memory
+            value: memory
   - entity: switch
     name: Prepaid
     icon: "mdi:hand-coin"
@@ -460,7 +482,7 @@ entities:
         mapping:
           - scale: 100
   - entity: button
-    name: Clear eneregy
+    name: Clear energy
     class: restart
     category: config
     dps:
@@ -484,9 +506,10 @@ entities:
         mapping:
           - scale: 100
   - entity: number
-    name: Credit
+    name: Low credit warning
     category: config
     class: energy
+    icon: "mdi:alarm-bell"
     dps:
       - id: 143
         type: integer
