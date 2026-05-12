@@ -14,6 +14,7 @@ from custom_components.tuya_local.helpers.device_config import (
     _typematch,
     available_configs,
     get_config,
+    possible_matches,
 )
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
@@ -820,6 +821,52 @@ def test_matched_product_id_with_conflict_rejected():
     """Test that matching with product id fails when there is a conflict"""
     cfg = get_config("smartplugv1")
     assert not cfg.matches({"1": "wrong_type"}, ["37mnhia3pojleqfh"])
+
+
+def test_tonepie_t1pro_v3_preferred_for_exact_product_id():
+    """Exact product id should prefer dedicated Tonepie v3 config."""
+
+    dps = {
+        "6": 5538,
+        "7": 1,
+        "8": 44,
+        "17": False,
+        "22": 0,
+        "101": False,
+        "102": False,
+        "104": False,
+        "105": True,
+        "109": True,
+        "111": True,
+        "114": False,
+        "117": 3,
+        "118": 15,
+        "119": False,
+        "120": False,
+        "121": False,
+        "122": False,
+        "123": 1,
+        "124": 5,
+        "125": 0,
+        "126": True,
+        "127": 1500,
+        "128": 240127,
+    }
+    product_ids = ["swrzomblcz1can76"]
+
+    generic = get_config("tonepie_t1pro_catlitterbox")
+    dedicated = get_config("tonepie_t1pro_catlitterbox_v3")
+
+    assert generic.match_quality(dps, product_ids) == 100
+    assert dedicated.match_quality(dps, product_ids) == 101
+
+    matches = list(possible_matches(dps, product_ids))
+    match_types = [cfg.config_type for cfg in matches]
+    assert dedicated.config_type in match_types
+    assert generic.config_type in match_types
+    assert dedicated.match_quality(dps, product_ids) > generic.match_quality(
+        dps, product_ids
+    )
 
 
 def test_multi_stage_redirect(mocker):
