@@ -1,0 +1,153 @@
+name: Yuhome Air Max Laundry Rack
+products:
+  - id: bf4c3d31c3e5ce3438llrc
+    manufacturer: YU HOME
+    model: Air Max
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: cover
+    icon: "mdi:hanger"
+    dps:
+      - id: 2
+        type: string
+        name: control
+        mapping:
+          - dps_val: up
+            value: open
+          - dps_val: down
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 3
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+        invert_percent: true
+        mapping:
+          - dps_val: 0
+            value: 100
+          - dps_val: 100
+            value: 0
+      - id: 9
+        type: string
+        name: action
+        mapping:
+          - dps_val: up
+            value: opening
+          - dps_val: down
+            value: closing
+          - dps_val: stop
+            value: null
+  - entity: light
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Disinfection
+    translation_key: uv_sterilization
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wind dry
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Hot dry
+    icon: "mdi:heat-wave"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Disinfection timer set
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: 30min
+            value: 30min
+  - entity: select
+    name: Hot dry timer set
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 6h
+            value: 6h
+  - entity: select
+    name: Wind dry timer set
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 6h
+            value: 6h
+  - entity: sensor
+    name: Hot dry remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Wind dry remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Disinfection remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - mask: 1
+            name: fault1
+          - mask: 2
+            name: fault2
+  - entity: switch
+    name: Voice command
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
