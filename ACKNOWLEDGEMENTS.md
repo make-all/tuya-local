@@ -789,3 +789,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kasparmir](https://github.com/kasparmir) for contributing support for Mountfield Azuro pool heat pump.
 - [WellKnitTech](https://github.com/WellKnitTech) for contributing improvements to EG4 Solar heat pump.
 - [BostonPandaGit](https://github.com/BostonPandaGit) for contributing improvements to Feit dimmer.
+- [giuseppe99barchetta](https://github.com/giuseppe99barchetta) for contributing improvement to recovery from initially offline devices.
