@@ -787,3 +787,8 @@ Further device support has been made with the assistance of users. Please consid
 - [minzoong](https://github.com/minzoong) for contributing support for LDH-7700 dehumidifier and UK002WL2 dual switch.
 - [vtashev](https://github.com/vtashev) for contributing support for Engo EFAN230 fan coil thermostat.
 - [kasparmir](https://github.com/kasparmir) for contributing support for Mountfield Azuro pool heat pump.
+- [WellKnitTech](https://github.com/WellKnitTech) for contributing improvements to EG4 Solar heat pump.
+- [BostonPandaGit](https://github.com/BostonPandaGit) for contributing improvements to Feit dimmer.
+- [giuseppe99barchetta](https://github.com/giuseppe99barchetta) for contributing improvement to recovery from initially offline devices.
+- [Rkn21](https://github.com/Rkn21) for contributing improvements to Atorch AT4PW energy meter.
+- [fmckeogh](https://github.com/fmckeogh) for contributing support for Voldt EV charger.

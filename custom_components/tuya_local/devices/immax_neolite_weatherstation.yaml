@@ -1,4 +1,5 @@
 name: Weather station
+legacy_type: em3395ty_weatherstation
 products:
   - id: wkbc51nj8mqiws0n
     manufacturer: Immax
@@ -392,6 +393,7 @@ entities:
       - id: 101
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "12Hr"
             value: "12h"
@@ -405,6 +407,7 @@ entities:
       - id: 102
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: D_M
             value: Day Month
@@ -437,6 +440,7 @@ entities:
     dps:
       - id: 109
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "name"
