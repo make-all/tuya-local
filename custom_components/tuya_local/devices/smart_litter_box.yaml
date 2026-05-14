@@ -198,11 +198,20 @@ entities:
         range:
           min: 0
           max: 1000
-  - entity: sensor
+  - entity: binary_sensor
     name: Fault
-    class: enum
+    class: problem
     category: diagnostic
     dps:
       - id: 22
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
