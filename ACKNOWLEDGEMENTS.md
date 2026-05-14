@@ -792,3 +792,4 @@ Further device support has been made with the assistance of users. Please consid
 - [giuseppe99barchetta](https://github.com/giuseppe99barchetta) for contributing improvement to recovery from initially offline devices.
 - [Rkn21](https://github.com/Rkn21) for contributing improvements to Atorch AT4PW energy meter.
 - [fmckeogh](https://github.com/fmckeogh) for contributing support for Voldt EV charger.
+- [manic-mark](https://github.com/manic-mark) for contributing support for amiciSmart AS-SM-63A energy meter.
