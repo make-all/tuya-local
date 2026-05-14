@@ -135,7 +135,7 @@ entities:
   # CONFIG SETTINGS : TEMPERATURE
   # ==========================================
   - entity: number
-    name: Alarm temperature maximum
+    name: Alarm temperature
     category: config
     class: temperature
     dps:
@@ -148,7 +148,7 @@ entities:
           min: 10
           max: 85
   - entity: switch
-    name: Alarm temperature maximum shutoff
+    name: Over temperature shutoff
     category: config
     dps:
       - id: 17
@@ -164,7 +164,7 @@ entities:
   # CONFIG SETTINGS : CURRENT
   # ==========================================
   - entity: number
-    name: Alarm current maximum
+    name: Alarm current
     category: config
     class: current
     dps:
@@ -180,7 +180,7 @@ entities:
           - scale: 10
             step: 5
   - entity: switch
-    name: Alarm current maximum shutoff
+    name: Over current shutoff
     category: config
     dps:
       - id: 18
@@ -196,7 +196,7 @@ entities:
   # CONFIG SETTINGS : VOLTAGE
   # ==========================================
   - entity: number
-    name: Alarm voltage maximum
+    name: Alarm over voltage
     category: config
     class: voltage
     dps:
@@ -209,7 +209,7 @@ entities:
           min: 120
           max: 300
   - entity: switch
-    name: Alarm voltage maximum shutoff
+    name: Over voltage shutoff
     category: config
     dps:
       - id: 18
@@ -222,7 +222,7 @@ entities:
           - dps_val: 1
             value: true
   - entity: number
-    name: Alarm voltage minimum
+    name: Alarm under voltage
     category: config
     class: voltage
     dps:
@@ -235,7 +235,7 @@ entities:
           min: 80
           max: 210
   - entity: switch
-    name: Alarm voltage minimum shutoff
+    name: Under voltage shutoff
     category: config
     dps:
       - id: 18
@@ -277,7 +277,7 @@ entities:
   # CONFIG SETTINGS : MISC
   # ==========================================
   - entity: switch
-    name: Prepay feature toggle
+    name: Prepay
     category: config
     icon: "mdi:hand-coin"
     dps:
@@ -285,7 +285,7 @@ entities:
         type: boolean
         name: switch
   - entity: button
-    name: Remaining energy reset
+    name: Prepaid reset
     category: config
     class: restart
     dps:
