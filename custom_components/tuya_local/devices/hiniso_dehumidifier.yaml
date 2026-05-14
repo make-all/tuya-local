@@ -39,7 +39,6 @@ entities:
   #
   # WATER TANK FULL
   #
-
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
@@ -48,10 +47,6 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: on
-            value: true
-          - dps_val: off
-            value: false
           - dps_val: "on"
             value: true
           - dps_val: "off"
@@ -60,7 +55,6 @@ entities:
   #
   # DEVICE PROBLEM
   #
-
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -77,6 +71,11 @@ entities:
             value: false
 
           - value: true
+            
+      - id: 19
+        type: bitfield
+        optional: true
+        name: fault_code
 
       - id: 19
         type: bitfield
@@ -99,7 +98,6 @@ entities:
   #
   # ANION
   #
-
   - entity: switch
     translation_key: ionizer
     category: config
@@ -112,10 +110,8 @@ entities:
   #
   # UV
   #
-
   - entity: switch
-    name: UV
-    icon: "mdi:lightbulb-on"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 13
@@ -126,7 +122,6 @@ entities:
   #
   # CHILD LOCK
   #
-
   - entity: lock
     icon: "mdi:lock"
     translation_key: child_lock
@@ -140,30 +135,29 @@ entities:
   #
   # FAN SPEED
   #
-
-  - entity: select
-    name: Fan speed
-    icon: "mdi:fan"
-    category: config
+  - entity: fan
+    name: Fan
     dps:
+      - id: 1
+        name: switch
+        type: boolean
+
       - id: 4
+        name: speed
         type: string
-        name: option
         mapping:
           - dps_val: low
-            value: Low
+            value: 33
 
           - dps_val: mid
-            value: Medium
+            value: 66
 
           - dps_val: high
-            value: High
-
+            value: 100
 
   #
   # TIMER
   #
-
   - entity: select
     translation_key: timer
     category: config
