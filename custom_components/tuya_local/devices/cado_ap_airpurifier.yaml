@@ -1,0 +1,113 @@
+name: Air purifier
+products:
+  - id: 9SMTMalYiMNQItYo
+    manufacturer: cado
+    model: AP-C120
+  - id: x5gUduZ8QeP8hap6
+    manufacturer: cado
+    model: AP-C220
+  - id: OIFEubH3So07A35c
+    manufacturer: cado
+    model: AP-C320i
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        optional: true
+      - id: 4
+        type: string
+        name: speed
+        optional: true
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "\u00B5g/m\u00B3"
+        class: measurement
+        readonly: true
+  - entity: sensor
+    name: Filter life
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        readonly: true
+  - entity: light
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "\u00B0C"
+        class: measurement
+        readonly: true
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        readonly: true
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    name: Air quality
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        readonly: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+        optional: true
+  - entity: binary_sensor
+    name: Filter cover
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+        optional: true
