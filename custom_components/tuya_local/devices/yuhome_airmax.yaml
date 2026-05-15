@@ -11,6 +11,7 @@ entities:
         name: switch
   - entity: cover
     icon: "mdi:hanger"
+    invert_percent: true
     dps:
       - id: 2
         type: string
@@ -28,7 +29,6 @@ entities:
         range:
           min: 0
           max: 100
-        invert_percent: true
         mapping:
           - dps_val: 0
             value: 100
