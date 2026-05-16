@@ -1,0 +1,92 @@
+name: Dehumidifier
+products:
+  - id: exdgi8inue5mnjvc
+    manufacturer: Aktobis
+    model: WDH-214US
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 90
+        mapping:
+          - step: 5
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+      - id: 8
+        type: boolean
+        name: oscillate
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "E1 Temperature Sensor Fault"
+          - dps_val: 2
+            value: "E2 Copper Tube Sensor Fault"
+          - dps_val: 3
+            value: "E1+E2 Temperature and Copper Tube Sensor Fault"
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Filter Cleaning Reminder
+    class: problem
+    category: diagnostic
+    # Triggers after 500 operating hours. This is a runtime counter,
+    # not an actual filter quality sensor. To reset after cleaning the
+    # air filter grille: press and hold the Swing button on the device
+    # for 15 seconds. The indicator on the device will stop glowing
+    # and DP 103 will return to false. Source: Aktobis product page.
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
