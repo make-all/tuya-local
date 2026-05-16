@@ -386,7 +386,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
-- Kogan bladeless fans
+- Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
 - Ledvance Ceiling fan with light
 - Lexy F501 fan
