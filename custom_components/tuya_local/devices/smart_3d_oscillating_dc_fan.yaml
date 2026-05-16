@@ -24,6 +24,8 @@ entities:
             value: true
           - dps_val: normal
             value: false
+          - value: false
+            hidden: true
       - id: 2
         type: string
         name: preset_mode
@@ -97,10 +99,14 @@ entities:
             value: "12h"
 
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
