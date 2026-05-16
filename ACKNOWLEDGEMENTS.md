@@ -794,3 +794,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fmckeogh](https://github.com/fmckeogh) for contributing support for Voldt EV charger.
 - [manic-mark](https://github.com/manic-mark) for contributing support for amiciSmart AS-SM-63A energy meter.
 - [williamoverton](https://github.com/williamoverton) for contributing improvements to lights with combined dps.
+- [IsaacBreuer](https://github.com/IsaacBreuer) for contributing improvements to Sanjun Steamer.
