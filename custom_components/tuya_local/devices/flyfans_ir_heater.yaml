@@ -1,0 +1,75 @@
+name: Flash IR Heater
+products:
+  - id: 6xxyv99bz3tlfzae
+    manufacturer: Flyfans
+    model: Flash IR Heater
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+  - entity: select
+    name: Power Level
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+          - dps_val: "8"
+            value: "8"
+          - dps_val: "9"
+            value: "9"
+  - entity: select
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 1h
+            value: "1h"
+          - dps_val: 2h
+            value: "2h"
+          - dps_val: 3h
+            value: "3h"
+          - dps_val: 4h
+            value: "4h"
+          - dps_val: 5h
+            value: "5h"
+          - dps_val: 6h
+            value: "6h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
