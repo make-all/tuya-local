@@ -235,7 +235,7 @@ entities:
   - entity: sensor
     name: Total visits
     icon: "mdi:counter"
-    class: measurement
+    state_class: measurement
     category: diagnostic
     dps:
       - id: 7
@@ -253,7 +253,7 @@ entities:
         type: integer
         name: sensor
         unit: kg
-        class: measurement
+        state_class: measurement
         mapping:
           - scale: 1000
   # Duration of cat's last visit in seconds
@@ -265,7 +265,7 @@ entities:
         type: integer
         name: sensor
         unit: s
-        class: measurement
+        state_class: measurement
   # Current weight reading in kg
   - entity: sensor
     class: weight
@@ -274,7 +274,7 @@ entities:
         type: integer
         name: sensor
         unit: kg
-        class: measurement
+        state_class: measurement
         mapping:
           - scale: 1000
   # Internal temperature of device
