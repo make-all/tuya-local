@@ -9,15 +9,13 @@ entities:
     name: Lights
     icon: "mdi:lightbulb-multiple"
     category: config
+    hidden: true
     dps:
       - id: 20
         type: boolean
         name: switch
   - entity: light
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 107
         type: boolean
         name: switch
@@ -52,9 +50,6 @@ entities:
   - entity: light
     name: RGB
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 108
         type: boolean
         name: switch
@@ -215,9 +210,6 @@ entities:
   - entity: light
     translation_key: nightlight
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 143
         type: boolean
         name: switch
