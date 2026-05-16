@@ -1,8 +1,8 @@
-name: Keypad lock
+name: Door Knob Lock
 products:
-  - id: g7rboh0x
+  - id: bf7920otpjfk9cqr
     manufacturer: jtmspro
-    model: Y4
+    model: LA-T01
 entities:
   - entity: lock
     dps:
@@ -61,34 +61,18 @@ entities:
         range:
           min: 0
           max: 999
-      # [Report lock record] is used for the device to report the lock record.
-      # If the lock is controlled by the mobile phone app or the lock is
-      # manually closed locally, this dp can be used to report.
-      - id: 20
-        type: string
-        optional: true
-        name: lock_record
-      # [Lock Operation] is used to trigger the device to perform the lock
-      # operation, which can be used for automatic lock and manual lock
-      # operation. To report the lock (close) record, you need to use dp=20
-      # lock record. You need to use 2 dp in combination to fully implement the
-      # lock operation and lock record reporting. In addition to these two dp,
-      # you also need to use dp47=lock status to report the lock status, so
-      # that the unlock/lock status displayed on the app is consistent with
-      # the local hardware.
-      - id: 46
-        type: boolean
-        name: lock
-        optional: true
-      # [Device Status] is used to report the status of the device clutch
-      # switch, that is, the switch status of the lock. This dp is enabled only
-      # when the product hardware supports the detection of the lock status.
+      # lock_motor_state: reports motor / bolt position (not the same as older
+      # dp 46 "lock" command on some Hornbill models). Inverted for HA locked.
       - id: 47
         type: boolean
         optional: true
         name: lock_state
-      # [Report unlocking record] is used for the device to report the record
-      # of online temporary password unlocking.
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      # unlock_temporary (cloud) -> unlock_temp_pwd for HA lock integration.
       - id: 55
         type: integer
         name: unlock_temp_pwd
@@ -97,20 +81,15 @@ entities:
         range:
           min: 0
           max: 999
-      # [Remote unlocking operation] is used to trigger the remote unlocking
-      # operation of the device. It is recommended to enable this DP and
-      # develop this function. Only when this function is supported and the
-      # door lock is connected to the Bluetooth gateway, can the voice control
-      # door opening and closing function be realized with smart speaker
-      # products such as Alexa or Google Home.
+      # remote_no_dp_key (raw): 8-digit remote lock/unlock protocol
+      # (see lock.py).
       - id: 61
         type: base64
         optional: true
         persist: false
         sensitive: true
         name: code_unlock
-      # [Report unlocking records] is used for the device to report the records
-      # of remote unlocking via mobile phone.
+      # unlock_phone_remote -> unlock_app
       - id: 62
         type: integer
         name: unlock_app
@@ -119,11 +98,7 @@ entities:
         range:
           min: 0
           max: 999
-      # [Report unlocking record] is used for the device to report the record
-      # of voice unlocking. This function depends on dp61 = remote door opening
-      # (with verification code). It needs to be enabled with dp62 and pay for
-      # the voice door opening value-added service at the iot platform
-      # value-added service center before this function can be used.
+      # unlock_voice_remote -> unlock_voice
       - id: 63
         type: integer
         name: unlock_voice
@@ -132,28 +107,27 @@ entities:
         range:
           min: 0
           max: 999
-      # [Report unlocking record] is used for the device to report offline
-      # password unlocking records.
       - id: 67
-        type: string
+        type: base64
         name: unlock_offline_pwd
         optional: true
         persist: false
         sensitive: true
-      # [Bluetooth Unlock] is used to configure the verification information
-      # required when the device performs Bluetooth unlocking.
       - id: 70
-        type: string
+        type: base64
         name: check_code_set
         optional: true
         persist: false
         sensitive: true
-      # [Bluetooth Unlock] is used to trigger the device to perform Bluetooth
-      # unlocking. The trigger source can be a mobile phone, an accessory, or
-      # proximity unlocking.
       - id: 71
-        type: string
+        type: base64
         name: ble_unlock_check
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 73
+        type: base64
+        name: remote_pd_setkey_check
         optional: true
         persist: false
         sensitive: true
@@ -216,23 +190,7 @@ entities:
             value: defense
           - dps_val: wrong_unlock
             value: wrong_unlock
-      # [Doorbell] If the local doorbell ringtone of the device supports
-      # switching, you can use this DP to switch the local doorbell ringtone of
-      # the door lock on the app; this DP is only enabled if the hardware of
-      # this smart lock product supports doorbell ringtone switching and the
-      # user is allowed to switch on the app.
-      - id: 26
-        type: string
-        name: event
-        optional: true
-        mapping:
-          - dps_val: ding_0
-            value: ding_0
-          - dps_val: ding_1
-            value: ding_1
-  # [Device Status] is used to display the power level in percentage. The range
-  # is -1 to 100. When the device reports a value of -1, the power level is not
-  # displayed. (Choose one from DP9).
+  # residual_electricity (dp 8)
   - entity: sensor
     class: battery
     dps:
@@ -241,40 +199,9 @@ entities:
         name: sensor
         unit: "%"
         optional: true
-  # [Language] is used to set the playback language of the local navigation
-  # voice of the device.
-  # 0 = Simplified Chinese
-  # 1 = English
-  # 2 = Japanese
-  # 3 = German
-  # 4 = Spanish
-  # 5 = Latin
-  # 6 = French
-  # 7 = Russian
-  # 8 = Italian
-  # 9 = Traditional Chinese
-  # 10 = Korean
-  # This dp is only enabled if the hardware of this smart lock product supports
-  # language switching and allows users to switch on the app.
+  # beep_volume (dp 31)
   - entity: select
-    translation_key: language
-    category: config
-    dps:
-      - id: 28
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: chinese_simplified
-            value: chinese
-          - dps_val: english
-            value: english
-  # [Volume] is used to set the volume of the local navigation voice of the
-  # device. This dp is only enabled when the hardware of this smart lock
-  # product supports door lock volume adjustment and the user is allowed to
-  # switch the operation on the app.
-  - entity: select
-    name: Volume
+    name: Beep volume
     category: config
     dps:
       - id: 31
@@ -290,21 +217,16 @@ entities:
             value: Normal
           - dps_val: high
             value: High
-  # [Device Status] If the device has indoor anti-lock detection, it is used to
-  # report the switch status of indoor anti-lock. Only select this dp when the
-  # hardware of this smart lock product can detect the anti-lock status and
-  # report the data. This dp is only used to display the anti-lock status on
-  # the door lock home page interface, and cannot perform anti-lock setting
-  # operations.
-  # Commented since DP gets reported even if the device doesn't support it.
-  # - entity: switch
-  #   name: Indoor anti-lock
-  #   category: config
-  #   dps:
-  #     - id: 32
-  #       type: boolean
-  #       name: switch
-  #       optional: true
+  # reverse_lock (dp 32)
+  - entity: switch
+    name: Reverse lock
+    category: config
+    icon: "mdi:lock-outline"
+    dps:
+      - id: 32
+        type: boolean
+        name: switch
+        optional: true
   # [Automatic Lock] is used to set the switch of the automatic locking
   # function. Through this dp, you can set "Enable automatic locking" and "No
   # automatic locking", that is, the device will not automatically lock, and it
@@ -321,53 +243,57 @@ entities:
         type: boolean
         name: switch
         optional: true
-  # [Device Status] If the device has door opening and closing status
-  # detection, it is used to report the door opening and closing status. Only
-  # enable this dp if this function is supported.
-  # Commented since DP gets reported even if the device doesn't support it.
-  # - entity: sensor
-  #   category: config
-  #   class: enum
-  #   name: Door status
-  #   dps:
-  #     - id: 40
-  #       type: string
-  #       name: sensor
-  #       optional: true
-  #       mapping:
-  #         - dps_val: unknown
-  #           value: Unknown
-  #         - dps_val: open
-  #           value: Open
-  #         - dps_val: closed
-  #           value: Closed
-  # [Approach Unlock] is used to set the delay time of automatic locking in the
-  # approach unlock scenario. If it is not enabled, the original automatic
-  # locking delay time will be retained.
-  # Commented since DP gets reported even if the device doesn't support it.
-  # - entity: select
-  #   name: Approach unlock delay
-  #   category: config
-  #   dps:
-  #     - id: 89
-  #       type: string
-  #       name: option
-  #       optional: true
-  #       mapping:
-  #         - dps_val: inactive
-  #           value: Inactive
-  #         - dps_val: 4s
-  #           value: 4s
-  #         - dps_val: 6s
-  #           value: 6s
-  #         - dps_val: 8s
-  #           value: 8s
-  #         - dps_val: 10s
-  #           value: 10s
-  #         - dps_val: 12s
-  #           value: 12s
-  # [Automatic Lock] is used to set the delay time from unlocking the device to
-  # automatically locking the device. The setting range is 1s to 30min.
+  # closed_opened (dp 40)
+  - entity: sensor
+    category: diagnostic
+    class: enum
+    name: Door position
+    dps:
+      - id: 40
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: unknown
+            value: unknown
+          - dps_val: open
+            value: open
+          - dps_val: closed
+            value: closed
+  # manual_lock (dp 46)
+  - entity: binary_sensor
+    name: Manual lock
+    class: lock
+    category: diagnostic
+    dps:
+      - id: 46
+        type: boolean
+        name: sensor
+        optional: true
+  # arming_switch (dp 58)
+  - entity: switch
+    name: Arming
+    category: config
+    icon: "mdi:shield-home"
+    dps:
+      - id: 58
+        type: boolean
+        name: switch
+        optional: true
+  # special_function (dp 68)
+  - entity: select
+    name: Special function
+    category: config
+    icon: "mdi:tune-variant"
+    dps:
+      - id: 68
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: function1
+            value: function1
+  # auto_lock_time (dp 36)
   - entity: number
     name: Automatic lock delay
     icon: "mdi:lock-clock"
@@ -381,21 +307,6 @@ entities:
         range:
           min: 1
           max: 1800
-  - entity: text
-    name: Remote unlock code
-    category: config
-    icon: "mdi:form-textbox-password"
-    hidden: true
-    dps:
-      # [Remote unlock] is used to configure the key required for remote
-      # unlocking. If the device needs to be unlocked remotely, this DP is
-      # required.
-      - id: 73
-        type: base64
-        name: value
-        optional: true
-        sensitive: true
-
   - entity: text
     name: New credential
     category: config
