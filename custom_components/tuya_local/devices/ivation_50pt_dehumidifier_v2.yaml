@@ -1,4 +1,4 @@
-name: MANUAL Ivation Dehumidifier
+name: Dehumidifier
 products:
   - id: gywqtqpgiu74ozok
     manufacturer: Ivation
@@ -27,22 +27,43 @@ entities:
             value: normal
           - dps_val: "3"
             value: high
+      - id: 116
+        type: boolean
+        name: mode
+        translation_key: extended
+        mapping:
+          - dps_val: false
+            value: normal
+          - dps_val: true
+            value: continuous
+
+  - entity: fan
+    dps:
+      - id: 6
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 50
+          - dps_val: "3"
+            value: 100
+
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 110
         type: boolean
         name: sensor
+
   - entity: binary_sensor
-    name: Defrosting
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 111
         type: boolean
         name: sensor
+
   - entity: binary_sensor
     name: Compressor
     class: running
@@ -51,23 +72,31 @@ entities:
       - id: 115
         type: boolean
         name: sensor
-  - entity: sensor
-    name: Fault Code
+
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 11
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - default: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+
   - entity: sensor
-    name: Room temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 109
         type: integer
         name: sensor
         unit: F
         class: measurement
+
   - entity: sensor
     name: Coil temperature
     class: temperature
@@ -78,8 +107,9 @@ entities:
         name: sensor
         unit: F
         class: measurement
+
   - entity: sensor
-    name: Timer remaining
+    name: Timer/Timer remaining
     translation_key: time_remaining
     class: duration
     category: diagnostic
@@ -88,9 +118,9 @@ entities:
         type: integer
         name: sensor
         unit: min
+
   - entity: sensor
-    name: Actual Fan speed
-    class: enum
+    name: Fan speed
     category: diagnostic
     dps:
       - id: 116
@@ -107,22 +137,3 @@ entities:
             value: "Medium"
           - dps_val: "4"
             value: "High"
-  - entity: select
-    name: Set Wind Speed
-    category: config
-    dps:
-      - id: 6
-        type: string
-        name: option
-        mapping:
-          - dps_val: "1"
-            value: low
-          - dps_val: "3"
-            value: high
-  - entity: switch
-    name: Continuous mode
-    category: config
-    dps:
-      - id: 113
-        type: boolean
-        name: switch
