@@ -22,7 +22,7 @@ entities:
           - dps_val: charger_charging
             value: charging
           - dps_val: charger_stop_wait
-            value: stopping
+            value: waiting
           - dps_val: charger_fault
             value: fault
       - id: 23
@@ -46,6 +46,7 @@ entities:
           - scale: 100
   - entity: number
     name: Set current
+    class: current
     category: config
     icon: "mdi:ev-plug-type2"
     dps:
@@ -107,6 +108,7 @@ entities:
         class: measurement
   - entity: sensor
     name: Last charge
+    class: energy_storage
     dps:
       - id: 25
         type: integer
