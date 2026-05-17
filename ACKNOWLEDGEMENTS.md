@@ -798,3 +798,4 @@ Further device support has been made with the assistance of users. Please consid
 - [angus-thompson](https://github.com/angus-thompson) for contributing support for Kogan 3D oscillating fan.
 - [jemella](https://github.com/jemella) for contributing support for Aktobis WDH-214US dehumidifier.
 - [tkoenig](https://github.com/tkoenig) for contributing support for W-2839 water quality monitor.
+- [gsalakirov](https://github.com/gsalakirov) for contributing improvements to CleanAir CA702 dehumidifier.
