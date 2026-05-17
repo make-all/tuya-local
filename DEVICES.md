@@ -398,7 +398,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -1291,7 +1291,6 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - Pinjia PJ3101A presence sensor
-- W-2839 water quality monitor
 - PlantsIO Ivy and Ivy Gen2 smart planters
 - PNI Sofe House Smart Gas 300 alarm
 - Prodotec PT02 air quality monitor
@@ -1326,6 +1325,7 @@ port and password.
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
+- W-2839 water quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
