@@ -922,8 +922,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         entry.data[CONF_TYPE],
     )
     if device_conf is None:
-        _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
-        return False
+        cleanup_failed_device(hass, device_id)
+        raise ConfigEntryNotReady(NOT_FOUND % config[CONF_TYPE])
 
     entities = set()
     for e in device_conf.all_entities():
