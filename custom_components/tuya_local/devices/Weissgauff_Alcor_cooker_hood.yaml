@@ -1,0 +1,36 @@
+name: Cooker hood
+products:
+  - id: gm6p7hxmvtuwn1pr
+    model: Alcor TC BL Inverter Wi-Fi
+    name: Weissgauff
+entities:
+  - entity: light
+    name: Light
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 9
+  - entity: number
+    name: Auto-off
+    class: duration
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+        
