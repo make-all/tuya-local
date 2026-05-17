@@ -227,7 +227,7 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
-- Shuangri SR223 solar water heating controller 
+- Shuangri SR223 solar water heating controller
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
 - Tauclima DGN-250 heat pump water heater
@@ -386,7 +386,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
-- Kogan bladeless fans
+- Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
 - Ledvance Ceiling fan with light
 - Lexy F501 fan
@@ -398,7 +398,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -425,7 +425,6 @@
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
 - Stirling FS1-40DC pedestal fan
-
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -480,7 +479,7 @@
 
 ### Dehumidifiers
 
-- Aktobis WDH-310EK and WDH-870FW dehumidifiers
+- Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
@@ -617,6 +616,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- amiciSmart AS-SM-63A energy meter
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
@@ -679,14 +679,14 @@
 - Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
-### Battery Charger
+### Battery Chargers
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
-- dé Wall Charger (3-phase 22Kw)
+- dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger
@@ -708,6 +708,7 @@
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
+- Voldt 8-13A EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
 
@@ -945,7 +946,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
-- BobYun Tech gatePro gate opener 
+- BobYun Tech gatePro gate opener
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
@@ -1324,6 +1325,7 @@ port and password.
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
+- W-2839 water quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
