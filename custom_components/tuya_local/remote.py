@@ -435,7 +435,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                     self._config.config_id,
                     command,
                     subdevice or "default device",
-                )
+                )
             except KeyError:
                 cmds_not_found.append(command)
 
