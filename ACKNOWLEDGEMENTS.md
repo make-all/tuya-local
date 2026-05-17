@@ -796,3 +796,4 @@ Further device support has been made with the assistance of users. Please consid
 - [williamoverton](https://github.com/williamoverton) for contributing improvements to lights with combined dps.
 - [IsaacBreuer](https://github.com/IsaacBreuer) for contributing improvements to Sanjun Steamer.
 - [angus-thompson](https://github.com/angus-thompson) for contributing support for Kogan 3D oscillating fan.
+- [jemella](https://github.com/jemella) for contributing support for Aktobis WDH-214US dehumidifier.
