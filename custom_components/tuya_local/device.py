@@ -162,7 +162,7 @@ class TuyaLocalDevice(object):
         # different masks). Without this, two concurrent async_turn_on calls
         # both read the same baseline before either updates pending, then the
         # second's pending update clobbers the first.
-        self._set_lock = asyncio.Lock()
+        self.set_lock = asyncio.Lock()
 
     @property
     def name(self):

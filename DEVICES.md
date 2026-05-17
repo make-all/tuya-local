@@ -479,7 +479,7 @@
 
 ### Dehumidifiers
 
-- Aktobis WDH-310EK and WDH-870FW dehumidifiers
+- Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
