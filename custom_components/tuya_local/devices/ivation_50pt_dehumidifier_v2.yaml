@@ -66,6 +66,7 @@ entities:
   - entity: binary_sensor
     name: Compressor
     class: running
+    category: diagnostic
     dps:
       - id: 115
         type: boolean
@@ -107,7 +108,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Timer/Timer remaining
+    name: Timer remaining
     translation_key: time_remaining
     class: duration
     category: diagnostic
@@ -119,6 +120,7 @@ entities:
 
   - entity: sensor
     name: Fan speed
+    class: enum
     category: diagnostic
     dps:
       - id: 116
