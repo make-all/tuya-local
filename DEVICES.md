@@ -153,6 +153,7 @@
 - Sonnenkönig Fresco 140/180 air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
+- Tadiran Mini Central Inverter air conditioner
 - Teknopoint Idra Skiv air conditioner
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
