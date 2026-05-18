@@ -15,6 +15,28 @@ entities:
   - entity: climate
     name: Heater
     dps:
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 31
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: "f"
+                range:
+                  min: 60
+                  max: 88
+                value_redirect: temp_set_f
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: "f"
+                value_redirect: temp_current_f
       - id: 5
         type: string
         name: hvac_mode
@@ -22,9 +44,26 @@ entities:
           - dps_val: "0"
             value: "off"
           - dps_val: "1"
-            value: "heat"
+            constraint: heat_disable
+            conditions:
+              - dps_val: false
+                value: "heat"
+              - dps_val: true
+                value: "fan_only"
           - dps_val: "2"
-            value: "heat"
+            constraint: heat_disable
+            conditions:
+              - dps_val: false
+                value: "heat"
+              - dps_val: true
+                value: "fan_only"
+          - dps_val: "3"
+            constraint: heat_disable
+            conditions:
+              - dps_val: false
+                value: "heat"
+              - dps_val: true
+                value: "fan_only"
       - id: 5
         type: string
         name: preset_mode
@@ -35,15 +74,8 @@ entities:
             value: "low"
           - dps_val: "2"
             value: "high"
-      - id: 14
-        type: integer
-        name: temperature
-        range:
-          min: 60
-          max: 88
-      - id: 15
-        type: integer
-        name: current_temperature
+          - dps_val: "3"
+            value: "auto"
       - id: 13
         type: string
         name: temperature_unit
@@ -52,6 +84,21 @@ entities:
             value: F
           - dps_val: "c"
             value: C
+      - id: 14
+        type: integer
+        name: temp_set_f
+        range:
+          min: 60
+          max: 88
+        hidden: true
+      - id: 15
+        name: temp_current_f
+        type: integer
+        hidden: true
+      - id: 107
+        type: boolean
+        name: heat_disable
+        hidden: true
 
   - entity: select
     name: Flame color
@@ -80,15 +127,15 @@ entities:
           - dps_val: "0"
             value: "Off"
           - dps_val: "1"
-            value: "1"
+            value: "20%"
           - dps_val: "2"
-            value: "2"
+            value: "40%"
           - dps_val: "3"
-            value: "3"
+            value: "60%"
           - dps_val: "4"
-            value: "4"
+            value: "80%"
           - dps_val: "5"
-            value: "5"
+            value: "100%"
 
   - entity: select
     name: Flame speed
@@ -155,15 +202,15 @@ entities:
           - dps_val: "L5"
             value: "Off"
           - dps_val: "L0"
-            value: "1"
+            value: "25%"
           - dps_val: "L1"
-            value: "2"
+            value: "50%"
           - dps_val: "L2"
-            value: "3"
+            value: "75%"
           - dps_val: "L3"
-            value: "4"
+            value: "100%"
           - dps_val: "L4"
-            value: "5"
+            value: "Pulsating"
 
   - entity: select
     name: Timer
