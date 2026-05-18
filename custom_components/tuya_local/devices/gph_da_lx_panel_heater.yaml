@@ -1,0 +1,113 @@
+name: Heater
+products:
+  - id: bfd46bc528e265e3a37rkw
+    model: GPH-DA-LX
+    name: "GPH-DA-LX panel heater"
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 45
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: [Comfort, comfort]
+                range:
+                  min: 10
+                  max: 45
+              - dps_val: [Economy, economy, ECO, eco]
+                range:
+                  min: 5
+                  max: 45
+              - dps_val: [FrostProtection, FrostPro, frostpro]
+                range:
+                  min: 6
+                  max: 6
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 4
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: [Economy, Comfort, FrostProtection]
+                mapping:
+                  - dps_val: Economy
+                    value: eco
+                  - dps_val: Comfort
+                    value: comfort
+                  - dps_val: FrostProtection
+                    value: away
+              - dps_val: [economy, comfort, frostpro, FrostPro]
+                mapping:
+                  - dps_val: economy
+                    value: eco
+                  - dps_val: comfort
+                    value: comfort
+                  - dps_val: frostpro
+                    value: away
+                  - dps_val: FrostPro
+                    value: away
+              - dps_val: null
+                mapping:
+                  - dps_val: Economy
+                    value: eco
+                  - dps_val: Comfort
+                    value: comfort
+                  - dps_val: FrostProtection
+                    value: away
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+  - entity: switch
+    name: Display sleep
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
