@@ -449,6 +449,7 @@
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
+- Homemedics C500 air purifier
 - Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
@@ -468,7 +469,6 @@
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
-
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - Trident AirDome-70 air purifier
