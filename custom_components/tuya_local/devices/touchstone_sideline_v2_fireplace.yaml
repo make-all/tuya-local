@@ -5,7 +5,6 @@ products:
     model: Sideline (red/blue flame variant)
 entities:
   - entity: switch
-    translation_key: power
     icon: "mdi:fireplace"
     dps:
       - id: 1
@@ -13,7 +12,7 @@ entities:
         name: switch
 
   - entity: climate
-    name: Heater
+    translation_key: heater
     dps:
       - id: 2
         name: temperature
@@ -213,7 +212,7 @@ entities:
             value: "Pulsating"
 
   - entity: select
-    name: Timer
+    translation_key: timer
     icon: "mdi:timer"
     category: config
     dps:
