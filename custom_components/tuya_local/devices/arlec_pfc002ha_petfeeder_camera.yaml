@@ -1,0 +1,122 @@
+name: Camera pet feeder
+products:
+  - id: cmubbmrw5ibt5gkl
+    manufacturer: Arlec
+    model: PFC002HA Series 2
+entities:
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: camera
+    dps:
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+        sensitive: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 150
+        type: boolean
+        name: record
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 203
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 12
+  - entity: sensor
+    name: Feed result
+    class: enum
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 201
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: -2001
+            value: failed
+          - dps_val: -2000
+            value: feeding
+          - dps_val: null
+            value: idle
+          - value: fed
+      - id: 201
+        type: integer
+        name: portions
+  - entity: sensor
+    name: Portion size
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 202
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 207
+        type: string
+        name: value
