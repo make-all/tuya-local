@@ -36,15 +36,6 @@ entities:
         type: string
         name: mode
         hidden: true
-  - entity: sensor
-    deprecated: water_heater.current_temperature  # 2025-11-05
-    class: temperature
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic

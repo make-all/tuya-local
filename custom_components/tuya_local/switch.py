@@ -64,10 +64,12 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""
-        _LOGGER.info("%s turning on", self._config.config_id)
-        await self._switch_dps.async_set_value(self._device, True)
+        async with self._device.set_lock:
+            _LOGGER.info("%s turning on", self._config.config_id)
+            await self._switch_dps.async_set_value(self._device, True)
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
-        _LOGGER.info("%s turning off", self._config.config_id)
-        await self._switch_dps.async_set_value(self._device, False)
+        async with self._device.set_lock:
+            _LOGGER.info("%s turning off", self._config.config_id)
+            await self._switch_dps.async_set_value(self._device, False)

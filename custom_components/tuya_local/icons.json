@@ -239,6 +239,26 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "default": "mdi:air-purifier",
+                "state": {
+                    "off": "mdi:air-purifier-off"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "mdi:fan-auto",
+                            "manual": "mdi:hand-back-left",
+                            "sleep": "mdi:sleep",
+                            "low": "mdi:fan-speed--1",
+                            "medium": "mdi:fan-speed-2",
+                            "high": "mdi:fan-speed-3",
+                            "strong": "mdi:weather-hurricane",
+                            "displayoff": "mdi:monitor-off"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "default": "mdi:scent",
                 "state": {
@@ -257,6 +277,20 @@
                     }
                 }
             },
+            "dehumidifier": {
+                "default": "mdi:water-percent",
+                "state": {
+                    "off": "mdi:water-off"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "purify": "mdi:air-filter",
+                            "dehumidify": "mdi:water-percent"
+                        }
+                    }
+                }
+            },
             "fan_with_presets": {
                 "state_attributes": {
                     "preset_mode": {
@@ -269,7 +303,39 @@
                             "smart": "mdi:auto-mode",
                             "strong": "mdi:weather-hurricane",
                             "displayoff": "mdi:monitor-off",
+                            "custom": "mdi:shape",
+                            "auto": "mdi:fan-auto",
+                            "manual": "mdi:hand-back-left",
+                            "program": "mdi:calendar-clock",
+                            "high": "mdi:fan-speed-3",
+                            "medium": "mdi:fan-speed-2",
+                            "low": "mdi:fan-speed--1",
+                            "displayoff": "mdi:monitor-off",
                             "off": "mdi:fan-off"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "default": "mdi:hvac",
+                "state": {
+                    "off": "mdi:hvac-off"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "mdi:air-filter",
+                            "circulate": "mdi:cached",
+                            "sleep": "mdi:sleep",
+                            "auto": "mdi:auto-mode",
+                            "manual": "mdi:hand-back-left",
+                            "eco": "mdi:leaf",
+                            "anti-condensation": "mdi:water-off",
+                            "extractor": "mdi:hvac",
+                            "heat_recovery": "mdi:recycle",
+                            "timer": "mdi:timer",
+                            "on": "mdi:hvac",
+                            "off": "mdi:hvac-off"
                         }
                     }
                 }
@@ -903,5 +969,8 @@
                 }
             }
         }
+    },
+    "services": {
+        "send_learned_ir_command": "mdi:remote"
     }
 }

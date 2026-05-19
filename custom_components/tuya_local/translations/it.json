@@ -106,6 +106,26 @@
             "not_supported": "Spiacente, questo dispositivo non è supportato."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Invia comando IR appreso",
+            "description": "Invia un comando remoto che è stato precedentemente appreso dall'entità remota a qualsiasi emettitore a infrarossi.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Entità emettitore",
+                    "description": "ID dell'entità dell'emettitore a cui inviare il comando."
+                },
+                "command": {
+                    "name": "Comando",
+                    "description": "Il comando da inviare. Questo deve essere un comando che è stato precedentemente appreso dall'integrazione per questo telecomando."
+                },
+                "device": {
+                    "name": "Dispositivo",
+                    "description": "Il dispositivo IR a cui inviare il comando. Questo è opzionale e necessario solo se il comando è stato salvato con un dispositivo."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -390,6 +410,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Purificatore d'aria",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuale",
+                            "sleep": "Sonno",
+                            "low": "Basso",
+                            "medium": "Medio",
+                            "high": "Alto",
+                            "strong": "Forte",
+                            "displayoff": "Display spento"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Diffusore di aromi",
                 "state_attributes": {

@@ -540,7 +540,7 @@ def test_config_files_parse(mocker):
             if entity.config_id in entities:
                 pytest.fail(
                     f"\n::error file={fname},line={entity._config.__line__}::"
-                    "Duplicate entity {entity.config_id} in {cfg}"
+                    f"Duplicate entity {entity.config_id} in {cfg}"
                 )
             entities.append(entity.config_id)
 
@@ -800,6 +800,42 @@ def test_setting_masked_hex(mocker):
     mock_device.get_property.return_value = "babe"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
     assert cfg.get_values_to_set(mock_device, 0xCA) == {"1": "cabe"}
+
+
+def test_getting_masked_b64_with_special_case_mapping(mocker):
+    """Test that get_value works with masked hex encoding and a mapping that has a special case."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "ffff",
+        "mapping": [
+            {"dps_val": 256, "value": "special_case"},
+        ],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AQA="
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == "special_case"
+
+
+def test_setting_masked_b64_with_special_case_mapping(mocker):
+    """Test that get_values_to_set works with masked hex encoding and a mapping that has a special case."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "ffff",
+        "mapping": [
+            {"dps_val": 256, "value": "special_case"},
+        ],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AAA="
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_values_to_set(mock_device, "special_case") == {"1": "AQA="}
 
 
 def test_default_without_mapping(mocker):

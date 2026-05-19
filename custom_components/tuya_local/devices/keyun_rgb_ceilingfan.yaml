@@ -33,6 +33,7 @@ entities:
   - entity: switch
     name: Lights
     icon: "mdi:lightbulb-multiple"
+    category: config
     dps:
       - id: 20
         type: boolean
@@ -41,7 +42,7 @@ entities:
     dps:
       - id: 20
         type: boolean
-        name: available
+        name: power
       - id: 51
         type: base64
         optional: true
@@ -49,7 +50,7 @@ entities:
         name: switch
         mapping:
           - dps_val: null
-            value_mirror: available
+            value_mirror: power
       - id: 21
         name: work_mode
         type: string
@@ -107,9 +108,6 @@ entities:
   - entity: light
     translation_key: backlight
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 51
         type: base64
         optional: true

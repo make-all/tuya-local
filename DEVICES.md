@@ -98,7 +98,6 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
-- Aquastrong HEX pool heat pumps
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -167,6 +166,7 @@
 
 ### Pool heaters / heat pumps
 
+- Aquastrong HEX pool heat pumps
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
@@ -176,7 +176,8 @@
 - Henden Essential pool heat pump
 - Komeco QC60 pool heat pump
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
-- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI heat pumps
+- Mountfield Azuro pool heat pump
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
 - Poolsana InverPower Next pool heat pump
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
@@ -226,9 +227,10 @@
 - Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
-- Shuangri SR223 solar water heating controller 
+- Shuangri SR223 solar water heating controller
 - Sime EcoMaxi VB200 heat pump water heater
 - SolarEast (Adlar Castra) Aurora II heat pump
+- Tauclima DGN-250 heat pump water heater
 - Thermann R290 heat pump water heater
 - Thermex IF series V pro and Lima 80V hot water systems
 - Thermoval Aqua TI water heater
@@ -250,14 +252,16 @@
 - Beok TR9B _(rebadged as Vancoo and perhaps others)_, TR9B-AC2 thermostats
 - BHT-002-GALW and GABW thermostats _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- Computherm Q20 thermostat
 - Dr Heater DR-008 electric radiant floor thermostat
 - Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
 - Elko EKO07262 thermostat
 - EleChico CCST6001 thermostat
+- Elitech ECS-974T refrigeration thermostat
 - Emmeti Zona thermostat
-- Engo E901WiFi thermostat
+- Engo E901WiFi and EFAN230 thermostats
 - Essentials Wall thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
@@ -274,8 +278,7 @@
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A, ITC308, C236T thermostat smartplugs
-- Jiahong ET-44W thermostat (also sold under the TheroLife brand)
-- Jiahong ET-72W thermostat (branded Warmme in the app)
+- Jiahong ET-44W, ET-61, ET-72W thermostats (also sold under the ThermoLife, and Warmme brands)
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
 - Konlen WF72TT/WF96TT dual temperature controller
@@ -370,6 +373,7 @@
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
+- Humhold 24" low profile ceiling fan with RGB+CW lights
 - Hunter Pacific 6 and 9 speed ceiling fans with light
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
@@ -382,7 +386,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
-- Kogan bladeless fans
+- Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
 - Ledvance Ceiling fan with light
 - Lexy F501 fan
@@ -394,7 +398,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -421,7 +425,6 @@
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Smartmi Air Circulating fan
 - Stirling FS1-40DC pedestal fan
-
 - Sulion Crixus L ceiling fan with light
 - Temple and Webster Alina ceiling fan
 - TMWF02 fan controller
@@ -446,6 +449,7 @@
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
+- Homemedics C500 air purifier
 - Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
@@ -465,7 +469,6 @@
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
-
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - Trident AirDome-70 air purifier
@@ -476,7 +479,7 @@
 
 ### Dehumidifiers
 
-- Aktobis WDH-310EK and WDH-870FW dehumidifiers
+- Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
@@ -506,6 +509,7 @@
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Krisbow Sync 36W dehumidifier
+- LDH-7700 dehumidifier
 - Luko dehumidifier
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
@@ -612,6 +616,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- amiciSmart AS-SM-63A energy meter
 - Atorch S1BW,S1WP energy monitoring switches with display
 - Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
@@ -674,14 +679,14 @@
 - Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
-### Battery Charger
+### Battery Chargers
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
 - AFYEEV 16A 11kW, 32A 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
-- dé Wall Charger (3-phase 22Kw)
+- dé Wall EV charger (3-phase 22Kw)
 - Demuda 4048/6048 MPPT solar charge controller
 - Dowell iOneAIO EV charger
 - EcoPoint EV charger
@@ -703,8 +708,10 @@
 - Tary TA-AC380/22 EV charger
 - Tera W01 EV charger
 - Vevor Level 2, portable 7kW and 3.7kW EV chargers
+- Voldt 8-13A EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
+- Zencar Wpro 32A 3P EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
@@ -781,6 +788,7 @@ the best option.
 - Tellur 3 outlet + USB power strip with individual timers
 - Tongou TOVTH-216WTTDA temperature humidity sensor dual smart switch
 - TY-12W/24W 12/24 switch relay boards (boards with 8 - 24 relays supported)
+- UK002WL2 dual switch
 - WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
@@ -939,7 +947,7 @@ of device.
 - Avatto curtain switch
 - Avatto roller blind controller
 - Benexmart blind motor
-- BobYun Tech gatePro gate opener 
+- BobYun Tech gatePro gate opener
 - CCB-11 blind controller
 - CC curtain controller 1
 - CST WB V1 cover switch with backlight
@@ -987,6 +995,7 @@ of device.
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE A12, A30 pro, V20, V30 vacuum cleaners
 - Kabum Smart 500, 700 vacuum cleaners
@@ -1035,6 +1044,7 @@ work reliably, even if listed below.
 
 - A03 siren
 - Airam S1WFAA siren
+- ECoolBuy Siren with temperature and humidity sensor
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect SWS07HA indoor siren
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
@@ -1089,6 +1099,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - CPVAN CP2W alarm system
 - Digoo DG-HAMB GSM security alarm system
+- eTiger S6 alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Kerui 120dB siren alarm
@@ -1276,6 +1287,7 @@ port and password.
 - Mustool MT15/MT29 air quality box
 - Nedis WIFIPD10WT pill dispenser
 - Nedis WIFISA10CWT air quality monitor
+- Nobito air quality monitor
 - Palicy EC Pro 4 pool chlorinator
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
@@ -1314,6 +1326,7 @@ port and password.
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
+- W-2839 water quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
