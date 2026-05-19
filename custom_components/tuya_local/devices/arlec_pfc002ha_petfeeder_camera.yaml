@@ -69,14 +69,19 @@ entities:
   - entity: number
     translation_key: manual_feed
     dps:
-      - id: 203
+      - id: 201
         type: integer
         optional: true
         name: value
+        persist: false
         unit: portions
         range:
           min: 1
           max: 12
+        mapping:
+          - dps_val: null
+            value: 0
+            hidden: true
   - entity: sensor
     name: Feed result
     class: enum
