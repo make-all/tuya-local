@@ -1,0 +1,217 @@
+name: Smart litter box
+products:
+  - id: 5t7esmqqh92ssbe5
+    model: 宠物猫砂盆
+entities:
+  - entity: sensor
+    name: Cat weight
+    class: weight
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: g
+  - entity: sensor
+    name: Excretion times today
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Excretion time today
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+  - entity: switch
+    name: Deodorization
+    icon: "mdi:spray"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: button
+    name: Clean
+    icon: "mdi:broom"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: true
+  - entity: button
+    name: Empty
+    icon: "mdi:delete"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: true
+  - entity: binary_sensor
+    name: Trash full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Monitoring
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Auto clean
+    icon: "mdi:autorenew"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Scheduled clean
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Odor removal
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:bell-off"
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Clean notice
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Toilet notice
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Child lock
+    icon: "mdi:lock"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: number
+    name: Induction delay
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Induction interval
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 5
+          max: 60
+  - entity: binary_sensor
+    name: Store full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 119
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Store full notification
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Odourless
+    category: diagnostic
+    dps:
+      - id: 120
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Smart clean active
+    category: diagnostic
+    dps:
+      - id: 121
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Usage count
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+  - entity: switch
+    name: Auto deodorizer
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: number
+    name: Detection sensitivity
+    category: config
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1000
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
