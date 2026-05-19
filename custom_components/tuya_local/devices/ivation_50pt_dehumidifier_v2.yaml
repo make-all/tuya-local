@@ -14,19 +14,11 @@ entities:
         type: integer
         name: humidity
         range:
-          min: 35
+          min: 30
           max: 80
       - id: 3
         type: integer
         name: current_humidity
-      - id: 6
-        type: string
-        name: mode
-        mapping:
-          - dps_val: "1"
-            value: normal
-          - dps_val: "3"
-            value: high
       - id: 113
         type: boolean
         name: mode
@@ -37,7 +29,11 @@ entities:
             value: continuous
 
   - entity: fan
+    name: Fan
     dps:
+      - id: 1
+        type: boolean
+        name: switch
       - id: 6
         type: string
         name: speed
@@ -50,6 +46,7 @@ entities:
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
+    class: problem
     dps:
       - id: 110
         type: boolean
@@ -119,7 +116,7 @@ entities:
         unit: min
 
   - entity: sensor
-    name: Fan speed
+    name: Actual fan speed
     class: enum
     category: diagnostic
     dps:
