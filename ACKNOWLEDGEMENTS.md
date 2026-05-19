@@ -800,3 +800,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tkoenig](https://github.com/tkoenig) for contributing support for W-2839 water quality monitor.
 - [gsalakirov](https://github.com/gsalakirov) for contributing improvements to CleanAir CA702 dehumidifier.
 - [djremco](https://github.com/djremco) for contributing improvements to Tonepie T1 Pro cat litter box.
+- [nakatomi845](https://github.com/nakatomi845) for contributing support for Zencar Wpro 32A 3P EV charger.
