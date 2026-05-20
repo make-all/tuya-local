@@ -201,66 +201,71 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
-        if self._control_dp and "open" in self._control_dp.values(self._device):
-            _LOGGER.info("%s opening", self._config.config_id)
-            await self._control_dp.async_set_value(self._device, "open")
-        elif self._position_dp:
-            pos = 100
-            _LOGGER.info("%s opening to 100%%", self._config.config_id)
-            await self._position_dp.async_set_value(self._device, pos)
-        else:
-            raise NotImplementedError()
+        async with self._device.set_lock:
+            if self._control_dp and "open" in self._control_dp.values(self._device):
+                _LOGGER.info("%s opening", self._config.config_id)
+                await self._control_dp.async_set_value(self._device, "open")
+            elif self._position_dp:
+                pos = 100
+                _LOGGER.info("%s opening to 100%%", self._config.config_id)
+                await self._position_dp.async_set_value(self._device, pos)
+            else:
+                raise NotImplementedError()
 
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
-        if self._control_dp and "close" in self._control_dp.values(self._device):
-            _LOGGER.info("%s closing", self._config.config_id)
-            await self._control_dp.async_set_value(self._device, "close")
-        elif self._position_dp:
-            pos = 0
-            _LOGGER.info("%s closing to 0%%", self._config.config_id)
-            await self._position_dp.async_set_value(self._device, pos)
-        else:
-            raise NotImplementedError()
+        async with self._device.set_lock:
+            if self._control_dp and "close" in self._control_dp.values(self._device):
+                _LOGGER.info("%s closing", self._config.config_id)
+                await self._control_dp.async_set_value(self._device, "close")
+            elif self._position_dp:
+                pos = 0
+                _LOGGER.info("%s closing to 0%%", self._config.config_id)
+                await self._position_dp.async_set_value(self._device, pos)
+            else:
+                raise NotImplementedError()
 
     async def async_set_cover_position(self, position, **kwargs):
         """Set the cover to a specific position."""
         if position is None:
             raise AttributeError()
         if self._position_dp:
-            _LOGGER.info(
-                "%s setting position to %d%%", self._config.config_id, position
-            )
-            await self._position_dp.async_set_value(self._device, position)
+            async with self._device.set_lock:
+                _LOGGER.info(
+                    "%s setting position to %d%%", self._config.config_id, position
+                )
+                await self._position_dp.async_set_value(self._device, position)
         else:
             raise NotImplementedError()
 
     async def async_set_cover_tilt_position(self, tilt_position, **kwargs):
         """Set the cover tilt position."""
         if self._tiltpos_dp:
-            # If there is a fixed list of values, snap to the closest one
-            if self._tiltpos_dp.values(self._device):
-                tilt_position = min(
-                    self._tiltpos_dp.values(self._device),
-                    key=lambda x: abs(x - tilt_position),
-                )
-            elif self._tiltpos_dp.range(self._device):
-                r = self._tiltpos_dp.range(self._device)
-                tilt_position = percentage_to_ranged_value(r, tilt_position)
+            async with self._device.set_lock:
+                # If there is a fixed list of values, snap to the closest one
+                if self._tiltpos_dp.values(self._device):
+                    tilt_position = min(
+                        self._tiltpos_dp.values(self._device),
+                        key=lambda x: abs(x - tilt_position),
+                    )
+                elif self._tiltpos_dp.range(self._device):
+                    r = self._tiltpos_dp.range(self._device)
+                    tilt_position = percentage_to_ranged_value(r, tilt_position)
 
-            _LOGGER.info(
-                "%s setting tilt position to %d%%",
-                self._config.config_id,
-                tilt_position,
-            )
-            await self._tiltpos_dp.async_set_value(self._device, tilt_position)
+                _LOGGER.info(
+                    "%s setting tilt position to %d%%",
+                    self._config.config_id,
+                    tilt_position,
+                )
+                await self._tiltpos_dp.async_set_value(self._device, tilt_position)
         else:
             raise NotImplementedError
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
         if self._control_dp and "stop" in self._control_dp.values(self._device):
-            _LOGGER.info("%s stopping", self._config.config_id)
-            await self._control_dp.async_set_value(self._device, "stop")
+            async with self._device.set_lock:
+                _LOGGER.info("%s stopping", self._config.config_id)
+                await self._control_dp.async_set_value(self._device, "stop")
         else:
             raise NotImplementedError()

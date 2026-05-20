@@ -5,8 +5,7 @@ products:
     model: Smart Air Connect
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -16,9 +15,9 @@ entities:
         type: string
         mapping:
           - dps_val: manual
-            value: normal
+            value: manual
           - dps_val: auto
-            value: smart
+            value: auto
       - id: 4
         type: string
         name: speed

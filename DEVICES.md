@@ -186,6 +186,7 @@
 - Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
+- Turbro 75000 btu pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -386,7 +387,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
-- Kogan bladeless fans
+- Kogan bladeless and 3D oscillating fans
 - Ledkia fan and light controller
 - Ledvance Ceiling fan with light
 - Lexy F501 fan
@@ -398,7 +399,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -449,6 +450,7 @@
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
+- Homemedics C500 air purifier
 - Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
@@ -468,7 +470,6 @@
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
-
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - Trident AirDome-70 air purifier
@@ -479,7 +480,7 @@
 
 ### Dehumidifiers
 
-- Aktobis WDH-310EK and WDH-870FW dehumidifiers
+- Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
@@ -711,6 +712,7 @@
 - Voldt 8-13A EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
+- Zencar Wpro 32A 3P EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
@@ -1325,6 +1327,7 @@ port and password.
 - Vevor YT60307 weather station
 - Vivo FD55 motorized TV mount
 - VT-14N1 9-in-1 air quality monitor
+- W-2839 water quality monitor
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
