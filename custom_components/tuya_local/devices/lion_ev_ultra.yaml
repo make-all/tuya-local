@@ -2,9 +2,9 @@ name: Lion EV-Ultra
 products:
   - id: pcaduzywoal3zaib
 entities:
-  # --- CONTRÔLES ---
+  # Controls
   - entity: switch
-    name: Pilotage Charge
+    name: Charging Control
     icon: mdi:ev-station
     dps:
       - id: 124
@@ -18,7 +18,7 @@ entities:
             value: false
 
   - entity: switch
-    name: Rétroéclairage Écran
+    name: Display Backlight
     icon: mdi:monitor-screenshot
     category: config
     dps:
@@ -28,7 +28,7 @@ entities:
         optional: true
 
   - entity: number
-    name: Intensité de Charge
+    name: Charging Current
     icon: mdi:current-ac
     category: config
     dps:
@@ -41,9 +41,9 @@ entities:
           max: 16
         unit: A
 
-  # --- PLANIFICATEURS ---
+  # Scheduling
   - entity: number
-    name: Départ Différé
+    name: Delayed Start
     icon: mdi:timer-sand
     category: config
     dps:
@@ -57,7 +57,7 @@ entities:
         unit: h
 
   - entity: number
-    name: Durée Max de Charge
+    name: Maximum Charging Duration
     icon: mdi:timer-stop
     category: config
     dps:
@@ -70,9 +70,9 @@ entities:
           max: 24
         unit: h
 
-  # --- CAPTEURS DE MESURE ---
+  # Measurement sensors
   - entity: sensor
-    name: Tension Secteur
+    name: Mains Voltage
     class: voltage
     dps:
       - id: 102
@@ -82,7 +82,7 @@ entities:
         unit: V
 
   - entity: sensor
-    name: Intensité Réelle (Phase 1)
+    name: Current Phase 1
     class: current
     dps:
       - id: 105
@@ -92,7 +92,7 @@ entities:
         unit: A
 
   - entity: sensor
-    name: Intensité Réelle (Phase 2)
+    name: Current Phase 2
     class: current
     dps:
       - id: 103
@@ -102,7 +102,7 @@ entities:
         unit: A
 
   - entity: sensor
-    name: Intensité Réelle (Phase 3)
+    name: Current Phase 3
     class: current
     dps:
       - id: 104
@@ -112,7 +112,7 @@ entities:
         unit: A
 
   - entity: sensor
-    name: Puissance active instantanée
+    name: Active Power
     class: power
     dps:
       - id: 106
@@ -122,7 +122,7 @@ entities:
         unit: W
 
   - entity: sensor
-    name: Énergie Session de Charge
+    name: Charging Session Energy
     class: energy
     icon: mdi:battery-charging-100
     dps:
@@ -134,19 +134,19 @@ entities:
         scale: 100
 
   - entity: sensor
-    name: Température Interne
+    name: Internal Temperature
     class: temperature
     dps:
       - id: 110
         name: sensor
         type: integer
         optional: true
-        unit: °C
+        unit: C
         mapping:
           - scale: 10
 
   - entity: sensor
-    name: Température de la Prise
+    name: Socket Temperature
     class: temperature
     icon: mdi:thermometer-water
     dps:
@@ -154,13 +154,13 @@ entities:
         name: sensor
         type: integer
         optional: true
-        unit: °C
+        unit: C
         mapping:
           - scale: 10
 
-  # --- ÉTATS ---
+  # States
   - entity: sensor
-    name: État Branchement
+    name: Plug State
     icon: mdi:power-plug
     dps:
       - id: 101
@@ -168,7 +168,7 @@ entities:
         type: string
 
   - entity: sensor
-    name: Temps de Charge Actuel
+    name: Current Charging Time
     icon: mdi:timer-outline
     dps:
       - id: 122
@@ -176,9 +176,9 @@ entities:
         type: string
         optional: true
 
-  # --- DIAGNOSTICS & VERSIONS ---
+  # Diagnostics and versions
   - entity: sensor
-    name: Puissance Maximale Autorisée
+    name: Maximum Allowed Power
     category: diagnostic
     icon: mdi:shield-flash
     dps:
@@ -188,7 +188,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Version Logicielle (SW)
+    name: Software Version
     category: diagnostic
     dps:
       - id: 126
@@ -197,7 +197,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Version Matérielle (HW)
+    name: Hardware Version
     category: diagnostic
     dps:
       - id: 125
@@ -206,7 +206,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Version Système
+    name: System Version
     category: diagnostic
     dps:
       - id: 23
@@ -215,7 +215,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Énergie Totale (Borne)
+    name: Total Energy
     class: energy
     dps:
       - id: 109
@@ -226,7 +226,7 @@ entities:
         scale: 100
 
   - entity: sensor
-    name: Type de Phase
+    name: Phase Type
     icon: mdi:sine-wave
     category: diagnostic
     dps:
@@ -236,7 +236,7 @@ entities:
         optional: true
 
   - entity: sensor
-    name: Code Erreur Borne
+    name: Charger Error Code
     category: diagnostic
     dps:
       - id: 10
