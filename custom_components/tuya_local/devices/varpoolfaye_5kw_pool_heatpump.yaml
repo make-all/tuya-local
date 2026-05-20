@@ -1,0 +1,71 @@
+name: Varpoolfaye 5kW Pool Heat Pump
+products:
+  - id: yk3bytlujz2xshuy
+    manufacturer: Varpoolfaye
+    model: 5kW Electric Pool Heat Pump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: Heat
+                value: heat
+              - dps_val: Cool
+                value: cool
+              - dps_val: Auto
+                value: heat_cool
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Heat
+            value: heat
+          - dps_val: Cool
+            value: cool
+          - dps_val: Auto
+            value: auto
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 256
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 256
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
