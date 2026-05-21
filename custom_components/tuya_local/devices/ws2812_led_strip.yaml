@@ -1,0 +1,143 @@
+name: WS2812-based LED Strip
+products:   
+  - id: bf0fa4b46ce7b80518guh5
+    manufacturer: MBG Line
+    model: CTree-001
+entities:   
+  - entity: light
+    dps:      
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: static
+            value: Static
+          - dps_val: pre_set
+            value: Animated
+          - dps_val: custom
+            value: Custom
+          - dps_val: local_music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 10 
+          max: 1000
+      - id: 23 
+        type: integer
+        name: color_temp
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: number
+    name: LED count
+    category: config
+    hidden: true
+    icon: "mdi:counter"
+    dps:
+      - id: 103
+        readonly: true
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 200
+  - entity: select
+    name: Color mode
+    class: enum
+    category: config
+    icon: "mdi:list-box"
+    dps:      
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: colour
+            value: Color
+          - dps_val: static
+            value: Static preset
+          - dps_val: pre_set
+            value: Animated preset
+          - dps_val: custom
+            value: Custom preset
+          - dps_val: local_music
+            value: Music
+  - entity: select
+    name: Preset
+    category: config
+    class: enum
+    icon: "mdi:palette"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: Preset 0
+          - dps_val: 1
+            value: Preset 1
+          - dps_val: 2
+            value: Preset 2
+          - dps_val: 3
+            value: Preset 3
+          - dps_val: 4
+            value: Preset 4
+          - dps_val: 5
+            value: Preset 5
+          - dps_val: 6
+            value: Preset 6
+          - dps_val: 7
+            value: Preset 7
+          - dps_val: 8
+            value: Preset 8
+          - dps_val: 9
+            value: Preset 9
+          - dps_val: 10
+            value: Preset 10
+          - dps_val: 11
+            value: Preset 11
+  - entity: text
+    name: Custom preset data
+    category: config
+    icon: "mdi:numeric-10-box"
+    dps:
+      - id: 25
+        type: hex
+        name: value
+        optional: true
