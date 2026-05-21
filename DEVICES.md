@@ -759,6 +759,7 @@ the best option.
 - Inna/Automat-ON AUTO000014 7 channel underfloor heating controller
 - JH PCIe mini computer switch
 - JH PCIe pro+ computer switch
+- KMC 4-outlet wall tap with energy monitoring
 - LerLink high power switch
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB

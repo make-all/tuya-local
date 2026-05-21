@@ -802,3 +802,4 @@ Further device support has been made with the assistance of users. Please consid
 - [djremco](https://github.com/djremco) for contributing improvements to Tonepie T1 Pro cat litter box.
 - [nakatomi845](https://github.com/nakatomi845) for contributing support for Zencar Wpro 32A 3P EV charger.
 - [DomJoke](https://github.com/DomJoke) for contributing support for Hiniso dehumidifier.
+- [c3p0vsr2d2](https://github.com/c3p0vsr2d2) for contributing support for KMC 4-outlet wall tap with energy monitoring.
