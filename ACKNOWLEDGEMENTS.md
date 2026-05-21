@@ -792,3 +792,12 @@ Further device support has been made with the assistance of users. Please consid
 - [giuseppe99barchetta](https://github.com/giuseppe99barchetta) for contributing improvement to recovery from initially offline devices.
 - [Rkn21](https://github.com/Rkn21) for contributing improvements to Atorch AT4PW energy meter.
 - [fmckeogh](https://github.com/fmckeogh) for contributing support for Voldt EV charger.
+- [manic-mark](https://github.com/manic-mark) for contributing support for amiciSmart AS-SM-63A energy meter.
+- [williamoverton](https://github.com/williamoverton) for contributing improvements to lights with combined dps.
+- [IsaacBreuer](https://github.com/IsaacBreuer) for contributing improvements to Sanjun Steamer.
+- [angus-thompson](https://github.com/angus-thompson) for contributing support for Kogan 3D oscillating fan.
+- [jemella](https://github.com/jemella) for contributing support for Aktobis WDH-214US dehumidifier.
+- [tkoenig](https://github.com/tkoenig) for contributing support for W-2839 water quality monitor.
+- [gsalakirov](https://github.com/gsalakirov) for contributing improvements to CleanAir CA702 dehumidifier.
+- [djremco](https://github.com/djremco) for contributing improvements to Tonepie T1 Pro cat litter box.
+- [nakatomi845](https://github.com/nakatomi845) for contributing support for Zencar Wpro 32A 3P EV charger.

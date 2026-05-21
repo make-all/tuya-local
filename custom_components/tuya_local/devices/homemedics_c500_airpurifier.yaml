@@ -1,8 +1,8 @@
 name: Air purifier
 products:
-  - id: bsgh7gwfmazrxsta
-    manufacturer: Kogan
-    model: AP-3029UAS
+  - id: tpefq1aiaabes8mt
+    manufacturer: Homemedics
+    model: C500
 entities:
   - entity: fan
     translation_key: air_purifier
@@ -14,23 +14,23 @@ entities:
         type: string
         name: preset_mode
         mapping:
-          - dps_val: auto
-            value: auto
-          - dps_val: sleep
-            value: sleep
           - dps_val: manual
             value: manual
+          - dps_val: auto
+            value: auto
       - id: 4
-        name: speed
         type: string
+        name: speed
         mapping:
+          - dps_val: sleep
+            value: 20
           - dps_val: low
-            value: 25
+            value: 40
           - dps_val: mid
-            value: 50
+            value: 60
           - dps_val: high
-            value: 75
-          - dps_val: turbo
+            value: 80
+          - dps_val: max
             value: 100
   - entity: sensor
     class: pm25
@@ -40,15 +40,19 @@ entities:
         name: sensor
         unit: ugm3
         class: measurement
-  - translation_key: filter_life
-    entity: sensor
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
     dps:
       - id: 5
-        name: sensor
         type: integer
+        name: sensor
         unit: "%"
-  - translation_key: child_lock
-    entity: lock
+      - id: 16
+        type: integer
+        name: days
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
@@ -61,76 +65,74 @@ entities:
       - id: 8
         type: boolean
         name: switch
-  - translation_key: uv_sterilization
-    entity: switch
+  - entity: switch
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 9
         type: boolean
         name: switch
-  - translation_key: filter_reset
-    entity: button
+  - entity: button
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
         type: boolean
         name: button
-        optional: true
-  - translation_key: time_remaining
-    entity: sensor
+  - entity: sensor
+    name: Total runtime
     class: duration
+    category: diagnostic
     dps:
-      - id: 20
+      - id: 17
         type: integer
         name: sensor
-        unit: s
-  - translation_key: air_quality
-    entity: sensor
+        unit: min
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+      - id: 101
+        type: boolean
+        name: available
+  - entity: sensor
+    translation_key: air_quality
     class: enum
     dps:
       - id: 21
-        name: sensor
         type: string
+        name: sensor
         mapping:
           - dps_val: great
             value: excellent
+          - dps_val: mild
+            value: moderate
           - dps_val: good
             value: good
-          - dps_val: Medium
-            value: moderate
-          - dps_val: severe
-            value: severe
-  - class: problem
-    entity: binary_sensor
-    category: diagnostic
-    dps:
-      - id: 22
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-      - id: 22
-        type: bitfield
-        name: fault_code
-  - name: Filter time
-    entity: sensor
-    class: duration
+          - dps_val: medium
+            value: poor
+  - entity: switch
+    name: Timer
+    category: config
     dps:
       - id: 101
-        name: sensor
-        type: integer
-        unit: s
-  - translation_key: timer
-    entity: number
-    class: duration
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
     category: config
     dps:
       - id: 102
         type: integer
-        name: value
-        unit: h
+        optional: true
+        name: minute
         range:
           min: 0
-          max: 12
+          max: 1439
+      - id: 101
+        type: boolean
+        name: available
