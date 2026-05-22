@@ -108,7 +108,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Time format
+    translation_key: time_format
     icon: "mdi:clock-digital"
     category: config
     dps:
@@ -117,9 +117,9 @@ entities:
         name: option
         mapping:
           - dps_val: false
-            value: "12 hour"
+            value: 12_hour
           - dps_val: true
-            value: "24 hour"
+            value: 24_hour
   - entity: light
     translation_key: backlight
     category: config
