@@ -85,7 +85,7 @@
 - Taurus Agadir Connect oil column heaters
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
-- Touchstone Sideline electric fireplace
+- Touchstone Sideline electric fireplaces
 - TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
