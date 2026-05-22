@@ -2,7 +2,7 @@ name: Fan speed switch
 products:
   - id: cwwc6ga2gz8mvrqo
     manufacturer: NHZS
-    model: 风扇开关
+    model: cwwc6ga2gz8mvrqo
 entities:
   - entity: fan
     dps:
@@ -15,20 +15,19 @@ entities:
         range:
           min: 1
           max: 20
-  - entity: number
+  - entity: time
     translation_key: timer
     category: config
     dps:
       - id: 2
         type: integer
-        name: value
-        unit: min
+        name: minute
         optional: true
         range:
           min: 0
           max: 1440
   - entity: select
-    name: Relay status
+    translation_key: initial_state
     category: config
     dps:
       - id: 11
