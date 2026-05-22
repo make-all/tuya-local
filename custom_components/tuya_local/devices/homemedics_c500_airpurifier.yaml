@@ -1,0 +1,138 @@
+name: Air purifier
+products:
+  - id: tpefq1aiaabes8mt
+    manufacturer: Homemedics
+    model: C500
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: sleep
+            value: 20
+          - dps_val: low
+            value: 40
+          - dps_val: mid
+            value: 60
+          - dps_val: high
+            value: 80
+          - dps_val: max
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+      - id: 16
+        type: integer
+        name: days
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+      - id: 101
+        type: boolean
+        name: available
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: excellent
+          - dps_val: mild
+            value: moderate
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: poor
+  - entity: switch
+    name: Timer
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: minute
+        range:
+          min: 0
+          max: 1439
+      - id: 101
+        type: boolean
+        name: available

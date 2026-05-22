@@ -1,8 +1,7 @@
 name: Air purifier
 entities:
   - entity: fan
-    translation_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -12,9 +11,9 @@ entities:
         type: string
         mapping:
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: M
-            value: normal
+            value: manual
           - dps_val: H
             value: strong
           - dps_val: sleep
