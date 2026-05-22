@@ -1,7 +1,7 @@
 name: Smart litter box
 products:
   - id: 5t7esmqqh92ssbe5
-    model: 宠物猫砂盆
+    model: 5t7esmqqh92ssbe5
 entities:
   - entity: sensor
     name: Cat weight
@@ -71,8 +71,7 @@ entities:
         type: boolean
         name: sensor
   - entity: switch
-    name: Auto clean
-    icon: "mdi:autorenew"
+    translation_key: auto_clean
     category: config
     dps:
       - id: 105
@@ -94,8 +93,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:bell-off"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 122
@@ -115,14 +113,13 @@ entities:
       - id: 112
         type: boolean
         name: switch
-  - entity: switch
-    name: Child lock
-    icon: "mdi:lock"
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 114
         type: boolean
-        name: switch
+        name: lock
   - entity: number
     name: Induction delay
     category: config
