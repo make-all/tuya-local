@@ -9,10 +9,12 @@ from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
 )
+from homeassistant.helpers.entity import EntityCategory
 
+from . import DOMAIN
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity, unit_from_ascii
-from .helpers.config import async_tuya_setup_platform
+from .helpers.config import async_tuya_setup_platform, get_device_id
 from .helpers.device_config import TuyaEntityConfig
 
 _LOGGER = logging.getLogger(__name__)
@@ -20,13 +22,31 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
-    await async_tuya_setup_platform(
-        hass,
-        async_add_entities,
-        config,
-        "sensor",
-        TuyaLocalSensor,
-    )
+
+    # Add diagnostic Local IP sensor for every device
+    try:
+        device_id = get_device_id(config)
+        data = hass.data[DOMAIN][device_id]
+        device = data["device"]
+        ip_sensor = TuyaLocalIPSensor(device)
+        async_add_entities([ip_sensor])
+    except Exception as e:
+        _LOGGER.debug(
+            "Failed to add Local IP diagnostic sensor: %s",
+            e,
+        )
+
+    try:
+        await async_tuya_setup_platform(
+            hass,
+            async_add_entities,
+            config,
+            "sensor",
+            TuyaLocalSensor,
+        )
+    except ValueError:
+        # No DPS-based sensor entities defined for this device, that's fine
+        pass
 
 
 class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
@@ -111,3 +131,41 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
             for val in values:
                 if isinstance(val, str):
                     return values
+
+
+class TuyaLocalIPSensor(SensorEntity):
+    """Diagnostic sensor showing the device's local IP address."""
+
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+    _attr_translation_key = "local_ip"
+    _attr_has_entity_name = True
+    _attr_should_poll = False
+
+    def __init__(self, device: TuyaLocalDevice):
+        self._device = device
+
+    @property
+    def unique_id(self):
+        """Return the unique id for this entity."""
+        return f"{self._device.unique_id}_local_ip"
+
+    @property
+    def device_info(self):
+        """Return the device's information."""
+        return self._device.device_info
+
+    @property
+    def available(self):
+        """Return whether the entity is available."""
+        return self._device.has_returned_state
+
+    @property
+    def native_value(self):
+        """Return the local IP address of the device."""
+        try:
+            api = self._device._api
+            if api.parent:
+                return api.parent.address
+            return api.address
+        except Exception:
+            return None

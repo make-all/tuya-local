@@ -12,7 +12,11 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
-from custom_components.tuya_local.sensor import TuyaLocalSensor, async_setup_entry
+from custom_components.tuya_local.sensor import (
+    TuyaLocalIPSensor,
+    TuyaLocalSensor,
+    async_setup_entry,
+)
 
 
 @pytest.mark.asyncio
@@ -35,7 +39,8 @@ async def test_init_entry(hass):
 
     await async_setup_entry(hass, entry, m_add_entities)
     assert type(hass.data[DOMAIN]["dummy"]["sensor_temperature"]) is TuyaLocalSensor
-    m_add_entities.assert_called_once()
+    # Called twice: once for IP diagnostic sensor, once for DPS-based sensors
+    assert m_add_entities.call_count == 2
 
 
 @pytest.mark.asyncio
@@ -55,12 +60,13 @@ async def test_init_entry_fails_if_device_has_no_sensor(hass):
     hass.data[DOMAIN] = {
         "dummy": {"device": m_device},
     }
-    try:
-        await async_setup_entry(hass, entry, m_add_entities)
-        assert False
-    except ValueError:
-        pass
-    m_add_entities.assert_not_called()
+    # No longer raises - IP sensor is still added even without DPS sensors
+    await async_setup_entry(hass, entry, m_add_entities)
+    # Only the IP diagnostic sensor should be added
+    m_add_entities.assert_called_once()
+    args = m_add_entities.call_args[0][0]
+    assert len(args) == 1
+    assert type(args[0]) is TuyaLocalIPSensor
 
 
 @pytest.mark.asyncio
@@ -80,12 +86,13 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     hass.data[DOMAIN] = {
         "dummy": {"device": m_device},
     }
-    try:
-        await async_setup_entry(hass, entry, m_add_entities)
-        assert False
-    except ValueError:
-        pass
-    m_add_entities.assert_not_called()
+    # No longer raises - IP sensor is still added even without valid config
+    await async_setup_entry(hass, entry, m_add_entities)
+    # Only the IP diagnostic sensor should be added
+    m_add_entities.assert_called_once()
+    args = m_add_entities.call_args[0][0]
+    assert len(args) == 1
+    assert type(args[0]) is TuyaLocalIPSensor
 
 
 def test_sensor_suggested_display_precision():

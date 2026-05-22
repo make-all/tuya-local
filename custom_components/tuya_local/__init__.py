@@ -957,6 +957,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     for e in device_conf.all_entities():
         entities.add(e.entity)
 
+    # Always include sensor platform for the diagnostic Local IP sensor
+    entities.add("sensor")
+
     await hass.config_entries.async_forward_entry_setups(entry, entities)
     await async_setup_services(hass, entities)
 
