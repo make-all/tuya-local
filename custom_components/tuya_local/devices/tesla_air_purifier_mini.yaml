@@ -5,7 +5,7 @@ products:
     model: Mini
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -15,13 +15,13 @@ entities:
         type: string
         mapping:
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: sleep
             value: sleep
           - dps_val: mid
-            value: fresh
+            value: medium
           - dps_val: high
-            value: strong
+            value: high
   - entity: light
     category: config
     dps:
