@@ -2,7 +2,7 @@ name: Doorbell
 products:
   - id: 4kfqpaat5buefsv0
     model: ZX-DB11B
-    name: Alarm Hub with Melodies Pro
+    name: Alarm hub with Melodies Pro
 entities:
   - entity: binary_sensor
     name: Alarm
@@ -333,6 +333,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 34
         type: boolean

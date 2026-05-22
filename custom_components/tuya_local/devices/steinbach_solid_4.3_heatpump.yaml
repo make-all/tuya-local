@@ -1,4 +1,4 @@
-name: Pool Heat Pump
+name: Pool heat pump
 products:
   - id: vw4rtznkehten69o
     manufacturer: Steinbach
@@ -28,8 +28,7 @@ entities:
 
   - entity: sensor
     class: temperature
-    name: Ambient temperature
-    category: diagnostic
+    translation_key: ambient_temperature
     dps:
       - id: 102
         type: integer
@@ -72,3 +71,13 @@ entities:
       - id: 21
         type: bitfield
         name: fault_code
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    icon: mdi:fan
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: rpm

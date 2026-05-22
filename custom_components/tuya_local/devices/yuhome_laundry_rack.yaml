@@ -1,0 +1,199 @@
+name: Laundry rack
+products:
+  - id: ttawi9yohqflpt4a
+    manufacturer: YU HOME
+    model: Yu Turbo
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: cover
+    icon: "mdi:hanger"
+    dps:
+      - id: 2
+        type: string
+        name: control
+        mapping:
+          - dps_val: up
+            value: open
+          - dps_val: down
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 3
+        type: integer
+        name: position
+        range:
+          min: 0
+          max: 100
+      - id: 8
+        type: string
+        name: action
+        mapping:
+          - dps_val: up
+            value: closing
+          - dps_val: down
+            value: opening
+          - value: null
+  - entity: light
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Wind dry
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Hot dry
+    icon: "mdi:heat-wave"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Disinfection timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: select
+    name: Hot dry timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: select
+    name: Wind dry timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: sensor
+    name: Hot dry remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Wind dry remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Disinfection remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        optional: true
+        name: sensor
+        unit: min

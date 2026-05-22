@@ -44,14 +44,14 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -5
           max: 5

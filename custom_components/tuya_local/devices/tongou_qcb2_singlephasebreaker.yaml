@@ -60,7 +60,9 @@ entities:
         mapping:
           - scale: 1000
   - entity: select
-    name: Overvoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
     category: config
     dps:
       - id: 102
@@ -68,16 +70,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Undervoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 103
@@ -85,16 +86,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overcurrent action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overcurrent
     category: config
     dps:
       - id: 104
@@ -102,16 +102,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overpower action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overpower
     category: config
     dps:
       - id: 105
@@ -119,16 +118,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Temperature action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Temperature
     category: config
     dps:
       - id: 107
@@ -136,32 +134,11 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
-  - entity: switch
-    category: config
-    name: Live updates
-    # Deprecated 2025-04-01
-    deprecated: button
-    icon: "mdi:chart-bar"
-    dps:
-      - id: 109
-        type: string
-        name: switch
-        optional: true
-        mapping:
-          - dps_val: online
-            value: true
-          - dps_val: offline
-            value: false
-          - value: false
-            hidden: true
+            value: trip_breaker
   - entity: button
     category: config
     name: Live updates
@@ -234,6 +211,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 113
         type: boolean

@@ -3,6 +3,9 @@ products:
   - id: zmql6aexy8ua5rox
     manufacturer: Gosund
     model: SP112
+  - id: re5wqraswcozglky
+    manufacturer: Gosund
+    model: SP6
 entities:
   - entity: switch
     class: outlet
@@ -24,6 +27,7 @@ entities:
   - entity: sensor
     category: diagnostic
     class: voltage
+    hidden: unavailable
     dps:
       - id: 20
         name: sensor
@@ -38,9 +42,18 @@ entities:
         type: integer
         name: calibration
         optional: true
+      - id: 20
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
     class: current
+    hidden: unavailable
     dps:
       - id: 18
         name: sensor
@@ -53,9 +66,18 @@ entities:
         type: integer
         name: calibration
         optional: true
+      - id: 18
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
     class: power
+    hidden: unavailable
     dps:
       - id: 19
         name: sensor
@@ -70,67 +92,73 @@ entities:
         type: integer
         name: calibration
         optional: true
+      - id: 19
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
   - entity: time
     category: config
     translation_key: timer
+    hidden: unavailable
     dps:
       - id: 9
         type: integer
+        optional: true
         name: second
         range:
           min: 0
           max: 86400
+      - id: 9
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     category: config
     translation_key: timer_x
     translation_placeholders:
       x: USB
+    hidden: unavailable
     dps:
       - id: 15
         type: integer
+        optional: true
         name: second
         range:
           min: 0
           max: 86400
-  - entity: number
-    category: config
-    name: Outlet timer
-    class: duration
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
-  - entity: number
-    name: USB timer
-    category: config
-    class: duration
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer_usb
-    dps:
       - id: 15
         type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
+        optional: true
+        name: available
         mapping:
-          - scale: 60
-            step: 60
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: initial_state
     category: config
+    hidden: unavailable
     dps:
       - id: 38
         type: string
@@ -139,13 +167,72 @@ entities:
         mapping:
           - dps_val: power_on
             value: "on"
+            available: alternate
           - dps_val: power_off
             value: "off"
+            available: alternate
           - dps_val: last
             value: memory
+            available: alternate
+          - dps_val: "on"
+            value: "on"
+            available: standard
+          - dps_val: "off"
+            value: "off"
+            available: standard
+          - dps_val: memory
+            value: memory
+            available: standard
+          - dps_val: "0"
+            value: "off"
+            available: numeric
+          - dps_val: "1"
+            value: "on"
+            available: numeric
+          - dps_val: "2"
+            value: memory
+            available: numeric
+      - id: 38
+        type: string
+        optional: true
+        name: standard
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: ["on", "off", memory]
+                value: true
+              - dps_val: null
+                value: true  # allow options to populate at init
+      - id: 38
+        type: string
+        optional: true
+        name: alternate
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [power_on, power_off, last]
+                value: true
+      - id: 38
+        type: string
+        optional: true
+        name: numeric
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: ["0", "1", "2"]
+                value: true
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: light_mode
     category: config
+    hidden: unavailable
     dps:
       - id: 39
         type: string
@@ -158,6 +245,31 @@ entities:
             value: locator
           - dps_val: none
             value: "off"
+      - id: 39
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: lock
+      - id: 40
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -174,3 +286,32 @@ entities:
         type: bitfield
         name: fault_code
         optional: true
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 41
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Randomized schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 42
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 43
+        type: string
+        optional: true
+        name: value

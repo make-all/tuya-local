@@ -173,8 +173,7 @@ entities:
           min: 3
           max: 99
   - entity: switch
-    name: Beep
-    icon: "mdi:bell"
+    translation_key: sound
     category: config
     dps:
       - id: 111
@@ -214,6 +213,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 115
         type: boolean
@@ -315,7 +315,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: number
-    name: Leakage current
+    translation_key: leakage_current
     category: config
     class: current
     dps:

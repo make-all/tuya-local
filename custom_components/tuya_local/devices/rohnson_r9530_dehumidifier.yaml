@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         type: boolean
@@ -167,21 +168,6 @@ entities:
       - id: 105
         type: integer
         name: minute
-        range:
-          min: 0
-          max: 1440
-  - entity: number
-    name: "Off timer"
-    # 2025-07-20
-    deprecated: time.off_timer
-    translation_key: timer
-    class: duration
-    category: config
-    dps:
-      - id: 105
-        type: integer
-        name: value
-        unit: min
         range:
           min: 0
           max: 1440

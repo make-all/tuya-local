@@ -1,4 +1,5 @@
-name: ElectriQ DESD9LW dehumidifier
+name: Dehumidifier
+# products: ElectriQ DESD9LW
 entities:
   - entity: climate
     dps:
@@ -75,6 +76,13 @@ entities:
           min: 16
           max: 30
   - entity: light
+    name: UV sterilization
+    deprecated: switch.uv_sterilization  # 2026-03-02
+    dps:
+      - id: 15
+        name: switch
+        type: boolean
+  - entity: switch
     translation_key: uv_sterilization
     dps:
       - id: 15

@@ -75,24 +75,6 @@ entities:
       - id: 119
         type: boolean
         name: available
-  - entity: number
-    translation_key: timer
-    name: Light timer
-    # 2025-07-20
-    deprecated: time.light_timer
-    category: config
-    class: duration
-    dps:
-      - id: 26
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
-      - id: 119
-        type: boolean
-        name: available
   - entity: text
     name: Music data
     category: config
@@ -124,17 +106,12 @@ entities:
         optional: true
         name: value
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
-    icon: "mdi:sleep"
     dps:
       - id: 34
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-            icon_priority: 1
   - entity: text
     name: Fading
     category: config
@@ -201,30 +178,19 @@ entities:
         type: boolean
         name: available
   - entity: switch
-    name: Beep
+    translation_key: sound
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 66
         type: boolean
         optional: true
         name: switch
         mapping:
-          - dps_val: false
-            icon: "mdi:volume-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:volume-high"
-            icon_priority: 1
           - dps_val: null
             value_redirect: alt
       - id: 103
         type: boolean
         name: alt
-        mapping:
-          - dps_val: false
-            icon: "mdi:volume-off"
-            icon_priority: 2
   - entity: text
     name: Segment dimming
     category: config
@@ -258,18 +224,9 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 20
-        name: available
-        type: boolean
-        mapping:
-          - dps_val: true
-            constraint: main_switch
-            conditions:
-              - dps_val: false
-                value: false
       - id: 119
         type: boolean
-        name: main_switch
+        name: available
   - entity: light
     name: Color
     category: config
@@ -296,20 +253,11 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 20
-        name: available
-        type: boolean
-        mapping:
-          - dps_val: true
-            constraint: main_switch
-            conditions:
-              - dps_val: false
-                value: false
       - id: 119
         type: boolean
-        name: main_switch
+        name: available
   - entity: text
-    name: Scene
+    translation_key: scene
     category: config
     icon: "mdi:palette"
     hidden: true
@@ -344,6 +292,7 @@ entities:
           max: 130
   - entity: number
     translation_key: timer
+    deprecated: time.timer  # 2026-01-20
     category: config
     dps:
       - id: 112
@@ -354,6 +303,17 @@ entities:
         range:
           min: 0
           max: 86400
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: second
+        optional: true
+        range:
+          min: 0
+          max: 86399
   - entity: switch
     category: config
     dps:

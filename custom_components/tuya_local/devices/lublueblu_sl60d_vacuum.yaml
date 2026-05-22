@@ -227,7 +227,7 @@ entities:
         name: sensor
         unit: h
   - entity: sensor
-    name: Filter lifetime
+    translation_key: filter_life
     category: diagnostic
     class: duration
     dps:
@@ -246,9 +246,8 @@ entities:
         unit: min
         optional: true
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 26
         type: integer
@@ -322,8 +321,7 @@ entities:
         name: button
         optional: true
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:minus-circle"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 25
@@ -421,8 +419,7 @@ entities:
             value: true
           - value: false
   - entity: select
-    name: Operation mode
-    icon: "mdi:robot-vacuum"
+    translation_key: cleaning_mode
     category: config
     dps:
       - id: 41
@@ -431,11 +428,11 @@ entities:
         name: option
         mapping:
           - dps_val: only_sweep
-            value: Sweep
+            value: sweep
           - dps_val: only_mop
-            value: Mop
+            value: mop
           - dps_val: both_work
-            value: Both
+            value: sweep_and_mop
   - entity: select
     name: Carpet mode
     icon: "mdi:rug"

@@ -1,0 +1,28 @@
+name: Window fan
+products:
+  - id: tqs2qloiq4hqiuso
+    manufacturer: Living Comfort
+    model: LC310S Series
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Cool
+            value: fresh
+          - dps_val: Exhaust
+            value: extractor
+          - dps_val: Circulate
+            value: circulate
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3

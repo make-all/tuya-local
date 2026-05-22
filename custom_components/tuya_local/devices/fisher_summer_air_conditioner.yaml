@@ -41,6 +41,9 @@ entities:
                 value: dry
               - dps_val: hot
                 value: heat
+              - dps_val: null
+                value: heat_cool
+                hidden: true
       - id: 2
         name: temperature
         type: integer
@@ -57,6 +60,7 @@ entities:
       - id: 4
         name: mode
         type: string
+        optional: true
       - id: 5
         name: fan_mode
         type: string

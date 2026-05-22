@@ -1,0 +1,69 @@
+name: Pool heat pump
+products:
+  - id: jzansoxokgvqotyw
+    manufacturer: Poolstyle
+    model: PSL-150-00xx
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: eco_cool
+            value: smart_cool
+          - dps_val: eco_heat
+            value: smart_heat
+          - dps_val: boost_heat
+            value: quick_heat
+          - dps_val: boost_cool
+            value: quick_cool
+          - dps_val: silent_heat
+            value: quiet_heat
+          - dps_val: silent_cool
+            value: quiet_cool
+      - id: 101
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: silent
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0  # OK
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

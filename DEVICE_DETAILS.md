@@ -33,6 +33,16 @@ command line Tuya client like tuyaapi/cli or
 to scan your network for Tuya devices to find the IP address and also automate
 the above process of connecting to the portal and getting the local key.
 
+It is possible to enter `Auto` for IP address, and have the address discovered
+by the integration. There are however drawbacks with this setting, it will fail
+if localtuya is installed, the Tuya/Smartlife app is connected locally to some
+devices, or if your network configuration is anything other than a simple single
+subnet. It is better to fix the devices IP address in your router
+configuration if possible, and enter the IP address into the configuration.
+Even if you can avoid the situations when it fails, reconnection performance
+will be much worse than with a fixed IP due to the need to search the network
+for the device first.
+
 ### Finding device ids and local keys with tinytuya
 
 You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.

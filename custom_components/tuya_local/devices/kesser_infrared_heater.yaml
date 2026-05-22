@@ -12,18 +12,17 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    icon: "mdi:radiator"
+    translation_key: mode
     dps:
       - id: 4
         type: string
         name: option
         mapping:
           - dps_val: "P0"
-            value: "Off"
+            value: "off"
           - dps_val: "P1"
-            value: "1000W"
+            value: low
           - dps_val: "P2"
-            value: "2000W"
+            value: medium
           - dps_val: "P3"
-            value: "3000W"
+            value: high

@@ -115,7 +115,6 @@ entities:
         name: switch
         optional: true
   - entity: event
-    name: Doorbell
     class: doorbell
     category: diagnostic
     dps:
@@ -168,6 +167,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 34
         type: boolean

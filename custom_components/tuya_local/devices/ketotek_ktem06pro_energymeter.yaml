@@ -369,7 +369,7 @@ entities:
         type: boolean
         name: available
   - entity: sensor
-    name: Leakage current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
@@ -426,7 +426,7 @@ entities:
         unit: kW
         class: measurement
         mapping:
-          - scale: 3
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -456,21 +456,8 @@ entities:
     dps:
       - id: 107
         type: integer
+        optional: true
         name: minute
-        range:
-          min: 0
-          max: 1440
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 107
-        type: integer
-        name: value
-        unit: min
         range:
           min: 0
           max: 1440

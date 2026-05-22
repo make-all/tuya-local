@@ -187,9 +187,8 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 26
         type: integer
@@ -197,14 +196,14 @@ entities:
         unit: C
         class: measurement
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 102
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -99
           max: 99
@@ -226,6 +225,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 107
         type: boolean

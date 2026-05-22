@@ -47,12 +47,14 @@ entities:
           - dps_val: antifreezen
             value: away
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 103
         type: integer
         name: value
+        unit: C
         range:
           min: -15
           max: 15

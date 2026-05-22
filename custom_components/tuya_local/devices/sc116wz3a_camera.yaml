@@ -30,9 +30,8 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip image
+    translation_key: flip_image
     category: config
-    icon: "mdi:flip-vertical"
     dps:
       - id: 103
         type: boolean
@@ -47,8 +46,7 @@ entities:
         optional: true
         name: switch
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -57,11 +55,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: select
     name: Nightvision
     icon: "mdi:weather-night"
@@ -310,7 +308,7 @@ entities:
             value: false
             hidden: true
   - entity: event
-    name: Alarm
+    translation_key: alarm
     dps:
       - id: 185
         type: string
@@ -325,9 +323,8 @@ entities:
         name: message
         optional: true
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 160
         type: integer

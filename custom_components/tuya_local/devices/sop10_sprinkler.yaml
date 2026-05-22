@@ -84,22 +84,6 @@ entities:
         type: string
         name: schedule
         optional: true
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 11
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
   - entity: sensor
     name: Weather
     icon: "mdi:weather-cloudy-alert"

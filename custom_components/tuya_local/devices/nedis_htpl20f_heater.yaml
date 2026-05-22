@@ -1,4 +1,4 @@
-name: Nedis smart convection heater
+name: Convection heater
 entities:
   - entity: climate
     translation_only_key: heater
@@ -51,20 +51,6 @@ entities:
       - id: 13
         type: integer
         name: minute
-        range:
-          min: 0
-          max: 1440
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 13
-        type: integer
-        name: value
-        unit: min
         range:
           min: 0
           max: 1440

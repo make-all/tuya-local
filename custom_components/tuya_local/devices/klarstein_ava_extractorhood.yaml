@@ -1,0 +1,65 @@
+name: Extractor hood
+products:
+  - id: zggqz0s1atd9qce4
+    manufacturer: Klarstein
+    model: Ava
+entities:
+  - entity: light
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+      - id: 102
+        type: integer
+        name: color_temp
+        range:
+          min: 1
+          max: 6
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 103
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 3
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 10
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "Off"
+            value: 0
+          - dps_val: Low
+            value: 25
+          - dps_val: Medium
+            value: 50
+          - dps_val: High
+            value: 75
+          - dps_val: Strong
+            value: 100
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Total Runtime
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        class: measurement

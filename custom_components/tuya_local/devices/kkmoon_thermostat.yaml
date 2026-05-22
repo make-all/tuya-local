@@ -51,14 +51,14 @@ entities:
         optional: true
         name: schedule
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -9
           max: 9
@@ -115,12 +115,13 @@ entities:
   - entity: number
     name: Temperature hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 103
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 0
           max: 5

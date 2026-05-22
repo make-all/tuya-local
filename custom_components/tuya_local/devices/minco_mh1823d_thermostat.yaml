@@ -1,4 +1,5 @@
-name: Minco MH-1823D thermostat
+name: Thermostat
+# products: Minco MH-1823D
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -201,8 +202,7 @@ entities:
   - entity: number
     category: config
     class: temperature
-    name: High temperature limit
-    icon: "mdi:thermometer-alert"
+    translation_key: maximum_temperature
     dps:
       - id: 106
         type: integer

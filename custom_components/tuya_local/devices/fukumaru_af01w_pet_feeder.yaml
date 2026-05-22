@@ -1,0 +1,85 @@
+name: Pet feeder
+products:
+  - id: jttvwskiffndnb1q
+    manufacturer: Fukumaru
+    model: AF01-W
+entities:
+  - entity: button
+    name: Quick feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 6
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    name: Feed report
+    icon: "mdi:food-drumstick"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Voice playback times
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: times
+        range:
+          min: 0
+          max: 10
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: switch
+    name: Slow feed
+    icon: "mdi:speedometer-slow"
+    category: config
+    dps:
+      - id: 218
+        type: boolean
+        name: switch

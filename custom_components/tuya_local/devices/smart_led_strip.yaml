@@ -1,4 +1,4 @@
-name: LED Strip
+name: LED strip
 products:
   - id: oblx20mxzsclpahi
     manufacturer: Nedis
@@ -41,7 +41,6 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-            invert: true
       - id: 24
         name: rgbhsv
         type: hex
@@ -73,24 +72,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 26
-        name: value
-        type: integer
-        unit: min
-        optional: true
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: text
     translation_key: scene
     category: config

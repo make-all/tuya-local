@@ -5,6 +5,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 1
         name: switch
@@ -25,13 +26,13 @@ entities:
         type: string
         mapping:
           - dps_val: dehumidify
-            value: Dehumidify
+            value: normal
           - dps_val: rainy
-            value: Rainy
+            value: boost
           - dps_val: dry
-            value: Dry
+            value: laundry
           - dps_val: sleep
-            value: Sleep
+            value: sleep
   - entity: switch
     translation_key: ionizer
     dps:

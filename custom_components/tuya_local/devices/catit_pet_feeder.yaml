@@ -1,8 +1,7 @@
-name: Catit Pet Feeder
+name: Pet feeder
 entities:
   - entity: number
-    icon: "mdi:paw"
-    name: Manual feed
+    translation_key: manual_feed
     dps:
       - id: 14
         name: value
@@ -27,6 +26,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 103
         type: boolean

@@ -71,7 +71,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Cost
+    name: Total cost
     dps:
       - id: 102
         name: sensor
@@ -178,7 +178,7 @@ entities:
           min: 3
           max: 99
   - entity: switch
-    name: Beep
+    translation_key: sound
     category: config
     dps:
       - id: 111
@@ -217,6 +217,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 115
         type: boolean
@@ -440,12 +441,14 @@ entities:
         mapping:
           - dps_val: "off"
             value: "Off"
+          - dps_val: lvp
+            value: Under voltage protection
           - dps_val: ovp
-            value: Overvoltage protection
+            value: Over voltage protection
           - dps_val: ocp
-            value: Overcurrent protection
+            value: Over current protection
           - dps_val: opp
-            value: Overpower protection
+            value: Over power protection
           - dps_val: outage_a
             value: Smart power off A
           - dps_val: outage_b

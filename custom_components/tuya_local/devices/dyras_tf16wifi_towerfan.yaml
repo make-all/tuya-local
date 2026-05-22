@@ -1,0 +1,123 @@
+name: Tower fan
+products:
+  - id: 9ixetebvft0x1yyv
+    manufacturer: Dyras
+    model: TF-16WIFI
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 8
+      - id: 5
+        type: boolean
+        name: oscillate
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "30Min"
+            value: "30m"
+          - dps_val: "1Hour"
+            value: "1h"
+          - dps_val: "1Hour30Min"
+            value: "1h30m"
+          - dps_val: "2Hour"
+            value: "2h"
+          - dps_val: "2Hour30Min"
+            value: "2h30m"
+          - dps_val: "3Hour"
+            value: "3h"
+          - dps_val: "3Hour30Min"
+            value: "3h30m"
+          - dps_val: "4Hour"
+            value: "4h"
+          - dps_val: "4Hour30Min"
+            value: "4h30m"
+          - dps_val: "5Hour"
+            value: "5h"
+          - dps_val: "5Hour30Min"
+            value: "5h30m"
+          - dps_val: "6Hour"
+            value: "6h"
+          - dps_val: "6Hour30Min"
+            value: "6h30m"
+          - dps_val: "7Hour"
+            value: "7h"
+          - dps_val: "7Hour30Min"
+            value: "7h30m"
+          - dps_val: "8Hour"
+            value: "8h"
+          - dps_val: "8Hour30Min"
+            value: "8h30m"
+          - dps_val: "9Hour"
+            value: "9h"
+          - dps_val: "9Hour30Min"
+            value: "9h30m"
+          - dps_val: "10Hour"
+            value: "10h"
+          - dps_val: "11Hour"
+            value: "11h"
+          - dps_val: "12Hour"
+            value: "12h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code

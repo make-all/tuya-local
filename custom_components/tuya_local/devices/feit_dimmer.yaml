@@ -3,6 +3,12 @@ products:
   - id: tebc75erlgslgpn5
     manufacturer: Feit
     name: Dimmer
+  - id: wfdsj5zxjwmcqezm
+    manufacturer: Moes
+    model: WS-SY-EUD-WH-MS
+  - id: aahxaxzdyuriashj
+    manufacturer: Treatlife
+    name: Smart Dimmer Switch
 entities:
   - entity: light
     dps:
@@ -26,7 +32,7 @@ entities:
         name: minimum_brightness
         optional: true
   - entity: select
-    name: Light Type
+    name: Light type
     icon: mdi:lightbulb-variant
     category: config
     dps:
@@ -39,3 +45,27 @@ entities:
             value: Incandescent
           - dps_val: halogen
             value: LED
+  - entity: light
+    translation_key: indicator
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 101
+        type: string
+        name: brightness
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: low
+            value: 128
+          - dps_val: high
+            value: 255
+      - id: 101
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

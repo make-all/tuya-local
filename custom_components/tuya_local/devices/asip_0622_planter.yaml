@@ -39,15 +39,6 @@ entities:
         name: limits
         # format: min,max
   - entity: sensor
-    class: humidity
-    deprecated: sensor_moisture
-    dps:
-      - id: 7
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: moisture
     dps:
       - id: 7
@@ -98,14 +89,14 @@ entities:
       - id: 102
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
       - id: 120
         type: string
         name: limits
         # format: min,max
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     dps:
       - id: 103
         type: integer

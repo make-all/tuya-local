@@ -8,7 +8,6 @@ products:
 #     model: PW58330
 entities:
   - entity: water_heater
-    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -321,6 +320,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 125
         type: boolean

@@ -5,8 +5,7 @@ products:
     model: PF100
 entities:
   - entity: number
-    name: Manual feed
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 3
         type: integer
@@ -27,7 +26,7 @@ entities:
           - dps_val: eco_mode
             value: true
   - entity: text
-    name: Meal plan
+    translation_key: meal_plan
     category: config
     hidden: true
     dps:
@@ -37,6 +36,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean
@@ -128,9 +128,8 @@ entities:
             value: true
           - value: false
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 112
         type: integer

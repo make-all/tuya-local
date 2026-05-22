@@ -3,6 +3,9 @@ products:
   - id: m3j5wouhgsvjlma9
     manufacturer: Beok / Avatto
     model: TGM50 / WT200 / M3-GE
+  - id: dbfzaljrysqt7vth
+    manufacturer: Avatto
+    model: WT410
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -88,22 +91,22 @@ entities:
   - entity: number
     name: Temperature hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 101
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 5
-          max: 95
+          max: 100
         mapping:
           - scale: 10
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 15
         type: integer
@@ -113,17 +116,17 @@ entities:
           min: 15
           max: 95
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 19
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
-          min: -90
-          max: 90
+          min: -99
+          max: 99
         mapping:
           - scale: 10
   - entity: number
@@ -139,6 +142,8 @@ entities:
         range:
           min: 35
           max: 60
+          # Avatto WT410 is 25-95, but this is the only difference with
+          # the original
   - entity: switch
     translation_key: anti_frost
     category: config
@@ -149,6 +154,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 104
         name: button
@@ -209,10 +215,18 @@ entities:
           - dps_val: "3"
             value: Both
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
-    icon: "mdi:music-note"
     dps:
       - id: 109
         type: boolean
         name: switch
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 105
+        type: base64
+        optional: true
+        name: value

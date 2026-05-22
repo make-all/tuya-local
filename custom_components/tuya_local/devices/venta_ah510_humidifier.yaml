@@ -1,0 +1,104 @@
+name: Humidifier
+products:
+  - id: ecihf2xeg7ghlfnh
+    manufacturer: Venta
+    model: Original Connect
+    model_id: AH510
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: switch
+      - id: 13
+        type: integer
+        optional: true
+        name: humidity
+        range:
+          min: 30
+          max: 70
+        mapping:
+          - step: 5
+      - id: 14
+        type: integer
+        name: current_humidity
+      - id: 24
+        type: string
+        optional: true
+        name: mode
+        mapping:
+          - dps_val: natural_evaporation
+            value: eco
+          - dps_val: heating_evaporation
+            value: comfort
+          - dps_val: ultrasonic_evaporation
+            value: boost
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: switch
+      - id: 101
+        type: string
+        optional: true
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 33
+          - dps_val: "2"
+            value: 66
+          - dps_val: "3"
+            value: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 18
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code

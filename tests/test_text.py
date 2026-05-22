@@ -27,6 +27,7 @@ async def test_init_entry(hass):
     )
     m_add_entities = Mock()
     m_device = AsyncMock()
+    m_device.get_property = Mock(return_value=None)
 
     hass.data[DOMAIN] = {
         "dummy": {"device": m_device},

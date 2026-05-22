@@ -1,0 +1,78 @@
+name: Air conditioner
+products:
+  - id: keycnvksyhjcrg8t
+    manufacturer: Haier
+    model: Airmart wall AC
+
+entities:
+  #####################################################
+  # MAIN CLIMATE ENTITY
+  #####################################################
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: wet
+                value: dry
+
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 30
+        unit: C
+
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 2
+        unit: C
+
+      - id: 4
+        name: mode
+        type: string
+
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+
+      - id: 117
+        name: swing_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: ud_0c
+            value: "on"
+          - dps_val: ud_00
+            value: "off"
+
+      - id: 118
+        name: swing_horizontal
+        type: string
+        optional: true
+        readonly: true

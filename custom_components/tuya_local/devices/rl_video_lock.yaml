@@ -1,4 +1,7 @@
 name: Video intercom
+products:
+  - id: i6p5va1gvcagcude
+    model: RL-617B17WIFI
 entities:
   - entity: camera
     dps:
@@ -44,3 +47,45 @@ entities:
           - dps_val: null
             value: null
           - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: doorbell
+  - entity: event
+    name: Notification
+    dps:
+      - id: 185
+        type: utf16b64
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: message
+      - id: 185
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: switch
+    translation_key: do_not_disturb
+    hidden: unavailable
+    dps:
+      - id: 235
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+      - id: 235
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

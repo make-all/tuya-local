@@ -1,0 +1,49 @@
+name: Dishwasher
+products:
+  - id: fcsbxgao03zmzqiu
+    manufacturer: BlitzHome
+    model: BH-CDW1
+entities:
+  - entity: switch
+    icon: "mdi:dishwasher"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    translation_key: washing_mode
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: biaozhun
+            value: standard
+          - dps_val: chaokuai
+            value: rapid
+          - dps_val: jieneng
+            value: eco
+          - dps_val: qiangli
+            value: intensive
+          - dps_val: guoxian
+            value: fruit

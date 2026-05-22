@@ -1,0 +1,87 @@
+name: Dishwasher
+products:
+  - id: tmmk3646acwxrsg3
+    manufacturer: Amenzo
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Start
+    category: config
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: button
+    name: Stop
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+  - entity: select
+    translation_key: washing_mode
+    category: config
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Cold
+            value: fruit
+          - dps_val: Intensive
+            value: intensive
+          - dps_val: Quick
+            value: rapid
+          - dps_val: Eco
+            value: eco
+          - dps_val: Normal
+            value: standard
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 7
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: cleaning
+            value: washing
+          - dps_val: done
+            value: done
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        optional: true
+        name: fault_code

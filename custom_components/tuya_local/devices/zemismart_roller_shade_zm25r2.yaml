@@ -61,7 +61,7 @@ entities:
               - dps_val: 100
                 value: closed
   - entity: select
-    name: Mode
+    translation_key: curtain_mode
     icon: "mdi:theme-light-dark"
     category: config
     dps:
@@ -71,9 +71,9 @@ entities:
         optional: true
         mapping:
           - dps_val: morning
-            value: Morning
+            value: morning
           - dps_val: night
-            value: Night
+            value: night
   - entity: binary_sensor
     class: problem
     category: diagnostic

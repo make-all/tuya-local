@@ -77,17 +77,12 @@ entities:
         optional: true
         name: value
   - entity: switch
-    name: Do not disturb
-    icon: "mdi:sleep"
+    translation_key: do_not_disturb
     category: config
     dps:
       - id: 34
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-            icon_priority: 1
   - entity: text
     name: Fading
     category: config
@@ -202,9 +197,8 @@ entities:
               min: 0
               max: 1000
   - entity: text
-    name: Scene
+    translation_key: scene
     category: config
-    icon: "mdi:palette"
     hidden: true
     dps:
       - id: 109
@@ -241,21 +235,6 @@ entities:
         type: integer
         optional: true
         name: second
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    category: config
-    class: duration
-    dps:
-      - id: 112
-        type: integer
-        optional: true
-        name: value
-        unit: s
         range:
           min: 0
           max: 86400

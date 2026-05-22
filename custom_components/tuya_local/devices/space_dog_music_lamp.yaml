@@ -1,4 +1,4 @@
-name: Space Dog Music Lamp
+name: Music lamp
 entities:
   - entity: light
     icon: "mdi:dog-side"
@@ -174,24 +174,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 26
-        name: value
-        optional: true
-        type: integer
-        range:
-          min: 0
-          max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
 
   - entity: switch
     name: Laser
@@ -228,7 +210,7 @@ entities:
           max: 1000
 
   - entity: switch
-    name: Ocean Wave
+    name: Ocean wave
     icon: "mdi:waves"
     dps:
       # values: Ocean Wave On, Ocean Wave Off
@@ -238,7 +220,7 @@ entities:
         optional: true
 
   - entity: switch
-    name: Ocean Wave breathing
+    name: Ocean wave breathing
     icon: "mdi:waves"
     dps:
       # values: Ocean Wave breathing OFF, Ocean Wave breathing ON

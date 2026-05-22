@@ -1,8 +1,11 @@
-name: Light curtain
+name: Lights
 products:
   - id: ufi02yfc589ssyjp
     manufacturer: iSparkle
     model: Curtain Micro Lights
+  - id: x1nvbfjip9hp2buy
+    manufacturer: Mirabella
+    model: Genio Colour Select
 entities:
   - entity: light
     dps:
@@ -63,7 +66,7 @@ entities:
             value: report_off
   # The docs say rw for Timerreport
   - entity: button
-    name: Timer On
+    name: Timer on
     category: config
     dps:
       - id: 103
@@ -71,7 +74,7 @@ entities:
         optional: true
         name: button
   - entity: button
-    name: Timer Off
+    name: Timer off
     category: config
     dps:
       - id: 103

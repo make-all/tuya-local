@@ -55,8 +55,7 @@ entities:
   # Configuration Settings
   # Enables automatic cleaning after cat visits
   - entity: switch
-    name: Auto clean
-    icon: "mdi:shimmer"
+    translation_key: auto_clean
     category: config
     dps:
       - id: 4
@@ -317,6 +316,8 @@ entities:
         name: event
         persist: false
         mapping:
+          - dps_val: 0
+            value: "Normal"
           - dps_val: 1
             value: "Garbage Box Full"
           - dps_val: 2

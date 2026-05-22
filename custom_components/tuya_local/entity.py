@@ -2,6 +2,7 @@
 Common functionality for Tuya Local entities
 """
 
+import json
 import logging
 
 from homeassistant.const import (
@@ -54,7 +55,7 @@ class TuyaLocalEntity:
         own_name = self._config.name
         if not own_name and not self.use_device_name:
             # super has the translation logic
-            own_name = getattr(super(), "name")
+            own_name = super().name
         return own_name
 
     @property
@@ -102,6 +103,17 @@ class TuyaLocalEntity:
         for a in self._attr_dps:
             value = a.get_value(self._device)
             if value is not None or not a.optional:
+                # Decode json attributes for user convenience
+                if a.rawtype == "json":
+                    try:
+                        value = json.loads(value)
+                    except json.JSONDecodeError:
+                        if value is not None:
+                            _LOGGER.warning(
+                                "Failed to decode JSON for attribute %s: %s",
+                                a.name,
+                                value,
+                            )
                 attr[a.name] = value
         return attr
 
@@ -115,10 +127,12 @@ class TuyaLocalEntity:
 
     async def async_added_to_hass(self):
         self._device.register_entity(self)
+        _LOGGER.debug("Adding %s for %s", self._config.config_id, self._device.name)
         if self._config.deprecated:
             _LOGGER.warning(self._config.deprecation_message)
 
     async def async_will_remove_from_hass(self):
+        _LOGGER.debug("Removing %s for %s", self._config.config_id, self._device.name)
         await self._device.async_unregister_entity(self)
 
     def on_receive(self, dps, full_poll):

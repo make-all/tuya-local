@@ -1,0 +1,58 @@
+name: Plant light
+products:
+  - id: ba8nq6kussycm5l1
+    manufacturer: SunnyBot
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: work_mode
+      - id: 3
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 1000
+  - entity: text
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 37
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Timer report
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 38
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    name: Violet
+    dps:
+      - id: 54
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+  - entity: text
+    name: Multiswitch
+    category: config
+    icon: "mdi:dip-switch"
+    hidden: true
+    dps:
+      - id: 56
+        type: base64
+        optional: true
+        name: value

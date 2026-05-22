@@ -26,8 +26,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Operating mode
-    icon: "mdi:thermometer-auto"
+    translation_key: mode
     category: config
     dps:
       - id: 4
@@ -35,10 +34,9 @@ entities:
         name: option
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: manual
-            value: Manual
-            icon: "mdi:thermometer-off"
+            value: manual
   - entity: climate
     translation_key: thermostat
     dps:
@@ -83,14 +81,14 @@ entities:
           min: 0
           max: 43200
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 18
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -90
           max: 90
@@ -321,12 +319,13 @@ entities:
   - entity: number
     name: Temperature sensitivity
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 120
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 1
           max: 10

@@ -203,14 +203,14 @@ entities:
         type: boolean
         name: lock
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 117
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -50
           max: 50

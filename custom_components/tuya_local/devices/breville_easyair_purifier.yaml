@@ -5,7 +5,7 @@ products:
     model: Easy Air
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -39,10 +39,9 @@ entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter days left
+    translation_key: filter_life
     class: duration
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 16
         name: sensor

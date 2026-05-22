@@ -1,0 +1,177 @@
+name: Humidifier
+products:
+  - id: axwrpqctnpq9t2rv
+    manufacturer: Klarta
+    model: Humea Grande
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "CO"
+            value: 100
+          - dps_val: "40RH"
+            value: 40
+          - dps_val: "45RH"
+            value: 45
+          - dps_val: "50RH"
+            value: 50
+          - dps_val: "55RH"
+            value: 55
+          - dps_val: "60RH"
+            value: 60
+          - dps_val: "65RH"
+            value: 65
+          - dps_val: "70RH"
+            value: 70
+          - dps_val: "75RH"
+            value: 75
+      - id: 14
+        type: integer
+        name: current_humidity
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: C
+  - entity: select
+    name: Backlight
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Cancel"
+            value: "Off"
+          - dps_val: "7_color_circle"
+            value: "7 color circle"
+          - dps_val: "Skin_white"
+            value: "Green white"
+          - dps_val: "Light_leaf_green"
+            value: "Sprout green"
+          - dps_val: "Mustard_yellow_green"
+            value: "Mustard green"
+          - dps_val: "Light_rose_pink"
+            value: "Sakura pink"
+          - dps_val: "Light_blueviolet"
+            value: "Light blueviolet"
+          - dps_val: "Dark_lake_bule"
+            value: "Dark lake blue"
+          - dps_val: "Ice_lake_blue"
+            value: "Light lake blue"
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock
+  - entity: fan
+    name: Spray level
+    icon: "mdi:spray"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 103
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "Low_speed"
+            value: 25
+          - dps_val: "Medium_speed"
+            value: 50
+          - dps_val: "High_speed"
+            value: 75
+          - dps_val: "Turbo_speed"
+            value: 100
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Lack_of_water"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Tank removed
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Tank_removed"
+            value: true
+          - value: false
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: d
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "CO"
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"

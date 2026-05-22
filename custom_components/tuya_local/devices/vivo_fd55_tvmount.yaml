@@ -1,0 +1,36 @@
+name: TV mount
+products:
+  - id: ejr6szbimwutiaqp
+    manufacturer: Vivo
+    model: FD55
+entities:
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: cancel
+            value: true
+  - entity: button
+    name: Up
+    icon: "mdi:arrow-up-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_up
+            value: true
+  - entity: button
+    name: Down
+    icon: "mdi:arrow-down-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_down
+            value: true

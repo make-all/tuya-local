@@ -1,0 +1,87 @@
+name: Pet feeder
+products:
+  - id: go142kwowvlxvmmn
+    manufacturer: Petempo
+    model: PAF-02
+entities:
+  - entity: button
+    name: Quick feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: number
+    translation_key: manual_feed
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 6
+  - entity: sensor
+    class: enum
+    translation_key: status
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: feeding
+            value: feeding
+          - dps_val: done
+            value: feeding_complete
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 11
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Feed report
+    icon: "mdi:food-drumstick"
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Slow feed
+    icon: "mdi:speedometer-slow"
+    category: config
+    dps:
+      - id: 23
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 24
+        type: boolean
+        name: button

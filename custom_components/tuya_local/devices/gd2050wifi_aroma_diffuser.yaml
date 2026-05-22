@@ -1,0 +1,108 @@
+name: Aroma diffuser
+products:
+  - id: sf6rbebwtwdsk0za
+    model: GD2050WIFI
+entities:
+  # dps=1 is a power switch that doesn't actually do anything so we ignore it
+
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: large
+            value: 100
+          - dps_val: middle
+            value: 50
+
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2h"
+            value: continuous
+          - dps_val: "4"
+            value: "10s on - 10s off"
+          - dps_val: "Long"
+            value: "2h"
+          - dps_val: "intermittence"
+            value: "4h"
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+      - id: 9
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: colourful1
+            value: Fade colors
+      - id: 10
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+  - entity: binary_sensor
+    class: problem
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+      - id: 11
+        type: bitfield
+        name: fault_code

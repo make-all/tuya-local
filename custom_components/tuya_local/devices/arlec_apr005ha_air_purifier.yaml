@@ -1,11 +1,11 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: dfgsetrdnabqeimr
     manufacturer: Arlec
     model: APR005HA
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -15,9 +15,9 @@ entities:
         type: string
         mapping:
           - dps_val: Auto
-            value: smart
+            value: auto
           - dps_val: Manual
-            value: normal
+            value: manual
           - dps_val: Sleep
             value: sleep
       - id: 4
@@ -87,7 +87,7 @@ entities:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
   - entity: sensor
     class: duration
     category: diagnostic

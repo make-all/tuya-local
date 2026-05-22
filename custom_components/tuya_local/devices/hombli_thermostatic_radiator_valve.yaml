@@ -67,13 +67,14 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
+        unit: C
         mapping:
           - scale: 10
             step: 5

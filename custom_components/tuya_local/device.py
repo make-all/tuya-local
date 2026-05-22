@@ -22,6 +22,8 @@ from .const import (
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_MANUFACTURER,
+    CONF_MODEL,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
@@ -49,6 +51,8 @@ class TuyaLocalDevice(object):
         dev_cid,
         hass: HomeAssistant,
         poll_only=False,
+        manufacturer=None,
+        model=None,
     ):
         """
         Represents a Tuya-based device.
@@ -61,9 +65,13 @@ class TuyaLocalDevice(object):
             protocol_version (str | number): The protocol version.
             dev_cid (str): The sub device id.
             hass (HomeAssistant): The Home Assistant instance.
-            poll_only (bool): True if the device should be polled only
+            poll_only (bool): True if the device should be polled only.
+            manufacturer (str | None): The device manufacturer, if known.
+            model (str | None): The device model, if known.
         """
         self._name = name
+        self._manufacturer = manufacturer
+        self._model = model
         self._children = []
         self._force_dps = []
         self._product_ids = []
@@ -78,22 +86,37 @@ class TuyaLocalDevice(object):
             if dev_cid:
                 if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                    parent_lock = hass.data[DOMAIN][dev_id].get(
+                        "tuyadevicelock", asyncio.Lock()
+                    )
                 else:
                     parent = tinytuya.Device(dev_id, address, local_key)
+                    parent_lock = asyncio.Lock()
                     if name != "Test":
-                        hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
+                        hass.data[DOMAIN][dev_id] = {
+                            "tuyadevice": parent,
+                            "tuyadevicelock": parent_lock,
+                        }
                 self._api = tinytuya.Device(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
+                self._api_lock = parent_lock
             else:
                 if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                    self._api_lock = hass.data[DOMAIN][dev_id].get(
+                        "tuyadevicelock", asyncio.Lock()
+                    )
                 else:
                     self._api = tinytuya.Device(dev_id, address, local_key)
+                    self._api_lock = asyncio.Lock()
                     if name != "Test":
-                        hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
+                        hass.data[DOMAIN][dev_id] = {
+                            "tuyadevice": self._api,
+                            "tuyadevicelock": self._api_lock,
+                        }
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
@@ -126,6 +149,7 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
         self._CACHE_TIMEOUT = 30
+        self._HEARTBEAT_INTERVAL = 10
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
@@ -133,6 +157,12 @@ class TuyaLocalDevice(object):
         # The number of failures from a working protocol before retrying other protocols.
         self._AUTO_FAILURE_RESET_COUNT = 10
         self._lock = Lock()
+        # Serialises the read-modify-write window for entities that share a
+        # packed dp (e.g. multiple sub-entity lights writing to dp 51 with
+        # different masks). Without this, two concurrent async_turn_on calls
+        # both read the same baseline before either updates pending, then the
+        # second's pending update clobbers the first.
+        self.set_lock = asyncio.Lock()
 
     @property
     def name(self):
@@ -146,11 +176,14 @@ class TuyaLocalDevice(object):
     @property
     def device_info(self):
         """Return the device information for this device."""
-        return {
+        info = {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
-            "manufacturer": "Tuya",
+            "manufacturer": self._manufacturer or "Tuya",
         }
+        if self._model:
+            info["model"] = self._model
+        return info
 
     @property
     def has_returned_state(self):
@@ -237,7 +270,17 @@ class TuyaLocalDevice(object):
 
                     for entity in self._children:
                         # let entities trigger off poll contents directly
-                        entity.on_receive(poll, full_poll)
+                        try:
+                            entity.on_receive(poll, full_poll)
+                        except Exception as e:
+                            # Don't let exceptions thrown by the entities interrupt the communication loop
+                            # Just log them and move on.
+                            _LOGGER.exception(
+                                "%s on_receive error for entity %s: %s",
+                                self.name,
+                                entity.entity_id,
+                                e,
+                            )
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
                             for dp in entity._config.dps():
@@ -286,9 +329,12 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(persist)
 
+        last_heartbeat = self._cached_state.get("updated_at", 0)
         while self._running:
             error_count = self._api_working_protocol_failures
+            force_backoff = False
             try:
+                await self._api_lock.acquire()
                 last_cache = self._cached_state.get("updated_at", 0)
                 now = time()
                 full_poll = False
@@ -304,8 +350,12 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
+                    self._last_full_poll = 0  # ensure we start with a full poll
 
-                if now - last_cache > self._CACHE_TIMEOUT:
+                needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
+                if now - last_cache > self._CACHE_TIMEOUT or (
+                    persist and needs_full_poll
+                ):
                     if (
                         self._force_dps
                         and not dps_updated
@@ -323,16 +373,24 @@ class TuyaLocalDevice(object):
                         )
                         dps_updated = False
                         full_poll = True
+                    self._last_full_poll = now
+                    last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    await self._hass.async_add_executor_job(
-                        self._api.heartbeat,
-                        True,
-                    )
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
+                        await self._hass.async_add_executor_job(
+                            self._api.heartbeat,
+                            True,
+                        )
+                        last_heartbeat = now
                     poll = await self._hass.async_add_executor_job(
                         self._api.receive,
                     )
+                    # Ignore Payload error 904, as 3.4 protocol devices seem to return
+                    # this when there is no new data, instead of just returning nothing.
+                    if poll and "Err" in poll and poll["Err"] == "904":
+                        poll = None
                 else:
-                    await asyncio.sleep(5)
+                    force_backoff = True
                     poll = None
 
                 if poll:
@@ -360,11 +418,10 @@ class TuyaLocalDevice(object):
                         poll["full_poll"] = full_poll
                         yield poll
 
-                await asyncio.sleep(0.1 if self.has_returned_state else 5)
-
             except CancelledError:
                 self._running = False
                 # Close the persistent connection when exiting the loop
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -376,10 +433,17 @@ class TuyaLocalDevice(object):
                     type(t).__name__,
                     t,
                 )
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
-                await asyncio.sleep(5)
+                force_backoff = True
+            finally:
+                if self._api_lock.locked():
+                    self._api_lock.release()
+            if not self.has_returned_state:
+                force_backoff = True
+            await asyncio.sleep(5 if force_backoff else 0.1)
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
@@ -475,25 +539,21 @@ class TuyaLocalDevice(object):
         self._cached_state = {"updated_at": 0}
         self._pending_updates = {}
         self._last_connection = 0
+        self._last_full_poll = 0
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state and "Err" not in new_state:
-            self._cached_state = self._cached_state | new_state.get("dps", {})
-            self._cached_state["updated_at"] = time()
-            for entity in self._children:
-                for dp in entity._config.dps():
-                    # Clear non-persistant dps that were not in the poll
-                    if not dp.persist and dp.id not in new_state.get("dps", {}):
-                        self._cached_state.pop(dp.id, None)
-                entity.schedule_update_ha_state()
-        _LOGGER.debug(
-            "%s refreshed device state: %s",
-            self.name,
-            log_json(new_state),
-        )
-        if "Err" in new_state:
-            if self._api_working_protocol_failures == 1:
+        if new_state:
+            if "Err" not in new_state:
+                self._cached_state = self._cached_state | new_state.get("dps", {})
+                self._cached_state["updated_at"] = time()
+                for entity in self._children:
+                    for dp in entity._config.dps():
+                        # Clear non-persistant dps that were not in the poll
+                        if not dp.persist and dp.id not in new_state.get("dps", {}):
+                            self._cached_state.pop(dp.id, None)
+                    entity.schedule_update_ha_state()
+            elif self._api_working_protocol_failures == 1:
                 _LOGGER.warning(
                     "%s protocol error %s: %s",
                     self.name,
@@ -507,6 +567,11 @@ class TuyaLocalDevice(object):
                     new_state.get("Err"),
                     new_state.get("Error", "message not provided"),
                 )
+        _LOGGER.debug(
+            "%s refreshed device state: %s",
+            self.name,
+            log_json(new_state),
+        )
         _LOGGER.debug(
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
@@ -598,12 +663,22 @@ class TuyaLocalDevice(object):
             else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
         )
 
+        last_err_code = None
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
-                        raise AttributeError(retval["Error"])
+                        last_err_code = retval.get("Err")
+                        if last_err_code == "900":
+                            # Some devices (e.g. IR/RF remotes) never return
+                            # status data; error 900 is their normal response
+                            # to a status query. Treat as reachable with no
+                            # data so commands can still be sent.
+                            self._cached_state["updated_at"] = time()
+                            retval = None
+                        else:
+                            raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
                     return retval
@@ -615,6 +690,10 @@ class TuyaLocalDevice(object):
                     i,
                     connections,
                 )
+                # Ensure we have a fresh connection for the next attempt
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
 
                 if i + 1 == connections:
                     self._reset_cached_state()
@@ -626,7 +705,9 @@ class TuyaLocalDevice(object):
                         self._api_protocol_working = False
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
-                    if self._api_working_protocol_failures == 1:
+                    if self._api_working_protocol_failures == 1 and not (
+                        last_err_code == "914" and self._protocol_configured == "auto"
+                    ):
                         _LOGGER.error(error_message)
                     else:
                         _LOGGER.debug(error_message)
@@ -639,10 +720,7 @@ class TuyaLocalDevice(object):
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
-        return {
-            key: property["value"]
-            for key, property in self._get_pending_updates().items()
-        }
+        return {key: prop["value"] for key, prop in self._get_pending_updates().items()}
 
     def _get_unsent_properties(self):
         return {
@@ -683,7 +761,7 @@ class TuyaLocalDevice(object):
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
         _LOGGER.debug(
-            "Setting protocol version for %s to %0.1f",
+            "Setting protocol version for %s to %s",
             self.name,
             new_version,
         )
@@ -725,10 +803,13 @@ def setup_device(hass: HomeAssistant, config: dict):
         config.get(CONF_DEVICE_CID),
         hass,
         config[CONF_POLL_ONLY],
+        manufacturer=config.get(CONF_MANUFACTURER),
+        model=config.get(CONF_MODEL),
     )
     hass.data[DOMAIN][get_device_id(config)] = {
         "device": device,
         "tuyadevice": device._api,
+        "tuyadevicelock": device._api_lock,
     }
 
     return device
@@ -740,3 +821,4 @@ async def async_delete_device(hass: HomeAssistant, config: dict):
     await hass.data[DOMAIN][device_id]["device"].async_stop()
     del hass.data[DOMAIN][device_id]["device"]
     del hass.data[DOMAIN][device_id]["tuyadevice"]
+    del hass.data[DOMAIN][device_id]["tuyadevicelock"]

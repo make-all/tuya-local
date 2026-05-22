@@ -50,10 +50,10 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
         self._attr_mode = TextMode.PASSWORD if self._value_dp.hidden else TextMode.TEXT
         self._extra_info = {ATTR_MODE: self._attr_mode}
 
-        range = self._value_dp.range(device, False)
-        if range:
-            self._attr_native_min = range[0]
-            self._attr_native_max = range[1]
+        rng = self._value_dp.range(device, False)
+        if rng:
+            self._attr_native_min = rng[0]
+            self._attr_native_max = rng[1]
             self._extra_info[ATTR_MIN] = self._attr_native_min
             self._extra_info[ATTR_MAX] = self._attr_native_max
 
@@ -75,7 +75,9 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
 
     async def async_set_value(self, value: str) -> None:
         """Set the value"""
-        await self._value_dp.async_set_value(self._device, value)
+        async with self._device.set_lock:
+            _LOGGER.info("%s setting value to %s", self._config.config_id, value)
+            await self._value_dp.async_set_value(self._device, value)
 
     @property
     def extra_state_attributes(self) -> dict[str, any]:

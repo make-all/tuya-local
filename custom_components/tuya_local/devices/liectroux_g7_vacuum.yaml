@@ -176,18 +176,16 @@ entities:
           - dps_val: high
             value: high
   - entity: switch
-    name: Do not disturb
+    translation_key: do_not_disturb
     category: config
-    icon: "mdi:bell-ring"
     dps:
       - id: 113
         name: switch
         type: boolean
         optional: true
   - entity: number
-    name: Volume
+    translation_key: volume
     category: config
-    icon: "mdi:volume-high"
     dps:
       - id: 114
         type: integer
@@ -232,9 +230,8 @@ entities:
           - dps_val: resetmainbrush
             value: true
   - entity: button
-    name: Reset filter
+    translation_key: filter_reset
     category: config
-    icon: "mdi:clock-outline"
     dps:
       - id: 115
         type: string
@@ -295,10 +292,9 @@ entities:
         type: integer
         unit: s
   - entity: sensor
-    name: Filter time
+    translation_key: filter_life
     category: diagnostic
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 121
         name: sensor

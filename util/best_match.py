@@ -3,9 +3,9 @@
 import json
 import sys
 
-from common_funcs import FakeDevice
-
 from custom_components.tuya_local.helpers.device_config import possible_matches
+
+from .common_funcs import FakeDevice
 
 
 def main() -> int:
@@ -30,6 +30,8 @@ def main() -> int:
             for dp in entity.dps():
                 dps_seen.discard(dp.id)
                 print(f"    {dp.name}: {dp.get_value(device)}")
+                if dp.values(device):
+                    print(f"      values: {dp.values(device)}")
         for dp in dps_seen:
             print(f"  Missing {dp}: {dps[dp]}")
 

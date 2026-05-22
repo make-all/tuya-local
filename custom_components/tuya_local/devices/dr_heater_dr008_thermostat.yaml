@@ -79,18 +79,6 @@ entities:
             value: heating
           - dps_val: false
             value: idle
-      - id: 112
-        type: integer
-        name: temperature_calibration_offset
-        range:
-          min: -9
-          max: 9
-      - id: 113
-        type: integer
-        name: floor_calibration_offset
-        range:
-          min: -9
-          max: 9
   - entity: lock
     translation_key: child_lock
     category: config
@@ -225,3 +213,42 @@ entities:
             value: "7 (Adaptive)"
           - dps_val: 3
             value: "5+1+1 (Adaptive)"
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+      - id: 107
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+  - entity: number
+    name: Floor temperature calibration
+    class: temperature_delta
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F

@@ -1,0 +1,21 @@
+name: Garage opener
+products:
+  - id: c1tdykjhzgasntuz
+    manufacturer: Garen
+    model: TSI Fit
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        name: control
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        name: open
+        type: boolean

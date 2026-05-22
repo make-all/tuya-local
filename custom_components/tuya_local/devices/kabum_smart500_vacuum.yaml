@@ -118,12 +118,16 @@ entities:
         unit: "%"
         class: measurement
   - entity: switch
-    name: Mute voice
-    icon: "mdi:account-voice"
+    translation_key: sound
     dps:
       - id: 31
         type: boolean
         name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: sensor
     name: Clean area
     class: area

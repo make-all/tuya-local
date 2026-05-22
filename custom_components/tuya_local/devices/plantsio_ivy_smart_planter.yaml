@@ -8,7 +8,7 @@ products:
     model: Ivy
 entities:
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: volume_storage
     dps:
       - id: 108
@@ -16,10 +16,6 @@ entities:
         name: sensor
         unit: mL
         class: measurement
-        mapping:
-          - dps_val: 0
-            icon: "mdi:cup-outline"
-          - icon: "mdi:cup"
       - id: 107
         type: string
         name: version

@@ -11,8 +11,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    icon: "mdi:paw"
+    translation_key: activation_mode
     category: config
     dps:
       - id: 2
@@ -20,15 +19,15 @@ entities:
         name: option
         mapping:
           - dps_val: normal
-            value: Normal
+            value: normal
           - dps_val: smart
-            value: Smart
+            value: smart
           - dps_val: night
-            value: Night
+            value: night
           - dps_val: pir
-            value: PIR
+            value: motion
   - entity: sensor
-    name: Filter remaining
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
@@ -55,7 +54,7 @@ entities:
         unit: d
         class: measurement
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
     dps:
       - id: 5
@@ -83,7 +82,7 @@ entities:
   - entity: number
     name: Maintenance interval
     category: config
-    icon: "mdi:"
+    icon: "mdi:wrench-clock"
     dps:
       - id: 8
         type: integer

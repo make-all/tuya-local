@@ -3,6 +3,10 @@ products:
   - id: eetmtcempdyxgpx5
     manufacturer: Nexxt
     model: 220v smartplug
+  - id: eoyy79zjaco4j8c8
+    # https://mygeeni.com/products/geeni-gn-ww117-199-dot-smart-wi-fi-plug-pack-of-1-white
+    manufacturer: Geeni
+    model: WW117 Smart Plug
   - id: 45gg9a0jfyzj1z1d
     name: Mini smart switch
   - id: qlrnevw57ezct7ta
@@ -17,6 +21,8 @@ products:
     manufacturer: Moes House
   - id: a1yn4awusjnwmmvj
     model: CB2S
+  - id: bnkpnv0werwabryt
+    name: 1CH WiFi USB Switch Module
 entities:
   - entity: switch
     dps:
@@ -45,23 +51,6 @@ entities:
         name: random_timer
         type: string
         optional: true
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    dps:
-      - id: 9
-        name: value
-        type: integer
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: select
     translation_key: initial_state
     hidden: unavailable

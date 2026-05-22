@@ -16,6 +16,9 @@ products:
   - id: mkdejkrgvhsfwfrd
     manufacturer: Antela
     model: F1s302-UK
+  - id: 74xo1nolwa6xkjeu
+    manufacturer: Arlec
+    model: PC191HA Series 4
 entities:
   - entity: switch
     class: outlet
@@ -49,23 +52,6 @@ entities:
         type: base64
         name: random_timer
         optional: true
-  - entity: number
-    category: config
-    class: duration
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
   - entity: sensor
     category: diagnostic
     hidden: true
@@ -95,6 +81,7 @@ entities:
         unit: mA
       - id: 23
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     category: diagnostic
@@ -118,6 +105,7 @@ entities:
         name: switch
       - id: 24
         type: integer
+        optional: true
         name: calibration
   - entity: sensor
     category: diagnostic
@@ -134,6 +122,7 @@ entities:
           - scale: 10
       - id: 22
         type: integer
+        optional: true
         name: calibration
   - entity: binary_sensor
     class: problem
@@ -155,6 +144,7 @@ entities:
     dps:
       - id: 38
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "on"

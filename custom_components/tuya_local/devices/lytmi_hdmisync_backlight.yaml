@@ -6,6 +6,9 @@ products:
   - id: s9tscadzzt5s2cz3
     manufacturer: Fancy LEDs
     model: 3 HDMI 2.1 sync box
+  - id: 9cgdcqpe9iqg9tjn
+    manufacturer: Fancy LEDs
+    model: 3 HDMI 2.1 sync box
 entities:
   - entity: light
     dps:
@@ -37,9 +40,37 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 107
-        type: boolean
-        name: unknown_107
+      - id: 23
+        type: integer
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 23
+        type: integer
+        optional: true
+        name: color_temp_supported
+        hidden: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 25
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: "88000000000000000000000000000000"
+            available: color_temp_supported
+            value: color_temp
+          - dps_val: "97000000000000000000000000000000"
+            value: hs
+          - value: hs
+            hidden: true
   - entity: switch
     name: TV synchronization switch
     category: config
@@ -47,8 +78,15 @@ entities:
       - id: 109
         name: switch
         type: boolean
+  - entity: switch
+    name: HDMI enable
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
   - entity: select
-    name: HDMI Input
+    name: HDMI input
     icon: "mdi:hdmi-port"
     category: config
     dps:
@@ -74,9 +112,9 @@ entities:
         name: option
         mapping:
           - dps_val: 0
-            value: Right
-          - dps_val: 1
             value: Left
+          - dps_val: 1
+            value: Right
   - entity: number
     category: config
     name: Degree of diffusion
@@ -150,3 +188,24 @@ entities:
             value: Scene (Color) - Breath
           - dps_val: "97000000000000000000000000000000"
             value: Scene (Color) - Pure
+  - entity: number
+    name: HDR level
+    category: config
+    icon: "mdi:hdr"
+    hidden: unavailable
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 1000
+      - id: 113
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

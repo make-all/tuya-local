@@ -51,10 +51,9 @@ entities:
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 21
         type: integer
         name: temp_set_f
@@ -96,8 +95,19 @@ entities:
         hidden: true
         mapping:
           - scale: 10
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
   - entity: number
     translation_key: timer
+    deprecated: time.timer  # 2026-01-20
     class: duration
     category: config
     dps:
@@ -193,9 +203,9 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 30
         type: integer
@@ -203,6 +213,13 @@ entities:
         range:
           min: -9
           max: 9
+      - id: 20
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: binary_sensor
     class: problem
     category: diagnostic

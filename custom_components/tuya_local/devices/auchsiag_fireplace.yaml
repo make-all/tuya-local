@@ -1,0 +1,157 @@
+name: Fireplace
+products:
+  - id: cokyjkkw8gqwteww
+    manufacturer: Auchsiag
+entities:
+  - entity: light
+    translation_key: embers
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 18
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 5
+      - id: 101
+        name: named_color
+        type: string
+        mapping:
+          - dps_val: "light_1"
+            value: "red"
+          - dps_val: "light_2"
+            value: "steelblue"
+          - dps_val: "light_3"
+            value: "green"
+          - dps_val: "light_4"
+            value: "pink"
+          - dps_val: "light_5"
+            value: "yellow"
+          - dps_val: "light_6"
+            value: "cyan"
+          - dps_val: "light_7"
+            value: "purple"
+          - dps_val: "light_8"
+            value: "white"
+          - dps_val: "light_9"
+            value: "goldenrod"
+          - dps_val: "light_10"
+            value: "skyblue"
+          - dps_val: "light_11"
+            value: "seagreen"
+          - dps_val: "light_12"
+            value: "cornflowerblue"
+          - dps_val: "light_13"
+            value: "black"  # auto
+
+  - entity: select
+    name: Flame Color
+    icon: "mdi:fire"
+    dps:
+      - id: 17
+        name: option
+        type: string
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "light_red"
+            value: "Red"
+          - dps_val: "light_yellow"
+            value: "Yellow"
+          - dps_val: "light_blue"
+            value: "Blue"
+          - dps_val: "light_orange"
+            value: "Orange"
+          - dps_val: "light_red_yellow"
+            value: "Red + Yellow"
+          - dps_val: "light_red_blue"
+            value: "Red + Blue"
+          - dps_val: "light_red_white"
+            value: "Red + White"
+          - dps_val: "light_yellow_blue"
+            value: "Yellow + Blue"
+          - dps_val: "light_yellow_white"
+            value: "Yellow + White"
+          - dps_val: "light_blue_white"
+            value: "Blue + White"
+          - dps_val: "light_red_yellow_blue"
+            value: "Red + Yellow + Blue"
+          - dps_val: "light_multicolor"
+            value: "Multicolor"
+      - id: 1
+        type: boolean
+        name: available
+
+  - entity: select
+    name: Flame Speed
+    icon: "mdi:speedometer"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: "Level 1"
+          - dps_val: "level_2"
+            value: "Level 2"
+          - dps_val: "level_3"
+            value: "Level 3"
+          - dps_val: "level_4"
+            value: "Level 4"
+          - dps_val: "level_5"
+            value: "Level 5"
+      - id: 1
+        type: boolean
+        name: available
+
+  - entity: select
+    translation_key: mode
+    name: Heat Level
+    icon: "mdi:fireplace"
+    dps:
+      - id: 5
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
+      - id: 1
+        type: boolean
+        name: available
+
+  - entity: select
+    translation_key: timer
+    dps:
+      - id: 13
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+
+  - entity: sensor
+    class: duration
+    translation_key: time_remaining
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: min

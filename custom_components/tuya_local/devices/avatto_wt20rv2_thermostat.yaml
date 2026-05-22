@@ -1,0 +1,217 @@
+name: Thermostat
+products:
+  - id: wwucdzi28uei6cri
+    manufacturer: Avatto
+    model: WT20R-WH-3A-W
+  - id: n6xrizqbjgmvhgtk
+    manufacturer: Avatto
+    model: WT20R-BH-3A-W
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+      - id: 3
+        name: temperature
+        type: integer
+        optional: true
+        range:
+          min: 5
+          max: 45
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 41
+                  max: 113
+                value_redirect: temp_set_f
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_cur_f
+              - dps_val: c
+                scale: 10
+      - id: 23
+        type: string
+        optional: true
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 17
+        type: integer
+        optional: true
+        name: temp_set_f
+        range:
+          min: 41
+          max: 113
+      - id: 29
+        type: integer
+        optional: true
+        name: temp_cur_f
+      - id: 25
+        type: integer
+        optional: true
+        name: current_humidity
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Schedule days
+    icon: "mdi:calendar-week"
+    category: config
+    dps:
+      - id: 31
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 5_2
+            value: Weekdays+Weekend
+          - dps_val: 6_1
+            value: Mon-Sat+Sun
+          - dps_val: 7
+            value: Daily
+  - entity: binary_sensor
+    name: Manual override
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: manual
+            value: true
+          - value: false
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 44
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    name: Sensor
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+  - entity: switch
+    name: Open window detection
+    category: config
+    icon: "mdi:window-open-variant"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: number
+    name: Holiday temperature
+    category: config
+    icon: "mdi:island"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                range:
+                  min: 32
+                  max: 41
+      - id: 103
+        type: integer
+        optional: true
+        name: temp_f
+        range:
+          min: 32
+          max: 41
+      - id: 23
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+# 104: sencer_c (sic) value "in", range unknown but probably same as 101?
+# 105/107: Home temperature, not sure if it is a setting or sensor
+# 112/113: Cook temperature, not sure what this is for (bad translation?)

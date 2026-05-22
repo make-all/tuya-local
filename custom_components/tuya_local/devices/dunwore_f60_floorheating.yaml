@@ -218,6 +218,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean
@@ -279,17 +280,17 @@ entities:
   - entity: number
     name: Room calibration
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-check"
     dps:
       - id: 103
         type: integer
         name: value
-        unit: °
         range:
           min: -50
           max: 50
         mapping:
-          - constraint: temp_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: cali_room_f
@@ -301,8 +302,11 @@ entities:
                 step: 5
       - id: 23
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
       - id: 104
         type: integer
         optional: true
@@ -314,17 +318,17 @@ entities:
   - entity: number
     name: Floor calibration
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-check"
     dps:
       - id: 105
         type: integer
         name: value
-        unit: °
         range:
           min: -50
           max: 50
         mapping:
-          - constraint: temp_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: cali_floor_f
@@ -336,8 +340,11 @@ entities:
                 step: 5
       - id: 23
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
       - id: 106
         type: integer
         name: cali_floor_f

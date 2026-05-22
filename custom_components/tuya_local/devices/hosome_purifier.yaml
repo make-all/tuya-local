@@ -4,7 +4,7 @@ products:
     manufacturer: Hosome
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -14,9 +14,9 @@ entities:
         type: string
         mapping:
           - dps_val: Auto
-            value: smart
+            value: auto
           - dps_val: Manual
-            value: normal
+            value: manual
           - dps_val: Sleep
             value: sleep
       - id: 4
@@ -41,9 +41,8 @@ entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         type: integer

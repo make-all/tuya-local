@@ -69,7 +69,6 @@ entities:
           min: 0
           max: 99
   - entity: water_heater
-    translation_only_key: water_air
     dps:
       - id: 1
         type: boolean
@@ -100,6 +99,7 @@ entities:
                00000000FFFFFFFF00000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 118
         type: string
         optional: true
@@ -187,6 +187,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 125
         type: boolean
@@ -205,6 +206,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -225,6 +227,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -233,9 +236,8 @@ entities:
             value: F
           - value: C
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 101
         type: base64
@@ -245,6 +247,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -265,6 +268,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -285,6 +289,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -305,6 +310,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -325,6 +331,7 @@ entities:
                FFFFFFFF0000000000000000000000000000000000000000\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -383,6 +390,7 @@ entities:
                0000000000000000000000000000000000000000FFFFFFFF\
                000000000000000000000000000000000000000000000000\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit
@@ -470,6 +478,7 @@ entities:
                000000000000000000000000000000000000000000000000\
                0000000000000000000000000000000000000000FFFFFFFF\
                0000000000000000"
+        mask_signed: true
       - id: 6
         type: string
         name: unit

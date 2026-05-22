@@ -17,6 +17,8 @@ entities:
             value: color_temp
           - dps_val: colour
             value: hs
+          - dps_val: scene
+            value: Scene
       - id: 3
         name: brightness
         type: integer
@@ -85,29 +87,3 @@ entities:
             value: Scene 3
           - dps_val: "ffff0505ff000000ff00ffff00ff00ff0000ff000000"
             value: Scene 4
-
-  - entity: select
-    name: Work Mode
-    icon: "mdi:lightbulb"
-    category: config
-    dps:
-      - id: 2
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: "colour"
-            value: Color
-          - dps_val: "white"
-            value: White
-          - dps_val: "scene"
-            value: Scene
-
-  - entity: sensor
-    name: Current Work Mode
-    icon: "mdi:lightbulb"
-    category: diagnostic
-    dps:
-      - id: 2
-        type: string
-        name: sensor

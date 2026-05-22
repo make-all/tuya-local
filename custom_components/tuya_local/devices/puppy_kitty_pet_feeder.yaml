@@ -12,7 +12,7 @@ entities:
         type: boolean
         name: switch
   - entity: text
-    name: Meal plan
+    translation_key: meal_plan
     category: config
     hidden: true
     dps:
@@ -32,15 +32,14 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 24
         type: boolean
         name: button
         optional: true
   - entity: number
-    icon: "mdi:paw"
-    name: Manual feed
-    category: config
+    translation_key: manual_feed
     dps:
       - id: 3
         name: value

@@ -8,8 +8,7 @@ products:
     model: KJ760F A02
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -25,17 +24,16 @@ entities:
         type: string
         mapping:
           - dps_val: manual
-            value: normal
+            value: manual
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: sleep
             value: sleep
           - dps_val: displayoff
             value: displayoff
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:timelapse"
     dps:
       - id: 5
         type: integer

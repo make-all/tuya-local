@@ -55,19 +55,25 @@ entities:
             value: true
           - value: false
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 19
         type: integer
         name: value
-        unit: °
         range:
           min: -100
           max: 100
         mapping:
           - scale: 10
+      - id: 9
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: select
     translation_key: temperature_unit
     category: config

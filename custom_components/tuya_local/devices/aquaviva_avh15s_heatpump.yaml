@@ -1,0 +1,164 @@
+name: Combo heat pump
+products:
+  - id: mfrh8y0aommygujq
+    manufacturer: Aquaviva
+    model: AVH15S
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 1
+        type: boolean
+        name: power
+        hidden: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 8
+          max: 80
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: cool
+            value: "off"
+            available: cool_mode
+          - dps_val: heat
+            value: "off"
+            available: heat_mode
+          - dps_val: hot
+            available: off_mode
+            value_redirect: power
+            conditions:
+              - dps_val: hot
+                value: heat_pump
+              - dps_val: cool
+                value: "off"
+          - dps_val: heat_hot
+            value: heat_pump
+            available: heat_mode
+          - dps_val: cool_hot
+            value: heat_pump
+            available: cool_mode
+      - id: 4
+        type: string
+        name: cool_mode
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: true
+          - dps_val: cool_hot
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        name: heat_mode
+        hidden: true
+        mapping:
+          - dps_val: heat
+            value: true
+          - dps_val: heat_hot
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        name: off_mode
+        hidden: true
+        mapping:
+          - dps_val: hot
+            value: true
+          - value: false
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 1
+        type: boolean
+        name: power
+        hidden: true
+        mapping:
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 8
+          max: 80
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: cool
+            value: cool
+            available: water_off
+          - dps_val: heat
+            value: heat
+            available: water_off
+          - dps_val: hot
+            value: "off"
+            value_redirect: power
+            available: water_off
+          - dps_val: cool_hot
+            value: cool
+            available: water_on
+          - dps_val: heat_hot
+            value: heat
+            available: water_on
+          - dps_val: hot
+            value: "off"
+            available: water_on
+      - id: 4
+        type: string
+        name: water_off
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: true
+          - dps_val: heat
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        name: water_on
+        hidden: true
+        mapping:
+          - dps_val: cool
+            value: false
+          - dps_val: heat
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code

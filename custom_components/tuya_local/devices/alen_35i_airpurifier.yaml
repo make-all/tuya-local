@@ -1,10 +1,11 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: bd4ztozj4aied1ps
     manufacturer: Alen
     model: BreatheSmart 35i
 entities:
   - entity: fan
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -21,16 +22,52 @@ entities:
             value: 75
           - dps_val: "4"
             value: 100
+      - id: 3
+        type: string
+        optional: true
+        name: preset_mode
+        mapping:
+          - dps_val: "On"
+            value: auto
+          - dps_val: "Off"
+            value: manual
   - entity: sensor
     class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
   - entity: sensor
-    name: Filter life
+    class: pm1
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm4
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    translation_key: filter_life
     dps:
       - id: 5
         type: integer
@@ -84,5 +121,175 @@ entities:
       - id: 117
         type: integer
         name: sensor
-        unit: µg/m³
+        unit: ugm3
         class: measurement
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 105
+        type: string
+        optional: true
+        name: brightness
+        mapping:
+          - dps_val: Auto
+            value: 0
+          - dps_val: Low
+            value: 128
+          - dps_val: High
+            value: 255
+      - id: 114
+        type: string
+        optional: true
+        name: named_color
+        mapping:
+          - dps_val: COLOR_BLUE
+            value: blue
+          - dps_val: COLOR_GREEN
+            value: lime
+          - dps_val: COLOR_ORANGE
+            value: orange
+          - dps_val: COLOR_RED
+            value: red
+          - dps_val: COLOR_PURPLE
+            value: magenta
+  - entity: sensor
+    name: Filter
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: Unknown
+            value: Unknown
+          - dps_val: PURE
+            value: Pure
+          - dps_val: FRESH
+            value: Fresh
+          - dps_val: ODOR
+            value: Odour
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: dB
+        class: measurement
+  - entity: text
+    name: Serial TX
+    category: config
+    icon: "mdi:serial-port"
+    hidden: true
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: value
+  - entity: number
+    name: Sensitivity
+    category: config
+    icon: "mdi:"
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 6
+  - entity: sensor
+    name: Serial RX
+    hidden: true
+    category: diagnostic
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: AirID data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 119
+        type: base64
+        optional: true
+        name: sensor
+      - id: 121
+        type: base64
+        optional: true
+        name: matrix
+      - id: 122
+        type: string
+        optional: true
+        name: spmatrix
+      - id: 123
+        type: string
+        optional: true
+        name: mpmatrix
+  - entity: number
+    name: AirID
+    category: config
+    hidden: true
+    dps:
+      - id: 120
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 999
+  - entity: switch
+    name: Air quality monitoring
+    category: config
+    dps:
+      - id: 124
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "Off"
+            value: false
+          - dps_val: "On"
+            value: true
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    hidden: unavailable  # 75i only
+    dps:
+      - id: 6
+        type: boolean
+        optional: true
+        name: switch
+      - id: 6
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

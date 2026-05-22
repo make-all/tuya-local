@@ -39,23 +39,8 @@ entities:
         range:
           min: 0
           max: 1440
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 6
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 0
-          max: 1440
   - entity: select
-    name: Mode
-    icon: "mdi:dishwasher"
+    translation_key: washing_mode
     category: config
     dps:
       - id: 7
@@ -73,9 +58,9 @@ entities:
           - dps_val: intensive
             value: intensive
           - dps_val: universal
-            value: universal
+            value: standard
           - dps_val: babycare
-            value: babycare
+            value: baby_care
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -189,8 +174,7 @@ entities:
           - dps_val: true
             value: false
   - entity: select
-    name: Water hardness
-    icon: "mdi:water-opacity"
+    translation_key: water_hardness
     category: config
     dps:
       - id: 111

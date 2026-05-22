@@ -165,7 +165,9 @@ entities:
         mapping:
           - scale: 1000
   - entity: select
-    name: Overvoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overvoltage
     category: config
     dps:
       - id: 102
@@ -173,16 +175,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Undervoltage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Undervoltage
     category: config
     dps:
       - id: 103
@@ -190,16 +191,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overcurrent action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overcurrent
     category: config
     dps:
       - id: 104
@@ -207,16 +207,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Overpower action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Overpower
     category: config
     dps:
       - id: 105
@@ -224,16 +223,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Temperature action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Temperature
     category: config
     dps:
       - id: 107
@@ -241,16 +239,15 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
   - entity: select
-    name: Earth leakage action
+    translation_key: breaker_trigger_action
+    translation_placeholders:
+      trigger: Earth leakage
     category: config
     dps:
       - id: 108
@@ -259,14 +256,11 @@ entities:
         name: option
         mapping:
           - dps_val: Closed
-            value: Remain closed
-            icon: "mdi:electric-switch-closed"
+            value: ignore
           - dps_val: Alarm
-            value: Alarm
-            icon: "mdi:bell-alert"
+            value: alarm
           - dps_val: Trip
-            value: Trip
-            icon: "mdi:electric-switch"
+            value: trip_breaker
       - id: 117
         type: integer
         optional: true
@@ -347,6 +341,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 113
         type: boolean
@@ -494,7 +489,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Temperature Neutral
+    name: Temperature neutral
     class: temperature
     category: diagnostic
     dps:

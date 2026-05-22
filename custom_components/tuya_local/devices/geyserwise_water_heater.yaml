@@ -187,6 +187,7 @@ entities:
     name: Collector temperature
     class: temperature
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 108
         type: integer
@@ -194,3 +195,11 @@ entities:
         optional: true
         unit: C
         class: measurement
+      - id: 108
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

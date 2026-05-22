@@ -1,8 +1,11 @@
-name: Radiator
+name: Heater
 products:
   - id: wcpmk08nnnynbhy7
     manufacturer: Lehmann
     model: LHOHC-2013C
+  - id: qhpaegcadawabwct
+    manufacturer: Jocel
+    model: JCT007452
 entities:
   - entity: climate
     translation_only_key: heater
@@ -33,13 +36,13 @@ entities:
             constraint: level
             conditions:
               - dps_val: "1"
-                value: "750W"
+                value: eco
               - dps_val: "2"
-                value: "1250W"
+                value: comfort
               - dps_val: "3"
-                value: "2000W"
+                value: boost
               - dps_val: "4"
-                value: "0W"
+                value: none
           - dps_val: smart
             value: away
           - dps_val: standby

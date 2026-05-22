@@ -1,0 +1,428 @@
+name: Dual channel energy meter
+products:
+  - id: qqb5tzcb1qarf0s3
+    manufacturer: PJ
+    model: PJ-1103A
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    name: Total power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 56
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 57
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 59
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 60
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power_factor
+    name: Power factor A
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    name: Power factor B
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Power setting A
+    category: config
+    class: power
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: W
+        optional: true
+        range:
+          min: 200
+          max: 20000
+        mapping:
+          - step: 100
+  - entity: number
+    name: Power setting B
+    category: config
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: W
+        optional: true
+        range:
+          min: 200
+          max: 20000
+        mapping:
+          - step: 100
+  - entity: binary_sensor
+    name: Power alarm A
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Power alarm B
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Forward energy A hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Forward energy B hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Forward energy total hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Reverse energy A hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Reverse energy B hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Reverse energy total hour
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: "A total"
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: "A total"
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: "B total"
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: "B total"
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Voltage calibration
+    category: config
+    class: voltage
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        optional: true
+        unit: V
+        range:
+          min: -50
+          max: 50
+  - entity: number
+    name: Current A calibration
+    category: config
+    class: current
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        optional: true
+        unit: A
+        range:
+          min: -200
+          max: 200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Current B calibration
+    category: config
+    class: current
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        optional: true
+        unit: A
+        range:
+          min: -200
+          max: 200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Power A calibration
+    category: config
+    class: power
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        optional: true
+        unit: W
+        range:
+          min: -50
+          max: 50
+  - entity: number
+    name: Power B calibration
+    category: config
+    class: power
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        optional: true
+        unit: W
+        range:
+          min: -50
+          max: 50

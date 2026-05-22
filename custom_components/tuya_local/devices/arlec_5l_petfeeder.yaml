@@ -5,8 +5,7 @@ products:
     model: Grid Connect 5L
 entities:
   - entity: number
-    name: Manual Feed
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 3
         type: integer
@@ -16,7 +15,7 @@ entities:
           min: 1
           max: 12
   - entity: text
-    name: Meal plan
+    translation_key: meal_plan
     category: config
     hidden: true
     dps:
@@ -110,6 +109,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

@@ -209,6 +209,7 @@ entities:
   # Difference Hysteresis
   - entity: number
     name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer"
     mode: "box"
@@ -226,10 +227,9 @@ entities:
 
   # Temperature correction
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer"
-    mode: "box"
     dps:
       - id: 18
         type: integer

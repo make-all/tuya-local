@@ -1,4 +1,4 @@
-name: PIR Spotlight
+name: PIR spotlight
 products:
   - id: reldobj3ny6fbgvw
     model: Duo LED
@@ -46,24 +46,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 26
-        name: value
-        type: integer
-        optional: true
-        range:
-          min: 0
-          max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
   - entity: switch
     name: Manual mode
     category: config
@@ -77,7 +59,6 @@ entities:
           - dps_val: manual
             value: true
         optional: true
-        force: true
   - entity: switch
     name: PIR enabled
     category: config
@@ -86,7 +67,6 @@ entities:
         type: boolean
         name: switch
         optional: true
-        force: true
   - entity: event
     class: motion
     dps:
@@ -99,21 +79,20 @@ entities:
           - dps_val: none
             value: clear
   - entity: select
-    name: Motion distance
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 54
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "high"
-            value: "Far"
-          - dps_val: "low"
-            value: "Near"
+            value: high
           - dps_val: "middle"
-            value: "Medium"
-        optional: true
-        force: true
+            value: medium
+          - dps_val: "low"
+            value: low
   - entity: number
     name: Full light duration
     category: config
@@ -127,7 +106,6 @@ entities:
           max: 3600
         unit: s
         optional: true
-        force: true
   - entity: number
     name: Standby delay
     category: config
@@ -143,7 +121,6 @@ entities:
           - scale: 1
           - dps_val: null
         optional: true
-        force: true
   - entity: number
     name: Standby bright
     category: config
@@ -159,7 +136,6 @@ entities:
           - scale: 1
           - dps_val: null
         optional: true
-        force: true
   - entity: select
     name: Ambient light sensor
     category: config
@@ -183,4 +159,3 @@ entities:
           - dps_val: now
             value: Now
         optional: true
-        force: true

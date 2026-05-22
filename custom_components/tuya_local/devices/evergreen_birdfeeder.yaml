@@ -1,0 +1,230 @@
+name: Bird feeder
+products:
+  - id: fxjotzm0dpphywnu
+    manufacturer: Evergreen
+    model: Solar Smart Bird Feeder Camera
+    model_id: ZCT2BF25510
+entities:
+  - entity: camera
+    dps:
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+        force: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+        force: true
+  - entity: switch
+    name: Siren
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 146
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+  - entity: binary_sensor
+    category: diagnostic
+    class: running
+    dps:
+      - id: 149
+        type: boolean
+        name: sensor
+        optional: true
+        force: true
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: switch
+    name: Watermark
+    category: config
+    icon: "mdi:watermark"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: select
+    name: Night vision
+    translation_key: light_mode
+    category: config
+    icon: "mdi:theme-light-dark"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "auto"
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+        optional: true
+        force: true
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        force: true
+        mapping:
+          - dps_val: "0"
+            value: "low"
+          - dps_val: "1"
+            value: "medium"
+          - dps_val: "2"
+            value: "high"
+  - entity: switch
+    name: Motion detection timer
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: switch
+    name: Motion record
+    category: config
+    icon: "mdi:record-rec"
+    dps:
+      - id: 137
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: sensor
+    name: SD card status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+  - entity: select
+    translation_key: activation_mode
+    category: config
+    icon: "mdi:Bird"
+    dps:
+      - id: 231
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: motion
+          - dps_val: "1"
+            value: smart
+          - dps_val: "2"
+            value: "off"
+        optional: true
+        force: true
+  - entity: switch
+    name: Squirrel deterrence
+    category: config
+    icon: "mdi:rodent"
+    dps:
+      - id: 232
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: select
+    name: Squirrel Eviction Noise
+    category: config
+    icon: "mdi:rodent"
+    dps:
+      - id: 234
+        type: string
+        name: option
+        mapping:
+          - dps_val: '{"code":"squirrelaway","id":3267873}'
+            value: "Dog Sound"
+          - dps_val: '{"code":"squirrelaway","id":3267874}'
+            value: "Siren Sound"
+          - dps_val: '{"code":"squirrelaway","id":3267875}'
+            value: "Eagle Sound"
+          - dps_val: '{"code":"squirrelaway","id":-1}'
+            value: "Random Sound"
+          - dps_val: '{"code":"squirrelaway","id":0}'
+            value: "Unknown"
+            hidden: true
+        optional: true
+        force: true
+  - entity: select
+    name: Recording duration setting
+    class: enum
+    translation_key: timer
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 235
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: 15s
+          - dps_val: 1
+            value: 20s
+          - dps_val: 2
+            value: 30s
+          - dps_val: 3
+            value: 45s
+          - dps_val: 4
+            value: 1m

@@ -5,7 +5,7 @@ products:
     model: Pixi 6-Meal
 entities:
   - entity: button
-    name: Quick Feed
+    name: Quick feed
     icon: "mdi:food-drumstick"
     dps:
       - id: 2
@@ -13,7 +13,7 @@ entities:
         name: button
         optional: true
   - entity: text
-    name: Meal plan
+    translation_key: meal_plan
     category: config
     hidden: true
     dps:
@@ -64,6 +64,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

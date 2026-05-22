@@ -5,7 +5,7 @@ products:
     model: 50m³/h
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -23,9 +23,8 @@ entities:
           - dps_val: high
             value: 100
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 5
         type: integer

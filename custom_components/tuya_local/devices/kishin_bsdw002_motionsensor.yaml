@@ -1,0 +1,32 @@
+name: Motion sensor
+products:
+  - id: 7i8vqgkql9wjn9gj
+    manufacturer: Kishin
+    model: BS-DW002
+entities:
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: pir
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: low
+            value: 20
+          - dps_val: middle
+            value: 50
+          - dps_val: high
+            value: 80

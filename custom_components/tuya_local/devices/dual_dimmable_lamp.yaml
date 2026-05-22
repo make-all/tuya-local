@@ -1,0 +1,29 @@
+name: Dual dimmable lamp
+products:
+  - id: t1o91dvgdb9xclnm
+    model: Dream of You Dual Lamp
+entities:
+  - entity: light
+    name: Filament
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: light
+    name: Base
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000

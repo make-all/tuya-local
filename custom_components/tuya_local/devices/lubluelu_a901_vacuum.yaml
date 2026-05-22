@@ -1,0 +1,227 @@
+name: Robot vacuum
+products:
+  - id: vg6qvrgj99ase4xd
+    manufacturer: Lubluelu
+    model: A901
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: false
+                value: false
+                hidden: true
+              - dps_val: null
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: true
+                hidden: true
+              - dps_val: false
+                value: true
+              - dps_val: null
+                value: true
+                hidden: true
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 2
+        type: boolean
+        optional: true
+        name: pause
+        hidden: true
+      - id: 4
+        type: string
+        optional: true
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: select_room
+            value: select_room
+      - id: 5
+        type: string
+        optional: true
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located_spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: select_room
+            value: selecting_room
+  - entity: switch
+    name: Charge
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: text
+    name: Path data
+    # usually read-only, but tuya docs say rw, so maybe path can be set?
+    # description translates to "not used", so may be cloud only?
+    category: config
+    icon: "mdi:map-marker-path"
+    hidden: true
+    dps:
+      - id: 14
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Command
+    # description translates to "not used", so may be cloud only?
+    category: config
+    icon: "mdi:powershell"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Request
+    # description translates to "not used", so may be cloud only?
+    category: config
+    icon: "mdi:powershell"
+    hidden: true
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Fetch map
+          - dps_val: get_path
+            value: Fetch path
+          - dps_val: get_both
+            value: Fetch both
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: chinese_traditional
+            value: chinese_traditional
+          - dps_val: english
+            value: english
+          - dps_val: german
+            value: german
+          - dps_val: french
+            value: french
+          - dps_val: russian
+            value: russian
+          - dps_val: spanish
+            value: spanish
+          - dps_val: korean
+            value: korean
+          - dps_val: latin
+            value: latin
+          - dps_val: portuguese
+            value: portuguese
+          - dps_val: japanese
+            value: japanese
+          - dps_val: italian
+            value: italian
+  # Everything above 101 is defined as a string, with no documentation
+  # some would normally be a boolean and represented as a switch or
+  # the locate attribute of vacuum. Many are documented as rw when
+  # the function is expected to be read-only.
+  # Only the battery info that is needed for identification of the
+  # device is implemented below.
+  - entity: sensor
+    name: Battery info
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 154
+        type: string  # documented as string but appears to be base64 (raw)
+        name: sensor

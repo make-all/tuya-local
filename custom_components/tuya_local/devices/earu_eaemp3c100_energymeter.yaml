@@ -3,6 +3,9 @@ products:
   - id: 4x198rybhwtzirm7
     manufacturer: EARU
     model: EAEMP3C-100-TY-W
+  - id: d8a5rbtiaa5c1csc
+    manufacturer: EARU
+    model: EASEM-G
 entities:
   - entity: sensor
     translation_key: energy_consumed
@@ -357,7 +360,7 @@ entities:
           - dps_val: null
             value: false
   - entity: sensor
-    name: Leakage current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
@@ -373,6 +376,10 @@ entities:
       - id: 16
         type: boolean
         name: switch
+      - id: 145
+        type: bitfield
+        optional: true
+        name: feature_flags
   - entity: text
     name: Alarm 1
     category: config
@@ -452,20 +459,6 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 105
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
   - entity: text
     name: Cycle timer
     category: config
@@ -534,6 +527,7 @@ entities:
     dps:
       - id: 112
         type: integer
+        optional: true
         name: sensor
         unit: kvar
         class: measurement
@@ -579,7 +573,7 @@ entities:
         name: sensor
         mask: "00000000000000000000000000FFFF"
         mapping:
-          - scale: 100
+          - scale: 1000
   - entity: sensor
     class: reactive_power
     name: Reactive power B
@@ -620,7 +614,7 @@ entities:
         name: sensor
         mask: "00000000000000000000000000FFFF"
         mapping:
-          - scale: 100
+          - scale: 1000
   - entity: sensor
     class: reactive_power
     name: Reactive power C
@@ -661,7 +655,7 @@ entities:
         name: sensor
         mask: "00000000000000000000000000FFFF"
         mapping:
-          - scale: 100
+          - scale: 1000
   - entity: sensor
     class: energy
     category: diagnostic
@@ -886,3 +880,12 @@ entities:
         range:
           min: 0
           max: 9999
+  - entity: text
+    name: Temporary overcurrent
+    category: config
+    hidden: true
+    dps:
+      - id: 138
+        type: base64
+        optional: true
+        name: value

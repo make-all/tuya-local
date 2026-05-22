@@ -108,20 +108,19 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 102
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -5
           max: 5
   - entity: switch
-    name: Beep
-    icon: "mdi:volume-high"
+    translation_key: sound
     category: config
     dps:
       - id: 103

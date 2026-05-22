@@ -1,4 +1,4 @@
-name: ME80 thermostat
+name: Thermostat
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -105,10 +105,9 @@ entities:
         type: string
         name: program
   - entity: number
-    name: Maximum Temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 18
         type: integer
@@ -141,10 +140,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 20
         type: integer
@@ -158,10 +156,9 @@ entities:
         type: string
         name: unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 26
         type: integer
         name: value
@@ -189,9 +186,9 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:format-vertical-align-center"
     dps:
       - id: 27
         type: integer
@@ -200,7 +197,7 @@ entities:
           min: -9
           max: 9
         mapping:
-          - constraint: temperature_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: temp_calib_f
@@ -209,8 +206,11 @@ entities:
                   max: 16
       - id: 23
         type: string
-        name: temperature_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
       - id: 105
         type: integer
         name: temp_calib_f
@@ -290,6 +290,7 @@ entities:
         name: switch
   - entity: number
     name: Temperature difference start
+    class: temperature_delta
     category: config
     icon: "mdi:arrow-collapse-vertical"
     dps:
@@ -300,7 +301,7 @@ entities:
           min: 1
           max: 5
         mapping:
-          - constraint: temperature_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: temp_diff_start_f
@@ -317,11 +318,15 @@ entities:
           max: 9
       - id: 23
         type: string
-        name: temperature_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

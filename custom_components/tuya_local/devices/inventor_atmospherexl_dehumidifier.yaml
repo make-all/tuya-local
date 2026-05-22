@@ -6,21 +6,13 @@ name: Dehumidifier
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_only_key: extended
     dps:
       - id: 110
         type: string
         name: switch
-        mapping:
-          - dps_val: "air_purifier"
-            value: false
-          - dps_val: "dehumi_air"
-            value: true
-            constraint: main_switch
-            conditions:
-              - dps_val: false
-                invalid: true
       - id: 1
-        name: main_switch
+        name: available
         type: boolean
       - id: 3
         type: string

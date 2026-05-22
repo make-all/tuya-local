@@ -1,0 +1,42 @@
+
+name: Translation tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'custom_components/tuya_local/translations/*.json'
+      - 'custom_components/tuya_local/icons.json'
+  push:
+    paths:
+      - 'custom_components/tuya_local/translations/*.json'
+      - 'custom_components/tuya_local/icons.json'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    permissions:
+      checks: write
+      contents: read
+      pull-requests: write
+
+    strategy:
+      matrix:
+        python-version: ['3.14']
+
+    env:
+      UV_SYSTEM_PYTHON: 1
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Translations check with pytest
+        run: uv run pytest tests/test_translations.py

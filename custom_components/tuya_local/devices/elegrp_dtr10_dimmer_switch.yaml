@@ -1,0 +1,191 @@
+name: Dimmable switch
+products:
+  - id: bealnjtopbhmi5nn
+    manufacturer: ELEGRP
+    model: DTR10 Single Pole 2.4 GHz WiFi Dimmable Switch
+entities:
+  # Main light control
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 113
+        type: string
+        name: firmware_version
+        optional: true
+
+  # Bulb configuration
+  - entity: select
+    name: Bulb type
+    icon: "mdi:lightbulb-variant"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "Cfl"
+            value: CFL
+          - dps_val: "Led"
+            value: LED
+          - dps_val: "Incandescent"
+            value: Incandescent
+          - dps_val: "Halogen"
+            value: Halogen
+
+  # Settings
+  - entity: select
+    name: 'Long press "On"'
+    category: config
+    icon: "mdi:gesture-tap-hold"
+    dps:
+      - id: 108
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 258
+            value: "Nap 25%"
+          - dps_val: 505
+            value: "Cuddle 50%"
+          - dps_val: 753
+            value: "Leisure 75%"
+          - dps_val: 1000
+            value: "Bright 100%"
+  - entity: select
+    name: Fade on speed
+    icon: "mdi:transition"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "Immediate"
+            value: Immediate
+          - dps_val: "Fast"
+            value: Fast (1s)
+          - dps_val: "Medium"
+            value: Medium (5s)
+          - dps_val: "Slow"
+            value: Slow (15s)
+  - entity: select
+    name: Fade off speed
+    icon: "mdi:transition"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "Immediate"
+            value: Immediate
+          - dps_val: "Fast"
+            value: Fast (1s)
+          - dps_val: "Medium"
+            value: Medium (5s)
+          - dps_val: "Slow"
+            value: Slow (15s)
+  # Indicator LED converted to light (brightness only)
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+
+  # Brightness configuration
+  - entity: number
+    name: Minimum brightness
+    category: config
+    icon: "mdi:brightness-4"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 500
+        optional: true
+        mapping:
+          - scale: 10
+  # Used by the app to tell the light that the user is attempting to set the
+  # minimum brightness in the UI. Not useful for HA so we'll ignore it.
+  # - entity: switch
+  #   name: Minimum brightness enabled
+  #   category: config
+  #   icon: "mdi:toggle-switch"
+  #   dps:
+  #     - id: 114
+  #       type: boolean
+  #       name: switch
+  #       optional: true
+  # Value can't be changed. It seems like it is hardcoded to 1000 (100%) by the
+  # firmware
+  # - entity: number
+  #   name: Maximum brightness
+  #   category: config
+  #   icon: "mdi:brightness-7"
+  #   dps:
+  #     - id: 5
+  #       type: integer
+  #       name: value
+  #       unit: "%"
+  #       range:
+  #         min: 550
+  #         max: 1000
+  #       optional: true
+  #       mapping:
+  #         - scale: 10
+
+  # Timer
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
+        optional: true
+  - entity: select
+    name: Timer mode
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 110
+        type: boolean
+        name: option
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "Off"
+          - dps_val: true
+            value: "On"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "s"
+        optional: true

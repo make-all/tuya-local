@@ -5,6 +5,7 @@ products:
     model: S300
 entities:
   - entity: fan
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -37,7 +38,7 @@ entities:
         unit: ugm3
         class: measurement
   - entity: sensor
-    name: Filter
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 5
@@ -144,13 +145,17 @@ entities:
         type: bitfield
         name: fault_code
   - entity: switch
-    name: Mute
-    icon: "mdi:volume-mute"
+    translation_key: sound
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: light
     dps:
       - id: 105

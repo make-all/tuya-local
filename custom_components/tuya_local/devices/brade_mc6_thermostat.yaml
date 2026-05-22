@@ -129,9 +129,9 @@ entities:
         name: program
         optional: true
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
+    class: temperature
     dps:
       - id: 19
         type: integer
@@ -166,9 +166,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 26
         type: integer

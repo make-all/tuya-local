@@ -1,5 +1,5 @@
 """
-Platform for Tuya WiFi-connected devices.
+Integration for Tuya WiFi-connected devices.
 
 Based on nikrolls/homeassistant-goldair-climate for Goldair branded devices.
 Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
@@ -13,10 +13,14 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
+from homeassistant.helpers.entity_registry import (
+    async_get as async_get_entity_registry,
+)
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
 from .const import (
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
@@ -26,6 +30,7 @@ from .const import (
 )
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
+from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
@@ -37,6 +42,10 @@ def replace_unique_ids(entity_entry, device_id, conf_file, replacements):
     platform = entity_entry.entity_id.split(".", 1)[0]
     for suffix, new_suffix in replacements.items():
         if old_id.endswith(suffix):
+            # If the entity still exists in the config, do not migrate
+            for e in conf_file.all_entities():
+                if e.unique_id(device_id) == old_id:
+                    return None
             for e in conf_file.all_entities():
                 new_id = e.unique_id(device_id)
                 if e.entity == platform and not e.name and new_id.endswith(new_suffix):
@@ -54,6 +63,29 @@ def replace_unique_ids(entity_entry, device_id, conf_file, replacements):
                         new_id,
                     )
                 }
+
+
+def get_device_unique_id(entry: ConfigEntry):
+    """Get the unique id for the device from the config entry."""
+    return (
+        entry.unique_id
+        or entry.data.get(CONF_DEVICE_CID)
+        or entry.data.get(CONF_DEVICE_ID)
+    )
+
+
+def cleanup_failed_device(hass: HomeAssistant, device_id: str):
+    """Drop cached device objects left behind by failed setup."""
+    domain_data = hass.data.get(DOMAIN, {})
+    stale = domain_data.pop(device_id, None)
+    if not stale:
+        return
+
+    api = stale.get("tuyadevice")
+    if api:
+        api.set_socketPersistent(False)
+        if api.parent:
+            api.parent.set_socketPersistent(False)
 
 
 async def async_migrate_entry(hass, entry: ConfigEntry):
@@ -153,7 +185,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
     if entry.version <= 5:
         # Migrate unique ids of existing entities to new format
-        old_id = entry.unique_id
+        old_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -237,7 +269,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
     if entry.version <= 11:
         # Migrate unique ids of existing entities to new format
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -284,7 +316,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version <= 12:
         # Migrate unique ids of existing entities to new format taking into
         # account device_class if name is missing.
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -344,7 +376,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 2:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -392,7 +424,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 3:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -459,7 +491,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 5:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -489,7 +521,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 6:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -530,7 +562,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 7:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -557,7 +589,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 8:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -608,7 +640,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 13 and entry.minor_version < 9:
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
-        device_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
         conf_file = await hass.async_add_executor_job(
             get_config,
             entry.data[CONF_TYPE],
@@ -631,13 +663,274 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_9)
         hass.config_entries.async_update_entry(entry, minor_version=9)
+
+    if entry.version == 13 and entry.minor_version < 10:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_10(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "switch_disturb_switch": "switch_do_not_disturb",
+                "number_temperature_correction": "number_temperature_calibration",
+                "number_calibration_offset": "number_temperature_calibration",
+                "number_high_temperature_limit": "number_maximum_temperature",
+                "number_low_temperature_limit": "number_minimum_temperature",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_10)
+        hass.config_entries.async_update_entry(entry, minor_version=10)
+
+    if entry.version == 13 and entry.minor_version < 12:
+        # at some point HA stopped populating unique_id for device entries,
+        # and our migrations have been using the wrong value. Migration
+        # to correct that
+        unique_id = entry.unique_id
+        device_id = get_device_unique_id(entry)
+        if unique_id is None:
+            hass.config_entries.async_update_entry(
+                entry,
+                unique_id=device_id,
+            )
+
+        @callback
+        def update_unique_id3_12(entity_entry):
+            """Update the unique id of badly migrated entities."""
+            old_id = entity_entry.unique_id
+            if old_id.startswith("None-"):
+                # new_id = f"{device_id}-{old_id[5:]}"
+                # return {
+                #     "new_unique_id": new_id,
+                # }
+                # Rather than update, delete the bogus entities, as HA will
+                # recreate them correctly, and maybe already has so duplicates
+                # could result if they are migrated.
+                registry = async_get_entity_registry(hass)
+                registry.async_remove(entity_entry.entity_id)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id3_12)
+        hass.config_entries.async_update_entry(entry, minor_version=12)
+
+    if entry.version == 13 and entry.minor_version < 13:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_13(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "switch_flip": "switch_flip_image",
+                "number_feed": "number_manual_feed",
+                "number_feed_portions": "number_manual_feed",
+                "number_manual_amount": "number_manual_feed",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_13)
+        hass.config_entries.async_update_entry(entry, minor_version=13)
+
+    # 13.14 was botched, so repeat as 13.15
+    if entry.version == 13 and entry.minor_version < 15:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_15(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_filter_lifetime": "sensor_filter_life",
+                "sensor_filter": "sensor_filter_life",
+                "sensor_filter_days": "sensor_filter_life",
+                "sensor_filter_remaining": "sensor_filter_life",
+                "sensor_filter_remain": "sensor_filter_life",
+                "sensor_filter_replacement": "sensor_filter_life",
+                "sensor_filter_days_left": "sensor_filter_life",
+                "sensor_filter_left_days": "sensor_filter_life",
+                "sensor_filter_left": "sensor_filter_life",
+                "sensor_filter_hours_left": "sensor_filter_life",
+                "sensor_replace_filter_in": "sensor_filter_life",
+                "sensor_filter_change_due": "sensor_filter_life",
+                "sensor_filter_usage": "sensor_filter_life",
+                "sensor_filter_used": "sensor_filter_life",
+                "sensor_filter_time": "sensor_filter_life",
+                "button_reset_filter": "button_filter_reset",
+                "button_replace_filter": "button_filter_reset",
+                "button_filter_changed": "button_filter_reset",
+                "button_filter_replaced": "button_filter_reset",
+                "select_motion_detection": "select_motion_sensitivity",
+                "select_motion_distance": "select_motion_sensitivity",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_15)
+        hass.config_entries.async_update_entry(entry, minor_version=15)
+    if entry.version == 13 and entry.minor_version < 16:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_16(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "switch_beep": "switch_sound",
+                "switch_mute": "switch_sound",
+                "switch_muffling": "switch_sound",
+                "switch_mute_sound": "switch_sound",
+                "switch_mute_voice": "switch_sound",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_16)
+        hass.config_entries.async_update_entry(entry, minor_version=16)
+
+    if entry.version == 13 and entry.minor_version < 17:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_17(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_light_intensity": "sensor_illuminance",
+                "sensor_rain": "sensor_precipitation",
+                "sensor_rainfall_rate": "sensor_precipitation_intensity",
+                "text_regular_schedule": "text_schedule",
+                "text_program": "text_schedule",
+                "text_program_data": "text_schedule",
+                "text_weekly_program": "text_schedule",
+                "text_weekprogram": "text_schedule",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_17)
+        hass.config_entries.async_update_entry(entry, minor_version=17)
+
+    if entry.version == 13 and entry.minor_version < 18:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_18(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_air_temperature": "sensor_ambient_temperature",
+                "sensor_current_temperature": "sensor_temperature",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_18)
+        hass.config_entries.async_update_entry(entry, minor_version=18)
+
+    if entry.version == 13 and entry.minor_version < 19:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_19(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "fan_purifier": "fan_air_purifier",
+                "fan_fan_with_presets": "fan_air_purifier",
+                "fan": "fan_air_purifier",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_19)
+        hass.config_entries.async_update_entry(entry, minor_version=19)
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
+    device_id = get_device_id(entry.data)
     _LOGGER.debug(
         "Setting up entry for device: %s",
-        get_device_id(entry.data),
+        device_id,
     )
     config = {**entry.data, **entry.options, "name": entry.title}
     try:
@@ -645,9 +938,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         await device.async_refresh()
 
     except Exception as e:
+        cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
     if not device.has_returned_state:
+        cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device offline")
 
     device_conf = await hass.async_add_executor_job(
@@ -663,6 +958,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         entities.add(e.entity)
 
     await hass.config_entries.async_forward_entry_setups(entry, entities)
+    await async_setup_services(hass, entities)
 
     entry.add_update_listener(async_update_entry)
 

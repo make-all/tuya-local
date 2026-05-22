@@ -5,8 +5,7 @@ products:
     model: Stor 2
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -16,9 +15,9 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: manual
-            value: normal
+            value: manual
           - dps_val: sleep
             value: sleep
           - dps_val: screenoff
@@ -133,17 +132,15 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: great
-            value: excellent
           - dps_val: good
+            value: excellent
+          - dps_val: moderate
             value: good
-          - dps_val: Good
-            value: good
-            hidden: true
-          - dps_val: mild
+          - dps_val: medium
             value: moderate
-          - dps_val: poor
+          - dps_val: unhealthy
             value: poor
-          - dps_val: Poor
-            value: poor
-            hidden: true
+          - dps_val: severe
+            value: severe
+          - dps_val: hazard
+            value: danger

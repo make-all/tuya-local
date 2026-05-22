@@ -72,14 +72,14 @@ entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 20
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -95
           max: 95
@@ -87,9 +87,9 @@ entities:
           - scale: 10
             step: 5
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:themometer-chevron-up"
+    class: temperature
     dps:
       - id: 21
         type: integer
@@ -99,9 +99,9 @@ entities:
           min: 5
           max: 99
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 22
         type: integer
@@ -135,6 +135,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 31
         type: boolean
@@ -184,13 +185,14 @@ entities:
           - scale: 10
   - entity: number
     name: Room temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-lines"
     dps:
       - id: 103
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 5
           max: 30
@@ -200,12 +202,13 @@ entities:
   - entity: number
     name: Floor temperature hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-lines"
     dps:
       - id: 104
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 1
           max: 9

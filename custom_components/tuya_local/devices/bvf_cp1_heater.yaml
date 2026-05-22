@@ -54,8 +54,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Beep
-    icon: "mdi:bell"
+    translation_key: sound
     category: config
     dps:
       - id: 7
@@ -70,9 +69,9 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Temperature correction
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer

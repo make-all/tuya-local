@@ -1,4 +1,4 @@
-name: Beok TR8B thermostat
+name: Thermostat
 entities:
   - entity: climate
     translation_only_key: combo_floor
@@ -135,9 +135,9 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-up"
+    class: temperature
     dps:
       - id: 19
         type: integer
@@ -157,9 +157,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
-    icon: "mdi:thermometer-chevron-down"
+    class: temperature
     dps:
       - id: 26
         type: integer
@@ -229,9 +229,9 @@ entities:
         unit: "%"
         class: measurement
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer-check"
     dps:
       - id: 109
         type: integer
@@ -241,6 +241,14 @@ entities:
           max: 99
         mapping:
           - scale: 10
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
       - id: 108
         type: integer
         name: step

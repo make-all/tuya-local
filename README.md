@@ -1,4 +1,4 @@
-# Home Assistant Tuya Local component
+![logo](custom_components/tuya_local/brand/icon.svg) 
 
 Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
@@ -37,9 +37,12 @@ versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
 Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
+etc which do not use a hub are not possible to support locally, due
 to the power management that they need to do to get acceptable battery
-life.
+life. In some cases that may also apply when a device that can be
+either battery or USB powered is plugged into USB. If you cannot gather
+Warning level logs with dps listed when attempting to set it up, then it
+will likely not work with this integration.
 
 Hubs are currently supported, but with limitations.  Each connection
 to a sub device uses a separate network connection, but like other
@@ -60,6 +63,10 @@ or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
 
 Some Tuya Bluetooth devices can be supported directly by the
 [tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
+
+Tuya IR/RF blasters are supported through the remote entity platform.
+They can learn and store IR and RF commands, and replay them via the
+`remote.learn_command` and `remote.send_command` services.
 
 Tuya IR hubs that expose general IR remotes as sub devices usually
 expose them as one way devices (send only).  Due to the way this
@@ -83,13 +90,14 @@ Documentation on building a device configuration file is in [/custom_components/
 If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
-2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/), you should have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp id in addition to range information that is needed for integer and enum data types.
 
 If you file an issue to request support for a new device, please include the following information:
 
-1. Identification of the device, such as model and brand name.
-2. As much information on the datapoints you can gather using the above methods.
-3. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
+1. Logs from this integration showing the LOCAL DPS actually received from the device.
+2. Identification of the device, such as model and brand name.
+3. As much information on the datapoints you can gather using the above methods.
+4. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
 
 If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general.  So it may be necessary to remove and re-add your device once it has been integrated into a release.
 
@@ -118,14 +126,14 @@ instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://m
 ### Choose your configuration path
 
 There are two options for configuring a device:
-- You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
-- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+- You can login to Tuya cloud with the Tuya or SmartLife app and retrieve a list of devices and the necessary local connection data.
+- You can provide all the necessary information manually [as per the instructions in DEVICES_DETAILS.md](DEVICE_DETAILS.md#finding-your-device-id-and-local-key).
 
 The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
 
-The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Smart Life account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Tuya account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
 
-The Smart Life authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+The Tuya authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
 
 ### Stage One
 
@@ -203,7 +211,7 @@ Many Tuya devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
 others will go offline for 30s to a few minutes if you overload them.
 There is some rate limiting to try to avoid this, but it is not
-sufficient for many devices, and may not work across entities where
+sufficient for some devices, and may not work across entities where
 you are sending commands to multiple entities on the same device.  The
 rate limiting also combines commands, which not all devices can
 handle. If you are sending commands from an automation, it is best to
@@ -214,7 +222,7 @@ may still need a delay after that.  The exact timing depends on the
 device, so you may need to experiment to find the minimum delay that
 gives reliable results.
 
-Some devices can handle multiple commands in a single message, so for
+Most devices can handle multiple commands in a single message, so for
 entity platforms that support it (eg climate `set_temperature` can
 include presets, lights pretty much everything is set through
 `turn_on`) multiple settings are sent at once.  But some devices do
@@ -236,10 +244,61 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 - Local key: the **hub's** local key
 - Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
 
+## Secure locks
+
+Many locks are designed with basic security controls to make remote unlocking
+more difficult. This integration supports the standard BLE lock model from Tuya
+which uses a pair of dps (60: `remote_no_pd_seykey`, 61: `remote_no_dp_key`)
+to share a key between the app and the lock during the pairing phase.
+If you have access to the Tuya developer portal, you can eavesdrop on the
+second of these messages when the app is used to unlock the lock remotely.
+If you capture the value sent by the app, then you can decode it using a base64
+decoder such as https://base64decode.org.
+The format has 4 bytes of binary data, followed by an 8 digit ASCII numeric
+code, followed by 3 or 4 more bytes of binary data.
+
+The 8 digit numeric code from the first app that was paired should work for
+unlocking the lock.
+
+Although this is documented in the BLE lock documentation from Tuya, Zigbee
+and WiFi locks often use the same naming for datapoints, which may be
+compatible with this scheme.
+
+## IR/RF blasters
+
+Tuya IR and RF blasters are exposed as remote entities and support learning and
+sending commands via the standard Home Assistant remote services.
+
+### Learning commands
+
+Use the `remote.learn_command` service with:
+- `command`: the name to store the command under (e.g. `power`)
+- `device`: a name for the appliance being controlled (e.g. `TV`)
+- `command_type`: set to `rf` for RF remotes, omit or leave blank for IR
+
+The integration will put the blaster into learning mode and wait up to 30 seconds
+for you to press a button on the original remote. The learned code is stored
+persistently and survives restarts.
+
+### Sending commands
+
+Use the `remote.send_command` service with the same `command` and `device` values
+used when learning. You can also send codes directly without learning first:
+
+- **IR inline code**: prefix with `b64:` followed by the base64-encoded IR code
+- **RF inline code**: prefix with `rf:` followed by the base64-encoded RF code
+
+### UI
+
+If you would like to expose the learnt commands as buttons in the user interface
+you might want to take a look at the [Remote buttons](https://github.com/kongo09/remote_buttons)
+integration, which is compatible with Tuya Local.
+
 ## Contributing
 
 Beyond contributing device configs, here are some areas that could benefit from more hands:
 
-1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale. 
+1. Unit tests. This integration is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Focus on unit tests is on python code, the current coverage is summarised in reports on github, but to get full coverage details you can run the tests yourself.
+2. Once unit tests are complete, the next task is to properly evaluate against the Home Assistant quality scale.
 3. Discovery. Local discovery is currently limited to finding the IP address in the cloud assisted config. Performing discovery in background would allow notifications to be raised when new devices are noticed on the network, and would provide a productKey for the manual config method to use when matching device configs.
+

@@ -55,9 +55,9 @@ entities:
             icon_priority: 2
             value: heating
   - entity: number
-    name: Calibration offset
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:thermometer"
     dps:
       - id: 27
         type: integer
@@ -113,10 +113,9 @@ entities:
         name: fault_code
         type: bitfield
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -126,10 +125,9 @@ entities:
           min: 30
           max: 90
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         optional: true
@@ -167,7 +165,7 @@ entities:
           - dps_val: "70"
             value: "7 days"
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 44

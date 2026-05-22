@@ -1,4 +1,4 @@
-name: Grid Connnect power metered double outlet with USB
+name: Power metered double outlet with USB
 entities:
   - entity: switch
     category: config
@@ -127,38 +127,6 @@ entities:
       - id: 10
         type: integer
         name: second
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    class: duration
-    # 2025-07-20
-    deprecated: time.timer_1
-    translation_key: timer_x
-    translation_placeholders:
-      x: "1"
-    category: config
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
-  - entity: number
-    class: duration
-    # 2025-07-20
-    deprecated: time.timer_2
-    translation_key: timer_x
-    translation_placeholders:
-      x: "2"
-    category: config
-    dps:
-      - id: 10
-        type: integer
-        name: value
-        unit: s
         range:
           min: 0
           max: 86400

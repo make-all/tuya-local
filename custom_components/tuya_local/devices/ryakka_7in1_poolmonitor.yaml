@@ -1,0 +1,138 @@
+name: Pool monitor
+products:
+  - id: p2mgaks6ic4ptxl1
+    manufacturer: Ryakka
+    model: "7-in-1 water monitor 9.0"
+entities:
+  - entity: sensor
+    name: TDS
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_f
+      - id: 113
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 129
+        type: integer
+        optional: true
+        name: current_f
+        hidden: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Conductivity
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: μS/cm
+        class: measurement
+  - entity: sensor
+    name: ORP
+    class: voltage
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: sensor
+    name: Chlorine
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: mg/L
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: switch
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Salinity
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Specific gravity
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        optional: true
+        name: sensor
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10

@@ -1,12 +1,11 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: giwqfeiezesbkkbe
     manufacturer: Proscenic
     model: A9
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -24,7 +23,7 @@ entities:
           - dps_val: "3"
             value: high
           - dps_val: "4"
-            value: turbo
+            value: strong
           - dps_val: "Auto"
             value: auto
       - id: 4
@@ -67,25 +66,24 @@ entities:
           - dps_val: true
             value: false
   - entity: sensor
-    name: Filter usage
+    translation_key: filter_life
     category: diagnostic
-    icon: "mdi:shield-bug"
     dps:
       - id: 5
         name: sensor
         type: integer
         unit: "%"
   - entity: button
-    name: Reset Filter
+    translation_key: filter_reset
     category: config
-    icon: "mdi:air-filter"
     dps:
       - id: 11
         name: button
         type: boolean
   - entity: sensor
-    name: Filter hours left
+    name: Filter remaining
     category: diagnostic
+    class: duration
     icon: "mdi:air-filter"
     dps:
       - id: 16
@@ -100,7 +98,7 @@ entities:
         type: boolean
         name: lock
   - entity: sensor
-    name: Filtered Air
+    name: Filtered air
     category: diagnostic
     icon: "mdi:air-filter"
     dps:

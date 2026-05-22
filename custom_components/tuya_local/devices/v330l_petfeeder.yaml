@@ -12,8 +12,7 @@ products:
     model: 9LC
 entities:
   - entity: number
-    name: Manual feed
-    icon: "mdi:food-drumstick"
+    translation_key: manual_feed
     dps:
       - id: 201
         type: integer
@@ -62,8 +61,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Flip
-    icon: "mdi:flip-horizontal"
+    translation_key: flip_image
     category: config
     dps:
       - id: 103
@@ -89,8 +87,7 @@ entities:
         name: switch
         optional: true
   - entity: select
-    name: Motion sensitivity
-    icon: "mdi:motion-sensor"
+    translation_key: motion_sensitivity
     category: config
     dps:
       - id: 106
@@ -99,11 +96,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Low
+            value: low
           - dps_val: "1"
-            value: Medium
+            value: medium
           - dps_val: "2"
-            value: High
+            value: high
   - entity: select
     name: Nightvision
     icon: "mdi:weather-night"

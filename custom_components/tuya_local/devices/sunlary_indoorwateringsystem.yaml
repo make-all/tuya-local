@@ -1,0 +1,119 @@
+name: Irrigation system
+products:
+  - id: r3stdie1u7vswo38
+    manufacturer: Sunlary
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        name: valve
+        type: boolean
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: auto
+          - dps_val: "2"
+            value: manual
+  - entity: switch
+    name: Auto run
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+        optional: true
+  - entity: number
+    class: duration
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 20
+          max: 1800
+  - entity: number
+    name: Interval
+    icon: "mdi:clock-outline"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 168
+  - entity: sensor
+    name: Next irrigation
+    icon: "mdi:clock-outline"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+  - entity: sensor
+    category: diagnostic
+    class: duration
+    translation_key: time_remaining
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "1"
+            value: 100
+          - dps_val: "2"
+            value: 75
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 25
+          - dps_val: "5"
+            value: null
+      - id: 108
+        type: string
+        name: available
+        mapping:
+          - dps_val: "5"
+            value: false
+          - value: true
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 105
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 105
+        type: bitfield
+        name: fault_code

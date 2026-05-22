@@ -1,0 +1,273 @@
+name: Water meter
+products:
+  - id: 89tojzdfimssmkuk
+    manufacturer: Frizzlife
+    model: LP365P
+entities:
+  # Valve
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+
+  # Temperature sensor
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # Protection Enabled Switch
+  - entity: switch
+    name: Protection Enabled
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  # Volume Today
+  - entity: sensor
+    class: water
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        class: total_increasing
+        unit: L
+        mapping:
+          - scale: 10
+
+  # Flow rate
+  - entity: sensor
+    class: volume_flow_rate
+    name: Average flow rate
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        unit: L/h
+
+  # Current flow rate
+  - entity: sensor
+    class: volume_flow_rate
+    name: Current flow rate
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+        unit: L/h
+        mapping:
+          - scale: 1000
+  # Leak Warning
+  - entity: binary_sensor
+    class: moisture
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+
+  # Leak Alarm
+  - entity: binary_sensor
+    name: Leak alarm
+    class: problem
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+
+  # Alarm Clear Button
+  - entity: button
+    name: Alarm clear
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+
+  # Protection Mode Select
+  - entity: select
+    name: Protection mode
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: option
+        mapping:
+          - dps_val: "AUTO"
+            value: "Auto"
+          - dps_val: "ADVANCED_SETTING"
+            value: "Advanced"
+
+  # AUTO Mode #
+  - entity: select
+    name: "Auto mode"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "mode1"
+            value: "Mode 1"
+          - dps_val: "mode2"
+            value: "Mode 2"
+          - dps_val: "mode3"
+            value: "Mode 3"
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: AUTO
+            value: true
+          - value: false
+
+  # ADVANCED Mode #
+  - entity: select
+    name: "Advanced mode"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "mode4"
+            value: "Mode 4"
+          - dps_val: "mode5"
+            value: "Mode 5"
+          - dps_val: "mode6"
+            value: "Mode 6"
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: ADVANCED_SETTING
+            value: true
+          - value: false
+
+  # Mode4 allowed flow time
+  - entity: number
+    name: Allowed flow time
+    class: duration
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: ADVANCED_SETTING
+            value: true
+          - value: false
+      - id: 111
+        type: string
+        name: value
+        unit: min
+        range:
+          min: 18
+          max: 180
+        mapping:
+          - dps_val: mode4
+            step: 6
+            value_redirect: mode4_val
+          - dps_val: mode5
+            step: 6
+            value_redirect: mode5_val
+          - dps_val: mode6
+            step: 6
+            value_redirect: mode6_val
+      - id: 112
+        type: integer
+        name: mode4_val
+        precision: 0
+        range:
+          min: 3
+          max: 30
+        mapping:
+          - scale: 0.1666666667
+      - id: 113
+        type: integer
+        name: mode5_val
+        precision: 0
+        range:
+          min: 3
+          max: 30
+        mapping:
+          - scale: 0.1666666667
+      - id: 114
+        type: integer
+        name: mode6_val
+        precision: 0
+        range:
+          min: 3
+          max: 30
+        mapping:
+          - scale: 0.1666666667
+
+  # Mode4 allowed flow volume
+  - entity: number
+    name: Allowed flow volume
+    category: config
+    dps:
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: ADVANCED_SETTING
+            value: true
+          - value: false
+      - id: 111
+        type: string
+        name: value
+        unit: L
+        range:
+          min: 0
+          max: 5000
+        mapping:
+          - dps_val: mode4
+            step: 100
+            value_redirect: mode4_val
+          - dps_val: mode5
+            step: 100
+            value_redirect: mode5_val
+          - dps_val: mode6
+            step: 100
+            value_redirect: mode6_val
+      - id: 115
+        type: integer
+        name: mode4_val
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - dps_val: 0
+            value: 50
+          - scale: 0.01
+      - id: 116
+        type: integer
+        name: mode5_val
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - dps_val: 0
+            value: 50
+          - scale: 0.01
+      - id: 117
+        type: integer
+        name: mode6_val
+        range:
+          min: 0
+          max: 50
+        mapping:
+          - dps_val: 0
+            value: 50
+          - scale: 0.01

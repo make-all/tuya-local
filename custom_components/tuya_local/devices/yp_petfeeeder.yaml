@@ -5,8 +5,7 @@ products:
     model: PAF-40PCS-WBR3
 entities:
   - entity: number
-    icon: "mdi:paw"
-    name: Manual feed
+    translation_key: manual_feed
     dps:
       - id: 3
         name: value
@@ -15,7 +14,7 @@ entities:
           min: 1
           max: 40
   - entity: text
-    name: Meal plan
+    translation_key: meal_plan
     category: config
     hidden: true
     dps:
@@ -50,6 +49,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 9
         type: boolean

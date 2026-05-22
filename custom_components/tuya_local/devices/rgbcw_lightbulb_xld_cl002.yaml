@@ -1,8 +1,8 @@
-name: RGBCW Lightbulb
-products:
-  - id: bfde31c920bcaa323azft2
-    manufacturer: Xinled
-    model: XLD-CL002
+name: RGBCW lightbulb
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Xinled
+#     model: XLD-CL002
 entities:
   - entity: light
     dps:
@@ -62,30 +62,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
-        name: scene_data
-        type: hex
-        optional: true
-      - id: 27
-        name: music_data
-        type: hex
-        optional: true
-      - id: 28
-        name: control_data
-        type: hex
-        optional: true
-      - id: 30
-        name: rhythm_mode
-        type: base64
-        optional: true
-      - id: 31
-        name: sleep_mode
-        type: base64
-        optional: true
-      - id: 32
-        name: wakeup_mode
-        type: base64
-        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -97,26 +73,8 @@ entities:
         range:
           min: 0
           max: 86400
-  - entity: number
-    translation_key: timer
-    # 2025-07-20
-    deprecated: time.timer
-    class: duration
-    category: config
-    dps:
-      - id: 26
-        name: value
-        type: integer
-        optional: true
-        range:
-          min: 0
-          max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
   - entity: text
-    name: scene
+    translation_key: scene
     category: config
     hidden: true
     dps:
@@ -125,7 +83,7 @@ entities:
         type: base64
         optional: true
   - entity: select
-    name: scene
+    translation_key: scene
     category: config
     dps:
       - id: 51
@@ -157,3 +115,41 @@ entities:
             value: "WW+RED 50%"
           - dps_val: "AAcAAAPoA+gD6AAA"
             value: "WW+RED 1%"
+      - id: 25
+        name: scene_data  # dp 51 used instead but this still declared
+        type: string  # some compat devices put other data here, avoid hex
+        optional: true
+  - entity: text
+    name: Rhythm mode
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+      - id: 27
+        name: music_data  # dp 30 used instead but this still declared
+        type: string
+        optional: true
+  - entity: text
+    name: Sleep mode
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup mode
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value

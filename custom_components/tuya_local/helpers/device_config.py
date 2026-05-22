@@ -61,14 +61,14 @@ _signed_fmts = {
 }
 
 
-def _bytes_to_fmt(bytes, signed=False):
+def _bytes_to_fmt(b, signed=False):
     """Convert a byte count to an unpack format."""
     fmt = _signed_fmts if signed else _unsigned_fmts
 
-    if bytes in fmt:
-        return fmt[bytes]
+    if b in fmt:
+        return fmt[b]
     else:
-        return f"{bytes}s"
+        return f"{b}s"
 
 
 def _equal_or_in(value1, values2):
@@ -106,7 +106,6 @@ class TuyaDeviceConfig:
         self._fname = fname
         filename = join(_CONFIG_DIR, fname)
         self._config = load_yaml(filename)
-        self._reported_deprecated_primary = False
         _LOGGER.debug("Loaded device config %s", fname)
 
     @property
@@ -129,31 +128,9 @@ class TuyaDeviceConfig:
         """Return the legacy conf_type associated with this device."""
         return self._config.get("legacy_type", self.config_type)
 
-    @property
-    def primary_entity(self):
-        """Return the primary type of entity for this device."""
-        if "primary_entity" not in self._config:
-            # primary entity is a deprecated fallback, so if it is
-            # missing, we need to log a warning about the missing entities
-            # list.
-            _LOGGER.error(f"{self.config_type}.yaml does not define an entities list.")
-            return TuyaEntityConfig(self, self._config["entities"][0])
-        if not self._reported_deprecated_primary:
-            _LOGGER.warning(
-                f"{self.config_type}.yaml distinguishes between primary"
-                " and secondary_entities. This is deprecated, please"
-                " modify it to use a single list."
-            )
-            self._reported_deprecated_primary = True
-
-        return TuyaEntityConfig(self, self._config["primary_entity"])
-
     def all_entities(self):
         """Iterate through all entities for this device."""
         entities = self._config.get("entities")
-        if not entities:
-            yield self.primary_entity
-            entities = self._config.get("secondary_entities", {})
 
         for e in entities:
             yield TuyaEntityConfig(self, e)
@@ -252,6 +229,33 @@ class TuyaDeviceConfig:
 
         return product_match or round((total - len(keys)) * 100 / total)
 
+    def product_display_entries(self, product_ids=None):
+        """Return distinct (manufacturer, model) pairs for display in the config flow.
+
+        When product_ids is provided, only products whose id matches are
+        included.  When there are no confirmed matches (or no product_ids),
+        returns [(None, None)] so the caller falls back to the config filename.
+        """
+        seen = set()
+        result = []
+
+        for p in self._config.get("products", []):
+            if product_ids and p.get("id") not in product_ids:
+                continue
+            manufacturer = p.get("manufacturer")
+            model = p.get("model")
+            if manufacturer is None and model is None:
+                continue
+            key = (manufacturer, model)
+            if key not in seen:
+                seen.add(key)
+                result.append(key)
+
+        if not result:
+            result.append((None, None))
+
+        return result
+
 
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
@@ -300,7 +304,7 @@ class TuyaEntityConfig:
             "deprecated", "nothing, this warning has been raised in error"
         )
         return (
-            f"The use of {self.entity} for {self._device.name} is "
+            f"The use of {self.config_id} for {self._device.name} is "
             f"deprecated and should be replaced by {replacement}."
         )
 
@@ -476,7 +480,10 @@ class TuyaDpsConfig:
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask
-        bytevalue = self.decoded_value(device)
+        # Get raw value directly avoiding accidental scaling by decoded_value()
+        raw_from_device = device.get_property(self.id)
+        bytevalue = self.decode_value(raw_from_device, device)
+
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
@@ -489,11 +496,21 @@ class TuyaDpsConfig:
                 raw_result = to_signed(raw_result, bit_count)
 
             return self._map_from_dps(raw_result, device)
+
+        elif mask and isinstance(bytevalue, int):
+            # Handle masking for integer DPs
+            scale = mask & (1 + ~mask)
+            raw_result = (bytevalue & mask) // scale
+            return self._map_from_dps(raw_result, device)
+
         else:
-            return self._map_from_dps(device.get_property(self.id), device)
+            return self._map_from_dps(raw_from_device, device)
 
     def decoded_value(self, device):
         v = self._map_from_dps(device.get_property(self.id), device)
+        return self.decode_value(v, device)
+
+    def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
                 return bytes.fromhex(v)
@@ -535,7 +552,7 @@ class TuyaDpsConfig:
         if self.rawtype == "bitfield" and matchdata:
             try:
                 return (int(value) & int(matchdata)) != 0
-            except (TypeError, ValueError):
+            except TypeError, ValueError:
                 return False
         else:
             return str(value) == str(matchdata)
@@ -614,11 +631,25 @@ class TuyaDpsConfig:
             )
             return None
         for m in self._config["mapping"]:
-            if m.get("default", False):
+            if m.get("default", False) and not m.get("hidden", False):
                 return m.get("value", m.get("dps_val", None))
+            elif m.get("default", False):
+                _LOGGER.error(
+                    "%s: Default value for %s.%s is hidden",
+                    self._entity._device.config,
+                    self._entity.config_id,
+                    self.id,
+                )
             for c in m.get("conditions", {}):
-                if c.get("default", False):
+                if c.get("default", False) and not c.get("hidden", False):
                     return c.get("value", m.get("value", m.get("dps_val", None)))
+                elif c.get("default", False):
+                    _LOGGER.error(
+                        "%s: Default value for %s.%s is hidden",
+                        self._entity._device.config,
+                        self._entity.config_id,
+                        self.id,
+                    )
 
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
@@ -626,6 +657,7 @@ class TuyaDpsConfig:
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
+            r = mapping.get("range", r)
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
@@ -921,14 +953,39 @@ class TuyaDpsConfig:
 
         return c_match
 
-    def get_values_to_set(self, device, value):
+    def get_values_to_set(self, device, value, pending_map=None):
         """Return the dps values that would be set when setting to value"""
         result = value
         dps_map = {}
+
+        if pending_map is None:
+            pending_map = {}
+
         if self.readonly:
             return dps_map
 
+        # Use cases for value_redirect:
+        #  1. To merge multiple dps into a single HA setting (eg where the
+        #     manufacturer has chosen to implement speeds as dipswitch type
+        #     binary dps rather than a single dp with multiple values)
+        #     This style will have values on the main dp alongside the dp
+        #     to redirect to.
+        #  2. Alternate dps to cover multiple device variants with a single
+        #     config. This variant covers the same values on each dp, and
+        #     the redirect should be followed first (typically conditional
+        #     on the dps_val being None).
+        current_value = device.get_property(self.id)
+        current_mapping = self._find_map_for_dps(current_value, device)
         mapping = self._find_map_for_value(value, device)
+        # Case 2 above: there is no value specific mapping, but based on
+        # current dps_val we should redirect.
+        if current_mapping and not mapping:
+            redirect = current_mapping.get("value_redirect")
+            if redirect:
+                return self._entity.find_dps(redirect).get_values_to_set(
+                    device,
+                    value,
+                )
         scale = self.scale(device)
         mask = self.mask
         if mapping:
@@ -964,7 +1021,9 @@ class TuyaDpsConfig:
                             cond.get("dps_val", device.get_property(c_dps.id)),
                             device,
                         )
-                        dps_map.update(c_dps.get_values_to_set(device, c_val))
+                        dps_map.update(
+                            c_dps.get_values_to_set(device, c_val, pending_map)
+                        )
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
@@ -1054,9 +1113,27 @@ class TuyaDpsConfig:
             # Convert to int
             endianness = self.endianness
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), endianness)
-            result = (current_value & ~mask) | (mask & int(result * mask_scale))
-            result = self.encode_value(result.to_bytes(length, endianness))
+
+            # Get raw current value directly (avoids scaling being auto applied as it causes issues)
+            raw_current = device.get_property(self.id)
+            if self.id in pending_map:
+                decoded_value = self.decode_value(pending_map[self.id], device)
+            else:
+                decoded_value = self.decode_value(raw_current, device)
+
+            if decoded_value is None:
+                raise ValueError("Cannot mask unknown current value")
+            if isinstance(decoded_value, int):
+                current_value = decoded_value
+                result = (current_value & ~mask) | (mask & int(result * mask_scale))
+                # Only convert back to bytes if the DP is actually hex/base64
+                if self.rawtype in ["hex", "base64", "utf16b64"]:
+                    result = self.encode_value(result.to_bytes(length, endianness))
+            else:
+                # Bytes path (original logic)
+                current_value = int.from_bytes(decoded_value, endianness)
+                result = (current_value & ~mask) | (mask & int(result * mask_scale))
+                result = self.encode_value(result.to_bytes(length, endianness))
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map

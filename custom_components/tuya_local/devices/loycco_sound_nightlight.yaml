@@ -55,8 +55,7 @@ entities:
         name: power
         optional: true
   - entity: select
-    name: Light mode
-    icon: "mdi:lightbulb-question"
+    translation_key: light_mode
     category: config
     dps:
       - id: 4
@@ -66,9 +65,9 @@ entities:
           - dps_val: breath
             value: Breathing
           - dps_val: light_on
-            value: Steady On
+            value: "on"
           - dps_val: light_off
-            value: "Off"
+            value: "off"
           - dps_val: change
             value: Random
   - entity: siren

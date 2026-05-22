@@ -3,6 +3,9 @@ products:
   - id: witok7vhhjohtr02
     manufacturer: dé
     model: Wall charger
+  - id: gxrtu5vljdthtd3g
+    manufacturer: dé
+    model: GD portable charger
 entities:
   - entity: sensor
     translation_key: status
@@ -11,6 +14,7 @@ entities:
     dps:
       - id: 109
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: SLEEP
@@ -30,7 +34,7 @@ entities:
           - dps_val: STOP
             value: charged
       - id: 102
-        type: string
+        type: json
         name: metrics
       - id: 103
         type: string
@@ -64,6 +68,9 @@ entities:
         type: boolean
         optional: true
         name: button
+        mapping:
+          - dps_val: false
+            value: true
   - entity: button
     name: Reset
     icon: "mdi:refresh"
@@ -192,3 +199,20 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: button
+    name: Refresh
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 188
+        type: boolean
+        optional: true
+        name: button
+      - id: 188
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

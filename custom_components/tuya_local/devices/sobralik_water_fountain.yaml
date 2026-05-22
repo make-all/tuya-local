@@ -44,14 +44,14 @@ entities:
           - value: false
 
   - entity: button
-    translation_key: filter_Reset
+    translation_key: filter_reset
     category: config
     dps:
       - id: 5
         type: boolean
         name: button
   - entity: button
-    name: Clean Reset
+    name: Clean reset
     icon: "mdi:pump"
     category: config
     dps:
@@ -59,21 +59,16 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter Left
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     class: duration
     category: diagnostic
     dps:
       - id: 3
         type: integer
         name: sensor
-        precision: 0
-        range:
-          min: 0
-          max: 90
         unit: d
   - entity: sensor
-    name: Clean Left
+    name: Clean left
     icon: "mdi:pump"
     class: duration
     category: diagnostic
@@ -87,7 +82,7 @@ entities:
           max: 31
         unit: d
   - entity: number
-    name: Filter Life
+    name: Filter life
     icon: "mdi:air-filter"
     category: config
     dps:
@@ -100,7 +95,7 @@ entities:
           max: 90
         unit: d
   - entity: number
-    name: Clean Life
+    name: Clean life
     icon: "mdi:pump"
     category: config
     dps:
@@ -113,7 +108,7 @@ entities:
           max: 31
         unit: d
   - entity: sensor
-    name: Water level
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -122,8 +117,6 @@ entities:
         type: string
         mapping:
           - dps_val: level_1
-            icon: "mdi:cup-outline"
             value: low
           - dps_val: level_2
-            icon: "mdi:cup"
             value: high

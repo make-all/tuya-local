@@ -39,21 +39,6 @@ entities:
           - dps_val: unlock
             value: false
   - entity: binary_sensor
-    class: window
-    # 2025-02-24
-    deprecated: cover
-    dps:
-      - id: 1
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: open
-            value: true
-          - dps_val: closed
-            value: false
-
-  - entity: binary_sensor
     name: Wind and rain
     class: moisture
     dps:

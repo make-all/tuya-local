@@ -20,6 +20,10 @@ entities:
                 value: cool
               - dps_val: true
                 value: heat
+      - id: 104
+        name: cool_heat
+        type: boolean
+        hidden: true
       - id: 2
         name: preset_mode
         type: string
@@ -56,10 +60,29 @@ entities:
                 value: heating
           - dps_val: close
             value: idle
-      - id: 104
-        type: boolean
-        name: cool_heat
-        hidden: true
+  - entity: humidifier
+    name: Humidity override
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 106
+        type: integer
+        optional: true
+        name: humidity
+        range:
+          min: 50
+          max: 80
+      - id: 107
+        type: integer
+        optional: true
+        name: current_humidity
   - entity: lock
     translation_key: child_lock
     category: config
@@ -78,3 +101,24 @@ entities:
         range:
           min: 0
           max: 255
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

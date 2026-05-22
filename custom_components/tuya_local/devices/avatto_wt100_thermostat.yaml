@@ -70,9 +70,8 @@ entities:
         name: lock
         type: boolean
   - entity: switch
-    name: Sound
+    translation_key: sound
     category: config
-    icon: "mdi:music-note"
     dps:
       - id: 13
         type: boolean
@@ -92,9 +91,9 @@ entities:
         name: fault_code
         type: bitfield
   - entity: number
-    name: Temperature calibration
+    translation_key: temperature_calibration
+    class: temperature_delta
     category: config
-    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 20
         type: integer
@@ -104,12 +103,11 @@ entities:
           max: 90
         mapping:
           - scale: 10
-        unit: °
+        unit: C
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 21
         type: integer
@@ -169,8 +167,8 @@ entities:
             value: High
   - entity: select
     name: Schedule
-    category: config
     icon: "mdi:calendar-clock"
+    category: config
     dps:
       - id: 42
         type: string
@@ -193,6 +191,7 @@ entities:
         name: switch
   - entity: number
     name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-plus"
     dps:
@@ -204,7 +203,7 @@ entities:
           max: 95
         mapping:
           - scale: 10
-        unit: °
+        unit: C
   - entity: number
     name: External temperature limit
     category: config

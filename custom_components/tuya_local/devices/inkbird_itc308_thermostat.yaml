@@ -3,6 +3,9 @@ products:
   - id: B0eP8qYAdpUo4yR9
     manufacturer: Inkbird
     model: ITC-308
+  - id: rt9nqdxeiqo7dnz9
+    manufacturer: Inkbird
+    model: ITC-308-WIFI
 entities:
   - entity: climate
     dps:
@@ -84,8 +87,8 @@ entities:
         hidden: true
   - entity: number
     category: config
-    name: Calibration offset
-    icon: "mdi:arrow-collapse-up"
+    translation_key: temperature_calibration
+    class: temperature_delta
     dps:
       - id: 102
         name: value
@@ -101,6 +104,9 @@ entities:
                 range:
                   min: -150
                   max: 150
+      - id: 101
+        type: string
+        name: unit
   - entity: number
     name: Compressor delay
     icon: "mdi:clock"
@@ -114,10 +120,9 @@ entities:
           min: 0
           max: 10
   - entity: number
-    name: High temperature limit
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-alert"
     dps:
       - id: 109
         name: value
@@ -138,8 +143,7 @@ entities:
         type: string
         hidden: true
   - entity: number
-    name: Low temperature limit
-    icon: "mdi:snowflake-alert"
+    translation_key: minimum_temperature
     category: config
     class: temperature
     dps:
@@ -215,6 +219,7 @@ entities:
   - entity: number
     category: config
     name: Heating hysteresis
+    class: temperature_delta
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 117
@@ -238,6 +243,7 @@ entities:
   - entity: number
     category: config
     name: Cooling hysteresis
+    class: temperature_delta
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 118

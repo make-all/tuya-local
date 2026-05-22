@@ -215,6 +215,7 @@ entities:
     dps:
       - id: 9
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     translation_key: anti_frost
@@ -231,10 +232,9 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: Maximum temperature
+    translation_key: maximum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
@@ -267,10 +267,9 @@ entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Minimum temperature
+    translation_key: minimum_temperature
     category: config
     class: temperature
-    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
         type: integer
@@ -330,6 +329,7 @@ entities:
   - entity: button
     translation_key: factory_reset
     category: config
+    hidden: true
     dps:
       - id: 39
         type: boolean

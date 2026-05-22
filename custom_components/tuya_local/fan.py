@@ -50,7 +50,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         self._init_end(dps_map)
 
         self._support_flags = FanEntityFeature(0)
-        if self._preset_dps:
+        if self._preset_dps and self._preset_dps.values(device):
             self._support_flags |= FanEntityFeature.PRESET_MODE
         if self._speed_dps:
             self._support_flags |= FanEntityFeature.SET_SPEED
@@ -88,11 +88,21 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         **kwargs: Any,
     ):
         """Turn the fan on, setting any other parameters given"""
+        async with self._device.set_lock:
+            return await self._async_turn_on_locked(percentage, preset_mode, **kwargs)
+
+    async def _async_turn_on_locked(
+        self,
+        percentage: int | None,
+        preset_mode: str | None,
+        **kwargs: Any,
+    ):
         settings = {}
         if self._switch_dps:
+            _LOGGER.info("%s turning on", self._config.config_id)
             settings = {
                 **settings,
-                **self._switch_dps.get_values_to_set(self._device, True),
+                **self._switch_dps.get_values_to_set(self._device, True, settings),
             }
 
         if percentage is not None and self._speed_dps:
@@ -101,15 +111,22 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
                 if r[0] == 0:
                     r = (1, r[1])
                 percentage = percentage_to_ranged_value(r, percentage)
-
+            _LOGGER.info(
+                "%s turning on to speed %s", self._config.config_id, percentage
+            )
             settings = {
                 **settings,
-                **self._speed_dps.get_values_to_set(self._device, percentage),
+                **self._speed_dps.get_values_to_set(self._device, percentage, settings),
             }
         if preset_mode and self._preset_dps:
+            _LOGGER.info(
+                "%s turning on to preset %s", self._config.config_id, preset_mode
+            )
             settings = {
                 **settings,
-                **self._preset_dps.get_values_to_set(self._device, preset_mode),
+                **self._preset_dps.get_values_to_set(
+                    self._device, preset_mode, settings
+                ),
             }
         # TODO: potentially handle other kwargs.
         if settings:
@@ -117,16 +134,21 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
-        if self._switch_dps:
-            await self._switch_dps.async_set_value(self._device, False)
-        elif (
-            self._speed_dps
-            and self._speed_dps.range(self._device)
-            and self._speed_dps.range(self._device)[0] == 0
-        ):
-            await self._speed_dps.async_set_value(self._device, 0)
-        else:
-            raise NotImplementedError
+        async with self._device.set_lock:
+            if self._switch_dps:
+                _LOGGER.info("%s turning off", self._config.config_id)
+                await self._switch_dps.async_set_value(self._device, False)
+            elif (
+                self._speed_dps
+                and self._speed_dps.range(self._device)
+                and self._speed_dps.range(self._device)[0] == 0
+            ):
+                _LOGGER.info(
+                    "%s turning off by setting speed to 0", self._config.config_id
+                )
+                await self._speed_dps.async_set_value(self._device, 0)
+            else:
+                raise NotImplementedError
 
     @property
     def percentage(self):
@@ -163,6 +185,10 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
     async def async_set_percentage(self, percentage):
         """Set the fan speed as a percentage."""
+        async with self._device.set_lock:
+            return await self._async_set_percentage_locked(percentage)
+
+    async def _async_set_percentage_locked(self, percentage):
         # If speed is 0, turn the fan off
         if percentage == 0 and self._switch_dps:
             return await self.async_turn_off()
@@ -181,9 +207,12 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
                 r = (1, r[1])
             percentage = percentage_to_ranged_value(r, percentage)
 
+        _LOGGER.info("%s setting speed to %s", self._config.config_id, percentage)
         values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
         if not self.is_on and self._switch_dps:
-            values_to_set.update(self._switch_dps.get_values_to_set(self._device, True))
+            values_to_set.update(
+                self._switch_dps.get_values_to_set(self._device, True, values_to_set)
+            )
 
         await self._device.async_set_properties(values_to_set)
 
@@ -204,7 +233,11 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Set the preset mode."""
         if self._preset_dps is None:
             raise NotImplementedError()
-        await self._preset_dps.async_set_value(self._device, preset_mode)
+        async with self._device.set_lock:
+            _LOGGER.info(
+                "%s setting preset mode to %s", self._config.config_id, preset_mode
+            )
+            await self._preset_dps.async_set_value(self._device, preset_mode)
 
     @property
     def current_direction(self):
@@ -216,7 +249,11 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Set the direction of the fan."""
         if self._direction_dps is None:
             raise NotImplementedError()
-        await self._direction_dps.async_set_value(self._device, direction)
+        async with self._device.set_lock:
+            _LOGGER.info(
+                "%s setting direction to %s", self._config.config_id, direction
+            )
+            await self._direction_dps.async_set_value(self._device, direction)
 
     @property
     def oscillating(self):
@@ -228,4 +265,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Oscillate the fan."""
         if self._oscillate_dps is None:
             raise NotImplementedError()
-        await self._oscillate_dps.async_set_value(self._device, oscillating)
+        async with self._device.set_lock:
+            _LOGGER.info(
+                "%s setting oscillate to %s", self._config.config_id, oscillating
+            )
+            await self._oscillate_dps.async_set_value(self._device, oscillating)

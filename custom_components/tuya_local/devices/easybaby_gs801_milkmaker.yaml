@@ -5,6 +5,7 @@ products:
     model: GS-801
 entities:
   - entity: select
+    translation_key: kettle_mode
     name: Mode
     icon: "mdi:baby-bottle"
     category: config
@@ -14,9 +15,9 @@ entities:
         name: option
         mapping:
           - dps_val: true
-            value: Water
+            value: water
           - dps_val: false
-            value: Formula
+            value: infant_formula
   - entity: switch
     name: Disinfection
     icon: "mdi:kettle-steam"

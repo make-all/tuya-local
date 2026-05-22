@@ -1,12 +1,14 @@
-name: Air Purifier
+name: Air purifier
 products:
   - id: pc3mcvhmyfponsqf
     manufacturer: "TrueLife"
     model: "Air Purifier P3 WIFI"
+  - id: 11zaxplgzu1lodgg
+    manufacturer: GMC
+    model: AP300 WiFi
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -16,7 +18,7 @@ entities:
         type: string
         mapping:
           - dps_val: AUTO
-            value: smart
+            value: auto
           - dps_val: SLEEP
             value: sleep
           - dps_val: MANUAL
@@ -56,10 +58,20 @@ entities:
   - entity: switch
     translation_key: uv_sterilization
     category: config
+    hidden: unavailable
     dps:
       - id: 9
         type: boolean
+        optional: true
         name: switch
+      - id: 9
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: button
     translation_key: filter_reset
     category: config
@@ -68,8 +80,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter Usage
-    icon: "mdi:calendar-clock"
+    translation_key: filter_life
     category: diagnostic
     class: duration
     dps:
