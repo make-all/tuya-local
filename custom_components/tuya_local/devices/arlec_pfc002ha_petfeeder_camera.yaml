@@ -79,6 +79,21 @@ entities:
           min: 1
           max: 12
         mapping:
+          - dps_val: -2001
+            value: 0
+            hidden: true
+          - dps_val: -2000
+            value: 0
+            hidden: true
+          - dps_val: 2001
+            value: 0
+            hidden: true
+          - dps_val: 2000
+            value: 0
+            hidden: true
+          - dps_val: 0
+            value: 0
+            hidden: true
           - dps_val: null
             value: 0
             hidden: true
@@ -90,18 +105,44 @@ entities:
     dps:
       - id: 201
         type: integer
+        optional: true
         name: sensor
         mapping:
           - dps_val: -2001
             value: failed
           - dps_val: -2000
             value: feeding
+          - dps_val: 2001
+            value: failed
+          - dps_val: 2000
+            value: feeding
+          - dps_val: 0
+            value: idle
           - dps_val: null
             value: idle
           - value: fed
       - id: 201
         type: integer
+        optional: true
         name: portions
+  - entity: sensor
+    name: Realtime data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 204
+        type: integer
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: History data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 208
+        type: integer
+        optional: true
+        name: sensor
   - entity: sensor
     name: Portion size
     class: weight
