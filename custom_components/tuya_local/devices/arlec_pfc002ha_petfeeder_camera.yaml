@@ -98,33 +98,6 @@ entities:
             value: 0
             hidden: true
   - entity: sensor
-    name: Feed result
-    class: enum
-    icon: "mdi:paw"
-    category: diagnostic
-    dps:
-      - id: 201
-        type: integer
-        optional: true
-        name: sensor
-        mapping:
-          - dps_val: -2001
-            value: failed
-          - dps_val: -2000
-            value: feeding
-          - dps_val: 2001
-            value: failed
-          - dps_val: 2000
-            value: feeding
-          - dps_val: 0
-            value: idle
-          - dps_val: null
-            value: idle
-      - id: 201
-        type: integer
-        optional: true
-        name: portions
-  - entity: sensor
     name: Portion size
     class: weight
     category: diagnostic
