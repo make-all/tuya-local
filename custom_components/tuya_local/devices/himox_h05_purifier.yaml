@@ -1,7 +1,7 @@
 name: Air purifier
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -11,13 +11,13 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: low
-            value: sleep
+            value: low
           - dps_val: mid
-            value: fresh
+            value: medium
           - dps_val: high
-            value: strong
+            value: high
   - entity: sensor
     class: temperature
     category: diagnostic

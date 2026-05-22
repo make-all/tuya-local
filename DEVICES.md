@@ -186,6 +186,7 @@
 - Sibrape CBC-Pool BP heat pump
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
+- Turbro 75000 btu pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -449,6 +450,7 @@
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
+- Homemedics C500 air purifier
 - Honeywell Air Touch P2 Air Purifier
 - Hosome air purifier
 - iHunt 400m³/h and 50m³/h air purifiers
@@ -468,7 +470,6 @@
 - Smartmi E1 and P1 air purifiers
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
-
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
 - Trident AirDome-70 air purifier
@@ -499,6 +500,7 @@
 - Goldair GPDH340, GPDH420 dehumidifiers
 - Gologi GO021 dehumidifier
 - Greenmigo Alpha Q25 dehumidifier
+- Hiniso dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - HTW HTWD020A4 dehumidifier
 - Hyundai Sahara dehumidifier
@@ -711,6 +713,7 @@
 - Voldt 8-13A EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
+- Zencar Wpro 32A 3P EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
@@ -756,6 +759,7 @@ the best option.
 - Inna/Automat-ON AUTO000014 7 channel underfloor heating controller
 - JH PCIe mini computer switch
 - JH PCIe pro+ computer switch
+- KMC 4-outlet wall tap with energy monitoring
 - LerLink high power switch
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB
