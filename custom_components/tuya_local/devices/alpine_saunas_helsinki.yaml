@@ -1,0 +1,53 @@
+# Alpine Saunas - https://alpinespas.com.au/saunas
+name: Alpine Saunas Helsinki
+products:
+  - id: bfe66fe0d57071ba3aa29a
+entities:
+  - entity: climate
+    name: Sauna
+    icon: "mdi:hot-tub"
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 104
+        type: integer
+        name: temperature
+        range:
+          min: 30
+          max: 70
+      - id: 106
+        type: integer
+        name: current_temperature
+  - entity: light
+    name: Light
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: binary_sensor
+    name: Unknown 102
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
