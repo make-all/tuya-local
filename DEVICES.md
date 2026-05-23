@@ -1123,7 +1123,7 @@ port and password.
 
 - Advwin 6L camera pet feeder
 - AF3W pet feeder
-- Arlec Grid Connect 5L pet feeder
+- Arlec Grid Connect 5L and PFC002HA Series 2 pet feeders
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
