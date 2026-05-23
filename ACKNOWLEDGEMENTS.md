@@ -804,3 +804,4 @@ Further device support has been made with the assistance of users. Please consid
 - [DomJoke](https://github.com/DomJoke) for contributing support for Hiniso dehumidifier.
 - [c3p0vsr2d2](https://github.com/c3p0vsr2d2) for contributing support for KMC 4-outlet wall tap with energy monitoring.
 - [mcguires5](https://github.com/mcguires5) for contributing support for the red-blue variant of Touchstone Sideline fireplace.
+- [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.

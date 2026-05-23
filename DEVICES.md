@@ -401,6 +401,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- NHZS fan speed switch
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
