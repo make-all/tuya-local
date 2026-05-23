@@ -1,0 +1,371 @@
+name: Robot vacuum
+products:
+  - id: opn3uutjlhbeojab
+    manufacturer: Gadnic
+    model: AC800
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+      - id: 2
+        type: boolean
+        name: pause
+        optional: true
+      - id: 3
+        type: boolean
+        name: switch_charge
+        optional: true
+      - id: 4
+        type: string
+        name: command
+        optional: true
+        mapping:
+          - dps_val: goto_charge
+            value: return_to_base
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: idle
+          - dps_val: smart
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: cleaning
+          - dps_val: pos_arrived
+            value: idle
+          - dps_val: pos_unarrive
+            value: idle
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: docked
+          - dps_val: charge_done
+            value: docked
+          - dps_val: sleep
+            value: idle
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: "off"
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+          - dps_val: max
+            value: maximum
+      - id: 12
+        type: string
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+  - entity: switch
+    name: locate
+    icon: "mdi:map-marker-alert"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: cleaning_mode
+    icon: "mdi:vacuum"
+    category: config
+    dps:
+      - id: 41
+        type: string
+        name: option
+        mapping:
+          - dps_val: both_work
+            value: sweep_and_mop
+          - dps_val: only_mop
+            value: mop
+          - dps_val: only_sweep
+            value: sweep
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    translation_key: do_not_disturb
+    icon: "mdi:bell-cancel"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Auto boost
+    icon: "mdi:car-turbocharger"
+    category: config
+    dps:
+      - id: 45
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Y-shape mop mode
+    category: config
+    dps:
+      - id: 48
+        type: boolean
+        name: switch
+  - entity: button
+    name: Collect dust
+    category: config
+    dps:
+      - id: 38
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Continue cleaning at breakpoint
+    icon: "mdi:clock-star-four-points"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: select
+    name: Dust collection frequency
+    icon: "mdi:delete"
+    category: config
+    dps:
+      - id: 37
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Never"
+          - dps_val: 1
+            value: "Once"
+          - dps_val: 2
+            value: "Twice"
+          - dps_val: 3
+            value: "Three times"
+          - dps_val: 4
+            value: "Four times"
+  - entity: switch
+    name: Custom mode
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+  # I couldn't find a way to get this mode to work directly from the vacuum card UI so I'm using a switch instead.
+  - entity: switch
+    name: Edge clean mode
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  # same thing here
+  - entity: switch
+    name: Spiral clean mode
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: button
+    translation_key: filter_reset
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset side brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+  - entity: select
+    name: Fetch request
+    icon: "mdi:message-question"
+    category: config
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Side brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rolling brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Total cleaning area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Total cleaning times
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    name: Mop installed
+    icon: "mdi:water-plus"
+    category: diagnostic
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: installed
+            value: true
+          - value: false
