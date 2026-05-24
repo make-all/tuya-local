@@ -1,0 +1,96 @@
+name: Air Purifier AP409
+products:
+  - id: rufdceynizoy3e2p
+    manufacturer: Treatlife
+    model: AP409
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Mode
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: manual
+            value: Manual
+  - entity: select
+    name: Fan Speed
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: Low
+            value: Low
+          - dps_val: Medium
+            value: Medium
+          - dps_val: High
+            value: High
+          - dps_val: Pet
+            value: Pet
+  - entity: sensor
+    name: PM2.5
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+        device-class: pm25
+        state_class: measurement
+  - entity: sensor
+    name: Filter Remaining
+    entity_category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    name: Countdown
+    entity_category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: Cancel
+          - dps_val: 2h
+            value: 2 Hours
+          - dps_val: 4h
+            value: 4 Hours
+          - dps_val: 6h
+            value: 6 Hours
+          - dps_val: 8h
+            value: 8 Hours
+  - entity: sensor
+    name: Countdown Left
+    entity_category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    name: Child Lock
+    entity_category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Filter Reset
+    entity_category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
