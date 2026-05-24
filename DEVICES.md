@@ -267,6 +267,7 @@
 - Emmeti Zona thermostat
 - Engo E901WiFi and EFAN230 thermostats
 - Essentials Wall thermostat
+- ET F32 thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
