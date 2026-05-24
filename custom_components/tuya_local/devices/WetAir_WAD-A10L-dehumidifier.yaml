@@ -33,6 +33,7 @@ entities:
         type: integer
         name: current_humidity
   - entity: fan
+    translation_key: dehumidifier
     dps:
       - id: 1
         type: boolean
@@ -52,15 +53,6 @@ entities:
         type: integer
         name: sensor
         unit: C
-        class: measurement
-      #In the sensor section for humidity statistics in Home Assistant.
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: '%'
         class: measurement
   - entity: lock
     translation_key: child_lock
