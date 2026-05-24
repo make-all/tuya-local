@@ -1416,6 +1416,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Meian SW02 water leak detector
+- mmWave 4-in-1 human presence, temperature, humidity and illuminance sensor
 - Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb
