@@ -39,16 +39,16 @@ entities:
             value: Pet
   - entity: sensor
     name: PM2.5
+    class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: µg/m³
-        device-class: pm25
-        state_class: measurement
+        unit: ugm3
+        class: measurement
   - entity: sensor
     name: Filter Remaining
-    entity_category: diagnostic
+    category: diagnostic
     dps:
       - id: 5
         type: integer
@@ -56,7 +56,7 @@ entities:
         unit: "%"
   - entity: select
     name: Countdown
-    entity_category: config
+    category: config
     dps:
       - id: 18
         type: string
@@ -74,7 +74,7 @@ entities:
             value: 8 Hours
   - entity: sensor
     name: Countdown Left
-    entity_category: diagnostic
+    category: diagnostic
     dps:
       - id: 19
         type: integer
@@ -82,14 +82,14 @@ entities:
         unit: min
   - entity: switch
     name: Child Lock
-    entity_category: config
+    category: config
     dps:
       - id: 7
         type: boolean
         name: switch
   - entity: switch
     name: Filter Reset
-    entity_category: config
+    category: config
     dps:
       - id: 11
         type: boolean
