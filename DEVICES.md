@@ -534,6 +534,7 @@
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
+- WetAir WAD-A10L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers

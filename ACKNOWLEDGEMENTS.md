@@ -807,3 +807,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.
 - [kdog31](https://github.com/kdog31) for contributing support for Arlec PFC002HA Series 2 pet feeder..
 - [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
+- [maxios777](https://github.com/maxios777) for contributing support for WetAir WAD-A10L dehumidifier.
