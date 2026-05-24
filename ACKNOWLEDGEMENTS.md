@@ -806,3 +806,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mcguires5](https://github.com/mcguires5) for contributing support for the red-blue variant of Touchstone Sideline fireplace.
 - [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.
 - [kdog31](https://github.com/kdog31) for contributing support for Arlec PFC002HA Series 2 pet feeder..
+- [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
