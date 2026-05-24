@@ -13,17 +13,23 @@ entities:
         type: boolean
         name: pause
         optional: true
-      - id: 3
-        type: boolean
-        name: switch_charge
-        optional: true
       - id: 4
         type: string
         name: command
         optional: true
         mapping:
+          - dps_val: smart
+            value: smart
           - dps_val: goto_charge
             value: return_to_base
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: select_room
+            value: select_room
       - id: 5
         type: string
         name: status
@@ -49,11 +55,25 @@ entities:
           - dps_val: goto_charge
             value: returning
           - dps_val: charging
-            value: docked
+            value: charging
           - dps_val: charge_done
             value: docked
           - dps_val: sleep
-            value: idle
+            value: sleep
+          - dps_val: select_room
+            value: select_room
+          - dps_val: seek_dust_bucket
+            value: seek_dust_bucket
+          - dps_val: collecting_dust
+            value: collecting_dust
+          - dps_val: self_clean
+            value: self_clean
+          - dps_val: mapping
+            value: mapping
+          - dps_val: mapping_done
+            value: mapping_done
+          - dps_val: in_trouble
+            value: error
       - id: 9
         type: string
         name: fan_speed
@@ -66,6 +86,10 @@ entities:
             value: high
           - dps_val: max
             value: maximum
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
       - id: 12
         type: string
         name: direction_control
@@ -81,8 +105,8 @@ entities:
           - dps_val: stop
             value: stop
   - entity: switch
-    name: locate
-    icon: "mdi:map-marker-alert"
+    name: Locate
+    icon: "mdi:map-marker"
     category: config
     dps:
       - id: 11
@@ -132,7 +156,6 @@ entities:
           max: 100
   - entity: switch
     translation_key: do_not_disturb
-    icon: "mdi:bell-cancel"
     category: config
     dps:
       - id: 25
