@@ -1,12 +1,12 @@
-name: F32 Thermostat
+name: Thermostat
 products:
   - id: enasdcyucyl7tgrz
-    name: F32
     manufacturer: ET
     model: ET_4A F32
 
 entities:
   - entity: climate
+    translation_key: thermostat
     dps:
       - id: 2
         type: string
@@ -18,10 +18,13 @@ entities:
             value: heat
           - dps_val: HOLIDAY
             value: auto
+            hidden: true
           - dps_val: FROST
             value: heat
+            hidden: true
           - dps_val: SLOW
             value: heat
+            hidden: true
       - id: 16
         type: integer
         name: temperature
@@ -59,29 +62,23 @@ entities:
             value: C
           - dps_val: f
             value: F
-
-  - entity: select
-    name: Thermostat Mode
-    category: config
-    icon: mdi:tune
-    dps:
       - id: 2
         type: string
-        name: option
+        name: preset_mode
         mapping:
           - dps_val: AUTO
-            value: Auto
+            value: program
           - dps_val: MANUAL
-            value: Manual
+            value: manual
           - dps_val: HOLIDAY
-            value: Holiday
+            value: away
           - dps_val: FROST
-            value: Frost
+            value: Anti-frost
           - dps_val: SLOW
-            value: Slow Start
+            value: eco
 
   - entity: select
-    name: Sensor Selection
+    name: Sensor
     category: config
     icon: mdi:home-thermometer
     dps:
@@ -97,7 +94,6 @@ entities:
             value: Both
 
   - entity: number
-    name: Calibration
     category: config
     translation_key: temperature_calibration
     dps:
@@ -111,7 +107,7 @@ entities:
           - scale: 10
 
   - entity: select
-    name: Hysteresis
+    name: Temperature hysteresis
     category: config
     icon: mdi:thermometer-lines
     dps:
@@ -129,7 +125,7 @@ entities:
             value: "3.0°C"
 
   - entity: number
-    name: Holiday Days
+    name: Holiday days
     category: config
     icon: mdi:calendar-clock
     dps:
@@ -150,7 +146,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Open Window Detection
+    name: Open window detection
     category: config
     icon: mdi:window-open
     dps:
@@ -158,20 +154,18 @@ entities:
         type: boolean
         name: switch
 
-  - entity: number
-    name: Brightness
+  - entity: light
+    translation_key: display
     category: config
-    icon: mdi:brightness-6
     dps:
       - id: 115
         type: integer
-        name: value
+        name: brightness
         range:
           min: 1
           max: 8
 
   - entity: lock
-    name: Child Lock
     category: config
     translation_key: child_lock
     dps:
@@ -180,16 +174,14 @@ entities:
         name: lock
 
   - entity: button
-    name: Factory Reset
+    translation_key: factory_reset
     category: config
-    class: restart
     dps:
       - id: 39
         type: boolean
         name: button
 
   - entity: binary_sensor
-    name: Problem
     class: problem
     category: diagnostic
     dps:
@@ -200,3 +192,6 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
