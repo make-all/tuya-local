@@ -32,6 +32,26 @@ entities:
             value: 80
           - dps_val: max
             value: 100
+  # The fan speeds are reffered to as sleep,1,2,3,4 in he app but idk how to convert number into string so the code doesnt freak out
+  #I think a translation key is also needed
+  - entity: select
+  name: Fan Speed
+  icon: mdi:fan
+  dps:
+    - id: 4
+      type: string
+      name: option
+      mapping:
+        - dps_val: sleep
+          value: Sleep
+        - dps_val: low
+          value: Low
+        - dps_val: mid
+          value: Medium
+        - dps_val: high
+          value: High
+        - dps_val: max
+          value: Max
   - entity: sensor
     class: pm25
     dps:
