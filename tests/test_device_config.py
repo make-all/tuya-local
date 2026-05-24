@@ -41,8 +41,8 @@ CONDMAP_SCHEMA = vol.Schema(
             vol.Required("max"): int,
         },
         vol.Optional("target_range"): {
-            vol.Required("min"): int,
-            vol.Required("max"): int,
+            vol.Required("min"): vol.Any(int, float),
+            vol.Required("max"): vol.Any(int, float),
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),
