@@ -1,0 +1,60 @@
+name: Temperature and humidity sensor
+products:
+  - id: jbe3snv4tki8oo9c
+    model: S09
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false
