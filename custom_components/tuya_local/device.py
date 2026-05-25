@@ -157,6 +157,12 @@ class TuyaLocalDevice(object):
         # The number of failures from a working protocol before retrying other protocols.
         self._AUTO_FAILURE_RESET_COUNT = 10
         self._lock = Lock()
+        # Serialises the read-modify-write window for entities that share a
+        # packed dp (e.g. multiple sub-entity lights writing to dp 51 with
+        # different masks). Without this, two concurrent async_turn_on calls
+        # both read the same baseline before either updates pending, then the
+        # second's pending update clobbers the first.
+        self.set_lock = asyncio.Lock()
 
     @property
     def name(self):
@@ -264,7 +270,17 @@ class TuyaLocalDevice(object):
 
                     for entity in self._children:
                         # let entities trigger off poll contents directly
-                        entity.on_receive(poll, full_poll)
+                        try:
+                            entity.on_receive(poll, full_poll)
+                        except Exception as e:
+                            # Don't let exceptions thrown by the entities interrupt the communication loop
+                            # Just log them and move on.
+                            _LOGGER.exception(
+                                "%s on_receive error for entity %s: %s",
+                                self.name,
+                                entity.entity_id,
+                                e,
+                            )
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
                             for dp in entity._config.dps():
