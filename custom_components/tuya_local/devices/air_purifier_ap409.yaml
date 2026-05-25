@@ -5,7 +5,6 @@ products:
     model: AP409
 entities:
   - entity: fan
-    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -13,38 +12,55 @@ entities:
       - id: 3
         type: string
         name: preset_mode
+        hidden: true
         mapping:
           - dps_val: auto
-            value: auto
+            value: Auto
+            default: true
           - dps_val: sleep
-            value: sleep
+            value: Sleep
           - dps_val: manual
-            value: manual
+            value: Manual
+  - entity: select
+    name: Mode
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+            default: true
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: manual
+            value: Manual
+  - entity: select
+    name: Fan Speed
+    dps:
       - id: 4
         type: string
-        name: speed
-        constraint: preset_mode
-        conditions:
-          - dps_val: manual
-            mapping:
-              - dps_val: Low
-                value: 25
-              - dps_val: Medium
-                value: 50
-              - dps_val: High
-                value: 75
-              - dps_val: Pet
-                value: 100
+        name: option
+        mapping:
+          - dps_val: Low
+            value: Low
+          - dps_val: Medium
+            value: Medium
+          - dps_val: High
+            value: High
+          - dps_val: Pet
+            value: Pet
   - entity: sensor
+    name: PM2.5
     class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        class: measurement
         unit: ugm3
+        class: measurement
   - entity: sensor
-    translation_key: filter_life
+    name: Filter Remaining
     category: diagnostic
     dps:
       - id: 5
@@ -52,7 +68,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: select
-    translation_key: timer
+    name: Countdown
     category: config
     dps:
       - id: 18
@@ -70,22 +86,22 @@ entities:
           - dps_val: 8h
             value: 8 Hours
   - entity: sensor
-    translation_key: time_remaining
+    name: Countdown Left
     category: diagnostic
     dps:
       - id: 19
         type: integer
         name: sensor
         unit: min
-  - entity: lock
-    translation_key: child_lock
+  - entity: switch
+    name: Child Lock
     category: config
     dps:
       - id: 7
         type: boolean
-        name: lock
+        name: switch
   - entity: switch
-    translation_key: filter_reset
+    name: Filter Reset
     category: config
     dps:
       - id: 11
