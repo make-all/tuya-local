@@ -5,6 +5,7 @@ import voluptuous as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
+from custom_components.tuya_local.helpers import device_config
 from custom_components.tuya_local.helpers.config import get_device_id
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
@@ -315,6 +316,60 @@ def test_can_find_config_files():
         found = True
         break
     assert found
+
+
+_MINIMAL_CUSTOM_CONFIG = """
+name: Custom Test Device
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+"""
+
+
+def test_custom_config_dir_adds_new_devices(tmp_path, monkeypatch):
+    """Custom configs in the HA config dir are discovered and loadable."""
+    custom_dir = tmp_path / "tuya_local" / "devices"
+    custom_dir.mkdir(parents=True)
+    (custom_dir / "my_custom_device.yaml").write_text(_MINIMAL_CUSTOM_CONFIG)
+
+    monkeypatch.setattr(device_config, "_custom_config_dir", lambda: str(custom_dir))
+
+    assert "my_custom_device.yaml" in list(available_configs())
+    cfg = get_config("my_custom_device")
+    assert cfg is not None
+    assert cfg.name == "Custom Test Device"
+
+
+def test_custom_config_overrides_bundled(tmp_path, monkeypatch):
+    """A custom config takes precedence over a bundled one with the same name."""
+    custom_dir = tmp_path / "tuya_local" / "devices"
+    custom_dir.mkdir(parents=True)
+    # deta_fan is a bundled config; override it with a distinctive name.
+    (custom_dir / "deta_fan.yaml").write_text(_MINIMAL_CUSTOM_CONFIG)
+
+    monkeypatch.setattr(device_config, "_custom_config_dir", lambda: str(custom_dir))
+
+    # The bundled deta_fan.yaml should not be listed twice.
+    configs = list(available_configs())
+    assert configs.count("deta_fan.yaml") == 1
+    # The custom version should be the one that loads.
+    assert get_config("deta_fan").name == "Custom Test Device"
+
+
+def test_missing_custom_config_dir_is_ignored(tmp_path, monkeypatch):
+    """A non-existent custom config dir does not break config discovery."""
+    monkeypatch.setattr(
+        device_config,
+        "_custom_config_dir",
+        lambda: str(tmp_path / "does_not_exist"),
+    )
+
+    # Bundled configs are still found.
+    assert "deta_fan.yaml" in list(available_configs())
+    assert get_config("deta_fan").name is not None
 
 
 def dp_match(condition, accounted, unaccounted, known, required=False):

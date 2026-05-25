@@ -9,7 +9,7 @@ from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
 from os import scandir
-from os.path import dirname, exists, join, splitext
+from os.path import dirname, exists, isdir, join, splitext
 
 from homeassistant.util import slugify
 from homeassistant.util.yaml import load_yaml
@@ -17,6 +17,47 @@ from homeassistant.util.yaml import load_yaml
 import custom_components.tuya_local.devices as config_dir
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _bundled_config_dir():
+    """Return the directory of device configs bundled with the integration."""
+    return dirname(config_dir.__file__)
+
+
+def _custom_config_dir():
+    """Return the directory for user supplied device configs.
+
+    This lives in the Home Assistant config directory, outside of
+    custom_components, so that custom device configs are not removed when
+    the integration is updated. The integration is installed at
+    <config>/custom_components/tuya_local, so the config directory is three
+    levels above the bundled devices directory.
+    """
+    config_root = dirname(dirname(dirname(_bundled_config_dir())))
+    return join(config_root, "tuya_local", "devices")
+
+
+def _config_dirs():
+    """Yield the directories to search for device configs, in priority order.
+
+    Custom configs take precedence over bundled ones, allowing users to
+    override a bundled config by placing a file with the same name in the
+    custom directory.
+    """
+    custom = _custom_config_dir()
+    if isdir(custom):
+        yield custom
+    yield _bundled_config_dir()
+
+
+def _config_path(fname):
+    """Return the full path to the config file fname, searching custom
+    configs first, then bundled configs. Returns None if not found."""
+    for directory in _config_dirs():
+        fpath = join(directory, fname)
+        if exists(fpath):
+            return fpath
+    return None
 
 
 def _typematch(vtype, value):
@@ -102,11 +143,14 @@ class TuyaDeviceConfig:
         """Initialize the device config.
         Args:
             fname (string): The filename of the yaml config to load."""
-        _CONFIG_DIR = dirname(config_dir.__file__)
         self._fname = fname
-        filename = join(_CONFIG_DIR, fname)
+        filename = _config_path(fname)
+        if filename is None:
+            # Preserve the previous behaviour of raising when a config that
+            # does not exist is requested by name.
+            filename = join(_bundled_config_dir(), fname)
         self._config = load_yaml(filename)
-        _LOGGER.debug("Loaded device config %s", fname)
+        _LOGGER.debug("Loaded device config %s from %s", fname, filename)
 
     @property
     def name(self):
@@ -1154,12 +1198,22 @@ class TuyaDpsConfig:
 
 
 def available_configs():
-    """List the available config files."""
-    _CONFIG_DIR = dirname(config_dir.__file__)
+    """List the available config files.
 
-    for direntry in scandir(_CONFIG_DIR):
-        if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
-            yield direntry.name
+    Custom configs in the Home Assistant config directory are listed first
+    and take precedence; a bundled config with the same filename is skipped
+    so that custom configs override the bundled ones.
+    """
+    seen = set()
+    for directory in _config_dirs():
+        for direntry in scandir(directory):
+            if (
+                direntry.is_file()
+                and fnmatch(direntry.name, "*.yaml")
+                and direntry.name not in seen
+            ):
+                seen.add(direntry.name)
+                yield direntry.name
 
 
 def possible_matches(dps, product_ids=None):
@@ -1178,10 +1232,8 @@ def get_config(conf_type):
     """
     Return a config to use with config_type.
     """
-    _CONFIG_DIR = dirname(config_dir.__file__)
     fname = conf_type + ".yaml"
-    fpath = join(_CONFIG_DIR, fname)
-    if exists(fpath):
+    if _config_path(fname) is not None:
         return TuyaDeviceConfig(fname)
     else:
         return config_for_legacy_use(conf_type)

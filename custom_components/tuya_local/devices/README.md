@@ -6,6 +6,30 @@ of Tuya DPs (Data Points) to HomeAssistant attributes.
 
 Each Tuya device may correspond to one or more entities in Home Assistant.
 
+## Custom device configurations
+
+The configurations in this directory are bundled with the integration and are
+replaced whenever the integration is updated. If you want to add or tweak a
+device configuration without it being overwritten on update, place your YAML
+files in a `tuya_local/devices` directory inside your Home Assistant config
+directory (the one containing `configuration.yaml`):
+
+```
+<config>/tuya_local/devices/my_device.yaml
+```
+
+Files found there are loaded in addition to the bundled configurations and are
+matched against your devices in exactly the same way. This is the recommended
+way to test a new configuration before submitting it as a PR.
+
+If a custom file has the same name as a bundled one (for example
+`deta_fan.yaml`), the custom version takes precedence, so you can also use this
+to locally patch a bundled configuration. Note that overriding a bundled config
+this way means you will not pick up future fixes to it until you remove your
+override, so prefer a unique filename unless you specifically want to override.
+
+Custom configurations are picked up when Home Assistant (re)starts.
+
 ## The Top Level
 
 The top level of the device configuration defines the following:
