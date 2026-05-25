@@ -125,7 +125,10 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         """Return current operation ie. eco, electric, performance, ..."""
         if self._operation_mode_dps is None:
             return None
-        return self._operation_mode_dps.get_value(self._device)
+        mode = self._operation_mode_dps.get_value(self._device)
+        if mode == "away":
+            return "eco"
+        return mode
 
     @property
     def operation_list(self):
@@ -133,7 +136,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._operation_mode_dps is None:
             return []
         else:
-            return self._operation_mode_dps.values(self._device)
+            return filter(
+                lambda x: x != "away", self._operation_mode_dps.values(self._device)
+            )
 
     @property
     def is_away_mode_on(self):
