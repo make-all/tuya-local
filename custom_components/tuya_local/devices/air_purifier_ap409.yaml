@@ -1,10 +1,11 @@
-name: Air Purifier AP409
+name: Air purifier
 products:
   - id: rufdceynizoy3e2p
     manufacturer: Dayette
     model: AP409
 entities:
   - entity: fan
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -12,15 +13,15 @@ entities:
       - id: 3
         type: string
         name: preset_mode
-        hidden: true
+        optional: true
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
             default: true
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: manual
-            value: Manual
+            value: manual
   - entity: select
     name: Mode
     dps:
@@ -36,7 +37,7 @@ entities:
           - dps_val: manual
             value: Manual
   - entity: select
-    name: Fan Speed
+    name: Fan speed
     dps:
       - id: 4
         type: string
@@ -51,16 +52,15 @@ entities:
           - dps_val: Pet
             value: Pet
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
-        unit: ugm3
         class: measurement
+        unit: ugm3
   - entity: sensor
-    name: Filter Remaining
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 5
@@ -68,7 +68,7 @@ entities:
         name: sensor
         unit: "%"
   - entity: select
-    name: Countdown
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -86,22 +86,22 @@ entities:
           - dps_val: 8h
             value: 8 Hours
   - entity: sensor
-    name: Countdown Left
+    name: Countdown left
     category: diagnostic
     dps:
       - id: 19
         type: integer
         name: sensor
         unit: min
-  - entity: switch
-    name: Child Lock
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
-        name: switch
+        name: lock
   - entity: switch
-    name: Filter Reset
+    name: Filter reset
     category: config
     dps:
       - id: 11
