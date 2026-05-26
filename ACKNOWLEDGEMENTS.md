@@ -809,3 +809,4 @@ Further device support has been made with the assistance of users. Please consid
 - [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
 - [maxios777](https://github.com/maxios777) for contributing support for WetAir WAD-A10L dehumidifier.
 - [dvismans](https://github.com/dvismans) for contributing support for ET F32 thermostat.
+- [InfObject](https://github.com/InfObject) for contributing support for Feyree Lion EV-Ultra charger.
