@@ -244,33 +244,32 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
 
     async def async_set_temperature(self, **kwargs):
         """Set new target temperature."""
-        async with self._device.set_lock:
-            if kwargs.get(ATTR_PRESET_MODE) is not None:
-                _LOGGER.info(
-                    "%s setting temperature: setting preset mode to %s",
-                    self._config.config_id,
-                    kwargs.get(ATTR_PRESET_MODE),
-                )
-                await self.async_set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
-            if kwargs.get(ATTR_TEMPERATURE) is not None:
-                _LOGGER.info(
-                    "%s setting temperature to %s",
-                    self._config.config_id,
-                    kwargs.get(ATTR_TEMPERATURE),
-                )
-                await self.async_set_target_temperature(
-                    kwargs.get(ATTR_TEMPERATURE),
-                )
-            high = kwargs.get(ATTR_TARGET_TEMP_HIGH)
-            low = kwargs.get(ATTR_TARGET_TEMP_LOW)
-            if high is not None or low is not None:
-                _LOGGER.info(
-                    "%s setting temperature range to %s - %s",
-                    self._config.config_id,
-                    low,
-                    high,
-                )
-                await self.async_set_target_temperature_range(low, high)
+        if kwargs.get(ATTR_PRESET_MODE) is not None:
+            _LOGGER.info(
+                "%s setting temperature: setting preset mode to %s",
+                self._config.config_id,
+                kwargs.get(ATTR_PRESET_MODE),
+            )
+            await self.async_set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
+        if kwargs.get(ATTR_TEMPERATURE) is not None:
+            _LOGGER.info(
+                "%s setting temperature to %s",
+                self._config.config_id,
+                kwargs.get(ATTR_TEMPERATURE),
+            )
+            await self.async_set_target_temperature(
+                kwargs.get(ATTR_TEMPERATURE),
+            )
+        high = kwargs.get(ATTR_TARGET_TEMP_HIGH)
+        low = kwargs.get(ATTR_TARGET_TEMP_LOW)
+        if high is not None or low is not None:
+            _LOGGER.info(
+                "%s setting temperature range to %s - %s",
+                self._config.config_id,
+                low,
+                high,
+            )
+            await self.async_set_target_temperature_range(low, high)
 
     async def async_set_target_temperature(self, target_temperature):
         if self._temperature_dps is None:
