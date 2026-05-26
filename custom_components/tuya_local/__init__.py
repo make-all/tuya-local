@@ -915,9 +915,14 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             """Update the unique id of an entity entry."""
             # Standardistion of entity naming to use translation_key
             replacements = {
-                "fan_purifier": "fan_air_purifier",
                 "fan_fan_with_presets": "fan_air_purifier",
+                "fan_purifier": "fan_air_purifier",
                 "fan": "fan_air_purifier",
+                "light_ambient": "light_ambient_light",
+                "number_snooze_time": "number_snooze_duration",
+                "select_display": "select_display_brightness",
+                "select_snooze_type": "select_snooze_action",
+                "switch_internet_time": "switch_network_time",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
