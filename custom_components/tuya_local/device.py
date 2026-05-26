@@ -415,8 +415,9 @@ class TuyaLocalDevice(object):
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
-                        poll["full_poll"] = full_poll
-                        yield poll
+                        if isinstance(poll, dict):
+                            poll["full_poll"] = full_poll
+                            yield poll
 
             except CancelledError:
                 self._running = False
