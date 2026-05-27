@@ -811,3 +811,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dvismans](https://github.com/dvismans) for contributing support for ET F32 thermostat.
 - [InfObject](https://github.com/InfObject) for contributing support for Feyree Lion EV-Ultra charger.
 - [DEFALTUSER-24](https://github.com/DEFALTUSER-24) for contributing support for Gadnic AC800 robot vacuum.
+- [vemboy200](https://github.com/vemboy200) for contributing improvements to Homemedics C500 dehumidifier.
