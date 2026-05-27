@@ -5,23 +5,22 @@ products:
     model: Heat pump hot water system
 entities:
   - entity: water_heater
-    name: Rinnai heat pump
     dps:
       - id: 2
         type: string
         name: operation_mode
         mapping:
           - dps_val: STANDARD
-            value: Standard
+            value: heat_pump
             default: true
           - dps_val: ECO
-            value: Eco
+            value: eco
           - dps_val: HYBRID
-            value: Hybrid
+            value: performance
           - dps_val: ELECTRIC
-            value: Electric
+            value: electric
           - dps_val: VACATION
-            value: Vacation
+            value: away
       - id: 3
         type: integer
         name: current_temperature
@@ -113,13 +112,13 @@ entities:
         class: measurement
   - entity: binary_sensor
     name: Fan
+    class: running
     category: diagnostic
     dps:
       - id: 108
         type: boolean
         name: sensor
   - entity: sensor
-    name: Mains voltage
     class: voltage
     category: diagnostic
     dps:
@@ -129,7 +128,7 @@ entities:
         unit: V
         class: measurement
   - entity: sensor
-    name: Compressor operation hours
+    name: Compressor runtime
     class: duration
     category: diagnostic
     dps:
@@ -139,7 +138,7 @@ entities:
         unit: h
         class: total_increasing
   - entity: sensor
-    name: Unit on hours
+    name: Unit runtime
     class: duration
     category: diagnostic
     dps:
