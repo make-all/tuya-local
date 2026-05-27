@@ -4,11 +4,11 @@ Setup for different kinds of Tuya text entities
 
 import logging
 
+from homeassistant.const import ATTR_MODE
 from homeassistant.components.text import TextEntity, TextMode
 from homeassistant.components.text.const import (
     ATTR_MAX,
     ATTR_MIN,
-    ATTR_MODE,
     ATTR_PATTERN,
 )
 
