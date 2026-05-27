@@ -20,7 +20,7 @@ entities:
         type: integer
         optional: true
         persist: false
-        name: unlock_dynamic
+        name: unlock_dynamic_pwd
       - id: 15
         type: integer
         optional: true
@@ -42,6 +42,7 @@ entities:
       - id: 61
         type: base64
         optional: true
+        sensitive: true
         name: code_unlock
       - id: 62
         type: integer
@@ -147,28 +148,17 @@ entities:
             value: Chinese (Simplified)
           - dps_val: english
             value: English
-  - entity: select
-    name: Sound mode
-    icon: "mdi:music-note"
-    category: config
-    dps:
-      - id: 83
-        type: string
-        optional: true
-        name: option
-        mapping:
-          - dps_val: ringtone_0
-            value: Ringtone 1
-          - dps_val: ringtone_1
-            value: Ringtone 2
-          - dps_val: ringtone_2
-            value: Ringtone 3
-          - dps_val: ringtone_3
-            value: Ringtone 4
-          - dps_val: ringtone_4
-            value: Ringtone 5
-          - dps_val: ringtone_5
-            value: Ringtone 6
+  # To obtain the 8-digit remote unlock code:
+  # 1. Log in to the Tuya IoT Developer Portal (iot.tuya.com)
+  # 2. Go to Cloud > Development > your project > Devices and select your lock
+  # 3. Open "Device Logs" and set the filter to show all DPS events
+  # 4. Unlock the lock remotely using the Tuya or SmartLife app
+  # 5. Find the DPS 61 (code_unlock) entry that was sent during the unlock
+  # 6. Copy the base64 value and decode it at https://base64decode.org
+  # 7. In the decoded output, skip the first 4 binary bytes — the next 8
+  #    characters are your ASCII numeric code (e.g. "12345678")
+  # 8. Enable this entity in HA and enter the 8-digit code
+  # See also the "Secure locks" section in README.md
   - entity: text
     name: Remote unlock code
     category: config
