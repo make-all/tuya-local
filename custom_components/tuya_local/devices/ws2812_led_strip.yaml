@@ -1,11 +1,11 @@
 name: WS2812-based LED Strip
-products:   
+products:
   - id: bf0fa4b46ce7b80518guh5
     manufacturer: MBG Line
     model: CTree-001
-entities:   
+entities:
   - entity: light
-    dps:      
+    dps:
       - id: 20
         type: boolean
         name: switch
@@ -30,9 +30,9 @@ entities:
         name: brightness
         optional: true
         range:
-          min: 10 
+          min: 10
           max: 1000
-      - id: 23 
+      - id: 23
         type: integer
         name: color_temp
         optional: true
@@ -80,7 +80,7 @@ entities:
     class: enum
     category: config
     icon: "mdi:list-box"
-    dps:      
+    dps:
       - id: 21
         type: string
         name: option
