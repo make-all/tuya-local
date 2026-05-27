@@ -1004,6 +1004,7 @@ of device.
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Gadnic AC800 mopping vacuum cleaner
 - Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE A12, A30 pro, V20, V30 vacuum cleaners

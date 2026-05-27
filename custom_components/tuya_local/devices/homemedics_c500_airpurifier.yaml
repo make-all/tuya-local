@@ -59,7 +59,7 @@ entities:
         type: boolean
         name: lock
   - entity: light
-    translation_key: indicator
+    translation_key: display
     category: config
     dps:
       - id: 8
@@ -108,15 +108,16 @@ entities:
         name: sensor
         mapping:
           - dps_val: great
-            value: excellent
+            value: good
           - dps_val: mild
             value: moderate
           - dps_val: good
-            value: good
-          - dps_val: medium
             value: poor
+          - dps_val: medium
+            value: severe
   - entity: switch
     name: Timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 101
