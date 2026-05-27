@@ -125,7 +125,10 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         """Return current operation ie. eco, electric, performance, ..."""
         if self._operation_mode_dps is None:
             return None
-        return self._operation_mode_dps.get_value(self._device)
+        mode = self._operation_mode_dps.get_value(self._device)
+        if mode == "away":
+            return "eco"
+        return mode
 
     @property
     def operation_list(self):
@@ -133,7 +136,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._operation_mode_dps is None:
             return []
         else:
-            return self._operation_mode_dps.values(self._device)
+            return filter(
+                lambda x: x != "away", self._operation_mode_dps.values(self._device)
+            )
 
     @property
     def is_away_mode_on(self):
@@ -182,32 +187,37 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if kwargs.get(ATTR_TEMPERATURE) is not None:
             if self._temperature_dps is None:
                 raise NotImplementedError()
-            _LOGGER.info(
-                "%s setting temperature to %s",
-                self._config.config_id,
-                kwargs.get(ATTR_TEMPERATURE),
-            )
-            await self._temperature_dps.async_set_value(
-                self._device, kwargs.get(ATTR_TEMPERATURE)
-            )
+            async with self._device.set_lock:
+                _LOGGER.info(
+                    "%s setting temperature to %s",
+                    self._config.config_id,
+                    kwargs.get(ATTR_TEMPERATURE),
+                )
+                await self._temperature_dps.async_set_value(
+                    self._device, kwargs.get(ATTR_TEMPERATURE)
+                )
 
     async def async_set_operation_mode(self, operation_mode):
         """Set new target operation mode."""
         if self._operation_mode_dps is None:
             raise NotImplementedError()
-        _LOGGER.info(
-            "%s setting operation mode to %s", self._config.config_id, operation_mode
-        )
-        await self._operation_mode_dps.async_set_value(
-            self._device,
-            operation_mode,
-        )
+        async with self._device.set_lock:
+            _LOGGER.info(
+                "%s setting operation mode to %s",
+                self._config.config_id,
+                operation_mode,
+            )
+            await self._operation_mode_dps.async_set_value(
+                self._device,
+                operation_mode,
+            )
 
     async def async_turn_away_mode_on(self):
         """Turn away mode on"""
         if self._away_mode_dps:
-            _LOGGER.info("%s turning away mode on", self._config.config_id)
-            await self._away_mode_dps.async_set_value(self._device, True)
+            async with self._device.set_lock:
+                _LOGGER.info("%s turning away mode on", self._config.config_id)
+                await self._away_mode_dps.async_set_value(self._device, True)
         elif self._operation_mode_dps and (
             "away" in self._operation_mode_dps.values(self._device)
         ):
@@ -222,8 +232,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     async def async_turn_away_mode_off(self):
         """Turn away mode off"""
         if self._away_mode_dps:
-            _LOGGER.info("%s turning away mode off", self._config.config_id)
-            await self._away_mode_dps.async_set_value(self._device, False)
+            async with self._device.set_lock:
+                _LOGGER.info("%s turning away mode off", self._config.config_id)
+                await self._away_mode_dps.async_set_value(self._device, False)
         elif self._operation_mode_dps and (
             "away" in self._operation_mode_dps.values(self._device)
         ):
@@ -263,11 +274,12 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         boolean dp.
         """
         if self._operation_mode_dps and self._operation_mode_dps.type is bool:
-            _LOGGER.info("%s turning on", self._config.config_id)
-            await self._device.async_set_property(
-                self._operation_mode_dps.id,
-                True,
-            )
+            async with self._device.set_lock:
+                _LOGGER.info("%s turning on", self._config.config_id)
+                await self._device.async_set_property(
+                    self._operation_mode_dps.id,
+                    True,
+                )
 
     async def async_turn_off(self):
         """
@@ -275,8 +287,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         boolean dp.
         """
         if self._operation_mode_dps and self._operation_mode_dps.type is bool:
-            _LOGGER.info("%s turning off", self._config.config_id)
-            await self._device.async_set_property(
-                self._operation_mode_dps.id,
-                False,
-            )
+            async with self._device.set_lock:
+                _LOGGER.info("%s turning off", self._config.config_id)
+                await self._device.async_set_property(
+                    self._operation_mode_dps.id,
+                    False,
+                )

@@ -1,0 +1,22 @@
+send_learned_ir_command:
+  target:
+    entity:
+      domain: remote
+      integration: tuya_local
+  fields:
+    command:
+      required: true
+      example: "Play"
+      selector:
+        object:
+    device:
+      example: "TV"
+      selector:
+        text:
+    emitter_entity_id:
+      example: "infrared.my_ir_emitter"
+      required: true
+      selector:
+        entity:
+          filter:
+            domain: infrared

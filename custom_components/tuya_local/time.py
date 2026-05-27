@@ -99,6 +99,10 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
 
     async def async_set_value(self, value: time):
         """Set the number."""
+        async with self._device.set_lock:
+            return await self._async_set_value_locked(value)
+
+    async def _async_set_value_locked(self, value: time):
         settings = {}
         hours = value.hour
         minutes = value.minute

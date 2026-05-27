@@ -27,19 +27,12 @@ from homeassistant.components.remote import (
     RemoteEntity,
     RemoteEntityFeature,
 )
-from homeassistant.components.remote import (
-    DOMAIN as RM_DOMAIN,
-)
+from homeassistant.components.remote import DOMAIN as RM_DOMAIN
 from homeassistant.const import ATTR_COMMAND
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.storage import Store
 from homeassistant.util import dt as dt_util
 
-# from tinytuya.Contrib.IRRemoteControlDevice import (
-#     base64_to_pulses,
-#     pulses_to_pronto,
-#     pulses_to_width_encoded,
-# )
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
@@ -257,7 +250,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         kwargs = SERVICE_SEND_SCHEMA(kwargs)
         subdevice = kwargs.get(ATTR_DEVICE)
         repeat = kwargs.get(ATTR_NUM_REPEATS)
-        delay = kwargs.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS) * 1000
+        delay = kwargs.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS)
         service = f"{RM_DOMAIN}.{SERVICE_SEND_COMMAND}"
         if not self._storage_loaded:
             await self._async_load_storage()
@@ -271,24 +264,28 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         at_least_one_sent = False
         for _, codes in product(range(repeat), code_list):
             if at_least_one_sent:
-                await asyncio.sleep(delay / 1000)  # delay is in ms
+                await asyncio.sleep(delay)
 
             if len(codes) > 1:
                 code = codes[self._flags[subdevice]]
             else:
                 code = codes[0]
 
-            if code.startswith("rf:"):
-                dps_to_set = self._encode_send_code(code[3:], delay, is_rf=True)
-            else:
-                dps_to_set = self._encode_send_code(code, delay)
-            _LOGGER.info(
-                "%s sending command %s to %s",
-                self._config.config_id,
-                code,
-                subdevice or "default device",
-            )
-            await self._device.async_set_properties(dps_to_set)
+            async with self._device.set_lock:
+                # Tuya delay is in milliseconds
+                if code.startswith("rf:"):
+                    dps_to_set = self._encode_send_code(
+                        code[3:], delay * 1000, is_rf=True
+                    )
+                else:
+                    dps_to_set = self._encode_send_code(code, delay * 1000)
+                    _LOGGER.info(
+                        "%s sending command %s to %s",
+                        self._config.config_id,
+                        code,
+                        subdevice or "default device",
+                    )
+                    await self._device.async_set_properties(dps_to_set)
 
             if len(codes) > 1:
                 self._flags[subdevice] ^= 1
@@ -314,9 +311,6 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             for command in commands:
                 code = await self._async_learn_command(command, is_rf=is_rf)
                 _LOGGER.info("Learning %s for %s: %s", command, subdevice, code)
-                # pulses = base64_to_pulses(code)
-                # _LOGGER.debug("= pronto code: %s", pulses_to_pronto(pulses))
-                # _LOGGER.debug("= width encoded: %s", pulses_to_width_encoded(pulses))
                 if toggle:
                     code = [code, await self._async_learn_command(command, is_rf=is_rf)]
                 self._codes.setdefault(subdevice, {}).update({command: code})
@@ -345,30 +339,31 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                     "ver": "2",
                 }
             )
-        if self._control_dp:
-            _LOGGER.debug(
-                "%s starting learning %s using multi dps method",
-                self._config.config_id,
-                command,
-            )
-            await self._control_dp.async_set_value(self._device, CMD_LEARN)
-        elif is_rf:
-            _LOGGER.debug(
-                "%s starting learning %s using RF",
-                self._config.config_id,
-                command,
-            )
-            await self._send_dp.async_set_value(self._device, cmd_start)
-        else:
-            _LOGGER.debug(
-                "%s starting learning %s using IR",
-                self._config.config_id,
-                command,
-            )
-            await self._send_dp.async_set_value(
-                self._device,
-                json.dumps({"control": CMD_LEARN}),
-            )
+        async with self._device.set_lock:
+            if self._control_dp:
+                _LOGGER.debug(
+                    "%s starting learning %s using multi dps method",
+                    self._config.config_id,
+                    command,
+                )
+                await self._control_dp.async_set_value(self._device, CMD_LEARN)
+            elif is_rf:
+                _LOGGER.debug(
+                    "%s starting learning %s using RF",
+                    self._config.config_id,
+                    command,
+                )
+                await self._send_dp.async_set_value(self._device, cmd_start)
+            else:
+                _LOGGER.debug(
+                    "%s starting learning %s using IR",
+                    self._config.config_id,
+                    command,
+                )
+                await self._send_dp.async_set_value(
+                    self._device,
+                    json.dumps({"control": CMD_LEARN}),
+                )
 
         persistent_notification.async_create(
             self._device._hass,
@@ -400,18 +395,19 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                 self._device._hass, notification_id="learn_command"
             )
             _LOGGER.debug("%s ending learning mode", self._config.config_id)
-            if self._control_dp:
-                await self._control_dp.async_set_value(
-                    self._device,
-                    CMD_ENDLEARN,
-                )
-            elif is_rf:
-                await self._send_dp.async_set_value(self._device, cmd_end)
-            else:
-                await self._send_dp.async_set_value(
-                    self._device,
-                    json.dumps({"control": CMD_ENDLEARN}),
-                )
+            async with self._device.set_lock:
+                if self._control_dp:
+                    await self._control_dp.async_set_value(
+                        self._device,
+                        CMD_ENDLEARN,
+                    )
+                elif is_rf:
+                    await self._send_dp.async_set_value(self._device, cmd_end)
+                else:
+                    await self._send_dp.async_set_value(
+                        self._device,
+                        json.dumps({"control": CMD_ENDLEARN}),
+                    )
 
     async def async_delete_command(self, **kwargs: Any) -> None:
         """Delete a list of commands from a remote."""

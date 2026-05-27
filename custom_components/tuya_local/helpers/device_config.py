@@ -631,11 +631,25 @@ class TuyaDpsConfig:
             )
             return None
         for m in self._config["mapping"]:
-            if m.get("default", False):
+            if m.get("default", False) and not m.get("hidden", False):
                 return m.get("value", m.get("dps_val", None))
+            elif m.get("default", False):
+                _LOGGER.error(
+                    "%s: Default value for %s.%s is hidden",
+                    self._entity._device.config,
+                    self._entity.config_id,
+                    self.id,
+                )
             for c in m.get("conditions", {}):
-                if c.get("default", False):
+                if c.get("default", False) and not c.get("hidden", False):
                     return c.get("value", m.get("value", m.get("dps_val", None)))
+                elif c.get("default", False):
+                    _LOGGER.error(
+                        "%s: Default value for %s.%s is hidden",
+                        self._entity._device.config,
+                        self._entity.config_id,
+                        self.id,
+                    )
 
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
@@ -1109,7 +1123,7 @@ class TuyaDpsConfig:
 
             if decoded_value is None:
                 raise ValueError("Cannot mask unknown current value")
-            elif isinstance(decoded_value, int):
+            if isinstance(decoded_value, int):
                 current_value = decoded_value
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
                 # Only convert back to bytes if the DP is actually hex/base64

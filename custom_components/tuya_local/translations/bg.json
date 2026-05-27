@@ -106,6 +106,26 @@
             "not_supported": "Съжаляваме, няма поддръжка за това устройство, все още"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Изпратете научена ИК команда",
+            "description": "Изпраща ИК команда, която е научена от устройството.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "ИК излъчвател",
+                    "description": "ИК излъчвател, който ще изпрати командата. Ако не е посочено, ще се използва същият ИК излъчвател като за обучението на командата."
+                },
+                "command": {
+                    "name": "Команда",
+                    "description": "Команда, която да изпратите. Това трябва да е команда, която преди това е била научена от интеграцията за това дистанционно управление."
+                },
+                "device": {
+                    "name": "Устройство",
+                    "description": "Устройство, към което да изпратите командата. Това е незадължително и е необходимо само ако командата е запазена с устройство."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Филтър за ресетиране"
+            },
+            "alarm_off": {
+                "name": "Аларма изключване"
+            },
+            "alarm_snooze": {
+                "name": "Аларма отлагане"
+            },
+            "alarm_x_reset": {
+                "name": "Аларма {x} нулиране"
+            },
+            "radio_seek": {
+                "name": "Радио търсене"
+            },
+            "radio_stop": {
+                "name": "Радио стоп"
             }
         },
         "climate": {
@@ -390,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Пречиствател на въздуха",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Автоматично",
+                            "manual": "Ръководство",
+                            "sleep": "Сън",
+                            "low": "Ниско",
+                            "medium": "Средно",
+                            "high": "Високо",
+                            "strong": "Силен",
+                            "displayoff": "Дисплеят е изключен"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Ароматизатор",
                 "state_attributes": {
@@ -493,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Светлина на абсорбатора"
+            },
+            "color_light": {
+                "name": "Цветна светлина"
+            },
+            "ambient_light": {
+                "name": "Околна светлина"
             }
         },
         "lock": {
@@ -533,6 +591,18 @@
             },
             "leakage_current": {
                 "name": "Ток на утечка"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Аларма {x} продължителност на отлагане"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Аларма {x} предварително време на светлина"
+            },
+            "radio_frequency": {
+                "name": "Радио честота"
+            },
+            "snooze_duration": {
+                "name": "Продължителност на отлагане"
             }
         },
         "select": {
@@ -986,6 +1056,71 @@
                     "red_bean_bread": "Хляб с червено боб",
                     "milk_toast": "Млечен тост"
                 }
+            },
+            "display_brightness": {
+                "name": "Яркост на дисплея",
+                "state": {
+                    "off": "Изключено",
+                    "day": "Ден",
+                    "night": "Нощ",
+                    "dim": "Приглушено",
+                    "bright": "Ярко",
+                    "auto": "Автоматично"
+                }
+            },
+            "seconds_dot": {
+                "name": "Точка за секунди",
+                "state": {
+                    "static": "Статично",
+                    "blinking": "Мигащо"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Аларма {x} режим на отлагане",
+                "state": {
+                    "mute": "Заглушен звук",
+                    "mute_light": "Заглушен звук + светлина",
+                    "light_only": "Само заглушена светлина"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Аларма {x} звуков ефект",
+                "state": {
+                    "normal": "Нормално",
+                    "fade_in": "Плавно усилване",
+                    "fade_out": "Плавно затихване"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Аларма {x} режим будилна светлина",
+                "state": {
+                    "no_light": "Без светлина",
+                    "rainbow": "Дъга",
+                    "candle_flicker": "Трептене на свещ",
+                    "romantic_breath": "Романтично дишане",
+                    "quiet_deep_sea": "Тихо дълбоко море",
+                    "flowing_colors": "Течащи цветове",
+                    "magic_jungle": "Вълшебна джунгла",
+                    "perfect_party": "Перфектно парти",
+                    "sunrise_at_sea": "Изгрев на морето",
+                    "dynamic_music": "Динамична музика"
+                }
+            },
+            "snooze_action": {
+                "name": "Действие при отлагане",
+                "state": {
+                    "sound_radio": "Звук + радио",
+                    "light": "Светлина",
+                    "radio": "Радио",
+                    "radio_sound_light": "Радио + звук + светлина"
+                }
+            },
+            "time_format": {
+                "name": "Формат на времето",
+                "state": {
+                    "12_hour": "12 часа",
+                    "24_hour": "24 часа"
+                }
             }
         },
         "sensor": {
@@ -1166,6 +1301,24 @@
             },
             "leakage_current": {
                 "name": "Ток на утечка"
+            },
+            "active_lights": {
+                "name": "Активни светлини",
+                "state": {
+                    "all_off": "Всички изключени",
+                    "night_on": "Нощна светлина включена",
+                    "color_on": "Цветна светлина включена",
+                    "ambient_on": "Околна светлина включена"
+                }
+            },
+            "wireless_charging": {
+                "name": "Статус на безжично зареждане",
+                "state": {
+                    "idle": "Свободен",
+                    "charging": "Зарежда се",
+                    "full": "Пълен",
+                    "foreign_object_detected": "Открит чужд предмет"
+                }
             }
         },
         "switch": {
@@ -1229,6 +1382,48 @@
             },
             "rangehood": {
                 "name": "Абсорбатор"
+            },
+            "alarm_x": {
+                "name": "Аларма {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Аларма {x} отлагане активирано"
+            },
+            "alarm_x_day_monday": {
+                "name": "Аларма {x} ден 1-понеделник"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Аларма {x} ден 2-вторник"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Аларма {x} ден 3-сряда"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Аларма {x} ден 4-четвъртък"
+            },
+            "alarm_x_day_friday": {
+                "name": "Аларма {x} ден 5-петък"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Аларма {x} ден 6-събота"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Аларма {x} ден 7-неделя"
+            },
+            "music_playback": {
+                "name": "Възпроизвеждане на музика"
+            },
+            "network_time": {
+                "name": "Синхронизация на мрежовото време"
+            },
+            "night_mode": {
+                "name": "Нощен режим"
+            },
+            "radio": {
+                "name": "Радио"
+            },
+            "snooze": {
+                "name": "Отлагане"
             }
         },
         "text": {
@@ -1240,6 +1435,15 @@
             },
             "schedule": {
                 "name": "График"
+            },
+            "alarm_settings": {
+                "name": "Аларма настройки"
+            },
+            "sleep_settings": {
+                "name": "Настройки за сън"
+            },
+            "station_list": {
+                "name": "Списък със станции"
             }
         },
         "time": {
@@ -1254,6 +1458,12 @@
             },
             "timer_x": {
                 "name": "Таймер {x}"
+            },
+            "alarm_x_time": {
+                "name": "Аларма {x} час"
+            },
+            "clock_time": {
+                "name": "Време на часовника"
             }
         },
         "valve": {
@@ -1270,6 +1480,26 @@
             },
             "hot_water": {
                 "name": "Гореща вода"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Аларма {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Няма",
+                            "birds": "Птици",
+                            "sea": "Море",
+                            "valley": "Долина",
+                            "piano": "Piano",
+                            "soft": "Тихо",
+                            "phone": "Телефон",
+                            "beep": "Бийп",
+                            "radio": "Радио"
+                        }
+                    }
+                }
             }
         }
     }
