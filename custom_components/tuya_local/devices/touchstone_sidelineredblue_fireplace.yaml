@@ -48,15 +48,19 @@ entities:
             conditions:
               - dps_val: false
                 value: heat
+                hidden: true
               - dps_val: true
                 value: fan_only
+                hidden: true
           - dps_val: "2"
             constraint: heat_disable
             conditions:
               - dps_val: false
                 value: heat
+                hidden: true
               - dps_val: true
                 value: fan_only
+                hidden: true
           - dps_val: "3"
             constraint: heat_disable
             conditions:
@@ -72,10 +76,8 @@ entities:
             value: none
           - dps_val: "1"
             value: low
-            hidden: true
           - dps_val: "2"
             value: high
-            hidden: true
           - dps_val: "3"
             value: auto
       - id: 13
