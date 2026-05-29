@@ -353,6 +353,8 @@
                         }
                     }
                 }
+            "spray_level": {
+                "default": "mdi:fan"
             }
         },
         "event": {
@@ -367,7 +369,8 @@
                         "state": {
                             "laundry": "mdi:tshirt-crew",
                             "purify": "mdi:air-filter",
-                            "continuous": "mdi:fan"
+                            "manual": "mdi:fan",
+                            "normal": "mdi:water-percent"
                         }
                     }
                 }
@@ -411,7 +414,10 @@
                 "default": "mdi:lightbulb"
             },
             "ambient_light": {
-                "default": "mdi:lamps"
+                "default": "mdi:led-on",
+                "state": {
+                    "off": "mdi:led-off"
+                }
             }
         },
         "lock": {
@@ -1040,6 +1046,11 @@
             },
             "snooze": {
                 "default": "mdi:alarm-snooze"
+            "warm_mist": {
+                "default": "mdi:heat-wave"
+            },
+            "plasma": {
+                "default": "mdi:creation"
             }
         },
         "text": {
