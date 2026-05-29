@@ -1,8 +1,8 @@
 name: Air conditioner
 products:
-  - id: bfc0e42617f4fdfef7t6ra
-    manufacturer: Woods
-    model: Cortina Silent 12k
+  # - id: UNKNOWN
+  #   manufacturer: Woods
+  #   model: Cortina Silent 12k
 entities:
   - entity: climate
     dps:
@@ -17,12 +17,16 @@ entities:
             conditions:
               - value: cool
                 dps_val: "0"
+              - dps_val: "1"
+                value: heat_cool
+                available: airswitch
               - value: dry
                 dps_val: "2"
               - value: fan_only
                 dps_val: "3"
               - value: heat_cool
                 dps_val: "4"  # This is Woods ECO mode
+                available: eco
       - id: 2
         type: integer
         name: temperature

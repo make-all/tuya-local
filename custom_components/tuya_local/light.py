@@ -285,10 +285,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return best_match
 
     async def async_turn_on(self, **params):
-        async with self._device.set_lock:
-            await self._async_turn_on_locked(**params)
-
-    async def _async_turn_on_locked(self, **params):
         settings = {}
         color_mode = None
         _LOGGER.debug("Light turn_on: %s", params)
@@ -568,8 +564,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
-        async with self._device.set_lock:
-            await self._async_turn_off_locked()
+        await self._async_turn_off_locked()
 
     async def _async_turn_off_locked(self):
         if self._switch_dps and not self._switch_dps.readonly:
