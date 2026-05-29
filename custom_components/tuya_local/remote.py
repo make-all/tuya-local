@@ -276,13 +276,13 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                 dps_to_set = self._encode_send_code(code[3:], delay * 1000, is_rf=True)
             else:
                 dps_to_set = self._encode_send_code(code, delay * 1000)
-                _LOGGER.info(
-                    "%s sending command %s to %s",
-                    self._config.config_id,
-                    code,
-                    subdevice or "default device",
-                )
-                await self._device.async_set_properties(dps_to_set)
+            _LOGGER.info(
+                "%s sending command %s to %s",
+                self._config.config_id,
+                code,
+                subdevice or "default device",
+            )
+            await self._device.async_set_properties(dps_to_set)
 
             if len(codes) > 1:
                 self._flags[subdevice] ^= 1
