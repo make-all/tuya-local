@@ -1147,6 +1147,7 @@ port and password.
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
 - Imipaw DUW21 WBR3D cat feeder
