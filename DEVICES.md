@@ -747,7 +747,7 @@ the best option.
 - Brilliant 1/2/3/4 gang wall switches with power monitoring
 - Brilliant quad powerstrip with USB
 - CBI Astute smart controller
-- CE Smart Home LQ-2-W3 AC wall outlet
+- CE Smart Home LQ-2-W3 AC wall outlet, Litesun smart plug
 - Denver SHP-200mk2 dual smartplug with power monitoring
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
