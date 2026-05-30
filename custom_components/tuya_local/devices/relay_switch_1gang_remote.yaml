@@ -1,0 +1,48 @@
+name: Relay switch
+products:
+  - id: vv0g9jsdtspogawu
+    model: "WiFi+BLE 1 Gang"
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 49
+        name: add_remote
+        type: string
+        optional: true
+      - id: 50
+        name: list_remote
+        type: string
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+      - id: 42
+        type: string
+        name: random_time
+      - id: 43
+        type: string
+        name: cycle_time
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
