@@ -815,3 +815,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ernbale](https://github.com/ernbale) for contributing improvements to Solar Inverter GTB Series.
 - [Zuz666](https://github.com/Zuz666) for contributing improvements to icons.
 - [itsiv](https://github.com/itsiv) for contributing support for Foxgard fingerprint lock, which was merged with Primebras Athenas lock.
+- [PoppyPop](https://github.com/PoppyPop) for contributing support for Fanelite Manihi ceiling fan, merged with Hunter Pacific 6 speed fan light.
