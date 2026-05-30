@@ -304,6 +304,7 @@
 - Plikc Neve X W/RFW and Neve Pro W thermostats
 - PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
+- ProWarm Touch Button S series underfloor heating controller
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Sajun steam room
