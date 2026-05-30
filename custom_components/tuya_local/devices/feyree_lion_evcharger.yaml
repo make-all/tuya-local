@@ -1,0 +1,246 @@
+name: EV charger
+products:
+  - id: pcaduzywoal3zaib
+    manufacturer: Feyree
+    model: Lion EV-Ultra
+
+entities:
+  - entity: switch
+    name: Charging control
+    icon: "mdi:ev-station"
+    dps:
+      - id: 124
+        name: switch
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "OpenCharging"
+            value: true
+          - dps_val: "CloseCharging"
+            value: false
+
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 18
+        name: switch
+        type: boolean
+        optional: true
+
+  - entity: number
+    class: current
+    category: config
+    dps:
+      - id: 114
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 8
+          max: 16
+        unit: A
+
+  - entity: number
+    name: Delayed start
+    icon: "mdi:timer-sand"
+    category: config
+    dps:
+      - id: 118
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 24
+        unit: h
+
+  - entity: number
+    name: Maximum charging duration
+    icon: "mdi:timer-stop"
+    category: config
+    dps:
+      - id: 119
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 24
+        unit: h
+
+  - entity: sensor
+    name: Mains voltage
+    class: voltage
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+
+  - entity: sensor
+    name: Current phase 1
+    class: current
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        optional: true
+        unit: A
+        class: measurement
+
+  - entity: sensor
+    name: Current phase 2
+    class: current
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        optional: true
+        unit: A
+        class: measurement
+
+  - entity: sensor
+    name: Current phase 3
+    class: current
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        optional: true
+        unit: A
+        class: measurement
+
+  - entity: sensor
+    name: Active power
+    class: power
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        optional: true
+        unit: W
+        class: measurement
+
+  - entity: sensor
+    name: Charging session energy
+    class: energy_storage
+    icon: "mdi:battery-charging-100"
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        optional: true
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Socket temperature
+    class: temperature
+    icon: "mdi:thermometer-water"
+    category: diagnostic
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        optional: true
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:power-plug"
+    dps:
+      - id: 101
+        name: sensor
+        type: string
+      - id: 126
+        name: software_version
+        type: string
+        optional: true
+      - id: 125
+        name: hardware_version
+        type: string
+        optional: true
+      - id: 23
+        name: system_version
+        type: string
+        optional: true
+
+  - entity: sensor
+    name: Current charging time
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 122
+        name: sensor
+        type: string
+        optional: true
+
+  - entity: sensor
+    name: Maximum allowed power
+    category: diagnostic
+    icon: "mdi:shield-flash"
+    dps:
+      - id: 113
+        name: sensor
+        type: string
+        optional: true
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Phase type
+    icon: "mdi:sine-wave"
+    category: diagnostic
+    dps:
+      - id: 14
+        name: sensor
+        type: string
+        optional: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        name: fault_code
+        type: integer
+        optional: true

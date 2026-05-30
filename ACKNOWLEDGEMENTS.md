@@ -804,3 +804,13 @@ Further device support has been made with the assistance of users. Please consid
 - [DomJoke](https://github.com/DomJoke) for contributing support for Hiniso dehumidifier.
 - [c3p0vsr2d2](https://github.com/c3p0vsr2d2) for contributing support for KMC 4-outlet wall tap with energy monitoring.
 - [mcguires5](https://github.com/mcguires5) for contributing support for the red-blue variant of Touchstone Sideline fireplace.
+- [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.
+- [kdog31](https://github.com/kdog31) for contributing support for Arlec PFC002HA Series 2 pet feeder..
+- [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
+- [maxios777](https://github.com/maxios777) for contributing support for WetAir WAD-A10L dehumidifier.
+- [dvismans](https://github.com/dvismans) for contributing support for ET F32 thermostat.
+- [InfObject](https://github.com/InfObject) for contributing support for Feyree Lion EV-Ultra charger.
+- [DEFALTUSER-24](https://github.com/DEFALTUSER-24) for contributing support for Gadnic AC800 robot vacuum.
+- [vemboy200](https://github.com/vemboy200) for contributing improvements to Homemedics C500 dehumidifier.
+- [ernbale](https://github.com/ernbale) for contributing improvements to Solar Inverter GTB Series.
+- [Zuz666](https://github.com/Zuz666) for contributing improvements to icons.

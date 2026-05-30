@@ -79,12 +79,11 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
             )
 
     async def _alarm_send_command(self, cmd: str):
-        async with self._device.set_lock:
-            _LOGGER.info("%s setting alarm state to %s", self._config.config_id, cmd)
-            if cmd in self._alarm_state_dp.values(self._device):
-                await self._alarm_state_dp.async_set_value(self._device, cmd)
-            else:
-                raise NotImplementedError()
+        _LOGGER.info("%s setting alarm state to %s", self._config.config_id, cmd)
+        if cmd in self._alarm_state_dp.values(self._device):
+            await self._alarm_state_dp.async_set_value(self._device, cmd)
+        else:
+            raise NotImplementedError()
 
     async def async_alarm_disarm(self, code=None):
         """Send disarm command"""
@@ -110,8 +109,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
 
     async def async_alarm_trigger(self, code=None):
         if self._trigger_dp:
-            async with self._device.set_lock:
-                _LOGGER.info("%s triggering alarm", self._config.config_id)
-                await self._trigger_dp.async_set_value(self._device, True)
+            _LOGGER.info("%s triggering alarm", self._config.config_id)
+            await self._trigger_dp.async_set_value(self._device, True)
         else:
             await self._alarm_send_command(AlarmControlPanelState.TRIGGERED)

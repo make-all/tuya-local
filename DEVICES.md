@@ -4,6 +4,7 @@
 
 - Advanced Fires 1500 electric fireplace
 - Amantii Bespoke R1-2-AP1 fireplace
+- AMOS CY-B06ERW oil radiator
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
@@ -28,6 +29,7 @@
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
+- ElectriQ MY130 oil radiator
 - Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
@@ -56,6 +58,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
+- Konyks eCosy Pilot wire heating controller
 - Lebenlang LBL0380 heater
 - Lehmann LHOHC-2013C electric radiator
 - Livn Arosa electric fireplace
@@ -264,6 +267,7 @@
 - Emmeti Zona thermostat
 - Engo E901WiFi and EFAN230 thermostats
 - Essentials Wall thermostat
+- ET F32 thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
@@ -399,6 +403,7 @@
 - Mantra ceiling fan with light
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- NHZS fan speed switch
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
@@ -530,6 +535,7 @@
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
+- WetAir WAD-A10L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
@@ -998,6 +1004,7 @@ of device.
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Gadnic AC800 mopping vacuum cleaner
 - Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE A12, A30 pro, V20, V30 vacuum cleaners
@@ -1120,7 +1127,7 @@ port and password.
 
 - Advwin 6L camera pet feeder
 - AF3W pet feeder
-- Arlec Grid Connect 5L pet feeder
+- Arlec Grid Connect 5L and PFC002HA Series 2 pet feeders
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
@@ -1410,6 +1417,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Meian SW02 water leak detector
+- mmWave 4-in-1 human presence, temperature, humidity and illuminance sensor
 - Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb

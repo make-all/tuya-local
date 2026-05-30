@@ -120,17 +120,16 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
 
     async def async_set_native_value(self, value):
         """Set the number."""
-        async with self._device.set_lock:
-            _LOGGER.info("%s setting value to %s", self._config.config_id, value)
-            settings = {}
-            if self._decimal_dps is not None:
-                whole = int(value)
-                decimal = value - whole
-                settings = self._decimal_dps.get_values_to_set(self._device, decimal)
-                value = whole
+        _LOGGER.info("%s setting value to %s", self._config.config_id, value)
+        settings = {}
+        if self._decimal_dps is not None:
+            whole = int(value)
+            decimal = value - whole
+            settings = self._decimal_dps.get_values_to_set(self._device, decimal)
+            value = whole
 
-            settings = settings | self._value_dps.get_values_to_set(
-                self._device, value, settings
-            )
+        settings = settings | self._value_dps.get_values_to_set(
+            self._device, value, settings
+        )
 
-            await self._device.async_set_properties(settings)
+        await self._device.async_set_properties(settings)

@@ -182,59 +182,53 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         """Lock the lock."""
         if self._lock_dp and not self._lock_dp.readonly:
             _LOGGER.info("%s locking", self._config.config_id)
-            async with self._device.set_lock:
-                await self._lock_dp.async_set_value(self._device, True)
+            await self._lock_dp.async_set_value(self._device, True)
         elif self._code_unlock_dp:
             code = kwargs.get("code")
             if not code:
                 raise ValueError("Code required to lock")
-            async with self._device.set_lock:
-                msg = self.build_code_unlock_msg(
-                    CODE_LOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
-                )
-                _LOGGER.info("%s locking with code", self._config.config_id)
-                await self._code_unlock_dp.async_set_value(self._device, msg)
+            msg = self.build_code_unlock_msg(
+                CODE_LOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
+            )
+            _LOGGER.info("%s locking with code", self._config.config_id)
+            await self._code_unlock_dp.async_set_value(self._device, msg)
         else:
             raise NotImplementedError()
 
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
-        async with self._device.set_lock:
-            if self._code_unlock_dp:
-                code = kwargs.get("code")
-                if not code:
-                    raise ValueError("Code required to unlock")
-                msg = self.build_code_unlock_msg(
-                    CODE_UNLOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
-                )
-                _LOGGER.info("%s unlocking with code", self._config.config_id)
-                await self._code_unlock_dp.async_set_value(self._device, msg)
-            elif self._lock_dp and not self._lock_dp.readonly:
-                _LOGGER.info("%s unlocking", self._config.config_id)
-                await self._lock_dp.async_set_value(self._device, False)
-            elif self._approve_unlock_dp:
-                if self._req_unlock_dp and not self._req_unlock_dp.get_value(
-                    self._device
-                ):
-                    raise TimeoutError()
-                _LOGGER.info("%s approving unlock", self._config.config_id)
-                await self._approve_unlock_dp.async_set_value(self._device, True)
-            elif self._approve_intercom_dp:
-                if self._req_intercom_dp and not self._req_intercom_dp.get_value(
-                    self._device
-                ):
-                    raise TimeoutError()
-                _LOGGER.info("%s approving intercom unlock", self._config.config_id)
-                await self._approve_intercom_dp.async_set_value(self._device, True)
-            else:
-                raise NotImplementedError()
+        if self._code_unlock_dp:
+            code = kwargs.get("code")
+            if not code:
+                raise ValueError("Code required to unlock")
+            msg = self.build_code_unlock_msg(
+                CODE_UNLOCK, member_id=1, code=code, source=CODE_SRC_UNKNOWN
+            )
+            _LOGGER.info("%s unlocking with code", self._config.config_id)
+            await self._code_unlock_dp.async_set_value(self._device, msg)
+        elif self._lock_dp and not self._lock_dp.readonly:
+            _LOGGER.info("%s unlocking", self._config.config_id)
+            await self._lock_dp.async_set_value(self._device, False)
+        elif self._approve_unlock_dp:
+            if self._req_unlock_dp and not self._req_unlock_dp.get_value(self._device):
+                raise TimeoutError()
+            _LOGGER.info("%s approving unlock", self._config.config_id)
+            await self._approve_unlock_dp.async_set_value(self._device, True)
+        elif self._approve_intercom_dp:
+            if self._req_intercom_dp and not self._req_intercom_dp.get_value(
+                self._device
+            ):
+                raise TimeoutError()
+            _LOGGER.info("%s approving intercom unlock", self._config.config_id)
+            await self._approve_intercom_dp.async_set_value(self._device, True)
+        else:
+            raise NotImplementedError()
 
     async def async_open(self, **kwargs):
         """Open the door latch."""
         if self._open_dp:
-            async with self._device.set_lock:
-                _LOGGER.info("%s opening", self._config.config_id)
-                await self._open_dp.async_set_value(self._device, True)
+            _LOGGER.info("%s opening", self._config.config_id)
+            await self._open_dp.async_set_value(self._device, True)
 
     def build_code_unlock_msg(self, action, member_id, code, source=CODE_SRC_UNKNOWN):
         """Generate the unlock code message."""
