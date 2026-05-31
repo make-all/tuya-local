@@ -117,7 +117,7 @@
 - Daizuki heat pump
 - Della air conditioner
 - De'Longhi Pinguino portable air conditioner
-- Duux Blizzard portable air conditioner
+- Duux Blizzard and North portable air conditioners
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
 - EG4 solar heat pump
