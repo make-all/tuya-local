@@ -37,13 +37,13 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     )
 
 
-def _clamped_brightness_to_dp_value(brightness, brightness_range):
-    """Convert HA brightness to device range and keep the device minimum reachable."""
-    if brightness == 1 and brightness_range[0] != 0:
-        return brightness_range[0]
+def _ha_brightness_to_dp_value(ha_brightness, dp_range):
+    """Convert HA brightness to a clamped device DP value."""
+    if ha_brightness == 1 and dp_range[0] != 0:
+        return dp_range[0]
 
-    value = color_util.brightness_to_value(brightness_range, brightness)
-    return max(brightness_range[0], value)
+    dp_value = color_util.brightness_to_value(dp_range, ha_brightness)
+    return max(dp_range[0], dp_value)
 
 
 class TuyaLocalLight(TuyaLocalEntity, LightEntity):
@@ -304,7 +304,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 bright = params.get(ATTR_WHITE)
                 r = self._brightness_dps.range(self._device)
                 if r:
-                    bright = _clamped_brightness_to_dp_value(bright, r)
+                    bright = _ha_brightness_to_dp_value(bright, r)
 
                 _LOGGER.info(
                     "%s setting white brightness to %d", self._config.config_id, bright
@@ -477,7 +477,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
             r = self._brightness_dps.range(self._device)
             if r:
-                bright = _clamped_brightness_to_dp_value(bright, r)
+                bright = _ha_brightness_to_dp_value(bright, r)
             _LOGGER.info("%s setting brightness to %d", self._config.config_id, bright)
             settings = {
                 **settings,
