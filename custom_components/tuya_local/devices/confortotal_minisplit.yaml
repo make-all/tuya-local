@@ -7,6 +7,9 @@ products:
   - id: keyxkdt8t38pvrkk
     manufacturer: Daewoo
     model: DA-12XMSAC23
+  - id: lhp2i044bxzxmg09
+    manufacturer: Aiwa
+    model: AWHACC
 entities:
   - entity: climate
     dps:
@@ -21,6 +24,7 @@ entities:
             conditions:
               - dps_val: auto
                 value: heat_cool
+                available: heat_supported
               - dps_val: cold
                 value: cool
               - dps_val: wind
@@ -29,6 +33,7 @@ entities:
                 value: dry
               - dps_val: hot
                 value: heat
+                available: heat_supported
       - id: 2
         type: integer
         name: temperature
@@ -168,14 +173,19 @@ entities:
             value: "on"
           - dps_val: vane_1
             value: Position 1
+            available: vswing_position_supported
           - dps_val: vane_2
             value: Position 2
+            available: vswing_position_supported
           - dps_val: vane_3
             value: Position 3
+            available: vswing_position_supported
           - dps_val: vane_4
             value: Position 4
+            available: vswing_position_supported
           - dps_val: vane_5
             value: Position 5
+            available: vswing_position_supported
       - id: 33
         type: boolean
         name: swing_horizontal_mode
@@ -184,6 +194,26 @@ entities:
             value: "off"
           - dps_val: true
             value: "on"
+      - id: 105
+        type: boolean
+        optional: true
+        name: heat_supported
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+      - id: 106
+        type: boolean
+        optional: true
+        name: inverter_model
+      - id: 107
+        type: boolean
+        optional: true
+        name: vswing_position_supported
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
   - entity: switch
     translation_key: ionizer
     category: config
@@ -208,11 +238,21 @@ entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
+            value: true
+            constraint: indoor_fault_code
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
           - value: true
       - id: 22
         type: bitfield
         name: fault_code
+      - id: 108
+        type: bitfield
+        optional: true
+        name: indoor_fault_code
   - entity: light
     translation_key: display
     category: config
@@ -221,7 +261,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: On timer
+    name: "On timer"
     icon: "mdi:timer"
     category: config
     dps:
@@ -229,14 +269,35 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Off timer
+    name: "Off timer"
     icon: "mdi:timer"
     category: config
     dps:
       - id: 102
         type: boolean
         name: switch
+  - entity: time
+    name: "On timer"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: hms
+      - id: 101
+        type: boolean
+        name: available
+  - entity: time
+    name: "Off timer"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: hms
+      - id: 102
+        type: boolean
+        name: available
   - entity: number
+    deprecated: time.on_timer
     name: On timer time
     class: duration
     category: config
@@ -248,6 +309,7 @@ entities:
           min: 0
           max: 2359
   - entity: number
+    deprecated: time.off_timer
     name: Off timer time
     class: duration
     category: config
