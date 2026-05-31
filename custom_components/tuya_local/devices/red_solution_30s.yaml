@@ -1,0 +1,75 @@
+name: Cat litter box
+products:
+  - id: s01pevveyetfncu8
+    manufacturer: Red Solution
+    model: 30S
+entities:
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        mapping:
+          - scale: 10
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: switch
+    name: Deep clean
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+  - entity: button
+    name: Level litter
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 126
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Daily visits
+    icon: "mdi:paper-roll"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+  - entity: select
+    name: Litter type
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 131
+        type: string
+        name: option
+        mapping:
+          - dps_val: "mineral_cat_litter"
+            value: "Mineral"
+          - dps_val: "mixed_cat_litter"
+            value: "Mixed"
+  # Detects if cat is currently in the box
+  - entity: binary_sensor
+    icon: "mdi:cat"
+    class: occupancy
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Visit duration
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
