@@ -950,6 +950,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             # Standardistion of entity naming to use translation_key
             replacements = {
                 "select_nightvision": "select_night_vision",
+                "switch_timer_set": "switch_timer",
+                "switch_timer_start": "switch_timer",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
