@@ -633,7 +633,7 @@
 - Atorch AT4PW energy monitor
 - Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
-- Avidsen Soria 400W solar inverter
+- Avidsen Soria Karst-400 and MI-400 solar inverters
 - CBI Astute smart controller breaker switch
 - CNC YCB9ZF-100W 1P circuit breaker
 - Compteur digital electric (single phase)
