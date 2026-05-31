@@ -147,8 +147,7 @@ entities:
         name: switch
         optional: true
   - entity: select
-    name: Nightvision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 124
@@ -157,11 +156,11 @@ entities:
         optional: true
         mapping:
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: ir_mode
-            value: "On"
+            value: "on"
           - dps_val: color_mode
-            value: "Off"
+            value: "off"
   - entity: light
     name: Floodlight
     icon: "mdi:light-flood-down"

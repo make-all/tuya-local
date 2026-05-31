@@ -47,9 +47,23 @@ entities:
             value: medium
           - dps_val: "2"
             value: high
+  - entity: select
+    translation_key: night_vision
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        optional: true
+        name: option
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"            
   - entity: switch
     name: Nightvision
     icon: "mdi:weather-night"
+    deprecated: select_night_vision  # 2026-05-31
     category: config
     dps:
       - id: 108

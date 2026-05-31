@@ -109,8 +109,7 @@ entities:
         name: switch
 
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     # Night Vision Mode Selector (matches nightvision_mode: 124)
     dps:
@@ -119,11 +118,11 @@ entities:
         name: option
         mapping:
           - dps_val: "auto"
-            value: Auto
+            value: auto
           - dps_val: "color_mode"
-            value: Color Night Vision
+            value: "off"
           - dps_val: "ir_mode"
-            value: Infrared Night Vision
+            value: "on"
 
   # ------------------------------------
   # 4. Detection & Alarm
