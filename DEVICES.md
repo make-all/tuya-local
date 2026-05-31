@@ -420,6 +420,7 @@
 - Princess Smart Tower fan
 - Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Pro Breeze AirFlo 43" pedestal fan
+- Pureborne HTF1001 tower fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
 - Reventon / Holtop Smart ERV heat recovery ventilator
