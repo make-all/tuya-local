@@ -1,0 +1,45 @@
+name: Dual switch with timers
+products:
+  - id: ih9byh68mvrqwwdq
+    model: W-W602
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86400

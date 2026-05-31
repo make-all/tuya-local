@@ -1,0 +1,20 @@
+name: Simple switch with timer
+products:
+  - id: 7063526334ab951259fe
+    model: W-W601
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        name: second
+        type: integer
+        range:
+          min: 0
+          max: 86400
