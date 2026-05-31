@@ -477,7 +477,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     bright = r[0]
                 else:
                     bright = color_util.brightness_to_value(r, bright)
-
+                    # workaround brightness_to_value not respecting the minimum
+                    if bright < r[0]:
+                        bright = r[0]
             _LOGGER.info("%s setting brightness to %d", self._config.config_id, bright)
             settings = {
                 **settings,
