@@ -1068,6 +1068,7 @@ work reliably, even if listed below.
 
 ### Doorbells
 
+- AJXML 1080p video doorbell
 - Cleverio CD200 video doorbell
 - (Fuers?) video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
