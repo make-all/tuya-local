@@ -816,4 +816,5 @@ Further device support has been made with the assistance of users. Please consid
 - [Zuz666](https://github.com/Zuz666) for contributing improvements to icons.
 - [itsiv](https://github.com/itsiv) for contributing support for Foxgard fingerprint lock, which was merged with Primebras Athenas lock.
 - [PoppyPop](https://github.com/PoppyPop) for contributing support for Fanelite Manihi ceiling fan, merged with Hunter Pacific 6 speed fan light.
-- [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace.
+- [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace and improvements to light entities.
+- [mmaarrkk02](https://github.com/mmaarrkk02) for contributing support for NWT WDH-10EM dehumidifier.
