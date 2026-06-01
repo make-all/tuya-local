@@ -1,8 +1,8 @@
-name: Varpoolfaye 5kW Pool Heat Pump
+name: Pool heat pump
 products:
   - id: yk3bytlujz2xshuy
     manufacturer: Varpoolfaye
-    model: 5kW Electric Pool Heat Pump
+    model: Pool Mini
 entities:
   - entity: climate
     translation_key: pool_heatpump
@@ -14,7 +14,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: preset_mode
+            constraint: mode
             conditions:
               - dps_val: Heat
                 value: heat
@@ -33,7 +33,8 @@ entities:
         name: current_temperature
       - id: 4
         type: string
-        name: preset_mode
+        name: mode
+        hidden: true
         mapping:
           - dps_val: Heat
             value: heat
