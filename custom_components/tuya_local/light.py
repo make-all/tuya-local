@@ -191,8 +191,17 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             r = self._brightness_dps.range(self._device)
             val = self._brightness_dps.get_value(self._device)
             if r and val:
+                r = self._brightness_conversion_range(r, val)
                 val = color_util.value_to_brightness(r, val)
             return val
+
+    def _brightness_conversion_range(self, dp_range, value):
+        """Return the range used to convert non-off brightness values."""
+        if not self._switch_dps and dp_range[0] == 0 and dp_range[1] > 0 and value:
+            first_on_value = max(1, self._brightness_dps.step(self._device))
+            if first_on_value <= dp_range[1]:
+                return (first_on_value, dp_range[1])
+        return dp_range
 
     @property
     def _unpacked_rgbhsv(self):
@@ -304,6 +313,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 bright = params.get(ATTR_WHITE)
                 r = self._brightness_dps.range(self._device)
                 if r:
+                    r = self._brightness_conversion_range(r, bright)
                     bright = _ha_brightness_to_dp_value(bright, r)
 
                 _LOGGER.info(
@@ -477,6 +487,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
             r = self._brightness_dps.range(self._device)
             if r:
+                r = self._brightness_conversion_range(r, bright)
                 bright = _ha_brightness_to_dp_value(bright, r)
             _LOGGER.info("%s setting brightness to %d", self._config.config_id, bright)
             settings = {
@@ -530,6 +541,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             bright = 255
             r = self._brightness_dps.range(self._device)
             if r:
+                r = self._brightness_conversion_range(r, bright)
                 bright = color_util.brightness_to_value(r, bright)
             _LOGGER.info(
                 "%s turning light on to brightness %d",
