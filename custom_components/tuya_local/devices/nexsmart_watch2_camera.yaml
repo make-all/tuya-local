@@ -77,8 +77,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     # Watermark/OSD Switch (matches basic_osd: 104)
     dps:
@@ -204,6 +203,7 @@ entities:
 
   - entity: sensor
     name: SD status
+    translation_key: status
     class: enum
     category: diagnostic
     icon: "mdi:micro-sd"
@@ -258,8 +258,7 @@ entities:
             value: Formatted
 
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     # Recording Mode Selector (matches record_mode: 151)
     dps:
@@ -269,9 +268,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
 
   # ------------------------------------
   # 8. Advanced / ONVIF

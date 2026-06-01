@@ -19,8 +19,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -152,8 +151,7 @@ entities:
           - dps_val: "5"
             value: "5 minutes"
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -161,9 +159,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
       # Seems to be the same thing, and missing from log
       - id: 113
         type: boolean

@@ -25,8 +25,7 @@ entities:
             value: false
             hidden: true
   - entity: switch
-    name: Timestamp
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -100,8 +99,7 @@ entities:
           - dps_val: 2003
             value: Card error
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -110,9 +108,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: event
     class: motion
     category: diagnostic
