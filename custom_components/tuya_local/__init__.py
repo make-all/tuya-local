@@ -952,6 +952,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "select_nightvision": "select_night_vision",
                 "switch_timer_set": "switch_timer",
                 "switch_timer_start": "switch_timer",
+                "select_record_mode": "select_recording_mode",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 

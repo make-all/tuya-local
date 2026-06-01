@@ -142,8 +142,7 @@ entities:
         name: switch
         optional: true
   - entity: select
-    name: Recording mode
-    icon: "mdi:video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -151,9 +150,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: number
     translation_key: manual_feed
     dps:

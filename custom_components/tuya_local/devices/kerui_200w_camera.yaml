@@ -256,8 +256,7 @@ entities:
             value: true
           - value: false
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -265,9 +264,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: switch
     name: Motion tracking
     icon: "mdi:motion"

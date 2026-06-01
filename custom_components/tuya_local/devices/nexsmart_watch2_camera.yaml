@@ -259,8 +259,7 @@ entities:
             value: Formatted
 
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     # Recording Mode Selector (matches record_mode: 151)
     dps:
@@ -270,9 +269,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
 
   # ------------------------------------
   # 8. Advanced / ONVIF
