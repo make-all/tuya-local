@@ -196,7 +196,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return val
 
     def _brightness_conversion_range(self, dp_range, value):
-        """Return the range used to convert non-off brightness values."""
+        """Return the conversion range for non-off brightness values.
+
+        Falsy source values keep the original range because 0 is treated as off.
+        """
         if not self._switch_dps and dp_range[0] == 0 and dp_range[1] > 0 and value:
             first_on_value = max(1, self._brightness_dps.step(self._device))
             if first_on_value <= dp_range[1]:
