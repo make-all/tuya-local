@@ -1,7 +1,9 @@
 # Alpine Saunas - https://alpinespas.com.au/saunas
-name: Alpine Saunas Helsinki
+name: Sauna
 products:
-  - id: bfe66fe0d57071ba3aa29a
+  - id: 9tdocx8kf6f4ew6x
+    manufacturer: "Alpine Saunas"
+    model: "Helsinki"
 entities:
   - entity: climate
     name: Sauna
@@ -24,8 +26,11 @@ entities:
       - id: 106
         type: integer
         name: current_temperature
+      - id: 102
+        type: boolean
+        name: unknown_102
+        class: diagnostic # Helps keep it tidy under settings/diagnostics
   - entity: light
-    name: Light
     icon: "mdi:lightbulb"
     dps:
       - id: 103
@@ -34,7 +39,6 @@ entities:
   - entity: number
     translation_key: timer
     category: config
-    icon: "mdi:timer-outline"
     dps:
       - id: 105
         type: integer
@@ -43,10 +47,3 @@ entities:
         range:
           min: 0
           max: 60
-  - entity: binary_sensor
-    name: Unknown 102
-    category: diagnostic
-    dps:
-      - id: 102
-        type: boolean
-        name: sensor
