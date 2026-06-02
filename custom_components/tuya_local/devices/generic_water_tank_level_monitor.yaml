@@ -1,0 +1,32 @@
+name: Water tank level monitor
+products:
+  - id: h8lvyoahr6s6aybf
+    manufacturer: Generic
+    model: Water Tank Level Indicator Monitor (Gauge)
+entities:
+  - entity: sensor
+    name: Water level
+    icon: "mdi:waves-arrow-up"
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: sensor
+    name: Liquid level depth
+    category: diagnostic
+    class: distance
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: mm
+  - entity: sensor
+    name: Liquid state
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
