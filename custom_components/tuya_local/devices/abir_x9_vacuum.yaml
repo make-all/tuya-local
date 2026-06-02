@@ -29,7 +29,8 @@ entities:
         mapping:
           - dps_val: smart
             value: smart
-          # workaround to have the standard stop command by setting to "smart" mode and using activate=false
+          # workaround to have the standard stop command by
+          # setting to "smart" mode and using activate=false
           - dps_val: smart
             value: stop
             constraint: activate
@@ -159,9 +160,9 @@ entities:
         name: switch
         optional: true
 
-  # DP15 is the raw command channel. Reverse-engineered select_room payload:
-  # AA 00 LL 14 01 <N> <room_id..> CC; checksum CC = sum(bytes from type) & 0xFF;
-  # room IDs index the saved map (vary per home). Write as base64 via text.set_value.
+  # DP15 can be used with base64 commands.
+  # Useful for reverse engineered commands of specific features.
+  # e.g. clean a specific room
   - entity: text
     name: Command
     icon: "mdi:console-line"
