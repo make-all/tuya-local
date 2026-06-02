@@ -818,3 +818,4 @@ Further device support has been made with the assistance of users. Please consid
 - [PoppyPop](https://github.com/PoppyPop) for contributing support for Fanelite Manihi ceiling fan, merged with Hunter Pacific 6 speed fan light.
 - [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace and improvements to light entities.
 - [mmaarrkk02](https://github.com/mmaarrkk02) for contributing support for NWT WDH-10EM dehumidifier.
+- [toller892](https://github.com/toller892) for contributing a fix for water heaters.
