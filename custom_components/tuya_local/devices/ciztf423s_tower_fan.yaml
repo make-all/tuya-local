@@ -1,0 +1,64 @@
+name: Tallboy Tower Fan
+products:
+  - id: eb414680be46558e014mtb
+    name: TOWER FAN（CZTF423S）
+primary_entity:
+  entity: fan
+  dps:
+    - dp: 1
+      name: switch
+      type: boolean
+    - dp: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dpsval: normal
+          value: normal
+        - dpsval: nature
+          value: nature
+        - dpsval: sleep
+          value: sleep
+    - dp: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 5
+    - dp: 5
+      name: oscillate
+      type: boolean
+secondary_entities:
+  - entity: select
+    name: Sleep Timer
+    icon: mdi:timer-outline
+    dps:
+      - dp: 22
+        name: select_option
+        type: string
+        mapping:
+          - dpsval: cancel
+            value: cancel
+          - dpsval: 1h
+            value: 1h
+          - dpsval: 2h
+            value: 2h
+          - dpsval: 3h
+            value: 3h
+          - dpsval: 4h
+            value: 4h
+          - dpsval: 5h
+            value: 5h
+          - dpsval: 6h
+            value: 6h
+          - dpsval: 7h
+            value: 7h
+          - dpsval: 8h
+            value: 8h
+          - dpsval: 9h
+            value: 9h
+          - dpsval: 10h
+            value: 10h
+          - dpsval: 11h
+            value: 11h
+          - dpsval: 12h
+            value: 12h
