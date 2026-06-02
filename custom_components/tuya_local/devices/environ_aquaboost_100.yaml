@@ -1,8 +1,6 @@
-#environ_aquaboost_100.yaml
-
 name: Environ AquaBoost 100L
 products:
-  - id: bf10438b7b9928c3ddrnmb
+  - id: 71kut9uzva9ka1ym
     manufacturer: Environ
     model: "Aquaboost 100L"
 entities:
@@ -13,20 +11,20 @@ entities:
         name: operation_mode
         mapping:
           - dps_val: false
-            value: off
+            value: 'off'
           - dps_val: true
             constraint: work_mode
             conditions:
               - dps_val: ECO
-                value: Eco
+                value: eco
               - dps_val: HP
-                value: Heat_Pump
+                value: heat_pump
               - dps_val: HYB
-                value: Hybrid
+                value: hybrid
               - dps_val: HYB1
                 value: performance
               - dps_val: ELE
-                value: E-Heater
+                value: e-heater
       - id: 2
         type: string
         name: work_mode
