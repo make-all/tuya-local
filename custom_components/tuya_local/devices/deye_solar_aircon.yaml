@@ -1,0 +1,205 @@
+name: Air conditioner
+products:
+  - id: gpjca2vt
+    manufacturer: Deye
+    model: Solar Aircon
+entities:
+  - entity: climate
+    translation_only_key: heater
+    icon: "mdi:air-conditioner"
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 16
+          max: 32
+      - id: 3
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 4
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: cold
+            value: cool
+          - dps_val: hot
+            value: heat
+          - dps_val: wind
+            value: fan_only
+      - id: 22
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: cooling
+            value: cooling
+          - dps_val: heating
+            value: heating
+          - dps_val: ventilation
+            value: fan
+      - id: 23
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: medium
+          - dps_val: strong
+            value: high
+      - id: 104
+        name: swing_horizontal_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+      - id: 105
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+  - entity: fan
+    name: State
+    icon: "mdi:air-conditioner"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Eco mode
+    icon: "mdi:leaf-circle"
+    class: switch
+    category: config
+    dps:
+      - id: 6
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Anion
+    icon: "mdi:air-filter"
+    class: switch
+    category: config
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Electricity heat
+    class: switch
+    category: config
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+  - entity: switch
+    name: LED light
+    class: switch
+    category: config
+    dps:
+      - id: 11
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Sleep
+    icon: "mdi:sleep"
+    class: switch
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: switch
+    name: AC limiter
+    class: switch
+    category: config
+    dps:
+      - id: 112
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: dps_19
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_20
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_24
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_106
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_107
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_108
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_109
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: dps_110
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Power
+    category: diagnostic
+    class: power
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+        unit: W
