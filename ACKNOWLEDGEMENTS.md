@@ -814,3 +814,10 @@ Further device support has been made with the assistance of users. Please consid
 - [vemboy200](https://github.com/vemboy200) for contributing improvements to Homemedics C500 dehumidifier.
 - [ernbale](https://github.com/ernbale) for contributing improvements to Solar Inverter GTB Series.
 - [Zuz666](https://github.com/Zuz666) for contributing improvements to icons.
+- [itsiv](https://github.com/itsiv) for contributing support for Foxgard fingerprint lock, which was merged with Primebras Athenas lock.
+- [PoppyPop](https://github.com/PoppyPop) for contributing support for Fanelite Manihi ceiling fan, merged with Hunter Pacific 6 speed fan light.
+- [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace and improvements to light entities.
+- [mmaarrkk02](https://github.com/mmaarrkk02) for contributing support for NWT WDH-10EM dehumidifier.
+- [toller892](https://github.com/toller892) for contributing a fix for water heaters.
+- [terryrankine](https://github.com/terryrankine) for contributing support for AOSDK garage door with light.
+-- [DawidSu](https://github.com/DawidSu) for contributing support for Varpoolfaye pool heat pump.

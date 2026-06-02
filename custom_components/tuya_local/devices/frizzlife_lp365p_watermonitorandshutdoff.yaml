@@ -18,6 +18,7 @@ entities:
     dps:
       - id: 12
         type: integer
+        optional: true
         name: sensor
         class: measurement
         mapping:
@@ -40,6 +41,12 @@ entities:
         optional: true
         name: sensor
         class: measurement
+        mapping:
+          - scale: 100
+            constraint: unit
+            conditions:
+              - dps_val: us_units
+                scale: 10
       - id: 102
         type: string
         optional: true
@@ -47,10 +54,34 @@ entities:
         mapping:
           - dps_val: us_units
             value: psi
-            scale: 10
           - value: bar
-            scale: 100
 
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code
+      - id: 24
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: warning
+          - dps_val: 2
+            value: empty_pipe
+          - dps_val: 4
+            value: cloud_offline
   # Protection Enabled Switch
   - entity: switch
     name: Protection Enabled
