@@ -83,16 +83,15 @@ class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
     async def _ir_send(self, tuya_command: str):
         """Send the infrared command to the device."""
         if self._send_dp:
-            async with self._device.set_lock:
-                if self._command_dp:
-                    await self._device.async_set_properties(
-                        self._package_multi_dp_send(tuya_command)
-                    )
-                else:
-                    await self._send_dp.async_set_value(
-                        self._device,
-                        self._package_single_dp_send(tuya_command),
-                    )
+            if self._command_dp:
+                await self._device.async_set_properties(
+                    self._package_multi_dp_send(tuya_command)
+                )
+            else:
+                await self._send_dp.async_set_value(
+                    self._device,
+                    self._package_single_dp_send(tuya_command),
+                )
 
     def _package_single_dp_send(self, command: str) -> str:
         """Package the command for a single DP (usually dp id 201) send."""

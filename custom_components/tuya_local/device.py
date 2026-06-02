@@ -127,7 +127,10 @@ class TuyaLocalDevice(object):
             raise e
 
         # we handle retries at a higher level so we can rotate protocol version
-        self._api.set_socketRetryLimit(1)
+        # on the other hand, protocol 3.4 devices send encrypted null ACKs that
+        # often get mixed in, so we need to retry a couple of times before resorting
+        # to recovery measures that seem to make things worse.
+        self._api.set_socketRetryLimit(2)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
             self._api.parent.set_socketRetryLimit(1)
@@ -157,12 +160,6 @@ class TuyaLocalDevice(object):
         # The number of failures from a working protocol before retrying other protocols.
         self._AUTO_FAILURE_RESET_COUNT = 10
         self._lock = Lock()
-        # Serialises the read-modify-write window for entities that share a
-        # packed dp (e.g. multiple sub-entity lights writing to dp 51 with
-        # different masks). Without this, two concurrent async_turn_on calls
-        # both read the same baseline before either updates pending, then the
-        # second's pending update clobbers the first.
-        self.set_lock = asyncio.Lock()
 
     @property
     def name(self):
@@ -415,8 +412,9 @@ class TuyaLocalDevice(object):
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
-                        poll["full_poll"] = full_poll
-                        yield poll
+                        if isinstance(poll, dict):
+                            poll["full_poll"] = full_poll
+                            yield poll
 
             except CancelledError:
                 self._running = False
