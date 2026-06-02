@@ -12,6 +12,7 @@ products:
     model: AWHACC
 entities:
   - entity: climate
+    translation_only_key: aircon_extra
     dps:
       - id: 1
         type: boolean
@@ -172,28 +173,25 @@ entities:
           - dps_val: same
             value: "on"
           - dps_val: vane_1
-            value: Position 1
-            available: vswing_position_supported
+            value: topmost
           - dps_val: vane_2
-            value: Position 2
-            available: vswing_position_supported
+            value: top
           - dps_val: vane_3
-            value: Position 3
-            available: vswing_position_supported
+            value: middle
           - dps_val: vane_4
-            value: Position 4
-            available: vswing_position_supported
+            value: down
           - dps_val: vane_5
-            value: Position 5
-            available: vswing_position_supported
+            value: downmost
       - id: 33
         type: boolean
         name: swing_horizontal_mode
         mapping:
           - dps_val: false
             value: "off"
+            available: vswing_position_supported
           - dps_val: true
             value: "on"
+            available: vswing_position_supported
       - id: 105
         type: boolean
         optional: true
@@ -224,11 +222,20 @@ entities:
   - entity: switch
     name: Emergency heat
     icon: "mdi:fire"
+    hidden: unavailable
     category: config
     dps:
       - id: 12
         type: boolean
         name: switch
+      - id: 105
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
