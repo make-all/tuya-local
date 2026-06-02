@@ -541,7 +541,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             bright = 255
             r = self._brightness_dps.range(self._device)
             if r:
-                r = self._brightness_conversion_range(r, bright)
+                # Full HA brightness always maps to the DP max, so the zero-off
+                # range adjustment is only needed for non-max brightness values.
                 bright = color_util.brightness_to_value(r, bright)
             _LOGGER.info(
                 "%s turning light on to brightness %d",

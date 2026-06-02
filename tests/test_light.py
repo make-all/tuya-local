@@ -377,6 +377,43 @@ async def test_async_turn_on_brightness_only_zero_range_write_uses_first_on_valu
 
 
 @pytest.mark.parametrize(
+    ("brightness_range", "mapping", "expected_dps"),
+    [
+        ({"min": 0, "max": 100}, [], 100),
+        ({"min": 0, "max": 1000}, [{"step": 10}], 1000),
+    ],
+)
+@pytest.mark.asyncio
+async def test_async_turn_on_brightness_only_zero_range_without_brightness_writes_max_value(
+    brightness_range, mapping, expected_dps
+):
+    """Brightness-only zero ranges should turn on to max when no brightness is set."""
+    mock_device = AsyncMock()
+    mock_device.get_property = Mock()
+    device_dps = {"1": 0}
+    mock_device.get_property.side_effect = lambda arg: device_dps[arg]
+    mock_config = Mock()
+    config = TuyaEntityConfig(
+        mock_config,
+        {
+            "entity": "light",
+            "dps": [
+                {
+                    "id": "1",
+                    "name": "brightness",
+                    "type": "integer",
+                    "range": brightness_range,
+                    "mapping": mapping,
+                },
+            ],
+        },
+    )
+    light = TuyaLocalLight(mock_device, config)
+    await light.async_turn_on()
+    mock_device.async_set_properties.assert_called_once_with({"1": expected_dps})
+
+
+@pytest.mark.parametrize(
     ("brightness_range", "mapping", "dps_value", "expected_brightness"),
     [
         ({"min": 0, "max": 100}, [], 1, 3),
