@@ -23,16 +23,15 @@ products:
     model: CB2S
   - id: bnkpnv0werwabryt
     name: 1CH WiFi USB Switch Module
+  - id: vv0g9jsdtspogawu
+    model: "WiFi+BLE 1 Gang"
+    # has additional dps 49 and 50 for remote management
 entities:
   - entity: switch
     dps:
       - id: 1
         name: switch
         type: boolean
-      - id: 44
-        name: inching
-        type: string
-        optional: true
   - entity: time
     category: config
     translation_key: timer
@@ -43,14 +42,6 @@ entities:
         range:
           min: 0
           max: 86400
-      - id: 42
-        name: cycle_timer
-        type: string
-        optional: true
-      - id: 43
-        name: random_timer
-        type: string
-        optional: true
   - entity: select
     translation_key: initial_state
     hidden: unavailable
@@ -75,3 +66,13 @@ entities:
           - dps_val: null
             value: false
           - value: true
+  - entity: text
+    name: Inching
+    category: config
+    icon: "mdi:toggle-switch"
+    hidden: true
+    dps:
+      - id: 44
+        name: value
+        type: string
+        optional: true

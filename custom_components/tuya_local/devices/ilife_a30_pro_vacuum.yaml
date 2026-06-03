@@ -145,10 +145,6 @@ entities:
         type: string
         optional: true
         name: path_data
-      - id: 15
-        type: string
-        optional: true
-        name: command_trans
       - id: 28
         type: bitfield
         name: error
@@ -516,3 +512,13 @@ entities:
             value: water2_fault
           - dps_val: 268435456
             value: explore_fault
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true

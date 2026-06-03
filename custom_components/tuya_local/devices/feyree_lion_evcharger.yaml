@@ -19,15 +19,6 @@ entities:
           - dps_val: "CloseCharging"
             value: false
 
-  - entity: light
-    translation_key: backlight
-    category: config
-    dps:
-      - id: 18
-        name: switch
-        type: boolean
-        optional: true
-
   - entity: number
     class: current
     category: config
@@ -70,10 +61,32 @@ entities:
         unit: h
 
   - entity: sensor
-    name: Mains voltage
+    name: Voltage phase 1
     class: voltage
     dps:
       - id: 102
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+
+  - entity: sensor
+    name: Voltage phase 2
+    class: voltage
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+
+  - entity: sensor
+    name: Voltage phase 3
+    class: voltage
+    dps:
+      - id: 104
         name: sensor
         type: integer
         optional: true
@@ -95,7 +108,7 @@ entities:
     name: Current phase 2
     class: current
     dps:
-      - id: 103
+      - id: 106
         name: sensor
         type: integer
         optional: true
@@ -106,7 +119,7 @@ entities:
     name: Current phase 3
     class: current
     dps:
-      - id: 104
+      - id: 107
         name: sensor
         type: integer
         optional: true
@@ -117,26 +130,23 @@ entities:
     name: Active power
     class: power
     dps:
-      - id: 106
+      - id: 108
         name: sensor
         type: integer
         optional: true
-        unit: W
+        unit: kW
         class: measurement
 
   - entity: sensor
     name: Charging session energy
-    class: energy_storage
-    icon: "mdi:battery-charging-100"
+    class: energy
     dps:
-      - id: 107
+      - id: 109
         name: sensor
         type: integer
         optional: true
         unit: kWh
-        class: measurement
-        mapping:
-          - scale: 100
+        class: total_increasing
 
   - entity: sensor
     name: Internal temperature
@@ -205,18 +215,6 @@ entities:
         name: sensor
         type: string
         optional: true
-
-  - entity: sensor
-    class: energy
-    dps:
-      - id: 109
-        name: sensor
-        type: integer
-        optional: true
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
 
   - entity: sensor
     name: Phase type

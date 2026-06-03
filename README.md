@@ -280,7 +280,6 @@ persistently and survives restarts.
 
 ### Sending commands
 
-
 Using the `infrared` platform, you can send known IR commands using
 other HA integrations, including
 [HAIR](https://github.com/DAB-LABS/HAIR), a custom integration for
@@ -303,6 +302,10 @@ learned by the `remote` entity to any `infrared` emitter (including non-Tuya one
 If you would like to expose the learnt commands as buttons in the user interface
 you might want to take a look at the [Remote buttons](https://github.com/kongo09/remote_buttons)
 integration, which is compatible with Tuya Local.
+
+## Pet feeders
+
+Many pet feeders expose an encoded **Meal plan** setting via a text entity. By default this is disabled, but you can enable it under the Device settings in HA. When enabled many pet feeders share the same underlying format, which is supported by the [FrederikM97/mealplan-card](https://github.com/FredrikM97/mealplan-card) custom card.
 
 ## Contributing
 

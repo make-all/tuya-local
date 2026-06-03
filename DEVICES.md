@@ -47,6 +47,7 @@
 - Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
+- Imaxfire AWA2 water vapour fireplace
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
@@ -116,7 +117,7 @@
 - Daizuki heat pump
 - Della air conditioner
 - De'Longhi Pinguino portable air conditioner
-- Duux Blizzard portable air conditioner
+- Duux Blizzard and North portable air conditioners
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
 - EG4 solar heat pump
@@ -144,6 +145,7 @@
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
+- Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI and Roni X
@@ -190,6 +192,7 @@
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - Turbro 75000 btu pool heat pump
+- Varpoolfaye 5kW pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -303,6 +306,7 @@
 - Plikc Neve X W/RFW and Neve Pro W thermostats
 - PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
+- ProWarm Touch Button S series underfloor heating controller
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Sajun steam room
@@ -418,6 +422,7 @@
 - Princess Smart Tower fan
 - Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Pro Breeze AirFlo 43" pedestal fan
+- Pureborne HTF1001 tower fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
 - Reventon / Holtop Smart ERV heat recovery ventilator
@@ -482,9 +487,11 @@
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
+- Webber AP9750 air purifier
 
 ### Dehumidifiers
 
+- Aerium DH12W HEPA dehumidifier
 - Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
@@ -521,7 +528,7 @@
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
-- NWT WDH-02EM dehumidifier
+- NWT WDH-02EM and WDH-10EN dehumidifiers
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
 - Qlima D720, D812 and D820A dehumidifiers
@@ -630,7 +637,7 @@
 - Atorch AT4PW energy monitor
 - Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
-- Avidsen Soria 400W solar inverter
+- Avidsen Soria Karst-400 and MI-400 solar inverters
 - CBI Astute smart controller breaker switch
 - CNC YCB9ZF-100W 1P circuit breaker
 - Compteur digital electric (single phase)
@@ -745,7 +752,7 @@ the best option.
 - Brilliant 1/2/3/4 gang wall switches with power monitoring
 - Brilliant quad powerstrip with USB
 - CBI Astute smart controller
-- CE Smart Home LQ-2-W3 AC wall outlet
+- CE Smart Home LQ-2-W3 AC wall outlet, Litesun smart plug
 - Denver SHP-200mk2 dual smartplug with power monitoring
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
@@ -951,6 +958,7 @@ of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
+- AOSDK garage door opener with light
 - Avatto curtain and double light switch (CL02, CLS02 models)
 - Avatto curtain and light switch
 - Avatto curtain switch
@@ -1063,6 +1071,7 @@ work reliably, even if listed below.
 
 ### Doorbells
 
+- AJXML 1080p video doorbell
 - Cleverio CD200 video doorbell
 - (Fuers?) video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
@@ -1145,6 +1154,7 @@ port and password.
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
 - Imipaw DUW21 WBR3D cat feeder

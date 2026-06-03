@@ -54,9 +54,8 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -78,8 +77,7 @@ entities:
           - dps_val: "2"
             value: high
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -88,11 +86,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: sensor
     name: SD status
     class: enum
@@ -141,8 +139,7 @@ entities:
           - dps_val: 2003
             value: Card error
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -151,9 +148,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: button
     category: config
     class: restart
