@@ -50,7 +50,7 @@ entities:
           - dps_val: h_silent
             value: eco
 
-  # --- TEMPERATUREN (Standard & Intern) ---
+  # --- TEMPERATURES ---
   - entity: sensor
     class: temperature
     name: Inlet temperature
@@ -131,7 +131,7 @@ entities:
         name: sensor
         unit: "°C"
 
-  # --- ELEKTRISCHE WERTE & FREQUENZEN ---
+  # --- ELECTRICAL & FREQUENCY ---
   - entity: sensor
     class: current
     name: Compressor current
@@ -162,7 +162,7 @@ entities:
         name: sensor
         unit: "Hz"
 
-  # --- MECHANIK & SYSTEM (Lüfter, Ventile, Firmware) ---
+  # --- HARDWARE & MECHANICS ---
   - entity: sensor
     name: DC Fan speed
     category: diagnostic
@@ -198,7 +198,20 @@ entities:
         type: integer
         name: sensor
 
-  # --- FAULT / FEHLER-REGISTER ---
+  # --- FAULT STATUS ---
+  # Error Code Mapping Reference:
+  # E03: Water flow fault          E15: Water inlet temp sensor fault
+  # E04: Antifreeze protection     E16: Outdoor coil temp sensor fault
+  # E05: High pressure fault       E18: Exhaust temp sensor fault
+  # E06: Low pressure fault        E20: Inverter module abnormal protection
+  # E09: Mainboard-Display comm    E21: Ambient temp sensor fault
+  # E10: Inverter-Mainboard comm   E23: Cooling outlet temp low protection
+  # E12: Exhaust temp too high     E27: Water outlet temp sensor fault
+  # E13: DC fan motor fault        E29: Suction temp sensor fault
+  # E32: Heating outlet temp high  E33: Outdoor coil high temp protection
+  # E35: Compressor overcurrent    E42: Indoor coil temp sensor fault
+  # Er69: Refrigerant sensor fault Er70: Refrigerant leakage protection
+  # Er71: Refrigerant extension board fault
   - entity: sensor
     name: Fault status
     category: diagnostic
