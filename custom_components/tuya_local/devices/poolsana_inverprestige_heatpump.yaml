@@ -50,6 +50,7 @@ entities:
           - dps_val: h_silent
             value: eco
 
+  # --- TEMPERATUREN (Standard & Intern) ---
   - entity: sensor
     class: temperature
     name: Inlet temperature
@@ -81,6 +82,57 @@ entities:
         unit: "°C"
 
   - entity: sensor
+    class: temperature
+    name: Exhaust temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Suction temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Heating coil temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Cooling coil temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Heatsink temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  # --- ELEKTRISCHE WERTE & FREQUENZEN ---
+  - entity: sensor
     class: current
     name: Compressor current
     category: diagnostic
@@ -91,6 +143,16 @@ entities:
         unit: "A"
 
   - entity: sensor
+    class: voltage
+    name: DC Bus voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: "V"
+
+  - entity: sensor
     class: frequency
     name: Compressor frequency
     category: diagnostic
@@ -99,3 +161,48 @@ entities:
         type: integer
         name: sensor
         unit: "Hz"
+
+  # --- MECHANIK & SYSTEM (Lüfter, Ventile, Firmware) ---
+  - entity: sensor
+    name: DC Fan speed
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: "rpm"
+
+  - entity: sensor
+    name: Main EEV steps
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "step"
+
+  - entity: sensor
+    name: EVI EEV steps
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: "step"
+
+  - entity: sensor
+    name: PCB Version
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+
+  # --- FAULT / FEHLER-REGISTER ---
+  - entity: sensor
+    name: Fault status
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
