@@ -1,0 +1,101 @@
+name: Pool heat pump
+products:
+  - id: e1k8cr2o
+    manufacturer: PoolSana
+    model: InverPRESTIGE 9
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: cool
+              - dps_val: auto
+                value: auto
+              - dps_val: heat
+                value: heat
+              - dps_val: h_powerful
+                value: heat
+              - dps_val: h_silent
+                value: heat
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: comfort
+          - dps_val: h_powerful
+            value: boost
+          - dps_val: h_silent
+            value: eco
+
+  - entity: sensor
+    class: temperature
+    name: Inlet temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Outlet temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: temperature
+    name: Ambient temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "°C"
+
+  - entity: sensor
+    class: current
+    name: Compressor current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "A"
+
+  - entity: sensor
+    class: frequency
+    name: Compressor frequency
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "Hz"
