@@ -95,6 +95,24 @@ def to_signed(val, bits):
     return val
 
 
+def _crc16_modbus(data):
+    """CRC-16/MODBUS over data."""
+    crc = 0xFFFF
+    for byte in data:
+        crc ^= byte
+        for _ in range(8):
+            crc = (crc >> 1) ^ 0xA001 if crc & 1 else crc >> 1
+    return crc
+
+
+def _apply_crc16_modbus(payload, offset):
+    """Write CRC-16/MODBUS (uint16 LE) at byte offset."""
+    data = bytearray(payload)
+    crc = _crc16_modbus(data[:offset])
+    data[offset : offset + 2] = crc.to_bytes(2, "little")
+    return bytes(data)
+
+
 class TuyaDeviceConfig:
     """Representation of a device config for Tuya Local devices."""
 
@@ -1134,6 +1152,14 @@ class TuyaDpsConfig:
                 current_value = int.from_bytes(decoded_value, endianness)
                 result = (current_value & ~mask) | (mask & int(result * mask_scale))
                 result = self.encode_value(result.to_bytes(length, endianness))
+
+        crc_offset = self._config.get("crc16_modbus")
+        if crc_offset is not None and self.rawtype in ["hex", "base64", "utf16b64"]:
+            decoded = self.decode_value(result, device)
+            if isinstance(decoded, bytes) and len(decoded) >= crc_offset + 2:
+                result = self.encode_value(
+                    _apply_crc16_modbus(decoded, crc_offset)
+                )
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map

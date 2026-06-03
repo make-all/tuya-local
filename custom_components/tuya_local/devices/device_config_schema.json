@@ -227,6 +227,11 @@
                                     "enum": ["big", "little"],
                                     "description": "The endianness of masked data in the base64 or hex DP. Default is 'big', so only 'little' needs to be explicitly specified."
                                 },
+                                "crc16_modbus": {
+                                    "type": "integer",
+                                    "minimum": 2,
+                                    "description": "Byte offset of a CRC-16/MODBUS checksum stored as uint16 little-endian. Recomputed over bytes 0 to offset-1 whenever this DP is written."
+                                },
                                 "unit": {
                                     "type": "string",
                                     "description": "The unit of measurement for a sensor DP (e.g., °C, %, W). Some units can use ASCII replacements like C for °C, F for °F, and ugm3 for μg/m³ to simplify input and avoid accidental incorrect Unicode character usage."

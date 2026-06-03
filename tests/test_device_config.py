@@ -11,6 +11,7 @@ from custom_components.tuya_local.helpers.device_config import (
     TuyaDpsConfig,
     TuyaEntityConfig,
     _bytes_to_fmt,
+    _crc16_modbus,
     _typematch,
     available_configs,
     get_config,
@@ -120,6 +121,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("mask"): str,
         vol.Optional("endianness"): vol.In(["little"]),
         vol.Optional("mask_signed"): True,
+        vol.Optional("crc16_modbus"): int,
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -836,6 +838,41 @@ def test_setting_masked_b64_with_special_case_mapping(mocker):
     mock_device.get_property.return_value = "AAA="
     cfg = TuyaDpsConfig(mock_entity, mock_config)
     assert cfg.get_values_to_set(mock_device, "special_case") == {"1": "AQA="}
+
+
+def test_setting_masked_b64_with_crc16_modbus(mocker):
+    """Masked base64 writes update CRC-16/MODBUS when crc16_modbus is set."""
+    import base64
+
+    sound_on_b64 = (
+        "AAEAAAAAAMoIDBcMFwwXDBcMFwAAAAAAAAAAAAAAAAAAAAUFBQUFAAAAAAAA/wAAAAAAAP8A"
+        "AAAAAAD/AAAAAAAA/wAAAAAAAP8AAAAAAAEBAAD/SSYCAwQZkbc="
+    )
+    sound_on = base64.b64decode(sound_on_b64)
+    assert len(sound_on) == 92
+
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "102",
+        "name": "switch",
+        "type": "base64",
+        "crc16_modbus": 90,
+        "endianness": "little",
+        "mask": "0000000000000000000000FF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "mapping": [
+            {"dps_val": 0, "value": False},
+            {"dps_val": 1, "value": True},
+        ],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = sound_on_b64
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+
+    result = cfg.get_values_to_set(mock_device, False)["102"]
+    out = base64.b64decode(result)
+
+    assert out[80] == 0
+    assert _crc16_modbus(out[:90]) == int.from_bytes(out[90:92], "little")
 
 
 def test_default_without_mapping(mocker):
