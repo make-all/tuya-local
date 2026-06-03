@@ -1,7 +1,7 @@
 name: iMeter 3PN Energy Monitor
 products:
   - id: dpowo5ivv7thze68
-    manufacturer: Yagusmart
+    manufacturer: GHpower
     model: iMeter_3PN
 entities:
   - entity: sensor
@@ -162,7 +162,7 @@ entities:
         mask: "0000000000FFFFFF"
 
   - entity: sensor
-    translation_key: voltage_y
+    translation_key: voltage_x
     translation_placeholders:
       x: B
     class: voltage
@@ -188,7 +188,7 @@ entities:
           - scale: 10
 
   - entity: sensor
-    translation_key: current_y
+    translation_key: current_x
     translation_placeholders:
       x: B
     class: current
@@ -214,7 +214,7 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    translation_key: power_y
+    translation_key: power_x
     translation_placeholders:
       x: B
     class: power
@@ -237,7 +237,7 @@ entities:
         mask: "0000000000FFFFFF"
 
   - entity: sensor
-    translation_key: voltage_z
+    translation_key: voltage_x
     translation_placeholders:
       x: C
     class: voltage
@@ -263,7 +263,7 @@ entities:
           - scale: 10
 
   - entity: sensor
-    translation_key: current_z
+    translation_key: current_x
     translation_placeholders:
       x: C
     class: current
@@ -289,7 +289,7 @@ entities:
           - scale: 1000
 
   - entity: sensor
-    translation_key: power_z
+    translation_key: power_x
     translation_placeholders:
       x: C
     class: power
