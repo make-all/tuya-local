@@ -144,7 +144,7 @@ entities:
           - dps_val: null
             value: none
             hidden: true
-            
+
   - entity: sensor
     name: Outdoor temperature
     class: temperature
@@ -156,7 +156,7 @@ entities:
         optional: true
         mapping:
           - scale: 100
-          
+
   - entity: sensor
     class: energy
     dps:
@@ -178,7 +178,7 @@ entities:
         type: integer
         unit: rpm
         optional: true
-        
+ 
   - entity: sensor
     name: Compressor frequency
     class: frequency
@@ -261,7 +261,7 @@ entities:
             conditions:
               - dps_val: ["0", "2", "3", "4"]
                 invalid: true
-        
+
   - entity: switch
     name: Self-Clean Evaporator
     icon: mdi:water-sync
@@ -279,7 +279,7 @@ entities:
             conditions:
               - dps_val: true
                 invalid: true
-        
+
   - entity: select
     name: Sleep Mode
     icon: mdi:bed
