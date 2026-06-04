@@ -70,7 +70,6 @@ entities:
           - dps_val: 32
             value: "32"
   - entity: sensor
-    name: Power total
     class: power
     dps:
       - id: 9
@@ -96,9 +95,11 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
@@ -109,9 +110,11 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
@@ -122,10 +125,11 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power
     class: power
-    hidden: true
     category: diagnostic
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 6
         type: base64
