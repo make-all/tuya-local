@@ -10,32 +10,6 @@ entities:
         type: boolean
         name: activate
         optional: true
-        mapping:
-          - dps_val: false
-            constraint: pause
-            conditions:
-              - dps_val: true
-                value: false
-              - dps_val: false
-                value: false
-                hidden: true
-              - dps_val: null
-                value: false
-                hidden: true
-          - dps_val: true
-            constraint: pause
-            conditions:
-              - dps_val: false
-                value: true
-              - dps_val: true
-                value: true
-                hidden: true
-              - dps_val: null
-                value: true
-                hidden: true
-          - dps_val: null
-            value: false
-            hidden: true
       - id: 2
         type: boolean
         optional: true
@@ -123,10 +97,6 @@ entities:
         type: string
         optional: true
         name: path_data
-      - id: 15
-        type: string
-        optional: true
-        name: command_trans
       - id: 28
         type: bitfield
         name: error
@@ -470,3 +440,13 @@ entities:
       - id: 28
         type: bitfield
         name: fault_code
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true

@@ -821,3 +821,5 @@ Further device support has been made with the assistance of users. Please consid
 - [toller892](https://github.com/toller892) for contributing a fix for water heaters.
 - [terryrankine](https://github.com/terryrankine) for contributing support for AOSDK garage door with light.
 -- [DawidSu](https://github.com/DawidSu) for contributing support for Varpoolfaye pool heat pump.
+- [rbswift](https://github.com/rbswift) for contributing improvements to Intaflo Intabloc combo heat pump.
+- [wantstoautomate](https://github.com/wantstoautomate) for contributing improvements to Lublueblu SL60D vacuum.
