@@ -1,0 +1,71 @@
+name: Spa
+products:
+  - id: chsaskllmust5d7a
+    manufacturer: Intex
+    model: PureSpa
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 108
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 109
+        type: integer
+        name: temperature
+        unit: F
+        range:
+          min: 68
+          max: 104
+      - id: 110
+        type: integer
+        name: current_temperature
+        unit: F
+      - id: 117
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: warm
+            value: warm
+  - entity: switch
+    name: Power
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Filtration
+    icon: "mdi:air-filter"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Bubbles
+    icon: "mdi:chart-bubble"
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sanitizer
+    icon: "mdi:shaker-outline"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Timer
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: min
