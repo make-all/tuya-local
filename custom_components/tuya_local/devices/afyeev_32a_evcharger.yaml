@@ -70,6 +70,7 @@ entities:
           - dps_val: 32
             value: "32"
   - entity: sensor
+    name: Power total
     class: power
     dps:
       - id: 9
@@ -81,9 +82,10 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Single phase power
+    name: "Single phase power"
     class: power
     category: diagnostic
+    hidden: true
     dps:
       - id: 5
         type: integer
@@ -94,6 +96,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
+    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -106,6 +109,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
+    name: Current
     class: current
     category: diagnostic
     dps:
@@ -118,7 +122,9 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
+    name: Power
     class: power
+    hidden: true
     category: diagnostic
     dps:
       - id: 6
