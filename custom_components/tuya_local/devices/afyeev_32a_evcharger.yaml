@@ -33,6 +33,13 @@ entities:
         type: string
         name: system_version
   - entity: sensor
+    name: Firmware version
+    category: diagnostic
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+  - entity: sensor
     class: energy
     dps:
       - id: 1
@@ -201,12 +208,6 @@ entities:
         mapping:
           - dps_val: charge_now
             value: immediate
-          - dps_val: charge_pct
-            value: charge_to_percent
-          - dps_val: charge_energy
-            value: fixed_charge
-          - dps_val: charge_schedule
-            value: scheduled_charge
           - dps_val: charge_delay
             value: delayed_charge
   - entity: switch
@@ -250,3 +251,17 @@ entities:
             value: false
           - dps_val: online
             value: true
+  - entity: number
+    name: "Charging start delay"
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: h
+        optional: true
+        range:
+          min: 0
+          max: 15
