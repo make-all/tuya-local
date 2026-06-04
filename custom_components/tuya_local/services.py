@@ -16,7 +16,7 @@ from homeassistant.helpers import service
 
 from .const import DOMAIN
 from .infrared import TuyaRemoteCommand
-from .remote import TuyaLocalRemote, FLAG_SAVE_DELAY
+from .remote import FLAG_SAVE_DELAY, TuyaLocalRemote
 
 REMOTE_SEND_IR_COMMAND_SCHEMA = {
     vol.Required("emitter_entity_id"): cv.entity_id,
