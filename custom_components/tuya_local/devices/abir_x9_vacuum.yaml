@@ -29,11 +29,8 @@ entities:
         mapping:
           - dps_val: smart
             value: smart
-          # workaround to have the standard stop command by
-          # setting to "smart" mode and using activate=false
-          - dps_val: smart
-            value: stop
             constraint: activate
+            # workaround to have the standard stop command
             conditions:
               - dps_val: false
                 value: stop
