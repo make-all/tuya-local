@@ -5,23 +5,23 @@ products:
     model: WD-01ADE
     model_id: e1n14ca8
 entities:
-  - entity: switch
+  - entity: valve
     name: Pump A
-    class: switch
+    class: water
     dps:
       - id: 1
         type: boolean
         name: switch
-  - entity: switch
+  - entity: valve
     name: Pump B
-    class: switch
+    class: water
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: number
     name: Pump A irrigation duration
-    class: duration
+    class: time
     category: config
     dps:
       - id: 103
@@ -32,9 +32,8 @@ entities:
         range:
           min: 1
           max: 86400
-  - entity: number
+  - entity: time
     name: Pump B irrigation duration
-    class: duration
     category: config
     dps:
       - id: 104
@@ -49,6 +48,7 @@ entities:
     name: Pump A schedule
     category: config
     icon: "mdi:calendar-clock"
+    hidden: true
     dps:
       - id: 101
         type: base64
@@ -58,6 +58,7 @@ entities:
     name: Pump B schedule
     category: config
     icon: "mdi:calendar-clock"
+    hidden: true
     dps:
       - id: 102
         type: base64
@@ -66,6 +67,7 @@ entities:
   - entity: sensor
     name: Run log
     category: diagnostic
+    hidden: true
     dps:
       - id: 105
         type: string
