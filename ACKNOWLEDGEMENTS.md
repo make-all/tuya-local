@@ -806,3 +806,20 @@ Further device support has been made with the assistance of users. Please consid
 - [mcguires5](https://github.com/mcguires5) for contributing support for the red-blue variant of Touchstone Sideline fireplace.
 - [Daniel-Boluda](https://github.com/Daniel-Boluda) for contributing support for NHZS fan switch.
 - [kdog31](https://github.com/kdog31) for contributing support for Arlec PFC002HA Series 2 pet feeder..
+- [NarfX4](https://github.com/NarfX4) for contributing support for Konyks eCosy 2024 pilot wire heating controller.
+- [maxios777](https://github.com/maxios777) for contributing support for WetAir WAD-A10L dehumidifier.
+- [dvismans](https://github.com/dvismans) for contributing support for ET F32 thermostat.
+- [InfObject](https://github.com/InfObject) for contributing support for Feyree Lion EV-Ultra charger.
+- [DEFALTUSER-24](https://github.com/DEFALTUSER-24) for contributing support for Gadnic AC800 robot vacuum.
+- [vemboy200](https://github.com/vemboy200) for contributing improvements to Homemedics C500 dehumidifier.
+- [ernbale](https://github.com/ernbale) for contributing improvements to Solar Inverter GTB Series.
+- [Zuz666](https://github.com/Zuz666) for contributing improvements to icons.
+- [itsiv](https://github.com/itsiv) for contributing support for Foxgard fingerprint lock, which was merged with Primebras Athenas lock.
+- [PoppyPop](https://github.com/PoppyPop) for contributing support for Fanelite Manihi ceiling fan, merged with Hunter Pacific 6 speed fan light.
+- [Zuz666](https://github.com/Zuz666) for contributing support for Imaxfire AWA2 water vapour fireplace and improvements to light entities.
+- [mmaarrkk02](https://github.com/mmaarrkk02) for contributing support for NWT WDH-10EM dehumidifier.
+- [toller892](https://github.com/toller892) for contributing a fix for water heaters.
+- [terryrankine](https://github.com/terryrankine) for contributing support for AOSDK garage door with light.
+-- [DawidSu](https://github.com/DawidSu) for contributing support for Varpoolfaye pool heat pump.
+- [rbswift](https://github.com/rbswift) for contributing improvements to Intaflo Intabloc combo heat pump.
+- [wantstoautomate](https://github.com/wantstoautomate) for contributing improvements to Lublueblu SL60D vacuum.

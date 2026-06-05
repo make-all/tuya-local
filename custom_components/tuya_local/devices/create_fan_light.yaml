@@ -3,6 +3,8 @@ products:
   - id: p8z27dfdwc4riyp9
     manufacturer: Create
     model: XW-FAN-215-D
+  - id: 9ecs16c53uqskxw6
+    manufacturer: Create
 entities:
   - entity: fan
     dps:
@@ -58,3 +60,12 @@ entities:
         range:
           min: 0
           max: 540
+  - entity: switch
+    translation_key: sound
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: switch
