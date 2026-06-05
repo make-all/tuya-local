@@ -1,0 +1,40 @@
+name: Upstream Sync
+
+on:
+  schedule:
+    - cron: '0 7 * * *'  # runs daily at 07:00 UTC
+  workflow_dispatch:
+    inputs:
+      sync_test_mode:
+        description: 'Run in test mode (no changes made)'
+        type: boolean
+        default: false
+
+jobs:
+  sync_latest_from_upstream:
+    runs-on: ubuntu-latest
+    name: Sync latest commits from upstream
+
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Sync upstream changes
+        id: sync
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
+        with:
+          target_sync_branch: main
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_repo: make-all/tuya-local
+          upstream_sync_branch: main
+          test_mode: ${{ inputs.sync_test_mode }}
+
+      - name: New commits synced
+        if: steps.sync.outputs.has_new_commits == 'true'
+        run: echo "New commits were pulled from upstream."
+
+      - name: Already up to date
+        if: steps.sync.outputs.has_new_commits == 'false'
+        run: echo "Already up to date with upstream."
