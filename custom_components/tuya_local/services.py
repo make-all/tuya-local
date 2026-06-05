@@ -70,7 +70,7 @@ async def async_handle_send_ir_command(entity, call: ServiceCall):
             _LOGGER.error("RF emitters are not yet supported by this service")
             continue
         await infrared.async_send_command(
-            entity.hass, emitter, TuyaRemoteCommand(code=code)
+            entity.hass, emitter.entity_id, TuyaRemoteCommand(code=code)
         )
         at_least_one_sent = True
 
