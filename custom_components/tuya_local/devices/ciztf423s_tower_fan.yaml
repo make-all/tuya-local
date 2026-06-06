@@ -1,9 +1,11 @@
-name: Comfort Zone Tower Fan
+name: Tower Fan
 products:
   - id: eb414680be46558e014mtb
-    name: Tower Fan（CZTF423S）
+    manufacturer: Comfort Zone
+    model: CZTF423S
 entities:
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 1
         name: switch
@@ -28,8 +30,8 @@ entities:
         name: oscillate
         type: boolean
   - entity: select
-    name: Sleep Timer
-    icon: mdi:timer-outline
+    translation_key: timer
+    category: config
     dps:
       - id: 22
         name: option
