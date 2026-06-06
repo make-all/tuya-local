@@ -1,0 +1,29 @@
+name: Dimmable light
+products:
+  - id: 452460073c6105c30dab
+    manufacturer: Martin Jerry
+    name: "Rotary Dimmer (3-Way)"
+    model: US-STD-KN01
+
+  - id: 88345545ecfabc7a0c05
+    manufacturer: Martin Jerry
+    name: "Touch Dimmer (Single Pole)"
+    model: US-SD-TC01
+
+# Unlike many other Tuya dimmers, these seem to only expose 2 DPs
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 255
