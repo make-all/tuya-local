@@ -824,3 +824,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rbswift](https://github.com/rbswift) for contributing improvements to Intaflo Intabloc combo heat pump.
 - [wantstoautomate](https://github.com/wantstoautomate) for contributing improvements to Lublueblu SL60D vacuum.
 - [cmoates](https://github.com/cmoates) for contributing support for Comfort Zone tower fan.
+- [dhomeed](https://github.com/dhomeed) for contributing support for Alpine Saunas Helsinki sauna controller.
