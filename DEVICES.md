@@ -349,7 +349,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
-- ComfortZone Powr Curve stand fan
+- ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
