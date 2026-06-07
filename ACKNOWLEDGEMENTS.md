@@ -826,3 +826,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eisenbergergrobin](https://github.com/eisenbergergrobin) for contributing improvements to Create fan with light.
 - [cmoates](https://github.com/cmoates) for contributing support for Comfort Zone tower fan.
 - [dhomeed](https://github.com/dhomeed) for contributing support for Alpine Saunas Helsinki sauna controller.
+- [slickm0nty](https://github.com/slickm0nty) for contributing support for NBQ100-US solar microinverter.
