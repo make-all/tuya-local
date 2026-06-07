@@ -21,6 +21,23 @@ entities:
       - id: 150
         type: boolean
         name: record
+  # DP 105 also controls camera power (inverted there); on = privacy engaged.
+  - entity: switch
+    name: Privacy
+    icon: "mdi:eye-off"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  # DP 150 also drives the camera's is_recording; on = recording enabled.
+  - entity: switch
+    name: Recording
+    icon: "mdi:record-rec"
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
   - entity: light
     translation_key: indicator
     category: config
@@ -395,7 +412,6 @@ entities:
   - entity: button
     name: Stop zooming
     icon: "mdi:stop-circle-outline"
-    category: config
     dps:
       - id: 164
         type: boolean
