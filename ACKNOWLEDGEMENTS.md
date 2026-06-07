@@ -829,3 +829,4 @@ Further device support has been made with the assistance of users. Please consid
 - [slickm0nty](https://github.com/slickm0nty) for contributing support for NBQ100-US solar microinverter.
 - [wangwillian0](https://github.com/wangwillian0) for contributing support for Abir X9 vacuum.
 - [m0bua](https://github.com/m0bua) for contributing support for Yagusmart iMeter 3PN energy meter.
+- [jjsmackay](https://github.com/jjsmackay) for contributing improvements to Moes WCM-P52 camera.
