@@ -16,7 +16,7 @@ from homeassistant.helpers import service
 
 from .const import DOMAIN
 from .infrared import TuyaRemoteCommand
-from .remote import TuyaLocalRemote, FLAG_SAVE_DELAY
+from .remote import FLAG_SAVE_DELAY, TuyaLocalRemote
 
 REMOTE_SEND_IR_COMMAND_SCHEMA = {
     vol.Required("emitter_entity_id"): cv.entity_id,
@@ -50,7 +50,7 @@ async def async_handle_send_ir_command(entity, call: ServiceCall):
     if not entity._storage_loaded:
         await entity._async_load_storage()
 
-    emitter = call.data.get("emitter")
+    emitter = call.data.get("emitter_entity_id")
     device = call.data.get("device")
     command = call.data.get("command")
     delay = call.data.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS)
@@ -70,7 +70,7 @@ async def async_handle_send_ir_command(entity, call: ServiceCall):
             _LOGGER.error("RF emitters are not yet supported by this service")
             continue
         await infrared.async_send_command(
-            entity.hass, emitter, cmd=TuyaRemoteCommand(code=code)
+            entity.hass, emitter, TuyaRemoteCommand(code=code)
         )
         at_least_one_sent = True
 

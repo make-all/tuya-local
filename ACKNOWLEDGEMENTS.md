@@ -823,3 +823,9 @@ Further device support has been made with the assistance of users. Please consid
 -- [DawidSu](https://github.com/DawidSu) for contributing support for Varpoolfaye pool heat pump.
 - [rbswift](https://github.com/rbswift) for contributing improvements to Intaflo Intabloc combo heat pump.
 - [wantstoautomate](https://github.com/wantstoautomate) for contributing improvements to Lublueblu SL60D vacuum.
+- [eisenbergergrobin](https://github.com/eisenbergergrobin) for contributing improvements to Create fan with light.
+- [cmoates](https://github.com/cmoates) for contributing support for Comfort Zone tower fan.
+- [dhomeed](https://github.com/dhomeed) for contributing support for Alpine Saunas Helsinki sauna controller.
+- [slickm0nty](https://github.com/slickm0nty) for contributing support for NBQ100-US solar microinverter.
+- [wangwillian0](https://github.com/wangwillian0) for contributing support for Abir X9 vacuum.
+- [m0bua](https://github.com/m0bua) for contributing support for Yagusmart iMeter 3PN energy meter.
