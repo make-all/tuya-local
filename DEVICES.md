@@ -90,7 +90,6 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplaces
-- TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -245,6 +244,7 @@
 ### Thermostats
 
 - 4-TH quad temperature/humidity smart switch
+- Alpine Saunas Helsinki sauna controller
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW, S1BWP-T/H thermostat smart switches
@@ -317,6 +317,7 @@
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
+- TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
 
 ### Fans
@@ -349,7 +350,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
-- ComfortZone Powr Curve stand fan
+- ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
