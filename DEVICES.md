@@ -147,6 +147,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Qlima SC 7035S air conditioner
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -532,7 +533,7 @@
 - NWT WDH-02EM and WDH-10EN dehumidifiers
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
-- Qlima D720, D812 and D820A dehumidifiers
+- Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
