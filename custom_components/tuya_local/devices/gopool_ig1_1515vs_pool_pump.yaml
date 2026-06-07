@@ -1,0 +1,306 @@
+name: GoPool IG1 Variable Speed Pool Pump
+products:
+  - id: IG1-1515VS
+    manufacturer: GoPool
+    model: IG1 1.65HP Variable Speed
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    name: Running
+    class: running
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+
+  - entity: number
+    name: Set speed
+    icon: "mdi:speedometer"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Mode 1 start-up time
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 141
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  - entity: number
+    name: Mode 1 start-up time minute
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+
+  - entity: number
+    name: Mode 2 start-up time
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 143
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  - entity: number
+    name: Mode 2 start-up time minute
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 144
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+
+  - entity: number
+    name: Mode 3 start-up time
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 145
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  - entity: number
+    name: Mode 3 start-up time minute
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 146
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+
+  - entity: number
+    name: Mode 4 start-up time
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 147
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+
+  - entity: number
+    name: Mode 4 start-up time minute
+    category: config
+    class: duration
+    icon: "mdi:timer-play"
+    dps:
+      - id: 148
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 59
+
+  - entity: number
+    name: Mode 1 speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 149
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Mode 1 duration
+    category: config
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 151
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: number
+    name: Mode 2 speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 152
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Mode 2 duration
+    category: config
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 154
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: number
+    name: Mode 3 speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 155
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Mode 3 duration
+    category: config
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 157
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: number
+    name: Mode 4 speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 158
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: number
+    name: Mode 4 duration
+    category: config
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  - entity: binary_sensor
+    name: Alarm
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 187
+        type: boolean
+        name: sensor
+
+  - entity: switch
+    name: Quick clean
+    icon: "mdi:vacuum"
+    dps:
+      - id: 189
+        type: boolean
+        name: switch
+
+  - entity: number
+    name: Quick clean speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 190
+        type: integer
+        name: value
+        unit: rpm
+        range:
+          min: 600
+          max: 3600
+        mapping:
+          - step: 50
+
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 191
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
