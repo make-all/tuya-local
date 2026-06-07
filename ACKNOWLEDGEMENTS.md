@@ -831,3 +831,4 @@ Further device support has been made with the assistance of users. Please consid
 - [m0bua](https://github.com/m0bua) for contributing support for Yagusmart iMeter 3PN energy meter.
 - [jjsmackay](https://github.com/jjsmackay) for contributing improvements to Moes WCM-P52 camera.
 - [guanaco0403](https://github.com/guanaco0403) for contributing support for Qlima SC 7035S air conditioner.
+- [teun95](https://github.com/teun95) for contributing support for MeacoFan Sefte Pro air circulator.
