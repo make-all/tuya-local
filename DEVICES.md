@@ -689,7 +689,7 @@
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
-- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff and iMeter 3PN energy meters
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
 - Zemismart SPM02-(multiple variants) 3-phase energy meter
