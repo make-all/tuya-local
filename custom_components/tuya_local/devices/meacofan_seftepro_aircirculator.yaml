@@ -19,19 +19,21 @@ entities:
           - dps_val: sleep
             value: sleep
           - dps_val: ECO
-            value: smart
+            value: eco
       - id: 3
         type: integer
         name: speed
         range:
           min: 1
           max: 12
-  - entity: switch
-    name: Pause Oscillation
-    dps:
       - id: 102
         type: boolean
-        name: switch
+        name: oscillate
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: light
     translation_key: display
     category: config
@@ -47,7 +49,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Swing Horizontal
+    name: Horizontal swing
     category: config
     dps:
       - id: 7
@@ -63,7 +65,7 @@ entities:
           - dps_val: "120"
             value: "120°"
   - entity: select
-    name: Swing Vertical
+    name: Vertical swing
     category: config
     dps:
       - id: 6
@@ -79,6 +81,7 @@ entities:
           - dps_val: "60"
             value: "60°"
   - entity: select
+    name: "Off timer"
     translation_key: timer
     category: config
     dps:
@@ -113,7 +116,8 @@ entities:
           - dps_val: "12h"
             value: "12h"
   - entity: select
-    name: Delay On Timer
+    name: "On timer"
+    translation_key: timer
     category: config
     dps:
       - id: 104
