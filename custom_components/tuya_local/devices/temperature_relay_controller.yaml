@@ -1,0 +1,37 @@
+name: Temperature relay controller
+products:
+  - id: ipomh65jy8nuiwwm
+    name: 温度电量控制器
+
+entities:
+  - entity: switch
+    name: Relay
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
