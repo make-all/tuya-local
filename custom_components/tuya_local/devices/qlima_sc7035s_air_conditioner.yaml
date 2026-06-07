@@ -141,9 +141,6 @@ entities:
             conditions:
               - dps_val: ["0", "2", "3"]
                 hidden: true
-          - dps_val: null
-            value: none
-            hidden: true
 
   - entity: sensor
     name: Outdoor temperature
@@ -171,7 +168,7 @@ entities:
 
   - entity: sensor
     name: External fan speed
-    icon: mdi:fan
+    icon: "mdi:fan"
     dps:
       - id: 117
         name: sensor
@@ -198,9 +195,9 @@ entities:
         type: boolean
         optional: true
 
-  - entity: switch
-    name: Display
-    icon: mdi:overscan
+  - entity: light
+    translation_key: display
+    icon: "mdi:overscan"
     category: config
     dps:
       - id: 13
@@ -209,18 +206,22 @@ entities:
         optional: true
 
   - entity: switch
-    name: Beep
-    icon: mdi:volume-high
+    translation_key: sound
+    icon: "mdi:volume-high"
     category: config
     dps:
       - id: 16
         name: switch
         type: boolean
         optional: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
 
   - entity: switch
-    name: Health Mode
-    icon: mdi:medication-outline
+    translation_key: ionizer
     dps:
       - id: 4
         name: hvac_mode_internal
@@ -237,8 +238,8 @@ entities:
                 invalid: true
 
   - entity: switch
-    name: Gentle Wind
-    icon: mdi:weather-windy
+    name: Gentle wind
+    icon: "mdi:weather-windy"
     dps:
       - id: 4
         name: hvac_mode_internal
@@ -263,26 +264,26 @@ entities:
                 invalid: true
 
   - entity: switch
-    name: Self-Clean Evaporator
-    icon: mdi:water-sync
+    name: Self clean
+    icon: "mdi:water-sync"
     dps:
       - id: 1
-        name: power_state
+        name: available
         type: boolean
         hidden: true
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
       - id: 27
         name: switch
         type: boolean
         optional: true
-        mapping:
-          - constraint: power_state
-            conditions:
-              - dps_val: true
-                invalid: true
 
   - entity: select
-    name: Sleep Mode
-    icon: mdi:bed
+    name: Sleep mode
+    icon: "mdi:bed"
     dps:
       - id: 126
         name: option
