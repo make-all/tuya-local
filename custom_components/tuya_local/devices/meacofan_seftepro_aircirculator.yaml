@@ -1,0 +1,155 @@
+name: Air Circulator
+products:
+  - id: vuz30a7fxx9deob7
+    manufacturer: MeacoFan
+    model: Sefte Pro
+  - id: hf57kaednmtjbynq
+    manufacturer: MeacoFan
+    model: Sefte Pro
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: ECO
+            value: eco
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+      - id: 102
+        type: boolean
+        name: oscillate
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: select
+    name: Horizontal swing
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "30"
+            value: "30°"
+          - dps_val: "75"
+            value: "75°"
+          - dps_val: "120"
+            value: "120°"
+  - entity: select
+    name: Vertical swing
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "20"
+            value: "20°"
+          - dps_val: "30"
+            value: "30°"
+          - dps_val: "60"
+            value: "60°"
+  - entity: select
+    name: "Off timer"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "00h"
+            value: cancel
+          - dps_val: "01h"
+            value: "1h"
+          - dps_val: "02h"
+            value: "2h"
+          - dps_val: "03h"
+            value: "3h"
+          - dps_val: "04h"
+            value: "4h"
+          - dps_val: "05h"
+            value: "5h"
+          - dps_val: "06h"
+            value: "6h"
+          - dps_val: "07h"
+            value: "7h"
+          - dps_val: "08h"
+            value: "8h"
+          - dps_val: "09h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: select
+    name: "On timer"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "00h"
+            value: cancel
+          - dps_val: "01h"
+            value: "1h"
+          - dps_val: "02h"
+            value: "2h"
+          - dps_val: "03h"
+            value: "3h"
+          - dps_val: "04h"
+            value: "4h"
+          - dps_val: "05h"
+            value: "5h"
+          - dps_val: "06h"
+            value: "6h"
+          - dps_val: "07h"
+            value: "7h"
+          - dps_val: "08h"
+            value: "8h"
+          - dps_val: "09h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"

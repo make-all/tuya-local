@@ -3,6 +3,9 @@ products:
   - id: ah3vg6gvftgdl0sb
     manufacturer: Duoqu
     model: NEO-A
+  - id: bhbe15fwtdfoyjlx
+    manufacturer: Duoqu
+    model: NEO-AE
 entities:
   - entity: switch
     name: Reset
@@ -45,6 +48,7 @@ entities:
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
         unit: kg
         class: measurement
@@ -57,6 +61,7 @@ entities:
     dps:
       - id: 8
         type: integer
+        optional: true
         name: sensor
         unit: s
   - entity: button
@@ -72,6 +77,7 @@ entities:
     dps:
       - id: 7
         type: integer
+        optional: true
         name: sensor
         unit: times
   - entity: light

@@ -90,7 +90,6 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplaces
-- TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -148,6 +147,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Qlima SC 7035S air conditioner
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -245,6 +245,7 @@
 ### Thermostats
 
 - 4-TH quad temperature/humidity smart switch
+- Alpine Saunas Helsinki sauna controller
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW, S1BWP-T/H thermostat smart switches
@@ -317,6 +318,7 @@
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
+- TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
 
 ### Fans
@@ -349,7 +351,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
-- ComfortZone Powr Curve stand fan
+- ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
@@ -405,6 +407,7 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- MeacoFan Sefte Pro table air circulator
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - NHZS fan speed switch
@@ -531,7 +534,7 @@
 - NWT WDH-02EM and WDH-10EN dehumidifiers
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
-- Qlima D720, D812 and D820A dehumidifiers
+- Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -670,6 +673,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800, SPD800 solar inverters
+- Suqflow NBQ800-US solar inverter
 - SWC32v2 CBU circuit breaker energy meter
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
@@ -687,7 +691,7 @@
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
-- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff and iMeter 3PN energy meters
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
 - Zemismart SPM02-(multiple variants) 3-phase energy meter
@@ -1009,7 +1013,7 @@ of device.
 
 ### Robot vacuums
 
-- Abir X8 vacuum cleaner
+- Abir X8 and X9 vacuum cleaners
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - Gadnic AC800 mopping vacuum cleaner
