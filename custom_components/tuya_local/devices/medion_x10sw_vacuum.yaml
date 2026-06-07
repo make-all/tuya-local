@@ -121,10 +121,6 @@ entities:
         type: string
         optional: true
         name: path_data
-      - id: 15
-        type: string
-        optional: true
-        name: command_trans
       - id: 32
         type: string
         optional: true
@@ -491,4 +487,14 @@ entities:
       - id: 199
         type: string
         name: message_id
+        optional: true
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
         optional: true

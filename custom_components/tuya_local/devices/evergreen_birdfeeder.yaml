@@ -71,9 +71,8 @@ entities:
         optional: true
         force: true
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -81,14 +80,14 @@ entities:
         optional: true
         force: true
   - entity: select
-    name: Night vision
-    translation_key: light_mode
+    translation_key: night_vision
     category: config
-    icon: "mdi:theme-light-dark"
     dps:
       - id: 108
         type: string
         name: option
+        optional: true
+        force: true
         mapping:
           - dps_val: "0"
             value: "auto"
@@ -96,8 +95,6 @@ entities:
             value: "off"
           - dps_val: "2"
             value: "on"
-        optional: true
-        force: true
   - entity: select
     translation_key: motion_sensitivity
     category: config

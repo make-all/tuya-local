@@ -105,10 +105,6 @@ entities:
         type: string
         name: path_data
         optional: true
-      - id: 15
-        type: string
-        name: command_trans
-        optional: true
       - id: 16
         type: string
         name: request
@@ -353,3 +349,13 @@ entities:
             value: charging_failure
           - dps_val: 67108864
             value: picked_up
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true

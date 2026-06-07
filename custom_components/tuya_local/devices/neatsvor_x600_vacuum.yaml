@@ -112,10 +112,6 @@ entities:
         name: path_data
         type: string
         optional: true
-      - id: 15
-        name: command_trans
-        type: base64
-        optional: true
       - id: 16
         name: request
         type: string
@@ -341,3 +337,13 @@ entities:
       - id: 28
         type: bitfield
         name: fault_code
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true
