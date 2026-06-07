@@ -1011,7 +1011,7 @@ of device.
 
 ### Robot vacuums
 
-- Abir X8 vacuum cleaner
+- Abir X8 and X9 vacuum cleaners
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - Gadnic AC800 mopping vacuum cleaner
