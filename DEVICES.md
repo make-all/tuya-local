@@ -192,6 +192,7 @@
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - Turbro 75000 btu pool heat pump
+- Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
