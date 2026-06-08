@@ -704,7 +704,7 @@
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
-- AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall EV charger (3-phase 22Kw)

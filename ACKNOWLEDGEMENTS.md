@@ -834,3 +834,4 @@ Further device support has been made with the assistance of users. Please consid
 - [teun95](https://github.com/teun95) for contributing support for MeacoFan Sefte Pro air circulator.
 - [bakerlee](https://github.com/bakerlee) for contributing support for Verminpool pool heat pump.
 - [EnO33](https://github.com/EnO33) for contributing support for Intex PureSpa inflatable spa.
+- [vanyasvl](https://github.com/vanyasvl) for contributing support for Afyeev 32A 7kW EV charger.
