@@ -53,6 +53,15 @@ entities:
         class: measurement
 
   - entity: sensor
+    name: Fault Bitmap
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        optional: true
+
+  - entity: sensor
     name: Fault Status
     class: enum
     category: diagnostic
@@ -65,25 +74,27 @@ entities:
           - dps_val: "work"
             value: "working"
           - dps_val: "F1"
-            value: "F1"
-          - dps_val: "F1_L"
-            value: "F1_L"
+            value: "F1 - Water temperature outside normal range"
           - dps_val: "F2"
-            value: "F2"
+            value: "F2 - Water flow error"
           - dps_val: "F3"
-            value: "F3"
+            value: "F3 - Water temperature sensor breakdown"
           - dps_val: "F4"
-            value: "F4"
+            value: "F4 - Electrode abnormal"
+          - dps_val: "F5"
+            value: "F5 - Low salinity"
+          - dps_val: "F6"
+            value: "F6 - High salinity"
           - dps_val: "F8"
-            value: "F8"
+            value: "F8 - Low input voltage"
           - dps_val: "F9"
-            value: "F9"
+            value: "F9 - High output current"
           - dps_val: "FC"
-            value: "FC"
+            value: "FC - Circuit abnormal"
           - dps_val: "FP"
-            value: "FP"
+            value: "FP - Power off abnormal"
           - dps_val: "Fb"
-            value: "Fb"
+            value: "Fb - Communication failure"
 
   - entity: sensor
     name: Salinity Status
@@ -176,13 +187,3 @@ entities:
         type: integer
         unit: h
         class: measurement
-
-  - entity: sensor
-    name: Fault Bitmap
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 105
-        name: sensor
-        type: integer
-        optional: true
