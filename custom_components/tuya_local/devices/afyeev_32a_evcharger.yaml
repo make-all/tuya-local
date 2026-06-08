@@ -33,13 +33,6 @@ entities:
         type: string
         name: system_version
   - entity: sensor
-    name: Firmware version
-    category: diagnostic
-    dps:
-      - id: 23
-        type: string
-        name: sensor
-  - entity: sensor
     class: energy
     dps:
       - id: 1
@@ -58,24 +51,23 @@ entities:
       - id: 4
         type: integer
         name: option
-        unit: A
         mapping:
           - dps_val: 6
-            value: "6"
+            value: "6A"
           - dps_val: 8
-            value: "8"
+            value: "8A"
           - dps_val: 10
-            value: "10"
+            value: "10A"
           - dps_val: 13
-            value: "13"
+            value: "13A"
           - dps_val: 16
-            value: "16"
+            value: "16A"
           - dps_val: 20
-            value: "20"
+            value: "20A"
           - dps_val: 24
-            value: "24"
+            value: "24A"
           - dps_val: 32
-            value: "32"
+            value: "32A"
   - entity: sensor
     class: power
     dps:
@@ -87,17 +79,9 @@ entities:
         optional: true
         mapping:
           - scale: 1000
-  - entity: sensor
-    name: "Single phase power"
-    class: power
-    category: diagnostic
-    hidden: true
-    dps:
       - id: 5
         type: integer
-        name: sensor
-        unit: kW
-        class: measurement
+        name: single_phase
         optional: true
         mapping:
           - scale: 1000
