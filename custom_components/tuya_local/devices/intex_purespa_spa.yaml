@@ -4,17 +4,16 @@ products:
     manufacturer: Intex
     model: PureSpa
 entities:
-  - entity: climate
-    translation_key: thermostat
+  - entity: water_heater
     dps:
       - id: 108
         type: boolean
-        name: hvac_mode
+        name: operation_mode
         mapping:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: heat
+            value: electric
       - id: 109
         type: integer
         name: temperature
@@ -26,12 +25,6 @@ entities:
         type: integer
         name: current_temperature
         unit: F
-      - id: 117
-        type: string
-        name: preset_mode
-        mapping:
-          - dps_val: warm
-            value: warm
   - entity: switch
     name: Power
     dps:
@@ -53,17 +46,15 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Sanitizer
-    icon: "mdi:shaker-outline"
+    translation_key: electrolytic_sterilization
     dps:
       - id: 103
         type: boolean
         name: switch
   - entity: sensor
-    name: Timer
-    category: diagnostic
+    translation_key: time_remaining
     class: duration
-    icon: "mdi:timer-outline"
+    category: diagnostic
     dps:
       - id: 114
         type: integer
