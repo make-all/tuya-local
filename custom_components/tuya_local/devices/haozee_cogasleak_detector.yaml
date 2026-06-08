@@ -2,15 +2,18 @@ name: Gas and CO detector
 products:
   - id: piuvzdlag3zsiqjk
     manufacturer: Haozee
+  - id: zbuq0bto5szi53cw
+    manufacturer: Haozee
 entities:
-  - entity: switch
+  - entity: button
     name: Self check
     icon: "mdi:check-circle"
     category: config
     dps:
       - id: 18
         type: boolean
-        name: switch
+        optional: true
+        name: button
   - entity: sensor
     name: Self check result
     class: enum
@@ -18,6 +21,7 @@ entities:
     dps:
       - id: 19
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: checking
@@ -160,7 +164,7 @@ entities:
   - entity: event
     name: Test
     dps:
-      - id: 103
+      - id: 104
         type: boolean
         name: event
         optional: true

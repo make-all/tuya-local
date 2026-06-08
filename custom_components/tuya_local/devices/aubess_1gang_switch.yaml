@@ -5,6 +5,9 @@ products:
     model: Smart Switch/EM
   - id: m4jtkjc43ltrilru
     model: T34 Smart Plug+
+  - id: apwf3sfwz51xuvht
+    manufacturer: Moes
+    model: WM-104-M
 entities:
   - entity: switch
     dps:
@@ -26,10 +29,6 @@ entities:
       - id: 44
         name: switch_inching
         type: string
-        optional: true
-      - id: 47
-        type: string
-        name: switch_type
         optional: true
   - entity: time
     translation_key: timer
@@ -171,3 +170,27 @@ entities:
         type: bitfield
         optional: true
         name: fault_code
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 47
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: sync
+            value: Synchronized switch
+          - dps_val: flip
+            value: Toggle switch
+          - dps_val: button
+            value: Momentary button
+      - id: 47
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

@@ -79,8 +79,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             return self._tone_dp.get_value(self._device) != "off"
 
     async def async_turn_on(self, **kwargs) -> None:
-        async with self._device.set_lock:
-            await self._async_turn_on_locked(**kwargs)
+        await self._async_turn_on_locked(**kwargs)
 
     async def _async_turn_on_locked(self, **kwargs) -> None:
         tone = kwargs.get(ATTR_TONE, None)
@@ -137,10 +136,9 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
 
     async def async_turn_off(self) -> None:
         """Turn off the siren"""
-        async with self._device.set_lock:
-            if self._switch_dp:
-                _LOGGER.info("%s turning off siren", self._config.config_id)
-                await self._switch_dp.async_set_value(self._device, False)
-            elif self._tone_dp:
-                _LOGGER.info("%s setting siren tone to off", self._config.config_id)
-                await self._tone_dp.async_set_value(self._device, "off")
+        if self._switch_dp:
+            _LOGGER.info("%s turning off siren", self._config.config_id)
+            await self._switch_dp.async_set_value(self._device, False)
+        elif self._tone_dp:
+            _LOGGER.info("%s setting siren tone to off", self._config.config_id)
+            await self._tone_dp.async_set_value(self._device, "off")

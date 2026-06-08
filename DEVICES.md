@@ -4,6 +4,7 @@
 
 - Advanced Fires 1500 electric fireplace
 - Amantii Bespoke R1-2-AP1 fireplace
+- AMOS CY-B06ERW oil radiator
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters, CEH243HA ceramic heater
 - Atomi AT1632/AT1635 ceramic heaters
@@ -28,6 +29,7 @@
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
+- ElectriQ MY130 oil radiator
 - Emke Orbrad PTR towel radiator
 - Essentials Smart Home electric bathroom heater
 - eTowel Mini04 plus towel rail thermostat
@@ -45,6 +47,7 @@
 - Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
+- Imaxfire AWA2 water vapour fireplace
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
@@ -56,6 +59,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
+- Konyks eCosy Pilot wire heating controller
 - Lebenlang LBL0380 heater
 - Lehmann LHOHC-2013C electric radiator
 - Livn Arosa electric fireplace
@@ -85,8 +89,7 @@
 - Taurus Agadir Connect oil column heaters
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
-- Touchstone Sideline electric fireplace
-- TyloHelo SaunaLogic2 sauna controller
+- Touchstone Sideline electric fireplaces
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -113,7 +116,7 @@
 - Daizuki heat pump
 - Della air conditioner
 - De'Longhi Pinguino portable air conditioner
-- Duux Blizzard portable air conditioner
+- Duux Blizzard and North portable air conditioners
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
 - EG4 solar heat pump
@@ -141,8 +144,10 @@
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
+- Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Qlima SC 7035S air conditioner
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -187,6 +192,8 @@
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - Turbro 75000 btu pool heat pump
+- Varminpool pool heatpump
+- Varpoolfaye 5kW pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -216,6 +223,7 @@
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
+- Intex PureSpa inflatable salt water spa pool
 - ITS-4.5HD super water heat pump
 - Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
@@ -239,6 +247,7 @@
 ### Thermostats
 
 - 4-TH quad temperature/humidity smart switch
+- Alpine Saunas Helsinki sauna controller
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW, S1BWP-T/H thermostat smart switches
@@ -264,6 +273,7 @@
 - Emmeti Zona thermostat
 - Engo E901WiFi and EFAN230 thermostats
 - Essentials Wall thermostat
+- ET F32 thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
@@ -299,6 +309,7 @@
 - Plikc Neve X W/RFW and Neve Pro W thermostats
 - PNI CT45 thermostat
 - Polytherm Polyalpha thermostat
+- ProWarm Touch Button S series underfloor heating controller
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Sajun steam room
@@ -309,6 +320,7 @@
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
+- TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
 
 ### Fans
@@ -341,7 +353,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
-- ComfortZone Powr Curve stand fan
+- ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
@@ -397,8 +409,10 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- MeacoFan Sefte Pro table air circulator
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- NHZS fan speed switch
 - Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
@@ -413,6 +427,7 @@
 - Princess Smart Tower fan
 - Prism+ Oasis Pro ceiling fan with RGBCCT light
 - Pro Breeze AirFlo 43" pedestal fan
+- Pureborne HTF1001 tower fan
 - Qiachip QI-FLRC-1 ceiling fan with light
 - Reiga ceiling fans with and without light
 - Reventon / Holtop Smart ERV heat recovery ventilator
@@ -477,9 +492,11 @@
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
+- Webber AP9750 air purifier
 
 ### Dehumidifiers
 
+- Aerium DH12W HEPA dehumidifier
 - Aktobis WDH-214US, WDH-310EK and WDH-870FW dehumidifiers
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
@@ -516,10 +533,10 @@
 - Meaco DD8L Pro dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
-- NWT WDH-02EM dehumidifier
+- NWT WDH-02EM and WDH-10EN dehumidifiers
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
-- Qlima D720, D812 and D820A dehumidifiers
+- Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -530,6 +547,7 @@
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
+- WetAir WAD-A10L dehumidifier
 - Woods MRD25GW and WDD90 dehumidifiers
 
 ### Humidifiers
@@ -624,7 +642,7 @@
 - Atorch AT4PW energy monitor
 - Atorch DT20HBW DC battery monitor
 - Aulifants SMES200 energy monitoring breaker switch
-- Avidsen Soria 400W solar inverter
+- Avidsen Soria Karst-400 and MI-400 solar inverters
 - CBI Astute smart controller breaker switch
 - CNC YCB9ZF-100W 1P circuit breaker
 - Compteur digital electric (single phase)
@@ -657,6 +675,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800, SPD800 solar inverters
+- Suqflow NBQ800-US solar inverter
 - SWC32v2 CBU circuit breaker energy meter
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
@@ -674,7 +693,7 @@
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
-- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff and iMeter 3PN energy meters
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
 - Zemismart SPM02-(multiple variants) 3-phase energy meter
@@ -685,7 +704,7 @@
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
-- AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall EV charger (3-phase 22Kw)
@@ -739,7 +758,7 @@ the best option.
 - Brilliant 1/2/3/4 gang wall switches with power monitoring
 - Brilliant quad powerstrip with USB
 - CBI Astute smart controller
-- CE Smart Home LQ-2-W3 AC wall outlet
+- CE Smart Home LQ-2-W3 AC wall outlet, Litesun smart plug
 - Denver SHP-200mk2 dual smartplug with power monitoring
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
@@ -945,6 +964,7 @@ of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
+- AOSDK garage door opener with light
 - Avatto curtain and double light switch (CL02, CLS02 models)
 - Avatto curtain and light switch
 - Avatto curtain switch
@@ -995,9 +1015,10 @@ of device.
 
 ### Robot vacuums
 
-- Abir X8 vacuum cleaner
+- Abir X8 and X9 vacuum cleaners
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
+- Gadnic AC800 mopping vacuum cleaner
 - Horniture G20, Q6 Pro vacuum cleaners
 - iHome Autoac Nova vacuum cleaner
 - ILIFE A12, A30 pro, V20, V30 vacuum cleaners
@@ -1056,6 +1077,7 @@ work reliably, even if listed below.
 
 ### Doorbells
 
+- AJXML 1080p video doorbell
 - Cleverio CD200 video doorbell
 - (Fuers?) video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
@@ -1120,7 +1142,7 @@ port and password.
 
 - Advwin 6L camera pet feeder
 - AF3W pet feeder
-- Arlec Grid Connect 5L pet feeder
+- Arlec Grid Connect 5L and PFC002HA Series 2 pet feeders
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
@@ -1138,6 +1160,7 @@ port and password.
 - Fukumaru AF01-W pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
+- Homall DE-10115O 90L cat litter box
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
 - Imipaw DUW21 WBR3D cat feeder
@@ -1410,6 +1433,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Meian SW02 water leak detector
+- mmWave 4-in-1 human presence, temperature, humidity and illuminance sensor
 - Moes BRT-100-TRV thermostat radiator valve
 - Moes dual dimmer module
 - Moes RGBCW lightbulb

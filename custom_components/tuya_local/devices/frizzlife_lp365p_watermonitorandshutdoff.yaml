@@ -18,12 +18,70 @@ entities:
     dps:
       - id: 12
         type: integer
+        optional: true
         name: sensor
-        unit: C
         class: measurement
         mapping:
           - scale: 10
+      - id: 20
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
 
+  - entity: sensor
+    class: pressure
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+            constraint: unit
+            conditions:
+              - dps_val: us_units
+                scale: 10
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: psi
+          - value: bar
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code
+      - id: 24
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: warning
+          - dps_val: 2
+            value: empty_pipe
+          - dps_val: 4
+            value: cloud_offline
   # Protection Enabled Switch
   - entity: switch
     name: Protection Enabled
@@ -41,10 +99,16 @@ entities:
         optional: true
         name: sensor
         class: total_increasing
-        unit: L
         mapping:
           - scale: 10
-
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: gal
+          - value: L
   # Flow rate
   - entity: sensor
     class: volume_flow_rate
@@ -55,8 +119,14 @@ entities:
         optional: true
         name: sensor
         class: measurement
-        unit: L/h
-
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: gal/h
+          - value: L/h
   # Current flow rate
   - entity: sensor
     class: volume_flow_rate
@@ -66,9 +136,16 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        unit: L/h
         mapping:
           - scale: 1000
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: gal/min
+          - value: L/h
   # Leak Warning
   - entity: binary_sensor
     class: moisture
@@ -224,10 +301,17 @@ entities:
           - dps_val: ADVANCED_SETTING
             value: true
           - value: false
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: gal
+          - value: L
       - id: 111
         type: string
         name: value
-        unit: L
         range:
           min: 0
           max: 5000
@@ -271,3 +355,89 @@ entities:
           - dps_val: 0
             value: 50
           - scale: 0.01
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 20
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Measurement units
+    icon: "mdi:ruler-square"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: us_units
+            value: US
+          - dps_val: metric_unit
+            value: Metric
+
+  # Advanced: Allowed Flow Rate
+  - entity: switch
+    name: Require minimum flow
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+      - id: 109
+        type: string
+        name: available
+        mapping:
+          - dps_val: "ADVANCED_SETTING"
+            value: true
+          - value: false
+
+  - entity: number
+    name: Minimum flow rate
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: us_units
+                target_range:
+                  min: 0.01
+                  max: 0.1
+            target_range:
+              min: 2.5
+              max: 25
+      - id: 109
+        type: string
+        name: mode_system
+      - id: 118
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: true
+            value: false
+            constraint: mode_system
+            conditions:
+              - dps_val: "ADVANCED_SETTING"
+                value: true
+          - value: false
+      - id: 102
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: us_units
+            value: gal/min
+          - value: L/h
