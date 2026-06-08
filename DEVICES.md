@@ -223,6 +223,7 @@
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
+- Intex PureSpa inflatable salt water spa pool
 - ITS-4.5HD super water heat pump
 - Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
