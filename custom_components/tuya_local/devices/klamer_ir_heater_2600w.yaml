@@ -33,6 +33,14 @@ entities:
             conditions:
               - dps_val: f
                 value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Low
+            value: Low
+          - dps_val: High
+            value: High
       - id: 13
         type: string
         name: temperature_unit
@@ -60,19 +68,6 @@ entities:
       - id: 101
         type: boolean
         name: switch
-  - entity: select
-    translation_key: mode
-    category: config
-    icon: "mdi:heat-wave"
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: Low
-            value: Low
-          - dps_val: High
-            value: High
   - entity: switch
     name: Eco Mode
     category: config
