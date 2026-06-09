@@ -1357,6 +1357,7 @@ port and password.
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
+- WS06 weather station
 - Xiumii human presence radar
 - Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
