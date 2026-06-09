@@ -163,13 +163,29 @@ entities:
         optional: true
         mapping:
           - dps_val: 0
-            value: false
+            value: true
+            constraint: indoor_fault_code
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
           - dps_val: null
-            value: false
+            value: true
+            constraint: indoor_fault_code
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
           - value: true
       - id: 22
         type: bitfield
         name: fault_code
+        optional: true
+      - id: 108
+        type: integer
+        name: indoor_fault_code
         optional: true
   - entity: light
     translation_key: display
@@ -178,24 +194,6 @@ entities:
       - id: 36
         type: boolean
         name: switch
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 108
-        type: integer
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-          - dps_val: 0
-            value: false
-          - value: true
-      - id: 108
-        type: integer
-        name: fault_code
-        optional: true
   - entity: switch
     name: On timer
     category: config
