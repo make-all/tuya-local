@@ -1,0 +1,173 @@
+name: RGBCW lightbulb
+products:
+  - id: bf0b923764d77ccbfcyixv
+    manufacturer: Ledvance
+    model: SMART+ WiFi Wide Brick RGB
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+        force: true
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: second
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    translation_key: do_not_disturb
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 51
+        name: value
+        type: base64
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAUA7APoA+gD6AAA"
+            value: "WW 100%"
+          - dps_val: "AAUA7APoA+gB9AAA"
+            value: "WW 50%"
+          - dps_val: "AAUA7APoA+gACgAA"
+            value: "WW 1%"
+          - dps_val: "AAUA7APoA+gD6gHg"
+            value: "WN 100%"
+          - dps_val: "AAUA7APoA+gB9gHg"
+            value: "WN 50%"
+          - dps_val: "AAUA7APoA+gACgHg"
+            value: "WN 1%"
+          - dps_val: "AAUA7APoA+gD6AAA"
+            value: "RGB RED 100%"
+          - dps_val: "AAYAAAPoA+gB9AAA"
+            value: "RGB RED 50%"
+          - dps_val: "AAYAAAPoAAoACgAA"
+            value: "RGB RED 1%"
+          - dps_val: "AAcAAAPoAAoACgAA"
+            value: "WW+RED 100%"
+          - dps_val: "AAcAAAPoAfMB8QAA"
+            value: "WW+RED 50%"
+          - dps_val: "AAcAAAPoA+gD6AAA"
+            value: "WW+RED 1%"
+      - id: 25
+        name: scene_data
+        type: string
+        optional: true
+  - entity: text
+    name: Rhythm mode
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+      - id: 27
+        name: music_data
+        type: string
+        optional: true
+  - entity: text
+    name: Sleep mode
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup mode
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
