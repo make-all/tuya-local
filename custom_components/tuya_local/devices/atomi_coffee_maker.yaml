@@ -2,14 +2,15 @@ name: Atomi Coffee Maker
 products:
   - id: 000002cuuc
     manufacturer: Atomi
-    name: Atomi Smart Coffee Maker (2nd Gen)
+    name: Atomi Smart Coffee Maker
   - id: gmbbmrpkqecjoeoa
     manufacturer: Atomi
-    name: Atomi Smart Coffee Maker (2nd Gen)
+    name: Atomi Smart Coffee Maker
 
 entities:
   - entity: binary_sensor
-    # power status - read only
+    # read only
+    # power status
     name: Brewing
     category: diagnostic
     dps:
@@ -18,7 +19,8 @@ entities:
         name: sensor
 
   - entity: select
-    # brew strength (mode) - read/write
+    # read/write
+    # brew strength
     name: Brew strength
     category: config
     dps:
@@ -32,9 +34,12 @@ entities:
             value: Strong
 
   - entity: sensor
-    # status of the machine - read only
-    # Manual Schedule - seems to be what happens when you press the "timer/clock" icon on
-    #   the device (not the app.)  However, I can't figure out how to set the Schedule on the device
+    # read only
+    # status of the machine
+    # Manual Schedule - tapping the "timer/clock" icon on the device sets this status.
+    #   However, I can't figure out how to set up the device such that it reports a Minutes Until Brew
+    #   Press and hold the timer button and then use the hour/minute buttons to set a time, presumably
+    #   when the device should start brewing
     name: Status
     class: enum
     category: diagnostic
@@ -53,8 +58,9 @@ entities:
             value: Manual Schedule
 
   - entity: binary_sensor
-    # value = 0, OK (carafe on base)
-    # bit 2 (value = 4), carafe not on base - read only
+    # read only
+    # bit 0 (value = 0), OK (carafe on base)
+    # bit 2 (value = 4), carafe not on base
     # not sure what other bits can be set or what they mean
     class: problem
     name: Carafe
@@ -69,9 +75,10 @@ entities:
           - value: false
 
   - entity: sensor
+    # read only
     # value of fault - this is for development, and can be removed when figure out what other bits mean.
     #  When (if) the other bits are determined, setup a binary_sensor like Carafe not on base
-    #  (bit 2 is carafe not on base) - read only
+    #  (bit 2 is carafe not on base)
     name: Raw fault status
     category: diagnostic
     hidden: true
@@ -81,15 +88,17 @@ entities:
         name: sensor
 
   - entity: binary_sensor
-    name: Water Tank
-    class: problem
-    # water in the tank - readonly - this sensor is only evaluated when
-    #   brewing is started, so can't be used to warn ahead of brewing.
-    #   Furthermore, the sensor will change to "Ready" before testing,
-    #   and if the coffee maker is "cold" it will take almost a minute
+    # Read only
+    # water in the tank - this sensor is only evaluated when
+    #   brewing starts, so can't be used to warn ahead of brewing.
+    #   Furthermore, the sensor will change to "Ready" when brewing starts,
+    #   and then change to "Needs water" if the water is low.
+    #   If the coffee maker is "cold" it will take almost a minute
     #   to become "Needs water"
     #   Also, even though it has units of ML, seems
     #   to only be a 1 or 0 (needs water or ready)
+    name: Water Tank
+    class: problem
     category: diagnostic
     dps:
       - id: 18
@@ -100,11 +109,14 @@ entities:
             value: true
           - value: false
 
-  # Leaving this here and marking as hidden.  I just see Unknown in HA and can't
-  #   find any way to set it using app or directly on device
-  - entity: time
-    # time - read only
-    name: Time
+  - entity: number
+    # read only
+    # marking as optional and hidden.  I've tested a bunch and
+    #   I can't figure out to render a value in this field.
+    # I've setup a manual schedule, which worked, but didn't see any changes in the data.
+    # The SmartLife app has a schedule but it doesn't seem to translate to a value for this field.
+    #   My guess is the schedule is a cloud only based feature
+    name: Minutes Until Brew
     hidden: true
     category: diagnostic
     dps:
@@ -112,6 +124,9 @@ entities:
         optional: true
         type: integer
         name: value
+        range:
+          min: 0
+          max: 1440
 
   - entity: button
     name: Start Brewing
@@ -138,22 +153,28 @@ entities:
           - dps_val: false
             value: false
 
-  # Leaving this here as a reminder that ID=104 doesn't seem to be passed during
-  #   normal operation of the device through the app or directly on device
-  - entity: sensor
-    # countdown - read only
-    name: Countdown
+  - entity: number
+    # read only
+    # I've tested with various scenarios and never get a value for this.
+    #   The SmartLife app doesn't show warming time either
+    name: Warming Time
     hidden: true
     category: diagnostic
     dps:
       - id: 104
         optional: true
         type: integer
-        name: sensor
+        name: value
+        range:
+          min: 0
+          max: 1440
 
   - entity: button
     name: Set Time
-    # calibration - sets the time when called - write only
+    # write only
+    # calibration - sets the time when called
+    #   marked as optional because it isn't reported when adding a device and throws off
+    #   the matching algorithm
     dps:
       - id: 105
         optional: true
