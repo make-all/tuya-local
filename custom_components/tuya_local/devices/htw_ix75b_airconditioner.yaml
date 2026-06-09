@@ -18,10 +18,12 @@ entities:
             conditions:
               - dps_val: auto
                 value: heat_cool
+                available: heat_model
               - dps_val: cold
                 value: cool
               - dps_val: hot
                 value: heat
+                available: heat_model
               - dps_val: wet
                 value: dry
               - dps_val: wind
@@ -51,11 +53,11 @@ entities:
           - dps_val: low
             value: low
           - dps_val: MediumLow
-            value: medium_low
+            value: medlow
           - dps_val: middle
             value: medium
           - dps_val: MediumHigh
-            value: medium_high
+            value: medhigh
           - dps_val: high
             value: high
           - dps_val: mute
@@ -78,6 +80,29 @@ entities:
             value: "on"
           - value: "off"
             hidden: true
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: same
+            value: "on"
+          - dps_val: vane_1
+            value: Position 1
+            available: swing_positions
+          - dps_val: vane_2
+            value: Position 2
+            available: swing_positions
+          - dps_val: vane_3
+            value: Position 3
+            available: swing_positions
+          - dps_val: vane_4
+            value: Position 4
+            available: swing_positions
+          - dps_val: vane_5
+            value: Position 5
+            available: swing_positions
       - id: 33
         type: boolean
         name: swing_horizontal_mode
@@ -86,14 +111,24 @@ entities:
             value: "off"
           - dps_val: true
             value: "on"
-      - id: 103
-        type: string
-        name: timer_on_time
+      - id: 105
+        type: boolean
+        name: heat_model
         optional: true
-      - id: 104
-        type: string
-        name: timer_off_time
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+      - id: 106
+        type: boolean
+        name: invertor
         optional: true
+      - id: 107
+        type: boolean
+        name: swing_positions
+        optional: true
+        hidden: true
   - entity: switch
     translation_key: ionizer
     category: config
@@ -109,6 +144,15 @@ entities:
       - id: 12
         type: boolean
         name: switch
+      - id: 105
+        type: boolean
+        name: available
+        optional: true
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -127,29 +171,6 @@ entities:
         type: bitfield
         name: fault_code
         optional: true
-  - entity: select
-    name: Vertical swing
-    icon: "mdi:angle-acute"
-    category: config
-    dps:
-      - id: 31
-        type: string
-        name: option
-        mapping:
-          - dps_val: "off"
-            value: "Off"
-          - dps_val: same
-            value: Swing
-          - dps_val: vane_1
-            value: Position 1
-          - dps_val: vane_2
-            value: Position 2
-          - dps_val: vane_3
-            value: Position 3
-          - dps_val: vane_4
-            value: Position 4
-          - dps_val: vane_5
-            value: Position 5
   - entity: light
     translation_key: display
     category: config
@@ -157,56 +178,59 @@ entities:
       - id: 36
         type: boolean
         name: switch
-  - entity: switch
-    name: Timer on
-    category: config
-    dps:
-      - id: 101
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Timer off
-    category: config
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
-  - entity: sensor
-    name: Error code
-    icon: "mdi:alert-circle"
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 108
         type: integer
         name: sensor
         optional: true
-        range:
-          min: 0
-          max: 29
-  - entity: binary_sensor
-    name: Cooling and heating model
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 105
-        type: boolean
-        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 108
+        type: integer
+        name: fault_code
         optional: true
-  - entity: binary_sensor
-    name: Inverter model
-    category: diagnostic
-    hidden: true
+  - entity: switch
+    name: On timer
+    category: config
     dps:
-      - id: 106
+      - id: 101
         type: boolean
-        name: sensor
-        optional: true
-  - entity: binary_sensor
-    name: Vane position control
-    category: diagnostic
-    hidden: true
+        name: switch
+  - entity: switch
+    name: Off timer
+    category: config
     dps:
-      - id: 107
+      - id: 102
         type: boolean
-        name: sensor
+        name: switch
+  - entity: time
+    translation_key: timer
+    name: "On timer"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: hms
         optional: true
+      - id: 101
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer
+    name: "On timer"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: hms
+        optional: true
+      - id: 102
+        type: boolean
+        name: available
