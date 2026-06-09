@@ -344,26 +344,7 @@ entities:
         type: boolean
         name: button
         optional: true
-  - entity: select
-    name: Mowing mode
-    icon: "mdi:mower"
-    category: config
-    dps:
-      - id: 3
-        type: string
-        optional: true
-        name: option
-        mapping:
-          - dps_val: standby
-            value: Standby
-          - dps_val: random
-            value: Random
-          - dps_val: smart
-            value: Smart
-          - dps_val: spot
-            value: Spot
-          - dps_val: goto_charge
-            value: Return to dock
+
   - entity: button
     name: Clear zones
     icon: "mdi:map-marker-remove"
