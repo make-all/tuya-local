@@ -132,6 +132,7 @@
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
 - Hokkaido HKEDM 263 ZL air conditioner
+- HTW IX75B air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Ideal Clima TQCT07 fancoil air conditioner
 - Igenix IG9901WIFI portable air conditioner
