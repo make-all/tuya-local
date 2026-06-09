@@ -18,22 +18,25 @@ entities:
       - id: 104
         type: boolean
         name: switch
-  - entity: camera
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
     dps:
       - id: 105
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: true
-          - dps_val: true
-            value: false
       - id: 117
         type: integer
         name: sd_format_state
-      - id: 134
-        type: boolean
-        name: motion_enable
       - id: 240
         type: string
         name: status
@@ -43,6 +46,20 @@ entities:
       - id: 248
         type: string
         name: storage
+  - entity: camera
+    deprecated: switch_camera_privacy, switch_motion_detection  # 2026-06-08
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 134
+        type: boolean
+        name: motion_enable
   - entity: select
     translation_key: motion_sensitivity
     category: config

@@ -192,6 +192,7 @@
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - Turbro 75000 btu pool heat pump
+- Varminpool pool heatpump
 - Varpoolfaye 5kW pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
@@ -222,6 +223,7 @@
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
+- Intex PureSpa inflatable salt water spa pool
 - ITS-4.5HD super water heat pump
 - Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
@@ -702,7 +704,7 @@
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
-- AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall EV charger (3-phase 22Kw)

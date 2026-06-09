@@ -4,7 +4,25 @@ products:
     manufacturer: Mypin
     model: 6L
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: switch_camera_record, switch_motion_detection  # 2026-06-08
     dps:
       - id: 113
         type: boolean
