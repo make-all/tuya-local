@@ -22,7 +22,9 @@ from .helpers import assert_device_properties_set, mock_device
 
 PRODUCT_SCHEMA = vol.Schema(
     {
-        vol.Required("id"): str,
+        # Bluetooth and Zigbee devices have 8 character product ids
+        # WiFi devices have 16 character product ids
+        vol.Required("id"): vol.All(str, vol.Length(min=8, max=16)),
         vol.Optional("name"): str,
         vol.Optional("manufacturer"): str,
         vol.Optional("model"): str,
@@ -41,8 +43,8 @@ CONDMAP_SCHEMA = vol.Schema(
             vol.Required("max"): int,
         },
         vol.Optional("target_range"): {
-            vol.Required("min"): int,
-            vol.Required("max"): int,
+            vol.Required("min"): vol.Any(int, float),
+            vol.Required("max"): vol.Any(int, float),
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),

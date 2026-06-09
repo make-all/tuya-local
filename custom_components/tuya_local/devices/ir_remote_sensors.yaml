@@ -1,6 +1,8 @@
 name: Universal remote control
 products:
   - id: whs3cty93fzrqkpt
+  - id: jbe3snv4tki8oo9c
+    model: S09
 entities:
   - entity: remote
     dps:
@@ -37,3 +39,33 @@ entities:
         type: integer
         unit: "%"
         class: measurement
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    class: humidity
+    hidden: true
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
