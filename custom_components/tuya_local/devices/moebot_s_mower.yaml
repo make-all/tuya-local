@@ -9,6 +9,9 @@ products:
   - id: 7yr5iwga
     manufacturer: Parkside
     model: PMRC 250 Ai Bluetooth
+  - id: 9hdajpiw
+    manufacturer: Parkside
+    model: PAMRC 250 A1 City
 entities:
   - entity: lawn_mower
     dps:
@@ -40,6 +43,8 @@ entities:
             value: docked
           - dps_val: SELF_TEST
             value: docked
+          - dps_val: EDGE
+            value: mowing
       - id: 115
         name: command
         type: string
@@ -60,6 +65,9 @@ entities:
             hidden: true
           - dps_val: StartReturnStation
             value: dock
+          - dps_val: EDGE
+            value: start_mowing
+            hidden: true
       - id: 101
         name: raw_activity
         type: string
@@ -111,6 +119,17 @@ entities:
         optional: true
         mapping:
           - dps_val: ContinueWork
+            value: true
+  - entity: button
+    name: Edge mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: EDGE
             value: true
   - entity: sensor
     class: battery
@@ -202,6 +221,10 @@ entities:
             value: Manually dock
             icon: "mdi:home-alert"
             icon_priority: 1
+          - dps_val: PLACE_INSIDE
+            value: Manually dock
+            icon: "mdi:home-alert"
+            icon_priority: 1
           - dps_val: FIXED_END
             value: Finished fixed mowing
             icon: "mdi:mower"
@@ -219,6 +242,10 @@ entities:
             icon: "mdi:alert-octogon"
             icon_priority: 1
           - dps_val: FIXED_MOWING_INTERRUPT
+            value: Interrupted fixed mowing
+            icon: "mdi:alert-octogon"
+            icon_priority: 1
+          - dps_val: FIXED_MOWING_INTERUPT
             value: Interrupted fixed mowing
             icon: "mdi:alert-octogon"
             icon_priority: 1
@@ -261,6 +288,22 @@ entities:
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
+            icon_priority: 1
+          - dps_val: DISCHARGE_ERROR
+            value: Discharge error
+            icon: "mdi:battery-alert"
+            icon_priority: 1
+          - dps_val: CHARGE_TEMP_ERROR
+            value: Charging temperature error
+            icon: "mdi:thermometer-alert"
+            icon_priority: 1
+          - dps_val: HEDGEHOG
+            value: Hedgehog detected
+            icon: "mdi:paw"
+            icon_priority: 1
+          - dps_val: NTC
+            value: Temperature sensor error
+            icon: "mdi:thermometer-alert"
             icon_priority: 1
   - entity: switch
     name: Rain mode
@@ -365,3 +408,12 @@ entities:
           - dps_val: null
             value: false
           - value: true
+  - entity: sensor
+    name: Firmware version
+    icon: "mdi:information"
+    category: diagnostic
+    dps:
+      - id: 134
+        type: string
+        name: sensor
+        optional: true
