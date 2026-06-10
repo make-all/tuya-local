@@ -36,11 +36,12 @@ entities:
   - entity: sensor
     # read only
     # status of the machine
-    # Manual Schedule - tapping the "timer/clock" icon on the device sets this status.
-    #   However, I can't figure out how to set up the device such that it reports a Minutes Until Brew
-    #   Press and hold the timer button and then use the hour/minute buttons to set a time, presumably
+    # Manual Schedule - tapping the "timer/clock" icon on the device sets
+    #   this status. However, I can't figure out how to set up the device
+    #   such that it reports a Minutes Until Brew Press and hold the timer
+    #   button and then use the hour/minute buttons to set a time, presumably
     #   when the device should start brewing
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -76,8 +77,9 @@ entities:
 
   - entity: sensor
     # read only
-    # value of fault - this is for development, and can be removed when figure out what other bits mean.
-    #  When (if) the other bits are determined, setup a binary_sensor like Carafe not on base
+    # value of fault - this is for development, and can be removed when
+    #   figure out what other bits mean. When (if) the other bits are
+    #   determined, setup a binary_sensor like Carafe not on base
     #  (bit 2 is carafe not on base)
     name: Raw fault status
     category: diagnostic
@@ -113,9 +115,11 @@ entities:
     # read only
     # marking as optional and hidden.  I've tested a bunch and
     #   I can't figure out to render a value in this field.
-    # I've setup a manual schedule, which worked, but didn't see any changes in the data.
-    # The SmartLife app has a schedule but it doesn't seem to translate to a value for this field.
-    #   My guess is the schedule is a cloud only based feature
+    # I've setup a manual schedule, which worked, but didn't see any changes
+    #   in the data.
+    # The SmartLife app has a schedule but it doesn't seem to translate to a
+    #   value for this field. My guess is the schedule is a cloud only based
+    #   feature
     name: Minutes Until Brew
     hidden: true
     category: diagnostic
@@ -130,8 +134,8 @@ entities:
 
   - entity: button
     name: Start Brewing
-    # The switch may or may not turn on the machine.  For instance, if there isn't
-    #   enough water or carafe is missing
+    # The switch may or may not turn on the machine.
+    #   For instance, if there isn't enough water or carafe is missing
     dps:
       - id: 103
         type: boolean
@@ -173,8 +177,8 @@ entities:
     name: Set Time
     # write only
     # calibration - sets the time when called
-    #   marked as optional because it isn't reported when adding a device and throws off
-    #   the matching algorithm
+    #   marked as optional because it isn't reported when adding a device
+    #   and throws off the matching algorithm
     dps:
       - id: 105
         optional: true
