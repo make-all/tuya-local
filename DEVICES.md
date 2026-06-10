@@ -52,6 +52,7 @@
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
+- Klamer 2600W IR heater
 - Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Bornholm Electric heater (1kW, based on WBR3)
 - Klarstein WnoderSky IR heater (360W ACO14)
@@ -132,6 +133,7 @@
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
 - Hokkaido HKEDM 263 ZL air conditioner
+- HTW IX75B air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Ideal Clima TQCT07 fancoil air conditioner
 - Igenix IG9901WIFI portable air conditioner
@@ -954,6 +956,7 @@ of device.
 - V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
+- WS2812 based LED Christmas lights
 
 ### Covers
 
@@ -1335,6 +1338,7 @@ port and password.
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
+- Sodial probe thermometer
 - Speaka SP-TVCM-510 TV mount
 - Steigen Solar Pro clothes drying rack
 - Sunbeam dual heated mattress pad
@@ -1357,6 +1361,7 @@ port and password.
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
+- WS06 weather station
 - Xiumii human presence radar
 - Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)

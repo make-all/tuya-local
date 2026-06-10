@@ -42,7 +42,17 @@ entities:
             value: "medium"
           - dps_val: "2"
             value: "high"
+  - entity: switch
+    name: Motion enabled
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: event_motion, switch_motion_enabled  # 2026-06-08
     dps:
       - id: 113
         type: boolean
@@ -63,6 +73,10 @@ entities:
           - dps_val: null
             value: null
           - value: detected
+      - id: 115
+        type: base64
+        name: snapshot
+        optional: true
   - entity: switch
     name: Motion detection
     category: config
