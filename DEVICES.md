@@ -955,6 +955,7 @@ of device.
 - V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
+- WS2812 based LED Christmas lights
 
 ### Covers
 
