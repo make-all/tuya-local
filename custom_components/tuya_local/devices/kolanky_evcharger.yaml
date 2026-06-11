@@ -54,29 +54,29 @@ entities:
     category: config
     class: current
     dps:
-      - id: 115
+      - id: 114
         type: integer
         name: value
         unit: A
         range:
-          min: 8
-          max: 32
+          min: 6
+          max: 16
         mapping:
           - constraint: max_current
             conditions:
-              - dps_val: Max16A
+              - dps_val: Max32A
                 value_redirect: value_alt
                 range:
-                  min: 6
-                  max: 16
-      - id: 114
+                  min: 8
+                  max: 32
+      - id: 115
         type: integer
         optional: true
         name: value_alt
         unit: A
         range:
-          min: 6
-          max: 16
+          min: 8
+          max: 32
       - id: 113
         type: string
         name: max_current
