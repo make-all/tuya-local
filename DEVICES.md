@@ -1052,7 +1052,8 @@ of device.
 
 ### Lawnmowers
 
-- MoeBot S-series mowers (also sold under Parkside and other brands, may require protocol version set manually to 3.4)
+- MoeBot S-series mowers
+- Parkside WiFi and Bluetooth mowers
 
 ### Locks
 

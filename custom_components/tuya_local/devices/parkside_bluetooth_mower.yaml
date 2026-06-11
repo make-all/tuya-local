@@ -1,8 +1,15 @@
 name: Lawnmower
 products:
-  - id: mvt4l2evgq2l3nkn
-    manufacturer: MoeBot
-    model: S20
+
+  - id: 9hdajpiw
+    manufacturer: Parkside
+    model: PAMRC 250 A1 City
+  - id: 7yr5iwga
+    manufacturer: Parkside
+    model: PMRC 250 Ai Bluetooth
+  - id: icw5sal7xfcevsve
+    manufacturer: Parkside
+    model: PMRDA 20-Li A1
 entities:
   - entity: lawn_mower
     dps:
@@ -11,7 +18,7 @@ entities:
         type: string
         mapping:
           - dps_val: STANDBY
-            value: docked
+            value: paused
           - dps_val: MOWING
             value: mowing
           - dps_val: CHARGING
@@ -34,6 +41,8 @@ entities:
             value: docked
           - dps_val: SELF_TEST
             value: docked
+          - dps_val: EDGE
+            value: mowing
       - id: 115
         name: command
         type: string
@@ -54,6 +63,9 @@ entities:
             hidden: true
           - dps_val: StartReturnStation
             value: dock
+          - dps_val: EDGE
+            value: start_mowing
+            hidden: true
       - id: 101
         name: raw_activity
         type: string
@@ -73,6 +85,10 @@ entities:
         type: string
         name: zones
         optional: true
+      - id: 134
+        type: string
+        name: firmware_version
+        optional: true
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
@@ -85,7 +101,7 @@ entities:
           - dps_val: StartFixedMowing
             value: true
   - entity: button
-    name: Cancel mowing
+    name: Cancel work
     icon: "mdi:mower"
     dps:
       - id: 115
@@ -105,6 +121,17 @@ entities:
         optional: true
         mapping:
           - dps_val: ContinueWork
+            value: true
+  - entity: button
+    name: Edge mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: EDGE
             value: true
   - entity: sensor
     class: battery
@@ -196,6 +223,10 @@ entities:
             value: Manually dock
             icon: "mdi:home-alert"
             icon_priority: 1
+          - dps_val: PLACE_INSIDE
+            value: Manually dock
+            icon: "mdi:home-alert"
+            icon_priority: 1
           - dps_val: FIXED_END
             value: Finished fixed mowing
             icon: "mdi:mower"
@@ -213,6 +244,10 @@ entities:
             icon: "mdi:alert-octogon"
             icon_priority: 1
           - dps_val: FIXED_MOWING_INTERRUPT
+            value: Interrupted fixed mowing
+            icon: "mdi:alert-octogon"
+            icon_priority: 1
+          - dps_val: FIXED_MOWING_INTERUPT
             value: Interrupted fixed mowing
             icon: "mdi:alert-octogon"
             icon_priority: 1
@@ -256,6 +291,22 @@ entities:
             value: UI locked
             icon: "mdi:hand-back-right-off"
             icon_priority: 1
+          - dps_val: DISCHARGE_ERROR
+            value: Discharge error
+            icon: "mdi:battery-alert"
+            icon_priority: 1
+          - dps_val: CHARGE_TEMP_ERROR
+            value: Charging temperature error
+            icon: "mdi:thermometer-alert"
+            icon_priority: 1
+          - dps_val: HEDGEHOG
+            value: Hedgehog detected
+            icon: "mdi:paw"
+            icon_priority: 1
+          - dps_val: NTC
+            value: Temperature sensor error
+            icon: "mdi:thermometer-alert"
+            icon_priority: 1
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -286,7 +337,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Query schedule
+    name: Refresh schedule
     icon: "mdi:calendar-refresh"
     category: config
     dps:
@@ -295,7 +346,7 @@ entities:
         name: button
         optional: true
   - entity: button
-    name: Query zones
+    name: Refresh zones
     icon: "mdi:map-search"
     category: config
     dps:
@@ -303,20 +354,16 @@ entities:
         type: boolean
         name: button
         optional: true
-  - entity: select
-    name: Mowing mode
-    icon: "mdi:mower"
+
+  - entity: button
+    name: Clear zones
+    icon: "mdi:map-marker-remove"
     category: config
     dps:
       - id: 114
-        type: string
+        type: boolean
+        name: button
         optional: true
-        name: option
-        mapping:
-          - dps_val: AutoMode
-            value: Auto
-          - dps_val: GardenMode
-            value: Garden
   - entity: binary_sensor
     name: Cover
     category: diagnostic
@@ -341,16 +388,11 @@ entities:
     hidden: unavailable
     dps:
       - id: 121
-        type: integer
+        type: boolean
         name: switch
         optional: true
-        mapping:
-          - dps_val: 0
-            value: false
-          - dps_val: 1
-            value: true
       - id: 121
-        type: integer
+        type: boolean
         optional: true
         name: available
         mapping:
