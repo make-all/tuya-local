@@ -48,6 +48,7 @@
 - HJZ oil column radiator
 - Hombli radiator controller
 - Imaxfire AWA2 water vapour fireplace
+- InkbirdPlus HT2024 space heater
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
@@ -235,7 +236,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
-- Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
+- Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
@@ -287,6 +288,7 @@
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Garza Aspen and (unknown model) thermostats
+- HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
