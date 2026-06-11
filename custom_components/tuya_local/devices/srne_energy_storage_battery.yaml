@@ -34,10 +34,56 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
+    category: diagnostic
+    name: State of health
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Remaining capacity
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: sensor
+        unit: Ah
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    name: Rated capacity
+    dps:
+      - id: 106
+        type: integer
+        optional: true
+        name: sensor
+        unit: Ah
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    name: Full charge capacity
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: Ah
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
     name: Discharge cycles
     dps:
       - id: 108
         type: integer
+        optional: true
         name: sensor
         unit: cycles
         class: total
