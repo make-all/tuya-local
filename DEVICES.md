@@ -48,6 +48,7 @@
 - HJZ oil column radiator
 - Hombli radiator controller
 - Imaxfire AWA2 water vapour fireplace
+- InkbirdPlus HT2024 space heater
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
