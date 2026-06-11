@@ -85,6 +85,10 @@ entities:
         type: string
         name: zones
         optional: true
+      - id: 134
+        type: string
+        name: firmware_version
+        optional: true
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
@@ -395,12 +399,3 @@ entities:
           - dps_val: null
             value: false
           - value: true
-  - entity: sensor
-    name: Firmware version
-    icon: "mdi:information"
-    category: diagnostic
-    dps:
-      - id: 134
-        type: string
-        name: sensor
-        optional: true
