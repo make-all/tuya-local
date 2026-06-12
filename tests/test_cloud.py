@@ -5,9 +5,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 
 from custom_components.tuya_local.cloud import (
+    HUB_CATEGORIES,
     Cloud,
     DeviceListener,
-    HUB_CATEGORIES,
     TokenListener,
 )
 from custom_components.tuya_local.const import (
