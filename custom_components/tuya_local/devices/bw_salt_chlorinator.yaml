@@ -1,28 +1,25 @@
-name: Salt Chlorinator
+name: Salt chlorinator
 products:
   - id: ypdzzmgqbq3dqhqu
-    name: BW Salt Chlorinator
-    model_id: fxalqw
     manufacturer: BW
 
 entities:
   - entity: switch
-    name: Power
+    name: 24-hour cycle
     dps:
       - id: 101
         name: switch
         type: boolean
 
-  - entity: switch
-    name: Child Lock
-    category: config
+  - entity: lock
+    translation_key: child_lock
     dps:
       - id: 102
-        name: switch
+        name: lock
         type: boolean
 
   - entity: select
-    name: Output Level
+    name: Chlorination output
     category: config
     dps:
       - id: 103
@@ -30,20 +27,20 @@ entities:
         type: string
         mapping:
           - dps_val: "25"
-            value: "25%"
+            value: "25% (3 h)"
           - dps_val: "50"
-            value: "50%"
+            value: "50% (6 h)"
           - dps_val: "75"
-            value: "75%"
+            value: "75% (9 h)"
           - dps_val: "100"
-            value: "100%"
+            value: "100% (12 h)"
           - dps_val: "150"
-            value: "150%"
+            value: "150% (18 h)"
           - dps_val: "200"
-            value: "200%"
+            value: "200% (24 h)"
 
   - entity: sensor
-    name: Water Temperature
+    name: Water temperature
     class: temperature
     dps:
       - id: 104
@@ -52,30 +49,27 @@ entities:
         unit: C
         class: measurement
 
-  - entity: sensor
-    name: Fault Bitmap
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 105
-        name: sensor
-        type: integer
-        optional: true
-
-  - entity: sensor
-    name: Fault Status
-    class: enum
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 106
         name: sensor
         type: string
-        optional: true
         mapping:
           - dps_val: "work"
-            value: "working"
+            value: false
+          - value: true
+      - id: 106
+        type: string
+        name: description
+        mapping:
+          - dps_val: "work"
+            value: "Working"
           - dps_val: "F1"
             value: "F1 - Water temperature outside normal range"
+          - dps_val: "F1_L"
+            value: "F1_L - Water temperature outside normal range"
           - dps_val: "F2"
             value: "F2 - Water flow error"
           - dps_val: "F3"
@@ -98,14 +92,14 @@ entities:
             value: "Fb - Communication failure"
 
   - entity: sensor
-    name: Salinity Status
+    name: Salinity status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
       - id: 107
         name: sensor
         type: string
-        optional: true
         mapping:
           - dps_val: "salinity_low"
             value: "low"
@@ -115,32 +109,30 @@ entities:
             value: "high"
 
   - entity: button
-    name: Clear Fault
-    category: config
+    name: Clear fault
     dps:
       - id: 108
         name: button
         type: boolean
-        optional: true
 
-  - entity: number
-    name: Self-Clean Time
+  - entity: select
+    name: Self-clean interval
     category: config
     dps:
       - id: 109
-        name: value
+        name: option
         type: integer
-        range:
-          min: 4
-          max: 12
-        unit: h
         mapping:
-          - step: 4
+          - dps_val: 4
+            value: "4 h"
+          - dps_val: 8
+            value: "8 h"
+          - dps_val: 12
+            value: "12 h"
 
   - entity: sensor
-    name: Self-Clean Remaining
+    name: Runtime until self-clean
     class: duration
-    category: diagnostic
     dps:
       - id: 110
         name: sensor
@@ -148,30 +140,16 @@ entities:
         unit: h
         class: measurement
 
-  - entity: sensor
-    name: Salinity
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 111
-        name: sensor
-        type: integer
-        unit: ppm
-        class: measurement
-        optional: true
-
   - entity: button
-    name: Clear Salinity Fault
-    category: config
+    name: Clear salinity fault
     dps:
       - id: 112
         name: button
         type: boolean
 
   - entity: sensor
-    name: Work Countdown
+    name: Runtime remaining
     class: duration
-    category: diagnostic
     dps:
       - id: 113
         name: sensor
@@ -180,9 +158,8 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Work Time
+    name: Runtime duration
     class: duration
-    category: diagnostic
     dps:
       - id: 114
         name: sensor
