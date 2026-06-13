@@ -727,7 +727,7 @@ Further device support has been made with the assistance of users. Please consid
 - [woutervb](https://github.com/woutervb) for contributing support for Arlec ATF4601HA 4-speed fan.
 - [jrafaelahmedov](https://github.com/jrafaelahmedov) for contributing improvement to config flow and LDNIO SCW3451 powerstrip which was merged to `quad_power_timer`.
 - [TinQ0](https://github.com/TinQ0) for contributing support for Repetsun 5L double bowl pet feeder.
-- [lweikit](https://github.com/lweikit) for contributing support for Yu Home Yu Turbo laundry drying rack.
+- [lweikit](https://github.com/lweikit) for contributing support for Yu Home Yu Turbo laundry drying rack, improvements to City Energy gas water heater.
 - [AlbertoMarziali](https://github.com/AlbertoMarziali) for contributing support for Nivian NVS-A6WG alarm panel.
 - [TheAdamGalloway](https://github.com/TheAdamGalloway) for contributing support for Curv alarm panel that was merged to the Nivian above.
 - [prfj](https://github.com/prfj) for contributing support for Cecotec TotalPure purifier.
