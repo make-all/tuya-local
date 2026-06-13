@@ -609,7 +609,7 @@
 - Ciarra CBCS4850 range hood
 - Casdon 16J3S dishwasher
 - Casdon KG1 inline water dispenser
-- Casdon TD Pro 2 and T2E ovens
+- Casdon TD Pro 2, TD Pro 3 and T2E ovens
 - Cecofry 5500 Connected air fryer
 - Etna VW644MC dishwasher
 - Fiesta DK-1G smart kettle
