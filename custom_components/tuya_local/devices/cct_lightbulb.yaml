@@ -40,10 +40,6 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 25
-        name: scene
-        type: hex
-        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -55,3 +51,29 @@ entities:
         range:
           min: 0
           max: 86400
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
