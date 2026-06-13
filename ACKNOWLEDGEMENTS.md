@@ -841,3 +841,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MCarvalho06](https://github.com/MCarvalho06) for contributing support for Parkside Bluetooth mowers.
 - [PetePeter](https://github.com/PetePeter) for contributing improvements to SRNE EOS10B battery.
 - [mvanhorn](https://github.com/mvanhorn) for contributing support for Casdon TD Pro 3 oven.
+- [TheApsik](https://github.com/TheApsik) for contributing support for Klarta Stor 3 purifier.

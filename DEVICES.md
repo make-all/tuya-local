@@ -475,7 +475,7 @@
 - iHunt 400m³/h and 50m³/h air purifiers
 - Jafanda JF260S and JF500 air purifiers
 - Kilo Plus air purifier
-- Klarta Stor 2 and Forste 4 air purifiers
+- Klarta Stor 2, Stor 3 and Forste 4 air purifiers
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
