@@ -47,6 +47,15 @@ entities:
             value: idle
           - dps_val: "wait"
             value: idle
+      - id: 101
+        name: unknown_101
+        type: boolean
+      - id: 108
+        name: unknown_108
+        type: integer
+      - id: 109
+        name: unknown_109
+        type: integer
   - entity: switch
     name: Start
     icon: "mdi:play-pause"
@@ -160,27 +169,3 @@ entities:
         name: sensor
         type: integer
         optional: true
-  - entity: binary_sensor
-    name: Unknown 101
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 101
-        name: sensor
-        type: boolean
-  - entity: sensor
-    name: Unknown 108
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 108
-        name: sensor
-        type: integer
-  - entity: sensor
-    name: Unknown 109
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 109
-        name: sensor
-        type: integer
