@@ -47,8 +47,7 @@ entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Active filter life
-    icon: "mdi:air-filter"
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 5
@@ -57,18 +56,18 @@ entities:
         unit: "%"
   - entity: select
     name: Auto mode
-    icon: "mdi:auto-mode"
+    translation_key: mode
     dps:
       - id: 101
         name: option
         type: string
         mapping:
           - dps_val: sleep
-            value: Sleep
+            value: sleep
           - dps_val: normal
-            value: Normal
+            value: medium
           - dps_val: turbo
-            value: Turbo
+            value: high
   - entity: switch
     translation_key: ionizer
     category: config
