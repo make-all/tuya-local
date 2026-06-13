@@ -842,3 +842,4 @@ Further device support has been made with the assistance of users. Please consid
 - [PetePeter](https://github.com/PetePeter) for contributing improvements to SRNE EOS10B battery.
 - [mvanhorn](https://github.com/mvanhorn) for contributing support for Casdon TD Pro 3 oven.
 - [TheApsik](https://github.com/TheApsik) for contributing support for Klarta Stor 3 purifier.
+- [jaypo82](https://github.com/jaypo82) for contributing improvements to Kolanky EV charger for Goodcell 32A model.
