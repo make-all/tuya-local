@@ -1,11 +1,9 @@
-name: Atomi Coffee Maker
+name: Coffee maker
 products:
-  - id: 000002cuuc
-    manufacturer: Atomi
-    name: Atomi Smart Coffee Maker
   - id: gmbbmrpkqecjoeoa
     manufacturer: Atomi
-    name: Atomi Smart Coffee Maker
+    model: RE70X-TC02
+    model_id: 000002cuuc
 
 entities:
   - entity: binary_sensor
@@ -54,16 +52,16 @@ entities:
           - dps_val: status2
             value: Brewing
           - dps_val: status3
-            value: Warming
+            value: Keeping warm
           - dps_val: status4
-            value: Manual Schedule
+            value: Scheduled on device
 
   - entity: binary_sensor
     # read only
     # bit 0 (value = 0), OK (carafe on base)
     # bit 2 (value = 4), carafe not on base
     # not sure what other bits can be set or what they mean
-    class: problem
+    class: occupancy
     name: Carafe
     category: diagnostic
     dps:
@@ -72,8 +70,17 @@ entities:
         name: sensor
         mapping:
           - dps_val: 4
-            value: true
-          - value: false
+            value: false
+          - value: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
 
   - entity: sensor
     # read only
@@ -81,7 +88,7 @@ entities:
     #   figure out what other bits mean. When (if) the other bits are
     #   determined, setup a binary_sensor like Carafe not on base
     #  (bit 2 is carafe not on base)
-    name: Raw fault status
+    name: Fault Code
     category: diagnostic
     hidden: true
     dps:
@@ -99,8 +106,7 @@ entities:
     #   to become "Needs water"
     #   Also, even though it has units of ML, seems
     #   to only be a 1 or 0 (needs water or ready)
-    name: Water Tank
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 18
@@ -115,7 +121,7 @@ entities:
     # read only
     # marking as optional and hidden.  I've tested a bunch and
     #   I can't figure out to render a value in this field.
-    # I've setup a manual schedule, which worked, but didn't see any changes
+    # I've setup "schedule on device", which works, but don't see any changes
     #   in the data.
     # The SmartLife app has a schedule but it doesn't seem to translate to a
     #   value for this field. My guess is the schedule is a cloud only based
