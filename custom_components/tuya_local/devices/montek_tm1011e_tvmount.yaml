@@ -1,0 +1,117 @@
+name: TV mount
+products:
+  - id: ejr6szbimwutiaqp
+    manufacturer: monTEK
+    model: Ceiling TV Mount
+    model_id: DE-DS-TM1011E-M
+entities:
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_stop
+            value: true
+  - entity: button
+    name: Move up
+    icon: "mdi:arrow-up-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_up
+            value: true
+  - entity: button
+    name: Move down
+    icon: "mdi:arrow-down-bold"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: move_down
+            value: true
+  - entity: button
+    name: Memory recall 1
+    icon: "mdi:numeric-1-circle"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: recall1
+            value: true
+  - entity: button
+    name: Memory recall 2
+    icon: "mdi:numeric-2-circle"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: recall2
+            value: true
+  - entity: button
+    name: Memory recall 3
+    icon: "mdi:numeric-3-circle"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: recall3
+            value: true
+  - entity: button
+    name: Memory set 1
+    icon: "mdi:numeric-1-circle-outline"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: mem1
+            value: true
+  - entity: button
+    name: Memory set 2
+    icon: "mdi:numeric-2-circle-outline"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: mem2
+            value: true
+  - entity: button
+    name: Memory set 3
+    icon: "mdi:numeric-3-circle-outline"
+    dps:
+      - id: 103
+        type: string
+        name: button
+        mapping:
+          - dps_val: mem3
+            value: true
+  - entity: sensor
+    name: Model
+    category: diagnostic
+    icon: "mdi:tag"
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+  - entity: binary_sensor
+    name: Status
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
