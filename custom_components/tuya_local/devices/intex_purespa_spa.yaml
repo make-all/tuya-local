@@ -1,0 +1,62 @@
+name: Spa
+products:
+  - id: chsaskllmust5d7a
+    manufacturer: Intex
+    model: PureSpa
+entities:
+  - entity: water_heater
+    dps:
+      - id: 108
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 109
+        type: integer
+        name: temperature
+        unit: F
+        range:
+          min: 68
+          max: 104
+      - id: 110
+        type: integer
+        name: current_temperature
+        unit: F
+  - entity: switch
+    name: Power
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Filtration
+    icon: "mdi:air-filter"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Bubbles
+    icon: "mdi:chart-bubble"
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: electrolytic_sterilization
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: min

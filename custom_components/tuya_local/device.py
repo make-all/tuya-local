@@ -373,7 +373,11 @@ class TuyaLocalDevice(object):
                     self._last_full_poll = now
                     last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
+                    if (
+                        now - last_heartbeat > self._HEARTBEAT_INTERVAL
+                        # 3.4 devices seem to require more frequent heartbeats to work reliably
+                        or self._api_protocol_version_index == 3
+                    ):
                         await self._hass.async_add_executor_job(
                             self._api.heartbeat,
                             True,
