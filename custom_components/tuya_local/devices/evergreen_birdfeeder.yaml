@@ -5,7 +5,25 @@ products:
     model: Solar Smart Bird Feeder Camera
     model_id: ZCT2BF25510
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: switch_record, switch_motion_detection  # 2026-06-08
     dps:
       - id: 150
         name: record
@@ -71,9 +89,8 @@ entities:
         optional: true
         force: true
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean

@@ -6,6 +6,9 @@ products:
     name: PTZ indoor security camera
 entities:
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_privacy, switch_camera_record, switch_motion_detection
     dps:
       - id: 105
         type: boolean
@@ -21,6 +24,29 @@ entities:
       - id: 150
         type: boolean
         name: record
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
   - entity: light
     translation_key: indicator
     category: config
@@ -36,8 +62,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -326,8 +351,7 @@ entities:
         optional: true
         name: sound
   - entity: select
-    name: Record mode
-    icon: "mdi:video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -335,9 +359,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: number
     translation_key: volume
     category: config
@@ -397,7 +421,6 @@ entities:
   - entity: button
     name: Stop zooming
     icon: "mdi:stop-circle-outline"
-    category: config
     dps:
       - id: 164
         type: boolean

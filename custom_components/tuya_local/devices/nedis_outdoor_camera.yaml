@@ -4,7 +4,42 @@ products:
     manufacturer: Nedis
     model: WIFICO11CWT
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_record, event_motion, switch_motion_detection
     dps:
       - id: 115
         name: snapshot
@@ -47,9 +82,8 @@ entities:
             value: false
             hidden: true
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -182,8 +216,7 @@ entities:
             value: Unknown
             hidden: true
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -192,12 +225,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
-          - dps_val: null
-            value: None
-            hidden: true
+            value: continuous
   - entity: switch
     name: Motion alarm area
     icon: "mdi:crop"

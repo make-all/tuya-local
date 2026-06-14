@@ -19,14 +19,56 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_privacy, switch_camera_record, event_motion,
+      switch_motion_detection
     dps:
       - id: 105
         type: boolean
@@ -152,8 +194,7 @@ entities:
           - dps_val: "5"
             value: "5 minutes"
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -161,9 +202,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
       # Seems to be the same thing, and missing from log
       - id: 113
         type: boolean
