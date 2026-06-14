@@ -309,52 +309,17 @@ entities:
           - dps_val: us_units
             value: gal
           - value: L
-      - id: 111
-        type: string
-        name: value
-        range:
-          min: 0
-          max: 5000
-        mapping:
-          - dps_val: mode4
-            step: 100
-            value_redirect: mode4_val
-          - dps_val: mode5
-            step: 100
-            value_redirect: mode5_val
-          - dps_val: mode6
-            step: 100
-            value_redirect: mode6_val
       - id: 115
         type: integer
-        name: mode4_val
+        name: value
+        unit: gal
         range:
           min: 0
-          max: 50
+          max: 64
         mapping:
-          - dps_val: 0
-            value: 50
-          - scale: 0.01
-      - id: 116
-        type: integer
-        name: mode5_val
-        range:
-          min: 0
-          max: 50
-        mapping:
-          - dps_val: 0
-            value: 50
-          - scale: 0.01
-      - id: 117
-        type: integer
-        name: mode6_val
-        range:
-          min: 0
-          max: 50
-        mapping:
-          - dps_val: 0
-            value: 50
-          - scale: 0.01
+          - target_range:
+              min: 20
+              max: 1300
   - entity: select
     translation_key: temperature_unit
     category: config
