@@ -1164,6 +1164,7 @@ port and password.
 - FeelNeedy P-LFP01 camera pet feeder
 - Frienhund ACF180W-A dual camera pet feeder
 - Fukumaru AF01-W pet feeder
+- FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
 - Homall DE-10115O 90L cat litter box
