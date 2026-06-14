@@ -844,3 +844,5 @@ Further device support has been made with the assistance of users. Please consid
 - [TheApsik](https://github.com/TheApsik) for contributing support for Klarta Stor 3 purifier.
 - [jaypo82](https://github.com/jaypo82) for contributing improvements to Kolanky EV charger for Goodcell 32A model.
 - [maxlarin63](https://github.com/maxlarin63) for contributing support for Ucomen 3-outlet socket that was merged to mutli_timer_powerstrip.
+- [phooper-ic](https://github.com/phooper-ic) for contributing support for BW salt chlorinator.
+- [sjefke09](https://github.com/sjefke09) for contributing support for Etna AB791 rangehood.
