@@ -12,29 +12,31 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
-  - entity: camera
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
     dps:
       - id: 105
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: true
-          - dps_val: true
-            value: false
       - id: 117
         type: integer
         name: sd_format_state
-      - id: 134
-        type: boolean
-        name: motion_enable
       - id: 240
         type: string
         name: status
@@ -44,6 +46,20 @@ entities:
       - id: 248
         type: string
         name: storage
+  - entity: camera
+    deprecated: switch_camera_privacy, switch_motion_detection  # 2026-06-08
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 134
+        type: boolean
+        name: motion_enable
   - entity: select
     translation_key: motion_sensitivity
     category: config
@@ -59,8 +75,7 @@ entities:
           - dps_val: "2"
             value: high
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -247,8 +262,7 @@ entities:
         optional: true
         name: sensor
   - entity: select
-    name: Recording mode
-    icon: "mdi:cctv"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -256,9 +270,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: switch
     name: Motion tracking
     icon: "mdi:motion"
@@ -317,8 +331,7 @@ entities:
         optional: true
         name: value
   - entity: event
-    name: Alarm
-    icon: "mdi:alarm-bell"
+    translation_key: alarm
     dps:
       - id: 185
         type: base64

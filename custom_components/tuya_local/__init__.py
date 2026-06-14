@@ -1,5 +1,5 @@
 """
-Platform for Tuya WiFi-connected devices.
+Integration for Tuya WiFi-connected devices.
 
 Based on nikrolls/homeassistant-goldair-climate for Goldair branded devices.
 Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
@@ -30,6 +30,7 @@ from .const import (
 )
 from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
+from .services import async_setup_services
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
@@ -71,6 +72,20 @@ def get_device_unique_id(entry: ConfigEntry):
         or entry.data.get(CONF_DEVICE_CID)
         or entry.data.get(CONF_DEVICE_ID)
     )
+
+
+def cleanup_failed_device(hass: HomeAssistant, device_id: str):
+    """Drop cached device objects left behind by failed setup."""
+    domain_data = hass.data.get(DOMAIN, {})
+    stale = domain_data.pop(device_id, None)
+    if not stale:
+        return
+
+    api = stale.get("tuyadevice")
+    if api:
+        api.set_socketPersistent(False)
+        if api.parent:
+            api.parent.set_socketPersistent(False)
 
 
 async def async_migrate_entry(hass, entry: ConfigEntry):
@@ -841,19 +856,118 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "sensor_light_intensity": "sensor_illuminance",
                 "sensor_rain": "sensor_precipitation",
                 "sensor_rainfall_rate": "sensor_precipitation_intensity",
+                "text_regular_schedule": "text_schedule",
+                "text_program": "text_schedule",
+                "text_program_data": "text_schedule",
+                "text_weekly_program": "text_schedule",
+                "text_weekprogram": "text_schedule",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_17)
         hass.config_entries.async_update_entry(entry, minor_version=17)
 
+    if entry.version == 13 and entry.minor_version < 18:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_18(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "sensor_air_temperature": "sensor_ambient_temperature",
+                "sensor_current_temperature": "sensor_temperature",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_18)
+        hass.config_entries.async_update_entry(entry, minor_version=18)
+
+    if entry.version == 13 and entry.minor_version < 19:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_19(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "fan_fan_with_presets": "fan_air_purifier",
+                "fan_purifier": "fan_air_purifier",
+                "fan": "fan_air_purifier",
+                "light_ambient": "light_ambient_light",
+                "number_snooze_time": "number_snooze_duration",
+                "select_display": "select_display_brightness",
+                "select_snooze_type": "select_snooze_action",
+                "switch_internet_time": "switch_network_time",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_19)
+        hass.config_entries.async_update_entry(entry, minor_version=19)
+
+    if entry.version == 13 and entry.minor_version < 20:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = get_device_unique_id(entry)
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_20(entity_entry):
+            """Update the unique id of an entity entry."""
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "select_nightvision": "select_night_vision",
+                "switch_timer_set": "switch_timer",
+                "switch_timer_start": "switch_timer",
+                "select_record_mode": "select_recording_mode",
+                "switch_osd_watermark": "switch_watermark",
+                "switch_timestamp": "switch_watermark",
+            }
+            return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_20)
+        hass.config_entries.async_update_entry(entry, minor_version=20)
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
+    device_id = get_device_id(entry.data)
     _LOGGER.debug(
         "Setting up entry for device: %s",
-        get_device_id(entry.data),
+        device_id,
     )
     config = {**entry.data, **entry.options, "name": entry.title}
     try:
@@ -861,9 +975,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         await device.async_refresh()
 
     except Exception as e:
+        cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
     if not device.has_returned_state:
+        cleanup_failed_device(hass, device_id)
         raise ConfigEntryNotReady("tuya-local device offline")
 
     device_conf = await hass.async_add_executor_job(
@@ -879,6 +995,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         entities.add(e.entity)
 
     await hass.config_entries.async_forward_entry_setups(entry, entities)
+    await async_setup_services(hass, entities)
 
     entry.add_update_listener(async_update_entry)
 

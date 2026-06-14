@@ -4,7 +4,49 @@ products:
     manufacturer: Linda Smart
     model: 7S
 entities:
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    name: Door image
+    dps:
+      - id: 154
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 240
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: event_motion, event_door_image, switch_motion_detection
     dps:
       - id: 154
         type: base64
@@ -37,8 +79,7 @@ entities:
             value: false
             hidden: true
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -50,8 +91,7 @@ entities:
             value: false
             hidden: true
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -60,11 +100,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: sensor
     name: SD status
     class: enum
@@ -238,7 +278,7 @@ entities:
             value: false
             hidden: true
   - entity: event
-    name: Alarm
+    translation_key: alarm
     dps:
       - id: 185
         type: string

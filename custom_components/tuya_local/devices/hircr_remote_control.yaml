@@ -4,6 +4,9 @@ legacy_type: hircr_reemote_control
 products:
   - id: nuzvlkjtqgsjbjfh
     manufacturer: Senda
+  - id: lwpag3bu0faaowlj
+    manufacturer: Positivo
+    model: Smart Controle Universal V2 H5
 entities:
   - entity: remote
     dps:
@@ -61,6 +64,22 @@ entities:
         type: string
         optional: true
         name: key_study4
+      - id: 13
+        type: integer
+        optional: true
+        name: code_type
+        range:
+          min: 0
+          max: 255
+  - entity: infrared
+    dps:
+      - id: 1
+        type: string
+        name: control
+      - id: 3
+        type: string
+        optional: true
+        name: send
       - id: 13
         type: integer
         optional: true

@@ -1,0 +1,114 @@
+name: Room sensor
+products:
+  - id: gnpflcoq
+    model: Zigbee 4-in-1
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: pir
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Detection delay
+    category: config
+    class: duration
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 180
+  - entity: number
+    name: Sensor update rate
+    category: config
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -30
+          max: 30

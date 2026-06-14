@@ -1,8 +1,7 @@
 name: EV charger
 products:
   - id: 7bvgooyjhiua1yyq
-    manufacturer: Kolanky
-    model: "3.6kW"
+    manufacturer: Kolanky / Goodcell
 entities:
   - entity: sensor
     translation_key: status
@@ -58,6 +57,30 @@ entities:
         range:
           min: 6
           max: 16
+        mapping:
+          - constraint: max_current
+            conditions:
+              - dps_val: Max32A
+                value_redirect: value_alt
+                range:
+                  min: 8
+                  max: 32
+      - id: 115
+        type: integer
+        optional: true
+        name: value_alt
+        unit: A
+        range:
+          min: 8
+          max: 32
+      - id: 113
+        type: string
+        name: max_current
+        mapping:
+          - dps_val: Max16A
+            value: Max16A
+          - dps_val: Max32A
+            value: Max32A
   - entity: number
     name: Delay
     class: duration

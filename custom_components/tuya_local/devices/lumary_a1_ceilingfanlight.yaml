@@ -224,18 +224,9 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-      - id: 20
-        name: available
-        type: boolean
-        mapping:
-          - dps_val: true
-            constraint: main_switch
-            conditions:
-              - dps_val: false
-                value: false
       - id: 119
         type: boolean
-        name: main_switch
+        name: available
   - entity: light
     name: Color
     category: config
@@ -262,18 +253,9 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 20
-        name: available
-        type: boolean
-        mapping:
-          - dps_val: true
-            constraint: main_switch
-            conditions:
-              - dps_val: false
-                value: false
       - id: 119
         type: boolean
-        name: main_switch
+        name: available
   - entity: text
     translation_key: scene
     category: config

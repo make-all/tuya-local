@@ -1,0 +1,37 @@
+name: PIR wall switch
+
+products:
+  - id: iii7gagtan21i2of
+    model: MFA05
+    manufacturer: MOES
+
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: text
+    name: Inching
+    category: config
+    hidden: true
+    dps:
+      - id: 103
+        type: string
+        name: value
+
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor

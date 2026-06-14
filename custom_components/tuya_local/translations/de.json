@@ -106,6 +106,26 @@
             "not_supported": "Dieses Gerät wird leider nicht unterstützt."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Gelernten IR-Befehl senden",
+            "description": "Senden Sie einen zuvor von der Fernbedienungsentität gelernten Fernbefehl an einen Infrarot-Emitter.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emitter-Entität",
+                    "description": "Die Entität eines Infrarot-Emitters, der den Befehl senden soll."
+                },
+                "command": {
+                    "name": "Befehl",
+                    "description": "Befehl zum Senden. Dies muss ein Befehl sein, der zuvor von der Integration für diese Fernbedienung gelernt wurde."
+                },
+                "device": {
+                    "name": "Gerät",
+                    "description": "Das IR-Gerät, an das der Befehl gesendet werden soll. Dies ist optional und nur erforderlich, wenn der Befehl mit einem Gerät gespeichert wurde."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Filter zurücksetzen"
+            },
+            "alarm_off": {
+                "name": "Alarm aus"
+            },
+            "alarm_snooze": {
+                "name": "Alarm schlummern"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} zurücksetzen"
+            },
+            "radio_seek": {
+                "name": "Radiosendersuche"
+            },
+            "radio_stop": {
+                "name": "Radio stopp"
             }
         },
         "climate": {
@@ -371,6 +406,11 @@
                 }
             }
         },
+        "event": {
+            "alarm": {
+                "name": "Alarm"
+            }
+        },
         "humidifier": {
             "extended": {
                 "state_attributes": {
@@ -385,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Luftreiniger",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "sleep": "Schlafen",
+                            "low": "Niedrig",
+                            "medium": "Mittel",
+                            "high": "Hoch",
+                            "strong": "Stark",
+                            "displayoff": "Anzeige aus"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Aroma Diffuser",
                 "state_attributes": {
@@ -488,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Dunstabzugshaubenlicht"
+            },
+            "color_light": {
+                "name": "Farblicht"
+            },
+            "ambient_light": {
+                "name": "Umgebungslicht"
             }
         },
         "lock": {
@@ -496,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Flammenstufe"
+            },
             "manual_feed": {
                 "name": "Manuelle Fütterung"
             },
@@ -525,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Obertemperatur"
+            },
+            "leakage_current": {
+                "name": "Leckstrom"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} Schlummerdauer"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} Wecklicht-Vorlaufzeit"
+            },
+            "radio_frequency": {
+                "name": "Radiofrequenz"
+            },
+            "snooze_duration": {
+                "name": "Schlummerdauer"
             }
         },
         "select": {
@@ -602,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -636,6 +722,14 @@
                     "high": "Hoch"
                 }
             },
+            "night_vision": {
+                "name": "Nachtsicht",
+                "state": {
+                    "off": "Aus",
+                    "on": "An",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Rezept",
                 "state": {
@@ -664,6 +758,13 @@
                     "preheat": "Vorheizen"
                 }
             },
+            "recording_mode": {
+                "name": "Aufnahmemodus",
+                "state": {
+                    "event": "Ereignis",
+                    "continuous": "Dauerbetrieb"
+                }
+            },
             "scene": {
                 "name": "Szene",
                 "state": {
@@ -687,6 +788,8 @@
                 "state": {
                     "cancel": "Abbrechen",
                     "continuous": "Dauerbetrieb",
+                    "5s": "5 Sekunden",
+                    "10s": "10 Sekunden",
                     "15s": "15 Sekunden",
                     "20s": "20 Sekunden",
                     "30s": "30 Sekunden",
@@ -785,7 +888,8 @@
                     "medium": "Mittel",
                     "high": "Hoch",
                     "rapid_clean": "Schnellreinigung",
-                    "schedule": "Zeitplan"
+                    "schedule": "Zeitplan",
+                    "sleep": "Schlafen"
                 }
             },
             "activation_mode": {
@@ -975,9 +1079,77 @@
                     "red_bean_bread": "Rote-Bohnen-Brot",
                     "milk_toast": "Milchtoast"
                 }
+            },
+            "display_brightness": {
+                "name": "Displayhelligkeit",
+                "state": {
+                    "off": "Aus",
+                    "day": "Tag",
+                    "night": "Nacht",
+                    "dim": "Gedimmt",
+                    "bright": "Hell",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundenpunkt",
+                "state": {
+                    "static": "Statisch",
+                    "blinking": "Blinkend"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} Schlummermodus",
+                "state": {
+                    "mute": "Ton stummschalten",
+                    "mute_light": "Ton + Licht stummschalten",
+                    "light_only": "Nur Licht stummschalten"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} Soundeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Einblenden",
+                    "fade_out": "Ausblenden"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} Wecklichtmodus",
+                "state": {
+                    "no_light": "Kein Licht",
+                    "rainbow": "Regenbogen",
+                    "candle_flicker": "Kerzenflackern",
+                    "romantic_breath": "Romantisches Atmen",
+                    "quiet_deep_sea": "Ruhige Tiefsee",
+                    "flowing_colors": "Fließende Farben",
+                    "magic_jungle": "Magischer Dschungel",
+                    "perfect_party": "Perfekte Party",
+                    "sunrise_at_sea": "Sonnenaufgang am Meer",
+                    "dynamic_music": "Dynamische Musik"
+                }
+            },
+            "snooze_action": {
+                "name": "Schlummeraktion",
+                "state": {
+                    "sound_radio": "Ton + Radio",
+                    "light": "Licht",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + Ton + Licht"
+                }
+            },
+            "time_format": {
+                "name": "Zeitformat",
+                "state": {
+                    "12_hour": "12 Stunden",
+                    "24_hour": "24 Stunden"
+                }
             }
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Umgebungstemperatur"
+            },
             "cleanliness": {
                 "name": "Sauberkeit",
                 "state": {
@@ -1149,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Tage gespeichert"
+            },
+            "leakage_current": {
+                "name": "Leckstrom"
+            },
+            "active_lights": {
+                "name": "Aktive Lichter",
+                "state": {
+                    "all_off": "Alle aus",
+                    "night_on": "Nachtlicht an",
+                    "color_on": "Farblicht an",
+                    "ambient_on": "Umgebungslicht an"
+                }
+            },
+            "wireless_charging": {
+                "name": "Kabelloser Ladestatus",
+                "state": {
+                    "idle": "Leerlauf",
+                    "charging": "Laden",
+                    "full": "Voll",
+                    "foreign_object_detected": "Fremdkörper erkannt"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Tank leeren"
+            },
+            "fill_tank": {
+                "name": "Tank füllen"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1212,11 +1414,71 @@
             },
             "rangehood": {
                 "name": "Dunstabzugshaube"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} Schlummern aktiviert"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} Tag 1-Montag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} Tag 2-Dienstag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} Tag 3-Mittwoch"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} Tag 4-Donnerstag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} Tag 5-Freitag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} Tag 6-Samstag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} Tag 7-Sonntag"
+            },
+            "music_playback": {
+                "name": "Musikwiedergabe"
+            },
+            "network_time": {
+                "name": "Netzwerkzeitsynchronisierung"
+            },
+            "night_mode": {
+                "name": "Nachtmodus"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Schlummern"
+            },
+            "watermark": {
+                "name": "Wasserzeichen"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Essensplan"
+            },
             "scene": {
                 "name": "Szene"
+            },
+            "schedule": {
+                "name": "Zeitplan"
+            },
+            "alarm_settings": {
+                "name": "Alarmeinstellungen"
+            },
+            "sleep_settings": {
+                "name": "Schlafeinstellungen"
+            },
+            "station_list": {
+                "name": "Senderliste"
             }
         },
         "time": {
@@ -1231,6 +1493,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} Zeit"
+            },
+            "clock_time": {
+                "name": "Uhrzeit"
             }
         },
         "valve": {
@@ -1247,6 +1515,26 @@
             },
             "hot_water": {
                 "name": "Heißwasserbereiter"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Keine",
+                            "birds": "Vögel",
+                            "sea": "Meer",
+                            "valley": "Tal",
+                            "piano": "Piano",
+                            "soft": "Sanft",
+                            "phone": "Telefon",
+                            "beep": "Piep",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

@@ -2,7 +2,7 @@ name: Smart lock
 products:
   - id: kdq0tdbz
     manufacturer: Pulido
-    model: ‎P13
+    model: P13
 entities:
   - entity: lock
     dps:
@@ -53,6 +53,11 @@ entities:
         name: unlock_temp_pwd
         optional: true
         persist: false
+      - id: 61
+        type: base64
+        optional: true
+        sensitive: true
+        name: code_unlock
       - id: 62
         type: integer
         name: unlock_app
@@ -122,9 +127,10 @@ entities:
   - entity: select
     name: Auto lock delay
     icon: "mdi:lock-clock"
+    translation_key: timer
     category: config
     dps:
-      - id: 36
+      - id: 26
         type: string
         name: option
         optional: true
@@ -138,7 +144,24 @@ entities:
           - dps_val: 30s
             value: 30s
           - dps_val: 60s
-            value: 60s
+            value: 1m
+          - dps_val: null
+            value_redirect: alt
+      - id: 36
+        type: string
+        name: alt
+        optional: true
+        mapping:
+          - dps_val: 5s
+            value: 5s
+          - dps_val: 10s
+            value: 10s
+          - dps_val: 15s
+            value: 15s
+          - dps_val: 30s
+            value: 30s
+          - dps_val: 60s
+            value: 1m
   - entity: number
     name: Lock volume
     category: config
@@ -218,3 +241,12 @@ entities:
             value: spanish
           - dps_val: Portuguese
             value: portuguese
+  - entity: sensor
+    name: Offline password last sync
+    class: timestamp
+    category: diagnostic
+    dps:
+      - id: 64
+        type: string
+        optional: true
+        name: sensor

@@ -1,3 +1,4 @@
+import asyncio
 from time import time
 
 import pytest
@@ -597,25 +598,29 @@ async def test_async_receive(subject, mock_api, mocker):
     mock_api().set_socketPersistent.assert_called_once_with(False)
     # Check that a full poll was done
     mock_api().status.assert_called_once()
-    assert result == {"1": "INIT", "2": 2, "full_poll": mocker.ANY}
+    assert result == {"1": "INIT", "2": 2, "full_poll": True}
     # Prepare for next round
     subject._cached_state = subject._cached_state | result
-    mock_api().set_socketPersistent.reset_mock()
     mock_api().status.reset_mock()
-    subject._cached_state["updated_at"] = time()
-
-    # Call the function under test
+    mock_api().set_socketPersistent.reset_mock()
     print("getting second iteration...")
+    result = await loop.__anext__()
+    # Check that the connection was made persistent now that data has been
+    # returned
+    mock_api().set_socketPersistent.assert_called_once_with(True)
+    mock_api().status.reset_mock()
+    # Wait long enough to force a heartbeat poll on the next iteration
+    subject._cached_state = subject._cached_state | {"updated_at": time()}
+    await asyncio.sleep(10.1)
+    print("getting third iteration...")
+    # Call the function under test
     result = await loop.__anext__()
 
     # Check that a heartbeat poll was done
     mock_api().status.assert_not_called()
     mock_api().heartbeat.assert_called_once()
     mock_api().receive.assert_called_once()
-    assert result == {"1": "UPDATED", "full_poll": mocker.ANY}
-    # Check that the connection was made persistent now that data has been
-    # returned
-    mock_api().set_socketPersistent.assert_called_once_with(True)
+    assert result == {"1": "UPDATED", "full_poll": False}
     # Prepare for next iteration
     subject._running = False
     mock_api().set_socketPersistent.reset_mock()

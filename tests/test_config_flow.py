@@ -4,10 +4,12 @@ import pytest
 import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
+from homeassistant.exceptions import ConfigEntryNotReady
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
     async_migrate_entry,
+    async_setup_entry,
     config_flow,
     get_device_unique_id,
 )
@@ -73,6 +75,54 @@ async def test_init_entry(hass, bypass_data_fetch):
     await hass.async_block_till_done()
     assert hass.states.get("climate.test")
     assert hass.states.get("lock.test_child_lock")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("refresh_error", [RuntimeError("boom"), None])
+async def test_async_setup_entry_cleans_up_failed_device(hass, mocker, refresh_error):
+    """Failed runtime setup should not leave stale device state cached."""
+
+    mock_device = mocker.MagicMock()
+    if refresh_error is None:
+        mock_device.async_refresh = mocker.AsyncMock()
+        mock_device.has_returned_state = False
+    else:
+        mock_device.async_refresh = mocker.AsyncMock(side_effect=refresh_error)
+
+    def fake_setup_device(hass, config):
+        hass.data.setdefault(DOMAIN, {})
+        hass.data[DOMAIN]["deviceid"] = {
+            "device": mock_device,
+            "tuyadevice": mock_device._api,
+            "tuyadevicelock": mocker.MagicMock(),
+        }
+        return mock_device
+
+    mocker.patch(
+        "custom_components.tuya_local.setup_device", side_effect=fake_setup_device
+    )
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=13,
+        minor_version=18,
+        title="test",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: 3.4,
+            CONF_TYPE: "kogan_kahtp_heater",
+        },
+        options={},
+    )
+
+    with pytest.raises(ConfigEntryNotReady):
+        await async_setup_entry(hass, entry)
+
+    assert "deviceid" not in hass.data.get(DOMAIN, {})
+    mock_device._api.set_socketPersistent.assert_called_with(False)
 
 
 @pytest.mark.asyncio
@@ -391,10 +441,10 @@ async def test_flow_user_init_invalid_config(hass, mocker):
     assert {"base": "connection"} == result["errors"]
 
 
-def setup_device_mock(mock, mocker, failure=False, type="test"):
+def setup_device_mock(mock, mocker, failure=False, devtype="test"):
     mock_type = mocker.MagicMock()
-    mock_type.legacy_type = type
-    mock_type.config_type = type
+    mock_type.legacy_type = devtype
+    mock_type.config_type = devtype
     mock_type.match_quality.return_value = 100
     mock_type.product_display_entries.return_value = [(None, None)]
     mock.async_possible_types = mocker.AsyncMock(
@@ -482,7 +532,7 @@ async def test_flow_select_type_data_valid(hass, mocker):
     """Test the flow continues when valid data is supplied."""
     mock_device = mocker.patch.object(config_flow.ConfigFlowHandler, "device")
 
-    setup_device_mock(mock_device, mocker, type="smartplugv1")
+    setup_device_mock(mock_device, mocker, devtype="smartplugv1")
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}

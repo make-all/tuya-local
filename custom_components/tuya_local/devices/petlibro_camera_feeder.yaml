@@ -38,8 +38,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Nightvision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -47,11 +46,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: button
     name: Memory card format
     icon: "mdi:micro-sd"
@@ -70,8 +69,41 @@ entities:
       - id: 117
         type: integer
         name: format_state
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
   - entity: camera
     name: Camera
+    # 2026-06-08
+    deprecated: switch_camera_privacy, event_motion, switch_motion_detection
     dps:
       - id: 105
         type: boolean
@@ -143,8 +175,7 @@ entities:
         name: switch
         optional: true
   - entity: select
-    name: Recording mode
-    icon: "mdi:video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -152,9 +183,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: number
     translation_key: manual_feed
     dps:

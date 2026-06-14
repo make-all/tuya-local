@@ -20,8 +20,7 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: Timestamp
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -38,12 +37,22 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "off"
-          - dps_val: "1"
             value: "low"
+          - dps_val: "1"
+            value: "medium"
           - dps_val: "2"
             value: "high"
+  - entity: switch
+    name: Motion enabled
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: event_motion, switch_motion_enabled  # 2026-06-08
     dps:
       - id: 113
         type: boolean
@@ -53,6 +62,21 @@ entities:
         type: base64
         optional: true
         name: snapshot
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        name: snapshot
+        optional: true
   - entity: switch
     name: Motion detection
     category: config
@@ -132,9 +156,8 @@ entities:
         optional: true
         name: sensor
   - entity: text
-    name: Schedule
+    translation_key: schedule
     category: config
-    icon: "mdi:calendar-clock"
     hidden: true
     dps:
       - id: 207

@@ -127,7 +127,10 @@ class TuyaLocalDevice(object):
             raise e
 
         # we handle retries at a higher level so we can rotate protocol version
-        self._api.set_socketRetryLimit(1)
+        # on the other hand, protocol 3.4 devices send encrypted null ACKs that
+        # often get mixed in, so we need to retry a couple of times before resorting
+        # to recovery measures that seem to make things worse.
+        self._api.set_socketRetryLimit(2)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
             self._api.parent.set_socketRetryLimit(1)
@@ -149,6 +152,7 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIMEOUT = 5
         self._CACHE_TIMEOUT = 30
+        self._HEARTBEAT_INTERVAL = 10
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
@@ -263,7 +267,17 @@ class TuyaLocalDevice(object):
 
                     for entity in self._children:
                         # let entities trigger off poll contents directly
-                        entity.on_receive(poll, full_poll)
+                        try:
+                            entity.on_receive(poll, full_poll)
+                        except Exception as e:
+                            # Don't let exceptions thrown by the entities interrupt the communication loop
+                            # Just log them and move on.
+                            _LOGGER.exception(
+                                "%s on_receive error for entity %s: %s",
+                                self.name,
+                                entity.entity_id,
+                                e,
+                            )
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
                             for dp in entity._config.dps():
@@ -312,6 +326,7 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(persist)
 
+        last_heartbeat = self._cached_state.get("updated_at", 0)
         while self._running:
             error_count = self._api_working_protocol_failures
             force_backoff = False
@@ -332,6 +347,7 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
+                    self._last_full_poll = 0  # ensure we start with a full poll
 
                 needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
                 if now - last_cache > self._CACHE_TIMEOUT or (
@@ -355,14 +371,21 @@ class TuyaLocalDevice(object):
                         dps_updated = False
                         full_poll = True
                     self._last_full_poll = now
+                    last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    await self._hass.async_add_executor_job(
-                        self._api.heartbeat,
-                        True,
-                    )
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
+                        await self._hass.async_add_executor_job(
+                            self._api.heartbeat,
+                            True,
+                        )
+                        last_heartbeat = now
                     poll = await self._hass.async_add_executor_job(
                         self._api.receive,
                     )
+                    # Ignore Payload error 904, as 3.4 protocol devices seem to return
+                    # this when there is no new data, instead of just returning nothing.
+                    if poll and "Err" in poll and poll["Err"] == "904":
+                        poll = None
                 else:
                     force_backoff = True
                     poll = None
@@ -389,12 +412,14 @@ class TuyaLocalDevice(object):
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
-                        poll["full_poll"] = full_poll
-                        yield poll
+                        if isinstance(poll, dict):
+                            poll["full_poll"] = full_poll
+                            yield poll
 
             except CancelledError:
                 self._running = False
                 # Close the persistent connection when exiting the loop
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -406,6 +431,7 @@ class TuyaLocalDevice(object):
                     type(t).__name__,
                     t,
                 )
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -662,6 +688,10 @@ class TuyaLocalDevice(object):
                     i,
                     connections,
                 )
+                # Ensure we have a fresh connection for the next attempt
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
 
                 if i + 1 == connections:
                     self._reset_cached_state()
@@ -688,10 +718,7 @@ class TuyaLocalDevice(object):
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
-        return {
-            key: property["value"]
-            for key, property in self._get_pending_updates().items()
-        }
+        return {key: prop["value"] for key, prop in self._get_pending_updates().items()}
 
     def _get_unsent_properties(self):
         return {

@@ -18,10 +18,13 @@ from custom_components.tuya_local.helpers.device_config import (
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
+from .helpers import assert_device_properties_set, mock_device
 
 PRODUCT_SCHEMA = vol.Schema(
     {
-        vol.Required("id"): str,
+        # Bluetooth and Zigbee devices have 8 character product ids
+        # WiFi devices have 16 character product ids
+        vol.Required("id"): vol.All(str, vol.Length(min=8, max=16)),
         vol.Optional("name"): str,
         vol.Optional("manufacturer"): str,
         vol.Optional("model"): str,
@@ -40,8 +43,8 @@ CONDMAP_SCHEMA = vol.Schema(
             vol.Required("max"): int,
         },
         vol.Optional("target_range"): {
-            vol.Required("min"): int,
-            vol.Required("max"): int,
+            vol.Required("min"): vol.Any(int, float),
+            vol.Required("max"): vol.Any(int, float),
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),
@@ -135,6 +138,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "event",
                 "fan",
                 "humidifier",
+                "infrared",
                 "lawn_mower",
                 "light",
                 "lock",
@@ -228,6 +232,10 @@ KNOWN_DPS = {
         "required": ["humidity"],
         "optional": ["switch", "mode", "current_humidity"],
     },
+    "infrared": {
+        "required": ["send"],
+        "optional": ["control", "code_type", "delay"],
+    },
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
@@ -255,11 +263,11 @@ KNOWN_DPS = {
     },
     "number": {
         "required": ["value"],
-        "optional": ["unit", "minimum", "maximum"],
+        "optional": ["unit", "minimum", "maximum", "decimal"],
     },
     "remote": {
         "required": ["send"],
-        "optional": ["receive"],
+        "optional": ["receive", "command", "type", "head"],
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
@@ -305,7 +313,7 @@ KNOWN_DPS = {
 def test_can_find_config_files():
     """Test that the config files can be found by the parser."""
     found = False
-    for cfg in available_configs():
+    for _ in available_configs():
         found = True
         break
     assert found
@@ -513,7 +521,10 @@ def test_config_files_parse(mocker):
                 path = ".".join([str(p) for p in err.path])
                 messages.append(f"{path}: {err.msg}")
                 if first_line is None:
-                    first_line = err.path[-1].__line__
+                    # voluptuous doesn't always seem to return line numbers
+                    if err.path and hasattr(err.path[-1], "__line__"):
+                        first_line = err.path[-1].__line__
+
             messages = "; ".join(messages)
             if not first_line:
                 first_line = 1
@@ -531,7 +542,7 @@ def test_config_files_parse(mocker):
             if entity.config_id in entities:
                 pytest.fail(
                     f"\n::error file={fname},line={entity._config.__line__}::"
-                    "Duplicate entity {entity.config_id} in {cfg}"
+                    f"Duplicate entity {entity.config_id} in {cfg}"
                 )
             entities.append(entity.config_id)
 
@@ -749,8 +760,8 @@ def test_values_with_mirror(mocker):
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = "1"
     cfg = TuyaDpsConfig(mock_entity, mock_config)
-    map = TuyaDpsConfig(mock_entity, mock_map_config)
-    mock_entity.find_dps.return_value = map
+    mapping = TuyaDpsConfig(mock_entity, mock_map_config)
+    mock_entity.find_dps.return_value = mapping
 
     assert set(cfg.values(mock_device)) == {"unmirrored", "map_one", "map_two"}
     assert len(cfg.values(mock_device)) == 3
@@ -793,6 +804,42 @@ def test_setting_masked_hex(mocker):
     assert cfg.get_values_to_set(mock_device, 0xCA) == {"1": "cabe"}
 
 
+def test_getting_masked_b64_with_special_case_mapping(mocker):
+    """Test that get_value works with masked hex encoding and a mapping that has a special case."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "ffff",
+        "mapping": [
+            {"dps_val": 256, "value": "special_case"},
+        ],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AQA="
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == "special_case"
+
+
+def test_setting_masked_b64_with_special_case_mapping(mocker):
+    """Test that get_values_to_set works with masked hex encoding and a mapping that has a special case."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "ffff",
+        "mapping": [
+            {"dps_val": 256, "value": "special_case"},
+        ],
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AAA="
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_values_to_set(mock_device, "special_case") == {"1": "AQA="}
+
+
 def test_default_without_mapping(mocker):
     """Test that default returns None when there is no mapping"""
     mock_entity = mocker.MagicMock()
@@ -811,3 +858,119 @@ def test_matched_product_id_with_conflict_rejected():
     """Test that matching with product id fails when there is a conflict"""
     cfg = get_config("smartplugv1")
     assert not cfg.matches({"1": "wrong_type"}, ["37mnhia3pojleqfh"])
+
+
+def test_multi_stage_redirect(mocker):
+    """Test that multi stage redirects work correctly for read."""
+
+    # Redirect used to combine multiple dps into a single value
+    kc_cfg = get_config("kcvents_vt501_fan")
+    for entity in kc_cfg.all_entities():
+        if entity.entity == "fan":
+            fan = entity
+            break
+    assert fan is not None
+    speed = fan.find_dps("speed")
+    assert speed is not None
+    dps = {"1": True, "101": True, "102": False, "103": False}
+    device = mock_device(dps, mocker)
+    assert speed.values(device) == [33, 66, 100]
+    assert speed.get_value(device) == 33
+    dps["101"] = False
+    dps["102"] = True
+    assert speed.get_value(device) == 66
+    dps["102"] = False
+    dps["103"] = True
+    assert speed.get_value(device) == 100
+
+    # Redirect used for alternate dps
+    dewin_cfg = get_config("dewin_kws306wf_energymeter")
+    for entity in dewin_cfg.all_entities():
+        if entity.entity == "switch" and entity.name is None:
+            switch = entity
+            break
+    assert switch is not None
+    main = switch.find_dps("switch")
+    alt = switch.find_dps("alt")
+    assert main is not None and alt is not None
+    dps = {"16": True, "141": None}
+    device = mock_device(dps, mocker)
+    assert main.get_value(device) is True
+    dps["16"] = False
+    assert main.get_value(device) is False
+    dps["141"] = True
+    dps["16"] = None
+    assert main.get_value(device) is True
+    dps["141"] = False
+    assert main.get_value(device) is False
+
+
+@pytest.mark.asyncio
+async def test_setting_multi_stage_redirect(mocker):
+    """Test that multi stage redirects work correctly for write."""
+
+    # Redirect used to combine multiple dps into a single value
+    kc_cfg = get_config("kcvents_vt501_fan")
+    for entity in kc_cfg.all_entities():
+        if entity.entity == "fan":
+            fan = entity
+            break
+    assert fan is not None
+    speed = fan.find_dps("speed")
+    assert speed is not None
+    dps = {"1": True, "101": True, "102": False, "103": False}
+    device = mock_device(dps, mocker)
+    async with assert_device_properties_set(device, {"102": True}):
+        await speed.async_set_value(device, 66)
+    async with assert_device_properties_set(device, {"103": True}):
+        await speed.async_set_value(device, 100)
+
+    # Redirect used for alternate dps
+    dewin_cfg = get_config("dewin_kws306wf_energymeter")
+    for entity in dewin_cfg.all_entities():
+        if entity.entity == "switch" and entity.name is None:
+            switch = entity
+            break
+    assert switch is not None
+    main = switch.find_dps("switch")
+    alt = switch.find_dps("alt")
+    assert main is not None and alt is not None
+    dps = {"16": True, "141": None}
+    device = mock_device(dps, mocker)
+    async with assert_device_properties_set(device, {"16": False}):
+        await main.async_set_value(device, False)
+    dps["16"] = None
+    dps["141"] = True
+    async with assert_device_properties_set(device, {"141": False}):
+        await main.async_set_value(device, False)
+
+
+def test_reading_target_range(mocker):
+    """Test reading a number that has a target range."""
+    mock_config = {
+        "id": 1,
+        "name": "test",
+        "type": "integer",
+        "range": {"min": 0, "max": 16},
+        "mapping": [{"target_range": {"min": 0, "max": 100}}],
+    }
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = 8
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) == 50
+
+
+def test_writing_target_range(mocker):
+    """Test writing a number that has a target range."""
+    mock_config = {
+        "id": 1,
+        "name": "test",
+        "type": "integer",
+        "range": {"min": 0, "max": 16},
+        "mapping": [{"target_range": {"min": 0, "max": 100}}],
+    }
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_values_to_set(mock_device, 100) == {"1": 16}

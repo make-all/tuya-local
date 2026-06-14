@@ -106,6 +106,26 @@
             "not_supported": "Tyvärr finns det inget stöd för denna enhet."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Skicka inlärd IR-kommandotjänst",
+            "description": "Skicka ett fjärrkommando som tidigare lärts in av fjärrenheten till vilken infraröd sändare som helst.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Sändarens enhets-ID",
+                    "description": "Enhets-ID för den infraröda enheten som kommandot ska skickas till."
+                },
+                "command": {
+                    "name": "Kommandot",
+                    "description": "Kommandot som ska skickas. Detta måste vara ett kommando som tidigare lärts in av integrationen för denna fjärrkontroll."
+                },
+                "device": {
+                    "name": "Enhet",
+                    "description": "Den IR-enhet som kommandot ska skickas till. Detta är valfritt och endast nödvändigt om kommandot sparades med en enhet." 
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Filteråterställning"
+            },
+            "alarm_off": {
+                "name": "Larm av"
+            },
+            "alarm_snooze": {
+                "name": "Larm slummer"
+            },
+            "alarm_x_reset": {
+                "name": "Larm {x} återställ"
+            },
+            "radio_seek": {
+                "name": "Radiosökning"
+            },
+            "radio_stop": {
+                "name": "Radiostopp"
             }
         },
         "climate": {
@@ -371,6 +406,11 @@
                 }
             }
         },
+        "event": {
+            "alarm": {
+                "name": "Larm"
+            }
+        },
         "humidifier": {
             "extended": {
                 "state_attributes": {
@@ -385,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Luftrenare",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "sleep": "Sömn",
+                            "low": "Låg",
+                            "medium": "Medel",
+                            "high": "Hög",
+                            "strong": "Stark",
+                            "displayoff": "Display av"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Aromadiffusor",
                 "state_attributes": {
@@ -488,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Fläktkåpeljus"
+            },
+            "color_light": {
+                "name": "Färgljus"
+            },
+            "ambient_light": {
+                "name": "Omgivningsljus"
             }
         },
         "lock": {
@@ -496,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Flamnivå"
+            },
             "manual_feed": {
                 "name": "Manuell matning"
             },
@@ -525,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Övre temperatur"
+            },
+            "leakage_current": {
+                "name": "Läckström"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Larm {x} slummerlängd"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Larm {x} väckningsljus försprång"
+            },
+            "radio_frequency": {
+                "name": "Radiofrekvens"
+            },
+            "snooze_duration": {
+                "name": "Slummerlängd"
             }
         },
         "select": {
@@ -602,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -636,6 +722,14 @@
                     "high": "Hög"
                 }
             },
+            "night_vision": {
+                "name": "Nattvision",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Recept",
                 "state": {
@@ -664,6 +758,13 @@
                     "preheat": "Förvärm"
                 }
             },
+            "recording_mode": {
+                "name": "Inspelningsläge",
+                "state": {
+                    "event": "Händelse",
+                    "continuous": "Kontinuerlig"
+                }
+            },
             "scene": {
                 "name": "Scen",
                 "state": {
@@ -687,6 +788,8 @@
                 "state": {
                     "cancel": "Avbryt",
                     "continuous": "Kontinuerlig",
+                    "5s": "5 sekunder",
+                    "10s": "10 sekunder",
                     "15s": "15 sekunder",
                     "20s": "20 sekunder",
                     "30s": "30 sekunder",
@@ -785,7 +888,8 @@
                     "medium": "Medel",
                     "high": "Hög",
                     "rapid_clean": "Snabbrengöring",
-                    "schedule": "Schema"
+                    "schedule": "Schema",
+                    "sleep": "Sömn"
                 }
             },
             "activation_mode": {
@@ -975,9 +1079,77 @@
                     "red_bean_bread": "Röda bönor bröd",
                     "milk_toast": "Mjölkrostat"
                 }
+            },
+            "display_brightness": {
+                "name": "Displayljusstyrka",
+                "state": {
+                    "off": "Av",
+                    "day": "Dag",
+                    "night": "Natt",
+                    "dim": "Dämpad",
+                    "bright": "Ljus",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundpunkt",
+                "state": {
+                    "static": "Statisk",
+                    "blinking": "Blinkande"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Larm {x} slummerläge",
+                "state": {
+                    "mute": "Tysta ljud",
+                    "mute_light": "Tysta ljud + ljus",
+                    "light_only": "Tysta ljus enbart"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Larm {x} ljudeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Tona in",
+                    "fade_out": "Tona ut"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Larm {x} väckningsljusläge",
+                "state": {
+                    "no_light": "Inget ljus",
+                    "rainbow": "Regnbåge",
+                    "candle_flicker": "Stearinljusflimmer",
+                    "romantic_breath": "Romantiskt andning",
+                    "quiet_deep_sea": "Stilla djuphav",
+                    "flowing_colors": "Flytande färger",
+                    "magic_jungle": "Magisk djungel",
+                    "perfect_party": "Perfekt fest",
+                    "sunrise_at_sea": "Soluppgång vid havet",
+                    "dynamic_music": "Dynamisk musik"
+                }
+            },
+            "snooze_action": {
+                "name": "Slummeråtgärd",
+                "state": {
+                    "sound_radio": "Ljud + radio",
+                    "light": "Ljus",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + ljud + ljus"
+                }
+            },
+            "time_format": {
+                "name": "Tidsformat",
+                "state": {
+                    "12_hour": "12 timmar",
+                    "24_hour": "24 timmar"
+                }
             }
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Omgivningstemperatur"
+            },
             "cleanliness": {
                 "name": "Renlighet",
                 "state": {
@@ -1149,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Dagar lagrade"
+            },
+            "leakage_current": {
+                "name": "Läckström"
+            },
+            "active_lights": {
+                "name": "Aktiva ljus",
+                "state": {
+                    "all_off": "Alla av",
+                    "night_on": "Nattljus på",
+                    "color_on": "Färgljus på",
+                    "ambient_on": "Omgivningsljus på"
+                }
+            },
+            "wireless_charging": {
+                "name": "Trådlös laddningsstatus",
+                "state": {
+                    "idle": "Inaktiv",
+                    "charging": "Laddar",
+                    "full": "Full",
+                    "foreign_object_detected": "Främmande föremål upptäckt"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Töm tank"
+            },
+            "fill_tank": {
+                "name": "Fyll tank"
+            },
             "anti_frost": {
                 "name": "Frostskydd"
             },
@@ -1212,11 +1414,71 @@
             },
             "rangehood": {
                 "name": "Fläktkåpa"
+            },
+            "alarm_x": {
+                "name": "Larm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Larm {x} slummer aktiverad"
+            },
+            "alarm_x_day_monday": {
+                "name": "Larm {x} dag 1-måndag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Larm {x} dag 2-tisdag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Larm {x} dag 3-onsdag"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Larm {x} dag 4-torsdag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Larm {x} dag 5-fredag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Larm {x} dag 6-lördag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Larm {x} dag 7-söndag"
+            },
+            "music_playback": {
+                "name": "Musikuppspelning"
+            },
+            "network_time": {
+                "name": "Nätverkstidssynk"
+            },
+            "night_mode": {
+                "name": "Nattläge"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Slummer"
+            },
+            "watermark": {
+                "name": "Vattenstämpel"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Måltidsplan"
+            },
             "scene": {
                 "name": "Scen"
+            },
+            "schedule": {
+                "name": "Schema"
+            },
+            "alarm_settings": {
+                "name": "Larminställningar"
+            },
+            "sleep_settings": {
+                "name": "Sömninställningar"
+            },
+            "station_list": {
+                "name": "Stationslista"
             }
         },
         "time": {
@@ -1231,6 +1493,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Larm {x} tid"
+            },
+            "clock_time": {
+                "name": "Klocktid"
             }
         },
         "valve": {
@@ -1247,6 +1515,26 @@
             },
             "hot_water": {
                 "name": "Varmvattenberedare"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Larm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ingen",
+                            "birds": "Fåglar",
+                            "sea": "Hav",
+                            "valley": "Dal",
+                            "piano": "Piano",
+                            "soft": "Mjuk",
+                            "phone": "Telefon",
+                            "beep": "Pip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }
