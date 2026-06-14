@@ -846,3 +846,4 @@ Further device support has been made with the assistance of users. Please consid
 - [maxlarin63](https://github.com/maxlarin63) for contributing support for Ucomen 3-outlet socket that was merged to mutli_timer_powerstrip.
 - [phooper-ic](https://github.com/phooper-ic) for contributing support for BW salt chlorinator.
 - [sjefke09](https://github.com/sjefke09) for contributing support for Etna AB791 rangehood.
+- [btoddb](https://github.com/btoddb) for contributing support for Atomi coffee maker.

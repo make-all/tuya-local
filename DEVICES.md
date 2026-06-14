@@ -605,6 +605,7 @@
 - Aeno KS1S kitchen scale
 - Amenzo dishwasher
 - Anko 1.7L smart kettle
+- Atomi coffee maker
 - BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
 - Casdon 16J3S dishwasher
