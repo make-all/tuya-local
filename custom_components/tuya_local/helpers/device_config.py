@@ -652,15 +652,28 @@ class TuyaDpsConfig:
                     )
 
     def range(self, device, scaled=True):
-        """Return the range for this dps if configured."""
+        """Return the range for this dps if configured.
+
+        When a target_range remap is configured, the value exposed to HA is
+        in target_range units, so report the range in those units too. This
+        keeps a number entity's min/max consistent with the values it reads
+        and writes; otherwise the slider shows raw units and values outside
+        the raw range are rejected before the target_range conversion runs.
+        """
         scale = self.scale(device) if scaled else 1
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
+        target = None
         if mapping:
             r = mapping.get("range", r)
+            target = mapping.get("target_range")
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
+                target = cond.get("target_range", target)
+
+        if scaled and target and "min" in target and "max" in target:
+            return (target["min"], target["max"])
 
         if r and "min" in r and "max" in r:
             return _scale_range(r, scale)
