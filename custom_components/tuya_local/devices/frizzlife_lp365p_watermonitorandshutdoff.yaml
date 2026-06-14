@@ -309,43 +309,10 @@ entities:
           - dps_val: us_units
             value: gal
           - value: L
-      - id: 111
-        type: string
-        name: value
-        unit: gal
-        range:
-          min: 20
-          max: 1300
-        mapping:
-          - dps_val: mode4
-            value_redirect: mode4_val
-          - dps_val: mode5
-            value_redirect: mode5_val
-          - dps_val: mode6
-            value_redirect: mode6_val
       - id: 115
         type: integer
-        name: mode4_val
-        range:
-          min: 0
-          max: 64
-        mapping:
-          - target_range:
-              min: 20
-              max: 1300
-      - id: 116
-        type: integer
-        name: mode5_val
-        range:
-          min: 0
-          max: 64
-        mapping:
-          - target_range:
-              min: 20
-              max: 1300
-      - id: 117
-        type: integer
-        name: mode6_val
+        name: value
+        unit: gal
         range:
           min: 0
           max: 64
