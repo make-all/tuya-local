@@ -1,11 +1,12 @@
 name: Dehumidifier
 products:
-  - id: fj86ko
+  - id: yfozn0xg1gkbmawq
     manufacturer: EuropAce
     model: EDH3122A 12L Dehumidifier
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_key: extended
     dps:
       - id: 1
         type: boolean
@@ -15,9 +16,9 @@ entities:
         name: mode
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: Continuous
+            value: continuous
       - id: 3
         type: integer
         name: current_humidity
@@ -113,7 +114,7 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: "cancel"
           - dps_val: "1"
             value: "1h"
           - dps_val: "2"
@@ -180,7 +181,6 @@ entities:
         type: boolean
         name: switch
         optional: true
-        persist: false
         mapping:
           - dps_val: null
             value: false
