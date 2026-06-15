@@ -2,10 +2,9 @@ name: Fan
 products:
   - id: yrgy1hmepnqysltk
     manufacturer: Poiema
-    name: Fan
+    model: Fan
 entities:
   - entity: fan
-    icon: "mdi:fan"
     translation_only_key: fan_with_presets
     dps:
       - id: 1 # Power On Off
@@ -33,7 +32,7 @@ entities:
 
   - entity: select
     name: Oscillation angle
-    icon: "mdi:rotate-3d-variant"
+    icon: mdi:arrow-oscillating
     dps:
       - id: 7
         type: string
@@ -53,16 +52,16 @@ entities:
             value: "90° slow"
           - dps_val: "120L"
             value: "120° slow"
-  - entity: switch
-    name: Child lock
-    icon: "mdi:lock"
+  - entity: lock
+    translation_key: child_lock
+    category: config
     dps:
       - id: 14
         type: boolean
-        name: switch
-  - entity: switch
-    name: LED
-    icon: "mdi:led-on"
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
     dps:
       - id: 15
         type: boolean
@@ -75,7 +74,7 @@ entities:
         name: sensor
         unit: "°C"
   - entity: select
-    name: Auto off timer
+    translation_key: timer
     icon: "mdi:timer-outline"
     dps:
       - id: 22
@@ -83,7 +82,7 @@ entities:
         name: option
         mapping:
           - dps_val: "cancel"
-            value: "disabled"
+            value: "Disabled"
           - dps_val: "1h"
             value: "1 hour"
           - dps_val: "2h"
