@@ -29,8 +29,18 @@ entities:
         optional: true
         range:
           min: 8
-          max: 16
+          max: 32
         unit: A
+      - id: 113
+        name: maximum
+        type: string
+        optional: true
+        readonly: true
+        mapping:
+          - dps_val: "Max16A"
+            value: 16
+          - dps_val: "Max32A"
+            value: 32
 
   - entity: number
     name: Delayed start
