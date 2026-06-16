@@ -33,34 +33,34 @@ entities:
       - id: 14
         type: integer
         name: current_humidity
-  - entity: number
+  - entity: fan
     translation_key: spray_level
     category: config
     dps:
+      - id: 1
+        type: boolean
+        name: switch
       - id: 23
         type: string
-        name: value
+        name: speed
         optional: true
         mapping:
           - dps_val: "level_0"
             value: 0
           - dps_val: "level_1"
-            value: 1
+            value: 15
           - dps_val: "level_2"
-            value: 2
+            value: 30
           - dps_val: "level_3"
-            value: 3
+            value: 45
           - dps_val: "level_4"
-            value: 4
+            value: 55
           - dps_val: "level_5"
-            value: 5
+            value: 70
           - dps_val: "level_6"
-            value: 6
+            value: 85
           - dps_val: "level_7"
-            value: 7
-        range:
-          min: 0
-          max: 7
+            value: 100
   - entity: switch
     translation_key: warm_mist
     category: config
