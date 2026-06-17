@@ -125,10 +125,11 @@ entities:
         type: bitfield
         name: sensor
 
-  # DP15 is a legacy duplicate of the water inlet temperature (same physical sensor as DP3
-  # and DP101). On most other Tuya pool heat pumps DP15 is the fault bitmap, but on this
-  # firmware the fault moved to DP21 and DP15 was repurposed. Kept here for documentation;
-  # use DP101 (Water inlet temperature) as the authoritative sensor.
+  # DP15 is a legacy duplicate of the water inlet temperature (same
+  # physical sensor as DP3 and DP101). On most other Tuya pool heat
+  # pumps DP15 is the fault bitmap, but on this firmware fault moved
+  # to DP21 and DP15 was repurposed. Use DP101 as the authoritative
+  # inlet sensor.
   - entity: sensor
     name: Pool temperature (legacy)
     class: temperature
@@ -168,7 +169,7 @@ entities:
         class: measurement
 
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
     category: diagnostic
     dps:
