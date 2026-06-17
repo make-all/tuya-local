@@ -2,7 +2,7 @@ name: Dehumidifier
 products:
   - id: yfozn0xg1gkbmawq
     manufacturer: EuropAce
-    model: EDH3122A 12L Dehumidifier
+    model: EDH3122A 12L
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -84,7 +84,6 @@ entities:
             value: "HI: High temperature"
   - entity: binary_sensor
     translation_key: tank_full
-    category: diagnostic
     dps:
       - id: 11
         type: bitfield
@@ -95,7 +94,6 @@ entities:
           - value: false
   - entity: binary_sensor
     translation_key: defrost
-    category: diagnostic
     dps:
       - id: 11
         type: bitfield
@@ -173,7 +171,7 @@ entities:
         name: sensor
         unit: min
   - entity: switch
-    name: Inside drying
+    name: Anti mould
     category: config
     icon: "mdi:hair-dryer"
     dps:
