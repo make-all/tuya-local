@@ -847,3 +847,4 @@ Further device support has been made with the assistance of users. Please consid
 - [phooper-ic](https://github.com/phooper-ic) for contributing support for BW salt chlorinator.
 - [sjefke09](https://github.com/sjefke09) for contributing support for Etna AB791 rangehood.
 - [btoddb](https://github.com/btoddb) for contributing support for Atomi coffee maker.
+- [c1em3ntchua](https://github.com/c1em3ntchua) for contributing support for EuropAce EDH3122A dehumidifier.
