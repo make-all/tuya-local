@@ -60,6 +60,21 @@ entities:
       - id: 130
         type: boolean
         name: deport_mode
+      # 131/132/133 are device-specific status values, meaning unknown.
+      # They did not change in response to any app setting (scheduled clean,
+      # sterilization and do-not-disturb are cloud timers, not local dps).
+      - id: 131
+        type: integer
+        optional: true
+        name: unknown_131
+      - id: 132
+        type: boolean
+        optional: true
+        name: unknown_132
+      - id: 133
+        type: boolean
+        optional: true
+        name: unknown_133
   - entity: button
     name: Clean
     category: config
@@ -211,37 +226,3 @@ entities:
           max: 1500
         mapping:
           - step: 100
-  # 131/132/133 are device-specific status values, meaning unknown.
-  # They did not change in response to any app setting (scheduled clean,
-  # sterilization and do-not-disturb are cloud timers, not local dps).
-  # Exposed hidden until their purpose is identified.
-  - entity: sensor
-    name: DP 131
-    category: diagnostic
-    icon: "mdi:help-circle"
-    hidden: true
-    dps:
-      - id: 131
-        type: integer
-        optional: true
-        name: sensor
-  - entity: binary_sensor
-    name: DP 132
-    category: diagnostic
-    icon: "mdi:help-circle"
-    hidden: true
-    dps:
-      - id: 132
-        type: boolean
-        optional: true
-        name: sensor
-  - entity: binary_sensor
-    name: DP 133
-    category: diagnostic
-    icon: "mdi:help-circle"
-    hidden: true
-    dps:
-      - id: 133
-        type: boolean
-        optional: true
-        name: sensor
