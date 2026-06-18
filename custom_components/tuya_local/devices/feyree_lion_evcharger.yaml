@@ -27,11 +27,32 @@ entities:
         name: value
         type: integer
         optional: true
+        unit: A
         range:
           min: 8
           max: 16
-        unit: A
+        mapping:
+          - constraint: max_current
+            conditions:
+              - dps_val: "Max32A"
+                value_redirect: value_32a
+                range:
+                  min: 8
+                  max: 32
 
+      - id: 115
+        name: value_32a
+        type: integer
+        optional: true
+        unit: A
+        range:
+          min: 8
+          max: 32
+
+      - id: 113
+        name: max_current
+        type: string
+        optional: true
   - entity: number
     name: Delayed start
     icon: "mdi:timer-sand"
