@@ -6,10 +6,10 @@ entities:
   - entity: fan
     translation_only_key: fan_with_presets
     dps:
-      - id: 1 # Power On Off
+      - id: 1  # Power On Off
         type: boolean
         name: switch
-      - id: 2 # Mode: Narmal / Sleep / Natural / AI
+      - id: 2  # Mode: Narmal / Sleep / Natural / AI
         type: string
         name: preset_mode
         mapping:
@@ -31,7 +31,7 @@ entities:
 
   - entity: select
     name: Oscillation angle
-    icon: mdi:arrow-oscillating
+    icon: "mdi:arrow-oscillating"
     dps:
       - id: 7
         type: string
@@ -74,7 +74,6 @@ entities:
         unit: "°C"
   - entity: select
     translation_key: timer
-    icon: "mdi:timer-outline"
     dps:
       - id: 22
         type: string
