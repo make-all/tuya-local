@@ -513,6 +513,8 @@ class TuyaDpsConfig:
     def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
+                if (len(v) % 2) != 0:
+                    v = "0" + v
                 return bytes.fromhex(v)
             except ValueError:
                 _LOGGER.warning(
