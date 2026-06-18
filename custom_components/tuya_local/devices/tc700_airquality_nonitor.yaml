@@ -26,10 +26,10 @@ entities:
     class: battery
     dps:
       - id: 4
-        type: string
-        optional: true
+        type: integer
         name: sensor
         unit: "%"
+        class: measurement
   - entity: sensor
     class: carbon_dioxide
     dps:
@@ -86,6 +86,7 @@ entities:
       - id: 107
         type: integer
         name: second
+        readonly: true
         range:
           min: 0
           max: 50000
