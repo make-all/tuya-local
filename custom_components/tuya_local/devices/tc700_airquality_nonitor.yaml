@@ -80,12 +80,12 @@ entities:
         name: sensor
         unit: ugm3
         class: measurement
-  - entity: time
-    name: Recording time
+  - entity: number
+    name: Recordings count
     dps:
       - id: 107
         type: integer
-        name: second
+        name: value
         readonly: true
         range:
           min: 0
