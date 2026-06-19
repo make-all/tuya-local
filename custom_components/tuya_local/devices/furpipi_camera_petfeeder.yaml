@@ -1,0 +1,324 @@
+name: Pet feeder
+products:
+  - id: dnoridmn54kugdqe
+    manufacturer: FurPipi
+    model: PF05
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: watermark
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: motion_sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: low
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
+  - entity: select
+    translation_key: night_vision
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+  - entity: text
+    name: Motion timer
+    category: config
+    icon: "mdi:clock-digital"
+    hidden: true
+    dps:
+      - id: 114
+        type: string
+        name: value
+      - id: 135
+        type: boolean
+        name: available
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        name: snapshot
+        optional: true
+  - entity: switch
+    name: Motion detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Motion timer
+    category: config
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 1
+          max: 100
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: event
+    name: Notification
+    dps:
+      - id: 212
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: sensor
+    name: Portion weight
+    class: weight
+    dps:
+      - id: 232
+        type: integer
+        name: sensor
+        unit: g
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Control
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 233
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 2147483646
+      - id: 234
+        type: integer
+        optional: true
+        name: realtime_data
+      - id: 235
+        type: integer
+        optional: true
+        name: encoded_dispensing
+      - id: 236
+        type: integer
+        optional: true
+        name: history
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 237
+        type: hex
+        optional: true
+        name: value
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 238
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: low
+            value: 20
+          - dps_val: "no"
+            value: null
+      - id: 238
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: "no"
+            value: false
+          - value: true
+  - entity: sensor
+    name: Food level
+    class: enum
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 239
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: full
+            value: Full
+          - dps_val: less
+            value: Low
+          - dps_val: lack
+            value: Empty
+  - entity: binary_sensor
+    name: Food blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 240
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: Food stuck
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 241
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: select
+    name: Voice recording
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 242
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Stop
+          - dps_val: "1"
+            value: Record
+          - dps_val: "2"
+            value: Cancel
+  - entity: event
+    name: Manual feed
+    dps:
+      - id: 243
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: unfed
+          - value: fed
+      - id: 243
+        type: integer
+        optional: true
+        name: feed_size
+        mapping:
+          - scale: 10
+  - entity: event
+    name: Auto feed
+    dps:
+      - id: 244
+        type: integer
+        optional: true
+        name: event
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: 0
+            value: unfed
+          - value: fed
+      - id: 244
+        type: integer
+        optional: true
+        name: feed_size
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Publish feed report
+    category: config
+    hidden: true
+    dps:
+      - id: 245
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: -2000
+          max: 99
+  - entity: sensor
+    name: Last feed
+    category: diagnostic
+    dps:
+      - id: 246
+        type: integer
+        name: sensor
+        unit: portions
+        class: measurement
+  - entity: text
+    name: Failover logging
+    category: config
+    icon: "mdi:invoice-text-outline"
+    hidden: true
+    dps:
+      - id: 247
+        type: base64
+        optional: true
+        name: value
