@@ -849,13 +849,47 @@ def test_setting_masked_b64_uses_mask_base_when_current_missing(mocker):
         "name": "test",
         "type": "base64",
         "mask": "0000000000ff00",
-        "mask_base": "AAAAFABQZA==",
+        "mask_base": "AAAAFABQMg==",
     }
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = None
     cfg = TuyaDpsConfig(mock_entity, mock_config)
 
+    assert cfg.get_values_to_set(mock_device, 0x32) == {"1": "AAAAFAAyMg=="}
+
+
+def test_setting_masked_b64_uses_matching_current_value_over_mask_base(mocker):
+    """Test that a compatible current packed value is preferred over mask_base."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "0000000000ff00",
+        "mask_base": "AAAAFABQMg==",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AAAAFABQZA=="
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+
     assert cfg.get_values_to_set(mock_device, 0x32) == {"1": "AAAAFAAyZA=="}
+
+
+def test_setting_masked_b64_uses_mask_base_when_current_length_mismatch(mocker):
+    """Test that incompatible packed payloads do not seed masked writes."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "0000000000ff00",
+        "mask_base": "AAAAFABQMg==",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = "AAEAFAAAamQ0"
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+
+    assert cfg.get_values_to_set(mock_device, 0x32) == {"1": "AAAAFAAyMg=="}
 
 
 def test_setting_masked_b64_with_mask_base_merges_pending_writes(mocker):
@@ -870,7 +904,7 @@ def test_setting_masked_b64_with_mask_base_merges_pending_writes(mocker):
             "name": "brightness",
             "type": "base64",
             "mask": "0000000000ff00",
-            "mask_base": "AAAAFABQZA==",
+            "mask_base": "AAAAFABQMg==",
         },
     )
     color_temp = TuyaDpsConfig(
@@ -880,7 +914,7 @@ def test_setting_masked_b64_with_mask_base_merges_pending_writes(mocker):
             "name": "color_temp",
             "type": "base64",
             "mask": "000000000000ff",
-            "mask_base": "AAAAFABQZA==",
+            "mask_base": "AAAAFABQMg==",
         },
     )
     pending = {}
@@ -898,7 +932,7 @@ def test_getting_masked_b64_ignores_mask_base_when_current_missing(mocker):
         "name": "test",
         "type": "base64",
         "mask": "0000000000ff00",
-        "mask_base": "AAAAFABQZA==",
+        "mask_base": "AAAAFABQMg==",
     }
     mock_device = mocker.MagicMock()
     mock_device.get_property.return_value = None
