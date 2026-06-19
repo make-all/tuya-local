@@ -218,6 +218,10 @@
                                     "pattern": "^[0-9a-fA-F]+$",
                                     "description": "A hexadecimal mask to extract an integer from a base64 or hex DP value."
                                 },
+                                "mask_base": {
+                                    "type": ["integer", "string"],
+                                    "description": "Raw DP value to use as the base only when writing a masked value and the current DP value is unavailable."
+                                },
                                 "mask_signed": {
                                     "type": "boolean",
                                     "description": "true if the masked integer is signed. Default is false, which should not be specified explicitly to avoid clutter."

@@ -120,6 +120,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("mapping"): [MAPPING_SCHEMA],
         vol.Optional("format"): [FORMAT_SCHEMA],
         vol.Optional("mask"): str,
+        vol.Optional("mask_base"): vol.Any(str, int),
         vol.Optional("endianness"): vol.In(["little"]),
         vol.Optional("mask_signed"): True,
     }
@@ -838,6 +839,72 @@ def test_setting_masked_b64_with_special_case_mapping(mocker):
     mock_device.get_property.return_value = "AAA="
     cfg = TuyaDpsConfig(mock_entity, mock_config)
     assert cfg.get_values_to_set(mock_device, "special_case") == {"1": "AQA="}
+
+
+def test_setting_masked_b64_uses_mask_base_when_current_missing(mocker):
+    """Test that mask_base seeds masked writes when the current DP is missing."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "0000000000ff00",
+        "mask_base": "AAAAFABQZA==",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = None
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+
+    assert cfg.get_values_to_set(mock_device, 0x32) == {"1": "AAAAFAAyZA=="}
+
+
+def test_setting_masked_b64_with_mask_base_merges_pending_writes(mocker):
+    """Test that same-DP masked writes merge after mask_base seeds the first write."""
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = None
+    brightness = TuyaDpsConfig(
+        mock_entity,
+        {
+            "id": "1",
+            "name": "brightness",
+            "type": "base64",
+            "mask": "0000000000ff00",
+            "mask_base": "AAAAFABQZA==",
+        },
+    )
+    color_temp = TuyaDpsConfig(
+        mock_entity,
+        {
+            "id": "1",
+            "name": "color_temp",
+            "type": "base64",
+            "mask": "000000000000ff",
+            "mask_base": "AAAAFABQZA==",
+        },
+    )
+    pending = {}
+    pending.update(color_temp.get_values_to_set(mock_device, 0x3A, pending))
+    pending.update(brightness.get_values_to_set(mock_device, 0x32, pending))
+
+    assert pending == {"1": "AAAAFAAyOg=="}
+
+
+def test_getting_masked_b64_ignores_mask_base_when_current_missing(mocker):
+    """Test that mask_base does not fabricate a current value."""
+    mock_entity = mocker.MagicMock()
+    mock_config = {
+        "id": "1",
+        "name": "test",
+        "type": "base64",
+        "mask": "0000000000ff00",
+        "mask_base": "AAAAFABQZA==",
+    }
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = None
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+
+    assert cfg.get_value(mock_device) is None
 
 
 def test_default_without_mapping(mocker):

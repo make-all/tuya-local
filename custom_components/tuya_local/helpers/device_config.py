@@ -552,7 +552,7 @@ class TuyaDpsConfig:
         if self.rawtype == "bitfield" and matchdata:
             try:
                 return (int(value) & int(matchdata)) != 0
-            except TypeError, ValueError:
+            except (TypeError, ValueError):
                 return False
         else:
             return str(value) == str(matchdata)
@@ -1115,10 +1115,12 @@ class TuyaDpsConfig:
             mask_scale = mask & (1 + ~mask)
 
             # Get raw current value directly (avoids scaling being auto applied as it causes issues)
-            raw_current = device.get_property(self.id)
             if self.id in pending_map:
                 decoded_value = self.decode_value(pending_map[self.id], device)
             else:
+                raw_current = device.get_property(self.id)
+                if raw_current is None:
+                    raw_current = self._config.get("mask_base")
                 decoded_value = self.decode_value(raw_current, device)
 
             if decoded_value is None:
