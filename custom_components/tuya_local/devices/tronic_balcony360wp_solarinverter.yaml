@@ -1,0 +1,218 @@
+# Tronic Balcony Power Starter Set 360Wp / 400W Full Black (Lidl)
+
+name: Balcony Solar Inverter
+
+products:
+  - id: o22ucxbgfd109nbl
+    manufacturer: Tronic
+    model: Balcony Power Starter Set 360Wp 400W Full Black
+
+entities:
+
+  # -------------------------------------------------------------------------
+  # Current AC power output (DPS 8) — W, no scaling needed
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: Power Output
+    class: power
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+
+  # -------------------------------------------------------------------------
+  # Total energy generated cumulative (DPS 2)
+  # scale is a divisor in tuya-local: raw Wh ÷ 1000 = kWh
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: Energy Total
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+
+  # -------------------------------------------------------------------------
+  # Inverter temperature (DPS 16)
+  # scale is a divisor: raw ÷ 10 = °C
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: Inverter Temperature
+    class: temperature
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "°C"
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # -------------------------------------------------------------------------
+  # Work mode select — readable and writable (in theory, doesn't change in practice) (DPS 10)
+  # -------------------------------------------------------------------------
+  - entity: select
+    name: Work Mode
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: "power_off"
+            value: "Power Off"
+          - dps_val: "inverter_power"
+            value: "Inverter Power"
+          - dps_val: "grid_power"
+            value: "Grid Power"
+          - dps_val: "battery_power"
+            value: "Battery Power"
+
+  # -------------------------------------------------------------------------
+  # DPS 3 — pv1_dc_data (6 bytes big-endian)
+  #   bytes 0-1: DC voltage (÷10 = V)
+  #   bytes 2-3: DC current (÷10 = A)
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: DC Voltage
+    class: voltage
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FFFF00000000"
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: DC Current
+    class: current
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000FFFF0000"
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # -------------------------------------------------------------------------
+  # DPS 5 — phase_a (10 bytes big-endian)
+  #   bytes 0-1: AC voltage (÷10 = V)
+  #   byte  4:   AC current (÷1000 = A, single byte mA)
+  #   bytes 6-7: AC power (W, no scaling)
+  #   bytes 8-9: AC frequency (÷10 = Hz)
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: AC Voltage
+    class: voltage
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FFFF0000000000000000"
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    name: AC Current
+    class: current
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "00000000FF0000000000"
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    name: AC Power
+    class: power
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "000000000000FFFF0000"
+        unit: W
+        class: measurement
+
+  - entity: sensor
+    name: AC Frequency
+    class: frequency
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000FFFF"
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # -------------------------------------------------------------------------
+  # Fault (DPS 9) — named fault sensor
+  # Shows OK when no fault, or the specific fault name when a bit is set.
+  # Maps single-bit values to fault names. If multiple faults are active
+  # simultaneously the raw bitmap value is shown.
+  # -------------------------------------------------------------------------
+  - entity: sensor
+    name: Fault
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "OK"
+          - dps_val: 1
+            value: "Overcurrent"
+          - dps_val: 2
+            value: "Overvoltage"
+          - dps_val: 4
+            value: "Grid Outage"
+          - dps_val: 8
+            value: "Frequency Abnormal"
+          - dps_val: 16
+            value: "DC Overvoltage"
+          - dps_val: 32
+            value: "DC Compensation"
+          - dps_val: 64
+            value: "Fan Fault"
+          - dps_val: 128
+            value: "Insulation Resistance"
+          - dps_val: 256
+            value: "Inverter Temperature"
+          - dps_val: 512
+            value: "Residual Current"
+          - dps_val: 1024
+            value: "Current Leak"
+          - dps_val: 2048
+            value: "Battery Overvoltage"
+          - dps_val: 4096
+            value: "Battery Undervoltage"
+          - dps_val: 8192
+            value: "Battery Temperature"
+          - dps_val: 16384
+            value: "Communication Fault"
+          - dps_val: 32768
+            value: "Inverter Body Fault"
