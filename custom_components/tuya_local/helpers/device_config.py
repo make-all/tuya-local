@@ -552,7 +552,9 @@ class TuyaDpsConfig:
         if self.rawtype == "bitfield" and matchdata:
             try:
                 return (int(value) & int(matchdata)) != 0
-            except (TypeError, ValueError):
+            except TypeError:
+                return False
+            except ValueError:
                 return False
         else:
             return str(value) == str(matchdata)
