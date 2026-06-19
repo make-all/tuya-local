@@ -1,14 +1,13 @@
-name: Poolsana InverPRESTIGE PRO pool heat pump
+name: Pool heat pump
 
 products:
   - id: qmht2j30hapasy87
-    manufacturer: Tuya
-    model: Swimming Pool Heat Pump
+    manufacturer: Poolsana
+    model: InverPrestige Pro
 
 entities:
   - entity: climate
     translation_key: pool_heatpump
-    icon: mdi:heat-pump
     dps:
       - id: 1
         type: boolean
@@ -23,14 +22,18 @@ entities:
                 value: heat
               - dps_val: h_powerful
                 value: heat
+                hidden: true
               - dps_val: h_silent
                 value: heat
+                hidden: true
               - dps_val: cool
                 value: cool
               - dps_val: c_powerful
                 value: cool
+                hidden: true
               - dps_val: c_silent
                 value: cool
+                hidden: true
               - dps_val: auto
                 value: auto
       - id: 2
@@ -49,31 +52,21 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: heat
-            value: Smart heating
+            value: smart_heat
           - dps_val: h_powerful
-            value: Powerful heating
+            value: quick_heat
           - dps_val: h_silent
-            value: Silent heating
+            value: quiet_heat
           - dps_val: cool
-            value: Smart cooling
+            value: smart_cool
           - dps_val: c_powerful
-            value: Powerful cooling
+            value: quick_cool
           - dps_val: c_silent
-            value: Silent cooling
+            value: quiet_cool
           - dps_val: auto
-            value: Auto
-      - id: 13
-        type: string
-        name: temperature_unit
-        mapping:
-          - dps_val: c
-            value: C
-          - dps_val: f
-            value: F
-          - value: C
+            value: auto
 
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -115,15 +108,10 @@ entities:
             value: compressor_current_protection
           - dps_val: 384
             value: pfc_overheat
-
-  - entity: sensor
-    name: Fault code
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 21
-        type: bitfield
-        name: sensor
+      - id: 115
+        type: integer
+        name: pcb_version
+        optional: true
 
   # DP15 is a legacy duplicate of the water inlet temperature (same
   # physical sensor as DP3 and DP101). On most other Tuya pool heat
@@ -311,11 +299,3 @@ entities:
         unit: rpm
         class: measurement
 
-  - entity: sensor
-    name: PCB version
-    category: diagnostic
-    dps:
-      - id: 115
-        type: integer
-        name: sensor
-        optional: true
