@@ -4,19 +4,17 @@ products:
     manufacturer: Camnsmart
     model: E27TY
 entities:
-  - entity: camera
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
     dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
       - id: 109
         type: string
         name: memory_card_capacity
-      - id: 134
-        type: boolean
-        name: motion_enable
-        optional: true
-      - id: 150
-        type: boolean
-        name: record
-        optional: true
       - id: 178
         type: string
         name: log_event
@@ -24,6 +22,26 @@ entities:
       - id: 185
         type: string
         name: log_message
+        optional: true
+  - entity: switch
+    name: Motion detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+
+  - entity: camera
+    deprecated: switch_camera_record, switch_motion_detection  # 2026-06-08
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
         optional: true
   - entity: light
     translation_key: indicator

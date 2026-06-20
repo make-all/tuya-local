@@ -1,0 +1,312 @@
+name: Energy monitor
+products:
+  - id: dpowo5ivv7thze68
+    manufacturer: GHpower
+    model: iMeter 3PN
+entities:
+  - entity: sensor
+    translation_key: energy_consumed
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 17
+        type: string
+        name: alarm_set_1
+        optional: true
+      - id: 18
+        type: string
+        name: alarm_set_2
+        optional: true
+      - id: 19
+        type: string
+        name: breaker_number
+        optional: true
+
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        optional: true
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 35
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_a
+          - scale: 10
+      - id: 6
+        type: base64
+        name: phase_a
+        optional: true
+        force: true
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_a
+          - scale: 1000
+      - id: 6
+        type: base64
+        name: phase_a
+        optional: true
+        force: true
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        optional: true
+        unit: W
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_a
+      - id: 6
+        type: base64
+        name: phase_a
+        optional: true
+        force: true
+        mask: "0000000000FFFFFF"
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_b
+          - scale: 10
+      - id: 7
+        type: base64
+        name: phase_b
+        optional: true
+        force: true
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_b
+          - scale: 1000
+      - id: 7
+        type: base64
+        name: phase_b
+        optional: true
+        force: true
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        optional: true
+        unit: W
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_b
+      - id: 7
+        type: base64
+        name: phase_b
+        optional: true
+        force: true
+        mask: "0000000000FFFFFF"
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_c
+          - scale: 10
+      - id: 8
+        type: base64
+        name: phase_c
+        optional: true
+        force: true
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_c
+          - scale: 1000
+      - id: 8
+        type: base64
+        name: phase_c
+        optional: true
+        force: true
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        optional: true
+        unit: W
+        class: measurement
+        mapping:
+          - dps_val: null
+            value_redirect: phase_c
+      - id: 8
+        type: base64
+        name: phase_c
+        optional: true
+        force: true
+        mask: "0000000000FFFFFF"

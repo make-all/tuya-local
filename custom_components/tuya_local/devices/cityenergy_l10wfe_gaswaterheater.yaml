@@ -102,6 +102,7 @@ entities:
     dps:
       - id: 107
         type: boolean
+        optional: true
         name: button
   - entity: button
     name: Reset gas meter
@@ -110,4 +111,19 @@ entities:
     dps:
       - id: 108
         type: boolean
+        optional: true
         name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
