@@ -127,13 +127,10 @@ class TuyaLocalDevice(object):
             raise e
 
         # we handle retries at a higher level so we can rotate protocol version
-        # on the other hand, protocol 3.4 devices send encrypted null ACKs that
-        # often get mixed in, so we need to retry a couple of times before resorting
-        # to recovery measures that seem to make things worse.
-        self._api.set_socketRetryLimit(2)
+        self._api.set_socketRetryLimit(0)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
-            self._api.parent.set_socketRetryLimit(1)
+            self._api.parent.set_socketRetryLimit(0)
 
         self._refresh_task = None
         self._protocol_configured = protocol_version
@@ -373,11 +370,7 @@ class TuyaLocalDevice(object):
                     self._last_full_poll = now
                     last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    if (
-                        now - last_heartbeat > self._HEARTBEAT_INTERVAL
-                        # 3.4 devices seem to require more frequent heartbeats to work reliably
-                        or self._api_protocol_version_index == 3
-                    ):
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
                         await self._hass.async_add_executor_job(
                             self._api.heartbeat,
                             True,
