@@ -27,8 +27,9 @@ entities:
           - dps_val: true
             value: C
       - id: 105
-        name: work_mode
+        name: mode
         type: string
+        hidden: true
       - id: 106
         name: temperature
         type: integer
@@ -43,11 +44,11 @@ entities:
           min: 18
           max: 45
       - id: 107
+        type: integer
         name: min_temperature
-        type: integer
       - id: 108
-        name: max_temperature
         type: integer
+        name: max_temperature
       - id: 117
         name: preset_mode
         type: boolean
@@ -57,15 +58,15 @@ entities:
           - dps_val: true
             value: smart
   - entity: sensor
-    name: Power level
     category: diagnostic
+    name: Power level
     icon: "mdi:signal"
     dps:
       - id: 104
-        name: sensor
         type: integer
-        class: measurement
+        name: sensor
         unit: "%"
+        class: measurement
   - entity: binary_sensor
     name: Water flow
     class: problem

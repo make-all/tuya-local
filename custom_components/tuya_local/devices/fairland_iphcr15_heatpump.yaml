@@ -17,12 +17,12 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: work_mode
+            constraint: mode
             conditions:
-              - dps_val: cool
-                value: cool
               - dps_val: warm
                 value: heat
+              - dps_val: cool
+                value: cool
               - dps_val: smart
                 value: heat_cool
       - id: 102
@@ -37,7 +37,7 @@ entities:
           - dps_val: true
             value: C
       - id: 105
-        name: work_mode
+        name: mode
         type: string
         hidden: true
       - id: 106
@@ -54,11 +54,11 @@ entities:
           min: 12
           max: 45
       - id: 107
+        type: integer
         name: min_temperature
-        type: integer
       - id: 108
-        name: max_temperature
         type: integer
+        name: max_temperature
       - id: 117
         name: preset_mode
         type: boolean
@@ -68,15 +68,15 @@ entities:
           - dps_val: true
             value: boost
   - entity: sensor
-    name: Power level
     category: diagnostic
+    name: Power level
     icon: "mdi:signal"
     dps:
       - id: 104
         type: integer
         name: sensor
-        class: measurement
         unit: "%"
+        class: measurement
   - entity: binary_sensor
     name: Water flow
     class: problem
