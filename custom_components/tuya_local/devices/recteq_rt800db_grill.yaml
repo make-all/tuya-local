@@ -1,8 +1,8 @@
 name: Grill
-# products:
-#   - id: js3ouva4uggbifzo
-#     manufacturer: RecTeq
-#     model: RT-800DB
+products:
+  - id: js3ouva4uggbifzo
+    manufacturer: RecTeq
+    model: RT-800DB
 entities:
   - entity: climate
     icon: "mdi:grill"
@@ -55,6 +55,7 @@ entities:
           - step: 5
   - entity: number
     name: Temperature adjust
+    translation_key: temperature_calibration
     class: temperature_delta
     category: config
     dps:
