@@ -852,3 +852,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jiriks74](https://github.com/jiriks74) for contributing support for Eta Noble humidifier.
 - [hartmms](https://github.com/hartmms) for contributing support for Recteq Deck Boss 800 grill, and improvements to Modern Flames Orion fireplace.
 - [geekypilot](https://github.com/geekypilot) for contributing improvements to device reloading and reconfiguration.
+- [WalkingFrag](https://github.com/WalkingFrag) for contributing improvements to Vivo FD55 TV mount.
