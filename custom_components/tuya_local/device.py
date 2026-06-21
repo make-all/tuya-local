@@ -824,5 +824,8 @@ async def async_delete_device(hass: HomeAssistant, config: dict):
         device_entry.pop("device", None)
     device_entry.pop("tuyadevice", None)
     device_entry.pop("tuyadevicelock", None)
+    # Platform setup may cache entity instances in this bucket by config_id.
+    # Only drop empty buckets here; async_unload_entry removes the whole bucket
+    # after forwarded platform unloads complete.
     if not device_entry:
         domain_data.pop(device_id, None)
