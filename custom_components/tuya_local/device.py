@@ -813,7 +813,19 @@ def setup_device(hass: HomeAssistant, config: dict):
 async def async_delete_device(hass: HomeAssistant, config: dict):
     device_id = get_device_id(config)
     _LOGGER.info("Deleting device: %s", device_id)
-    await hass.data[DOMAIN][device_id]["device"].async_stop()
-    del hass.data[DOMAIN][device_id]["device"]
-    del hass.data[DOMAIN][device_id]["tuyadevice"]
-    del hass.data[DOMAIN][device_id]["tuyadevicelock"]
+    domain_data = hass.data.get(DOMAIN, {})
+    device_entry = domain_data.get(device_id)
+    if device_entry is None:
+        return
+
+    device = device_entry.get("device")
+    if device is not None:
+        await device.async_stop()
+        device_entry.pop("device", None)
+    device_entry.pop("tuyadevice", None)
+    device_entry.pop("tuyadevicelock", None)
+    # Platform setup may cache entity instances in this bucket by config_id.
+    # Only drop empty buckets here; async_unload_entry removes the whole bucket
+    # after forwarded platform unloads complete.
+    if not device_entry:
+        domain_data.pop(device_id, None)
