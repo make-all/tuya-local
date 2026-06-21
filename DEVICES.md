@@ -187,7 +187,7 @@
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Mountfield Azuro pool heat pump
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
-- Poolsana InverPower Next pool heat pump
+- Poolsana InverPower Next and InverPrestige Pro pool heat pumps
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
