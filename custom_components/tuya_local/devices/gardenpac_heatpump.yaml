@@ -27,9 +27,8 @@ entities:
           - dps_val: true
             value: C
       - id: 105
-        name: mode
+        name: work_mode
         type: string
-        hidden: true
       - id: 106
         name: temperature
         type: integer
@@ -58,13 +57,13 @@ entities:
           - dps_val: true
             value: smart
   - entity: sensor
-    category: diagnostic
     name: Power level
     icon: "mdi:signal"
+    category: diagnostic
     dps:
       - id: 104
-        type: integer
         name: sensor
+        type: integer
         unit: "%"
         class: measurement
   - entity: binary_sensor
