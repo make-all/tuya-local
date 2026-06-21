@@ -27,7 +27,7 @@ entities:
         name: current_temperature
         unit: F
   - entity: sensor
-    name: Probe A Temperature
+    name: Probe A temperature
     class: temperature
     dps:
       - id: 103
@@ -35,7 +35,7 @@ entities:
         name: sensor
         unit: F
   - entity: sensor
-    name: Probe B Temperature
+    name: Probe B temperature
     class: temperature
     dps:
       - id: 104
@@ -54,7 +54,6 @@ entities:
         mapping:
           - step: 5
   - entity: number
-    name: Temperature adjust
     translation_key: temperature_calibration
     class: temperature_delta
     category: config
