@@ -174,6 +174,7 @@
 
 ### Pool heaters / heat pumps
 
+- Aquark Mr Silence pool heat pump
 - Aquastrong HEX pool heat pumps
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump

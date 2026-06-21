@@ -837,7 +837,7 @@ Further device support has been made with the assistance of users. Please consid
 - [vanyasvl](https://github.com/vanyasvl) for contributing support for Afyeev 32A 7kW EV charger.
 - [Flechaa](https://github.com/Flechaa) for contributing support for HTW IX75B air conditioner.
 - [n4dwxihyehyes2](https://github.com/n4dwxihyehyes2) for contributing support for WS2812 based Christmas lights.
-- [reitermarkus](https://github.com/reitermarkus) for contributing support for Klamer 2600W IR heater.
+- [reitermarkus](https://github.com/reitermarkus) for contributing support for Klamer 2600W IR heater and Aquark Mr Silence pool heat pump.
 - [MCarvalho06](https://github.com/MCarvalho06) for contributing support for Parkside Bluetooth mowers.
 - [PetePeter](https://github.com/PetePeter) for contributing improvements to SRNE EOS10B battery.
 - [mvanhorn](https://github.com/mvanhorn) for contributing support for Casdon TD Pro 3 oven.
