@@ -1356,6 +1356,7 @@ port and password.
 - Sunbeam single heated mattress pad
 - Sundream LC-series salt pool chlorinator (rebranded as Poolomio)
 - SWS-001 smart weather station
+- TC700 Pro air quality monitor
 - TH05Z temperature and humidity sensor
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor

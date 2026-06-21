@@ -854,3 +854,4 @@ Further device support has been made with the assistance of users. Please consid
 - [geekypilot](https://github.com/geekypilot) for contributing improvements to device reloading and reconfiguration.
 - [WalkingFrag](https://github.com/WalkingFrag) for contributing improvements to Vivo FD55 TV mount.
 - [lsteffen](https://github.com/lsteffen) for contributing support for Poolsana InverPrestige Pro pool heat pump.
+- [Misha-133](https://github.com/Misha-133) for contributing support for TC700 Pro air quality monitor.
