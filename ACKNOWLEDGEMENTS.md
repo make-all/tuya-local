@@ -851,3 +851,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Zankio](https://github.com/Zankio) for contributing support for Poiema SGT-F12W fan.
 - [jiriks74](https://github.com/jiriks74) for contributing support for Eta Noble humidifier.
 - [hartmms](https://github.com/hartmms) for contributing support for Recteq Deck Boss 800 grill, and improvements to Modern Flames Orion fireplace.
+- [geekypilot](https://github.com/geekypilot) for contributing improvements to device reloading and reconfiguration.
