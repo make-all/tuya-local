@@ -1,14 +1,14 @@
 name: Pool heat pump
 products:
-  - id: qrlLaHWwIsZsV31f
-    manufacturer: Phalén
-    model: Calidi XP
-    # - id: UNKNOWN
-    #   manufacturer: Fairland
-    #   model InverterPlus
+  - id: eeih95rmks0mjflz
+    manufacturer: Aquark
+    model: Mr. Silence
+  - id: pkm5dso5i0lmx1dy
+    manufacturer: Aquark
+    model: Mr. Silence
 entities:
   - entity: climate
-    translation_only_key: pool_heatpump
+    translation_key: pool_heatpump
     dps:
       - id: 1
         name: hvac_mode
@@ -48,11 +48,11 @@ entities:
             conditions:
               - dps_val: false
                 range:
-                  min: 55
-                  max: 115
+                  min: 54
+                  max: 104
         range:
           min: 12
-          max: 45
+          max: 40
       - id: 107
         type: integer
         name: min_temperature
@@ -64,13 +64,13 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: sleep
+            value: quiet
           - dps_val: true
             value: boost
   - entity: sensor
     category: diagnostic
-    name: Power level
-    icon: "mdi:signal"
+    name: Speed
+    icon: "mdi:speedometer"
     dps:
       - id: 104
         type: integer
