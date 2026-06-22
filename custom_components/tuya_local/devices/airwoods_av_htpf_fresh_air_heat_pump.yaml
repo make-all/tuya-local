@@ -1,5 +1,8 @@
 name: Fresh air heat pump
 
+#     manufacturer: Airwoods
+#     model: AV-HTPF35 / AV-HTPF60 / AV-HTPF90
+
 entities:
   - entity: climate
     name: Fresh air heat pump
@@ -250,7 +253,7 @@ entities:
         unit: Hz
 
   - entity: binary_sensor
-    name: Defrost
+    translation_key: defrost
     category: diagnostic
     icon: "mdi:snowflake-melt"
     dps:
