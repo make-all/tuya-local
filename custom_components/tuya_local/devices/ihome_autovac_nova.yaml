@@ -1,0 +1,101 @@
+name: Vacuum
+products:
+  - id: gejo2t2mgux3avdq
+    manufacturer: iHome
+    model: AutoVac Nova
+    model_id: iHRV6
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+        mapping:
+          - dps_val: false
+            value: stop
+
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: start
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: standby
+            value: stop
+            value_redirect: activate
+
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart_clean
+            value: cleaning
+          - dps_val: wall_clean
+            value: cleaning
+          - dps_val: spot_clean
+            value: cleaning
+          - dps_val: mop_clean
+            value: mopping
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: paused
+            value: paused
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: sleep
+            value: sleep
+
+      - id: 13
+        type: boolean
+        name: locate
+        optional: true
+
+      - id: 14
+        type: string
+        name: fan_speed
+        optional: true
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
+          - dps_val: gentle
+            value: Low
+
+      - id: 102
+        type: base64
+        name: info
+        optional: true
+
+      - id: 110
+        type: bitfield
+        name: error
+        hidden: true
+
+      - id: 111
+        type: integer
+        name: event_report
+        optional: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
