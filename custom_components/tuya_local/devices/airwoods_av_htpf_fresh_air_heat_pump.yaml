@@ -5,7 +5,6 @@ name: Fresh air heat pump
 
 entities:
   - entity: climate
-    name: Fresh air heat pump
     dps:
       - id: 101
         type: boolean
@@ -42,7 +41,7 @@ entities:
         mapping:
           - step: 1
 
-      - id: 130
+      - id: 117
         type: integer
         name: current_temperature
         unit: C
@@ -142,13 +141,63 @@ entities:
           - step: 1
 
   - entity: sensor
-    name: Indoor temperature
-    class: temperature
+    name: CO2
+    category: diagnostic
+    class: carbon_dioxide
     dps:
-      - id: 117
+      - id: 111
         type: integer
         name: sensor
-        unit: C
+        unit: ppm
+        mapping:
+          - dps_val: 0
+            value: null
+
+  - entity: sensor
+    name: VOC level
+    category: diagnostic
+    icon: "mdi:molecule"
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: null
+          - dps_val: "1"
+            value: excellent
+          - dps_val: "2"
+            value: good
+          - dps_val: "3"
+            value: medium
+          - dps_val: "4"
+            value: poor
+
+  - entity: sensor
+    name: Humidity
+    category: diagnostic
+    class: humidity
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: 0
+            value: null
+
+  - entity: sensor
+    name: PM2.5
+    category: diagnostic
+    class: pm25
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: µg/m³
+        mapping:
+          - dps_val: 0
+            value: null
 
   - entity: sensor
     name: Outdoor temperature
@@ -177,17 +226,7 @@ entities:
         name: sensor
         unit: C
 
-  - entity: sensor
-    name: Stop code
-    category: diagnostic
-    icon: "mdi:alert-octagon-outline"
-    dps:
-      - id: 109
-        type: integer
-        name: sensor
-
   - entity: binary_sensor
-    name: Alarm
     class: problem
     category: diagnostic
     dps:
@@ -203,6 +242,9 @@ entities:
       - id: 119
         type: bitfield
         name: fault_code
+      - id: 109
+        type: integer
+        name: stop_code
 
   - entity: binary_sensor
     name: Filter clean
@@ -214,16 +256,16 @@ entities:
         name: sensor
 
   - entity: binary_sensor
-    name: Fan switch
+    name: 10 speed fan mode
     category: diagnostic
-    icon: "mdi:fan"
+    icon: "mdi:fan-cog"
     dps:
       - id: 125
         type: boolean
         name: sensor
 
   - entity: sensor
-    name: Expansion valve pulse
+    name: Expansion valve opening
     category: diagnostic
     icon: "mdi:valve"
     dps:
@@ -232,10 +274,9 @@ entities:
         name: sensor
 
   - entity: sensor
-    name: Filter left time
+    translation_key: filter_life
     class: duration
     category: diagnostic
-    icon: "mdi:air-filter"
     dps:
       - id: 126
         type: integer
@@ -252,10 +293,59 @@ entities:
         name: sensor
         unit: Hz
 
+  - entity: sensor
+    name: Compressor discharge temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Compressor suction temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Evaporator temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Condenser temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Radiator temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: C
+
   - entity: binary_sensor
     translation_key: defrost
     category: diagnostic
-    icon: "mdi:snowflake-melt"
     dps:
       - id: 122
         type: boolean
