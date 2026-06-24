@@ -141,7 +141,6 @@ entities:
           - step: 1
 
   - entity: sensor
-    name: CO2
     category: diagnostic
     class: carbon_dioxide
     dps:
@@ -157,7 +156,6 @@ entities:
     name: VOC level
     class: enum
     category: diagnostic
-    icon: "mdi:molecule"
     dps:
       - id: 112
         type: string
@@ -175,7 +173,6 @@ entities:
             value: poor
 
   - entity: sensor
-    name: Humidity
     category: diagnostic
     class: humidity
     dps:
@@ -188,7 +185,6 @@ entities:
             value: null
 
   - entity: sensor
-    name: PM2.5
     category: diagnostic
     class: pm25
     dps:
@@ -248,7 +244,7 @@ entities:
         name: stop_code
 
   - entity: binary_sensor
-    name: Filter clean
+    translation_key: filter_clean
     class: problem
     category: diagnostic
     dps:
