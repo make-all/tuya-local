@@ -47,14 +47,14 @@ entities:
           - value: true
 
   - entity: switch
-    name: UV Sterilization
+    translation_key: uv_sterilization
     dps:
       - id: 102
         type: boolean
         name: switch
 
   - entity: switch
-    name: Sound
+    translation_key: sound
     dps:
       - id: 13
         type: boolean
@@ -86,7 +86,7 @@ entities:
         name: sensor
 
   - entity: sensor
-    name: Filter life
+    translation_key: filter_life
     category: diagnostic
     dps:
       - id: 103
@@ -94,11 +94,11 @@ entities:
         name: sensor
         unit: "%"
 
-#  - entity: button
-#    name: Reset filter
-#    class: restart
-#    category: config
-#    dps:
-#      - id: 104
-#        type: boolean
-#        name: button
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: button
