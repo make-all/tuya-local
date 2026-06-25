@@ -1,6 +1,7 @@
 name: Yamazen Living Fan
 products:
-  - manufacturer: Yamazen
+  - id: yjxegyhiawfedgah
+    manufacturer: Yamazen
     model: AHX-ALD30
 entities:
   - entity: fan
@@ -43,13 +44,15 @@ entities:
         type: string
         name: oscillate
         mapping:
-          # --- 書き込み：HA の boolean → DPS値（角度） ---
-          # トグル ON 時は既定で 120° を送る（好みに応じて 30/60/90 へ変更可）
-        #   - value: true
-        #     dps_val: "120"
-        #   - value: false
-        #     dps_val: "OFF"
-          # --- 読み取り：DPS値 → HA の boolean（oscillating） ---
+          # --- Write to Device: Map HA boolean to DPS value (Angle) ---
+          # Uncomment the lines below to enable the toggle function.
+          # This example sends "120" (Can be changed to 30/60/90 as desired).
+          #   - value: true
+          #     dps_val: "120"
+          #   - value: false
+          #     dps_val: "OFF"
+
+          # --- Read from Device: Map existing DPS value to HA boolean (oscillating: True) ---
           - dps_val: "OFF"
             value: false
           - dps_val: "120"
@@ -60,9 +63,6 @@ entities:
             value: true
           - dps_val: "90"
             value: true
-
-
-
   - entity: number
     translation_key: timer
     class: duration
