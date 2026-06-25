@@ -1,0 +1,101 @@
+# Chigo Tuya AC (product jqfsu2e8pvpce5ra).
+# DP map verified via Tuya cloud thing-model (abilityId == DP id).
+name: Chigo air conditioner
+products:
+  - id: jqfsu2e8pvpce5ra
+    name: Chigo Air Conditioner
+entities:
+  - entity: climate
+    dps:
+      # Power (DP1) + mode (DP4) together drive hvac_mode.
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      # DP5 enum 1..4 = auto/low/medium/high (per Tuya model description).
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: "1"
+            value: auto
+          - dps_val: "2"
+            value: low
+          - dps_val: "3"
+            value: medium
+          - dps_val: "4"
+            value: high
+
+  # Independent boolean features -> plain switches so the HomeKit bridge
+  # exposes each as a switch (do NOT give them entity_category, or HomeKit
+  # would hide them as config entities).
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Turbo
+    icon: "mdi:fan-plus"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Swing horizontal
+    icon: "mdi:arrow-left-right"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Swing vertical
+    icon: "mdi:arrow-up-down"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  # Countdown timer 0-24h (0 = off).
+  - entity: number
+    name: Timer
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
