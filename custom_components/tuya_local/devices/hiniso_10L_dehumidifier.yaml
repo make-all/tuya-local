@@ -31,6 +31,17 @@ entities:
         name: current_humidity
         type: integer
 
+  # HUMIDITY SENSOR (Making this Sensor available for use in automations)
+  - entity: sensor
+    translation_key: relative_humidity
+    icon: mdi:water-percent
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
   # WATER TANK FULL
   - entity: binary_sensor
     translation_key: tank_full
