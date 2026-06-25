@@ -26,7 +26,7 @@ entities:
           - dps_val: auto
             value: comfort # Comfort mode (AU) as per the manual, relies on internal logic to turn on/off compressor based on ambient temperature
           - dps_val: continuous
-            value: boost # Continous mode (CO) or the drying mode, runs the compressor continuously
+            value: boost # Continuous mode (CO) or the drying mode, runs the compressor continuously
       - id: 6
         name: current_humidity
         type: integer
@@ -34,6 +34,7 @@ entities:
   # WATER TANK FULL
   - entity: binary_sensor
     translation_key: tank_full
+    icon: mdi:water-alert-outline
     category: diagnostic
     dps:
       - id: 25
@@ -47,7 +48,7 @@ entities:
 
   # FAN SPEED
   - entity: select
-    translation_key: fan_speed
+    name: Fan Speed
     icon: mdi:fan
     category: config
     dps:
@@ -56,9 +57,9 @@ entities:
         name: option
         mapping:
           - dps_val: low
-            value: low
+            value: Low
           - dps_val: high
-            value: high
+            value: High
 
   # TIMER
   - entity: select
