@@ -44,20 +44,18 @@ entities:
           - dps_val: "off"
             value: false
 
-  # FAN SPEED (slider UI)
-  - entity: switch
-    name: High Fan Speed
-    icon: mdi:fan-speed-3
-    category: config
+  # FAN SPEED (Slider UI)
+  - entity: fan
+    translation_key: dehumidifier
     dps:
       - id: 4
+        name: speed
         type: string
-        name: switch
         mapping:
-          - dps_val: high
-            value: true
           - dps_val: low
-            value: false
+            value: low
+          - dps_val: high
+            value: high
 
   # TIMER
   - entity: select
@@ -122,11 +120,11 @@ entities:
   # --- HIDDEN DPS - Features Not Supported/Available for this Specific Unit ---
 
   # CHILD LOCK (Hidden because physical unit lacks support)
-  - entity: switch
+  - entity: lock
     translation_key: child_lock
     category: config
     hidden: true
     dps:
       - id: 16
         type: boolean
-        name: switch
+        name: lock
