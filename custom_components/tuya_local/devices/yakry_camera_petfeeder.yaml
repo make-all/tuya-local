@@ -25,7 +25,53 @@ entities:
       - id: 104
         type: boolean
         name: switch
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+      - id: 254
+        type: string
+        name: mac_address
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_privacy, switch_camera_record, event_motion,
+      switch_motion_detection
     dps:
       - id: 105
         type: boolean
@@ -47,9 +93,6 @@ entities:
       - id: 150
         type: boolean
         name: record
-      - id: 254
-        type: string
-        name: mac_address
   - entity: select
     translation_key: motion_sensitivity
     category: config

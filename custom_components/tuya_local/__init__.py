@@ -1003,9 +1003,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug("Unloading entry for device: %s", get_device_id(entry.data))
+    device_id = get_device_id(entry.data)
+    _LOGGER.debug("Unloading entry for device: %s", device_id)
     config = entry.data
-    data = hass.data[DOMAIN][get_device_id(config)]
+    domain_data = hass.data.get(DOMAIN, {})
+    data = domain_data.get(device_id)
+    if data is None:
+        await async_delete_device(hass, config)
+        return True
+
     device_conf = await hass.async_add_executor_job(
         get_config,
         config[CONF_TYPE],
@@ -1023,7 +1029,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         await hass.config_entries.async_forward_entry_unload(entry, e)
 
     await async_delete_device(hass, config)
-    del hass.data[DOMAIN][get_device_id(config)]
+    domain_data.pop(device_id, None)
 
     return True
 

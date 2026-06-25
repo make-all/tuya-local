@@ -48,10 +48,12 @@
 - HJZ oil column radiator
 - Hombli radiator controller
 - Imaxfire AWA2 water vapour fireplace
+- InkbirdPlus HT2024 space heater
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
+- Klamer 2600W IR heater
 - Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Bornholm Electric heater (1kW, based on WBR3)
 - Klarstein WnoderSky IR heater (360W ACO14)
@@ -90,7 +92,6 @@
 - Tecxerllon 1500W panel heater
 - Termoplaza 900 panel heater
 - Touchstone Sideline electric fireplaces
-- TyloHelo SaunaLogic2 sauna controller
 - Valehaus SYZN119 towel warmer
 - Vonroc GPH-XA-HEMAN heater
 - VTA+ Axial fan heater
@@ -133,6 +134,7 @@
 - Goldair GCPAC350W portable air conditioner
 - Haier Airmart wall air conditioner
 - Hokkaido HKEDM 263 ZL air conditioner
+- HTW IX75B air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Ideal Clima TQCT07 fancoil air conditioner
 - Igenix IG9901WIFI portable air conditioner
@@ -148,6 +150,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Qlima SC 7035S air conditioner
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -171,6 +174,7 @@
 
 ### Pool heaters / heat pumps
 
+- Aquark Mr Silence pool heat pump
 - Aquastrong HEX pool heat pumps
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
@@ -183,7 +187,7 @@
 - Madimack Eco, Elite V2,V3,V4 and other model pool heat pumps
 - Mountfield Azuro pool heat pump
 - Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, Ice Spa, Mag FI, JetLine Premium FI heat pumps
-- Poolsana InverPower Next pool heat pump
+- Poolsana InverPower Next and InverPrestige Pro pool heat pumps
 - Poolstyle PSL-150-00xx pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
@@ -192,6 +196,8 @@
 - Steinbach Solid 4.3 and Silent Mini pool heat pumps
 - Swim & Fun InverBoost pool heat pump
 - Turbro 75000 btu pool heat pump
+- Varminpool pool heatpump
+- Varpoolfaye 5kW pool heat pump
 - Waterco Electroheat ECO-V pool heat pump
 - W'eau pool heat pump (simple model and a more complex 13kW model)
 
@@ -221,6 +227,7 @@
 - HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - Intaflo Intabloc DC Inverter air-water heat pump
+- Intex PureSpa inflatable salt water spa pool
 - ITS-4.5HD super water heat pump
 - Joyonway PB562 spa pool controller
 - Koi Duo HTW-TD-080KOID
@@ -230,7 +237,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
-- Powerworld PW040, PWS58330, PWS58410 air+water heat pumps
+- Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Shuangri SR223 solar water heating controller
@@ -244,6 +251,7 @@
 ### Thermostats
 
 - 4-TH quad temperature/humidity smart switch
+- Alpine Saunas Helsinki sauna controller
 - Arlec PCTH01HA temperature/humidity smart switch
 - Atorch AT4PTW DIN rail thermostat
 - Atorch S1TW, S1BWP-T/H thermostat smart switches
@@ -281,6 +289,7 @@
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Garza Aspen and (unknown model) thermostats
+- HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
 - Hysen HY02TP, HY08ACF, HY08WE-2, HY101RF thermostats
 - Inkbird IPT-2CH v2.0 reptile thermostat
@@ -316,6 +325,7 @@
 - T5E-WF thermostat
 - Tellur thermostat
 - Thermoval TVT40 thermostat
+- TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
 
 ### Fans
@@ -348,7 +358,7 @@
 - Cecotec ceiling fan with light
 - Chameleon TCG 100cm tower fan
 - Chanfok ceiling fan with cool/warm white dimmable light (2 variants)
-- ComfortZone Powr Curve stand fan
+- ComfortZone Powr Curve stand fan and CZTF423S tower fan
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
@@ -391,6 +401,7 @@
 - KCvents VT501-W heat recovery ventilation
 - Kendal KVT-Touchtower pedestal fan
 - Klarstein Airfold Smart ceiling fan with light
+- Klarstein Icewind Plus Smart cooling fan
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
@@ -404,6 +415,7 @@
 - Lumary A1 and B2 ceiling fans with lights
 - Magnovent Cefiro ceiling fan with lights
 - Mantra ceiling fan with light
+- MeacoFan Sefte Pro table air circulator
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - NHZS fan speed switch
@@ -414,6 +426,7 @@
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Plikc Ario WiFi air vent
+- Poiema SGT-F12W fan
 - Point One Technology Storm VSPEC-IV dual axis corner fan
 - Prestige M3 ceiling fan with light
 - Princess DC pedestal fan
@@ -465,7 +478,7 @@
 - iHunt 400m³/h and 50m³/h air purifiers
 - Jafanda JF260S and JF500 air purifiers
 - Kilo Plus air purifier
-- Klarta Stor 2 and Forste 4 air purifiers
+- Klarta Stor 2, Stor 3 and Forste 4 air purifiers
 - Kogan 2S and 5 pro air purifiers
 - Lifubide X600 air purifier
 - Meaco Clean CA-HEPA air purifier
@@ -486,6 +499,7 @@
 - Vephos True air purifier
 - Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
+- Webber AP9750 air purifier
 
 ### Dehumidifiers
 
@@ -507,6 +521,7 @@
 - Electriq PD45E dehumidifier
 - Eeese Adam, Anna, Carl, Emil, Otto, Thor dehumidifiers
 - Emerio DH-129238.1 dehumidifier
+- EuropAce EDH3122A dehumidifier
 - Goldair GPDH340, GPDH420 dehumidifiers
 - Gologi GO021 dehumidifier
 - Greenmigo Alpha Q25 dehumidifier
@@ -529,7 +544,7 @@
 - NWT WDH-02EM and WDH-10EN dehumidifiers
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
-- Qlima D720, D812 and D820A dehumidifiers
+- Qlima D720, D812, D820A dehumidifiers
 - Rohnson R-9530 dehumidifier
 - Sefaul Q8 dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
@@ -557,6 +572,7 @@
 - Duux Beam 2 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Eberg HUMI H03G1 humidifier
+- Eta Noble humidifier
 - Homvana H111S humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea and Humea Grande humidifiers
@@ -594,13 +610,14 @@
 - Aeno KS1S kitchen scale
 - Amenzo dishwasher
 - Anko 1.7L smart kettle
+- Atomi coffee maker
 - BlitzHome BH-CDW1 dishwasher
 - Ciarra CBCS4850 range hood
 - Casdon 16J3S dishwasher
 - Casdon KG1 inline water dispenser
-- Casdon TD Pro 2 and T2E ovens
+- Casdon TD Pro 2, TD Pro 3 and T2E ovens
 - Cecofry 5500 Connected air fryer
-- Etna VW644MC dishwasher
+- Etna VW644MC dishwasher, AB791 range hood
 - Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
@@ -615,7 +632,7 @@
 - Kogan glass 1.7L smart kettle (at least 2 different variants)
 - Korex AX-WF306N smart kettle
 - Leoffen LFIM6000 ice cube maker
-- Recteq RT-700, RT-1250, RT-B380X grills
+- Recteq RT-700, RT-800 Deck Boss, RT-1250, RT-B380X grills
 - Rohnson R-2858 SmartChef XL soft cooking air fryer
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
@@ -668,6 +685,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800, SPD800 solar inverters
+- Suqflow NBQ800-US solar inverter
 - SWC32v2 CBU circuit breaker energy meter
 - Taffware 1P-J-63 circuit breaker
 - Taxnele circuit breaker and energy meter
@@ -685,7 +703,7 @@
 - WDYK 2P63A, 3P 400V, 4P100A energy meter circuit breakers
 - WMDL 2C dual channel bidirectional energy meter
 - Xoca DAC2121C BI energy meter
-- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff and iMeter 3PN energy meters
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - Zemismart SMD02T-TZ 2-phase 120A bidirectional energy meter
 - Zemismart SPM02-(multiple variants) 3-phase energy meter
@@ -696,7 +714,7 @@
 
 - Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - ADPOW GO-B6 Pro-32A EV charger
-- AFYEEV 16A 11kW, 32A 22kW portable EV chargers
+- AFYEEV 16A 11kW, 32A 7kW and 22kW portable EV chargers
 - Aimiler 11kW EV charger
 - Ampbolt Level 1/2 portable EV charger
 - dé Wall EV charger (3-phase 22Kw)
@@ -946,6 +964,7 @@ of device.
 - V Jules.V SK17 galaxy projector
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
+- WS2812 based LED Christmas lights
 
 ### Covers
 
@@ -1007,7 +1026,7 @@ of device.
 
 ### Robot vacuums
 
-- Abir X8 vacuum cleaner
+- Abir X8 and X9 vacuum cleaners
 - Airrobo P20 vacuum cleaner
 - Cecotec Conga 1970, X70, Z100 vacuum cleaners
 - Gadnic AC800 mopping vacuum cleaner
@@ -1039,7 +1058,8 @@ of device.
 
 ### Lawnmowers
 
-- MoeBot S-series mowers (also sold under Parkside and other brands, may require protocol version set manually to 3.4)
+- MoeBot S-series mowers
+- Parkside WiFi and Bluetooth mowers
 
 ### Locks
 
@@ -1150,6 +1170,7 @@ port and password.
 - FeelNeedy P-LFP01 camera pet feeder
 - Frienhund ACF180W-A dual camera pet feeder
 - Fukumaru AF01-W pet feeder
+- FurPipi PF05 pet feeder
 - Hapaw pet fountain
 - Happy Llama Tech SoCool pet feeder
 - Homall DE-10115O 90L cat litter box
@@ -1157,6 +1178,7 @@ port and password.
 - iLonda L88 fish feeder
 - Imipaw DUW21 WBR3D cat feeder
 - iPettie W5 pet feeder
+- Kalado KPF01 pet feeder
 - Kanchou pet fountain
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
@@ -1255,6 +1277,7 @@ port and password.
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
+- BW salt pool chlorinator
 - Chtoocy MC82 refrigerator thermometer
 - CO2-Box air quality monitor
 - CO2v1 carbon dioxide sensor
@@ -1327,12 +1350,14 @@ port and password.
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
+- Sodial probe thermometer
 - Speaka SP-TVCM-510 TV mount
 - Steigen Solar Pro clothes drying rack
 - Sunbeam dual heated mattress pad
 - Sunbeam single heated mattress pad
 - Sundream LC-series salt pool chlorinator (rebranded as Poolomio)
 - SWS-001 smart weather station
+- TC700 Pro air quality monitor
 - TH05Z temperature and humidity sensor
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
@@ -1349,6 +1374,7 @@ port and password.
 - WeatherStation Pro
 - Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
+- WS06 weather station
 - Xiumii human presence radar
 - Xtreme TC20 carbon monoxide detector
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)

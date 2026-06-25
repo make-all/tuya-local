@@ -7,7 +7,31 @@ products:
     manufacturer: Papifeed
     model: 7L camera 202301
 entities:
+  - entity: switch
+    name: Motion detection
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
   - entity: camera
+    deprecated: switch_motion_detection and event_motion  # 2026-06-08
     dps:
       - id: 134
         type: boolean
