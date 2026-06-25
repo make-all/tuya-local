@@ -1,3 +1,4 @@
+# HINISO Model: RM10S (10L Smart Dehumidifier)
 name: Hiniso 10L Smart Dehumidifier
 
 entities:
@@ -44,13 +45,15 @@ entities:
           - dps_val: "off"
             value: false
 
-  # FAN SPEED (Slider UI)
-  - entity: fan
-    translation_key: dehumidifier
+  # FAN SPEED
+  - entity: select
+    translation_key: fan_speed
+    icon: mdi:fan
+    category: config
     dps:
       - id: 4
-        name: speed
         type: string
+        name: option
         mapping:
           - dps_val: low
             value: low
