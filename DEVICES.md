@@ -401,6 +401,7 @@
 - KCvents VT501-W heat recovery ventilation
 - Kendal KVT-Touchtower pedestal fan
 - Klarstein Airfold Smart ceiling fan with light
+- Klarstein Icewind Plus Smart cooling fan
 - Klarstein Skyscaper Ice cooling fan
 - Klarstein Skytower Grand Smart cooling fan
 - Keyun MKCFE002 RGB chandelier fan
@@ -1157,6 +1158,7 @@ port and password.
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- Cecotec Pumba 8000/8500 CleanKitty litter box
 - Ceres Plus camera pet feeder
 - Cleverio PF100 pet feeder
 - Doel cat litter box
