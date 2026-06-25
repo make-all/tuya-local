@@ -1,4 +1,4 @@
-name: Hiniso 10L Dehumidifier
+name: Hiniso 10L Smart Dehumidifier
 
 entities:
   # CORE HUMIDIFIER CONTROLS
@@ -21,11 +21,11 @@ entities:
         type: string
         mapping:
           - dps_val: dehumidify
-            value: normal
+            value: manual # Dehumidify mode, runs the compressor based on the set target humidity.
           - dps_val: auto
-            value: auto
+            value: comfort # Comfort mode (AU) as per the manual, relies on internal logic to turn on/off compressor based on ambient temperature
           - dps_val: continuous
-            value: continuous
+            value: boost # Continous mode (CO) or the drying mode, runs the compressor continuously
       - id: 6
         name: current_humidity
         type: integer
@@ -44,29 +44,20 @@ entities:
           - dps_val: "off"
             value: false
 
-  # FAN SPEED (Converted to a Select Dropdown)
-  - entity: select
-    name: Fan Speed
-    icon: mdi:fan
+  # FAN SPEED (slider UI)
+  - entity: switch
+    name: High Fan Speed
+    icon: mdi:fan-speed-3
     category: config
     dps:
       - id: 4
-        name: option
         type: string
+        name: switch
         mapping:
-          - dps_val: low
-            value: low
           - dps_val: high
-            value: high
-
-# CHILD LOCK
-  - entity: lock
-    translation_key: child_lock
-    category: config
-    dps:
-      - id: 16
-        type: boolean
-        name: lock
+            value: true
+          - dps_val: low
+            value: false
 
   # TIMER
   - entity: select
@@ -127,3 +118,35 @@ entities:
             value: 23h
           - dps_val: "24hrs"
             value: 24h
+
+  # --- HIDDEN DPS - Features Not Supported/Available for this Specific Unit ---
+
+  # CHILD LOCK (Hidden because physical unit lacks support)
+  - entity: switch
+    translation_key: child_lock
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  # SWING (Hidden)
+  - entity: switch
+    name: Swing
+    category: config
+    hidden: true
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+
+  # SECONDARY HUMIDITY ENUM (Hidden)
+  - entity: sensor
+    name: Secondary Humidity Enum
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 3
+        type: string
+        name: sensor
