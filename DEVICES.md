@@ -1158,6 +1158,7 @@ port and password.
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- Cecotec Pumba 8000/8500 CleanKitty litter box
 - Ceres Plus camera pet feeder
 - Cleverio PF100 pet feeder
 - Doel cat litter box
