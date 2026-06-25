@@ -44,15 +44,14 @@ entities:
           - dps_val: "off"
             value: false
 
-  # FAN SPEED
-  - entity: fan
-    translation_key: dehumidifier
+  # FAN SPEED (Converted to a Select Dropdown)
+  - entity: select
+    name: Fan Speed
+    icon: mdi:fan
+    category: config
     dps:
-      - id: 1
-        name: switch
-        type: boolean
       - id: 4
-        name: speed
+        name: option
         type: string
         mapping:
           - dps_val: low
@@ -60,7 +59,7 @@ entities:
           - dps_val: high
             value: high
 
-  # CHILD LOCK
+# CHILD LOCK
   - entity: lock
     translation_key: child_lock
     category: config
@@ -69,7 +68,7 @@ entities:
         type: boolean
         name: lock
 
-  # TIMER (Moved to DP 101)
+  # TIMER
   - entity: select
     translation_key: timer
     category: config
@@ -80,51 +79,51 @@ entities:
         mapping:
           - dps_val: "None"
             value: cancel
-          - dps_val: 1h
+          - dps_val: "1hr"
             value: 1h
-          - dps_val: 2h
+          - dps_val: "2hrs"
             value: 2h
-          - dps_val: 3h
+          - dps_val: "3hrs"
             value: 3h
-          - dps_val: 4h
+          - dps_val: "4hrs"
             value: 4h
-          - dps_val: 5h
+          - dps_val: "5hrs"
             value: 5h
-          - dps_val: 6h
+          - dps_val: "6hrs"
             value: 6h
-          - dps_val: 7h
+          - dps_val: "7hrs"
             value: 7h
-          - dps_val: 8h
+          - dps_val: "8hrs"
             value: 8h
-          - dps_val: 9h
+          - dps_val: "9hrs"
             value: 9h
-          - dps_val: 10h
+          - dps_val: "10hrs"
             value: 10h
-          - dps_val: 11h
+          - dps_val: "11hrs"
             value: 11h
-          - dps_val: 12h
+          - dps_val: "12hrs"
             value: 12h
-          - dps_val: 13h
+          - dps_val: "13hrs"
             value: 13h
-          - dps_val: 14h
+          - dps_val: "14hrs"
             value: 14h
-          - dps_val: 15h
+          - dps_val: "15hrs"
             value: 15h
-          - dps_val: 16h
+          - dps_val: "16hrs"
             value: 16h
-          - dps_val: 17h
+          - dps_val: "17hrs"
             value: 17h
-          - dps_val: 18h
+          - dps_val: "18hrs"
             value: 18h
-          - dps_val: 19h
+          - dps_val: "19hrs"
             value: 19h
-          - dps_val: 20h
+          - dps_val: "20hrs"
             value: 20h
-          - dps_val: 21h
+          - dps_val: "21hrs"
             value: 21h
-          - dps_val: 22h
+          - dps_val: "22hrs"
             value: 22h
-          - dps_val: 23h
+          - dps_val: "23hrs"
             value: 23h
-          - dps_val: 24h
+          - dps_val: "24hrs"
             value: 24h
