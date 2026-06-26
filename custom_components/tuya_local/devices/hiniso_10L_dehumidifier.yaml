@@ -23,12 +23,16 @@ entities:
         name: mode
         type: string
         mapping:
+          # Dehumidify mode, runs the compressor based on set target humidity
           - dps_val: dehumidify
-            value: normal # Dehumidify mode, runs the compressor based on the set target humidity
+            value: normal
+          # Comfort mode (AU) as per the manual, relies on internal logic.
+          # it controls the compressor based on ambient temperature.
           - dps_val: auto
-            value: comfort # Comfort mode (AU) as per the manual, relies on internal logic to turn on/off compressor based on ambient temperature
+            value: comfort
+          # Continuous mode (CO) runs the compressor continuously
           - dps_val: continuous
-            value: boost # Continuous mode (CO) or the drying mode, runs the compressor continuously
+            value: boost
       - id: 6
         name: current_humidity
         type: integer
