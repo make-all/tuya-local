@@ -38,21 +38,17 @@ entities:
         range:
           min: 10
           max: 40
-        mapping:
-          - step: 1
 
       - id: 117
         type: integer
         name: current_temperature
-        unit: C
 
-  - entity: number
-    name: Supply air speed
-    icon: "mdi:fan-chevron-up"
+  - entity: fan
+    name: Supply air fan
     dps:
       - id: 102
         type: string
-        name: value
+        name: speed
         mapping:
           - dps_val: "0"
             value: 1
@@ -78,13 +74,12 @@ entities:
           min: 1
           max: 10
 
-  - entity: number
-    name: Exhaust air speed
-    icon: "mdi:fan-chevron-down"
+  - entity: fan
+    name: Exhaust air fan
     dps:
       - id: 103
         type: string
-        name: value
+        name: speed
         mapping:
           - dps_val: "0"
             value: 1
@@ -113,7 +108,7 @@ entities:
   - entity: number
     name: Bypass lower limit temperature
     category: config
-    icon: "mdi:valve"
+    class: temperature
     dps:
       - id: 107
         type: integer
@@ -122,13 +117,11 @@ entities:
         range:
           min: 5
           max: 30
-        mapping:
-          - step: 1
 
   - entity: number
     name: Bypass temperature range
     category: config
-    icon: "mdi:delta"
+    class: temperature_delta
     dps:
       - id: 108
         type: integer
@@ -137,11 +130,8 @@ entities:
         range:
           min: 2
           max: 15
-        mapping:
-          - step: 1
 
   - entity: sensor
-    category: diagnostic
     class: carbon_dioxide
     dps:
       - id: 111
@@ -153,9 +143,8 @@ entities:
             value: null
 
   - entity: sensor
-    name: VOC level
+    translation_key: air_quality
     class: enum
-    category: diagnostic
     dps:
       - id: 112
         type: string
@@ -173,7 +162,6 @@ entities:
             value: poor
 
   - entity: sensor
-    category: diagnostic
     class: humidity
     dps:
       - id: 113
@@ -185,7 +173,6 @@ entities:
             value: null
 
   - entity: sensor
-    category: diagnostic
     class: pm25
     dps:
       - id: 114
@@ -252,15 +239,6 @@ entities:
         type: boolean
         name: sensor
 
-  - entity: binary_sensor
-    name: 10 speed fan mode
-    category: diagnostic
-    icon: "mdi:fan-cog"
-    dps:
-      - id: 125
-        type: boolean
-        name: sensor
-
   - entity: sensor
     name: Expansion valve opening
     category: diagnostic
@@ -283,7 +261,7 @@ entities:
   - entity: sensor
     name: Compressor frequency
     category: diagnostic
-    icon: "mdi:sine-wave"
+    class: frequency
     dps:
       - id: 116
         type: integer
