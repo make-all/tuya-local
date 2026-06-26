@@ -1,10 +1,11 @@
-name: ARC Portable fan
+name: Portable fan
 products:
   - id: 4srsoiozpa7wd9ha
     manufacturer: djive
     model: ARC Portable
 entities:
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 1
         name: switch
@@ -45,7 +46,9 @@ entities:
           - dps_val: 0
             value: false
           - value: true
-
+      - id: 24
+        type: bitfield
+        name: fault_code
   - entity: switch
     translation_key: uv_sterilization
     dps:
