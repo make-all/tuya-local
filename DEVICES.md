@@ -625,7 +625,7 @@
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
-- KKT Kolbe kitchen hood
+- KKT Kolbe Easy and Solo kitchen hoods
 - Klarstein Amazonia dishwasher
 - Klarstein Ava range hood
 - Koenic KTM-221723-M kettle
