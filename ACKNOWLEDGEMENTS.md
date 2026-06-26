@@ -856,3 +856,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lsteffen](https://github.com/lsteffen) for contributing support for Poolsana InverPrestige Pro pool heat pump.
 - [Misha-133](https://github.com/Misha-133) for contributing support for TC700 Pro air quality monitor.
 - [HrachShah](https://github.com/HrachShah) for contributing improvements to development utilities.
+- [agigante80](https://github.com/agigante80) for contributing support for Ovlaim 809 ceiling fan light.
