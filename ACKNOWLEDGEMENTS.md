@@ -858,3 +858,4 @@ Further device support has been made with the assistance of users. Please consid
 - [HrachShah](https://github.com/HrachShah) for contributing improvements to development utilities.
 - [agigante80](https://github.com/agigante80) for contributing support for Ovlaim 809 ceiling fan light.
 - [robelmes](https://github.com/robelmes) for contributing improvements to ZG-205W presence sensors.
+- [pdwonline](https://github.com/pdwonline) for contributing improvements to Mypin 6L pet feeder.
