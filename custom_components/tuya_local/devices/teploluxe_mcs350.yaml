@@ -75,8 +75,7 @@ entities:
 
   - entity: sensor
     name: Power consumption
-    device_class: power
-    state_class: measurement
+    class: power
     category: diagnostic
     dps:
       - id: 22
@@ -86,8 +85,7 @@ entities:
 
   - entity: sensor
     name: Air temperature
-    device_class: temperature
-    state_class: measurement
+    class: temperature
     category: diagnostic
     dps:
       - id: 102
