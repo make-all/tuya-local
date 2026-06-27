@@ -126,9 +126,8 @@ entities:
         name: button
 
   - entity: select
-    name: Cleaning mode
+    translation_key: cleaning_mode
     category: config
-    icon: "mdi:robot-vacuum"
     dps:
       - id: 4
         type: string
@@ -314,7 +313,6 @@ entities:
           max: 100
 
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
