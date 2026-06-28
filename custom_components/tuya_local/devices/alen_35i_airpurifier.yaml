@@ -16,12 +16,31 @@ entities:
         mapping:
           - dps_val: "1"
             value: 25
+            available: four_speed
           - dps_val: "2"
             value: 50
+            available: four_speed
           - dps_val: "3"
             value: 75
+            available: four_speed
           - dps_val: "4"
             value: 100
+            available: four_speed
+          - dps_val: "1"
+            value: 20
+            available: fiev_speed
+          - dps_val: "2"
+            value: 40
+            available: fiev_speed
+          - dps_val: "3"
+            value: 60
+            available: five_speed
+          - dps_val: "4"
+            value: 80
+            available: five_speed
+          - dps_val: "5"
+            value: 100
+            available: five_speed
       - id: 3
         type: string
         optional: true
@@ -31,6 +50,24 @@ entities:
             value: auto
           - dps_val: "Off"
             value: manual
+        # 75i has 5 speeds, recognise it by anion
+      - id: 6
+        type: boolean
+        optional: true
+        name: five_speed
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+        # 35i has 4 speeds, recognise it by lack of anion
+      - id: 6
+        type: boolean
+        optional: true
+        name: four_speed
+        mapping:
+          - dps_val: null
+            value: true
+          - value: false
   - entity: sensor
     class: pm25
     dps:
