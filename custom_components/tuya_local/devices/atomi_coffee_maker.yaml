@@ -1,0 +1,186 @@
+name: Coffee maker
+products:
+  - id: gmbbmrpkqecjoeoa
+    manufacturer: Atomi
+    model: RE70X-TC02
+
+entities:
+  - entity: binary_sensor
+    # read only
+    # power status
+    name: Brewing
+    category: diagnostic
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
+
+  - entity: select
+    # read/write
+    # brew strength
+    name: Brew strength
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: smart
+            value: Regular
+          - dps_val: auto
+            value: Strong
+
+  - entity: sensor
+    # read only
+    # status of the machine
+    # Manual Schedule - tapping the "timer/clock" icon on the device sets
+    #   this status. However, I can't figure out how to set up the device
+    #   such that it reports a Minutes Until Brew Press and hold the timer
+    #   button and then use the hour/minute buttons to set a time, presumably
+    #   when the device should start brewing
+    translation_key: status
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: status1
+            value: idle
+          - dps_val: status2
+            value: brewing
+          - dps_val: status3
+            value: keeping_warm
+          - dps_val: status4
+            value: scheduled
+
+  - entity: binary_sensor
+    # read only
+    # bit 0 (value = 0), OK (carafe on base)
+    # bit 2 (value = 4), carafe not on base
+    # not sure what other bits can be set or what they mean
+    class: occupancy
+    name: Carafe
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: false
+          - value: true
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - value: true
+      - id: 6
+        type: bitfield
+        name: fault_code
+
+  - entity: binary_sensor
+    # Read only
+    # water in the tank - this sensor is only evaluated when
+    #   brewing starts, so can't be used to warn ahead of brewing.
+    #   Furthermore, the sensor will change to "Ready" when brewing starts,
+    #   and then change to "Needs water" if the water is low.
+    #   If the coffee maker is "cold" it will take almost a minute
+    #   to become "Needs water"
+    #   Also, even though it has units of ML, seems
+    #   to only be a 1 or 0 (needs water or ready)
+    translation_key: tank_empty
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+
+  - entity: time
+    # read only
+    # marking as optional and hidden.  I've tested a bunch and
+    #   I can't figure out to render a value in this field.
+    # I've setup "schedule on device", which works, but don't see any changes
+    #   in the data.
+    # The SmartLife app has a schedule but it doesn't seem to translate to a
+    #   value for this field. My guess is the schedule is a cloud only based
+    #   feature
+    name: Brew timer
+    category: config
+    hidden: true
+    dps:
+      - id: 102
+        optional: true
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+  - entity: button
+    name: Start brewing
+    # The switch may or may not turn on the machine.
+    #   For instance, if there isn't enough water or carafe is missing
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: true
+
+  - entity: button
+    name: Power off
+    # The switch may or may not turn on the machine.  If there isn't
+    #   enough water or carafe is missing, then
+    #   HA will show the switch as ON, but the machine will remain OFF
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: false
+            value: false
+
+  - entity: time
+    # read only
+    # I've tested with various scenarios and never get a value for this.
+    #   The SmartLife app doesn't show warming time either
+    name: Warm timer
+    category: config
+    hidden: true
+    dps:
+      - id: 104
+        optional: true
+        type: integer
+        name: minute
+        range:
+          min: 0
+          max: 1439
+
+  - entity: button
+    name: Sync time
+    icon: "mdi:clock"
+    category: config
+    # write only
+    # calibration - sets the time when called
+    #   marked as optional because it isn't reported when adding a device
+    #   and throws off the matching algorithm
+    dps:
+      - id: 105
+        optional: true
+        type: string
+        name: button
+        mapping:
+          - dps_val: calibration
+            value: calibration
