@@ -1,4 +1,4 @@
-name: Yamazen Living Fan
+name: Fan
 products:
   - id: yjxegyhiawfedgah
     manufacturer: Yamazen
@@ -44,25 +44,36 @@ entities:
         type: string
         name: oscillate
         mapping:
-          # --- Write to Device: Map HA boolean to DPS value (Angle) ---
-          # Uncomment the lines below to enable the toggle function.
-          # This example sends "120" (Can be changed to 30/60/90 as desired).
-          #   - value: true
-          #     dps_val: "120"
-          #   - value: false
-          #     dps_val: "OFF"
-
-          # --- Read from Device: Map DPS to HA boolean (oscillating: True) ---
           - dps_val: "OFF"
             value: false
           - dps_val: "120"
             value: true
           - dps_val: "30"
             value: true
+            hidden: true
           - dps_val: "60"
             value: true
+            hidden: true
           - dps_val: "90"
             value: true
+            hidden: true
+  - entity: select
+    name: Fan swing
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "30"
+            value: "30°"
+          - dps_val: "60"
+            value: "60°"
+          - dps_val: "90"
+            value: "90°"
+          - dps_val: "120"
+            value: "120°"
   - entity: number
     translation_key: timer
     class: duration
