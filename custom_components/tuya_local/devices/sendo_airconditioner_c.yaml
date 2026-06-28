@@ -30,7 +30,6 @@ entities:
         range:
           min: 160
           max: 320
-          # for F, 600 to 900
         unit: C
       - id: 3
         name: current_temperature
@@ -41,6 +40,20 @@ entities:
         name: mode
         type: string
         hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: mute
+            value: mute
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: mid
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
       - id: 8
         name: preset_mode
         type: boolean
@@ -50,11 +63,19 @@ entities:
           - dps_val: false
             value: comfort
       - id: 33
+        name: swing_horizontal_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+      - id: 105
         name: swing_mode
         type: boolean
         mapping:
           - dps_val: true
-            value: horizontal
+            value: "on"
           - dps_val: false
             value: "off"
   - entity: switch
