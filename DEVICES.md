@@ -237,6 +237,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
+- Omni X Duplex water heater
 - Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
