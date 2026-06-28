@@ -861,3 +861,4 @@ Further device support has been made with the assistance of users. Please consid
 - [pdwonline](https://github.com/pdwonline) for contributing improvements to Mypin 6L pet feeder.
 - [spokemon](https://github.com/spokemon) for contributing support for Omni X Duplex water heater.
 - [smo87](https://github.com/smo87) for contributing support for djive ARC portable fan.
+- [nttntt](https://github.com/nttntt) for contributing support for Yamazen Living fan.

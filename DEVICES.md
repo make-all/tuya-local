@@ -457,6 +457,7 @@
 - Varin CFWI50 RGBCW ceiling fan
 - Varin VA-E003 ceiling fan with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
+- Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
 - Yoevu EOS ceiling fan with CCT light
