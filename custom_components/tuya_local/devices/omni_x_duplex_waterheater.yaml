@@ -13,14 +13,10 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: hot
-                value: heat_pump
+            value: heat_pump
       - id: 2
         type: string
-        name: mode
-        hidden: true
+        name: unused_mode  # should be hot always for this model
       - id: 4
         type: integer
         name: temperature
