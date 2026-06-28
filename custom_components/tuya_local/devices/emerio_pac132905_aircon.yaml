@@ -1,4 +1,4 @@
-name: Emerio Mobile AC
+name: Air conditioner
 products:
   - id: bvgvah9atllpyt5s
     manufacturer: Emerio
@@ -13,7 +13,6 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: cool
             constraint: mode
             conditions:
               - dps_val: "1"
@@ -42,6 +41,14 @@ entities:
             value: high
           - dps_val: "3"
             value: low
+      - id: 103
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: sleep
+          - dps_val: false
+            value: comfort
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"
