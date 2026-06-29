@@ -389,6 +389,7 @@
 - Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
+- HomCom 6-speed tower fan
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
