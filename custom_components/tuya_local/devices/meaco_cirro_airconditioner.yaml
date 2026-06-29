@@ -2,20 +2,20 @@ name: Air conditioner
 products:
   - id: smu5pc1ruzadfnuk
     manufacturer: Meaco
-    model: Meaco Cirro+ 14000 BTU Inverter & Heater
+    model: Cirro+ 14000 BTU Inverter & Heater
     model_id: CIRRO14000CHPRO
   - id: sijcdtk46wa9uews
     manufacturer: Meaco
-    model: Meaco Cirro+ 14000 BTU Inverter
+    model: Cirro+ 14000 BTU Inverter
     model_id: CIRRO14000PRO
   # The following product IDs are unconfirmed but should work:
-  # - model: Meaco Cirro 12000 BTU
+  # - model: Cirro 12000 BTU
   #   model_id: CIRRO12000PRO (cooling only)
-  # - model: Meaco Cirro 12000 BTU & Heater
+  # - model: Cirro 12000 BTU & Heater
   #   model_id: CIRRO12000CHPRO (cooling + heating)
-  # - model: Meaco Cirro+ 16000 BTU Inverter
+  # - model: Cirro+ 16000 BTU Inverter
   #   model_id: CIRRO16000PRO (cooling only)
-  # - model: Meaco Cirro+ 16000 BTU Inverter & Heater
+  # - model: Cirro+ 16000 BTU Inverter & Heater
   #   model_id: CIRRO16000CHPRO (cooling + heating)
 entities:
   - entity: climate
@@ -86,10 +86,9 @@ entities:
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 23
         type: integer
         name: temp_set_f
