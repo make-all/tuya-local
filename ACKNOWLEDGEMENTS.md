@@ -862,3 +862,4 @@ Further device support has been made with the assistance of users. Please consid
 - [spokemon](https://github.com/spokemon) for contributing support for Omni X Duplex water heater.
 - [smo87](https://github.com/smo87) for contributing support for djive ARC portable fan.
 - [nttntt](https://github.com/nttntt) for contributing support for Yamazen Living fan.
+- [Primus27](https://github.com/Primus27) for contributing support for Meaco Cirro air conditioners.
