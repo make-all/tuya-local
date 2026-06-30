@@ -6,7 +6,7 @@ products:
 entities:
   - entity: light
     dps:
-      - id: 63
+      - id: 20
         type: boolean
         name: switch
       - id: 22
@@ -27,35 +27,13 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-  - entity: switch
-    name: Master Switch
-    dps:
-      - id: 20
-        type: boolean
-        name: switch
   - entity: fan
     translation_key: fan_with_presets
     dps:
-      - id: 107
+      - id: 60
         type: boolean
         name: switch
-      - id: 105
-        type: integer
-        name: speed
-        optional: true
-        range:
-          min: 1
-          max: 6
-      - id: 104
-        type: string
-        name: direction
-        optional: true
-        mapping:
-          - dps_val: forward
-            value: forward
-          - dps_val: reverse
-            value: reverse
-      - id: 106
+      - id: 61
         type: string
         name: preset_mode
         optional: true
@@ -64,6 +42,22 @@ entities:
             value: fresh
           - dps_val: nature
             value: nature
+      - id: 62
+        type: integer
+        name: speed
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
   - entity: number
     name: Fan timer
     translation_key: timer
