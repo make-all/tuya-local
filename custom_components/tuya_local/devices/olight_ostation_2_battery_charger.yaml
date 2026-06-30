@@ -114,6 +114,7 @@ entities:
         mask: "FF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
   - entity: sensor
     name: AA slot 1 chemistry
+    class: enum
     dps:
       - id: 110
         type: base64
@@ -194,7 +195,7 @@ entities:
         unit: C
         optional: true
         mask: "000000000000000000000000FF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries (maybe battery ID)
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
 
   ######################################################################################################################################################
   # Slot 4 (bytes 17–33)
@@ -211,6 +212,7 @@ entities:
         mask: "0000000000000000000000000000000000FF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
   - entity: sensor
     name: AA slot 2 chemistry
+    class: enum
     dps:
       - id: 110
         type: base64
@@ -291,7 +293,7 @@ entities:
         unit: C
         optional: true
         mask: "0000000000000000000000000000000000000000000000000000000000FF0000000000000000000000000000000000000000000000000000000000000000000000000000"
-  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries (maybe battery ID)
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
 
   ######################################################################################################################################################
   # Slot 1 (bytes 34–50)
@@ -308,6 +310,7 @@ entities:
         mask: "00000000000000000000000000000000000000000000000000000000000000000000FF000000000000000000000000000000000000000000000000000000000000000000"
   - entity: sensor
     name: AAA slot 1 chemistry
+    class: enum
     dps:
       - id: 110
         type: base64
@@ -388,7 +391,7 @@ entities:
         unit: C
         optional: true
         mask: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FF000000000000000000000000000000000000000000"
-  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries (maybe battery ID)
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
 
   ######################################################################################################################################################
   # Slot 2 (bytes 51–67)
@@ -405,6 +408,7 @@ entities:
         mask: "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FF00000000000000000000000000000000"
   - entity: sensor
     name: AAA slot 2 chemistry
+    class: enum
     dps:
       - id: 110
         type: base64
@@ -485,5 +489,5 @@ entities:
         unit: C
         optional: true
         mask: "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FF00000000"
-  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries (maybe battery ID)
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
 
