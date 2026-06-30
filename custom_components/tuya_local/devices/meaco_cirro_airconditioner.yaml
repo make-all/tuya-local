@@ -1,11 +1,22 @@
 name: Air conditioner
 products:
-  - id: 0ithwpdwkgyqfx54
-    manufacturer: Suntec Wellness
-    model: Coolfixx
-  - id: anelna1pjt7avtye
-    manufacturer: MeacoCool
-    model: MC Series 12000 PRO CH
+  - id: smu5pc1ruzadfnuk
+    manufacturer: Meaco
+    model: Cirro+ 14000 BTU Inverter & Heater
+    model_id: CIRRO14000CHPRO
+  - id: sijcdtk46wa9uews
+    manufacturer: Meaco
+    model: Cirro+ 14000 BTU Inverter
+    model_id: CIRRO14000PRO
+  # The following product IDs are unconfirmed but should work:
+  # - model: Cirro 12000 BTU
+  #   model_id: CIRRO12000PRO (cooling only)
+  # - model: Cirro 12000 BTU & Heater
+  #   model_id: CIRRO12000CHPRO (cooling + heating)
+  # - model: Cirro+ 16000 BTU Inverter
+  #   model_id: CIRRO16000PRO (cooling only)
+  # - model: Cirro+ 16000 BTU Inverter & Heater
+  #   model_id: CIRRO16000CHPRO (cooling + heating)
 entities:
   - entity: climate
     dps:
@@ -20,13 +31,13 @@ entities:
             conditions:
               - dps_val: Cool
                 value: cool
-              - dps_val: Dyr
+              - dps_val: Dry
                 value: dry
               - dps_val: Fan
                 value: fan_only
               - dps_val: Heat
-                value: heat
                 available: support_heat
+                value: heat
       - id: 2
         type: integer
         name: temperature
@@ -75,10 +86,9 @@ entities:
         type: string
         name: temperature_unit
         mapping:
-          - dps_val: c
-            value: C
           - dps_val: f
             value: F
+          - value: C
       - id: 23
         type: integer
         name: temp_set_f
@@ -101,6 +111,7 @@ entities:
       - id: 103
         type: string
         name: support_heat
+        hidden: true
         mapping:
           - dps_val: C_H
             value: true
@@ -132,6 +143,14 @@ entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config

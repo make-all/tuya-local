@@ -645,7 +645,7 @@ Further device support has been made with the assistance of users. Please consid
 - [HW-YUN](https://github.com/HW-YUN) for contributing support for Smartmi Air Circulating fan, SmartMi P1 air purifier.
 - [rsbelo](https://github.com/rsbelo) for contributing support for HTW HTWD020A4 dehumidifier.
 - [UksusoFF](https://github.com/UksusoFF) for contributing support for Zeissler ZSw.1312 water leak detector.
-- [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve.
+- [nalditopr](https://github.com/nalditopr) for contributing support for Frizzlife LP365P water monitor shut-off valve and improvements to HA side numeric range handling.
 - [baronorder](https://github.com/baronorder) for contributing support for Advwin 13L humidifier, Kogan KASMCDSKTLA kettle, Inkbird IVC001W fan controller, and improvements to masked dps handling.
 - [pegasusvelata](https://github.com/pegasusvelata) for contributing support for GD2050WIFI aroma diffuser.
 - [nhojt](https://github.com/nhojt) for contributing support for Inkbird INT-12-BW cooking probe thermometer.
@@ -858,3 +858,9 @@ Further device support has been made with the assistance of users. Please consid
 - [HrachShah](https://github.com/HrachShah) for contributing improvements to development utilities.
 - [agigante80](https://github.com/agigante80) for contributing support for Ovlaim 809 ceiling fan light.
 - [robelmes](https://github.com/robelmes) for contributing improvements to ZG-205W presence sensors.
+- [pdwonline](https://github.com/pdwonline) for contributing improvements to Mypin 6L pet feeder.
+- [spokemon](https://github.com/spokemon) for contributing support for Omni X Duplex water heater.
+- [smo87](https://github.com/smo87) for contributing support for djive ARC portable fan.
+- [nttntt](https://github.com/nttntt) for contributing support for Yamazen Living fan.
+- [Primus27](https://github.com/Primus27) for contributing support for Meaco Cirro air conditioners.
+- [ieivanov](https://github.com/ieivanov) for contributing support for Hauslane IN-R110 range hood.

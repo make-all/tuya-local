@@ -32,6 +32,23 @@ entities:
         type: boolean
         name: switch
   - entity: switch
+    name: Jets
+    icon: "mdi:shower-head"
+    hidden: unavailable
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+      - id: 105
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
     name: Filtration
     icon: "mdi:air-filter"
     dps:

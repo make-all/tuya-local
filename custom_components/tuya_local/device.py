@@ -127,10 +127,10 @@ class TuyaLocalDevice(object):
             raise e
 
         # we handle retries at a higher level so we can rotate protocol version
-        self._api.set_socketRetryLimit(0)
+        self._api.set_socketRetryLimit(1)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
-            self._api.parent.set_socketRetryLimit(0)
+            self._api.parent.set_socketRetryLimit(1)
 
         self._refresh_task = None
         self._protocol_configured = protocol_version
