@@ -863,3 +863,4 @@ Further device support has been made with the assistance of users. Please consid
 - [smo87](https://github.com/smo87) for contributing support for djive ARC portable fan.
 - [nttntt](https://github.com/nttntt) for contributing support for Yamazen Living fan.
 - [Primus27](https://github.com/Primus27) for contributing support for Meaco Cirro air conditioners.
+- [ieivanov](https://github.com/ieivanov) for contributing support for Hauslane IN-R110 range hood.
