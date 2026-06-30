@@ -1,0 +1,83 @@
+name: Smartlux
+products:
+  - id: jahu6lbhx0o5opo2
+    manufacturer: Pirnar
+    model: SmartLux
+entities:
+  - entity: light
+    name: ext_light
+    dps:
+      # Schalter
+      - id: 102
+        name: switch
+        type: boolean
+
+      # Helligkeit
+      - id: 104
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+
+      # Farbtemperatur
+      - id: 105
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  - entity: light
+    name: int_light
+    dps:
+      # Schalter
+      - id: 20
+        name: switch
+        type: boolean
+
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+
+      # Farbtemperatur
+      - id: 23 # should be 105 but buggy
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  - entity: select
+    name: channel
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "interior"
+            value: interior
+          - dps_val: "exterior"
+            value: exterior
+
+  - entity: sensor
+    hidden: true
+    name: Farbtemperatur
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        optional: true
