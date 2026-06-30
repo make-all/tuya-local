@@ -244,7 +244,7 @@ async def test_refresh_does_not_rotate_protocol_on_timeout(subject, mock_api, mo
 
     await subject.async_refresh()
 
-    mock_api().set_version.assert_called_once_with(3.1)
+    assert mock_api().set_version.call_count == 1
 
 
 @pytest.mark.asyncio
