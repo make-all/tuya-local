@@ -195,14 +195,17 @@ entities:
         range:
           min: 0
           max: 255
-      - id: 237
-        type: string
-        optional: true
-        name: schedule
       - id: 247
         type: string
         optional: true
         name: backup_log
+  - entity: text
+    translation_key: meal_plan
+    dps:
+      - id: 237
+        type: string
+        name: value
+        optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -306,18 +309,22 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Log offline feed
-    category: config
+    translation_key: manual_feed
     icon: "mdi:food-drumstick"
     dps:
       - id: 245
         type: integer
-        optional: true
         name: value
+        optional: true
+        persist: false
         unit: portions
         range:
-          min: 0
-          max: 99
+          min: 1
+          max: 10
+        mapping:
+          - dps_val: -2000
+            hidden: true
+            value: 0
   - entity: event
     name: Feed
     icon: "mdi:food-drumstick"

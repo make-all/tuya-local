@@ -144,6 +144,7 @@
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
+- Meaco Cirro air conditioners
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
@@ -237,6 +238,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
+- Omni X Duplex water heater
 - Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -362,7 +364,7 @@
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
-- Djive ARC humidifying fan
+- Djive ARC portable and humidifying fans
 - dLuft Smart Flow ventilator fan
 - Dometek Diamond ceiling fan with light
 - Dream Maker Feel DM01 fan
@@ -388,6 +390,7 @@
 - Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
+- HomCom 6-speed tower fan
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
@@ -456,6 +459,7 @@
 - Varin CFWI50 RGBCW ceiling fan
 - Varin VA-E003 ceiling fan with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
+- Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
 - Yoevu EOS ceiling fan with CCT light
