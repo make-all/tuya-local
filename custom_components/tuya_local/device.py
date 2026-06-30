@@ -677,6 +677,25 @@ class TuyaLocalDevice(object):
                     self._api_protocol_working = True
                     self._api_working_protocol_failures = 0
                     return retval
+            except (TimeoutError, OSError) as e:
+                _LOGGER.debug(
+                    "Retrying after exception %s %s (%d/%d)",
+                    type(e).__name__,
+                    e,
+                    i,
+                    connections,
+                )
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
+
+                self._reset_cached_state()
+                self._api_working_protocol_failures += 1
+                if self._api_working_protocol_failures == 1:
+                    _LOGGER.error(error_message)
+                else:
+                    _LOGGER.debug(error_message)
+                break
             except Exception as e:
                 _LOGGER.debug(
                     "Retrying after exception %s %s (%d/%d)",
