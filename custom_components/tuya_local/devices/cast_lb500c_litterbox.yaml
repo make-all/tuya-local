@@ -1,0 +1,206 @@
+name: Litter box
+products:
+  - id: frho2xmkraxldtwo
+    manufacturer: CAST
+    model: LB500C
+entities:
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: kg
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 0.453592
+  - entity: sensor
+    name: Daily toilet count
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    name: Toilet duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: sensor
+    name: Today's toilet count
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: isidle
+            value: standby
+          - dps_val: idlevelling
+            value: caking
+          - dps_val: isclean
+            value: cleaning
+  - entity: binary_sensor
+    name: Notification
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: no_weight
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+      - id: 22
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: drum_not_installed
+          - dps_val: 2
+            value: overload
+  - entity: switch
+    translation_key: auto_clean
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: button
+    name: Clean
+    icon: "mdi:broom"
+    dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - value: "jikeclean"
+  - entity: button
+    name: Cancel
+    icon: "mdi:stop"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - value: "nowtocancle"
+  - entity: select
+    name: Cleaning delay
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: tensecond
+            value: "10 s"
+          - dps_val: twentysecond
+            value: "20 s"
+          - dps_val: thirdsencond
+            value: "30 s"
+          - dps_val: forthsecond
+            value: "40 s"
+          - dps_val: sixthsecond
+            value: "60 s"
+          - dps_val: ninthsecond
+            value: "90 s"
+          - dps_val: onetwosecond
+            value: "120 s"
+  - entity: select
+    name: Valid toilet time
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: tensec
+            value: "10 s"
+          - dps_val: fifteensec
+            value: "15 s"
+          - dps_val: twtenysec
+            value: "20 s"
+          - dps_val: thirdsec
+            value: "30 s"
+  - entity: select
+    name: Drum rotations
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: onetimes
+            value: "1"
+          - dps_val: twotimes
+            value: "2"
+  - entity: select
+    name: Minimum cat weight
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: twolb
+            value: "0.9 kg"
+          - dps_val: twop5lb
+            value: "1.1 kg"
+          - dps_val: threelb
+            value: "1.4 kg"
+          - dps_val: threep5lb
+            value: "1.6 kg"
