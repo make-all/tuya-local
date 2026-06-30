@@ -1,0 +1,76 @@
+name: Gate opener
+
+products:
+  - id: 4iispvj6a6vsavxl
+    manufacturer: Globmatic
+    model: Automatic sliding gate opener - Castor
+    model_id: bf6b6de074afba4988esep
+
+entities:
+  - entity: button
+    name: "Motor toggle"
+    dps:
+      - id: 101
+        name: button
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: true
+            icon: "mdi:gate-open"
+          - dps_val: 50
+            value: true
+            icon: "mdi:gate-arrow-left"
+          - dps_val: 100
+            value: true
+            icon: "mdi:gate"
+
+  - entity: cover
+    name: "Motor control"
+    class: gate
+    dps:
+      - id: 101
+        name: control
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: open
+          - dps_val: 100
+            value: close
+      - id: 101
+        name: action
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: opened
+          - dps_val: 50
+            value: opening
+          - dps_val: 100
+            value: closed
+      - id: 101
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+
+  - entity: sensor
+    name: "Gate position"
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+
+  - entity: sensor
+    name: "Gate state"
+    dps:
+      - id: 10
+        name: sensor
+        type: string
+        optional: true
