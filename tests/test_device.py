@@ -220,6 +220,34 @@ async def test_api_protocol_version_is_stable_once_successful(
 
 
 @pytest.mark.asyncio
+async def test_refresh_stops_retrying_immediately_on_timeout(subject, mock_api):
+    subject._api_protocol_working = False
+    mock_api().status.side_effect = [
+        TimeoutError("timed out"),
+        {"dps": {"1": False}},
+    ]
+
+    await subject.async_refresh()
+
+    assert mock_api().status.call_count == 1
+    assert subject._cached_state == {"updated_at": 0}
+
+
+@pytest.mark.asyncio
+async def test_refresh_does_not_rotate_protocol_on_timeout(subject, mock_api, mocker):
+    subject._api_protocol_version_index = None
+    subject._api_protocol_working = False
+    mock_api().status.side_effect = [
+        TimeoutError("timed out"),
+        {"dps": {"1": False}},
+    ]
+
+    await subject.async_refresh()
+
+    mock_api().set_version.assert_called_once_with(3.1)
+
+
+@pytest.mark.asyncio
 async def test_api_protocol_version_is_not_rotated_when_not_auto(subject, mock_api):
     # Set up preconditions for the test
 
