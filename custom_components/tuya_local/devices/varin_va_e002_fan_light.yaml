@@ -1,12 +1,9 @@
-name: Fan light
-products:
-  - id: 
-  ufrvcfjnmhnqebge
+name: Ceiling Fan light
+  - id: bff340de2f52095126hwvz
     manufacturer: Varin
     model: VA-E002
 entities:
   - entity: light
-    name: Main Light
     dps:
       - id: 63
         type: boolean
@@ -29,7 +26,7 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-              
+
   - entity: switch
     name: Master Switch
     dps:
@@ -68,3 +65,17 @@ entities:
             value: fresh
           - dps_val: nature
             value: nature
+  - entity: number
+      name: Fan timer
+      translation_key: timer
+      category: config
+      icon: "mdi:fan-clock"
+      dps:
+        - id: 64
+          type: integer
+          optional: true
+          name: value
+          unit: min
+          range:
+            min: 0
+            max: 540
