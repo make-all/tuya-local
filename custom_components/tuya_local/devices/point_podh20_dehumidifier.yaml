@@ -5,7 +5,6 @@ products:
     model: PODH20
 entities:
   - entity: humidifier
-    translation_key: dehumidifier
     class: dehumidifier
     dps:
       - id: 1
@@ -49,6 +48,9 @@ entities:
             value: "medium"
           - dps_val: "High"
             value: "high"
+      - id: 102
+        name: oscillate
+        type: boolean
   - entity: binary_sensor
     translation_key: tank_full
     class: problem
@@ -75,15 +77,7 @@ entities:
       - id: 101
         type: boolean
         name: switch
-  - entity: switch
-    name: Oscillate
-    category: config
-    dps:
-      - id: 102
-        type: boolean
-        name: switch
   - entity: sensor
-    translation_key: current_temperature
     class: temperature
     category: diagnostic
     dps:
@@ -91,6 +85,7 @@ entities:
         type: integer
         name: sensor
         unit: °C
+        class: measurement
   - entity: switch
     translation_key: sleep
     category: config
