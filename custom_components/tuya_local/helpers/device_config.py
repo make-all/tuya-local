@@ -826,7 +826,10 @@ class TuyaDpsConfig:
                 if r_dps:
                     return r_dps.get_value(device)
 
-            if invert and isinstance(result, Number):
+            if invert and isinstance(result, bool):
+                result = not result
+                replaced = True
+            elif invert and isinstance(result, Number):
                 r = self._config.get("range")
                 if r and "min" in r and "max" in r:
                     result = -1 * result + r["min"] + r["max"]

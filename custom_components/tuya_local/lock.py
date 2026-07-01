@@ -124,6 +124,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                         lock = False
                     elif lock is None:
                         lock = True
+        if lock is None:
+            lock = False
         return lock
 
     @property

@@ -14,6 +14,44 @@ from custom_components.tuya_local.const import (
 from custom_components.tuya_local.lock import TuyaLocalLock, async_setup_entry
 
 
+def _build_bare_lock():
+    """Build a TuyaLocalLock with no lock/unlock dps configured, bypassing __init__."""
+    device = Mock()
+    lock = object.__new__(TuyaLocalLock)
+    lock._device = device
+    lock._lock_dp = None
+    lock._lock_state_dp = None
+    lock._open_dp = None
+    lock._unlock_fp_dp = None
+    lock._unlock_pw_dp = None
+    lock._unlock_tmppw_dp = None
+    lock._unlock_dynpw_dp = None
+    lock._unlock_offlinepw_dp = None
+    lock._unlock_card_dp = None
+    lock._unlock_app_dp = None
+    lock._unlock_key_dp = None
+    lock._unlock_ble_dp = None
+    lock._unlock_voice_dp = None
+    lock._unlock_face_dp = None
+    lock._unlock_multi_dp = None
+    lock._unlock_ibeacon_dp = None
+    lock._req_unlock_dp = None
+    lock._approve_unlock_dp = None
+    lock._code_unlock_dp = None
+    lock._req_intercom_dp = None
+    lock._approve_intercom_dp = None
+    lock._jam_dp = None
+    return lock
+
+
+def test_is_locked_returns_false_when_no_lock_state_available():
+    """is_locked must return a boolean (False), never None, when the device
+    has no lock/lock_state dp and no unlock sensor dps to infer state from."""
+    lock = _build_bare_lock()
+
+    assert lock.is_locked is False
+
+
 @pytest.mark.asyncio
 async def test_init_entry(hass):
     """Test the initialisation."""

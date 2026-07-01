@@ -974,3 +974,19 @@ def test_writing_target_range(mocker):
     mock_device = mocker.MagicMock()
     cfg = TuyaDpsConfig(mock_entity, mock_config)
     assert cfg.get_values_to_set(mock_device, 100) == {"1": 16}
+
+
+def test_reading_inverted_boolean_without_range(mocker):
+    """Test that a boolean dps with invert set is inverted even without a
+    numeric range defined (e.g. a lock reporting locked/unlocked state)."""
+    mock_config = {
+        "id": 1,
+        "name": "test",
+        "type": "boolean",
+        "mapping": [{"invert": True}],
+    }
+    mock_entity = mocker.MagicMock()
+    mock_device = mocker.MagicMock()
+    mock_device.get_property.return_value = False
+    cfg = TuyaDpsConfig(mock_entity, mock_config)
+    assert cfg.get_value(mock_device) is True
