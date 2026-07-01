@@ -6,6 +6,7 @@ products:
 entities:
   - entity: humidifier
     class: dehumidifier
+    translation_key: extended
     dps:
       - id: 1
         type: boolean
@@ -27,27 +28,26 @@ entities:
         name: mode
         mapping:
           - dps_val: "Dry"
-            value: "normal"
+            value: normal
           - dps_val: "Fan"
-            value: "Fan"
+            value: purify
           - dps_val: "AUTO"
-            value: "auto"
+            value: auto
   - entity: fan
-    translation_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
         name: switch
       - id: 4
         type: string
-        name: preset_mode
+        name: speed
         mapping:
           - dps_val: "Low"
-            value: "low"
+            value: 33
           - dps_val: "Mid"
-            value: "medium"
+            value: 67
           - dps_val: "High"
-            value: "high"
+            value: 100
       - id: 102
         name: oscillate
         type: boolean
@@ -70,8 +70,8 @@ entities:
       - id: 16
         type: boolean
         name: lock
-  - entity: switch
-    name: Light
+  - entity: light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
@@ -79,7 +79,6 @@ entities:
         name: switch
   - entity: sensor
     class: temperature
-    category: diagnostic
     dps:
       - id: 103
         type: integer
