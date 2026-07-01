@@ -625,6 +625,7 @@
 - Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
+- Hauslane IN-R110 range hood
 - Homend Royaltea kettle
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller

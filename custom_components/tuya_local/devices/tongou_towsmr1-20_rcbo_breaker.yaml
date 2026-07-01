@@ -170,9 +170,22 @@ entities:
             value: alarm
           - dps_val: Trip
             value: trip_breaker
+  - entity: button
+    name: Refresh
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
   - entity: binary_sensor
     class: connectivity
     category: diagnostic
+    deprecated: button_refresh  # 2026-06-29
     dps:
       - id: 109
         type: string
