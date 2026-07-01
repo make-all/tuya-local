@@ -220,10 +220,24 @@ async def test_api_protocol_version_is_stable_once_successful(
 
 
 @pytest.mark.asyncio
-async def test_refresh_stops_retrying_when_device_unreachable(subject, mock_api):
+async def test_refresh_stops_retrying_when_device_unreachable_901(subject, mock_api):
     subject._api_protocol_working = False
     mock_api().status.side_effect = [
         {"Error": "Network Error: Unable to Connect", "Err": "901"},
+        {"dps": {"1": False}},
+    ]
+
+    await subject.async_refresh()
+
+    assert mock_api().status.call_count == 1
+    assert subject._cached_state == {"updated_at": 0}
+
+
+@pytest.mark.asyncio
+async def test_refresh_stops_retrying_when_device_unreachable_905(subject, mock_api):
+    subject._api_protocol_working = False
+    mock_api().status.side_effect = [
+        {"Error": "Network Error: Device Unreachable", "Err": "905"},
         {"dps": {"1": False}},
     ]
 

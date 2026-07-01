@@ -675,12 +675,14 @@ class TuyaLocalDevice(object):
                             # data so commands can still be sent.
                             self._cached_state["updated_at"] = time()
                             retval = None
-                        elif last_err_code == "901":
-                            # Network Error: Unable to Connect. The device is
-                            # unreachable; retrying with a different protocol
-                            # version will not help, so fail fast.
+                        elif last_err_code in ("901", "905"):
+                            # Network Error: Unable to Connect (901) or Device
+                            # Unreachable (905). The device is unreachable;
+                            # retrying with a different protocol version will
+                            # not help, so fail fast.
                             _LOGGER.debug(
-                                "Device unreachable (901), giving up (%d/%d)",
+                                "Device unreachable (%s), giving up (%d/%d)",
+                                last_err_code,
                                 i,
                                 connections,
                             )
