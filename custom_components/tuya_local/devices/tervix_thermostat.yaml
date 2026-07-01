@@ -82,7 +82,6 @@ entities:
     translation_key: temperature_calibration
     class: temperature_delta
     category: config
-    icon: "mdi:arrow-collapse-vertical"
     dps:
       - id: 27
         type: integer
@@ -182,11 +181,3 @@ entities:
           min: 100
           max: 300
         unit: C
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 25
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
