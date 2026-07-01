@@ -7,6 +7,7 @@ investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
 """
 
+import asyncio
 import logging
 
 from homeassistant.config_entries import ConfigEntry
@@ -973,6 +974,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     try:
         device = await hass.async_add_executor_job(setup_device, hass, config)
         await device.async_refresh()
+
+    except asyncio.CancelledError as e:
+        cleanup_failed_device(hass, device_id)
+        raise ConfigEntryNotReady("tuya-local setup cancelled (startup timeout)") from e
 
     except Exception as e:
         cleanup_failed_device(hass, device_id)

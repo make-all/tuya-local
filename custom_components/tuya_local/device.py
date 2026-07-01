@@ -91,6 +91,7 @@ class TuyaLocalDevice(object):
                     )
                 else:
                     parent = tinytuya.Device(dev_id, address, local_key)
+                    parent.set_socketTimeout(2)
                     parent_lock = asyncio.Lock()
                     if name != "Test":
                         hass.data[DOMAIN][dev_id] = {
@@ -102,6 +103,7 @@ class TuyaLocalDevice(object):
                     cid=dev_cid,
                     parent=parent,
                 )
+                self._api.set_socketTimeout(2)
                 self._api_lock = parent_lock
             else:
                 if hass.data[DOMAIN].get(dev_id) and name != "Test":
@@ -111,6 +113,7 @@ class TuyaLocalDevice(object):
                     )
                 else:
                     self._api = tinytuya.Device(dev_id, address, local_key)
+                    self._api.set_socketTimeout(2)
                     self._api_lock = asyncio.Lock()
                     if name != "Test":
                         hass.data[DOMAIN][dev_id] = {
@@ -672,6 +675,24 @@ class TuyaLocalDevice(object):
                             # data so commands can still be sent.
                             self._cached_state["updated_at"] = time()
                             retval = None
+                        elif last_err_code in ("901", "905"):
+                            # Network Error: Unable to Connect (901) or Device
+                            # Unreachable (905). The device is unreachable;
+                            # retrying with a different protocol version will
+                            # not help, so fail fast.
+                            _LOGGER.debug(
+                                "Device unreachable (%s), giving up (%d/%d)",
+                                last_err_code,
+                                i,
+                                connections,
+                            )
+                            self._reset_cached_state()
+                            self._api_working_protocol_failures += 1
+                            if self._api_working_protocol_failures == 1:
+                                _LOGGER.error(error_message)
+                            else:
+                                _LOGGER.debug(error_message)
+                            break
                         else:
                             raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
