@@ -471,7 +471,7 @@ Further device support has been made with the assistance of users. Please consid
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
 - [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
 - [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat and Amantii Bespoke fireplace.
-- [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker.
+- [dorianmartinez31](https://github.com/dorianmartinez31) for contributing support for GTS8-40 2P circuit breaker and improvements to French translations.
 - [jayPare](https://github.com/jayPare) for contributing support for Hornbill Y4 keypad lock.
 - [pacorola](https://github.com/pacorola) for contributing support for Ferco GN1 RF thermostat, Kimex cinema screen, RGBWC lightbulbs (YSR-CGD-RGB).
 - [Paxy](https://github.com/Paxy) for contributing support for MT15/MT29 air quality box.
@@ -864,3 +864,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nttntt](https://github.com/nttntt) for contributing support for Yamazen Living fan.
 - [Primus27](https://github.com/Primus27) for contributing support for Meaco Cirro air conditioners.
 - [ieivanov](https://github.com/ieivanov) for contributing support for Hauslane IN-R110 range hood.
+- [eigger](https://github.com/eigger) for contributing support for Rojeco PAF-186B pet feeder.
