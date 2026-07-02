@@ -4,10 +4,9 @@ products:
     model: Chernobyl Humidifier & Diffuser
     manufacturer: HOM
 entities:
- 
+
   - entity: switch
-    translation_key: power
-    class: switch
+    name: Power
     dps:
       - id: 1
         name: switch
@@ -29,7 +28,7 @@ entities:
             value: high
           - dps_val: small
             value: intermittent
- 
+
   - entity: select
     translation_key: timer
     category: config
@@ -56,7 +55,7 @@ entities:
         type: integer
         name: sensor
         unit: min
-        
+
   - entity: switch
     translation_key: sound
     category: config
@@ -112,7 +111,7 @@ entities:
             range:
               min: 0
               max: 255
-          
+
   - entity: binary_sensor
     class: problem
     translation_key: tank_empty
@@ -129,4 +128,3 @@ entities:
       - id: 11
         type: bitfield
         name: fault_code
-        
