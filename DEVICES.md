@@ -326,6 +326,7 @@
 - SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
+- Tervix Pro Line thermostat
 - Thermoval TVT40 thermostat
 - TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
