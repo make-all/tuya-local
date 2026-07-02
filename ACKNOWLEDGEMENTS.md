@@ -867,3 +867,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eigger](https://github.com/eigger) for contributing support for Rojeco PAF-186B pet feeder.
 - [viljasenville](https://github.com/viljasenville) for contributing support for Point PODH20 dehumidifier.
 - [Yevhen-Pechurin](https://github.com/Yevhen-Pechurin) for contributing support for Tervix Pro Line thermostat.
+- [Beersteak](https://github.com/Beersteak) for contributing support for Parkside PBB-A1 water timer.
