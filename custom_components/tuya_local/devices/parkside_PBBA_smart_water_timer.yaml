@@ -1,0 +1,41 @@
+name: Smart Watering Timer
+products:
+  - id: 6pahkcau
+    manufacturer: Parkside  
+    model: PBB A1 
+entities:
+  - entity: switch
+    name: watering
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 5
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%" 
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: min
