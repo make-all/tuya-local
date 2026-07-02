@@ -546,6 +546,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - NWT WDH-02EM and WDH-10EN dehumidifiers
+- Point PODH20 dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
 - Qlima D720, D812, D820A dehumidifiers

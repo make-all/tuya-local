@@ -865,3 +865,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Primus27](https://github.com/Primus27) for contributing support for Meaco Cirro air conditioners.
 - [ieivanov](https://github.com/ieivanov) for contributing support for Hauslane IN-R110 range hood.
 - [eigger](https://github.com/eigger) for contributing support for Rojeco PAF-186B pet feeder.
+- [viljasenville](https://github.com/viljasenville) for contributing support for Point PODH20 dehumidifier.
