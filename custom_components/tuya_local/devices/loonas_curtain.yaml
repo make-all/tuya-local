@@ -43,6 +43,7 @@ entities:
           max: 100
         mapping:
           - invert: true
+          - available: reversed
       - id: 3
         name: current_position
         type: integer
@@ -52,6 +53,16 @@ entities:
           max: 100
         mapping:
           - invert: true
+          - available: reversed
+      - id: 5
+        name: reversed
+        type: string
+        optional: true
+        hidden: true
+        mapping:
+          - dps_val: back
+            value: true
+          - value: false
       - id: 7
         name: work_state
         type: string
