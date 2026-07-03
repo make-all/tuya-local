@@ -150,6 +150,14 @@ entities:
     translation_key: mopping
     category: config
     dps:
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: "installed"
+            value: true
+          - dps_val: "none"
+            value: false
       - id: 10
         type: string
         name: option
@@ -357,6 +365,14 @@ entities:
     category: diagnostic
     icon: "mdi:broom"
     dps:
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: "installed"
+            value: true
+          - dps_val: "none"
+            value: false
       - id: 23
         type: integer
         name: sensor
