@@ -39,11 +39,21 @@ entities:
             value: "idle"
           - dps_val: "pos_unarrive"
             value: "error"
-      - id: 8
-        type: integer
-        name: battery_level
-        readonly: true
-        unit: "%"
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: "Close"
+            value: "off"
+          - dps_val: "gentle"
+            value: "gentle"
+          - dps_val: "normal"
+            value: "normal"
+          - dps_val: "strong"
+            value: "strong"
+      - id: 11
+        type: boolean
+        name: locate
 
   - entity: button
     name: Start cleaning
@@ -69,15 +79,6 @@ entities:
     icon: "mdi:home"
     dps:
       - id: 3
-        type: boolean
-        name: button
-
-  - entity: button
-    name: Find robot
-    category: config
-    icon: "mdi:map-marker"
-    dps:
-      - id: 11
         type: boolean
         name: button
 
@@ -126,8 +127,9 @@ entities:
         name: button
 
   - entity: select
-    translation_key: cleaning_mode
+    name: Cleaning pattern
     category: config
+    icon: "mdi:robot-vacuum"
     dps:
       - id: 4
         type: string
@@ -145,56 +147,36 @@ entities:
             value: "Room clean"
 
   - entity: select
-    name: Suction power
+    translation_key: mopping
     category: config
-    icon: "mdi:fan"
-    dps:
-      - id: 9
-        type: string
-        name: option
-        mapping:
-          - dps_val: "Close"
-            value: "Off"
-          - dps_val: "gentle"
-            value: "Eco"
-          - dps_val: "normal"
-            value: "Standard"
-          - dps_val: "strong"
-            value: "Strong"
-
-  - entity: select
-    name: Water tank level
-    category: config
-    icon: "mdi:water"
     dps:
       - id: 10
         type: string
         name: option
         mapping:
-          - dps_val: "low"
-            value: "Low"
-          - dps_val: "middle"
-            value: "Medium"
-          - dps_val: "high"
-            value: "High"
           - dps_val: "closed"
-            value: "Closed"
+            value: "off"
+          - dps_val: "low"
+            value: "low"
+          - dps_val: "middle"
+            value: "medium"
+          - dps_val: "high"
+            value: "high"
 
   - entity: select
-    name: Work mode
+    translation_key: cleaning_mode
     category: config
-    icon: "mdi:cog"
     dps:
       - id: 41
         type: string
         name: option
         mapping:
           - dps_val: "both_work"
-            value: "Vacuum & mop"
+            value: "sweep_and_mop"
           - dps_val: "only_sweep"
-            value: "Vacuum only"
+            value: "sweep"
           - dps_val: "only_mop"
-            value: "Mop only"
+            value: "mop"
 
   - entity: select
     name: Carpet clean preference
@@ -319,7 +301,6 @@ entities:
       - id: 8
         type: integer
         name: sensor
-        readonly: true
         unit: "%"
 
   - entity: sensor
@@ -331,7 +312,6 @@ entities:
         type: integer
         name: sensor
         unit: "min"
-        readonly: true
 
   - entity: sensor
     name: Clean area
@@ -342,7 +322,6 @@ entities:
         type: integer
         name: sensor
         unit: "m²"
-        readonly: true
 
   - entity: sensor
     name: Edge brush life
@@ -353,7 +332,6 @@ entities:
         type: integer
         name: sensor
         unit: "h"
-        readonly: true
 
   - entity: sensor
     name: Roll brush life
@@ -364,7 +342,6 @@ entities:
         type: integer
         name: sensor
         unit: "h"
-        readonly: true
 
   - entity: sensor
     translation_key: filter_life
@@ -374,7 +351,6 @@ entities:
         type: integer
         name: sensor
         unit: "h"
-        readonly: true
 
   - entity: sensor
     name: Mop life
@@ -385,7 +361,6 @@ entities:
         type: integer
         name: sensor
         unit: "min"
-        readonly: true
 
   - entity: sensor
     name: Total clean area
@@ -396,7 +371,6 @@ entities:
         type: integer
         name: sensor
         unit: "m²"
-        readonly: true
 
   - entity: sensor
     name: Total clean count
@@ -405,7 +379,6 @@ entities:
       - id: 30
         type: integer
         name: sensor
-        readonly: true
 
   - entity: sensor
     name: Total clean time
@@ -416,7 +389,6 @@ entities:
         type: integer
         name: sensor
         unit: "min"
-        readonly: true
 
   - entity: sensor
     name: Mop state
@@ -427,7 +399,6 @@ entities:
       - id: 40
         type: string
         name: sensor
-        readonly: true
         mapping:
           - dps_val: "installed"
             value: "Installed"
@@ -435,7 +406,6 @@ entities:
             value: "Not installed"
 
   - entity: binary_sensor
-    name: Fault status
     class: problem
     category: diagnostic
     dps:
@@ -446,3 +416,6 @@ entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
