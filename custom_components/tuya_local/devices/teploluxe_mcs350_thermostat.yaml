@@ -81,7 +81,8 @@ entities:
         type: integer
         name: sensor
         unit: kW
-        scale: 0.001
+        mapping:
+          - scale: 1000
 
   - entity: sensor
     name: Air temperature
