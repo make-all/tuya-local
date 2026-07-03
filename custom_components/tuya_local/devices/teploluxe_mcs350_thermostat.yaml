@@ -52,7 +52,7 @@ entities:
             value: idle
 
   - entity: number
-    name: Temp calibration
+    translation_key: temperature_calibration
     category: config
     dps:
       - id: 27
@@ -74,7 +74,6 @@ entities:
           max: 45
 
   - entity: sensor
-    name: Power consumption
     class: power
     category: diagnostic
     dps:
@@ -94,7 +93,7 @@ entities:
         unit: °C
 
   - entity: switch
-    name: Window check
+    name: Open window detection
     category: config
     dps:
       - id: 110
@@ -107,7 +106,7 @@ entities:
             value: true
 
   - entity: select
-    name: Sensor Mode
+    name: Sensor mode
     category: config
     dps:
       - id: 43
@@ -122,7 +121,7 @@ entities:
             value: Both Sensors
 
   - entity: switch
-    name: Self training
+    name: Learning mode
     category: config
     dps:
       - id: 107
