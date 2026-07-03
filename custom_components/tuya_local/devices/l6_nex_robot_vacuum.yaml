@@ -39,6 +39,12 @@ entities:
             value: "idle"
           - dps_val: "pos_unarrive"
             value: "error"
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: "chargego"
+            value: "return_to_base"
       - id: 9
         type: string
         name: fan_speed
@@ -54,33 +60,41 @@ entities:
       - id: 11
         type: boolean
         name: locate
-
-  - entity: button
-    name: Start cleaning
-    category: config
-    icon: "mdi:play"
-    dps:
       - id: 1
         type: boolean
-        name: button
-
-  - entity: button
-    name: Pause
-    category: config
-    icon: "mdi:pause"
-    dps:
+        name: activate
+        optional: true
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: false
+                value: false
+                hidden: true
+              - dps_val: null
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: false
+                value: true
+              - dps_val: true
+                value: true
+                hidden: true
+              - dps_val: null
+                value: true
+                hidden: true
+          - dps_val: null
+            value: false
+            hidden: true
       - id: 2
         type: boolean
-        name: button
-
-  - entity: button
-    name: Return to dock
-    category: config
-    icon: "mdi:home"
-    dps:
-      - id: 3
-        type: boolean
-        name: button
+        optional: true
+        name: pause
+        hidden: true
 
   - entity: button
     name: Collect dust now
