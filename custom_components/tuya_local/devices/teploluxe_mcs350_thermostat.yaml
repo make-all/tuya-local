@@ -34,6 +34,7 @@ entities:
       - id: 16
         type: integer
         name: temperature
+        unit: C
         range:
           min: 5
           max: 45
@@ -41,6 +42,21 @@ entities:
       - id: 24
         type: integer
         name: current_temperature
+        mapping:
+          - constraint: temp_sensor
+            conditions:
+              - dps_val: air
+                value_redirect: air_temperature
+
+      - id: 43
+        type: string
+        name: temp_sensor
+        hidden: true
+
+      - id: 102
+        type: integer
+        name: air_temperature
+        hidden: true
 
       - id: 106
         type: boolean
@@ -53,17 +69,20 @@ entities:
 
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
+        unit: C
         range:
           min: -9
           max: 9
 
   - entity: number
-    name: Max Air Temp
+    name: Maximum air temperature
+    class: temperature
     category: config
     dps:
       - id: 103
@@ -75,19 +94,16 @@ entities:
 
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 22
         type: integer
         name: sensor
         unit: kW
         mapping:
-          - scale: 1000
+          - scale: 10
 
   - entity: sensor
-    name: Air temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 102
         type: integer
@@ -108,7 +124,7 @@ entities:
             value: true
 
   - entity: select
-    name: Sensor mode
+    name: Temperature sensor
     category: config
     dps:
       - id: 43
@@ -116,11 +132,11 @@ entities:
         name: option
         mapping:
           - dps_val: flor
-            value: Floor Sensor
+            value: Floor
           - dps_val: air
-            value: Air Sensor
+            value: Room
           - dps_val: booth
-            value: Both Sensors
+            value: Both
 
   - entity: switch
     name: Learning mode
