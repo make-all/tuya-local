@@ -1,11 +1,8 @@
-name: Portable fan
+name: Tower fan
 products:
-  - id: cjsa4k7tqbpuyq3l
-    manufacturer: Duux
-    model: Whisper Flex Ultimate
-  - id: bjfu3mwhhxybovvj
-    manufacturer: Duux
-    model: Duux Blade Fan
+  - id: 7bztlaxoebmgqgxg
+    manufacturer: HomCom
+    model: "824-147V90"
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -17,53 +14,38 @@ entities:
         type: string
         name: preset_mode
         mapping:
-          - dps_val: "0"
-            value: normal
           - dps_val: "1"
-            value: nature
+            value: normal
           - dps_val: "2"
+            value: nature
+          - dps_val: "3"
             value: sleep
+          - dps_val: "4"
+            value: baby
       - id: 3
-        type: integer
+        type: string
         name: speed
-        range:
-          min: 0
-          max: 30
-  - entity: switch
-    name: Horizontal oscillation
-    category: config
-    dps:
+        mapping:
+          - dps_val: "1"
+            value: 16
+          - dps_val: "2"
+            value: 33
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 66
+          - dps_val: "5"
+            value: 83
+          - dps_val: "6"
+            value: 100
       - id: 4
         type: string
-        name: switch
+        name: oscillate
         mapping:
-          - dps_val: "0"
-            value: false
-          - dps_val: "1"
+          - dps_val: "on"
             value: true
-  - entity: switch
-    name: Vertical oscillation
-    category: config
-    dps:
-      - id: 5
-        type: string
-        name: switch
-        mapping:
-          - dps_val: "0"
+          - dps_val: "off"
             value: false
-          - dps_val: "1"
-            value: true
-  - entity: climate
-    name: Desired temperature
-    category: config
-    dps:
-      - id: 20
-        type: integer
-        name: temperature
-        unit: C
-        range:
-          min: 17
-          max: 28
   - entity: select
     translation_key: timer
     category: config
@@ -98,3 +80,19 @@ entities:
             value: "11h"
           - dps_val: "12"
             value: "12h"
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

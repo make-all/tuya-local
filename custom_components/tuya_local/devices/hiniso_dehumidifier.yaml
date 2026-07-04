@@ -81,28 +81,58 @@ entities:
   - entity: switch
     translation_key: ionizer
     category: config
+    hidden: unavailable
     dps:
       - id: 10
         type: boolean
+        optional: true
         name: switch
+      - id: 10
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
 
   # UV
   - entity: switch
     translation_key: uv_sterilization
     category: config
+    hidden: unavailable
     dps:
       - id: 13
         type: boolean
+        optional: true
         name: switch
+      - id: 13
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
 
   # CHILD LOCK
   - entity: lock
     translation_key: child_lock
     category: config
+    hidden: unavailable
     dps:
       - id: 16
         type: boolean
+        optional: true
         name: lock
+      - id: 16
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
 
   # FAN SPEED
   - entity: fan

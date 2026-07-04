@@ -144,13 +144,14 @@
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
+- Meaco Cirro air conditioners
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
-- Qlima SC 7035S air conditioner
+- Qlima SC 7035S and MS-AC 5002 air conditioners
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -237,6 +238,7 @@
 - Neopower Black Diamond all-in-one heat pump water heater
 - Nulite NL-B245 monobloc heat pump
 - Oekoboiler RS series heat pump water heater
+- Omni X Duplex water heater
 - Powerworld PW040, PW060, PWS58330, PWS58410 air+water heat pumps
 - Rinnai Enviroflo heat pump water heater
 - Sanden GAU-A45HPD WiFi heat pump controller
@@ -288,6 +290,7 @@
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
+- Fercofloor FT2C10V fan coil thermostat
 - Garza Aspen and (unknown model) thermostats
 - HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
@@ -324,6 +327,8 @@
 - SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
+- Teploluxe MCS350 thermostat
+- Tervix Pro Line thermostat
 - Thermoval TVT40 thermostat
 - TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
@@ -362,7 +367,7 @@
 - Create XW-FAN-215-D ceiling fan with light (dimming and non-dimming variants)
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controllers (6914HA Series 2 and 3)
-- Djive ARC humidifying fan
+- Djive ARC portable and humidifying fans
 - dLuft Smart Flow ventilator fan
 - Dometek Diamond ceiling fan with light
 - Dream Maker Feel DM01 fan
@@ -388,6 +393,7 @@
 - Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
+- HomCom 6-speed tower fan
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
@@ -419,7 +425,7 @@
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - NHZS fan speed switch
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -454,8 +460,9 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
-- Varin VA-E003 ceiling fan with light
+- Varin VA-E003 and VA-002 ceiling fans with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
+- Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
 - Yijingkc 284-8 ceiling fan
 - Yoevu EOS ceiling fan with CCT light
@@ -542,6 +549,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - NWT WDH-02EM and WDH-10EN dehumidifiers
+- Point PODH20 dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
 - Qlima D720, D812, D820A dehumidifiers
@@ -553,6 +561,7 @@
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
+- Vibrix Dryflow 12 Pro dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
@@ -621,11 +630,12 @@
 - Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
+- Hauslane IN-R110 range hood
 - Homend Royaltea kettle
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
-- KKT Kolbe kitchen hood
+- KKT Kolbe Easy and Solo kitchen hoods
 - Klarstein Amazonia dishwasher
 - Klarstein Ava range hood
 - Koenic KTM-221723-M kettle
@@ -1155,6 +1165,7 @@ port and password.
 - Advwin 6L camera pet feeder
 - AF3W pet feeder
 - Arlec Grid Connect 5L and PFC002HA Series 2 pet feeders
+- Beokeo S20Pro cat litter box
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
@@ -1211,7 +1222,7 @@ port and password.
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Repetsun double bowl 5L pet feeder
-- Rojeco PTM-001 pet feeder (two versions)
+- Rojeco PTM-001, PAF-186B pet feeders
 - Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
@@ -1411,6 +1422,7 @@ port and password.
 - Nice Digi door lock
 - Orion DL021HA lock
 - O'TU R1O1 fingerprint door lock
+- Parkside PBB-A1 water timer 
 - Positivo Smart keypad and voice locks
 - Primebras Athenas lock
 - PT216/PT19DB-2 temperature and humidity sensor

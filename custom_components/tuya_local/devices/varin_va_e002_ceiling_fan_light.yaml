@@ -1,28 +1,25 @@
-name: Ceiling fan
+name: Ceiling fan light
 products:
-  - id: ftqsaibnb3insvp9
-    manufacturer: Ovlaim
-    model: "809"
+  - id: vfqiwthdnlkynebk
+    manufacturer: Varin
+    model: VA-E002
 entities:
   - entity: light
+    icon: "mdi:ceiling-fan-light"
     dps:
       - id: 20
-        name: switch
         type: boolean
-      - id: 21
-        name: work_mode
-        type: string
-        optional: true
+        name: switch
       - id: 22
-        name: brightness
         type: integer
+        name: brightness
         optional: true
         range:
           min: 10
           max: 1000
       - id: 23
-        name: color_temp
         type: integer
+        name: color_temp
         optional: true
         range:
           min: 0
@@ -30,41 +27,44 @@ entities:
         mapping:
           - target_range:
               min: 2700
-              max: 7000
+              max: 6500
   - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:ceiling-fan"
     dps:
       - id: 60
-        name: switch
         type: boolean
+        name: switch
       - id: 61
-        name: preset_mode
         type: string
+        name: preset_mode
         optional: true
         mapping:
           - dps_val: fresh
             value: fresh
           - dps_val: nature
             value: nature
-          - dps_val: sleep
-            value: sleep
       - id: 62
-        name: speed
         type: integer
+        name: speed
         optional: true
         range:
           min: 1
           max: 6
       - id: 63
-        name: direction
         type: string
+        name: direction
         optional: true
-  - entity: sensor
-    translation_key: time_remaining
-    class: duration
-    category: diagnostic
+  - entity: number
+    translation_key: timer
+    icon: "mdi:fan-clock"
+    category: config
     dps:
       - id: 64
         type: integer
         optional: true
-        name: sensor
+        name: value
         unit: min
+        range:
+          min: 0
+          max: 540
