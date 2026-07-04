@@ -59,7 +59,7 @@ entities:
   # exposes each as a switch (do NOT give them entity_category, or HomeKit
   # would hide them as config entities).
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     icon: "mdi:power-sleep"
     dps:
       - id: 101
@@ -89,7 +89,7 @@ entities:
 
   # Countdown timer 0-24h (0 = off).
   - entity: number
-    name: Timer
+    translation_key: timer
     icon: "mdi:timer-outline"
     dps:
       - id: 105
