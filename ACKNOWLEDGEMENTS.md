@@ -871,3 +871,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eldarsudden](https://github.com/eldarsudden) for contributing support for Teploluxe MCS350 thermostat.
 - [fribse](https://github.com/fribse) for contributing support for Qlima MS-AC 5002 air conditioner.
 - [fervillab](https://github.com/fervillab) for contributing support for Fercofloor FT2C10V fan coil thermostat.
+- [clem3109](https://github.com/clem3109) for contributing support for Varin VA-002 ceiling fan with light.

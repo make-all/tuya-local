@@ -460,7 +460,7 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
-- Varin VA-E003 ceiling fan with light
+- Varin VA-E003 and VA-002 ceiling fans with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
