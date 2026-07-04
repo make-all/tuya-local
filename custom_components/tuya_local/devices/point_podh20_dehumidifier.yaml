@@ -1,0 +1,94 @@
+name: Dehumidifier
+products:
+  - id: l42hyrkieezkgysd
+    manufacturer: Point
+    model: PODH20
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    translation_key: extended
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 3
+        type: integer
+        name: current_humidity
+        readonly: true
+      - id: 5
+        type: string
+        name: mode
+        mapping:
+          - dps_val: "Dry"
+            value: normal
+          - dps_val: "Fan"
+            value: purify
+          - dps_val: "AUTO"
+            value: auto
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "Low"
+            value: 33
+          - dps_val: "Mid"
+            value: 67
+          - dps_val: "High"
+            value: 100
+      - id: 102
+        name: oscillate
+        type: boolean
+  - entity: binary_sensor
+    translation_key: tank_full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
