@@ -57,6 +57,5 @@ class TuyaLocalButton(TuyaLocalEntity, ButtonEntity):
 
     async def async_press(self):
         """Press the button"""
-        async with self._device.set_lock:
-            _LOGGER.info("%s pressing button", self._config._device.config)
-            await self._button_dp.async_set_value(self._device, True)
+        _LOGGER.info("%s pressing button", self._config._device.config)
+        await self._button_dp.async_set_value(self._device, True)

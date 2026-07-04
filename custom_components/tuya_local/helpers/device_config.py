@@ -513,6 +513,8 @@ class TuyaDpsConfig:
     def decode_value(self, v, device):
         if self.rawtype == "hex" and isinstance(v, str):
             try:
+                if (len(v) % 2) != 0:
+                    v = "0" + v
                 return bytes.fromhex(v)
             except ValueError:
                 _LOGGER.warning(
@@ -658,10 +660,15 @@ class TuyaDpsConfig:
         r = self._config.get("range")
         if mapping:
             r = mapping.get("range", r)
+            if scaled and "target_range" in mapping:
+                r = mapping.get("target_range", r)
+                scale = 1
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
-
+                if scaled and "target_range" in cond:
+                    r = cond.get("target_range", r)
+                    scale = 1
         if r and "min" in r and "max" in r:
             return _scale_range(r, scale)
         else:

@@ -8,9 +8,9 @@ from homeassistant.components.text import TextEntity, TextMode
 from homeassistant.components.text.const import (
     ATTR_MAX,
     ATTR_MIN,
-    ATTR_MODE,
     ATTR_PATTERN,
 )
+from homeassistant.const import ATTR_MODE
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
@@ -75,9 +75,8 @@ class TuyaLocalText(TuyaLocalEntity, TextEntity):
 
     async def async_set_value(self, value: str) -> None:
         """Set the value"""
-        async with self._device.set_lock:
-            _LOGGER.info("%s setting value to %s", self._config.config_id, value)
-            await self._value_dp.async_set_value(self._device, value)
+        _LOGGER.info("%s setting value to %s", self._config.config_id, value)
+        await self._value_dp.async_set_value(self._device, value)
 
     @property
     def extra_state_attributes(self) -> dict[str, any]:
