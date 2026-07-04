@@ -8,7 +8,6 @@ products:
     model: Ostation 2
 entities:
   - entity: switch
-    name: Power
     dps:
       - id: 101
         type: boolean
@@ -90,15 +89,9 @@ entities:
       - id: 108
         type: integer
         name: sensor
-  - entity: sensor
-    name: DP113
-    category: diagnostic
-    hidden: true
-    dps:
-      - id: 113
+      - id: 113 # Unknown purpose, added as an attribute for visibility
         type: integer
-        name: sensor
-
+        name: DP113
   ######################################################################################################################################################
   # Slot 3 (bytes 0–16)
   ######################################################################################################################################################
