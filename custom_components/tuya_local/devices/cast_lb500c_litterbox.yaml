@@ -6,16 +6,18 @@ products:
 entities:
   - entity: sensor
     class: weight
+    category: diagnostic
     dps:
       - id: 6
         type: integer
         optional: true
         name: sensor
-        unit: kg
+        unit: LB
         class: measurement
         precision: 1
         mapping:
-          - scale: 0.453592
+          - scale: 10
+
   - entity: sensor
     name: Daily toilet count
     icon: "mdi:emoticon-poop"
@@ -26,65 +28,18 @@ entities:
         name: sensor
         unit: times
         class: measurement
-  - entity: sensor
-    name: Toilet duration
-    class: duration
-    category: diagnostic
-    dps:
-      - id: 110
-        type: integer
-        optional: true
-        name: sensor
-        unit: s
-        class: measurement
-  - entity: sensor
-    name: Today's toilet count
-    category: diagnostic
-    dps:
-      - id: 108
-        type: integer
-        optional: true
-        name: sensor
-        unit: times
-        class: measurement
-  - entity: sensor
-    translation_key: status
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 101
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: isidle
-            value: standby
-          - dps_val: idlevelling
-            value: caking
-          - dps_val: isclean
-            value: cleaning
-  - entity: binary_sensor
-    name: Notification
+
+  - entity: event
     class: problem
-    category: diagnostic
     dps:
       - id: 21
         type: bitfield
-        name: sensor
+        name: event
         mapping:
           - dps_val: 0
-            value: false
-          - value: true
-      - id: 21
-        type: bitfield
-        name: fault_code
-      - id: 21
-        type: bitfield
-        name: description
-        mapping:
-          - dps_val: 0
-            value: ok
-          - dps_val: 1
-            value: no_weight
+            value: clear
+          - value: litterbox_unused_24h
+
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -110,13 +65,23 @@ entities:
             value: drum_not_installed
           - dps_val: 2
             value: overload
-  - entity: switch
-    translation_key: auto_clean
-    category: config
+
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
     dps:
-      - id: 112
-        type: boolean
-        name: switch
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: isidle
+            value: idle
+          - dps_val: idlevelling
+            value: Leveling
+          - dps_val: isclean
+            value: cleaning
+
   - entity: button
     name: Clean
     icon: "mdi:broom"
@@ -127,18 +92,9 @@ entities:
         name: button
         mapping:
           - value: "jikeclean"
-  - entity: button
-    name: Cancel
-    icon: "mdi:stop"
-    category: config
-    dps:
-      - id: 109
-        type: boolean
-        optional: true
-        name: button
-        mapping:
-          - value: "nowtocancle"
+
   - entity: select
+    translation_only_key: timer
     name: Cleaning delay
     category: config
     dps:
@@ -147,20 +103,22 @@ entities:
         name: option
         mapping:
           - dps_val: tensecond
-            value: "10 s"
+            value: "10s"
           - dps_val: twentysecond
-            value: "20 s"
-          - dps_val: thirdsencond
-            value: "30 s"
+            value: "20s"
+          - dps_val: thirdsencond #typo in tuya firmware
+            value: "30s"
           - dps_val: forthsecond
-            value: "40 s"
-          - dps_val: sixthsecond
-            value: "60 s"
+            value: "40s"
+          - dps_val: sixsecond
+            value: "1m"
           - dps_val: ninthsecond
-            value: "90 s"
+            value: "1m30s"
           - dps_val: onetwosecond
-            value: "120 s"
+            value: "2m"
+
   - entity: select
+    translation_only_key: timer
     name: Valid toilet time
     category: config
     dps:
@@ -169,13 +127,14 @@ entities:
         name: option
         mapping:
           - dps_val: tensec
-            value: "10 s"
+            value: "10s"
           - dps_val: fifteensec
-            value: "15 s"
+            value: "15s"
           - dps_val: twtenysec
-            value: "20 s"
+            value: "20s"
           - dps_val: thirdsec
-            value: "30 s"
+            value: "30s"
+
   - entity: select
     name: Drum rotations
     category: config
@@ -188,6 +147,7 @@ entities:
             value: "1"
           - dps_val: twotimes
             value: "2"
+
   - entity: select
     name: Minimum cat weight
     category: config
@@ -197,10 +157,66 @@ entities:
         name: option
         mapping:
           - dps_val: twolb
-            value: "0.9 kg"
+            value: "2.0lb"
           - dps_val: twop5lb
-            value: "1.1 kg"
+            value: "2.5lb"
           - dps_val: threelb
-            value: "1.4 kg"
+            value: "3.0lb"
           - dps_val: threep5lb
-            value: "1.6 kg"
+            value: "3.5lb"
+
+  - entity: sensor
+    name: Daily toilet usage
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+
+  - entity: button
+    name: Cancel
+    icon: "mdi:stop"
+    dps:
+      - id: 109
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - value: "nowtocancle"
+
+  - entity: sensor
+    name: Toilet duration
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+
+  - entity: sensor #differs from DP 6, DP6 is continuous weight, DP111 is the weight when the cat got off the litter box
+    name: Cat weight
+    class: weight
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: sensor
+        unit: LB
+        class: measurement
+        precision: 1
+        mapping:
+          - scale: 10
+
+  - entity: switch
+    translation_key: auto_clean
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
