@@ -928,7 +928,7 @@ of device.
 - Ion LED WiFi dimmer
 - iSparkle Curtain Micro Lights
 - Kojima motion sensor RGBCW nightlight
-- Ledvance Smart+ Planon panel light with backlight
+- Ledvance Smart+ Planon panel light with backlight and Smart+ Planon Magic light
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
