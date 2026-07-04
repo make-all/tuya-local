@@ -124,29 +124,45 @@ entities:
   - entity: sensor
     name: Meter 1
     class: water
-    hidden: true
+    hidden: unavailable
     dps:
       - id: 135
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 135
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Meter 2
     class: water
-    hidden: true
+    hidden: unavailable
     dps:
       - id: 136
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 136
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Meter 3
     class: water
@@ -154,48 +170,80 @@ entities:
     dps:
       - id: 137
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 137
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Meter 4
     class: water
-    hidden: true
+    hidden: unavailable
     dps:
       - id: 138
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 138
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Meter 5
     class: water
-    hidden: true
+    hidden: unavailable
     dps:
-      - id: 138
+      - id: 139
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 139
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Meter 6
     class: water
-    hidden: true
+    hidden: unavailable
     dps:
       - id: 140
         type: integer
+        optional: true
         name: sensor
         unit: m³
         class: total_increasing
         mapping:
           - scale: 1000
+      - id: 140
+        type: integer
         optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
