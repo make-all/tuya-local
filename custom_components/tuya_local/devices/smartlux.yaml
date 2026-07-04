@@ -1,4 +1,4 @@
-name: Smartlux
+name: Door Light
 products:
   - id: jahu6lbhx0o5opo2
     manufacturer: Pirnar
@@ -33,7 +33,7 @@ entities:
               max: 6500
 
   - entity: light
-    name: int_light
+    name: interior
     dps:
       # Schalter
       - id: 20
@@ -58,26 +58,3 @@ entities:
           - target_range:
               min: 2700
               max: 6500
-
-  - entity: select
-    name: channel
-    category: config
-    dps:
-      - id: 107
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: "interior"
-            value: interior
-          - dps_val: "exterior"
-            value: exterior
-
-  - entity: sensor
-    hidden: true
-    name: Farbtemperatur
-    dps:
-      - id: 23
-        name: sensor
-        type: integer
-        optional: true
