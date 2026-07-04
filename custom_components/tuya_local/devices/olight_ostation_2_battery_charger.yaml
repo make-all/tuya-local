@@ -89,9 +89,9 @@ entities:
       - id: 108
         type: integer
         name: sensor
-      - id: 113 # Unknown purpose, added as an attribute for visibility
+      - id: 113
         type: integer
-        name: DP113
+        name: unknown_113
   ######################################################################################################################################################
   # Slot 3 (bytes 0–16)
   ######################################################################################################################################################
@@ -197,7 +197,7 @@ entities:
           0000000000000000000000000000000000"
         mapping:
           - scale: 10
-      - id: 110 # Unknown purpose, added as an attribute for visibility
+      - id: 110  # Unknown purpose, added as an attribute for visibility
         type: base64
         name: byte12
         optional: true
@@ -312,7 +312,7 @@ entities:
           0000000000000000000000000000000000"
         mapping:
           - scale: 10
-      - id: 110 # Unknown purpose, added as an attribute for visibility
+      - id: 110  # Unknown purpose, added as an attribute for visibility
         type: base64
         name: byte12
         optional: true
@@ -427,7 +427,7 @@ entities:
           0000000000000000000000000000000000"
         mapping:
           - scale: 10
-      - id: 110 # Unknown purpose, added as an attribute for visibility
+      - id: 110  # Unknown purpose, added as an attribute for visibility
         type: base64
         name: byte12
         optional: true
@@ -542,7 +542,7 @@ entities:
           00000000000000000000FFFF0000000000"
         mapping:
           - scale: 10
-      - id: 110 # Unknown purpose, added as an attribute for visibility
+      - id: 110  # Unknown purpose, added as an attribute for visibility
         type: base64
         name: byte12
         optional: true
@@ -550,4 +550,4 @@ entities:
           0000000000000000000000000000000000\
           0000000000000000000000000000000000\
           000000000000000000000000FF00000000"
-  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
+          # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
