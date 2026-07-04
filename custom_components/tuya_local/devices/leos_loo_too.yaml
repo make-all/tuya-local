@@ -13,22 +13,34 @@
 #   high   - add the "MEET" product id; mark DP2 (mode) and DP5 (delay) optional
 #            because they are absent on some units (MEET reports neither).
 #   high   - DP22 fault bitfield as a problem binary_sensor (same pattern and DP
-#            as sailesi_litterbox). Tuya fault labels (from the device data
-#            model): bit0 motor_fault, bit1 program_fault, bit2 g_sensor_fault.
-#   high   - decode DP21 notification bitfield into binary_sensors. Bit labels
-#            come from the device's own Tuya data model (the `notification`
-#            status_range: garbage_box_full, excessive_clean_times, cleaning,
-#            no_weight) and were cross-checked against observed behaviour over
-#            several days on all four units:
-#              bit0 (1)  = garbage_box_full -> "Bin full" (ground-truthed: the
-#                          box goes amber and latches this bit until the drawer
-#                          is emptied and the reset button pressed)
-#              bit2 (4)  = cleaning         -> "Cleaning" (auto-clean rotation)
-#              bit6 (64) = UV phase         -> "UV sterilizing" (an undocumented
-#                          device extension, not in the 4-bit documented model)
-#            bit1 (excessive_clean_times) and bit3 (no_weight) are left in the
-#            raw code sensor undecoded. All exposed as plain device states;
-#            alerting is left to the user's own automations.
+#            as sailesi_litterbox). Per the Tuya data model the bits are bit0
+#            motor_fault, bit1 program_fault, bit2 g_sensor_fault - UNVERIFIED
+#            here (no fault fired on any unit), so only the raw code is decoded,
+#            not per-bit sensors.
+#   high   - decode DP21 notification bitfield into binary_sensors. Bit meanings
+#            were established by OBSERVING the device (a multi-day capture of
+#            the async report stream plus a controlled manual-clean test), then
+#            checked against the Tuya data model. Observed behaviour is the
+#            source of truth; where the model disagrees, the device wins:
+#              bit0 (1)  = bin full -> "Bin full". Ground-truthed: the box goes
+#                          amber and latches this bit until the drawer is
+#                          emptied and reset. Matches model "garbage_box_full".
+#              bit1 (2)  = manual/commanded clean rotation active -> "Cleaning".
+#                          Held for the full ~71 s rotation on a timed
+#                          manual-clean press, then UV followed - the same
+#                          lifecycle as bit2. NOTE: the Tuya model labels this
+#                          bit "excessive_clean_times", which is WRONG for this
+#                          firmware: it is a sustained clean-active state, not a
+#                          momentary warning.
+#              bit2 (4)  = auto-clean rotation active -> "Cleaning". Same ~70 s
+#                          rotation lifecycle, self-triggered. Matches
+#                          "cleaning".
+#              bit6 (64) = UV sterilisation phase -> "UV sterilizing". Not in
+#                          the documented 4-bit model at all (a device add-on).
+#            "Cleaning" therefore matches bits 1|2 (mask 6) so it covers both
+#            manual and auto cleans. bit3 ("no_weight") was never observed and
+#            is left in the raw code sensor undecoded. All exposed as plain
+#            device states; alerting is left to the user's own automations.
 #   high   - remove DP7 "times used today" (code excretion_times_day): on the
 #            local protocol it always reads 1. It is a per-use event pulse that
 #            the Tuya cloud accumulates server-side (status_range report_type
@@ -122,8 +134,9 @@ entities:
       - id: 9
         type: boolean
         name: button
-  # DP22 fault bitfield. Tuya labels: bit0 motor_fault, bit1 program_fault,
-  # bit2 g_sensor_fault. Any non-zero bit -> problem; raw code kept too.
+  # DP22 fault bitfield. Any non-zero bit -> problem; raw fault_code kept so the
+  # specific bit can be decoded when one actually fires. (Tuya model labels,
+  # unverified here: bit0 motor, bit1 program, bit2 g_sensor.)
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -163,8 +176,11 @@ entities:
         name: sensor
         optional: true
         mapping:
-          # bit2 (4) = "cleaning": auto-clean rotation in progress.
-          - dps_val: 4
+          # bits 1|2 (mask 6): a clean rotation is active. bit2 = auto-clean,
+          # bit1 = manual/commanded clean (both observed holding for the full
+          # ~70 s rotation). The device's own model mislabels bit1 as
+          # "excessive_clean_times"; observation shows it is clean-active.
+          - dps_val: 6
             value: true
           - value: false
   - entity: binary_sensor
