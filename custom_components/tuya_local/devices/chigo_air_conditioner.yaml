@@ -1,9 +1,10 @@
 # Chigo Tuya AC (product jqfsu2e8pvpce5ra).
 # DP map verified via Tuya cloud thing-model (abilityId == DP id).
-name: Chigo air conditioner
+name: Air conditioner
 products:
   - id: jqfsu2e8pvpce5ra
-    name: Chigo Air Conditioner
+    manufacturer: Chigo
+    model: FCH-12-UI-UE
 entities:
   - entity: climate
     dps:
@@ -54,6 +55,24 @@ entities:
             value: medium
           - dps_val: "4"
             value: high
+      # DP103 (left/right louvre) and DP104 (up/down louvre) map to the
+      # climate entity's swing attributes rather than standalone switches.
+      - id: 103
+        type: boolean
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 104
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
 
   # Independent boolean features -> plain switches so the HomeKit bridge
   # exposes each as a switch (do NOT give them entity_category, or HomeKit
@@ -70,20 +89,6 @@ entities:
     icon: "mdi:fan-plus"
     dps:
       - id: 102
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Swing horizontal
-    icon: "mdi:arrow-left-right"
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Swing vertical
-    icon: "mdi:arrow-up-down"
-    dps:
-      - id: 104
         type: boolean
         name: switch
 
