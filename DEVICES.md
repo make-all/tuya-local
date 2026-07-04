@@ -738,6 +738,7 @@
 - Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
+- Lidl Tronic solar power storage
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
