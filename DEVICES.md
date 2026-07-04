@@ -561,6 +561,7 @@
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
+- Vibrix Dryflow 12 Pro dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
