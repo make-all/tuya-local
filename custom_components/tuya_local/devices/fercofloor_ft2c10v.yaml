@@ -1,5 +1,5 @@
 # https://www.fercofloor.com/fan-coil/regulacion-fan-coil/fc-wifi-0-10v-ec/cronotermostato-ft2c10v
-name: Fancoils
+name: Fan coils
 products:
   - id: t1hqfqvgutkalxvo
     manufacturer: Fercofloor
@@ -69,6 +69,22 @@ entities:
             value: program
           - dps_val: Disable
             value: manual
+      - id: 14
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: working
+            value: cooling
+            constraint: mode
+            conditions:
+              - dps_val: heat
+                value: heating
+          - dps_val: no_working
+            value: idle
+            constraint: mode
+            conditions:
+              - dps_val: fan
+                value: fan
   - entity: lock
     translation_key: child_lock
     category: config
@@ -107,19 +123,6 @@ entities:
             value: Device offline
           - dps_val: 8
             value: Low protect
-  - entity: binary_sensor
-    class: opening
-    category: diagnostic
-    icon: mdi:pipe-valve
-    dps:
-      - id: 14
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: working
-            value: true
-          - dps_val: no_working
-            value: false
   - entity: text
     translation_key: schedule
     hidden: true
