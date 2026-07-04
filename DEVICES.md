@@ -290,6 +290,7 @@
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
+- Fercofloor FT2C10V fan coil thermostat
 - Garza Aspen and (unknown model) thermostats
 - HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
