@@ -1,0 +1,71 @@
+name: Nere Smart ceiling fan
+products:
+  - id: "b3uwmntqtdozwinj"
+    manufacturer: Nere
+    model: Smart Nere
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6500
+            invert: true
+
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    category: config
+    icon: "mdi:fan-clock"
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+
+  - entity: number
+    name: Light timer
+    translation_key: timer
+    category: config
+    icon: "mdi:lightbulb-clock"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
