@@ -875,3 +875,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Maztah](https://github.com/Maztah) for contributing support for Lidl Tronic solar power storage.
 - [peterrojs](https://github.com/peterrojs) for contributing improvements to the cover entity.
 - [fuomag9](https://github.com/fuomag9) for contributing support for Chigo air conditioner.
+- [h0me5k1n](https://github.com/h0me5k1n) for contributing support for Laresar L6 Nex vacuum.
