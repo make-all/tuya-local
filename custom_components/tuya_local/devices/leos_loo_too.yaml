@@ -1,16 +1,45 @@
-name: Pet toilet
+# Leo's Loo Too / MEET self-cleaning cat toilet  (Tuya category "msp")
+#
+# Corrected against live tinytuya DP dumps from four physical units (three
+# "Leo's Loo Too", one rebadged "MEET") plus the Tuya cloud values as a
+# reference oracle, and a multi-day passive capture of the async report stream
+# that decoded the DP21 notification bitfield. See the PR description / repo
+# README for the captured evidence.
+#
+# Changes vs the previous config, by confidence:
+#   high   - weight DP6 scale 0.1 -> 10 (raw is tenths of a kg: 42 -> 4.2 kg;
+#            0.1 produced 420 kg). Matches the other weight litterbox configs
+#            (duoqu, vevor, homall all use scale 10).
+#   high   - add the "MEET" product id; mark DP2 (mode) and DP5 (delay) optional
+#            because they are absent on some units (MEET reports neither).
+#   high   - DP22 fault bitfield as a problem binary_sensor (same pattern and DP
+#            as sailesi_litterbox, the sibling Tuya litterbox config).
+#   high   - decode DP21 notification bitfield into binary_sensors. Bits were
+#            confirmed by correlating the async report stream against observed
+#            device behaviour over several days across all four units:
+#              bit0 (1)  = bin full / needs emptying  (ground-truthed: the box
+#                          goes amber and holds this bit until the drawer is
+#                          emptied and the reset button pressed)
+#              bit1 (2)  = manual clean / reset rotation active
+#              bit2 (4)  = auto clean rotation active
+#              bit6 (64) = UV sterilisation phase active
+#            The raw code is kept as a diagnostic sensor for any undecoded bits.
+#            These are exposed as plain device states; alerting is left to the
+#            user's own automations rather than baked into the integration.
+#   high   - remove DP7 "times used today": it is a dead constant (=1) on every
+#            observed unit and never updates locally (corroborated by the public
+#            dump in issue #1840). The real use count is not exposed on the LAN.
+#   high   - remove the DP16 "light" entity: DP16 does not exist on this
+#            hardware (it was speculative and left the entity unavailable).
+name: Leo's Loo Too
 products:
   - id: 1badzyvwh1e1hrog
     manufacturer: "Leo's Loo"
     model: Too
+  - id: kw4ztiq3kxmcf8dx
+    manufacturer: "Leo's Loo"
+    model: Too (MEET)
 entities:
-  - entity: sensor
-    name: Times used today
-    icon: "mdi:counter"
-    dps:
-      - id: 7
-        type: integer
-        name: sensor
   - entity: switch
     name: Power
     category: config
@@ -27,6 +56,8 @@ entities:
       - id: 2
         type: string
         name: option
+        # Reported only by some units (the MEET variant omits it).
+        optional: true
         mapping:
           - dps_val: auto_clean
             value: Auto clean
@@ -40,13 +71,14 @@ entities:
       - id: 13
         name: switch
         type: boolean
-  - entity: light
+  - entity: switch
+    translation_key: sleep
     category: config
+    class: switch
     dps:
-      - id: 16
+      - id: 10
         name: switch
         type: boolean
-        optional: true
   - entity: number
     category: config
     name: Cleaning delay
@@ -56,6 +88,8 @@ entities:
       - id: 5
         type: integer
         name: value
+        # Absent on the MEET variant.
+        optional: true
         range:
           min: 6
           max: 1200
@@ -69,8 +103,12 @@ entities:
         type: integer
         name: sensor
         unit: kg
+        # Live pad reading (box + litter + waste standing load), so it is a
+        # measurement rather than a stable per-cat weight.
+        class: measurement
         mapping:
-          - scale: 0.1
+          # Raw value is in tenths of a kg (42 -> 4.2 kg, cloud-confirmed).
+          - scale: 10
   - entity: button
     icon: "mdi:heat-pump-outline"
     name: Manual clean
@@ -78,3 +116,69 @@ entities:
       - id: 9
         type: boolean
         name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  # DP21 notification bitfield, decoded into individual device states (no
+  # problem/alert semantics - the box going amber is routine, so leave any
+  # alerting to the user's automations). bit0 latches until the bin is reset.
+  - entity: binary_sensor
+    name: Bin full
+    icon: "mdi:tray-full"
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Cleaning
+    class: running
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          # bits 1|2 (mask 6): manual or auto rotation in progress.
+          - dps_val: 6
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: UV sterilizing
+    class: running
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 64
+            value: true
+          - value: false
+  # Raw notification code retained for any bits not yet decoded.
+  - entity: sensor
+    name: Notification code
+    icon: "mdi:bell-alert"
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        optional: true
