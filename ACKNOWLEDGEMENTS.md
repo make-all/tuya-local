@@ -111,7 +111,7 @@ Further device support has been made with the assistance of users. Please consid
 - [tientmit88](https://github.com/tientmit88) for contributing support for Moes motion sensor lights.
 - [chemicalstorm](https://github.com/chemicalstorm) for contributing support for Catit pixi 6-meal pet feeder.
 - [darki73](https://github.com/darki73) for contributing support for SHerko smart curtain motorss.
-- [Cyrelion](https://github.com/Cyrelion) for contributing support for Poolsana heat pump, BLE-YL01 water quality testers.
+- [Cyrelion](https://github.com/Cyrelion) for contributing support for Poolsana heat pump, BLE-YL01 water quality tester, Ledvance Smart+ Planon Magic light.
 - [tomassj9](https://github.com/tomassj9) for contributing support for Moes 3-gang switches.
 - [pdw-mb](https://github.com/pdw-mb) for contributing support for inow heater element with dual air and water temperature control.
 - [ianalexander](https://github.com/ianalexander) for contributing support for Zemismart roller shade, which was merged into loratap curtain switch config.
@@ -869,3 +869,8 @@ Further device support has been made with the assistance of users. Please consid
 - [Yevhen-Pechurin](https://github.com/Yevhen-Pechurin) for contributing support for Tervix Pro Line thermostat.
 - [Beersteak](https://github.com/Beersteak) for contributing support for Parkside PBB-A1 water timer.
 - [eldarsudden](https://github.com/eldarsudden) for contributing support for Teploluxe MCS350 thermostat.
+- [fribse](https://github.com/fribse) for contributing support for Qlima MS-AC 5002 air conditioner.
+- [fervillab](https://github.com/fervillab) for contributing support for Fercofloor FT2C10V fan coil thermostat.
+- [clem3109](https://github.com/clem3109) for contributing support for Varin VA-002 ceiling fan with light.
+- [Maztah](https://github.com/Maztah) for contributing support for Lidl Tronic solar power storage.
+- [peterrojs](https://github.com/peterrojs) for contributing improvements to the cover entity.
