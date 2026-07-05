@@ -1,0 +1,625 @@
+name: MPPT Solar Charge Controller HM
+products:
+  - id: 5idear0gjcqrbvno
+    manufacturer: Generic
+    model: HM-6069
+entities:
+  # DP 103: Total cumulative forward energy
+  # DP 118: MCU/Model info string
+  # DP 119: MAC address / Battery info string
+  - entity: sensor
+    name: Total Energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+      - id: 118
+        type: string
+        name: model
+      - id: 119
+        type: string
+        name: mac_address
+
+  # DP 102: Daily forward energy (resets daily)
+  - entity: sensor
+    name: Daily Energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total
+        mapping:
+          - scale: 100
+
+  # DP 6: Main system switch
+  - entity: switch
+    name: Main Switch
+    hidden: true
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+        optional: true
+
+  # DP 17: USB secondary switch
+  - entity: switch
+    name: USB
+    hidden: true
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+        optional: true
+
+  # DP 116: LED / Screen display toggle
+  - entity: switch
+    name: LED Display
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+        optional: true
+
+  # DP 14: Trigger device self-check
+  - entity: button
+    name: Self check
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: button
+        optional: true
+
+  # DP 16: Factory reset / Primary USB toggle
+  - entity: button
+    hidden: true
+    category: config
+    translation_key: factory_reset
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+        optional: true
+
+  # DP 120: Soft restart device
+  - entity: button
+    name: Refresh
+    dps:
+      - id: 120
+        type: boolean
+        name: button
+        optional: true
+
+  # DP 109: Save configuration values
+  - entity: button
+    name: Save value
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: button
+        optional: true
+
+  # DP 107: Read configuration values
+  - entity: button
+    name: Read value
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+        optional: true
+
+  # DP 15: Primary load switch
+  - entity: switch
+    name: Load
+    hidden: true
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+        optional: true
+
+  # DP 11: Maximum over-voltage threshold
+  - entity: number
+    name: Over-voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 11
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+
+  # DP 12: Minimum under-voltage threshold
+  - entity: number
+    name: Under-voltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 12
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+
+  # DP 110: Recovery voltage threshold after under-voltage protection
+  - entity: number
+    name: Recovery voltage
+    category: config
+    class: voltage
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+
+  # DP 117: Battery balance voltage
+  - entity: number
+    name: Balance voltage
+    category: config
+    class: voltage
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+
+  # DP 1: Charging profile selection
+  - entity: select
+    name: Charging method
+    hidden: true
+    category: config
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: mode_1
+            value: mode 1
+          - dps_val: mode_2
+            value: mode 2
+          - dps_val: mode_3
+            value: mode 3
+
+  # DP 3: Load voltage rating
+  - entity: number
+    name: Load voltage
+    hidden: true
+    category: config
+    class: voltage
+    dps:
+      - id: 3
+        type: integer
+        optional: true
+        name: value
+        unit: V
+        range:
+          min: 0
+          max: 9999
+        mapping:
+          - scale: 10
+
+  # DP 5: Load power rating
+  - entity: number
+    name: Load power
+    hidden: true
+    category: config
+    class: power
+    dps:
+      - id: 5
+        type: integer
+        optional: true
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 10000
+        mapping:
+          - scale: 10
+
+  # DP 8: Load operating mode
+  - entity: number
+    name: Load mode
+    hidden: true
+    category: config
+    dps:
+      - id: 8
+        type: string
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 9999
+
+  # DP 111: System battery voltage setting
+  - entity: select
+    name: Battery voltage
+    category: config
+    dps:
+      - id: 111
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: 12V
+            value: 12V
+          - dps_val: 24V
+            value: 24V
+          - dps_val: 36V
+            value: 36V
+          - dps_val: 48V
+            value: 48V
+          - dps_val: 60V
+            value: 60V
+          - dps_val: 72V
+            value: 72V
+          - dps_val: 96V
+            value: 96V
+          - dps_val: auto
+            value: auto
+          - dps_val: USER
+            value: User Custom
+
+  # DP 112: Battery chemistry type
+  - entity: select
+    name: Battery type
+    category: config
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: USE
+            value: Custom
+          - dps_val: FLD
+            value: Flooded
+          - dps_val: GEL
+            value: Gelled electrolyte
+          - dps_val: SLD
+            value: Sealed
+          - dps_val: Li
+            value: Lithium
+
+  # DP 113: Load timer (hours)
+  - entity: number
+    name: Load time
+    category: config
+    class: duration
+    mode: box
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+
+  # DP 114: Charging power limit
+  - entity: number
+    name: Charging power
+    category: config
+    mode: box
+    class: battery
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+
+  # DP 13: Over-current protection limit
+  - entity: number
+    name: Over-current protection
+    hidden: true
+    category: config
+    class: current
+    dps:
+      - id: 13
+        type: integer
+        optional: true
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 999
+        mapping:
+          - scale: 10
+
+  # DP 101: Current charging/battery power
+  - entity: sensor
+    name: Battery power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # DP 108: Internal device temperature
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+
+  # DP 2: Direct PV voltage reading
+  - entity: sensor
+    name: Photovoltaic voltage
+    hidden: true
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+
+  # DP 4: Secondary load current reading
+  - entity: sensor
+    name: Load current 2
+    hidden: true
+    class: current
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+
+  # DP 7: Fault bitfield (alarms and status)
+  - entity: binary_sensor
+    name: Problem
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: 64
+            value: false
+          - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code
+      - id: 7
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "No status"
+          - dps_val: 1
+            value: "Standby"
+          - dps_val: 2
+            value: "Bat_over-voltage"
+          - dps_val: 4
+            value: "Bat_under-voltage"
+          - dps_val: 8
+            value: "Pv_over-voltage"
+          - dps_val: 16
+            value: "Load_short-circuit"
+          - dps_val: 32
+            value: "Load_over-voltage"
+          - dps_val: 64
+            value: "Charging"
+          - dps_val: 128
+            value: "Discharging"
+
+  # DP 9: Total device runtime
+  - entity: sensor
+    name: Total runtime
+    hidden: true
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: h
+
+  # DP 10: Legacy total energy mapping
+  - entity: sensor
+    name: Total energy legacy
+    hidden: true
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+        unit: kWh
+        class: total
+        mapping:
+          - scale: 100
+
+  # --- Base64 Diagnostic Sensors ---
+  # DP 104: Base64 packed PV telemetry (Voltage, Current, Power)
+  - entity: sensor
+    name: PV voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: PV current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: PV power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 104
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+
+  # DP 105: Base64 packed Battery telemetry (Voltage, Current, SOC)
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery SOC
+    class: battery
+    dps:
+      - id: 105
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
+
+  # DP 106: Base64 packed Load telemetry (Voltage, Current, Power)
+  - entity: sensor
+    name: Load voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        force: true
+        class: measurement
+        mask: "FFFF00000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Load current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        class: measurement
+        mask: "0000FFFF0000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Load power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 106
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        class: measurement
+        mask: "00000000FFFF"
+        mapping:
+          - scale: 10
