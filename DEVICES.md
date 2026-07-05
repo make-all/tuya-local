@@ -1263,7 +1263,7 @@ port and password.
 - Frizzlife LP365P water monitor shut-off valve
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Gidrolock Standard water leak detection valve
-- Haozee water valve
+- Haozee water valve, and 12 valve sprinkler controller
 - Hoenyzy DN15 / DN20 / DN25 gas and water valve timers
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
