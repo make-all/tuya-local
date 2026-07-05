@@ -878,3 +878,4 @@ Further device support has been made with the assistance of users. Please consid
 - [h0me5k1n](https://github.com/h0me5k1n) for contributing support for Laresar L6 Nex vacuum.
 - [ProZsolt](https://github.com/ProZsolt) for contributing support for Olight Ostation 2.
 - [thayerfox](https://github.com/thayerfox) for contributing support for HOM Chernobyl aroma diffuser.
+- [tomgidden](https://github.com/tomgidden) for contributing support for Temprium PAC011 air conditioner.
