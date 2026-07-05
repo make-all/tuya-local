@@ -1,13 +1,8 @@
 name: Air conditioner
 products:
-  - id: smu5pc1ruzadfnuk
-    manufacturer: Meaco
-    model: Cirro+ 14000 BTU Inverter & Heater
-    model_id: CIRRO14000CHPRO
-  - id: sijcdtk46wa9uews
-    manufacturer: Meaco
-    model: Cirro+ 14000 BTU Inverter
-    model_id: CIRRO14000PRO
+  - id: kzdx8i4g0wms1vta
+    manufacturer: Temprium
+    model: PAC011
 entities:
   - entity: climate
     dps:
@@ -27,8 +22,8 @@ entities:
               - dps_val: Fan
                 value: fan_only
               - dps_val: Heat
-                available: support_heat
                 value: heat
+                available: support_heat
       - id: 2
         type: integer
         name: temperature
@@ -44,13 +39,16 @@ entities:
                   min: 61
                   max: 90
       - id: 3
+        # Firmware bug: on every sensor refresh this dp is rewritten with the
+        # Fahrenheit reading regardless of dp 19, while dp 24 always holds the
+        # Celsius reading. So read dp 24 in celsius mode, dp 3 in fahrenheit.
         type: integer
         name: current_temperature
         mapping:
           - constraint: temperature_unit
             conditions:
-              - dps_val: f
-                value_redirect: temp_current_f
+              - dps_val: c
+                value_redirect: temp_current_c
       - id: 4
         type: string
         name: mode
@@ -77,9 +75,10 @@ entities:
         type: string
         name: temperature_unit
         mapping:
+          - dps_val: c
+            value: C
           - dps_val: f
             value: F
-          - value: C
       - id: 23
         type: integer
         name: temp_set_f
@@ -89,7 +88,7 @@ entities:
           max: 90
       - id: 24
         type: integer
-        name: temp_current_f
+        name: temp_current_c
         optional: true
       - id: 101
         type: boolean
@@ -102,7 +101,6 @@ entities:
       - id: 103
         type: string
         name: support_heat
-        hidden: true
         mapping:
           - dps_val: C_H
             value: true
@@ -134,14 +132,6 @@ entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: lock
-    translation_key: child_lock
-    category: config
-    dps:
-      - id: 14
-        type: boolean
-        name: lock
-        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
