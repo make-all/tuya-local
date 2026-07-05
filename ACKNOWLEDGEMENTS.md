@@ -877,3 +877,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fuomag9](https://github.com/fuomag9) for contributing support for Chigo air conditioner.
 - [h0me5k1n](https://github.com/h0me5k1n) for contributing support for Laresar L6 Nex vacuum.
 - [ProZsolt](https://github.com/ProZsolt) for contributing support for Olight Ostation 2.
+- [thayerfox](https://github.com/thayerfox) for contributing support for HOM Chernobyl aroma diffuser.
