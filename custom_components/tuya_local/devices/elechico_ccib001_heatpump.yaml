@@ -4,14 +4,14 @@
 # Authoritative datapoint spec from Tuya IoT "Query Things Data Model"
 # (GET /v2.0/cloud/thing/<device_id>/model), 24 DPs total:
 #   1  switch            bool                     power on/off
-#   2  temp_set          value 3..45 °C step1     target temperature
-#   3  temp_current      value -40..200 °C  (ro)  inlet water temperature
+#   2  temp_set          value 3..45 °C step1     target temperature (°C)
+#   3  temp_current      value -40..200 °C  (ro)  inlet water temperature (°C)
 #   4  mode              enum [auto, heat, cool]  0-auto / 1-heat / 2-cool
 #   17 temp_unit_convert enum [c, f]
 #   20 fault             bitmap 14 bits:
 #      01 02 03 04 05 06 09 10 12 15 16 18 20 21
-#   25 temp_set_f        value 37..113 °F         mirror of 2
-#   26 temp_current_f    value -40..200 °F  (ro)  mirror of 3
+#   25 temp_set_f        value 37..113 °F         target temperature (°F)
+#   26 temp_current_f    value -40..200 °F  (ro)  inlet water temperature (°F)
 #   101..116  two schedule timers (timer1: 101-107,115 / timer2: 108-114,116):
 #     101/108 timerN enable (bool); 102-105/109-112 on-h,on-m,off-h,off-m;
 #     106/113 timer mode enum[auto,heat,cool]; 107/114 timer temp °C;
@@ -55,10 +55,33 @@ entities:
         range:
           min: 3
           max: 45
-        unit: C
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 37
+                  max: 113
+      - id: 25
+        type: integer
+        name: temp_set_f
+        optional: true
+        range:
+          min: 37
+          max: 113
       - id: 3
         type: integer
         name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 26
+        type: integer
+        name: temp_current_f
+        optional: true
       - id: 17
         type: string
         name: temperature_unit
@@ -68,7 +91,6 @@ entities:
           - dps_val: f
             value: F
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -79,11 +101,6 @@ entities:
           - dps_val: 0
             value: false
           - value: true
-  - entity: sensor
-    name: Fault code
-    category: diagnostic
-    icon: "mdi:alert-circle"
-    dps:
       - id: 20
         type: bitfield
-        name: sensor
+        name: fault_code
