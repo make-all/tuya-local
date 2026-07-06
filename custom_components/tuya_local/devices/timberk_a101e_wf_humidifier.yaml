@@ -46,7 +46,6 @@ entities:
       - id: 23
         type: string
         name: mode
-        translation_key: mode
         mapping:
           - dps_val: level_0
             value: off
@@ -56,7 +55,6 @@ entities:
             value: medium
           - dps_val: level_3
             value: high
-            
   - entity: sensor
     class: temperature
     dps:
@@ -65,7 +63,6 @@ entities:
         name: sensor
         unit: °C
         class: measurement
-
   - entity: sensor
     class: humidity
     dps:
@@ -74,7 +71,6 @@ entities:
         name: sensor
         unit: '%'
         class: measurement
-        
   - entity: switch
     translation_key: sleep
     category: config
@@ -82,7 +78,6 @@ entities:
       - id: 16
         type: boolean
         name: switch
-
   - entity: select
     translation_key: timer
     category: config
@@ -121,13 +116,7 @@ entities:
           - dps_val: 0
             value: false
           - dps_val: null
-            value: false
           - value: true
-      - id: 22
-        type: bitfield
-        optional: true
-        name: fault_code
-
   - entity: select
     translation_key: mode
     icon: "mdi:spray"
