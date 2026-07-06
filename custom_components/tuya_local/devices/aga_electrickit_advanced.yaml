@@ -62,22 +62,24 @@ entities:
       - id: 106
         type: boolean
         name: switch
-  # In the app this is the "24/7 timer"; a single control for both ovens.
+  # In the app this is the "24/7 timer" on/off; a single setting covering
+  # both ovens. The device rejects writes to this (self-reverts after ~2s)
+  # until a timer schedule has been configured in the app.
   - entity: switch
     translation_key: timer
     category: config
     dps:
-      - id: 107
+      - id: 108
         type: boolean
         name: switch
-  # Running state of the 24/7 timer. The device rejects turning this on
-  # (self-reverts after ~2s) unless dp 107 is enabled.
+  # Live output of the 24/7 timer: on when the timer is currently running
+  # the ovens, off during an off window.
   - entity: binary_sensor
-    name: Timer active
-    icon: "mdi:timer-play-outline"
+    name: Timer running
+    class: running
     category: diagnostic
     dps:
-      - id: 108
+      - id: 107
         type: boolean
         name: sensor
   # dps 156/157 are believed to relate to the optional vent fan, which was
