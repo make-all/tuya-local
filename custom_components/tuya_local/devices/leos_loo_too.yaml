@@ -39,24 +39,29 @@
 #                          the documented 4-bit model at all (a device add-on).
 #            "Cleaning" therefore matches bits 1|2 (mask 6) so it covers both
 #            manual and auto cleans. bit3 ("no_weight") was never observed and
-#            is left in the raw code sensor undecoded. All exposed as plain
-#            device states; alerting is left to the user's own automations.
-#   high   - remove DP7 "times used today" (code excretion_times_day): on the
-#            local protocol it always reads 1. It is a per-use event pulse that
-#            the Tuya cloud accumulates server-side (status_range report_type
-#            "sum") into a daily total; the local value never changes, so it is
-#            useless as a local sensor. (The dump in issue #1840 also shows =1.)
-#   medium - remove the DP16 "light" entity: it exists in the Tuya data model
-#            but is never reported on the local protocol, so it only ever
-#            stranded a permanently-unavailable entity.
+#            is left undecoded in the raw notification_code attribute (carried
+#            on the fault binary_sensor). All exposed as plain device states;
+#            alerting is left to the user's own automations.
+#   high   - DP7 "times used today" (excretion_times_day) reads a constant 1 on
+#            the local protocol: a per-use pulse the cloud sums server-side, so
+#            the local value never changes. Rather than remove it (orphaning the
+#            entity in existing installs) it is kept, and hidden when the dp is
+#            absent (available null-test + hidden: unavailable). #1840's dump
+#            shows =1 too.
+#   medium - DP16 "light" is never reported on the local protocol here. It
+#            shipped in the released config, so it is kept but marked
+#            hidden: true rather than removed (removal would orphan the entity).
 name: Leo's Loo Too
 products:
   - id: 1badzyvwh1e1hrog
     manufacturer: "Leo's Loo"
     model: Too
+  # Same physical Leo's Loo Too hardware, owner-confirmed - this unit just
+  # shipped carrying the MEET / Chinese-market firmware profile, which enrols
+  # under a different Tuya product id. Not a separate MEET-branded product.
   - id: kw4ztiq3kxmcf8dx
     manufacturer: "Leo's Loo"
-    model: Too (MEET)
+    model: Too (MEET firmware)
 entities:
   - entity: switch
     name: Power
@@ -97,6 +102,17 @@ entities:
       - id: 10
         name: switch
         type: boolean
+  # DP16 "light" is never reported on the local protocol here, but it shipped in
+  # the released config, so it is kept and simply hidden by default rather than
+  # removed - removing a released entity would orphan it in existing registries.
+  - entity: light
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+        optional: true
   - entity: number
     category: config
     name: Cleaning delay
@@ -127,6 +143,28 @@ entities:
         mapping:
           # Raw value is in tenths of a kg (42 -> 4.2 kg, cloud-confirmed).
           - scale: 10
+  # DP7 "times used today" (excretion_times_day) reads a constant 1 on the local
+  # protocol here - a per-use pulse the cloud sums server-side, so the local
+  # value never changes. It shipped in the released config and another variant
+  # may report it, so rather than remove it (which would orphan the entity in
+  # existing installs) it is kept, and hidden when the dp is absent.
+  - entity: sensor
+    name: Times used today
+    icon: "mdi:counter"
+    hidden: unavailable
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        optional: true
+      - id: 7
+        type: integer
+        name: available
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: button
     icon: "mdi:heat-pump-outline"
     name: Manual clean
@@ -136,7 +174,9 @@ entities:
         name: button
   # DP22 fault bitfield. Any non-zero bit -> problem; raw fault_code kept so the
   # specific bit can be decoded when one actually fires. (Tuya model labels,
-  # unverified here: bit0 motor, bit1 program, bit2 g_sensor.)
+  # unverified here: bit0 motor, bit1 program, bit2 g_sensor.) The raw DP21
+  # notification code rides along here as the notification_code attribute rather
+  # than as its own sensor - it is only useful for decoding any leftover bits.
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -151,6 +191,10 @@ entities:
       - id: 22
         type: bitfield
         name: fault_code
+      - id: 21
+        type: bitfield
+        name: notification_code
+        optional: true
   # DP21 notification bitfield, decoded into individual device states (no
   # problem/alert semantics - the box going amber is routine, so leave any
   # alerting to the user's automations). bit0 latches until the bin is reset.
@@ -196,13 +240,3 @@ entities:
           - dps_val: 64
             value: true
           - value: false
-  # Raw notification code retained for any bits not yet decoded.
-  - entity: sensor
-    name: Notification code
-    icon: "mdi:bell-alert"
-    category: diagnostic
-    dps:
-      - id: 21
-        type: bitfield
-        name: sensor
-        optional: true
