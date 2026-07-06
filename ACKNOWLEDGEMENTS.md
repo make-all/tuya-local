@@ -879,3 +879,5 @@ Further device support has been made with the assistance of users. Please consid
 - [ProZsolt](https://github.com/ProZsolt) for contributing support for Olight Ostation 2.
 - [thayerfox](https://github.com/thayerfox) for contributing support for HOM Chernobyl aroma diffuser.
 - [tomgidden](https://github.com/tomgidden) for contributing support for Temprium PAC011 air conditioner.
+- [MrSiJo](https://github.com/MrSiJo) for contributing improvements to Meaco Cirro air conditioner.
+- [saravanabalagi](https://github.com/saravanabalagi) for contributing support for EcoNour HTS-F305A 12 speed fan.

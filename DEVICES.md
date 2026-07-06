@@ -377,7 +377,7 @@
 - Duux Whisper Flex Ultimate
 - Dyras TF-16WIFI tower fan
 - Eberg Fyn tower fan
-- EcoNour 42" tower fan
+- EcoNour 42" 3-speed and 12-speed tower fans
 - Efenz Kith ceiling fan with light
 - Eglo 5 speed + sleep ceiling fan (with or without light and presets)
 - eLinkSmart KH-SY2626 pedestal fan
