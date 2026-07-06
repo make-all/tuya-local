@@ -1,0 +1,553 @@
+name: Battery charger
+products:
+  - id: 1fnensm6
+    manufacturer: Olight
+    model: Ostation 2
+  - id: v8znljza
+    manufacturer: Olight
+    model: Ostation 2
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Wake sensor sensitivity
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: switch
+    name: Pause schedule
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: time
+    name: Pause window start
+    category: config
+    dps:
+      - id: 112
+        name: hour
+        type: base64
+        optional: true
+        mask: "FF000000"
+      - id: 112
+        name: minute
+        type: base64
+        optional: true
+        mask: "00FF0000"
+  - entity: time
+    name: Pause window end
+    category: config
+    dps:
+      - id: 112
+        name: hour
+        type: base64
+        optional: true
+        mask: "0000FF00"
+      - id: 112
+        name: minute
+        type: base64
+        optional: true
+        mask: "000000FF"
+  - entity: binary_sensor
+    name: Invalid battery bin full
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: AA storage compartment full
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: AAA storage compartment full
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Fully charged count
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Invalid battery count
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+      - id: 113
+        type: integer
+        name: unknown_113
+  ######################################################################################################################################################
+  # Slot 3 (bytes 0–16)
+  ######################################################################################################################################################
+  - entity: sensor
+    name: AA slot 1 ID
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "FF00000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 1 chemistry
+    class: enum
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "00FF000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: Detecting
+          - dps_val: 1
+            value: Ni-MH
+  - entity: sensor
+    class: battery
+    name: AA slot 1 charge
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        mask: "0000FF0000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 1 charge time hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: h
+        optional: true
+        mask: "000000FF00000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 1 charge time min
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: min
+        optional: true
+        mask: "00000000FF000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  # Bytes 5–7 are unmapped zero when charging non Li-ion batteries
+  - entity: sensor
+    name: AA slot 1 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mV
+        optional: true
+        mask: "0000000000000000FFFF00000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 1 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mA
+        optional: true
+        mask: "00000000000000000000FFFF0000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - scale: 10
+      - id: 110  # Unknown purpose, added as an attribute for visibility
+        type: base64
+        name: byte12
+        optional: true
+        mask: "000000000000000000000000FF00000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
+
+  ######################################################################################################################################################
+  # Slot 4 (bytes 17–33)
+  ######################################################################################################################################################
+  - entity: sensor
+    name: AA slot 2 ID
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          FF00000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 2 chemistry
+    class: enum
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          00FF000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: Detecting
+          - dps_val: 1
+            value: Ni-MH
+  - entity: sensor
+    class: battery
+    name: AA slot 2 charge
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000FF0000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 2 charge time hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: h
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          000000FF00000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 2 charge time min
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: min
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          00000000FF000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  # Bytes 5–7 are unmapped zero when charging non Li-ion batteries
+  - entity: sensor
+    name: AA slot 2 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mV
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000FFFF00000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AA slot 2 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mA
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          00000000000000000000FFFF0000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - scale: 10
+      - id: 110  # Unknown purpose, added as an attribute for visibility
+        type: base64
+        name: byte12
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          000000000000000000000000FF00000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
+
+  ######################################################################################################################################################
+  # Slot 1 (bytes 34–50)
+  ######################################################################################################################################################
+  - entity: sensor
+    name: AAA slot 1 ID
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          FF00000000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 1 chemistry
+    class: enum
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00FF000000000000000000000000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: Detecting
+          - dps_val: 1
+            value: Ni-MH
+  - entity: sensor
+    class: battery
+    name: AAA slot 1 charge
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000FF0000000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 1 charge time hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: h
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          000000FF00000000000000000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 1 charge time min
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: min
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00000000FF000000000000000000000000\
+          0000000000000000000000000000000000"
+  # Bytes 5–7 are unmapped zero when charging non Li-ion batteries
+  - entity: sensor
+    name: AAA slot 1 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mV
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000FFFF00000000000000\
+          0000000000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 1 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mA
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00000000000000000000FFFF0000000000\
+          0000000000000000000000000000000000"
+        mapping:
+          - scale: 10
+      - id: 110  # Unknown purpose, added as an attribute for visibility
+        type: base64
+        name: byte12
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          000000000000000000000000FF00000000\
+          0000000000000000000000000000000000"
+  # Bytes 13–16 are unmapped zero when charging non Li-ion batteries
+
+  ######################################################################################################################################################
+  # Slot 2 (bytes 51–67)
+  ######################################################################################################################################################
+  - entity: sensor
+    name: AAA slot 2 ID
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          FF00000000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 2 chemistry
+    class: enum
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00FF000000000000000000000000000000"
+        mapping:
+          - dps_val: 0
+            value: Detecting
+          - dps_val: 1
+            value: Ni-MH
+  - entity: sensor
+    class: battery
+    name: AAA slot 2 charge
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: "%"
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000FF0000000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 2 charge time hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: h
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          000000FF00000000000000000000000000"
+  - entity: sensor
+    name: AAA slot 2 charge time min
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: min
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00000000FF000000000000000000000000"
+  # Bytes 5–7 are unmapped zero when charging non Li-ion batteries
+  - entity: sensor
+    name: AAA slot 2 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mV
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000FFFF00000000000000"
+  - entity: sensor
+    name: AAA slot 2 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: base64
+        name: sensor
+        unit: mA
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          00000000000000000000FFFF0000000000"
+        mapping:
+          - scale: 10
+      - id: 110  # Unknown purpose, added as an attribute for visibility
+        type: base64
+        name: byte12
+        optional: true
+        mask: "0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          0000000000000000000000000000000000\
+          000000000000000000000000FF00000000"
+          # Bytes 13–16 are unmapped zero when charging non Li-ion batteries

@@ -3,6 +3,9 @@ products:
   - id: thmj9wewi8yhouo4
     manufacturer: Linda Smart
     model: 7S
+  - id: 5hyl7fxwr0vgpod8
+    manufacturer: Genio
+    model: 3MP
 entities:
   - entity: event
     class: motion
@@ -36,8 +39,7 @@ entities:
         optional: true
         name: snapshot
   - entity: switch
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_detection
     category: config
     dps:
       - id: 240
@@ -361,3 +363,11 @@ entities:
             value: Wireless bell
           - dps_val: "3"
             value: "No bell"
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 250
+        type: boolean
+        optional: true
+        name: sensor
