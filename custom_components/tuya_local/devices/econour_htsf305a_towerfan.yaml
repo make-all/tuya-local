@@ -69,7 +69,21 @@ entities:
         type: integer
         name: sensor
         class: measurement
-        unit: C
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+      - id: 101
+        type: integer
+        name: temp_f
+      - id: 28
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: select
     translation_key: timer
     category: config
