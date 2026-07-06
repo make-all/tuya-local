@@ -110,6 +110,7 @@
 - Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
+- Chigo air conditioner
 - Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
@@ -151,7 +152,7 @@
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
-- Qlima SC 7035S air conditioner
+- Qlima SC 7035S and MS-AC 5002 air conditioners
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -163,6 +164,7 @@
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Teknopoint Idra Skiv air conditioner
+- Temprium PAC011 air conditioner
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heat pump
@@ -290,6 +292,7 @@
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
+- Fercofloor FT2C10V fan coil thermostat
 - Garza Aspen and (unknown model) thermostats
 - HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
@@ -326,6 +329,7 @@
 - SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
+- Teploluxe MCS350 thermostat
 - Tervix Pro Line thermostat
 - Thermoval TVT40 thermostat
 - TyloHelo SaunaLogic2 sauna controller
@@ -458,7 +462,7 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
-- Varin VA-E003 ceiling fan with light
+- Varin VA-E003 and VA-002 ceiling fans with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
@@ -559,6 +563,7 @@
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
+- Vibrix Dryflow 12 Pro dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
@@ -602,6 +607,7 @@
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
 - Haoyunma BD100 aroma diffuser
+- HOM Chernobyl humidifer aroma diffuser
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Revesien Q-Pro-W aroma diffuser
@@ -735,9 +741,11 @@
 - Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
+- Lidl Tronic solar power storage
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
+- Olight Ostation 2 battery charging station
 - Oscal PowerMax 6000 portable power station
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
@@ -925,7 +933,7 @@ of device.
 - Ion LED WiFi dimmer
 - iSparkle Curtain Micro Lights
 - Kojima motion sensor RGBCW nightlight
-- Ledvance Smart+ Planon panel light with backlight
+- Ledvance Smart+ Planon panel light with backlight and Smart+ Planon Magic light
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
@@ -1043,6 +1051,7 @@ of device.
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
+- Laresar L6 Nex vacuum cleaner
 - Lefant LS1 Pro, M213, N33, T700 vacuum cleaners
 - Lenovo E1 vacuum cleaner
 - Liectroux G7. XR500 vacuum cleaners
@@ -1256,7 +1265,7 @@ port and password.
 - Frizzlife LP365P water monitor shut-off valve
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Gidrolock Standard water leak detection valve
-- Haozee water valve
+- Haozee water valve, and 12 valve sprinkler controller
 - Hoenyzy DN15 / DN20 / DN25 gas and water valve timers
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
