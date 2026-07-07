@@ -141,6 +141,7 @@
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
+- Kibernetik 12K portable split air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
