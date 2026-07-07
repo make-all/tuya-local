@@ -881,3 +881,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tomgidden](https://github.com/tomgidden) for contributing support for Temprium PAC011 air conditioner.
 - [MrSiJo](https://github.com/MrSiJo) for contributing improvements to Meaco Cirro air conditioner.
 - [saravanabalagi](https://github.com/saravanabalagi) for contributing support for EcoNour HTS-F305A 12 speed fan.
+- [piotr-romanowski](https://github.com/piotr-romanowski) for contributing support for Fakro ARZ roof blind.
