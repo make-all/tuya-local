@@ -20,10 +20,10 @@ entities:
                 value: cool
               - dps_val: FAN
                 value: fan_only
+              # dp4 also lists HEAT, but this is a cool-only model (see dp110).
+              # Left out until a heat-capable model can confirm it.
               - dps_val: DRY
                 value: dry
-              - dps_val: HEAT
-                value: heat
       - id: 2
         name: temperature
         type: integer
@@ -79,7 +79,10 @@ entities:
           - dps_val: false
             value: "off"
       - id: 110
-        name: unknown_110
+        # "model" per Tuya data model; meaning of values unconfirmed.
+        # This cool-only 5-speed unit reports "0" - a heat-capable or
+        # 3-speed model may report differently (may gate heat/fan speeds).
+        name: model
         type: string
   - entity: select
     translation_key: temperature_unit
