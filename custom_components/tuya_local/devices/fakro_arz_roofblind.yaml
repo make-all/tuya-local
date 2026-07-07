@@ -3,7 +3,6 @@ products:
   - id: wj3t8r1dguccdryj
     manufacturer: Fakro
     model: ARZ Wi-Fi
-    name: Roof blind
 entities:
   # Only "position" (dp 2) is required for matching; everything else is
   # optional: true, because the device does not report all DPs in the first
@@ -52,6 +51,10 @@ entities:
       - id: 12
         type: bitfield
         name: fault_code
+        optional: true
+      - id: 103
+        type: boolean
+        name: service_flag
         optional: true
   - entity: binary_sensor
     class: moving
@@ -141,12 +144,4 @@ entities:
       - id: 104
         type: boolean
         name: switch
-        optional: true
-  - entity: binary_sensor
-    name: Service flag
-    category: diagnostic
-    dps:
-      - id: 103
-        type: boolean
-        name: sensor
         optional: true
