@@ -807,7 +807,7 @@ class TuyaDpsConfig:
                     return None
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
-                invert = cond.get("invert", result)
+                invert = cond.get("invert", invert)
                 redirect = cond.get("value_redirect", redirect)
                 mirror = cond.get("value_mirror", mirror)
                 target_range = cond.get("target_range", target_range)
