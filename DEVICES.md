@@ -183,6 +183,7 @@
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
+- EleChico CCIB001-CC1177D ice bath heat pump controller
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)

@@ -883,3 +883,4 @@ Further device support has been made with the assistance of users. Please consid
 - [saravanabalagi](https://github.com/saravanabalagi) for contributing support for EcoNour HTS-F305A 12 speed fan.
 - [piotr-romanowski](https://github.com/piotr-romanowski) for contributing support for Fakro ARZ roof blind.
 - [mco85](https://github.com/mco85) for contributing support for Kibernetik 12K portable air conditioner.
+- [barbalexs](https://github.com/barbalexs) for contributing support for EleChico CCIB001 ice bath heat pump controller.
