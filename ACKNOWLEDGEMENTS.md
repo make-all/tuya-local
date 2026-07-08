@@ -884,3 +884,4 @@ Further device support has been made with the assistance of users. Please consid
 - [piotr-romanowski](https://github.com/piotr-romanowski) for contributing support for Fakro ARZ roof blind.
 - [mco85](https://github.com/mco85) for contributing support for Kibernetik 12K portable air conditioner.
 - [barbalexs](https://github.com/barbalexs) for contributing support for EleChico CCIB001 ice bath heat pump controller.
+- [Rangzig93](https://github.com/Rangzig93) for contributing support for Airwoods fresh air heat pump.
