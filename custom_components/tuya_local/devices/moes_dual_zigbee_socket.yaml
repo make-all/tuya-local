@@ -1,0 +1,76 @@
+name: Moes Dual Zigbee Socket
+
+products:
+  - id: ph1joc22
+    manufacturer: Moes House
+    model: Tomada dupla Zigbee Soft
+
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 43200
+
+  - entity: time
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        optional: true
+        name: second
+        range:
+          min: 0
+          max: 43200
+
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "memory"
+            value: memory
+
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock
