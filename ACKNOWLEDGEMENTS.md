@@ -886,3 +886,4 @@ Further device support has been made with the assistance of users. Please consid
 - [barbalexs](https://github.com/barbalexs) for contributing support for EleChico CCIB001 ice bath heat pump controller.
 - [Rangzig93](https://github.com/Rangzig93) for contributing support for Airwoods fresh air heat pump.
 - [romainsc](https://github.com/romainsc) for contributing improvements to Teknopoint Idra Skiv.
+- [kcgthb](https://github.com/kcgthb) for contributing improvements to Petlibro PLAF203 pet feeder.
