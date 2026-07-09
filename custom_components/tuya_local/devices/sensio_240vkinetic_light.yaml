@@ -52,15 +52,13 @@ entities:
         type: boolean
         name: result
         optional: true
-  - entity: number
-    name: Countdown
+  - entity: time
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 105
         type: integer
-        name: value
-        unit: s
+        name: second
         range:
           min: 0
-          max: 86400
+          max: 86399
