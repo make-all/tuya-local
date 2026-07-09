@@ -969,6 +969,7 @@ of device.
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
+- Sensio 240V Kinetic Receiver dimmer
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
