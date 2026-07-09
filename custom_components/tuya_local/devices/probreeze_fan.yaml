@@ -3,6 +3,7 @@ products:
   - id: yrzylxax1qspdgpp
 entities:
   - entity: fan
+    translation_only_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -12,13 +13,13 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: normal
-            value: Manuell
+            value: normal
           - dps_val: rhythm
-            value: Nature
+            value: nature
           - dps_val: sleep
-            value: Ruhemodus
+            value: sleep
           - dps_val: smart
-            value: Auto
+            value: auto
       - id: 101
         type: boolean
         name: oscillate
@@ -29,26 +30,18 @@ entities:
           min: 1
           max: 6
   - entity: light
-    name: Display-Licht
+    name: Display light
     icon: "mdi:led-on"
     dps:
       - id: 106
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: true
-          - dps_val: true
-            value: false
+        invert: true
   - entity: switch
-    name: Ton
+    name: Sound
     icon: "mdi:volume-high"
     dps:
       - id: 28
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            value: true
-          - dps_val: true
-            value: false
+        invert: true
