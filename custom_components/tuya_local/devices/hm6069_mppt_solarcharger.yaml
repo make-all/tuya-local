@@ -1,14 +1,12 @@
-name: MPPT Solar Charge Controller HM
+name: MPPT solar charge controller 
 products:
   - id: 5idear0gjcqrbvno
-    manufacturer: Generic
     model: HM-6069
 entities:
   # DP 103: Total cumulative forward energy
   # DP 118: MCU/Model info string
   # DP 119: MAC address / Battery info string
   - entity: sensor
-    name: Total Energy
     class: energy
     category: diagnostic
     dps:
@@ -19,6 +17,10 @@ entities:
         class: total_increasing
         mapping:
           - scale: 10
+      - id: 10
+        type: string
+        name: legacy_total_energy
+        optional: true
       - id: 118
         type: string
         name: model
@@ -102,7 +104,7 @@ entities:
 
   # DP 109: Save configuration values
   - entity: button
-    name: Save value
+    name: Save settings
     category: config
     dps:
       - id: 109
@@ -133,9 +135,11 @@ entities:
 
   # DP 11: Maximum over-voltage threshold
   - entity: number
-    name: Over-voltage threshold
     category: config
     class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Over voltage   
     dps:
       - id: 11
         type: integer
@@ -150,9 +154,11 @@ entities:
 
   # DP 12: Minimum under-voltage threshold
   - entity: number
-    name: Under-voltage threshold
     category: config
     class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Under voltage
     dps:
       - id: 12
         type: integer
@@ -167,9 +173,11 @@ entities:
 
   # DP 110: Recovery voltage threshold after under-voltage protection
   - entity: number
-    name: Recovery voltage
     category: config
     class: voltage
+    translation_key: sensor_threshold
+    translation_placeholders:
+      sensor: Recovery voltage
     dps:
       - id: 110
         type: integer
@@ -471,21 +479,6 @@ entities:
         type: string
         name: sensor
         unit: h
-
-  # DP 10: Legacy total energy mapping
-  - entity: sensor
-    name: Total energy legacy
-    hidden: true
-    class: energy
-    category: diagnostic
-    dps:
-      - id: 10
-        type: string
-        name: sensor
-        unit: kWh
-        class: total
-        mapping:
-          - scale: 100
 
   # --- Base64 Diagnostic Sensors ---
   # DP 104: Base64 packed PV telemetry (Voltage, Current, Power)
