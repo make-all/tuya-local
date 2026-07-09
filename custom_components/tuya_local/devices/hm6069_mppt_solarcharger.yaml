@@ -21,6 +21,13 @@ entities:
         type: string
         name: legacy_total_energy
         optional: true
+      - id: 102
+        type: integer
+        name: daily
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
       - id: 118
         type: string
         name: model
@@ -28,19 +35,6 @@ entities:
         type: string
         name: mac_address
 
-  # DP 102: Daily forward energy (resets daily)
-  - entity: sensor
-    name: Daily Energy
-    class: energy
-    category: diagnostic
-    dps:
-      - id: 102
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total
-        mapping:
-          - scale: 100
 
   # DP 6: Main system switch
   - entity: switch
@@ -62,9 +56,9 @@ entities:
         name: switch
         optional: true
 
-  # DP 116: LED / Screen display toggle
-  - entity: switch
-    name: LED Display
+# DP 116: LED / Screen display toggle
+  - entity: light
+    translation_key: display
     category: config
     dps:
       - id: 116
