@@ -1,0 +1,60 @@
+name: Range hood
+products:
+  - id: tql6vskv9hlesoav
+    manufacturer: Hauslane
+    model: IN-R110
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 10
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: low
+            value: 25
+          - dps_val: middle
+            value: 50
+          - dps_val: high
+            value: 75
+          - dps_val: max
+            value: 100
+  - entity: light
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Delay shutoff
+    class: duration
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 5
+  - entity: sensor
+    name: Baffle filter
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Charcoal filter
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: h

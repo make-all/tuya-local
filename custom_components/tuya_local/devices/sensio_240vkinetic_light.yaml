@@ -1,0 +1,64 @@
+name: Dimmer
+products:
+  - id: azt4dppefleigvb0
+    manufacturer: Sensio
+    model: 240V Kinetic Receiver
+    model_id: SE780990
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: button
+    name: Pair
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+      - id: 103
+        type: boolean
+        name: result
+        optional: true
+  - entity: button
+    name: Clear
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+        optional: true
+      - id: 104
+        type: boolean
+        name: result
+        optional: true
+  - entity: time
+    translation_key: timer
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: second
+        range:
+          min: 0
+          max: 86399
