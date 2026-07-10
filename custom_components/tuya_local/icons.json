@@ -325,7 +325,6 @@
                             "high": "mdi:fan-speed-3",
                             "medium": "mdi:fan-speed-2",
                             "low": "mdi:fan-speed--1",
-                            "displayoff": "mdi:monitor-off",
                             "off": "mdi:fan-off"
                         }
                     }
@@ -424,6 +423,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "default": "mdi:fire"
+            },
             "manual_feed": {
                 "default": "mdi:food-drumstick"
             },
@@ -534,6 +536,14 @@
             "motion_sensitivity": {
                 "default": "mdi:motion-sensor"
             },
+            "night_vision": {
+                "default": "mdi:theme-light-dark",
+                "state": {
+                    "off": "mdi:weather-sunny",
+                    "on": "mdi:weather-night",
+                    "auto": "mdi:theme-light-dark"
+                }
+            },
             "recipe": {
                 "default": "mdi:nutrition",
                 "state": {
@@ -556,6 +566,13 @@
                     "cloud_recipe": "mdi:cloud-print",
                     "keep_warm": "mdi:heat-wave",
                     "preheat": "mdi:fire"
+                }
+            },
+            "recording_mode": {
+                "default": "mdi:file-video",
+                "state": {
+                    "event": "mdi:movie-open",
+                    "continuous": "mdi:record-rec"
                 }
             },
             "scene": {
@@ -933,6 +950,15 @@
             }
         },
         "switch": {
+            "empty_tank": {
+                "default": "mdi:water-minus"
+            },
+            "fill_tank": {
+                "default": "mdi:water-plus"
+            },
+            "timer": {
+                "default": "mdi:timer"
+            },
             "anti_frost": {
                 "default": "mdi:snowflake-melt"
             },
@@ -1041,6 +1067,15 @@
             },
             "snooze": {
                 "default": "mdi:alarm-snooze"
+            },
+            "watermark": {
+                "default": "mdi:watermark"
+            },
+            "motion_detection": {
+                "default": "mdi:motion-sensor",
+                "state": {
+                    "off": "mdi:motion-sensor-off"
+                }
             }
         },
         "text": {

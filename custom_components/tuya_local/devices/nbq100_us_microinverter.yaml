@@ -1,0 +1,65 @@
+name: Solar microinverter
+products:
+  - id: ndkye5yafr9dzv2a
+    manufacturer: Sukflow
+    model: NBQ800-US
+entities:
+  - entity: switch
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: voltage
+    name: PV Voltage
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: current
+    name: PV Current
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    name: AC Voltage
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: current
+    name: AC Current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    class: frequency
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: Hz

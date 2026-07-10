@@ -3,6 +3,9 @@ products:
   - id: fcldsaadc3hzf9ey
     manufacturer: Qiachip
     model: QI-FLRC-1
+  - id: 5raogifudllfxms4
+    manufacturer: Ostrich
+    model: Remote control kit
 entities:
   - entity: fan
     dps:
@@ -30,6 +33,7 @@ entities:
     dps:
       - id: 6
         name: option
+        optional: true
         type: string
         mapping:
           - dps_val: "0"
@@ -74,6 +78,7 @@ entities:
       - id: 7
         name: sensor
         type: integer
+        optional: true
         unit: min
   - entity: switch
     translation_key: sound
