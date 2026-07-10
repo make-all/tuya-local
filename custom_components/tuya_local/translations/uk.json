@@ -221,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Скидання фільтра"
+            },
+            "alarm_off": {
+                "name": "Будильник вимк"
+            },
+            "alarm_snooze": {
+                "name": "Будильник відкладення"
+            },
+            "alarm_x_reset": {
+                "name": "Будильник {x} скидання"
+            },
+            "radio_seek": {
+                "name": "Радіо пошук"
+            },
+            "radio_stop": {
+                "name": "Радіо зупинка"
             }
         },
         "climate": {
@@ -410,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Очиститель воздуха",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Авто",
+                            "manual": "Ручной",
+                            "sleep": "Сон",
+                            "low": "Низкий",
+                            "medium": "Средний",
+                            "high": "Высокий",
+                            "strong": "Сильный",
+                            "displayoff": "Дисплей выкл"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Ароматизатор",
                 "state_attributes": {
@@ -513,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Світло витяжки"
+            },
+            "color_light": {
+                "name": "Кольорове світло"
+            },
+            "ambient_light": {
+                "name": "Фонове світло"
             }
         },
         "lock": {
@@ -521,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Рівень полум'я"
+            },
             "manual_feed": {
                 "name": "Ручне годування"
             },
@@ -553,6 +594,18 @@
             },
             "leakage_current": {
                 "name": "Струм витоку"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Будильник {x} тривалість відкладення"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Будильник {x} час випередження підсвічування"
+            },
+            "radio_frequency": {
+                "name": "Радіо частота"
+            },
+            "snooze_duration": {
+                "name": "Тривалість відкладення"
             }
         },
         "select": {
@@ -630,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -664,6 +722,14 @@
                     "high": "Високий"
                 }
             },
+            "night_vision": {
+                "name": "Нічное видение",
+                "state": {
+                    "off": "Вимк",
+                    "on": "Увімк",
+                    "auto": "Авто"
+                }
+            },
             "recipe": {
                 "name": "Рецепт",
                 "state": {
@@ -690,6 +756,13 @@
                     "default": "За замовчуванням",
                     "keep_warm": "Підтримувати тепло",
                     "preheat": "Попередній нагрів"
+                }
+            },
+            "recording_mode": {
+                "name": "Режим записи",
+                "state": {
+                    "event": "Событие",
+                    "continuous": "Постоянный"
                 }
             },
             "scene": {
@@ -1006,6 +1079,71 @@
                     "red_bean_bread": "Червоний бобовий хліб",
                     "milk_toast": "Молочний тост"
                 }
+            },
+            "display_brightness": {
+                "name": "Яскравість дисплея",
+                "state": {
+                    "off": "Вимк",
+                    "day": "День",
+                    "night": "Ніч",
+                    "dim": "Тьмяний",
+                    "bright": "Яскравий",
+                    "auto": "Авто"
+                }
+            },
+            "seconds_dot": {
+                "name": "Крапка секунд",
+                "state": {
+                    "static": "Статичний",
+                    "blinking": "Блимає"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Будильник {x} режим відкладення",
+                "state": {
+                    "mute": "Вимкнути звук",
+                    "mute_light": "Вимкнути звук + світло",
+                    "light_only": "Вимкнути лише світло"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Будильник {x} звуковий ефект",
+                "state": {
+                    "normal": "Нормальний",
+                    "fade_in": "Наростання",
+                    "fade_out": "Затухання"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Будильник {x} режим підсвічування",
+                "state": {
+                    "no_light": "Без світла",
+                    "rainbow": "Веселка",
+                    "candle_flicker": "Мерехтіння свічки",
+                    "romantic_breath": "Романтичне дихання",
+                    "quiet_deep_sea": "Тихе глибоке море",
+                    "flowing_colors": "Плинні кольори",
+                    "magic_jungle": "Чарівні джунглі",
+                    "perfect_party": "Ідеальна вечірка",
+                    "sunrise_at_sea": "Схід сонця на морі",
+                    "dynamic_music": "Динамічна музика"
+                }
+            },
+            "snooze_action": {
+                "name": "Дія відкладення",
+                "state": {
+                    "sound_radio": "Звук + радіо",
+                    "light": "Світло",
+                    "radio": "Радіо",
+                    "radio_sound_light": "Радіо + звук + світло"
+                }
+            },
+            "time_format": {
+                "name": "Формат часу",
+                "state": {
+                    "12_hour": "12 годин",
+                    "24_hour": "24 години"
+                }
             }
         },
         "sensor": {
@@ -1186,9 +1324,36 @@
             },
             "leakage_current": {
                 "name": "Струм витоку"
+            },
+            "active_lights": {
+                "name": "Активне освітлення",
+                "state": {
+                    "all_off": "Все вимк",
+                    "night_on": "Нічне світло увімк",
+                    "color_on": "Кольорове світло увімк",
+                    "ambient_on": "Фонове світло увімк"
+                }
+            },
+            "wireless_charging": {
+                "name": "Статус бездротової зарядки",
+                "state": {
+                    "idle": "Вільний",
+                    "charging": "Заряджається",
+                    "full": "Повний",
+                    "foreign_object_detected": "Виявлено сторонній предмет"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "empty_tank": {
+                "name": "Опорожнити бак"
+            },
+            "fill_tank": {
+                "name": "Наповнити бак"
+            },
             "anti_frost": {
                 "name": "Протиморозний"
             },
@@ -1249,6 +1414,54 @@
             },
             "rangehood": {
                 "name": "Витяжка"
+            },
+            "alarm_x": {
+                "name": "Будильник {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Будильник {x} відкладення увімк"
+            },
+            "alarm_x_day_monday": {
+                "name": "Будильник {x} день 1-понеділок"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Будильник {x} день 2-вівторок"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Будильник {x} день 3-середа"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Будильник {x} день 4-четвер"
+            },
+            "alarm_x_day_friday": {
+                "name": "Будильник {x} день 5-п'ятниця"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Будильник {x} день 6-субота"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Будильник {x} день 7-неділя"
+            },
+            "music_playback": {
+                "name": "Відтворення музики"
+            },
+            "network_time": {
+                "name": "Синхронізація мережевого часу"
+            },
+            "night_mode": {
+                "name": "Нічний режим"
+            },
+            "radio": {
+                "name": "Радіо"
+            },
+            "snooze": {
+                "name": "Відкладення"
+            },
+            "motion_detection": {
+                "name": "Виявлення руху"
+            },
+            "watermark": {
+                "name": "Водяной знак"
             }
         },
         "text": {
@@ -1260,6 +1473,15 @@
             },
             "schedule": {
                 "name": "Розклад"
+            },
+            "alarm_settings": {
+                "name": "Будильник налаштування"
+            },
+            "sleep_settings": {
+                "name": "Налаштування сну"
+            },
+            "station_list": {
+                "name": "Список станцій"
             }
         },
         "time": {
@@ -1274,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Таймер {x}"
+            },
+            "alarm_x_time": {
+                "name": "Будильник {x} час"
+            },
+            "clock_time": {
+                "name": "Час годинника"
             }
         },
         "valve": {
@@ -1290,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Гаряча вода"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Будильник {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Нічого",
+                            "birds": "Птахи",
+                            "sea": "Море",
+                            "valley": "Долина",
+                            "piano": "Піаніно",
+                            "soft": "М'який",
+                            "phone": "Телефон",
+                            "beep": "Сигнал",
+                            "radio": "Радіо"
+                        }
+                    }
+                }
             }
         }
     }

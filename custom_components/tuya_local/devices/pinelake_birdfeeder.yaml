@@ -4,7 +4,24 @@ products:
     manufacturer: Pinelake
     model: BF002
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: switch_camera_record, switch_motion_detection  # 2026-06-08
     dps:
       - id: 150
         name: record
@@ -70,9 +87,8 @@ entities:
         optional: true
         force: true
   - entity: switch
-    name: OSD watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -80,20 +96,19 @@ entities:
         optional: true
         force: true
   - entity: select
-    name: Night vision
+    translation_key: night_vision
     category: config
-    icon: "mdi:theme-light-dark"
     dps:
       - id: 108
         type: string
         name: option
         mapping:
           - dps_val: "0"
-            value: "Auto"
+            value: "auto"
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
         optional: true
         force: true
   - entity: select

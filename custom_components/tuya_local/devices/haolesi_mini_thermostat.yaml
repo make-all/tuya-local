@@ -1,0 +1,120 @@
+name: Thermostat
+products:
+  - id: k5hu1er7silr7miw
+    manufacturer: HaoLeSi
+    model: Mini
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: comf
+            value: comfort
+          - dps_val: eco
+            value: eco
+          - dps_val: frost
+            value: away
+          - dps_val: prog
+            value: program
+          - dps_val: boost
+            value: boost
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 7
+          max: 30
+      - id: 24
+        type: integer
+        name: current_temperature
+      - id: 104
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            value: heating
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -5
+          max: 5
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 53
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    name: Boost time
+    category: config
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 8
+  - entity: select
+    name: High temperature protection
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: htemp1
+            value: Level 1
+          - dps_val: htemp2
+            value: Level 2
+          - dps_val: htemp3
+            value: Level 3
+  - entity: select
+    name: Open window detection
+    translation_key: timer
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "60"
+            value: "60m"
+          - dps_val: "90"
+            value: "1h30m"

@@ -4,7 +4,40 @@ products:
     manufacturer: EMOS
     model: IP-300
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: switch_record, switch_motion_detection, event_motion
     dps:
       - id: 134
         type: boolean
@@ -47,8 +80,7 @@ entities:
             value: false
             hidden: true
   - entity: switch
-    name: Timestamp
-    icon: "mdi:clock-outline"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -75,8 +107,7 @@ entities:
           - dps_val: "2"
             value: high
   - entity: select
-    name: Nightvision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -85,14 +116,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
-          - dps_val: null
-            value: Unknown
-            hidden: true
+            value: "on"
   - entity: sensor
     name: SD status
     class: enum
@@ -206,8 +234,7 @@ entities:
           min: 20
           max: 100
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -216,9 +243,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
           - dps_val: null
             value: null
   - entity: siren

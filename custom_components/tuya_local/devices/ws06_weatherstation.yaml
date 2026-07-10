@@ -1,0 +1,570 @@
+name: Weather station
+products:
+  - id: q6fgexhltimjtyow
+    model: WS06-T1-3S
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: text
+    name: Temperature calibration
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 102
+        type: string
+        name: value
+  - entity: text
+    name: Humidity calibration
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 106
+        type: string
+        name: value
+  - entity: sensor
+    name: Sensor 1 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "100000000"
+        name: available
+  - entity: sensor
+    name: Sensor 1 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "100000000"
+        name: available
+  - entity: sensor
+    name: Sensor 1 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 107
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "100000000"
+        name: available
+  - entity: sensor
+    name: Sensor 2 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "010000000"
+        name: available
+  - entity: sensor
+    name: Sensor 2 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "010000000"
+        name: available
+  - entity: sensor
+    name: Sensor 2 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 112
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "010000000"
+        name: available
+  - entity: event
+    name: Temperature alarm
+    dps:
+      - id: 110
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 110
+        type: string
+        optional: true
+        name: data
+  - entity: event
+    name: Humidity alarm
+    dps:
+      - id: 111
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 111
+        type: string
+        optional: true
+        name: data
+  - entity: sensor
+    name: Sensor 3 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "001000000"
+        name: available
+  - entity: sensor
+    name: Sensor 3 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "001000000"
+        name: available
+  - entity: sensor
+    name: Sensor 3 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 117
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "001000000"
+        name: available
+  - entity: sensor
+    name: Sensor 4 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 118
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000100000"
+        name: available
+  - entity: sensor
+    name: Sensor 4 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 119
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000100000"
+        name: available
+  - entity: sensor
+    name: Sensor 4 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 122
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000100000"
+        name: available
+  - entity: sensor
+    name: Sensor 5 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000010000"
+        name: available
+  - entity: sensor
+    name: Sensor 5 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 124
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000010000"
+        name: available
+  - entity: sensor
+    name: Sensor 5 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 127
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000010000"
+        name: available
+  - entity: sensor
+    name: Sensor 6 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 128
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000001000"
+        name: available
+  - entity: sensor
+    name: Sensor 6 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 129
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000001000"
+        name: available
+  - entity: sensor
+    name: Sensor 6 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 132
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000001000"
+        name: available
+  - entity: sensor
+    name: Sensor 7 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 133
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000000100"
+        name: available
+  - entity: sensor
+    name: Sensor 7 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 134
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000000100"
+        name: available
+  - entity: sensor
+    name: Sensor 7 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 137
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000000100"
+        name: available
+  - entity: sensor
+    name: Sensor 8 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 138
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000000010"
+        name: available
+  - entity: sensor
+    name: Sensor 8 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000000010"
+        name: available
+  - entity: sensor
+    name: Sensor 8 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 142
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000000010"
+        name: available
+  - entity: sensor
+    name: Sensor 9 temperature
+    class: temperature
+    hidden: unavailable
+    dps:
+      - id: 146
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 105
+        type: hex
+        mask: "000000001"
+        name: available
+  - entity: sensor
+    name: Sensor 9 humidity
+    class: humidity
+    hidden: unavailable
+    dps:
+      - id: 147
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 105
+        type: hex
+        mask: "000000001"
+        name: available
+  - entity: sensor
+    name: Sensor 9 battery
+    class: battery
+    hidden: unavailable
+    dps:
+      - id: 150
+        type: string
+        optional: true
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: middle
+            value: 50
+          - dps_val: low
+            value: 20
+      - id: 105
+        type: hex
+        mask: "000000001"
+        name: available
+  - entity: text
+    name: Device status
+    category: config
+    hidden: true
+    dps:
+      - id: 143
+        type: string
+        name: value
+  - entity: select
+    name: Pairing
+    icon: "mdi:access-point"
+    category: config
+    dps:
+      - id: 144
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: finish
+            value: Finish

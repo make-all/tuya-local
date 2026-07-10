@@ -131,13 +131,17 @@ entities:
     dps:
       - id: 15
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 15
         type: bitfield
+        optional: true
         name: fault_code
   - entity: sensor
     name: Inlet temperature

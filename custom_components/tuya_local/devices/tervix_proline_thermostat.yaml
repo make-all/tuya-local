@@ -1,0 +1,183 @@
+name: Thermostat
+products:
+  - id: tervixwf11413000
+    manufacturer: Tervix
+    model: Pro Line WiFi
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool_mode
+                value: cool
+              - dps_val: heat_mode
+                value: heat
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: program
+            value: program
+          - dps_val: manual
+            value: manual
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: Warming
+            value: idle
+          - dps_val: working
+            constraint: mode
+            conditions:
+              - dps_val: cool_mode
+                value: cooling
+              - dps_val: heat_mode
+                value: heating
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 150
+          max: 250
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 25
+        type: integer
+        name: current_humidity
+      - id: 102
+        name: mode
+        type: string
+        hidden: true
+  - entity: switch
+    name: Open window detection
+    category: config
+    icon: "mdi:window-open-variant"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -9
+          max: 9
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        optional: true
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor selection
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+          - dps_val: all
+            value: Both
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: close
+            value: false
+          - dps_val: open
+            value: true
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        name: fault_code
+        optional: true
+        type: bitfield
+  - entity: number
+    translation_key: maximum_temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 350
+          max: 950
+  - entity: number
+    name: Floor minimum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: 100
+          max: 300
+        unit: C
