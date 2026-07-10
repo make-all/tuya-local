@@ -19,15 +19,6 @@ entities:
           - dps_val: "CloseCharging"
             value: false
 
-  - entity: light
-    translation_key: backlight
-    category: config
-    dps:
-      - id: 18
-        name: switch
-        type: boolean
-        optional: true
-
   - entity: number
     class: current
     category: config
@@ -36,11 +27,32 @@ entities:
         name: value
         type: integer
         optional: true
+        unit: A
         range:
           min: 8
           max: 16
-        unit: A
+        mapping:
+          - constraint: max_current
+            conditions:
+              - dps_val: "Max32A"
+                value_redirect: value_32a
+                range:
+                  min: 8
+                  max: 32
 
+      - id: 115
+        name: value_32a
+        type: integer
+        optional: true
+        unit: A
+        range:
+          min: 8
+          max: 32
+
+      - id: 113
+        name: max_current
+        type: string
+        optional: true
   - entity: number
     name: Delayed start
     icon: "mdi:timer-sand"
@@ -70,7 +82,7 @@ entities:
         unit: h
 
   - entity: sensor
-    name: Mains voltage
+    name: Voltage phase 1
     class: voltage
     dps:
       - id: 102
@@ -79,7 +91,32 @@ entities:
         optional: true
         unit: V
         class: measurement
-
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage phase 2
+    class: voltage
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage phase 3
+    class: voltage
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Current phase 1
     class: current
@@ -90,53 +127,56 @@ entities:
         optional: true
         unit: A
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Current phase 2
     class: current
-    dps:
-      - id: 103
-        name: sensor
-        type: integer
-        optional: true
-        unit: A
-        class: measurement
-
-  - entity: sensor
-    name: Current phase 3
-    class: current
-    dps:
-      - id: 104
-        name: sensor
-        type: integer
-        optional: true
-        unit: A
-        class: measurement
-
-  - entity: sensor
-    name: Active power
-    class: power
     dps:
       - id: 106
         name: sensor
         type: integer
         optional: true
-        unit: W
+        unit: A
         class: measurement
-
+        mapping:
+          - scale: 10
   - entity: sensor
-    name: Charging session energy
-    class: energy_storage
-    icon: "mdi:battery-charging-100"
+    name: Current phase 3
+    class: current
     dps:
       - id: 107
         name: sensor
         type: integer
         optional: true
-        unit: kWh
+        unit: A
         class: measurement
         mapping:
-          - scale: 100
+          - scale: 10
+  - entity: sensor
+    name: Active power
+    class: power
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        optional: true
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Charging session energy
+    class: energy
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        optional: true
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
 
   - entity: sensor
     name: Internal temperature
@@ -205,18 +245,6 @@ entities:
         name: sensor
         type: string
         optional: true
-
-  - entity: sensor
-    class: energy
-    dps:
-      - id: 109
-        name: sensor
-        type: integer
-        optional: true
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
 
   - entity: sensor
     name: Phase type

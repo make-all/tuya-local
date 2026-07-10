@@ -146,10 +146,6 @@ entities:
         type: string
         optional: true
         name: path_data
-      - id: 15
-        type: string
-        optional: true
-        name: command_trans
       - id: 28
         type: bitfield
         name: error
@@ -539,3 +535,13 @@ entities:
             value: kit_lidar
           - dps_val: 536870912
             value: kit_water_pump
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true

@@ -99,12 +99,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
 
         self._init_end(dps_map)
 
-        # Disable HA's backwards compatibility auto creation of turn_on/off
-        # we explicitly define our own so this should have no effect, but
-        # the deprecation notices in HA use this flag rather than properly
-        # checking whether we are falling back on the auto-generation.
-        self._enable_turn_on_off_backwards_compatibility = False
-
         if self._fan_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:
@@ -275,26 +269,24 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._temperature_dps is None:
             raise NotImplementedError()
 
-        async with self._device.set_lock:
-            await self._temperature_dps.async_set_value(
-                self._device,
-                target_temperature,
-            )
+        await self._temperature_dps.async_set_value(
+            self._device,
+            target_temperature,
+        )
 
     async def async_set_target_temperature_range(self, low, high):
         """Set the target temperature range."""
-        async with self._device.set_lock:
-            dps_map = {}
-            if low is not None and self._temp_low_dps is not None:
-                dps_map.update(
-                    self._temp_low_dps.get_values_to_set(self._device, low, dps_map),
-                )
-            if high is not None and self._temp_high_dps is not None:
-                dps_map.update(
-                    self._temp_high_dps.get_values_to_set(self._device, high, dps_map),
-                )
-            if dps_map:
-                await self._device.async_set_properties(dps_map)
+        dps_map = {}
+        if low is not None and self._temp_low_dps is not None:
+            dps_map.update(
+                self._temp_low_dps.get_values_to_set(self._device, low, dps_map),
+            )
+        if high is not None and self._temp_high_dps is not None:
+            dps_map.update(
+                self._temp_high_dps.get_values_to_set(self._device, high, dps_map),
+            )
+        if dps_map:
+            await self._device.async_set_properties(dps_map)
 
     @property
     def current_temperature(self):
@@ -335,13 +327,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._humidity_dps is None:
             raise NotImplementedError()
 
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting humidity to %s",
-                self._config.config_id,
-                humidity,
-            )
-            await self._humidity_dps.async_set_value(self._device, humidity)
+        _LOGGER.info(
+            "%s setting humidity to %s",
+            self._config.config_id,
+            humidity,
+        )
+        await self._humidity_dps.async_set_value(self._device, humidity)
 
     @property
     def current_humidity(self):
@@ -396,22 +387,20 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Set new HVAC mode."""
         if self._hvac_mode_dps is None:
             raise NotImplementedError()
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting HVAC mode to %s",
-                self._config.config_id,
-                hvac_mode,
-            )
-            await self._hvac_mode_dps.async_set_value(self._device, hvac_mode)
+        _LOGGER.info(
+            "%s setting HVAC mode to %s",
+            self._config.config_id,
+            hvac_mode,
+        )
+        await self._hvac_mode_dps.async_set_value(self._device, hvac_mode)
 
     async def async_turn_on(self):
         """Turn on the climate device."""
         # Bypass the usual dps mapping to switch the power dp directly
         # this way the hvac_mode will be kept when toggling off and on.
         if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
-            async with self._device.set_lock:
-                _LOGGER.info("%s turning on", self._config.config_id)
-                await self._device.async_set_property(self._hvac_mode_dps.id, True)
+            _LOGGER.info("%s turning on", self._config.config_id)
+            await self._device.async_set_property(self._hvac_mode_dps.id, True)
         else:
             await super().async_turn_on()
 
@@ -420,12 +409,11 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         # Bypass the usual dps mapping to switch the power dp directly
         # this way the hvac_mode will be kept when toggling off and on.
         if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
-            async with self._device.set_lock:
-                _LOGGER.info("%s turning off", self._config.config_id)
-                await self._device.async_set_property(
-                    self._hvac_mode_dps.id,
-                    False,
-                )
+            _LOGGER.info("%s turning off", self._config.config_id)
+            await self._device.async_set_property(
+                self._hvac_mode_dps.id,
+                False,
+            )
         else:
             await super().async_turn_off()
 
@@ -434,6 +422,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the current preset mode."""
         if self._preset_mode_dps is None:
             raise NotImplementedError()
+
         return self._preset_mode_dps.get_value(self._device)
 
     @property
@@ -446,13 +435,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Set the preset mode."""
         if self._preset_mode_dps is None:
             raise NotImplementedError()
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting preset mode to %s",
-                self._config.config_id,
-                preset_mode,
-            )
-            await self._preset_mode_dps.async_set_value(self._device, preset_mode)
+        _LOGGER.info(
+            "%s setting preset mode to %s",
+            self._config.config_id,
+            preset_mode,
+        )
+        await self._preset_mode_dps.async_set_value(self._device, preset_mode)
 
     @property
     def swing_mode(self):
@@ -471,13 +459,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Set the preset mode."""
         if self._swing_mode_dps is None:
             raise NotImplementedError()
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting swing mode to %s",
-                self._config.config_id,
-                swing_mode,
-            )
-            await self._swing_mode_dps.async_set_value(self._device, swing_mode)
+        _LOGGER.info(
+            "%s setting swing mode to %s",
+            self._config.config_id,
+            swing_mode,
+        )
+        await self._swing_mode_dps.async_set_value(self._device, swing_mode)
 
     @property
     def swing_horizontal_mode(self):
@@ -496,16 +483,15 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Set the preset mode."""
         if self._swing_horizontal_mode_dps is None:
             raise NotImplementedError()
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting horizontal swing mode to %s",
-                self._config.config_id,
-                swing_mode,
-            )
-            await self._swing_horizontal_mode_dps.async_set_value(
-                self._device,
-                swing_mode,
-            )
+        _LOGGER.info(
+            "%s setting horizontal swing mode to %s",
+            self._config.config_id,
+            swing_mode,
+        )
+        await self._swing_horizontal_mode_dps.async_set_value(
+            self._device,
+            swing_mode,
+        )
 
     @property
     def fan_mode(self):
@@ -524,10 +510,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Set the fan mode."""
         if self._fan_mode_dps is None:
             raise NotImplementedError()
-        async with self._device.set_lock:
-            _LOGGER.info(
-                "%s setting fan mode to %s",
-                self._config.config_id,
-                fan_mode,
-            )
-            await self._fan_mode_dps.async_set_value(self._device, fan_mode)
+        _LOGGER.info(
+            "%s setting fan mode to %s",
+            self._config.config_id,
+            fan_mode,
+        )
+        await self._fan_mode_dps.async_set_value(self._device, fan_mode)

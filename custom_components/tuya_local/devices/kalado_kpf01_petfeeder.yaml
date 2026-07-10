@@ -1,0 +1,114 @@
+name: Pet feeder
+products:
+  - id: xmpy4utews9k3waf
+    manufacturer: Kalado
+    model: KPF01
+entities:
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      - id: 1
+        type: base64
+        optional: true
+        name: value
+  - entity: number
+    translation_key: manual_feed
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 20
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: battery_charging
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+  - entity: event
+    name: Feed report
+    dps:
+      - id: 15
+        type: integer
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: error
+          - dps_val: null
+            value: null
+          - value: fed
+      - id: 15
+        type: integer
+        optional: true
+        name: portions
+  - entity: light
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: plug
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_adapter
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: power
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: ac_power_on
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Eco mode
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: eco_mode
+            value: true
+          - value: false
