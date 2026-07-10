@@ -1,0 +1,326 @@
+name: Litter box
+products:
+  - id: kisutga2hd061a39
+    manufacturer: Cecotec
+    model: Pumba 8000/8500 CleanKitty
+entities:
+  - entity: sensor
+    name: Cat weight
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: g
+        class: measurement
+  - entity: sensor
+    name: Daily toilet count
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: measurement
+  - entity: sensor
+    name: Daily duration
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: switch
+    name: Deodorization
+    icon: "mdi:flower"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    name: Clean
+    icon: "mdi:vacuum"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Empty
+    icon: "mdi:delete-empty"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Waste drawer
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: switch
+    translation_key: auto_clean
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: text
+    name: Clean schedule
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 106
+        type: base64
+        optional: true
+        name: value
+      - id: 107
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    name: Scheduled clean
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 107
+        type: boolean
+        optional: true
+        name: switch
+  - entity: text
+    # Not sure this is correct. Tuya info says "Clean taste"
+    # Chinese description is "Version info"
+    name: Clean check schedule
+    category: config
+    translation_key: schedule
+    hidden: true
+    dps:
+      - id: 108
+        type: base64
+        optional: true
+        name: value
+      - id: 109
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    name: Scheduled clean check
+    icon: "mdi:calendar-clock"
+    category: config
+    hidden: true
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: text
+    name: Do not disturb schedule
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: base64
+        optional: true
+        name: value
+  - entity: light
+    name: Infrared
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Toilet notifications
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Waste drawer reset
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock
+  - entity: button
+    name: Weight calibration
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        optional: true
+        name: button
+      - id: 116
+        type: boolean
+        optional: true
+        name: unit
+        # spec unknown, seems to be null in logs
+  - entity: number
+    name: Auto clean delay
+    category: config
+    class: duration
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Auto clean minimum interval
+    category: config
+    class: duration
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  - entity: switch
+    name: Waste full notification
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Instant deodorization
+    icon: "mdi:flower"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Smart clean
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Usage
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+  - entity: number
+    name: Waste capacity calibration
+    category: config
+    icon: "mdi:delete-restore"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Sand calibration
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 6
+  - entity: switch
+    name: Auto deodorization
+    icon: "mdi:flower"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: number
+    name: Detection sensitivity
+    category: config
+    icon: "mdi:cat"
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 600
+          max: 1500
+  - entity: number
+    name: "No explanation"
+    category: config
+    hidden: true
+    dps:
+      - id: 128
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 999999

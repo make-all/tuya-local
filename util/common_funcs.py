@@ -32,8 +32,9 @@ def representation(dp):
     if dp.type is bool:
         return True
     if dp.type is int:
-        if dp._config.get(range):
-            return dp._config.get(range)["min"]
+        range_spec = dp._config.get("range")
+        if isinstance(range_spec, dict) and "min" in range_spec:
+            return range_spec["min"]
         return 0
     if dp.type is str:
         return ""

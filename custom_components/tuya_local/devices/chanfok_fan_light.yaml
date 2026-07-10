@@ -3,6 +3,9 @@ products:
   - id: tvtzgei8bgaezsvi
     manufacturer: Chanfok
     model: JST-DC-WYfen
+  - id: ai0giftld7pr1wbv
+    manufacturer: Siguro
+    model: SGR-FL-C100W
 entities:
   - entity: fan
     translation_only_key: fan_with_presets
@@ -67,3 +70,25 @@ entities:
       - id: 66
         type: boolean
         name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    hidden: unavailable
+    dps:
+      - id: 64
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 480
+      - id: 64
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
