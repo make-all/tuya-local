@@ -5,22 +5,17 @@ products:
     model: SmartLux
 entities:
   - entity: light
-    name: exterior
+    name: Exterior
     dps:
-      # Schalter
       - id: 102
         name: switch
         type: boolean
-
-      # Helligkeit
       - id: 104
         name: brightness
         type: integer
         range:
           min: 10
           max: 1000
-
-      # Farbtemperatur
       - id: 105
         name: color_temp
         type: integer
@@ -33,22 +28,18 @@ entities:
               max: 6500
 
   - entity: light
-    name: interior
+    name: Interior
     dps:
-      # Schalter
       - id: 20
         name: switch
         type: boolean
-
       - id: 22
         name: brightness
         type: integer
         range:
           min: 10
           max: 1000
-
-      # Farbtemperatur
-      - id: 23 # should be 105 but buggy
+      - id: 23
         name: color_temp
         type: integer
         range:
