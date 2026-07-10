@@ -153,7 +153,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             and self._position_dp
         ):
             setpos = self._position_dp.get_value(self._device)
-            if setpos == pos:
+            if setpos is not None and abs(setpos - pos) <= 2:
                 # if the current position is around the set position,
                 # which is not closed, then we want is_closed to return
                 # false, so HA gets the full state from position.

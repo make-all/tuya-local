@@ -3,6 +3,9 @@ name: RGBCW lightbulb
 #   - id: UNKNOWN
 #     manufacturer: Xinled
 #     model: XLD-CL002
+#   - id: UNKNOWN
+#     manufacturer: Ledvance
+#     model: SMART+ WiFi Wide Brick RGB
 entities:
   - entity: light
     dps:
@@ -73,6 +76,23 @@ entities:
         range:
           min: 0
           max: 86400
+  - entity: switch
+    translation_key: do_not_disturb
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: text
     translation_key: scene
     category: config

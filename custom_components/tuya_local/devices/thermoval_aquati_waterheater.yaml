@@ -23,10 +23,35 @@ entities:
                 value: eco
               - dps_val: Turbo
                 value: performance
+              - dps_val: [jiheat, yuyue]
+                value_redirect: power_level
+                available: new_firmware
       - id: 2
         type: string
         name: work_mode
         hidden: true
+      - id: 2
+        type: string
+        name: orig_firmware
+        hidden: true
+        mapping:
+          - dps_val: Manual
+            value: true
+          - dps_val: Eco
+            value: true
+          - dps_val: Turbo
+            value: true
+          - value: false
+      - id: 2
+        type: string
+        name: new_firmware
+        hidden: true
+        mapping:
+          - dps_val: jiheat
+            value: true
+          - dps_val: yuyue
+            value: true
+          - value: false
       - id: 9
         type: integer
         name: temperature
@@ -39,6 +64,26 @@ entities:
       - id: 10
         type: integer
         name: current_temperature
+      - id: 101
+        type: string
+        optional: true
+        name: power_level
+        mapping:
+          - dps_val: "700W_800W"
+            constraint: operation_mode
+            conditions:
+              - dps_val: true
+                value: eco
+          - dps_val: "1200W_1300W"
+            constraint: operation_mode
+            conditions:
+              - dps_val: true
+                value: electric
+          - dps_val: "2000W"
+            constraint: operation_mode
+            conditions:
+              - dps_val: true
+                value: performance
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -68,3 +113,45 @@ entities:
             value: heating
           - dps_val: Warm
             value: keeping_warm
+          - dps_val: standby
+            value: idle
+          - dps_val: heating
+            value: heating
+          - dps_val: warm
+            value: keeping_warm
+          - dps_val: yuyue
+            value: scheduled
+          - dps_val: fangdong
+            value: anti_freeze
+  - entity: switch
+    name: Schedule
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 2
+        type: string
+        name: switch
+        mapping:
+          - dps_val: jiheat
+            value: false
+          - dps_val: yuyue
+            value: true
+          - value: null
+      - id: 2
+        type: string
+        name: available
+        mapping:
+          - dps_val: jiheat
+            value: true
+          - dps_val: yuyue
+            value: true
+          - value: false
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        type: base64
+        optional: true
+        name: value

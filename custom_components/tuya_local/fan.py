@@ -65,9 +65,6 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             if r and r[0] == 0:
                 self._support_flags |= FanEntityFeature.TURN_OFF
 
-        # Until the deprecation period ends (expected 2025.2)
-        self._enable_turn_on_off_backwards_compatibility = False
-
     @property
     def supported_features(self):
         """Return the features supported by this climate device."""
