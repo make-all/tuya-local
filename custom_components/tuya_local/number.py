@@ -50,6 +50,7 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         self._unit_dps = dps_map.pop("unit", None)
         self._min_dps = dps_map.pop("minimum", None)
         self._max_dps = dps_map.pop("maximum", None)
+        self._decimal_dps = dps_map.pop("decimal", None)
         self._init_end(dps_map)
 
     @property
@@ -110,9 +111,25 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
     @property
     def native_value(self):
         """Return the current value of the number."""
-        return self._value_dps.get_value(self._device)
+        val = self._value_dps.get_value(self._device)
+        if self._decimal_dps is not None:
+            decimal = self._decimal_dps.get_value(self._device)
+            if decimal is not None:
+                val = val + decimal
+        return val
 
     async def async_set_native_value(self, value):
         """Set the number."""
         _LOGGER.info("%s setting value to %s", self._config.config_id, value)
-        await self._value_dps.async_set_value(self._device, value)
+        settings = {}
+        if self._decimal_dps is not None:
+            whole = int(value)
+            decimal = value - whole
+            settings = self._decimal_dps.get_values_to_set(self._device, decimal)
+            value = whole
+
+        settings = settings | self._value_dps.get_values_to_set(
+            self._device, value, settings
+        )
+
+        await self._device.async_set_properties(settings)

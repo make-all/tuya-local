@@ -158,8 +158,21 @@ entities:
         mapping:
           - scale: 100
 
+  - entity: switch
+    name: Real time updates
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: switch
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
   - entity: binary_sensor  # online_state -27-
     class: connectivity
+    deprecated: switch.real_time_updates  # 2026-06-29
     category: diagnostic
     dps:
       - id: 27

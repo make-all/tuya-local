@@ -1,0 +1,87 @@
+name: TC700 Air Quality Monitor
+products:
+  - id: rvkhlmxnhytxua4a
+    model: TC700_Pro_Wifi
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: sensor
+    class: pm1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: HCHO
+    class: volatile_organic_compounds
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: sensor
+    name: Record count
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor

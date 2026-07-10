@@ -1,0 +1,157 @@
+name: Water vapor fireplace
+products:
+  - id: ogoql4oqaedx4mpu
+    manufacturer: Imaxfire
+    model: Water vapor fireplace (AWA2-NN)
+entities:
+  - entity: light
+    translation_key: flame
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: brightness
+        range:
+          min: 1
+          max: 6
+      - id: 106
+        type: string
+        name: effect
+        mapping:
+          - dps_val: light_red
+            value: Red
+          - dps_val: light_green
+            value: Green
+          - dps_val: light_blue
+            value: Blue
+          - dps_val: light_orange
+            value: Orange
+          - dps_val: light_yellow
+            value: Yellow
+          - dps_val: light_white
+            value: White
+          - dps_val: light_pink
+            value: Pink
+          - dps_val: light_purple
+            value: Purple
+          - dps_val: light_cyan
+            value: Cyan
+          - dps_val: light_flash
+            value: Flash
+          - dps_val: light_strobe
+            value: Strobe
+          - dps_val: light_fade
+            value: Fade
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          # V defaults to 1000. If named "v", HA would route brightness
+          # through this field instead of dp 105. Changing V here does
+          # affect brightness, but once V is no longer 1000, brightness
+          # via dp 24 locks up until a dp 106 color preset is applied.
+          # Renamed to "v_dummy" so HA uses dp 105 for brightness and
+          # SmartLife stays functional.
+          - name: v_dummy
+            bytes: 2
+
+  - entity: sensor
+    translation_key: water_level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: middle
+            value: medium
+          - dps_val: low
+            value: low
+
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 16
+
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540
+
+  - entity: switch
+    translation_key: timer
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+
+  - entity: switch
+    translation_key: fill_tank
+    category: config
+    hidden: true
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+
+  - entity: switch
+    translation_key: empty_tank
+    category: config
+    hidden: true
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+
+  - entity: number
+    translation_key: flame_level
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5

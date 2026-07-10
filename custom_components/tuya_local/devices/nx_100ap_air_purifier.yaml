@@ -4,8 +4,7 @@ products:
     model: NX-100AP Rapid
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -17,11 +16,11 @@ entities:
           - dps_val: Sleep
             value: sleep
           - dps_val: M
-            value: normal
+            value: manual
           - dps_val: H
             value: strong
           - dps_val: Auto
-            value: smart
+            value: auto
   - entity: sensor
     translation_key: time_remaining
     class: duration

@@ -106,6 +106,26 @@
             "not_supported": "Lo sentimos, no hay soporte para este dispositivo."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Enviar comando IR aprendido",
+            "description": "Enviar un comando remoto que fue aprendido previamente por la entidad remota a cualquier emisor infrarrojo.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emisor",
+                    "description": "El ID de entidad de la entidad infrarroja a la que se enviará el comando."
+                },
+                "command": {
+                    "name": "Comando",
+                    "description": "El comando a enviar. Este debe ser un comando que fue aprendido previamente por la integración para este control remoto."
+                },
+                "device": {
+                    "name": "Dispositivo",
+                    "description": "El dispositivo IR al que se enviará el comando. Esto es opcional y solo es necesario si el comando se guardó con un dispositivo."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Restablecimiento del filtro"
+            },
+            "alarm_off": {
+                "name": "Apagar alarma"
+            },
+            "alarm_snooze": {
+                "name": "Posponer alarma"
+            },
+            "alarm_x_reset": {
+                "name": "Alarma {x} reiniciar"
+            },
+            "radio_seek": {
+                "name": "Buscar radio"
+            },
+            "radio_stop": {
+                "name": "Detener radio"
             }
         },
         "climate": {
@@ -390,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Purificador de aire",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "sleep": "Dormir",
+                            "low": "Bajo",
+                            "medium": "Medio",
+                            "high": "Alto",
+                            "strong": "Fuerte",
+                            "displayoff": "Pantalla apagada"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Difusor de aroma",
                 "state_attributes": {
@@ -493,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Luz de la campana extractora"
+            },
+            "color_light": {
+                "name": "Luz de color"
+            },
+            "ambient_light": {
+                "name": "Luz ambiental"
             }
         },
         "lock": {
@@ -501,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Nivel de llama"
+            },
             "manual_feed": {
                 "name": "Alimentación manual"
             },
@@ -530,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Temperatura superior"
+            },
+            "leakage_current": {
+                "name": "Corriente de fuga"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarma {x} duración de repetición"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarma {x} anticipación luz de despertar"
+            },
+            "radio_frequency": {
+                "name": "Frecuencia de radio"
+            },
+            "snooze_duration": {
+                "name": "Duración de repetición"
             }
         },
         "select": {
@@ -607,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -641,6 +722,14 @@
                     "high": "Alto"
                 }
             },
+            "night_vision": {
+                "name": "Visión nocturna",
+                "state": {
+                    "off": "Apagado",
+                    "on": "Encendido",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Receta",
                 "state": {
@@ -667,6 +756,13 @@
                     "default": "Predeterminado",
                     "keep_warm": "Mantener caliente",
                     "preheat": "Precalentar"
+                }
+            },
+            "recording_mode": {
+                "name": "Modo de grabación",
+                "state": {
+                    "event": "Evento",
+                    "continuous": "Continuo"
                 }
             },
             "scene": {
@@ -792,7 +888,8 @@
                     "medium": "Medio",
                     "high": "Alto",
                     "rapid_clean": "Limpieza rápida",
-                    "schedule": "Horario"
+                    "schedule": "Horario",
+                    "sleep": "Dormir"
                 }
             },
             "activation_mode": {
@@ -862,7 +959,7 @@
                     "fruit": "Fruta",
                     "intensive": "Intensivo",
                     "rapid": "Rápido",
-                    "eco": "Ecológico",                   
+                    "eco": "Ecológico",
                     "standard": "Estándar",
                     "neutral": "Neutro",
                     "90_minute": "90 minutos",
@@ -981,6 +1078,71 @@
                     "puff_pastry": "Hoja de masa",
                     "red_bean_bread": "Pan de frijoles rojos",
                     "milk_toast": "Tostada de leche"
+                }
+            },
+            "display_brightness": {
+                "name": "Brillo de pantalla",
+                "state": {
+                    "off": "Apagado",
+                    "day": "Día",
+                    "night": "Noche",
+                    "dim": "Tenue",
+                    "bright": "Brillante",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Separador de segundos",
+                "state": {
+                    "static": "Fijo",
+                    "blinking": "Parpadeante"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarma {x} modo repetición",
+                "state": {
+                    "mute": "Silenciar sonido",
+                    "mute_light": "Silenciar sonido + luz",
+                    "light_only": "Silenciar solo luz"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarma {x} efecto de sonido",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fundido de entrada",
+                    "fade_out": "Fundido de salida"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarma {x} modo luz de despertar",
+                "state": {
+                    "no_light": "Sin luz",
+                    "rainbow": "Arcoíris",
+                    "candle_flicker": "Parpadeo de vela",
+                    "romantic_breath": "Respiración romántica",
+                    "quiet_deep_sea": "Mar profundo tranquilo",
+                    "flowing_colors": "Colores fluidos",
+                    "magic_jungle": "Jungla mágica",
+                    "perfect_party": "Fiesta perfecta",
+                    "sunrise_at_sea": "Amanecer en el mar",
+                    "dynamic_music": "Música dinámica"
+                }
+            },
+            "snooze_action": {
+                "name": "Acción de repetición",
+                "state": {
+                    "sound_radio": "Sonido + radio",
+                    "light": "Luz",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + sonido + luz"
+                }
+            },
+            "time_format": {
+                "name": "Formato de hora",
+                "state": {
+                    "12_hour": "12 horas",
+                    "24_hour": "24 horas"
                 }
             }
         },
@@ -1159,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Días almacenados"
+            },
+            "leakage_current": {
+                "name": "Corriente de fuga"
+            },
+            "active_lights": {
+                "name": "Luces activas",
+                "state": {
+                    "all_off": "Todas apagadas",
+                    "night_on": "Luz nocturna encendida",
+                    "color_on": "Luz de color encendida",
+                    "ambient_on": "Luz ambiental encendida"
+                }
+            },
+            "wireless_charging": {
+                "name": "Estado de carga inalámbrica",
+                "state": {
+                    "idle": "Inactivo",
+                    "charging": "Cargando",
+                    "full": "Completa",
+                    "foreign_object_detected": "Objeto extraño detectado"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Temporizador"
+            },
+            "empty_tank": {
+                "name": "Vaciar tanque"
+            },
+            "fill_tank": {
+                "name": "Llenar tanque"
+            },
             "anti_frost": {
                 "name": "Antihielo"
             },
@@ -1222,6 +1414,54 @@
             },
             "rangehood": {
                 "name": "Campana extractora"
+            },
+            "alarm_x": {
+                "name": "Alarma {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarma {x} repetición activada"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarma {x} día 1 lunes"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarma {x} día 2 martes"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarma {x} día 3 miércoles"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarma {x} día 4 jueves"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarma {x} día 5 viernes"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarma {x} día 6 sábado"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarma {x} día 7 domingo"
+            },
+            "music_playback": {
+                "name": "Reproducción de música"
+            },
+            "network_time": {
+                "name": "Sincronización de hora de red"
+            },
+            "night_mode": {
+                "name": "Modo nocturno"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Repetición"
+            },
+            "motion_detection": {
+                "name": "Detección de movimiento"
+            },
+            "watermark": {
+                "name": "Marca de agua"
             }
         },
         "text": {
@@ -1233,6 +1473,15 @@
             },
             "schedule": {
                 "name": "Horario"
+            },
+            "alarm_settings": {
+                "name": "Ajustes de alarma"
+            },
+            "sleep_settings": {
+                "name": "Ajustes de sueño"
+            },
+            "station_list": {
+                "name": "Lista de emisoras"
             }
         },
         "time": {
@@ -1247,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Temporizador {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarma {x} hora"
+            },
+            "clock_time": {
+                "name": "Hora del reloj"
             }
         },
         "valve": {
@@ -1263,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Agua caliente"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarma {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ninguno",
+                            "birds": "Pájaros",
+                            "sea": "Mar",
+                            "valley": "Valle",
+                            "piano": "Piano",
+                            "soft": "Suave",
+                            "phone": "Teléfono",
+                            "beep": "Pitido",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }
