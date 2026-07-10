@@ -1,0 +1,35 @@
+name: Water meter
+products:
+  - id: mqqna0px
+    manufacturer: Restmo
+    model: FML026A
+entities:
+  - entity: sensor
+    class: water
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: L
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: volume_flow_rate
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: L/min
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement

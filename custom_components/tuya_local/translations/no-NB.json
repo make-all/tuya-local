@@ -30,14 +30,13 @@
             },
             "search": {
                 "title": "Finn enhetens IP-adresse",
-                "description": "Tuya cloud gir ikke lokale IP-adresser"
+                "description": "{device_name}Tuya cloud gir ikke lokale IP-adresser"
             },
             "local": {
                 "title": "Konfigurer din lokale Tuya enhet",
-                "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.]({device_details_url})",
+                "description": "{device_name}[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.]({device_details_url})",
                 "data": {
                     "host": "IP addresse eller vertsnavn",
-                    "or device_id of gateway for devices connected via gateway": "",
                     "device_id": "Enhets-ID (device_id, eller device_id for gateway for enheter tilkoblet via gateway)",
                     "local_key": "Lokal nøkkel",
                     "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
@@ -47,14 +46,21 @@
             },
             "select_type": {
                 "title": "Velg enhetstypen",
-                "description": "Velg enhetstypen som tilsvarer din enhet",
+                "description": "{device_name}Velg enhetstypen som tilsvarer din enhet",
+                "data": {
+                    "type": "Enhetstype"
+                }
+            },
+            "select_type_auto_detected": {
+                "title": "Velg enhetstypen",
+                "description": "{device_name}Velg typen som samsvarer med enheten din. Protokollversjon {detected_protocol} ble automatisk oppdaget og lagret. Hvis du oppdaterer enhetens firmware i fremtiden, må du kanskje konfigurere denne integrasjonen på nytt.",
                 "data": {
                     "type": "Enhetstype"
                 }
             },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
-                "description": "Angi et navn for din enhet",
+                "description": "{device_name}Angi et navn for din enhet",
                 "data": {
                     "name": "Navn"
                 }
@@ -66,7 +72,7 @@
             "no_devices": "Kan ikke finne noen uregistrerte enheter for kontoen."
         },
         "error": {
-            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt.",
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt. Hvis du valgte en spesifikk protokollversjon, prøv 'auto' i stedet.",
             "does_not_need_hub": "Enheten trenger ikke en gateway",
             "needs_hub": "Enheten trenger en gateway"
         }
@@ -94,10 +100,30 @@
             }
         },
         "error": {
-            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt."
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt. Hvis du valgte en spesifikk protokollversjon, prøv 'auto' i stedet."
         },
         "abort": {
             "not_supported": "Beklager, det er ingen støtte for denne enheten"
+        }
+    },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Send lært IR-fjernkontrollsignal",
+            "description": "Send en fjernkontrollkommando som tidligere ble lært av fjernkontrollentiteten til en hvilken som helst infrarød sender.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "IR sender",
+                    "description": "Enhet-ID for den infrarøde enheten som skal sende kommandoen til."
+                },
+                "command": {
+                    "name": "Kommando",
+                    "description": "Kommandot som skal sendes. Dette må være en kommando som tidligere ble lært av integrasjonen for denne fjernkontrollen."
+                },
+                "device": {
+                    "name": "Enhet",
+                    "description": "Den IR-enheten som kommandoen skal sendes til. Dette er valgfritt og bare nödvendig om kommandoen sparades med en enhet."
+                }
+            }
         }
     },
     "entity": {
@@ -114,6 +140,43 @@
                 "state": {
                     "off": "Normal",
                     "on": "Tining"
+                }
+            },
+            "delayed_fan_operation": {
+                "name": "Forsinket vifteoperasjon",
+                "state": {
+                    "off": "Av",
+                    "on": "Forsinket"
+                }
+            },
+            "problem": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "chamber_low_temperature": "Kammer lav temperatur beskyttelse",
+                            "chamber_overheat": "Kammer overoppheting beskyttelse",
+                            "communication_error": "Kommunikasjonsfeil",
+                            "drain_blocked": "Avløp blokkert",
+                            "evaporation_tray_low_temperature": "Evaporation tray lav temperatur beskyttelse",
+                            "evaporation_tray_overheat": "Evaporation tray overoppheting beskyttelse",
+                            "fire": "Brann",
+                            "firewall_sensor_fault": "Feil på brannveggsensor",
+                            "gas_leak": "Gasslekkasje",
+                            "heating_fault": "Feil på oppvarming",
+                            "no_water": "Ingen vann",
+                            "ok": "OK",
+                            "overflow": "Overløp",
+                            "receive_error": "Motta feil",
+                            "sensor_open_circuit": "Sensor tilkoblingsfeil (Åpen krets)",
+                            "sensor_short_circuit": "Sensor tilkoblingsfeil (Kortslutning)",
+                            "sensor_fault": "Sensorfeil",
+                            "transmit_error": "Sende feil",
+                            "valve_fault": "Feil på ventil",
+                            "variable_frequency_fault": "Feil på variabel frekvens",
+                            "washing_motor_fault": "Feil på vaskemotor",
+                            "water_removed_or_empty": "Vann fjernet eller tom"
+                        }
+                    }
                 }
             },
             "tank_empty": {
@@ -137,20 +200,18 @@
                     "on": "Våken"
                 }
             },
-            "casdon_oven_fault": {
-                "state_attributes": {
-                    "description": {
-                        "state": {
-                            "e1": "E1: Kammer overoppheting beskyttelse (over 290°C)",
-                            "e2": "E2: Evaporation tray overoppheting beskyttelse (over 200°C)",
-                            "e3": "E3: Kammer lav temperatur beskyttelse (under 35°C)",
-                            "e4": "E4: Evaporation tray lav temperatur beskyttelse (under 35°C)",
-                            "e5": "E5: Sensor tilkoblingsfeil (Åpen krets)",
-                            "e6": "E6: Sensor tilkoblingsfeil (Kortslutning)",
-                            "e7": "E7: Displaybrett kommunikasjonsfeil",
-                            "e8": "E8: Vanntank åpen (CN7) eller Evaporation tray tørr (CN3)"
-                        }
-                    }
+            "rinse_aid": {
+                "name": "Skyllhjelp",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
+                }
+            },
+            "salt": {
+                "name": "Salt",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
                 }
             }
         },
@@ -160,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Filter tilbakestilling"
+            },
+            "alarm_off": {
+                "name": "Alarm av"
+            },
+            "alarm_snooze": {
+                "name": "Alarm slumring"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} tilbakestill"
+            },
+            "radio_seek": {
+                "name": "Radiosøk"
+            },
+            "radio_stop": {
+                "name": "Radiostopp"
             }
         },
         "climate": {
@@ -321,10 +397,18 @@
                             "custom": "Egendefinert",
                             "low_steaming": "Lav Steaming",
                             "medium_steaming": "Medium Steaming",
-                            "high_steaming": "Høy Steaming"
+                            "high_steaming": "Høy Steaming",
+                            "steaming": "Steaming",
+                            "hot_air_baking": "Varmluftsbaking",
+                            "disinfect": "Desinfeksjon"
                         }
                     }
                 }
+            }
+        },
+        "event": {
+            "alarm": {
+                "name": "Alarm"
             }
         },
         "humidifier": {
@@ -341,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Luft purifier",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "sleep": "Søvn",
+                            "low": "Lav",
+                            "medium": "Medium",
+                            "high": "Høy",
+                            "strong": "Sterk",
+                            "displayoff": "Skjerm av"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Aroma diffuser",
                 "state_attributes": {
@@ -438,6 +539,18 @@
             },
             "nightlight": {
                 "name": "Nattlys"
+            },
+            "oven_light": {
+                "name": "Ovnlys"
+            },
+            "rangehood_light": {
+                "name": "Kjøkkenhette lys"
+            },
+            "color_light": {
+                "name": "Fargelys"
+            },
+            "ambient_light": {
+                "name": "Stemningslys"
             }
         },
         "lock": {
@@ -446,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Flammenivå"
+            },
             "manual_feed": {
                 "name": "Manuell mating"
             },
@@ -469,6 +585,27 @@
             },
             "volume": {
                 "name": "Volum"
+            },
+            "bottom_temperature": {
+                "name": "Bunn temperatur"
+            },
+            "top_temperature": {
+                "name": "Topp temperatur"
+            },
+            "leakage_current": {
+                "name": "Lekkasjestrøm"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} slumringsvarighet"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} vekkelys-fortid"
+            },
+            "radio_frequency": {
+                "name": "Radiofrekvens"
+            },
+            "snooze_duration": {
+                "name": "Slumringsvarighet"
             }
         },
         "select": {
@@ -531,6 +668,8 @@
                 "state": {
                     "chinese": "中文",
                     "chinese_traditional": "中文(繁體)",
+                    "danish": "Dansk",
+                    "dutch": "Nederlands",
                     "english": "English",
                     "english_child": "English (Child)",
                     "french": "Français",
@@ -538,12 +677,17 @@
                     "italian": "Italiano",
                     "japanese": "日本語",
                     "korean": "한국어",
-                    "latin": "Lingua Latina",
+                    "latin": "Español latinoamericano",
                     "portuguese": "Português",
                     "russian": "Русский",
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -578,6 +722,14 @@
                     "high": "Høy"
                 }
             },
+            "night_vision": {
+                "name": "Nattvisjon",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Oppskrift",
                 "state": {
@@ -606,6 +758,13 @@
                     "preheat": "Forvarm"
                 }
             },
+            "recording_mode": {
+                "name": "Innspillingsmodus",
+                "state": {
+                    "event": "Hendelse",
+                    "continuous": "Kontinuerlig"
+                }
+            },
             "scene": {
                 "name": "Scene",
                 "state": {
@@ -629,6 +788,8 @@
                 "state": {
                     "cancel": "Avbryt",
                     "continuous": "Kontinuerlig",
+                    "5s": "5 sekunder",
+                    "10s": "10 sekunder",
                     "15s": "15 sekunder",
                     "20s": "20 sekunder",
                     "30s": "30 sekunder",
@@ -727,7 +888,8 @@
                     "medium": "Medium",
                     "high": "Høy",
                     "rapid_clean": "Rask rengjøring",
-                    "schedule": "Planlegg"
+                    "schedule": "Planlegg",
+                    "sleep": "Søvn"
                 }
             },
             "activation_mode": {
@@ -807,7 +969,60 @@
                     "self_clean": "Selvrens",
                     "hygiene": "Hygiene",
                     "party": "Fest",
-                    "baby_care": "Barnomsorg"
+                    "baby_care": "Barnomsorg",
+                    "hour_wash": "1-timers vask",
+                    "dry": "Tørr",
+                    "storage": "Lagring",
+                    "light": "Lett",
+                    "pots": "Kasseroller"
+                }
+            },
+            "water_hardness": {
+                "name": "Vannhardhet"
+            },
+            "rinse_aid_level": {
+                "name": "Skyllhjelp nivå"
+            },
+            "rack": {
+                "name": "Stativ",
+                "state": {
+                    "lower": "Nedre",
+                    "upper": "Øvre",
+                    "both": "Begge"
+                }
+            },
+            "rangehood_mode": {
+                "name": "Kjøkkenhette modus",
+                "state": {
+                    "steaming": "Damping",
+                    "regular": "Vanlig",
+                    "strong": "Sterk"
+                }
+            },
+            "rangehood_fan_speed": {
+                "name": "Kjøkkenhette viftehastighet",
+                "state": {
+                    "off": "Av",
+                    "low": "Lav",
+                    "medium": "Medium",
+                    "high": "Høy",
+                    "quickfry": "Kjapp steking"
+                }
+            },
+            "rangehood_delayed_shutdown": {
+                "name": "Kjøkkenhette forsinket nedstenging",
+                "state": {
+                    "disabled": "Deaktivert",
+                    "1m": "1 minutt",
+                    "2m": "2 minutter",
+                    "3m": "3 minutter",
+                    "4m": "4 minutter",
+                    "5m": "5 minutter",
+                    "6m": "6 minutter",
+                    "7m": "7 minutter",
+                    "8m": "8 minutter",
+                    "9m": "9 minutter",
+                    "10m": "10 minutter"
                 }
             },
             "menu": {
@@ -864,9 +1079,85 @@
                     "red_bean_bread": "Rød bønnebrød",
                     "milk_toast": "Melketoast"
                 }
+            },
+            "display_brightness": {
+                "name": "Skjermlysstyrke",
+                "state": {
+                    "off": "Av",
+                    "day": "Dag",
+                    "night": "Natt",
+                    "dim": "Dempet",
+                    "bright": "Lyst",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundpunkt",
+                "state": {
+                    "static": "Statisk",
+                    "blinking": "Blinkende"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} slumringsmodus",
+                "state": {
+                    "mute": "Demp lyd",
+                    "mute_light": "Demp lyd + lys",
+                    "light_only": "Demp bare lys"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} lydeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fade inn",
+                    "fade_out": "Fade ut"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} vekkelysmodus",
+                "state": {
+                    "no_light": "Uten lys",
+                    "rainbow": "Regnbue",
+                    "candle_flicker": "Stearinlysflimmer",
+                    "romantic_breath": "Romantisk pust",
+                    "quiet_deep_sea": "Stille dyphav",
+                    "flowing_colors": "Flytende farger",
+                    "magic_jungle": "Magisk jungel",
+                    "perfect_party": "Perfekt fest",
+                    "sunrise_at_sea": "Soloppgang over havet",
+                    "dynamic_music": "Dynamisk musikk"
+                }
+            },
+            "snooze_action": {
+                "name": "Slumringshandling",
+                "state": {
+                    "sound_radio": "Lyd + radio",
+                    "light": "Lys",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + lyd + lys"
+                }
+            },
+            "time_format": {
+                "name": "Tidsformat",
+                "state": {
+                    "12_hour": "12 timer",
+                    "24_hour": "24 timer"
+                }
             }
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Omgivelsestemperatur"
+            },
+            "cleanliness": {
+                "name": "Renhet",
+                "state": {
+                    "poor": "Dårlig",
+                    "good": "God",
+                    "great": "Utmerket"
+                }
+            },
             "air_quality": {
                 "name": "Luftkvalitet",
                 "state": {
@@ -893,6 +1184,8 @@
                     "waiting_for_authorization": "Venter på autorisasjon",
                     "standby": "Standby",
                     "heating": "Varmes opp",
+                    "cold": "Kald",
+                    "warm": "Varm",
                     "cooling": "Kjøler",
                     "keeping_warm": "Holder varm",
                     "no_water": "Ingen vann",
@@ -971,7 +1264,8 @@
                     "drain_hot_water": "Tøm varmtvann",
                     "drain_normal_water": "Tøm normalt vann",
                     "high_temperature_emptying": "Høy temperatur tømming",
-                    "high_temperature_emptied": "Høy temperatur tømt"
+                    "high_temperature_emptied": "Høy temperatur tømt",
+                    "storage": "Lagring"
                 }
             },
             "time_remaining": {
@@ -1024,9 +1318,42 @@
             },
             "filter_life": {
                 "name": "Filterlevetid"
+            },
+            "days_stored": {
+                "name": "Dager lagret"
+            },
+            "leakage_current": {
+                "name": "Lekkasjestrøm"
+            },
+            "active_lights": {
+                "name": "Aktive lys",
+                "state": {
+                    "all_off": "Alle av",
+                    "night_on": "Nattlys på",
+                    "color_on": "Fargelys på",
+                    "ambient_on": "Stemningslys på"
+                }
+            },
+            "wireless_charging": {
+                "name": "Trådløs ladestatus",
+                "state": {
+                    "idle": "Inaktiv",
+                    "charging": "Lader",
+                    "full": "Full",
+                    "foreign_object_detected": "Fremmedlegeme oppdaget"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Tøm tanken"
+            },
+            "fill_tank": {
+                "name": "Fyll tanken"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1075,19 +1402,106 @@
             },
             "uv_sterilization": {
                 "name": "UV-sterilisering"
+            },
+            "auto_storage": {
+                "name": "Auto-lagring"
+            },
+            "auto_dry": {
+                "name": "Auto-tørking"
+            },
+            "oven": {
+                "name": "Ovn"
+            },
+            "rangehood": {
+                "name": "Kjøkkenhette"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} slumring aktivert"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} dag 1-mandag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} dag 2-tirsdag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} dag 3-onsdag"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} dag 4-torsdag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} dag 5-fredag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} dag 6-lørdag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} dag 7-søndag"
+            },
+            "music_playback": {
+                "name": "Musikkavspilling"
+            },
+            "network_time": {
+                "name": "Nettverkstidssynkronisering"
+            },
+            "night_mode": {
+                "name": "Nattmodus"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Slumring"
+            },
+            "motion_detection": {
+                "name": "Bevegelsesdeteksjon"
+            },
+            "watermark": {
+                "name": "Vannmerke"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Måltidsplan"
+            },
             "scene": {
                 "name": "Scene"
+            },
+            "schedule": {
+                "name": "Plan"
+            },
+            "alarm_settings": {
+                "name": "Alarminnstillinger"
+            },
+            "sleep_settings": {
+                "name": "Søvninnstillinger"
+            },
+            "station_list": {
+                "name": "Stasjonsliste"
             }
         },
         "time": {
+            "reservation_time": {
+                "name": "Reserveringstid"
+            },
+            "cooking_time": {
+                "name": "Koketid"
+            },
             "timer": {
                 "name": "Timer"
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} tid"
+            },
+            "clock_time": {
+                "name": "Klokketid"
             }
         },
         "valve": {
@@ -1104,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Varmtvannsbereder"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ingen",
+                            "birds": "Fugler",
+                            "sea": "Hav",
+                            "valley": "Dal",
+                            "piano": "Piano",
+                            "soft": "Myk",
+                            "phone": "Telefon",
+                            "beep": "Pip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

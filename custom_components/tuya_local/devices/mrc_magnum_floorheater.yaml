@@ -251,13 +251,12 @@ entities:
       - id: 112
         type: integer
         name: value
-        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
-            constraint: temp_unit
+            constraint: unit
             conditions:
               - dps_val: false
                 range:
@@ -265,24 +264,28 @@ entities:
                   max: 50
       - id: 107
         type: boolean
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
   - entity: number
     name: Floor temperature calibration
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-lines"
     dps:
       - id: 113
         type: integer
         name: value
         optional: true
-        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
-            constraint: temp_unit
+            constraint: unit
             conditions:
               - dps_val: false
                 range:
@@ -290,8 +293,12 @@ entities:
                   max: 50
       - id: 107
         type: boolean
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
   - entity: select
     name: Temperature hysteresis
     icon: "mdi:arrow-collapse-horizontal"

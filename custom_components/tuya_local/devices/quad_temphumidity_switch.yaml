@@ -82,12 +82,13 @@ entities:
           max: 43200
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 18
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -90
           max: 90
@@ -318,12 +319,13 @@ entities:
   - entity: number
     name: Temperature sensitivity
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 120
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 1
           max: 10

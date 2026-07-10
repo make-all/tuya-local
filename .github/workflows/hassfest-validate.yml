@@ -10,7 +10,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+    if: github.repository_owner == 'make-all'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: home-assistant/actions/hassfest@master

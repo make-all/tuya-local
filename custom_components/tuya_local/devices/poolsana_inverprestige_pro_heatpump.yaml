@@ -1,0 +1,300 @@
+name: Pool heat pump
+
+products:
+  - id: qmht2j30hapasy87
+    manufacturer: Poolsana
+    model: InverPrestige Pro
+
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: heat
+                value: heat
+              - dps_val: h_powerful
+                value: heat
+                hidden: true
+              - dps_val: h_silent
+                value: heat
+                hidden: true
+              - dps_val: cool
+                value: cool
+              - dps_val: c_powerful
+                value: cool
+                hidden: true
+              - dps_val: c_silent
+                value: cool
+                hidden: true
+              - dps_val: auto
+                value: auto
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: smart_heat
+          - dps_val: h_powerful
+            value: quick_heat
+          - dps_val: h_silent
+            value: quiet_heat
+          - dps_val: cool
+            value: smart_cool
+          - dps_val: c_powerful
+            value: quick_cool
+          - dps_val: c_silent
+            value: quiet_cool
+          - dps_val: auto
+            value: auto
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: compressor_overcurrent
+          - dps_val: 2
+            value: compressor_out_of_sync
+          - dps_val: 8
+            value: compressor_phase_loss
+          - dps_val: 16
+            value: dc_voltage_low
+          - dps_val: 32
+            value: dc_voltage_high
+          - dps_val: 257
+            value: communication_error
+          - dps_val: 258
+            value: ac_phase_loss
+          - dps_val: 260
+            value: ac_overcurrent
+          - dps_val: 288
+            value: ipm_overheat
+          - dps_val: 320
+            value: compressor_current_protection
+          - dps_val: 384
+            value: pfc_overheat
+      - id: 115
+        type: integer
+        name: pcb_version
+        optional: true
+
+  # DP15 is a legacy duplicate of the water inlet temperature (same
+  # physical sensor as DP3 and DP101). On most other Tuya pool heat
+  # pumps DP15 is the fault bitmap, but on this firmware fault moved
+  # to DP21 and DP15 was repurposed. Use DP101 as the authoritative
+  # inlet sensor.
+  - entity: sensor
+    name: Pool temperature
+    class: temperature
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  # Query list mapping from the Smart Life app screenshots:
+  - entity: sensor
+    name: Water inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Water outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    translation_key: ambient_temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Heating coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Cooling coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Steps of main EEV
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        optional: true
+        unit: step
+        class: measurement
+
+  - entity: sensor
+    name: Not available steps
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        optional: true
+        unit: step
+        class: measurement
+
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+
+  - entity: sensor
+    name: Heat sink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        optional: true
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: DC bus voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        optional: true
+        unit: Hz
+        class: measurement
+
+  - entity: sensor
+    name: DC fan speed
+    category: diagnostic
+    icon: "mdi:fan"
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        optional: true
+        unit: rpm
+        class: measurement

@@ -186,7 +186,7 @@ entities:
         mapping:
           - step: 1
   - entity: select
-    name: Unit displayed
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 31
@@ -194,9 +194,9 @@ entities:
         name: option
         mapping:
           - dps_val: c
-            value: "°C"
+            value: celsius
           - dps_val: f
-            value: "°F"
+            value: fahrenheit
   - entity: sensor
     class: pm10
     dps:

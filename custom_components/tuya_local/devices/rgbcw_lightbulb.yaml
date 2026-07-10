@@ -37,6 +37,22 @@ products:
   - id: e8dhekwuvrdogter
     manufacturer: Cree
     model: CMA21-100W-AL-9ACK
+  - id: tuvcbzejusazsyaq
+    manufacturer: Hifree
+    model: LT-T21 table lamp
+  - id: mgjaagfkyowiwldu
+    manufacturer: hama
+    model: Meka A60 - RGBCW
+    model_id: 176581/176597
+  - id: 7cwkmlyecq2jws9d
+    manufacturer: LSC Smart Connect
+    model: GU10 RGBCW
+    model_id: BK7231N
+  - id: gp0gooamqaky7x7r
+    manufacturer: Sunco
+    model: DL_SL4_S_NL-WH-2760K
+  - id: qoqolwtqzfuhgghq
+    model: RGBCW smart bulb
 entities:
   - entity: light
     dps:
@@ -96,26 +112,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 27
-        name: music_data
-        type: hex
-        optional: true
-      - id: 28
-        name: control_data
-        type: hex
-        optional: true
-      - id: 30
-        name: rhythm_mode
-        type: base64
-        optional: true
-      - id: 31
-        name: sleep_mode
-        type: base64
-        optional: true
-      - id: 32
-        name: wakeup_mode
-        type: base64
-        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -126,7 +122,7 @@ entities:
         optional: true
         range:
           min: 0
-          max: 86400
+          max: 86399
   - entity: switch
     translation_key: do_not_disturb
     hidden: unavailable
@@ -191,3 +187,63 @@ entities:
               03e803e800000000464602011303e803e800000000"
             # color* R+G+B+Y+C+V, Breath, Mid speed
             value: Gorgeous
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 28
+        type: hex
+        optional: true
+        name: value
+  - entity: text
+    name: Debug
+    category: config
+    icon: "mdi:bug"
+    hidden: true
+    dps:
+      - id: 29
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Rhythm
+    category: config
+    icon: "mdi:metronome"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep
+    category: config
+    icon: "mdi:bed-clock"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value

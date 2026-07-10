@@ -5,7 +5,49 @@ products:
     model: Outdoor PTZ
     model_id: "3206233"
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Camera privacy
+    icon: "mdi:incognito"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_privacy, switch_camera_record, event_motion,
+      switch_motion_detection
     dps:
       - id: 105
         type: boolean
@@ -41,7 +83,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Timestamp
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -237,8 +279,7 @@ entities:
         type: boolean
         name: switch
   - entity: select
-    name: Nightvision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 124
@@ -246,9 +287,9 @@ entities:
         name: option
         mapping:
           - dps_val: ir_mode
-            value: Infrared
+            value: "on"
           - dps_val: color_mode
-            value: Visible light
+            value: "off"
   - entity: light
     name: Floodlight
     category: config
@@ -313,8 +354,7 @@ entities:
         optional: true
         name: audio
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -323,9 +363,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: switch
     name: Alarm
     category: config

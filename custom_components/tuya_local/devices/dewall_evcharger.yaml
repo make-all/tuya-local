@@ -5,7 +5,7 @@ products:
     model: Wall charger
   - id: gxrtu5vljdthtd3g
     manufacturer: dé
-    model: GD 3kW portable charger
+    model: GD portable charger
 entities:
   - entity: sensor
     translation_key: status
@@ -34,7 +34,7 @@ entities:
           - dps_val: STOP
             value: charged
       - id: 102
-        type: string
+        type: json
         name: metrics
       - id: 103
         type: string
@@ -199,3 +199,20 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: button
+    name: Refresh
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 188
+        type: boolean
+        optional: true
+        name: button
+      - id: 188
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

@@ -1,0 +1,76 @@
+name: Air conditioner
+products:
+  - id: 5dgguakbmhwzwiko
+    manufacturer: Ideal Clima
+    model: Nemo
+entities:
+  - entity: climate
+    translation_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cool
+                value: cool
+              - dps_val: heat
+                value: heat
+              - dps_val: dehu
+                value: dry
+              - dps_val: fan
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+        unit: C
+        range:
+          min: -20
+          max: 50
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: superlow
+            value: quiet
+          - dps_val: low
+            value: low
+          - dps_val: medium
+            value: medium
+          - dps_val: high
+            value: high
+          - dps_val: auto
+            value: auto
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 6
+        type: bitfield
+        optional: true
+        name: fault_code

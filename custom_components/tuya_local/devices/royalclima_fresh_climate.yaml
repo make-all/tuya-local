@@ -2,7 +2,7 @@ name: Air conditioner
 products:
   - id: mcnywzjlugvvvnjj
     manufacturer: Royal Clima
-    model: Fresh full inverter
+    model: Royal Fresh Full DC EU Inverter
 entities:
   - entity: climate
     translation_key: aircon_extra
@@ -139,6 +139,31 @@ entities:
             value: High
           - dps_val: auto
             value: Auto
+    deprecated: fan.fan_with_presets  # 2026-05-05
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: auto
+            value: true
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: strong
+            value: high
+          - value: auto
   - entity: select
     name: Vertical swing
     category: config

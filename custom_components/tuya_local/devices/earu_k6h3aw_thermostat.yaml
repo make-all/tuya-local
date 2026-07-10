@@ -65,12 +65,13 @@ entities:
             value: heating
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -9
           max: 9
@@ -211,9 +212,8 @@ entities:
           - dps_val: "70"
             value: "7 days"
   - entity: text
-    name: Week program
+    translation_key: schedule
     category: config
-    icon: "mdi:calendar-clock"
     hidden: true
     dps:
       - id: 30

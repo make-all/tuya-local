@@ -68,12 +68,13 @@ entities:
             value: fahrenheit
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °
+        unit: C
         mapping:
           - scale: 10
             step: 5

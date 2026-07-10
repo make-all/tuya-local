@@ -1,7 +1,17 @@
 name: Temperature and humidity sensor
 products:
   - id: xlk3mtpjo1zkmdvh
+    manufacturer: Zitech
     model: TH08
+  - id: ykdqgxukxt7rjyft
+    manufacturer: Zitech
+    model: TH09B
+  - id: scyh3efocxxfgryg
+    manufacturer: Zitech
+    model: TH08BCBU
+  - id: idypkbokardxt823
+    manufacturer: Zitech
+    model: TH08CBU
 entities:
   - entity: sensor
     class: temperature
@@ -22,9 +32,25 @@ entities:
         unit: "%"
         class: measurement
   - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: low
+            value: 20
+          - dps_val: middle
+            value: 50
+          - dps_val: high
+            value: 80
+  - entity: sensor
     name: Power state
     class: enum
     category: diagnostic
+    deprecated: sensor_battery  # 2026-06-23
     dps:
       - id: 3
         type: string
@@ -48,3 +74,49 @@ entities:
             value: fahrenheit
           - dps_val: "c"
             value: celsius
+  - entity: number
+    translation_key: temperature_calibration
+    category: config
+    class: temperature_delta
+    hidden: unavailable
+    dps:
+      - id: 23
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 20
+        mapping:
+          - scale: 10
+      - id: 23
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: number
+    name: Humidity calibration
+    category: config
+    hidden: unavailable
+    icon: "mdi:water-check"
+    dps:
+      - id: 24
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: -10
+          max: 10
+      - id: 24
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

@@ -303,17 +303,25 @@ entities:
         name: lock
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 117
         type: integer
         name: value
-        unit: °
         range:
           min: -50
           max: 50
         mapping:
           - scale: 10
+      - id: 118
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: select
     translation_key: temperature_unit
     category: config

@@ -73,12 +73,13 @@ entities:
         name: fault_code
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 20
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -95
           max: 95
@@ -184,13 +185,14 @@ entities:
           - scale: 10
   - entity: number
     name: Room temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-lines"
     dps:
       - id: 103
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 5
           max: 30
@@ -200,12 +202,13 @@ entities:
   - entity: number
     name: Floor temperature hysteresis
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-lines"
     dps:
       - id: 104
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 1
           max: 9

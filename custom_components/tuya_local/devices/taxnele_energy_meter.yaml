@@ -8,6 +8,8 @@ products:
   - id: z3jngbyubvwgfrcv
     manufacturer: Taxnele
     model: V3 2P 63A
+  - id: 3hkuggyv8839m9gw
+    manufacturer: Ketotek
 entities:
   - entity: sensor
     class: energy
@@ -119,7 +121,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Leakage current
+    translation_key: leakage_current
     class: current
     category: diagnostic
     dps:
@@ -231,8 +233,7 @@ entities:
           min: 0
           max: 86399
   - entity: text
-    name: Schedule
-    icon: "mdi:calendar-clock"
+    translation_key: schedule
     category: config
     hidden: true
     dps:

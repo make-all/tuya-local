@@ -1,0 +1,195 @@
+name: Christmas lights
+products:
+  - id: gvqngqezfcni4i4j
+    manufacturer: MBG Line
+    model: CTree-001
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: static
+            value: Static
+          - dps_val: pre_set
+            value: Dynamic
+          - dps_val: custom
+            value: DIY
+          - dps_val: local_music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: select
+    name: Preset
+    category: config
+    icon: "mdi:palette"
+    dps:
+      - id: 104
+        type: integer
+        name: option
+        optional: true
+        mapping:
+          - constraint: color_mode
+            conditions:
+              - dps_val: static
+                mapping:
+                  - dps_val: 0
+                    value: Candle
+                  - dps_val: 1
+                    value: Christmas Candy
+                  - dps_val: 2
+                    value: Santa Claus
+                  - dps_val: 3
+                    value: Romantic
+                  - dps_val: 4
+                    value: Green Rainbow
+                  - dps_val: 5
+                    value: Blue Purple Strip
+                  - dps_val: 6
+                    value: Fire Eye
+                  - dps_val: 7
+                    value: Gold Ring
+                  - dps_val: 8
+                    value: Fired Blue
+                  - dps_val: 9
+                    value: Halloween
+                  - dps_val: 10
+                    value: Super Man
+                  - dps_val: 11
+                    value: Dazzling
+              - dps_val: pre_set
+                mapping:
+                  - dps_val: 0
+                    value: Color Spectrum
+                  - dps_val: 1
+                    value: Rainbow
+                  - dps_val: 2
+                    value: Cylon
+                  - dps_val: 3
+                    value: Confetti
+                  - dps_val: 4
+                    value: Color Swing
+                  - dps_val: 5
+                    value: Light Show
+                  - dps_val: 6
+                    value: Fire
+                  - dps_val: 7
+                    value: Christmas Candy
+                  - dps_val: 8
+                    value: Santa Claus
+                  - dps_val: 9
+                    value: Halloween
+                  - dps_val: 10
+                    value: Dazzling
+                  - dps_val: 11
+                    value: Party
+              - dps_val: custom
+                mapping:
+                  - dps_val: 0
+                    value: Blink
+                  - dps_val: 1
+                    value: Breath
+                  - dps_val: 2
+                    value: Colorful Cylon
+                  - dps_val: 3
+                    value: Color Wipe
+                  - dps_val: 4
+                    value: Twinkle
+                  - dps_val: 5
+                    value: Blue Fire
+                  - dps_val: 6
+                    value: Two Color Chase
+                  - dps_val: 7
+                    value: One Color Chase
+                  - dps_val: 8
+                    value: Three Color Chase
+                  - dps_val: 9
+                    value: Color Strip
+                  - dps_val: 10
+                    value: Ribbon
+                  - dps_val: 11
+                    value: Marquee
+              - dps_val: local_music
+                mapping:
+                  - dps_val: 0
+                    value: Shooting Rainbow
+                  - dps_val: 1
+                    value: Shooting Star
+                  - dps_val: 2
+                    value: Falling Star
+                  - dps_val: 3
+                    value: Sky Rainbow
+                  - dps_val: 4
+                    value: Star Rainbow
+                  - dps_val: 5
+                    value: Sky Star
+                  - dps_val: 6
+                    value: Color Flow
+      - id: 21
+        type: string
+        name: color_mode
+  - entity: number
+    name: LED count
+    category: config
+    icon: "mdi:counter"
+    hidden: true
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 200
+  - entity: text
+    name: Custom preset data
+    category: config
+    icon: "mdi:numeric-10-box"
+    hidden: true
+    dps:
+      - id: 25
+        type: string
+        name: value
+        optional: true

@@ -182,12 +182,13 @@ entities:
             step: 10
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 109
         name: value
         type: integer
-        unit: °
+        unit: C
         range:
           min: -99
           max: 99

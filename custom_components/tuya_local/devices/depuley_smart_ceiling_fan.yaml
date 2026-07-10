@@ -15,7 +15,7 @@ entities:
   - entity: light
     dps:
       - id: 20
-        name: available
+        name: power
         type: boolean
       - id: 51
         type: base64
@@ -24,7 +24,7 @@ entities:
         name: switch
         mapping:
           - dps_val: null
-            value_mirror: available
+            value_mirror: power
       - id: 21
         name: work_mode
         type: string
@@ -86,9 +86,6 @@ entities:
   - entity: light
     translation_key: backlight
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 51
         name: switch
         type: base64

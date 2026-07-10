@@ -215,6 +215,7 @@ entities:
   - entity: number
     category: config
     name: Room temperature calibration
+    class: temperature_delta
     icon: "mdi:tune-vertical-variant"
     dps:
       - id: 112
@@ -238,12 +239,13 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: °
+            value: C
           - dps_val: true
-            value: °
+            value: F
   - entity: number
     category: config
     name: Floor temperature calibration
+    class: temperature_delta
     icon: "mdi:tune-variant"
     dps:
       - id: 113
@@ -267,9 +269,9 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: °
+            value: C
           - dps_val: true
-            value: °
+            value: F
   - entity: number
     name: Heater wattage
     class: power

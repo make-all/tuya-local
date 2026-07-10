@@ -1,9 +1,13 @@
 name: Energy monitor switch
 products:
-  # - id: UNKNOWN
-  #   manufacturer: Aubess
+  - id: labfkgzm2ikdcpdp
+    manufacturer: Aubess
+    model: Smart Switch/EM
   - id: m4jtkjc43ltrilru
     model: T34 Smart Plug+
+  - id: apwf3sfwz51xuvht
+    manufacturer: Moes
+    model: WM-104-M
 entities:
   - entity: switch
     dps:
@@ -13,15 +17,19 @@ entities:
       - id: 24
         name: test_bit
         type: integer
+        optional: true
       - id: 42
         name: random_time
         type: string
+        optional: true
       - id: 43
         name: cycle_time
         type: string
+        optional: true
       - id: 44
         name: switch_inching
         type: string
+        optional: true
   - entity: time
     translation_key: timer
     category: config
@@ -53,6 +61,7 @@ entities:
     dps:
       - id: 38
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
@@ -75,6 +84,7 @@ entities:
             available: word_values
       - id: 38
         type: string
+        optional: true
         name: numeric_values
         mapping:
           - dps_val: "0"
@@ -86,6 +96,7 @@ entities:
           - value: false
       - id: 38
         type: string
+        optional: true
         name: word_values
         mapping:
           - dps_val: "0"
@@ -113,6 +124,7 @@ entities:
       - id: 21
         name: sensor
         type: integer
+        optional: true
         class: measurement
         force: true
         unit: mA
@@ -123,6 +135,7 @@ entities:
       - id: 22
         name: sensor
         type: integer
+        optional: true
         class: measurement
         force: true
         unit: W
@@ -135,6 +148,7 @@ entities:
       - id: 23
         name: sensor
         type: integer
+        optional: true
         force: true
         class: measurement
         unit: V
@@ -156,3 +170,27 @@ entities:
         type: bitfield
         optional: true
         name: fault_code
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 47
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: sync
+            value: Synchronized switch
+          - dps_val: flip
+            value: Toggle switch
+          - dps_val: button
+            value: Momentary button
+      - id: 47
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

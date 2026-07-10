@@ -1,0 +1,116 @@
+name: Kitchen hood
+products:
+  - id: xfw4ckzxljs4ncta
+    manufacturer: KKT Kolbe
+    model: Easy HCM
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: switch
+      - id: 102
+        type: integer
+        optional: true
+        name: speed
+        range:
+          min: 0
+          max: 9
+  - entity: light
+    dps:
+      - id: 4
+        type: boolean
+        optional: true
+        name: switch
+      - id: 6
+        type: boolean
+        optional: true
+        # uncertain purpose - not for main or RGB ambient light
+        name: lamp
+  - entity: light
+    name: LED
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+  - entity: light
+    translation_key: ambient_light
+    dps:
+      - id: 106
+        type: boolean
+        optional: true
+        name: switch
+      - id: 108
+        name: work_mode
+        type: string
+        optional: true
+      - id: 107
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: switch
+    name: Wash mode
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Carbon filter remaining
+    category: config
+    class: duration
+    icon: "mdi:air-filter"
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 250
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps:
+      - id: 105
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Metal filter remaining
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 40

@@ -230,17 +230,25 @@ entities:
         class: measurement
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 109
         type: integer
         name: value
-        unit: °
         range:
           min: -99
           max: 99
         mapping:
           - scale: 10
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
       - id: 108
         type: integer
         name: step

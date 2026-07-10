@@ -49,12 +49,13 @@ entities:
         unit: F
   - entity: number
     name: Temperature compensation
+    class: temperature_delta
     category: config
     dps:
       - id: 105
         type: integer
         name: value
-        unit: °
+        unit: F
         range:
           min: -127
           max: 128

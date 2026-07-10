@@ -58,12 +58,13 @@ entities:
   - entity: number
     name: Eco offset
     icon: "mdi:leaf"
+    class: temperature_delta
     category: config
     dps:
       - id: 102
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 3
           max: 7
@@ -125,8 +126,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 109

@@ -165,18 +165,18 @@ entities:
         name: switch
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 104
         type: integer
         optional: true
         name: value
-        unit: °
         range:
           min: -5
           max: 5
         mapping:
-          - constraint: temp_unit
+          - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: calib_f
@@ -190,8 +190,11 @@ entities:
         hidden: true
       - id: 13
         type: string
-        name: temp_unit
-        hidden: true
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
   - entity: select
     name: Thermometer
     icon: "mdi:thermometer"

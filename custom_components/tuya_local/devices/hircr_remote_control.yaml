@@ -68,3 +68,19 @@ entities:
         range:
           min: 0
           max: 255
+  - entity: infrared
+    dps:
+      - id: 1
+        type: string
+        name: control
+      - id: 3
+        type: string
+        optional: true
+        name: send
+      - id: 13
+        type: integer
+        optional: true
+        name: code_type
+        range:
+          min: 0
+          max: 255

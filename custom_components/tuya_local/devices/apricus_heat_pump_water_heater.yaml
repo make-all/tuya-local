@@ -1,7 +1,6 @@
 name: Water heat pump
 entities:
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         name: operation_mode
@@ -36,13 +35,13 @@ entities:
         type: string
         hidden: true
   - entity: sensor
-    class: power
+    class: energy
     category: diagnostic
     dps:
       - id: 101
         type: integer
         name: sensor
-        unit: W
-        class: measurement
+        unit: kWh
+        class: total_increasing
         mapping:
           - scale: 10

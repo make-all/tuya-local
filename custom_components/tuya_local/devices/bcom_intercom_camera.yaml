@@ -4,7 +4,49 @@ products:
     manufacturer: Bcom
     model: Majic IPBox
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    name: Door image
+    dps:
+      - id: 154
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+
   - entity: camera
+    # 2026-06-08
+    deprecated: switch_camera_record, event_motion, event_door_image
     dps:
       - id: 150
         name: record
@@ -54,9 +96,8 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -78,8 +119,7 @@ entities:
           - dps_val: "2"
             value: high
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -88,11 +128,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: sensor
     name: SD status
     class: enum
@@ -141,8 +181,7 @@ entities:
           - dps_val: 2003
             value: Card error
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -151,9 +190,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: button
     category: config
     class: restart

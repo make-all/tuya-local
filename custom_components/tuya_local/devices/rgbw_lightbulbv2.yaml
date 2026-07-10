@@ -1,10 +1,17 @@
 name: RGBW lightbulb
+legacy_type: lscsmartconnect_gardenspotlights
 products:
   - id: dik6z7of4nailf94
   - id: jpbst6n8suqi3rcw
     manufacturer: Feit
     model: "3 panel RGBW garage light"
     model_id: ADJ4000
+  - id: key8u54q9dtru5jw
+    manufacturer: LSC Smart Connect
+    name: Spots de jardin LED intelligents
+  - id: tyozpji0sspiobny
+    manufacturer: Feit
+    model: ST2160 RGBW filament bulb
 entities:
   - entity: light
     dps:
@@ -48,34 +55,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 27
-        name: music
-        type: string
-        optional: true
-      - id: 28
-        name: control_data
-        type: string
-        optional: true
-      - id: 30
-        name: rhythm_mode
-        type: string
-        optional: true
-      - id: 31
-        name: sleep_mode
-        type: string
-        optional: true
-      - id: 32
-        name: wakeup_mode
-        type: string
-        optional: true
-      - id: 33
-        name: power_memory
-        type: string
-        optional: true
-      - id: 210
-        name: random_timing
-        type: string
-        optional: true
   - entity: text
     translation_key: scene
     category: config
@@ -123,3 +102,108 @@ entities:
         range:
           min: 0
           max: 86400
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: switch
+      - id: 34
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    name: Music
+    category: config
+    icon: "mdi:music"
+    hidden: true
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: value
+
+  - entity: text
+    name: Control
+    category: config
+    icon: "mdi:tools"
+    hidden: true
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: value
+  - entity: text
+    name: Rhythm
+    category: config
+    icon: "mdi:metronome"
+    hidden: true
+    dps:
+      - id: 30
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Sleep
+    category: config
+    icon: "mdi:weather-night"
+    hidden: true
+    dps:
+      - id: 31
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Wakeup
+    category: config
+    icon: "mdi:weather-sunset-up"
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Power memory
+    category: config
+    icon: "mdi:power-settings"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: switch
+    name: Remote
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 41
+        type: boolean
+        optional: true
+        name: switch
+      - id: 41
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: text
+    name: Random schedule
+    category: config
+    icon: "mdi:island"
+    hidden: true
+    dps:
+      - id: 210
+        type: base64
+        optional: true
+        name: value

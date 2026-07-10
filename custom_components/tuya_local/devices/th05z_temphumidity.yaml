@@ -153,12 +153,13 @@ entities:
   - entity: number
     name: Temperature sensitivity
     category: config
+    class: temperature_delta
     icon: "mdi:thermometer-plus"
     dps:
       - id: 19
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: 3
           max: 10

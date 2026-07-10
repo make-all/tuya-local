@@ -64,7 +64,20 @@ entities:
           - dps_val: false
             value: true
   - entity: light
-    translation_key: display_light
+    name: Display light
+    deprecated: light.backlight  # 2026-03-02
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: light
+    translation_key: backlight
     category: config
     dps:
       - id: 102

@@ -206,7 +206,7 @@ entities:
           max: 1220
         mapping:
           - scale: 10
-            constraint: temperature_unit
+            constraint: unit
             conditions:
               - dps_val: C
                 range:
@@ -238,7 +238,7 @@ entities:
           max: 1220
         mapping:
           - scale: 10
-            constraint: temperature_unit
+            constraint: unit
             conditions:
               - dps_val: C
                 range:
@@ -257,6 +257,7 @@ entities:
             value: C
   - entity: number
     name: Temperature calibration 1
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -264,12 +265,18 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: "°"
         range:
           min: -99
           max: 99
         mapping:
           - scale: 10
+      - id: 101
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: null
+            value: C
   - entity: number
     name: High temperature alarm 2
     category: config
@@ -316,6 +323,7 @@ entities:
             value: C
   - entity: number
     name: Temperature calibration 2
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -323,12 +331,18 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: "°"
         range:
           min: -99
           max: 99
         mapping:
           - scale: 10
+      - id: 101
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: null
+            value: C
   - entity: sensor
     name: Probe 1 status
     class: enum

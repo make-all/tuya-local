@@ -179,11 +179,12 @@ entities:
 
   - entity: sensor
     name: Temperature difference
+    class: temperature_delta
     dps:
       - id: 115
         type: integer
         name: sensor
-        unit: °
+        unit: C
         class: measurement
         mapping:
           - scale: 10
@@ -191,12 +192,13 @@ entities:
   # ------------- Calibration offsets -------------
   - entity: number
     name: Channel 1 calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 113
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -150
           max: 150
@@ -205,12 +207,13 @@ entities:
 
   - entity: number
     name: Channel 2 calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 114
         type: integer
         name: value
-        unit: °
+        unit: C
         range:
           min: -150
           max: 150

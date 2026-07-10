@@ -74,13 +74,14 @@ entities:
         name: switch
   - entity: number
     translation_key: temperature_calibration
+    class: temperature_delta
     category: config
     dps:
       - id: 27
         type: integer
         optional: true
         name: value
-        unit: °
+        unit: C
         range:
           min: -60
           max: 60
@@ -265,6 +266,7 @@ entities:
         name: switch
   - entity: number
     name: Temperature hysteresis
+    class: temperature_delta
     category: config
     icon: "mdi:thermometer-plus"
     dps:
@@ -272,7 +274,7 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: °
+        unit: C
         range:
           min: 5
           max: 30
