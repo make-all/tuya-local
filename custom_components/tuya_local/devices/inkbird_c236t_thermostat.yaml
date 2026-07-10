@@ -209,13 +209,20 @@ entities:
           - value: false
 
   - entity: switch
-    name: Timer start
-    icon: "mdi:timer-play"
+    translation_key: timer
     dps:
       - id: 119
         type: boolean
         name: switch
-
+      - id: 103
+        type: integer
+        name: available
+        mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: true
+          - value: false
   - entity: button
     name: Mute alarm
     icon: "mdi:volume-off"
