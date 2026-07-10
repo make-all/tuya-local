@@ -1,16 +1,17 @@
-name: AtmosC A Series Air Purifier
+name: Air Purifier
 products:
-  - id: acgosool
-    name: AtmosC A Series
+  - id: acgosool4azuaz5g
+    manufacturer: AtmosC
+    model: A Series
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
         type: boolean
       - id: 4
-        name: preset_mode
+        name: speed
         type: string
         mapping:
           - dps_val: "1"
@@ -29,23 +30,17 @@ entities:
             value: "7"
           - dps_val: "8"
             value: "8"
-  - entity: select
-    translation_key: mode
-    icon: "mdi:tune"
-    category: config
-    dps:
       - id: 3
-        name: option
+        name: preset_mode
         type: string
         mapping:
           - dps_val: "Manual"
-            value: "Manual"
+            value: "manual"
           - dps_val: "Auto"
-            value: "Auto"
+            value: "auto"
           - dps_val: "Sleep"
-            value: "Sleep"
+            value: "sleep"
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2
@@ -54,17 +49,15 @@ entities:
         type: integer
         unit: ugm3
   - entity: switch
-    name: Anion
+    translation_key: ionizer
     category: config
-    icon: "mdi:atom"
     dps:
       - id: 6
         name: switch
         type: boolean
   - entity: switch
-    name: UV
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:lightbulb-on"
     dps:
       - id: 9
         name: switch
@@ -72,15 +65,13 @@ entities:
   - entity: lock
     translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
         name: lock
         type: boolean
   - entity: sensor
-    name: Filter
-    category: diagnostic
-    icon: "mdi:air-filter"
+    translation_key: filter_life
+    category: config
     dps:
       - id: 17
         name: sensor
