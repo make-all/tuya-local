@@ -1,0 +1,480 @@
+name: Robot vacuum
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Rowenta
+#     model: X-Plorer 75S
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: activate
+        mapping:
+          - dps_val: false
+            constraint: pause
+            conditions:
+              - dps_val: true
+                value: false
+              - dps_val: true
+                value: false
+                hidden: true
+          - dps_val: true
+            constraint: pause
+            conditions:
+              - dps_val: false
+                value: true
+              - dps_val: true
+                value: true
+                hidden: true
+      - id: 2
+        type: boolean
+        name: pause
+        hidden: true
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: clean_spot
+          - dps_val: part
+            value: partial
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: wall_follow
+          - dps_val: selectroom
+            value: select_room
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: zone_clean
+            value: zone
+          - dps_val: part_clean
+            value: partial
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: paused
+          - dps_val: goto_pos
+            value: seeking_spot
+          - dps_val: pos_arrived
+            value: located spot
+          - dps_val: pos_unarrive
+            value: left_spot
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: wall_following
+          - dps_val: direction_control
+            value: manual_positioning
+          - dps_val: select_room
+            value: selecting_room
+          - dps_val: repositing
+            value: repositioning
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: low
+          - dps_val: normal
+            value: medium
+          - dps_val: strong
+            value: high
+          - dps_val: max
+            value: turbo
+      - id: 11
+        type: boolean
+        optional: true
+        name: locate
+      - id: 12
+        type: string
+        optional: true
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: high
+            value: high
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    name: Custom mode
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: m2
+        class: measurement
+  - entity: sensor
+    name: Edge brush life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Roll brush life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    translation_key: filter_life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        optional: true
+        name: switch
+  - entity: sensor
+    name: Total clean area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        optional: true
+        name: sensor
+        unit: m2
+        class: total_increasing
+  - entity: sensor
+    name: Number of cleans
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        optional: true
+        name: sensor
+        unit: times
+        class: total_increasing
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: total_increasing
+  - entity: switch
+    name: Charge
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Reset map
+    category: config
+    hidden: true
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Path data
+    category: config
+    icon: "mdi:floor-plan"
+    hidden: true
+    dps:
+      - id: 14
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    name: Request
+    icon: "mdi:cogs"
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: get_map
+            value: Map
+          - dps_val: get_path
+            value: Path
+          - dps_val: get_both
+            value: Both
+  - entity: button
+    name: Edge brush reset
+    icon: "mdi:history"
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Roller brush reset
+    icon: "mdi:history"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    translation_key: filter_reset
+    icon: "mdi:history"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 32
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Do not disturb schedule
+    category: config
+    icon: "mdi:sleep"
+    hidden: true
+    dps:
+      - id: 33
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Voice data
+    category: config
+    icon: "mdi:account-voice"
+    hidden: true
+    dps:
+      - id: 35
+        type: base64
+        optional: true
+        name: value
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+          - dps_val: french
+            value: french
+          - dps_val: spanish
+            value: spanish
+          - dps_val: portuguese
+            value: portuguese
+  - entity: select
+    name: Smart rooms
+    icon: "mdi:floor-plan"
+    category: config
+    hidden: true
+    dps:
+      - id: 101
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: cur_rooms
+            value: Current
+          - dps_val: edit_rooms
+            value: Edit
+          - dps_val: segment
+            value: Split
+          - dps_val: clear_rooms
+            value: Clear
+          - dps_val: save_rooms
+            value: Save
+  - entity: event
+    name: Rooms
+    dps:
+      - id: 102
+        type: bitfield
+        optional: true
+        name: event
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: 1
+            value: Splitting
+          - dps_val: 2
+            value: Merging
+          - dps_val: 4
+            value: Mapping
+          - dps_val: 8
+            value: Cleaning
+          - dps_val: 16
+            value: Active split
+          - dps_val: 32
+            value: Automatic
+          - dps_val: 64
+            value: Failed to save
+          - dps_val: 128
+            value: Split succeeded
+          - dps_val: 256
+            value: Merge succeeded
+          - dps_val: 512
+            value: Not found
+          - dps_val: 1024
+            value: Out of range
+          - dps_val: 2048
+            value: Set OK
+  - entity: event
+    name: Room notification
+    dps:
+      - id: 199
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 199
+        type: string
+        optional: true
+        name: message
+        # "0" - "25", may be room number? Or duplicate of above info?

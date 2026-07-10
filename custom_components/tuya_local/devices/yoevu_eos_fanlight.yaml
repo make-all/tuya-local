@@ -1,0 +1,69 @@
+name: Ceiling fan
+products:
+  - id: nwjrdttwaghkr6r4
+    manufacturer: Yoevu
+    model: EOS
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 100
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 2700
+          max: 7000
+        mapping:
+          - step: 100
+  - entity: fan
+    dps:
+      - id: 60
+        name: switch
+        type: boolean
+      - id: 61
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        name: speed
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        name: direction
+        type: string
+        optional: true
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 64
+        name: value
+        type: integer
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 540

@@ -41,8 +41,10 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
         self._valve_dp = dps_map.pop("valve")
+        self._switch_dp = dps_map.pop("switch", None)
         self._init_end(dps_map)
-        if not self._valve_dp.readonly:
+
+        if not self._valve_dp.readonly or self._switch_dp:
             self._attr_supported_features |= ValveEntityFeature.OPEN
             self._attr_supported_features |= ValveEntityFeature.CLOSE
             if self._valve_dp.type is int or (
@@ -92,11 +94,19 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
     @property
     def is_closed(self):
         """Report whether the valve is closed."""
+        if self._switch_dp and self._switch_dp.get_value(self._device) is False:
+            return True
         pos = self._valve_dp.get_value(self._device)
         return not pos
 
     async def async_open_valve(self):
         """Open the valve."""
+        if self._switch_dp:
+            _LOGGER.info("%s opening valve", self._config.config_id)
+            await self._switch_dp.async_set_value(self._device, True)
+            if self._valve_dp.get_value(self._device):
+                return
+        _LOGGER.info("%s fully opening valve", self._config.config_id)
         await self._valve_dp.async_set_value(
             self._device,
             100 if self.reports_position else True,
@@ -104,13 +114,21 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
 
     async def async_close_valve(self):
         """Close the valve"""
-        await self._valve_dp.async_set_value(
-            self._device,
-            0 if self.reports_position else False,
-        )
+        if self._switch_dp:
+            _LOGGER.info("%s closing valve", self._config.config_id)
+            await self._switch_dp.async_set_value(self._device, False)
+        else:
+            _LOGGER.info("%s closing valve to 0%%", self._config.config_id)
+            await self._valve_dp.async_set_value(
+                self._device,
+                0 if self.reports_position else False,
+            )
 
     async def async_set_valve_position(self, position):
         """Set the position of the valve"""
         if not self.reports_position:
             raise NotImplementedError()
+        _LOGGER.info(
+            "%s setting valve position to %s%%", self._config.config_id, position
+        )
         await self._valve_dp.async_set_value(self._device, position)

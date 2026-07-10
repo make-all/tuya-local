@@ -3,6 +3,9 @@ products:
   - id: 6fibxtph
     manufacturer: Primebras
     model: Athenas
+  - id: 99gv5nmz
+    manufacturer: Foxgard
+    model: Smart Fingerprint Door Lock
 entities:
   - entity: lock
     dps:
@@ -110,6 +113,10 @@ entities:
         optional: true
         sensitive: true
         name: ble_unlock_check
+      - id: 72
+        type: base64
+        optional: true
+        name: unlock_record_check
       - id: 74
         type: base64
         optional: true
@@ -120,12 +127,31 @@ entities:
     dps:
       - id: 8
         type: integer
+        optional: true
         name: sensor
         unit: "%"
+        mapping:
+          - dps_val: null
+            value_redirect: alt
       - id: 9
         type: string
         optional: true
         name: battery_state
+      - id: 9
+        type: string
+        optional: true
+        name: alt
+        hidden: true
+        mapping:
+          - dps_val: high
+            value: 90
+          - dps_val: medium
+            value: 60
+          - dps_val: low
+            value: 30
+          - dps_val: poweroff
+            value: 0
+          - value: null
   - entity: event
     name: Alert
     dps:
@@ -198,9 +224,12 @@ entities:
         optional: true
         unit: "%"
         range:
-          min: 33
+          min: 0
           max: 100
         mapping:
+          - dps_val: mute
+            step: 33
+            value: 0
           - dps_val: low
             step: 33
             value: 33
@@ -388,3 +417,25 @@ entities:
         type: string
         optional: true
         name: value
+  - entity: select
+    translation_key: language
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 28
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+      - id: 28
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

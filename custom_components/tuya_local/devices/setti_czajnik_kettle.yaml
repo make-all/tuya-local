@@ -4,6 +4,9 @@ products:
     manufacturer: Setti+
     model: KT950W
     name: Czajnik
+# - id: UNKNOWN
+#   manufacturer: Kogan
+#   model: KASMTSSKTLB
 entities:
   - entity: water_heater
     translation_key: kettle
@@ -272,3 +275,22 @@ entities:
       - id: 19
         type: bitfield
         name: fault_code
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    hidden: unavailable
+    dps:
+      - id: 18
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+      - id: 18
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

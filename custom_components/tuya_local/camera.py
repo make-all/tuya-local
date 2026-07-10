@@ -61,6 +61,7 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
 
     async def async_camera_image(self, width=None, height=None):
         if self._snapshot_dp:
+            _LOGGER.info("%s fetching snapshot", self._config.config_id)
             return self._snapshot_dp.decoded_value(self._device)
 
     @property
@@ -73,22 +74,26 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
         """Turn off the camera"""
         if not self._switch_dp:
             raise NotImplementedError()
+        _LOGGER.info("%s turning off camera", self._config.config_id)
         await self._switch_dp.async_set_value(self._device, False)
 
     async def async_turn_on(self):
         """Turn on the camera"""
         if not self._switch_dp:
             raise NotImplementedError()
+        _LOGGER.info("%s turning on camera", self._config.config_id)
         await self._switch_dp.async_set_value(self._device, True)
 
     async def async_enable_motion_detection(self):
         """Enable motion detection on the camera"""
         if not self._motion_enable_dp:
             raise NotImplementedError()
+        _LOGGER.info("%s enabling motion detection", self._config.config_id)
         await self._motion_enable_dp.async_set_value(self._device, True)
 
     async def async_disable_motion_detection(self):
         """Disable motion detection on the camera"""
         if not self._motion_enable_dp:
             raise NotImplementedError()
+        _LOGGER.info("%s disabling motion detection", self._config.config_id)
         await self._motion_enable_dp.async_set_value(self._device, False)

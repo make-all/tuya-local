@@ -8,7 +8,6 @@ entities:
   - entity: sensor
     class: temperature
     name: Indoor temperature
-    category: diagnostic
     dps:
       - id: 101
         name: sensor
@@ -112,7 +111,6 @@ entities:
         class: measurement
   - entity: sensor
     class: illuminance
-    category: diagnostic
     dps:
       - id: 116
         type: integer
@@ -124,7 +122,6 @@ entities:
   - entity: sensor
     name: Dewpoint
     class: temperature
-    category: diagnostic
     dps:
       - id: 117
         type: integer
@@ -136,7 +133,6 @@ entities:
   - entity: sensor
     name: Feels like
     class: temperature
-    category: diagnostic
     dps:
       - id: 123
         type: integer
@@ -148,7 +144,6 @@ entities:
   - entity: sensor
     name: Heat index
     class: temperature
-    category: diagnostic
     dps:
       - id: 124
         type: integer
@@ -160,7 +155,6 @@ entities:
   - entity: sensor
     name: Windchill
     class: temperature
-    category: diagnostic
     dps:
       - id: 125
         type: integer
@@ -170,9 +164,7 @@ entities:
           - scale: 10
         class: measurement
   - entity: sensor
-    name: Rain
     class: precipitation
-    category: diagnostic
     dps:
       - id: 134
         type: integer
@@ -184,7 +176,6 @@ entities:
   - entity: sensor
     name: Tablet battery
     icon: mdi:battery
-    category: diagnostic
     dps:
       - id: 140
         type: string
@@ -192,7 +183,6 @@ entities:
   - entity: sensor
     name: Outdoor battery
     icon: mdi:battery
-    category: diagnostic
     dps:
       - id: 141
         type: string

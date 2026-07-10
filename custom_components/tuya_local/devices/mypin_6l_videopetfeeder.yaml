@@ -4,7 +4,24 @@ products:
     manufacturer: Mypin
     model: 6L
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    deprecated: switch_camera_record, switch_motion_detection  # 2026-06-08
     dps:
       - id: 113
         type: boolean
@@ -31,8 +48,7 @@ entities:
         optional: true
         name: switch
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     dps:
       - id: 104
@@ -40,8 +56,7 @@ entities:
         optional: true
         name: switch
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -50,11 +65,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: sensor
     name: SD status
     translation_key: status
@@ -111,8 +126,7 @@ entities:
           - dps_val: 0
             value: Formatted
   - entity: select
-    name: Recording mode
-    icon: "mdi:vhs"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -121,9 +135,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
   - entity: button
     class: restart
     dps:
@@ -180,14 +194,17 @@ entities:
         range:
           min: 0
           max: 255
-      - id: 237
-        type: string
-        optional: true
-        name: schedule
       - id: 247
         type: string
         optional: true
         name: backup_log
+  - entity: text
+    translation_key: meal_plan
+    dps:
+      - id: 237
+        type: string
+        name: value
+        optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -291,18 +308,22 @@ entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Log offline feed
-    category: config
+    translation_key: manual_feed
     icon: "mdi:food-drumstick"
     dps:
       - id: 245
         type: integer
-        optional: true
         name: value
+        optional: true
+        persist: false
         unit: portions
         range:
-          min: 0
-          max: 99
+          min: 1
+          max: 10
+        mapping:
+          - dps_val: -2000
+            hidden: true
+            value: 0
   - entity: event
     name: Feed
     icon: "mdi:food-drumstick"
