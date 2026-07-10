@@ -22,11 +22,11 @@
 
 name: Sunrise alarm clock
 
-products:
-  - id: e1xp7w
-    manufacturer: Dekala
-    model: Dekala Lumos
-    model_id: e1xp7w
+# products:
+#   - id: e1xp7w
+#     manufacturer: Dekala
+#     model: Dekala Lumos
+#     model_id: e1xp7w
 
 entities:
   - entity: light
@@ -736,6 +736,7 @@ entities:
       - id: 130
         name: switch
         type: boolean
+        optional: true
 
   # FM tuning is only available while the radio is on (DP 130).
   - entity: number
@@ -804,6 +805,7 @@ entities:
       - id: 115
         name: switch
         type: boolean
+        optional: true
 
   - entity: switch
     translation_key: night_mode

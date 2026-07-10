@@ -1,0 +1,321 @@
+name: Fresh air heat pump
+
+#     manufacturer: Airwoods
+#     model: AV-HTPF35 / AV-HTPF60 / AV-HTPF90
+
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "3"
+                value: auto
+              - dps_val: "5"
+                value: cool
+              - dps_val: "6"
+                value: heat
+              - dps_val: "8"
+                value: dry
+              - dps_val: "10"
+                value: fan_only
+
+      - id: 115
+        type: string
+        name: mode
+        hidden: true
+
+      - id: 106
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 40
+
+      - id: 117
+        type: integer
+        name: current_temperature
+
+  - entity: fan
+    name: Supply air fan
+    dps:
+      - id: 102
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 10
+          - dps_val: "1"
+            value: 20
+          - dps_val: "2"
+            value: 30
+          - dps_val: "3"
+            value: 40
+          - dps_val: "4"
+            value: 50
+          - dps_val: "5"
+            value: 60
+          - dps_val: "6"
+            value: 70
+          - dps_val: "7"
+            value: 80
+          - dps_val: "8"
+            value: 90
+          - dps_val: "9"
+            value: 100
+
+  - entity: fan
+    name: Exhaust air fan
+    dps:
+      - id: 103
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 10
+          - dps_val: "1"
+            value: 20
+          - dps_val: "2"
+            value: 30
+          - dps_val: "3"
+            value: 40
+          - dps_val: "4"
+            value: 50
+          - dps_val: "5"
+            value: 60
+          - dps_val: "6"
+            value: 70
+          - dps_val: "7"
+            value: 80
+          - dps_val: "8"
+            value: 90
+          - dps_val: "9"
+            value: 100
+
+  - entity: number
+    name: Bypass lower limit temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 30
+
+  - entity: number
+    name: Bypass temperature range
+    category: config
+    class: temperature_delta
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 15
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: ppm
+        mapping:
+          - dps_val: 0
+            value: null
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: null
+          - dps_val: "1"
+            value: excellent
+          - dps_val: "2"
+            value: good
+          - dps_val: "3"
+            value: moderate
+          - dps_val: "4"
+            value: poor
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: 0
+            value: null
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: µg/m³
+        mapping:
+          - dps_val: 0
+            value: null
+
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Supply air temperature
+    class: temperature
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Exhaust air temperature
+    class: temperature
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 119
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 119
+        type: bitfield
+        name: fault_code
+      - id: 109
+        type: integer
+        name: stop_code
+
+  - entity: binary_sensor
+    name: Filter clean
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 123
+        type: boolean
+        name: sensor
+
+  - entity: sensor
+    name: Expansion valve opening
+    category: diagnostic
+    icon: "mdi:valve"
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    translation_key: filter_life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: d
+
+  - entity: sensor
+    name: Compressor frequency
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: Hz
+
+  - entity: sensor
+    name: Compressor discharge temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Compressor suction temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Evaporator temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Condenser temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: sensor
+    name: Radiator temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: C
+
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 122
+        type: boolean
+        name: sensor

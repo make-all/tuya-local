@@ -1,8 +1,8 @@
 name: Dehumidifier
 products:
   - id: okwjubkm9ndbq3j
-    manufacturer: Goldair
-    model: GPDH340
+    manufacturer: Goldair / Saneo
+    model: GPDH340 / D025
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -39,18 +39,6 @@ entities:
       - id: 105
         type: integer
         name: model_code
-      - id: 108
-        type: boolean
-        name: filter_clean_required
-        mapping:
-          - dps_val: true
-            icon: "mdi:air-filter"
-            icon_priority: 2
-        hidden: true
-      - id: 109
-        # manual says not available for GPDH340, so not split into switch
-        type: boolean
-        name: pump
   - entity: fan
     dps:
       - id: 1
@@ -123,3 +111,10 @@ entities:
       - id: 108
         type: boolean
         name: sensor
+  - entity: switch
+    name: Lift pump
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch

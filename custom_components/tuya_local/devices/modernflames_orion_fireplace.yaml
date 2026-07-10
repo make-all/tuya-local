@@ -4,28 +4,40 @@ products:
     manufacturer: Modern Flames
     model: Orion
 entities:
-  - entity: climate
+  - entity: switch
     icon: "mdi:campfire"
     dps:
       - id: 1
-        name: hvac_mode
         type: boolean
+        name: switch
+
+  - entity: climate
+    icon: "mdi:campfire"
+    dps:
+      - id: 113
+        name: hvac_mode
+        type: string
         mapping:
-          - dps_val: false
+          - dps_val: HIGH_HEAT
+            value: heat
+          - dps_val: LOW_HEAT
+            value: heat
+          - dps_val: FAN
+            value: fan_only
+          - dps_val: "OFF"
             value: "off"
-          - dps_val: true
-            constraint: preset_mode
-            conditions:
-              - dps_val: HIGH_HEAT
-                value: heat
-              - dps_val: LOW_HEAT
-                value: heat
-                hidden: true
-              - dps_val: FAN
-                value: fan_only
-              - dps_val: "OFF"
-                value: "off"
-                hidden: true
+      - id: 113
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: None
+          - dps_val: "FAN"
+            value: Fan only
+          - dps_val: "LOW_HEAT"
+            value: Low heat
+          - dps_val: "HIGH_HEAT"
+            value: High heat
       - id: 2
         name: temperature
         type: integer
@@ -55,18 +67,6 @@ entities:
           min: 68
           max: 90
         hidden: true
-      - id: 113
-        name: preset_mode
-        type: string
-        mapping:
-          - dps_val: "OFF"
-            value: none
-          - dps_val: "FAN"
-            value: Fan only
-          - dps_val: "LOW_HEAT"
-            value: eco
-          - dps_val: "HIGH_HEAT"
-            value: boost
       - id: 122
         name: custom
         type: string
@@ -225,8 +225,6 @@ entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - scale: 0.392
       - id: 105
         name: named_color
         type: string

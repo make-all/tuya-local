@@ -1,4 +1,5 @@
-name: Quad powerstrip
+name: Powerstrip
+legacy_type: quad_power_timer
 products:
   - id: key5nck4tavy43jp
     manufacturer: Xystec
@@ -11,6 +12,9 @@ products:
     model: AHR-083
   - id: nflvklbkgbbxegxj
     manufacturer: LSC Smart Connect
+  - id: uebm8smvenxx8pil
+    manufacturer: Ucomen
+    model: 3-outlet
 entities:
   - entity: switch
     translation_key: outlet_x
@@ -44,10 +48,20 @@ entities:
     translation_placeholders:
       x: "4"
     class: outlet
+    hidden: unavailable
     dps:
       - id: 4
         type: boolean
+        optional: true
         name: switch
+      - id: 4
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: time
     category: config
     translation_key: timer_x
@@ -89,13 +103,23 @@ entities:
     translation_key: timer_x
     translation_placeholders:
       x: "4"
+    hidden: unavailable
     dps:
       - id: 12
         type: integer
+        optional: true
         name: second
         range:
           min: 0
           max: 86400
+      - id: 12
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: initial_state
     category: config
