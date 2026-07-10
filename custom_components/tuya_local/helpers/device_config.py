@@ -943,15 +943,23 @@ class TuyaDpsConfig:
             for cond in conditions:
                 if not self.mapping_available(cond, device):
                     continue
-                if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
+                cond_dpval = cond.get("dps_val")
+                if c_val is not None and (_equal_or_in(c_val, cond_dpval)):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
                 # are not just defaulting and it is really a match
                 elif (
                     c_val is None
                     and c_dps is not None
+                    and cond_dpval is None
                     and "dps_val" in cond
-                    and cond.get("dps_val") is None
+                ):
+                    c_match = cond
+                elif (
+                    c_val is not None
+                    and cond_dpval is not None
+                    and c_dps.rawtype == "bitfield"
+                    and (int(c_val) & int(cond_dpval)) == int(cond_dpval)
                 ):
                     c_match = cond
                 # when changing, another condition may become active
