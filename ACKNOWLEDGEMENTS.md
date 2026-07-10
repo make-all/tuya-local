@@ -874,3 +874,19 @@ Further device support has been made with the assistance of users. Please consid
 - [clem3109](https://github.com/clem3109) for contributing support for Varin VA-002 ceiling fan with light.
 - [Maztah](https://github.com/Maztah) for contributing support for Lidl Tronic solar power storage.
 - [peterrojs](https://github.com/peterrojs) for contributing improvements to the cover entity.
+- [fuomag9](https://github.com/fuomag9) for contributing support for Chigo air conditioner.
+- [h0me5k1n](https://github.com/h0me5k1n) for contributing support for Laresar L6 Nex vacuum.
+- [ProZsolt](https://github.com/ProZsolt) for contributing support for Olight Ostation 2.
+- [thayerfox](https://github.com/thayerfox) for contributing support for HOM Chernobyl aroma diffuser.
+- [tomgidden](https://github.com/tomgidden) for contributing support for Temprium PAC011 air conditioner.
+- [MrSiJo](https://github.com/MrSiJo) for contributing improvements to Meaco Cirro air conditioner.
+- [saravanabalagi](https://github.com/saravanabalagi) for contributing support for EcoNour HTS-F305A 12 speed fan.
+- [piotr-romanowski](https://github.com/piotr-romanowski) for contributing support for Fakro ARZ roof blind.
+- [mco85](https://github.com/mco85) for contributing support for Kibernetik 12K portable air conditioner.
+- [barbalexs](https://github.com/barbalexs) for contributing support for EleChico CCIB001 ice bath heat pump controller.
+- [Rangzig93](https://github.com/Rangzig93) for contributing support for Airwoods fresh air heat pump.
+- [romainsc](https://github.com/romainsc) for contributing improvements to Teknopoint Idra Skiv.
+- [kcgthb](https://github.com/kcgthb) for contributing improvements to Petlibro PLAF203 pet feeder.
+- [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer.
+- [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
+- [algrym](https://github.com/algrym) for contributing improvements to Leo's Loo Too litter box.

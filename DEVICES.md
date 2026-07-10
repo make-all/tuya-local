@@ -103,6 +103,7 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
+- Airwoods fresh air heat pump
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -110,6 +111,7 @@
 - Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
+- Chigo air conditioner
 - Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
@@ -140,6 +142,7 @@
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
+- Kibernetik 12K portable split air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
@@ -163,6 +166,7 @@
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Teknopoint Idra Skiv air conditioner
+- Temprium PAC011 air conditioner
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heat pump
@@ -180,6 +184,7 @@
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
+- EleChico CCIB001-CC1177D ice bath heat pump controller
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
@@ -375,7 +380,7 @@
 - Duux Whisper Flex Ultimate
 - Dyras TF-16WIFI tower fan
 - Eberg Fyn tower fan
-- EcoNour 42" tower fan
+- EcoNour 42" 3-speed and 12-speed tower fans
 - Efenz Kith ceiling fan with light
 - Eglo 5 speed + sleep ceiling fan (with or without light and presets)
 - eLinkSmart KH-SY2626 pedestal fan
@@ -515,6 +520,7 @@
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
+- Belair Baltic Irradio 20L dehumidifier
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
@@ -605,6 +611,7 @@
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
 - Haoyunma BD100 aroma diffuser
+- HOM Chernobyl humidifer aroma diffuser
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Revesien Q-Pro-W aroma diffuser
@@ -742,7 +749,8 @@
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
-- Oscal PowerMax 6000 portable power station
+- Olight Ostation 2 battery charging station
+- Oscal PowerMax 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - SRNE SE Series lithium battery
@@ -959,9 +967,11 @@ of device.
 - oLight Sphere ambient light
 - Outon Smart Lamp
 - Peteme recessed lighting
+- Pinar SmartLux door lights
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
+- Sensio 240V Kinetic Receiver dimmer
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
@@ -1003,6 +1013,7 @@ of device.
 - Eachen GD-DC5 garage door opener
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
+- Fakro ARZ roof blind
 - FS-03W curtain switch with backlight control
 - Garen TSI Fit and Kit Central garage door openers
 - Graywind window shades
@@ -1047,6 +1058,7 @@ of device.
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
+- Laresar L6 Nex vacuum cleaner
 - Lefant LS1 Pro, M213, N33, T700 vacuum cleaners
 - Lenovo E1 vacuum cleaner
 - Liectroux G7. XR500 vacuum cleaners
@@ -1260,7 +1272,7 @@ port and password.
 - Frizzlife LP365P water monitor shut-off valve
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Gidrolock Standard water leak detection valve
-- Haozee water valve
+- Haozee water valve, and 12 valve sprinkler controller
 - Hoenyzy DN15 / DN20 / DN25 gas and water valve timers
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
