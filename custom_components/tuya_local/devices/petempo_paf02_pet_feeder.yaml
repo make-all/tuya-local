@@ -3,6 +3,9 @@ products:
   - id: go142kwowvlxvmmn
     manufacturer: Petempo
     model: PAF-02
+  - id: qyilqivtx4uhd5r4
+    manufacturer: Frienhund
+    model: PAF-02
 entities:
   - entity: button
     name: Quick feed
@@ -10,6 +13,7 @@ entities:
     dps:
       - id: 2
         type: boolean
+        optional: true
         name: button
   - entity: number
     translation_key: manual_feed
@@ -17,6 +21,7 @@ entities:
     dps:
       - id: 3
         type: integer
+        optional: true
         name: value
         unit: portions
         range:
@@ -52,6 +57,7 @@ entities:
     dps:
       - id: 11
         type: boolean
+        optional: true
         name: sensor
   - entity: sensor
     name: Feed report
@@ -60,6 +66,7 @@ entities:
     dps:
       - id: 14
         type: integer
+        optional: true
         name: sensor
         unit: portions
   - entity: light
@@ -68,6 +75,7 @@ entities:
     dps:
       - id: 17
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     name: Slow feed
@@ -84,4 +92,5 @@ entities:
     dps:
       - id: 24
         type: boolean
+        optional: true
         name: button

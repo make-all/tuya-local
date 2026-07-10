@@ -8,6 +8,9 @@ products:
     model: "6922HA Series 3"
   - id: ih9byh68mvrqwwdq
     model: W-W602
+  - id: ph1joc22
+    manufacturer: Moes House
+    model: Dual Zigbee Socket
 entities:
   - entity: switch
     translation_key: switch_x
@@ -65,14 +68,31 @@ entities:
             value: "on"
           - dps_val: memory
             value: memory
+          - dps_val: null
+            value_redirect: alt
       - id: 38
         type: string
         optional: true
         name: available
         mapping:
           - dps_val: null
-            value: false
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
           - value: true
+      - id: 27
+        type: string
+        optional: true
+        name: alt
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
   - entity: select
     translation_key: light_mode
     category: config
@@ -108,14 +128,25 @@ entities:
         type: boolean
         optional: true
         name: lock
+        mapping:
+          - dps_val: null
+            value_redirect: alt
       - id: 41
         type: boolean
         optional: true
         name: available
         mapping:
           - dps_val: null
-            value: false
+            value: true
+            constraint: alt
+            conditions:
+              - dps_val: null
+                value: false
           - value: true
+      - id: 29
+        type: boolean
+        optional: true
+        name: alt
   - entity: text
     name: Inching
     category: config

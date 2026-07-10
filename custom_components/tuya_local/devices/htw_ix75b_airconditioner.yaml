@@ -1,0 +1,234 @@
+name: Air conditioner
+products:
+  - id: luacvecdj9biucd1
+    manufacturer: HTW
+    model: IX75B
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+                available: heat_model
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+                available: heat_model
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: strong
+            value: strong
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: low
+          - dps_val: MediumLow
+            value: medlow
+          - dps_val: middle
+            value: medium
+          - dps_val: MediumHigh
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: mute
+            value: quiet
+      - id: 25
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: comfort
+          - dps_val: true
+            value: sleep
+      - id: 31
+        type: string
+        name: swing_mode
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: same
+            value: "on"
+          - value: "off"
+            hidden: true
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: same
+            value: "on"
+          - dps_val: vane_1
+            value: Position 1
+            available: swing_positions
+          - dps_val: vane_2
+            value: Position 2
+            available: swing_positions
+          - dps_val: vane_3
+            value: Position 3
+            available: swing_positions
+          - dps_val: vane_4
+            value: Position 4
+            available: swing_positions
+          - dps_val: vane_5
+            value: Position 5
+            available: swing_positions
+      - id: 33
+        type: boolean
+        name: swing_horizontal_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 105
+        type: boolean
+        name: heat_model
+        optional: true
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+      - id: 106
+        type: boolean
+        name: invertor
+        optional: true
+      - id: 107
+        type: boolean
+        name: swing_positions
+        optional: true
+        hidden: true
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Emergency heat
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+      - id: 105
+        type: boolean
+        name: available
+        optional: true
+        hidden: true
+        mapping:
+          - dps_val: true
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: indoor_fault_code
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
+          - dps_val: null
+            value: true
+            constraint: indoor_fault_code
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 108
+        type: integer
+        name: indoor_fault_code
+        optional: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+  - entity: switch
+    name: On timer
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Off timer
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: time
+    translation_key: timer
+    name: "On timer"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: hms
+        optional: true
+      - id: 101
+        type: boolean
+        name: available
+  - entity: time
+    translation_key: timer
+    name: "Off timer"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: hms
+        optional: true
+      - id: 102
+        type: boolean
+        name: available
