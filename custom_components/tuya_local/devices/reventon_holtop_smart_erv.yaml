@@ -1,0 +1,295 @@
+name: Heat recovery ventilator
+products:
+  - id: ddrpa4plk6fsvz9l
+    manufacturer: Reventon / Holtop
+    model: Smart ERV
+
+entities:
+  - entity: fan
+    translation_key: ventilation
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+      - id: 102
+        name: speed
+        type: string
+        mapping:
+          - constraint: speed_mode
+            conditions:
+              - dps_val: true
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 11
+                  - dps_val: "2"
+                    value: 22
+                  - dps_val: "3"
+                    value: 33
+                  - dps_val: "4"
+                    value: 44
+                  - dps_val: "5"
+                    value: 56
+                  - dps_val: "6"
+                    value: 67
+                  - dps_val: "7"
+                    value: 78
+                  - dps_val: "8"
+                    value: 89
+                  - dps_val: "9"
+                    value: 100
+              - dps_val: false
+                value_redirect: speed_3step
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 50
+                  - dps_val: "2"
+                    value: 100
+      - id: 104
+        name: speed_3step
+        type: string
+        hidden: true
+        mapping:
+          - dps_val: "0"
+            value: 0
+          - dps_val: "1"
+            value: 50
+          - dps_val: "2"
+            value: 100
+      - id: 125
+        name: speed_mode
+        type: boolean
+        hidden: true
+
+  - entity: fan
+    name: Exhaust fan
+    dps:
+      - id: 103
+        name: speed
+        type: string
+        mapping:
+          - constraint: speed_mode
+            conditions:
+              - dps_val: true
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 11
+                  - dps_val: "2"
+                    value: 22
+                  - dps_val: "3"
+                    value: 33
+                  - dps_val: "4"
+                    value: 44
+                  - dps_val: "5"
+                    value: 56
+                  - dps_val: "6"
+                    value: 67
+                  - dps_val: "7"
+                    value: 78
+                  - dps_val: "8"
+                    value: 89
+                  - dps_val: "9"
+                    value: 100
+              - dps_val: false
+                value_redirect: speed_3step
+                mapping:
+                  - dps_val: "0"
+                    value: 0
+                  - dps_val: "1"
+                    value: 50
+                  - dps_val: "2"
+                    value: 100
+      - id: 105
+        name: speed_3step
+        type: string
+        hidden: true
+        mapping:
+          - dps_val: "0"
+            value: 0
+          - dps_val: "1"
+            value: 50
+          - dps_val: "2"
+            value: 100
+      - id: 125
+        name: speed_mode
+        type: boolean
+        hidden: true
+
+  - entity: number
+    name: Supply air target temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 10
+          max: 25
+
+  - entity: number
+    name: Bypass temperature base
+    class: temperature
+    category: config
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 30
+
+  - entity: number
+    name: Bypass temperature delta
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 2
+          max: 15
+
+  - entity: select
+    name: Filter life
+    icon: mdi:air-filter
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: string
+        mapping:
+          - dps_val: "45"
+            value: 45 days
+          - dps_val: "60"
+            value: 60 days
+          - dps_val: "90"
+            value: 90 days
+          - dps_val: "180"
+            value: 180 days
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 110
+        name: button
+        type: boolean
+
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: ppm
+        class: measurement
+
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 112
+        name: sensor
+        type: string
+        force: true
+        mapping:
+          - dps_val: "0"
+            value: unknown
+          - dps_val: "1"
+            value: excellent
+          - dps_val: "2"
+            value: good
+          - dps_val: "3"
+            value: moderate
+          - dps_val: "4"
+            value: poor
+
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: μg/m³
+        class: measurement
+
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 119
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 119
+        name: fault_code
+        type: bitfield
+
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 122
+        name: sensor
+        type: boolean
+
+  - entity: binary_sensor
+    name: Filter clean due
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 123
+        name: sensor
+        type: boolean
+
+  - entity: sensor
+    translation_key: filter_life
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 126
+        name: sensor
+        type: integer
+        unit: d

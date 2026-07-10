@@ -6,7 +6,6 @@ products:
     name: Geyser timer and controller
 entities:
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -188,6 +187,7 @@ entities:
     name: Collector temperature
     class: temperature
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 108
         type: integer
@@ -195,3 +195,11 @@ entities:
         optional: true
         unit: C
         class: measurement
+      - id: 108
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

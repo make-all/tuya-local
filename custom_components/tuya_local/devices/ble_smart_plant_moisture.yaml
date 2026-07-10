@@ -2,6 +2,8 @@ name: Moisture sensor
 products:
   - id: gvygg3m8
     model: SGS01
+  - id: nt4pquef
+    model: SGS02Z
 entities:
   - entity: sensor
     name: Soil moisture
@@ -34,6 +36,7 @@ entities:
     dps:
       - id: 14
         type: string
+        optional: true
         name: state
       - id: 15
         type: integer
@@ -77,3 +80,31 @@ entities:
       - id: 9
         type: string
         name: current
+  - entity: sensor
+    name: Light intensity
+    class: enum
+    hidden: unavailable  # only SGS02Z supports this
+    dps:
+      - id: 2
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: lower
+            value: dark
+          - dps_val: low
+            value: low
+          - dps_val: normal
+            value: normal
+          - dps_val: high
+            value: high
+          - dps_val: higher
+            value: bright
+      - id: 2
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

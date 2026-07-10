@@ -29,10 +29,14 @@ entities:
         name: switch
       - id: 21
         type: string
-        name: color_mode
+        name: effect
         mapping:
           - dps_val: white
-            value: color_temp
+            value: "off"
+          - dps_val: scene
+            value: Scene
+          - value: "off"
+            hidden: true
       - id: 22
         type: integer
         name: brightness
@@ -51,14 +55,21 @@ entities:
             target_range:
               min: 2700
               max: 6500
-      - id: 59
-        type: string
-        name: light_type
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        type: hex
         optional: true
+        name: value
+
   - entity: number
     name: Minimum brightness
     icon: "mdi:brightness-6"
     category: config
+    hidden: unavailable
     dps:
       - id: 58
         type: integer
@@ -70,6 +81,38 @@ entities:
           max: 1000
         mapping:
           - scale: 10
+      - id: 58
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Light type
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 59
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+      - id: 59
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: number
     name: Fan timer
     class: duration
@@ -83,3 +126,20 @@ entities:
           min: 0
           max: 540
         unit: min
+  - entity: switch
+    translation_key: sound
+    category: config
+    hidden: true
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: switch
+      - id: 66
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

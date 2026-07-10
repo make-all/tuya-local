@@ -7,8 +7,8 @@ class BasicNumberTests:
         self,
         dps,
         subject,
-        max,
-        min=0,
+        maxi,
+        mini=0,
         step=1,
         mode="auto",
         scale=1,
@@ -18,8 +18,8 @@ class BasicNumberTests:
     ):
         self.basicNumber = subject
         self.basicNumberDps = dps
-        self.basicNumberMin = min
-        self.basicNumberMax = max
+        self.basicNumberMin = mini
+        self.basicNumberMax = maxi
         self.basicNumberStep = step
         self.basicNumberMode = mode
         self.basicNumberScale = scale

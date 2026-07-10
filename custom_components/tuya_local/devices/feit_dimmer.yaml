@@ -45,3 +45,27 @@ entities:
             value: Incandescent
           - dps_val: halogen
             value: LED
+  - entity: light
+    translation_key: indicator
+    category: config
+    hidden: unavailable
+    dps:
+      - id: 101
+        type: string
+        name: brightness
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: 0
+          - dps_val: low
+            value: 128
+          - dps_val: high
+            value: 255
+      - id: 101
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true

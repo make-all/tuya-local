@@ -37,24 +37,10 @@ entities:
         type: string
         optional: true
         name: work_state
-        mapping:
-          - dps_val: charger_free
-          - dps_val: charger_insert
-          - dps_val: charger_free_fault
-          - dps_val: charger_wait
-          - dps_val: charger_charging
-          - dps_val: charger_pause
-          - dps_val: charger_end
-          - dps_val: charger_fault
       - id: 14
         type: string
         optional: true
         name: work_mode
-        mapping:
-          - dps_val: charge_now
-          - dps_val: charge_pct
-          - dps_val: charge_energy
-          - dps_val: charge_schedule
       - id: 23
         type: string
         optional: true
@@ -65,7 +51,7 @@ entities:
         name: phase_info
   - entity: binary_sensor
     class: problem
-    icon: 'mdi:alert-outline'
+    icon: "mdi:alert-outline"
     dps:
       - id: 10
         type: bitfield
@@ -194,23 +180,14 @@ entities:
             conditions:
               - dps_val: Max32A
                 value_redirect: value_32a
-                range:
-                  min: 6
-                  max: 32
               - dps_val: Max40A
                 value_redirect: value_40a
-                range:
-                  min: 8
-                  max: 40
               - dps_val: Max50A
                 value_redirect: value_50a
-                range:
-                  min: 8
-                  max: 50
-                  # - dps_val: Max60A
-                  #   value_redirect: value_60a
-                  # - dps_val: Max80A
-                  #   value_redirect: value_80a
+                # - dps_val: Max60A
+                #   value_redirect: value_60a
+                # - dps_val: Max80A
+                #   value_redirect: value_80a
       - id: 113
         type: string
         optional: true

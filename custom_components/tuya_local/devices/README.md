@@ -601,7 +601,10 @@ device detection unless set to optional. A value of true will be sent
 for a button press, map this to the desired dps_val if a different
 value is required.
 
-### `camera`
+### `camera` *deprecated*
+
+As cameras are not well supported locally, forcing them into a camera entity does not give good results, instead use switch entities for the controls, and event entities for "snapshots" (which usually contain URLs to fetch the image but need some unknown authentication).
+
 - **motion_enable** (optional, boolean) a dp that enables and disables motion detection features built into the camera.
 - **record** (optional, boolean) a dp that turns reecording on and off.
 - **snapshot** (optional, base64 string) a dp that returns a snapshot image.
@@ -684,6 +687,11 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **current_humidity** (optional, number): a dp to report the current humidity measured by the device
 - **action** (optional, string): a dp to report the current action the device is performing. Valid actions are `humidifying`, `drying`, `idle` and `off`
 
+### `infrared`
+- **send** (required, accepts a string): a dp to send remote codes.
+- **control** (optional, accepts strings `"send_ir"`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
+- **code_type** (optional, accepts integers): a dp to set the type of code being sent. The current implementation only supports type `0`. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
+
 ### `lawn_mower`
 - **activity** (required, string): a dp to report the current activity of the mower. Valid activities are `mowing`, `paused`, `docked`, `error`, `returning` (from LawnMowerActivities in https://github.com/home-assistant/core/blob/dev/homeassistant/components/lawn_mower/const.py). Any additional activities should be mapped to one of those, and exposed through an extra attribute or sensor entity that shows all the statuses that the mower is reporting.
 
@@ -701,7 +709,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
     If no `color_mode` dp is available, a single supported color mode will be
     calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
-   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
+   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead. If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable. If there is no (or read-only) switch and no brightness dp, then the "off" effect will be used to turn off the light, and a default option should be marked for turning on the light with no parameters.
 
 ### `lock`
 
@@ -739,13 +747,15 @@ no information will be available about which specific credential was used to unl
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
+- **decimal** (optional, number): a dp that is added to the value to specify the decimal portion of the number separately from the whole number portion. This must be scaled into a decimal number range.
 
 ### `remote`
 - **send** (required, accepts a string): a dp to send remote codes.
 - **receive** (optional, returns strings): a dp to receive learned commands on. If not supplied, the `remote.learn_command` service call will not be available. 
-- **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
+- **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`, `rfstudy_send`, `rf_study`, `rfstudy_exit`): a dp to send commands seperately from ir codes. If not supplied, commands will be JSON formatted and sent through the **send** dp.
 - **delay** (optional, accepts numbers): a dp to set the delay in ms between buttons when there are multiple in the send string. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
 - **code_type** (optional, accepts integers): a dp to set the type of code being sent. The current implementation only supports type `0`. This is only used when a separate **control** dp is also supplied, otherwise the parameter is included in the JSON sent to the **send** dp.
+
 ### `select`
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 
@@ -798,6 +808,7 @@ to use it for other length timers.
 
 ### `valve`
 - **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
+- **switch** (optional, boolean): if the valve dp is an integer, the valve may also have a boolean switch dp for closing and opening the valve without affecting the open valve position.
 
 ### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.

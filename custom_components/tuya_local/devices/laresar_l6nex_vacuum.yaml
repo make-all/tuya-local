@@ -1,0 +1,423 @@
+name: Robot vacuum and mop
+products:
+  - id: pi5tljdjcchcn0mr
+    name: L6 Nex
+    manufacturer: Laresar
+    model: L6 NEX
+
+entities:
+  - entity: vacuum
+    dps:
+      - id: 5
+        type: string
+        name: status
+        readonly: true
+        mapping:
+          - dps_val: "charge_done"
+            value: "docked"
+          - dps_val: "charging"
+            value: "docked"
+          - dps_val: "standby"
+            value: "idle"
+          - dps_val: "smart"
+            value: "cleaning"
+          - dps_val: "zone_clean"
+            value: "cleaning"
+          - dps_val: "part_clean"
+            value: "cleaning"
+          - dps_val: "cleaning"
+            value: "cleaning"
+          - dps_val: "paused"
+            value: "paused"
+          - dps_val: "goto_pos"
+            value: "returning"
+          - dps_val: "goto_charge"
+            value: "returning"
+          - dps_val: "pos_arrived"
+            value: "idle"
+          - dps_val: "sleep"
+            value: "idle"
+          - dps_val: "pos_unarrive"
+            value: "error"
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: "chargego"
+            value: "return_to_base"
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: "Close"
+            value: "off"
+          - dps_val: "gentle"
+            value: "gentle"
+          - dps_val: "normal"
+            value: "normal"
+          - dps_val: "strong"
+            value: "strong"
+      - id: 11
+        type: boolean
+        name: locate
+      - id: 1
+        type: boolean
+        name: activate
+      - id: 2
+        type: boolean
+        name: pause
+        hidden: true
+
+  - entity: button
+    name: Collect dust now
+    category: config
+    icon: "mdi:vacuum"
+    dps:
+      - id: 38
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Reset edge brush
+    category: config
+    icon: "mdi:brush"
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Reset roll brush
+    category: config
+    icon: "mdi:brush"
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+
+  - entity: button
+    name: Reset map
+    category: config
+    icon: "mdi:map-outline"
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+
+  - entity: select
+    name: Cleaning pattern
+    category: config
+    icon: "mdi:robot-vacuum"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "smart"
+            value: "Auto"
+          - dps_val: "chargego"
+            value: "Return to charge"
+          - dps_val: "zone"
+            value: "Zone clean"
+          - dps_val: "pose"
+            value: "Spot clean"
+          - dps_val: "part"
+            value: "Room clean"
+
+  - entity: select
+    translation_key: mopping
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: "installed"
+            value: true
+          - dps_val: "none"
+            value: false
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: "closed"
+            value: "off"
+          - dps_val: "low"
+            value: "low"
+          - dps_val: "middle"
+            value: "medium"
+          - dps_val: "high"
+            value: "high"
+
+  - entity: select
+    translation_key: cleaning_mode
+    category: config
+    dps:
+      - id: 41
+        type: string
+        name: option
+        mapping:
+          - dps_val: "both_work"
+            value: "sweep_and_mop"
+          - dps_val: "only_sweep"
+            value: "sweep"
+          - dps_val: "only_mop"
+            value: "mop"
+
+  - entity: select
+    name: Carpet clean preference
+    category: config
+    icon: "mdi:rug"
+    dps:
+      - id: 44
+        type: string
+        name: option
+        mapping:
+          - dps_val: "adaptive"
+            value: "Zig zag cleaning"
+          - dps_val: "evade"
+            value: "Y shaped cleaning"
+          - dps_val: "ignore"
+            value: "Edge clean only"
+
+  - entity: select
+    name: Dust collection frequency
+    category: config
+    icon: "mdi:vacuum"
+    dps:
+      - id: 37
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Never"
+          - dps_val: 1
+            value: "Once per clean"
+          - dps_val: 2
+            value: "Twice per clean"
+          - dps_val: 3
+            value: "3 times per clean"
+          - dps_val: 4
+            value: "4 times per clean"
+
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 36
+        type: string
+        name: option
+        mapping:
+          - dps_val: "chinese_simplified"
+            value: "chinese"
+          - dps_val: "chinese_traditional"
+            value: "chinese_traditional"
+          - dps_val: "english"
+            value: "english"
+          - dps_val: "german"
+            value: "german"
+          - dps_val: "french"
+            value: "french"
+          - dps_val: "russian"
+            value: "russian"
+          - dps_val: "spanish"
+            value: "spanish"
+          - dps_val: "korean"
+            value: "korean"
+          - dps_val: "latin"
+            value: "latin"
+          - dps_val: "portuguese"
+            value: "portuguese"
+          - dps_val: "japanese"
+            value: "japanese"
+          - dps_val: "italian"
+            value: "italian"
+
+  - entity: switch
+    translation_key: do_not_disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Resume cleaning
+    category: config
+    icon: "mdi:backup-restore"
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Customize mode
+    category: config
+    icon: "mdi:cog"
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Auto boost
+    category: config
+    icon: "mdi:rocket-launch"
+    dps:
+      - id: 45
+        type: boolean
+        name: switch
+
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+
+  - entity: sensor
+    name: Clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "min"
+
+  - entity: sensor
+    name: Clean area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "m²"
+
+  - entity: sensor
+    name: Edge brush life
+    category: diagnostic
+    icon: "mdi:brush"
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: sensor
+    name: Roll brush life
+    category: diagnostic
+    icon: "mdi:brush"
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "h"
+
+  - entity: sensor
+    name: Mop life
+    category: diagnostic
+    icon: "mdi:broom"
+    dps:
+      - id: 40
+        type: string
+        name: available
+        mapping:
+          - dps_val: "installed"
+            value: true
+          - dps_val: "none"
+            value: false
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "min"
+
+  - entity: sensor
+    name: Total clean area
+    class: area
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: "m²"
+
+  - entity: sensor
+    name: Total clean count
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+
+  - entity: sensor
+    name: Total clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: "min"
+
+  - entity: sensor
+    name: Mop state
+    class: enum
+    category: diagnostic
+    icon: "mdi:broom"
+    dps:
+      - id: 40
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "installed"
+            value: "Installed"
+          - dps_val: "none"
+            value: "Not installed"
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code

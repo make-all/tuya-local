@@ -1,0 +1,47 @@
+name: Solar water heater
+products:
+  - id: mlezgpkhb08dvjjx
+    manufacturer: Shuangri
+    model: SR223
+entities:
+  # Solar Collector Temperature (T1)
+  - entity: sensor
+    name: Solar collector temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+  # Tank Temperature (T2)
+  - entity: sensor
+    name: Tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+  # Pump Speed
+  - entity: sensor
+    name: Pump speed
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: rpm
+  # WiFi Signal Strength
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: dBm

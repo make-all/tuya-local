@@ -106,6 +106,26 @@
             "not_supported": "Spiacente, questo dispositivo non è supportato."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Invia comando IR appreso",
+            "description": "Invia un comando remoto che è stato precedentemente appreso dall'entità remota a qualsiasi emettitore a infrarossi.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Entità emettitore",
+                    "description": "ID dell'entità dell'emettitore a cui inviare il comando."
+                },
+                "command": {
+                    "name": "Comando",
+                    "description": "Il comando da inviare. Questo deve essere un comando che è stato precedentemente appreso dall'integrazione per questo telecomando."
+                },
+                "device": {
+                    "name": "Dispositivo",
+                    "description": "Il dispositivo IR a cui inviare il comando. Questo è opzionale e necessario solo se il comando è stato salvato con un dispositivo."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Reset del filtro"
+            },
+            "alarm_off": {
+                "name": "Spegni sveglia"
+            },
+            "alarm_snooze": {
+                "name": "Posticipa sveglia"
+            },
+            "alarm_x_reset": {
+                "name": "Sveglia {x} ripristino"
+            },
+            "radio_seek": {
+                "name": "Cerca radio"
+            },
+            "radio_stop": {
+                "name": "Arresta radio"
             }
         },
         "climate": {
@@ -371,6 +406,11 @@
                 }
             }
         },
+        "event": {
+            "alarm": {
+                "name": "Allarme"
+            }
+        },
         "humidifier": {
             "extended": {
                 "state_attributes": {
@@ -385,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Purificatore d'aria",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuale",
+                            "sleep": "Sonno",
+                            "low": "Basso",
+                            "medium": "Medio",
+                            "high": "Alto",
+                            "strong": "Forte",
+                            "displayoff": "Display spento"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Diffusore di aromi",
                 "state_attributes": {
@@ -488,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Luce della cappa"
+            },
+            "color_light": {
+                "name": "Luce colorata"
+            },
+            "ambient_light": {
+                "name": "Luce ambientale"
             }
         },
         "lock": {
@@ -496,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Livello della fiamma"
+            },
             "manual_feed": {
                 "name": "Alimentazione manuale"
             },
@@ -525,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Temperatura superiore"
+            },
+            "leakage_current": {
+                "name": "Corrente di dispersione"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Sveglia {x} durata posticipo"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Sveglia {x} anticipo luce sveglia"
+            },
+            "radio_frequency": {
+                "name": "Frequenza radio"
+            },
+            "snooze_duration": {
+                "name": "Durata posticipo"
             }
         },
         "select": {
@@ -602,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -636,6 +722,14 @@
                     "high": "Alto"
                 }
             },
+            "night_vision": {
+                "name": "Visione notturna",
+                "state": {
+                    "off": "Spento",
+                    "on": "Acceso",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Ricetta",
                 "state": {
@@ -664,6 +758,13 @@
                     "preheat": "Preriscaldare"
                 }
             },
+            "recording_mode": {
+                "name": "Modalità di registrazione",
+                "state": {
+                    "event": "Evento",
+                    "continuous": "Continuo"
+                }
+            },
             "scene": {
                 "name": "Scena",
                 "state": {
@@ -687,6 +788,8 @@
                 "state": {
                     "cancel": "Annulla",
                     "continuous": "Continuo",
+                    "5s": "5 secondi",
+                    "10s": "10 secondi",
                     "15s": "15 secondi",
                     "20s": "20 secondi",
                     "30s": "30 secondi",
@@ -785,7 +888,8 @@
                     "medium": "Medio",
                     "high": "Alto",
                     "rapid_clean": "Pulizia rapida",
-                    "schedule": "Programma"
+                    "schedule": "Programma",
+                    "sleep": "Sonno"
                 }
             },
             "activation_mode": {
@@ -975,9 +1079,77 @@
                     "red_bean_bread": "Pane ai fagioli rossi",
                     "milk_toast": "Pane al latte"
                 }
+            },
+            "display_brightness": {
+                "name": "Luminosità display",
+                "state": {
+                    "off": "Spento",
+                    "day": "Giorno",
+                    "night": "Notte",
+                    "dim": "Tenue",
+                    "bright": "Luminoso",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Punto dei secondi",
+                "state": {
+                    "static": "Statico",
+                    "blinking": "Lampeggiante"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Sveglia {x} modalità posticipo",
+                "state": {
+                    "mute": "Silenzia suono",
+                    "mute_light": "Silenzia suono + luce",
+                    "light_only": "Silenzia solo luce"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Sveglia {x} effetto sonoro",
+                "state": {
+                    "normal": "Normale",
+                    "fade_in": "Dissolvenza in entrata",
+                    "fade_out": "Dissolvenza in uscita"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Sveglia {x} modalità luce sveglia",
+                "state": {
+                    "no_light": "Nessuna luce",
+                    "rainbow": "Arcobaleno",
+                    "candle_flicker": "Tremolio di candela",
+                    "romantic_breath": "Respiro romantico",
+                    "quiet_deep_sea": "Mare profondo tranquillo",
+                    "flowing_colors": "Colori fluidi",
+                    "magic_jungle": "Giungla magica",
+                    "perfect_party": "Festa perfetta",
+                    "sunrise_at_sea": "Alba sul mare",
+                    "dynamic_music": "Musica dinamica"
+                }
+            },
+            "snooze_action": {
+                "name": "Azione posticipo",
+                "state": {
+                    "sound_radio": "Suono + radio",
+                    "light": "Luce",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + suono + luce"
+                }
+            },
+            "time_format": {
+                "name": "Formato ora",
+                "state": {
+                    "12_hour": "12 ore",
+                    "24_hour": "24 ore"
+                }
             }
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Temperatura ambiente"
+            },
             "cleanliness": {
                 "name": "Pulizia",
                 "state": {
@@ -1149,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Giorni memorizzati"
+            },
+            "leakage_current": {
+                "name": "Corrente di dispersione"
+            },
+            "active_lights": {
+                "name": "Luci attive",
+                "state": {
+                    "all_off": "Tutte spente",
+                    "night_on": "Luce notturna accesa",
+                    "color_on": "Luce colorata accesa",
+                    "ambient_on": "Luce ambientale accesa"
+                }
+            },
+            "wireless_charging": {
+                "name": "Stato ricarica senza fili",
+                "state": {
+                    "idle": "Inattivo",
+                    "charging": "In carica",
+                    "full": "Carica completa",
+                    "foreign_object_detected": "Oggetto estraneo rilevato"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Svuotare il serbatoio"
+            },
+            "fill_tank": {
+                "name": "Riempire il serbatoio"
+            },
             "anti_frost": {
                 "name": "Antigelo"
             },
@@ -1212,11 +1414,74 @@
             },
             "rangehood": {
                 "name": "Cappa"
+            },
+            "alarm_x": {
+                "name": "Sveglia {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Sveglia {x} posticipo abilitato"
+            },
+            "alarm_x_day_monday": {
+                "name": "Sveglia {x} giorno 1-lunedì"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Sveglia {x} giorno 2-martedì"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Sveglia {x} giorno 3-mercoledì"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Sveglia {x} giorno 4-giovedì"
+            },
+            "alarm_x_day_friday": {
+                "name": "Sveglia {x} giorno 5-venerdì"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Sveglia {x} giorno 6-sabato"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Sveglia {x} giorno 7-domenica"
+            },
+            "music_playback": {
+                "name": "Riproduzione musica"
+            },
+            "network_time": {
+                "name": "Sincronizzazione ora di rete"
+            },
+            "night_mode": {
+                "name": "Modalità notturna"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Posticipo"
+            },
+            "motion_detection": {
+                "name": "Rilevamento del movimento"
+            },
+            "watermark": {
+                "name": "Filigrana"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Piano dei pasti"
+            },
             "scene": {
                 "name": "Scena"
+            },
+            "schedule": {
+                "name": "Programma"
+            },
+            "alarm_settings": {
+                "name": "Impostazioni sveglia"
+            },
+            "sleep_settings": {
+                "name": "Impostazioni sonno"
+            },
+            "station_list": {
+                "name": "Lista delle stazioni"
             }
         },
         "time": {
@@ -1231,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Sveglia {x} orario"
+            },
+            "clock_time": {
+                "name": "Ora dell'orologio"
             }
         },
         "valve": {
@@ -1247,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Acqua calda"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Sveglia {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Nessuno",
+                            "birds": "Uccelli",
+                            "sea": "Mare",
+                            "valley": "Valle",
+                            "piano": "Piano",
+                            "soft": "Dolce",
+                            "phone": "Telefono",
+                            "beep": "Bip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }
