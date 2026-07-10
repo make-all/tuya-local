@@ -87,6 +87,11 @@ entities:
         type: boolean
         optional: true
         name: lock_state
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
       # [Report unlocking record] is used for the device to report the record
       # of online temporary password unlocking.
       - id: 55
