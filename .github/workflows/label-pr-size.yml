@@ -6,7 +6,9 @@ jobs:
   add_pr_size_label:
     runs-on: ubuntu-latest
     name: Check PR size
-
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Label and comment PR
         uses: boschresearch/pr-size-labeler@v5
