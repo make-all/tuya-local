@@ -40,8 +40,7 @@ _LOGGER = logging.getLogger(__name__)
 # until it is power cycled, not just a misconfigured key or protocol version.
 _ERROR_HINTS = {
     "914": (
-        " (an incorrect local key or protocol version, or a device that has "
-        "stopped accepting local connections and needs to be power cycled)"
+        "  If previously running OK, likely the device needs to be power cycled."
     ),
 }
 
