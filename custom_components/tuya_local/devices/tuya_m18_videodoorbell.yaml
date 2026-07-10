@@ -1,0 +1,376 @@
+name: Video doorbell
+# Tuya Smart Video Doorbell M18 (category sp / low-power IPC doorbell).
+# Confirmed via cloud status for product is5yumkqdhcfxskv ("Video Porteiro").
+# Live video stream is NOT supported by tuya-local
+# (use ONVIF/WebRTC if the device exposes a local stream).
+products:
+  - id: is5yumkqdhcfxskv
+    manufacturer: Tuya
+    model: M18
+    model_id: Smart Video Doorbell
+entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      # record_switch
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      # movement_detect_pic
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - dps_val: "$"
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    name: Door image
+    dps:
+      # doorbell_pic
+      - id: 154
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: ring
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    dps:
+      # doorbell_active
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: ""
+            value: null
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: raw_event
+  - entity: switch
+    name: Motion record
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      # motion_record (cloud code observed)
+      - id: 134
+        type: boolean
+        optional: true
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      # basic_indicator
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: flip_image
+    category: config
+    dps:
+      # basic_flip
+      - id: 103
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    translation_key: night_vision
+    category: config
+    dps:
+      # basic_nightvision
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: auto
+          - dps_val: "1"
+            value: "off"
+          - dps_val: "2"
+            value: "on"
+  - entity: sensor
+    name: SD status
+    class: enum
+    translation_key: status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      # sd_status
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: fault
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+      # sd_storge
+      - id: 109
+        type: string
+        optional: true
+        name: capacity
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      # sd_format
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+      # sd_format_state
+      - id: 117
+        type: integer
+        optional: true
+        name: state
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted
+          - dps_val: 0
+            value: Formatted
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      # wireless_electricity
+      - id: 145
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      # battery_report_cap
+      - id: 126
+        type: bitfield
+        optional: true
+        name: capability
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      # wireless_powermode — 0 battery, 1 adapter
+      - id: 146
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: number
+    name: Low battery alarm level
+    category: config
+    icon: "mdi:battery-20"
+    dps:
+      # wireless_lowpower
+      - id: 147
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 50
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      # wireless_awake
+      - id: 149
+        type: boolean
+        name: sensor
+  - entity: select
+    translation_key: recording_mode
+    category: config
+    dps:
+      # record_mode
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: event
+          - dps_val: "2"
+            value: continuous
+  - entity: select
+    name: PIR sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      # pir_switch
+      - id: 152
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+  - entity: binary_sensor
+    name: Chime paired
+    class: connectivity
+    icon: "mdi:bell"
+    category: diagnostic
+    dps:
+      # doorbell_ring_exist
+      - id: 155
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+            icon: "mdi:bell-off"
+  - entity: button
+    name: Pair chime
+    category: config
+    icon: "mdi:bell-check"
+    dps:
+      - id: 155
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Unpair chime
+    category: config
+    icon: "mdi:bell-cancel"
+    dps:
+      - id: 155
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: siren
+    dps:
+      # siren_switch
+      - id: 159
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: volume
+    category: config
+    dps:
+      # basic_device_volume
+      - id: 160
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Human filter
+    icon: "mdi:human"
+    category: config
+    dps:
+      # humanoid_filter
+      - id: 170
+        type: boolean
+        name: switch
+        optional: true
+  - entity: event
+    translation_key: alarm
+    dps:
+      # alarm_message
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: alarm
+      - id: 185
+        type: string
+        optional: true
+        name: message
+  - entity: select
+    name: Work mode
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      # ipc_work_mode
+      - id: 189
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Energy saving
+          - dps_val: "1"
+            value: Always awake
+  - entity: event
+    name: Push message
+    dps:
+      # initiative_message
+      - id: 212
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - dps_val: ""
+            value: null
+          - value: message
+      - id: 212
+        type: string
+        name: message
+        optional: true

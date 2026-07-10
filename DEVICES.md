@@ -1120,6 +1120,7 @@ work reliably, even if listed below.
 - LSC Smart Connect video doorbell
 - MyQ TD8 video doorbell
 - Orno Sigo doorbell
+- Tuya M18 Smart Video Doorbell
 - Vidos M13-XT video dual gate doorbell
 - WHM-04 doorbell (sold under various brands)
 
