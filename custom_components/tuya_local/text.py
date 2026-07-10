@@ -8,9 +8,9 @@ from homeassistant.components.text import TextEntity, TextMode
 from homeassistant.components.text.const import (
     ATTR_MAX,
     ATTR_MIN,
-    ATTR_MODE,
     ATTR_PATTERN,
 )
+from homeassistant.const import ATTR_MODE
 
 from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity

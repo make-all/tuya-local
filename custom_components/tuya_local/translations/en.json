@@ -106,6 +106,26 @@
             "not_supported": "Sorry, there is no support for this device."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Send a learned remote command to infrared",
+            "description": "Send a remote command that was previously learned by the remote entity to any infrared emitter.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Emitter",
+                    "description": "The entity ID of the infrared entity to send the command to."
+                },
+                "command": {
+                    "name": "Command",
+                    "description": "The command to send. This must be a command that was previously learned by the integration for this remote."
+                },
+                "device": {
+                    "name": "Device",
+                    "description": "The IR device to send the command to. This is optional and only needed if the command was saved with a device."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Filter reset"
+            },
+            "alarm_off": {
+                "name": "Alarm off"
+            },
+            "alarm_snooze": {
+                "name": "Alarm snooze"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} reset"
+            },
+            "radio_seek": {
+                "name": "Radio seek"
+            },
+            "radio_stop": {
+                "name": "Radio stop"
             }
         },
         "climate": {
@@ -390,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Air purifier",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "sleep": "Sleep",
+                            "low": "Low",
+                            "medium": "Medium",
+                            "high": "High",
+                            "strong": "Strong",
+                            "displayoff": "Display off"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Aroma diffuser",
                 "state_attributes": {
@@ -493,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Rangehood light"
+            },
+            "color_light": {
+                "name": "Color light"
+            },
+            "ambient_light": {
+                "name": "Ambient light"
             }
         },
         "lock": {
@@ -501,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Flame level"
+            },
             "manual_feed": {
                 "name": "Manual feed"
             },
@@ -533,6 +594,18 @@
             },
             "leakage_current": {
                 "name": "Leakage current"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} snooze duration"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} wake light lead time"
+            },
+            "radio_frequency": {
+                "name": "Radio frequency"
+            },
+            "snooze_duration": {
+                "name": "Snooze duration"
             }
         },
         "select": {
@@ -610,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -644,6 +722,14 @@
                     "high": "High"
                 }
             },
+            "night_vision": {
+                "name": "Night vision",
+                "state": {
+                    "off": "Off",
+                    "on": "On",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Recipe",
                 "state": {
@@ -670,6 +756,13 @@
                     "default": "Default",
                     "keep_warm": "Keep Warm",
                     "preheat": "Preheat"
+                }
+            },
+            "recording_mode": {
+                "name": "Recording mode",
+                "state": {
+                    "event": "Event",
+                    "continuous": "Continuous"
                 }
             },
             "scene": {
@@ -795,7 +888,8 @@
                     "medium": "Medium",
                     "high": "High",
                     "rapid_clean": "Rapid clean",
-                    "schedule": "Schedule"
+                    "schedule": "Schedule",
+                    "sleep": "Sleep"
                 }
             },
             "activation_mode": {
@@ -985,6 +1079,71 @@
                     "red_bean_bread": "Red Bean Bread",
                     "milk_toast": "Milk Toast"
                 }
+            },
+            "display_brightness": {
+                "name": "Display brightness",
+                "state": {
+                    "off": "Off",
+                    "day": "Day",
+                    "night": "Night",
+                    "dim": "Dim",
+                    "bright": "Bright",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Seconds dot",
+                "state": {
+                    "static": "Static",
+                    "blinking": "Blinking"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} snooze mode",
+                "state": {
+                    "mute": "Mute sound",
+                    "mute_light": "Mute sound + light",
+                    "light_only": "Mute light only"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} sound effect",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fade in",
+                    "fade_out": "Fade out"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} wake light mode",
+                "state": {
+                    "no_light": "No light",
+                    "rainbow": "Rainbow",
+                    "candle_flicker": "Candle flicker",
+                    "romantic_breath": "Romantic breath",
+                    "quiet_deep_sea": "Quiet deep sea",
+                    "flowing_colors": "Flowing colors",
+                    "magic_jungle": "Magic jungle",
+                    "perfect_party": "Perfect party",
+                    "sunrise_at_sea": "Sunrise at sea",
+                    "dynamic_music": "Dynamic music"
+                }
+            },
+            "snooze_action": {
+                "name": "Snooze action",
+                "state": {
+                    "sound_radio": "Sound + radio",
+                    "light": "Light",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + sound + light"
+                }
+            },
+            "time_format": {
+                "name": "Time format",
+                "state": {
+                    "12_hour": "12 hour",
+                    "24_hour": "24 hour"
+                }
             }
         },
         "sensor": {
@@ -1165,9 +1324,36 @@
             },
             "leakage_current": {
                 "name": "Leakage current"
+            },
+            "active_lights": {
+                "name": "Active lights",
+                "state": {
+                    "all_off": "All off",
+                    "night_on": "Night light on",
+                    "color_on": "Color light on",
+                    "ambient_on": "Ambient light on"
+                }
+            },
+            "wireless_charging": {
+                "name": "Wireless charging status",
+                "state": {
+                    "idle": "Idle",
+                    "charging": "Charging",
+                    "full": "Full",
+                    "foreign_object_detected": "Foreign object detected"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Empty tank"
+            },
+            "fill_tank": {
+                "name": "Fill tank"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1228,6 +1414,54 @@
             },
             "rangehood": {
                 "name": "Rangehood"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} snooze enabled"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} day 1 monday"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} day 2 tuesday"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} day 3 wednesday"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} day 4 thursday"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} day 5 friday"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} day 6 saturday"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} day 7 sunday"
+            },
+            "music_playback": {
+                "name": "Music playback"
+            },
+            "network_time": {
+                "name": "Network time sync"
+            },
+            "night_mode": {
+                "name": "Night mode"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Snooze"
+            },
+            "motion_detection": {
+                "name": "Motion detection"
+            },
+            "watermark": {
+                "name": "Watermark"
             }
         },
         "text": {
@@ -1239,6 +1473,15 @@
             },
             "schedule": {
                 "name": "Schedule"
+            },
+            "alarm_settings": {
+                "name": "Alarm settings"
+            },
+            "sleep_settings": {
+                "name": "Sleep settings"
+            },
+            "station_list": {
+                "name": "Station list"
             }
         },
         "time": {
@@ -1253,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} time"
+            },
+            "clock_time": {
+                "name": "Clock time"
             }
         },
         "valve": {
@@ -1269,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Hot water dispenser"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "None",
+                            "birds": "Birds",
+                            "sea": "Sea",
+                            "valley": "Valley",
+                            "piano": "Piano",
+                            "soft": "Soft",
+                            "phone": "Phone",
+                            "beep": "Beep",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

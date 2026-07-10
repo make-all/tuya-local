@@ -5,8 +5,7 @@ products:
     model: A8
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -18,11 +17,11 @@ entities:
           - dps_val: sleep
             value: sleep
           - dps_val: mid
-            value: fresh
+            value: medium
           - dps_val: high
-            value: strong
+            value: high
           - dps_val: auto
-            value: smart
+            value: auto
       - id: 101
         name: unknown_101
         type: integer

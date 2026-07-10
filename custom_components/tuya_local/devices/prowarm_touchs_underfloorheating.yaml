@@ -1,0 +1,612 @@
+name: Underfloor heating
+products:
+  - id: abe2ogjiak94ix0j
+    manufacturer: ProWarm
+    model: Touch Button S series
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 3
+        type: string
+        name: hvac_action
+      - id: 16
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                step: 9
+                range:
+                  min: 410
+                  max: 950
+      - id: 17
+        type: integer
+        optional: true
+        name: temp_set_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+      - id: 23
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 24
+        type: integer
+        optional: true
+        name: current_temperature
+        mapping:
+          - scale: 10
+            constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 29
+        type: integer
+        optional: true
+        name: temp_current_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 58
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: schedule
+            value: program
+          - dps_val: holiday
+            value: away
+          - dps_val: boost
+            value: boost
+          - dps_val: override
+            value: temp_override
+      - id: 110
+        type: integer
+        optional: true
+        name: mcu_version
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: Holiday temperature
+    class: temperature
+    category: config
+    icon: "mdi:island"
+    dps:
+      - id: 32
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                step: 9
+                range:
+                  min: 410
+                  max: 950
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 123
+        type: integer
+        optional: true
+        name: temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+  - entity: number
+    name: Holiday length
+    class: duration
+    category: config
+    dps:
+      - id: 33
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 1
+          max: 90
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 37
+        type: base64
+        optional: true
+        name: value
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: air_floor
+            value: Internal + floor
+          - dps_val: air
+            value: Internal
+          - dps_val: floor
+            value: Floor
+          - dps_val: remote_air
+            value: External
+          - dps_val: remote_air_floor
+            value: External + floor
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 44
+        name: brightness
+        type: integer
+        range:
+          min: 5
+          max: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: number
+    name: Boost temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                step: 9
+                range:
+                  min: 410
+                  max: 950
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 125
+        type: integer
+        optional: true
+        name: temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+  - entity: number
+    name: Boost time
+    category: config
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 240
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: Antifrost temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 50
+          max: 160
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                step: 9
+                range:
+                  min: 410
+                  max: 608
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 113
+        type: integer
+        optional: true
+        name: temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+  - entity: select
+    name: Heating type
+    icon: "mdi:heating-coil"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: electric_underfloor
+            value: Electric under floor
+          - dps_val: water_underfloor
+            value: Water under floor
+          - dps_val: radiator
+            value: Radiator
+          - dps_val: wall_panel
+            value: Wall panel
+          - dps_val: time_clock
+            value: Timer
+  - entity: select
+    name: Floor type
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: tiles
+            value: Tile
+          - dps_val: wood_laminate
+            value: Wood
+          - dps_val: lvt_vinyl
+            value: Vinyl
+          - dps_val: carpet
+            value: Carpet
+          - dps_val: other
+            value: Other
+  - entity: select
+    name: Display timeout
+    category: config
+    translation_key: timer
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: "30s"
+            value: "30s"
+          - dps_val: "1min"
+            value: "1m"
+          - dps_val: "2min"
+            value: "2m"
+          - dps_val: "5min"
+            value: "5m"
+  - entity: number
+    name: Floor maximum temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                step: 9
+                range:
+                  min: 410
+                  max: 950
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 106
+        type: integer
+        optional: true
+        name: temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+      - id: 43
+        type: string
+        name: available
+        mapping:
+          - dps_val: air_floor
+            value: true
+          - dps_val: remote_air_floor
+            value: true
+          - value: false
+  - entity: number
+    name: Output delay
+    category: config
+    class: duration
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Floor temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_f
+                step: 9
+                range:
+                  min: 410
+                  max: 950
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 111
+        type: integer
+        optional: true
+        name: temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 950
+        mapping:
+          - scale: 10
+            step: 9
+      - id: 43
+        type: string
+        name: available
+        mapping:
+          - dps_val: floor
+            value: true
+          - value: false
+  - entity: switch
+    name: Open window detection
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Learning mode
+    icon: "mdi:school"
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: number
+    name: Learning prewarm time
+    category: config
+    icon: "mdi:school"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 3
+  - entity: select
+    name: Consumption type
+    icon: "mdi:cash"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: electric
+            value: Electricity
+          - dps_val: water
+            value: Water
+  - entity: number
+    name: Electricity tariff
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: £
+        range:
+          min: 0
+          max: 999
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Load
+    category: config
+    class: power
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 99999
+  - entity: switch
+    name: Boost
+    icon: "mdi:rocket-launch"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: select
+    name: Schedule type
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 121
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: edit_mode_5_2
+            value: Weekdays+Weekends
+          - dps_val: edit_mode_5_1_1
+            value: Weekdays+Sat+Sun
+          - dps_val: edit_mode_day
+            value: Daily
+          - dps_val: edit_mode_all
+            value: Single
+  - entity: switch
+    name: Target
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        optional: true
+        name: sensor
+        unit: h
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Cost
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: £/h
+        mapping:
+          - scale: 100

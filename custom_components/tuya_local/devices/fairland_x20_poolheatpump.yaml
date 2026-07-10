@@ -70,10 +70,18 @@ entities:
         type: string
         optional: true
         name: cool_available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value: true
       - id: 115
         type: string
         optional: true
         name: boost_available
+        mapping:
+          - dps_val: "0"
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
     class: power_factor
