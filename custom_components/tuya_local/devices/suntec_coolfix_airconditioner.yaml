@@ -3,6 +3,9 @@ products:
   - id: 0ithwpdwkgyqfx54
     manufacturer: Suntec Wellness
     model: Coolfixx
+  - id: anelna1pjt7avtye
+    manufacturer: MeacoCool
+    model: MC Series 12000 PRO CH
 entities:
   - entity: climate
     dps:
@@ -23,6 +26,7 @@ entities:
                 value: fan_only
               - dps_val: Heat
                 value: heat
+                available: support_heat
       - id: 2
         type: integer
         name: temperature
@@ -96,12 +100,11 @@ entities:
             value: comfort
       - id: 103
         type: string
-        name: model_id
+        name: support_heat
         mapping:
-          - dps_val: C
-            value: Cooling
           - dps_val: C_H
-            value: Cool+Heat
+            value: true
+          - value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic

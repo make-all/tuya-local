@@ -3,6 +3,7 @@ products:
   - id: gpjca2vt
     manufacturer: EG4
     model: DWA4-ACDC1-12K
+
 entities:
   - entity: climate
     translation_key: aircon_extra
@@ -24,6 +25,7 @@ entities:
                 value: heat
               - dps_val: wind
                 value: fan_only
+
       - id: 2
         type: integer
         name: temperature
@@ -42,6 +44,7 @@ entities:
                 range:
                   min: 16
                   max: 32
+
       - id: 3
         type: integer
         name: current_temperature
@@ -50,10 +53,12 @@ entities:
             conditions:
               - dps_val: f
                 value_redirect: temp_cur_f
+
       - id: 4
         type: string
         name: mode
         hidden: true
+
       - id: 6
         type: boolean
         name: preset_mode
@@ -62,6 +67,7 @@ entities:
             value: eco
           - dps_val: false
             value: comfort
+
       - id: 19
         type: integer
         name: temp_set_f
@@ -69,10 +75,12 @@ entities:
         range:
           min: 61
           max: 90
+
       - id: 20
         type: integer
         name: temp_cur_f
         hidden: true
+
       - id: 21
         type: string
         name: temperature_unit
@@ -81,6 +89,7 @@ entities:
             value: C
           - dps_val: f
             value: F
+
       - id: 22
         type: string
         name: hvac_action
@@ -93,6 +102,7 @@ entities:
             value: heating
           - dps_val: ventilation
             value: fan
+
       - id: 23
         type: string
         name: fan_mode
@@ -105,36 +115,40 @@ entities:
             value: high
           - dps_val: strong
             value: strong
+
+      - id: 105
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+
       - id: 104
         type: boolean
         name: unknown_104
-      - id: 105
-        type: boolean
-        name: unknown_105
+
       - id: 106
         type: integer
         name: unknown_106
+
       - id: 107
         type: integer
         name: unknown_107
+
       - id: 108
         type: integer
         name: unknown_108
+
       - id: 109
         type: integer
         name: unknown_109
-      - id: 110
-        type: integer
-        name: unknown_110
-      - id: 111
-        type: integer
-        name: unknown_111
-      - id: 112
-        type: boolean
-        name: unknown_112
+
       - id: 119
         type: integer
         name: unknown_119
+
   - entity: switch
     translation_key: ionizer
     category: config
@@ -142,6 +156,7 @@ entities:
       - id: 9
         type: boolean
         name: switch
+
   - entity: switch
     name: Emergency heat
     icon: "mdi:fire-alert"
@@ -150,6 +165,7 @@ entities:
       - id: 10
         type: boolean
         name: switch
+
   - entity: light
     translation_key: display
     category: config
@@ -157,6 +173,7 @@ entities:
       - id: 11
         type: boolean
         name: switch
+
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -169,6 +186,7 @@ entities:
             value: celsius
           - dps_val: f
             value: fahrenheit
+
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -183,10 +201,40 @@ entities:
       - id: 24
         type: bitfield
         name: fault_code
+
   - entity: switch
     translation_key: sleep
     category: config
     dps:
       - id: 101
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: Wh
+        class: total_increasing
+
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+
+  - entity: switch
+    name: AC limiter
+    icon: "mdi:flash-alert"
+    category: config
+    dps:
+      - id: 112
         type: boolean
         name: switch

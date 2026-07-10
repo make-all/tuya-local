@@ -105,10 +105,6 @@ entities:
         type: string
         name: path_data
         optional: true
-      - id: 15
-        type: string
-        name: command_trans
-        optional: true
       - id: 16
         type: string
         name: request
@@ -290,3 +286,13 @@ entities:
       - id: 105
         type: boolean
         name: switch
+  - entity: text
+    name: Command
+    category: config
+    icon: "mdi:console-line"
+    hidden: true
+    dps:
+      - id: 15
+        type: base64
+        name: value
+        optional: true
