@@ -95,9 +95,6 @@ entities:
       - id: 119
         name: electricity_management
         type: string
-      - id: 120
-        name: gen_mode
-        type: string
       - id: 123
         name: flags_2
         type: hex
@@ -312,3 +309,20 @@ entities:
       - id: 131
         type: boolean
         name: sensor
+  - entity: select
+    name: Generator mode
+    icon: "mdi:generator-stationary"
+    category: config
+    dps:
+      - id: 120
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off (100%)"
+          - dps_val: L1
+            value: "30%"
+          - dps_val: L2
+            value: "50%"
+          - dps_val: L3
+            value: "70%"
