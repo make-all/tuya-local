@@ -12,9 +12,6 @@ entities:
         type: string
         name: sensor
         optional: true
-      - id: 231
-        type: hex
-        name: schedule
       - id: 237
         type: string
         name: planned_feed_report
@@ -23,6 +20,20 @@ entities:
         type: string
         name: manual_feed_report
         optional: true
+  - entity: text
+    translation_key: meal_plan
+    category: config
+    hidden: true
+    dps:
+      # Meal plan is a hex blob of 5-byte slots:
+      # - Days (1 bit per day, bitmask)
+      # - Hour
+      # - Minute
+      # - Portions
+      # - Enabled (1) / disabled (0)
+      - id: 231
+        type: hex
+        name: value
   - entity: light
     translation_key: indicator
     category: config
