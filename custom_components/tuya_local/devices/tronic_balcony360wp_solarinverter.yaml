@@ -9,78 +9,80 @@ products:
 
 entities:
 
-  # -------------------------------------------------------------------------
-  # Current AC power output (DPS 8) — W, no scaling needed
-  # -------------------------------------------------------------------------
+  # DPS 8 — power_total, current AC output in kW
   - entity: sensor
-    name: Power Output
     class: power
+    category: diagnostic
     dps:
       - id: 8
         type: integer
         name: sensor
-        unit: W
+        optional: true
+        unit: kW
         class: measurement
+        mapping:
+          - scale: 1000
 
-  # -------------------------------------------------------------------------
-  # Total energy generated cumulative (DPS 2)
-  # scale is a divisor in tuya-local: raw Wh ÷ 1000 = kWh
-  # -------------------------------------------------------------------------
+  # DPS 2 — reverse_energy_total, cumulative energy in kWh
+  # Note: stores in non-volatile memory in ~100Wh increments,
+  # so small step-backs after power loss are expected behaviour.
   - entity: sensor
-    name: Energy Total
     class: energy
+    category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
+        optional: true
         unit: kWh
         class: total_increasing
         mapping:
           - scale: 1000
 
-  # -------------------------------------------------------------------------
-  # Inverter temperature (DPS 16)
-  # scale is a divisor: raw ÷ 10 = °C
-  # -------------------------------------------------------------------------
+  # DPS 16 — temp_current, inverter temperature
   - entity: sensor
-    name: Inverter Temperature
     class: temperature
     dps:
       - id: 16
         type: integer
         name: sensor
-        unit: "°C"
+        optional: true
+        unit: C
         class: measurement
         mapping:
           - scale: 10
 
-  # -------------------------------------------------------------------------
-  # Work mode select — readable and writable (no write in practice) (DPS 10)
-  # -------------------------------------------------------------------------
+  # DPS 10 — work_mode, readable and writable
   - entity: select
     name: Work Mode
+    icon: "mdi:solar-power"
+    category: config
     dps:
       - id: 10
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "power_off"
             value: "Power Off"
+            icon: "mdi:power-standby"
           - dps_val: "inverter_power"
             value: "Inverter Power"
+            icon: "mdi:solar-power"
           - dps_val: "grid_power"
             value: "Grid Power"
+            icon: "mdi:transmission-tower-import"
           - dps_val: "battery_power"
             value: "Battery Power"
+            icon: "mdi:car-battery"
 
-  # -------------------------------------------------------------------------
   # DPS 3 — pv1_dc_data (6 bytes big-endian)
-  #   bytes 0-1: DC voltage (÷10 = V)
-  #   bytes 2-3: DC current (÷10 = A)
-  # -------------------------------------------------------------------------
+  # bytes 0-1: DC voltage  mask FFFF00000000  ÷10 = V
+  # bytes 2-3: DC current  mask 0000FFFF0000  ÷10 = A
+  # bytes 4-5: DC power    mask 00000000FFFF  ÷100 = kW
   - entity: sensor
-    name: DC Voltage
     class: voltage
+    category: diagnostic
     dps:
       - id: 3
         type: base64
@@ -93,8 +95,8 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: DC Current
     class: current
+    category: diagnostic
     dps:
       - id: 3
         type: base64
@@ -106,16 +108,29 @@ entities:
         mapping:
           - scale: 10
 
-  # -------------------------------------------------------------------------
-  # DPS 5 — phase_a (10 bytes big-endian)
-  #   bytes 0-1: AC voltage (÷10 = V)
-  #   byte  4:   AC current (÷1000 = A, single byte mA)
-  #   bytes 6-7: AC power (W, no scaling)
-  #   bytes 8-9: AC frequency (÷10 = Hz)
-  # -------------------------------------------------------------------------
   - entity: sensor
-    name: AC Voltage
+    name: DC Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        optional: true
+        mask: "00000000FFFF"
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+
+  # DPS 5 — phase_a (10 bytes big-endian)
+  # bytes 0-1:  AC voltage  mask FFFF0000000000000000  ÷10 = V
+  # bytes 2-4:  AC current  mask 0000FFFFFF0000000000  ÷1000 = A (uint24)
+  # bytes 5-7:  AC power    mask 0000000000FFFFFF0000  ÷1000 = kW (uint24)
+  # bytes 8-9:  AC freq     mask 0000000000000000FFFF  ÷10 = Hz
+  - entity: sensor
     class: voltage
+    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -128,14 +143,14 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: AC Current
     class: current
+    category: diagnostic
     dps:
       - id: 5
         type: base64
         name: sensor
         optional: true
-        mask: "00000000FF0000000000"
+        mask: "0000FFFFFF0000000000"
         unit: A
         class: measurement
         mapping:
@@ -144,18 +159,21 @@ entities:
   - entity: sensor
     name: AC Power
     class: power
+    category: diagnostic
     dps:
       - id: 5
         type: base64
         name: sensor
         optional: true
-        mask: "000000000000FFFF0000"
-        unit: W
+        mask: "0000000000FFFFFF0000"
+        unit: kW
         class: measurement
+        mapping:
+          - scale: 1000
 
   - entity: sensor
-    name: AC Frequency
     class: frequency
+    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -167,12 +185,9 @@ entities:
         mapping:
           - scale: 10
 
-  # -------------------------------------------------------------------------
-  # Fault (DPS 9) — named fault sensor
-  # Shows OK when no fault, or the specific fault name when a bit is set.
-  # Maps single-bit values to fault names. If multiple faults are active
-  # simultaneously the raw bitmap value is shown.
-  # -------------------------------------------------------------------------
+  # DPS 9 — fault bitmap
+  # Named enum sensor showing OK or specific fault name.
+  # dps_val is 2^bit for each fault bit position.
   - entity: sensor
     name: Fault
     class: enum
@@ -180,9 +195,12 @@ entities:
     dps:
       - id: 9
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
+            value: "OK"
+          - dps_val: null
             value: "OK"
           - dps_val: 1
             value: "Overcurrent"
@@ -216,3 +234,26 @@ entities:
             value: "Communication Fault"
           - dps_val: 32768
             value: "Inverter Body Fault"
+
+  # DPS 11, 12 — alarm sets, not observed locally
+  - entity: text
+    name: Alarm 1
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+
+  - entity: text
+    name: Alarm 2
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        optional: true
+        name: value
