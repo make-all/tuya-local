@@ -127,10 +127,7 @@ class TuyaLocalDevice(object):
             raise e
 
         # we handle retries at a higher level so we can rotate protocol version
-        # on the other hand, protocol 3.4 devices send encrypted null ACKs that
-        # often get mixed in, so we need to retry a couple of times before resorting
-        # to recovery measures that seem to make things worse.
-        self._api.set_socketRetryLimit(2)
+        self._api.set_socketRetryLimit(1)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
             self._api.parent.set_socketRetryLimit(1)
@@ -373,11 +370,7 @@ class TuyaLocalDevice(object):
                     self._last_full_poll = now
                     last_heartbeat = now  # reset heartbeat timer on full poll
                 elif persist:
-                    if (
-                        now - last_heartbeat > self._HEARTBEAT_INTERVAL
-                        # 3.4 devices seem to require more frequent heartbeats to work reliably
-                        or self._api_protocol_version_index == 3
-                    ):
+                    if now - last_heartbeat > self._HEARTBEAT_INTERVAL:
                         await self._hass.async_add_executor_job(
                             self._api.heartbeat,
                             True,
@@ -643,7 +636,6 @@ class TuyaLocalDevice(object):
         try:
             self._lock.acquire()
             self._api.set_multiple_values(properties, nowait=True)
-            self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
@@ -820,7 +812,19 @@ def setup_device(hass: HomeAssistant, config: dict):
 async def async_delete_device(hass: HomeAssistant, config: dict):
     device_id = get_device_id(config)
     _LOGGER.info("Deleting device: %s", device_id)
-    await hass.data[DOMAIN][device_id]["device"].async_stop()
-    del hass.data[DOMAIN][device_id]["device"]
-    del hass.data[DOMAIN][device_id]["tuyadevice"]
-    del hass.data[DOMAIN][device_id]["tuyadevicelock"]
+    domain_data = hass.data.get(DOMAIN, {})
+    device_entry = domain_data.get(device_id)
+    if device_entry is None:
+        return
+
+    device = device_entry.get("device")
+    if device is not None:
+        await device.async_stop()
+        device_entry.pop("device", None)
+    device_entry.pop("tuyadevice", None)
+    device_entry.pop("tuyadevicelock", None)
+    # Platform setup may cache entity instances in this bucket by config_id.
+    # Only drop empty buckets here; async_unload_entry removes the whole bucket
+    # after forwarded platform unloads complete.
+    if not device_entry:
+        domain_data.pop(device_id, None)

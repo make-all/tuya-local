@@ -1,0 +1,90 @@
+name: Air cooler
+# products:
+#   - id: UNKNOWN
+#     manufacturer: Klarstein
+#     model: Icewind Plus Smart
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: speed
+        mapping:
+          - dps_val: verylow
+            value: 25
+          - dps_val: low
+            value: 50
+          - dps_val: mid
+            value: 75
+          - dps_val: high
+            value: 100
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 10
+        type: boolean
+        name: oscillate
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    name: Humidify
+    icon: "mdi:air-humidifier"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Dry wind
+    icon: "mdi:hair-dryer"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
