@@ -8,8 +8,7 @@ entities:
   # Fan (On/Off + Preset modes + Speed)
   # -------------------------------------------------------
   - entity: fan
-    translation_key: fan_with_presets
-    icon: mdi:air-purifier
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -32,11 +31,11 @@ entities:
         mapping:
           # Map HA preset values to defined presets (keep device DP values)
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: sleep
             value: sleep
           - dps_val: manual
-            value: normal
+            value: manual
 
   # -------------------------------------------------------
   # Sensors

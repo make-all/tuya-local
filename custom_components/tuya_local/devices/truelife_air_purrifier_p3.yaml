@@ -8,8 +8,7 @@ products:
     model: AP300 WiFi
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -19,7 +18,7 @@ entities:
         type: string
         mapping:
           - dps_val: AUTO
-            value: smart
+            value: auto
           - dps_val: SLEEP
             value: sleep
           - dps_val: MANUAL

@@ -264,7 +264,17 @@ class TuyaLocalDevice(object):
 
                     for entity in self._children:
                         # let entities trigger off poll contents directly
-                        entity.on_receive(poll, full_poll)
+                        try:
+                            entity.on_receive(poll, full_poll)
+                        except Exception as e:
+                            # Don't let exceptions thrown by the entities interrupt the communication loop
+                            # Just log them and move on.
+                            _LOGGER.exception(
+                                "%s on_receive error for entity %s: %s",
+                                self.name,
+                                entity.entity_id,
+                                e,
+                            )
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
                             for dp in entity._config.dps():
@@ -334,6 +344,7 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
+                    self._last_full_poll = 0  # ensure we start with a full poll
 
                 needs_full_poll = now - self._last_full_poll > self._CACHE_TIMEOUT
                 if now - last_cache > self._CACHE_TIMEOUT or (
@@ -398,12 +409,14 @@ class TuyaLocalDevice(object):
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
-                        poll["full_poll"] = full_poll
-                        yield poll
+                        if isinstance(poll, dict):
+                            poll["full_poll"] = full_poll
+                            yield poll
 
             except CancelledError:
                 self._running = False
                 # Close the persistent connection when exiting the loop
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -415,6 +428,7 @@ class TuyaLocalDevice(object):
                     type(t).__name__,
                     t,
                 )
+                persist = False
                 self._api.set_socketPersistent(False)
                 if self._api.parent:
                     self._api.parent.set_socketPersistent(False)
@@ -622,7 +636,6 @@ class TuyaLocalDevice(object):
         try:
             self._lock.acquire()
             self._api.set_multiple_values(properties, nowait=True)
-            self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
@@ -799,7 +812,19 @@ def setup_device(hass: HomeAssistant, config: dict):
 async def async_delete_device(hass: HomeAssistant, config: dict):
     device_id = get_device_id(config)
     _LOGGER.info("Deleting device: %s", device_id)
-    await hass.data[DOMAIN][device_id]["device"].async_stop()
-    del hass.data[DOMAIN][device_id]["device"]
-    del hass.data[DOMAIN][device_id]["tuyadevice"]
-    del hass.data[DOMAIN][device_id]["tuyadevicelock"]
+    domain_data = hass.data.get(DOMAIN, {})
+    device_entry = domain_data.get(device_id)
+    if device_entry is None:
+        return
+
+    device = device_entry.get("device")
+    if device is not None:
+        await device.async_stop()
+        device_entry.pop("device", None)
+    device_entry.pop("tuyadevice", None)
+    device_entry.pop("tuyadevicelock", None)
+    # Platform setup may cache entity instances in this bucket by config_id.
+    # Only drop empty buckets here; async_unload_entry removes the whole bucket
+    # after forwarded platform unloads complete.
+    if not device_entry:
+        domain_data.pop(device_id, None)

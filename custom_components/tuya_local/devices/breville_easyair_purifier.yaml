@@ -5,7 +5,7 @@ products:
     model: Easy Air
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -23,9 +23,8 @@ entities:
           - dps_val: turbo
             value: 100
   - entity: switch
-    name: Night mode
+    translation_key: night_mode
     category: config
-    icon: "mdi:lightbulb-night"
     dps:
       - id: 8
         name: switch

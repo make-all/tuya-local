@@ -1,8 +1,11 @@
-name: Ceiling light
+name: RGBIC light
 products:
   - id: kllgg1iuwrtcvlnp
     manufacturer: Mirabella Genio
-    model: Pixel LED Oval light
+    model: Pixel LED Oval ceiling light
+  - id: k1opzwpazlauaaih
+    manufacturer: Saiming
+    model: 5050RGB-02 floor lamp
 entities:
   - entity: light
     dps:
@@ -69,6 +72,7 @@ entities:
         name: scene_num
       - id: 105
         type: base64
+        optional: true
         name: debug_info
   - entity: time
     translation_key: timer
@@ -114,3 +118,17 @@ entities:
         range:
           min: 0
           max: 11
+  - entity: number
+    name: Scene speed
+    category: config
+    icon: "mdi:speedometer"
+    dps:
+      - id: 25
+        type: hex
+        optional: true
+        name: value
+        mask: "0000FF000"
+        unit: "%"
+        range:
+          min: 0
+          max: 100

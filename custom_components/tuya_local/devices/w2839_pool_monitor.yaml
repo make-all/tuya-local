@@ -1,0 +1,121 @@
+name: Water quality monitor
+products:
+  - id: muwcszgae41ccndk
+    model: W-2839
+entities:
+  - entity: sensor
+    class: temperature
+    icon: "mdi:water-thermometer"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: 1500
+            value: null
+  - entity: sensor
+    name: Oxidation reduction potential
+    icon: "mdi:virus-off"
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+        optional: true
+  - entity: number
+    translation_key: maximum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: -100
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: minimum_temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: -100
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum pH
+    class: ph
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Minimum pH
+    class: ph
+    category: config
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Maximum ORP
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        unit: mV
+        optional: true
+        range:
+          min: -2000
+          max: 2000
+  - entity: number
+    name: Minimum ORP
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 133
+        type: integer
+        name: value
+        unit: mV
+        optional: true
+        range:
+          min: -2000
+          max: 2000
