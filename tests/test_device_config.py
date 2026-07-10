@@ -429,10 +429,11 @@ def check_entity(entity, cfg, mocker):
     # for later checking
     for dp in entity.dps():
         line = dp._config.__line__
+        dp_type = dp._config.get("type")
         assert dp._config.get("id") is not None, (
             f"\n::error file={fname},line={line}::dp id missing from {e} in {cfg}"
         )
-        assert dp._config.get("type") is not None, (
+        assert dp_type is not None, (
             f"\n::error file={fname},line={line}::dp type missing from {e} in {cfg}"
         )
         assert dp._config.get("name") is not None, (
@@ -449,11 +450,19 @@ def check_entity(entity, cfg, mocker):
             assert isinstance(conditions, list), (
                 f"\n::error file={fname},line={line}::conditions is not a list in {cfg}; entity {e}, dp {dp.name}"
             )
+            if m.get("invert") and dp_type not in ["integer", "hex", "base64"]:
+                pytest.fail(
+                    f"\n::error file={fname},line={line}::invert is only valid for numeric values in {cfg}; entity {e}, dp {dp.name}"
+                )
             for c in conditions:
                 if c.get("value_redirect"):
                     redirects.add(c.get("value_redirect"))
                 if c.get("value_mirror"):
                     redirects.add(c.get("value_mirror"))
+                if c.get("invert") and dp_type not in ["integer", "hex", "base64"]:
+                    pytest.fail(
+                        f"\n::error file={fname},line={line}::invert is only valid for numeric values in {cfg}; entity {e}, dp {dp.name}"
+                    )
             if m.get("value_redirect"):
                 redirects.add(m.get("value_redirect"))
             if m.get("value_mirror"):

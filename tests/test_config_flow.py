@@ -12,6 +12,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from custom_components.tuya_local import (
     async_migrate_entry,
     async_setup_entry,
+    async_unload_entry,
     config_flow,
     get_device_unique_id,
 )
@@ -125,6 +126,30 @@ async def test_async_setup_entry_cleans_up_failed_device(hass, mocker, refresh_e
 
     assert "deviceid" not in hass.data.get(DOMAIN, {})
     mock_device._api.set_socketPersistent.assert_called_with(False)
+
+
+@pytest.mark.asyncio
+async def test_async_unload_entry_ignores_missing_device_data(hass):
+    """Unload should tolerate entries that failed before device data was cached."""
+
+    hass.data[DOMAIN] = {}
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=13,
+        minor_version=18,
+        title="test",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: TESTKEY,
+            CONF_POLL_ONLY: False,
+            CONF_PROTOCOL_VERSION: 3.4,
+            CONF_TYPE: "kogan_kahtp_heater",
+        },
+        options={},
+    )
+
+    assert await async_unload_entry(hass, entry)
 
 
 @pytest.mark.asyncio
