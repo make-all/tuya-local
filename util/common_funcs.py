@@ -9,8 +9,8 @@ class FakeDevice:
     def __init__(self, dps):
         self._dps = dps
 
-    def get_property(self, id):
-        return self._dps.get(id)
+    def get_property(self, dpid):
+        return self._dps.get(dpid)
 
     @property
     def name(self):
@@ -32,8 +32,9 @@ def representation(dp):
     if dp.type is bool:
         return True
     if dp.type is int:
-        if dp._config.get(range):
-            return dp._config.get(range)["min"]
+        range_spec = dp._config.get("range")
+        if isinstance(range_spec, dict) and "min" in range_spec:
+            return range_spec["min"]
         return 0
     if dp.type is str:
         return ""

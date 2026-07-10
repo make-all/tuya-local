@@ -106,6 +106,26 @@
             "not_supported": "Ne pare rău, acest dispozitiv nu este suportat."
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Trimite comandă IR învățată",
+            "description": "Trimite o comandă de telecomandă care a fost învățată anterior de entitatea de telecomandă către orice emițător infraroșu.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "Entitate",
+                    "description": "ID-ul entității entității infraroșii către care se va trimite comanda."
+                },
+                "command": {
+                    "name": "Comandă",
+                    "description": "Comanda de trimis. Aceasta trebuie să fie o comandă care a fost învățată anterior de integrare pentru această telecomandă."
+                },
+                "device": {
+                    "name": "Dispozitiv",
+                    "description": "Dispozitivul IR către care se va trimite comanda. Acesta este opțional și este necesar doar dacă comanda a fost salvată cu un dispozitiv."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Resetare filtru"
+            },
+            "alarm_off": {
+                "name": "Oprire alarmă"
+            },
+            "alarm_snooze": {
+                "name": "Amânare alarmă"
+            },
+            "alarm_x_reset": {
+                "name": "Alarmă {x} resetare"
+            },
+            "radio_seek": {
+                "name": "Căutare radio"
+            },
+            "radio_stop": {
+                "name": "Oprire radio"
             }
         },
         "climate": {
@@ -371,6 +406,11 @@
                 }
             }
         },
+        "event": {
+            "alarm": {
+                "name": "Alarmă"
+            }
+        },
         "humidifier": {
             "extended": {
                 "state_attributes": {
@@ -385,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Purificator de aer",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manual",
+                            "sleep": "Somn",
+                            "low": "Scăzut",
+                            "medium": "Mediu",
+                            "high": "Ridicat",
+                            "strong": "Puternic",
+                            "displayoff": "Afișaj oprit"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Difuzor aromă",
                 "state_attributes": {
@@ -488,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Lumină hotă"
+            },
+            "color_light": {
+                "name": "Lumină colorată"
+            },
+            "ambient_light": {
+                "name": "Lumină ambientală"
             }
         },
         "lock": {
@@ -496,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Nivel flacără"
+            },
             "manual_feed": {
                 "name": "Hrănire manuală"
             },
@@ -525,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Temperatură superioară"
+            },
+            "leakage_current": {
+                "name": "Curent de scurgere"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Durată amânare alarmă {x}"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Durată prealabilă lumină de trezire alarmă {x}"
+            },
+            "radio_frequency": {
+                "name": "Frecvență radio"
+            },
+            "snooze_duration": {
+                "name": "Durată amânare"
             }
         },
         "select": {
@@ -602,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -636,6 +722,14 @@
                     "high": "Ridicat"
                 }
             },
+            "night_vision": {
+                "name": "Viziune nocturnă",
+                "state": {
+                    "off": "Oprit",
+                    "on": "Pornit",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Rețetă",
                 "state": {
@@ -664,6 +758,13 @@
                     "preheat": "Preîncălzire"
                 }
             },
+            "recording_mode": {
+                "name": "Mod înregistrare",
+                "state": {
+                    "event": "Eveniment",
+                    "continuous": "Continuu"
+                }
+            },
             "scene": {
                 "name": "Scenă",
                 "state": {
@@ -687,6 +788,8 @@
                 "state": {
                     "cancel": "Anulează",
                     "continuous": "Continuu",
+                    "5s": "5 secunde",
+                    "10s": "10 secunde",
                     "15s": "15 secunde",
                     "20s": "20 secunde",
                     "30s": "30 secunde",
@@ -785,7 +888,8 @@
                     "medium": "Mediu",
                     "high": "Ridicat",
                     "rapid_clean": "Curățare rapidă",
-                    "schedule": "Program"
+                    "schedule": "Program",
+                    "sleep": "Somn"
                 }
             },
             "activation_mode": {
@@ -975,9 +1079,77 @@
                     "red_bean_bread": "Pâine cu fasole roșie",
                     "milk_toast": "Toast cu lapte"
                 }
-            }
+            },
+            "display_brightness": {
+                "name": "Luminozitate afișaj",
+                "state": {
+                    "off": "Oprit",
+                    "day": "Zi",
+                    "night": "Noapte",
+                    "dim": "Slab",
+                    "bright": "Puternic",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Punct secunde",
+                "state": {
+                    "static": "Static",
+                    "blinking": "Intermitent"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarmă {x} mod amânare",
+                "state": {
+                    "mute": "Oprire sunet",
+                    "mute_light": "Oprire sunet + lumină",
+                    "light_only": "Oprire doar lumină"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarmă {x} efect sonor",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Creștere treptată",
+                    "fade_out": "Scădere treptată"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarmă {x} mod lumină trezire",
+                "state": {
+                    "no_light": "Fără lumină",
+                    "rainbow": "Curcubeu",
+                    "candle_flicker": "Pâlpâire de lumânare",
+                    "romantic_breath": "Respirație romantică",
+                    "quiet_deep_sea": "Mare adâncă liniștită",
+                    "flowing_colors": "Culori curgătoare",
+                    "magic_jungle": "Junglă magică",
+                    "perfect_party": "Petrecere perfectă",
+                    "sunrise_at_sea": "Răsărit la mare",
+                    "dynamic_music": "Muzică dinamică"
+                }
+            },
+            "snooze_action": {
+                "name": "Acțiune amânare",
+                "state": {
+                    "sound_radio": "Sunet + radio",
+                    "light": "Lumină",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + sunet + lumină"
+                }
+            },
+            "time_format": {
+                "name": "Format oră",
+                "state": {
+                    "12_hour": "12 ore",
+                    "24_hour": "24 ore"
+                }
+            }            
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Temperatură ambientală"
+            },
             "cleanliness": {
                 "name": "Curățenie",
                 "state": {
@@ -1149,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Zile stocate"
+            },
+            "leakage_current": {
+                "name": "Curent de scurgere"
+            },
+            "active_lights": {
+                "name": "Lumini active",
+                "state": {
+                    "all_off": "Toate oprite",
+                    "night_on": "Lumină de noapte pornită",
+                    "color_on": "Lumină colorată pornită",
+                    "ambient_on": "Lumină ambientală pornită"
+                }
+            },
+            "wireless_charging": {
+                "name": "Stare încărcare fără fir",
+                "state": {
+                    "idle": "Inactiv",
+                    "charging": "Se încarcă",
+                    "full": "Plin",
+                    "foreign_object_detected": "Obiect străin detectat"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Temporizator"
+            },
+            "empty_tank": {
+                "name": "Goliți rezervorul"
+            },
+            "fill_tank": {
+                "name": "Umpleți rezervorul"
+            },
             "anti_frost": {
                 "name": "Antigel"
             },
@@ -1212,14 +1414,74 @@
             },
             "rangehood": {
                 "name": "Hotă"
+            },
+            "alarm_x": {
+                "name": "Alarmă {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarmă {x} amânare activată"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarmă {x} ziua 1-luni"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarmă {x} ziua 2-marți"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarmă {x} ziua 3-miercuri"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarmă {x} ziua 4-joi"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarmă {x} ziua 5-vineri"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarmă {x} ziua 6-sâmbătă"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarmă {x} ziua 7-duminică"
+            },
+            "music_playback": {
+                "name": "Redare muzică"
+            },
+            "network_time": {
+                "name": "Sincronizare oră rețea"
+            },
+            "night_mode": {
+                "name": "Mod noapte"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Amânare"
+            },
+            "motion_detection": {
+                "name": "Detectare mișcare"
+            },
+            "watermark": {
+                "name": "Filigran"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Plan de masă"
+            },
             "scene": {
                 "name": "Scenă"
             },
             "schedule": {
                 "name": "Program"
+            },
+            "alarm_settings": {
+                "name": "Setări alarmă"
+            },
+            "sleep_settings": {
+                "name": "Setări somn"
+            },
+            "station_list": {
+                "name": "Listă stații"
             }
         },
         "time": {
@@ -1234,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Temporizator {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarmă {x} oră"
+            },
+            "clock_time": {
+                "name": "Ora ceasului"
             }
         },
         "valve": {
@@ -1251,6 +1519,27 @@
             "hot_water": {
                 "name": "Apă caldă"
             }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarmă {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Niciuna",
+                            "birds": "Păsări",
+                            "sea": "Mare",
+                            "valley": "Vale",
+                            "piano": "Piano",
+                            "soft": "Delicat",
+                            "phone": "Telefon",
+                            "beep": "Bip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
+            }
         }
     }
 }
+

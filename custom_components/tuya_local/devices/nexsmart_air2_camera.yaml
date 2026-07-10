@@ -92,9 +92,8 @@ entities:
         optional: true
 
   - entity: switch
-    name: Watermark
+    translation_key: watermark
     category: config
-    icon: "mdi:watermark"
     # Watermark/OSD Switch (matches basic_osd: 104)
     dps:
       - id: 104
@@ -103,8 +102,7 @@ entities:
         optional: true
 
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     # Night Vision Mode Selector(matches basic_nightvision: 108)
     dps:
@@ -114,18 +112,17 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
 
   # ------------------------------------
   # 4. Detection & Alarm
   # ------------------------------------
   - entity: switch
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_detection
     category: config
     # PIR Switch (matches ipc_pir_switch: 240)
     dps:

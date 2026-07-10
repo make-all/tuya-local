@@ -5,8 +5,7 @@ products:
     model: "Air Purifier P7 WIFI"
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_only_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -16,7 +15,7 @@ entities:
         type: string
         mapping:
           - dps_val: AUTO
-            value: smart
+            value: auto
           - dps_val: SLEEP
             value: sleep
           - dps_val: MANUAL

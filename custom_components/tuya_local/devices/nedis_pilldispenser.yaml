@@ -462,7 +462,7 @@ entities:
           - dps_val: "2"
             value: "US"
   - entity: select
-    name: Time format
+    translation_key: time_format
     icon: "mdi:wrench-clock"
     category: config
     dps:
@@ -471,9 +471,9 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "24 hour"
+            value: 24_hour
           - dps_val: "1"
-            value: "12 hour"
+            value: 12_hour
   - entity: number
     name: Late timeout
     category: config

@@ -8,7 +8,7 @@ products:
     model: BreatheSmart 45i V1.5
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -30,9 +30,9 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: Manual
-            value: custom
+            value: manual
           - dps_val: Auto
-            value: smart
+            value: auto
           - dps_val: Sleep
             value: sleep
   - entity: sensor

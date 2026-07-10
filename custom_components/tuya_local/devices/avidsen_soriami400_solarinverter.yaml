@@ -1,0 +1,454 @@
+name: Solar inverter
+products:
+  - id: 5l1ht8jygsyr1wn1
+    manufacturer: Avidsen
+    model: Soria MI-400
+entities:
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: PV 1
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        mask: "FFFF00000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: PV 1
+    class: current
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        mask: "0000FFFF0000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: PV 1
+    class: power
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        optional: true
+        mask: "00000000FFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: PV 2
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 4
+        type: base64
+        optional: true
+        mask: "FFFF00000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: PV 2
+    class: current
+    category: diagnostic
+    dps:
+      - id: 4
+        type: base64
+        optional: true
+        mask: "0000FFFF0000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: PV 2
+    class: power
+    category: diagnostic
+    dps:
+      - id: 4
+        type: base64
+        optional: true
+        mask: "00000000FFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: AC phase A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 5
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: AC phase A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 5
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: AC phase A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 5
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: AC phase B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: AC phase B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: AC phase B
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: AC phase C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "FFFF000000000000"
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: AC phase C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000FFFFFF000000"
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: AC phase C
+    class: power
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        optional: true
+        mask: "0000000000FFFFFF"
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 13
+        type: string
+        optional: true
+        name: inverter_type
+      - id: 14
+        type: string
+        optional: true
+        name: inverter_id
+      - id: 15
+        type: string
+        optional: true
+        name: imei_imsi
+  - entity: select
+    name: Power source
+    icon: "mdi:transmission-tower"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: power_off
+            value: "Off"
+            icon: "mdi:power-standby"
+          - dps_val: inverter_power
+            value: Inverter
+            icon: "mdi:solar-power"
+          - dps_val: grid_power
+            value: Grid
+            icon: "mdi:transmission-tower-import"
+          - dps_val: battery_power
+            value: Battery
+            icon: "mdi:car-battery"
+  - entity: text
+    name: Alarm 1
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 11
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Alarm 2
+    category: config
+    icon: "mdi:bell-cog"
+    hidden: true
+    dps:
+      - id: 12
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 16
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery temperature
+    class: temperature
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: text
+    name: Get terminal data
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 19
+        type: base64
+        optional: true
+        name: value
+      - id: 20
+        type: base64
+        optional: true
+        name: status
+      - id: 21
+        type: base64
+        optional: true
+        name: snapshot
+      - id: 22
+        type: base64
+        optional: true
+        name: device_info
+  - entity: event
+    translation_key: alarm
+    dps:
+      - id: 23
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 23
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: text
+    name: Settings
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 24
+        type: base64
+        optional: true
+        name: value
+  - entity: sensor
+    name: Model data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 25
+        type: base64
+        optional: true
+        name: sensor
+  - entity: sensor
+    name: Power data
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 28
+        type: base64
+        optional: true
+        name: sensor
+  - entity: text
+    name: Run state
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 29
+        type: base64
+        optional: true
+        name: value

@@ -3,7 +3,7 @@ products:
   - id: ecihf2xeg7ghlfnh
     manufacturer: Venta
     model: Original Connect
-    model_id: AH510
+    model_id: AH510/AH515
 entities:
   - entity: humidifier
     class: humidifier
@@ -30,11 +30,11 @@ entities:
         name: mode
         mapping:
           - dps_val: natural_evaporation
-            value: eco
+            value: normal
           - dps_val: heating_evaporation
-            value: comfort
+            value: sleep
           - dps_val: ultrasonic_evaporation
-            value: boost
+            value: auto
   - entity: fan
     dps:
       - id: 1

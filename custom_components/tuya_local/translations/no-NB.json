@@ -106,6 +106,26 @@
             "not_supported": "Beklager, det er ingen støtte for denne enheten"
         }
     },
+    "services": {
+        "send_learned_ir_command": {
+            "name": "Send lært IR-fjernkontrollsignal",
+            "description": "Send en fjernkontrollkommando som tidligere ble lært av fjernkontrollentiteten til en hvilken som helst infrarød sender.",
+            "fields": {
+                "emitter_entity_id": {
+                    "name": "IR sender",
+                    "description": "Enhet-ID for den infrarøde enheten som skal sende kommandoen til."
+                },
+                "command": {
+                    "name": "Kommando",
+                    "description": "Kommandot som skal sendes. Dette må være en kommando som tidligere ble lært av integrasjonen for denne fjernkontrollen."
+                },
+                "device": {
+                    "name": "Enhet",
+                    "description": "Den IR-enheten som kommandoen skal sendes til. Dette er valgfritt og bare nödvendig om kommandoen sparades med en enhet."
+                }
+            }
+        }
+    },
     "entity": {
         "binary_sensor": {
             "direction": {
@@ -201,6 +221,21 @@
             },
             "filter_reset": {
                 "name": "Filter tilbakestilling"
+            },
+            "alarm_off": {
+                "name": "Alarm av"
+            },
+            "alarm_snooze": {
+                "name": "Alarm slumring"
+            },
+            "alarm_x_reset": {
+                "name": "Alarm {x} tilbakestill"
+            },
+            "radio_seek": {
+                "name": "Radiosøk"
+            },
+            "radio_stop": {
+                "name": "Radiostopp"
             }
         },
         "climate": {
@@ -371,6 +406,11 @@
                 }
             }
         },
+        "event": {
+            "alarm": {
+                "name": "Alarm"
+            }
+        },
         "humidifier": {
             "extended": {
                 "state_attributes": {
@@ -385,6 +425,23 @@
             }
         },
         "fan": {
+            "air_purifier": {
+                "name": "Luft purifier",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "auto": "Auto",
+                            "manual": "Manuell",
+                            "sleep": "Søvn",
+                            "low": "Lav",
+                            "medium": "Medium",
+                            "high": "Høy",
+                            "strong": "Sterk",
+                            "displayoff": "Skjerm av"
+                        }
+                    }
+                }
+            },
             "aroma_diffuser": {
                 "name": "Aroma diffuser",
                 "state_attributes": {
@@ -488,6 +545,12 @@
             },
             "rangehood_light": {
                 "name": "Kjøkkenhette lys"
+            },
+            "color_light": {
+                "name": "Fargelys"
+            },
+            "ambient_light": {
+                "name": "Stemningslys"
             }
         },
         "lock": {
@@ -496,6 +559,9 @@
             }
         },
         "number": {
+            "flame_level": {
+                "name": "Flammenivå"
+            },
             "manual_feed": {
                 "name": "Manuell mating"
             },
@@ -525,6 +591,21 @@
             },
             "top_temperature": {
                 "name": "Topp temperatur"
+            },
+            "leakage_current": {
+                "name": "Lekkasjestrøm"
+            },
+            "alarm_x_snooze_duration": {
+                "name": "Alarm {x} slumringsvarighet"
+            },
+            "alarm_x_wake_light_lead_time": {
+                "name": "Alarm {x} vekkelys-fortid"
+            },
+            "radio_frequency": {
+                "name": "Radiofrekvens"
+            },
+            "snooze_duration": {
+                "name": "Slumringsvarighet"
             }
         },
         "select": {
@@ -602,6 +683,11 @@
                     "spanish": "Español",
                     "turkish": "Türkçe",
                     "polish": "Polski",
+                    "bulgarian": "Български",
+                    "czech": "Čeština",
+                    "romanian": "Română",
+                    "slovak": "Slovenčina",
+                    "thai": "ไทย",
                     "vietnamese": "Tiếng Việt"
                 }
             },
@@ -636,6 +722,14 @@
                     "high": "Høy"
                 }
             },
+            "night_vision": {
+                "name": "Nattvisjon",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "auto": "Auto"
+                }
+            },
             "recipe": {
                 "name": "Oppskrift",
                 "state": {
@@ -664,6 +758,13 @@
                     "preheat": "Forvarm"
                 }
             },
+            "recording_mode": {
+                "name": "Innspillingsmodus",
+                "state": {
+                    "event": "Hendelse",
+                    "continuous": "Kontinuerlig"
+                }
+            },
             "scene": {
                 "name": "Scene",
                 "state": {
@@ -687,6 +788,8 @@
                 "state": {
                     "cancel": "Avbryt",
                     "continuous": "Kontinuerlig",
+                    "5s": "5 sekunder",
+                    "10s": "10 sekunder",
                     "15s": "15 sekunder",
                     "20s": "20 sekunder",
                     "30s": "30 sekunder",
@@ -785,7 +888,8 @@
                     "medium": "Medium",
                     "high": "Høy",
                     "rapid_clean": "Rask rengjøring",
-                    "schedule": "Planlegg"
+                    "schedule": "Planlegg",
+                    "sleep": "Søvn"
                 }
             },
             "activation_mode": {
@@ -975,9 +1079,77 @@
                     "red_bean_bread": "Rød bønnebrød",
                     "milk_toast": "Melketoast"
                 }
+            },
+            "display_brightness": {
+                "name": "Skjermlysstyrke",
+                "state": {
+                    "off": "Av",
+                    "day": "Dag",
+                    "night": "Natt",
+                    "dim": "Dempet",
+                    "bright": "Lyst",
+                    "auto": "Auto"
+                }
+            },
+            "seconds_dot": {
+                "name": "Sekundpunkt",
+                "state": {
+                    "static": "Statisk",
+                    "blinking": "Blinkende"
+                }
+            },
+            "alarm_x_snooze_action": {
+                "name": "Alarm {x} slumringsmodus",
+                "state": {
+                    "mute": "Demp lyd",
+                    "mute_light": "Demp lyd + lys",
+                    "light_only": "Demp bare lys"
+                }
+            },
+            "alarm_x_sound_effect": {
+                "name": "Alarm {x} lydeffekt",
+                "state": {
+                    "normal": "Normal",
+                    "fade_in": "Fade inn",
+                    "fade_out": "Fade ut"
+                }
+            },
+            "alarm_x_wake_light_mode": {
+                "name": "Alarm {x} vekkelysmodus",
+                "state": {
+                    "no_light": "Uten lys",
+                    "rainbow": "Regnbue",
+                    "candle_flicker": "Stearinlysflimmer",
+                    "romantic_breath": "Romantisk pust",
+                    "quiet_deep_sea": "Stille dyphav",
+                    "flowing_colors": "Flytende farger",
+                    "magic_jungle": "Magisk jungel",
+                    "perfect_party": "Perfekt fest",
+                    "sunrise_at_sea": "Soloppgang over havet",
+                    "dynamic_music": "Dynamisk musikk"
+                }
+            },
+            "snooze_action": {
+                "name": "Slumringshandling",
+                "state": {
+                    "sound_radio": "Lyd + radio",
+                    "light": "Lys",
+                    "radio": "Radio",
+                    "radio_sound_light": "Radio + lyd + lys"
+                }
+            },
+            "time_format": {
+                "name": "Tidsformat",
+                "state": {
+                    "12_hour": "12 timer",
+                    "24_hour": "24 timer"
+                }
             }
         },
         "sensor": {
+            "ambient_temperature": {
+                "name": "Omgivelsestemperatur"
+            },
             "cleanliness": {
                 "name": "Renhet",
                 "state": {
@@ -1149,9 +1321,39 @@
             },
             "days_stored": {
                 "name": "Dager lagret"
+            },
+            "leakage_current": {
+                "name": "Lekkasjestrøm"
+            },
+            "active_lights": {
+                "name": "Aktive lys",
+                "state": {
+                    "all_off": "Alle av",
+                    "night_on": "Nattlys på",
+                    "color_on": "Fargelys på",
+                    "ambient_on": "Stemningslys på"
+                }
+            },
+            "wireless_charging": {
+                "name": "Trådløs ladestatus",
+                "state": {
+                    "idle": "Inaktiv",
+                    "charging": "Lader",
+                    "full": "Full",
+                    "foreign_object_detected": "Fremmedlegeme oppdaget"
+                }
             }
         },
         "switch": {
+            "timer": {
+                "name": "Timer"
+            },
+            "empty_tank": {
+                "name": "Tøm tanken"
+            },
+            "fill_tank": {
+                "name": "Fyll tanken"
+            },
             "anti_frost": {
                 "name": "Anti-frost"
             },
@@ -1212,14 +1414,74 @@
             },
             "rangehood": {
                 "name": "Kjøkkenhette"
+            },
+            "alarm_x": {
+                "name": "Alarm {x}"
+            },
+            "alarm_x_snooze_enabled": {
+                "name": "Alarm {x} slumring aktivert"
+            },
+            "alarm_x_day_monday": {
+                "name": "Alarm {x} dag 1-mandag"
+            },
+            "alarm_x_day_tuesday": {
+                "name": "Alarm {x} dag 2-tirsdag"
+            },
+            "alarm_x_day_wednesday": {
+                "name": "Alarm {x} dag 3-onsdag"
+            },
+            "alarm_x_day_thursday": {
+                "name": "Alarm {x} dag 4-torsdag"
+            },
+            "alarm_x_day_friday": {
+                "name": "Alarm {x} dag 5-fredag"
+            },
+            "alarm_x_day_saturday": {
+                "name": "Alarm {x} dag 6-lørdag"
+            },
+            "alarm_x_day_sunday": {
+                "name": "Alarm {x} dag 7-søndag"
+            },
+            "music_playback": {
+                "name": "Musikkavspilling"
+            },
+            "network_time": {
+                "name": "Nettverkstidssynkronisering"
+            },
+            "night_mode": {
+                "name": "Nattmodus"
+            },
+            "radio": {
+                "name": "Radio"
+            },
+            "snooze": {
+                "name": "Slumring"
+            },
+            "motion_detection": {
+                "name": "Bevegelsesdeteksjon"
+            },
+            "watermark": {
+                "name": "Vannmerke"
             }
         },
         "text": {
+            "meal_plan": {
+                "name": "Måltidsplan"
+            },
             "scene": {
                 "name": "Scene"
             },
             "schedule": {
                 "name": "Plan"
+            },
+            "alarm_settings": {
+                "name": "Alarminnstillinger"
+            },
+            "sleep_settings": {
+                "name": "Søvninnstillinger"
+            },
+            "station_list": {
+                "name": "Stasjonsliste"
             }
         },
         "time": {
@@ -1234,6 +1496,12 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "alarm_x_time": {
+                "name": "Alarm {x} tid"
+            },
+            "clock_time": {
+                "name": "Klokketid"
             }
         },
         "valve": {
@@ -1250,6 +1518,26 @@
             },
             "hot_water": {
                 "name": "Varmtvannsbereder"
+            }
+        },
+        "siren": {
+            "alarm_x": {
+                "name": "Alarm {x}",
+                "state_attributes": {
+                    "tone": {
+                        "state": {
+                            "none": "Ingen",
+                            "birds": "Fugler",
+                            "sea": "Hav",
+                            "valley": "Dal",
+                            "piano": "Piano",
+                            "soft": "Myk",
+                            "phone": "Telefon",
+                            "beep": "Pip",
+                            "radio": "Radio"
+                        }
+                    }
+                }
             }
         }
     }

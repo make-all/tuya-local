@@ -1,0 +1,600 @@
+name: Circuit breaker
+products:
+  - id: zjblhee2cbl31twx
+    name: SWC33v2-CBU
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    translation_key: breaker
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+
+  - entity: button
+    name: Leakage test
+    class: restart
+    dps:
+      - id: 21
+        type: boolean
+        name: button
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        class: measurement
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        class: measurement
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        class: measurement
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+      - id: 9
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Short circuit
+          - dps_val: 2
+            value: Surge
+          - dps_val: 4
+            value: Overload
+          - dps_val: 8
+            value: Leakage current
+          - dps_val: 16
+            value: High temperature
+          - dps_val: 32
+            value: Fire
+          - dps_val: 64
+            value: High power
+          - dps_val: 128
+            value: Self test
+          - dps_val: 256
+            value: Over current
+          - dps_val: 512
+            value: Unbalanced
+          - dps_val: 1024
+            value: Over voltage
+          - dps_val: 2048
+            value: Under voltage
+          - dps_val: 4096
+            value: Phase fault
+          - dps_val: 8192
+            value: Outage
+          - dps_val: 16384
+            value: Magnetism
+          - dps_val: 32768
+            value: Low credit
+          - dps_val: 65536
+            value: No balance
+          - dps_val: 131072
+            value: Phase Seq Error
+          - dps_val: 262144
+            value: Voltage Unbalance
+          - dps_val: 524288
+            value: Low current
+
+  - entity: switch
+    name: Prepay alarm
+    category: config
+    icon: "mdi:hand-coin"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Energy reset
+    class: restart
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+
+  - entity: sensor
+    name: Balance energy
+    icon: "mdi:home-lightning-bolt"
+    dps:
+      - id: 13
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+
+  - entity: sensor
+    name: Actual leakage
+    class: current
+    dps:
+      - id: 15
+        optional: true
+        type: integer
+        name: sensor
+        unit: mA
+
+  - entity: switch
+    name: Overload alarm
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "0000000000FF00000000000000000000"
+
+  - entity: number
+    name: Overload threshold
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: value
+        mask: "00000000000000FF0000000000000000"
+        range:
+          min: 1
+          max: 30
+
+  - entity: switch
+    name: Leakage alarm
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "000000000000000000FF000000000000"
+
+  - entity: number
+    name: Leakage threshold
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        unit: mA
+        name: value
+        mask: "00000000000000000000FFFF00000000"
+        range:
+          min: 10
+          max: 99
+
+  - entity: switch
+    name: Temperature alarm
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "00000000000000000000000000FF0000"
+
+  - entity: number
+    name: Temperature threshold
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 17
+        optional: true
+        force: true
+        type: base64
+        unit: C
+        name: value
+        mask: "0000000000000000000000000000FFFF"
+        range:
+          min: 10
+          max: 85
+
+  - entity: switch
+    name: Overvoltage alarm
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "0000000000FF00000000000000000000"
+
+  - entity: number
+    name: Overvoltage threshold
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        name: value
+        mask: "000000000000FFFF0000000000000000"
+        mapping:
+          - scale: 1
+        range:
+          min: 10
+          max: 630
+
+  - entity: switch
+    name: Undervoltage alarm
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "000000000000000000FF000000000000"
+
+  - entity: number
+    name: Undervoltage threshold
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        name: value
+        mask: "00000000000000000000FFFF00000000"
+        range:
+          min: 120
+          max: 300
+
+  - entity: switch
+    name: Insufficient balance alarm
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "00000000000000000000000000FF0000"
+
+  - entity: number
+    name: Insufficient balance threshold
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        unit: kWh
+        name: value
+        mask: "0000000000000000000000000000FFFF"
+        range:
+          min: 1
+          max: 210
+
+  - entity: switch
+    name: Overcurrent alarm
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        name: switch
+        mask: "00FF0000000000000000000000000000"
+
+  - entity: number
+    name: Overcurrent threshold
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 18
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: value
+        mask: "000000FF000000000000000000000000"
+        range:
+          min: 1
+          max: 80
+
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    hidden: true
+    dps:
+      - id: 101
+        optional: true
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 102
+        optional: true
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
