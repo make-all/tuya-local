@@ -50,19 +50,29 @@ entities:
             value: reverse
 
   - entity: light
+    hidden: unavailable
     dps:
       - id: 15
         type: boolean
+        optional: true
         name: switch
       - id: 16
         type: integer
+        optional: true
         name: brightness
         range:
           min: 10
           max: 1000
         mapping:
           - step: 10
-
+      - id: 15
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: select
     translation_key: timer
     dps:
@@ -99,3 +109,22 @@ entities:
         name: sensor
         type: integer
         unit: min
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 24
+        type: bitfield
+        optional: true
+        name: fault_code
