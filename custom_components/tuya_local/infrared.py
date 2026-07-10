@@ -7,7 +7,7 @@ import json
 import logging
 from typing import override
 
-from homeassistant.components.infrared import InfraredCommand, InfraredEntity
+from homeassistant.components.infrared import InfraredCommand, InfraredEmitterEntity
 from tinytuya.Contrib.IRRemoteControlDevice import IRRemoteControlDevice as IR
 
 from .device import TuyaLocalDevice
@@ -30,7 +30,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     )
 
 
-class TuyaLocalInfrared(TuyaLocalEntity, InfraredEntity):
+class TuyaLocalInfrared(TuyaLocalEntity, InfraredEmitterEntity):
     """Representation of a Tuya Local infrared control device."""
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):

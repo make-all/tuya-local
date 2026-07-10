@@ -136,8 +136,10 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._operation_mode_dps is None:
             return []
         else:
-            return filter(
-                lambda x: x != "away", self._operation_mode_dps.values(self._device)
+            return list(
+                filter(
+                    lambda x: x != "away", self._operation_mode_dps.values(self._device)
+                )
             )
 
     @property

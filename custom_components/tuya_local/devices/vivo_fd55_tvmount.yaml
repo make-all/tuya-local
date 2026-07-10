@@ -3,6 +3,7 @@ products:
   - id: ejr6szbimwutiaqp
     manufacturer: Vivo
     model: FD55
+
 entities:
   - entity: button
     name: Stop
@@ -14,6 +15,7 @@ entities:
         mapping:
           - dps_val: cancel
             value: true
+
   - entity: button
     name: Up
     icon: "mdi:arrow-up-bold"
@@ -24,6 +26,7 @@ entities:
         mapping:
           - dps_val: move_up
             value: true
+
   - entity: button
     name: Down
     icon: "mdi:arrow-down-bold"
@@ -33,4 +36,28 @@ entities:
         name: button
         mapping:
           - dps_val: move_down
+            value: true
+
+  - entity: button
+    name: Position 1
+    icon: "mdi:numeric-1-box"
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: recall1
+            value: true
+
+  - entity: button
+    name: Position 2
+    icon: "mdi:numeric-2-box"
+    dps:
+      - id: 103
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: recall2
             value: true

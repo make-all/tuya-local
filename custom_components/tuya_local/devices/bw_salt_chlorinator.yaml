@@ -1,0 +1,169 @@
+name: Salt chlorinator
+products:
+  - id: ypdzzmgqbq3dqhqu
+    manufacturer: BW
+
+entities:
+  - entity: switch
+    name: Daily cycle
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+
+  - entity: lock
+    translation_key: child_lock
+    dps:
+      - id: 102
+        name: lock
+        type: boolean
+
+  - entity: select
+    name: Chlorination output
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "25"
+            value: "25% (3 h)"
+          - dps_val: "50"
+            value: "50% (6 h)"
+          - dps_val: "75"
+            value: "75% (9 h)"
+          - dps_val: "100"
+            value: "100% (12 h)"
+          - dps_val: "150"
+            value: "150% (18 h)"
+          - dps_val: "200"
+            value: "200% (24 h)"
+
+  - entity: sensor
+    name: Water temperature
+    class: temperature
+    icon: "mdi:pool-thermometer"
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "work"
+            value: false
+          - value: true
+      - id: 106
+        type: string
+        name: description
+        mapping:
+          - dps_val: "work"
+            value: "Working"
+          - dps_val: "F1"
+            value: "F1 - Water temperature outside normal range"
+          - dps_val: "F1_L"
+            value: "F1_L - Water temperature outside normal range"
+          - dps_val: "F2"
+            value: "F2 - Water flow error"
+          - dps_val: "F3"
+            value: "F3 - Water temperature sensor breakdown"
+          - dps_val: "F4"
+            value: "F4 - Electrode abnormal"
+          - dps_val: "F5"
+            value: "F5 - Low salinity"
+          - dps_val: "F6"
+            value: "F6 - High salinity"
+          - dps_val: "F8"
+            value: "F8 - Low input voltage"
+          - dps_val: "F9"
+            value: "F9 - High output current"
+          - dps_val: "FC"
+            value: "FC - Circuit abnormal"
+          - dps_val: "FP"
+            value: "FP - Power off abnormal"
+          - dps_val: "Fb"
+            value: "Fb - Communication failure"
+
+  - entity: sensor
+    name: Salinity status
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 107
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "salinity_low"
+            value: "low"
+          - dps_val: "salinity_normal"
+            value: "normal"
+          - dps_val: "salinity_high"
+            value: "high"
+
+  - entity: button
+    name: Clear fault
+    dps:
+      - id: 108
+        name: button
+        type: boolean
+
+  - entity: select
+    name: Self-clean interval
+    category: config
+    dps:
+      - id: 109
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 4
+            value: "4 h"
+          - dps_val: 8
+            value: "8 h"
+          - dps_val: 12
+            value: "12 h"
+
+  - entity: sensor
+    name: Runtime until self-clean
+    class: duration
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: h
+        class: measurement
+
+  - entity: button
+    name: Clear salinity fault
+    dps:
+      - id: 112
+        name: button
+        type: boolean
+
+  - entity: sensor
+    name: Runtime remaining
+    class: duration
+    dps:
+      - id: 113
+        name: sensor
+        type: integer
+        unit: h
+        class: measurement
+
+  - entity: sensor
+    name: Runtime duration
+    class: duration
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: h
+        class: measurement
