@@ -34,6 +34,14 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
+# Extra context for tinytuya error codes whose message does not fully describe
+# the possible causes.  Error 914 in particular is reported for any failure to
+# negotiate a session, which includes a device that is refusing connections
+# until it is power cycled, not just a misconfigured key or protocol version.
+_ERROR_HINTS = {
+    "914": "  If previously running OK, likely the device needs to be power cycled.",
+}
+
 
 def _collect_possible_matches(cached_state, product_ids):
     """Collect possible matches from generator into an array."""
@@ -658,12 +666,14 @@ class TuyaLocalDevice(object):
         )
 
         last_err_code = None
+        last_err_msg = None
         for i in range(connections):
             try:
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if isinstance(retval, dict) and "Error" in retval:
                         last_err_code = retval.get("Err")
+                        last_err_msg = retval.get("Error")
                         if last_err_code == "900":
                             # Some devices (e.g. IR/RF remotes) never return
                             # status data; error 900 is their normal response
@@ -699,12 +709,24 @@ class TuyaLocalDevice(object):
                         self._api_protocol_working = False
                         for entity in self._children:
                             entity.async_schedule_update_ha_state()
+                    if last_err_code:
+                        log_format = "%s Device reported error %s: %s%s"
+                        log_args = (
+                            error_message,
+                            last_err_code,
+                            last_err_msg,
+                            _ERROR_HINTS.get(last_err_code, ""),
+                        )
+                    else:
+                        log_format = "%s"
+                        log_args = (error_message,)
+
                     if self._api_working_protocol_failures == 1 and not (
                         last_err_code == "914" and self._protocol_configured == "auto"
                     ):
-                        _LOGGER.error(error_message)
+                        _LOGGER.error(log_format, *log_args)
                     else:
-                        _LOGGER.debug(error_message)
+                        _LOGGER.debug(log_format, *log_args)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
