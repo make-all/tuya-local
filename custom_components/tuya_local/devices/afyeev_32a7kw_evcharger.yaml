@@ -222,8 +222,21 @@ entities:
         optional: true
         mapping:
           - scale: 100
+  - entity: button
+    name: Refresh
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 27
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: online
+            value: true
   - entity: binary_sensor
     class: connectivity
+    deprecated: button_refresh  # 2026-06-29
     category: diagnostic
     dps:
       - id: 27

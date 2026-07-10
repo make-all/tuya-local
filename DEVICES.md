@@ -103,6 +103,7 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
+- Airwoods fresh air heat pump
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -110,6 +111,7 @@
 - Brokton BRST12 air conditioner
 - Carson CB PA280
 - Cecotec ForceClima Soundless portable air conditioner
+- Chigo air conditioner
 - Chiltrix CX50 and CX35
 - Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
@@ -140,17 +142,19 @@
 - Igenix IG9901WIFI portable air conditioner
 - Inventor Comfort and Leon air conditioners
 - Kaisai Pro Heat+ air conditioner
+- Kibernetik 12K portable split air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16, Vostok)
 - Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
+- Meaco Cirro air conditioners
 - MeacoCool MC Series Pro portable air conditioners
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
 - Morris WFIN-35168 air conditioner
 - MyCond Berg air conditioner
 - Nedis ACMB1WT12 portable air conditioner
-- Qlima SC 7035S air conditioner
+- Qlima SC 7035S and MS-AC 5002 air conditioners
 - Rotenso Roni R35WI and Roni X
 - Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
@@ -162,6 +166,7 @@
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Teknopoint Idra Skiv air conditioner
+- Temprium PAC011 air conditioner
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heat pump
@@ -179,6 +184,7 @@
 - Brustec BR-80 pool heat pump
 - BWT FI 45 heat pump
 - Edge Theory Labs cold plunge heat pump
+- EleChico CCIB001-CC1177D ice bath heat pump controller
 - Evotherm ETI series heat pump
 - Fairland IPHCR15, RMIC06, X20 pool heat pumps (also Pool Systems and other brands)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
@@ -289,6 +295,7 @@
 - Euroster 4040 Smart thermostat
 - EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
+- Fercofloor FT2C10V fan coil thermostat
 - Garza Aspen and (unknown model) thermostats
 - HaoLeSi Mini thermostat
 - Herschel XLS T-MS mains and T-PL plugin thermostats
@@ -325,6 +332,8 @@
 - SimPal TY-130 thermostat switch
 - T5E-WF thermostat
 - Tellur thermostat
+- Teploluxe MCS350 thermostat
+- Tervix Pro Line thermostat
 - Thermoval TVT40 thermostat
 - TyloHelo SaunaLogic2 sauna controller
 - Vine TJ550 thermostat
@@ -371,7 +380,7 @@
 - Duux Whisper Flex Ultimate
 - Dyras TF-16WIFI tower fan
 - Eberg Fyn tower fan
-- EcoNour 42" tower fan
+- EcoNour 42" 3-speed and 12-speed tower fans
 - Efenz Kith ceiling fan with light
 - Eglo 5 speed + sleep ceiling fan (with or without light and presets)
 - eLinkSmart KH-SY2626 pedestal fan
@@ -389,6 +398,7 @@
 - Hoenofly Smart Wood low profile ceiling fan with lights
 - Holmes SmartConnect Digital Tower Fan (36 and 40 inch variants)
 - Hombli 6-speed ceiling fan with RGBCW light
+- HomCom 6-speed tower fan
 - Homebase 12" oscillating fan
 - HomeMate 5 speed fan regulator
 - Howeall register booster fan (also branded Sanycasa)
@@ -420,7 +430,7 @@
 - Milano ceiling fan
 - New Widetech WPF-16SW5 7-speed pedestal fan
 - NHZS fan speed switch
-- Novadigital ceiling fan with light
+- Novadigital ceiling fan with light
 - NP-DVL-01 ceiling fan with RGB+CW light
 - OmniBreeze DC2313R tower fan (4-speed and 5-speed models)
 - Orison Chanfok Neo ceiling fan with light
@@ -455,7 +465,7 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Varin CFWI50 RGBCW ceiling fan
-- Varin VA-E003 ceiling fan with light
+- Varin VA-E003 and VA-002 ceiling fans with light
 - Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yamazen Living AHX-ALD30 pedestal fan
 - Yidi/NHZS fan and light wall switch
@@ -510,6 +520,7 @@
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
+- Belair Baltic Irradio 20L dehumidifier
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
@@ -544,6 +555,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Morris MDB-12160HIW dehumidifier
 - NWT WDH-02EM and WDH-10EN dehumidifiers
+- Point PODH20 dehumidifier
 - Pro Breeze 30L dehumidifier
 - Pro Breeze D-23 dehumidifier
 - Qlima D720, D812, D820A dehumidifiers
@@ -555,6 +567,7 @@
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
+- Vibrix Dryflow 12 Pro dehumidifier
 - Vivosun DE0003 dehumidifier
 - Wellio D008A 20L dehumidifier
 - WetAir WAD-A10L dehumidifier
@@ -598,6 +611,7 @@
 - Etersky aroma diffuser with light
 - GD2050WIFI aroma diffuser
 - Haoyunma BD100 aroma diffuser
+- HOM Chernobyl humidifer aroma diffuser
 - InLine ultrasonic aroma diffuser
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Revesien Q-Pro-W aroma diffuser
@@ -623,6 +637,7 @@
 - Fiesta DK-1G smart kettle
 - Goldair GGK1000 smart kettle
 - Götze and Jensen KT975K smart kettle
+- Hauslane IN-R110 range hood
 - Homend Royaltea kettle
 - Inkbird iBBQ-4BW, iBBQ-4T, IBS-M1S, IBS-M2, IBT-26S, INT-12-BW cooking probe thermometers
 - Inkbird ISC-007BW smoker fan controller
@@ -730,10 +745,12 @@
 - Ipengen GO-E31-16A and 32A EV chargers
 - Junsun 32A EV charger
 - Kolanky 3.6kW EV charger
+- Lidl Tronic solar power storage
 - MakeSkyBlue MPPT solar battery charger
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
-- Oscal PowerMax 6000 portable power station
+- Olight Ostation 2 battery charging station
+- Oscal PowerMax 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - SRNE SE Series lithium battery
@@ -920,7 +937,7 @@ of device.
 - Ion LED WiFi dimmer
 - iSparkle Curtain Micro Lights
 - Kojima motion sensor RGBCW nightlight
-- Ledvance Smart+ Planon panel light with backlight
+- Ledvance Smart+ Planon panel light with backlight and Smart+ Planon Magic light
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
@@ -950,9 +967,11 @@ of device.
 - oLight Sphere ambient light
 - Outon Smart Lamp
 - Peteme recessed lighting
+- Pinar SmartLux door lights
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
+- Sensio 240V Kinetic Receiver dimmer
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
@@ -994,6 +1013,7 @@ of device.
 - Eachen GD-DC5 garage door opener
 - Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
+- Fakro ARZ roof blind
 - FS-03W curtain switch with backlight control
 - Garen TSI Fit and Kit Central garage door openers
 - Graywind window shades
@@ -1038,6 +1058,7 @@ of device.
 - Kabum Smart 500, 700 vacuum cleaners
 - Kogan LX10, LX15, LX8 vacuum cleaners
 - Kyvol E30 vacuum cleaner
+- Laresar L6 Nex vacuum cleaner
 - Lefant LS1 Pro, M213, N33, T700 vacuum cleaners
 - Lenovo E1 vacuum cleaner
 - Liectroux G7. XR500 vacuum cleaners
@@ -1157,6 +1178,7 @@ port and password.
 - Advwin 6L camera pet feeder
 - AF3W pet feeder
 - Arlec Grid Connect 5L and PFC002HA Series 2 pet feeders
+- Beokeo S20Pro cat litter box
 - BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
@@ -1213,7 +1235,7 @@ port and password.
 - PNI water feeder
 - Puppy Kitty automatic pet feeder (F14-W and another model)
 - Repetsun double bowl 5L pet feeder
-- Rojeco PTM-001 pet feeder (two versions)
+- Rojeco PTM-001, PAF-186B pet feeders
 - Rojeco V200 DU3L-VS camera pet feeder
 - Sailesi self-cleaning litter box
 - Sobralik pet fountain
@@ -1250,7 +1272,7 @@ port and password.
 - Frizzlife LP365P water monitor shut-off valve
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Gidrolock Standard water leak detection valve
-- Haozee water valve
+- Haozee water valve, and 12 valve sprinkler controller
 - Hoenyzy DN15 / DN20 / DN25 gas and water valve timers
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
@@ -1413,6 +1435,7 @@ port and password.
 - Nice Digi door lock
 - Orion DL021HA lock
 - O'TU R1O1 fingerprint door lock
+- Parkside PBB-A1 water timer 
 - Positivo Smart keypad and voice locks
 - Primebras Athenas lock
 - PT216/PT19DB-2 temperature and humidity sensor
