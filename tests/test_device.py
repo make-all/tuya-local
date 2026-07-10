@@ -4,7 +4,8 @@ from time import time
 import pytest
 
 # from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
-from custom_components.tuya_local.device import TuyaLocalDevice
+from custom_components.tuya_local.const import CONF_DEVICE_ID, DOMAIN
+from custom_components.tuya_local.device import TuyaLocalDevice, async_delete_device
 
 from .const import EUROM_600_HEATER_PAYLOAD
 
@@ -66,6 +67,25 @@ def test_device_info(subject, mock_api):
         "name": "Some name",
         "manufacturer": "Tuya",
     }
+
+
+@pytest.mark.asyncio
+async def test_delete_keeps_device_entry_when_stop_fails(hass, mocker):
+    """Device cache should not be removed before stop succeeds."""
+    device = mocker.MagicMock()
+    device.async_stop = mocker.AsyncMock(side_effect=RuntimeError("stop failed"))
+    hass.data[DOMAIN] = {
+        "deviceid": {
+            "device": device,
+            "tuyadevice": mocker.MagicMock(),
+            "tuyadevicelock": mocker.MagicMock(),
+        }
+    }
+
+    with pytest.raises(RuntimeError, match="stop failed"):
+        await async_delete_device(hass, {CONF_DEVICE_ID: "deviceid"})
+
+    assert hass.data[DOMAIN]["deviceid"]["device"] is device
 
 
 def test_has_returned_state(subject):
