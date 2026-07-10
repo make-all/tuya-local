@@ -1,0 +1,655 @@
+name: Sprinkler controller
+products:
+  - id: nqhft5inckqtnewv
+    manufacturer: Haozee
+    model: "12 zone"
+entities:
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "3"
+    dps:
+      - id: 3
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "4"
+    dps:
+      - id: 4
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "5"
+    dps:
+      - id: 5
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "6"
+    dps:
+      - id: 6
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "7"
+    dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "8"
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "9"
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "10"
+    dps:
+      - id: 10
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "11"
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: valve
+  - entity: valve
+    class: water
+    translation_key: valve_x
+    translation_placeholders:
+      x: "12"
+    dps:
+      - id: 12
+        type: boolean
+        optional: true
+        name: valve
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-pouring"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "24h"
+            value: "1d"
+          - dps_val: "48h"
+            value: "2d"
+          - dps_val: "72h"
+            value: "3d"
+  - entity: text
+    translation_key: schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 38
+        type: string
+        name: value
+      - id: 105
+        type: string
+        name: countdown
+      - id: 106
+        type: base64
+        optional: true
+        name: usage
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 39
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: idle
+            value: idle
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+      - id: 124
+        type: string
+        name: valves
+  - entity: valve
+    class: water
+    dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: valve
+  - entity: select
+    name: Weather
+    icon: "mdi:weather-partly-cloudy"
+    category: config
+    dps:
+      - id: 41
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: sunny
+            value: sunny
+          - dps_val: cloudy
+            value: cloudy
+          - dps_val: rainy
+            value: rainy
+          - dps_val: snowy
+            value: snowy
+      - id: 42
+        type: boolean
+        name: available
+  - entity: switch
+    name: Weather
+    category: config
+    dps:
+      - id: 42
+        type: boolean
+        name: switch
+  - entity: button
+    name: Skip
+    dps:
+      - id: 43
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Irrigation mode
+    icon: "mdi:sprinkler-variant"
+    category: config
+    dps:
+      - id: 44
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Order1
+            value: Mode 1
+          - dps_val: Order2
+            value: Mode 2
+  - entity: sensor
+    name: Irrigation time 1
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "FFFF00000000000000000000000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 2
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "0000FFFF0000000000000000000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 3
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "00000000FFFF000000000000000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 4
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "000000000000FFFF00000000000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 5
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "0000000000000000FFFF0000000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 6
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "00000000000000000000FFFF000000000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 7
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "000000000000000000000000FFFF00000000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 8
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "0000000000000000000000000000FFFF0000000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 9
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "00000000000000000000000000000000FFFF000000000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 10
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "000000000000000000000000000000000000FFFF00000000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 11
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "0000000000000000000000000000000000000000FFFF0000"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Irrigation time 12
+    class: duration
+    dps:
+      - id: 45
+        type: base64
+        mask: "00000000000000000000000000000000000000000000FFFF"
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: text
+    name: Irrigation restriction schedule
+    category: config
+    hidden: true
+    dps:
+      - id: 46
+        type: string
+        name: value
+  - entity: number
+    name: Valve 1 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 101
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 2 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 102
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 3 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 4 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: event
+    name: Fault
+    dps:
+      - id: 107
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: normal
+            value: Clear
+          - dps_val: alram1
+            value: Valve 1
+          - dps_val: alram2
+            value: Valve 2
+          - dps_val: alram3
+            value: Valve 3
+          - dps_val: alram4
+            value: Valve 4
+          - dps_val: alram5
+            value: Valve 5
+          - dps_val: alram6
+            value: Valve 6
+          - dps_val: alram7
+            value: Valve 7
+          - dps_val: alram8
+            value: Valve 8
+          - dps_val: alram9
+            value: Valve 9
+          - dps_val: alram10
+            value: Valve 10
+          - dps_val: alram11
+            value: Valve 11
+          - dps_val: alram12
+            value: Valve 12
+  - entity: switch
+    name: Pump
+    dps:
+      - id: 108
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+  - entity: select
+    translation_key: timer
+    name: Rain sensor
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 109
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: cancel
+          - dps_val: "24"
+            value: "1d"
+          - dps_val: "48"
+            value: "2d"
+          - dps_val: "72"
+            value: "3d"
+          - dps_val: "96"
+            value: "4d"
+          - dps_val: "168"
+            value: "7d"
+  - entity: number
+    name: Valve 5 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 6 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 111
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 7 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 8 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 9 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 114
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 10 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 115
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 11 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 116
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: number
+    name: Valve 12 irrigation time
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 117
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: text
+    name: Areas
+    category: config
+    icon: "mdi:floor-plan"
+    hidden: true
+    dps:
+      - id: 119
+        type: string
+        name: value
+  - entity: button
+    name: Refresh
+    icon: "mdi:sync"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        optional: true
+        name: button
+  - entity: text
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    hidden: true
+    dps:
+      - id: 121
+        type: string
+        optional: true
+        name: value
+  - entity: event
+    name: Overload
+    dps:
+      - id: 122
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: false
+            value: clear
+          - dps_val: true
+            value: alert
+  - entity: text
+    name: Area data
+    category: config
+    icon: "mdi:floor-plan"
+    hidden: true
+    dps:
+      - id: 123
+        type: string
+        optional: true
+        name: value
