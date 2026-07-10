@@ -4,7 +4,58 @@ products:
     manufacturer: HunterTBK
     model: HF-6602T
 entities:
+  - entity: switch
+    name: Camera record
+    icon: "mdi:record"
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: switch
+  - entity: event
+    class: motion
+    dps:
+      - id: 115
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 115
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: event
+    class: doorbell
+    name: Door image
+    dps:
+      - id: 154
+        type: base64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 154
+        type: base64
+        optional: true
+        name: snapshot
+  - entity: switch
+    translation_key: motion_detection
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
   - entity: camera
+    # 2026-06-08
+    deprecated: >-
+      switch_camera_record, event_motion, event_door_image,
+      switch_motion_detection
     dps:
       - id: 150
         type: boolean
@@ -46,8 +97,7 @@ entities:
             value: false
             hidden: true
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     dps:
       - id: 108
@@ -55,11 +105,11 @@ entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
   - entity: sensor
     name: SD status
     class: enum
@@ -178,8 +228,7 @@ entities:
         type: boolean
         name: sensor
   - entity: select
-    name: Record mode
-    icon: "mdi:video"
+    translation_key: recording_mode
     category: config
     dps:
       - id: 151
@@ -187,9 +236,9 @@ entities:
         name: option
         mapping:
           - dps_val: "1"
-            value: Event recording
+            value: event
           - dps_val: "2"
-            value: Continuous recording
+            value: continuous
   - entity: select
     name: PIR sensitivity
     icon: "mdi:motion-sensor"

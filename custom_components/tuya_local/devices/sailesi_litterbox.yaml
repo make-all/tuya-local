@@ -2,6 +2,9 @@ name: Litter box
 products:
   - id: hvalyynkccqpdwrd
     manufacturer: Sailesi
+  - id: qyvypzich5aywr9q
+    manufacturer: GoDrone
+    model: "01B"
 entities:
   - entity: sensor
     class: weight
@@ -46,10 +49,20 @@ entities:
     name: Deodorization
     icon: "mdi:spray"
     category: config
+    hidden: unavailable
     dps:
       - id: 17
         type: boolean
+        optional: true
         name: switch
+      - id: 17
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -160,6 +173,7 @@ entities:
       # 109 Clean_tasteSwitch: Chinese name translates to Alternate version id
       - id: 109
         type: boolean
+        optional: true
         name: clean_taste_sw
   - entity: text
     name: Do not disturb schedule
@@ -259,10 +273,20 @@ entities:
   - entity: switch
     translation_key: do_not_disturb
     category: config
+    hidden: unavailable
     dps:
       - id: 122
         type: boolean
         name: switch
+        optional: true
+      - id: 122
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: sensor
     name: Usage
     category: diagnostic

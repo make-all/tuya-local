@@ -1,0 +1,152 @@
+name: Thermostat
+products:
+  - id: "tfmfbr341u0tx3fb"
+    manufacturer: Teploluxe
+    model: MCS350
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 111
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "ON"
+            constraint: preset_mode
+            conditions:
+              - dps_val: manual
+                # manual
+                value: heat
+              - dps_val: program
+                # program
+                value: auto
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: program
+            value: program
+
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 45
+
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temp_sensor
+            conditions:
+              - dps_val: air
+                value_redirect: air_temp
+
+      - id: 43
+        type: string
+        name: temp_sensor
+        hidden: true
+
+      - id: 102
+        type: integer
+        name: air_temp
+        hidden: true
+
+      - id: 106
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: true
+            value: heating
+          - dps_val: false
+            value: idle
+
+  - entity: number
+    translation_key: temperature_calibration
+    class: temperature_delta
+    category: config
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -9
+          max: 9
+
+  - entity: number
+    name: Maximum air temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 45
+
+  - entity: sensor
+    class: power
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: °C
+
+  - entity: switch
+    name: Open window detection
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "OFF"
+            value: false
+          - dps_val: "ON"
+            value: true
+
+  - entity: select
+    name: Temperature sensor
+    category: config
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: flor
+            value: Floor
+          - dps_val: air
+            value: Room
+          - dps_val: booth
+            value: Both
+
+  - entity: switch
+    name: Learning mode
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "OFF"
+            value: false
+          - dps_val: "ON"
+            value: true
