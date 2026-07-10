@@ -78,6 +78,18 @@ entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: fahrenheit
+          - dps_val: true
+            value: celsius
   - entity: binary_sensor
     class: problem
     category: diagnostic
