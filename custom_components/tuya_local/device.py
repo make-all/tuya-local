@@ -39,9 +39,7 @@ _LOGGER = logging.getLogger(__name__)
 # negotiate a session, which includes a device that is refusing connections
 # until it is power cycled, not just a misconfigured key or protocol version.
 _ERROR_HINTS = {
-    "914": (
-        "  If previously running OK, likely the device needs to be power cycled."
-    ),
+    "914": ("  If previously running OK, likely the device needs to be power cycled."),
 }
 
 
