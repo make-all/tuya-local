@@ -1,6 +1,7 @@
 name: Air purifier
 entities:
   - entity: fan
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -15,6 +16,16 @@ entities:
             value: 67
           - dps_val: "high"
             value: 100
+      - id: 101
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: calcle
+            value: auto
+          - dps_val: "1"
+            value: medium
+          - dps_val: "2"
+            value: high
   - entity: sensor
     name: Active filter life
     icon: "mdi:air-filter"
@@ -69,6 +80,7 @@ entities:
         name: sensor
   - entity: select
     name: Configuration
+    deprecated: fan.preset_mode  # 2026-05-18
     dps:
       - id: 101
         name: option

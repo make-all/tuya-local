@@ -601,7 +601,10 @@ device detection unless set to optional. A value of true will be sent
 for a button press, map this to the desired dps_val if a different
 value is required.
 
-### `camera`
+### `camera` *deprecated*
+
+As cameras are not well supported locally, forcing them into a camera entity does not give good results, instead use switch entities for the controls, and event entities for "snapshots" (which usually contain URLs to fetch the image but need some unknown authentication).
+
 - **motion_enable** (optional, boolean) a dp that enables and disables motion detection features built into the camera.
 - **record** (optional, boolean) a dp that turns reecording on and off.
 - **snapshot** (optional, base64 string) a dp that returns a snapshot image.
@@ -744,6 +747,7 @@ no information will be available about which specific credential was used to unl
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
+- **decimal** (optional, number): a dp that is added to the value to specify the decimal portion of the number separately from the whole number portion. This must be scaled into a decimal number range.
 
 ### `remote`
 - **send** (required, accepts a string): a dp to send remote codes.

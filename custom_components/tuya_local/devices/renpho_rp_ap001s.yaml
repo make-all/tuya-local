@@ -5,8 +5,7 @@ products:
     model: RP-AP001S
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -16,13 +15,13 @@ entities:
         type: string
         mapping:
           - dps_val: low
-            value: sleep
+            value: low
           - dps_val: mid
-            value: fresh
+            value: medium
           - dps_val: high
-            value: strong
+            value: high
           - dps_val: auto
-            value: smart
+            value: auto
       - id: 19
         name: timer
         type: string

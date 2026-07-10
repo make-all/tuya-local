@@ -4,7 +4,8 @@ from time import time
 import pytest
 
 # from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
-from custom_components.tuya_local.device import TuyaLocalDevice
+from custom_components.tuya_local.const import CONF_DEVICE_ID, DOMAIN
+from custom_components.tuya_local.device import TuyaLocalDevice, async_delete_device
 
 from .const import EUROM_600_HEATER_PAYLOAD
 
@@ -66,6 +67,25 @@ def test_device_info(subject, mock_api):
         "name": "Some name",
         "manufacturer": "Tuya",
     }
+
+
+@pytest.mark.asyncio
+async def test_delete_keeps_device_entry_when_stop_fails(hass, mocker):
+    """Device cache should not be removed before stop succeeds."""
+    device = mocker.MagicMock()
+    device.async_stop = mocker.AsyncMock(side_effect=RuntimeError("stop failed"))
+    hass.data[DOMAIN] = {
+        "deviceid": {
+            "device": device,
+            "tuyadevice": mocker.MagicMock(),
+            "tuyadevicelock": mocker.MagicMock(),
+        }
+    }
+
+    with pytest.raises(RuntimeError, match="stop failed"):
+        await async_delete_device(hass, {CONF_DEVICE_ID: "deviceid"})
+
+    assert hass.data[DOMAIN]["deviceid"]["device"] is device
 
 
 def test_has_returned_state(subject):
@@ -601,13 +621,19 @@ async def test_async_receive(subject, mock_api, mocker):
     assert result == {"1": "INIT", "2": 2, "full_poll": True}
     # Prepare for next round
     subject._cached_state = subject._cached_state | result
+    mock_api().status.reset_mock()
     mock_api().set_socketPersistent.reset_mock()
+    print("getting second iteration...")
+    result = await loop.__anext__()
+    # Check that the connection was made persistent now that data has been
+    # returned
+    mock_api().set_socketPersistent.assert_called_once_with(True)
     mock_api().status.reset_mock()
     # Wait long enough to force a heartbeat poll on the next iteration
     subject._cached_state = subject._cached_state | {"updated_at": time()}
     await asyncio.sleep(10.1)
+    print("getting third iteration...")
     # Call the function under test
-    print("getting second iteration...")
     result = await loop.__anext__()
 
     # Check that a heartbeat poll was done
@@ -615,9 +641,6 @@ async def test_async_receive(subject, mock_api, mocker):
     mock_api().heartbeat.assert_called_once()
     mock_api().receive.assert_called_once()
     assert result == {"1": "UPDATED", "full_poll": False}
-    # Check that the connection was made persistent now that data has been
-    # returned
-    mock_api().set_socketPersistent.assert_called_once_with(True)
     # Prepare for next iteration
     subject._running = False
     mock_api().set_socketPersistent.reset_mock()
