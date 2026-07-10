@@ -81,6 +81,7 @@ entities:
   # bytes 2-3: DC current  mask 0000FFFF0000  ÷10 = A
   # bytes 4-5: DC power    mask 00000000FFFF  ÷100 = kW
   - entity: sensor
+    name: DC Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -95,6 +96,7 @@ entities:
           - scale: 10
 
   - entity: sensor
+    name: DC Current
     class: current
     category: diagnostic
     dps:
@@ -129,6 +131,7 @@ entities:
   # bytes 5-7:  AC power    mask 0000000000FFFFFF0000  ÷1000 = kW (uint24)
   # bytes 8-9:  AC freq     mask 0000000000000000FFFF  ÷10 = Hz
   - entity: sensor
+    name: AC Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -143,6 +146,7 @@ entities:
           - scale: 10
 
   - entity: sensor
+    name: AC Current
     class: current
     category: diagnostic
     dps:
