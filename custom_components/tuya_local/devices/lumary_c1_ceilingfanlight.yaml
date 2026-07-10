@@ -1,0 +1,130 @@
+name: Lumary C1 Ceiling Fan with Light
+products:
+  - id: ddbgeali1ibsaif6
+    manufacturer: Lumary
+    model: C1
+    model_id: L-CFL19C1
+
+entities:
+  # Main combined light (uses DP20 as the primary switch)
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: white
+            value: White
+          - dps_val: colour
+            value: Color
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+
+  # RGB light (simplified - only color, no separate switch)
+  - entity: light
+    name: RGB
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+
+  # Fan (unchanged - this part works for you)
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 104
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 100
+      - id: 105
+        type: string
+        name: direction
+
+  # Night light (kept simple)
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 20
+        type: boolean
+        name: available
+      - id: 143
+        type: boolean
+        name: switch
+
+  # Config entities (optional but useful)
+  - entity: number
+    name: LED Pixels
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 300
+
+  - entity: number
+    name: LED Sequence
+    category: config
+    icon: "mdi:led-strip"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 5
