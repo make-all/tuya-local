@@ -1,6 +1,6 @@
 name: Label PRs based on size
 
-on: [pull_request_target, workflow_dispatch]
+on: [pull_request]
 
 jobs:
   add_pr_size_label:
@@ -14,4 +14,4 @@ jobs:
         uses: boschresearch/pr-size-labeler@v5
         # Uncomment these lines if you want to use your own custom configuration
         with:
-          bucketConfigFile: ".github/sizeBuckets.yml"
+          bucketConfigFile: .github/sizeBuckets.yml
