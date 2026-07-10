@@ -12,12 +12,10 @@ entities:
   # DPS 8 — power_total, current AC output in kW
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 8
         type: integer
         name: sensor
-        optional: true
         unit: kW
         class: measurement
         mapping:
@@ -28,12 +26,10 @@ entities:
   # so small step-backs after power loss are expected behaviour.
   - entity: sensor
     class: energy
-    category: diagnostic
     dps:
       - id: 2
         type: integer
         name: sensor
-        optional: true
         unit: kWh
         class: total_increasing
         mapping:
@@ -46,7 +42,6 @@ entities:
       - id: 16
         type: integer
         name: sensor
-        optional: true
         unit: C
         class: measurement
         mapping:
@@ -60,7 +55,6 @@ entities:
     dps:
       - id: 10
         type: string
-        optional: true
         name: option
         mapping:
           - dps_val: "power_off"
@@ -83,7 +77,6 @@ entities:
   - entity: sensor
     name: DC Voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 3
         type: base64
@@ -98,7 +91,6 @@ entities:
   - entity: sensor
     name: DC Current
     class: current
-    category: diagnostic
     dps:
       - id: 3
         type: base64
@@ -113,7 +105,6 @@ entities:
   - entity: sensor
     name: DC Power
     class: power
-    category: diagnostic
     dps:
       - id: 3
         type: base64
@@ -133,7 +124,6 @@ entities:
   - entity: sensor
     name: AC Voltage
     class: voltage
-    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -148,7 +138,6 @@ entities:
   - entity: sensor
     name: AC Current
     class: current
-    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -163,7 +152,6 @@ entities:
   - entity: sensor
     name: AC Power
     class: power
-    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -177,7 +165,6 @@ entities:
 
   - entity: sensor
     class: frequency
-    category: diagnostic
     dps:
       - id: 5
         type: base64
@@ -199,7 +186,6 @@ entities:
     dps:
       - id: 9
         type: bitfield
-        optional: true
         name: sensor
         mapping:
           - dps_val: 0
@@ -248,7 +234,6 @@ entities:
     dps:
       - id: 11
         type: base64
-        optional: true
         name: value
 
   - entity: text
@@ -259,5 +244,4 @@ entities:
     dps:
       - id: 12
         type: base64
-        optional: true
         name: value
