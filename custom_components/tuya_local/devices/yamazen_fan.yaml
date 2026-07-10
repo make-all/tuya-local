@@ -1,0 +1,88 @@
+name: Fan
+products:
+  - id: yjxegyhiawfedgah
+    manufacturer: Yamazen
+    model: AHX-ALD30
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 13
+          - dps_val: "2"
+            value: 25
+          - dps_val: "3"
+            value: 37
+          - dps_val: "4"
+            value: 50
+          - dps_val: "5"
+            value: 63
+          - dps_val: "6"
+            value: 75
+          - dps_val: "7"
+            value: 87
+          - dps_val: "8"
+            value: 100
+      - id: 4
+        type: string
+        name: oscillate
+        mapping:
+          - dps_val: "OFF"
+            value: false
+          - dps_val: "120"
+            value: true
+          - dps_val: "30"
+            value: true
+            hidden: true
+          - dps_val: "60"
+            value: true
+            hidden: true
+          - dps_val: "90"
+            value: true
+            hidden: true
+  - entity: select
+    name: Fan swing
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "30"
+            value: "30°"
+          - dps_val: "60"
+            value: "60°"
+          - dps_val: "90"
+            value: "90°"
+          - dps_val: "120"
+            value: "120°"
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 8
