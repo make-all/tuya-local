@@ -636,7 +636,6 @@ class TuyaLocalDevice(object):
         try:
             self._lock.acquire()
             self._api.set_multiple_values(properties, nowait=True)
-            self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
