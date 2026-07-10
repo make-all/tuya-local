@@ -1,8 +1,8 @@
 name: IR heat pump
 products:
-  - id: hwktwkq
-    manufacturer: Moes
-    model: SD16Pro
+  # - id: hwktwkq
+  #   manufacturer: Moes
+  #   model: SD16Pro
   - id: aqlyorlybbtn6ox7
     manufacturer: Moes
     name: IR thermostat
@@ -187,3 +187,9 @@ entities:
         type: string
         optional: true
         persist: false
+  - entity: infrared
+    dps:
+      - id: 201
+        name: send
+        type: string
+        optional: true

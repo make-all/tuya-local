@@ -18,21 +18,21 @@ class BasicTextTests:
         self,
         dp,
         subject,
-        max=None,
-        min=None,
+        maxi=None,
+        mini=None,
         mode=TextMode.TEXT,
         pattern=None,
         testdata=None,
-        extra_state={},
+        extra_state=None,
     ):
         self.basicText = subject
         self.basicTextDp = dp
-        self.basicTextMin = min
-        self.basicTextMax = max
+        self.basicTextMin = mini
+        self.basicTextMax = maxi
         self.basicTextMode = mode
         self.basicTextPattern = pattern
         self.basicTextTestData = testdata
-        self.basicTextExtra = extra_state
+        self.basicTextExtra = extra_state or {}
 
     def test_text_min_value(self):
         if self.basicTextMin is not None:

@@ -1,0 +1,270 @@
+name: Cat litter box
+products:
+  - id: mpc08boripb0qhj6
+    manufacturer: Homall
+    model: "90L"
+    model_id: DE-10115O
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Flush
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+  - entity: number
+    name: Flush delay
+    class: duration
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 106
+        type: integer
+        optional: true
+        name: pounds
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Times used
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: times
+        class: total_increasing
+      - id: 7
+        type: integer
+        name: today
+  - entity: sensor
+    name: Daily use
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: ambient_light
+    dps:
+      - id: 16
+        type: boolean
+        optional: true
+        name: switch
+  - entity: switch
+    name: Deodorization
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: event
+    name: Notification
+    dps:
+      - id: 21
+        type: bitfield
+        name: event
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: null
+          - dps_val: 1
+            value: garbage_full
+          - dps_val: 2
+            value: excessive_use
+          - dps_val: 4
+            value: flushing
+          - dps_val: 8
+            value: no_use
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 23
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: "off"
+            value: "off"
+          - dps_val: waiting_cluster
+            value: caking
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: defecation
+            value: occupied
+          - dps_val: Entrance_abnormality
+            value: blocked
+  - entity: button
+    name: Empty
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: select
+    name: Litter type
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: bentonite
+            value: Bentonite
+          - dps_val: tufu_paste
+            value: Tofu paste
+          - dps_val: mineral_sand
+            value: Mineral sand
+  - entity: number
+    name: Deodorization time
+    category: config
+    class: duration
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 15
+          max: 30
+        mapping:
+          - step: 5
+  - entity: switch
+    name: Notifications
+    icon: "mdi:cellphone-message"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Manual mode
+    icon: "mdi:hand-back-left"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fan fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Bin full
+    class: tank_full
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: switch
+    translation_key: motion_detection
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: binary_sensor
+    name: Motor fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Sensor fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Overweight
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock

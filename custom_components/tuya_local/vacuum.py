@@ -2,6 +2,8 @@
 Setup for different kinds of Tuya vacuum cleaners
 """
 
+import logging
+
 from homeassistant.components.vacuum import (
     SERVICE_CLEAN_SPOT,
     SERVICE_RETURN_TO_BASE,
@@ -15,6 +17,8 @@ from .device import TuyaLocalDevice
 from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -116,11 +120,13 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     async def async_turn_on(self, **kwargs):
         """Turn on the vacuum cleaner."""
         if self._power_dps:
+            _LOGGER.info("%s turning on", self._config.config_id)
             await self._power_dps.async_set_value(self._device, True)
 
     async def async_turn_off(self, **kwargs):
         """Turn off the vacuum cleaner."""
         if self._power_dps:
+            _LOGGER.info("%s turning off", self._config.config_id)
             await self._power_dps.async_set_value(self._device, False)
 
     async def async_toggle(self, **kwargs):
@@ -128,44 +134,53 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         dps = self._power_dps or self._activate_dps
         if dps:
             switch_to = not dps.get_value(self._device)
+            _LOGGER.info("%s toggling to %s", self._config.config_id, switch_to)
             await dps.async_set_value(self._device, switch_to)
 
     async def async_start(self):
         dps = self._command_dps or self._status_dps
         if dps and "start" in dps.values(self._device):
+            _LOGGER.info("%s starting by command", self._config.config_id)
             await dps.async_set_value(self._device, "start")
         elif self._activate_dps:
+            _LOGGER.info("%s activating", self._config.config_id)
             await self._activate_dps.async_set_value(self._device, True)
 
     async def async_pause(self):
         """Pause the vacuum cleaner."""
         dps = self._command_dps or self._status_dps
         if dps and "pause" in dps.values(self._device):
+            _LOGGER.info("%s pausing by command", self._config.config_id)
             await dps.async_set_value(self._device, "pause")
         elif self._activate_dps:
+            _LOGGER.info("%s deactivating", self._config.config_id)
             await self._activate_dps.async_set_value(self._device, False)
 
     async def async_return_to_base(self, **kwargs):
         """Tell the vacuum cleaner to return to its base."""
         dps = self._command_dps or self._status_dps
         if dps and SERVICE_RETURN_TO_BASE in dps.values(self._device):
+            _LOGGER.info("%s returning to base", self._config.config_id)
             await dps.async_set_value(self._device, SERVICE_RETURN_TO_BASE)
 
     async def async_clean_spot(self, **kwargs):
         """Tell the vacuum cleaner do a spot clean."""
         dps = self._command_dps or self._status_dps
         if dps and SERVICE_CLEAN_SPOT in dps.values(self._device):
+            _LOGGER.info("%s doing spot clean", self._config.config_id)
             await dps.async_set_value(self._device, SERVICE_CLEAN_SPOT)
 
     async def async_stop(self, **kwargs):
         """Tell the vacuum cleaner to stop."""
         dps = self._command_dps or self._status_dps
         if dps and SERVICE_STOP in dps.values(self._device):
+            _LOGGER.info("%s stopping", self._config.config_id)
             await dps.async_set_value(self._device, SERVICE_STOP)
 
     async def async_locate(self, **kwargs):
         """Locate the vacuum cleaner."""
         if self._locate_dps:
+            _LOGGER.info("%s locating", self._config.config_id)
             await self._locate_dps.async_set_value(self._device, True)
 
     async def async_send_command(self, command, params=None, **kwargs):
@@ -180,11 +195,19 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             and SERVICE_STOP in self._direction_dps.values(self._device)
         ):
             dps = self._direction_dps
+
         if command in dps.values(self._device):
+            _LOGGER.info(
+                "%s sending %s %s",
+                self._config.config_id,
+                "direction" if dps is self._direction_dps else "command",
+                command,
+            )
             await dps.async_set_value(self._device, command)
         elif self._direction_dps and command in self._direction_dps.values(
             self._device
         ):
+            _LOGGER.info("%s sending direction %s", self._config.config_id, command)
             await self._direction_dps.async_set_value(self._device, command)
 
     @property
@@ -202,4 +225,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     async def async_set_fan_speed(self, fan_speed, **kwargs):
         """Set the fan speed of the vacuum."""
         if self._fan_dps:
+            _LOGGER.info(
+                "%s setting fan speed to %s", self._config.config_id, fan_speed
+            )
             await self._fan_dps.async_set_value(self._device, fan_speed)

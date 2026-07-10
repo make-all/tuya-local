@@ -103,9 +103,11 @@ entities:
   - entity: sensor
     class: energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
+        optional: true
         name: sensor
         unit: kWh
         class: total_increasing

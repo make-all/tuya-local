@@ -9,8 +9,7 @@ entities:
   # 1. Main Camera & Snapshot
   # ------------------------------------
   - entity: switch
-    name: Motion detection
-    icon: "mdi:motion-sensor"
+    translation_key: motion_detection
     category: config
     # Motion Detection Switch (matches motion_switch: 134)
     dps:
@@ -77,8 +76,7 @@ entities:
         name: switch
 
   - entity: switch
-    name: Watermark
-    icon: "mdi:watermark"
+    translation_key: watermark
     category: config
     # Watermark/OSD Switch (matches basic_osd: 104)
     dps:
@@ -88,8 +86,7 @@ entities:
         optional: true
 
   - entity: select
-    name: Night vision
-    icon: "mdi:weather-night"
+    translation_key: night_vision
     category: config
     # Night Vision Mode Selector (matches basic_nightvision: 108)
     dps:
@@ -99,11 +96,11 @@ entities:
         optional: true
         mapping:
           - dps_val: "0"
-            value: Auto
+            value: auto
           - dps_val: "1"
-            value: "Off"
+            value: "off"
           - dps_val: "2"
-            value: "On"
+            value: "on"
 
   # ------------------------------------
   # 4. Detection & Alarm
@@ -205,6 +202,7 @@ entities:
 
   - entity: sensor
     name: SD status
+    translation_key: status
     class: enum
     category: diagnostic
     icon: "mdi:micro-sd"
@@ -259,8 +257,7 @@ entities:
             value: Formatted
 
   - entity: select
-    name: Recording mode
-    icon: "mdi:file-video"
+    translation_key: recording_mode
     category: config
     # Recording Mode Selector (matches record_mode: 151)
     dps:
@@ -270,9 +267,9 @@ entities:
         optional: true
         mapping:
           - dps_val: "1"
-            value: Event
+            value: event
           - dps_val: "2"
-            value: Continuous
+            value: continuous
 
   # ------------------------------------
   # 8. Advanced / ONVIF

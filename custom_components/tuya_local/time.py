@@ -99,11 +99,15 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
 
     async def async_set_value(self, value: time):
         """Set the number."""
+        return await self._async_set_value_locked(value)
+
+    async def _async_set_value_locked(self, value: time):
         settings = {}
         hours = value.hour
         minutes = value.minute
         seconds = value.second
         if self._hour_dps:
+            _LOGGER.info("%s setting hours to %d", self._config.config_id, hours)
             settings.update(
                 self._hour_dps.get_values_to_set(self._device, hours, settings)
             )
@@ -111,6 +115,7 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
             minutes = minutes + hours * 60
 
         if self._minute_dps:
+            _LOGGER.info("%s setting minutes to %d", self._config.config_id, minutes)
             settings.update(
                 self._minute_dps.get_values_to_set(self._device, minutes, settings)
             )
@@ -118,6 +123,7 @@ class TuyaLocalTime(TuyaLocalEntity, TimeEntity):
             seconds = seconds + minutes * 60
 
         if self._second_dps:
+            _LOGGER.info("%s setting seconds to %d", self._config.config_id, seconds)
             settings.update(
                 self._second_dps.get_values_to_set(self._device, seconds, settings)
             )

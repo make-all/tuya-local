@@ -1,0 +1,145 @@
+name: Air purifier
+products:
+  - id: d3t8x46xs23ncow8
+    manufacturer: Klarta
+    model: Stor 3
+entities:
+  - entity: fan
+    translation_key: air_purifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: manual
+            value: manual
+          - dps_val: sleep
+            value: sleep
+          - dps_val: screenoff
+            value: displayoff
+      - id: 4
+        type: integer
+        name: speed
+        mapping:
+          - dps_val: 1
+            value: 17
+          - dps_val: 2
+            value: 33
+          - dps_val: 3
+            value: 50
+          - dps_val: 4
+            value: 67
+          - dps_val: 5
+            value: 83
+          - dps_val: 6
+            value: 100
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    name: Auto mode
+    translation_key: mode
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: normal
+            value: medium
+          - dps_val: turbo
+            value: high
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 1h
+            value: "1h"
+          - dps_val: 2h
+            value: "2h"
+          - dps_val: 4h
+            value: "4h"
+          - dps_val: 8h
+            value: "8h"
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    translation_key: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: good
+            value: excellent
+          - dps_val: moderate
+            value: good
+          - dps_val: medium
+            value: moderate
+          - dps_val: unhealthy
+            value: poor
+          - dps_val: severe
+            value: severe
+          - dps_val: hazard
+            value: danger

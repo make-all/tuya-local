@@ -94,7 +94,6 @@ entities:
         type: integer
         name: current_temperature
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         type: boolean
@@ -197,9 +196,8 @@ entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 26
         type: integer
@@ -314,10 +312,8 @@ entities:
       - id: 114
         type: integer
         name: sensor
-        unit: MPa
+        unit: kPa
         class: measurement
-        mapping:
-          - scale: 1000
   - entity: sensor
     name: Low pressure
     class: pressure
@@ -326,10 +322,8 @@ entities:
       - id: 115
         type: integer
         name: sensor
-        unit: MPa
+        unit: kPa
         class: measurement
-        mapping:
-          - scale: 1000
   - entity: sensor
     name: Compressor frequency
     class: frequency

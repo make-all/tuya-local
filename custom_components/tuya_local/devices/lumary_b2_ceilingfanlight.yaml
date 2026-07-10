@@ -4,20 +4,22 @@ products:
     manufacturer: Lumary
     model: B2
     model_id: L-CFL20B2
+  - id: ddbgeali1ibsaif6
+    manufacturer: Lumary
+    model: C2
+    model_id: B2 L-CFL19C1
 entities:
   - entity: switch
     name: Lights
     icon: "mdi:lightbulb-multiple"
     category: config
+    hidden: true
     dps:
       - id: 20
         type: boolean
         name: switch
   - entity: light
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 107
         type: boolean
         name: switch
@@ -52,9 +54,6 @@ entities:
   - entity: light
     name: RGB
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 108
         type: boolean
         name: switch
@@ -215,9 +214,6 @@ entities:
   - entity: light
     translation_key: nightlight
     dps:
-      - id: 20
-        type: boolean
-        name: available
       - id: 143
         type: boolean
         name: switch

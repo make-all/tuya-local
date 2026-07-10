@@ -206,7 +206,6 @@ entities:
             value: "Regulator Mode (output displayed is based on percentage)"
   - entity: sensor
     name: Floor temperature
-    category: diagnostic
     hidden: unavailable
     dps:
       - id: 105
@@ -224,8 +223,7 @@ entities:
             value: false
           - value: true
   - entity: sensor
-    name: Air temperature
-    category: diagnostic
+    translation_key: ambient_temperature
     dps:
       - id: 104
         name: sensor
@@ -236,7 +234,6 @@ entities:
           - scale: 100
   - entity: sensor
     class: power
-    category: diagnostic
     dps:
       - id: 150
         name: sensor
@@ -245,7 +242,6 @@ entities:
         class: measurement
   - entity: sensor
     class: energy
-    category: diagnostic
     dps:
       - id: 151
         name: sensor
@@ -377,7 +373,6 @@ entities:
         name: switch
   - entity: binary_sensor
     class: occupancy
-    category: diagnostic
     dps:
       - id: 122
         type: string
@@ -388,7 +383,6 @@ entities:
           - value: false
   - entity: binary_sensor
     class: window
-    category: diagnostic
     dps:
       - id: 123
         type: string

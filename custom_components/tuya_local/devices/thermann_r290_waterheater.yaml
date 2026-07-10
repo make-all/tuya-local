@@ -10,7 +10,6 @@ entities:
         type: boolean
         name: switch
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 4
         type: string
@@ -112,10 +111,8 @@ entities:
         name: sensor
         unit: C
   - entity: sensor
-    name: Ambient temperature
-    icon: "mdi:thermometer"
+    translation_key: ambient_temperature
     class: temperature
-    category: diagnostic
     dps:
       - id: 108
         type: integer
