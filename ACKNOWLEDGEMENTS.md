@@ -888,3 +888,4 @@ Further device support has been made with the assistance of users. Please consid
 - [romainsc](https://github.com/romainsc) for contributing improvements to Teknopoint Idra Skiv.
 - [kcgthb](https://github.com/kcgthb) for contributing improvements to Petlibro PLAF203 pet feeder.
 - [Matt-Hadley](https://github.com/Matt-Hadley) for contributing support for Sensio 240V Kinetic Receiver dimmer.
+- [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
