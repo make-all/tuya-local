@@ -103,6 +103,7 @@
 ### Air Conditioners / Heat pumps
 
 - Airton air conditioner
+- Airwoods fresh air heat pump
 - Arlec PA1123BKHA portable air conditioner
 - Ballu Aura air conditioner
 - Be Cool BC14KL2101F
@@ -519,6 +520,7 @@
 - AlecoAir D12 ECO, D12/D16 Home, D14, D16, D25 Traditio dehumidifiers
 - Argo Dry Pury Evo WF dehumidifier
 - Arida S7L-2 dehumidifier
+- Belair Baltic Irradio 20L dehumidifier
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
@@ -748,7 +750,7 @@
 - Nine 32A EV charger
 - Noeifevo Q21W EV charger
 - Olight Ostation 2 battery charging station
-- Oscal PowerMax 6000 portable power station
+- Oscal PowerMax 2400 Pro and 6000 portable power stations
 - Parkside PLGS 2012 A1 smart charger for powertools
 - SEVR X1 EV charger
 - SRNE SE Series lithium battery
@@ -965,9 +967,11 @@ of device.
 - oLight Sphere ambient light
 - Outon Smart Lamp
 - Peteme recessed lighting
+- Pinar SmartLux door lights
 - PowerAsia RGB 6-inch recessed lighting
 - RGB48 RGBIC string light
 - Richelieu tunable white LED puck light (166142030)
+- Sensio 240V Kinetic Receiver dimmer
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - SunnyBot plant light
