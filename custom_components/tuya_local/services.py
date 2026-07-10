@@ -50,7 +50,7 @@ async def async_handle_send_ir_command(entity, call: ServiceCall):
     if not entity._storage_loaded:
         await entity._async_load_storage()
 
-    emitter = call.data.get("emitter")
+    emitter = call.data.get("emitter_entity_id")
     device = call.data.get("device")
     command = call.data.get("command")
     delay = call.data.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS)
