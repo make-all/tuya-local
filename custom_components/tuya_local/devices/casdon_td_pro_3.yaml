@@ -1,0 +1,171 @@
+name: Oven
+products:
+  - id: bewmlg02cpi6vupq
+    manufacturer: Casdon
+    model: TD Pro 3
+entities:
+  - entity: climate
+    translation_key: oven
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 7
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - step: 5
+      - id: 8
+        name: current_temperature
+        type: integer
+      - id: 102
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: cooking
+            value: heating
+          - dps_val: preheating
+            value: preheating
+          - dps_val: preheat_warming
+            value: preheating
+          - dps_val: reservation
+            value: idle
+          - dps_val: cancel
+            value: idle
+          - dps_val: done
+            value: idle
+          - dps_val: pause
+            value: idle
+          - dps_val: "wait"
+            value: idle
+      - id: 101
+        name: unknown_101
+        type: boolean
+      - id: 108
+        name: unknown_108
+        type: integer
+      - id: 109
+        name: unknown_109
+        type: integer
+  - entity: switch
+    name: Start
+    icon: "mdi:play-pause"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: time
+    name: Start time
+    translation_key: timer
+    dps:
+      - id: 9
+        name: minute
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: time
+    translation_key: cooking_time
+    dps:
+      - id: 10
+        name: minute
+        type: integer
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        range:
+          min: 0
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    translation_key: problem
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
+        mapping:
+          - value: unknown
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: chamber_overheat
+          - dps_val: 2
+            value: evaporation_tray_overheat
+          - dps_val: 4
+            value: chamber_low_temperature
+          - dps_val: 8
+            value: evaporation_tray_low_temperature
+          - dps_val: 16
+            value: sensor_open_circuit
+          - dps_val: 32
+            value: sensor_short_circuit
+          - dps_val: 64
+            value: communication_error
+          - dps_val: 128
+            value: water_removed_or_empty
+  - entity: sensor
+    class: enum
+    translation_key: cooking_status
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: wait
+            value: wait
+          - dps_val: reservation
+            value: reservation
+          - dps_val: cooking
+            value: cooking
+          - dps_val: preheating
+            value: preheating
+          - dps_val: preheat_warming
+            value: preheat_warming
+          - dps_val: cancel
+            value: cancel
+          - dps_val: done
+            value: done
+          - dps_val: pause
+            value: pause
+  - entity: light
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Working program
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        optional: true

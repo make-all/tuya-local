@@ -1,0 +1,194 @@
+name: Circuit breaker
+products:
+  - id: sh45wydgedautxda
+    manufacturer: TOMZN
+    model: SWC32v4
+
+entities:
+  - entity: switch
+    translation_key: breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+
+  # Phase A
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
+    class: voltage
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: A
+    class: current
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: A
+    class: power
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  # Phase B
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
+    class: voltage
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: B
+    class: current
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: B
+    class: power
+    dps:
+      - id: 7
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  # Phase C
+  - entity: sensor
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
+    class: voltage
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+
+  - entity: sensor
+    translation_key: current_x
+    translation_placeholders:
+      x: C
+    class: current
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+
+  - entity: sensor
+    translation_key: power_x
+    translation_placeholders:
+      x: C
+    class: power
+    dps:
+      - id: 8
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+
+  # Rest of the sensors
+  - entity: sensor
+    translation_key: leakage_current
+    class: current
+    dps:
+      - id: 15
+        type: integer
+        unit: mA
+        name: sensor
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        unit: C
+        name: sensor
+        mapping:
+          - scale: 10

@@ -1,0 +1,108 @@
+name: Fan
+products:
+  - id: yrgy1hmepnqysltk
+    manufacturer: Poiema
+    model: SGT-F12W
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1  # Power On Off
+        type: boolean
+        name: switch
+      - id: 2  # Mode: Narmal / Sleep / Natural / AI
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "Narmal"
+            value: "normal"
+          - dps_val: "Sleep"
+            value: "sleep"
+          - dps_val: "Natural"
+            value: "nature"
+          - dps_val: "AI"
+            value: "smart"
+
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 12
+
+  - entity: select
+    name: Oscillation angle
+    icon: "mdi:arrow-oscillating"
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Disabled"
+          - dps_val: "60"
+            value: "60°"
+          - dps_val: "90"
+            value: "90°"
+          - dps_val: "120"
+            value: "120°"
+          - dps_val: "60L"
+            value: "60° slow"
+          - dps_val: "90L"
+            value: "90° slow"
+          - dps_val: "120L"
+            value: "120° slow"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: "°C"
+  - entity: select
+    translation_key: timer
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "cancel"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"

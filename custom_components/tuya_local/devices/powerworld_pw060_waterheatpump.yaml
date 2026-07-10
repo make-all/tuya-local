@@ -1,0 +1,350 @@
+name: Water heat pump
+products:
+  - id: cobktgtmeswilub9
+    manufacturer: Powerworld
+    model: PW060
+entities:
+  - entity: water_heater
+    translation_key: water_air
+    dps:
+      - id: 1
+        type: boolean
+        name: on_off
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_pump
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: wth
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: heat_pump
+                available: climate_off
+              - dps_val: strong
+                value: performance
+                available: climate_off
+              - dps_val: mute
+                value: electric
+                available: climate_off
+              - dps_val: null
+                value_redirect: on_off
+                value: "off"
+                available: climate_off
+          - dps_val: heat
+            value: "off"
+            available: climate_heat
+          - dps_val: cool
+            value: "off"
+            available: climate_cool
+          - dps_val: wth_heat
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: heat_pump
+                available: climate_heat
+              - dps_val: strong
+                value: performance
+                available: climate_heat
+              - dps_val: mute
+                value: electric
+                available: climate_heat
+          - dps_val: wth_cool
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: heat_pump
+                available: climate_cool
+              - dps_val: strong
+                value: performance
+                available: climate_cool
+              - dps_val: mute
+                value: electric
+                available: climate_cool
+      - id: 5
+        type: string
+        name: climate_off
+        hidden: true
+        mapping:
+          - dps_val: wth
+            value: true
+          - value: false
+      - id: 5
+        type: string
+        name: climate_heat
+        hidden: true
+        mapping:
+          - dps_val: wth_heat
+            value: true
+          - dps_val: heat
+            value: true
+          - value: false
+      - id: 5
+        type: string
+        name: climate_cool
+        hidden: true
+        mapping:
+          - dps_val: wth_cool
+            value: true
+          - dps_val: cool
+            value: true
+          - value: false
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 110
+        type: integer
+        name: temperature
+        range:
+          min: 28
+          max: 80
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 82
+                  max: 176
+      - id: 180
+        type: string
+        optional: true
+        name: product
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            available: wth_off
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: wth
+                value: "off"
+                available: wth_on
+              - dps_val: heat
+                value: heat
+                available: wth_off
+              - dps_val: cool
+                value: cool
+                available: wth_off
+              - dps_val: wth_heat
+                value: heat
+                available: wth_on
+              - dps_val: wth_cool
+                value: cool
+                available: wth_on
+      - id: 5
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: wth_on
+        hidden: true
+        mapping:
+          - value: false
+            conditions:
+              - dps_val: [wth, wth_heat, wth_cool]
+                value: true
+      - id: 5
+        type: string
+        name: wth_off
+        hidden: true
+        mapping:
+          - value: true
+            conditions:
+              - dps_val: [wth, wth_heat, wth_cool]
+                value: false
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 111
+        type: integer
+        name: temperature
+        range:
+          min: 7
+          max: 176
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: [heat, wth_heat]
+                value_redirect: heat_temp
+              - dps_val: [cool, wth_cool]
+                value_redirect: cool_temp
+      - id: 111
+        type: integer
+        name: heat_temp
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 59
+                  max: 176
+              - dps_val: c
+                range:
+                  min: 15
+                  max: 80
+      - id: 112
+        type: integer
+        name: cool_temp
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 45
+                  max: 86
+              - dps_val: c
+                range:
+                  min: 7
+                  max: 30
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 101
+        type: base64
+        optional: true
+        name: status
+      - id: 190
+        type: base64
+        optional: true
+        name: extended_code
+  - entity: text
+    name: User settings 1
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 120
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: User settings 2
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 121
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Factory settings 1
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 122
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Factory settings 2
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 123
+        type: base64
+        optional: true
+        name: value
+  - entity: text
+    name: Factory settings 3
+    category: config
+    icon: "mdi:cogs"
+    hidden: true
+    dps:
+      - id: 124
+        type: base64
+        optional: true
+        name: value
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    hidden: true
+    dps:
+      - id: 125
+        type: boolean
+        optional: true
+        name: button
+  - entity: number
+    name: Defrost
+    category: config
+    icon: "mdi:snowflake"
+    dps:
+      - id: 130
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 8
+  - entity: number
+    name: Logo
+    category: config
+    icon: "mdi:shape"
+    dps:
+      - id: 131
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 1
+  - entity: text
+    name: Statistics
+    category: config
+    icon: "mdi:chart-line"
+    hidden: true
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: value

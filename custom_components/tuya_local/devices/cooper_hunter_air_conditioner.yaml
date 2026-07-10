@@ -211,20 +211,6 @@ entities:
         name: switch
         type: boolean
         optional: true
-  - entity: switch
-    name: Horizontal swing
-    deprecated: climate.swing_horizontal_mode  # 2025-11-08
-    category: config
-    icon: "mdi:arrow-left-right-bold"
-    dps:
-      - id: 34
-        name: switch
-        type: string
-        mapping:
-          - dps_val: "on"
-            value: true
-          - dps_val: "off"
-            value: false
   - entity: binary_sensor
     translation_key: defrost
     category: diagnostic

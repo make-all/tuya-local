@@ -50,7 +50,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         self._init_end(dps_map)
 
         self._support_flags = FanEntityFeature(0)
-        if self._preset_dps:
+        if self._preset_dps and self._preset_dps.values(device):
             self._support_flags |= FanEntityFeature.PRESET_MODE
         if self._speed_dps:
             self._support_flags |= FanEntityFeature.SET_SPEED
@@ -64,9 +64,6 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             r = self._speed_dps.range(self._device)
             if r and r[0] == 0:
                 self._support_flags |= FanEntityFeature.TURN_OFF
-
-        # Until the deprecation period ends (expected 2025.2)
-        self._enable_turn_on_off_backwards_compatibility = False
 
     @property
     def supported_features(self):

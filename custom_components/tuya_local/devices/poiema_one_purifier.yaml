@@ -5,8 +5,7 @@ products:
     model: One
 entities:
   - entity: fan
-    icon: "mdi:air-purifier"
-    translation_only_key: fan_with_presets
+    translation_key: air_purifier
     dps:
       - id: 1
         type: boolean
@@ -16,9 +15,9 @@ entities:
         name: preset_mode
         mapping:
           - dps_val: manual
-            value: normal
+            value: manual
           - dps_val: auto
-            value: smart
+            value: auto
           - dps_val: sleep
             value: sleep
       - id: 4

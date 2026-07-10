@@ -5,7 +5,6 @@ products:
     model: EcoMaxi VB 200 WiFi
 entities:
   - entity: water_heater
-    translation_only_key: hot_water
     dps:
       - id: 1
         name: operation_mode
@@ -13,10 +12,8 @@ entities:
         mapping:
           - dps_val: false
             value: "off"
-            icon: "mdi:water-boiler-off"
           - dps_val: true
             value: heat_pump
-            icon: "mdi:water-boiler"
       - id: 4
         name: temperature
         type: integer

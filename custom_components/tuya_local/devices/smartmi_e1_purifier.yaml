@@ -5,8 +5,7 @@ products:
     model: E1
 entities:
   - entity: fan
-    translation_only_key: fan_with_presets
-    icon: "mdi:air-purifier"
+    translation_key: air_purifier
     dps:
       - id: 1
         name: switch
@@ -18,9 +17,9 @@ entities:
           - dps_val: sleep
             value: sleep
           - dps_val: auto
-            value: normal
+            value: auto
           - dps_val: manual
-            value: strong
+            value: manual
   - entity: light
     translation_key: indicator
     category: config
