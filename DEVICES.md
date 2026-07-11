@@ -1375,6 +1375,7 @@ port and password.
 - RTCZ-03 human presence sensor
 - Ryakka 7-in-1 smart pool monitor
 - SD123 HPR01 human presence radar
+- Shrivee triple water timer
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sodial probe thermometer
