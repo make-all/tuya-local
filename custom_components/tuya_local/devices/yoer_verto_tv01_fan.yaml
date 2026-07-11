@@ -59,7 +59,7 @@ entities:
           - dps_val: "on"
             value: true
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
     icon: mdi:timer-outline
     dps:
@@ -94,7 +94,7 @@ entities:
           - dps_val: "12"
             value: "12h"
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
     icon: mdi:creation
     dps:
@@ -110,14 +110,13 @@ entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Temperature
-    category: diagnostic
     class: temperature
     dps:
       - id: 19
         type: integer
         name: sensor
-        readonly: true
+        unit: C
+        class: measurement
   - entity: switch
     name: Display Off
     category: config
