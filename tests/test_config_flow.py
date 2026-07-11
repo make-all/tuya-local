@@ -41,6 +41,19 @@ def prevent_task_creation(mocker):
     yield
 
 
+@pytest.fixture(autouse=True)
+def bypass_discovery(mocker):
+    """Don't open real LAN discovery sockets during setup in these tests.
+
+    The discovery listener is exercised directly in tests/test_discovery.py.
+    """
+    mocker.patch(
+        "custom_components.tuya_local.async_start_discovery",
+        new=AsyncMock(),
+    )
+    yield
+
+
 @pytest.fixture
 def bypass_setup(mocker):
     """Prevent actual setup of the integration after config flow."""
