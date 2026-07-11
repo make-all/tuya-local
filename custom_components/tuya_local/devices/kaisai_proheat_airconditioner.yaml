@@ -153,6 +153,49 @@ entities:
           - scale: 100
 
   - entity: sensor
+    mode: delta
+    delta_function: total
+    name: Total energy
+    class: energy
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 128
+        name: delta_start_key
+        type: integer
+      - id: 129
+        name: delta_key
+        type: integer
+
+  - entity: sensor
+    mode: delta
+    delta_function: average
+    averaging_window: 400
+    name: Power
+    class: power
+    dps:
+      - id: 127
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+
+      - id: 128
+        name: delta_start_key
+        type: integer
+
+      - id: 129
+        name: delta_key
+        type: integer
+
+  - entity: sensor
     class: energy
     dps:
       - id: 127
