@@ -1,0 +1,124 @@
+name: Breezer
+products:
+  - id: rllylqfcd3lfe3s3
+    manufacturer: TION
+    model: Breezer 4S
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+            constraint: temperature
+            conditions:
+              - dps_val: 0
+                value: fan_only
+      - id: 109
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 25
+      - id: 9
+        name: current_temperature
+        type: integer
+        unit: C
+      - id: 108
+        name: fan_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: "1"
+          - dps_val: 2
+            value: "2"
+          - dps_val: 3
+            value: "3"
+          - dps_val: 4
+            value: "4"
+          - dps_val: 5
+            value: "5"
+          - dps_val: 6
+            value: "6"
+      - id: 111
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: Heating
+            value: heating
+          - dps_val: Support
+            value: idle
+  - entity: switch
+    translation_key: sound
+    category: config
+    dps:
+      - id: 102
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Backlight
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Recirculation
+    icon: "mdi:air-conditioner"
+    category: config
+    dps:
+      - id: 112
+        name: switch
+        type: string
+        mapping:
+          - dps_val: Recirc
+            value: true
+          - dps_val: Inflow
+            value: false
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Heater power
+    class: power
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+  - entity: sensor
+    translation_key: filter_life
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "None"
+            value: false
+          - value: true
+      - id: 113
+        name: description
+        type: string
