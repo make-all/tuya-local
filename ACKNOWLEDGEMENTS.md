@@ -893,3 +893,4 @@ Further device support has been made with the assistance of users. Please consid
 - [com6056](https://github.com/com6056) for contributing logging improvements.
 - [ralphxtrem](https://github.com/ralphxtrem) for contributing support for AtmosC A Series air purifier.
 - [pedrohcmeneses](https://github.com/pedrohcmeneses) for contributing support for Coibeu WKFS-004 ceiling fan with light.
+- [neneonline](https://github.com/neneonline) for contributing support for Tuya device discovery.
