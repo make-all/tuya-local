@@ -26,6 +26,7 @@
 - Cronos GPH-D-DA heater
 - Devola Intelligent and Patio heaters
 - Dynasty BTX fireplace
+- Ecoso WiFi heating element
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiators
 - Ecostrad iQ heating elements
