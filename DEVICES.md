@@ -477,6 +477,7 @@
 
 - Alen BreatheSmart 35i and 45i air purifiers
 - Arlec APR005HA air purifier
+- AtmosC A Series air purifier
 - Breville Easy Air, Smart Air Connect, Smart Air Viral Protect Plus and Night Glow purifiers
 - Cecotec TotalPure purifier
 - Cleverio AP100 air purifier

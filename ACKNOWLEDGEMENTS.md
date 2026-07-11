@@ -891,3 +891,4 @@ Further device support has been made with the assistance of users. Please consid
 - [flo-m](https://github.com/flo-m) for contributing support for Pinar SmartLux door lights.
 - [algrym](https://github.com/algrym) for contributing improvements to Leo's Loo Too litter box.
 - [com6056](https://github.com/com6056) for contributing logging improvements.
+- [ralphxtrem](https://github.com/ralphxtrem) for contributing support for AtmosC A Series air purifier.
