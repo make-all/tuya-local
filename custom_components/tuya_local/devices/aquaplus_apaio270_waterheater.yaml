@@ -36,6 +36,26 @@ entities:
         type: integer
         name: current_temperature
         unit: C
+  - entity: sensor
+    name: Target temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Tank temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
   - entity: binary_sensor
     translation_key: defrost
     category: diagnostic
