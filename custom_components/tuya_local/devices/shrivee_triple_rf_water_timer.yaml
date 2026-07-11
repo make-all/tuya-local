@@ -1,30 +1,40 @@
 name: Triple water timer
 products:
   - id: j6nltlprwlyedyy4
+    manufacturer: Shrivee
+    model: HCT-638
 entities:
   - entity: valve
-    name: Valve 1
+    translation_key: valve_x
+    translation_placeholders:
+      x: "1"
     class: water
     dps:
       - id: 1
         type: boolean
         name: valve
   - entity: valve
-    name: Valve 2
+    translation_key: valve_x
+    translation_placeholders:
+      x: "2"
     class: water
     dps:
       - id: 2
         type: boolean
         name: valve
   - entity: valve
-    name: Valve 3
+    translation_key: valve_x
+    translation_placeholders:
+      x: "3"
     class: water
     dps:
       - id: 3
         type: boolean
         name: valve
   - entity: number
-    name: Valve 1 Seconds
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     class: duration
     category: config
     dps:
@@ -36,7 +46,9 @@ entities:
           max: 43200
         unit: s
   - entity: number
-    name: Valve 2 Seconds
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     class: duration
     category: config
     dps:
@@ -48,7 +60,9 @@ entities:
           max: 43200
         unit: s
   - entity: number
-    name: Valve 3 Seconds
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     class: duration
     category: config
     dps:
@@ -88,45 +102,46 @@ entities:
         optional: true
         mapping:
           - dps_val: sunny
-            value: Sunny
+            value: sunny
             icon: "mdi:weather-sunny"
           - dps_val: cloudy
-            value: Cloudy
+            value: cloudy
             icon: "mdi:weather-cloudy"
           - dps_val: rainy
-            value: Rainy
+            value: rainy
             icon: "mdi:weather-rainy"
           - dps_val: snowy
-            value: Snowy
+            value: snowy
             icon: "mdi:weather-snowy"
           - dps_val: null
-            value: Unavailable
             icon: "mdi:weather-sunny-off"
+            hidden: true
   - entity: select
     name: Weather delay
     icon: "mdi:weather-cloudy-clock"
+    translation_key: timer
     category: config
     dps:
       - id: 45
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "Off"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1"
-            value: "1 day"
+            value: "1d"
           - dps_val: "2"
-            value: "2 days"
+            value: "2d"
           - dps_val: "3"
-            value: "3 days"
+            value: "3d"
           - dps_val: "4"
-            value: "4 days"
+            value: "4d"
           - dps_val: "5"
-            value: "5 days"
+            value: "5d"
           - dps_val: "6"
-            value: "6 days"
+            value: "6d"
           - dps_val: "7"
-            value: "7 days"
+            value: "7d"
   - entity: sensor
     category: diagnostic
     class: battery
@@ -148,6 +163,7 @@ entities:
         unit: dBm
   - entity: sensor
     name: Valve 1 state
+    translation_key: status
     category: diagnostic
     class: enum
     dps:
@@ -155,45 +171,47 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "idle"
-            value: "Idle"
-          - dps_val: "manual"
-            value: "Manual"
-          - dps_val: "spray"
-            value: "Spray"
-          - dps_val: "timing"
-            value: "Scheduled"
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: spray
+            value: working
+          - dps_val: timing
+            value: scheduled
   - entity: sensor
     name: Valve 2 state
     category: diagnostic
+    translation_key: status
     class: enum
     dps:
       - id: 120
         type: string
         name: sensor
         mapping:
-          - dps_val: "idle"
-            value: "Idle"
-          - dps_val: "manual"
-            value: "Manual"
-          - dps_val: "spray"
-            value: "Spray"
-          - dps_val: "timing"
-            value: "Scheduled"
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: spray
+            value: working
+          - dps_val: timing
+            value: scheduled
   - entity: sensor
     name: Valve 3 state
     category: diagnostic
+    translation_key: status
     class: enum
     dps:
       - id: 121
         type: string
         name: sensor
         mapping:
-          - dps_val: "idle"
-            value: "Idle"
-          - dps_val: "manual"
-            value: "Manual"
-          - dps_val: "spray"
-            value: "Spray"
-          - dps_val: "timing"
-            value: "Scheduled"
+          - dps_val: idle
+            value: idle
+          - dps_val: manual
+            value: manual
+          - dps_val: spray
+            value: working
+          - dps_val: timing
+            value: scheduled
